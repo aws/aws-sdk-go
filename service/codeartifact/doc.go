@@ -3,15 +3,15 @@
 // Package codeartifact provides the client and types for making API
 // requests to CodeArtifact.
 //
-// AWS CodeArtifact is a fully managed artifact repository compatible with language-native
-// package managers and build tools such as npm, Apache Maven, and pip. You
-// can use CodeArtifact to share packages with development teams and pull packages.
-// Packages can be pulled from both public and CodeArtifact repositories. You
-// can also create an upstream relationship between a CodeArtifact repository
+// CodeArtifact is a fully managed artifact repository compatible with language-native
+// package managers and build tools such as npm, Apache Maven, pip, and dotnet.
+// You can use CodeArtifact to share packages with development teams and pull
+// packages. Packages can be pulled from both public and CodeArtifact repositories.
+// You can also create an upstream relationship between a CodeArtifact repository
 // and another repository, which effectively merges their contents from the
 // point of view of a package manager client.
 //
-// AWS CodeArtifact Components
+// CodeArtifact Components
 //
 // Use the information in this guide to help you work with the following CodeArtifact
 // components:
@@ -21,27 +21,29 @@
 //    each of which maps to a set of assets, or files. Repositories are polyglot,
 //    so a single repository can contain packages of any supported type. Each
 //    repository exposes endpoints for fetching and publishing packages using
-//    tools like the npm CLI, the Maven CLI ( mvn ), and pip .
+//    tools like the npm CLI, the Maven CLI ( mvn ), Python CLIs ( pip and twine),
+//    and NuGet CLIs (nuget and dotnet).
 //
 //    * Domain: Repositories are aggregated into a higher-level entity known
 //    as a domain. All package assets and metadata are stored in the domain,
 //    but are consumed through repositories. A given package asset, such as
 //    a Maven JAR file, is stored once per domain, no matter how many repositories
 //    it's present in. All of the assets and metadata in a domain are encrypted
-//    with the same customer master key (CMK) stored in AWS Key Management Service
-//    (AWS KMS). Each repository is a member of a single domain and can't be
-//    moved to a different domain. The domain allows organizational policy to
-//    be applied across multiple repositories, such as which accounts can access
-//    repositories in the domain, and which public repositories can be used
-//    as sources of packages. Although an organization can have multiple domains,
-//    we recommend a single production domain that contains all published artifacts
-//    so that teams can find and share packages across their organization.
+//    with the same customer master key (CMK) stored in Key Management Service
+//    (KMS). Each repository is a member of a single domain and can't be moved
+//    to a different domain. The domain allows organizational policy to be applied
+//    across multiple repositories, such as which accounts can access repositories
+//    in the domain, and which public repositories can be used as sources of
+//    packages. Although an organization can have multiple domains, we recommend
+//    a single production domain that contains all published artifacts so that
+//    teams can find and share packages across their organization.
 //
 //    * Package: A package is a bundle of software and the metadata required
 //    to resolve dependencies and install the software. CodeArtifact supports
 //    npm (https://docs.aws.amazon.com/codeartifact/latest/ug/using-npm.html),
 //    PyPI (https://docs.aws.amazon.com/codeartifact/latest/ug/using-python.html),
-//    and Maven (https://docs.aws.amazon.com/codeartifact/latest/ug/using-maven)
+//    Maven (https://docs.aws.amazon.com/codeartifact/latest/ug/using-maven),
+//    and NuGet (https://docs.aws.amazon.com/codeartifact/latest/ug/using-nuget)
 //    package formats. In CodeArtifact, a package consists of: A name (for example,
 //    webpack is the name of a popular npm package) An optional namespace (for
 //    example, @types in @types/node) A set of versions (for example, 1.0.0,
@@ -122,7 +124,7 @@
 //
 //    * GetRepositoryEndpoint: Returns the endpoint of a repository for a specific
 //    package format. A repository has one endpoint for each package format:
-//    npm pypi maven
+//    maven npm nuget pypi
 //
 //    * GetRepositoryPermissionsPolicy: Returns the resource policy that is
 //    set on a repository.
@@ -140,8 +142,8 @@
 //    * ListPackageVersions: Returns a list of package versions for a specified
 //    package in a repository.
 //
-//    * ListRepositories: Returns a list of repositories owned by the AWS account
-//    that called this method.
+//    * ListRepositories: Returns a list of repositories owned by the Amazon
+//    Web Services account that called this method.
 //
 //    * ListRepositoriesInDomain: Returns a list of the repositories in a domain.
 //

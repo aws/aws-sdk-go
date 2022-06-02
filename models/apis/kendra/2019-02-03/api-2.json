@@ -1703,7 +1703,8 @@
         "SlackConfiguration":{"shape":"SlackConfiguration"},
         "BoxConfiguration":{"shape":"BoxConfiguration"},
         "QuipConfiguration":{"shape":"QuipConfiguration"},
-        "JiraConfiguration":{"shape":"JiraConfiguration"}
+        "JiraConfiguration":{"shape":"JiraConfiguration"},
+        "GitHubConfiguration":{"shape":"GitHubConfiguration"}
       }
     },
     "DataSourceDateFieldFormat":{
@@ -1879,7 +1880,8 @@
         "SLACK",
         "BOX",
         "QUIP",
-        "JIRA"
+        "JIRA",
+        "GITHUB"
       ]
     },
     "DataSourceVpcConfiguration":{
@@ -2840,6 +2842,46 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "GitHubConfiguration":{
+      "type":"structure",
+      "required":["SecretArn"],
+      "members":{
+        "SaaSConfiguration":{"shape":"SaaSConfiguration"},
+        "OnPremiseConfiguration":{"shape":"OnPremiseConfiguration"},
+        "Type":{"shape":"Type"},
+        "SecretArn":{"shape":"SecretArn"},
+        "UseChangeLog":{"shape":"Boolean"},
+        "GitHubDocumentCrawlProperties":{"shape":"GitHubDocumentCrawlProperties"},
+        "RepositoryFilter":{"shape":"RepositoryNames"},
+        "InclusionFolderNamePatterns":{"shape":"StringList"},
+        "InclusionFileTypePatterns":{"shape":"StringList"},
+        "InclusionFileNamePatterns":{"shape":"StringList"},
+        "ExclusionFolderNamePatterns":{"shape":"StringList"},
+        "ExclusionFileTypePatterns":{"shape":"StringList"},
+        "ExclusionFileNamePatterns":{"shape":"StringList"},
+        "VpcConfiguration":{"shape":"DataSourceVpcConfiguration"},
+        "GitHubRepositoryConfigurationFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "GitHubCommitConfigurationFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "GitHubIssueDocumentConfigurationFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "GitHubIssueCommentConfigurationFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "GitHubIssueAttachmentConfigurationFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "GitHubPullRequestCommentConfigurationFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "GitHubPullRequestDocumentConfigurationFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "GitHubPullRequestDocumentAttachmentConfigurationFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"}
+      }
+    },
+    "GitHubDocumentCrawlProperties":{
+      "type":"structure",
+      "members":{
+        "CrawlRepositoryDocuments":{"shape":"Boolean"},
+        "CrawlIssue":{"shape":"Boolean"},
+        "CrawlIssueComment":{"shape":"Boolean"},
+        "CrawlIssueCommentAttachment":{"shape":"Boolean"},
+        "CrawlPullRequest":{"shape":"Boolean"},
+        "CrawlPullRequestComment":{"shape":"Boolean"},
+        "CrawlPullRequestCommentAttachment":{"shape":"Boolean"}
+      }
+    },
     "GoogleDriveConfiguration":{
       "type":"structure",
       "required":["SecretArn"],
@@ -3531,6 +3573,19 @@
       "min":1
     },
     "ObjectBoolean":{"type":"boolean"},
+    "OnPremiseConfiguration":{
+      "type":"structure",
+      "required":[
+        "HostUrl",
+        "OrganizationName",
+        "SslCertificateS3Path"
+      ],
+      "members":{
+        "HostUrl":{"shape":"Url"},
+        "OrganizationName":{"shape":"OrganizationName"},
+        "SslCertificateS3Path":{"shape":"S3Path"}
+      }
+    },
     "OneDriveConfiguration":{
       "type":"structure",
       "required":[
@@ -3579,6 +3634,12 @@
       "max":12,
       "min":12,
       "pattern":"d-[0-9a-fA-F]{10}"
+    },
+    "OrganizationName":{
+      "type":"string",
+      "max":60,
+      "min":1,
+      "pattern":"^[A-Za-z0-9_.-]+$"
     },
     "Persona":{
       "type":"string",
@@ -3880,6 +3941,16 @@
         "NOT_RELEVANT"
       ]
     },
+    "RepositoryName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[A-Za-z0-9_.-]+$"
+    },
+    "RepositoryNames":{
+      "type":"list",
+      "member":{"shape":"RepositoryName"}
+    },
     "ResourceAlreadyExistException":{
       "type":"structure",
       "members":{
@@ -3951,6 +4022,17 @@
       "members":{
         "Bucket":{"shape":"S3BucketName"},
         "Key":{"shape":"S3ObjectKey"}
+      }
+    },
+    "SaaSConfiguration":{
+      "type":"structure",
+      "required":[
+        "OrganizationName",
+        "HostUrl"
+      ],
+      "members":{
+        "OrganizationName":{"shape":"OrganizationName"},
+        "HostUrl":{"shape":"Url"}
       }
     },
     "SalesforceChatterFeedConfiguration":{
@@ -4444,6 +4526,10 @@
       "max":2048,
       "min":1
     },
+    "StringList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "SubmitFeedbackRequest":{
       "type":"structure",
       "required":[
@@ -4661,6 +4747,13 @@
       "type":"integer",
       "max":5000,
       "min":0
+    },
+    "Type":{
+      "type":"string",
+      "enum":[
+        "SAAS",
+        "ON_PREMISE"
+      ]
     },
     "UntagResourceRequest":{
       "type":"structure",

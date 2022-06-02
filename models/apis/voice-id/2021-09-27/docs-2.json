@@ -3,9 +3,9 @@
   "service": "<p>Amazon Connect Voice ID provides real-time caller authentication and fraud screening. This guide describes the APIs used for this service. </p>",
   "operations": {
     "CreateDomain": "<p>Creates a domain that contains all Amazon Connect Voice ID data, such as speakers, fraudsters, customer audio, and voiceprints. </p>",
-    "DeleteDomain": "<p>Deletes the specified domain from the Amazon Connect Voice ID system.</p>",
-    "DeleteFraudster": "<p>Deletes the specified fraudster from the Amazon Connect Voice ID system.</p>",
-    "DeleteSpeaker": "<p>Deletes the specified speaker from the Amazon Connect Voice ID system.</p>",
+    "DeleteDomain": "<p>Deletes the specified domain from Voice ID.</p>",
+    "DeleteFraudster": "<p>Deletes the specified fraudster from Voice ID.</p>",
+    "DeleteSpeaker": "<p>Deletes the specified speaker from Voice ID.</p>",
     "DescribeDomain": "<p>Describes the specified domain.</p>",
     "DescribeFraudster": "<p>Describes the specified fraudster.</p>",
     "DescribeFraudsterRegistrationJob": "<p>Describes the specified fraudster registration job.</p>",
@@ -17,10 +17,10 @@
     "ListSpeakerEnrollmentJobs": "<p>Lists all the speaker enrollment jobs in the domain with the specified <code>JobStatus</code>. If <code>JobStatus</code> is not provided, this lists all jobs with all possible speaker enrollment job statuses.</p>",
     "ListSpeakers": "<p>Lists all speakers in a specified domain.</p>",
     "ListTagsForResource": "<p>Lists all tags associated with a specified Voice ID resource.</p>",
-    "OptOutSpeaker": "<p>Opts out a speaker from Voice ID system. A speaker can be opted out regardless of whether or not they already exist in the system. If they don't yet exist, a new speaker is created in an opted out state. If they already exist, their existing status is overridden and they are opted out. Enrollment and evaluation authentication requests are rejected for opted out speakers, and opted out speakers have no voice embeddings stored in the system.</p>",
+    "OptOutSpeaker": "<p>Opts out a speaker from Voice ID. A speaker can be opted out regardless of whether or not they already exist in Voice ID. If they don't yet exist, a new speaker is created in an opted out state. If they already exist, their existing status is overridden and they are opted out. Enrollment and evaluation authentication requests are rejected for opted out speakers, and opted out speakers have no voice embeddings stored in Voice ID.</p>",
     "StartFraudsterRegistrationJob": "<p>Starts a new batch fraudster registration job using provided details.</p>",
     "StartSpeakerEnrollmentJob": "<p>Starts a new batch speaker enrollment job using specified details.</p>",
-    "TagResource": "<p>Tags an Amazon Connect Voice ID resource with the provided list of tags.</p>",
+    "TagResource": "<p>Tags a Voice ID resource with the provided list of tags.</p>",
     "UntagResource": "<p>Removes specified tags from a specified Amazon Connect Voice ID resource.</p>",
     "UpdateDomain": "<p>Updates the specified domain. This API has clobber behavior, and clears and replaces all attributes. If an optional field, such as 'Description' is not provided, it is removed from the domain.</p>"
   },
@@ -251,7 +251,7 @@
       "base": "<p>Contains configurations defining enrollment behavior for the batch job.</p>",
       "refs": {
         "SpeakerEnrollmentJob$EnrollmentConfig": "<p>The configuration that defines the action to take when the speaker is already enrolled in Voice ID, and the <code>FraudDetectionConfig</code> to use.</p>",
-        "StartSpeakerEnrollmentJobRequest$EnrollmentConfig": "<p>The enrollment config that contains details such as the action to take when a speaker is already enrolled in the Voice ID system or when a speaker is identified as a fraudster.</p>"
+        "StartSpeakerEnrollmentJobRequest$EnrollmentConfig": "<p>The enrollment config that contains details such as the action to take when a speaker is already enrolled in Voice ID or when a speaker is identified as a fraudster.</p>"
       }
     },
     "EnrollmentJobFraudDetectionConfig": {
@@ -425,7 +425,7 @@
     "JobName": {
       "base": null,
       "refs": {
-        "FraudsterRegistrationJob$JobName": "<p>The client-provied name for the fraudster registration job.</p>",
+        "FraudsterRegistrationJob$JobName": "<p>The client-provided name for the fraudster registration job.</p>",
         "FraudsterRegistrationJobSummary$JobName": "<p>The client-provied name for the fraudster registration job.</p>",
         "SpeakerEnrollmentJob$JobName": "<p>The client-provided name for the speaker enrollment job.</p>",
         "SpeakerEnrollmentJobSummary$JobName": "<p>The client-provided name for the speaker enrollment job.</p>",
@@ -446,7 +446,8 @@
       "base": null,
       "refs": {
         "OutputDataConfig$KmsKeyId": "<p>the identifier of the KMS key you want Voice ID to use to encrypt the output file of the fraudster registration job.</p>",
-        "ServerSideEncryptionConfiguration$KmsKeyId": "<p>The identifier of the KMS Key you want Voice ID to use to encrypt your data.</p>"
+        "ServerSideEncryptionConfiguration$KmsKeyId": "<p>The identifier of the KMS key you want Voice ID to use to encrypt your data.</p>",
+        "ServerSideEncryptionUpdateDetails$OldKmsKeyId": "<p>The previous KMS key ID the domain was encrypted with, before ServerSideEncryptionConfiguration was updated to a new KMS key ID.</p>"
       }
     },
     "KnownFraudsterRisk": {
@@ -541,14 +542,14 @@
     "OutputDataConfig": {
       "base": "<p>The configuration containing output file information for a batch job.</p>",
       "refs": {
-        "FraudsterRegistrationJob$OutputDataConfig": "<p>The output data config containing the S3 location where you want Voice ID to write your job output file; you must also include a KMS Key ID in order to encrypt the file.</p>",
-        "SpeakerEnrollmentJob$OutputDataConfig": "<p>The output data config containing the S3 location where Voice ID writes the job output file; you must also include a KMS Key ID to encrypt the file.</p>",
-        "StartFraudsterRegistrationJobRequest$OutputDataConfig": "<p>The output data config containing the S3 location where Voice ID writes the job output file; you must also include a KMS Key ID to encrypt the file.</p>",
-        "StartSpeakerEnrollmentJobRequest$OutputDataConfig": "<p>The output data config containing the S3 location where Voice ID writes the job output file; you must also include a KMS Key ID to encrypt the file.</p>"
+        "FraudsterRegistrationJob$OutputDataConfig": "<p>The output data config containing the S3 location where you want Voice ID to write your job output file; you must also include a KMS key iD in order to encrypt the file.</p>",
+        "SpeakerEnrollmentJob$OutputDataConfig": "<p>The output data config containing the S3 location where Voice ID writes the job output file; you must also include a KMS key ID to encrypt the file.</p>",
+        "StartFraudsterRegistrationJobRequest$OutputDataConfig": "<p>The output data config containing the S3 location where Voice ID writes the job output file; you must also include a KMS key ID to encrypt the file.</p>",
+        "StartSpeakerEnrollmentJobRequest$OutputDataConfig": "<p>The output data config containing the S3 location where Voice ID writes the job output file; you must also include a KMS key ID to encrypt the file.</p>"
       }
     },
     "RegistrationConfig": {
-      "base": "<p>The configuration definining the action to take when a duplicate fraudster is detected, and the similarity threshold to use for detecting a duplicate fraudster during a batch fraudster registration job.</p>",
+      "base": "<p>The configuration defining the action to take when a duplicate fraudster is detected, and the similarity threshold to use for detecting a duplicate fraudster during a batch fraudster registration job.</p>",
       "refs": {
         "FraudsterRegistrationJob$RegistrationConfig": "<p>The registration config containing details such as the action to take when a duplicate fraudster is detected, and the similarity threshold to use for detecting a duplicate fraudster.</p>",
         "StartFraudsterRegistrationJobRequest$RegistrationConfig": "<p>The registration config containing details such as the action to take when a duplicate fraudster is detected, and the similarity threshold to use for detecting a duplicate fraudster.</p>"
@@ -569,7 +570,7 @@
       "base": null,
       "refs": {
         "InputDataConfig$S3Uri": "<p>The S3 location for the input manifest file that contains the list of individual enrollment or registration job requests.</p>",
-        "OutputDataConfig$S3Uri": "<p>The S3 path of the folder to which Voice ID writes the job output file, which has a <code>*.out</code> extension. For example, if the input file name is <code>input-file.json</code> and the output folder path is <code>s3://output-bucket/output-folder</code>, the full output file path is <code>s3://output-bucket/output-folder/job-Id/input-file.json.out</code>.</p>"
+        "OutputDataConfig$S3Uri": "<p>The S3 path of the folder where Voice ID writes the job output file. It has a <code>*.out</code> extension. For example, if the input file name is <code>input-file.json</code> and the output folder path is <code>s3://output-bucket/output-folder</code>, the full output file path is <code>s3://output-bucket/output-folder/job-Id/input-file.json.out</code>.</p>"
       }
     },
     "Score": {
@@ -585,12 +586,25 @@
       }
     },
     "ServerSideEncryptionConfiguration": {
-      "base": "<p>The configuration containing information about the customer-managed KMS Key used for encrypting customer data.</p>",
+      "base": "<p>The configuration containing information about the customer managed key used for encrypting customer data.</p>",
       "refs": {
-        "CreateDomainRequest$ServerSideEncryptionConfiguration": "<p>The configuration, containing the KMS Key Identifier, to be used by Voice ID for the server-side encryption of your data. Refer to <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/encryption-at-rest.html#encryption-at-rest-voiceid\"> Amazon Connect VoiceID encryption at rest</a> for more details on how the KMS Key is used. </p>",
-        "Domain$ServerSideEncryptionConfiguration": "<p>The server-side encryption configuration containing the KMS Key Identifier you want Voice ID to use to encrypt your data.</p>",
-        "DomainSummary$ServerSideEncryptionConfiguration": "<p>The server-side encryption configuration containing the KMS Key Identifier you want Voice ID to use to encrypt your data..</p>",
-        "UpdateDomainRequest$ServerSideEncryptionConfiguration": "<p>The configuration, containing the KMS Key Identifier, to be used by Voice ID for the server-side encryption of your data. Note that all the existing data in the domain are still encrypted using the existing key, only the data added to domain after updating the key is encrypted using the new key. </p>"
+        "CreateDomainRequest$ServerSideEncryptionConfiguration": "<p>The configuration, containing the KMS key identifier, to be used by Voice ID for the server-side encryption of your data. Refer to <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/encryption-at-rest.html#encryption-at-rest-voiceid\"> Amazon Connect Voice ID encryption at rest</a> for more details on how the KMS key is used. </p>",
+        "Domain$ServerSideEncryptionConfiguration": "<p>The server-side encryption configuration containing the KMS key identifier you want Voice ID to use to encrypt your data.</p>",
+        "DomainSummary$ServerSideEncryptionConfiguration": "<p>The server-side encryption configuration containing the KMS key identifier you want Voice ID to use to encrypt your data.</p>",
+        "UpdateDomainRequest$ServerSideEncryptionConfiguration": "<p>The configuration, containing the KMS key identifier, to be used by Voice ID for the server-side encryption of your data. Note that all the existing data in the domain are still encrypted using the existing key, only the data added to domain after updating the key is encrypted using the new key. </p>"
+      }
+    },
+    "ServerSideEncryptionUpdateDetails": {
+      "base": "<p>Details about the most recent server-side encryption configuration update. When the server-side encryption configuration is changed, dependency on the old KMS key is removed through an asynchronous process. When this update is complete, the domain’s data can only be accessed using the new KMS key.</p>",
+      "refs": {
+        "Domain$ServerSideEncryptionUpdateDetails": "<p>Details about the most recent server-side encryption configuration update. When the server-side encryption configuration is changed, dependency on the old KMS key is removed through an asynchronous process. When this update is complete, the domain's data can only be accessed using the new KMS key.</p>",
+        "DomainSummary$ServerSideEncryptionUpdateDetails": "<p>Details about the most recent server-side encryption configuration update. When the server-side encryption configuration is changed, dependency on the old KMS key is removed through an asynchronous process. When this update is complete, the domain’s data can only be accessed using the new KMS key.</p>"
+      }
+    },
+    "ServerSideEncryptionUpdateStatus": {
+      "base": null,
+      "refs": {
+        "ServerSideEncryptionUpdateDetails$UpdateStatus": "<p>Status of the server-side encryption update. During an update, if there is an issue with the domain's current or old KMS key ID, such as an inaccessible or disabled key, then the status is FAILED. In order to resolve this, the key needs to be made accessible, and then an UpdateDomain call with the existing server-side encryption configuration will re-attempt this update process.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -700,7 +714,7 @@
     "StreamingStatus": {
       "base": null,
       "refs": {
-        "EvaluateSessionResponse$StreamingStatus": "<p>The current status of audio streaming for this session. This field is useful to infer next steps when the Authentication or Fraud Detection results are empty or the decision is <code>NOT_ENOUGH_SPEECH</code>. In this situation, if the <code>StreamingStatus</code> is <code>ONGOING/PENDING_CONFIGURATION</code>, it can mean that the client should call the API again later, once Voice ID has enough audio to produce a result. If the decision remains <code>NOT_ENOUGH_SPEECH</code> even after <code>StreamingStatus</code> is <code>ENDED</code>, it means that the previously streamed session did not have enough speech to perform evaluation, and a new streaming session is needed to try again.</p>"
+        "EvaluateSessionResponse$StreamingStatus": "<p>The current status of audio streaming for this session. This field is useful to infer next steps when the Authentication or Fraud Detection results are empty or the decision is <code>NOT_ENOUGH_SPEECH</code>. In this situation, if the <code>StreamingStatus</code> is <code>ONGOING/PENDING_CONFIGURATION</code>, it can mean that the client should call the API again later, after Voice ID has enough audio to produce a result. If the decision remains <code>NOT_ENOUGH_SPEECH</code> even after <code>StreamingStatus</code> is <code>ENDED</code>, it means that the previously streamed session did not have enough speech to perform evaluation, and a new streaming session is needed to try again.</p>"
       }
     },
     "String": {
@@ -715,6 +729,7 @@
         "ListSpeakerEnrollmentJobsResponse$NextToken": "<p>If <code>NextToken</code> is returned, there are more results available. The value of <code>NextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. </p>",
         "ListSpeakersResponse$NextToken": "<p>If <code>NextToken</code> is returned, there are more results available. The value of <code>NextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. </p>",
         "ResourceNotFoundException$Message": null,
+        "ServerSideEncryptionUpdateDetails$Message": "<p>Message explaining the current UpdateStatus. When the UpdateStatus is FAILED, this message explains the cause of the failure.</p>",
         "ServiceQuotaExceededException$Message": null,
         "ThrottlingException$Message": null,
         "ValidationException$Message": null

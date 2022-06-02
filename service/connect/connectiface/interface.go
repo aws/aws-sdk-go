@@ -144,6 +144,10 @@ type ConnectAPI interface {
 	CreateSecurityProfileWithContext(aws.Context, *connect.CreateSecurityProfileInput, ...request.Option) (*connect.CreateSecurityProfileOutput, error)
 	CreateSecurityProfileRequest(*connect.CreateSecurityProfileInput) (*request.Request, *connect.CreateSecurityProfileOutput)
 
+	CreateTaskTemplate(*connect.CreateTaskTemplateInput) (*connect.CreateTaskTemplateOutput, error)
+	CreateTaskTemplateWithContext(aws.Context, *connect.CreateTaskTemplateInput, ...request.Option) (*connect.CreateTaskTemplateOutput, error)
+	CreateTaskTemplateRequest(*connect.CreateTaskTemplateInput) (*request.Request, *connect.CreateTaskTemplateOutput)
+
 	CreateUseCase(*connect.CreateUseCaseInput) (*connect.CreateUseCaseOutput, error)
 	CreateUseCaseWithContext(aws.Context, *connect.CreateUseCaseInput, ...request.Option) (*connect.CreateUseCaseOutput, error)
 	CreateUseCaseRequest(*connect.CreateUseCaseInput) (*request.Request, *connect.CreateUseCaseOutput)
@@ -187,6 +191,10 @@ type ConnectAPI interface {
 	DeleteSecurityProfile(*connect.DeleteSecurityProfileInput) (*connect.DeleteSecurityProfileOutput, error)
 	DeleteSecurityProfileWithContext(aws.Context, *connect.DeleteSecurityProfileInput, ...request.Option) (*connect.DeleteSecurityProfileOutput, error)
 	DeleteSecurityProfileRequest(*connect.DeleteSecurityProfileInput) (*request.Request, *connect.DeleteSecurityProfileOutput)
+
+	DeleteTaskTemplate(*connect.DeleteTaskTemplateInput) (*connect.DeleteTaskTemplateOutput, error)
+	DeleteTaskTemplateWithContext(aws.Context, *connect.DeleteTaskTemplateInput, ...request.Option) (*connect.DeleteTaskTemplateOutput, error)
+	DeleteTaskTemplateRequest(*connect.DeleteTaskTemplateInput) (*request.Request, *connect.DeleteTaskTemplateOutput)
 
 	DeleteUseCase(*connect.DeleteUseCaseInput) (*connect.DeleteUseCaseOutput, error)
 	DeleteUseCaseWithContext(aws.Context, *connect.DeleteUseCaseInput, ...request.Option) (*connect.DeleteUseCaseOutput, error)
@@ -329,6 +337,10 @@ type ConnectAPI interface {
 
 	GetMetricDataPages(*connect.GetMetricDataInput, func(*connect.GetMetricDataOutput, bool) bool) error
 	GetMetricDataPagesWithContext(aws.Context, *connect.GetMetricDataInput, func(*connect.GetMetricDataOutput, bool) bool, ...request.Option) error
+
+	GetTaskTemplate(*connect.GetTaskTemplateInput) (*connect.GetTaskTemplateOutput, error)
+	GetTaskTemplateWithContext(aws.Context, *connect.GetTaskTemplateInput, ...request.Option) (*connect.GetTaskTemplateOutput, error)
+	GetTaskTemplateRequest(*connect.GetTaskTemplateInput) (*request.Request, *connect.GetTaskTemplateOutput)
 
 	ListAgentStatuses(*connect.ListAgentStatusesInput) (*connect.ListAgentStatusesOutput, error)
 	ListAgentStatusesWithContext(aws.Context, *connect.ListAgentStatusesInput, ...request.Option) (*connect.ListAgentStatusesOutput, error)
@@ -509,6 +521,13 @@ type ConnectAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *connect.ListTagsForResourceInput, ...request.Option) (*connect.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*connect.ListTagsForResourceInput) (*request.Request, *connect.ListTagsForResourceOutput)
 
+	ListTaskTemplates(*connect.ListTaskTemplatesInput) (*connect.ListTaskTemplatesOutput, error)
+	ListTaskTemplatesWithContext(aws.Context, *connect.ListTaskTemplatesInput, ...request.Option) (*connect.ListTaskTemplatesOutput, error)
+	ListTaskTemplatesRequest(*connect.ListTaskTemplatesInput) (*request.Request, *connect.ListTaskTemplatesOutput)
+
+	ListTaskTemplatesPages(*connect.ListTaskTemplatesInput, func(*connect.ListTaskTemplatesOutput, bool) bool) error
+	ListTaskTemplatesPagesWithContext(aws.Context, *connect.ListTaskTemplatesInput, func(*connect.ListTaskTemplatesOutput, bool) bool, ...request.Option) error
+
 	ListUseCases(*connect.ListUseCasesInput) (*connect.ListUseCasesOutput, error)
 	ListUseCasesWithContext(aws.Context, *connect.ListUseCasesInput, ...request.Option) (*connect.ListUseCasesOutput, error)
 	ListUseCasesRequest(*connect.ListUseCasesInput) (*request.Request, *connect.ListUseCasesOutput)
@@ -602,6 +621,10 @@ type ConnectAPI interface {
 	TagResource(*connect.TagResourceInput) (*connect.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *connect.TagResourceInput, ...request.Option) (*connect.TagResourceOutput, error)
 	TagResourceRequest(*connect.TagResourceInput) (*request.Request, *connect.TagResourceOutput)
+
+	TransferContact(*connect.TransferContactInput) (*connect.TransferContactOutput, error)
+	TransferContactWithContext(aws.Context, *connect.TransferContactInput, ...request.Option) (*connect.TransferContactOutput, error)
+	TransferContactRequest(*connect.TransferContactInput) (*request.Request, *connect.TransferContactOutput)
 
 	UntagResource(*connect.UntagResourceInput) (*connect.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *connect.UntagResourceInput, ...request.Option) (*connect.UntagResourceOutput, error)
@@ -706,6 +729,10 @@ type ConnectAPI interface {
 	UpdateSecurityProfile(*connect.UpdateSecurityProfileInput) (*connect.UpdateSecurityProfileOutput, error)
 	UpdateSecurityProfileWithContext(aws.Context, *connect.UpdateSecurityProfileInput, ...request.Option) (*connect.UpdateSecurityProfileOutput, error)
 	UpdateSecurityProfileRequest(*connect.UpdateSecurityProfileInput) (*request.Request, *connect.UpdateSecurityProfileOutput)
+
+	UpdateTaskTemplate(*connect.UpdateTaskTemplateInput) (*connect.UpdateTaskTemplateOutput, error)
+	UpdateTaskTemplateWithContext(aws.Context, *connect.UpdateTaskTemplateInput, ...request.Option) (*connect.UpdateTaskTemplateOutput, error)
+	UpdateTaskTemplateRequest(*connect.UpdateTaskTemplateInput) (*request.Request, *connect.UpdateTaskTemplateOutput)
 
 	UpdateUserHierarchy(*connect.UpdateUserHierarchyInput) (*connect.UpdateUserHierarchyOutput, error)
 	UpdateUserHierarchyWithContext(aws.Context, *connect.UpdateUserHierarchyInput, ...request.Option) (*connect.UpdateUserHierarchyOutput, error)

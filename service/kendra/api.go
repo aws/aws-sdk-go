@@ -10149,6 +10149,10 @@ type DataSourceConfiguration struct {
 	// source.
 	FsxConfiguration *FsxConfiguration `type:"structure"`
 
+	// Provides the configuration information to connect to GitHub as your data
+	// source.
+	GitHubConfiguration *GitHubConfiguration `type:"structure"`
+
 	// Provides the configuration information to connect to Google Drive as your
 	// data source.
 	GoogleDriveConfiguration *GoogleDriveConfiguration `type:"structure"`
@@ -10229,6 +10233,11 @@ func (s *DataSourceConfiguration) Validate() error {
 	if s.FsxConfiguration != nil {
 		if err := s.FsxConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("FsxConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.GitHubConfiguration != nil {
+		if err := s.GitHubConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GitHubConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.GoogleDriveConfiguration != nil {
@@ -10314,6 +10323,12 @@ func (s *DataSourceConfiguration) SetDatabaseConfiguration(v *DatabaseConfigurat
 // SetFsxConfiguration sets the FsxConfiguration field's value.
 func (s *DataSourceConfiguration) SetFsxConfiguration(v *FsxConfiguration) *DataSourceConfiguration {
 	s.FsxConfiguration = v
+	return s
+}
+
+// SetGitHubConfiguration sets the GitHubConfiguration field's value.
+func (s *DataSourceConfiguration) SetGitHubConfiguration(v *GitHubConfiguration) *DataSourceConfiguration {
+	s.GitHubConfiguration = v
 	return s
 }
 
@@ -13591,6 +13606,12 @@ type Document struct {
 
 	// A unique identifier of the document in the index.
 	//
+	// Note, each document ID must be unique per index. You cannot create a data
+	// source to index your documents with their unique IDs and then use the BatchPutDocument
+	// API to index the same documents, or vice versa. You can delete a data source
+	// and then use the BatchPutDocument API to index the same documents, or vice
+	// versa.
+	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
@@ -15666,6 +15687,528 @@ func (s *GetSnapshotsOutput) SetSnapshotsDataHeader(v []*string) *GetSnapshotsOu
 	return s
 }
 
+// Provides the configuration information to connect to GitHub as your data
+// source.
+type GitHubConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of regular expression patterns to exclude certain file names in your
+	// GitHub repository or repositories. File names that match the patterns are
+	// excluded from the index. File names that don't match the patterns are included
+	// in the index. If a file matches both an exclusion and inclusion pattern,
+	// the exclusion pattern takes precedence and the file isn't included in the
+	// index.
+	ExclusionFileNamePatterns []*string `type:"list"`
+
+	// A list of regular expression patterns to exclude certain file types in your
+	// GitHub repository or repositories. File types that match the patterns are
+	// excluded from the index. File types that don't match the patterns are included
+	// in the index. If a file matches both an exclusion and inclusion pattern,
+	// the exclusion pattern takes precedence and the file isn't included in the
+	// index.
+	ExclusionFileTypePatterns []*string `type:"list"`
+
+	// A list of regular expression patterns to exclude certain folder names in
+	// your GitHub repository or repositories. Folder names that match the patterns
+	// are excluded from the index. Folder names that don't match the patterns are
+	// included in the index. If a folder matches both an exclusion and inclusion
+	// pattern, the exclusion pattern takes precedence and the folder isn't included
+	// in the index.
+	ExclusionFolderNamePatterns []*string `type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of GitHub commits to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to GitHub fields. For more
+	// information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The GitHub data source field names must exist in your GitHub custom metadata.
+	GitHubCommitConfigurationFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// Configuration information to include certain types of GitHub content. You
+	// can configure to index repository files only, or also include issues and
+	// pull requests, comments, and comment attachments.
+	GitHubDocumentCrawlProperties *GitHubDocumentCrawlProperties `type:"structure"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of GitHub issue attachments to Amazon Kendra index field names. To
+	// create custom fields, use the UpdateIndex API before you map to GitHub fields.
+	// For more information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The GitHub data source field names must exist in your GitHub custom metadata.
+	GitHubIssueAttachmentConfigurationFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of GitHub issue comments to Amazon Kendra index field names. To create
+	// custom fields, use the UpdateIndex API before you map to GitHub fields. For
+	// more information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The GitHub data source field names must exist in your GitHub custom metadata.
+	GitHubIssueCommentConfigurationFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of GitHub issues to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to GitHub fields. For more
+	// information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The GitHub data source field names must exist in your GitHub custom metadata.
+	GitHubIssueDocumentConfigurationFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of GitHub pull request comments to Amazon Kendra index field names.
+	// To create custom fields, use the UpdateIndex API before you map to GitHub
+	// fields. For more information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The GitHub data source field names must exist in your GitHub custom metadata.
+	GitHubPullRequestCommentConfigurationFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of GitHub pull request attachments to Amazon Kendra index field names.
+	// To create custom fields, use the UpdateIndex API before you map to GitHub
+	// fields. For more information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The GitHub data source field names must exist in your GitHub custom metadata.
+	GitHubPullRequestDocumentAttachmentConfigurationFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of GitHub pull requests to Amazon Kendra index field names. To create
+	// custom fields, use the UpdateIndex API before you map to GitHub fields. For
+	// more information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The GitHub data source field names must exist in your GitHub custom metadata.
+	GitHubPullRequestDocumentConfigurationFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map GitHub repository
+	// attributes or field names to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to GitHub fields. For more
+	// information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The GitHub data source field names must exist in your GitHub custom metadata.
+	GitHubRepositoryConfigurationFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of regular expression patterns to include certain file names in your
+	// GitHub repository or repositories. File names that match the patterns are
+	// included in the index. File names that don't match the patterns are excluded
+	// from the index. If a file matches both an inclusion and exclusion pattern,
+	// the exclusion pattern takes precedence and the file isn't included in the
+	// index.
+	InclusionFileNamePatterns []*string `type:"list"`
+
+	// A list of regular expression patterns to include certain file types in your
+	// GitHub repository or repositories. File types that match the patterns are
+	// included in the index. File types that don't match the patterns are excluded
+	// from the index. If a file matches both an inclusion and exclusion pattern,
+	// the exclusion pattern takes precedence and the file isn't included in the
+	// index.
+	InclusionFileTypePatterns []*string `type:"list"`
+
+	// A list of regular expression patterns to include certain folder names in
+	// your GitHub repository or repositories. Folder names that match the patterns
+	// are included in the index. Folder names that don't match the patterns are
+	// excluded from the index. If a folder matches both an inclusion and exclusion
+	// pattern, the exclusion pattern takes precedence and the folder isn't included
+	// in the index.
+	InclusionFolderNamePatterns []*string `type:"list"`
+
+	// Configuration information to connect to GitHub Enterprise Server (on premises).
+	OnPremiseConfiguration *OnPremiseConfiguration `type:"structure"`
+
+	// A list of names of the specific repositories you want to index.
+	RepositoryFilter []*string `type:"list"`
+
+	// Configuration information to connect to GitHub Enterprise Cloud (SaaS).
+	SaaSConfiguration *SaaSConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
+	// the key-value pairs required to connect to your GitHub. The secret must contain
+	// a JSON structure with the following keys:
+	//
+	//    * githubToken—The access token created in GitHub. For more information
+	//    on creating a token in GitHub, see Authentication for a GitHub data source
+	//    (https://docs.aws.amazon.com/kendra/latest/dg/data-source-github.html#github-authentication).
+	//
+	// SecretArn is a required field
+	SecretArn *string `min:"1" type:"string" required:"true"`
+
+	// The type of GitHub service you want to connect to—GitHub Enterprise Cloud
+	// (SaaS) or GitHub Enterprise Server (on premises).
+	Type *string `type:"string" enum:"Type"`
+
+	// TRUE to use the GitHub change log to determine which documents require updating
+	// in the index. Depending on the GitHub change log's size, it may take longer
+	// for Amazon Kendra to use the change log than to scan all of your documents
+	// in GitHub.
+	UseChangeLog *bool `type:"boolean"`
+
+	// Configuration information of an Amazon Virtual Private Cloud to connect to
+	// your GitHub. For more information, see Configuring a VPC (https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html).
+	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitHubConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitHubConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GitHubConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GitHubConfiguration"}
+	if s.GitHubCommitConfigurationFieldMappings != nil && len(s.GitHubCommitConfigurationFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GitHubCommitConfigurationFieldMappings", 1))
+	}
+	if s.GitHubIssueAttachmentConfigurationFieldMappings != nil && len(s.GitHubIssueAttachmentConfigurationFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GitHubIssueAttachmentConfigurationFieldMappings", 1))
+	}
+	if s.GitHubIssueCommentConfigurationFieldMappings != nil && len(s.GitHubIssueCommentConfigurationFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GitHubIssueCommentConfigurationFieldMappings", 1))
+	}
+	if s.GitHubIssueDocumentConfigurationFieldMappings != nil && len(s.GitHubIssueDocumentConfigurationFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GitHubIssueDocumentConfigurationFieldMappings", 1))
+	}
+	if s.GitHubPullRequestCommentConfigurationFieldMappings != nil && len(s.GitHubPullRequestCommentConfigurationFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GitHubPullRequestCommentConfigurationFieldMappings", 1))
+	}
+	if s.GitHubPullRequestDocumentAttachmentConfigurationFieldMappings != nil && len(s.GitHubPullRequestDocumentAttachmentConfigurationFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GitHubPullRequestDocumentAttachmentConfigurationFieldMappings", 1))
+	}
+	if s.GitHubPullRequestDocumentConfigurationFieldMappings != nil && len(s.GitHubPullRequestDocumentConfigurationFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GitHubPullRequestDocumentConfigurationFieldMappings", 1))
+	}
+	if s.GitHubRepositoryConfigurationFieldMappings != nil && len(s.GitHubRepositoryConfigurationFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GitHubRepositoryConfigurationFieldMappings", 1))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.SecretArn != nil && len(*s.SecretArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 1))
+	}
+	if s.GitHubCommitConfigurationFieldMappings != nil {
+		for i, v := range s.GitHubCommitConfigurationFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GitHubCommitConfigurationFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.GitHubIssueAttachmentConfigurationFieldMappings != nil {
+		for i, v := range s.GitHubIssueAttachmentConfigurationFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GitHubIssueAttachmentConfigurationFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.GitHubIssueCommentConfigurationFieldMappings != nil {
+		for i, v := range s.GitHubIssueCommentConfigurationFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GitHubIssueCommentConfigurationFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.GitHubIssueDocumentConfigurationFieldMappings != nil {
+		for i, v := range s.GitHubIssueDocumentConfigurationFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GitHubIssueDocumentConfigurationFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.GitHubPullRequestCommentConfigurationFieldMappings != nil {
+		for i, v := range s.GitHubPullRequestCommentConfigurationFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GitHubPullRequestCommentConfigurationFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.GitHubPullRequestDocumentAttachmentConfigurationFieldMappings != nil {
+		for i, v := range s.GitHubPullRequestDocumentAttachmentConfigurationFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GitHubPullRequestDocumentAttachmentConfigurationFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.GitHubPullRequestDocumentConfigurationFieldMappings != nil {
+		for i, v := range s.GitHubPullRequestDocumentConfigurationFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GitHubPullRequestDocumentConfigurationFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.GitHubRepositoryConfigurationFieldMappings != nil {
+		for i, v := range s.GitHubRepositoryConfigurationFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GitHubRepositoryConfigurationFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.OnPremiseConfiguration != nil {
+		if err := s.OnPremiseConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OnPremiseConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SaaSConfiguration != nil {
+		if err := s.SaaSConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SaaSConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExclusionFileNamePatterns sets the ExclusionFileNamePatterns field's value.
+func (s *GitHubConfiguration) SetExclusionFileNamePatterns(v []*string) *GitHubConfiguration {
+	s.ExclusionFileNamePatterns = v
+	return s
+}
+
+// SetExclusionFileTypePatterns sets the ExclusionFileTypePatterns field's value.
+func (s *GitHubConfiguration) SetExclusionFileTypePatterns(v []*string) *GitHubConfiguration {
+	s.ExclusionFileTypePatterns = v
+	return s
+}
+
+// SetExclusionFolderNamePatterns sets the ExclusionFolderNamePatterns field's value.
+func (s *GitHubConfiguration) SetExclusionFolderNamePatterns(v []*string) *GitHubConfiguration {
+	s.ExclusionFolderNamePatterns = v
+	return s
+}
+
+// SetGitHubCommitConfigurationFieldMappings sets the GitHubCommitConfigurationFieldMappings field's value.
+func (s *GitHubConfiguration) SetGitHubCommitConfigurationFieldMappings(v []*DataSourceToIndexFieldMapping) *GitHubConfiguration {
+	s.GitHubCommitConfigurationFieldMappings = v
+	return s
+}
+
+// SetGitHubDocumentCrawlProperties sets the GitHubDocumentCrawlProperties field's value.
+func (s *GitHubConfiguration) SetGitHubDocumentCrawlProperties(v *GitHubDocumentCrawlProperties) *GitHubConfiguration {
+	s.GitHubDocumentCrawlProperties = v
+	return s
+}
+
+// SetGitHubIssueAttachmentConfigurationFieldMappings sets the GitHubIssueAttachmentConfigurationFieldMappings field's value.
+func (s *GitHubConfiguration) SetGitHubIssueAttachmentConfigurationFieldMappings(v []*DataSourceToIndexFieldMapping) *GitHubConfiguration {
+	s.GitHubIssueAttachmentConfigurationFieldMappings = v
+	return s
+}
+
+// SetGitHubIssueCommentConfigurationFieldMappings sets the GitHubIssueCommentConfigurationFieldMappings field's value.
+func (s *GitHubConfiguration) SetGitHubIssueCommentConfigurationFieldMappings(v []*DataSourceToIndexFieldMapping) *GitHubConfiguration {
+	s.GitHubIssueCommentConfigurationFieldMappings = v
+	return s
+}
+
+// SetGitHubIssueDocumentConfigurationFieldMappings sets the GitHubIssueDocumentConfigurationFieldMappings field's value.
+func (s *GitHubConfiguration) SetGitHubIssueDocumentConfigurationFieldMappings(v []*DataSourceToIndexFieldMapping) *GitHubConfiguration {
+	s.GitHubIssueDocumentConfigurationFieldMappings = v
+	return s
+}
+
+// SetGitHubPullRequestCommentConfigurationFieldMappings sets the GitHubPullRequestCommentConfigurationFieldMappings field's value.
+func (s *GitHubConfiguration) SetGitHubPullRequestCommentConfigurationFieldMappings(v []*DataSourceToIndexFieldMapping) *GitHubConfiguration {
+	s.GitHubPullRequestCommentConfigurationFieldMappings = v
+	return s
+}
+
+// SetGitHubPullRequestDocumentAttachmentConfigurationFieldMappings sets the GitHubPullRequestDocumentAttachmentConfigurationFieldMappings field's value.
+func (s *GitHubConfiguration) SetGitHubPullRequestDocumentAttachmentConfigurationFieldMappings(v []*DataSourceToIndexFieldMapping) *GitHubConfiguration {
+	s.GitHubPullRequestDocumentAttachmentConfigurationFieldMappings = v
+	return s
+}
+
+// SetGitHubPullRequestDocumentConfigurationFieldMappings sets the GitHubPullRequestDocumentConfigurationFieldMappings field's value.
+func (s *GitHubConfiguration) SetGitHubPullRequestDocumentConfigurationFieldMappings(v []*DataSourceToIndexFieldMapping) *GitHubConfiguration {
+	s.GitHubPullRequestDocumentConfigurationFieldMappings = v
+	return s
+}
+
+// SetGitHubRepositoryConfigurationFieldMappings sets the GitHubRepositoryConfigurationFieldMappings field's value.
+func (s *GitHubConfiguration) SetGitHubRepositoryConfigurationFieldMappings(v []*DataSourceToIndexFieldMapping) *GitHubConfiguration {
+	s.GitHubRepositoryConfigurationFieldMappings = v
+	return s
+}
+
+// SetInclusionFileNamePatterns sets the InclusionFileNamePatterns field's value.
+func (s *GitHubConfiguration) SetInclusionFileNamePatterns(v []*string) *GitHubConfiguration {
+	s.InclusionFileNamePatterns = v
+	return s
+}
+
+// SetInclusionFileTypePatterns sets the InclusionFileTypePatterns field's value.
+func (s *GitHubConfiguration) SetInclusionFileTypePatterns(v []*string) *GitHubConfiguration {
+	s.InclusionFileTypePatterns = v
+	return s
+}
+
+// SetInclusionFolderNamePatterns sets the InclusionFolderNamePatterns field's value.
+func (s *GitHubConfiguration) SetInclusionFolderNamePatterns(v []*string) *GitHubConfiguration {
+	s.InclusionFolderNamePatterns = v
+	return s
+}
+
+// SetOnPremiseConfiguration sets the OnPremiseConfiguration field's value.
+func (s *GitHubConfiguration) SetOnPremiseConfiguration(v *OnPremiseConfiguration) *GitHubConfiguration {
+	s.OnPremiseConfiguration = v
+	return s
+}
+
+// SetRepositoryFilter sets the RepositoryFilter field's value.
+func (s *GitHubConfiguration) SetRepositoryFilter(v []*string) *GitHubConfiguration {
+	s.RepositoryFilter = v
+	return s
+}
+
+// SetSaaSConfiguration sets the SaaSConfiguration field's value.
+func (s *GitHubConfiguration) SetSaaSConfiguration(v *SaaSConfiguration) *GitHubConfiguration {
+	s.SaaSConfiguration = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *GitHubConfiguration) SetSecretArn(v string) *GitHubConfiguration {
+	s.SecretArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GitHubConfiguration) SetType(v string) *GitHubConfiguration {
+	s.Type = &v
+	return s
+}
+
+// SetUseChangeLog sets the UseChangeLog field's value.
+func (s *GitHubConfiguration) SetUseChangeLog(v bool) *GitHubConfiguration {
+	s.UseChangeLog = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *GitHubConfiguration) SetVpcConfiguration(v *DataSourceVpcConfiguration) *GitHubConfiguration {
+	s.VpcConfiguration = v
+	return s
+}
+
+// Provides the configuration information to include certain types of GitHub
+// content. You can configure to index repository files only, or also include
+// issues and pull requests, comments, and comment attachments.
+type GitHubDocumentCrawlProperties struct {
+	_ struct{} `type:"structure"`
+
+	// TRUE to index all issues within a repository.
+	CrawlIssue *bool `type:"boolean"`
+
+	// TRUE to index all comments on issues.
+	CrawlIssueComment *bool `type:"boolean"`
+
+	// TRUE to include all comment attachments for issues.
+	CrawlIssueCommentAttachment *bool `type:"boolean"`
+
+	// TRUE to index all pull requests within a repository.
+	CrawlPullRequest *bool `type:"boolean"`
+
+	// TRUE to index all comments on pull requests.
+	CrawlPullRequestComment *bool `type:"boolean"`
+
+	// TRUE to include all comment attachments for pull requests.
+	CrawlPullRequestCommentAttachment *bool `type:"boolean"`
+
+	// TRUE to index all files with a repository.
+	CrawlRepositoryDocuments *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitHubDocumentCrawlProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitHubDocumentCrawlProperties) GoString() string {
+	return s.String()
+}
+
+// SetCrawlIssue sets the CrawlIssue field's value.
+func (s *GitHubDocumentCrawlProperties) SetCrawlIssue(v bool) *GitHubDocumentCrawlProperties {
+	s.CrawlIssue = &v
+	return s
+}
+
+// SetCrawlIssueComment sets the CrawlIssueComment field's value.
+func (s *GitHubDocumentCrawlProperties) SetCrawlIssueComment(v bool) *GitHubDocumentCrawlProperties {
+	s.CrawlIssueComment = &v
+	return s
+}
+
+// SetCrawlIssueCommentAttachment sets the CrawlIssueCommentAttachment field's value.
+func (s *GitHubDocumentCrawlProperties) SetCrawlIssueCommentAttachment(v bool) *GitHubDocumentCrawlProperties {
+	s.CrawlIssueCommentAttachment = &v
+	return s
+}
+
+// SetCrawlPullRequest sets the CrawlPullRequest field's value.
+func (s *GitHubDocumentCrawlProperties) SetCrawlPullRequest(v bool) *GitHubDocumentCrawlProperties {
+	s.CrawlPullRequest = &v
+	return s
+}
+
+// SetCrawlPullRequestComment sets the CrawlPullRequestComment field's value.
+func (s *GitHubDocumentCrawlProperties) SetCrawlPullRequestComment(v bool) *GitHubDocumentCrawlProperties {
+	s.CrawlPullRequestComment = &v
+	return s
+}
+
+// SetCrawlPullRequestCommentAttachment sets the CrawlPullRequestCommentAttachment field's value.
+func (s *GitHubDocumentCrawlProperties) SetCrawlPullRequestCommentAttachment(v bool) *GitHubDocumentCrawlProperties {
+	s.CrawlPullRequestCommentAttachment = &v
+	return s
+}
+
+// SetCrawlRepositoryDocuments sets the CrawlRepositoryDocuments field's value.
+func (s *GitHubDocumentCrawlProperties) SetCrawlRepositoryDocuments(v bool) *GitHubDocumentCrawlProperties {
+	s.CrawlRepositoryDocuments = &v
+	return s
+}
+
 // Provides the configuration information to connect to Google Drive as your
 // data source.
 type GoogleDriveConfiguration struct {
@@ -16593,6 +17136,7 @@ func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Provides the configuration information to connect to Jira as your data source.
 type JiraConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -16663,8 +17207,7 @@ type JiraConfiguration struct {
 	// the key-value pairs required to connect to your Jira data source. The secret
 	// must contain a JSON structure with the following keys:
 	//
-	//    * jira-id—The Active Directory user name, along with the Domain Name
-	//    System (DNS) domain name. For example, user@corp.example.com.
+	//    * jira-id—The ID of the Jira account.
 	//
 	//    * jiraCredentials—The password of the Jira account user.
 	//
@@ -18513,6 +19056,96 @@ func (s *MemberUser) Validate() error {
 // SetUserId sets the UserId field's value.
 func (s *MemberUser) SetUserId(v string) *MemberUser {
 	s.UserId = &v
+	return s
+}
+
+// Provides the configuration information to connect to GitHub Enterprise Server
+// (on premises).
+type OnPremiseConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The GitHub host URL or API endpoint URL. For example, https://on-prem-host-url/api/v3/
+	//
+	// HostUrl is a required field
+	HostUrl *string `min:"1" type:"string" required:"true"`
+
+	// The name of the organization of the GitHub Enterprise Server (in-premise)
+	// account you want to connect to. You can find your organization name by logging
+	// into GitHub desktop and selecting Your organizations under your profile picture
+	// dropdown.
+	//
+	// OrganizationName is a required field
+	OrganizationName *string `min:"1" type:"string" required:"true"`
+
+	// Information required to find a specific file in an Amazon S3 bucket.
+	//
+	// SslCertificateS3Path is a required field
+	SslCertificateS3Path *S3Path `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OnPremiseConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OnPremiseConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OnPremiseConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OnPremiseConfiguration"}
+	if s.HostUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostUrl"))
+	}
+	if s.HostUrl != nil && len(*s.HostUrl) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HostUrl", 1))
+	}
+	if s.OrganizationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationName"))
+	}
+	if s.OrganizationName != nil && len(*s.OrganizationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationName", 1))
+	}
+	if s.SslCertificateS3Path == nil {
+		invalidParams.Add(request.NewErrParamRequired("SslCertificateS3Path"))
+	}
+	if s.SslCertificateS3Path != nil {
+		if err := s.SslCertificateS3Path.Validate(); err != nil {
+			invalidParams.AddNested("SslCertificateS3Path", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHostUrl sets the HostUrl field's value.
+func (s *OnPremiseConfiguration) SetHostUrl(v string) *OnPremiseConfiguration {
+	s.HostUrl = &v
+	return s
+}
+
+// SetOrganizationName sets the OrganizationName field's value.
+func (s *OnPremiseConfiguration) SetOrganizationName(v string) *OnPremiseConfiguration {
+	s.OrganizationName = &v
+	return s
+}
+
+// SetSslCertificateS3Path sets the SslCertificateS3Path field's value.
+func (s *OnPremiseConfiguration) SetSslCertificateS3Path(v *S3Path) *OnPremiseConfiguration {
+	s.SslCertificateS3Path = v
 	return s
 }
 
@@ -20560,6 +21193,77 @@ func (s *S3Path) SetKey(v string) *S3Path {
 	return s
 }
 
+// Provides the configuration information to connect to GitHub Enterprise Cloud
+// (SaaS).
+type SaaSConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The GitHub host URL or API endpoint URL. For example, https://api.github.com.
+	//
+	// HostUrl is a required field
+	HostUrl *string `min:"1" type:"string" required:"true"`
+
+	// The name of the organization of the GitHub Enterprise Cloud (SaaS) account
+	// you want to connect to. You can find your organization name by logging into
+	// GitHub desktop and selecting Your organizations under your profile picture
+	// dropdown.
+	//
+	// OrganizationName is a required field
+	OrganizationName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SaaSConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SaaSConfiguration"}
+	if s.HostUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostUrl"))
+	}
+	if s.HostUrl != nil && len(*s.HostUrl) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HostUrl", 1))
+	}
+	if s.OrganizationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationName"))
+	}
+	if s.OrganizationName != nil && len(*s.OrganizationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHostUrl sets the HostUrl field's value.
+func (s *SaaSConfiguration) SetHostUrl(v string) *SaaSConfiguration {
+	s.HostUrl = &v
+	return s
+}
+
+// SetOrganizationName sets the OrganizationName field's value.
+func (s *SaaSConfiguration) SetOrganizationName(v string) *SaaSConfiguration {
+	s.OrganizationName = &v
+	return s
+}
+
 // The configuration information for syncing a Salesforce chatter feed. The
 // contents of the object comes from the Salesforce FeedItem table.
 type SalesforceChatterFeedConfiguration struct {
@@ -21493,13 +22197,12 @@ func (s *SeedUrlConfiguration) SetWebCrawlerMode(v string) *SeedUrlConfiguration
 	return s
 }
 
-// Provides the identifier of the KMScustomer master key (CMK) used to encrypt
-// data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.
+// Provides the identifier of the KMS key used to encrypt data indexed by Amazon
+// Kendra. Amazon Kendra doesn't support asymmetric keys.
 type ServerSideEncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the KMScustomer master key (CMK). Amazon Kendra doesn't
-	// support asymmetric CMKs.
+	// The identifier of the KMS key. Amazon Kendra doesn't support asymmetric keys.
 	//
 	// KmsKeyId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ServerSideEncryptionConfiguration's
@@ -25957,6 +26660,9 @@ const (
 
 	// DataSourceTypeJira is a DataSourceType enum value
 	DataSourceTypeJira = "JIRA"
+
+	// DataSourceTypeGithub is a DataSourceType enum value
+	DataSourceTypeGithub = "GITHUB"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -25978,6 +26684,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeBox,
 		DataSourceTypeQuip,
 		DataSourceTypeJira,
+		DataSourceTypeGithub,
 	}
 }
 
@@ -26823,6 +27530,22 @@ func ThesaurusStatus_Values() []string {
 		ThesaurusStatusUpdating,
 		ThesaurusStatusActiveButUpdateFailed,
 		ThesaurusStatusFailed,
+	}
+}
+
+const (
+	// TypeSaas is a Type enum value
+	TypeSaas = "SAAS"
+
+	// TypeOnPremise is a Type enum value
+	TypeOnPremise = "ON_PREMISE"
+)
+
+// Type_Values returns all elements of the Type enum
+func Type_Values() []string {
+	return []string{
+		TypeSaas,
+		TypeOnPremise,
 	}
 }
 

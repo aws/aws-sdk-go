@@ -2867,6 +2867,7 @@ func (s *ApplicationComponent) SetTier(v string) *ApplicationComponent {
 type ApplicationInfo struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether auto-configuration is turned on for this application.
 	AutoConfigEnabled *bool `type:"boolean"`
 
 	// Indicates whether Application Insights can listen to CloudWatch events for
@@ -2874,6 +2875,7 @@ type ApplicationInfo struct {
 	// and others.
 	CWEMonitorEnabled *bool `type:"boolean"`
 
+	// The method used by Application Insights to onboard your resources.
 	DiscoveryType *string `type:"string" enum:"DiscoveryType"`
 
 	// The lifecycle of the application.
@@ -3111,14 +3113,23 @@ func (s *ConfigurationEvent) SetMonitoredResourceARN(v string) *ConfigurationEve
 type CreateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether Application Insights automatically configures unmonitored
+	// resources in the resource group.
 	AutoConfigEnabled *bool `type:"boolean"`
 
+	// Configures all of the resources in the resource group by applying the recommended
+	// configurations.
 	AutoCreate *bool `type:"boolean"`
 
 	// Indicates whether Application Insights can listen to CloudWatch events for
 	// the application resources, such as instance terminated, failed deployment,
 	// and others.
 	CWEMonitorEnabled *bool `type:"boolean"`
+
+	// Application Insights can create applications based on a resource group or
+	// on an account. To create an account-based application using all of the resources
+	// in the account, set this parameter to ACCOUNT_BASED.
+	GroupingType *string `type:"string" enum:"GroupingType"`
 
 	// When set to true, creates opsItems for any problems detected on an application.
 	OpsCenterEnabled *bool `type:"boolean"`
@@ -3195,6 +3206,12 @@ func (s *CreateApplicationInput) SetAutoCreate(v bool) *CreateApplicationInput {
 // SetCWEMonitorEnabled sets the CWEMonitorEnabled field's value.
 func (s *CreateApplicationInput) SetCWEMonitorEnabled(v bool) *CreateApplicationInput {
 	s.CWEMonitorEnabled = &v
+	return s
+}
+
+// SetGroupingType sets the GroupingType field's value.
+func (s *CreateApplicationInput) SetGroupingType(v string) *CreateApplicationInput {
+	s.GroupingType = &v
 	return s
 }
 
@@ -3991,8 +4008,7 @@ type DescribeComponentConfigurationRecommendationInput struct {
 	// ResourceGroupName is a required field
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 
-	// The tier of the application component. Supported tiers include DOT_NET_CORE,
-	// DOT_NET_WORKER, DOT_NET_WEB, SQL_SERVER, and DEFAULT.
+	// The tier of the application component.
 	//
 	// Tier is a required field
 	Tier *string `min:"1" type:"string" required:"true" enum:"Tier"`
@@ -5251,6 +5267,7 @@ func (s *ListLogPatternsOutput) SetResourceGroupName(v string) *ListLogPatternsO
 type ListProblemsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the component.
 	ComponentName *string `min:"1" type:"string"`
 
 	// The time when the problem ended, in epoch seconds. If not specified, problems
@@ -5358,6 +5375,7 @@ type ListProblemsOutput struct {
 	// The list of problems.
 	ProblemList []*Problem `type:"list"`
 
+	// The name of the resource group.
 	ResourceGroupName *string `min:"1" type:"string"`
 }
 
@@ -6005,8 +6023,11 @@ type Problem struct {
 	// A detailed analysis of the problem using machine learning.
 	Insights *string `type:"string"`
 
+	// The last time that the problem reoccurred after its last resolution.
 	LastRecurrenceTime *time.Time `type:"timestamp"`
 
+	// The number of times that the same problem reoccurred after the first time
+	// it was resolved.
 	RecurringCount *int64 `type:"long"`
 
 	// The name of the resource group affected by the problem.
@@ -6686,6 +6707,7 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Turns auto-configuration on or off.
 	AutoConfigEnabled *bool `type:"boolean"`
 
 	// Indicates whether Application Insights can listen to CloudWatch events for
@@ -6816,6 +6838,7 @@ func (s *UpdateApplicationOutput) SetApplicationInfo(v *ApplicationInfo) *Update
 type UpdateComponentConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Automatically configures the component by applying the recommended configurations.
 	AutoConfigEnabled *bool `type:"boolean"`
 
 	// The configuration settings of the component. The value is the escaped JSON
@@ -6839,8 +6862,7 @@ type UpdateComponentConfigurationInput struct {
 	// ResourceGroupName is a required field
 	ResourceGroupName *string `min:"1" type:"string" required:"true"`
 
-	// The tier of the application component. Supported tiers include DOT_NET_WORKER,
-	// DOT_NET_WEB, DOT_NET_CORE, SQL_SERVER, and DEFAULT.
+	// The tier of the application component.
 	Tier *string `min:"1" type:"string" enum:"Tier"`
 }
 
@@ -7390,6 +7412,18 @@ func FeedbackValue_Values() []string {
 }
 
 const (
+	// GroupingTypeAccountBased is a GroupingType enum value
+	GroupingTypeAccountBased = "ACCOUNT_BASED"
+)
+
+// GroupingType_Values returns all elements of the GroupingType enum
+func GroupingType_Values() []string {
+	return []string{
+		GroupingTypeAccountBased,
+	}
+}
+
+const (
 	// LogFilterError is a LogFilter enum value
 	LogFilterError = "ERROR"
 
@@ -7426,6 +7460,9 @@ func OsType_Values() []string {
 }
 
 const (
+	// SeverityLevelInformative is a SeverityLevel enum value
+	SeverityLevelInformative = "Informative"
+
 	// SeverityLevelLow is a SeverityLevel enum value
 	SeverityLevelLow = "Low"
 
@@ -7439,6 +7476,7 @@ const (
 // SeverityLevel_Values returns all elements of the SeverityLevel enum
 func SeverityLevel_Values() []string {
 	return []string{
+		SeverityLevelInformative,
 		SeverityLevelLow,
 		SeverityLevelMedium,
 		SeverityLevelHigh,

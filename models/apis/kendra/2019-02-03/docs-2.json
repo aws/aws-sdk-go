@@ -257,6 +257,14 @@
         "ConfluenceSpaceConfiguration$CrawlArchivedSpaces": "<p>Specifies whether Amazon Kendra should index archived spaces.</p>",
         "ContentSourceConfiguration$DirectPutContent": "<p> <code>TRUE</code> to use documents you indexed directly using the <code>BatchPutDocument</code> API.</p>",
         "DocumentAttributeTarget$TargetDocumentAttributeValueDeletion": "<p> <code>TRUE</code> to delete the existing target value for your specified target attribute key. You cannot create a target value and set this to <code>TRUE</code>. To create a target value (<code>TargetDocumentAttributeValue</code>), set this to <code>FALSE</code>.</p>",
+        "GitHubConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the GitHub change log to determine which documents require updating in the index. Depending on the GitHub change log's size, it may take longer for Amazon Kendra to use the change log than to scan all of your documents in GitHub.</p>",
+        "GitHubDocumentCrawlProperties$CrawlRepositoryDocuments": "<p> <code>TRUE</code> to index all files with a repository.</p>",
+        "GitHubDocumentCrawlProperties$CrawlIssue": "<p> <code>TRUE</code> to index all issues within a repository.</p>",
+        "GitHubDocumentCrawlProperties$CrawlIssueComment": "<p> <code>TRUE</code> to index all comments on issues.</p>",
+        "GitHubDocumentCrawlProperties$CrawlIssueCommentAttachment": "<p> <code>TRUE</code> to include all comment attachments for issues.</p>",
+        "GitHubDocumentCrawlProperties$CrawlPullRequest": "<p> <code>TRUE</code> to index all pull requests within a repository.</p>",
+        "GitHubDocumentCrawlProperties$CrawlPullRequestComment": "<p> <code>TRUE</code> to index all comments on pull requests.</p>",
+        "GitHubDocumentCrawlProperties$CrawlPullRequestCommentAttachment": "<p> <code>TRUE</code> to include all comment attachments for pull requests.</p>",
         "Highlight$TopAnswer": "<p>Indicates whether the response is the best response. True if this is the best response; otherwise, false.</p>",
         "InlineCustomDocumentEnrichmentConfiguration$DocumentContentDeletion": "<p> <code>TRUE</code> to delete content if the condition used for the target attribute is met.</p>",
         "JiraConfiguration$UseChangeLog": "<p>Specify to use the change log option to update your index.</p>",
@@ -790,6 +798,14 @@
         "BoxConfiguration$WebLinkFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of Box web links to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Box fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Box field names must exist in your Box custom metadata.</p>",
         "ColumnConfiguration$FieldMappings": "<p>An array of objects that map database column names to the corresponding fields in an index. You must first create the fields in the index using the <code>UpdateIndex</code> API.</p>",
         "FsxConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Amazon FSx data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Amazon FSx fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Amazon FSx data source field names must exist in your Amazon FSx custom metadata.</p>",
+        "GitHubConfiguration$GitHubRepositoryConfigurationFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map GitHub repository attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to GitHub fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The GitHub data source field names must exist in your GitHub custom metadata.</p>",
+        "GitHubConfiguration$GitHubCommitConfigurationFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of GitHub commits to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to GitHub fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The GitHub data source field names must exist in your GitHub custom metadata.</p>",
+        "GitHubConfiguration$GitHubIssueDocumentConfigurationFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of GitHub issues to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to GitHub fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The GitHub data source field names must exist in your GitHub custom metadata.</p>",
+        "GitHubConfiguration$GitHubIssueCommentConfigurationFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of GitHub issue comments to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to GitHub fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The GitHub data source field names must exist in your GitHub custom metadata.</p>",
+        "GitHubConfiguration$GitHubIssueAttachmentConfigurationFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of GitHub issue attachments to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to GitHub fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The GitHub data source field names must exist in your GitHub custom metadata.</p>",
+        "GitHubConfiguration$GitHubPullRequestCommentConfigurationFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of GitHub pull request comments to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to GitHub fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The GitHub data source field names must exist in your GitHub custom metadata.</p>",
+        "GitHubConfiguration$GitHubPullRequestDocumentConfigurationFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of GitHub pull requests to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to GitHub fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The GitHub data source field names must exist in your GitHub custom metadata.</p>",
+        "GitHubConfiguration$GitHubPullRequestDocumentAttachmentConfigurationFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of GitHub pull request attachments to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to GitHub fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The GitHub data source field names must exist in your GitHub custom metadata.</p>",
         "GoogleDriveConfiguration$FieldMappings": "<p>Maps Google Drive data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Google Drive fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Google Drive data source field names must exist in your Google Drive custom metadata.</p>",
         "JiraConfiguration$AttachmentFieldMappings": "<p>A list of DataSourceToIndexFieldMapping objects that map attributes or field names of Jira attachments to Amazon Kendra index field names. To create custom fields, use the UpdateIndex API before you map to Jira fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\"> Mapping data source fields</a>. The Jira data source field names must exist in your Jira custom metadata.</p>",
         "JiraConfiguration$CommentFieldMappings": "<p>A list of DataSourceToIndexFieldMapping objects that map attributes or field names of Jira comments to Amazon Kendra index field names. To create custom fields, use the UpdateIndex API before you map to Jira fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\"> Mapping data source fields</a>. The Jira data source field names must exist in your Jira custom metadata.</p>",
@@ -827,6 +843,7 @@
         "ConfluenceConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Confluence. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "DatabaseConfiguration$VpcConfiguration": null,
         "FsxConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Amazon FSx. Your Amazon FSx instance must reside inside your VPC.</p>",
+        "GitHubConfiguration$VpcConfiguration": "<p>Configuration information of an Amazon Virtual Private Cloud to connect to your GitHub. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "JiraConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Jira. Your Jira account must reside inside your VPC.</p>",
         "QuipConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud (VPC) to connect to your Quip. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "SharePointConfiguration$VpcConfiguration": null,
@@ -1135,7 +1152,7 @@
         "BatchDeleteDocumentResponseFailedDocument$Id": "<p>The identifier of the document that couldn't be removed from the index.</p>",
         "BatchGetDocumentStatusResponseError$DocumentId": "<p>The unique identifier of the document whose status could not be retrieved.</p>",
         "BatchPutDocumentResponseFailedDocument$Id": "<p>The unique identifier of the document.</p>",
-        "Document$Id": "<p>A unique identifier of the document in the index.</p>",
+        "Document$Id": "<p>A unique identifier of the document in the index.</p> <p>Note, each document ID must be unique per index. You cannot create a data source to index your documents with their unique IDs and then use the <code>BatchPutDocument</code> API to index the same documents, or vice versa. You can delete a data source and then use the <code>BatchPutDocument</code> API to index the same documents, or vice versa.</p>",
         "DocumentIdList$member": null,
         "DocumentInfo$DocumentId": "<p>The unique identifier of the document.</p>",
         "QueryResultItem$DocumentId": "<p>The unique identifier for the document.</p>",
@@ -1594,6 +1611,18 @@
       "refs": {
       }
     },
+    "GitHubConfiguration": {
+      "base": "<p>Provides the configuration information to connect to GitHub as your data source.</p>",
+      "refs": {
+        "DataSourceConfiguration$GitHubConfiguration": "<p>Provides the configuration information to connect to GitHub as your data source.</p>"
+      }
+    },
+    "GitHubDocumentCrawlProperties": {
+      "base": "<p>Provides the configuration information to include certain types of GitHub content. You can configure to index repository files only, or also include issues and pull requests, comments, and comment attachments.</p>",
+      "refs": {
+        "GitHubConfiguration$GitHubDocumentCrawlProperties": "<p>Configuration information to include certain types of GitHub content. You can configure to index repository files only, or also include issues and pull requests, comments, and comment attachments.</p>"
+      }
+    },
     "GoogleDriveConfiguration": {
       "base": "<p>Provides the configuration information to connect to Google Drive as your data source.</p>",
       "refs": {
@@ -1919,7 +1948,7 @@
       }
     },
     "JiraConfiguration": {
-      "base": null,
+      "base": "<p>Provides the configuration information to connect to Jira as your data source.</p>",
       "refs": {
         "DataSourceConfiguration$JiraConfiguration": "<p>Provides the configuration information to connect to Jira as your data source.</p>"
       }
@@ -1951,7 +1980,7 @@
     "KmsKeyId": {
       "base": null,
       "refs": {
-        "ServerSideEncryptionConfiguration$KmsKeyId": "<p>The identifier of the KMScustomer master key (CMK). Amazon Kendra doesn't support asymmetric CMKs.</p>"
+        "ServerSideEncryptionConfiguration$KmsKeyId": "<p>The identifier of the KMS key. Amazon Kendra doesn't support asymmetric keys.</p>"
       }
     },
     "LambdaArn": {
@@ -2287,6 +2316,12 @@
         "UpdateQuerySuggestionsConfigRequest$IncludeQueriesWithoutUserInformation": "<p> <code>TRUE</code> to include queries without user information (i.e. all queries, irrespective of the user), otherwise <code>FALSE</code> to only include queries with user information.</p> <p>If you pass user information to Amazon Kendra along with the queries, you can set this flag to <code>FALSE</code> and instruct Amazon Kendra to only consider queries with user information.</p> <p>If you set to <code>FALSE</code>, Amazon Kendra only considers queries searched at least <code>MinimumQueryCount</code> times across <code>MinimumNumberOfQueryingUsers</code> unique users for suggestions.</p> <p>If you set to <code>TRUE</code>, Amazon Kendra ignores all user information and learns from all queries.</p>"
       }
     },
+    "OnPremiseConfiguration": {
+      "base": "<p>Provides the configuration information to connect to GitHub Enterprise Server (on premises).</p>",
+      "refs": {
+        "GitHubConfiguration$OnPremiseConfiguration": "<p>Configuration information to connect to GitHub Enterprise Server (on premises).</p>"
+      }
+    },
     "OneDriveConfiguration": {
       "base": "<p>Provides the configuration information to connect to OneDrive as your data source.</p>",
       "refs": {
@@ -2321,6 +2356,13 @@
       "base": null,
       "refs": {
         "WorkDocsConfiguration$OrganizationId": "<p>The identifier of the directory corresponding to your Amazon WorkDocs site repository.</p> <p>You can find the organization ID in the <a href=\"https://console.aws.amazon.com/directoryservicev2/\">Directory Service</a> by going to <b>Active Directory</b>, then <b>Directories</b>. Your Amazon WorkDocs site directory has an ID, which is the organization ID. You can also set up a new Amazon WorkDocs directory in the Directory Service console and enable a Amazon WorkDocs site for the directory in the Amazon WorkDocs console.</p>"
+      }
+    },
+    "OrganizationName": {
+      "base": null,
+      "refs": {
+        "OnPremiseConfiguration$OrganizationName": "<p>The name of the organization of the GitHub Enterprise Server (in-premise) account you want to connect to. You can find your organization name by logging into GitHub desktop and selecting <b>Your organizations</b> under your profile picture dropdown.</p>",
+        "SaaSConfiguration$OrganizationName": "<p>The name of the organization of the GitHub Enterprise Cloud (SaaS) account you want to connect to. You can find your organization name by logging into GitHub desktop and selecting <b>Your organizations</b> under your profile picture dropdown.</p>"
       }
     },
     "Persona": {
@@ -2564,6 +2606,18 @@
         "RelevanceFeedback$RelevanceValue": "<p>Whether to document was relevant or not relevant to the search.</p>"
       }
     },
+    "RepositoryName": {
+      "base": null,
+      "refs": {
+        "RepositoryNames$member": null
+      }
+    },
+    "RepositoryNames": {
+      "base": null,
+      "refs": {
+        "GitHubConfiguration$RepositoryFilter": "<p>A list of names of the specific repositories you want to index.</p>"
+      }
+    },
     "ResourceAlreadyExistException": {
       "base": "<p/>",
       "refs": {
@@ -2652,10 +2706,17 @@
         "DescribeThesaurusResponse$SourceS3Path": null,
         "Document$S3Path": null,
         "GroupMembers$S3PathforGroupMembers": "<p>If you have more than 1000 users and/or sub groups for a single group, you need to provide the path to the S3 file that lists your users and sub groups for a group. Your sub groups can contain more than 1000 users, but the list of sub groups that belong to a group (and/or users) must be no more than 1000.</p> <p>You can download this <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/samples/group_members.zip\">example S3 file</a> that uses the correct format for listing group members. Note, <code>dataSourceId</code> is optional. The value of <code>type</code> for a group is always <code>GROUP</code> and for a user it is always <code>USER</code>.</p>",
+        "OnPremiseConfiguration$SslCertificateS3Path": "<p>Information required to find a specific file in an Amazon S3 bucket.</p>",
         "OneDriveUsers$OneDriveUserS3Path": "<p>The S3 bucket location of a file containing a list of users whose documents should be indexed.</p>",
         "SharePointConfiguration$SslCertificateS3Path": null,
         "UpdateQuerySuggestionsBlockListRequest$SourceS3Path": "<p>The S3 path where your block list text file sits in S3.</p> <p>If you update your block list and provide the same path to the block list text file in S3, then Amazon Kendra reloads the file to refresh the block list. Amazon Kendra does not automatically refresh your block list. You need to call the <code>UpdateQuerySuggestionsBlockList</code> API to refresh you block list.</p> <p>If you update your block list, then Amazon Kendra asynchronously refreshes all query suggestions with the latest content in the S3 file. This means changes might not take effect immediately.</p>",
         "UpdateThesaurusRequest$SourceS3Path": null
+      }
+    },
+    "SaaSConfiguration": {
+      "base": "<p>Provides the configuration information to connect to GitHub Enterprise Cloud (SaaS).</p>",
+      "refs": {
+        "GitHubConfiguration$SaaSConfiguration": "<p>Configuration information to connect to GitHub Enterprise Cloud (SaaS).</p>"
       }
     },
     "SalesforceChatterFeedConfiguration": {
@@ -2782,8 +2843,9 @@
         "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Confluence server. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The user name or email address of a user with administrative privileges for the Confluence server.</p> </li> <li> <p>password—The password associated with the user logging in to the Confluence server.</p> </li> </ul>",
         "ConnectionConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in Secrets Manager. The credentials should be a user/password pair. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html\">Using a Database Data Source</a>. For more information about Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is Secrets Manager</a> in the <i> Secrets Manager </i> user guide.</p>",
         "FsxConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Amazon FSx file system. Windows is currently the only supported type. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The Active Directory user name, along with the Domain Name System (DNS) domain name. For example, <i>user@corp.example.com</i>. The Active Directory user account must have read and mounting access to the Amazon FSx file system for Windows.</p> </li> <li> <p>password—The password of the Active Directory user account with read and mounting access to the Amazon FSx Windows file system.</p> </li> </ul>",
+        "GitHubConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your GitHub. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>githubToken—The access token created in GitHub. For more information on creating a token in GitHub, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-github.html#github-authentication\">Authentication for a GitHub data source</a>.</p> </li> </ul>",
         "GoogleDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of a Secrets Managersecret that contains the credentials required to connect to Google Drive. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html\">Using a Google Workspace Drive data source</a>.</p>",
-        "JiraConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Jira data source. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>jira-id—The Active Directory user name, along with the Domain Name System (DNS) domain name. For example, <i>user@corp.example.com</i>.</p> </li> <li> <p>jiraCredentials—The password of the Jira account user.</p> </li> </ul>",
+        "JiraConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Jira data source. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>jira-id—The ID of the Jira account.</p> </li> <li> <p>jiraCredentials—The password of the Jira account user.</p> </li> </ul>",
         "OneDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the user name and password to connect to OneDrive. The user namd should be the application ID for the OneDrive application, and the password is the application key for the OneDrive application.</p>",
         "ProxyConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> </p> <p>The credentials are optional. You use a secret if web proxy credentials are required to connect to a website host. Amazon Kendra currently support basic authentication to connect to a web proxy server. The secret stores your credentials.</p>",
         "QuipConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs that are required to connect to your Quip. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>accessToken—The token created in Quip. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-slack.html#quip-authentication\">Authentication for a Quip data source</a>.</p> </li> </ul>",
@@ -2818,7 +2880,7 @@
       }
     },
     "ServerSideEncryptionConfiguration": {
-      "base": "<p>Provides the identifier of the KMScustomer master key (CMK) used to encrypt data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.</p>",
+      "base": "<p>Provides the identifier of the KMS key used to encrypt data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric keys.</p>",
       "refs": {
         "CreateIndexRequest$ServerSideEncryptionConfiguration": "<p>The identifier of the KMS customer managed key (CMK) that's used to encrypt data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.</p>",
         "DescribeIndexResponse$ServerSideEncryptionConfiguration": "<p>The identifier of the KMScustomer master key (CMK) that is used to encrypt your data. Amazon Kendra doesn't support asymmetric CMKs.</p>"
@@ -3039,8 +3101,20 @@
         "StartDataSourceSyncJobResponse$ExecutionId": "<p>Identifies a particular synchronization job.</p>",
         "Status$FailureCode": "<p>Indicates the source of the error.</p>",
         "Status$FailureReason": "<p>Provides detailed information about why the document couldn't be indexed. Use this information to correct the error before you resubmit the document for indexing.</p>",
+        "StringList$member": null,
         "SuggestionTextWithHighlights$Text": "<p>The query suggestion text to display to the user.</p>",
         "TextWithHighlights$Text": "<p>The text to display to the user.</p>"
+      }
+    },
+    "StringList": {
+      "base": null,
+      "refs": {
+        "GitHubConfiguration$InclusionFolderNamePatterns": "<p>A list of regular expression patterns to include certain folder names in your GitHub repository or repositories. Folder names that match the patterns are included in the index. Folder names that don't match the patterns are excluded from the index. If a folder matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the folder isn't included in the index.</p>",
+        "GitHubConfiguration$InclusionFileTypePatterns": "<p>A list of regular expression patterns to include certain file types in your GitHub repository or repositories. File types that match the patterns are included in the index. File types that don't match the patterns are excluded from the index. If a file matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
+        "GitHubConfiguration$InclusionFileNamePatterns": "<p>A list of regular expression patterns to include certain file names in your GitHub repository or repositories. File names that match the patterns are included in the index. File names that don't match the patterns are excluded from the index. If a file matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
+        "GitHubConfiguration$ExclusionFolderNamePatterns": "<p>A list of regular expression patterns to exclude certain folder names in your GitHub repository or repositories. Folder names that match the patterns are excluded from the index. Folder names that don't match the patterns are included in the index. If a folder matches both an exclusion and inclusion pattern, the exclusion pattern takes precedence and the folder isn't included in the index.</p>",
+        "GitHubConfiguration$ExclusionFileTypePatterns": "<p>A list of regular expression patterns to exclude certain file types in your GitHub repository or repositories. File types that match the patterns are excluded from the index. File types that don't match the patterns are included in the index. If a file matches both an exclusion and inclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
+        "GitHubConfiguration$ExclusionFileNamePatterns": "<p>A list of regular expression patterns to exclude certain file names in your GitHub repository or repositories. File names that match the patterns are excluded from the index. File names that don't match the patterns are included in the index. If a file matches both an exclusion and inclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>"
       }
     },
     "SubmitFeedbackRequest": {
@@ -3296,6 +3370,12 @@
         "Facet$MaxResults": "<p>Maximum number of facet values per facet. The default is 10. You can use this to limit the number of facet values to less than 10. If you want to increase the default, contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a>.</p>"
       }
     },
+    "Type": {
+      "base": null,
+      "refs": {
+        "GitHubConfiguration$Type": "<p>The type of GitHub service you want to connect to—GitHub Enterprise Cloud (SaaS) or GitHub Enterprise Server (on premises).</p>"
+      }
+    },
     "UntagResourceRequest": {
       "base": null,
       "refs": {
@@ -3341,7 +3421,9 @@
       "refs": {
         "ConfluenceConfiguration$ServerUrl": "<p>The URL of your Confluence instance. Use the full URL of the server. For example, <i>https://server.example.com:port/</i>. You can also use an IP address, for example, <i>https://192.168.1.113/</i>.</p>",
         "JwtTokenTypeConfiguration$URL": "<p>The signing key URL.</p>",
+        "OnPremiseConfiguration$HostUrl": "<p>The GitHub host URL or API endpoint URL. For example, <i>https://on-prem-host-url/api/v3/</i> </p>",
         "QueryResultItem$DocumentURI": "<p>The URI of the original location of the document.</p>",
+        "SaaSConfiguration$HostUrl": "<p>The GitHub host URL or API endpoint URL. For example, <i>https://api.github.com</i>.</p>",
         "SalesforceConfiguration$ServerUrl": "<p>The instance URL for the Salesforce site that you want to index.</p>",
         "SharePointUrlList$member": null
       }

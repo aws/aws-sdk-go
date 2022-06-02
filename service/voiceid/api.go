@@ -164,7 +164,7 @@ func (c *VoiceID) DeleteDomainRequest(input *DeleteDomainInput) (req *request.Re
 
 // DeleteDomain API operation for Amazon Voice ID.
 //
-// Deletes the specified domain from the Amazon Connect Voice ID system.
+// Deletes the specified domain from Voice ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -265,7 +265,7 @@ func (c *VoiceID) DeleteFraudsterRequest(input *DeleteFraudsterInput) (req *requ
 
 // DeleteFraudster API operation for Amazon Voice ID.
 //
-// Deletes the specified fraudster from the Amazon Connect Voice ID system.
+// Deletes the specified fraudster from Voice ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -282,6 +282,10 @@ func (c *VoiceID) DeleteFraudsterRequest(input *DeleteFraudsterInput) (req *requ
 //   * ValidationException
 //   The request failed one or more validations; check the error message for more
 //   details.
+//
+//   * ConflictException
+//   The request failed due to a conflict. Check the ConflictType and error message
+//   for more details.
 //
 //   * InternalServerException
 //   The request failed due to an unknown error on the server side.
@@ -362,7 +366,7 @@ func (c *VoiceID) DeleteSpeakerRequest(input *DeleteSpeakerInput) (req *request.
 
 // DeleteSpeaker API operation for Amazon Voice ID.
 //
-// Deletes the specified speaker from the Amazon Connect Voice ID system.
+// Deletes the specified speaker from Voice ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -960,6 +964,10 @@ func (c *VoiceID) EvaluateSessionRequest(input *EvaluateSessionInput) (req *requ
 //   * ValidationException
 //   The request failed one or more validations; check the error message for more
 //   details.
+//
+//   * ConflictException
+//   The request failed due to a conflict. Check the ConflictType and error message
+//   for more details.
 //
 //   * InternalServerException
 //   The request failed due to an unknown error on the server side.
@@ -1751,12 +1759,12 @@ func (c *VoiceID) OptOutSpeakerRequest(input *OptOutSpeakerInput) (req *request.
 
 // OptOutSpeaker API operation for Amazon Voice ID.
 //
-// Opts out a speaker from Voice ID system. A speaker can be opted out regardless
-// of whether or not they already exist in the system. If they don't yet exist,
-// a new speaker is created in an opted out state. If they already exist, their
+// Opts out a speaker from Voice ID. A speaker can be opted out regardless of
+// whether or not they already exist in Voice ID. If they don't yet exist, a
+// new speaker is created in an opted out state. If they already exist, their
 // existing status is overridden and they are opted out. Enrollment and evaluation
 // authentication requests are rejected for opted out speakers, and opted out
-// speakers have no voice embeddings stored in the system.
+// speakers have no voice embeddings stored in Voice ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2067,7 +2075,7 @@ func (c *VoiceID) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 
 // TagResource API operation for Amazon Voice ID.
 //
-// Tags an Amazon Connect Voice ID resource with the provided list of tags.
+// Tags a Voice ID resource with the provided list of tags.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2644,10 +2652,10 @@ type CreateDomainInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// The configuration, containing the KMS Key Identifier, to be used by Voice
-	// ID for the server-side encryption of your data. Refer to Amazon Connect VoiceID
-	// encryption at rest (https://docs.aws.amazon.com/connect/latest/adminguide/encryption-at-rest.html#encryption-at-rest-voiceid)
-	// for more details on how the KMS Key is used.
+	// The configuration, containing the KMS key identifier, to be used by Voice
+	// ID for the server-side encryption of your data. Refer to Amazon Connect Voice
+	// ID encryption at rest (https://docs.aws.amazon.com/connect/latest/adminguide/encryption-at-rest.html#encryption-at-rest-voiceid)
+	// for more details on how the KMS key is used.
 	//
 	// ServerSideEncryptionConfiguration is a required field
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure" required:"true"`
@@ -3536,9 +3544,15 @@ type Domain struct {
 	// String and GoString methods.
 	Name *string `min:"1" type:"string" sensitive:"true"`
 
-	// The server-side encryption configuration containing the KMS Key Identifier
+	// The server-side encryption configuration containing the KMS key identifier
 	// you want Voice ID to use to encrypt your data.
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure"`
+
+	// Details about the most recent server-side encryption configuration update.
+	// When the server-side encryption configuration is changed, dependency on the
+	// old KMS key is removed through an asynchronous process. When this update
+	// is complete, the domain's data can only be accessed using the new KMS key.
+	ServerSideEncryptionUpdateDetails *ServerSideEncryptionUpdateDetails `type:"structure"`
 
 	// The timestamp showing the domain's last update.
 	UpdatedAt *time.Time `type:"timestamp"`
@@ -3604,6 +3618,12 @@ func (s *Domain) SetServerSideEncryptionConfiguration(v *ServerSideEncryptionCon
 	return s
 }
 
+// SetServerSideEncryptionUpdateDetails sets the ServerSideEncryptionUpdateDetails field's value.
+func (s *Domain) SetServerSideEncryptionUpdateDetails(v *ServerSideEncryptionUpdateDetails) *Domain {
+	s.ServerSideEncryptionUpdateDetails = v
+	return s
+}
+
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *Domain) SetUpdatedAt(v time.Time) *Domain {
 	s.UpdatedAt = &v
@@ -3640,9 +3660,15 @@ type DomainSummary struct {
 	// String and GoString methods.
 	Name *string `min:"1" type:"string" sensitive:"true"`
 
-	// The server-side encryption configuration containing the KMS Key Identifier
-	// you want Voice ID to use to encrypt your data..
+	// The server-side encryption configuration containing the KMS key identifier
+	// you want Voice ID to use to encrypt your data.
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure"`
+
+	// Details about the most recent server-side encryption configuration update.
+	// When the server-side encryption configuration is changed, dependency on the
+	// old KMS key is removed through an asynchronous process. When this update
+	// is complete, the domain’s data can only be accessed using the new KMS key.
+	ServerSideEncryptionUpdateDetails *ServerSideEncryptionUpdateDetails `type:"structure"`
 
 	// The timestamp showing the domain's last update.
 	UpdatedAt *time.Time `type:"timestamp"`
@@ -3705,6 +3731,12 @@ func (s *DomainSummary) SetName(v string) *DomainSummary {
 // SetServerSideEncryptionConfiguration sets the ServerSideEncryptionConfiguration field's value.
 func (s *DomainSummary) SetServerSideEncryptionConfiguration(v *ServerSideEncryptionConfiguration) *DomainSummary {
 	s.ServerSideEncryptionConfiguration = v
+	return s
+}
+
+// SetServerSideEncryptionUpdateDetails sets the ServerSideEncryptionUpdateDetails field's value.
+func (s *DomainSummary) SetServerSideEncryptionUpdateDetails(v *ServerSideEncryptionUpdateDetails) *DomainSummary {
+	s.ServerSideEncryptionUpdateDetails = v
 	return s
 }
 
@@ -3898,7 +3930,7 @@ type EvaluateSessionOutput struct {
 	// to infer next steps when the Authentication or Fraud Detection results are
 	// empty or the decision is NOT_ENOUGH_SPEECH. In this situation, if the StreamingStatus
 	// is ONGOING/PENDING_CONFIGURATION, it can mean that the client should call
-	// the API again later, once Voice ID has enough audio to produce a result.
+	// the API again later, after Voice ID has enough audio to produce a result.
 	// If the decision remains NOT_ENOUGH_SPEECH even after StreamingStatus is ENDED,
 	// it means that the previously streamed session did not have enough speech
 	// to perform evaluation, and a new streaming session is needed to try again.
@@ -4250,7 +4282,7 @@ type FraudsterRegistrationJob struct {
 	// The service-generated identifier for the fraudster registration job.
 	JobId *string `min:"22" type:"string"`
 
-	// The client-provied name for the fraudster registration job.
+	// The client-provided name for the fraudster registration job.
 	//
 	// JobName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by FraudsterRegistrationJob's
@@ -4265,7 +4297,7 @@ type FraudsterRegistrationJob struct {
 	JobStatus *string `type:"string" enum:"FraudsterRegistrationJobStatus"`
 
 	// The output data config containing the S3 location where you want Voice ID
-	// to write your job output file; you must also include a KMS Key ID in order
+	// to write your job output file; you must also include a KMS key iD in order
 	// to encrypt the file.
 	OutputDataConfig *OutputDataConfig `type:"structure"`
 
@@ -5323,8 +5355,8 @@ type OutputDataConfig struct {
 	// file of the fraudster registration job.
 	KmsKeyId *string `min:"1" type:"string"`
 
-	// The S3 path of the folder to which Voice ID writes the job output file, which
-	// has a *.out extension. For example, if the input file name is input-file.json
+	// The S3 path of the folder where Voice ID writes the job output file. It has
+	// a *.out extension. For example, if the input file name is input-file.json
 	// and the output folder path is s3://output-bucket/output-folder, the full
 	// output file path is s3://output-bucket/output-folder/job-Id/input-file.json.out.
 	//
@@ -5378,7 +5410,7 @@ func (s *OutputDataConfig) SetS3Uri(v string) *OutputDataConfig {
 	return s
 }
 
-// The configuration definining the action to take when a duplicate fraudster
+// The configuration defining the action to take when a duplicate fraudster
 // is detected, and the similarity threshold to use for detecting a duplicate
 // fraudster during a batch fraudster registration job.
 type RegistrationConfig struct {
@@ -5494,12 +5526,12 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The configuration containing information about the customer-managed KMS Key
-// used for encrypting customer data.
+// The configuration containing information about the customer managed key used
+// for encrypting customer data.
 type ServerSideEncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the KMS Key you want Voice ID to use to encrypt your data.
+	// The identifier of the KMS key you want Voice ID to use to encrypt your data.
 	//
 	// KmsKeyId is a required field
 	KmsKeyId *string `min:"1" type:"string" required:"true"`
@@ -5542,6 +5574,65 @@ func (s *ServerSideEncryptionConfiguration) Validate() error {
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *ServerSideEncryptionConfiguration) SetKmsKeyId(v string) *ServerSideEncryptionConfiguration {
 	s.KmsKeyId = &v
+	return s
+}
+
+// Details about the most recent server-side encryption configuration update.
+// When the server-side encryption configuration is changed, dependency on the
+// old KMS key is removed through an asynchronous process. When this update
+// is complete, the domain’s data can only be accessed using the new KMS key.
+type ServerSideEncryptionUpdateDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Message explaining the current UpdateStatus. When the UpdateStatus is FAILED,
+	// this message explains the cause of the failure.
+	Message *string `min:"1" type:"string"`
+
+	// The previous KMS key ID the domain was encrypted with, before ServerSideEncryptionConfiguration
+	// was updated to a new KMS key ID.
+	OldKmsKeyId *string `min:"1" type:"string"`
+
+	// Status of the server-side encryption update. During an update, if there is
+	// an issue with the domain's current or old KMS key ID, such as an inaccessible
+	// or disabled key, then the status is FAILED. In order to resolve this, the
+	// key needs to be made accessible, and then an UpdateDomain call with the existing
+	// server-side encryption configuration will re-attempt this update process.
+	UpdateStatus *string `type:"string" enum:"ServerSideEncryptionUpdateStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerSideEncryptionUpdateDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerSideEncryptionUpdateDetails) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *ServerSideEncryptionUpdateDetails) SetMessage(v string) *ServerSideEncryptionUpdateDetails {
+	s.Message = &v
+	return s
+}
+
+// SetOldKmsKeyId sets the OldKmsKeyId field's value.
+func (s *ServerSideEncryptionUpdateDetails) SetOldKmsKeyId(v string) *ServerSideEncryptionUpdateDetails {
+	s.OldKmsKeyId = &v
+	return s
+}
+
+// SetUpdateStatus sets the UpdateStatus field's value.
+func (s *ServerSideEncryptionUpdateDetails) SetUpdateStatus(v string) *ServerSideEncryptionUpdateDetails {
+	s.UpdateStatus = &v
 	return s
 }
 
@@ -5753,7 +5844,7 @@ type SpeakerEnrollmentJob struct {
 	JobStatus *string `type:"string" enum:"SpeakerEnrollmentJobStatus"`
 
 	// The output data config containing the S3 location where Voice ID writes the
-	// job output file; you must also include a KMS Key ID to encrypt the file.
+	// job output file; you must also include a KMS key ID to encrypt the file.
 	OutputDataConfig *OutputDataConfig `type:"structure"`
 }
 
@@ -6077,7 +6168,7 @@ type StartFraudsterRegistrationJobInput struct {
 	JobName *string `min:"1" type:"string" sensitive:"true"`
 
 	// The output data config containing the S3 location where Voice ID writes the
-	// job output file; you must also include a KMS Key ID to encrypt the file.
+	// job output file; you must also include a KMS key ID to encrypt the file.
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
@@ -6246,8 +6337,8 @@ type StartSpeakerEnrollmentJobInput struct {
 	DomainId *string `min:"22" type:"string" required:"true"`
 
 	// The enrollment config that contains details such as the action to take when
-	// a speaker is already enrolled in the Voice ID system or when a speaker is
-	// identified as a fraudster.
+	// a speaker is already enrolled in Voice ID or when a speaker is identified
+	// as a fraudster.
 	EnrollmentConfig *EnrollmentConfig `type:"structure"`
 
 	// The input data config containing the S3 location for the input manifest file
@@ -6264,7 +6355,7 @@ type StartSpeakerEnrollmentJobInput struct {
 	JobName *string `min:"1" type:"string" sensitive:"true"`
 
 	// The output data config containing the S3 location where Voice ID writes the
-	// job output file; you must also include a KMS Key ID to encrypt the file.
+	// job output file; you must also include a KMS key ID to encrypt the file.
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
@@ -6752,7 +6843,7 @@ type UpdateDomainInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// The configuration, containing the KMS Key Identifier, to be used by Voice
+	// The configuration, containing the KMS key identifier, to be used by Voice
 	// ID for the server-side encryption of your data. Note that all the existing
 	// data in the domain are still encrypted using the existing key, only the data
 	// added to domain after updating the key is encrypted using the new key.
@@ -6989,6 +7080,9 @@ const (
 
 	// ConflictTypeConcurrentChanges is a ConflictType enum value
 	ConflictTypeConcurrentChanges = "CONCURRENT_CHANGES"
+
+	// ConflictTypeDomainLockedFromEncryptionUpdates is a ConflictType enum value
+	ConflictTypeDomainLockedFromEncryptionUpdates = "DOMAIN_LOCKED_FROM_ENCRYPTION_UPDATES"
 )
 
 // ConflictType_Values returns all elements of the ConflictType enum
@@ -7001,6 +7095,7 @@ func ConflictType_Values() []string {
 		ConflictTypeSpeakerNotSet,
 		ConflictTypeSpeakerOptedOut,
 		ConflictTypeConcurrentChanges,
+		ConflictTypeDomainLockedFromEncryptionUpdates,
 	}
 }
 
@@ -7161,6 +7256,26 @@ func ResourceType_Values() []string {
 		ResourceTypeFraudster,
 		ResourceTypeSession,
 		ResourceTypeSpeaker,
+	}
+}
+
+const (
+	// ServerSideEncryptionUpdateStatusInProgress is a ServerSideEncryptionUpdateStatus enum value
+	ServerSideEncryptionUpdateStatusInProgress = "IN_PROGRESS"
+
+	// ServerSideEncryptionUpdateStatusCompleted is a ServerSideEncryptionUpdateStatus enum value
+	ServerSideEncryptionUpdateStatusCompleted = "COMPLETED"
+
+	// ServerSideEncryptionUpdateStatusFailed is a ServerSideEncryptionUpdateStatus enum value
+	ServerSideEncryptionUpdateStatusFailed = "FAILED"
+)
+
+// ServerSideEncryptionUpdateStatus_Values returns all elements of the ServerSideEncryptionUpdateStatus enum
+func ServerSideEncryptionUpdateStatus_Values() []string {
+	return []string{
+		ServerSideEncryptionUpdateStatusInProgress,
+		ServerSideEncryptionUpdateStatusCompleted,
+		ServerSideEncryptionUpdateStatusFailed,
 	}
 }
 

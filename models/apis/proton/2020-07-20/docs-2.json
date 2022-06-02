@@ -3,9 +3,11 @@
   "service": "<p>This is the Proton Service API Reference. It provides descriptions, syntax and usage examples for each of the <a href=\"https://docs.aws.amazon.com/proton/latest/APIReference/API_Operations.html\">actions</a> and <a href=\"https://docs.aws.amazon.com/proton/latest/APIReference/API_Types.html\">data types</a> for the Proton service.</p> <p>The documentation for each action shows the Query API request parameters and the XML response.</p> <p>Alternatively, you can use the Amazon Web Services CLI to access an API. For more information, see the <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html\">Amazon Web Services Command Line Interface User Guide</a>.</p> <p>The Proton service is a two-pronged automation framework. Administrators create service templates to provide standardized infrastructure and deployment tooling for serverless and container based applications. Developers, in turn, select from the available service templates to automate their application or service deployments.</p> <p>Because administrators define the infrastructure and tooling that Proton deploys and manages, they need permissions to use all of the listed API operations.</p> <p>When developers select a specific infrastructure and tooling set, Proton deploys their applications. To monitor their applications that are running on Proton, developers need permissions to the service <i>create</i>, <i>list</i>, <i>update</i> and <i>delete</i> API operations and the service instance <i>list</i> and <i>update</i> API operations.</p> <p>To learn more about Proton administration, see the <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/Welcome.html\">Proton Administrator Guide</a>.</p> <p>To learn more about deploying serverless and containerized applications on Proton, see the <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/Welcome.html\">Proton User Guide</a>.</p> <p> <b>Ensuring Idempotency</b> </p> <p>When you make a mutating API request, the request typically returns a result before the asynchronous workflows of the operation are complete. Operations might also time out or encounter other server issues before they're complete, even if the request already returned a result. This might make it difficult to determine whether the request succeeded. Moreover, you might need to retry the request multiple times to ensure that the operation completes successfully. However, if the original request and the subsequent retries are successful, the operation occurs multiple times. This means that you might create more resources than you intended.</p> <p> <i>Idempotency</i> ensures that an API request action completes no more than one time. With an idempotent request, if the original request action completes successfully, any subsequent retries complete successfully without performing any further actions. However, the result might contain updated information, such as the current creation status.</p> <p>The following lists of APIs are grouped according to methods that ensure idempotency.</p> <p> <b>Idempotent create APIs with a client token</b> </p> <p>The API actions in this list support idempotency with the use of a <i>client token</i>. The corresponding Amazon Web Services CLI commands also support idempotency using a client token. A client token is a unique, case-sensitive string of up to 64 ASCII characters. To make an idempotent API request using one of these actions, specify a client token in the request. We recommend that you <i>don't</i> reuse the same client token for other API requests. If you don’t provide a client token for these APIs, a default client token is automatically provided by SDKs.</p> <p>Given a request action that has succeeded:</p> <p>If you retry the request using the same client token and the same parameters, the retry succeeds without performing any further actions other than returning the original resource detail data in the response.</p> <p>If you retry the request using the same client token, but one or more of the parameters are different, the retry throws a <code>ValidationException</code> with an <code>IdempotentParameterMismatch</code> error.</p> <p>Client tokens expire eight hours after a request is made. If you retry the request with the expired token, a new resource is created.</p> <p>If the original resource is deleted and you retry the request, a new resource is created.</p> <p>Idempotent create APIs with a client token:</p> <ul> <li> <p>CreateEnvironmentTemplateVersion</p> </li> <li> <p>CreateServiceTemplateVersion</p> </li> <li> <p>CreateEnvironmentAccountConnection</p> </li> </ul> <p> <b>Idempotent create APIs</b> </p> <p>Given a request action that has succeeded:</p> <p>If you retry the request with an API from this group, and the original resource <i>hasn't</i> been modified, the retry succeeds without performing any further actions other than returning the original resource detail data in the response.</p> <p>If the original resource has been modified, the retry throws a <code>ConflictException</code>.</p> <p>If you retry with different input parameters, the retry throws a <code>ValidationException</code> with an <code>IdempotentParameterMismatch</code> error.</p> <p>Idempotent create APIs:</p> <ul> <li> <p>CreateEnvironmentTemplate</p> </li> <li> <p>CreateServiceTemplate</p> </li> <li> <p>CreateEnvironment</p> </li> <li> <p>CreateService</p> </li> </ul> <p> <b>Idempotent delete APIs</b> </p> <p>Given a request action that has succeeded:</p> <p>When you retry the request with an API from this group and the resource was deleted, its metadata is returned in the response.</p> <p>If you retry and the resource doesn't exist, the response is empty.</p> <p>In both cases, the retry succeeds.</p> <p>Idempotent delete APIs:</p> <ul> <li> <p>DeleteEnvironmentTemplate</p> </li> <li> <p>DeleteEnvironmentTemplateVersion</p> </li> <li> <p>DeleteServiceTemplate</p> </li> <li> <p>DeleteServiceTemplateVersion</p> </li> <li> <p>DeleteEnvironmentAccountConnection</p> </li> </ul> <p> <b>Asynchronous idempotent delete APIs</b> </p> <p>Given a request action that has succeeded:</p> <p>If you retry the request with an API from this group, if the original request delete operation status is <code>DELETE_IN_PROGRESS</code>, the retry returns the resource detail data in the response without performing any further actions.</p> <p>If the original request delete operation is complete, a retry returns an empty response.</p> <p>Asynchronous idempotent delete APIs:</p> <ul> <li> <p>DeleteEnvironment</p> </li> <li> <p>DeleteService</p> </li> </ul>",
   "operations": {
     "AcceptEnvironmentAccountConnection": "<p>In a management account, an environment account connection request is accepted. When the environment account connection request is accepted, Proton can use the associated IAM role to provision environment infrastructure resources in the associated environment account.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html\">Environment account connections</a> in the <i>Proton Administrator guide</i>.</p>",
+    "CancelComponentDeployment": "<p>Attempts to cancel a component deployment (for a component that is in the <code>IN_PROGRESS</code> deployment status).</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
     "CancelEnvironmentDeployment": "<p>Attempts to cancel an environment deployment on an <a>UpdateEnvironment</a> action, if the deployment is <code>IN_PROGRESS</code>. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-update.html\">Update an environment</a> in the <i>Proton Administrator guide</i>.</p> <p>The following list includes potential cancellation scenarios.</p> <ul> <li> <p>If the cancellation attempt succeeds, the resulting deployment state is <code>CANCELLED</code>.</p> </li> <li> <p>If the cancellation attempt fails, the resulting deployment state is <code>FAILED</code>.</p> </li> <li> <p>If the current <a>UpdateEnvironment</a> action succeeds before the cancellation attempt starts, the resulting deployment state is <code>SUCCEEDED</code> and the cancellation attempt has no effect.</p> </li> </ul>",
     "CancelServiceInstanceDeployment": "<p>Attempts to cancel a service instance deployment on an <a>UpdateServiceInstance</a> action, if the deployment is <code>IN_PROGRESS</code>. For more information, see <i>Update a service instance</i> in the <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-svc-instance-update.html\">Proton Administrator guide</a> or the <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-instance-update.html\">Proton User guide</a>.</p> <p>The following list includes potential cancellation scenarios.</p> <ul> <li> <p>If the cancellation attempt succeeds, the resulting deployment state is <code>CANCELLED</code>.</p> </li> <li> <p>If the cancellation attempt fails, the resulting deployment state is <code>FAILED</code>.</p> </li> <li> <p>If the current <a>UpdateServiceInstance</a> action succeeds before the cancellation attempt starts, the resulting deployment state is <code>SUCCEEDED</code> and the cancellation attempt has no effect.</p> </li> </ul>",
     "CancelServicePipelineDeployment": "<p>Attempts to cancel a service pipeline deployment on an <a>UpdateServicePipeline</a> action, if the deployment is <code>IN_PROGRESS</code>. For more information, see <i>Update a service pipeline</i> in the <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-svc-pipeline-update.html\">Proton Administrator guide</a> or the <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-pipeline-update.html\">Proton User guide</a>.</p> <p>The following list includes potential cancellation scenarios.</p> <ul> <li> <p>If the cancellation attempt succeeds, the resulting deployment state is <code>CANCELLED</code>.</p> </li> <li> <p>If the cancellation attempt fails, the resulting deployment state is <code>FAILED</code>.</p> </li> <li> <p>If the current <a>UpdateServicePipeline</a> action succeeds before the cancellation attempt starts, the resulting deployment state is <code>SUCCEEDED</code> and the cancellation attempt has no effect.</p> </li> </ul>",
+    "CreateComponent": "<p>Create an Proton component. A component is an infrastructure extension for a service instance.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
     "CreateEnvironment": "<p>Deploy a new environment. An Proton environment is created from an environment template that defines infrastructure and resources that can be shared across services.</p> <p class=\"title\"> <b>You can provision environments using the following methods:</b> </p> <ul> <li> <p>Amazon Web Services-managed provisioning: Proton makes direct calls to provision your resources.</p> </li> <li> <p>Self-managed provisioning: Proton makes pull requests on your repository to provide compiled infrastructure as code (IaC) files that your IaC engine uses to provision resources.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-environments.html\">Environments</a> and <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-works-prov-methods.html\">Provisioning methods</a> in the <i>Proton Administrator Guide</i>.</p>",
     "CreateEnvironmentAccountConnection": "<p>Create an environment account connection in an environment account so that environment infrastructure resources can be provisioned in the environment account from a management account.</p> <p>An environment account connection is a secure bi-directional connection between a <i>management account</i> and an <i>environment account</i> that maintains authorization and permissions. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html\">Environment account connections</a> in the <i>Proton Administrator guide</i>.</p>",
     "CreateEnvironmentTemplate": "<p>Create an environment template for Proton. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-templates.html\">Environment Templates</a> in the <i>Proton Administrator Guide</i>.</p> <p>You can create an environment template in one of the two following ways:</p> <ul> <li> <p>Register and publish a <i>standard</i> environment template that instructs Proton to deploy and manage environment infrastructure.</p> </li> <li> <p>Register and publish a <i>customer managed</i> environment template that connects Proton to your existing provisioned infrastructure that you manage. Proton <i>doesn't</i> manage your existing provisioned infrastructure. To create an environment template for customer provisioned and managed infrastructure, include the <code>provisioning</code> parameter and set the value to <code>CUSTOMER_MANAGED</code>. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/template-create.html\">Register and publish an environment template</a> in the <i>Proton Administrator Guide</i>.</p> </li> </ul>",
@@ -15,28 +17,33 @@
     "CreateServiceTemplate": "<p>Create a service template. The administrator creates a service template to define standardized infrastructure and an optional CI/CD service pipeline. Developers, in turn, select the service template from Proton. If the selected service template includes a service pipeline definition, they provide a link to their source code repository. Proton then deploys and manages the infrastructure defined by the selected service template. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/managing-svc-templates.html\">Service Templates</a> in the <i>Proton Administrator Guide</i>.</p>",
     "CreateServiceTemplateVersion": "<p>Create a new major or minor version of a service template. A major version of a service template is a version that <i>isn't</i> backward compatible. A minor version of a service template is a version that's backward compatible within its major version.</p>",
     "CreateTemplateSyncConfig": "<p>Set up a template to create new template versions automatically. When a commit is pushed to your registered <a href=\"https://docs.aws.amazon.com/proton/latest/APIReference/API_Repository.html\">repository</a>, Proton checks for changes to your repository template bundles. If it detects a template bundle change, a new major or minor version of its template is created, if the version doesn’t already exist. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-sync-configs.html\">Template sync configurations</a> in the <i>Proton Administrator Guide</i>.</p>",
+    "DeleteComponent": "<p>Delete an Proton component resource.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
     "DeleteEnvironment": "<p>Delete an environment.</p>",
     "DeleteEnvironmentAccountConnection": "<p>In an environment account, delete an environment account connection.</p> <p>After you delete an environment account connection that’s in use by an Proton environment, Proton <i>can’t</i> manage the environment infrastructure resources until a new environment account connection is accepted for the environment account and associated environment. You're responsible for cleaning up provisioned resources that remain without an environment connection.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html\">Environment account connections</a> in the <i>Proton Administrator guide</i>.</p>",
     "DeleteEnvironmentTemplate": "<p>If no other major or minor versions of an environment template exist, delete the environment template.</p>",
     "DeleteEnvironmentTemplateVersion": "<p>If no other minor versions of an environment template exist, delete a major version of the environment template if it's not the <code>Recommended</code> version. Delete the <code>Recommended</code> version of the environment template if no other major versions or minor versions of the environment template exist. A major version of an environment template is a version that's not backward compatible.</p> <p>Delete a minor version of an environment template if it <i>isn't</i> the <code>Recommended</code> version. Delete a <code>Recommended</code> minor version of the environment template if no other minor versions of the environment template exist. A minor version of an environment template is a version that's backward compatible.</p>",
     "DeleteRepository": "<p>De-register and unlink your repository.</p>",
-    "DeleteService": "<p>Delete a service.</p>",
+    "DeleteService": "<p>Delete a service, with its instances and pipeline.</p> <note> <p>You can't delete a service if it has any service instances that have components attached to them.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p> </note>",
     "DeleteServiceTemplate": "<p>If no other major or minor versions of the service template exist, delete the service template.</p>",
     "DeleteServiceTemplateVersion": "<p>If no other minor versions of a service template exist, delete a major version of the service template if it's not the <code>Recommended</code> version. Delete the <code>Recommended</code> version of the service template if no other major versions or minor versions of the service template exist. A major version of a service template is a version that <i>isn't</i> backwards compatible.</p> <p>Delete a minor version of a service template if it's not the <code>Recommended</code> version. Delete a <code>Recommended</code> minor version of the service template if no other minor versions of the service template exist. A minor version of a service template is a version that's backwards compatible.</p>",
     "DeleteTemplateSyncConfig": "<p>Delete a template sync configuration.</p>",
     "GetAccountSettings": "<p>Get detail data for the Proton pipeline service role.</p>",
-    "GetEnvironment": "<p>Get detail data for an environment.</p>",
-    "GetEnvironmentAccountConnection": "<p>In an environment account, view the detail data for an environment account connection.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html\">Environment account connections</a> in the <i>Proton Administrator guide</i>.</p>",
-    "GetEnvironmentTemplate": "<p>Get detail data for an environment template.</p>",
-    "GetEnvironmentTemplateVersion": "<p>View detail data for a major or minor version of an environment template.</p>",
+    "GetComponent": "<p>Get detailed data for a component.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
+    "GetEnvironment": "<p>Get detailed data for an environment.</p>",
+    "GetEnvironmentAccountConnection": "<p>In an environment account, get the detailed data for an environment account connection.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html\">Environment account connections</a> in the <i>Proton Administrator guide</i>.</p>",
+    "GetEnvironmentTemplate": "<p>Get detailed data for an environment template.</p>",
+    "GetEnvironmentTemplateVersion": "<p>Get detailed data for a major or minor version of an environment template.</p>",
     "GetRepository": "<p>Get detail data for a repository.</p>",
     "GetRepositorySyncStatus": "<p>Get the sync status of a repository used for Proton template sync. For more information about template sync, see .</p> <note> <p>A repository sync status isn't tied to the Proton Repository resource (or any other Proton resource). Therefore, tags on an Proton Repository resource have no effect on this action. Specifically, you can't use these tags to control access to this action using Attribute-based access control (ABAC).</p> <p>For more information about ABAC, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/security_iam_service-with-iam.html#security_iam_service-with-iam-tags\">ABAC</a> in the <i>Proton Administrator Guide</i>.</p> </note>",
-    "GetService": "<p>Get detail data for a service.</p>",
-    "GetServiceInstance": "<p>Get detail data for a service instance. A service instance is an instantiation of service template and it runs in a specific environment.</p>",
-    "GetServiceTemplate": "<p>Get detail data for a service template.</p>",
-    "GetServiceTemplateVersion": "<p>View detail data for a major or minor version of a service template.</p>",
+    "GetService": "<p>Get detailed data for a service.</p>",
+    "GetServiceInstance": "<p>Get detailed data for a service instance. A service instance is an instantiation of service template and it runs in a specific environment.</p>",
+    "GetServiceTemplate": "<p>Get detailed data for a service template.</p>",
+    "GetServiceTemplateVersion": "<p>Get detailed data for a major or minor version of a service template.</p>",
     "GetTemplateSyncConfig": "<p>Get detail data for a template sync configuration.</p>",
     "GetTemplateSyncStatus": "<p>Get the status of a template sync.</p>",
+    "ListComponentOutputs": "<p>Get a list of component Infrastructure as Code (IaC) outputs.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
+    "ListComponentProvisionedResources": "<p>List provisioned resources for a component with details.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
+    "ListComponents": "<p>List components with summary data. You can filter the result list by environment, service, or a single service instance.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
     "ListEnvironmentAccountConnections": "<p>View a list of environment account connections.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html\">Environment account connections</a> in the <i>Proton Administrator guide</i>.</p>",
     "ListEnvironmentOutputs": "<p>List the infrastructure as code outputs for your environment.</p>",
     "ListEnvironmentProvisionedResources": "<p>List the provisioned resources for your environment.</p>",
@@ -45,10 +52,10 @@
     "ListEnvironments": "<p>List environments with detail data summaries.</p>",
     "ListRepositories": "<p>List repositories with detail data.</p>",
     "ListRepositorySyncDefinitions": "<p>List repository sync definitions with detail data.</p>",
-    "ListServiceInstanceOutputs": "<p>View a list service instance infrastructure as code outputs with detail data.</p>",
+    "ListServiceInstanceOutputs": "<p>Get a list service of instance Infrastructure as Code (IaC) outputs.</p>",
     "ListServiceInstanceProvisionedResources": "<p>List provisioned resources for a service instance with details.</p>",
-    "ListServiceInstances": "<p>List service instances with summaries of detail data.</p>",
-    "ListServicePipelineOutputs": "<p>View a list service pipeline infrastructure as code outputs with detail.</p>",
+    "ListServiceInstances": "<p>List service instances with summary data.</p>",
+    "ListServicePipelineOutputs": "<p>Get a list of service pipeline Infrastructure as Code (IaC) outputs.</p>",
     "ListServicePipelineProvisionedResources": "<p>List provisioned resources for a service and pipeline with details.</p>",
     "ListServiceTemplateVersions": "<p>List major or minor versions of a service template with detail data.</p>",
     "ListServiceTemplates": "<p>List service templates with detail data.</p>",
@@ -59,12 +66,13 @@
     "TagResource": "<p>Tag a resource. A tag is a key-value pair of metadata that you associate with an Proton resource.</p> <p>For more information, see <i>Proton resources and tagging</i> in the <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/resources.html\">Proton Administrator Guide</a> or <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/resources.html\">Proton User Guide</a>.</p>",
     "UntagResource": "<p>Remove a customer tag from a resource. A tag is a key-value pair of metadata associated with an Proton resource.</p> <p>For more information, see <i>Proton resources and tagging</i> in the <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/resources.html\">Proton Administrator Guide</a> or <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/resources.html\">Proton User Guide</a>.</p>",
     "UpdateAccountSettings": "<p>Update the Proton service pipeline role or repository settings.</p>",
+    "UpdateComponent": "<p>Update a component.</p> <p>There are a few modes for updating a component. The <code>deploymentType</code> field defines the mode.</p> <note> <p>You can't update a component while its deployment status, or the deployment status of a service instance attached to it, is <code>IN_PROGRESS</code>.</p> </note> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
     "UpdateEnvironment": "<p>Update an environment.</p> <p>If the environment is associated with an environment account connection, <i>don't</i> update or include the <code>protonServiceRoleArn</code> and <code>provisioningRepository</code> parameter to update or connect to an environment account connection.</p> <p>You can only update to a new environment account connection if that connection was created in the same environment account that the current environment account connection was created in. The account connection must also be associated with the current environment.</p> <p>If the environment <i>isn't</i> associated with an environment account connection, <i>don't</i> update or include the <code>environmentAccountConnectionId</code> parameter. You <i>can't</i> update or connect the environment to an environment account connection if it <i>isn't</i> already associated with an environment connection.</p> <p>You can update either the <code>environmentAccountConnectionId</code> or <code>protonServiceRoleArn</code> parameter and value. You can’t update both.</p> <p>If the environment was configured for Amazon Web Services-managed provisioning, omit the <code>provisioningRepository</code> parameter.</p> <p>If the environment was configured for self-managed provisioning, specify the <code>provisioningRepository</code> parameter and omit the <code>protonServiceRoleArn</code> and <code>environmentAccountConnectionId</code> parameters.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-environments.html\">Environments</a> and <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-works-prov-methods.html\">Provisioning methods</a> in the <i>Proton Administrator Guide</i>.</p> <p>There are four modes for updating an environment. The <code>deploymentType</code> field defines the mode.</p> <dl> <dt/> <dd> <p> <code>NONE</code> </p> <p>In this mode, a deployment <i>doesn't</i> occur. Only the requested metadata parameters are updated.</p> </dd> <dt/> <dd> <p> <code>CURRENT_VERSION</code> </p> <p>In this mode, the environment is deployed and updated with the new spec that you provide. Only requested parameters are updated. <i>Don’t</i> include minor or major version parameters when you use this <code>deployment-type</code>.</p> </dd> <dt/> <dd> <p> <code>MINOR_VERSION</code> </p> <p>In this mode, the environment is deployed and updated with the published, recommended (latest) minor version of the current major version in use, by default. You can also specify a different minor version of the current major version in use.</p> </dd> <dt/> <dd> <p> <code>MAJOR_VERSION</code> </p> <p>In this mode, the environment is deployed and updated with the published, recommended (latest) major and minor version of the current template, by default. You can also specify a different major version that's higher than the major version in use and a minor version.</p> </dd> </dl>",
     "UpdateEnvironmentAccountConnection": "<p>In an environment account, update an environment account connection to use a new IAM role.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html\">Environment account connections</a> in the <i>Proton Administrator guide</i>.</p>",
     "UpdateEnvironmentTemplate": "<p>Update an environment template.</p>",
     "UpdateEnvironmentTemplateVersion": "<p>Update a major or minor version of an environment template.</p>",
-    "UpdateService": "<p>Edit a service description or use a spec to add and delete service instances.</p> <note> <p>Existing service instances and the service pipeline <i>can't</i> be edited using this API. They can only be deleted.</p> </note> <p>Use the <code>description</code> parameter to modify the description.</p> <p>Edit the <code>spec</code> parameter to add or delete instances.</p>",
-    "UpdateServiceInstance": "<p>Update a service instance.</p> <p>There are four modes for updating a service instance. The <code>deploymentType</code> field defines the mode.</p> <dl> <dt/> <dd> <p> <code>NONE</code> </p> <p>In this mode, a deployment <i>doesn't</i> occur. Only the requested metadata parameters are updated.</p> </dd> <dt/> <dd> <p> <code>CURRENT_VERSION</code> </p> <p>In this mode, the service instance is deployed and updated with the new spec that you provide. Only requested parameters are updated. <i>Don’t</i> include minor or major version parameters when you use this <code>deployment-type</code>.</p> </dd> <dt/> <dd> <p> <code>MINOR_VERSION</code> </p> <p>In this mode, the service instance is deployed and updated with the published, recommended (latest) minor version of the current major version in use, by default. You can also specify a different minor version of the current major version in use.</p> </dd> <dt/> <dd> <p> <code>MAJOR_VERSION</code> </p> <p>In this mode, the service instance is deployed and updated with the published, recommended (latest) major and minor version of the current template, by default. You can also specify a different major version that's higher than the major version in use and a minor version.</p> </dd> </dl>",
+    "UpdateService": "<p>Edit a service description or use a spec to add and delete service instances.</p> <note> <p>Existing service instances and the service pipeline <i>can't</i> be edited using this API. They can only be deleted.</p> </note> <p>Use the <code>description</code> parameter to modify the description.</p> <p>Edit the <code>spec</code> parameter to add or delete instances.</p> <note> <p>You can't delete a service instance (remove it from the spec) if it has an attached component.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p> </note>",
+    "UpdateServiceInstance": "<p>Update a service instance.</p> <p>There are a few modes for updating a service instance. The <code>deploymentType</code> field defines the mode.</p> <note> <p>You can't update a service instance while its deployment status, or the deployment status of a component attached to it, is <code>IN_PROGRESS</code>.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p> </note>",
     "UpdateServicePipeline": "<p>Update the service pipeline.</p> <p>There are four modes for updating a service pipeline. The <code>deploymentType</code> field defines the mode.</p> <dl> <dt/> <dd> <p> <code>NONE</code> </p> <p>In this mode, a deployment <i>doesn't</i> occur. Only the requested metadata parameters are updated.</p> </dd> <dt/> <dd> <p> <code>CURRENT_VERSION</code> </p> <p>In this mode, the service pipeline is deployed and updated with the new spec that you provide. Only requested parameters are updated. <i>Don’t</i> include major or minor version parameters when you use this <code>deployment-type</code>.</p> </dd> <dt/> <dd> <p> <code>MINOR_VERSION</code> </p> <p>In this mode, the service pipeline is deployed and updated with the published, recommended (latest) minor version of the current major version in use, by default. You can specify a different minor version of the current major version in use.</p> </dd> <dt/> <dd> <p> <code>MAJOR_VERSION</code> </p> <p>In this mode, the service pipeline is deployed and updated with the published, recommended (latest) major and minor version of the current template by default. You can specify a different major version that's higher than the major version in use and a minor version.</p> </dd> </dl>",
     "UpdateServiceTemplate": "<p>Update a service template.</p>",
     "UpdateServiceTemplateVersion": "<p>Update a major or minor version of a service template.</p>",
@@ -96,16 +104,22 @@
     "Arn": {
       "base": null,
       "refs": {
+        "CreateEnvironmentAccountConnectionInput$componentRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM service role that Proton uses when provisioning directly defined components in the associated environment account. It determines the scope of infrastructure that a component can provision in the account.</p> <p>You must specify <code>componentRoleArn</code> to allow directly defined components to be associated with any environments running in this account.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
         "CreateEnvironmentAccountConnectionInput$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM service role that's created in the environment account. Proton uses this role to provision infrastructure resources in the associated environment account.</p>",
+        "CreateEnvironmentInput$componentRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM service role that Proton uses when provisioning directly defined components in this environment. It determines the scope of infrastructure that a component can provision.</p> <p>You must specify <code>componentRoleArn</code> to allow directly defined components to be associated with this environment.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
         "CreateEnvironmentInput$protonServiceRoleArn": "<p>The Amazon Resource Name (ARN) of the Proton service role that allows Proton to make calls to other services on your behalf.</p> <p>To use Amazon Web Services-managed provisioning for the environment, specify either the <code>environmentAccountConnectionId</code> or <code>protonServiceRoleArn</code> parameter and omit the <code>provisioningRepository</code> parameter.</p>",
         "CreateEnvironmentTemplateInput$encryptionKey": "<p>A customer provided encryption key that Proton uses to encrypt data.</p>",
         "CreateRepositoryInput$connectionArn": "<p>The Amazon Resource Name (ARN) of your Amazon Web Services CodeStar connection. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/setting-up-for-service.html\">Setting up for Proton</a> in the <i>Proton Administrator Guide</i>.</p>",
         "CreateRepositoryInput$encryptionKey": "<p>The ARN of your customer Amazon Web Services Key Management Service (Amazon Web Services KMS) key.</p>",
         "CreateServiceInput$repositoryConnectionArn": "<p>The Amazon Resource Name (ARN) of the repository connection. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/setting-up-for-service.html#setting-up-vcontrol\">Set up repository connection</a> in the <i>Proton Administrator Guide</i> and <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/proton-setup.html#setup-repo-connection\">Setting up with Proton</a> in the <i>Proton User Guide</i>. <i>Don't</i> include this parameter if your service template <i>doesn't</i> include a service pipeline.</p>",
         "CreateServiceTemplateInput$encryptionKey": "<p>A customer provided encryption key that's used to encrypt data.</p>",
+        "Environment$componentRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM service role that Proton uses when provisioning directly defined components in this environment. It determines the scope of infrastructure that a component can provision.</p> <p>The environment must have a <code>componentRoleArn</code> to allow directly defined components to be associated with the environment.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
         "Environment$protonServiceRoleArn": "<p>The Amazon Resource Name (ARN) of the Proton service role that allows Proton to make calls to other services on your behalf.</p>",
+        "EnvironmentAccountConnection$componentRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM service role that Proton uses when provisioning directly defined components in the associated environment account. It determines the scope of infrastructure that a component can provision in the account.</p> <p>The environment account connection must have a <code>componentRoleArn</code> to allow directly defined components to be associated with any environments running in the account.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
         "EnvironmentAccountConnection$roleArn": "<p>The IAM service role that's associated with the environment account connection.</p>",
+        "EnvironmentAccountConnectionSummary$componentRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM service role that Proton uses when provisioning directly defined components in the associated environment account. It determines the scope of infrastructure that a component can provision in the account.</p> <p>The environment account connection must have a <code>componentRoleArn</code> to allow directly defined components to be associated with any environments running in the account.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
         "EnvironmentAccountConnectionSummary$roleArn": "<p>The IAM service role that's associated with the environment account connection.</p>",
+        "EnvironmentSummary$componentRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM service role that Proton uses when provisioning directly defined components in this environment. It determines the scope of infrastructure that a component can provision.</p> <p>The environment must have a <code>componentRoleArn</code> to allow directly defined components to be associated with the environment.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
         "EnvironmentSummary$protonServiceRoleArn": "<p>The Amazon Resource Name (ARN) of the Proton service role that allows Proton to make calls to other services on your behalf.</p>",
         "EnvironmentTemplate$encryptionKey": "<p>The customer provided encryption key for the environment template.</p>",
         "ListTagsForResourceInput$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource for the listed tags.</p>",
@@ -117,7 +131,9 @@
         "ServiceTemplate$encryptionKey": "<p>The customer provided service template encryption key that's used to encrypt data.</p>",
         "TagResourceInput$resourceArn": "<p>The Amazon Resource Name (ARN) of the Proton resource to apply customer tags to.</p>",
         "UntagResourceInput$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource to remove customer tags from.</p>",
+        "UpdateEnvironmentAccountConnectionInput$componentRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM service role that Proton uses when provisioning directly defined components in the associated environment account. It determines the scope of infrastructure that a component can provision in the account.</p> <p>The environment account connection must have a <code>componentRoleArn</code> to allow directly defined components to be associated with any environments running in the account.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
         "UpdateEnvironmentAccountConnectionInput$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM service role that's associated with the environment account connection to update.</p>",
+        "UpdateEnvironmentInput$componentRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM service role that Proton uses when provisioning directly defined components in this environment. It determines the scope of infrastructure that a component can provision.</p> <p>The environment must have a <code>componentRoleArn</code> to allow directly defined components to be associated with the environment.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
         "UpdateEnvironmentInput$protonServiceRoleArn": "<p>The Amazon Resource Name (ARN) of the Proton service role that allows Proton to make API calls to other services your behalf.</p>"
       }
     },
@@ -131,6 +147,16 @@
         "EnvironmentAccountConnectionSummary$environmentAccountId": "<p>The ID of the environment account that's connected to the environment account connection.</p>",
         "EnvironmentAccountConnectionSummary$managementAccountId": "<p>The ID of the management account that's connected to the environment account connection.</p>",
         "EnvironmentSummary$environmentAccountId": "<p>The ID of the environment account that the environment infrastructure resources are provisioned in.</p>"
+      }
+    },
+    "CancelComponentDeploymentInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelComponentDeploymentOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "CancelEnvironmentDeploymentInput": {
@@ -186,8 +212,8 @@
     "CompatibleEnvironmentTemplateInputList": {
       "base": null,
       "refs": {
-        "CreateServiceTemplateVersionInput$compatibleEnvironmentTemplates": "<p>An array of compatible environment template objects for the new version of a service template.</p>",
-        "UpdateServiceTemplateVersionInput$compatibleEnvironmentTemplates": "<p>An array of compatible environment names for a service template major or minor version to update.</p>"
+        "CreateServiceTemplateVersionInput$compatibleEnvironmentTemplates": "<p>An array of environment template objects that are compatible with the new service template version. A service instance based on this service template version can run in environments based on compatible templates.</p>",
+        "UpdateServiceTemplateVersionInput$compatibleEnvironmentTemplates": "<p>An array of environment template objects that are compatible with this service template version. A service instance based on this service template version can run in environments based on compatible templates.</p>"
       }
     },
     "CompatibleEnvironmentTemplateList": {
@@ -196,8 +222,53 @@
         "ServiceTemplateVersion$compatibleEnvironmentTemplates": "<p>An array of compatible environment template names for the major version of a service template.</p>"
       }
     },
+    "Component": {
+      "base": "<p>Detailed data of an Proton component resource.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
+      "refs": {
+        "CancelComponentDeploymentOutput$component": "<p>The detailed data of the component with the deployment that is being canceled.</p>",
+        "CreateComponentOutput$component": "<p>The detailed data of the created component.</p>",
+        "DeleteComponentOutput$component": "<p>The detailed data of the component being deleted.</p>",
+        "GetComponentOutput$component": "<p>The detailed data of the requested component.</p>",
+        "UpdateComponentOutput$component": "<p>The detailed data of the updated component.</p>"
+      }
+    },
+    "ComponentArn": {
+      "base": null,
+      "refs": {
+        "Component$arn": "<p>The Amazon Resource Name (ARN) of the component.</p>",
+        "ComponentSummary$arn": "<p>The Amazon Resource Name (ARN) of the component.</p>"
+      }
+    },
+    "ComponentDeploymentUpdateType": {
+      "base": null,
+      "refs": {
+        "UpdateComponentInput$deploymentType": "<p>The deployment type. It defines the mode for updating a component, as follows:</p> <dl> <dt/> <dd> <p> <code>NONE</code> </p> <p>In this mode, a deployment <i>doesn't</i> occur. Only the requested metadata parameters are updated. You can only specify <code>description</code> in this mode.</p> </dd> <dt/> <dd> <p> <code>CURRENT_VERSION</code> </p> <p>In this mode, the component is deployed and updated with the new <code>serviceSpec</code>, <code>templateSource</code>, and/or <code>type</code> that you provide. Only requested parameters are updated.</p> </dd> </dl>"
+      }
+    },
+    "ComponentSummary": {
+      "base": "<p>Summary data of an Proton component resource.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
+      "refs": {
+        "ComponentSummaryList$member": null
+      }
+    },
+    "ComponentSummaryList": {
+      "base": null,
+      "refs": {
+        "ListComponentsOutput$components": "<p>An array of components with summary data.</p>"
+      }
+    },
     "ConflictException": {
       "base": "<p>The request <i>couldn't</i> be made due to a conflicting operation or resource.</p>",
+      "refs": {
+      }
+    },
+    "CreateComponentInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateComponentOutput": {
+      "base": null,
       "refs": {
       }
     },
@@ -287,6 +358,16 @@
       }
     },
     "CreateTemplateSyncConfigOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteComponentInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteComponentOutput": {
       "base": null,
       "refs": {
       }
@@ -390,6 +471,8 @@
     "DeploymentStatus": {
       "base": null,
       "refs": {
+        "Component$deploymentStatus": "<p>The component deployment status.</p>",
+        "ComponentSummary$deploymentStatus": "<p>The component deployment status.</p>",
         "Environment$deploymentStatus": "<p>The environment deployment status.</p>",
         "EnvironmentSummary$deploymentStatus": "<p>The environment deployment status.</p>",
         "ServiceInstance$deploymentStatus": "<p>The service instance deployment status.</p>",
@@ -401,13 +484,15 @@
       "base": null,
       "refs": {
         "UpdateEnvironmentInput$deploymentType": "<p>There are four modes for updating an environment. The <code>deploymentType</code> field defines the mode.</p> <dl> <dt/> <dd> <p> <code>NONE</code> </p> <p>In this mode, a deployment <i>doesn't</i> occur. Only the requested metadata parameters are updated.</p> </dd> <dt/> <dd> <p> <code>CURRENT_VERSION</code> </p> <p>In this mode, the environment is deployed and updated with the new spec that you provide. Only requested parameters are updated. <i>Don’t</i> include major or minor version parameters when you use this <code>deployment-type</code>.</p> </dd> <dt/> <dd> <p> <code>MINOR_VERSION</code> </p> <p>In this mode, the environment is deployed and updated with the published, recommended (latest) minor version of the current major version in use, by default. You can also specify a different minor version of the current major version in use.</p> </dd> <dt/> <dd> <p> <code>MAJOR_VERSION</code> </p> <p>In this mode, the environment is deployed and updated with the published, recommended (latest) major and minor version of the current template, by default. You can also specify a different major version that is higher than the major version in use and a minor version (optional).</p> </dd> </dl>",
-        "UpdateServiceInstanceInput$deploymentType": "<p>The deployment type.</p> <p>There are four modes for updating a service instance. The <code>deploymentType</code> field defines the mode.</p> <dl> <dt/> <dd> <p> <code>NONE</code> </p> <p>In this mode, a deployment <i>doesn't</i> occur. Only the requested metadata parameters are updated.</p> </dd> <dt/> <dd> <p> <code>CURRENT_VERSION</code> </p> <p>In this mode, the service instance is deployed and updated with the new spec that you provide. Only requested parameters are updated. <i>Don’t</i> include major or minor version parameters when you use this <code>deployment-type</code>.</p> </dd> <dt/> <dd> <p> <code>MINOR_VERSION</code> </p> <p>In this mode, the service instance is deployed and updated with the published, recommended (latest) minor version of the current major version in use, by default. You can also specify a different minor version of the current major version in use.</p> </dd> <dt/> <dd> <p> <code>MAJOR_VERSION</code> </p> <p>In this mode, the service instance is deployed and updated with the published, recommended (latest) major and minor version of the current template, by default. You can specify a different major version that's higher than the major version in use and a minor version.</p> </dd> </dl>",
+        "UpdateServiceInstanceInput$deploymentType": "<p>The deployment type. It defines the mode for updating a service instance, as follows:</p> <dl> <dt/> <dd> <p> <code>NONE</code> </p> <p>In this mode, a deployment <i>doesn't</i> occur. Only the requested metadata parameters are updated.</p> </dd> <dt/> <dd> <p> <code>CURRENT_VERSION</code> </p> <p>In this mode, the service instance is deployed and updated with the new spec that you provide. Only requested parameters are updated. <i>Don’t</i> include major or minor version parameters when you use this deployment type.</p> </dd> <dt/> <dd> <p> <code>MINOR_VERSION</code> </p> <p>In this mode, the service instance is deployed and updated with the published, recommended (latest) minor version of the current major version in use, by default. You can also specify a different minor version of the current major version in use.</p> </dd> <dt/> <dd> <p> <code>MAJOR_VERSION</code> </p> <p>In this mode, the service instance is deployed and updated with the published, recommended (latest) major and minor version of the current template, by default. You can specify a different major version that's higher than the major version in use and a minor version.</p> </dd> </dl>",
         "UpdateServicePipelineInput$deploymentType": "<p>The deployment type.</p> <p>There are four modes for updating a service pipeline. The <code>deploymentType</code> field defines the mode.</p> <dl> <dt/> <dd> <p> <code>NONE</code> </p> <p>In this mode, a deployment <i>doesn't</i> occur. Only the requested metadata parameters are updated.</p> </dd> <dt/> <dd> <p> <code>CURRENT_VERSION</code> </p> <p>In this mode, the service pipeline is deployed and updated with the new spec that you provide. Only requested parameters are updated. <i>Don’t</i> include major or minor version parameters when you use this <code>deployment-type</code>.</p> </dd> <dt/> <dd> <p> <code>MINOR_VERSION</code> </p> <p>In this mode, the service pipeline is deployed and updated with the published, recommended (latest) minor version of the current major version in use, by default. You can specify a different minor version of the current major version in use.</p> </dd> <dt/> <dd> <p> <code>MAJOR_VERSION</code> </p> <p>In this mode, the service pipeline is deployed and updated with the published, recommended (latest) major and minor version of the current template, by default. You can specify a different major version that's higher than the major version in use and a minor version.</p> </dd> </dl>"
       }
     },
     "Description": {
       "base": null,
       "refs": {
+        "Component$description": "<p>A description of the component.</p>",
+        "CreateComponentInput$description": "<p>An optional customer-provided description of the component.</p>",
         "CreateEnvironmentInput$description": "<p>A description of the environment that's being created and deployed.</p>",
         "CreateEnvironmentTemplateInput$description": "<p>A description of the environment template.</p>",
         "CreateEnvironmentTemplateVersionInput$description": "<p>A description of the new version of an environment template.</p>",
@@ -420,12 +505,13 @@
         "EnvironmentTemplateSummary$description": "<p>A description of the environment template.</p>",
         "EnvironmentTemplateVersion$description": "<p>A description of the minor version of an environment template.</p>",
         "EnvironmentTemplateVersionSummary$description": "<p>A description of the version of an environment template.</p>",
-        "Service$description": "<p>A description of a service.</p>",
+        "Service$description": "<p>A description of the service.</p>",
         "ServiceSummary$description": "<p>A description of the service.</p>",
         "ServiceTemplate$description": "<p>A description of the service template.</p>",
         "ServiceTemplateSummary$description": "<p>A description of the service template.</p>",
         "ServiceTemplateVersion$description": "<p>A description of the version of a service template.</p>",
         "ServiceTemplateVersionSummary$description": "<p>A description of the version of a service template.</p>",
+        "UpdateComponentInput$description": "<p>An optional customer-provided description of the component.</p>",
         "UpdateEnvironmentInput$description": "<p>A description of the environment update.</p>",
         "UpdateEnvironmentTemplateInput$description": "<p>A description of the environment template update.</p>",
         "UpdateEnvironmentTemplateVersionInput$description": "<p>A description of environment template version to update.</p>",
@@ -450,6 +536,10 @@
     "EmptyNextToken": {
       "base": null,
       "refs": {
+        "ListComponentOutputsInput$nextToken": "<p>A token that indicates the location of the next output in the array of outputs, after the list of outputs that was previously requested.</p>",
+        "ListComponentOutputsOutput$nextToken": "<p>A token that indicates the location of the next output in the array of outputs, after the list of outputs that was previously requested.</p>",
+        "ListComponentProvisionedResourcesInput$nextToken": "<p>A token that indicates the location of the next provisioned resource in the array of provisioned resources, after the list of provisioned resources that was previously requested.</p>",
+        "ListComponentProvisionedResourcesOutput$nextToken": "<p>A token that indicates the location of the next provisioned resource in the array of provisioned resources, after the current requested list of provisioned resources.</p>",
         "ListEnvironmentOutputsInput$nextToken": "<p>A token that indicates the location of the next environment output in the array of environment outputs, after the list of environment outputs that was previously requested.</p>",
         "ListEnvironmentOutputsOutput$nextToken": "<p>A token that indicates the location of the next environment output in the array of environment outputs, after the current requested list of environment outputs.</p>",
         "ListEnvironmentProvisionedResourcesInput$nextToken": "<p>A token that indicates the location of the next environment provisioned resource in the array of environment provisioned resources, after the list of environment provisioned resources that was previously requested.</p>",
@@ -467,22 +557,22 @@
       }
     },
     "Environment": {
-      "base": "<p>The environment detail data. An Proton environment is a set resources shared across an Proton service.</p>",
+      "base": "<p>Detailed data of an Proton environment resource. An Proton environment is a set of resources shared across Proton services.</p>",
       "refs": {
         "CancelEnvironmentDeploymentOutput$environment": "<p>The environment summary data that's returned by Proton.</p>",
         "CreateEnvironmentOutput$environment": "<p>The environment detail data that's returned by Proton.</p>",
-        "DeleteEnvironmentOutput$environment": "<p>The environment detail data that's returned by Proton.</p>",
-        "GetEnvironmentOutput$environment": "<p>The environment detail data that's returned by Proton.</p>",
+        "DeleteEnvironmentOutput$environment": "<p>The detailed data of the environment being deleted.</p>",
+        "GetEnvironmentOutput$environment": "<p>The detailed data of the requested environment.</p>",
         "UpdateEnvironmentOutput$environment": "<p>The environment detail data that's returned by Proton.</p>"
       }
     },
     "EnvironmentAccountConnection": {
-      "base": "<p>The environment account connection detail data.</p>",
+      "base": "<p>Detailed data of an Proton environment account connection resource.</p>",
       "refs": {
         "AcceptEnvironmentAccountConnectionOutput$environmentAccountConnection": "<p>The environment account connection data that's returned by Proton.</p>",
         "CreateEnvironmentAccountConnectionOutput$environmentAccountConnection": "<p>The environment account connection detail data that's returned by Proton.</p>",
-        "DeleteEnvironmentAccountConnectionOutput$environmentAccountConnection": "<p>The environment account connection detail data that's returned by Proton.</p>",
-        "GetEnvironmentAccountConnectionOutput$environmentAccountConnection": "<p>The environment account connection detail data that's returned by Proton.</p>",
+        "DeleteEnvironmentAccountConnectionOutput$environmentAccountConnection": "<p>The detailed data of the environment account connection being deleted.</p>",
+        "GetEnvironmentAccountConnectionOutput$environmentAccountConnection": "<p>The detailed data of the requested environment account connection.</p>",
         "RejectEnvironmentAccountConnectionOutput$environmentAccountConnection": "<p>The environment connection account detail data that's returned by Proton.</p>",
         "UpdateEnvironmentAccountConnectionOutput$environmentAccountConnection": "<p>The environment account connection detail data that's returned by Proton.</p>"
       }
@@ -504,7 +594,7 @@
         "EnvironmentAccountConnection$id": "<p>The ID of the environment account connection.</p>",
         "EnvironmentAccountConnectionSummary$id": "<p>The ID of the environment account connection.</p>",
         "EnvironmentSummary$environmentAccountConnectionId": "<p>The ID of the environment account connection that the environment is associated with.</p>",
-        "GetEnvironmentAccountConnectionInput$id": "<p>The ID of the environment account connection.</p>",
+        "GetEnvironmentAccountConnectionInput$id": "<p>The ID of the environment account connection that you want to get the detailed data for.</p>",
         "RejectEnvironmentAccountConnectionInput$id": "<p>The ID of the environment account connection to reject.</p>",
         "UpdateEnvironmentAccountConnectionInput$id": "<p>The ID of the environment account connection to update.</p>",
         "UpdateEnvironmentInput$environmentAccountConnectionId": "<p>The ID of the environment account connection.</p> <p>You can only update to a new environment account connection if it was created in the same environment account that the current environment account connection was created in and is associated with the current environment.</p>"
@@ -531,7 +621,7 @@
       }
     },
     "EnvironmentAccountConnectionSummary": {
-      "base": "<p>A summary of the environment account connection detail data.</p>",
+      "base": "<p>Summary data of an Proton environment account connection resource.</p>",
       "refs": {
         "EnvironmentAccountConnectionSummaryList$member": null
       }
@@ -550,7 +640,7 @@
       }
     },
     "EnvironmentSummary": {
-      "base": "<p>A summary of the environment detail data.</p>",
+      "base": "<p>Summary data of an Proton environment resource. An Proton environment is a set of resources shared across Proton services.</p>",
       "refs": {
         "EnvironmentSummaryList$member": null
       }
@@ -565,8 +655,8 @@
       "base": "<p>The environment template data.</p>",
       "refs": {
         "CreateEnvironmentTemplateOutput$environmentTemplate": "<p>The environment template detail data that's returned by Proton.</p>",
-        "DeleteEnvironmentTemplateOutput$environmentTemplate": "<p>The environment template detail data that's returned by Proton.</p>",
-        "GetEnvironmentTemplateOutput$environmentTemplate": "<p>The environment template detail data that's returned by Proton.</p>",
+        "DeleteEnvironmentTemplateOutput$environmentTemplate": "<p>The detailed data of the environment template being deleted.</p>",
+        "GetEnvironmentTemplateOutput$environmentTemplate": "<p>The detailed data of the requested environment template.</p>",
         "UpdateEnvironmentTemplateOutput$environmentTemplate": "<p>The environment template detail data that's returned by Proton.</p>"
       }
     },
@@ -605,8 +695,8 @@
       "base": "<p>The environment template version data.</p>",
       "refs": {
         "CreateEnvironmentTemplateVersionOutput$environmentTemplateVersion": "<p>The environment template detail data that's returned by Proton.</p>",
-        "DeleteEnvironmentTemplateVersionOutput$environmentTemplateVersion": "<p>The environment template version detail data that's returned by Proton.</p>",
-        "GetEnvironmentTemplateVersionOutput$environmentTemplateVersion": "<p>The environment template version detail data that's returned by Proton.</p>",
+        "DeleteEnvironmentTemplateVersionOutput$environmentTemplateVersion": "<p>The detailed data of the environment template version being deleted.</p>",
+        "GetEnvironmentTemplateVersionOutput$environmentTemplateVersion": "<p>The detailed data of the requested environment template version.</p>",
         "UpdateEnvironmentTemplateVersionOutput$environmentTemplateVersion": "<p>The environment template version detail data that's returned by Proton.</p>"
       }
     },
@@ -656,6 +746,16 @@
       }
     },
     "GetAccountSettingsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetComponentInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetComponentOutput": {
       "base": null,
       "refs": {
       }
@@ -797,6 +897,36 @@
     },
     "InternalServerException": {
       "base": "<p>The request failed to register with the service.</p>",
+      "refs": {
+      }
+    },
+    "ListComponentOutputsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListComponentOutputsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListComponentProvisionedResourcesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListComponentProvisionedResourcesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListComponentsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListComponentsOutput": {
+      "base": null,
       "refs": {
       }
     },
@@ -973,6 +1103,7 @@
     "MaxPageResults": {
       "base": null,
       "refs": {
+        "ListComponentsInput$maxResults": "<p>The maximum number of components to list.</p>",
         "ListEnvironmentAccountConnectionsInput$maxResults": "<p>The maximum number of environment account connections to list.</p>",
         "ListEnvironmentTemplateVersionsInput$maxResults": "<p>The maximum number of major or minor versions of an environment template to list.</p>",
         "ListEnvironmentTemplatesInput$maxResults": "<p>The maximum number of environment templates to list.</p>",
@@ -988,6 +1119,8 @@
     "NextToken": {
       "base": null,
       "refs": {
+        "ListComponentsInput$nextToken": "<p>A token that indicates the location of the next component in the array of components, after the list of components that was previously requested.</p>",
+        "ListComponentsOutput$nextToken": "<p>A token that indicates the location of the next component in the array of components, after the current requested list of components.</p>",
         "ListEnvironmentAccountConnectionsInput$nextToken": "<p>A token that indicates the location of the next environment account connection in the array of environment account connections, after the list of environment account connections that was previously requested.</p>",
         "ListEnvironmentAccountConnectionsOutput$nextToken": "<p>A token that indicates the location of the next environment account connection in the array of environment account connections, after the current requested list of environment account connections.</p>",
         "ListEnvironmentTemplateVersionsInput$nextToken": "<p>A token that indicates the location of the next major or minor version in the array of major or minor versions of an environment template, after the list of major or minor versions that was previously requested.</p>",
@@ -1019,6 +1152,12 @@
         "NotifyResourceDeploymentStatusChangeInput$outputs": "<p>The provisioned resource state change detail data that's returned by Proton.</p>"
       }
     },
+    "NotifyResourceDeploymentStatusChangeInputStatusMessageString": {
+      "base": null,
+      "refs": {
+        "NotifyResourceDeploymentStatusChangeInput$statusMessage": "<p>The deployment status message for your provisioned resource.</p>"
+      }
+    },
     "NotifyResourceDeploymentStatusChangeOutput": {
       "base": null,
       "refs": {
@@ -1046,9 +1185,10 @@
     "OutputsList": {
       "base": null,
       "refs": {
+        "ListComponentOutputsOutput$outputs": "<p>An array of component Infrastructure as Code (IaC) outputs.</p>",
         "ListEnvironmentOutputsOutput$outputs": "<p>An array of environment outputs with detail data.</p>",
-        "ListServiceInstanceOutputsOutput$outputs": "<p>An array of service instance infrastructure as code outputs.</p>",
-        "ListServicePipelineOutputsOutput$outputs": "<p>An array of outputs.</p>"
+        "ListServiceInstanceOutputsOutput$outputs": "<p>An array of service instance Infrastructure as Code (IaC) outputs.</p>",
+        "ListServicePipelineOutputsOutput$outputs": "<p>An array of service pipeline Infrastructure as Code (IaC) outputs.</p>"
       }
     },
     "PipelineRoleArn": {
@@ -1079,6 +1219,7 @@
     "ProvisionedResourceList": {
       "base": null,
       "refs": {
+        "ListComponentProvisionedResourcesOutput$provisionedResources": "<p>An array of provisioned resources for a component.</p>",
         "ListEnvironmentProvisionedResourcesOutput$provisionedResources": "<p>An array of environment provisioned resources.</p>",
         "ListServiceInstanceProvisionedResourcesOutput$provisionedResources": "<p>An array of provisioned resources for a service instance.</p>",
         "ListServicePipelineProvisionedResourcesOutput$provisionedResources": "<p>An array of provisioned resources for a service and pipeline.</p>"
@@ -1114,7 +1255,7 @@
       }
     },
     "Repository": {
-      "base": "<p>Detail date for a repository that has been registered with Proton.</p>",
+      "base": "<p>Detailed data of a repository that has been registered with Proton.</p>",
       "refs": {
         "CreateRepositoryOutput$repository": "<p>The repository detail data that's returned by Proton.</p>",
         "DeleteRepositoryOutput$repository": "<p>The repository detail data that's returned by Proton.</p>",
@@ -1188,7 +1329,7 @@
       }
     },
     "RepositorySummary": {
-      "base": "<p>A summary of detail data for a registered repository.</p>",
+      "base": "<p>Summary data of a repository that has been registered with Proton.</p>",
       "refs": {
         "RepositorySummaryList$member": null
       }
@@ -1244,12 +1385,25 @@
     "ResourceName": {
       "base": null,
       "refs": {
+        "CancelComponentDeploymentInput$componentName": "<p>The name of the component with the deployment to cancel.</p>",
         "CancelEnvironmentDeploymentInput$environmentName": "<p>The name of the environment with the deployment to cancel.</p>",
         "CancelServiceInstanceDeploymentInput$serviceInstanceName": "<p>The name of the service instance with the deployment to cancel.</p>",
         "CancelServiceInstanceDeploymentInput$serviceName": "<p>The name of the service with the service instance deployment to cancel.</p>",
         "CancelServicePipelineDeploymentInput$serviceName": "<p>The name of the service with the service pipeline deployment to cancel.</p>",
         "CompatibleEnvironmentTemplate$templateName": "<p>The compatible environment template name.</p>",
         "CompatibleEnvironmentTemplateInput$templateName": "<p>The compatible environment template name.</p>",
+        "Component$environmentName": "<p>The name of the Proton environment that this component is associated with.</p>",
+        "Component$name": "<p>The name of the component.</p>",
+        "Component$serviceInstanceName": "<p>The name of the service instance that this component is attached to. Provided when a component is attached to a service instance.</p>",
+        "Component$serviceName": "<p>The name of the service that <code>serviceInstanceName</code> is associated with. Provided when a component is attached to a service instance.</p>",
+        "ComponentSummary$environmentName": "<p>The name of the Proton environment that this component is associated with.</p>",
+        "ComponentSummary$name": "<p>The name of the component.</p>",
+        "ComponentSummary$serviceInstanceName": "<p>The name of the service instance that this component is attached to. Provided when a component is attached to a service instance.</p>",
+        "ComponentSummary$serviceName": "<p>The name of the service that <code>serviceInstanceName</code> is associated with. Provided when a component is attached to a service instance.</p>",
+        "CreateComponentInput$environmentName": "<p>The name of the Proton environment that you want to associate this component with. You must specify this when you don't specify <code>serviceInstanceName</code> and <code>serviceName</code>.</p>",
+        "CreateComponentInput$name": "<p>The customer-provided name of the component.</p>",
+        "CreateComponentInput$serviceInstanceName": "<p>The name of the service instance that you want to attach this component to. If you don't specify this, the component isn't attached to any service instance. Specify both <code>serviceInstanceName</code> and <code>serviceName</code> or neither of them.</p>",
+        "CreateComponentInput$serviceName": "<p>The name of the service that <code>serviceInstanceName</code> is associated with. If you don't specify this, the component isn't attached to any service instance. Specify both <code>serviceInstanceName</code> and <code>serviceName</code> or neither of them.</p>",
         "CreateEnvironmentAccountConnectionInput$environmentName": "<p>The name of the Proton environment that's created in the associated management account.</p>",
         "CreateEnvironmentInput$name": "<p>The name of the environment.</p>",
         "CreateEnvironmentInput$templateName": "<p>The name of the environment template. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-templates.html\">Environment Templates</a> in the <i>Proton Administrator Guide</i>.</p>",
@@ -1260,6 +1414,7 @@
         "CreateServiceTemplateInput$name": "<p>The name of the service template.</p>",
         "CreateServiceTemplateVersionInput$templateName": "<p>The name of the service template.</p>",
         "CreateTemplateSyncConfigInput$templateName": "<p>The name of your registered template.</p>",
+        "DeleteComponentInput$name": "<p>The name of the component to delete.</p>",
         "DeleteEnvironmentInput$name": "<p>The name of the environment to delete.</p>",
         "DeleteEnvironmentTemplateInput$name": "<p>The name of the environment template to delete.</p>",
         "DeleteEnvironmentTemplateVersionInput$templateName": "<p>The name of the environment template.</p>",
@@ -1278,27 +1433,33 @@
         "EnvironmentTemplateSummary$name": "<p>The name of the environment template.</p>",
         "EnvironmentTemplateVersion$templateName": "<p>The name of the version of an environment template.</p>",
         "EnvironmentTemplateVersionSummary$templateName": "<p>The name of the environment template.</p>",
-        "GetEnvironmentInput$name": "<p>The name of the environment that you want to get the detail data for.</p>",
-        "GetEnvironmentTemplateInput$name": "<p>The name of the environment template that you want to get the detail data for.</p>",
-        "GetEnvironmentTemplateVersionInput$templateName": "<p>The name of the environment template.</p>",
-        "GetServiceInput$name": "<p>The name of the service that you want to get the detail data for.</p>",
-        "GetServiceInstanceInput$name": "<p>The name of a service instance that you want to get the detail data for.</p>",
+        "GetComponentInput$name": "<p>The name of the component that you want to get the detailed data for.</p>",
+        "GetEnvironmentInput$name": "<p>The name of the environment that you want to get the detailed data for.</p>",
+        "GetEnvironmentTemplateInput$name": "<p>The name of the environment template that you want to get the detailed data for.</p>",
+        "GetEnvironmentTemplateVersionInput$templateName": "<p>The name of the environment template a version of which you want to get detailed data for..</p>",
+        "GetServiceInput$name": "<p>The name of the service that you want to get the detailed data for.</p>",
+        "GetServiceInstanceInput$name": "<p>The name of a service instance that you want to get the detailed data for.</p>",
         "GetServiceInstanceInput$serviceName": "<p>The name of the service that the service instance belongs to.</p>",
-        "GetServiceTemplateInput$name": "<p>The name of the service template that you want to get detail data for.</p>",
-        "GetServiceTemplateVersionInput$templateName": "<p>The name of the service template.</p>",
+        "GetServiceTemplateInput$name": "<p>The name of the service template that you want to get detailed data for.</p>",
+        "GetServiceTemplateVersionInput$templateName": "<p>The name of the service template a version of which you want to get detailed data for.</p>",
         "GetTemplateSyncConfigInput$templateName": "<p>The template name.</p>",
         "GetTemplateSyncStatusInput$templateName": "<p>The template name.</p>",
+        "ListComponentOutputsInput$componentName": "<p>The name of the component whose outputs you want.</p>",
+        "ListComponentProvisionedResourcesInput$componentName": "<p>The name of the component whose provisioned resources you want.</p>",
+        "ListComponentsInput$environmentName": "<p>The name of an environment for result list filtering. Proton returns components associated with the environment or attached to service instances running in it.</p>",
+        "ListComponentsInput$serviceInstanceName": "<p>The name of a service instance for result list filtering. Proton returns the component attached to the service instance, if any.</p>",
+        "ListComponentsInput$serviceName": "<p>The name of a service for result list filtering. Proton returns components attached to service instances of the service.</p>",
         "ListEnvironmentAccountConnectionsInput$environmentName": "<p>The environment name that's associated with each listed environment account connection.</p>",
         "ListEnvironmentOutputsInput$environmentName": "<p>The environment name.</p>",
         "ListEnvironmentProvisionedResourcesInput$environmentName": "<p>The environment name.</p>",
         "ListEnvironmentTemplateVersionsInput$templateName": "<p>The name of the environment template.</p>",
-        "ListServiceInstanceOutputsInput$serviceInstanceName": "<p>The service instance name.</p>",
-        "ListServiceInstanceOutputsInput$serviceName": "<p>The service name.</p>",
-        "ListServiceInstanceProvisionedResourcesInput$serviceInstanceName": "<p>The service instance name.</p>",
-        "ListServiceInstanceProvisionedResourcesInput$serviceName": "<p>The service name.</p>",
+        "ListServiceInstanceOutputsInput$serviceInstanceName": "<p>The name of the service instance whose outputs you want.</p>",
+        "ListServiceInstanceOutputsInput$serviceName": "<p>The name of the service that <code>serviceInstanceName</code> is associated to.</p>",
+        "ListServiceInstanceProvisionedResourcesInput$serviceInstanceName": "<p>The name of the service instance whose provisioned resources you want.</p>",
+        "ListServiceInstanceProvisionedResourcesInput$serviceName": "<p>The name of the service that <code>serviceInstanceName</code> is associated to.</p>",
         "ListServiceInstancesInput$serviceName": "<p>The name of the service that the service instance belongs to.</p>",
-        "ListServicePipelineOutputsInput$serviceName": "<p>The service name.</p>",
-        "ListServicePipelineProvisionedResourcesInput$serviceName": "<p>The service name.</p>",
+        "ListServicePipelineOutputsInput$serviceName": "<p>The name of the service whose pipeline's outputs you want.</p>",
+        "ListServicePipelineProvisionedResourcesInput$serviceName": "<p>The name of the service whose pipeline's provisioned resources you want.</p>",
         "ListServiceTemplateVersionsInput$templateName": "<p>The name of the service template.</p>",
         "Service$name": "<p>The name of the service.</p>",
         "Service$templateName": "<p>The name of the service template.</p>",
@@ -1318,6 +1479,7 @@
         "ServiceTemplateVersion$templateName": "<p>The name of the version of a service template.</p>",
         "ServiceTemplateVersionSummary$templateName": "<p>The name of the service template.</p>",
         "TemplateSyncConfig$templateName": "<p>The template name.</p>",
+        "UpdateComponentInput$name": "<p>The name of the component to update.</p>",
         "UpdateEnvironmentInput$name": "<p>The name of the environment to update.</p>",
         "UpdateEnvironmentTemplateInput$name": "<p>The name of the environment template to update.</p>",
         "UpdateEnvironmentTemplateVersionInput$templateName": "<p>The name of the environment template.</p>",
@@ -1328,6 +1490,13 @@
         "UpdateServiceTemplateInput$name": "<p>The name of the service template to update.</p>",
         "UpdateServiceTemplateVersionInput$templateName": "<p>The name of the service template.</p>",
         "UpdateTemplateSyncConfigInput$templateName": "<p>The synced template name.</p>"
+      }
+    },
+    "ResourceNameOrEmpty": {
+      "base": null,
+      "refs": {
+        "UpdateComponentInput$serviceInstanceName": "<p>The name of the service instance that you want to attach this component to. Don't specify to keep the component's current service instance attachment. Specify an empty string to detach the component from the service instance it's attached to. Specify non-empty values for both <code>serviceInstanceName</code> and <code>serviceName</code> or for neither of them.</p>",
+        "UpdateComponentInput$serviceName": "<p>The name of the service that <code>serviceInstanceName</code> is associated with. Don't specify to keep the component's current service instance attachment. Specify an empty string to detach the component from the service instance it's attached to. Specify non-empty values for both <code>serviceInstanceName</code> and <code>serviceName</code> or for neither of them.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1393,11 +1562,11 @@
       }
     },
     "Service": {
-      "base": "<p>The service detail data.</p>",
+      "base": "<p>Detailed data of an Proton service resource.</p>",
       "refs": {
         "CreateServiceOutput$service": "<p>The service detail data that's returned by Proton.</p>",
-        "DeleteServiceOutput$service": "<p>The service detail data that's returned by Proton.</p>",
-        "GetServiceOutput$service": "<p>The service detail data that's returned by Proton.</p>",
+        "DeleteServiceOutput$service": "<p>The detailed data of the service being deleted.</p>",
+        "GetServiceOutput$service": "<p>The detailed data of the requested service.</p>",
         "UpdateServiceOutput$service": "<p>The service detail data that's returned by Proton.</p>"
       }
     },
@@ -1409,10 +1578,10 @@
       }
     },
     "ServiceInstance": {
-      "base": "<p>The service instance detail data.</p>",
+      "base": "<p>Detailed data of an Proton service instance resource.</p>",
       "refs": {
         "CancelServiceInstanceDeploymentOutput$serviceInstance": "<p>The service instance summary data that's returned by Proton.</p>",
-        "GetServiceInstanceOutput$serviceInstance": "<p>The service instance detail data that's returned by Proton.</p>",
+        "GetServiceInstanceOutput$serviceInstance": "<p>The detailed data of the requested service instance.</p>",
         "UpdateServiceInstanceOutput$serviceInstance": "<p>The service instance summary data that's returned by Proton.</p>"
       }
     },
@@ -1424,7 +1593,7 @@
       }
     },
     "ServiceInstanceSummary": {
-      "base": "<p>A summary of the service instance detail data.</p>",
+      "base": "<p>Summary data of an Proton service instance resource.</p>",
       "refs": {
         "ServiceInstanceSummaryList$member": null
       }
@@ -1432,11 +1601,11 @@
     "ServiceInstanceSummaryList": {
       "base": null,
       "refs": {
-        "ListServiceInstancesOutput$serviceInstances": "<p>An array of service instances with summaries of detail data.</p>"
+        "ListServiceInstancesOutput$serviceInstances": "<p>An array of service instances with summary data.</p>"
       }
     },
     "ServicePipeline": {
-      "base": "<p>The service pipeline detail data.</p>",
+      "base": "<p>Detailed data of an Proton service instance pipeline resource.</p>",
       "refs": {
         "CancelServicePipelineDeploymentOutput$pipeline": "<p>The service pipeline detail data that's returned by Proton.</p>",
         "Service$pipeline": "<p>The service pipeline detail data.</p>",
@@ -1456,7 +1625,7 @@
       }
     },
     "ServiceSummary": {
-      "base": "<p>A summary of the service detail data.</p>",
+      "base": "<p>Summary data of an Proton service resource.</p>",
       "refs": {
         "ServiceSummaryList$member": null
       }
@@ -1468,11 +1637,11 @@
       }
     },
     "ServiceTemplate": {
-      "base": "<p>The service template detail data.</p>",
+      "base": "<p>Detailed data of an Proton service template resource.</p>",
       "refs": {
         "CreateServiceTemplateOutput$serviceTemplate": "<p>The service template detail data that's returned by Proton.</p>",
-        "DeleteServiceTemplateOutput$serviceTemplate": "<p>The service template detail data that's returned by Proton.</p>",
-        "GetServiceTemplateOutput$serviceTemplate": "<p>The service template detail data that's returned by Proton.</p>",
+        "DeleteServiceTemplateOutput$serviceTemplate": "<p>The detailed data of the service template being deleted.</p>",
+        "GetServiceTemplateOutput$serviceTemplate": "<p>The detailed data of the requested service template.</p>",
         "UpdateServiceTemplateOutput$serviceTemplate": "<p>The service template detail data that's returned by Proton.</p>"
       }
     },
@@ -1484,7 +1653,7 @@
       }
     },
     "ServiceTemplateSummary": {
-      "base": "<p>The service template summary data.</p>",
+      "base": "<p>Summary data of an Proton service template resource.</p>",
       "refs": {
         "ServiceTemplateSummaryList$member": null
       }
@@ -1495,12 +1664,26 @@
         "ListServiceTemplatesOutput$templates": "<p>An array of service templates with detail data.</p>"
       }
     },
+    "ServiceTemplateSupportedComponentSourceInputList": {
+      "base": null,
+      "refs": {
+        "CreateServiceTemplateVersionInput$supportedComponentSources": "<p>An array of supported component sources. Components with supported sources can be attached to service instances based on this service template version.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
+        "ServiceTemplateVersion$supportedComponentSources": "<p>An array of supported component sources. Components with supported sources can be attached to service instances based on this service template version.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>",
+        "UpdateServiceTemplateVersionInput$supportedComponentSources": "<p>An array of supported component sources. Components with supported sources can be attached to service instances based on this service template version.</p> <note> <p>A change to <code>supportedComponentSources</code> doesn't impact existing component attachments to instances based on this template version. A change only affects later associations.</p> </note> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html\">Proton components</a> in the <i>Proton Administrator Guide</i>.</p>"
+      }
+    },
+    "ServiceTemplateSupportedComponentSourceType": {
+      "base": null,
+      "refs": {
+        "ServiceTemplateSupportedComponentSourceInputList$member": null
+      }
+    },
     "ServiceTemplateVersion": {
-      "base": "<p>The version of a service template detail data.</p>",
+      "base": "<p>Detailed data of an Proton service template version resource.</p>",
       "refs": {
         "CreateServiceTemplateVersionOutput$serviceTemplateVersion": "<p>The service template version summary of detail data that's returned by Proton.</p>",
-        "DeleteServiceTemplateVersionOutput$serviceTemplateVersion": "<p>The service template version detail data that's returned by Proton.</p>",
-        "GetServiceTemplateVersionOutput$serviceTemplateVersion": "<p>The service template version detail data that's returned by Proton.</p>",
+        "DeleteServiceTemplateVersionOutput$serviceTemplateVersion": "<p>The detailed data of the service template version being deleted.</p>",
+        "GetServiceTemplateVersionOutput$serviceTemplateVersion": "<p>The detailed data of the requested service template version.</p>",
         "UpdateServiceTemplateVersionOutput$serviceTemplateVersion": "<p>The service template version detail data that's returned by Proton.</p>"
       }
     },
@@ -1512,7 +1695,7 @@
       }
     },
     "ServiceTemplateVersionSummary": {
-      "base": "<p>A summary of the service template version detail data.</p>",
+      "base": "<p>Summary data of an Proton service template version resource.</p>",
       "refs": {
         "ServiceTemplateVersionSummaryList$member": null
       }
@@ -1526,12 +1709,15 @@
     "SpecContents": {
       "base": null,
       "refs": {
+        "Component$serviceSpec": "<p>The service spec that the component uses to access service inputs. Provided when a component is attached to a service instance.</p>",
+        "CreateComponentInput$serviceSpec": "<p>The service spec that you want the component to use to access service inputs. Set this only when you attach the component to a service instance.</p>",
         "CreateEnvironmentInput$spec": "<p>A YAML formatted string that provides inputs as defined in the environment template bundle schema file. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-environments.html\">Environments</a> in the <i>Proton Administrator Guide</i>.</p>",
         "CreateServiceInput$spec": "<p>A link to a spec file that provides inputs as defined in the service template bundle schema file. The spec file is in YAML format. <i>Don’t</i> include pipeline inputs in the spec if your service template <i>doesn’t</i> include a service pipeline. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-create-svc.html.html\">Create a service</a> in the <i>Proton Administrator Guide</i> and <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-create.html\">Create a service</a> in the <i>Proton User Guide</i>.</p>",
         "Environment$spec": "<p>The environment spec.</p>",
         "Service$spec": "<p>The formatted specification that defines the service.</p>",
         "ServiceInstance$spec": "<p>The service spec that was used to create the service instance.</p>",
         "ServicePipeline$spec": "<p>The service spec that was used to create the service pipeline.</p>",
+        "UpdateComponentInput$serviceSpec": "<p>The service spec that you want the component to use to access service inputs. Set this only when the component is attached to a service instance.</p>",
         "UpdateEnvironmentInput$spec": "<p>The formatted specification that defines the update.</p>",
         "UpdateServiceInput$spec": "<p>Lists the service instances to add and the existing service instances to remain. Omit the existing service instances to delete from the list. <i>Don't</i> include edits to the existing service instances or pipeline. For more information, see <i>Edit a service</i> in the <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/ag-svc-update.html\">Proton Administrator Guide</a> or the <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-update.html\">Proton User Guide</a>.</p>",
         "UpdateServiceInstanceInput$spec": "<p>The formatted specification that defines the service instance update.</p>",
@@ -1541,12 +1727,14 @@
     "StatusMessage": {
       "base": null,
       "refs": {
+        "Component$deploymentStatusMessage": "<p>The message associated with the component deployment status.</p>",
+        "ComponentSummary$deploymentStatusMessage": "<p>The message associated with the component deployment status.</p>",
         "Environment$deploymentStatusMessage": "<p>An environment deployment status message.</p>",
         "EnvironmentSummary$deploymentStatusMessage": "<p>An environment deployment status message.</p>",
         "EnvironmentTemplateVersion$statusMessage": "<p>The status message of the version of an environment template.</p>",
         "EnvironmentTemplateVersionSummary$statusMessage": "<p>The status message of the version of an environment template.</p>",
         "Service$statusMessage": "<p>A service status message.</p>",
-        "ServiceInstance$deploymentStatusMessage": "<p>A service instance deployment status message.</p>",
+        "ServiceInstance$deploymentStatusMessage": "<p>The message associated with the service instance deployment status.</p>",
         "ServiceInstanceSummary$deploymentStatusMessage": "<p>A service instance deployment status message.</p>",
         "ServicePipeline$deploymentStatusMessage": "<p>A service pipeline deployment status message.</p>",
         "ServiceSummary$statusMessage": "<p>A service status message.</p>",
@@ -1587,12 +1775,6 @@
         "ListRepositorySyncDefinitionsInput$syncType": "<p>The sync type. The only supported value is <code>TEMPLATE_SYNC</code>.</p>"
       }
     },
-    "SyntheticNotifyResourceDeploymentStatusChangeInputString": {
-      "base": null,
-      "refs": {
-        "NotifyResourceDeploymentStatusChangeInput$statusMessage": "<p>The deployment status message for your provisioned resource.</p>"
-      }
-    },
     "Tag": {
       "base": "<p>A description of a resource tag.</p>",
       "refs": {
@@ -1615,6 +1797,7 @@
     "TagList": {
       "base": null,
       "refs": {
+        "CreateComponentInput$tags": "<p>An optional list of metadata items that you can associate with the Proton component. A tag is a key-value pair.</p> <p>For more information, see <i>Proton resources and tagging</i> in the <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/resources.html\">Proton Administrator Guide</a> or <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/resources.html\">Proton User Guide</a>.</p>",
         "CreateEnvironmentAccountConnectionInput$tags": "<p>An optional list of metadata items that you can associate with the Proton environment account connection. A tag is a key-value pair.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/resources.html\">Proton resources and tagging</a> in the <i>Proton Administrator Guide</i>.</p>",
         "CreateEnvironmentInput$tags": "<p>An optional list of metadata items that you can associate with the Proton environment. A tag is a key-value pair.</p> <p>For more information, see <i>Proton resources and tagging</i> in the <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/resources.html\">Proton Administrator Guide</a> or <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/resources.html\">Proton User Guide</a>.</p>",
         "CreateEnvironmentTemplateInput$tags": "<p>An optional list of metadata items that you can associate with the Proton environment template. A tag is a key-value pair.</p> <p>For more information, see <i>Proton resources and tagging</i> in the <a href=\"https://docs.aws.amazon.com/proton/latest/adminguide/resources.html\">Proton Administrator Guide</a> or <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/resources.html\">Proton User Guide</a>.</p>",
@@ -1641,6 +1824,19 @@
       "base": null,
       "refs": {
         "Tag$value": "<p>The value of the resource tag.</p>"
+      }
+    },
+    "TemplateFileContents": {
+      "base": null,
+      "refs": {
+        "CreateComponentInput$templateFile": "<p>A path to the Infrastructure as Code (IaC) file describing infrastructure that a custom component provisions.</p> <note> <p>Components support a single IaC file, even if you use Terraform as your template language.</p> </note>",
+        "UpdateComponentInput$templateFile": "<p>A path to the Infrastructure as Code (IaC) file describing infrastructure that a custom component provisions.</p> <note> <p>Components support a single IaC file, even if you use Terraform as your template language.</p> </note>"
+      }
+    },
+    "TemplateManifestContents": {
+      "base": null,
+      "refs": {
+        "CreateComponentInput$manifest": "<p>A path to a manifest file that lists the Infrastructure as Code (IaC) file, template language, and rendering engine for infrastructure that a custom component provisions.</p>"
       }
     },
     "TemplateSchema": {
@@ -1696,10 +1892,10 @@
         "EnvironmentTemplateVersionSummary$majorVersion": "<p>The latest major version that's associated with the version of an environment template.</p>",
         "EnvironmentTemplateVersionSummary$minorVersion": "<p>The version of an environment template.</p>",
         "EnvironmentTemplateVersionSummary$recommendedMinorVersion": "<p>The recommended minor version of the environment template.</p>",
-        "GetEnvironmentTemplateVersionInput$majorVersion": "<p>To view environment template major version detail data, include <code>major Version</code>.</p>",
-        "GetEnvironmentTemplateVersionInput$minorVersion": "<p>To view environment template minor version detail data, include <code>minorVersion</code>.</p>",
-        "GetServiceTemplateVersionInput$majorVersion": "<p>To view service template major version detail data, include <code>major Version</code>.</p>",
-        "GetServiceTemplateVersionInput$minorVersion": "<p>To view service template minor version detail data, include <code>minorVersion</code>.</p>",
+        "GetEnvironmentTemplateVersionInput$majorVersion": "<p>To get environment template major version detail data, include <code>major Version</code>.</p>",
+        "GetEnvironmentTemplateVersionInput$minorVersion": "<p>To get environment template minor version detail data, include <code>minorVersion</code>.</p>",
+        "GetServiceTemplateVersionInput$majorVersion": "<p>To get service template major version detail data, include <code>major Version</code>.</p>",
+        "GetServiceTemplateVersionInput$minorVersion": "<p>To get service template minor version detail data, include <code>minorVersion</code>.</p>",
         "GetTemplateSyncStatusInput$templateVersion": "<p>The template major version.</p>",
         "ListEnvironmentTemplateVersionsInput$majorVersion": "<p>To view a list of minor of versions under a major version of an environment template, include <code>major Version</code>.</p> <p>To view a list of major versions of an environment template, <i>exclude</i> <code>major Version</code>.</p>",
         "ListServiceTemplateVersionsInput$majorVersion": "<p>To view a list of minor of versions under a major version of a service template, include <code>major Version</code>.</p> <p>To view a list of major versions of a service template, <i>exclude</i> <code>major Version</code>.</p>",
@@ -1753,6 +1949,14 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "Component$createdAt": "<p>The time when the component was created.</p>",
+        "Component$lastDeploymentAttemptedAt": "<p>The time when a deployment of the component was last attempted.</p>",
+        "Component$lastDeploymentSucceededAt": "<p>The time when the component was last deployed successfully.</p>",
+        "Component$lastModifiedAt": "<p>The time when the component was last modified.</p>",
+        "ComponentSummary$createdAt": "<p>The time when the component was created.</p>",
+        "ComponentSummary$lastDeploymentAttemptedAt": "<p>The time when a deployment of the component was last attempted.</p>",
+        "ComponentSummary$lastDeploymentSucceededAt": "<p>The time when the component was last deployed successfully.</p>",
+        "ComponentSummary$lastModifiedAt": "<p>The time when the component was last modified.</p>",
         "Environment$createdAt": "<p>The time when the environment was created.</p>",
         "Environment$lastDeploymentAttemptedAt": "<p>The time when a deployment of the environment was last attempted.</p>",
         "Environment$lastDeploymentSucceededAt": "<p>The time when the environment was last deployed successfully.</p>",
@@ -1814,6 +2018,16 @@
       }
     },
     "UpdateAccountSettingsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateComponentInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateComponentOutput": {
       "base": null,
       "refs": {
       }

@@ -58,6 +58,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
@@ -170,6 +171,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
@@ -434,7 +436,8 @@
         "ENROLLMENT_ALREADY_EXISTS",
         "SPEAKER_NOT_SET",
         "SPEAKER_OPTED_OUT",
-        "CONCURRENT_CHANGES"
+        "CONCURRENT_CHANGES",
+        "DOMAIN_LOCKED_FROM_ENCRYPTION_UPDATES"
       ]
     },
     "CreateDomainRequest":{
@@ -594,6 +597,7 @@
         "DomainStatus":{"shape":"DomainStatus"},
         "Name":{"shape":"DomainName"},
         "ServerSideEncryptionConfiguration":{"shape":"ServerSideEncryptionConfiguration"},
+        "ServerSideEncryptionUpdateDetails":{"shape":"ServerSideEncryptionUpdateDetails"},
         "UpdatedAt":{"shape":"Timestamp"}
       }
     },
@@ -632,6 +636,7 @@
         "DomainStatus":{"shape":"DomainStatus"},
         "Name":{"shape":"DomainName"},
         "ServerSideEncryptionConfiguration":{"shape":"ServerSideEncryptionConfiguration"},
+        "ServerSideEncryptionUpdateDetails":{"shape":"ServerSideEncryptionUpdateDetails"},
         "UpdatedAt":{"shape":"Timestamp"}
       }
     },
@@ -1035,6 +1040,22 @@
       "members":{
         "KmsKeyId":{"shape":"KmsKeyId"}
       }
+    },
+    "ServerSideEncryptionUpdateDetails":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"},
+        "OldKmsKeyId":{"shape":"KmsKeyId"},
+        "UpdateStatus":{"shape":"ServerSideEncryptionUpdateStatus"}
+      }
+    },
+    "ServerSideEncryptionUpdateStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETED",
+        "FAILED"
+      ]
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
