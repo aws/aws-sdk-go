@@ -10,15 +10,14 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/aws/aws-sdk-go/private/model/api"
+	"github.com/aws/aws-sdk-go/private/util"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"runtime/debug"
 	"strings"
 	"sync"
-
-	"github.com/aws/aws-sdk-go/private/model/api"
-	"github.com/aws/aws-sdk-go/private/util"
 )
 
 func usage() {
@@ -59,6 +58,10 @@ func main() {
 		true,
 		"Ignores API models that use unsupported features",
 	)
+
+	var strictServiceId bool
+	flag.BoolVar(&strictServiceId, "use-service-id", false, "enforce strict usage of the serviceId from the model")
+
 	flag.Usage = usage
 	flag.Parse()
 
@@ -83,6 +86,7 @@ func main() {
 	loader := api.Loader{
 		BaseImport:            svcImportPath,
 		IgnoreUnsupportedAPIs: ignoreUnsupportedAPIs,
+		StrictServiceId:       strictServiceId,
 	}
 
 	apis, err := loader.Load(modelPaths)
