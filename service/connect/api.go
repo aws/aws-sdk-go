@@ -6349,6 +6349,155 @@ func (c *Connect) GetCurrentMetricDataPagesWithContext(ctx aws.Context, input *G
 	return p.Err()
 }
 
+const opGetCurrentUserData = "GetCurrentUserData"
+
+// GetCurrentUserDataRequest generates a "aws/request.Request" representing the
+// client's request for the GetCurrentUserData operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCurrentUserData for more information on using the GetCurrentUserData
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetCurrentUserDataRequest method.
+//    req, resp := client.GetCurrentUserDataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetCurrentUserData
+func (c *Connect) GetCurrentUserDataRequest(input *GetCurrentUserDataInput) (req *request.Request, output *GetCurrentUserDataOutput) {
+	op := &request.Operation{
+		Name:       opGetCurrentUserData,
+		HTTPMethod: "POST",
+		HTTPPath:   "/metrics/userdata/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetCurrentUserDataInput{}
+	}
+
+	output = &GetCurrentUserDataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCurrentUserData API operation for Amazon Connect Service.
+//
+// Gets the real-time active user data from the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation GetCurrentUserData for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetCurrentUserData
+func (c *Connect) GetCurrentUserData(input *GetCurrentUserDataInput) (*GetCurrentUserDataOutput, error) {
+	req, out := c.GetCurrentUserDataRequest(input)
+	return out, req.Send()
+}
+
+// GetCurrentUserDataWithContext is the same as GetCurrentUserData with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCurrentUserData for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) GetCurrentUserDataWithContext(ctx aws.Context, input *GetCurrentUserDataInput, opts ...request.Option) (*GetCurrentUserDataOutput, error) {
+	req, out := c.GetCurrentUserDataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetCurrentUserDataPages iterates over the pages of a GetCurrentUserData operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetCurrentUserData method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetCurrentUserData operation.
+//    pageNum := 0
+//    err := client.GetCurrentUserDataPages(params,
+//        func(page *connect.GetCurrentUserDataOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) GetCurrentUserDataPages(input *GetCurrentUserDataInput, fn func(*GetCurrentUserDataOutput, bool) bool) error {
+	return c.GetCurrentUserDataPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetCurrentUserDataPagesWithContext same as GetCurrentUserDataPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) GetCurrentUserDataPagesWithContext(ctx aws.Context, input *GetCurrentUserDataInput, fn func(*GetCurrentUserDataOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetCurrentUserDataInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetCurrentUserDataRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetCurrentUserDataOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetFederationToken = "GetFederationToken"
 
 // GetFederationTokenRequest generates a "aws/request.Request" representing the
@@ -16328,6 +16477,93 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about the contact (https://docs.aws.amazon.com/connect/latest/APIReference/API_Contact.html)
+// associated to the user.
+type AgentContactReference struct {
+	_ struct{} `type:"structure"`
+
+	// The state of the contact (https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html).
+	AgentContactState *string `type:"string" enum:"ContactState"`
+
+	// The channel of the contact.
+	Channel *string `type:"string" enum:"Channel"`
+
+	// The time at which the contact was connected to an agent.
+	ConnectedToAgentTimestamp *time.Time `type:"timestamp"`
+
+	// The identifier of the contact in this instance of Amazon Connect.
+	ContactId *string `min:"1" type:"string"`
+
+	// How the contact was initiated.
+	InitiationMethod *string `type:"string" enum:"ContactInitiationMethod"`
+
+	// Contains information about a queue resource for which metrics are returned.
+	Queue *QueueReference `type:"structure"`
+
+	// The epoch timestamp when the contact state started.
+	StateStartTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentContactReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentContactReference) GoString() string {
+	return s.String()
+}
+
+// SetAgentContactState sets the AgentContactState field's value.
+func (s *AgentContactReference) SetAgentContactState(v string) *AgentContactReference {
+	s.AgentContactState = &v
+	return s
+}
+
+// SetChannel sets the Channel field's value.
+func (s *AgentContactReference) SetChannel(v string) *AgentContactReference {
+	s.Channel = &v
+	return s
+}
+
+// SetConnectedToAgentTimestamp sets the ConnectedToAgentTimestamp field's value.
+func (s *AgentContactReference) SetConnectedToAgentTimestamp(v time.Time) *AgentContactReference {
+	s.ConnectedToAgentTimestamp = &v
+	return s
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *AgentContactReference) SetContactId(v string) *AgentContactReference {
+	s.ContactId = &v
+	return s
+}
+
+// SetInitiationMethod sets the InitiationMethod field's value.
+func (s *AgentContactReference) SetInitiationMethod(v string) *AgentContactReference {
+	s.InitiationMethod = &v
+	return s
+}
+
+// SetQueue sets the Queue field's value.
+func (s *AgentContactReference) SetQueue(v *QueueReference) *AgentContactReference {
+	s.Queue = v
+	return s
+}
+
+// SetStateStartTimestamp sets the StateStartTimestamp field's value.
+func (s *AgentContactReference) SetStateStartTimestamp(v time.Time) *AgentContactReference {
+	s.StateStartTimestamp = &v
+	return s
+}
+
 // Information about the agent who accepted the contact.
 type AgentInfo struct {
 	_ struct{} `type:"structure"`
@@ -16461,6 +16697,47 @@ func (s *AgentStatus) SetTags(v map[string]*string) *AgentStatus {
 // SetType sets the Type field's value.
 func (s *AgentStatus) SetType(v string) *AgentStatus {
 	s.Type = &v
+	return s
+}
+
+// Information about the agent's status.
+type AgentStatusReference struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the agent's status.
+	StatusArn *string `type:"string"`
+
+	// The start timestamp of the agent's status.
+	StatusStartTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentStatusReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentStatusReference) GoString() string {
+	return s.String()
+}
+
+// SetStatusArn sets the StatusArn field's value.
+func (s *AgentStatusReference) SetStatusArn(v string) *AgentStatusReference {
+	s.StatusArn = &v
+	return s
+}
+
+// SetStatusStartTimestamp sets the StatusStartTimestamp field's value.
+func (s *AgentStatusReference) SetStatusStartTimestamp(v time.Time) *AgentStatusReference {
+	s.StatusStartTimestamp = &v
 	return s
 }
 
@@ -18219,6 +18496,39 @@ func (s *Contact) SetQueueInfo(v *QueueInfo) *Contact {
 // SetScheduledTimestamp sets the ScheduledTimestamp field's value.
 func (s *Contact) SetScheduledTimestamp(v time.Time) *Contact {
 	s.ScheduledTimestamp = &v
+	return s
+}
+
+// Filters user data based on the contact information that is associated to
+// the users. It contains a list of contact states (https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html).
+type ContactFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A list of up to 9 contact states (https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html).
+	ContactStates []*string `type:"list" enum:"ContactState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFilter) GoString() string {
+	return s.String()
+}
+
+// SetContactStates sets the ContactStates field's value.
+func (s *ContactFilter) SetContactStates(v []*string) *ContactFilter {
+	s.ContactStates = v
 	return s
 }
 
@@ -25832,6 +26142,139 @@ func (s *GetCurrentMetricDataOutput) SetNextToken(v string) *GetCurrentMetricDat
 	return s
 }
 
+type GetCurrentUserDataInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters up to 100 Queues, or up to 9 ContactStates. The user data is retrieved
+	// only for those users who are associated with the queues and have contacts
+	// that are in the specified ContactState.
+	//
+	// Filters is a required field
+	Filters *UserDataFilters `type:"structure" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCurrentUserDataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCurrentUserDataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCurrentUserDataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCurrentUserDataInput"}
+	if s.Filters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filters != nil {
+		if err := s.Filters.Validate(); err != nil {
+			invalidParams.AddNested("Filters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *GetCurrentUserDataInput) SetFilters(v *UserDataFilters) *GetCurrentUserDataInput {
+	s.Filters = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *GetCurrentUserDataInput) SetInstanceId(v string) *GetCurrentUserDataInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetCurrentUserDataInput) SetMaxResults(v int64) *GetCurrentUserDataInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetCurrentUserDataInput) SetNextToken(v string) *GetCurrentUserDataInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetCurrentUserDataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// A list of the user data that is returned.
+	UserDataList []*UserData `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCurrentUserDataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCurrentUserDataOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetCurrentUserDataOutput) SetNextToken(v string) *GetCurrentUserDataOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUserDataList sets the UserDataList field's value.
+func (s *GetCurrentUserDataOutput) SetUserDataList(v []*UserData) *GetCurrentUserDataOutput {
+	s.UserDataList = v
+	return s
+}
+
 type GetFederationTokenInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -26676,6 +27119,47 @@ func (s *HierarchyGroupSummary) SetName(v string) *HierarchyGroupSummary {
 	return s
 }
 
+// Information about the hierarchy group.
+type HierarchyGroupSummaryReference struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the hierarchy group.
+	Arn *string `type:"string"`
+
+	// The unique identifier for the hierarchy group.
+	Id *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HierarchyGroupSummaryReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HierarchyGroupSummaryReference) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *HierarchyGroupSummaryReference) SetArn(v string) *HierarchyGroupSummaryReference {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *HierarchyGroupSummaryReference) SetId(v string) *HierarchyGroupSummaryReference {
+	s.Id = &v
+	return s
+}
+
 // Contains information about a hierarchy level.
 type HierarchyLevel struct {
 	_ struct{} `type:"structure"`
@@ -26837,6 +27321,74 @@ func (s *HierarchyPath) SetLevelThree(v *HierarchyGroupSummary) *HierarchyPath {
 
 // SetLevelTwo sets the LevelTwo field's value.
 func (s *HierarchyPath) SetLevelTwo(v *HierarchyGroupSummary) *HierarchyPath {
+	s.LevelTwo = v
+	return s
+}
+
+// Information about the levels in the hierarchy group.
+type HierarchyPathReference struct {
+	_ struct{} `type:"structure"`
+
+	// Information about level five.
+	LevelFive *HierarchyGroupSummaryReference `type:"structure"`
+
+	// Information about level four.
+	LevelFour *HierarchyGroupSummaryReference `type:"structure"`
+
+	// Information about level one.
+	LevelOne *HierarchyGroupSummaryReference `type:"structure"`
+
+	// Information about level three.
+	LevelThree *HierarchyGroupSummaryReference `type:"structure"`
+
+	// Information about level two.
+	LevelTwo *HierarchyGroupSummaryReference `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HierarchyPathReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HierarchyPathReference) GoString() string {
+	return s.String()
+}
+
+// SetLevelFive sets the LevelFive field's value.
+func (s *HierarchyPathReference) SetLevelFive(v *HierarchyGroupSummaryReference) *HierarchyPathReference {
+	s.LevelFive = v
+	return s
+}
+
+// SetLevelFour sets the LevelFour field's value.
+func (s *HierarchyPathReference) SetLevelFour(v *HierarchyGroupSummaryReference) *HierarchyPathReference {
+	s.LevelFour = v
+	return s
+}
+
+// SetLevelOne sets the LevelOne field's value.
+func (s *HierarchyPathReference) SetLevelOne(v *HierarchyGroupSummaryReference) *HierarchyPathReference {
+	s.LevelOne = v
+	return s
+}
+
+// SetLevelThree sets the LevelThree field's value.
+func (s *HierarchyPathReference) SetLevelThree(v *HierarchyGroupSummaryReference) *HierarchyPathReference {
+	s.LevelThree = v
+	return s
+}
+
+// SetLevelTwo sets the LevelTwo field's value.
+func (s *HierarchyPathReference) SetLevelTwo(v *HierarchyGroupSummaryReference) *HierarchyPathReference {
 	s.LevelTwo = v
 	return s
 }
@@ -34635,6 +35187,47 @@ func (s *RoutingProfileQueueReference) SetQueueId(v string) *RoutingProfileQueue
 	return s
 }
 
+// Information about the routing profile assigned to the user.
+type RoutingProfileReference struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the routing profile.
+	Arn *string `type:"string"`
+
+	// The identifier of the routing profile.
+	Id *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RoutingProfileReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RoutingProfileReference) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *RoutingProfileReference) SetArn(v string) *RoutingProfileReference {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *RoutingProfileReference) SetId(v string) *RoutingProfileReference {
+	s.Id = &v
+	return s
+}
+
 // Contains summary information about a routing profile.
 type RoutingProfileSummary struct {
 	_ struct{} `type:"structure"`
@@ -37463,7 +38056,7 @@ type TransferContactInput struct {
 	// ContactFlowId is a required field
 	ContactFlowId *string `type:"string" required:"true"`
 
-	// The identifier of the contact in this instance of Amazon Connect
+	// The identifier of the contact in this instance of Amazon Connect.
 	//
 	// ContactId is a required field
 	ContactId *string `min:"1" type:"string" required:"true"`
@@ -37569,7 +38162,7 @@ type TransferContactOutput struct {
 	// The Amazon Resource Name (ARN) of the contact.
 	ContactArn *string `type:"string"`
 
-	// The identifier of the contact in this instance of Amazon Connect
+	// The identifier of the contact in this instance of Amazon Connect.
 	ContactId *string `min:"1" type:"string"`
 }
 
@@ -41726,6 +42319,164 @@ func (s *User) SetUsername(v string) *User {
 	return s
 }
 
+// Data for a user.
+type UserData struct {
+	_ struct{} `type:"structure"`
+
+	// A map of active slots by channel. The key is a channel name. The value is
+	// an integer: the number of active slots.
+	ActiveSlotsByChannel map[string]*int64 `type:"map"`
+
+	// A map of available slots by channel. The key is a channel name. The value
+	// is an integer: the available number of slots.
+	AvailableSlotsByChannel map[string]*int64 `type:"map"`
+
+	// A list of contact reference information.
+	Contacts []*AgentContactReference `type:"list"`
+
+	// Contains information about the levels of a hierarchy group assigned to a
+	// user.
+	HierarchyPath *HierarchyPathReference `type:"structure"`
+
+	// A map of maximum slots by channel. The key is a channel name. The value is
+	// an integer: the maximum number of slots. This is calculated from MediaConcurrency
+	// (https://docs.aws.amazon.com/connect/latest/APIReference/API_MediaConcurrency.html)
+	// of the RoutingProfile assigned to the agent.
+	MaxSlotsByChannel map[string]*int64 `type:"map"`
+
+	// Information about the routing profile that is assigned to the user.
+	RoutingProfile *RoutingProfileReference `type:"structure"`
+
+	// The status of the agent that they manually set in their Contact Control Panel
+	// (CCP), or that the supervisor manually changes in the real-time metrics report.
+	Status *AgentStatusReference `type:"structure"`
+
+	// Information about the user for the data that is returned. It contains resourceId
+	// and ARN of the user.
+	User *UserReference `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserData) GoString() string {
+	return s.String()
+}
+
+// SetActiveSlotsByChannel sets the ActiveSlotsByChannel field's value.
+func (s *UserData) SetActiveSlotsByChannel(v map[string]*int64) *UserData {
+	s.ActiveSlotsByChannel = v
+	return s
+}
+
+// SetAvailableSlotsByChannel sets the AvailableSlotsByChannel field's value.
+func (s *UserData) SetAvailableSlotsByChannel(v map[string]*int64) *UserData {
+	s.AvailableSlotsByChannel = v
+	return s
+}
+
+// SetContacts sets the Contacts field's value.
+func (s *UserData) SetContacts(v []*AgentContactReference) *UserData {
+	s.Contacts = v
+	return s
+}
+
+// SetHierarchyPath sets the HierarchyPath field's value.
+func (s *UserData) SetHierarchyPath(v *HierarchyPathReference) *UserData {
+	s.HierarchyPath = v
+	return s
+}
+
+// SetMaxSlotsByChannel sets the MaxSlotsByChannel field's value.
+func (s *UserData) SetMaxSlotsByChannel(v map[string]*int64) *UserData {
+	s.MaxSlotsByChannel = v
+	return s
+}
+
+// SetRoutingProfile sets the RoutingProfile field's value.
+func (s *UserData) SetRoutingProfile(v *RoutingProfileReference) *UserData {
+	s.RoutingProfile = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UserData) SetStatus(v *AgentStatusReference) *UserData {
+	s.Status = v
+	return s
+}
+
+// SetUser sets the User field's value.
+func (s *UserData) SetUser(v *UserReference) *UserData {
+	s.User = v
+	return s
+}
+
+// A filter for the user data.
+type UserDataFilters struct {
+	_ struct{} `type:"structure"`
+
+	// A filter for the user data based on the contact information that is associated
+	// to the user. It contains a list of contact states.
+	ContactFilter *ContactFilter `type:"structure"`
+
+	// Contains information about a queue resource for which metrics are returned.
+	Queues []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserDataFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserDataFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UserDataFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UserDataFilters"}
+	if s.Queues != nil && len(s.Queues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Queues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFilter sets the ContactFilter field's value.
+func (s *UserDataFilters) SetContactFilter(v *ContactFilter) *UserDataFilters {
+	s.ContactFilter = v
+	return s
+}
+
+// SetQueues sets the Queues field's value.
+func (s *UserDataFilters) SetQueues(v []*string) *UserDataFilters {
+	s.Queues = v
+	return s
+}
+
 // Contains information about the identity of a user.
 type UserIdentityInfo struct {
 	_ struct{} `type:"structure"`
@@ -42033,6 +42784,47 @@ func (s *UserQuickConnectConfig) SetContactFlowId(v string) *UserQuickConnectCon
 // SetUserId sets the UserId field's value.
 func (s *UserQuickConnectConfig) SetUserId(v string) *UserQuickConnectConfig {
 	s.UserId = &v
+	return s
+}
+
+// Information about the user.
+type UserReference struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the user.
+	Arn *string `type:"string"`
+
+	// The unique identifier for the user.
+	Id *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserReference) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UserReference) SetArn(v string) *UserReference {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UserReference) SetId(v string) *UserReference {
+	s.Id = &v
 	return s
 }
 
@@ -42737,6 +43529,50 @@ func ContactInitiationMethod_Values() []string {
 		ContactInitiationMethodQueueTransfer,
 		ContactInitiationMethodCallback,
 		ContactInitiationMethodApi,
+	}
+}
+
+const (
+	// ContactStateIncoming is a ContactState enum value
+	ContactStateIncoming = "INCOMING"
+
+	// ContactStatePending is a ContactState enum value
+	ContactStatePending = "PENDING"
+
+	// ContactStateConnecting is a ContactState enum value
+	ContactStateConnecting = "CONNECTING"
+
+	// ContactStateConnected is a ContactState enum value
+	ContactStateConnected = "CONNECTED"
+
+	// ContactStateConnectedOnhold is a ContactState enum value
+	ContactStateConnectedOnhold = "CONNECTED_ONHOLD"
+
+	// ContactStateMissed is a ContactState enum value
+	ContactStateMissed = "MISSED"
+
+	// ContactStateError is a ContactState enum value
+	ContactStateError = "ERROR"
+
+	// ContactStateEnded is a ContactState enum value
+	ContactStateEnded = "ENDED"
+
+	// ContactStateRejected is a ContactState enum value
+	ContactStateRejected = "REJECTED"
+)
+
+// ContactState_Values returns all elements of the ContactState enum
+func ContactState_Values() []string {
+	return []string{
+		ContactStateIncoming,
+		ContactStatePending,
+		ContactStateConnecting,
+		ContactStateConnected,
+		ContactStateConnectedOnhold,
+		ContactStateMissed,
+		ContactStateError,
+		ContactStateEnded,
+		ContactStateRejected,
 	}
 }
 

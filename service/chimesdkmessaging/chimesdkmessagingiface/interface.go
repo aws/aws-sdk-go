@@ -239,6 +239,13 @@ type ChimeSDKMessagingAPI interface {
 	RedactChannelMessageWithContext(aws.Context, *chimesdkmessaging.RedactChannelMessageInput, ...request.Option) (*chimesdkmessaging.RedactChannelMessageOutput, error)
 	RedactChannelMessageRequest(*chimesdkmessaging.RedactChannelMessageInput) (*request.Request, *chimesdkmessaging.RedactChannelMessageOutput)
 
+	SearchChannels(*chimesdkmessaging.SearchChannelsInput) (*chimesdkmessaging.SearchChannelsOutput, error)
+	SearchChannelsWithContext(aws.Context, *chimesdkmessaging.SearchChannelsInput, ...request.Option) (*chimesdkmessaging.SearchChannelsOutput, error)
+	SearchChannelsRequest(*chimesdkmessaging.SearchChannelsInput) (*request.Request, *chimesdkmessaging.SearchChannelsOutput)
+
+	SearchChannelsPages(*chimesdkmessaging.SearchChannelsInput, func(*chimesdkmessaging.SearchChannelsOutput, bool) bool) error
+	SearchChannelsPagesWithContext(aws.Context, *chimesdkmessaging.SearchChannelsInput, func(*chimesdkmessaging.SearchChannelsOutput, bool) bool, ...request.Option) error
+
 	SendChannelMessage(*chimesdkmessaging.SendChannelMessageInput) (*chimesdkmessaging.SendChannelMessageOutput, error)
 	SendChannelMessageWithContext(aws.Context, *chimesdkmessaging.SendChannelMessageInput, ...request.Option) (*chimesdkmessaging.SendChannelMessageOutput, error)
 	SendChannelMessageRequest(*chimesdkmessaging.SendChannelMessageInput) (*request.Request, *chimesdkmessaging.SendChannelMessageOutput)

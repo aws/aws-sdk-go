@@ -327,6 +327,13 @@ type ConnectAPI interface {
 	GetCurrentMetricDataPages(*connect.GetCurrentMetricDataInput, func(*connect.GetCurrentMetricDataOutput, bool) bool) error
 	GetCurrentMetricDataPagesWithContext(aws.Context, *connect.GetCurrentMetricDataInput, func(*connect.GetCurrentMetricDataOutput, bool) bool, ...request.Option) error
 
+	GetCurrentUserData(*connect.GetCurrentUserDataInput) (*connect.GetCurrentUserDataOutput, error)
+	GetCurrentUserDataWithContext(aws.Context, *connect.GetCurrentUserDataInput, ...request.Option) (*connect.GetCurrentUserDataOutput, error)
+	GetCurrentUserDataRequest(*connect.GetCurrentUserDataInput) (*request.Request, *connect.GetCurrentUserDataOutput)
+
+	GetCurrentUserDataPages(*connect.GetCurrentUserDataInput, func(*connect.GetCurrentUserDataOutput, bool) bool) error
+	GetCurrentUserDataPagesWithContext(aws.Context, *connect.GetCurrentUserDataInput, func(*connect.GetCurrentUserDataOutput, bool) bool, ...request.Option) error
+
 	GetFederationToken(*connect.GetFederationTokenInput) (*connect.GetFederationTokenOutput, error)
 	GetFederationTokenWithContext(aws.Context, *connect.GetFederationTokenInput, ...request.Option) (*connect.GetFederationTokenOutput, error)
 	GetFederationTokenRequest(*connect.GetFederationTokenInput) (*request.Request, *connect.GetFederationTokenOutput)

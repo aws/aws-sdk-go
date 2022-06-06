@@ -4370,6 +4370,10 @@ func (c *ChimeSDKMessaging) RedactChannelMessageRequest(input *RedactChannelMess
 //   * ForbiddenException
 //   The client is permanently forbidden from making the request.
 //
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
@@ -4402,6 +4406,160 @@ func (c *ChimeSDKMessaging) RedactChannelMessageWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opSearchChannels = "SearchChannels"
+
+// SearchChannelsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchChannels operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchChannels for more information on using the SearchChannels
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SearchChannelsRequest method.
+//    req, resp := client.SearchChannelsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/SearchChannels
+func (c *ChimeSDKMessaging) SearchChannelsRequest(input *SearchChannelsInput) (req *request.Request, output *SearchChannelsOutput) {
+	op := &request.Operation{
+		Name:       opSearchChannels,
+		HTTPMethod: "POST",
+		HTTPPath:   "/channels?operation=search",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchChannelsInput{}
+	}
+
+	output = &SearchChannelsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchChannels API operation for Amazon Chime SDK Messaging.
+//
+// Allows an AppInstanceUser to search the channels that they belong to. The
+// AppInstanceUser can search by membership or external ID. An AppInstanceAdmin
+// can search across all channels within the AppInstance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Messaging's
+// API operation SearchChannels for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/SearchChannels
+func (c *ChimeSDKMessaging) SearchChannels(input *SearchChannelsInput) (*SearchChannelsOutput, error) {
+	req, out := c.SearchChannelsRequest(input)
+	return out, req.Send()
+}
+
+// SearchChannelsWithContext is the same as SearchChannels with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchChannels for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMessaging) SearchChannelsWithContext(ctx aws.Context, input *SearchChannelsInput, opts ...request.Option) (*SearchChannelsOutput, error) {
+	req, out := c.SearchChannelsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchChannelsPages iterates over the pages of a SearchChannels operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchChannels method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a SearchChannels operation.
+//    pageNum := 0
+//    err := client.SearchChannelsPages(params,
+//        func(page *chimesdkmessaging.SearchChannelsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ChimeSDKMessaging) SearchChannelsPages(input *SearchChannelsInput, fn func(*SearchChannelsOutput, bool) bool) error {
+	return c.SearchChannelsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchChannelsPagesWithContext same as SearchChannelsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMessaging) SearchChannelsPagesWithContext(ctx aws.Context, input *SearchChannelsInput, fn func(*SearchChannelsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchChannelsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchChannelsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchChannelsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opSendChannelMessage = "SendChannelMessage"
@@ -5109,7 +5267,7 @@ func (c *ChimeSDKMessaging) UpdateChannelReadMarkerWithContext(ctx aws.Context, 
 type AppInstanceUserMembershipSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The time at which a message was last read.
+	// The time at which an AppInstanceUser last marked a channel as read.
 	ReadMarkerTimestamp *time.Time `type:"timestamp"`
 
 	// The type of ChannelMembership.
@@ -7302,6 +7460,13 @@ type CreateChannelInput struct {
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `min:"5" type:"string" required:"true"`
 
+	// The ID of the channel in the request.
+	//
+	// ChannelId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateChannelInput's
+	// String and GoString methods.
+	ChannelId *string `min:"1" type:"string" sensitive:"true"`
+
 	// The AppInstanceUserArn of the user that makes the API call.
 	//
 	// ChimeBearer is a required field
@@ -7313,6 +7478,9 @@ type CreateChannelInput struct {
 	// replaced with "sensitive" in string returned by CreateChannelInput's
 	// String and GoString methods.
 	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The ARNs of the channel members in the request.
+	MemberArns []*string `min:"1" type:"list"`
 
 	// The metadata of the creation request. Limited to 1KB and UTF-8.
 	//
@@ -7326,6 +7494,9 @@ type CreateChannelInput struct {
 	// channels. Only administrators and moderators can add members to restricted
 	// channels.
 	Mode *string `type:"string" enum:"ChannelMode"`
+
+	// The ARNs of the channel moderators in the request.
+	ModeratorArns []*string `min:"1" type:"list"`
 
 	// The name of the channel.
 	//
@@ -7372,6 +7543,9 @@ func (s *CreateChannelInput) Validate() error {
 	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
 	}
+	if s.ChannelId != nil && len(*s.ChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelId", 1))
+	}
 	if s.ChimeBearer == nil {
 		invalidParams.Add(request.NewErrParamRequired("ChimeBearer"))
 	}
@@ -7380,6 +7554,12 @@ func (s *CreateChannelInput) Validate() error {
 	}
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.MemberArns != nil && len(s.MemberArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberArns", 1))
+	}
+	if s.ModeratorArns != nil && len(s.ModeratorArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModeratorArns", 1))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -7413,6 +7593,12 @@ func (s *CreateChannelInput) SetAppInstanceArn(v string) *CreateChannelInput {
 	return s
 }
 
+// SetChannelId sets the ChannelId field's value.
+func (s *CreateChannelInput) SetChannelId(v string) *CreateChannelInput {
+	s.ChannelId = &v
+	return s
+}
+
 // SetChimeBearer sets the ChimeBearer field's value.
 func (s *CreateChannelInput) SetChimeBearer(v string) *CreateChannelInput {
 	s.ChimeBearer = &v
@@ -7425,6 +7611,12 @@ func (s *CreateChannelInput) SetClientRequestToken(v string) *CreateChannelInput
 	return s
 }
 
+// SetMemberArns sets the MemberArns field's value.
+func (s *CreateChannelInput) SetMemberArns(v []*string) *CreateChannelInput {
+	s.MemberArns = v
+	return s
+}
+
 // SetMetadata sets the Metadata field's value.
 func (s *CreateChannelInput) SetMetadata(v string) *CreateChannelInput {
 	s.Metadata = &v
@@ -7434,6 +7626,12 @@ func (s *CreateChannelInput) SetMetadata(v string) *CreateChannelInput {
 // SetMode sets the Mode field's value.
 func (s *CreateChannelInput) SetMode(v string) *CreateChannelInput {
 	s.Mode = &v
+	return s
+}
+
+// SetModeratorArns sets the ModeratorArns field's value.
+func (s *CreateChannelInput) SetModeratorArns(v []*string) *CreateChannelInput {
+	s.ModeratorArns = v
 	return s
 }
 
@@ -10121,7 +10319,7 @@ func (s *ListChannelMembershipsForAppInstanceUserInput) SetNextToken(v string) *
 type ListChannelMembershipsForAppInstanceUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token passed by previous API calls until all requested users are returned.
+	// The information for the requested channel memberships.
 	ChannelMemberships []*ChannelMembershipForAppInstanceUserSummary `type:"list"`
 
 	// The token passed by previous API calls until all requested users are returned.
@@ -11479,7 +11677,7 @@ type PushNotificationPreferences struct {
 	AllowNotifications *string `type:"string" required:"true" enum:"AllowNotifications"`
 
 	// The simple JSON object used to send a subset of a push notification to the
-	// requsted member.
+	// requested member.
 	//
 	// FilterRule is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PushNotificationPreferences's
@@ -11871,6 +12069,237 @@ func (s *ResourceLimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type SearchChannelsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AppInstanceUserArn of the user making the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
+	// A list of the Field objects in the channel being searched.
+	//
+	// Fields is a required field
+	Fields []*SearchField `min:"1" type:"list" required:"true"`
+
+	// The maximum number of channels that you want returned.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token returned from previous API requests until the number of channels
+	// is reached.
+	//
+	// NextToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SearchChannelsInput's
+	// String and GoString methods.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchChannelsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchChannelsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchChannelsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchChannelsInput"}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
+	if s.Fields == nil {
+		invalidParams.Add(request.NewErrParamRequired("Fields"))
+	}
+	if s.Fields != nil && len(s.Fields) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Fields", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Fields != nil {
+		for i, v := range s.Fields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Fields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *SearchChannelsInput) SetChimeBearer(v string) *SearchChannelsInput {
+	s.ChimeBearer = &v
+	return s
+}
+
+// SetFields sets the Fields field's value.
+func (s *SearchChannelsInput) SetFields(v []*SearchField) *SearchChannelsInput {
+	s.Fields = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchChannelsInput) SetMaxResults(v int64) *SearchChannelsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchChannelsInput) SetNextToken(v string) *SearchChannelsInput {
+	s.NextToken = &v
+	return s
+}
+
+type SearchChannelsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the channels in the request.
+	Channels []*ChannelSummary `type:"list"`
+
+	// The token returned from previous API responses until the number of channels
+	// is reached.
+	//
+	// NextToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SearchChannelsOutput's
+	// String and GoString methods.
+	NextToken *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchChannelsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchChannelsOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannels sets the Channels field's value.
+func (s *SearchChannelsOutput) SetChannels(v []*ChannelSummary) *SearchChannelsOutput {
+	s.Channels = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchChannelsOutput) SetNextToken(v string) *SearchChannelsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// A Field of the channel that you want to search.
+type SearchField struct {
+	_ struct{} `type:"structure"`
+
+	// An enum value that indicates the key to search the channel on. MEMBERS allows
+	// you to search channels based on memberships. You can use it with the EQUALS
+	// operator to get channels whose memberships are equal to the specified values,
+	// and with the INCLUDES operator to get channels whose memberships include
+	// the specified values.
+	//
+	// Key is a required field
+	Key *string `type:"string" required:"true" enum:"SearchFieldKey"`
+
+	// The operator used to compare field values, currently EQUALS or INCLUDES.
+	// Use the EQUALS operator to find channels whose memberships equal the specified
+	// values. Use the INCLUDES operator to find channels whose memberships include
+	// the specified values.
+	//
+	// Operator is a required field
+	Operator *string `type:"string" required:"true" enum:"SearchFieldOperator"`
+
+	// The values that you want to search for, a list of strings. The values must
+	// be AppInstanceUserArns specified as a list of strings.
+	//
+	// This operation isn't supported for AppInstanceUsers with large number of
+	// memberships.
+	//
+	// Values is a required field
+	Values []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchField) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchField) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchField"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *SearchField) SetKey(v string) *SearchField {
+	s.Key = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *SearchField) SetOperator(v string) *SearchField {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *SearchField) SetValues(v []*string) *SearchField {
+	s.Values = v
+	return s
 }
 
 type SendChannelMessageInput struct {
@@ -12759,18 +13188,14 @@ type UpdateChannelInput struct {
 	Metadata *string `type:"string" sensitive:"true"`
 
 	// The mode of the update request.
-	//
-	// Mode is a required field
-	Mode *string `type:"string" required:"true" enum:"ChannelMode"`
+	Mode *string `type:"string" enum:"ChannelMode"`
 
 	// The name of the channel.
 	//
 	// Name is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateChannelInput's
 	// String and GoString methods.
-	//
-	// Name is a required field
-	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
+	Name *string `min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -12805,12 +13230,6 @@ func (s *UpdateChannelInput) Validate() error {
 	}
 	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
-	}
-	if s.Mode == nil {
-		invalidParams.Add(request.NewErrParamRequired("Mode"))
-	}
-	if s.Name == nil {
-		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
@@ -13371,6 +13790,34 @@ func PushNotificationType_Values() []string {
 	return []string{
 		PushNotificationTypeDefault,
 		PushNotificationTypeVoip,
+	}
+}
+
+const (
+	// SearchFieldKeyMembers is a SearchFieldKey enum value
+	SearchFieldKeyMembers = "MEMBERS"
+)
+
+// SearchFieldKey_Values returns all elements of the SearchFieldKey enum
+func SearchFieldKey_Values() []string {
+	return []string{
+		SearchFieldKeyMembers,
+	}
+}
+
+const (
+	// SearchFieldOperatorEquals is a SearchFieldOperator enum value
+	SearchFieldOperatorEquals = "EQUALS"
+
+	// SearchFieldOperatorIncludes is a SearchFieldOperator enum value
+	SearchFieldOperatorIncludes = "INCLUDES"
+)
+
+// SearchFieldOperator_Values returns all elements of the SearchFieldOperator enum
+func SearchFieldOperator_Values() []string {
+	return []string{
+		SearchFieldOperatorEquals,
+		SearchFieldOperatorIncludes,
 	}
 }
 

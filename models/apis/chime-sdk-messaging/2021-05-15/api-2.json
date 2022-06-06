@@ -702,6 +702,25 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
+        {"shape":"ConflictException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "SearchChannels":{
+      "name":"SearchChannels",
+      "http":{
+        "method":"POST",
+        "requestUri":"/channels?operation=search",
+        "responseCode":200
+      },
+      "input":{"shape":"SearchChannelsRequest"},
+      "output":{"shape":"SearchChannelsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
@@ -1043,6 +1062,19 @@
       "type":"list",
       "member":{"shape":"ChannelFlowSummary"}
     },
+    "ChannelId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[A-Za-z0-9]([A-Za-z0-9\\:\\-\\_\\.\\@]{0,62}[A-Za-z0-9])?",
+      "sensitive":true
+    },
+    "ChannelMemberArns":{
+      "type":"list",
+      "member":{"shape":"ChimeArn"},
+      "max":10,
+      "min":1
+    },
     "ChannelMembership":{
       "type":"structure",
       "members":{
@@ -1192,6 +1224,12 @@
         "CreatedTimestamp":{"shape":"Timestamp"},
         "CreatedBy":{"shape":"Identity"}
       }
+    },
+    "ChannelModeratorArns":{
+      "type":"list",
+      "member":{"shape":"ChimeArn"},
+      "max":10,
+      "min":1
     },
     "ChannelModeratorSummary":{
       "type":"structure",
@@ -1385,7 +1423,10 @@
           "shape":"ChimeArn",
           "location":"header",
           "locationName":"x-amz-chime-bearer"
-        }
+        },
+        "ChannelId":{"shape":"ChannelId"},
+        "MemberArns":{"shape":"ChannelMemberArns"},
+        "ModeratorArns":{"shape":"ChannelModeratorArns"}
       }
     },
     "CreateChannelResponse":{
@@ -2511,6 +2552,77 @@
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]*",
       "sensitive":true
     },
+    "SearchChannelsRequest":{
+      "type":"structure",
+      "required":["Fields"],
+      "members":{
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
+        },
+        "Fields":{"shape":"SearchFields"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"next-token"
+        }
+      }
+    },
+    "SearchChannelsResponse":{
+      "type":"structure",
+      "members":{
+        "Channels":{"shape":"ChannelSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "SearchField":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Values",
+        "Operator"
+      ],
+      "members":{
+        "Key":{"shape":"SearchFieldKey"},
+        "Values":{"shape":"SearchFieldValues"},
+        "Operator":{"shape":"SearchFieldOperator"}
+      }
+    },
+    "SearchFieldKey":{
+      "type":"string",
+      "enum":["MEMBERS"]
+    },
+    "SearchFieldOperator":{
+      "type":"string",
+      "enum":[
+        "EQUALS",
+        "INCLUDES"
+      ]
+    },
+    "SearchFieldValue":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[\\s\\S]*"
+    },
+    "SearchFieldValues":{
+      "type":"list",
+      "member":{"shape":"SearchFieldValue"},
+      "max":20,
+      "min":1
+    },
+    "SearchFields":{
+      "type":"list",
+      "member":{"shape":"SearchField"},
+      "max":20,
+      "min":1
+    },
     "SendChannelMessageRequest":{
       "type":"structure",
       "required":[
@@ -2749,8 +2861,6 @@
       "type":"structure",
       "required":[
         "ChannelArn",
-        "Name",
-        "Mode",
         "ChimeBearer"
       ],
       "members":{

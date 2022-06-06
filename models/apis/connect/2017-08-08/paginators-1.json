@@ -5,6 +5,11 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "GetCurrentUserData": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "GetMetricData": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

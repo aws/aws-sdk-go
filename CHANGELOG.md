@@ -1,3 +1,14 @@
+Release v1.44.28 (2022-06-06)
+===
+
+### Service Client Updates
+* `service/chime-sdk-messaging`: Updates service API, documentation, and paginators
+* `service/connect`: Updates service API, documentation, and paginators
+
+### SDK Enhancements
+* `service/cloudwatch`: Add helper to send request payload as GZIP content encoding
+  * Adds a new helper, `WithGzipRequest` to the `cloudwatch` package. The helper will configure the payload to be sent as `content-encoding: gzip`. It is supported by operations like `PutMetricData`. See the service's API Reference documentation for other operations supported.
+
 Release v1.44.27 (2022-06-02)
 ===
 
