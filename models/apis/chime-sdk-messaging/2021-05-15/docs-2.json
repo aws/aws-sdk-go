@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>The Amazon Chime SDK Messaging APIs in this section allow software developers to send and receive messages in custom messaging applications. These APIs depend on the frameworks provided by the Amazon Chime SDK Identity APIs. For more information about the messaging APIs, see <a href=\"https://docs.aws.amazon.com/chime/latest/APIReference/API_Operations_Amazon_Chime_SDK_Messaging\">Amazon Chime SDK messaging</a> </p>",
+  "service": "<p>The Amazon Chime SDK Messaging APIs in this section allow software developers to send and receive messages in custom messaging applications. These APIs depend on the frameworks provided by the Amazon Chime SDK Identity APIs. For more information about the messaging APIs, see <a href=\"https://docs.aws.amazon.com/chime/latest/APIReference/API_Operations_Amazon_Chime_SDK_Messaging.html\">Amazon Chime SDK messaging</a>.</p>",
   "operations": {
     "AssociateChannelFlow": "<p>Associates a channel flow with a channel. Once associated, all messages to that channel go through channel flow processors. To stop processing, use the <code>DisassociateChannelFlow</code> API.</p> <note> <p>Only administrators or channel moderators can associate a channel flow. The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "BatchCreateChannelMembership": "<p>Adds a specified number of users to a channel. </p>",
@@ -40,6 +40,7 @@
     "ListTagsForResource": "<p>Lists the tags applied to an Amazon Chime SDK messaging resource.</p>",
     "PutChannelMembershipPreferences": "<p>Sets the membership preferences of an <code>AppInstanceUser</code> for the specified channel. The <code>AppInstanceUser</code> must be a member of the channel. Only the <code>AppInstanceUser</code> who owns the membership can set preferences. Users in the <code>AppInstanceAdmin</code> and channel moderator roles can't set preferences for other users. Banned users can't set membership preferences for the channel from which they are banned.</p>",
     "RedactChannelMessage": "<p>Redacts message content, but not metadata. The message exists in the back end, but the action returns null content, and the state shows as redacted.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "SearchChannels": "<p>Allows an <code>AppInstanceUser</code> to search the channels that they belong to. The <code>AppInstanceUser</code> can search by membership or external ID. An <code>AppInstanceAdmin</code> can search across all channels within the <code>AppInstance</code>.</p>",
     "SendChannelMessage": "<p>Sends a message to a particular channel that the member is a part of.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> <p>Also, <code>STANDARD</code> messages can contain 4KB of data and the 1KB of metadata. <code>CONTROL</code> messages can contain 30 bytes of data and no metadata.</p> </note>",
     "TagResource": "<p>Applies the specified tags to the specified Amazon Chime SDK messaging resource.</p>",
     "UntagResource": "<p>Removes the specified tags from the specified Amazon Chime SDK messaging resource.</p>",
@@ -176,6 +177,18 @@
         "ListChannelFlowsResponse$ChannelFlows": "<p>The information about each channel flow.</p>"
       }
     },
+    "ChannelId": {
+      "base": null,
+      "refs": {
+        "CreateChannelRequest$ChannelId": "<p>The ID of the channel in the request.</p>"
+      }
+    },
+    "ChannelMemberArns": {
+      "base": null,
+      "refs": {
+        "CreateChannelRequest$MemberArns": "<p>The ARNs of the channel members in the request.</p>"
+      }
+    },
     "ChannelMembership": {
       "base": "<p>The details of a channel member.</p>",
       "refs": {
@@ -192,7 +205,7 @@
     "ChannelMembershipForAppInstanceUserSummaryList": {
       "base": null,
       "refs": {
-        "ListChannelMembershipsForAppInstanceUserResponse$ChannelMemberships": "<p>The token passed by previous API calls until all requested users are returned.</p>"
+        "ListChannelMembershipsForAppInstanceUserResponse$ChannelMemberships": "<p>The information for the requested channel memberships.</p>"
       }
     },
     "ChannelMembershipPreferences": {
@@ -310,6 +323,12 @@
         "DescribeChannelModeratorResponse$ChannelModerator": "<p>The details of the channel moderator.</p>"
       }
     },
+    "ChannelModeratorArns": {
+      "base": null,
+      "refs": {
+        "CreateChannelRequest$ModeratorArns": "<p>The ARNs of the channel moderators in the request.</p>"
+      }
+    },
     "ChannelModeratorSummary": {
       "base": "<p>Summary of the details of a <code>ChannelModerator</code>.</p>",
       "refs": {
@@ -343,7 +362,8 @@
     "ChannelSummaryList": {
       "base": null,
       "refs": {
-        "ListChannelsResponse$Channels": "<p>The information about each channel.</p>"
+        "ListChannelsResponse$Channels": "<p>The information about each channel.</p>",
+        "SearchChannelsResponse$Channels": "<p>A list of the channels in the request.</p>"
       }
     },
     "ChimeArn": {
@@ -364,9 +384,11 @@
         "ChannelFlowCallbackRequest$ChannelArn": "<p>The ARN of the channel.</p>",
         "ChannelFlowCallbackResponse$ChannelArn": "<p>The ARN of the channel.</p>",
         "ChannelFlowSummary$ChannelFlowArn": "<p>The ARN of the channel flow.</p>",
+        "ChannelMemberArns$member": null,
         "ChannelMembership$ChannelArn": "<p>The ARN of the member's channel.</p>",
         "ChannelMessage$ChannelArn": "<p>The ARN of the channel.</p>",
         "ChannelModerator$ChannelArn": "<p>The ARN of the moderator's channel.</p>",
+        "ChannelModeratorArns$member": null,
         "ChannelSummary$ChannelArn": "<p>The ARN of the channel.</p>",
         "CreateChannelBanRequest$ChannelArn": "<p>The ARN of the ban request.</p>",
         "CreateChannelBanRequest$MemberArn": "<p>The <code>AppInstanceUserArn</code> of the member being banned.</p>",
@@ -458,6 +480,7 @@
         "RedactChannelMessageRequest$ChannelArn": "<p>The ARN of the channel containing the messages that you want to redact.</p>",
         "RedactChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "RedactChannelMessageResponse$ChannelArn": "<p>The ARN of the channel containing the messages that you want to redact.</p>",
+        "SearchChannelsRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user making the API call.</p>",
         "SendChannelMessageRequest$ChannelArn": "<p>The ARN of the channel.</p>",
         "SendChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "SendChannelMessageResponse$ChannelArn": "<p>The ARN of the channel.</p>",
@@ -676,7 +699,7 @@
     "FilterRule": {
       "base": null,
       "refs": {
-        "PushNotificationPreferences$FilterRule": "<p>The simple JSON object used to send a subset of a push notification to the requsted member.</p>"
+        "PushNotificationPreferences$FilterRule": "<p>The simple JSON object used to send a subset of a push notification to the requested member.</p>"
       }
     },
     "ForbiddenException": {
@@ -743,9 +766,9 @@
         "CreateChannelBanResponse$Member": "<p>The <code>ChannelArn</code> and <code>BannedIdentity</code> of the member in the ban response.</p>",
         "CreateChannelMembershipResponse$Member": "<p>The ARN and metadata of the member being added.</p>",
         "CreateChannelModeratorResponse$ChannelModerator": "<p>The ARNs of the channel and the moderator.</p>",
-        "GetChannelMembershipPreferencesResponse$Member": null,
+        "GetChannelMembershipPreferencesResponse$Member": "<p>The details of a user.</p>",
         "Members$member": null,
-        "PutChannelMembershipPreferencesResponse$Member": null
+        "PutChannelMembershipPreferencesResponse$Member": "<p>The details of a user.</p>"
       }
     },
     "InvocationType": {
@@ -877,7 +900,8 @@
         "ListChannelModeratorsRequest$MaxResults": "<p>The maximum number of moderators that you want returned.</p>",
         "ListChannelsAssociatedWithChannelFlowRequest$MaxResults": "<p>The maximum number of channels that you want to return.</p>",
         "ListChannelsModeratedByAppInstanceUserRequest$MaxResults": "<p>The maximum number of channels in the request.</p>",
-        "ListChannelsRequest$MaxResults": "<p>The maximum number of channels that you want to return.</p>"
+        "ListChannelsRequest$MaxResults": "<p>The maximum number of channels that you want to return.</p>",
+        "SearchChannelsRequest$MaxResults": "<p>The maximum number of channels that you want returned.</p>"
       }
     },
     "MemberArns": {
@@ -982,7 +1006,9 @@
         "ListChannelsModeratedByAppInstanceUserRequest$NextToken": "<p>The token returned from previous API requests until the number of channels moderated by the user is reached.</p>",
         "ListChannelsModeratedByAppInstanceUserResponse$NextToken": "<p>The token returned from previous API requests until the number of channels moderated by the user is reached.</p>",
         "ListChannelsRequest$NextToken": "<p>The token passed by previous API calls until all requested channels are returned.</p>",
-        "ListChannelsResponse$NextToken": "<p>The token returned from previous API requests until the number of channels is reached.</p>"
+        "ListChannelsResponse$NextToken": "<p>The token returned from previous API requests until the number of channels is reached.</p>",
+        "SearchChannelsRequest$NextToken": "<p>The token returned from previous API requests until the number of channels is reached.</p>",
+        "SearchChannelsResponse$NextToken": "<p>The token returned from previous API responses until the number of channels is reached.</p>"
       }
     },
     "NonEmptyContent": {
@@ -1103,6 +1129,52 @@
         "Identity$Name": "<p>The name in an Identity.</p>"
       }
     },
+    "SearchChannelsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchChannelsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchField": {
+      "base": "<p>A <code>Field</code> of the channel that you want to search.</p>",
+      "refs": {
+        "SearchFields$member": null
+      }
+    },
+    "SearchFieldKey": {
+      "base": null,
+      "refs": {
+        "SearchField$Key": "<p>An <code>enum</code> value that indicates the key to search the channel on. <code>MEMBERS</code> allows you to search channels based on memberships. You can use it with the <code>EQUALS</code> operator to get channels whose memberships are equal to the specified values, and with the <code>INCLUDES</code> operator to get channels whose memberships include the specified values.</p>"
+      }
+    },
+    "SearchFieldOperator": {
+      "base": null,
+      "refs": {
+        "SearchField$Operator": "<p>The operator used to compare field values, currently <code>EQUALS</code> or <code>INCLUDES</code>. Use the <code>EQUALS</code> operator to find channels whose memberships equal the specified values. Use the <code>INCLUDES</code> operator to find channels whose memberships include the specified values.</p>"
+      }
+    },
+    "SearchFieldValue": {
+      "base": null,
+      "refs": {
+        "SearchFieldValues$member": null
+      }
+    },
+    "SearchFieldValues": {
+      "base": null,
+      "refs": {
+        "SearchField$Values": "<p>The values that you want to search for, a list of strings. The values must be <code>AppInstanceUserArns</code> specified as a list of strings.</p> <note> <p>This operation isn't supported for <code>AppInstanceUsers</code> with large number of memberships.</p> </note>"
+      }
+    },
+    "SearchFields": {
+      "base": null,
+      "refs": {
+        "SearchChannelsRequest$Fields": "<p>A list of the <code>Field</code> objects in the channel being searched.</p>"
+      }
+    },
     "SendChannelMessageRequest": {
       "base": null,
       "refs": {
@@ -1197,7 +1269,7 @@
     "Timestamp": {
       "base": null,
       "refs": {
-        "AppInstanceUserMembershipSummary$ReadMarkerTimestamp": "<p>The time at which a message was last read.</p>",
+        "AppInstanceUserMembershipSummary$ReadMarkerTimestamp": "<p>The time at which an <code>AppInstanceUser</code> last marked a channel as read.</p>",
         "Channel$CreatedTimestamp": "<p>The time at which the <code>AppInstanceUser</code> created the channel.</p>",
         "Channel$LastMessageTimestamp": "<p>The time at which a member sent the last message in the channel.</p>",
         "Channel$LastUpdatedTimestamp": "<p>The time at which a channel was last updated.</p>",

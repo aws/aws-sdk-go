@@ -1083,6 +1083,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetCurrentUserData":{
+      "name":"GetCurrentUserData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/metrics/userdata/{InstanceId}"
+      },
+      "input":{"shape":"GetCurrentUserDataRequest"},
+      "output":{"shape":"GetCurrentUserDataResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetFederationToken":{
       "name":"GetFederationToken",
       "http":{
@@ -2422,6 +2438,22 @@
       "type":"integer",
       "min":0
     },
+    "AgentContactReference":{
+      "type":"structure",
+      "members":{
+        "ContactId":{"shape":"ContactId"},
+        "Channel":{"shape":"Channel"},
+        "InitiationMethod":{"shape":"ContactInitiationMethod"},
+        "AgentContactState":{"shape":"ContactState"},
+        "StateStartTimestamp":{"shape":"Timestamp"},
+        "ConnectedToAgentTimestamp":{"shape":"Timestamp"},
+        "Queue":{"shape":"QueueReference"}
+      }
+    },
+    "AgentContactReferenceList":{
+      "type":"list",
+      "member":{"shape":"AgentContactReference"}
+    },
     "AgentFirstName":{
       "type":"string",
       "max":100,
@@ -2472,6 +2504,13 @@
       "type":"integer",
       "max":50,
       "min":1
+    },
+    "AgentStatusReference":{
+      "type":"structure",
+      "members":{
+        "StatusStartTimestamp":{"shape":"Timestamp"},
+        "StatusArn":{"shape":"ARN"}
+      }
     },
     "AgentStatusState":{
       "type":"string",
@@ -2785,6 +2824,11 @@
         "TASK"
       ]
     },
+    "ChannelToCountMap":{
+      "type":"map",
+      "key":{"shape":"Channel"},
+      "value":{"shape":"IntegerCount"}
+    },
     "Channels":{
       "type":"list",
       "member":{"shape":"Channel"},
@@ -2901,6 +2945,12 @@
         "DisconnectTimestamp":{"shape":"timestamp"},
         "LastUpdateTimestamp":{"shape":"timestamp"},
         "ScheduledTimestamp":{"shape":"timestamp"}
+      }
+    },
+    "ContactFilter":{
+      "type":"structure",
+      "members":{
+        "ContactStates":{"shape":"ContactStates"}
       }
     },
     "ContactFlow":{
@@ -3064,6 +3114,25 @@
       "type":"map",
       "key":{"shape":"ReferenceKey"},
       "value":{"shape":"Reference"}
+    },
+    "ContactState":{
+      "type":"string",
+      "enum":[
+        "INCOMING",
+        "PENDING",
+        "CONNECTING",
+        "CONNECTED",
+        "CONNECTED_ONHOLD",
+        "MISSED",
+        "ERROR",
+        "ENDED",
+        "REJECTED"
+      ]
+    },
+    "ContactStates":{
+      "type":"list",
+      "member":{"shape":"ContactState"},
+      "max":9
     },
     "ControlPlaneTagFilter":{
       "type":"structure",
@@ -4595,6 +4664,33 @@
         "DataSnapshotTime":{"shape":"timestamp"}
       }
     },
+    "GetCurrentUserDataRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "Filters"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "Filters":{"shape":"UserDataFilters"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true
+        }
+      }
+    },
+    "GetCurrentUserDataResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "UserDataList":{"shape":"UserDataList"}
+      }
+    },
     "GetFederationTokenRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -4744,6 +4840,13 @@
       "type":"list",
       "member":{"shape":"HierarchyGroupSummary"}
     },
+    "HierarchyGroupSummaryReference":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"HierarchyGroupId"},
+        "Arn":{"shape":"ARN"}
+      }
+    },
     "HierarchyLevel":{
       "type":"structure",
       "members":{
@@ -4769,6 +4872,16 @@
         "LevelThree":{"shape":"HierarchyGroupSummary"},
         "LevelFour":{"shape":"HierarchyGroupSummary"},
         "LevelFive":{"shape":"HierarchyGroupSummary"}
+      }
+    },
+    "HierarchyPathReference":{
+      "type":"structure",
+      "members":{
+        "LevelOne":{"shape":"HierarchyGroupSummaryReference"},
+        "LevelTwo":{"shape":"HierarchyGroupSummaryReference"},
+        "LevelThree":{"shape":"HierarchyGroupSummaryReference"},
+        "LevelFour":{"shape":"HierarchyGroupSummaryReference"},
+        "LevelFive":{"shape":"HierarchyGroupSummaryReference"}
       }
     },
     "HierarchyStructure":{
@@ -5057,6 +5170,10 @@
     "InstanceSummaryList":{
       "type":"list",
       "member":{"shape":"InstanceSummary"}
+    },
+    "IntegerCount":{
+      "type":"integer",
+      "min":0
     },
     "IntegrationAssociationId":{
       "type":"string",
@@ -7143,6 +7260,13 @@
       "type":"list",
       "member":{"shape":"RoutingProfileQueueReference"}
     },
+    "RoutingProfileReference":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"RoutingProfileId"},
+        "Arn":{"shape":"ARN"}
+      }
+    },
     "RoutingProfileSummary":{
       "type":"structure",
       "members":{
@@ -8642,6 +8766,30 @@
         "Tags":{"shape":"TagMap"}
       }
     },
+    "UserData":{
+      "type":"structure",
+      "members":{
+        "User":{"shape":"UserReference"},
+        "RoutingProfile":{"shape":"RoutingProfileReference"},
+        "HierarchyPath":{"shape":"HierarchyPathReference"},
+        "Status":{"shape":"AgentStatusReference"},
+        "AvailableSlotsByChannel":{"shape":"ChannelToCountMap"},
+        "MaxSlotsByChannel":{"shape":"ChannelToCountMap"},
+        "ActiveSlotsByChannel":{"shape":"ChannelToCountMap"},
+        "Contacts":{"shape":"AgentContactReferenceList"}
+      }
+    },
+    "UserDataFilters":{
+      "type":"structure",
+      "members":{
+        "Queues":{"shape":"Queues"},
+        "ContactFilter":{"shape":"ContactFilter"}
+      }
+    },
+    "UserDataList":{
+      "type":"list",
+      "member":{"shape":"UserData"}
+    },
     "UserId":{"type":"string"},
     "UserIdentityInfo":{
       "type":"structure",
@@ -8685,6 +8833,13 @@
       "members":{
         "UserId":{"shape":"UserId"},
         "ContactFlowId":{"shape":"ContactFlowId"}
+      }
+    },
+    "UserReference":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"UserId"},
+        "Arn":{"shape":"ARN"}
       }
     },
     "UserSearchConditionList":{
