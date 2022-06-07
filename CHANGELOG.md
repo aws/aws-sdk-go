@@ -1,3 +1,10 @@
+Release v1.44.29 (2022-06-07)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service API and documentation
+* `service/ce`: Updates service API, documentation, and paginators
+
 Release v1.44.28 (2022-06-06)
 ===
 

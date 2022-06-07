@@ -361,6 +361,19 @@
         {"shape":"UnresolvableUsageUnitException"}
       ]
     },
+    "ListCostAllocationTags":{
+      "name":"ListCostAllocationTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListCostAllocationTagsRequest"},
+      "output":{"shape":"ListCostAllocationTagsResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "ListCostCategoryDefinitions":{
       "name":"ListCostCategoryDefinitions",
       "http":{
@@ -450,6 +463,18 @@
         {"shape":"LimitExceededException"},
         {"shape":"UnknownMonitorException"},
         {"shape":"UnknownSubscriptionException"}
+      ]
+    },
+    "UpdateCostAllocationTagsStatus":{
+      "name":"UpdateCostAllocationTagsStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateCostAllocationTagsStatusRequest"},
+      "output":{"shape":"UpdateCostAllocationTagsStatusResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"}
       ]
     },
     "UpdateCostCategoryDefinition":{
@@ -608,6 +633,67 @@
         "RESERVATIONS",
         "SAVINGS_PLANS"
       ]
+    },
+    "CostAllocationTag":{
+      "type":"structure",
+      "required":[
+        "TagKey",
+        "Type",
+        "Status"
+      ],
+      "members":{
+        "TagKey":{"shape":"TagKey"},
+        "Type":{"shape":"CostAllocationTagType"},
+        "Status":{"shape":"CostAllocationTagStatus"}
+      }
+    },
+    "CostAllocationTagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":100,
+      "min":1
+    },
+    "CostAllocationTagList":{
+      "type":"list",
+      "member":{"shape":"CostAllocationTag"},
+      "max":100,
+      "min":0
+    },
+    "CostAllocationTagStatus":{
+      "type":"string",
+      "enum":[
+        "Active",
+        "Inactive"
+      ]
+    },
+    "CostAllocationTagStatusEntry":{
+      "type":"structure",
+      "required":[
+        "TagKey",
+        "Status"
+      ],
+      "members":{
+        "TagKey":{"shape":"TagKey"},
+        "Status":{"shape":"CostAllocationTagStatus"}
+      }
+    },
+    "CostAllocationTagStatusList":{
+      "type":"list",
+      "member":{"shape":"CostAllocationTagStatusEntry"},
+      "max":20,
+      "min":1
+    },
+    "CostAllocationTagType":{
+      "type":"string",
+      "enum":[
+        "AWSGenerated",
+        "UserDefined"
+      ]
+    },
+    "CostAllocationTagsMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
     },
     "CostCategory":{
       "type":"structure",
@@ -1698,6 +1784,26 @@
       },
       "exception":true
     },
+    "ListCostAllocationTagsRequest":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"CostAllocationTagStatus"},
+        "TagKeys":{"shape":"CostAllocationTagKeyList"},
+        "Type":{"shape":"CostAllocationTagType"},
+        "NextToken":{"shape":"NextPageToken"},
+        "MaxResults":{
+          "shape":"CostAllocationTagsMaxResults",
+          "box":true
+        }
+      }
+    },
+    "ListCostAllocationTagsResponse":{
+      "type":"structure",
+      "members":{
+        "CostAllocationTags":{"shape":"CostAllocationTagList"},
+        "NextToken":{"shape":"NextPageToken"}
+      }
+    },
     "ListCostCategoryDefinitionsRequest":{
       "type":"structure",
       "members":{
@@ -2610,6 +2716,33 @@
       "required":["SubscriptionArn"],
       "members":{
         "SubscriptionArn":{"shape":"GenericString"}
+      }
+    },
+    "UpdateCostAllocationTagsStatusError":{
+      "type":"structure",
+      "members":{
+        "TagKey":{"shape":"TagKey"},
+        "Code":{"shape":"GenericString"},
+        "Message":{"shape":"ErrorMessage"}
+      }
+    },
+    "UpdateCostAllocationTagsStatusErrors":{
+      "type":"list",
+      "member":{"shape":"UpdateCostAllocationTagsStatusError"},
+      "max":20,
+      "min":0
+    },
+    "UpdateCostAllocationTagsStatusRequest":{
+      "type":"structure",
+      "required":["CostAllocationTagsStatus"],
+      "members":{
+        "CostAllocationTagsStatus":{"shape":"CostAllocationTagStatusList"}
+      }
+    },
+    "UpdateCostAllocationTagsStatusResponse":{
+      "type":"structure",
+      "members":{
+        "Errors":{"shape":"UpdateCostAllocationTagsStatusErrors"}
       }
     },
     "UpdateCostCategoryDefinitionRequest":{

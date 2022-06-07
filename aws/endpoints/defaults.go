@@ -3301,6 +3301,13 @@ var awsPartition = partition{
 				},
 			},
 		},
+		"catalog.marketplace": service{
+			Endpoints: serviceEndpoints{
+				endpointKey{
+					Region: "us-east-1",
+				}: endpoint{},
+			},
+		},
 		"ce": service{
 			PartitionEndpoint: "aws-global",
 			IsRegionalized:    boxedFalse,

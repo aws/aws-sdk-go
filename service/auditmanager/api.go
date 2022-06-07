@@ -3403,8 +3403,7 @@ func (c *AuditManager) GetServicesInScopeRequest(input *GetServicesInScopeInput)
 
 // GetServicesInScope API operation for AWS Audit Manager.
 //
-// Returns a list of the in-scope Amazon Web Services services for the specified
-// assessment.
+// Returns a list of the in-scope Amazon Web Services for the specified assessment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5316,6 +5315,9 @@ func (c *AuditManager) RegisterAccountRequest(input *RegisterAccountInput) (req 
 //   * ResourceNotFoundException
 //   The resource that's specified in the request can't be found.
 //
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/RegisterAccount
 func (c *AuditManager) RegisterAccount(input *RegisterAccountInput) (*RegisterAccountOutput, error) {
 	req, out := c.RegisterAccountRequest(input)
@@ -5478,6 +5480,31 @@ func (c *AuditManager) StartAssessmentFrameworkShareRequest(input *StartAssessme
 // The share request specifies a recipient and notifies them that a custom framework
 // is available. Recipients have 120 days to accept or decline the request.
 // If no action is taken, the share request expires.
+//
+// When you create a share request, Audit Manager stores a snapshot of your
+// custom framework in the US East (N. Virginia) Amazon Web Services Region.
+// Audit Manager also stores a backup of the same snapshot in the US West (Oregon)
+// Amazon Web Services Region.
+//
+// Audit Manager deletes the snapshot and the backup snapshot when one of the
+// following events occurs:
+//
+//    * The sender revokes the share request.
+//
+//    * The recipient declines the share request.
+//
+//    * The recipient encounters an error and doesn't successfully accept the
+//    share request.
+//
+//    * The share request expires before the recipient responds to the request.
+//
+// When a sender resends a share request (https://docs.aws.amazon.com/audit-manager/latest/userguide/framework-sharing.html#framework-sharing-resend),
+// the snapshot is replaced with an updated version that corresponds with the
+// latest version of the custom framework.
+//
+// When a recipient accepts a share request, the snapshot is replicated into
+// their Amazon Web Services account under the Amazon Web Services Region that
+// was specified in the share request.
 //
 // When you invoke the StartAssessmentFrameworkShare API, you are about to share
 // a custom framework with another Amazon Web Services account. You may not
@@ -7007,7 +7034,7 @@ type AssessmentEvidenceFolder struct {
 
 	// The number of evidence that falls under the configuration data category.
 	// This evidence is collected from configuration snapshots of other Amazon Web
-	// Services services such as Amazon EC2, Amazon S3, or IAM.
+	// Services such as Amazon EC2, Amazon S3, or IAM.
 	EvidenceByTypeConfigurationDataCount *int64 `locationName:"evidenceByTypeConfigurationDataCount" type:"integer"`
 
 	// The number of evidence that falls under the manual category. This evidence
@@ -15388,7 +15415,9 @@ type Role struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the IAM role.
-	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
 
 	// The type of customer persona.
 	//
@@ -15397,7 +15426,9 @@ type Role struct {
 	// In UpdateSettings, roleType can only be PROCESS_OWNER.
 	//
 	// In BatchCreateDelegationByAssessment, roleType can only be RESOURCE_OWNER.
-	RoleType *string `locationName:"roleType" type:"string" enum:"RoleType"`
+	//
+	// RoleType is a required field
+	RoleType *string `locationName:"roleType" type:"string" required:"true" enum:"RoleType"`
 }
 
 // String returns the string representation.
@@ -15421,8 +15452,14 @@ func (s Role) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Role) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Role"}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
 	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.RoleType == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleType"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -15926,6 +15963,70 @@ func (s TagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+// The request was denied due to request throttling.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Short for uniform resource locator. A URL is used as a unique identifier
