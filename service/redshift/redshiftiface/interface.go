@@ -494,6 +494,10 @@ type RedshiftAPI interface {
 	GetClusterCredentialsWithContext(aws.Context, *redshift.GetClusterCredentialsInput, ...request.Option) (*redshift.GetClusterCredentialsOutput, error)
 	GetClusterCredentialsRequest(*redshift.GetClusterCredentialsInput) (*request.Request, *redshift.GetClusterCredentialsOutput)
 
+	GetClusterCredentialsWithIAM(*redshift.GetClusterCredentialsWithIAMInput) (*redshift.GetClusterCredentialsWithIAMOutput, error)
+	GetClusterCredentialsWithIAMWithContext(aws.Context, *redshift.GetClusterCredentialsWithIAMInput, ...request.Option) (*redshift.GetClusterCredentialsWithIAMOutput, error)
+	GetClusterCredentialsWithIAMRequest(*redshift.GetClusterCredentialsWithIAMInput) (*request.Request, *redshift.GetClusterCredentialsWithIAMOutput)
+
 	GetReservedNodeExchangeConfigurationOptions(*redshift.GetReservedNodeExchangeConfigurationOptionsInput) (*redshift.GetReservedNodeExchangeConfigurationOptionsOutput, error)
 	GetReservedNodeExchangeConfigurationOptionsWithContext(aws.Context, *redshift.GetReservedNodeExchangeConfigurationOptionsInput, ...request.Option) (*redshift.GetReservedNodeExchangeConfigurationOptionsOutput, error)
 	GetReservedNodeExchangeConfigurationOptionsRequest(*redshift.GetReservedNodeExchangeConfigurationOptionsInput) (*request.Request, *redshift.GetReservedNodeExchangeConfigurationOptionsOutput)

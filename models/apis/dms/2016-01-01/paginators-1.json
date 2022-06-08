@@ -40,6 +40,31 @@
       "output_token": "Marker",
       "limit_key": "MaxRecords"
     },
+    "DescribeFleetAdvisorCollectors": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxRecords"
+    },
+    "DescribeFleetAdvisorDatabases": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxRecords"
+    },
+    "DescribeFleetAdvisorLsaAnalysis": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxRecords"
+    },
+    "DescribeFleetAdvisorSchemaObjectSummary": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxRecords"
+    },
+    "DescribeFleetAdvisorSchemas": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxRecords"
+    },
     "DescribeOrderableReplicationInstances": {
       "input_token": "Marker",
       "output_token": "Marker",

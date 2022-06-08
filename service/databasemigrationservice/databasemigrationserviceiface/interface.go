@@ -80,6 +80,10 @@ type DatabaseMigrationServiceAPI interface {
 	CreateEventSubscriptionWithContext(aws.Context, *databasemigrationservice.CreateEventSubscriptionInput, ...request.Option) (*databasemigrationservice.CreateEventSubscriptionOutput, error)
 	CreateEventSubscriptionRequest(*databasemigrationservice.CreateEventSubscriptionInput) (*request.Request, *databasemigrationservice.CreateEventSubscriptionOutput)
 
+	CreateFleetAdvisorCollector(*databasemigrationservice.CreateFleetAdvisorCollectorInput) (*databasemigrationservice.CreateFleetAdvisorCollectorOutput, error)
+	CreateFleetAdvisorCollectorWithContext(aws.Context, *databasemigrationservice.CreateFleetAdvisorCollectorInput, ...request.Option) (*databasemigrationservice.CreateFleetAdvisorCollectorOutput, error)
+	CreateFleetAdvisorCollectorRequest(*databasemigrationservice.CreateFleetAdvisorCollectorInput) (*request.Request, *databasemigrationservice.CreateFleetAdvisorCollectorOutput)
+
 	CreateReplicationInstance(*databasemigrationservice.CreateReplicationInstanceInput) (*databasemigrationservice.CreateReplicationInstanceOutput, error)
 	CreateReplicationInstanceWithContext(aws.Context, *databasemigrationservice.CreateReplicationInstanceInput, ...request.Option) (*databasemigrationservice.CreateReplicationInstanceOutput, error)
 	CreateReplicationInstanceRequest(*databasemigrationservice.CreateReplicationInstanceInput) (*request.Request, *databasemigrationservice.CreateReplicationInstanceOutput)
@@ -107,6 +111,14 @@ type DatabaseMigrationServiceAPI interface {
 	DeleteEventSubscription(*databasemigrationservice.DeleteEventSubscriptionInput) (*databasemigrationservice.DeleteEventSubscriptionOutput, error)
 	DeleteEventSubscriptionWithContext(aws.Context, *databasemigrationservice.DeleteEventSubscriptionInput, ...request.Option) (*databasemigrationservice.DeleteEventSubscriptionOutput, error)
 	DeleteEventSubscriptionRequest(*databasemigrationservice.DeleteEventSubscriptionInput) (*request.Request, *databasemigrationservice.DeleteEventSubscriptionOutput)
+
+	DeleteFleetAdvisorCollector(*databasemigrationservice.DeleteFleetAdvisorCollectorInput) (*databasemigrationservice.DeleteFleetAdvisorCollectorOutput, error)
+	DeleteFleetAdvisorCollectorWithContext(aws.Context, *databasemigrationservice.DeleteFleetAdvisorCollectorInput, ...request.Option) (*databasemigrationservice.DeleteFleetAdvisorCollectorOutput, error)
+	DeleteFleetAdvisorCollectorRequest(*databasemigrationservice.DeleteFleetAdvisorCollectorInput) (*request.Request, *databasemigrationservice.DeleteFleetAdvisorCollectorOutput)
+
+	DeleteFleetAdvisorDatabases(*databasemigrationservice.DeleteFleetAdvisorDatabasesInput) (*databasemigrationservice.DeleteFleetAdvisorDatabasesOutput, error)
+	DeleteFleetAdvisorDatabasesWithContext(aws.Context, *databasemigrationservice.DeleteFleetAdvisorDatabasesInput, ...request.Option) (*databasemigrationservice.DeleteFleetAdvisorDatabasesOutput, error)
+	DeleteFleetAdvisorDatabasesRequest(*databasemigrationservice.DeleteFleetAdvisorDatabasesInput) (*request.Request, *databasemigrationservice.DeleteFleetAdvisorDatabasesOutput)
 
 	DeleteReplicationInstance(*databasemigrationservice.DeleteReplicationInstanceInput) (*databasemigrationservice.DeleteReplicationInstanceOutput, error)
 	DeleteReplicationInstanceWithContext(aws.Context, *databasemigrationservice.DeleteReplicationInstanceInput, ...request.Option) (*databasemigrationservice.DeleteReplicationInstanceOutput, error)
@@ -187,6 +199,41 @@ type DatabaseMigrationServiceAPI interface {
 
 	DescribeEventsPages(*databasemigrationservice.DescribeEventsInput, func(*databasemigrationservice.DescribeEventsOutput, bool) bool) error
 	DescribeEventsPagesWithContext(aws.Context, *databasemigrationservice.DescribeEventsInput, func(*databasemigrationservice.DescribeEventsOutput, bool) bool, ...request.Option) error
+
+	DescribeFleetAdvisorCollectors(*databasemigrationservice.DescribeFleetAdvisorCollectorsInput) (*databasemigrationservice.DescribeFleetAdvisorCollectorsOutput, error)
+	DescribeFleetAdvisorCollectorsWithContext(aws.Context, *databasemigrationservice.DescribeFleetAdvisorCollectorsInput, ...request.Option) (*databasemigrationservice.DescribeFleetAdvisorCollectorsOutput, error)
+	DescribeFleetAdvisorCollectorsRequest(*databasemigrationservice.DescribeFleetAdvisorCollectorsInput) (*request.Request, *databasemigrationservice.DescribeFleetAdvisorCollectorsOutput)
+
+	DescribeFleetAdvisorCollectorsPages(*databasemigrationservice.DescribeFleetAdvisorCollectorsInput, func(*databasemigrationservice.DescribeFleetAdvisorCollectorsOutput, bool) bool) error
+	DescribeFleetAdvisorCollectorsPagesWithContext(aws.Context, *databasemigrationservice.DescribeFleetAdvisorCollectorsInput, func(*databasemigrationservice.DescribeFleetAdvisorCollectorsOutput, bool) bool, ...request.Option) error
+
+	DescribeFleetAdvisorDatabases(*databasemigrationservice.DescribeFleetAdvisorDatabasesInput) (*databasemigrationservice.DescribeFleetAdvisorDatabasesOutput, error)
+	DescribeFleetAdvisorDatabasesWithContext(aws.Context, *databasemigrationservice.DescribeFleetAdvisorDatabasesInput, ...request.Option) (*databasemigrationservice.DescribeFleetAdvisorDatabasesOutput, error)
+	DescribeFleetAdvisorDatabasesRequest(*databasemigrationservice.DescribeFleetAdvisorDatabasesInput) (*request.Request, *databasemigrationservice.DescribeFleetAdvisorDatabasesOutput)
+
+	DescribeFleetAdvisorDatabasesPages(*databasemigrationservice.DescribeFleetAdvisorDatabasesInput, func(*databasemigrationservice.DescribeFleetAdvisorDatabasesOutput, bool) bool) error
+	DescribeFleetAdvisorDatabasesPagesWithContext(aws.Context, *databasemigrationservice.DescribeFleetAdvisorDatabasesInput, func(*databasemigrationservice.DescribeFleetAdvisorDatabasesOutput, bool) bool, ...request.Option) error
+
+	DescribeFleetAdvisorLsaAnalysis(*databasemigrationservice.DescribeFleetAdvisorLsaAnalysisInput) (*databasemigrationservice.DescribeFleetAdvisorLsaAnalysisOutput, error)
+	DescribeFleetAdvisorLsaAnalysisWithContext(aws.Context, *databasemigrationservice.DescribeFleetAdvisorLsaAnalysisInput, ...request.Option) (*databasemigrationservice.DescribeFleetAdvisorLsaAnalysisOutput, error)
+	DescribeFleetAdvisorLsaAnalysisRequest(*databasemigrationservice.DescribeFleetAdvisorLsaAnalysisInput) (*request.Request, *databasemigrationservice.DescribeFleetAdvisorLsaAnalysisOutput)
+
+	DescribeFleetAdvisorLsaAnalysisPages(*databasemigrationservice.DescribeFleetAdvisorLsaAnalysisInput, func(*databasemigrationservice.DescribeFleetAdvisorLsaAnalysisOutput, bool) bool) error
+	DescribeFleetAdvisorLsaAnalysisPagesWithContext(aws.Context, *databasemigrationservice.DescribeFleetAdvisorLsaAnalysisInput, func(*databasemigrationservice.DescribeFleetAdvisorLsaAnalysisOutput, bool) bool, ...request.Option) error
+
+	DescribeFleetAdvisorSchemaObjectSummary(*databasemigrationservice.DescribeFleetAdvisorSchemaObjectSummaryInput) (*databasemigrationservice.DescribeFleetAdvisorSchemaObjectSummaryOutput, error)
+	DescribeFleetAdvisorSchemaObjectSummaryWithContext(aws.Context, *databasemigrationservice.DescribeFleetAdvisorSchemaObjectSummaryInput, ...request.Option) (*databasemigrationservice.DescribeFleetAdvisorSchemaObjectSummaryOutput, error)
+	DescribeFleetAdvisorSchemaObjectSummaryRequest(*databasemigrationservice.DescribeFleetAdvisorSchemaObjectSummaryInput) (*request.Request, *databasemigrationservice.DescribeFleetAdvisorSchemaObjectSummaryOutput)
+
+	DescribeFleetAdvisorSchemaObjectSummaryPages(*databasemigrationservice.DescribeFleetAdvisorSchemaObjectSummaryInput, func(*databasemigrationservice.DescribeFleetAdvisorSchemaObjectSummaryOutput, bool) bool) error
+	DescribeFleetAdvisorSchemaObjectSummaryPagesWithContext(aws.Context, *databasemigrationservice.DescribeFleetAdvisorSchemaObjectSummaryInput, func(*databasemigrationservice.DescribeFleetAdvisorSchemaObjectSummaryOutput, bool) bool, ...request.Option) error
+
+	DescribeFleetAdvisorSchemas(*databasemigrationservice.DescribeFleetAdvisorSchemasInput) (*databasemigrationservice.DescribeFleetAdvisorSchemasOutput, error)
+	DescribeFleetAdvisorSchemasWithContext(aws.Context, *databasemigrationservice.DescribeFleetAdvisorSchemasInput, ...request.Option) (*databasemigrationservice.DescribeFleetAdvisorSchemasOutput, error)
+	DescribeFleetAdvisorSchemasRequest(*databasemigrationservice.DescribeFleetAdvisorSchemasInput) (*request.Request, *databasemigrationservice.DescribeFleetAdvisorSchemasOutput)
+
+	DescribeFleetAdvisorSchemasPages(*databasemigrationservice.DescribeFleetAdvisorSchemasInput, func(*databasemigrationservice.DescribeFleetAdvisorSchemasOutput, bool) bool) error
+	DescribeFleetAdvisorSchemasPagesWithContext(aws.Context, *databasemigrationservice.DescribeFleetAdvisorSchemasInput, func(*databasemigrationservice.DescribeFleetAdvisorSchemasOutput, bool) bool, ...request.Option) error
 
 	DescribeOrderableReplicationInstances(*databasemigrationservice.DescribeOrderableReplicationInstancesInput) (*databasemigrationservice.DescribeOrderableReplicationInstancesOutput, error)
 	DescribeOrderableReplicationInstancesWithContext(aws.Context, *databasemigrationservice.DescribeOrderableReplicationInstancesInput, ...request.Option) (*databasemigrationservice.DescribeOrderableReplicationInstancesOutput, error)
@@ -316,6 +363,10 @@ type DatabaseMigrationServiceAPI interface {
 	RemoveTagsFromResource(*databasemigrationservice.RemoveTagsFromResourceInput) (*databasemigrationservice.RemoveTagsFromResourceOutput, error)
 	RemoveTagsFromResourceWithContext(aws.Context, *databasemigrationservice.RemoveTagsFromResourceInput, ...request.Option) (*databasemigrationservice.RemoveTagsFromResourceOutput, error)
 	RemoveTagsFromResourceRequest(*databasemigrationservice.RemoveTagsFromResourceInput) (*request.Request, *databasemigrationservice.RemoveTagsFromResourceOutput)
+
+	RunFleetAdvisorLsaAnalysis(*databasemigrationservice.RunFleetAdvisorLsaAnalysisInput) (*databasemigrationservice.RunFleetAdvisorLsaAnalysisOutput, error)
+	RunFleetAdvisorLsaAnalysisWithContext(aws.Context, *databasemigrationservice.RunFleetAdvisorLsaAnalysisInput, ...request.Option) (*databasemigrationservice.RunFleetAdvisorLsaAnalysisOutput, error)
+	RunFleetAdvisorLsaAnalysisRequest(*databasemigrationservice.RunFleetAdvisorLsaAnalysisInput) (*request.Request, *databasemigrationservice.RunFleetAdvisorLsaAnalysisOutput)
 
 	StartReplicationTask(*databasemigrationservice.StartReplicationTaskInput) (*databasemigrationservice.StartReplicationTaskOutput, error)
 	StartReplicationTaskWithContext(aws.Context, *databasemigrationservice.StartReplicationTaskInput, ...request.Option) (*databasemigrationservice.StartReplicationTaskOutput, error)
