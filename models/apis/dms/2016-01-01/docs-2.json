@@ -7,6 +7,7 @@
     "CancelReplicationTaskAssessmentRun": "<p>Cancels a single premigration assessment run.</p> <p>This operation prevents any individual assessments from running if they haven't started running. It also attempts to cancel any individual assessments that are currently running.</p>",
     "CreateEndpoint": "<p>Creates an endpoint using the provided settings.</p> <note> <p>For a MySQL source or target endpoint, don't explicitly specify the database using the <code>DatabaseName</code> request parameter on the <code>CreateEndpoint</code> API call. Specifying <code>DatabaseName</code> when you create a MySQL endpoint replicates all the task tables to this single database. For MySQL endpoints, you specify the database only when you specify the schema in the table-mapping rules of the DMS task.</p> </note>",
     "CreateEventSubscription": "<p> Creates an DMS event notification subscription. </p> <p>You can specify the type of source (<code>SourceType</code>) you want to be notified of, provide a list of DMS source IDs (<code>SourceIds</code>) that triggers the events, and provide a list of event categories (<code>EventCategories</code>) for events you want to be notified of. If you specify both the <code>SourceType</code> and <code>SourceIds</code>, such as <code>SourceType = replication-instance</code> and <code>SourceIdentifier = my-replinstance</code>, you will be notified of all the replication instance events for the specified source. If you specify a <code>SourceType</code> but don't specify a <code>SourceIdentifier</code>, you receive notice of the events for that source type for all your DMS sources. If you don't specify either <code>SourceType</code> nor <code>SourceIdentifier</code>, you will be notified of events generated from all DMS sources belonging to your customer account.</p> <p>For more information about DMS events, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html\">Working with Events and Notifications</a> in the <i>Database Migration Service User Guide.</i> </p>",
+    "CreateFleetAdvisorCollector": "<p>Creates a Fleet Advisor collector using the specified parameters.</p>",
     "CreateReplicationInstance": "<p>Creates the replication instance using the specified parameters.</p> <p>DMS requires that your account have certain roles with appropriate permissions before you can create a replication instance. For information on the required roles, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#CHAP_Security.APIRole\">Creating the IAM Roles to Use With the CLI and DMS API</a>. For information on the required permissions, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#CHAP_Security.IAMPermissions\">IAM Permissions Needed to Use DMS</a>.</p>",
     "CreateReplicationSubnetGroup": "<p>Creates a replication subnet group given a list of the subnet IDs in a VPC.</p> <p>The VPC needs to have at least one subnet in at least two availability zones in the Amazon Web Services Region, otherwise the service will throw a <code>ReplicationSubnetGroupDoesNotCoverEnoughAZs</code> exception.</p>",
     "CreateReplicationTask": "<p>Creates a replication task using the specified parameters.</p>",
@@ -14,6 +15,8 @@
     "DeleteConnection": "<p>Deletes the connection between a replication instance and an endpoint.</p>",
     "DeleteEndpoint": "<p>Deletes the specified endpoint.</p> <note> <p>All tasks associated with the endpoint must be deleted before you can delete the endpoint.</p> </note> <p/>",
     "DeleteEventSubscription": "<p> Deletes an DMS event subscription. </p>",
+    "DeleteFleetAdvisorCollector": "<p>Deletes the specified Fleet Advisor collector.</p>",
+    "DeleteFleetAdvisorDatabases": "<p>Deletes the specified Fleet Advisor collector databases.</p>",
     "DeleteReplicationInstance": "<p>Deletes the specified replication instance.</p> <note> <p>You must delete any migration tasks that are associated with the replication instance before you can delete it.</p> </note> <p/>",
     "DeleteReplicationSubnetGroup": "<p>Deletes a subnet group.</p>",
     "DeleteReplicationTask": "<p>Deletes the specified replication task.</p>",
@@ -28,6 +31,11 @@
     "DescribeEventCategories": "<p>Lists categories for all event source types, or, if specified, for a specified source type. You can see a list of the event categories and source types in <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html\">Working with Events and Notifications</a> in the <i>Database Migration Service User Guide.</i> </p>",
     "DescribeEventSubscriptions": "<p>Lists all the event subscriptions for a customer account. The description of a subscription includes <code>SubscriptionName</code>, <code>SNSTopicARN</code>, <code>CustomerID</code>, <code>SourceType</code>, <code>SourceID</code>, <code>CreationTime</code>, and <code>Status</code>. </p> <p>If you specify <code>SubscriptionName</code>, this action lists the description for that subscription.</p>",
     "DescribeEvents": "<p> Lists events for a given source identifier and source type. You can also specify a start and end time. For more information on DMS events, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html\">Working with Events and Notifications</a> in the <i>Database Migration Service User Guide.</i> </p>",
+    "DescribeFleetAdvisorCollectors": "<p>Returns a list of the Fleet Advisor collectors in your account.</p>",
+    "DescribeFleetAdvisorDatabases": "<p>Returns a list of Fleet Advisor databases in your account.</p>",
+    "DescribeFleetAdvisorLsaAnalysis": "<p>Provides descriptions of large-scale assessment (LSA) analyses produced by your Fleet Advisor collectors. </p>",
+    "DescribeFleetAdvisorSchemaObjectSummary": "<p>Provides descriptions of the schemas discovered by your Fleet Advisor collectors.</p>",
+    "DescribeFleetAdvisorSchemas": "<p>Returns a list of schemas detected by Fleet Advisor Collectors in your account.</p>",
     "DescribeOrderableReplicationInstances": "<p>Returns information about the replication instance types that can be created in the specified region.</p>",
     "DescribePendingMaintenanceActions": "<p>For internal use only</p>",
     "DescribeRefreshSchemasStatus": "<p>Returns the status of the RefreshSchemas operation.</p>",
@@ -52,6 +60,7 @@
     "RefreshSchemas": "<p>Populates the schema for the specified endpoint. This is an asynchronous operation and can take several minutes. You can check the status of this operation by calling the DescribeRefreshSchemasStatus operation.</p>",
     "ReloadTables": "<p>Reloads the target database table with the source data. </p> <p>You can only use this operation with a task in the <code>RUNNING</code> state, otherwise the service will throw an <code>InvalidResourceStateFault</code> exception.</p>",
     "RemoveTagsFromResource": "<p>Removes metadata tags from an DMS resource, including replication instance, endpoint, security group, and migration task. For more information, see <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_Tag.html\"> <code>Tag</code> </a> data type description.</p>",
+    "RunFleetAdvisorLsaAnalysis": "<p>Runs large-scale assessment (LSA) analysis on every Fleet Advisor collector in your account.</p>",
     "StartReplicationTask": "<p>Starts the replication task.</p> <p>For more information about DMS tasks, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.html\">Working with Migration Tasks </a> in the <i>Database Migration Service User Guide.</i> </p>",
     "StartReplicationTaskAssessment": "<p> Starts the replication task assessment for unsupported data types in the source database. </p> <p>You can only use this operation for a task if the following conditions are true:</p> <ul> <li> <p>The task must be in the <code>stopped</code> state.</p> </li> <li> <p>The task must have successful connections to the source and target.</p> </li> </ul> <p>If either of these conditions are not met, an <code>InvalidResourceStateFault</code> error will result. </p> <p>For information about DMS task assessments, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.AssessmentReport.html\">Creating a task assessment report</a> in the <i>Database Migration Service User Guide</i>.</p>",
     "StartReplicationTaskAssessmentRun": "<p>Starts a new premigration assessment run for one or more individual assessments of a migration task.</p> <p>The assessments that you can specify depend on the source and target database engine and the migration type defined for the given task. To run this operation, your migration task must already be created. After you run this operation, you can review the status of each individual assessment. You can also run the migration task manually after the assessment run and its individual assessments complete.</p>",
@@ -141,6 +150,9 @@
     "BooleanOptional": {
       "base": null,
       "refs": {
+        "CollectorHealthCheck$LocalCollectorS3Access": "<p>Whether the local collector can access its Amazon S3 bucket.</p>",
+        "CollectorHealthCheck$WebCollectorS3Access": "<p>Whether the web collector can access its Amazon S3 bucket.</p>",
+        "CollectorHealthCheck$WebCollectorGrantedRoleBasedAccess": "<p>Whether the role that you provided when creating the Fleet Advisor collector has sufficient permissions to access the Fleet Advisor web collector.</p>",
         "CreateEventSubscriptionMessage$Enabled": "<p> A Boolean value; set to <code>true</code> to activate the subscription, or set to <code>false</code> to create the subscription but not activate it. </p>",
         "CreateReplicationInstanceMessage$MultiAZ": "<p> Specifies whether the replication instance is a Multi-AZ deployment. You can't set the <code>AvailabilityZone</code> parameter if the Multi-AZ parameter is set to <code>true</code>. </p>",
         "CreateReplicationInstanceMessage$AutoMinorVersionUpgrade": "<p>A value that indicates whether minor engine upgrades are applied automatically to the replication instance during the maintenance window. This parameter defaults to <code>true</code>.</p> <p>Default: <code>true</code> </p>",
@@ -259,6 +271,47 @@
         "OracleSettings$CharLengthSemantics": "<p>Specifies whether the length of a character column is in bytes or in characters. To indicate that the character column length is in characters, set this attribute to <code>CHAR</code>. Otherwise, the character column length is in bytes.</p> <p>Example: <code>charLengthSemantics=CHAR;</code> </p>"
       }
     },
+    "CollectorHealthCheck": {
+      "base": "<p>Describes the last Fleet Advisor collector health check.</p>",
+      "refs": {
+        "CollectorResponse$CollectorHealthCheck": null
+      }
+    },
+    "CollectorNotFoundFault": {
+      "base": "<p>The specified collector doesn't exist.</p>",
+      "refs": {
+      }
+    },
+    "CollectorResponse": {
+      "base": "<p>Describes a Fleet Advisor collector.</p>",
+      "refs": {
+        "CollectorResponses$member": null
+      }
+    },
+    "CollectorResponses": {
+      "base": null,
+      "refs": {
+        "DescribeFleetAdvisorCollectorsResponse$Collectors": "<p>Provides descriptions of the Fleet Advisor collectors, including the collectors' name and ID, and the latest inventory data. </p>"
+      }
+    },
+    "CollectorShortInfoResponse": {
+      "base": "<p>Briefly describes a Fleet Advisor collector.</p>",
+      "refs": {
+        "CollectorsList$member": null
+      }
+    },
+    "CollectorStatus": {
+      "base": null,
+      "refs": {
+        "CollectorHealthCheck$CollectorStatus": "<p>The status of the Fleet Advisor collector.</p>"
+      }
+    },
+    "CollectorsList": {
+      "base": null,
+      "refs": {
+        "DatabaseResponse$Collectors": "<p>A list of collectors associated with the database.</p>"
+      }
+    },
     "CompressionTypeValue": {
       "base": null,
       "refs": {
@@ -299,6 +352,16 @@
       "refs": {
       }
     },
+    "CreateFleetAdvisorCollectorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFleetAdvisorCollectorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateReplicationInstanceMessage": {
       "base": "<p/>",
       "refs": {
@@ -335,6 +398,30 @@
         "S3Settings$DataFormat": "<p>The format of the data that you want to use for output. You can choose one of the following: </p> <ul> <li> <p> <code>csv</code> : This is a row-based file format with comma-separated values (.csv). </p> </li> <li> <p> <code>parquet</code> : Apache Parquet (.parquet) is a columnar storage file format that features efficient compression and provides faster query response. </p> </li> </ul>"
       }
     },
+    "DatabaseInstanceSoftwareDetailsResponse": {
+      "base": "<p>Describes an inventory database instance for a Fleet Advisor collector.</p>",
+      "refs": {
+        "DatabaseResponse$SoftwareDetails": "<p>The software details of a database in a Fleet Advisor collector inventory, such as database engine and version.</p>"
+      }
+    },
+    "DatabaseList": {
+      "base": null,
+      "refs": {
+        "DescribeFleetAdvisorDatabasesResponse$Databases": "<p>Provides descriptions of the Fleet Advisor collector databases, including the database's collector, ID, and name.</p>"
+      }
+    },
+    "DatabaseResponse": {
+      "base": "<p>Describes a database in a Fleet Advisor collector inventory.</p>",
+      "refs": {
+        "DatabaseList$member": null
+      }
+    },
+    "DatabaseShortInfoResponse": {
+      "base": "<p>Describes a database in a Fleet Advisor collector inventory.</p>",
+      "refs": {
+        "SchemaResponse$DatabaseInstance": "<p>The database for a schema in a Fleet Advisor collector inventory.</p>"
+      }
+    },
     "DatePartitionDelimiterValue": {
       "base": null,
       "refs": {
@@ -353,6 +440,11 @@
       }
     },
     "DeleteCertificateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCollectorRequest": {
       "base": null,
       "refs": {
       }
@@ -384,6 +476,16 @@
     },
     "DeleteEventSubscriptionResponse": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "DeleteFleetAdvisorDatabasesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteFleetAdvisorDatabasesResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -524,6 +626,56 @@
     },
     "DescribeEventsResponse": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "DescribeFleetAdvisorCollectorsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFleetAdvisorCollectorsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFleetAdvisorDatabasesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFleetAdvisorDatabasesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFleetAdvisorLsaAnalysisRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFleetAdvisorLsaAnalysisResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFleetAdvisorSchemaObjectSummaryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFleetAdvisorSchemaObjectSummaryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFleetAdvisorSchemasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFleetAdvisorSchemasResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -671,6 +823,12 @@
         "ModifyEndpointMessage$DocDbSettings": "<p>Settings in JSON format for the source DocumentDB endpoint. For more information about the available settings, see the configuration properties section in <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.DocumentDB.html\"> Using DocumentDB as a Target for Database Migration Service </a> in the <i>Database Migration Service User Guide.</i> </p>"
       }
     },
+    "DoubleOptional": {
+      "base": null,
+      "refs": {
+        "SchemaResponse$Similarity": "<p>The similarity value for a schema in a Fleet Advisor collector inventory. A higher similarity value indicates that a schema is likely to be a duplicate.</p>"
+      }
+    },
     "DynamoDbSettings": {
       "base": "<p>Provides the Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role used to define an Amazon DynamoDB target endpoint.</p>",
       "refs": {
@@ -793,8 +951,10 @@
       "base": null,
       "refs": {
         "AccessDeniedFault$message": "<p/>",
+        "CollectorNotFoundFault$message": null,
         "InsufficientResourceCapacityFault$message": "<p/>",
         "InvalidCertificateFault$message": null,
+        "InvalidOperationFault$message": null,
         "InvalidResourceStateFault$message": "<p/>",
         "InvalidSubnet$message": "<p/>",
         "KMSAccessDeniedFault$message": null,
@@ -839,6 +999,10 @@
         "DescribeEventCategoriesMessage$Filters": "<p>Filters applied to the event categories.</p>",
         "DescribeEventSubscriptionsMessage$Filters": "<p>Filters applied to event subscriptions.</p> <p>Valid filter names: event-subscription-arn | event-subscription-id </p>",
         "DescribeEventsMessage$Filters": "<p>Filters applied to events. The only valid filter is <code>replication-instance-id</code>.</p>",
+        "DescribeFleetAdvisorCollectorsRequest$Filters": "<p> If you specify any of the following filters, the output includes information for only those collectors that meet the filter criteria:</p> <ul> <li> <p> <code>collector-referenced-id</code> – The ID of the collector agent, for example <code>d4610ac5-e323-4ad9-bc50-eaf7249dfe9d</code>.</p> </li> <li> <p> <code>collector-name</code> – The name of the collector agent.</p> </li> </ul> <p>An example is: <code>describe-fleet-advisor-collectors --filter Name=\"collector-referenced-id\",Values=\"d4610ac5-e323-4ad9-bc50-eaf7249dfe9d\"</code> </p>",
+        "DescribeFleetAdvisorDatabasesRequest$Filters": "<p> If you specify any of the following filters, the output includes information for only those databases that meet the filter criteria: </p> <ul> <li> <p> <code>database-id</code> – The ID of the database, for example <code>d4610ac5-e323-4ad9-bc50-eaf7249dfe9d</code>.</p> </li> <li> <p> <code>database-name</code> – The name of the database.</p> </li> <li> <p> <code>database-engine</code> – The name of the database engine.</p> </li> <li> <p> <code>server-ip-address</code> – The IP address of the database server.</p> </li> <li> <p> <code>database-ip-address</code> – The IP address of the database.</p> </li> <li> <p> <code>collector-name</code> – The name of the associated Fleet Advisor collector.</p> </li> </ul> <p>An example is: <code>describe-fleet-advisor-databases --filter Name=\"database-id\",Values=\"d4610ac5-e323-4ad9-bc50-eaf7249dfe9d\"</code> </p>",
+        "DescribeFleetAdvisorSchemaObjectSummaryRequest$Filters": "<p> If you specify any of the following filters, the output includes information for only those schema objects that meet the filter criteria:</p> <ul> <li> <p> <code>schema-id</code> – The ID of the schema, for example <code>d4610ac5-e323-4ad9-bc50-eaf7249dfe9d</code>.</p> </li> </ul> <p>Example: <code>describe-fleet-advisor-schema-object-summary --filter Name=\"schema-id\",Values=\"50\"</code> </p>",
+        "DescribeFleetAdvisorSchemasRequest$Filters": "<p> If you specify any of the following filters, the output includes information for only those schemas that meet the filter criteria:</p> <ul> <li> <p> <code>complexity</code> – The schema's complexity, for example <code>Simple</code>.</p> </li> <li> <p> <code>database-id</code> – The ID of the schema's database.</p> </li> <li> <p> <code>database-ip-address</code> – The IP address of the schema's database.</p> </li> <li> <p> <code>database-name</code> – The name of the schema's database.</p> </li> <li> <p> <code>database-engine</code> – The name of the schema database's engine.</p> </li> <li> <p> <code>original-schema-name</code> – The name of the schema's database's main schema.</p> </li> <li> <p> <code>schema-id</code> – The ID of the schema, for example <code>15</code>.</p> </li> <li> <p> <code>schema-name</code> – The name of the schema.</p> </li> <li> <p> <code>server-ip-address</code> – The IP address of the schema database's server.</p> </li> </ul> <p>An example is: <code>describe-fleet-advisor-schemas --filter Name=\"schema-id\",Values=\"50\"</code> </p>",
         "DescribePendingMaintenanceActionsMessage$Filters": "<p/>",
         "DescribeReplicationInstancesMessage$Filters": "<p>Filters applied to replication instances.</p> <p>Valid filter names: replication-instance-arn | replication-instance-id | replication-instance-class | engine-version</p>",
         "DescribeReplicationSubnetGroupsMessage$Filters": "<p>Filters applied to replication subnet groups.</p> <p>Valid filter names: replication-subnet-group-id</p>",
@@ -852,6 +1016,36 @@
       "base": null,
       "refs": {
         "Filter$Values": "<p>The filter value, which can specify one or more values used to narrow the returned results.</p>"
+      }
+    },
+    "FleetAdvisorLsaAnalysisResponse": {
+      "base": "<p>Describes a large-scale assessment (LSA) analysis run by a Fleet Advisor collector.</p>",
+      "refs": {
+        "FleetAdvisorLsaAnalysisResponseList$member": null
+      }
+    },
+    "FleetAdvisorLsaAnalysisResponseList": {
+      "base": null,
+      "refs": {
+        "DescribeFleetAdvisorLsaAnalysisResponse$Analysis": "<p>A list of <code>FleetAdvisorLsaAnalysisResponse</code> objects.</p>"
+      }
+    },
+    "FleetAdvisorSchemaList": {
+      "base": null,
+      "refs": {
+        "DescribeFleetAdvisorSchemasResponse$FleetAdvisorSchemas": "<p>A collection of <code>SchemaResponse</code> objects.</p>"
+      }
+    },
+    "FleetAdvisorSchemaObjectList": {
+      "base": null,
+      "refs": {
+        "DescribeFleetAdvisorSchemaObjectSummaryResponse$FleetAdvisorSchemaObjects": "<p>A collection of <code>FleetAdvisorSchemaObjectResponse</code> objects.</p>"
+      }
+    },
+    "FleetAdvisorSchemaObjectResponse": {
+      "base": "<p>Describes a schema object in a Fleet Advisor collector inventory.</p>",
+      "refs": {
+        "FleetAdvisorSchemaObjectList$member": null
       }
     },
     "GcpMySQLSettings": {
@@ -928,6 +1122,7 @@
         "Certificate$KeyLength": "<p>The key length of the cryptographic algorithm being used.</p>",
         "CreateEndpointMessage$Port": "<p>The port used by the endpoint database.</p>",
         "CreateReplicationInstanceMessage$AllocatedStorage": "<p>The amount of storage (in gigabytes) to be initially allocated for the replication instance.</p>",
+        "DatabaseInstanceSoftwareDetailsResponse$OsArchitecture": "<p>The operating system architecture of the database.</p>",
         "DescribeApplicableIndividualAssessmentsMessage$MaxRecords": "<p>Maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.</p>",
         "DescribeCertificatesMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 10</p>",
         "DescribeConnectionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
@@ -937,6 +1132,11 @@
         "DescribeEventSubscriptionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeEventsMessage$Duration": "<p>The duration of the events to be listed.</p>",
         "DescribeEventsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
+        "DescribeFleetAdvisorCollectorsRequest$MaxRecords": "<p>Sets the maximum number of records returned in the response.</p>",
+        "DescribeFleetAdvisorDatabasesRequest$MaxRecords": "<p>Sets the maximum number of records returned in the response.</p>",
+        "DescribeFleetAdvisorLsaAnalysisRequest$MaxRecords": "<p>Sets the maximum number of records returned in the response.</p>",
+        "DescribeFleetAdvisorSchemaObjectSummaryRequest$MaxRecords": "<p>Sets the maximum number of records returned in the response.</p>",
+        "DescribeFleetAdvisorSchemasRequest$MaxRecords": "<p>Sets the maximum number of records returned in the response.</p>",
         "DescribeOrderableReplicationInstancesMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribePendingMaintenanceActionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeReplicationInstanceTaskLogsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
@@ -961,6 +1161,8 @@
         "GcpMySQLSettings$Port": "<p/>",
         "IBMDb2Settings$Port": "<p>Endpoint TCP port. The default value is 50000.</p>",
         "IBMDb2Settings$MaxKBytesPerRead": "<p>Maximum number of bytes per read, as a NUMBER value. The default is 64 KB.</p>",
+        "InventoryData$NumberOfDatabases": "<p>The number of databases in the Fleet Advisor collector inventory.</p>",
+        "InventoryData$NumberOfSchemas": "<p>The number of schemas in the Fleet Advisor collector inventory.</p>",
         "KafkaSettings$MessageMaxBytes": "<p>The maximum size in bytes for records created on the endpoint The default is 1,000,000.</p>",
         "MicrosoftSQLServerSettings$Port": "<p>Endpoint TCP port.</p>",
         "MicrosoftSQLServerSettings$BcpPacketSize": "<p>The maximum size of the packets (in bytes) used to transfer data using BCP.</p>",
@@ -1008,6 +1210,11 @@
       "refs": {
       }
     },
+    "InvalidOperationFault": {
+      "base": "<p>The action or operation requested isn't valid.</p>",
+      "refs": {
+      }
+    },
     "InvalidResourceStateFault": {
       "base": "<p>The resource is in a state that prevents it from being used for database migration.</p>",
       "refs": {
@@ -1016,6 +1223,12 @@
     "InvalidSubnet": {
       "base": "<p>The subnet provided is invalid.</p>",
       "refs": {
+      }
+    },
+    "InventoryData": {
+      "base": "<p>Describes a Fleet Advisor collector inventory.</p>",
+      "refs": {
+        "CollectorResponse$InventoryData": null
       }
     },
     "KMSAccessDeniedFault": {
@@ -1108,6 +1321,17 @@
         "TableStatistics$ValidationPendingRecords": "<p>The number of records that have yet to be validated.</p>",
         "TableStatistics$ValidationFailedRecords": "<p>The number of records that failed validation.</p>",
         "TableStatistics$ValidationSuspendedRecords": "<p>The number of records that couldn't be validated.</p>"
+      }
+    },
+    "LongOptional": {
+      "base": null,
+      "refs": {
+        "DatabaseResponse$NumberOfSchemas": "<p>The number of schemas in a Fleet Advisor collector inventory database. </p>",
+        "FleetAdvisorSchemaObjectResponse$NumberOfObjects": "<p>The number of objects in a schema object in a Fleet Advisor collector inventory.</p>",
+        "FleetAdvisorSchemaObjectResponse$CodeLineCount": "<p>The number of lines of code in a schema object in a Fleet Advisor collector inventory.</p>",
+        "FleetAdvisorSchemaObjectResponse$CodeSize": "<p>The size level of the code in a schema object in a Fleet Advisor collector inventory.</p>",
+        "SchemaResponse$CodeLineCount": "<p>The number of lines of code in a schema in a Fleet Advisor collector inventory.</p>",
+        "SchemaResponse$CodeSize": "<p>The size level of the code in a schema in a Fleet Advisor collector inventory.</p>"
       }
     },
     "MessageFormatValue": {
@@ -1543,6 +1767,11 @@
       "refs": {
       }
     },
+    "RunFleetAdvisorLsaAnalysisResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "S3AccessDeniedFault": {
       "base": "<p>Insufficient privileges are preventing access to an Amazon S3 object.</p>",
       "refs": {
@@ -1583,6 +1812,18 @@
         "DescribeSchemasResponse$Schemas": "<p>The described schema.</p>"
       }
     },
+    "SchemaResponse": {
+      "base": "<p>Describes a schema in a Fleet Advisor collector inventory.</p>",
+      "refs": {
+        "FleetAdvisorSchemaList$member": null
+      }
+    },
+    "SchemaShortInfoResponse": {
+      "base": "<p>Describes a schema in a Fleet Advisor collector inventory.</p>",
+      "refs": {
+        "SchemaResponse$OriginalSchema": null
+      }
+    },
     "SecretString": {
       "base": null,
       "refs": {
@@ -1604,6 +1845,13 @@
         "RedisSettings$AuthPassword": "<p>The password provided with the <code>auth-role</code> and <code>auth-token</code> options of the <code>AuthType</code> setting for a Redis target endpoint.</p>",
         "RedshiftSettings$Password": "<p>The password for the user named in the <code>username</code> property.</p>",
         "SybaseSettings$Password": "<p>Endpoint connection password.</p>"
+      }
+    },
+    "ServerShortInfoResponse": {
+      "base": "<p>Describes a server in a Fleet Advisor collector inventory.</p>",
+      "refs": {
+        "DatabaseResponse$Server": "<p>The server name of a database in a Fleet Advisor collector inventory. </p>",
+        "SchemaResponse$Server": "<p>The database server for a schema in a Fleet Advisor collector inventory.</p>"
       }
     },
     "SourceIdsList": {
@@ -1694,6 +1942,18 @@
         "Certificate$CertificateArn": "<p>The Amazon Resource Name (ARN) for the certificate.</p>",
         "Certificate$CertificateOwner": "<p>The owner of the certificate.</p>",
         "Certificate$SigningAlgorithm": "<p>The signing algorithm for the certificate.</p>",
+        "CollectorResponse$CollectorReferencedId": "<p>The reference ID of the Fleet Advisor collector.</p>",
+        "CollectorResponse$CollectorName": "<p>The name of the Fleet Advisor collector .</p>",
+        "CollectorResponse$CollectorVersion": "<p>The version of your Fleet Advisor collector, in semantic versioning format, for example <code>1.0.2</code> </p>",
+        "CollectorResponse$Description": "<p>A summary description of the Fleet Advisor collector.</p>",
+        "CollectorResponse$S3BucketName": "<p>The Amazon S3 bucket that the Fleet Advisor collector uses to store inventory metadata.</p>",
+        "CollectorResponse$ServiceAccessRoleArn": "<p>The IAM role that grants permissions to access the specified Amazon S3 bucket.</p>",
+        "CollectorResponse$LastDataReceived": "<p>The timestamp of the last time the collector received data, in the following format: <code>2022-01-24T19:04:02.596113Z</code> </p>",
+        "CollectorResponse$RegisteredDate": "<p>The timestamp when DMS registered the collector, in the following format: <code>2022-01-24T19:04:02.596113Z</code> </p>",
+        "CollectorResponse$CreatedDate": "<p>The timestamp when you created the collector, in the following format: <code>2022-01-24T19:04:02.596113Z</code> </p>",
+        "CollectorResponse$ModifiedDate": "<p>The timestamp when DMS last modified the collector, in the following format: <code>2022-01-24T19:04:02.596113Z</code> </p>",
+        "CollectorShortInfoResponse$CollectorReferencedId": "<p>The reference ID of the Fleet Advisor collector.</p>",
+        "CollectorShortInfoResponse$CollectorName": "<p>The name of the Fleet Advisor collector.</p>",
         "Connection$ReplicationInstanceArn": "<p>The ARN of the replication instance.</p>",
         "Connection$EndpointArn": "<p>The ARN string that uniquely identifies the endpoint.</p>",
         "Connection$Status": "<p>The connection status. This parameter can return one of the following values:</p> <ul> <li> <p> <code>\"successful\"</code> </p> </li> <li> <p> <code>\"testing\"</code> </p> </li> <li> <p> <code>\"failed\"</code> </p> </li> <li> <p> <code>\"deleting\"</code> </p> </li> </ul>",
@@ -1704,7 +1964,7 @@
         "CreateEndpointMessage$EngineName": "<p>The type of engine for the endpoint. Valid values, depending on the <code>EndpointType</code> value, include <code>\"mysql\"</code>, <code>\"oracle\"</code>, <code>\"postgres\"</code>, <code>\"mariadb\"</code>, <code>\"aurora\"</code>, <code>\"aurora-postgresql\"</code>, <code>\"opensearch\"</code>, <code>\"redshift\"</code>, <code>\"s3\"</code>, <code>\"db2\"</code>, <code>\"azuredb\"</code>, <code>\"sybase\"</code>, <code>\"dynamodb\"</code>, <code>\"mongodb\"</code>, <code>\"kinesis\"</code>, <code>\"kafka\"</code>, <code>\"elasticsearch\"</code>, <code>\"docdb\"</code>, <code>\"sqlserver\"</code>, and <code>\"neptune\"</code>.</p>",
         "CreateEndpointMessage$Username": "<p>The user name to be used to log in to the endpoint database.</p>",
         "CreateEndpointMessage$ServerName": "<p>The name of the server where the endpoint database resides.</p>",
-        "CreateEndpointMessage$DatabaseName": "<p>The name of the endpoint database. For a MySQL source or target endpoint, do not specify DatabaseName.</p>",
+        "CreateEndpointMessage$DatabaseName": "<p>The name of the endpoint database. For a MySQL source or target endpoint, do not specify DatabaseName. To migrate to a specific database, use this setting and <code>targetDbType</code>.</p>",
         "CreateEndpointMessage$ExtraConnectionAttributes": "<p>Additional attributes associated with the connection. Each attribute is specified as a name-value pair associated by an equal sign (=). Multiple attributes are separated by a semicolon (;) with no additional white space. For information on the attributes available for connecting your source or target endpoint, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Endpoints.html\">Working with DMS Endpoints</a> in the <i>Database Migration Service User Guide.</i> </p>",
         "CreateEndpointMessage$KmsKeyId": "<p>An KMS key identifier that is used to encrypt the connection parameters for the endpoint.</p> <p>If you don't specify a value for the <code>KmsKeyId</code> parameter, then DMS uses your default encryption key.</p> <p>KMS creates the default encryption key for your Amazon Web Services account. Your Amazon Web Services account has a different default encryption key for each Amazon Web Services Region.</p>",
         "CreateEndpointMessage$CertificateArn": "<p>The Amazon Resource Name (ARN) for the certificate.</p>",
@@ -1714,6 +1974,15 @@
         "CreateEventSubscriptionMessage$SubscriptionName": "<p>The name of the DMS event notification subscription. This name must be less than 255 characters.</p>",
         "CreateEventSubscriptionMessage$SnsTopicArn": "<p> The Amazon Resource Name (ARN) of the Amazon SNS topic created for event notification. The ARN is created by Amazon SNS when you create a topic and subscribe to it. </p>",
         "CreateEventSubscriptionMessage$SourceType": "<p> The type of DMS resource that generates the events. For example, if you want to be notified of events generated by a replication instance, you set this parameter to <code>replication-instance</code>. If this value isn't specified, all events are returned. </p> <p>Valid values: <code>replication-instance</code> | <code>replication-task</code> </p>",
+        "CreateFleetAdvisorCollectorRequest$CollectorName": "<p>The name of your Fleet Advisor collector (for example, <code>sample-collector</code>).</p>",
+        "CreateFleetAdvisorCollectorRequest$Description": "<p>A summary description of your Fleet Advisor collector.</p>",
+        "CreateFleetAdvisorCollectorRequest$ServiceAccessRoleArn": "<p>The IAM role that grants permissions to access the specified Amazon S3 bucket.</p>",
+        "CreateFleetAdvisorCollectorRequest$S3BucketName": "<p>The Amazon S3 bucket that the Fleet Advisor collector uses to store inventory metadata.</p>",
+        "CreateFleetAdvisorCollectorResponse$CollectorReferencedId": "<p>The unique ID of the new Fleet Advisor collector, for example: <code>22fda70c-40d5-4acf-b233-a495bd8eb7f5</code> </p>",
+        "CreateFleetAdvisorCollectorResponse$CollectorName": "<p>The name of the new Fleet Advisor collector.</p>",
+        "CreateFleetAdvisorCollectorResponse$Description": "<p>A summary description of the Fleet Advisor collector.</p>",
+        "CreateFleetAdvisorCollectorResponse$ServiceAccessRoleArn": "<p>The IAM role that grants permissions to access the specified Amazon S3 bucket.</p>",
+        "CreateFleetAdvisorCollectorResponse$S3BucketName": "<p>The Amazon S3 bucket that the collector uses to store inventory metadata.</p>",
         "CreateReplicationInstanceMessage$ReplicationInstanceIdentifier": "<p>The replication instance identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must contain 1-63 alphanumeric characters or hyphens.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens.</p> </li> </ul> <p>Example: <code>myrepinstance</code> </p>",
         "CreateReplicationInstanceMessage$ReplicationInstanceClass": "<p>The compute and memory capacity of the replication instance as defined for the specified replication instance class. For example to specify the instance class dms.c4.large, set this parameter to <code>\"dms.c4.large\"</code>.</p> <p>For more information on the settings and capacities for the available replication instance classes, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_ReplicationInstance.html#CHAP_ReplicationInstance.InDepth\"> Selecting the right DMS replication instance for your migration</a>. </p>",
         "CreateReplicationInstanceMessage$AvailabilityZone": "<p>The Availability Zone where the replication instance will be created. The default value is a random, system-chosen Availability Zone in the endpoint's Amazon Web Services Region, for example: <code>us-east-1d</code> </p>",
@@ -1735,7 +2004,21 @@
         "CreateReplicationTaskMessage$CdcStopPosition": "<p>Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time.</p> <p>Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”</p> <p>Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12 “</p>",
         "CreateReplicationTaskMessage$TaskData": "<p>Supplemental information that the task requires to migrate the data for certain source and target endpoints. For more information, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.TaskData.html\">Specifying Supplemental Data for Task Settings</a> in the <i>Database Migration Service User Guide.</i> </p>",
         "CreateReplicationTaskMessage$ResourceIdentifier": "<p>A friendly name for the resource identifier at the end of the <code>EndpointArn</code> response parameter that is returned in the created <code>Endpoint</code> object. The value for this parameter can have up to 31 characters. It can contain only ASCII letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain two consecutive hyphens, and can only begin with a letter, such as <code>Example-App-ARN1</code>. For example, this value might result in the <code>EndpointArn</code> value <code>arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1</code>. If you don't specify a <code>ResourceIdentifier</code> value, DMS generates a default identifier value for the end of <code>EndpointArn</code>.</p>",
+        "DatabaseInstanceSoftwareDetailsResponse$Engine": "<p>The database engine of a database in a Fleet Advisor collector inventory, for example <code>Microsoft SQL Server</code>.</p>",
+        "DatabaseInstanceSoftwareDetailsResponse$EngineVersion": "<p>The database engine version of a database in a Fleet Advisor collector inventory, for example <code>2019</code>.</p>",
+        "DatabaseInstanceSoftwareDetailsResponse$EngineEdition": "<p>The database engine edition of a database in a Fleet Advisor collector inventory, for example <code>Express</code>.</p>",
+        "DatabaseInstanceSoftwareDetailsResponse$ServicePack": "<p>The service pack level of the database.</p>",
+        "DatabaseInstanceSoftwareDetailsResponse$SupportLevel": "<p>The support level of the database, for example <code>Mainstream support</code>.</p>",
+        "DatabaseInstanceSoftwareDetailsResponse$Tooltip": "<p>Information about the database engine software, for example <code>Mainstream support ends on November 14th, 2024</code>.</p>",
+        "DatabaseResponse$DatabaseId": "<p>The ID of a database in a Fleet Advisor collector inventory.</p>",
+        "DatabaseResponse$DatabaseName": "<p>The name of a database in a Fleet Advisor collector inventory. </p>",
+        "DatabaseResponse$IpAddress": "<p>The IP address of a database in a Fleet Advisor collector inventory. </p>",
+        "DatabaseShortInfoResponse$DatabaseId": "<p>The ID of a database in a Fleet Advisor collector inventory.</p>",
+        "DatabaseShortInfoResponse$DatabaseName": "<p>The name of a database in a Fleet Advisor collector inventory.</p>",
+        "DatabaseShortInfoResponse$DatabaseIpAddress": "<p>The IP address of a database in a Fleet Advisor collector inventory.</p>",
+        "DatabaseShortInfoResponse$DatabaseEngine": "<p>The database engine of a database in a Fleet Advisor collector inventory, for example <code>PostgreSQL</code>.</p>",
         "DeleteCertificateMessage$CertificateArn": "<p>The Amazon Resource Name (ARN) of the certificate.</p>",
+        "DeleteCollectorRequest$CollectorReferencedId": "<p>The reference ID of the Fleet Advisor collector to delete.</p>",
         "DeleteConnectionMessage$EndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
         "DeleteConnectionMessage$ReplicationInstanceArn": "<p>The Amazon Resource Name (ARN) of the replication instance.</p>",
         "DeleteEndpointMessage$EndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
@@ -1769,6 +2052,16 @@
         "DescribeEventsMessage$SourceIdentifier": "<p> The identifier of an event source.</p>",
         "DescribeEventsMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeEventsResponse$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "DescribeFleetAdvisorCollectorsRequest$NextToken": "<p>If <code>NextToken</code> is returned by a previous response, there are more results available. The value of <code>NextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
+        "DescribeFleetAdvisorCollectorsResponse$NextToken": "<p>If <code>NextToken</code> is returned, there are more results available. The value of <code>NextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
+        "DescribeFleetAdvisorDatabasesRequest$NextToken": "<p>If <code>NextToken</code> is returned by a previous response, there are more results available. The value of <code>NextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
+        "DescribeFleetAdvisorDatabasesResponse$NextToken": "<p>If <code>NextToken</code> is returned, there are more results available. The value of <code>NextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
+        "DescribeFleetAdvisorLsaAnalysisRequest$NextToken": "<p>If <code>NextToken</code> is returned by a previous response, there are more results available. The value of <code>NextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
+        "DescribeFleetAdvisorLsaAnalysisResponse$NextToken": "<p>If <code>NextToken</code> is returned, there are more results available. The value of <code>NextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
+        "DescribeFleetAdvisorSchemaObjectSummaryRequest$NextToken": "<p>If <code>NextToken</code> is returned by a previous response, there are more results available. The value of <code>NextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
+        "DescribeFleetAdvisorSchemaObjectSummaryResponse$NextToken": "<p>If <code>NextToken</code> is returned, there are more results available. The value of <code>NextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
+        "DescribeFleetAdvisorSchemasRequest$NextToken": "<p>If <code>NextToken</code> is returned by a previous response, there are more results available. The value of <code>NextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
+        "DescribeFleetAdvisorSchemasResponse$NextToken": "<p>If <code>NextToken</code> is returned, there are more results available. The value of <code>NextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
         "DescribeOrderableReplicationInstancesMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeOrderableReplicationInstancesResponse$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribePendingMaintenanceActionsMessage$ReplicationInstanceArn": "<p>The Amazon Resource Name (ARN) of the replication instance.</p>",
@@ -1843,6 +2136,10 @@
         "ExcludeTestList$member": null,
         "Filter$Name": "<p>The name of the filter as specified for a <code>Describe*</code> or similar operation.</p>",
         "FilterValueList$member": null,
+        "FleetAdvisorLsaAnalysisResponse$LsaAnalysisId": "<p>The ID of an LSA analysis run by a Fleet Advisor collector.</p>",
+        "FleetAdvisorLsaAnalysisResponse$Status": "<p>The status of an LSA analysis run by a Fleet Advisor collector.</p>",
+        "FleetAdvisorSchemaObjectResponse$SchemaId": "<p>The ID of a schema object in a Fleet Advisor collector inventory.</p>",
+        "FleetAdvisorSchemaObjectResponse$ObjectType": "<p>The type of the schema object, as reported by the database engine. Examples include the following:</p> <ul> <li> <p> <code>function</code> </p> </li> <li> <p> <code>trigger</code> </p> </li> <li> <p> <code>SYSTEM_TABLE</code> </p> </li> <li> <p> <code>QUEUE</code> </p> </li> </ul>",
         "GcpMySQLSettings$AfterConnectScript": "<p>Specifies a script to run immediately after DMS connects to the endpoint. The migration task continues running regardless if the SQL statement succeeds or fails.</p> <p>For this parameter, provide the code of the script itself, not the name of a file containing the script. </p>",
         "GcpMySQLSettings$DatabaseName": "<p>Database name for the endpoint. For a MySQL source or target endpoint, don't explicitly specify the database using the <code>DatabaseName</code> request parameter on either the <code>CreateEndpoint</code> or <code>ModifyEndpoint</code> API call. Specifying <code>DatabaseName</code> when you create or modify a MySQL endpoint replicates all the task tables to this single database. For MySQL endpoints, you specify the database only when you specify the schema in the table-mapping rules of the DMS task. </p>",
         "GcpMySQLSettings$ServerName": "<p>Endpoint TCP port.</p>",
@@ -2035,6 +2332,8 @@
         "ReplicationTaskIndividualAssessment$IndividualAssessmentName": "<p>Name of this individual assessment.</p>",
         "ReplicationTaskIndividualAssessment$Status": "<p>Individual assessment status.</p> <p>This status can have one of the following values:</p> <ul> <li> <p> <code>\"cancelled\"</code> </p> </li> <li> <p> <code>\"error\"</code> </p> </li> <li> <p> <code>\"failed\"</code> </p> </li> <li> <p> <code>\"passed\"</code> </p> </li> <li> <p> <code>\"pending\"</code> </p> </li> <li> <p> <code>\"running\"</code> </p> </li> </ul>",
         "ResourcePendingMaintenanceActions$ResourceIdentifier": "<p>The Amazon Resource Name (ARN) of the DMS resource that the pending maintenance action applies to. For information about creating an ARN, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.AWS.ARN.html\"> Constructing an Amazon Resource Name (ARN) for DMS</a> in the DMS documentation.</p>",
+        "RunFleetAdvisorLsaAnalysisResponse$LsaAnalysisId": "<p>The ID of the LSA analysis run.</p>",
+        "RunFleetAdvisorLsaAnalysisResponse$Status": "<p>The status of the LSA analysis, for example <code>COMPLETED</code>.</p>",
         "S3Settings$ServiceAccessRoleArn": "<p> The Amazon Resource Name (ARN) used by the service to access the IAM role. The role must allow the <code>iam:PassRole</code> action. It is a required parameter that enables DMS to write and read objects from an S3 bucket.</p>",
         "S3Settings$ExternalTableDefinition": "<p> Specifies how tables are defined in the S3 source files only. </p>",
         "S3Settings$CsvRowDelimiter": "<p> The delimiter used to separate rows in the .csv file for both source and target. The default is a carriage return (<code>\\n</code>). </p>",
@@ -2048,6 +2347,17 @@
         "S3Settings$CsvNullValue": "<p>An optional parameter that specifies how DMS treats null values. While handling the null value, you can use this parameter to pass a user-defined string as null when writing to the target. For example, when target columns are not nullable, you can use this option to differentiate between the empty string value and the null value. So, if you set this parameter value to the empty string (\"\" or ''), DMS treats the empty string as the null value instead of <code>NULL</code>.</p> <p>The default value is <code>NULL</code>. Valid values include any valid string.</p>",
         "S3Settings$DatePartitionTimezone": "<p>When creating an S3 target endpoint, set <code>DatePartitionTimezone</code> to convert the current UTC time into a specified time zone. The conversion occurs when a date partition folder is created and a CDC filename is generated. The time zone format is Area/Location. Use this parameter when <code>DatePartitionedEnabled</code> is set to <code>true</code>, as shown in the following example.</p> <p> <code>s3-settings='{\"DatePartitionEnabled\": true, \"DatePartitionSequence\": \"YYYYMMDDHH\", \"DatePartitionDelimiter\": \"SLASH\", \"DatePartitionTimezone\":\"<i>Asia/Seoul</i>\", \"BucketName\": \"dms-nattarat-test\"}'</code> </p>",
         "SchemaList$member": null,
+        "SchemaResponse$Complexity": "<p>The complexity level of the code in a schema in a Fleet Advisor collector inventory.</p>",
+        "SchemaResponse$SchemaId": "<p>The ID of a schema in a Fleet Advisor collector inventory.</p>",
+        "SchemaResponse$SchemaName": "<p>The name of a schema in a Fleet Advisor collector inventory.</p>",
+        "SchemaShortInfoResponse$SchemaId": "<p>The ID of a schema in a Fleet Advisor collector inventory.</p>",
+        "SchemaShortInfoResponse$SchemaName": "<p>The name of a schema in a Fleet Advisor collector inventory.</p>",
+        "SchemaShortInfoResponse$DatabaseId": "<p>The ID of a database in a Fleet Advisor collector inventory.</p>",
+        "SchemaShortInfoResponse$DatabaseName": "<p>The name of a database in a Fleet Advisor collector inventory.</p>",
+        "SchemaShortInfoResponse$DatabaseIpAddress": "<p>The IP address of a database in a Fleet Advisor collector inventory.</p>",
+        "ServerShortInfoResponse$ServerId": "<p>The ID of a server in a Fleet Advisor collector inventory.</p>",
+        "ServerShortInfoResponse$IpAddress": "<p>The IP address of a server in a Fleet Advisor collector inventory.</p>",
+        "ServerShortInfoResponse$ServerName": "<p>The name address of a server in a Fleet Advisor collector inventory.</p>",
         "SourceIdsList$member": null,
         "StartReplicationTaskAssessmentMessage$ReplicationTaskArn": "<p> The Amazon Resource Name (ARN) of the replication task. </p>",
         "StartReplicationTaskAssessmentRunMessage$ReplicationTaskArn": "<p>Amazon Resource Name (ARN) of the migration task associated with the premigration assessment run that you want to start.</p>",
@@ -2061,6 +2371,7 @@
         "StartReplicationTaskMessage$CdcStartPosition": "<p>Indicates when you want a change data capture (CDC) operation to start. Use either CdcStartPosition or CdcStartTime to specify when you want a CDC operation to start. Specifying both values results in an error.</p> <p> The value can be in date, checkpoint, or LSN/SCN format.</p> <p>Date Example: --cdc-start-position “2018-03-08T12:12:12”</p> <p>Checkpoint Example: --cdc-start-position \"checkpoint:V1#27#mysql-bin-changelog.157832:1975:-1:2002:677883278264080:mysql-bin-changelog.157832:1876#0#0#*#0#93\"</p> <p>LSN Example: --cdc-start-position “mysql-bin-changelog.000024:373”</p> <note> <p>When you use this task setting with a source PostgreSQL database, a logical replication slot should already be created and associated with the source endpoint. You can verify this by setting the <code>slotName</code> extra connection attribute to the name of this logical replication slot. For more information, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.PostgreSQL.html#CHAP_Source.PostgreSQL.ConnectionAttrib\">Extra Connection Attributes When Using PostgreSQL as a Source for DMS</a>.</p> </note>",
         "StartReplicationTaskMessage$CdcStopPosition": "<p>Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time.</p> <p>Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”</p> <p>Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12 “</p>",
         "StopReplicationTaskMessage$ReplicationTaskArn": "<p>The Amazon Resource Name(ARN) of the replication task to be stopped.</p>",
+        "StringList$member": null,
         "Subnet$SubnetIdentifier": "<p>The subnet identifier.</p>",
         "Subnet$SubnetStatus": "<p>The status of the subnet.</p>",
         "SubnetIdentifierList$member": null,
@@ -2087,6 +2398,13 @@
         "VpcSecurityGroupIdList$member": null,
         "VpcSecurityGroupMembership$VpcSecurityGroupId": "<p>The VPC security group ID.</p>",
         "VpcSecurityGroupMembership$Status": "<p>The status of the VPC security group.</p>"
+      }
+    },
+    "StringList": {
+      "base": null,
+      "refs": {
+        "DeleteFleetAdvisorDatabasesRequest$DatabaseIds": "<p>The IDs of the Fleet Advisor collector databases to delete.</p>",
+        "DeleteFleetAdvisorDatabasesResponse$DatabaseIds": "<p>The IDs of the databases that the operation deleted.</p>"
       }
     },
     "Subnet": {
@@ -2213,7 +2531,7 @@
       "base": null,
       "refs": {
         "GcpMySQLSettings$TargetDbType": "<p>Specifies where to migrate source tables on the target, either to a single database or multiple databases.</p> <p>Example: <code>targetDbType=MULTIPLE_DATABASES</code> </p>",
-        "MySQLSettings$TargetDbType": "<p>Specifies where to migrate source tables on the target, either to a single database or multiple databases.</p> <p>Example: <code>targetDbType=MULTIPLE_DATABASES</code> </p>"
+        "MySQLSettings$TargetDbType": "<p>Specifies where to migrate source tables on the target, either to a single database or multiple databases. If you specify <code>SPECIFIC_DATABASE</code>, specify the database name using the <code>DatabaseName</code> parameter of the <code>Endpoint</code> object.</p> <p>Example: <code>targetDbType=MULTIPLE_DATABASES</code> </p>"
       }
     },
     "TestConnectionMessage": {
@@ -2229,6 +2547,12 @@
     "UpgradeDependencyFailureFault": {
       "base": "<p>An upgrade dependency is preventing the database migration.</p>",
       "refs": {
+      }
+    },
+    "VersionStatus": {
+      "base": null,
+      "refs": {
+        "CollectorResponse$VersionStatus": "<p>Whether the collector version is up to date.</p>"
       }
     },
     "VpcSecurityGroupIdList": {

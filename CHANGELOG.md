@@ -1,3 +1,18 @@
+Release v1.44.30 (2022-06-08)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API, documentation, and paginators
+  * This release adds DMS Fleet Advisor APIs and exposes functionality for DMS Fleet Advisor. It adds functionality to create and modify fleet advisor instances, and to collect and analyze information about the local data infrastructure.
+* `service/iam`: Updates service documentation
+  * Documentation updates for AWS Identity and Access Management (IAM).
+* `service/m2`: Updates service API, documentation, paginators, and examples
+* `service/neptune`: Updates service API and documentation
+  * This release adds support for Neptune to be configured as a global database, with a primary DB cluster in one region, and up to five secondary DB clusters in other regions.
+* `service/redshift`: Updates service API and documentation
+  * Adds new API GetClusterCredentialsWithIAM to return temporary credentials.
+* `service/redshift-serverless`: Adds new service
+
 Release v1.44.29 (2022-06-07)
 ===
 

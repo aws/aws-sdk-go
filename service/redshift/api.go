@@ -9624,6 +9624,99 @@ func (c *Redshift) GetClusterCredentialsWithContext(ctx aws.Context, input *GetC
 	return out, req.Send()
 }
 
+const opGetClusterCredentialsWithIAM = "GetClusterCredentialsWithIAM"
+
+// GetClusterCredentialsWithIAMRequest generates a "aws/request.Request" representing the
+// client's request for the GetClusterCredentialsWithIAM operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetClusterCredentialsWithIAM for more information on using the GetClusterCredentialsWithIAM
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetClusterCredentialsWithIAMRequest method.
+//    req, resp := client.GetClusterCredentialsWithIAMRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/GetClusterCredentialsWithIAM
+func (c *Redshift) GetClusterCredentialsWithIAMRequest(input *GetClusterCredentialsWithIAMInput) (req *request.Request, output *GetClusterCredentialsWithIAMOutput) {
+	op := &request.Operation{
+		Name:       opGetClusterCredentialsWithIAM,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetClusterCredentialsWithIAMInput{}
+	}
+
+	output = &GetClusterCredentialsWithIAMOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetClusterCredentialsWithIAM API operation for Amazon Redshift.
+//
+// Returns a database user name and temporary password with temporary authorization
+// to log in to an Amazon Redshift database. The database user is mapped 1:1
+// to the source Identity and Access Management (IAM) identity. For more information
+// about IAM identities, see IAM Identities (users, user groups, and roles)
+// (https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html) in the Amazon
+// Web Services Identity and Access Management User Guide.
+//
+// The Identity and Access Management (IAM) identity that runs this operation
+// must have an IAM policy attached that allows access to all necessary actions
+// and resources. For more information about permissions, see Using identity-based
+// policies (IAM policies) (https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html)
+// in the Amazon Redshift Cluster Management Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation GetClusterCredentialsWithIAM for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeClusterNotFoundFault "ClusterNotFound"
+//   The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   * ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//   The requested operation isn't supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/GetClusterCredentialsWithIAM
+func (c *Redshift) GetClusterCredentialsWithIAM(input *GetClusterCredentialsWithIAMInput) (*GetClusterCredentialsWithIAMOutput, error) {
+	req, out := c.GetClusterCredentialsWithIAMRequest(input)
+	return out, req.Send()
+}
+
+// GetClusterCredentialsWithIAMWithContext is the same as GetClusterCredentialsWithIAM with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetClusterCredentialsWithIAM for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) GetClusterCredentialsWithIAMWithContext(ctx aws.Context, input *GetClusterCredentialsWithIAMInput, opts ...request.Option) (*GetClusterCredentialsWithIAMOutput, error) {
+	req, out := c.GetClusterCredentialsWithIAMRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetReservedNodeExchangeConfigurationOptions = "GetReservedNodeExchangeConfigurationOptions"
 
 // GetReservedNodeExchangeConfigurationOptionsRequest generates a "aws/request.Request" representing the
@@ -26384,7 +26477,7 @@ type GetClusterCredentialsInput struct {
 	AutoCreate *bool `type:"boolean"`
 
 	// The unique identifier of the cluster that contains the database for which
-	// your are requesting credentials. This parameter is case sensitive.
+	// you are requesting credentials. This parameter is case sensitive.
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
@@ -26594,6 +26687,140 @@ func (s *GetClusterCredentialsOutput) SetDbUser(v string) *GetClusterCredentials
 // SetExpiration sets the Expiration field's value.
 func (s *GetClusterCredentialsOutput) SetExpiration(v time.Time) *GetClusterCredentialsOutput {
 	s.Expiration = &v
+	return s
+}
+
+type GetClusterCredentialsWithIAMInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the cluster that contains the database for which
+	// you are requesting credentials.
+	//
+	// ClusterIdentifier is a required field
+	ClusterIdentifier *string `type:"string" required:"true"`
+
+	// The name of the database for which you are requesting credentials. If the
+	// database name is specified, the IAM policy must allow access to the resource
+	// dbname for the specified database name. If the database name is not specified,
+	// access to all databases is allowed.
+	DbName *string `type:"string"`
+
+	// The number of seconds until the returned temporary password expires.
+	//
+	// Range: 900-3600. Default: 900.
+	DurationSeconds *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterCredentialsWithIAMInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterCredentialsWithIAMInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetClusterCredentialsWithIAMInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetClusterCredentialsWithIAMInput"}
+	if s.ClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *GetClusterCredentialsWithIAMInput) SetClusterIdentifier(v string) *GetClusterCredentialsWithIAMInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetDbName sets the DbName field's value.
+func (s *GetClusterCredentialsWithIAMInput) SetDbName(v string) *GetClusterCredentialsWithIAMInput {
+	s.DbName = &v
+	return s
+}
+
+// SetDurationSeconds sets the DurationSeconds field's value.
+func (s *GetClusterCredentialsWithIAMInput) SetDurationSeconds(v int64) *GetClusterCredentialsWithIAMInput {
+	s.DurationSeconds = &v
+	return s
+}
+
+type GetClusterCredentialsWithIAMOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A temporary password that you provide when you connect to a database.
+	//
+	// DbPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetClusterCredentialsWithIAMOutput's
+	// String and GoString methods.
+	DbPassword *string `type:"string" sensitive:"true"`
+
+	// A database user name that you provide when you connect to a database. The
+	// database user is mapped 1:1 to the source IAM identity.
+	DbUser *string `type:"string"`
+
+	// The time (UTC) when the temporary password expires. After this timestamp,
+	// a log in with the temporary password fails.
+	Expiration *time.Time `type:"timestamp"`
+
+	// Reserved for future use.
+	NextRefreshTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterCredentialsWithIAMOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterCredentialsWithIAMOutput) GoString() string {
+	return s.String()
+}
+
+// SetDbPassword sets the DbPassword field's value.
+func (s *GetClusterCredentialsWithIAMOutput) SetDbPassword(v string) *GetClusterCredentialsWithIAMOutput {
+	s.DbPassword = &v
+	return s
+}
+
+// SetDbUser sets the DbUser field's value.
+func (s *GetClusterCredentialsWithIAMOutput) SetDbUser(v string) *GetClusterCredentialsWithIAMOutput {
+	s.DbUser = &v
+	return s
+}
+
+// SetExpiration sets the Expiration field's value.
+func (s *GetClusterCredentialsWithIAMOutput) SetExpiration(v time.Time) *GetClusterCredentialsWithIAMOutput {
+	s.Expiration = &v
+	return s
+}
+
+// SetNextRefreshTime sets the NextRefreshTime field's value.
+func (s *GetClusterCredentialsWithIAMOutput) SetNextRefreshTime(v time.Time) *GetClusterCredentialsWithIAMOutput {
+	s.NextRefreshTime = &v
 	return s
 }
 

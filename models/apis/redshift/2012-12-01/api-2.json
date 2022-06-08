@@ -1424,6 +1424,22 @@
         {"shape":"UnsupportedOperationFault"}
       ]
     },
+    "GetClusterCredentialsWithIAM":{
+      "name":"GetClusterCredentialsWithIAM",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetClusterCredentialsWithIAMMessage"},
+      "output":{
+        "shape":"ClusterExtendedCredentials",
+        "resultWrapper":"GetClusterCredentialsWithIAMResult"
+      },
+      "errors":[
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"UnsupportedOperationFault"}
+      ]
+    },
     "GetReservedNodeExchangeConfigurationOptions":{
       "name":"GetReservedNodeExchangeConfigurationOptions",
       "http":{
@@ -2538,6 +2554,15 @@
       "members":{
         "Marker":{"shape":"String"},
         "ClusterDbRevisions":{"shape":"ClusterDbRevisionsList"}
+      }
+    },
+    "ClusterExtendedCredentials":{
+      "type":"structure",
+      "members":{
+        "DbUser":{"shape":"String"},
+        "DbPassword":{"shape":"SensitiveString"},
+        "Expiration":{"shape":"TStamp"},
+        "NextRefreshTime":{"shape":"TStamp"}
       }
     },
     "ClusterIamRole":{
@@ -4279,6 +4304,15 @@
         "DurationSeconds":{"shape":"IntegerOptional"},
         "AutoCreate":{"shape":"BooleanOptional"},
         "DbGroups":{"shape":"DbGroupList"}
+      }
+    },
+    "GetClusterCredentialsWithIAMMessage":{
+      "type":"structure",
+      "required":["ClusterIdentifier"],
+      "members":{
+        "DbName":{"shape":"String"},
+        "ClusterIdentifier":{"shape":"String"},
+        "DurationSeconds":{"shape":"IntegerOptional"}
       }
     },
     "GetReservedNodeExchangeConfigurationOptionsInputMessage":{

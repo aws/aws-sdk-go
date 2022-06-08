@@ -89,6 +89,22 @@
         {"shape":"KMSThrottlingFault"}
       ]
     },
+    "CreateFleetAdvisorCollector":{
+      "name":"CreateFleetAdvisorCollector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateFleetAdvisorCollectorRequest"},
+      "output":{"shape":"CreateFleetAdvisorCollectorResponse"},
+      "errors":[
+        {"shape":"InvalidResourceStateFault"},
+        {"shape":"AccessDeniedFault"},
+        {"shape":"S3AccessDeniedFault"},
+        {"shape":"S3ResourceNotFoundFault"},
+        {"shape":"ResourceQuotaExceededFault"}
+      ]
+    },
     "CreateReplicationInstance":{
       "name":"CreateReplicationInstance",
       "http":{
@@ -195,6 +211,31 @@
       "errors":[
         {"shape":"ResourceNotFoundFault"},
         {"shape":"InvalidResourceStateFault"}
+      ]
+    },
+    "DeleteFleetAdvisorCollector":{
+      "name":"DeleteFleetAdvisorCollector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteCollectorRequest"},
+      "errors":[
+        {"shape":"InvalidResourceStateFault"},
+        {"shape":"CollectorNotFoundFault"}
+      ]
+    },
+    "DeleteFleetAdvisorDatabases":{
+      "name":"DeleteFleetAdvisorDatabases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteFleetAdvisorDatabasesRequest"},
+      "output":{"shape":"DeleteFleetAdvisorDatabasesResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"InvalidOperationFault"}
       ]
     },
     "DeleteReplicationInstance":{
@@ -356,6 +397,66 @@
       },
       "input":{"shape":"DescribeEventsMessage"},
       "output":{"shape":"DescribeEventsResponse"}
+    },
+    "DescribeFleetAdvisorCollectors":{
+      "name":"DescribeFleetAdvisorCollectors",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeFleetAdvisorCollectorsRequest"},
+      "output":{"shape":"DescribeFleetAdvisorCollectorsResponse"},
+      "errors":[
+        {"shape":"InvalidResourceStateFault"}
+      ]
+    },
+    "DescribeFleetAdvisorDatabases":{
+      "name":"DescribeFleetAdvisorDatabases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeFleetAdvisorDatabasesRequest"},
+      "output":{"shape":"DescribeFleetAdvisorDatabasesResponse"},
+      "errors":[
+        {"shape":"InvalidResourceStateFault"}
+      ]
+    },
+    "DescribeFleetAdvisorLsaAnalysis":{
+      "name":"DescribeFleetAdvisorLsaAnalysis",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeFleetAdvisorLsaAnalysisRequest"},
+      "output":{"shape":"DescribeFleetAdvisorLsaAnalysisResponse"},
+      "errors":[
+        {"shape":"InvalidResourceStateFault"}
+      ]
+    },
+    "DescribeFleetAdvisorSchemaObjectSummary":{
+      "name":"DescribeFleetAdvisorSchemaObjectSummary",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeFleetAdvisorSchemaObjectSummaryRequest"},
+      "output":{"shape":"DescribeFleetAdvisorSchemaObjectSummaryResponse"},
+      "errors":[
+        {"shape":"InvalidResourceStateFault"}
+      ]
+    },
+    "DescribeFleetAdvisorSchemas":{
+      "name":"DescribeFleetAdvisorSchemas",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeFleetAdvisorSchemasRequest"},
+      "output":{"shape":"DescribeFleetAdvisorSchemasResponse"},
+      "errors":[
+        {"shape":"InvalidResourceStateFault"}
+      ]
     },
     "DescribeOrderableReplicationInstances":{
       "name":"DescribeOrderableReplicationInstances",
@@ -683,6 +784,18 @@
         {"shape":"ResourceNotFoundFault"}
       ]
     },
+    "RunFleetAdvisorLsaAnalysis":{
+      "name":"RunFleetAdvisorLsaAnalysis",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "output":{"shape":"RunFleetAdvisorLsaAnalysisResponse"},
+      "errors":[
+        {"shape":"InvalidResourceStateFault"},
+        {"shape":"ResourceNotFoundFault"}
+      ]
+    },
     "StartReplicationTask":{
       "name":"StartReplicationTask",
       "http":{
@@ -903,6 +1016,62 @@
         "byte"
       ]
     },
+    "CollectorHealthCheck":{
+      "type":"structure",
+      "members":{
+        "CollectorStatus":{"shape":"CollectorStatus"},
+        "LocalCollectorS3Access":{"shape":"BooleanOptional"},
+        "WebCollectorS3Access":{"shape":"BooleanOptional"},
+        "WebCollectorGrantedRoleBasedAccess":{"shape":"BooleanOptional"}
+      }
+    },
+    "CollectorNotFoundFault":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "CollectorResponse":{
+      "type":"structure",
+      "members":{
+        "CollectorReferencedId":{"shape":"String"},
+        "CollectorName":{"shape":"String"},
+        "CollectorVersion":{"shape":"String"},
+        "VersionStatus":{"shape":"VersionStatus"},
+        "Description":{"shape":"String"},
+        "S3BucketName":{"shape":"String"},
+        "ServiceAccessRoleArn":{"shape":"String"},
+        "CollectorHealthCheck":{"shape":"CollectorHealthCheck"},
+        "LastDataReceived":{"shape":"String"},
+        "RegisteredDate":{"shape":"String"},
+        "CreatedDate":{"shape":"String"},
+        "ModifiedDate":{"shape":"String"},
+        "InventoryData":{"shape":"InventoryData"}
+      }
+    },
+    "CollectorResponses":{
+      "type":"list",
+      "member":{"shape":"CollectorResponse"}
+    },
+    "CollectorShortInfoResponse":{
+      "type":"structure",
+      "members":{
+        "CollectorReferencedId":{"shape":"String"},
+        "CollectorName":{"shape":"String"}
+      }
+    },
+    "CollectorStatus":{
+      "type":"string",
+      "enum":[
+        "UNREGISTERED",
+        "ACTIVE"
+      ]
+    },
+    "CollectorsList":{
+      "type":"list",
+      "member":{"shape":"CollectorShortInfoResponse"}
+    },
     "CompressionTypeValue":{
       "type":"string",
       "enum":[
@@ -997,6 +1166,30 @@
         "EventSubscription":{"shape":"EventSubscription"}
       }
     },
+    "CreateFleetAdvisorCollectorRequest":{
+      "type":"structure",
+      "required":[
+        "CollectorName",
+        "ServiceAccessRoleArn",
+        "S3BucketName"
+      ],
+      "members":{
+        "CollectorName":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "ServiceAccessRoleArn":{"shape":"String"},
+        "S3BucketName":{"shape":"String"}
+      }
+    },
+    "CreateFleetAdvisorCollectorResponse":{
+      "type":"structure",
+      "members":{
+        "CollectorReferencedId":{"shape":"String"},
+        "CollectorName":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "ServiceAccessRoleArn":{"shape":"String"},
+        "S3BucketName":{"shape":"String"}
+      }
+    },
     "CreateReplicationInstanceMessage":{
       "type":"structure",
       "required":[
@@ -1086,6 +1279,43 @@
         "parquet"
       ]
     },
+    "DatabaseInstanceSoftwareDetailsResponse":{
+      "type":"structure",
+      "members":{
+        "Engine":{"shape":"String"},
+        "EngineVersion":{"shape":"String"},
+        "EngineEdition":{"shape":"String"},
+        "ServicePack":{"shape":"String"},
+        "SupportLevel":{"shape":"String"},
+        "OsArchitecture":{"shape":"IntegerOptional"},
+        "Tooltip":{"shape":"String"}
+      }
+    },
+    "DatabaseList":{
+      "type":"list",
+      "member":{"shape":"DatabaseResponse"}
+    },
+    "DatabaseResponse":{
+      "type":"structure",
+      "members":{
+        "DatabaseId":{"shape":"String"},
+        "DatabaseName":{"shape":"String"},
+        "IpAddress":{"shape":"String"},
+        "NumberOfSchemas":{"shape":"LongOptional"},
+        "Server":{"shape":"ServerShortInfoResponse"},
+        "SoftwareDetails":{"shape":"DatabaseInstanceSoftwareDetailsResponse"},
+        "Collectors":{"shape":"CollectorsList"}
+      }
+    },
+    "DatabaseShortInfoResponse":{
+      "type":"structure",
+      "members":{
+        "DatabaseId":{"shape":"String"},
+        "DatabaseName":{"shape":"String"},
+        "DatabaseIpAddress":{"shape":"String"},
+        "DatabaseEngine":{"shape":"String"}
+      }
+    },
     "DatePartitionDelimiterValue":{
       "type":"string",
       "enum":[
@@ -1116,6 +1346,13 @@
       "type":"structure",
       "members":{
         "Certificate":{"shape":"Certificate"}
+      }
+    },
+    "DeleteCollectorRequest":{
+      "type":"structure",
+      "required":["CollectorReferencedId"],
+      "members":{
+        "CollectorReferencedId":{"shape":"String"}
       }
     },
     "DeleteConnectionMessage":{
@@ -1159,6 +1396,19 @@
       "type":"structure",
       "members":{
         "EventSubscription":{"shape":"EventSubscription"}
+      }
+    },
+    "DeleteFleetAdvisorDatabasesRequest":{
+      "type":"structure",
+      "required":["DatabaseIds"],
+      "members":{
+        "DatabaseIds":{"shape":"StringList"}
+      }
+    },
+    "DeleteFleetAdvisorDatabasesResponse":{
+      "type":"structure",
+      "members":{
+        "DatabaseIds":{"shape":"StringList"}
       }
     },
     "DeleteReplicationInstanceMessage":{
@@ -1367,6 +1617,80 @@
       "members":{
         "Marker":{"shape":"String"},
         "Events":{"shape":"EventList"}
+      }
+    },
+    "DescribeFleetAdvisorCollectorsRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeFleetAdvisorCollectorsResponse":{
+      "type":"structure",
+      "members":{
+        "Collectors":{"shape":"CollectorResponses"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeFleetAdvisorDatabasesRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeFleetAdvisorDatabasesResponse":{
+      "type":"structure",
+      "members":{
+        "Databases":{"shape":"DatabaseList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeFleetAdvisorLsaAnalysisRequest":{
+      "type":"structure",
+      "members":{
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeFleetAdvisorLsaAnalysisResponse":{
+      "type":"structure",
+      "members":{
+        "Analysis":{"shape":"FleetAdvisorLsaAnalysisResponseList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeFleetAdvisorSchemaObjectSummaryRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeFleetAdvisorSchemaObjectSummaryResponse":{
+      "type":"structure",
+      "members":{
+        "FleetAdvisorSchemaObjects":{"shape":"FleetAdvisorSchemaObjectList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeFleetAdvisorSchemasRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeFleetAdvisorSchemasResponse":{
+      "type":"structure",
+      "members":{
+        "FleetAdvisorSchemas":{"shape":"FleetAdvisorSchemaList"},
+        "NextToken":{"shape":"String"}
       }
     },
     "DescribeOrderableReplicationInstancesMessage":{
@@ -1587,6 +1911,7 @@
         "SecretsManagerSecretId":{"shape":"String"}
       }
     },
+    "DoubleOptional":{"type":"double"},
     "DynamoDbSettings":{
       "type":"structure",
       "required":["ServiceAccessRoleArn"],
@@ -1768,6 +2093,35 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "FleetAdvisorLsaAnalysisResponse":{
+      "type":"structure",
+      "members":{
+        "LsaAnalysisId":{"shape":"String"},
+        "Status":{"shape":"String"}
+      }
+    },
+    "FleetAdvisorLsaAnalysisResponseList":{
+      "type":"list",
+      "member":{"shape":"FleetAdvisorLsaAnalysisResponse"}
+    },
+    "FleetAdvisorSchemaList":{
+      "type":"list",
+      "member":{"shape":"SchemaResponse"}
+    },
+    "FleetAdvisorSchemaObjectList":{
+      "type":"list",
+      "member":{"shape":"FleetAdvisorSchemaObjectResponse"}
+    },
+    "FleetAdvisorSchemaObjectResponse":{
+      "type":"structure",
+      "members":{
+        "SchemaId":{"shape":"String"},
+        "ObjectType":{"shape":"String"},
+        "NumberOfObjects":{"shape":"LongOptional"},
+        "CodeLineCount":{"shape":"LongOptional"},
+        "CodeSize":{"shape":"LongOptional"}
+      }
+    },
     "GcpMySQLSettings":{
       "type":"structure",
       "members":{
@@ -1846,6 +2200,13 @@
       },
       "exception":true
     },
+    "InvalidOperationFault":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
     "InvalidResourceStateFault":{
       "type":"structure",
       "members":{
@@ -1859,6 +2220,13 @@
         "message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "InventoryData":{
+      "type":"structure",
+      "members":{
+        "NumberOfDatabases":{"shape":"IntegerOptional"},
+        "NumberOfSchemas":{"shape":"IntegerOptional"}
+      }
     },
     "KMSAccessDeniedFault":{
       "type":"structure",
@@ -1974,6 +2342,7 @@
       }
     },
     "Long":{"type":"long"},
+    "LongOptional":{"type":"long"},
     "MessageFormatValue":{
       "type":"string",
       "enum":[
@@ -2711,6 +3080,13 @@
       },
       "exception":true
     },
+    "RunFleetAdvisorLsaAnalysisResponse":{
+      "type":"structure",
+      "members":{
+        "LsaAnalysisId":{"shape":"String"},
+        "Status":{"shape":"String"}
+      }
+    },
     "S3AccessDeniedFault":{
       "type":"structure",
       "members":{
@@ -2794,9 +3170,41 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "SchemaResponse":{
+      "type":"structure",
+      "members":{
+        "CodeLineCount":{"shape":"LongOptional"},
+        "CodeSize":{"shape":"LongOptional"},
+        "Complexity":{"shape":"String"},
+        "Server":{"shape":"ServerShortInfoResponse"},
+        "DatabaseInstance":{"shape":"DatabaseShortInfoResponse"},
+        "SchemaId":{"shape":"String"},
+        "SchemaName":{"shape":"String"},
+        "OriginalSchema":{"shape":"SchemaShortInfoResponse"},
+        "Similarity":{"shape":"DoubleOptional"}
+      }
+    },
+    "SchemaShortInfoResponse":{
+      "type":"structure",
+      "members":{
+        "SchemaId":{"shape":"String"},
+        "SchemaName":{"shape":"String"},
+        "DatabaseId":{"shape":"String"},
+        "DatabaseName":{"shape":"String"},
+        "DatabaseIpAddress":{"shape":"String"}
+      }
+    },
     "SecretString":{
       "type":"string",
       "sensitive":true
+    },
+    "ServerShortInfoResponse":{
+      "type":"structure",
+      "members":{
+        "ServerId":{"shape":"String"},
+        "IpAddress":{"shape":"String"},
+        "ServerName":{"shape":"String"}
+      }
     },
     "SourceIdsList":{
       "type":"list",
@@ -2901,6 +3309,10 @@
       "exception":true
     },
     "String":{"type":"string"},
+    "StringList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "Subnet":{
       "type":"structure",
       "members":{
@@ -3036,6 +3448,14 @@
         "message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "VersionStatus":{
+      "type":"string",
+      "enum":[
+        "UP_TO_DATE",
+        "OUTDATED",
+        "UNSUPPORTED"
+      ]
     },
     "VpcSecurityGroupIdList":{
       "type":"list",

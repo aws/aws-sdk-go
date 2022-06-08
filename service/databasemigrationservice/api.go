@@ -496,6 +496,98 @@ func (c *DatabaseMigrationService) CreateEventSubscriptionWithContext(ctx aws.Co
 	return out, req.Send()
 }
 
+const opCreateFleetAdvisorCollector = "CreateFleetAdvisorCollector"
+
+// CreateFleetAdvisorCollectorRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFleetAdvisorCollector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFleetAdvisorCollector for more information on using the CreateFleetAdvisorCollector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateFleetAdvisorCollectorRequest method.
+//    req, resp := client.CreateFleetAdvisorCollectorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateFleetAdvisorCollector
+func (c *DatabaseMigrationService) CreateFleetAdvisorCollectorRequest(input *CreateFleetAdvisorCollectorInput) (req *request.Request, output *CreateFleetAdvisorCollectorOutput) {
+	op := &request.Operation{
+		Name:       opCreateFleetAdvisorCollector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateFleetAdvisorCollectorInput{}
+	}
+
+	output = &CreateFleetAdvisorCollectorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFleetAdvisorCollector API operation for AWS Database Migration Service.
+//
+// Creates a Fleet Advisor collector using the specified parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation CreateFleetAdvisorCollector for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * AccessDeniedFault
+//   DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   * S3AccessDeniedFault
+//   Insufficient privileges are preventing access to an Amazon S3 object.
+//
+//   * S3ResourceNotFoundFault
+//   A specified Amazon S3 bucket, bucket folder, or other object can't be found.
+//
+//   * ResourceQuotaExceededFault
+//   The quota for this resource quota has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateFleetAdvisorCollector
+func (c *DatabaseMigrationService) CreateFleetAdvisorCollector(input *CreateFleetAdvisorCollectorInput) (*CreateFleetAdvisorCollectorOutput, error) {
+	req, out := c.CreateFleetAdvisorCollectorRequest(input)
+	return out, req.Send()
+}
+
+// CreateFleetAdvisorCollectorWithContext is the same as CreateFleetAdvisorCollector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFleetAdvisorCollector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) CreateFleetAdvisorCollectorWithContext(ctx aws.Context, input *CreateFleetAdvisorCollectorInput, opts ...request.Option) (*CreateFleetAdvisorCollectorOutput, error) {
+	req, out := c.CreateFleetAdvisorCollectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateReplicationInstance = "CreateReplicationInstance"
 
 // CreateReplicationInstanceRequest generates a "aws/request.Request" representing the
@@ -1137,6 +1229,172 @@ func (c *DatabaseMigrationService) DeleteEventSubscription(input *DeleteEventSub
 // for more information on using Contexts.
 func (c *DatabaseMigrationService) DeleteEventSubscriptionWithContext(ctx aws.Context, input *DeleteEventSubscriptionInput, opts ...request.Option) (*DeleteEventSubscriptionOutput, error) {
 	req, out := c.DeleteEventSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFleetAdvisorCollector = "DeleteFleetAdvisorCollector"
+
+// DeleteFleetAdvisorCollectorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFleetAdvisorCollector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFleetAdvisorCollector for more information on using the DeleteFleetAdvisorCollector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFleetAdvisorCollectorRequest method.
+//    req, resp := client.DeleteFleetAdvisorCollectorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteFleetAdvisorCollector
+func (c *DatabaseMigrationService) DeleteFleetAdvisorCollectorRequest(input *DeleteFleetAdvisorCollectorInput) (req *request.Request, output *DeleteFleetAdvisorCollectorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFleetAdvisorCollector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteFleetAdvisorCollectorInput{}
+	}
+
+	output = &DeleteFleetAdvisorCollectorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteFleetAdvisorCollector API operation for AWS Database Migration Service.
+//
+// Deletes the specified Fleet Advisor collector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DeleteFleetAdvisorCollector for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * CollectorNotFoundFault
+//   The specified collector doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteFleetAdvisorCollector
+func (c *DatabaseMigrationService) DeleteFleetAdvisorCollector(input *DeleteFleetAdvisorCollectorInput) (*DeleteFleetAdvisorCollectorOutput, error) {
+	req, out := c.DeleteFleetAdvisorCollectorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFleetAdvisorCollectorWithContext is the same as DeleteFleetAdvisorCollector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFleetAdvisorCollector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DeleteFleetAdvisorCollectorWithContext(ctx aws.Context, input *DeleteFleetAdvisorCollectorInput, opts ...request.Option) (*DeleteFleetAdvisorCollectorOutput, error) {
+	req, out := c.DeleteFleetAdvisorCollectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFleetAdvisorDatabases = "DeleteFleetAdvisorDatabases"
+
+// DeleteFleetAdvisorDatabasesRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFleetAdvisorDatabases operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFleetAdvisorDatabases for more information on using the DeleteFleetAdvisorDatabases
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFleetAdvisorDatabasesRequest method.
+//    req, resp := client.DeleteFleetAdvisorDatabasesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteFleetAdvisorDatabases
+func (c *DatabaseMigrationService) DeleteFleetAdvisorDatabasesRequest(input *DeleteFleetAdvisorDatabasesInput) (req *request.Request, output *DeleteFleetAdvisorDatabasesOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFleetAdvisorDatabases,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteFleetAdvisorDatabasesInput{}
+	}
+
+	output = &DeleteFleetAdvisorDatabasesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteFleetAdvisorDatabases API operation for AWS Database Migration Service.
+//
+// Deletes the specified Fleet Advisor collector databases.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DeleteFleetAdvisorDatabases for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * InvalidOperationFault
+//   The action or operation requested isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteFleetAdvisorDatabases
+func (c *DatabaseMigrationService) DeleteFleetAdvisorDatabases(input *DeleteFleetAdvisorDatabasesInput) (*DeleteFleetAdvisorDatabasesOutput, error) {
+	req, out := c.DeleteFleetAdvisorDatabasesRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFleetAdvisorDatabasesWithContext is the same as DeleteFleetAdvisorDatabases with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFleetAdvisorDatabases for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DeleteFleetAdvisorDatabasesWithContext(ctx aws.Context, input *DeleteFleetAdvisorDatabasesInput, opts ...request.Option) (*DeleteFleetAdvisorDatabasesOutput, error) {
+	req, out := c.DeleteFleetAdvisorDatabasesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2755,6 +3013,697 @@ func (c *DatabaseMigrationService) DescribeEventsPagesWithContext(ctx aws.Contex
 
 	for p.Next() {
 		if !fn(p.Page().(*DescribeEventsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeFleetAdvisorCollectors = "DescribeFleetAdvisorCollectors"
+
+// DescribeFleetAdvisorCollectorsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetAdvisorCollectors operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFleetAdvisorCollectors for more information on using the DescribeFleetAdvisorCollectors
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFleetAdvisorCollectorsRequest method.
+//    req, resp := client.DescribeFleetAdvisorCollectorsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorCollectors
+func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectorsRequest(input *DescribeFleetAdvisorCollectorsInput) (req *request.Request, output *DescribeFleetAdvisorCollectorsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFleetAdvisorCollectors,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeFleetAdvisorCollectorsInput{}
+	}
+
+	output = &DescribeFleetAdvisorCollectorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFleetAdvisorCollectors API operation for AWS Database Migration Service.
+//
+// Returns a list of the Fleet Advisor collectors in your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeFleetAdvisorCollectors for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorCollectors
+func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectors(input *DescribeFleetAdvisorCollectorsInput) (*DescribeFleetAdvisorCollectorsOutput, error) {
+	req, out := c.DescribeFleetAdvisorCollectorsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorCollectorsWithContext is the same as DescribeFleetAdvisorCollectors with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetAdvisorCollectors for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectorsWithContext(ctx aws.Context, input *DescribeFleetAdvisorCollectorsInput, opts ...request.Option) (*DescribeFleetAdvisorCollectorsOutput, error) {
+	req, out := c.DescribeFleetAdvisorCollectorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorCollectorsPages iterates over the pages of a DescribeFleetAdvisorCollectors operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeFleetAdvisorCollectors method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeFleetAdvisorCollectors operation.
+//    pageNum := 0
+//    err := client.DescribeFleetAdvisorCollectorsPages(params,
+//        func(page *databasemigrationservice.DescribeFleetAdvisorCollectorsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectorsPages(input *DescribeFleetAdvisorCollectorsInput, fn func(*DescribeFleetAdvisorCollectorsOutput, bool) bool) error {
+	return c.DescribeFleetAdvisorCollectorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeFleetAdvisorCollectorsPagesWithContext same as DescribeFleetAdvisorCollectorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectorsPagesWithContext(ctx aws.Context, input *DescribeFleetAdvisorCollectorsInput, fn func(*DescribeFleetAdvisorCollectorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeFleetAdvisorCollectorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeFleetAdvisorCollectorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeFleetAdvisorCollectorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeFleetAdvisorDatabases = "DescribeFleetAdvisorDatabases"
+
+// DescribeFleetAdvisorDatabasesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetAdvisorDatabases operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFleetAdvisorDatabases for more information on using the DescribeFleetAdvisorDatabases
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFleetAdvisorDatabasesRequest method.
+//    req, resp := client.DescribeFleetAdvisorDatabasesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorDatabases
+func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabasesRequest(input *DescribeFleetAdvisorDatabasesInput) (req *request.Request, output *DescribeFleetAdvisorDatabasesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFleetAdvisorDatabases,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeFleetAdvisorDatabasesInput{}
+	}
+
+	output = &DescribeFleetAdvisorDatabasesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFleetAdvisorDatabases API operation for AWS Database Migration Service.
+//
+// Returns a list of Fleet Advisor databases in your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeFleetAdvisorDatabases for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorDatabases
+func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabases(input *DescribeFleetAdvisorDatabasesInput) (*DescribeFleetAdvisorDatabasesOutput, error) {
+	req, out := c.DescribeFleetAdvisorDatabasesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorDatabasesWithContext is the same as DescribeFleetAdvisorDatabases with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetAdvisorDatabases for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabasesWithContext(ctx aws.Context, input *DescribeFleetAdvisorDatabasesInput, opts ...request.Option) (*DescribeFleetAdvisorDatabasesOutput, error) {
+	req, out := c.DescribeFleetAdvisorDatabasesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorDatabasesPages iterates over the pages of a DescribeFleetAdvisorDatabases operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeFleetAdvisorDatabases method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeFleetAdvisorDatabases operation.
+//    pageNum := 0
+//    err := client.DescribeFleetAdvisorDatabasesPages(params,
+//        func(page *databasemigrationservice.DescribeFleetAdvisorDatabasesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabasesPages(input *DescribeFleetAdvisorDatabasesInput, fn func(*DescribeFleetAdvisorDatabasesOutput, bool) bool) error {
+	return c.DescribeFleetAdvisorDatabasesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeFleetAdvisorDatabasesPagesWithContext same as DescribeFleetAdvisorDatabasesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabasesPagesWithContext(ctx aws.Context, input *DescribeFleetAdvisorDatabasesInput, fn func(*DescribeFleetAdvisorDatabasesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeFleetAdvisorDatabasesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeFleetAdvisorDatabasesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeFleetAdvisorDatabasesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeFleetAdvisorLsaAnalysis = "DescribeFleetAdvisorLsaAnalysis"
+
+// DescribeFleetAdvisorLsaAnalysisRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetAdvisorLsaAnalysis operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFleetAdvisorLsaAnalysis for more information on using the DescribeFleetAdvisorLsaAnalysis
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFleetAdvisorLsaAnalysisRequest method.
+//    req, resp := client.DescribeFleetAdvisorLsaAnalysisRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorLsaAnalysis
+func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysisRequest(input *DescribeFleetAdvisorLsaAnalysisInput) (req *request.Request, output *DescribeFleetAdvisorLsaAnalysisOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFleetAdvisorLsaAnalysis,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeFleetAdvisorLsaAnalysisInput{}
+	}
+
+	output = &DescribeFleetAdvisorLsaAnalysisOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFleetAdvisorLsaAnalysis API operation for AWS Database Migration Service.
+//
+// Provides descriptions of large-scale assessment (LSA) analyses produced by
+// your Fleet Advisor collectors.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeFleetAdvisorLsaAnalysis for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorLsaAnalysis
+func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysis(input *DescribeFleetAdvisorLsaAnalysisInput) (*DescribeFleetAdvisorLsaAnalysisOutput, error) {
+	req, out := c.DescribeFleetAdvisorLsaAnalysisRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorLsaAnalysisWithContext is the same as DescribeFleetAdvisorLsaAnalysis with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetAdvisorLsaAnalysis for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysisWithContext(ctx aws.Context, input *DescribeFleetAdvisorLsaAnalysisInput, opts ...request.Option) (*DescribeFleetAdvisorLsaAnalysisOutput, error) {
+	req, out := c.DescribeFleetAdvisorLsaAnalysisRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorLsaAnalysisPages iterates over the pages of a DescribeFleetAdvisorLsaAnalysis operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeFleetAdvisorLsaAnalysis method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeFleetAdvisorLsaAnalysis operation.
+//    pageNum := 0
+//    err := client.DescribeFleetAdvisorLsaAnalysisPages(params,
+//        func(page *databasemigrationservice.DescribeFleetAdvisorLsaAnalysisOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysisPages(input *DescribeFleetAdvisorLsaAnalysisInput, fn func(*DescribeFleetAdvisorLsaAnalysisOutput, bool) bool) error {
+	return c.DescribeFleetAdvisorLsaAnalysisPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeFleetAdvisorLsaAnalysisPagesWithContext same as DescribeFleetAdvisorLsaAnalysisPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysisPagesWithContext(ctx aws.Context, input *DescribeFleetAdvisorLsaAnalysisInput, fn func(*DescribeFleetAdvisorLsaAnalysisOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeFleetAdvisorLsaAnalysisInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeFleetAdvisorLsaAnalysisRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeFleetAdvisorLsaAnalysisOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeFleetAdvisorSchemaObjectSummary = "DescribeFleetAdvisorSchemaObjectSummary"
+
+// DescribeFleetAdvisorSchemaObjectSummaryRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetAdvisorSchemaObjectSummary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFleetAdvisorSchemaObjectSummary for more information on using the DescribeFleetAdvisorSchemaObjectSummary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFleetAdvisorSchemaObjectSummaryRequest method.
+//    req, resp := client.DescribeFleetAdvisorSchemaObjectSummaryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorSchemaObjectSummary
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummaryRequest(input *DescribeFleetAdvisorSchemaObjectSummaryInput) (req *request.Request, output *DescribeFleetAdvisorSchemaObjectSummaryOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFleetAdvisorSchemaObjectSummary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeFleetAdvisorSchemaObjectSummaryInput{}
+	}
+
+	output = &DescribeFleetAdvisorSchemaObjectSummaryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFleetAdvisorSchemaObjectSummary API operation for AWS Database Migration Service.
+//
+// Provides descriptions of the schemas discovered by your Fleet Advisor collectors.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeFleetAdvisorSchemaObjectSummary for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorSchemaObjectSummary
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummary(input *DescribeFleetAdvisorSchemaObjectSummaryInput) (*DescribeFleetAdvisorSchemaObjectSummaryOutput, error) {
+	req, out := c.DescribeFleetAdvisorSchemaObjectSummaryRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorSchemaObjectSummaryWithContext is the same as DescribeFleetAdvisorSchemaObjectSummary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetAdvisorSchemaObjectSummary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummaryWithContext(ctx aws.Context, input *DescribeFleetAdvisorSchemaObjectSummaryInput, opts ...request.Option) (*DescribeFleetAdvisorSchemaObjectSummaryOutput, error) {
+	req, out := c.DescribeFleetAdvisorSchemaObjectSummaryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorSchemaObjectSummaryPages iterates over the pages of a DescribeFleetAdvisorSchemaObjectSummary operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeFleetAdvisorSchemaObjectSummary method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeFleetAdvisorSchemaObjectSummary operation.
+//    pageNum := 0
+//    err := client.DescribeFleetAdvisorSchemaObjectSummaryPages(params,
+//        func(page *databasemigrationservice.DescribeFleetAdvisorSchemaObjectSummaryOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummaryPages(input *DescribeFleetAdvisorSchemaObjectSummaryInput, fn func(*DescribeFleetAdvisorSchemaObjectSummaryOutput, bool) bool) error {
+	return c.DescribeFleetAdvisorSchemaObjectSummaryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeFleetAdvisorSchemaObjectSummaryPagesWithContext same as DescribeFleetAdvisorSchemaObjectSummaryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummaryPagesWithContext(ctx aws.Context, input *DescribeFleetAdvisorSchemaObjectSummaryInput, fn func(*DescribeFleetAdvisorSchemaObjectSummaryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeFleetAdvisorSchemaObjectSummaryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeFleetAdvisorSchemaObjectSummaryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeFleetAdvisorSchemaObjectSummaryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeFleetAdvisorSchemas = "DescribeFleetAdvisorSchemas"
+
+// DescribeFleetAdvisorSchemasRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetAdvisorSchemas operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFleetAdvisorSchemas for more information on using the DescribeFleetAdvisorSchemas
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFleetAdvisorSchemasRequest method.
+//    req, resp := client.DescribeFleetAdvisorSchemasRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorSchemas
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemasRequest(input *DescribeFleetAdvisorSchemasInput) (req *request.Request, output *DescribeFleetAdvisorSchemasOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFleetAdvisorSchemas,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeFleetAdvisorSchemasInput{}
+	}
+
+	output = &DescribeFleetAdvisorSchemasOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFleetAdvisorSchemas API operation for AWS Database Migration Service.
+//
+// Returns a list of schemas detected by Fleet Advisor Collectors in your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeFleetAdvisorSchemas for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorSchemas
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemas(input *DescribeFleetAdvisorSchemasInput) (*DescribeFleetAdvisorSchemasOutput, error) {
+	req, out := c.DescribeFleetAdvisorSchemasRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorSchemasWithContext is the same as DescribeFleetAdvisorSchemas with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetAdvisorSchemas for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemasWithContext(ctx aws.Context, input *DescribeFleetAdvisorSchemasInput, opts ...request.Option) (*DescribeFleetAdvisorSchemasOutput, error) {
+	req, out := c.DescribeFleetAdvisorSchemasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorSchemasPages iterates over the pages of a DescribeFleetAdvisorSchemas operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeFleetAdvisorSchemas method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeFleetAdvisorSchemas operation.
+//    pageNum := 0
+//    err := client.DescribeFleetAdvisorSchemasPages(params,
+//        func(page *databasemigrationservice.DescribeFleetAdvisorSchemasOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemasPages(input *DescribeFleetAdvisorSchemasInput, fn func(*DescribeFleetAdvisorSchemasOutput, bool) bool) error {
+	return c.DescribeFleetAdvisorSchemasPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeFleetAdvisorSchemasPagesWithContext same as DescribeFleetAdvisorSchemasPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemasPagesWithContext(ctx aws.Context, input *DescribeFleetAdvisorSchemasInput, fn func(*DescribeFleetAdvisorSchemasOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeFleetAdvisorSchemasInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeFleetAdvisorSchemasRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeFleetAdvisorSchemasOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -5484,6 +6433,90 @@ func (c *DatabaseMigrationService) RemoveTagsFromResourceWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+const opRunFleetAdvisorLsaAnalysis = "RunFleetAdvisorLsaAnalysis"
+
+// RunFleetAdvisorLsaAnalysisRequest generates a "aws/request.Request" representing the
+// client's request for the RunFleetAdvisorLsaAnalysis operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RunFleetAdvisorLsaAnalysis for more information on using the RunFleetAdvisorLsaAnalysis
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RunFleetAdvisorLsaAnalysisRequest method.
+//    req, resp := client.RunFleetAdvisorLsaAnalysisRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RunFleetAdvisorLsaAnalysis
+func (c *DatabaseMigrationService) RunFleetAdvisorLsaAnalysisRequest(input *RunFleetAdvisorLsaAnalysisInput) (req *request.Request, output *RunFleetAdvisorLsaAnalysisOutput) {
+	op := &request.Operation{
+		Name:       opRunFleetAdvisorLsaAnalysis,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RunFleetAdvisorLsaAnalysisInput{}
+	}
+
+	output = &RunFleetAdvisorLsaAnalysisOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RunFleetAdvisorLsaAnalysis API operation for AWS Database Migration Service.
+//
+// Runs large-scale assessment (LSA) analysis on every Fleet Advisor collector
+// in your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation RunFleetAdvisorLsaAnalysis for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RunFleetAdvisorLsaAnalysis
+func (c *DatabaseMigrationService) RunFleetAdvisorLsaAnalysis(input *RunFleetAdvisorLsaAnalysisInput) (*RunFleetAdvisorLsaAnalysisOutput, error) {
+	req, out := c.RunFleetAdvisorLsaAnalysisRequest(input)
+	return out, req.Send()
+}
+
+// RunFleetAdvisorLsaAnalysisWithContext is the same as RunFleetAdvisorLsaAnalysis with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RunFleetAdvisorLsaAnalysis for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) RunFleetAdvisorLsaAnalysisWithContext(ctx aws.Context, input *RunFleetAdvisorLsaAnalysisInput, opts ...request.Option) (*RunFleetAdvisorLsaAnalysisOutput, error) {
+	req, out := c.RunFleetAdvisorLsaAnalysisRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartReplicationTask = "StartReplicationTask"
 
 // StartReplicationTaskRequest generates a "aws/request.Request" representing the
@@ -6519,6 +7552,316 @@ func (s *Certificate) SetValidToDate(v time.Time) *Certificate {
 	return s
 }
 
+// Describes the last Fleet Advisor collector health check.
+type CollectorHealthCheck struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the Fleet Advisor collector.
+	CollectorStatus *string `type:"string" enum:"CollectorStatus"`
+
+	// Whether the local collector can access its Amazon S3 bucket.
+	LocalCollectorS3Access *bool `type:"boolean"`
+
+	// Whether the role that you provided when creating the Fleet Advisor collector
+	// has sufficient permissions to access the Fleet Advisor web collector.
+	WebCollectorGrantedRoleBasedAccess *bool `type:"boolean"`
+
+	// Whether the web collector can access its Amazon S3 bucket.
+	WebCollectorS3Access *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorHealthCheck) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorHealthCheck) GoString() string {
+	return s.String()
+}
+
+// SetCollectorStatus sets the CollectorStatus field's value.
+func (s *CollectorHealthCheck) SetCollectorStatus(v string) *CollectorHealthCheck {
+	s.CollectorStatus = &v
+	return s
+}
+
+// SetLocalCollectorS3Access sets the LocalCollectorS3Access field's value.
+func (s *CollectorHealthCheck) SetLocalCollectorS3Access(v bool) *CollectorHealthCheck {
+	s.LocalCollectorS3Access = &v
+	return s
+}
+
+// SetWebCollectorGrantedRoleBasedAccess sets the WebCollectorGrantedRoleBasedAccess field's value.
+func (s *CollectorHealthCheck) SetWebCollectorGrantedRoleBasedAccess(v bool) *CollectorHealthCheck {
+	s.WebCollectorGrantedRoleBasedAccess = &v
+	return s
+}
+
+// SetWebCollectorS3Access sets the WebCollectorS3Access field's value.
+func (s *CollectorHealthCheck) SetWebCollectorS3Access(v bool) *CollectorHealthCheck {
+	s.WebCollectorS3Access = &v
+	return s
+}
+
+// The specified collector doesn't exist.
+type CollectorNotFoundFault struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorNotFoundFault) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorNotFoundFault) GoString() string {
+	return s.String()
+}
+
+func newErrorCollectorNotFoundFault(v protocol.ResponseMetadata) error {
+	return &CollectorNotFoundFault{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *CollectorNotFoundFault) Code() string {
+	return "CollectorNotFoundFault"
+}
+
+// Message returns the exception's message.
+func (s *CollectorNotFoundFault) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *CollectorNotFoundFault) OrigErr() error {
+	return nil
+}
+
+func (s *CollectorNotFoundFault) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *CollectorNotFoundFault) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *CollectorNotFoundFault) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Describes a Fleet Advisor collector.
+type CollectorResponse struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the last Fleet Advisor collector health check.
+	CollectorHealthCheck *CollectorHealthCheck `type:"structure"`
+
+	// The name of the Fleet Advisor collector .
+	CollectorName *string `type:"string"`
+
+	// The reference ID of the Fleet Advisor collector.
+	CollectorReferencedId *string `type:"string"`
+
+	// The version of your Fleet Advisor collector, in semantic versioning format,
+	// for example 1.0.2
+	CollectorVersion *string `type:"string"`
+
+	// The timestamp when you created the collector, in the following format: 2022-01-24T19:04:02.596113Z
+	CreatedDate *string `type:"string"`
+
+	// A summary description of the Fleet Advisor collector.
+	Description *string `type:"string"`
+
+	// Describes a Fleet Advisor collector inventory.
+	InventoryData *InventoryData `type:"structure"`
+
+	// The timestamp of the last time the collector received data, in the following
+	// format: 2022-01-24T19:04:02.596113Z
+	LastDataReceived *string `type:"string"`
+
+	// The timestamp when DMS last modified the collector, in the following format:
+	// 2022-01-24T19:04:02.596113Z
+	ModifiedDate *string `type:"string"`
+
+	// The timestamp when DMS registered the collector, in the following format:
+	// 2022-01-24T19:04:02.596113Z
+	RegisteredDate *string `type:"string"`
+
+	// The Amazon S3 bucket that the Fleet Advisor collector uses to store inventory
+	// metadata.
+	S3BucketName *string `type:"string"`
+
+	// The IAM role that grants permissions to access the specified Amazon S3 bucket.
+	ServiceAccessRoleArn *string `type:"string"`
+
+	// Whether the collector version is up to date.
+	VersionStatus *string `type:"string" enum:"VersionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorResponse) GoString() string {
+	return s.String()
+}
+
+// SetCollectorHealthCheck sets the CollectorHealthCheck field's value.
+func (s *CollectorResponse) SetCollectorHealthCheck(v *CollectorHealthCheck) *CollectorResponse {
+	s.CollectorHealthCheck = v
+	return s
+}
+
+// SetCollectorName sets the CollectorName field's value.
+func (s *CollectorResponse) SetCollectorName(v string) *CollectorResponse {
+	s.CollectorName = &v
+	return s
+}
+
+// SetCollectorReferencedId sets the CollectorReferencedId field's value.
+func (s *CollectorResponse) SetCollectorReferencedId(v string) *CollectorResponse {
+	s.CollectorReferencedId = &v
+	return s
+}
+
+// SetCollectorVersion sets the CollectorVersion field's value.
+func (s *CollectorResponse) SetCollectorVersion(v string) *CollectorResponse {
+	s.CollectorVersion = &v
+	return s
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *CollectorResponse) SetCreatedDate(v string) *CollectorResponse {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CollectorResponse) SetDescription(v string) *CollectorResponse {
+	s.Description = &v
+	return s
+}
+
+// SetInventoryData sets the InventoryData field's value.
+func (s *CollectorResponse) SetInventoryData(v *InventoryData) *CollectorResponse {
+	s.InventoryData = v
+	return s
+}
+
+// SetLastDataReceived sets the LastDataReceived field's value.
+func (s *CollectorResponse) SetLastDataReceived(v string) *CollectorResponse {
+	s.LastDataReceived = &v
+	return s
+}
+
+// SetModifiedDate sets the ModifiedDate field's value.
+func (s *CollectorResponse) SetModifiedDate(v string) *CollectorResponse {
+	s.ModifiedDate = &v
+	return s
+}
+
+// SetRegisteredDate sets the RegisteredDate field's value.
+func (s *CollectorResponse) SetRegisteredDate(v string) *CollectorResponse {
+	s.RegisteredDate = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *CollectorResponse) SetS3BucketName(v string) *CollectorResponse {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetServiceAccessRoleArn sets the ServiceAccessRoleArn field's value.
+func (s *CollectorResponse) SetServiceAccessRoleArn(v string) *CollectorResponse {
+	s.ServiceAccessRoleArn = &v
+	return s
+}
+
+// SetVersionStatus sets the VersionStatus field's value.
+func (s *CollectorResponse) SetVersionStatus(v string) *CollectorResponse {
+	s.VersionStatus = &v
+	return s
+}
+
+// Briefly describes a Fleet Advisor collector.
+type CollectorShortInfoResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Fleet Advisor collector.
+	CollectorName *string `type:"string"`
+
+	// The reference ID of the Fleet Advisor collector.
+	CollectorReferencedId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorShortInfoResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorShortInfoResponse) GoString() string {
+	return s.String()
+}
+
+// SetCollectorName sets the CollectorName field's value.
+func (s *CollectorShortInfoResponse) SetCollectorName(v string) *CollectorShortInfoResponse {
+	s.CollectorName = &v
+	return s
+}
+
+// SetCollectorReferencedId sets the CollectorReferencedId field's value.
+func (s *CollectorShortInfoResponse) SetCollectorReferencedId(v string) *CollectorShortInfoResponse {
+	s.CollectorReferencedId = &v
+	return s
+}
+
 // Status of the connection between an endpoint and a replication instance,
 // including Amazon Resource Names (ARNs) and the last error message issued.
 type Connection struct {
@@ -6615,7 +7958,8 @@ type CreateEndpointInput struct {
 	CertificateArn *string `type:"string"`
 
 	// The name of the endpoint database. For a MySQL source or target endpoint,
-	// do not specify DatabaseName.
+	// do not specify DatabaseName. To migrate to a specific database, use this
+	// setting and targetDbType.
 	DatabaseName *string `type:"string"`
 
 	// The settings in JSON format for the DMS transfer type of source endpoint.
@@ -7253,6 +8597,157 @@ func (s CreateEventSubscriptionOutput) GoString() string {
 // SetEventSubscription sets the EventSubscription field's value.
 func (s *CreateEventSubscriptionOutput) SetEventSubscription(v *EventSubscription) *CreateEventSubscriptionOutput {
 	s.EventSubscription = v
+	return s
+}
+
+type CreateFleetAdvisorCollectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of your Fleet Advisor collector (for example, sample-collector).
+	//
+	// CollectorName is a required field
+	CollectorName *string `type:"string" required:"true"`
+
+	// A summary description of your Fleet Advisor collector.
+	Description *string `type:"string"`
+
+	// The Amazon S3 bucket that the Fleet Advisor collector uses to store inventory
+	// metadata.
+	//
+	// S3BucketName is a required field
+	S3BucketName *string `type:"string" required:"true"`
+
+	// The IAM role that grants permissions to access the specified Amazon S3 bucket.
+	//
+	// ServiceAccessRoleArn is a required field
+	ServiceAccessRoleArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFleetAdvisorCollectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFleetAdvisorCollectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFleetAdvisorCollectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFleetAdvisorCollectorInput"}
+	if s.CollectorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectorName"))
+	}
+	if s.S3BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3BucketName"))
+	}
+	if s.ServiceAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceAccessRoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollectorName sets the CollectorName field's value.
+func (s *CreateFleetAdvisorCollectorInput) SetCollectorName(v string) *CreateFleetAdvisorCollectorInput {
+	s.CollectorName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateFleetAdvisorCollectorInput) SetDescription(v string) *CreateFleetAdvisorCollectorInput {
+	s.Description = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *CreateFleetAdvisorCollectorInput) SetS3BucketName(v string) *CreateFleetAdvisorCollectorInput {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetServiceAccessRoleArn sets the ServiceAccessRoleArn field's value.
+func (s *CreateFleetAdvisorCollectorInput) SetServiceAccessRoleArn(v string) *CreateFleetAdvisorCollectorInput {
+	s.ServiceAccessRoleArn = &v
+	return s
+}
+
+type CreateFleetAdvisorCollectorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the new Fleet Advisor collector.
+	CollectorName *string `type:"string"`
+
+	// The unique ID of the new Fleet Advisor collector, for example: 22fda70c-40d5-4acf-b233-a495bd8eb7f5
+	CollectorReferencedId *string `type:"string"`
+
+	// A summary description of the Fleet Advisor collector.
+	Description *string `type:"string"`
+
+	// The Amazon S3 bucket that the collector uses to store inventory metadata.
+	S3BucketName *string `type:"string"`
+
+	// The IAM role that grants permissions to access the specified Amazon S3 bucket.
+	ServiceAccessRoleArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFleetAdvisorCollectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFleetAdvisorCollectorOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollectorName sets the CollectorName field's value.
+func (s *CreateFleetAdvisorCollectorOutput) SetCollectorName(v string) *CreateFleetAdvisorCollectorOutput {
+	s.CollectorName = &v
+	return s
+}
+
+// SetCollectorReferencedId sets the CollectorReferencedId field's value.
+func (s *CreateFleetAdvisorCollectorOutput) SetCollectorReferencedId(v string) *CreateFleetAdvisorCollectorOutput {
+	s.CollectorReferencedId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateFleetAdvisorCollectorOutput) SetDescription(v string) *CreateFleetAdvisorCollectorOutput {
+	s.Description = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *CreateFleetAdvisorCollectorOutput) SetS3BucketName(v string) *CreateFleetAdvisorCollectorOutput {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetServiceAccessRoleArn sets the ServiceAccessRoleArn field's value.
+func (s *CreateFleetAdvisorCollectorOutput) SetServiceAccessRoleArn(v string) *CreateFleetAdvisorCollectorOutput {
+	s.ServiceAccessRoleArn = &v
 	return s
 }
 
@@ -7904,6 +9399,243 @@ func (s *CreateReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *Cr
 	return s
 }
 
+// Describes an inventory database instance for a Fleet Advisor collector.
+type DatabaseInstanceSoftwareDetailsResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The database engine of a database in a Fleet Advisor collector inventory,
+	// for example Microsoft SQL Server.
+	Engine *string `type:"string"`
+
+	// The database engine edition of a database in a Fleet Advisor collector inventory,
+	// for example Express.
+	EngineEdition *string `type:"string"`
+
+	// The database engine version of a database in a Fleet Advisor collector inventory,
+	// for example 2019.
+	EngineVersion *string `type:"string"`
+
+	// The operating system architecture of the database.
+	OsArchitecture *int64 `type:"integer"`
+
+	// The service pack level of the database.
+	ServicePack *string `type:"string"`
+
+	// The support level of the database, for example Mainstream support.
+	SupportLevel *string `type:"string"`
+
+	// Information about the database engine software, for example Mainstream support
+	// ends on November 14th, 2024.
+	Tooltip *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseInstanceSoftwareDetailsResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseInstanceSoftwareDetailsResponse) GoString() string {
+	return s.String()
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DatabaseInstanceSoftwareDetailsResponse) SetEngine(v string) *DatabaseInstanceSoftwareDetailsResponse {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineEdition sets the EngineEdition field's value.
+func (s *DatabaseInstanceSoftwareDetailsResponse) SetEngineEdition(v string) *DatabaseInstanceSoftwareDetailsResponse {
+	s.EngineEdition = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *DatabaseInstanceSoftwareDetailsResponse) SetEngineVersion(v string) *DatabaseInstanceSoftwareDetailsResponse {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetOsArchitecture sets the OsArchitecture field's value.
+func (s *DatabaseInstanceSoftwareDetailsResponse) SetOsArchitecture(v int64) *DatabaseInstanceSoftwareDetailsResponse {
+	s.OsArchitecture = &v
+	return s
+}
+
+// SetServicePack sets the ServicePack field's value.
+func (s *DatabaseInstanceSoftwareDetailsResponse) SetServicePack(v string) *DatabaseInstanceSoftwareDetailsResponse {
+	s.ServicePack = &v
+	return s
+}
+
+// SetSupportLevel sets the SupportLevel field's value.
+func (s *DatabaseInstanceSoftwareDetailsResponse) SetSupportLevel(v string) *DatabaseInstanceSoftwareDetailsResponse {
+	s.SupportLevel = &v
+	return s
+}
+
+// SetTooltip sets the Tooltip field's value.
+func (s *DatabaseInstanceSoftwareDetailsResponse) SetTooltip(v string) *DatabaseInstanceSoftwareDetailsResponse {
+	s.Tooltip = &v
+	return s
+}
+
+// Describes a database in a Fleet Advisor collector inventory.
+type DatabaseResponse struct {
+	_ struct{} `type:"structure"`
+
+	// A list of collectors associated with the database.
+	Collectors []*CollectorShortInfoResponse `type:"list"`
+
+	// The ID of a database in a Fleet Advisor collector inventory.
+	DatabaseId *string `type:"string"`
+
+	// The name of a database in a Fleet Advisor collector inventory.
+	DatabaseName *string `type:"string"`
+
+	// The IP address of a database in a Fleet Advisor collector inventory.
+	IpAddress *string `type:"string"`
+
+	// The number of schemas in a Fleet Advisor collector inventory database.
+	NumberOfSchemas *int64 `type:"long"`
+
+	// The server name of a database in a Fleet Advisor collector inventory.
+	Server *ServerShortInfoResponse `type:"structure"`
+
+	// The software details of a database in a Fleet Advisor collector inventory,
+	// such as database engine and version.
+	SoftwareDetails *DatabaseInstanceSoftwareDetailsResponse `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseResponse) GoString() string {
+	return s.String()
+}
+
+// SetCollectors sets the Collectors field's value.
+func (s *DatabaseResponse) SetCollectors(v []*CollectorShortInfoResponse) *DatabaseResponse {
+	s.Collectors = v
+	return s
+}
+
+// SetDatabaseId sets the DatabaseId field's value.
+func (s *DatabaseResponse) SetDatabaseId(v string) *DatabaseResponse {
+	s.DatabaseId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DatabaseResponse) SetDatabaseName(v string) *DatabaseResponse {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *DatabaseResponse) SetIpAddress(v string) *DatabaseResponse {
+	s.IpAddress = &v
+	return s
+}
+
+// SetNumberOfSchemas sets the NumberOfSchemas field's value.
+func (s *DatabaseResponse) SetNumberOfSchemas(v int64) *DatabaseResponse {
+	s.NumberOfSchemas = &v
+	return s
+}
+
+// SetServer sets the Server field's value.
+func (s *DatabaseResponse) SetServer(v *ServerShortInfoResponse) *DatabaseResponse {
+	s.Server = v
+	return s
+}
+
+// SetSoftwareDetails sets the SoftwareDetails field's value.
+func (s *DatabaseResponse) SetSoftwareDetails(v *DatabaseInstanceSoftwareDetailsResponse) *DatabaseResponse {
+	s.SoftwareDetails = v
+	return s
+}
+
+// Describes a database in a Fleet Advisor collector inventory.
+type DatabaseShortInfoResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The database engine of a database in a Fleet Advisor collector inventory,
+	// for example PostgreSQL.
+	DatabaseEngine *string `type:"string"`
+
+	// The ID of a database in a Fleet Advisor collector inventory.
+	DatabaseId *string `type:"string"`
+
+	// The IP address of a database in a Fleet Advisor collector inventory.
+	DatabaseIpAddress *string `type:"string"`
+
+	// The name of a database in a Fleet Advisor collector inventory.
+	DatabaseName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseShortInfoResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseShortInfoResponse) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseEngine sets the DatabaseEngine field's value.
+func (s *DatabaseShortInfoResponse) SetDatabaseEngine(v string) *DatabaseShortInfoResponse {
+	s.DatabaseEngine = &v
+	return s
+}
+
+// SetDatabaseId sets the DatabaseId field's value.
+func (s *DatabaseShortInfoResponse) SetDatabaseId(v string) *DatabaseShortInfoResponse {
+	s.DatabaseId = &v
+	return s
+}
+
+// SetDatabaseIpAddress sets the DatabaseIpAddress field's value.
+func (s *DatabaseShortInfoResponse) SetDatabaseIpAddress(v string) *DatabaseShortInfoResponse {
+	s.DatabaseIpAddress = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DatabaseShortInfoResponse) SetDatabaseName(v string) *DatabaseShortInfoResponse {
+	s.DatabaseName = &v
+	return s
+}
+
 type DeleteCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8223,6 +9955,151 @@ func (s DeleteEventSubscriptionOutput) GoString() string {
 // SetEventSubscription sets the EventSubscription field's value.
 func (s *DeleteEventSubscriptionOutput) SetEventSubscription(v *EventSubscription) *DeleteEventSubscriptionOutput {
 	s.EventSubscription = v
+	return s
+}
+
+type DeleteFleetAdvisorCollectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The reference ID of the Fleet Advisor collector to delete.
+	//
+	// CollectorReferencedId is a required field
+	CollectorReferencedId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorCollectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorCollectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFleetAdvisorCollectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFleetAdvisorCollectorInput"}
+	if s.CollectorReferencedId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectorReferencedId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollectorReferencedId sets the CollectorReferencedId field's value.
+func (s *DeleteFleetAdvisorCollectorInput) SetCollectorReferencedId(v string) *DeleteFleetAdvisorCollectorInput {
+	s.CollectorReferencedId = &v
+	return s
+}
+
+type DeleteFleetAdvisorCollectorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorCollectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorCollectorOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteFleetAdvisorDatabasesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The IDs of the Fleet Advisor collector databases to delete.
+	//
+	// DatabaseIds is a required field
+	DatabaseIds []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorDatabasesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorDatabasesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFleetAdvisorDatabasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFleetAdvisorDatabasesInput"}
+	if s.DatabaseIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseIds sets the DatabaseIds field's value.
+func (s *DeleteFleetAdvisorDatabasesInput) SetDatabaseIds(v []*string) *DeleteFleetAdvisorDatabasesInput {
+	s.DatabaseIds = v
+	return s
+}
+
+type DeleteFleetAdvisorDatabasesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The IDs of the databases that the operation deleted.
+	DatabaseIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorDatabasesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorDatabasesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseIds sets the DatabaseIds field's value.
+func (s *DeleteFleetAdvisorDatabasesOutput) SetDatabaseIds(v []*string) *DeleteFleetAdvisorDatabasesOutput {
+	s.DatabaseIds = v
 	return s
 }
 
@@ -9724,6 +11601,603 @@ func (s *DescribeEventsOutput) SetEvents(v []*Event) *DescribeEventsOutput {
 // SetMarker sets the Marker field's value.
 func (s *DescribeEventsOutput) SetMarker(v string) *DescribeEventsOutput {
 	s.Marker = &v
+	return s
+}
+
+type DescribeFleetAdvisorCollectorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// If you specify any of the following filters, the output includes information
+	// for only those collectors that meet the filter criteria:
+	//
+	//    * collector-referenced-id – The ID of the collector agent, for example
+	//    d4610ac5-e323-4ad9-bc50-eaf7249dfe9d.
+	//
+	//    * collector-name – The name of the collector agent.
+	//
+	// An example is: describe-fleet-advisor-collectors --filter Name="collector-referenced-id",Values="d4610ac5-e323-4ad9-bc50-eaf7249dfe9d"
+	Filters []*Filter `type:"list"`
+
+	// Sets the maximum number of records returned in the response.
+	MaxRecords *int64 `type:"integer"`
+
+	// If NextToken is returned by a previous response, there are more results available.
+	// The value of NextToken is a unique pagination token for each page. Make the
+	// call again using the returned token to retrieve the next page. Keep all other
+	// arguments unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorCollectorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorCollectorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFleetAdvisorCollectorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFleetAdvisorCollectorsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeFleetAdvisorCollectorsInput) SetFilters(v []*Filter) *DescribeFleetAdvisorCollectorsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeFleetAdvisorCollectorsInput) SetMaxRecords(v int64) *DescribeFleetAdvisorCollectorsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorCollectorsInput) SetNextToken(v string) *DescribeFleetAdvisorCollectorsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorCollectorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides descriptions of the Fleet Advisor collectors, including the collectors'
+	// name and ID, and the latest inventory data.
+	Collectors []*CollectorResponse `type:"list"`
+
+	// If NextToken is returned, there are more results available. The value of
+	// NextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorCollectorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorCollectorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollectors sets the Collectors field's value.
+func (s *DescribeFleetAdvisorCollectorsOutput) SetCollectors(v []*CollectorResponse) *DescribeFleetAdvisorCollectorsOutput {
+	s.Collectors = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorCollectorsOutput) SetNextToken(v string) *DescribeFleetAdvisorCollectorsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorDatabasesInput struct {
+	_ struct{} `type:"structure"`
+
+	// If you specify any of the following filters, the output includes information
+	// for only those databases that meet the filter criteria:
+	//
+	//    * database-id – The ID of the database, for example d4610ac5-e323-4ad9-bc50-eaf7249dfe9d.
+	//
+	//    * database-name – The name of the database.
+	//
+	//    * database-engine – The name of the database engine.
+	//
+	//    * server-ip-address – The IP address of the database server.
+	//
+	//    * database-ip-address – The IP address of the database.
+	//
+	//    * collector-name – The name of the associated Fleet Advisor collector.
+	//
+	// An example is: describe-fleet-advisor-databases --filter Name="database-id",Values="d4610ac5-e323-4ad9-bc50-eaf7249dfe9d"
+	Filters []*Filter `type:"list"`
+
+	// Sets the maximum number of records returned in the response.
+	MaxRecords *int64 `type:"integer"`
+
+	// If NextToken is returned by a previous response, there are more results available.
+	// The value of NextToken is a unique pagination token for each page. Make the
+	// call again using the returned token to retrieve the next page. Keep all other
+	// arguments unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorDatabasesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorDatabasesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFleetAdvisorDatabasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFleetAdvisorDatabasesInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeFleetAdvisorDatabasesInput) SetFilters(v []*Filter) *DescribeFleetAdvisorDatabasesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeFleetAdvisorDatabasesInput) SetMaxRecords(v int64) *DescribeFleetAdvisorDatabasesInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorDatabasesInput) SetNextToken(v string) *DescribeFleetAdvisorDatabasesInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorDatabasesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides descriptions of the Fleet Advisor collector databases, including
+	// the database's collector, ID, and name.
+	Databases []*DatabaseResponse `type:"list"`
+
+	// If NextToken is returned, there are more results available. The value of
+	// NextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorDatabasesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorDatabasesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatabases sets the Databases field's value.
+func (s *DescribeFleetAdvisorDatabasesOutput) SetDatabases(v []*DatabaseResponse) *DescribeFleetAdvisorDatabasesOutput {
+	s.Databases = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorDatabasesOutput) SetNextToken(v string) *DescribeFleetAdvisorDatabasesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorLsaAnalysisInput struct {
+	_ struct{} `type:"structure"`
+
+	// Sets the maximum number of records returned in the response.
+	MaxRecords *int64 `type:"integer"`
+
+	// If NextToken is returned by a previous response, there are more results available.
+	// The value of NextToken is a unique pagination token for each page. Make the
+	// call again using the returned token to retrieve the next page. Keep all other
+	// arguments unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorLsaAnalysisInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorLsaAnalysisInput) GoString() string {
+	return s.String()
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeFleetAdvisorLsaAnalysisInput) SetMaxRecords(v int64) *DescribeFleetAdvisorLsaAnalysisInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorLsaAnalysisInput) SetNextToken(v string) *DescribeFleetAdvisorLsaAnalysisInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorLsaAnalysisOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of FleetAdvisorLsaAnalysisResponse objects.
+	Analysis []*FleetAdvisorLsaAnalysisResponse `type:"list"`
+
+	// If NextToken is returned, there are more results available. The value of
+	// NextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorLsaAnalysisOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorLsaAnalysisOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalysis sets the Analysis field's value.
+func (s *DescribeFleetAdvisorLsaAnalysisOutput) SetAnalysis(v []*FleetAdvisorLsaAnalysisResponse) *DescribeFleetAdvisorLsaAnalysisOutput {
+	s.Analysis = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorLsaAnalysisOutput) SetNextToken(v string) *DescribeFleetAdvisorLsaAnalysisOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorSchemaObjectSummaryInput struct {
+	_ struct{} `type:"structure"`
+
+	// If you specify any of the following filters, the output includes information
+	// for only those schema objects that meet the filter criteria:
+	//
+	//    * schema-id – The ID of the schema, for example d4610ac5-e323-4ad9-bc50-eaf7249dfe9d.
+	//
+	// Example: describe-fleet-advisor-schema-object-summary --filter Name="schema-id",Values="50"
+	Filters []*Filter `type:"list"`
+
+	// Sets the maximum number of records returned in the response.
+	MaxRecords *int64 `type:"integer"`
+
+	// If NextToken is returned by a previous response, there are more results available.
+	// The value of NextToken is a unique pagination token for each page. Make the
+	// call again using the returned token to retrieve the next page. Keep all other
+	// arguments unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemaObjectSummaryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemaObjectSummaryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFleetAdvisorSchemaObjectSummaryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFleetAdvisorSchemaObjectSummaryInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeFleetAdvisorSchemaObjectSummaryInput) SetFilters(v []*Filter) *DescribeFleetAdvisorSchemaObjectSummaryInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeFleetAdvisorSchemaObjectSummaryInput) SetMaxRecords(v int64) *DescribeFleetAdvisorSchemaObjectSummaryInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorSchemaObjectSummaryInput) SetNextToken(v string) *DescribeFleetAdvisorSchemaObjectSummaryInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorSchemaObjectSummaryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of FleetAdvisorSchemaObjectResponse objects.
+	FleetAdvisorSchemaObjects []*FleetAdvisorSchemaObjectResponse `type:"list"`
+
+	// If NextToken is returned, there are more results available. The value of
+	// NextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemaObjectSummaryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemaObjectSummaryOutput) GoString() string {
+	return s.String()
+}
+
+// SetFleetAdvisorSchemaObjects sets the FleetAdvisorSchemaObjects field's value.
+func (s *DescribeFleetAdvisorSchemaObjectSummaryOutput) SetFleetAdvisorSchemaObjects(v []*FleetAdvisorSchemaObjectResponse) *DescribeFleetAdvisorSchemaObjectSummaryOutput {
+	s.FleetAdvisorSchemaObjects = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorSchemaObjectSummaryOutput) SetNextToken(v string) *DescribeFleetAdvisorSchemaObjectSummaryOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorSchemasInput struct {
+	_ struct{} `type:"structure"`
+
+	// If you specify any of the following filters, the output includes information
+	// for only those schemas that meet the filter criteria:
+	//
+	//    * complexity – The schema's complexity, for example Simple.
+	//
+	//    * database-id – The ID of the schema's database.
+	//
+	//    * database-ip-address – The IP address of the schema's database.
+	//
+	//    * database-name – The name of the schema's database.
+	//
+	//    * database-engine – The name of the schema database's engine.
+	//
+	//    * original-schema-name – The name of the schema's database's main schema.
+	//
+	//    * schema-id – The ID of the schema, for example 15.
+	//
+	//    * schema-name – The name of the schema.
+	//
+	//    * server-ip-address – The IP address of the schema database's server.
+	//
+	// An example is: describe-fleet-advisor-schemas --filter Name="schema-id",Values="50"
+	Filters []*Filter `type:"list"`
+
+	// Sets the maximum number of records returned in the response.
+	MaxRecords *int64 `type:"integer"`
+
+	// If NextToken is returned by a previous response, there are more results available.
+	// The value of NextToken is a unique pagination token for each page. Make the
+	// call again using the returned token to retrieve the next page. Keep all other
+	// arguments unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemasInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemasInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFleetAdvisorSchemasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFleetAdvisorSchemasInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeFleetAdvisorSchemasInput) SetFilters(v []*Filter) *DescribeFleetAdvisorSchemasInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeFleetAdvisorSchemasInput) SetMaxRecords(v int64) *DescribeFleetAdvisorSchemasInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorSchemasInput) SetNextToken(v string) *DescribeFleetAdvisorSchemasInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorSchemasOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of SchemaResponse objects.
+	FleetAdvisorSchemas []*SchemaResponse `type:"list"`
+
+	// If NextToken is returned, there are more results available. The value of
+	// NextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemasOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemasOutput) GoString() string {
+	return s.String()
+}
+
+// SetFleetAdvisorSchemas sets the FleetAdvisorSchemas field's value.
+func (s *DescribeFleetAdvisorSchemasOutput) SetFleetAdvisorSchemas(v []*SchemaResponse) *DescribeFleetAdvisorSchemasOutput {
+	s.FleetAdvisorSchemas = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorSchemasOutput) SetNextToken(v string) *DescribeFleetAdvisorSchemasOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -12249,6 +14723,127 @@ func (s *Filter) SetValues(v []*string) *Filter {
 	return s
 }
 
+// Describes a large-scale assessment (LSA) analysis run by a Fleet Advisor
+// collector.
+type FleetAdvisorLsaAnalysisResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of an LSA analysis run by a Fleet Advisor collector.
+	LsaAnalysisId *string `type:"string"`
+
+	// The status of an LSA analysis run by a Fleet Advisor collector.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FleetAdvisorLsaAnalysisResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FleetAdvisorLsaAnalysisResponse) GoString() string {
+	return s.String()
+}
+
+// SetLsaAnalysisId sets the LsaAnalysisId field's value.
+func (s *FleetAdvisorLsaAnalysisResponse) SetLsaAnalysisId(v string) *FleetAdvisorLsaAnalysisResponse {
+	s.LsaAnalysisId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FleetAdvisorLsaAnalysisResponse) SetStatus(v string) *FleetAdvisorLsaAnalysisResponse {
+	s.Status = &v
+	return s
+}
+
+// Describes a schema object in a Fleet Advisor collector inventory.
+type FleetAdvisorSchemaObjectResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The number of lines of code in a schema object in a Fleet Advisor collector
+	// inventory.
+	CodeLineCount *int64 `type:"long"`
+
+	// The size level of the code in a schema object in a Fleet Advisor collector
+	// inventory.
+	CodeSize *int64 `type:"long"`
+
+	// The number of objects in a schema object in a Fleet Advisor collector inventory.
+	NumberOfObjects *int64 `type:"long"`
+
+	// The type of the schema object, as reported by the database engine. Examples
+	// include the following:
+	//
+	//    * function
+	//
+	//    * trigger
+	//
+	//    * SYSTEM_TABLE
+	//
+	//    * QUEUE
+	ObjectType *string `type:"string"`
+
+	// The ID of a schema object in a Fleet Advisor collector inventory.
+	SchemaId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FleetAdvisorSchemaObjectResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FleetAdvisorSchemaObjectResponse) GoString() string {
+	return s.String()
+}
+
+// SetCodeLineCount sets the CodeLineCount field's value.
+func (s *FleetAdvisorSchemaObjectResponse) SetCodeLineCount(v int64) *FleetAdvisorSchemaObjectResponse {
+	s.CodeLineCount = &v
+	return s
+}
+
+// SetCodeSize sets the CodeSize field's value.
+func (s *FleetAdvisorSchemaObjectResponse) SetCodeSize(v int64) *FleetAdvisorSchemaObjectResponse {
+	s.CodeSize = &v
+	return s
+}
+
+// SetNumberOfObjects sets the NumberOfObjects field's value.
+func (s *FleetAdvisorSchemaObjectResponse) SetNumberOfObjects(v int64) *FleetAdvisorSchemaObjectResponse {
+	s.NumberOfObjects = &v
+	return s
+}
+
+// SetObjectType sets the ObjectType field's value.
+func (s *FleetAdvisorSchemaObjectResponse) SetObjectType(v string) *FleetAdvisorSchemaObjectResponse {
+	s.ObjectType = &v
+	return s
+}
+
+// SetSchemaId sets the SchemaId field's value.
+func (s *FleetAdvisorSchemaObjectResponse) SetSchemaId(v string) *FleetAdvisorSchemaObjectResponse {
+	s.SchemaId = &v
+	return s
+}
+
 // Settings in JSON format for the source GCP MySQL endpoint.
 type GcpMySQLSettings struct {
 	_ struct{} `type:"structure"`
@@ -12824,6 +15419,70 @@ func (s *InvalidCertificateFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The action or operation requested isn't valid.
+type InvalidOperationFault struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidOperationFault) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidOperationFault) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidOperationFault(v protocol.ResponseMetadata) error {
+	return &InvalidOperationFault{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidOperationFault) Code() string {
+	return "InvalidOperationFault"
+}
+
+// Message returns the exception's message.
+func (s *InvalidOperationFault) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidOperationFault) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidOperationFault) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidOperationFault) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidOperationFault) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The resource is in a state that prevents it from being used for database
 // migration.
 type InvalidResourceStateFault struct {
@@ -12951,6 +15610,47 @@ func (s *InvalidSubnet) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidSubnet) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Describes a Fleet Advisor collector inventory.
+type InventoryData struct {
+	_ struct{} `type:"structure"`
+
+	// The number of databases in the Fleet Advisor collector inventory.
+	NumberOfDatabases *int64 `type:"integer"`
+
+	// The number of schemas in the Fleet Advisor collector inventory.
+	NumberOfSchemas *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InventoryData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InventoryData) GoString() string {
+	return s.String()
+}
+
+// SetNumberOfDatabases sets the NumberOfDatabases field's value.
+func (s *InventoryData) SetNumberOfDatabases(v int64) *InventoryData {
+	s.NumberOfDatabases = &v
+	return s
+}
+
+// SetNumberOfSchemas sets the NumberOfSchemas field's value.
+func (s *InventoryData) SetNumberOfSchemas(v int64) *InventoryData {
+	s.NumberOfSchemas = &v
+	return s
 }
 
 // The ciphertext references a key that doesn't exist or that the DMS account
@@ -15508,7 +18208,8 @@ type MySQLSettings struct {
 	ServerTimezone *string `type:"string"`
 
 	// Specifies where to migrate source tables on the target, either to a single
-	// database or multiple databases.
+	// database or multiple databases. If you specify SPECIFIC_DATABASE, specify
+	// the database name using the DatabaseName parameter of the Endpoint object.
 	//
 	// Example: targetDbType=MULTIPLE_DATABASES
 	TargetDbType *string `type:"string" enum:"TargetDbType"`
@@ -19324,6 +22025,68 @@ func (s *ResourceQuotaExceededFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type RunFleetAdvisorLsaAnalysisInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunFleetAdvisorLsaAnalysisInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunFleetAdvisorLsaAnalysisInput) GoString() string {
+	return s.String()
+}
+
+type RunFleetAdvisorLsaAnalysisOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the LSA analysis run.
+	LsaAnalysisId *string `type:"string"`
+
+	// The status of the LSA analysis, for example COMPLETED.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunFleetAdvisorLsaAnalysisOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunFleetAdvisorLsaAnalysisOutput) GoString() string {
+	return s.String()
+}
+
+// SetLsaAnalysisId sets the LsaAnalysisId field's value.
+func (s *RunFleetAdvisorLsaAnalysisOutput) SetLsaAnalysisId(v string) *RunFleetAdvisorLsaAnalysisOutput {
+	s.LsaAnalysisId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RunFleetAdvisorLsaAnalysisOutput) SetStatus(v string) *RunFleetAdvisorLsaAnalysisOutput {
+	s.Status = &v
+	return s
+}
+
 // Insufficient privileges are preventing access to an Amazon S3 object.
 type S3AccessDeniedFault struct {
 	_            struct{}                  `type:"structure"`
@@ -20232,6 +22995,230 @@ func (s *SNSNoAuthorizationFault) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *SNSNoAuthorizationFault) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Describes a schema in a Fleet Advisor collector inventory.
+type SchemaResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The number of lines of code in a schema in a Fleet Advisor collector inventory.
+	CodeLineCount *int64 `type:"long"`
+
+	// The size level of the code in a schema in a Fleet Advisor collector inventory.
+	CodeSize *int64 `type:"long"`
+
+	// The complexity level of the code in a schema in a Fleet Advisor collector
+	// inventory.
+	Complexity *string `type:"string"`
+
+	// The database for a schema in a Fleet Advisor collector inventory.
+	DatabaseInstance *DatabaseShortInfoResponse `type:"structure"`
+
+	// Describes a schema in a Fleet Advisor collector inventory.
+	OriginalSchema *SchemaShortInfoResponse `type:"structure"`
+
+	// The ID of a schema in a Fleet Advisor collector inventory.
+	SchemaId *string `type:"string"`
+
+	// The name of a schema in a Fleet Advisor collector inventory.
+	SchemaName *string `type:"string"`
+
+	// The database server for a schema in a Fleet Advisor collector inventory.
+	Server *ServerShortInfoResponse `type:"structure"`
+
+	// The similarity value for a schema in a Fleet Advisor collector inventory.
+	// A higher similarity value indicates that a schema is likely to be a duplicate.
+	Similarity *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaResponse) GoString() string {
+	return s.String()
+}
+
+// SetCodeLineCount sets the CodeLineCount field's value.
+func (s *SchemaResponse) SetCodeLineCount(v int64) *SchemaResponse {
+	s.CodeLineCount = &v
+	return s
+}
+
+// SetCodeSize sets the CodeSize field's value.
+func (s *SchemaResponse) SetCodeSize(v int64) *SchemaResponse {
+	s.CodeSize = &v
+	return s
+}
+
+// SetComplexity sets the Complexity field's value.
+func (s *SchemaResponse) SetComplexity(v string) *SchemaResponse {
+	s.Complexity = &v
+	return s
+}
+
+// SetDatabaseInstance sets the DatabaseInstance field's value.
+func (s *SchemaResponse) SetDatabaseInstance(v *DatabaseShortInfoResponse) *SchemaResponse {
+	s.DatabaseInstance = v
+	return s
+}
+
+// SetOriginalSchema sets the OriginalSchema field's value.
+func (s *SchemaResponse) SetOriginalSchema(v *SchemaShortInfoResponse) *SchemaResponse {
+	s.OriginalSchema = v
+	return s
+}
+
+// SetSchemaId sets the SchemaId field's value.
+func (s *SchemaResponse) SetSchemaId(v string) *SchemaResponse {
+	s.SchemaId = &v
+	return s
+}
+
+// SetSchemaName sets the SchemaName field's value.
+func (s *SchemaResponse) SetSchemaName(v string) *SchemaResponse {
+	s.SchemaName = &v
+	return s
+}
+
+// SetServer sets the Server field's value.
+func (s *SchemaResponse) SetServer(v *ServerShortInfoResponse) *SchemaResponse {
+	s.Server = v
+	return s
+}
+
+// SetSimilarity sets the Similarity field's value.
+func (s *SchemaResponse) SetSimilarity(v float64) *SchemaResponse {
+	s.Similarity = &v
+	return s
+}
+
+// Describes a schema in a Fleet Advisor collector inventory.
+type SchemaShortInfoResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of a database in a Fleet Advisor collector inventory.
+	DatabaseId *string `type:"string"`
+
+	// The IP address of a database in a Fleet Advisor collector inventory.
+	DatabaseIpAddress *string `type:"string"`
+
+	// The name of a database in a Fleet Advisor collector inventory.
+	DatabaseName *string `type:"string"`
+
+	// The ID of a schema in a Fleet Advisor collector inventory.
+	SchemaId *string `type:"string"`
+
+	// The name of a schema in a Fleet Advisor collector inventory.
+	SchemaName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaShortInfoResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaShortInfoResponse) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseId sets the DatabaseId field's value.
+func (s *SchemaShortInfoResponse) SetDatabaseId(v string) *SchemaShortInfoResponse {
+	s.DatabaseId = &v
+	return s
+}
+
+// SetDatabaseIpAddress sets the DatabaseIpAddress field's value.
+func (s *SchemaShortInfoResponse) SetDatabaseIpAddress(v string) *SchemaShortInfoResponse {
+	s.DatabaseIpAddress = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *SchemaShortInfoResponse) SetDatabaseName(v string) *SchemaShortInfoResponse {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetSchemaId sets the SchemaId field's value.
+func (s *SchemaShortInfoResponse) SetSchemaId(v string) *SchemaShortInfoResponse {
+	s.SchemaId = &v
+	return s
+}
+
+// SetSchemaName sets the SchemaName field's value.
+func (s *SchemaShortInfoResponse) SetSchemaName(v string) *SchemaShortInfoResponse {
+	s.SchemaName = &v
+	return s
+}
+
+// Describes a server in a Fleet Advisor collector inventory.
+type ServerShortInfoResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The IP address of a server in a Fleet Advisor collector inventory.
+	IpAddress *string `type:"string"`
+
+	// The ID of a server in a Fleet Advisor collector inventory.
+	ServerId *string `type:"string"`
+
+	// The name address of a server in a Fleet Advisor collector inventory.
+	ServerName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerShortInfoResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerShortInfoResponse) GoString() string {
+	return s.String()
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *ServerShortInfoResponse) SetIpAddress(v string) *ServerShortInfoResponse {
+	s.IpAddress = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *ServerShortInfoResponse) SetServerId(v string) *ServerShortInfoResponse {
+	s.ServerId = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *ServerShortInfoResponse) SetServerName(v string) *ServerShortInfoResponse {
+	s.ServerName = &v
+	return s
 }
 
 type StartReplicationTaskAssessmentInput struct {
@@ -21752,6 +24739,22 @@ func CharLengthSemantics_Values() []string {
 }
 
 const (
+	// CollectorStatusUnregistered is a CollectorStatus enum value
+	CollectorStatusUnregistered = "UNREGISTERED"
+
+	// CollectorStatusActive is a CollectorStatus enum value
+	CollectorStatusActive = "ACTIVE"
+)
+
+// CollectorStatus_Values returns all elements of the CollectorStatus enum
+func CollectorStatus_Values() []string {
+	return []string{
+		CollectorStatusUnregistered,
+		CollectorStatusActive,
+	}
+}
+
+const (
 	// CompressionTypeValueNone is a CompressionTypeValue enum value
 	CompressionTypeValueNone = "none"
 
@@ -22196,5 +25199,25 @@ func TargetDbType_Values() []string {
 	return []string{
 		TargetDbTypeSpecificDatabase,
 		TargetDbTypeMultipleDatabases,
+	}
+}
+
+const (
+	// VersionStatusUpToDate is a VersionStatus enum value
+	VersionStatusUpToDate = "UP_TO_DATE"
+
+	// VersionStatusOutdated is a VersionStatus enum value
+	VersionStatusOutdated = "OUTDATED"
+
+	// VersionStatusUnsupported is a VersionStatus enum value
+	VersionStatusUnsupported = "UNSUPPORTED"
+)
+
+// VersionStatus_Values returns all elements of the VersionStatus enum
+func VersionStatus_Values() []string {
+	return []string{
+		VersionStatusUpToDate,
+		VersionStatusOutdated,
+		VersionStatusUnsupported,
 	}
 }
