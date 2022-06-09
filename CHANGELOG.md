@@ -1,3 +1,9 @@
+Release v1.44.31 (2022-06-09)
+===
+
+### Service Client Updates
+* `service/chime-sdk-meetings`: Updates service API
+
 Release v1.44.30 (2022-06-08)
 ===
 
