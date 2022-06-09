@@ -4865,6 +4865,9 @@ const (
 
 	// TranscribeRegionAuto is a TranscribeRegion enum value
 	TranscribeRegionAuto = "auto"
+
+	// TranscribeRegionUsGovWest1 is a TranscribeRegion enum value
+	TranscribeRegionUsGovWest1 = "us-gov-west-1"
 )
 
 // TranscribeRegion_Values returns all elements of the TranscribeRegion enum
@@ -4882,6 +4885,7 @@ func TranscribeRegion_Values() []string {
 		TranscribeRegionEuWest2,
 		TranscribeRegionSaEast1,
 		TranscribeRegionAuto,
+		TranscribeRegionUsGovWest1,
 	}
 }
 
