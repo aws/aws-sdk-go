@@ -7576,6 +7576,9 @@ var awsPartition = partition{
 					Region: "ap-southeast-2",
 				}: endpoint{},
 				endpointKey{
+					Region: "ap-southeast-3",
+				}: endpoint{},
+				endpointKey{
 					Region: "ca-central-1",
 				}: endpoint{},
 				endpointKey{
@@ -16729,43 +16732,6 @@ var awsPartition = partition{
 				},
 			},
 		},
-		"redshift-serverless": service{
-			Endpoints: serviceEndpoints{
-				endpointKey{
-					Region: "ap-northeast-1",
-				}: endpoint{},
-				endpointKey{
-					Region: "ap-northeast-2",
-				}: endpoint{},
-				endpointKey{
-					Region: "ap-southeast-1",
-				}: endpoint{},
-				endpointKey{
-					Region: "ap-southeast-2",
-				}: endpoint{},
-				endpointKey{
-					Region: "eu-central-1",
-				}: endpoint{},
-				endpointKey{
-					Region: "eu-north-1",
-				}: endpoint{},
-				endpointKey{
-					Region: "eu-west-1",
-				}: endpoint{},
-				endpointKey{
-					Region: "eu-west-2",
-				}: endpoint{},
-				endpointKey{
-					Region: "us-east-1",
-				}: endpoint{},
-				endpointKey{
-					Region: "us-east-2",
-				}: endpoint{},
-				endpointKey{
-					Region: "us-west-2",
-				}: endpoint{},
-			},
-		},
 		"rekognition": service{
 			Endpoints: serviceEndpoints{
 				endpointKey{
@@ -18923,6 +18889,9 @@ var awsPartition = partition{
 					Region: "ap-southeast-2",
 				}: endpoint{},
 				endpointKey{
+					Region: "ap-southeast-3",
+				}: endpoint{},
+				endpointKey{
 					Region: "ca-central-1",
 				}: endpoint{},
 				endpointKey{
@@ -19147,6 +19116,9 @@ var awsPartition = partition{
 				}: endpoint{},
 				endpointKey{
 					Region: "ap-southeast-2",
+				}: endpoint{},
+				endpointKey{
+					Region: "ap-southeast-3",
 				}: endpoint{},
 				endpointKey{
 					Region: "ca-central-1",
@@ -29495,6 +29467,16 @@ var awsusgovPartition = partition{
 				},
 			},
 		},
+		"transcribestreaming": service{
+			Endpoints: serviceEndpoints{
+				endpointKey{
+					Region: "us-gov-east-1",
+				}: endpoint{},
+				endpointKey{
+					Region: "us-gov-west-1",
+				}: endpoint{},
+			},
+		},
 		"transfer": service{
 			Endpoints: serviceEndpoints{
 				endpointKey{
@@ -30970,6 +30952,13 @@ var awsisobPartition = partition{
 			},
 		},
 		"tagging": service{
+			Endpoints: serviceEndpoints{
+				endpointKey{
+					Region: "us-isob-east-1",
+				}: endpoint{},
+			},
+		},
+		"workspaces": service{
 			Endpoints: serviceEndpoints{
 				endpointKey{
 					Region: "us-isob-east-1",

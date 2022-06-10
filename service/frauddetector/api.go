@@ -1071,7 +1071,8 @@ func (c *FraudDetector) DeleteBatchImportJobRequest(input *DeleteBatchImportJobI
 
 // DeleteBatchImportJob API operation for Amazon Fraud Detector.
 //
-// Deletes data that was batch imported to Amazon Fraud Detector.
+// Deletes the specified batch import job ID record. This action does not delete
+// the data that was batch imported.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7022,6 +7023,8 @@ func (c *FraudDetector) UpdateModelVersionStatusRequest(input *UpdateModelVersio
 // Updates the status of a model version.
 //
 // You can perform the following status updates:
+//
+// Change the TRAINING_IN_PROGRESS status to TRAINING_CANCELLED.
 //
 // Change the TRAINING_COMPLETE status to ACTIVE.
 //
@@ -13178,7 +13181,12 @@ type GetEventPredictionMetadataInput struct {
 	// EventTypeName is a required field
 	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string" required:"true"`
 
-	// The timestamp that defines when the prediction was generated.
+	// The timestamp that defines when the prediction was generated. The timestamp
+	// must be specified using ISO 8601 standard in UTC.
+	//
+	// We recommend calling ListEventPredictions (https://docs.aws.amazon.com/frauddetector/latest/api/API_ListEventPredictions.html)
+	// first, and using the predictionTimestamp value in the response to provide
+	// an accurate prediction timestamp value.
 	//
 	// PredictionTimestamp is a required field
 	PredictionTimestamp *string `locationName:"predictionTimestamp" min:"11" type:"string" required:"true"`

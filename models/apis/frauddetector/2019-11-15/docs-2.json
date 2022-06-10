@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>This is the Amazon Fraud Detector API Reference. This guide is for developers who need detailed information about Amazon Fraud Detector API actions, data types, and errors. For more information about Amazon Fraud Detector features, see the <a href=\"https://docs.aws.amazon.com/frauddetector/latest/ug/\">Amazon Fraud Detector User Guide</a>.</p>",
+  "service": "<p>This is the Amazon Fraud Detector API Reference. This guide is for developers who need detailed information about Amazon Fraud Detector API actions, data types, and errors. For more information about Amazon Fraud Detector features, see the <a href=\"https://docs.aws.amazon.com/frauddetector/latest/ug/\">Amazon Fraud Detector User Guide</a>.</p> <p>We provide the Query API as well as AWS software development kits (SDK) for Amazon Fraud Detector in Java and Python programming languages.</p> <p>The Amazon Fraud Detector Query API provides HTTPS requests that use the HTTP verb GET or POST and a Query parameter <code>Action</code>. AWS SDK provides libraries, sample code, tutorials, and other resources for software developers who prefer to build applications using language-specific APIs instead of submitting a request over HTTP or HTTPS. These libraries provide basic functions that automatically take care of tasks such as cryptographically signing your requests, retrying requests, and handling error responses, so that it is easier for you to get started. For more information about the AWS SDKs, see <a href=\"https://docs.aws.amazon.com/https:/aws.amazon.com/tools/\">Tools to build on AWS</a>. </p>",
   "operations": {
     "BatchCreateVariable": "<p>Creates a batch of variables.</p>",
     "BatchGetVariable": "<p>Gets a batch of variables.</p>",
@@ -13,7 +13,7 @@
     "CreateModelVersion": "<p>Creates a version of the model using the specified model type and model id. </p>",
     "CreateRule": "<p>Creates a rule for use with the specified detector. </p>",
     "CreateVariable": "<p>Creates a variable.</p>",
-    "DeleteBatchImportJob": "<p>Deletes data that was batch imported to Amazon Fraud Detector. </p>",
+    "DeleteBatchImportJob": "<p>Deletes the specified batch import job ID record. This action does not delete the data that was batch imported. </p>",
     "DeleteBatchPredictionJob": "<p>Deletes a batch prediction job.</p>",
     "DeleteDetector": "<p>Deletes the detector. Before deleting a detector, you must first delete all detector versions and rule versions associated with the detector.</p> <p>When you delete a detector, Amazon Fraud Detector permanently deletes the detector and the data is no longer stored in Amazon Fraud Detector.</p>",
     "DeleteDetectorVersion": "<p>Deletes the detector version. You cannot delete detector versions that are in <code>ACTIVE</code> status.</p> <p>When you delete a detector version, Amazon Fraud Detector permanently deletes the detector and the data is no longer stored in Amazon Fraud Detector.</p>",
@@ -66,7 +66,7 @@
     "UpdateEventLabel": "<p>Updates the specified event with a new label.</p>",
     "UpdateModel": "<p>Updates model description.</p>",
     "UpdateModelVersion": "<p>Updates a model version. Updating a model version retrains an existing model version using updated training data and produces a new minor version of the model. You can update the training data set location and data access role attributes using this action. This action creates and trains a new minor version of the model, for example version 1.01, 1.02, 1.03.</p>",
-    "UpdateModelVersionStatus": "<p>Updates the status of a model version.</p> <p>You can perform the following status updates:</p> <ol> <li> <p>Change the <code>TRAINING_COMPLETE</code> status to <code>ACTIVE</code>.</p> </li> <li> <p>Change <code>ACTIVE</code> to <code>INACTIVE</code>.</p> </li> </ol>",
+    "UpdateModelVersionStatus": "<p>Updates the status of a model version.</p> <p>You can perform the following status updates:</p> <ol> <li> <p>Change the <code>TRAINING_IN_PROGRESS</code> status to <code>TRAINING_CANCELLED</code>.</p> </li> <li> <p>Change the <code>TRAINING_COMPLETE</code> status to <code>ACTIVE</code>.</p> </li> <li> <p>Change <code>ACTIVE</code> to <code>INACTIVE</code>.</p> </li> </ol>",
     "UpdateRuleMetadata": "<p>Updates a rule's metadata. The description attribute can be updated.</p>",
     "UpdateRuleVersion": "<p>Updates a rule version resulting in a new rule version. Updates a rule version resulting in a new rule version (version 1, 2, 3 ...). </p>",
     "UpdateVariable": "<p>Updates a variable.</p>"
@@ -2138,7 +2138,7 @@
         "ExternalModel$createdTime": "<p>Timestamp of when the model was last created.</p>",
         "GetDetectorVersionResult$lastUpdatedTime": "<p>The timestamp when the detector version was last updated. </p>",
         "GetDetectorVersionResult$createdTime": "<p>The timestamp when the detector version was created. </p>",
-        "GetEventPredictionMetadataRequest$predictionTimestamp": "<p> The timestamp that defines when the prediction was generated. </p>",
+        "GetEventPredictionMetadataRequest$predictionTimestamp": "<p> The timestamp that defines when the prediction was generated. The timestamp must be specified using ISO 8601 standard in UTC.</p> <p>We recommend calling <a href=\"https://docs.aws.amazon.com/frauddetector/latest/api/API_ListEventPredictions.html\">ListEventPredictions</a> first, and using the <code>predictionTimestamp</code> value in the response to provide an accurate prediction timestamp value.</p>",
         "GetEventPredictionMetadataResult$eventTimestamp": "<p> The timestamp for when the prediction was generated for the associated event ID. </p>",
         "GetEventPredictionMetadataResult$predictionTimestamp": "<p>The timestamp that defines when the prediction was generated. </p>",
         "IngestedEventStatistics$leastRecentEvent": "<p>The oldest stored event.</p>",
