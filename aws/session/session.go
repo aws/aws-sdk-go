@@ -491,7 +491,8 @@ func newSession(opts Options, envCfg envConfig, cfgs ...*aws.Config) (*Session, 
 			// environment has credentials, allow the shared config file to fail to
 			// load since the user has already provided credentials, and nothing else
 			// is required to be read file. Github(aws/aws-sdk-go#2455)
-		} else if _, ok := err.(SharedConfigProfileNotExistsError); !ok {
+		} else if _, ok := err.(SharedConfigProfileNotExistsError); ok {
+			// returnig error if profile doesn't exist
 			return nil, err
 		}
 	}
