@@ -1,3 +1,9 @@
+Release v1.44.32 (2022-06-10)
+===
+
+### Service Client Updates
+* `service/frauddetector`: Updates service documentation
+
 Release v1.44.31 (2022-06-09)
 ===
 
