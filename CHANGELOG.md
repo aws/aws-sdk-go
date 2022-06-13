@@ -1,3 +1,9 @@
+Release v1.44.33 (2022-06-13)
+===
+
+### Service Client Updates
+* `service/outposts`: Updates service API and documentation
+
 Release v1.44.32 (2022-06-10)
 ===
 

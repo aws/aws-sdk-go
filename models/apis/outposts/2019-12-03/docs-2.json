@@ -9,6 +9,7 @@
     "DeleteOutpost": "<p>Deletes the Outpost.</p>",
     "DeleteSite": "<p>Deletes the site.</p>",
     "GetCatalogItem": "<p>Gets information about a catalog item.</p>",
+    "GetConnection": "<note> <p> Amazon Web Services uses this action to install Outpost servers.</p> </note> <p> Gets information about a specified connection. </p> <p> Use CloudTrail to monitor this action or Amazon Web Services managed policy for Amazon Web Services Outposts to secure it. For more information, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/security-iam-awsmanpol.html\"> Amazon Web Services managed policies for Amazon Web Services Outposts</a> and <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/logging-using-cloudtrail.html\"> Logging Amazon Web Services Outposts API calls with Amazon Web Services CloudTrail</a> in the <i>Amazon Web Services Outposts User Guide</i>. </p>",
     "GetOrder": "<p>Gets an order.</p>",
     "GetOutpost": "<p>Gets information about the specified Outpost.</p>",
     "GetOutpostInstanceTypes": "<p>Gets the instance types for the specified Outpost.</p>",
@@ -20,6 +21,7 @@
     "ListOutposts": "<p>Lists the Outposts for your Amazon Web Services account. Add filters to your request to return a more specific list of results. Use filters to match an Outpost lifecycle status, Availability Zone (<code>us-east-1a</code>), and AZ ID (<code>use1-az1</code>). </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
     "ListSites": "<p>Lists the Outpost sites for your Amazon Web Services account. Add operating address filters to your request to return a more specific list of results. Use filters to match site city, country code, or state/region of the operating address. </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
+    "StartConnection": "<note> <p> Amazon Web Services uses this action to install Outpost servers.</p> </note> <p> Starts the connection required for Outpost server installation. </p> <p> Use CloudTrail to monitor this action or Amazon Web Services managed policy for Amazon Web Services Outposts to secure it. For more information, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/security-iam-awsmanpol.html\"> Amazon Web Services managed policies for Amazon Web Services Outposts</a> and <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/logging-using-cloudtrail.html\"> Logging Amazon Web Services Outposts API calls with Amazon Web Services CloudTrail</a> in the <i>Amazon Web Services Outposts User Guide</i>. </p>",
     "TagResource": "<p>Adds tags to the specified resource.</p>",
     "UntagResource": "<p>Removes tags from the specified resource.</p>",
     "UpdateOutpost": "<p> Updates an Outpost. </p>",
@@ -87,7 +89,8 @@
     "AssetId": {
       "base": null,
       "refs": {
-        "AssetInfo$AssetId": "<p> The ID of the asset. </p>"
+        "AssetInfo$AssetId": "<p> The ID of the asset. </p>",
+        "StartConnectionRequest$AssetId": "<p> The ID of the Outpost server. </p>"
       }
     },
     "AssetInfo": {
@@ -134,6 +137,20 @@
       "base": null,
       "refs": {
         "ListOutpostsInput$AvailabilityZoneFilter": "<p> A filter for the Availability Zone (<code>us-east-1a</code>) of the Outpost. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
+      }
+    },
+    "CIDR": {
+      "base": null,
+      "refs": {
+        "CIDRList$member": null,
+        "ConnectionDetails$ClientTunnelAddress": "<p> The client tunnel address. </p>",
+        "ConnectionDetails$ServerTunnelAddress": "<p> The server tunnel address. </p>"
+      }
+    },
+    "CIDRList": {
+      "base": null,
+      "refs": {
+        "ConnectionDetails$AllowedIps": "<p> The allowed IP addresses. </p>"
       }
     },
     "CancelOrderInput": {
@@ -214,6 +231,20 @@
       "refs": {
       }
     },
+    "ConnectionDetails": {
+      "base": "<p> Information about a connection. </p>",
+      "refs": {
+        "GetConnectionResponse$ConnectionDetails": "<p> Information about a connection. </p>"
+      }
+    },
+    "ConnectionId": {
+      "base": null,
+      "refs": {
+        "GetConnectionRequest$ConnectionId": "<p> The ID of the connection you request. </p>",
+        "GetConnectionResponse$ConnectionId": "<p> The ID of the connection you receive. </p>",
+        "StartConnectionResponse$ConnectionId": "<p> The ID of the connection. </p>"
+      }
+    },
     "ContactName": {
       "base": null,
       "refs": {
@@ -290,6 +321,12 @@
       "refs": {
       }
     },
+    "DeviceSerialNumber": {
+      "base": null,
+      "refs": {
+        "StartConnectionRequest$DeviceSerialNumber": "<p> The serial number of the dongle. </p>"
+      }
+    },
     "DistrictOrCounty": {
       "base": null,
       "refs": {
@@ -345,6 +382,16 @@
       }
     },
     "GetCatalogItemOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConnectionResponse": {
       "base": null,
       "refs": {
       }
@@ -598,6 +645,12 @@
         "Address$Municipality": "<p>The municipality for the address.</p>"
       }
     },
+    "NetworkInterfaceDeviceIndex": {
+      "base": null,
+      "refs": {
+        "StartConnectionRequest$NetworkInterfaceDeviceIndex": "<p> The device index of the network interface on the Outpost server. </p>"
+      }
+    },
     "NotFoundException": {
       "base": "<p>The specified request is not valid.</p>",
       "refs": {
@@ -787,6 +840,12 @@
         "ConflictException$ResourceType": "<p>The type of the resource causing the conflict.</p>"
       }
     },
+    "ServerEndpoint": {
+      "base": null,
+      "refs": {
+        "ConnectionDetails$ServerEndpoint": "<p> The endpoint for the server. </p>"
+      }
+    },
     "ServiceQuotaExceededException": {
       "base": "<p>You have exceeded a service quota.</p>",
       "refs": {
@@ -855,6 +914,16 @@
         "GetCatalogItemInput$CatalogItemId": "<p>The ID of the catalog item.</p>",
         "LineItem$CatalogItemId": "<p> The ID of the catalog item. </p>",
         "LineItemRequest$CatalogItemId": "<p>The ID of the catalog item.</p>"
+      }
+    },
+    "StartConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartConnectionResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "StateOrRegion": {
@@ -967,6 +1036,12 @@
         "ListSitesOutput$NextToken": null
       }
     },
+    "UnderlayIpAddress": {
+      "base": null,
+      "refs": {
+        "StartConnectionResponse$UnderlayIpAddress": "<p> The underlay IP address. </p>"
+      }
+    },
     "UntagResourceRequest": {
       "base": null,
       "refs": {
@@ -1034,6 +1109,14 @@
     "ValidationException": {
       "base": "<p>A parameter is not valid.</p>",
       "refs": {
+      }
+    },
+    "WireGuardPublicKey": {
+      "base": null,
+      "refs": {
+        "ConnectionDetails$ClientPublicKey": "<p> The public key of the client. </p>",
+        "ConnectionDetails$ServerPublicKey": "<p> The public key of the server. </p>",
+        "StartConnectionRequest$ClientPublicKey": "<p> The public key of the client. </p>"
       }
     },
     "outpostListDefinition": {
