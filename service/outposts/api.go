@@ -655,6 +655,104 @@ func (c *Outposts) GetCatalogItemWithContext(ctx aws.Context, input *GetCatalogI
 	return out, req.Send()
 }
 
+const opGetConnection = "GetConnection"
+
+// GetConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the GetConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetConnection for more information on using the GetConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetConnectionRequest method.
+//    req, resp := client.GetConnectionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetConnection
+func (c *Outposts) GetConnectionRequest(input *GetConnectionInput) (req *request.Request, output *GetConnectionOutput) {
+	op := &request.Operation{
+		Name:       opGetConnection,
+		HTTPMethod: "GET",
+		HTTPPath:   "/connections/{ConnectionId}",
+	}
+
+	if input == nil {
+		input = &GetConnectionInput{}
+	}
+
+	output = &GetConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetConnection API operation for AWS Outposts.
+//
+//
+// Amazon Web Services uses this action to install Outpost servers.
+//
+// Gets information about a specified connection.
+//
+// Use CloudTrail to monitor this action or Amazon Web Services managed policy
+// for Amazon Web Services Outposts to secure it. For more information, see
+// Amazon Web Services managed policies for Amazon Web Services Outposts (https://docs.aws.amazon.com/outposts/latest/userguide/security-iam-awsmanpol.html)
+// and Logging Amazon Web Services Outposts API calls with Amazon Web Services
+// CloudTrail (https://docs.aws.amazon.com/outposts/latest/userguide/logging-using-cloudtrail.html)
+// in the Amazon Web Services Outposts User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation GetConnection for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetConnection
+func (c *Outposts) GetConnection(input *GetConnectionInput) (*GetConnectionOutput, error) {
+	req, out := c.GetConnectionRequest(input)
+	return out, req.Send()
+}
+
+// GetConnectionWithContext is the same as GetConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) GetConnectionWithContext(ctx aws.Context, input *GetConnectionInput, opts ...request.Option) (*GetConnectionOutput, error) {
+	req, out := c.GetConnectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetOrder = "GetOrder"
 
 // GetOrderRequest generates a "aws/request.Request" representing the
@@ -1975,6 +2073,104 @@ func (c *Outposts) ListTagsForResourceWithContext(ctx aws.Context, input *ListTa
 	return out, req.Send()
 }
 
+const opStartConnection = "StartConnection"
+
+// StartConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the StartConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartConnection for more information on using the StartConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartConnectionRequest method.
+//    req, resp := client.StartConnectionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/StartConnection
+func (c *Outposts) StartConnectionRequest(input *StartConnectionInput) (req *request.Request, output *StartConnectionOutput) {
+	op := &request.Operation{
+		Name:       opStartConnection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/connections",
+	}
+
+	if input == nil {
+		input = &StartConnectionInput{}
+	}
+
+	output = &StartConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartConnection API operation for AWS Outposts.
+//
+//
+// Amazon Web Services uses this action to install Outpost servers.
+//
+// Starts the connection required for Outpost server installation.
+//
+// Use CloudTrail to monitor this action or Amazon Web Services managed policy
+// for Amazon Web Services Outposts to secure it. For more information, see
+// Amazon Web Services managed policies for Amazon Web Services Outposts (https://docs.aws.amazon.com/outposts/latest/userguide/security-iam-awsmanpol.html)
+// and Logging Amazon Web Services Outposts API calls with Amazon Web Services
+// CloudTrail (https://docs.aws.amazon.com/outposts/latest/userguide/logging-using-cloudtrail.html)
+// in the Amazon Web Services Outposts User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation StartConnection for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/StartConnection
+func (c *Outposts) StartConnection(input *StartConnectionInput) (*StartConnectionOutput, error) {
+	req, out := c.StartConnectionRequest(input)
+	return out, req.Send()
+}
+
+// StartConnectionWithContext is the same as StartConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) StartConnectionWithContext(ctx aws.Context, input *StartConnectionInput, opts ...request.Option) (*StartConnectionOutput, error) {
+	req, out := c.StartConnectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -3086,6 +3282,83 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about a connection.
+type ConnectionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The allowed IP addresses.
+	AllowedIps []*string `type:"list"`
+
+	// The public key of the client.
+	ClientPublicKey *string `min:"44" type:"string"`
+
+	// The client tunnel address.
+	ClientTunnelAddress *string `min:"9" type:"string"`
+
+	// The endpoint for the server.
+	ServerEndpoint *string `min:"9" type:"string"`
+
+	// The public key of the server.
+	ServerPublicKey *string `min:"44" type:"string"`
+
+	// The server tunnel address.
+	ServerTunnelAddress *string `min:"9" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectionDetails) GoString() string {
+	return s.String()
+}
+
+// SetAllowedIps sets the AllowedIps field's value.
+func (s *ConnectionDetails) SetAllowedIps(v []*string) *ConnectionDetails {
+	s.AllowedIps = v
+	return s
+}
+
+// SetClientPublicKey sets the ClientPublicKey field's value.
+func (s *ConnectionDetails) SetClientPublicKey(v string) *ConnectionDetails {
+	s.ClientPublicKey = &v
+	return s
+}
+
+// SetClientTunnelAddress sets the ClientTunnelAddress field's value.
+func (s *ConnectionDetails) SetClientTunnelAddress(v string) *ConnectionDetails {
+	s.ClientTunnelAddress = &v
+	return s
+}
+
+// SetServerEndpoint sets the ServerEndpoint field's value.
+func (s *ConnectionDetails) SetServerEndpoint(v string) *ConnectionDetails {
+	s.ServerEndpoint = &v
+	return s
+}
+
+// SetServerPublicKey sets the ServerPublicKey field's value.
+func (s *ConnectionDetails) SetServerPublicKey(v string) *ConnectionDetails {
+	s.ServerPublicKey = &v
+	return s
+}
+
+// SetServerTunnelAddress sets the ServerTunnelAddress field's value.
+func (s *ConnectionDetails) SetServerTunnelAddress(v string) *ConnectionDetails {
+	s.ServerTunnelAddress = &v
+	return s
+}
+
 type CreateOrderInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3814,6 +4087,95 @@ func (s GetCatalogItemOutput) GoString() string {
 // SetCatalogItem sets the CatalogItem field's value.
 func (s *GetCatalogItemOutput) SetCatalogItem(v *CatalogItem) *GetCatalogItemOutput {
 	s.CatalogItem = v
+	return s
+}
+
+type GetConnectionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the connection you request.
+	//
+	// ConnectionId is a required field
+	ConnectionId *string `location:"uri" locationName:"ConnectionId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetConnectionInput"}
+	if s.ConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionId"))
+	}
+	if s.ConnectionId != nil && len(*s.ConnectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *GetConnectionInput) SetConnectionId(v string) *GetConnectionInput {
+	s.ConnectionId = &v
+	return s
+}
+
+type GetConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about a connection.
+	ConnectionDetails *ConnectionDetails `type:"structure"`
+
+	// The ID of the connection you receive.
+	ConnectionId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetConnectionDetails sets the ConnectionDetails field's value.
+func (s *GetConnectionOutput) SetConnectionDetails(v *ConnectionDetails) *GetConnectionOutput {
+	s.ConnectionDetails = v
+	return s
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *GetConnectionOutput) SetConnectionId(v string) *GetConnectionOutput {
+	s.ConnectionId = &v
 	return s
 }
 
@@ -5961,6 +6323,143 @@ func (s *Site) SetSiteId(v string) *Site {
 // SetTags sets the Tags field's value.
 func (s *Site) SetTags(v map[string]*string) *Site {
 	s.Tags = v
+	return s
+}
+
+type StartConnectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Outpost server.
+	//
+	// AssetId is a required field
+	AssetId *string `min:"1" type:"string" required:"true"`
+
+	// The public key of the client.
+	//
+	// ClientPublicKey is a required field
+	ClientPublicKey *string `min:"44" type:"string" required:"true"`
+
+	// The serial number of the dongle.
+	//
+	// DeviceSerialNumber is a required field
+	DeviceSerialNumber *string `min:"1" type:"string" required:"true"`
+
+	// The device index of the network interface on the Outpost server.
+	//
+	// NetworkInterfaceDeviceIndex is a required field
+	NetworkInterfaceDeviceIndex *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartConnectionInput"}
+	if s.AssetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetId"))
+	}
+	if s.AssetId != nil && len(*s.AssetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetId", 1))
+	}
+	if s.ClientPublicKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientPublicKey"))
+	}
+	if s.ClientPublicKey != nil && len(*s.ClientPublicKey) < 44 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientPublicKey", 44))
+	}
+	if s.DeviceSerialNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceSerialNumber"))
+	}
+	if s.DeviceSerialNumber != nil && len(*s.DeviceSerialNumber) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceSerialNumber", 1))
+	}
+	if s.NetworkInterfaceDeviceIndex == nil {
+		invalidParams.Add(request.NewErrParamRequired("NetworkInterfaceDeviceIndex"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *StartConnectionInput) SetAssetId(v string) *StartConnectionInput {
+	s.AssetId = &v
+	return s
+}
+
+// SetClientPublicKey sets the ClientPublicKey field's value.
+func (s *StartConnectionInput) SetClientPublicKey(v string) *StartConnectionInput {
+	s.ClientPublicKey = &v
+	return s
+}
+
+// SetDeviceSerialNumber sets the DeviceSerialNumber field's value.
+func (s *StartConnectionInput) SetDeviceSerialNumber(v string) *StartConnectionInput {
+	s.DeviceSerialNumber = &v
+	return s
+}
+
+// SetNetworkInterfaceDeviceIndex sets the NetworkInterfaceDeviceIndex field's value.
+func (s *StartConnectionInput) SetNetworkInterfaceDeviceIndex(v int64) *StartConnectionInput {
+	s.NetworkInterfaceDeviceIndex = &v
+	return s
+}
+
+type StartConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the connection.
+	ConnectionId *string `min:"1" type:"string"`
+
+	// The underlay IP address.
+	UnderlayIpAddress *string `min:"7" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *StartConnectionOutput) SetConnectionId(v string) *StartConnectionOutput {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetUnderlayIpAddress sets the UnderlayIpAddress field's value.
+func (s *StartConnectionOutput) SetUnderlayIpAddress(v string) *StartConnectionOutput {
+	s.UnderlayIpAddress = &v
 	return s
 }
 
