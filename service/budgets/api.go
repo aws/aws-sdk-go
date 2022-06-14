@@ -88,6 +88,10 @@ func (c *Budgets) CreateBudgetRequest(input *CreateBudgetInput) (req *request.Re
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
 //
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
+//
 func (c *Budgets) CreateBudget(input *CreateBudgetInput) (*CreateBudgetOutput, error) {
 	req, out := c.CreateBudgetRequest(input)
 	return out, req.Send()
@@ -180,6 +184,10 @@ func (c *Budgets) CreateBudgetActionRequest(input *CreateBudgetActionInput) (req
 //
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
+//
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
 //
 func (c *Budgets) CreateBudgetAction(input *CreateBudgetActionInput) (*CreateBudgetActionOutput, error) {
 	req, out := c.CreateBudgetActionRequest(input)
@@ -276,6 +284,10 @@ func (c *Budgets) CreateNotificationRequest(input *CreateNotificationInput) (req
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
 //
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
+//
 func (c *Budgets) CreateNotification(input *CreateNotificationInput) (*CreateNotificationOutput, error) {
 	req, out := c.CreateNotificationRequest(input)
 	return out, req.Send()
@@ -371,6 +383,10 @@ func (c *Budgets) CreateSubscriberRequest(input *CreateSubscriberInput) (req *re
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
 //
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
+//
 func (c *Budgets) CreateSubscriber(input *CreateSubscriberInput) (*CreateSubscriberOutput, error) {
 	req, out := c.CreateSubscriberRequest(input)
 	return out, req.Send()
@@ -461,6 +477,10 @@ func (c *Budgets) DeleteBudgetRequest(input *DeleteBudgetInput) (req *request.Re
 //
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
+//
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
 //
 func (c *Budgets) DeleteBudget(input *DeleteBudgetInput) (*DeleteBudgetOutput, error) {
 	req, out := c.DeleteBudgetRequest(input)
@@ -553,6 +573,10 @@ func (c *Budgets) DeleteBudgetActionRequest(input *DeleteBudgetActionInput) (req
 //   The request was received and recognized by the server, but the server rejected
 //   that particular method for the requested resource.
 //
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
+//
 func (c *Budgets) DeleteBudgetAction(input *DeleteBudgetActionInput) (*DeleteBudgetActionOutput, error) {
 	req, out := c.DeleteBudgetActionRequest(input)
 	return out, req.Send()
@@ -644,6 +668,10 @@ func (c *Budgets) DeleteNotificationRequest(input *DeleteNotificationInput) (req
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
 //
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
+//
 func (c *Budgets) DeleteNotification(input *DeleteNotificationInput) (*DeleteNotificationOutput, error) {
 	req, out := c.DeleteNotificationRequest(input)
 	return out, req.Send()
@@ -733,6 +761,10 @@ func (c *Budgets) DeleteSubscriberRequest(input *DeleteSubscriberInput) (req *re
 //
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
+//
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
 //
 func (c *Budgets) DeleteSubscriber(input *DeleteSubscriberInput) (*DeleteSubscriberOutput, error) {
 	req, out := c.DeleteSubscriberRequest(input)
@@ -825,6 +857,10 @@ func (c *Budgets) DescribeBudgetRequest(input *DescribeBudgetInput) (req *reques
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
 //
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
+//
 func (c *Budgets) DescribeBudget(input *DescribeBudgetInput) (*DescribeBudgetOutput, error) {
 	req, out := c.DescribeBudgetRequest(input)
 	return out, req.Send()
@@ -911,6 +947,10 @@ func (c *Budgets) DescribeBudgetActionRequest(input *DescribeBudgetActionInput) 
 //
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
+//
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
 //
 func (c *Budgets) DescribeBudgetAction(input *DescribeBudgetActionInput) (*DescribeBudgetActionOutput, error) {
 	req, out := c.DescribeBudgetActionRequest(input)
@@ -1007,6 +1047,10 @@ func (c *Budgets) DescribeBudgetActionHistoriesRequest(input *DescribeBudgetActi
 //
 //   * InvalidNextTokenException
 //   The pagination token is invalid.
+//
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
 //
 func (c *Budgets) DescribeBudgetActionHistories(input *DescribeBudgetActionHistoriesInput) (*DescribeBudgetActionHistoriesOutput, error) {
 	req, out := c.DescribeBudgetActionHistoriesRequest(input)
@@ -1152,6 +1196,10 @@ func (c *Budgets) DescribeBudgetActionsForAccountRequest(input *DescribeBudgetAc
 //
 //   * InvalidNextTokenException
 //   The pagination token is invalid.
+//
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
 //
 func (c *Budgets) DescribeBudgetActionsForAccount(input *DescribeBudgetActionsForAccountInput) (*DescribeBudgetActionsForAccountOutput, error) {
 	req, out := c.DescribeBudgetActionsForAccountRequest(input)
@@ -1300,6 +1348,10 @@ func (c *Budgets) DescribeBudgetActionsForBudgetRequest(input *DescribeBudgetAct
 //
 //   * InvalidNextTokenException
 //   The pagination token is invalid.
+//
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
 //
 func (c *Budgets) DescribeBudgetActionsForBudget(input *DescribeBudgetActionsForBudgetInput) (*DescribeBudgetActionsForBudgetOutput, error) {
 	req, out := c.DescribeBudgetActionsForBudgetRequest(input)
@@ -1452,6 +1504,10 @@ func (c *Budgets) DescribeBudgetNotificationsForAccountRequest(input *DescribeBu
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
 //
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
+//
 func (c *Budgets) DescribeBudgetNotificationsForAccount(input *DescribeBudgetNotificationsForAccountInput) (*DescribeBudgetNotificationsForAccountOutput, error) {
 	req, out := c.DescribeBudgetNotificationsForAccountRequest(input)
 	return out, req.Send()
@@ -1603,6 +1659,10 @@ func (c *Budgets) DescribeBudgetPerformanceHistoryRequest(input *DescribeBudgetP
 //
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
+//
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
 //
 func (c *Budgets) DescribeBudgetPerformanceHistory(input *DescribeBudgetPerformanceHistoryInput) (*DescribeBudgetPerformanceHistoryOutput, error) {
 	req, out := c.DescribeBudgetPerformanceHistoryRequest(input)
@@ -1759,6 +1819,10 @@ func (c *Budgets) DescribeBudgetsRequest(input *DescribeBudgetsInput) (req *requ
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
 //
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
+//
 func (c *Budgets) DescribeBudgets(input *DescribeBudgetsInput) (*DescribeBudgetsOutput, error) {
 	req, out := c.DescribeBudgetsRequest(input)
 	return out, req.Send()
@@ -1909,6 +1973,10 @@ func (c *Budgets) DescribeNotificationsForBudgetRequest(input *DescribeNotificat
 //
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
+//
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
 //
 func (c *Budgets) DescribeNotificationsForBudget(input *DescribeNotificationsForBudgetInput) (*DescribeNotificationsForBudgetOutput, error) {
 	req, out := c.DescribeNotificationsForBudgetRequest(input)
@@ -2061,6 +2129,10 @@ func (c *Budgets) DescribeSubscribersForNotificationRequest(input *DescribeSubsc
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
 //
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
+//
 func (c *Budgets) DescribeSubscribersForNotification(input *DescribeSubscribersForNotificationInput) (*DescribeSubscribersForNotificationOutput, error) {
 	req, out := c.DescribeSubscribersForNotificationRequest(input)
 	return out, req.Send()
@@ -2204,6 +2276,10 @@ func (c *Budgets) ExecuteBudgetActionRequest(input *ExecuteBudgetActionInput) (r
 //   The request was received and recognized by the server, but the server rejected
 //   that particular method for the requested resource.
 //
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
+//
 func (c *Budgets) ExecuteBudgetAction(input *ExecuteBudgetActionInput) (*ExecuteBudgetActionOutput, error) {
 	req, out := c.ExecuteBudgetActionRequest(input)
 	return out, req.Send()
@@ -2299,6 +2375,10 @@ func (c *Budgets) UpdateBudgetRequest(input *UpdateBudgetInput) (req *request.Re
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
 //
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
+//
 func (c *Budgets) UpdateBudget(input *UpdateBudgetInput) (*UpdateBudgetOutput, error) {
 	req, out := c.UpdateBudgetRequest(input)
 	return out, req.Send()
@@ -2389,6 +2469,10 @@ func (c *Budgets) UpdateBudgetActionRequest(input *UpdateBudgetActionInput) (req
 //   * ResourceLockedException
 //   The request was received and recognized by the server, but the server rejected
 //   that particular method for the requested resource.
+//
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
 //
 func (c *Budgets) UpdateBudgetAction(input *UpdateBudgetActionInput) (*UpdateBudgetActionOutput, error) {
 	req, out := c.UpdateBudgetActionRequest(input)
@@ -2481,6 +2565,10 @@ func (c *Budgets) UpdateNotificationRequest(input *UpdateNotificationInput) (req
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
 //
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
+//
 func (c *Budgets) UpdateNotification(input *UpdateNotificationInput) (*UpdateNotificationOutput, error) {
 	req, out := c.UpdateNotificationRequest(input)
 	return out, req.Send()
@@ -2571,6 +2659,10 @@ func (c *Budgets) UpdateSubscriberRequest(input *UpdateSubscriberInput) (req *re
 //
 //   * AccessDeniedException
 //   You are not authorized to use this operation with the given parameters.
+//
+//   * ThrottlingException
+//   The number of API requests has exceeded the maximum allowed API request throttling
+//   limit for the account.
 //
 func (c *Budgets) UpdateSubscriber(input *UpdateSubscriberInput) (*UpdateSubscriberOutput, error) {
 	req, out := c.UpdateSubscriberRequest(input)
@@ -7520,6 +7612,72 @@ func (s *Subscriber) SetAddress(v string) *Subscriber {
 func (s *Subscriber) SetSubscriptionType(v string) *Subscriber {
 	s.SubscriptionType = &v
 	return s
+}
+
+// The number of API requests has exceeded the maximum allowed API request throttling
+// limit for the account.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error message the exception carries.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // The period of time that's covered by a budget. The period has a start date

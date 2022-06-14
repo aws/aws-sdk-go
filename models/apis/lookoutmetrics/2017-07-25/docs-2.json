@@ -28,6 +28,7 @@
     "PutFeedback": "<p>Add feedback for an anomalous metric.</p>",
     "TagResource": "<p>Adds <a href=\"https://docs.aws.amazon.com/lookoutmetrics/latest/dev/detectors-tags.html\">tags</a> to a detector, dataset, or alert.</p>",
     "UntagResource": "<p>Removes <a href=\"https://docs.aws.amazon.com/lookoutmetrics/latest/dev/detectors-tags.html\">tags</a> from a detector, dataset, or alert.</p>",
+    "UpdateAlert": "<p>Make changes to an existing alert.</p>",
     "UpdateAnomalyDetector": "<p>Updates a detector. After activation, you can only change a detector's ingestion delay and description.</p>",
     "UpdateMetricSet": "<p>Updates a dataset.</p>"
   },
@@ -41,7 +42,8 @@
       "base": "<p>A configuration that specifies the action to perform when anomalies are detected.</p>",
       "refs": {
         "Alert$Action": "<p>Action that will be triggered when there is an alert.</p>",
-        "CreateAlertRequest$Action": "<p>Action that will be triggered when there is an alert.</p>"
+        "CreateAlertRequest$Action": "<p>Action that will be triggered when there is an alert.</p>",
+        "UpdateAlertRequest$Action": "<p>Action that will be triggered when there is an alert.</p>"
       }
     },
     "ActivateAnomalyDetectorRequest": {
@@ -70,7 +72,16 @@
       "base": null,
       "refs": {
         "Alert$AlertDescription": "<p>A description of the alert.</p>",
-        "CreateAlertRequest$AlertDescription": "<p>A description of the alert.</p>"
+        "CreateAlertRequest$AlertDescription": "<p>A description of the alert.</p>",
+        "UpdateAlertRequest$AlertDescription": "<p>A description of the alert.</p>"
+      }
+    },
+    "AlertFilters": {
+      "base": "<p>The configuration of the alert filters.</p>",
+      "refs": {
+        "Alert$AlertFilters": "<p>The configuration of the alert filters, containing MetricList and DimensionFilter.</p>",
+        "CreateAlertRequest$AlertFilters": "<p>The configuration of the alert filters, containing MetricList and DimensionFilterList.</p>",
+        "UpdateAlertRequest$AlertFilters": "<p>The configuration of the alert filters, containing MetricList and DimensionFilterList.</p>"
       }
     },
     "AlertName": {
@@ -266,6 +277,8 @@
         "SampleDataS3SourceConfig$RoleArn": "<p>The Amazon Resource Name (ARN) of the role.</p>",
         "TagResourceRequest$ResourceArn": "<p>The resource's Amazon Resource Name (ARN).</p>",
         "UntagResourceRequest$ResourceArn": "<p>The resource's Amazon Resource Name (ARN).</p>",
+        "UpdateAlertRequest$AlertArn": "<p>The ARN of the alert to update.</p>",
+        "UpdateAlertResponse$AlertArn": "<p>The ARN of the updated alert.</p>",
         "UpdateAnomalyDetectorRequest$AnomalyDetectorArn": "<p>The ARN of the detector to update.</p>",
         "UpdateAnomalyDetectorResponse$AnomalyDetectorArn": "<p>The ARN of the updated detector.</p>",
         "UpdateMetricSetRequest$MetricSetArn": "<p>The ARN of the dataset to update.</p>",
@@ -388,6 +401,7 @@
       "base": null,
       "refs": {
         "DimensionContribution$DimensionName": "<p>The name of the dimension.</p>",
+        "DimensionFilter$DimensionName": "<p>The name of the dimension to filter on.</p>",
         "DimensionList$member": null,
         "DimensionNameValue$DimensionName": "<p>The name of the dimension.</p>",
         "HeaderList$member": null,
@@ -624,6 +638,18 @@
         "ContributionMatrix$DimensionContributionList": "<p>A list of contributing dimensions.</p>"
       }
     },
+    "DimensionFilter": {
+      "base": "<p>The dimension filter, containing DimensionName and DimensionValueList.</p>",
+      "refs": {
+        "DimensionFilterList$member": null
+      }
+    },
+    "DimensionFilterList": {
+      "base": null,
+      "refs": {
+        "AlertFilters$DimensionFilterList": "<p>The list of DimensionFilter objects that are used for dimension-based filtering.</p>"
+      }
+    },
     "DimensionList": {
       "base": null,
       "refs": {
@@ -648,7 +674,8 @@
       "base": null,
       "refs": {
         "DimensionNameValue$DimensionValue": "<p>The value of the dimension.</p>",
-        "DimensionValueContribution$DimensionValue": "<p>The value of the dimension.</p>"
+        "DimensionValueContribution$DimensionValue": "<p>The value of the dimension.</p>",
+        "DimensionValueList$member": null
       }
     },
     "DimensionValueContribution": {
@@ -661,6 +688,12 @@
       "base": null,
       "refs": {
         "DimensionContribution$DimensionValueContributionList": "<p>A list of dimension values that contributed to the anomaly.</p>"
+      }
+    },
+    "DimensionValueList": {
+      "base": null,
+      "refs": {
+        "DimensionFilter$DimensionValueList": "<p>The list of values for the dimension specified in DimensionName that you want to filter on.</p>"
       }
     },
     "ErrorMessage": {
@@ -972,7 +1005,14 @@
         "InterMetricImpactDetails$MetricName": "<p>The name of the measure.</p>",
         "ListAnomalyGroupTimeSeriesRequest$MetricName": "<p>The name of the measure field.</p>",
         "ListAnomalyGroupTimeSeriesResponse$MetricName": "<p>The name of the measure field.</p>",
-        "MetricLevelImpact$MetricName": "<p>The name of the measure.</p>"
+        "MetricLevelImpact$MetricName": "<p>The name of the measure.</p>",
+        "MetricNameList$member": null
+      }
+    },
+    "MetricNameList": {
+      "base": null,
+      "refs": {
+        "AlertFilters$MetricList": "<p>The list of measures that you want to get alerts for.</p>"
       }
     },
     "MetricSetDescription": {
@@ -1221,7 +1261,8 @@
         "Alert$AlertSensitivityThreshold": "<p>The minimum severity for an anomaly to trigger the alert.</p>",
         "AlertSummary$AlertSensitivityThreshold": "<p>The minimum severity for an anomaly to trigger the alert.</p>",
         "CreateAlertRequest$AlertSensitivityThreshold": "<p>An integer from 0 to 100 specifying the alert sensitivity threshold.</p>",
-        "ListAnomalyGroupSummariesRequest$SensitivityThreshold": "<p>The minimum severity score for inclusion in the output.</p>"
+        "ListAnomalyGroupSummariesRequest$SensitivityThreshold": "<p>The minimum severity score for inclusion in the output.</p>",
+        "UpdateAlertRequest$AlertSensitivityThreshold": "<p>An integer from 0 to 100 specifying the alert sensitivity threshold.</p>"
       }
     },
     "ServiceCode": {
@@ -1238,7 +1279,7 @@
     "SnsFormat": {
       "base": null,
       "refs": {
-        "SNSConfiguration$SnsFormat": "<p>The format of the SNS topic.</p>"
+        "SNSConfiguration$SnsFormat": "<p>The format of the SNS topic.</p> <ul> <li> <p> <code>JSON</code> – Send JSON alerts with an anomaly ID and a link to the anomaly detail page. This is the default.</p> </li> <li> <p> <code>LONG_TEXT</code> – Send human-readable alerts with information about the impacted timeseries and a link to the anomaly detail page. We recommend this for email.</p> </li> <li> <p> <code>SHORT_TEXT</code> – Send human-readable alerts with a link to the anomaly detail page. We recommend this for SMS.</p> </li> </ul>"
       }
     },
     "StringAttributeValue": {
@@ -1438,6 +1479,16 @@
       }
     },
     "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAlertRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAlertResponse": {
       "base": null,
       "refs": {
       }

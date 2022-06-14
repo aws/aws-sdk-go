@@ -1455,6 +1455,15 @@
         }
       }
     },
+    "AudioDurationCorrection": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "AUTO",
+        "TRACK",
+        "FRAME"
+      ]
+    },
     "AudioLanguageCodeControl": {
       "type": "string",
       "enum": [
@@ -1524,6 +1533,10 @@
     "AudioSelector": {
       "type": "structure",
       "members": {
+        "AudioDurationCorrection": {
+          "shape": "AudioDurationCorrection",
+          "locationName": "audioDurationCorrection"
+        },
         "CustomLanguageCode": {
           "shape": "__stringMin3Max3PatternAZaZ3",
           "locationName": "customLanguageCode"
