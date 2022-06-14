@@ -2992,6 +2992,101 @@ func (c *LookoutMetrics) UntagResourceWithContext(ctx aws.Context, input *UntagR
 	return out, req.Send()
 }
 
+const opUpdateAlert = "UpdateAlert"
+
+// UpdateAlertRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAlert operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAlert for more information on using the UpdateAlert
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateAlertRequest method.
+//    req, resp := client.UpdateAlertRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutmetrics-2017-07-25/UpdateAlert
+func (c *LookoutMetrics) UpdateAlertRequest(input *UpdateAlertInput) (req *request.Request, output *UpdateAlertOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAlert,
+		HTTPMethod: "POST",
+		HTTPPath:   "/UpdateAlert",
+	}
+
+	if input == nil {
+		input = &UpdateAlertInput{}
+	}
+
+	output = &UpdateAlertOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAlert API operation for Amazon Lookout for Metrics.
+//
+// Make changes to an existing alert.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Metrics's
+// API operation UpdateAlert for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by the AWS service.
+//   Check your input values and try again.
+//
+//   * ResourceNotFoundException
+//   The specified resource cannot be found. Check the ARN of the resource and
+//   try again.
+//
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception,
+//   or failure.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * TooManyRequestsException
+//   The request was denied due to too many requests being submitted at the same
+//   time.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutmetrics-2017-07-25/UpdateAlert
+func (c *LookoutMetrics) UpdateAlert(input *UpdateAlertInput) (*UpdateAlertOutput, error) {
+	req, out := c.UpdateAlertRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAlertWithContext is the same as UpdateAlert with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAlert for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutMetrics) UpdateAlertWithContext(ctx aws.Context, input *UpdateAlertInput, opts ...request.Option) (*UpdateAlertOutput, error) {
+	req, out := c.UpdateAlertRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateAnomalyDetector = "UpdateAnomalyDetector"
 
 // UpdateAnomalyDetectorRequest generates a "aws/request.Request" representing the
@@ -3393,6 +3488,9 @@ type Alert struct {
 	// A description of the alert.
 	AlertDescription *string `type:"string"`
 
+	// The configuration of the alert filters, containing MetricList and DimensionFilter.
+	AlertFilters *AlertFilters `type:"structure"`
+
 	// The name of the alert.
 	AlertName *string `min:"1" type:"string"`
 
@@ -3451,6 +3549,12 @@ func (s *Alert) SetAlertDescription(v string) *Alert {
 	return s
 }
 
+// SetAlertFilters sets the AlertFilters field's value.
+func (s *Alert) SetAlertFilters(v *AlertFilters) *Alert {
+	s.AlertFilters = v
+	return s
+}
+
 // SetAlertName sets the AlertName field's value.
 func (s *Alert) SetAlertName(v string) *Alert {
 	s.AlertName = &v
@@ -3490,6 +3594,73 @@ func (s *Alert) SetCreationTime(v time.Time) *Alert {
 // SetLastModificationTime sets the LastModificationTime field's value.
 func (s *Alert) SetLastModificationTime(v time.Time) *Alert {
 	s.LastModificationTime = &v
+	return s
+}
+
+// The configuration of the alert filters.
+type AlertFilters struct {
+	_ struct{} `type:"structure"`
+
+	// The list of DimensionFilter objects that are used for dimension-based filtering.
+	DimensionFilterList []*DimensionFilter `min:"1" type:"list"`
+
+	// The list of measures that you want to get alerts for.
+	MetricList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AlertFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AlertFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AlertFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AlertFilters"}
+	if s.DimensionFilterList != nil && len(s.DimensionFilterList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DimensionFilterList", 1))
+	}
+	if s.MetricList != nil && len(s.MetricList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricList", 1))
+	}
+	if s.DimensionFilterList != nil {
+		for i, v := range s.DimensionFilterList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DimensionFilterList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensionFilterList sets the DimensionFilterList field's value.
+func (s *AlertFilters) SetDimensionFilterList(v []*DimensionFilter) *AlertFilters {
+	s.DimensionFilterList = v
+	return s
+}
+
+// SetMetricList sets the MetricList field's value.
+func (s *AlertFilters) SetMetricList(v []*string) *AlertFilters {
+	s.MetricList = v
 	return s
 }
 
@@ -4695,15 +4866,16 @@ type CreateAlertInput struct {
 	// A description of the alert.
 	AlertDescription *string `type:"string"`
 
+	// The configuration of the alert filters, containing MetricList and DimensionFilterList.
+	AlertFilters *AlertFilters `type:"structure"`
+
 	// The name of the alert.
 	//
 	// AlertName is a required field
 	AlertName *string `min:"1" type:"string" required:"true"`
 
 	// An integer from 0 to 100 specifying the alert sensitivity threshold.
-	//
-	// AlertSensitivityThreshold is a required field
-	AlertSensitivityThreshold *int64 `type:"integer" required:"true"`
+	AlertSensitivityThreshold *int64 `type:"integer"`
 
 	// The ARN of the detector to which the alert is attached.
 	//
@@ -4745,9 +4917,6 @@ func (s *CreateAlertInput) Validate() error {
 	if s.AlertName != nil && len(*s.AlertName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AlertName", 1))
 	}
-	if s.AlertSensitivityThreshold == nil {
-		invalidParams.Add(request.NewErrParamRequired("AlertSensitivityThreshold"))
-	}
 	if s.AnomalyDetectorArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("AnomalyDetectorArn"))
 	}
@@ -4757,6 +4926,11 @@ func (s *CreateAlertInput) Validate() error {
 	if s.Action != nil {
 		if err := s.Action.Validate(); err != nil {
 			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.AlertFilters != nil {
+		if err := s.AlertFilters.Validate(); err != nil {
+			invalidParams.AddNested("AlertFilters", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -4775,6 +4949,12 @@ func (s *CreateAlertInput) SetAction(v *Action) *CreateAlertInput {
 // SetAlertDescription sets the AlertDescription field's value.
 func (s *CreateAlertInput) SetAlertDescription(v string) *CreateAlertInput {
 	s.AlertDescription = &v
+	return s
+}
+
+// SetAlertFilters sets the AlertFilters field's value.
+func (s *CreateAlertInput) SetAlertFilters(v *AlertFilters) *CreateAlertInput {
+	s.AlertFilters = v
 	return s
 }
 
@@ -6463,6 +6643,64 @@ func (s *DimensionContribution) SetDimensionName(v string) *DimensionContributio
 // SetDimensionValueContributionList sets the DimensionValueContributionList field's value.
 func (s *DimensionContribution) SetDimensionValueContributionList(v []*DimensionValueContribution) *DimensionContribution {
 	s.DimensionValueContributionList = v
+	return s
+}
+
+// The dimension filter, containing DimensionName and DimensionValueList.
+type DimensionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the dimension to filter on.
+	DimensionName *string `min:"1" type:"string"`
+
+	// The list of values for the dimension specified in DimensionName that you
+	// want to filter on.
+	DimensionValueList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DimensionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DimensionFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DimensionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DimensionFilter"}
+	if s.DimensionName != nil && len(*s.DimensionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DimensionName", 1))
+	}
+	if s.DimensionValueList != nil && len(s.DimensionValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DimensionValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensionName sets the DimensionName field's value.
+func (s *DimensionFilter) SetDimensionName(v string) *DimensionFilter {
+	s.DimensionName = &v
+	return s
+}
+
+// SetDimensionValueList sets the DimensionValueList field's value.
+func (s *DimensionFilter) SetDimensionValueList(v []*string) *DimensionFilter {
+	s.DimensionValueList = v
 	return s
 }
 
@@ -8875,6 +9113,16 @@ type SNSConfiguration struct {
 	RoleArn *string `type:"string" required:"true"`
 
 	// The format of the SNS topic.
+	//
+	//    * JSON – Send JSON alerts with an anomaly ID and a link to the anomaly
+	//    detail page. This is the default.
+	//
+	//    * LONG_TEXT – Send human-readable alerts with information about the
+	//    impacted timeseries and a link to the anomaly detail page. We recommend
+	//    this for email.
+	//
+	//    * SHORT_TEXT – Send human-readable alerts with a link to the anomaly
+	//    detail page. We recommend this for SMS.
 	SnsFormat *string `type:"string" enum:"SnsFormat"`
 
 	// The ARN of the target SNS topic.
@@ -9490,6 +9738,129 @@ func (s UntagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateAlertInput struct {
+	_ struct{} `type:"structure"`
+
+	// Action that will be triggered when there is an alert.
+	Action *Action `type:"structure"`
+
+	// The ARN of the alert to update.
+	//
+	// AlertArn is a required field
+	AlertArn *string `type:"string" required:"true"`
+
+	// A description of the alert.
+	AlertDescription *string `type:"string"`
+
+	// The configuration of the alert filters, containing MetricList and DimensionFilterList.
+	AlertFilters *AlertFilters `type:"structure"`
+
+	// An integer from 0 to 100 specifying the alert sensitivity threshold.
+	AlertSensitivityThreshold *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAlertInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAlertInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAlertInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAlertInput"}
+	if s.AlertArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AlertArn"))
+	}
+	if s.Action != nil {
+		if err := s.Action.Validate(); err != nil {
+			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.AlertFilters != nil {
+		if err := s.AlertFilters.Validate(); err != nil {
+			invalidParams.AddNested("AlertFilters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *UpdateAlertInput) SetAction(v *Action) *UpdateAlertInput {
+	s.Action = v
+	return s
+}
+
+// SetAlertArn sets the AlertArn field's value.
+func (s *UpdateAlertInput) SetAlertArn(v string) *UpdateAlertInput {
+	s.AlertArn = &v
+	return s
+}
+
+// SetAlertDescription sets the AlertDescription field's value.
+func (s *UpdateAlertInput) SetAlertDescription(v string) *UpdateAlertInput {
+	s.AlertDescription = &v
+	return s
+}
+
+// SetAlertFilters sets the AlertFilters field's value.
+func (s *UpdateAlertInput) SetAlertFilters(v *AlertFilters) *UpdateAlertInput {
+	s.AlertFilters = v
+	return s
+}
+
+// SetAlertSensitivityThreshold sets the AlertSensitivityThreshold field's value.
+func (s *UpdateAlertInput) SetAlertSensitivityThreshold(v int64) *UpdateAlertInput {
+	s.AlertSensitivityThreshold = &v
+	return s
+}
+
+type UpdateAlertOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the updated alert.
+	AlertArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAlertOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAlertOutput) GoString() string {
+	return s.String()
+}
+
+// SetAlertArn sets the AlertArn field's value.
+func (s *UpdateAlertOutput) SetAlertArn(v string) *UpdateAlertOutput {
+	s.AlertArn = &v
+	return s
 }
 
 type UpdateAnomalyDetectorInput struct {

@@ -1,3 +1,13 @@
+Release v1.44.34 (2022-06-14)
+===
+
+### Service Client Updates
+* `service/budgets`: Updates service API and documentation
+  * Add a budgets ThrottlingException. Update the CostFilters value pattern.
+* `service/lookoutmetrics`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for rules that constrain Automatic-ABR rendition selection when generating ABR package ladders.
+
 Release v1.44.33 (2022-06-13)
 ===
 

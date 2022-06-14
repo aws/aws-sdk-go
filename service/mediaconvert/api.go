@@ -3993,6 +3993,22 @@ func (s *AudioNormalizationSettings) SetTargetLkfs(v float64) *AudioNormalizatio
 type AudioSelector struct {
 	_ struct{} `type:"structure"`
 
+	// Apply audio timing corrections to help synchronize audio and video in your
+	// output. To apply timing corrections, your input must meet the following requirements:
+	// * Container: MP4, or MOV, with an accurate time-to-sample (STTS) table. *
+	// Audio track: AAC. Choose from the following audio timing correction settings:
+	// * Disabled (Default): Apply no correction. * Auto: Recommended for most inputs.
+	// MediaConvert analyzes the audio timing in your input and determines which
+	// correction setting to use, if needed. * Track: Adjust the duration of each
+	// audio frame by a constant amount to align the audio track length with STTS
+	// duration. Track-level correction does not affect pitch, and is recommended
+	// for tonal audio content such as music. * Frame: Adjust the duration of each
+	// audio frame by a variable amount to align audio frames with STTS timestamps.
+	// No corrections are made to already-aligned frames. Frame-level correction
+	// may affect the pitch of corrected frames, and is recommended for atonal audio
+	// content such as speech or percussion.
+	AudioDurationCorrection *string `locationName:"audioDurationCorrection" type:"string" enum:"AudioDurationCorrection"`
+
 	// Selects a specific language code from within an audio source, using the ISO
 	// 639-2 or ISO 639-3 three-letter language code
 	CustomLanguageCode *string `locationName:"customLanguageCode" min:"3" type:"string"`
@@ -4091,6 +4107,12 @@ func (s *AudioSelector) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAudioDurationCorrection sets the AudioDurationCorrection field's value.
+func (s *AudioSelector) SetAudioDurationCorrection(v string) *AudioSelector {
+	s.AudioDurationCorrection = &v
+	return s
 }
 
 // SetCustomLanguageCode sets the CustomLanguageCode field's value.
@@ -14746,11 +14768,11 @@ type Input struct {
 	// For more information about timecodes, see https://docs.aws.amazon.com/console/mediaconvert/timecode.
 	TimecodeStart *string `locationName:"timecodeStart" min:"11" type:"string"`
 
-	// Use this setting if you do not have a video input or if you want to add black
-	// video frames before, or after, other inputs. When you include Video generator,
-	// MediaConvert creates a video input with black frames and without an audio
-	// track. You can specify a value for Video generator, or you can specify an
-	// Input file, but you cannot specify both.
+	// When you include Video generator, MediaConvert creates a video input with
+	// black frames. Use this setting if you do not have a video input or if you
+	// want to add black video frames before, or after, other inputs. You can specify
+	// Video generator, or you can specify an Input file, but you cannot specify
+	// both. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/video-generator.html
 	VideoGenerator *InputVideoGenerator `locationName:"videoGenerator" type:"structure"`
 
 	// Input video selectors contain the video settings for the input. Each of your
@@ -15443,11 +15465,11 @@ func (s *InputTemplate) SetVideoSelector(v *VideoSelector) *InputTemplate {
 	return s
 }
 
-// Use this setting if you do not have a video input or if you want to add black
-// video frames before, or after, other inputs. When you include Video generator,
-// MediaConvert creates a video input with black frames and without an audio
-// track. You can specify a value for Video generator, or you can specify an
-// Input file, but you cannot specify both.
+// When you include Video generator, MediaConvert creates a video input with
+// black frames. Use this setting if you do not have a video input or if you
+// want to add black video frames before, or after, other inputs. You can specify
+// Video generator, or you can specify an Input file, but you cannot specify
+// both. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/video-generator.html
 type InputVideoGenerator struct {
 	_ struct{} `type:"structure"`
 
@@ -27131,6 +27153,44 @@ func AudioDefaultSelection_Values() []string {
 	return []string{
 		AudioDefaultSelectionDefault,
 		AudioDefaultSelectionNotDefault,
+	}
+}
+
+// Apply audio timing corrections to help synchronize audio and video in your
+// output. To apply timing corrections, your input must meet the following requirements:
+// * Container: MP4, or MOV, with an accurate time-to-sample (STTS) table. *
+// Audio track: AAC. Choose from the following audio timing correction settings:
+// * Disabled (Default): Apply no correction. * Auto: Recommended for most inputs.
+// MediaConvert analyzes the audio timing in your input and determines which
+// correction setting to use, if needed. * Track: Adjust the duration of each
+// audio frame by a constant amount to align the audio track length with STTS
+// duration. Track-level correction does not affect pitch, and is recommended
+// for tonal audio content such as music. * Frame: Adjust the duration of each
+// audio frame by a variable amount to align audio frames with STTS timestamps.
+// No corrections are made to already-aligned frames. Frame-level correction
+// may affect the pitch of corrected frames, and is recommended for atonal audio
+// content such as speech or percussion.
+const (
+	// AudioDurationCorrectionDisabled is a AudioDurationCorrection enum value
+	AudioDurationCorrectionDisabled = "DISABLED"
+
+	// AudioDurationCorrectionAuto is a AudioDurationCorrection enum value
+	AudioDurationCorrectionAuto = "AUTO"
+
+	// AudioDurationCorrectionTrack is a AudioDurationCorrection enum value
+	AudioDurationCorrectionTrack = "TRACK"
+
+	// AudioDurationCorrectionFrame is a AudioDurationCorrection enum value
+	AudioDurationCorrectionFrame = "FRAME"
+)
+
+// AudioDurationCorrection_Values returns all elements of the AudioDurationCorrection enum
+func AudioDurationCorrection_Values() []string {
+	return []string{
+		AudioDurationCorrectionDisabled,
+		AudioDurationCorrectionAuto,
+		AudioDurationCorrectionTrack,
+		AudioDurationCorrectionFrame,
 	}
 }
 
