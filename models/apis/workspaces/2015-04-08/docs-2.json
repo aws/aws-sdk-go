@@ -141,7 +141,7 @@
     "ApplicationList": {
       "base": null,
       "refs": {
-        "ImportWorkspaceImageRequest$Applications": "<p>If specified, the version of Microsoft Office to subscribe to. Valid only for Windows 10 BYOL images. For more information about subscribing to Office for BYOL images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html\"> Bring Your Own Windows Desktop Licenses</a>.</p> <note> <ul> <li> <p>Although this parameter is an array, only one item is allowed at this time</p> </li> <li> <p>Microsoft Office 2016 application subscription through AWS is currently not supported for Graphics.g4dn Bring Your Own License (BYOL) images</p> </li> </ul> </note>"
+        "ImportWorkspaceImageRequest$Applications": "<p>If specified, the version of Microsoft Office to subscribe to. Valid only for Windows 10 BYOL images. For more information about subscribing to Office for BYOL images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html\"> Bring Your Own Windows Desktop Licenses</a>.</p> <note> <p>Although this parameter is an array, only one item is allowed at this time.</p> </note>"
       }
     },
     "AssociateConnectionAliasRequest": {
@@ -300,14 +300,14 @@
     "ClientUrl": {
       "base": null,
       "refs": {
-        "DefaultClientBrandingAttributes$LogoUrl": "<p>The logo URL. This is the link where users can download the logo image. The only supported image format is <code>.png</code>.</p>",
+        "DefaultClientBrandingAttributes$LogoUrl": "<p>The logo URL. The only image format accepted is a binary data object that is converted from a <code>.png</code> file.</p>",
         "DefaultClientBrandingAttributes$SupportLink": "<p>The support link. The link for the company's customer support page for their WorkSpace.</p> <note> <ul> <li> <p>In each platform type, the <code>SupportEmail</code> and <code>SupportLink</code> parameters are mutually exclusive.You can specify one parameter for each platform type, but not both.</p> </li> <li> <p>The default support link is <code>workspaces-feedback@amazon.com</code>.</p> </li> </ul> </note>",
         "DefaultClientBrandingAttributes$ForgotPasswordLink": "<p>The forgotten password link. This is the web address that users can go to if they forget the password for their WorkSpace.</p>",
         "DefaultImportClientBrandingAttributes$SupportLink": "<p>The support link. The link for the company's customer support page for their WorkSpace.</p> <note> <ul> <li> <p>In each platform type, the <code>SupportEmail</code> and <code>SupportLink</code> parameters are mutually exclusive. You can specify one parameter for each platform type, but not both.</p> </li> <li> <p>The default support link is <code>workspaces-feedback@amazon.com</code>.</p> </li> </ul> </note>",
         "DefaultImportClientBrandingAttributes$ForgotPasswordLink": "<p>The forgotten password link. This is the web address that users can go to if they forget the password for their WorkSpace.</p>",
-        "IosClientBrandingAttributes$LogoUrl": "<p>The logo. This is the link where users can download the logo image. This is the standard-resolution display that has a 1:1 pixel density (or @1x), where one pixel is equal to one point.</p>",
-        "IosClientBrandingAttributes$Logo2xUrl": "<p>The @2x version of the logo. This is the higher resolution display that offers a scale factor of 2.0 (or @2x).</p> <note> <p> For more information about iOS image size and resolution, see <a href=\"https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/\">Image Size and Resolution </a> in the <i>Apple Human Interface Guidelines</i>.</p> </note>",
-        "IosClientBrandingAttributes$Logo3xUrl": "<p>The @3x version of the logo. This is the higher resolution display that offers a scale factor of 3.0 (or @3x).</p> <note> <p> For more information about iOS image size and resolution, see <a href=\"https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/\">Image Size and Resolution </a> in the <i>Apple Human Interface Guidelines</i>.</p> </note>",
+        "IosClientBrandingAttributes$LogoUrl": "<p>The logo. This is the standard-resolution display that has a 1:1 pixel density (or @1x), where one pixel is equal to one point. The only image format accepted is a binary data object that is converted from a <code>.png</code> file.</p>",
+        "IosClientBrandingAttributes$Logo2xUrl": "<p>The @2x version of the logo. This is the higher resolution display that offers a scale factor of 2.0 (or @2x). The only image format accepted is a binary data object that is converted from a <code>.png</code> file.</p> <note> <p> For more information about iOS image size and resolution, see <a href=\"https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/\">Image Size and Resolution </a> in the <i>Apple Human Interface Guidelines</i>.</p> </note>",
+        "IosClientBrandingAttributes$Logo3xUrl": "<p>The @3x version of the logo. This is the higher resolution display that offers a scale factor of 3.0 (or @3x).The only image format accepted is a binary data object that is converted from a <code>.png</code> file.</p> <note> <p> For more information about iOS image size and resolution, see <a href=\"https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/\">Image Size and Resolution </a> in the <i>Apple Human Interface Guidelines</i>.</p> </note>",
         "IosClientBrandingAttributes$SupportLink": "<p>The support link. The link for the company's customer support page for their WorkSpace.</p> <note> <ul> <li> <p>In each platform type, the <code>SupportEmail</code> and <code>SupportLink</code> parameters are mutually exclusive. You can specify one parameter for each platform type, but not both.</p> </li> <li> <p>The default support link is <code>workspaces-feedback@amazon.com</code>.</p> </li> </ul> </note>",
         "IosClientBrandingAttributes$ForgotPasswordLink": "<p>The forgotten password link. This is the web address that users can go to if they forget the password for their WorkSpace.</p>",
         "IosImportClientBrandingAttributes$SupportLink": "<p>The support link. The link for the company's customer support page for their WorkSpace.</p> <note> <ul> <li> <p>In each platform type, the <code>SupportEmail</code> and <code>SupportLink</code> parameters are mutually exclusive. You can specify one parameter for each platform type, but not both.</p> </li> <li> <p>The default support link is <code>workspaces-feedback@amazon.com</code>.</p> </li> </ul> </note>",
@@ -571,7 +571,7 @@
     "DefaultLogo": {
       "base": null,
       "refs": {
-        "DefaultImportClientBrandingAttributes$Logo": "<p>The logo. This is the link where users can download the logo image. The only image format accepted is <code>.png</code>.</p>"
+        "DefaultImportClientBrandingAttributes$Logo": "<p>The logo. The only image format accepted is a binary data object that is converted from a <code>.png</code> file.</p>"
       }
     },
     "DefaultOu": {
@@ -920,6 +920,12 @@
         "FailedWorkspaceChangeRequest$ErrorCode": "<p>The error code that is returned if the WorkSpace cannot be rebooted.</p>"
       }
     },
+    "ExceptionErrorCode": {
+      "base": null,
+      "refs": {
+        "OperationNotSupportedException$reason": "<p>The exception error reason.</p>"
+      }
+    },
     "ExceptionMessage": {
       "base": null,
       "refs": {
@@ -927,7 +933,7 @@
         "InvalidParameterValuesException$message": "<p>The exception error message.</p>",
         "InvalidResourceStateException$message": null,
         "OperationInProgressException$message": null,
-        "OperationNotSupportedException$message": null,
+        "OperationNotSupportedException$message": "<p>The exception error message.</p>",
         "ResourceAlreadyExistsException$message": null,
         "ResourceAssociatedException$message": null,
         "ResourceCreationFailedException$message": null,
@@ -1042,13 +1048,13 @@
     "Ios2XLogo": {
       "base": null,
       "refs": {
-        "IosImportClientBrandingAttributes$Logo2x": "<p>The @2x version of the logo. This is the higher resolution display that offers a scale factor of 2.0 (or @2x).</p> <note> <p> For more information about iOS image size and resolution, see <a href=\"https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/\">Image Size and Resolution </a> in the <i>Apple Human Interface Guidelines</i>.</p> </note>"
+        "IosImportClientBrandingAttributes$Logo2x": "<p>The @2x version of the logo. This is the higher resolution display that offers a scale factor of 2.0 (or @2x). The only image format accepted is a binary data object that is converted from a <code>.png</code> file.</p> <note> <p> For more information about iOS image size and resolution, see <a href=\"https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/\">Image Size and Resolution </a> in the <i>Apple Human Interface Guidelines</i>.</p> </note>"
       }
     },
     "Ios3XLogo": {
       "base": null,
       "refs": {
-        "IosImportClientBrandingAttributes$Logo3x": "<p>The @3x version of the logo. This is the higher resolution display that offers a scale factor of 3.0 (or @3x).</p> <note> <p> For more information about iOS image size and resolution, see <a href=\"https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/\">Image Size and Resolution </a> in the <i>Apple Human Interface Guidelines</i>.</p> </note>"
+        "IosImportClientBrandingAttributes$Logo3x": "<p>The @3x version of the logo. This is the higher resolution display that offers a scale factor of 3.0 (or @3x). The only image format accepted is a binary data object that is converted from a <code>.png</code> file.</p> <note> <p> For more information about iOS image size and resolution, see <a href=\"https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/\">Image Size and Resolution </a> in the <i>Apple Human Interface Guidelines</i>.</p> </note>"
       }
     },
     "IosClientBrandingAttributes": {
@@ -1067,7 +1073,7 @@
     "IosLogo": {
       "base": null,
       "refs": {
-        "IosImportClientBrandingAttributes$Logo": "<p>The logo. This is the link where users can download the logo image. This is the standard-resolution display that has a 1:1 pixel density (or @1x), where one pixel is equal to one point.</p>"
+        "IosImportClientBrandingAttributes$Logo": "<p>The logo. This is the standard-resolution display that has a 1:1 pixel density (or @1x), where one pixel is equal to one point. The only image format accepted is a binary data object that is converted from a <code>.png</code> file.</p>"
       }
     },
     "IpAddress": {
@@ -1948,7 +1954,7 @@
     "WorkspaceImageIngestionProcess": {
       "base": null,
       "refs": {
-        "ImportWorkspaceImageRequest$IngestionProcess": "<p>The ingestion process to be used when importing the image, depending on which protocol you want to use for your BYOL Workspace image, either PCoIP or WorkSpaces Streaming Protocol (WSP). To use WSP, specify a value that ends in <code>_WSP</code>. To use PCoIP, specify a value that does not end in <code>_WSP</code>. </p> <p>For non-GPU-enabled images (bundles other than Graphics.g4dn, GraphicsPro.g4dn, Graphics, or GraphicsPro), specify <code>BYOL_REGULAR</code> or <code>BYOL_REGULAR_WSP</code>, depending on the protocol.</p> <note> <p>Use <code>BYOL_GRAPHICS_G4DN</code> ingestion for both Graphics.g4dn and GraphicsPro.g4dn.</p> </note>"
+        "ImportWorkspaceImageRequest$IngestionProcess": "<p>The ingestion process to be used when importing the image, depending on which protocol you want to use for your BYOL Workspace image, either PCoIP or WorkSpaces Streaming Protocol (WSP). To use WSP, specify a value that ends in <code>_WSP</code>. To use PCoIP, specify a value that does not end in <code>_WSP</code>. </p> <p>For non-GPU-enabled bundles (bundles other than Graphics or GraphicsPro), specify <code>BYOL_REGULAR</code> or <code>BYOL_REGULAR_WSP</code>, depending on the protocol.</p>"
       }
     },
     "WorkspaceImageList": {

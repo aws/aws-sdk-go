@@ -11,6 +11,102 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
+const opAssociateUserToPermissionGroup = "AssociateUserToPermissionGroup"
+
+// AssociateUserToPermissionGroupRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateUserToPermissionGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateUserToPermissionGroup for more information on using the AssociateUserToPermissionGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateUserToPermissionGroupRequest method.
+//    req, resp := client.AssociateUserToPermissionGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/AssociateUserToPermissionGroup
+func (c *FinSpaceData) AssociateUserToPermissionGroupRequest(input *AssociateUserToPermissionGroupInput) (req *request.Request, output *AssociateUserToPermissionGroupOutput) {
+	op := &request.Operation{
+		Name:       opAssociateUserToPermissionGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/permission-group/{permissionGroupId}/users/{userId}",
+	}
+
+	if input == nil {
+		input = &AssociateUserToPermissionGroupInput{}
+	}
+
+	output = &AssociateUserToPermissionGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateUserToPermissionGroup API operation for FinSpace Public API.
+//
+// Adds a user account to a permission group to grant permissions for actions
+// a user can perform in FinSpace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation AssociateUserToPermissionGroup for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/AssociateUserToPermissionGroup
+func (c *FinSpaceData) AssociateUserToPermissionGroup(input *AssociateUserToPermissionGroupInput) (*AssociateUserToPermissionGroupOutput, error) {
+	req, out := c.AssociateUserToPermissionGroupRequest(input)
+	return out, req.Send()
+}
+
+// AssociateUserToPermissionGroupWithContext is the same as AssociateUserToPermissionGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateUserToPermissionGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) AssociateUserToPermissionGroupWithContext(ctx aws.Context, input *AssociateUserToPermissionGroupInput, opts ...request.Option) (*AssociateUserToPermissionGroupOutput, error) {
+	req, out := c.AssociateUserToPermissionGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateChangeset = "CreateChangeset"
 
 // CreateChangesetRequest generates a "aws/request.Request" representing the
@@ -784,6 +880,101 @@ func (c *FinSpaceData) DisableUserWithContext(ctx aws.Context, input *DisableUse
 	return out, req.Send()
 }
 
+const opDisassociateUserFromPermissionGroup = "DisassociateUserFromPermissionGroup"
+
+// DisassociateUserFromPermissionGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateUserFromPermissionGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateUserFromPermissionGroup for more information on using the DisassociateUserFromPermissionGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateUserFromPermissionGroupRequest method.
+//    req, resp := client.DisassociateUserFromPermissionGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DisassociateUserFromPermissionGroup
+func (c *FinSpaceData) DisassociateUserFromPermissionGroupRequest(input *DisassociateUserFromPermissionGroupInput) (req *request.Request, output *DisassociateUserFromPermissionGroupOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateUserFromPermissionGroup,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/permission-group/{permissionGroupId}/users/{userId}",
+	}
+
+	if input == nil {
+		input = &DisassociateUserFromPermissionGroupInput{}
+	}
+
+	output = &DisassociateUserFromPermissionGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisassociateUserFromPermissionGroup API operation for FinSpace Public API.
+//
+// Removes a user account from a permission group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation DisassociateUserFromPermissionGroup for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DisassociateUserFromPermissionGroup
+func (c *FinSpaceData) DisassociateUserFromPermissionGroup(input *DisassociateUserFromPermissionGroupInput) (*DisassociateUserFromPermissionGroupOutput, error) {
+	req, out := c.DisassociateUserFromPermissionGroupRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateUserFromPermissionGroupWithContext is the same as DisassociateUserFromPermissionGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateUserFromPermissionGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) DisassociateUserFromPermissionGroupWithContext(ctx aws.Context, input *DisassociateUserFromPermissionGroupInput, opts ...request.Option) (*DisassociateUserFromPermissionGroupOutput, error) {
+	req, out := c.DisassociateUserFromPermissionGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opEnableUser = "EnableUser"
 
 // EnableUserRequest generates a "aws/request.Request" representing the
@@ -1159,6 +1350,98 @@ func (c *FinSpaceData) GetDataset(input *GetDatasetInput) (*GetDatasetOutput, er
 // for more information on using Contexts.
 func (c *FinSpaceData) GetDatasetWithContext(ctx aws.Context, input *GetDatasetInput, opts ...request.Option) (*GetDatasetOutput, error) {
 	req, out := c.GetDatasetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPermissionGroup = "GetPermissionGroup"
+
+// GetPermissionGroupRequest generates a "aws/request.Request" representing the
+// client's request for the GetPermissionGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPermissionGroup for more information on using the GetPermissionGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetPermissionGroupRequest method.
+//    req, resp := client.GetPermissionGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetPermissionGroup
+func (c *FinSpaceData) GetPermissionGroupRequest(input *GetPermissionGroupInput) (req *request.Request, output *GetPermissionGroupOutput) {
+	op := &request.Operation{
+		Name:       opGetPermissionGroup,
+		HTTPMethod: "GET",
+		HTTPPath:   "/permission-group/{permissionGroupId}",
+	}
+
+	if input == nil {
+		input = &GetPermissionGroupInput{}
+	}
+
+	output = &GetPermissionGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPermissionGroup API operation for FinSpace Public API.
+//
+// Retrieves the details of a specific permission group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation GetPermissionGroup for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetPermissionGroup
+func (c *FinSpaceData) GetPermissionGroup(input *GetPermissionGroupInput) (*GetPermissionGroupOutput, error) {
+	req, out := c.GetPermissionGroupRequest(input)
+	return out, req.Send()
+}
+
+// GetPermissionGroupWithContext is the same as GetPermissionGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPermissionGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) GetPermissionGroupWithContext(ctx aws.Context, input *GetPermissionGroupInput, opts ...request.Option) (*GetPermissionGroupOutput, error) {
+	req, out := c.GetPermissionGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2035,6 +2318,99 @@ func (c *FinSpaceData) ListPermissionGroupsPagesWithContext(ctx aws.Context, inp
 	return p.Err()
 }
 
+const opListPermissionGroupsByUser = "ListPermissionGroupsByUser"
+
+// ListPermissionGroupsByUserRequest generates a "aws/request.Request" representing the
+// client's request for the ListPermissionGroupsByUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPermissionGroupsByUser for more information on using the ListPermissionGroupsByUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListPermissionGroupsByUserRequest method.
+//    req, resp := client.ListPermissionGroupsByUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListPermissionGroupsByUser
+func (c *FinSpaceData) ListPermissionGroupsByUserRequest(input *ListPermissionGroupsByUserInput) (req *request.Request, output *ListPermissionGroupsByUserOutput) {
+	op := &request.Operation{
+		Name:       opListPermissionGroupsByUser,
+		HTTPMethod: "GET",
+		HTTPPath:   "/user/{userId}/permission-groups",
+	}
+
+	if input == nil {
+		input = &ListPermissionGroupsByUserInput{}
+	}
+
+	output = &ListPermissionGroupsByUserOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPermissionGroupsByUser API operation for FinSpace Public API.
+//
+// Lists all the permission groups that are associated with a specific user
+// account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation ListPermissionGroupsByUser for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListPermissionGroupsByUser
+func (c *FinSpaceData) ListPermissionGroupsByUser(input *ListPermissionGroupsByUserInput) (*ListPermissionGroupsByUserOutput, error) {
+	req, out := c.ListPermissionGroupsByUserRequest(input)
+	return out, req.Send()
+}
+
+// ListPermissionGroupsByUserWithContext is the same as ListPermissionGroupsByUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPermissionGroupsByUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) ListPermissionGroupsByUserWithContext(ctx aws.Context, input *ListPermissionGroupsByUserInput, opts ...request.Option) (*ListPermissionGroupsByUserOutput, error) {
+	req, out := c.ListPermissionGroupsByUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListUsers = "ListUsers"
 
 // ListUsersRequest generates a "aws/request.Request" representing the
@@ -2180,6 +2556,98 @@ func (c *FinSpaceData) ListUsersPagesWithContext(ctx aws.Context, input *ListUse
 	}
 
 	return p.Err()
+}
+
+const opListUsersByPermissionGroup = "ListUsersByPermissionGroup"
+
+// ListUsersByPermissionGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ListUsersByPermissionGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListUsersByPermissionGroup for more information on using the ListUsersByPermissionGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListUsersByPermissionGroupRequest method.
+//    req, resp := client.ListUsersByPermissionGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListUsersByPermissionGroup
+func (c *FinSpaceData) ListUsersByPermissionGroupRequest(input *ListUsersByPermissionGroupInput) (req *request.Request, output *ListUsersByPermissionGroupOutput) {
+	op := &request.Operation{
+		Name:       opListUsersByPermissionGroup,
+		HTTPMethod: "GET",
+		HTTPPath:   "/permission-group/{permissionGroupId}/users",
+	}
+
+	if input == nil {
+		input = &ListUsersByPermissionGroupInput{}
+	}
+
+	output = &ListUsersByPermissionGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListUsersByPermissionGroup API operation for FinSpace Public API.
+//
+// Lists details of all the users in a specific permission group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation ListUsersByPermissionGroup for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListUsersByPermissionGroup
+func (c *FinSpaceData) ListUsersByPermissionGroup(input *ListUsersByPermissionGroupInput) (*ListUsersByPermissionGroupOutput, error) {
+	req, out := c.ListUsersByPermissionGroupRequest(input)
+	return out, req.Send()
+}
+
+// ListUsersByPermissionGroupWithContext is the same as ListUsersByPermissionGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListUsersByPermissionGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) ListUsersByPermissionGroupWithContext(ctx aws.Context, input *ListUsersByPermissionGroupInput, opts ...request.Option) (*ListUsersByPermissionGroupOutput, error) {
+	req, out := c.ListUsersByPermissionGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opResetUserPassword = "ResetUserPassword"
@@ -2722,6 +3190,115 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type AssociateUserToPermissionGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that ensures idempotency. This token expires in 10 minutes.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The unique identifier for the permission group.
+	//
+	// PermissionGroupId is a required field
+	PermissionGroupId *string `location:"uri" locationName:"permissionGroupId" min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the user.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"userId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateUserToPermissionGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateUserToPermissionGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateUserToPermissionGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateUserToPermissionGroupInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.PermissionGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PermissionGroupId"))
+	}
+	if s.PermissionGroupId != nil && len(*s.PermissionGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PermissionGroupId", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *AssociateUserToPermissionGroupInput) SetClientToken(v string) *AssociateUserToPermissionGroupInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetPermissionGroupId sets the PermissionGroupId field's value.
+func (s *AssociateUserToPermissionGroupInput) SetPermissionGroupId(v string) *AssociateUserToPermissionGroupInput {
+	s.PermissionGroupId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *AssociateUserToPermissionGroupInput) SetUserId(v string) *AssociateUserToPermissionGroupInput {
+	s.UserId = &v
+	return s
+}
+
+type AssociateUserToPermissionGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The returned status code of the response.
+	StatusCode *int64 `location:"statusCode" locationName:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateUserToPermissionGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateUserToPermissionGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *AssociateUserToPermissionGroupOutput) SetStatusCode(v int64) *AssociateUserToPermissionGroupOutput {
+	s.StatusCode = &v
+	return s
 }
 
 // The structure with error messages.
@@ -3437,7 +4014,7 @@ type CreateDatasetInput struct {
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// Description of a Dataset.
-	DatasetDescription *string `locationName:"datasetDescription" min:"1" type:"string"`
+	DatasetDescription *string `locationName:"datasetDescription" type:"string"`
 
 	// Display title for a FinSpace Dataset.
 	//
@@ -3491,9 +4068,6 @@ func (s *CreateDatasetInput) Validate() error {
 	}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
-	}
-	if s.DatasetDescription != nil && len(*s.DatasetDescription) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("DatasetDescription", 1))
 	}
 	if s.DatasetTitle == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatasetTitle"))
@@ -3990,7 +4564,7 @@ type DataViewDestinationTypeParams struct {
 	// DestinationType is a required field
 	DestinationType *string `locationName:"destinationType" type:"string" required:"true"`
 
-	// Data view export file format.
+	// Dataview export file format.
 	//
 	//    * PARQUET – Parquet export file format.
 	//
@@ -4283,7 +4857,7 @@ type Dataset struct {
 	DatasetArn *string `locationName:"datasetArn" type:"string"`
 
 	// Description for a Dataset.
-	DatasetDescription *string `locationName:"datasetDescription" min:"1" type:"string"`
+	DatasetDescription *string `locationName:"datasetDescription" type:"string"`
 
 	// An identifier for a Dataset.
 	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
@@ -4736,6 +5310,115 @@ func (s DisableUserOutput) GoString() string {
 // SetUserId sets the UserId field's value.
 func (s *DisableUserOutput) SetUserId(v string) *DisableUserOutput {
 	s.UserId = &v
+	return s
+}
+
+type DisassociateUserFromPermissionGroupInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A token that ensures idempotency. This token expires in 10 minutes.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The unique identifier for the permission group.
+	//
+	// PermissionGroupId is a required field
+	PermissionGroupId *string `location:"uri" locationName:"permissionGroupId" min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the user.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"userId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateUserFromPermissionGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateUserFromPermissionGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateUserFromPermissionGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateUserFromPermissionGroupInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.PermissionGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PermissionGroupId"))
+	}
+	if s.PermissionGroupId != nil && len(*s.PermissionGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PermissionGroupId", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DisassociateUserFromPermissionGroupInput) SetClientToken(v string) *DisassociateUserFromPermissionGroupInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetPermissionGroupId sets the PermissionGroupId field's value.
+func (s *DisassociateUserFromPermissionGroupInput) SetPermissionGroupId(v string) *DisassociateUserFromPermissionGroupInput {
+	s.PermissionGroupId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DisassociateUserFromPermissionGroupInput) SetUserId(v string) *DisassociateUserFromPermissionGroupInput {
+	s.UserId = &v
+	return s
+}
+
+type DisassociateUserFromPermissionGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The returned status code of the response.
+	StatusCode *int64 `location:"statusCode" locationName:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateUserFromPermissionGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateUserFromPermissionGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *DisassociateUserFromPermissionGroupOutput) SetStatusCode(v int64) *DisassociateUserFromPermissionGroupOutput {
+	s.StatusCode = &v
 	return s
 }
 
@@ -5342,7 +6025,7 @@ type GetDatasetOutput struct {
 	DatasetArn *string `locationName:"datasetArn" type:"string"`
 
 	// A description of the Dataset.
-	DatasetDescription *string `locationName:"datasetDescription" min:"1" type:"string"`
+	DatasetDescription *string `locationName:"datasetDescription" type:"string"`
 
 	// The unique identifier for a Dataset.
 	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
@@ -5452,6 +6135,86 @@ func (s *GetDatasetOutput) SetSchemaDefinition(v *SchemaUnion) *GetDatasetOutput
 // SetStatus sets the Status field's value.
 func (s *GetDatasetOutput) SetStatus(v string) *GetDatasetOutput {
 	s.Status = &v
+	return s
+}
+
+type GetPermissionGroupInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for the permission group.
+	//
+	// PermissionGroupId is a required field
+	PermissionGroupId *string `location:"uri" locationName:"permissionGroupId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPermissionGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPermissionGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPermissionGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPermissionGroupInput"}
+	if s.PermissionGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PermissionGroupId"))
+	}
+	if s.PermissionGroupId != nil && len(*s.PermissionGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PermissionGroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPermissionGroupId sets the PermissionGroupId field's value.
+func (s *GetPermissionGroupInput) SetPermissionGroupId(v string) *GetPermissionGroupInput {
+	s.PermissionGroupId = &v
+	return s
+}
+
+type GetPermissionGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The structure for a permission group.
+	PermissionGroup *PermissionGroup `locationName:"permissionGroup" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPermissionGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPermissionGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetPermissionGroup sets the PermissionGroup field's value.
+func (s *GetPermissionGroupOutput) SetPermissionGroup(v *PermissionGroup) *GetPermissionGroupOutput {
+	s.PermissionGroup = v
 	return s
 }
 
@@ -5680,7 +6443,7 @@ type GetUserOutput struct {
 	//    in FinSpace.
 	//
 	//    * APP_USER – A user with specific permissions in FinSpace. The users
-	//    are assigned permissions by adding them to a permissions group.
+	//    are assigned permissions by adding them to a permission group.
 	Type *string `locationName:"type" type:"string" enum:"UserType"`
 
 	// The unique identifier for the user account that is retrieved.
@@ -6319,6 +7082,121 @@ func (s *ListDatasetsOutput) SetNextToken(v string) *ListDatasetsOutput {
 	return s
 }
 
+type ListPermissionGroupsByUserInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results per page.
+	//
+	// MaxResults is a required field
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer" required:"true"`
+
+	// A token that indicates where a results page should begin.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The unique identifier for the user.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"userId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPermissionGroupsByUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPermissionGroupsByUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPermissionGroupsByUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPermissionGroupsByUserInput"}
+	if s.MaxResults == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxResults"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPermissionGroupsByUserInput) SetMaxResults(v int64) *ListPermissionGroupsByUserInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPermissionGroupsByUserInput) SetNextToken(v string) *ListPermissionGroupsByUserInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *ListPermissionGroupsByUserInput) SetUserId(v string) *ListPermissionGroupsByUserInput {
+	s.UserId = &v
+	return s
+}
+
+type ListPermissionGroupsByUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that indicates where a results page should begin.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of returned permission groups.
+	PermissionGroups []*PermissionGroupByUser `locationName:"permissionGroups" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPermissionGroupsByUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPermissionGroupsByUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPermissionGroupsByUserOutput) SetNextToken(v string) *ListPermissionGroupsByUserOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPermissionGroups sets the PermissionGroups field's value.
+func (s *ListPermissionGroupsByUserOutput) SetPermissionGroups(v []*PermissionGroupByUser) *ListPermissionGroupsByUserOutput {
+	s.PermissionGroups = v
+	return s
+}
+
 type ListPermissionGroupsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -6414,6 +7292,121 @@ func (s *ListPermissionGroupsOutput) SetNextToken(v string) *ListPermissionGroup
 // SetPermissionGroups sets the PermissionGroups field's value.
 func (s *ListPermissionGroupsOutput) SetPermissionGroups(v []*PermissionGroup) *ListPermissionGroupsOutput {
 	s.PermissionGroups = v
+	return s
+}
+
+type ListUsersByPermissionGroupInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results per page.
+	//
+	// MaxResults is a required field
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer" required:"true"`
+
+	// A token that indicates where a results page should begin.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The unique identifier for the permission group.
+	//
+	// PermissionGroupId is a required field
+	PermissionGroupId *string `location:"uri" locationName:"permissionGroupId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUsersByPermissionGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUsersByPermissionGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUsersByPermissionGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUsersByPermissionGroupInput"}
+	if s.MaxResults == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxResults"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.PermissionGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PermissionGroupId"))
+	}
+	if s.PermissionGroupId != nil && len(*s.PermissionGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PermissionGroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListUsersByPermissionGroupInput) SetMaxResults(v int64) *ListUsersByPermissionGroupInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUsersByPermissionGroupInput) SetNextToken(v string) *ListUsersByPermissionGroupInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPermissionGroupId sets the PermissionGroupId field's value.
+func (s *ListUsersByPermissionGroupInput) SetPermissionGroupId(v string) *ListUsersByPermissionGroupInput {
+	s.PermissionGroupId = &v
+	return s
+}
+
+type ListUsersByPermissionGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that indicates where a results page should begin.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Lists details of all users in a specific permission group.
+	Users []*UserByPermissionGroup `locationName:"users" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUsersByPermissionGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUsersByPermissionGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUsersByPermissionGroupOutput) SetNextToken(v string) *ListUsersByPermissionGroupOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUsers sets the Users field's value.
+func (s *ListUsersByPermissionGroupOutput) SetUsers(v []*UserByPermissionGroup) *ListUsersByPermissionGroupOutput {
+	s.Users = v
 	return s
 }
 
@@ -6554,6 +7547,18 @@ type PermissionGroup struct {
 	// as epoch time in milliseconds.
 	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
 
+	// Indicates the status of the user account within a permission group.
+	//
+	//    * ADDITION_IN_PROGRESS – The user account is currently being added to
+	//    the permission group.
+	//
+	//    * ADDITION_SUCCESS – The user account is successfully added to the permission
+	//    group.
+	//
+	//    * REMOVAL_IN_PROGRESS – The user is currently being removed from the
+	//    permission group.
+	MembershipStatus *string `locationName:"membershipStatus" type:"string" enum:"PermissionGroupMembershipStatus"`
+
 	// The name of the permission group.
 	//
 	// Name is a sensitive parameter and its value will be
@@ -6607,6 +7612,12 @@ func (s *PermissionGroup) SetLastModifiedTime(v int64) *PermissionGroup {
 	return s
 }
 
+// SetMembershipStatus sets the MembershipStatus field's value.
+func (s *PermissionGroup) SetMembershipStatus(v string) *PermissionGroup {
+	s.MembershipStatus = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *PermissionGroup) SetName(v string) *PermissionGroup {
 	s.Name = &v
@@ -6615,6 +7626,69 @@ func (s *PermissionGroup) SetName(v string) *PermissionGroup {
 
 // SetPermissionGroupId sets the PermissionGroupId field's value.
 func (s *PermissionGroup) SetPermissionGroupId(v string) *PermissionGroup {
+	s.PermissionGroupId = &v
+	return s
+}
+
+// The structure of a permission group associated with a user account.
+type PermissionGroupByUser struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the status of the user account within a permission group.
+	//
+	//    * ADDITION_IN_PROGRESS – The user account is currently being added to
+	//    the permission group.
+	//
+	//    * ADDITION_SUCCESS – The user account is successfully added to the permission
+	//    group.
+	//
+	//    * REMOVAL_IN_PROGRESS – The user is currently being removed from the
+	//    permission group.
+	MembershipStatus *string `locationName:"membershipStatus" type:"string" enum:"PermissionGroupMembershipStatus"`
+
+	// The name of the permission group.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PermissionGroupByUser's
+	// String and GoString methods.
+	Name *string `locationName:"name" min:"1" type:"string" sensitive:"true"`
+
+	// The unique identifier for the permission group.
+	PermissionGroupId *string `locationName:"permissionGroupId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PermissionGroupByUser) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PermissionGroupByUser) GoString() string {
+	return s.String()
+}
+
+// SetMembershipStatus sets the MembershipStatus field's value.
+func (s *PermissionGroupByUser) SetMembershipStatus(v string) *PermissionGroupByUser {
+	s.MembershipStatus = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PermissionGroupByUser) SetName(v string) *PermissionGroupByUser {
+	s.Name = &v
+	return s
+}
+
+// SetPermissionGroupId sets the PermissionGroupId field's value.
+func (s *PermissionGroupByUser) SetPermissionGroupId(v string) *PermissionGroupByUser {
 	s.PermissionGroupId = &v
 	return s
 }
@@ -7264,7 +8338,7 @@ type UpdateDatasetInput struct {
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// A description for the Dataset.
-	DatasetDescription *string `locationName:"datasetDescription" min:"1" type:"string"`
+	DatasetDescription *string `locationName:"datasetDescription" type:"string"`
 
 	// The unique identifier for the Dataset to update.
 	//
@@ -7315,9 +8389,6 @@ func (s *UpdateDatasetInput) Validate() error {
 	}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
-	}
-	if s.DatasetDescription != nil && len(*s.DatasetDescription) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("DatasetDescription", 1))
 	}
 	if s.DatasetId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
@@ -7605,7 +8676,7 @@ type UpdateUserInput struct {
 	//    in FinSpace.
 	//
 	//    * APP_USER – A user with specific permissions in FinSpace. The users
-	//    are assigned permissions by adding them to a permissions group.
+	//    are assigned permissions by adding them to a permission group.
 	Type *string `locationName:"type" type:"string" enum:"UserType"`
 
 	// The unique identifier for the user account to update.
@@ -7808,7 +8879,7 @@ type User struct {
 	//    in FinSpace.
 	//
 	//    * APP_USER – A user with specific permissions in FinSpace. The users
-	//    are assigned permissions by adding them to a permissions group.
+	//    are assigned permissions by adding them to a permission group.
 	Type *string `locationName:"type" type:"string" enum:"UserType"`
 
 	// The unique identifier for the user.
@@ -7907,6 +8978,148 @@ func (s *User) SetType(v string) *User {
 
 // SetUserId sets the UserId field's value.
 func (s *User) SetUserId(v string) *User {
+	s.UserId = &v
+	return s
+}
+
+// The structure of a user account associated with a permission group.
+type UserByPermissionGroup struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the user can access FinSpace API operations.
+	//
+	//    * ENABLED – The user has permissions to use the API operations.
+	//
+	//    * DISABLED – The user does not have permissions to use any API operations.
+	ApiAccess *string `locationName:"apiAccess" type:"string" enum:"ApiAccess"`
+
+	// The IAM ARN identifier that is attached to FinSpace API calls.
+	ApiAccessPrincipalArn *string `locationName:"apiAccessPrincipalArn" min:"20" type:"string"`
+
+	// The email address of the user. The email address serves as a unique identifier
+	// for each user and cannot be changed after it's created.
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UserByPermissionGroup's
+	// String and GoString methods.
+	EmailAddress *string `locationName:"emailAddress" min:"4" type:"string" sensitive:"true"`
+
+	// The first name of the user.
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UserByPermissionGroup's
+	// String and GoString methods.
+	FirstName *string `locationName:"firstName" min:"1" type:"string" sensitive:"true"`
+
+	// The last name of the user.
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UserByPermissionGroup's
+	// String and GoString methods.
+	LastName *string `locationName:"lastName" min:"1" type:"string" sensitive:"true"`
+
+	// Indicates the status of the user account within a permission group.
+	//
+	//    * ADDITION_IN_PROGRESS – The user account is currently being added to
+	//    the permission group.
+	//
+	//    * ADDITION_SUCCESS – The user account is successfully added to the permission
+	//    group.
+	//
+	//    * REMOVAL_IN_PROGRESS – The user is currently being removed from the
+	//    permission group.
+	MembershipStatus *string `locationName:"membershipStatus" type:"string" enum:"PermissionGroupMembershipStatus"`
+
+	// The current status of the user account.
+	//
+	//    * CREATING – The user account creation is in progress.
+	//
+	//    * ENABLED – The user account is created and is currently active.
+	//
+	//    * DISABLED – The user account is currently inactive.
+	Status *string `locationName:"status" type:"string" enum:"UserStatus"`
+
+	// Indicates the type of user.
+	//
+	//    * SUPER_USER – A user with permission to all the functionality and data
+	//    in FinSpace.
+	//
+	//    * APP_USER – A user with specific permissions in FinSpace. The users
+	//    are assigned permissions by adding them to a permission group.
+	Type *string `locationName:"type" type:"string" enum:"UserType"`
+
+	// The unique identifier for the user.
+	UserId *string `locationName:"userId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserByPermissionGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserByPermissionGroup) GoString() string {
+	return s.String()
+}
+
+// SetApiAccess sets the ApiAccess field's value.
+func (s *UserByPermissionGroup) SetApiAccess(v string) *UserByPermissionGroup {
+	s.ApiAccess = &v
+	return s
+}
+
+// SetApiAccessPrincipalArn sets the ApiAccessPrincipalArn field's value.
+func (s *UserByPermissionGroup) SetApiAccessPrincipalArn(v string) *UserByPermissionGroup {
+	s.ApiAccessPrincipalArn = &v
+	return s
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *UserByPermissionGroup) SetEmailAddress(v string) *UserByPermissionGroup {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetFirstName sets the FirstName field's value.
+func (s *UserByPermissionGroup) SetFirstName(v string) *UserByPermissionGroup {
+	s.FirstName = &v
+	return s
+}
+
+// SetLastName sets the LastName field's value.
+func (s *UserByPermissionGroup) SetLastName(v string) *UserByPermissionGroup {
+	s.LastName = &v
+	return s
+}
+
+// SetMembershipStatus sets the MembershipStatus field's value.
+func (s *UserByPermissionGroup) SetMembershipStatus(v string) *UserByPermissionGroup {
+	s.MembershipStatus = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UserByPermissionGroup) SetStatus(v string) *UserByPermissionGroup {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *UserByPermissionGroup) SetType(v string) *UserByPermissionGroup {
+	s.Type = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *UserByPermissionGroup) SetUserId(v string) *UserByPermissionGroup {
 	s.UserId = &v
 	return s
 }
@@ -8290,6 +9503,26 @@ func LocationType_Values() []string {
 	return []string{
 		LocationTypeIngestion,
 		LocationTypeSagemaker,
+	}
+}
+
+const (
+	// PermissionGroupMembershipStatusAdditionInProgress is a PermissionGroupMembershipStatus enum value
+	PermissionGroupMembershipStatusAdditionInProgress = "ADDITION_IN_PROGRESS"
+
+	// PermissionGroupMembershipStatusAdditionSuccess is a PermissionGroupMembershipStatus enum value
+	PermissionGroupMembershipStatusAdditionSuccess = "ADDITION_SUCCESS"
+
+	// PermissionGroupMembershipStatusRemovalInProgress is a PermissionGroupMembershipStatus enum value
+	PermissionGroupMembershipStatusRemovalInProgress = "REMOVAL_IN_PROGRESS"
+)
+
+// PermissionGroupMembershipStatus_Values returns all elements of the PermissionGroupMembershipStatus enum
+func PermissionGroupMembershipStatus_Values() []string {
+	return []string{
+		PermissionGroupMembershipStatusAdditionInProgress,
+		PermissionGroupMembershipStatusAdditionSuccess,
+		PermissionGroupMembershipStatusRemovalInProgress,
 	}
 }
 

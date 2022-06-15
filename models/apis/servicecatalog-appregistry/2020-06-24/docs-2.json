@@ -17,6 +17,7 @@
     "ListAssociatedAttributeGroups": "<p>Lists all attribute groups that are associated with specified application. Results are paginated.</p>",
     "ListAssociatedResources": "<p>Lists all resources that are associated with specified application. Results are paginated.</p>",
     "ListAttributeGroups": "<p>Lists all attribute groups which you have access to. Results are paginated.</p>",
+    "ListAttributeGroupsForApplication": "<p>Lists the details of all attribute groups associated with a specific application. The results display in pages.</p>",
     "ListTagsForResource": "<p>Lists all of the tags on the resource.</p>",
     "SyncResource": "<p>Syncs the resource with current AppRegistry records.</p> <p>Specifically, the resource’s AppRegistry system tags sync with its associated application. We remove the resource's AppRegistry system tags if it does not associate with the application. The caller must have permissions to read and update the resource.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified resource.</p> <p>Each tag consists of a key and an optional value. If a tag with the same key is already associated with the resource, this action updates its value.</p> <p>This operation returns an empty response if the call was successful.</p>",
@@ -65,6 +66,7 @@
         "GetAssociatedResourceRequest$application": "<p>The name or ID of the application.</p>",
         "ListAssociatedAttributeGroupsRequest$application": "<p>The name or ID of the application.</p>",
         "ListAssociatedResourcesRequest$application": "<p>The name or ID of the application.</p>",
+        "ListAttributeGroupsForApplicationRequest$application": "<p>The name or ID of the application.</p>",
         "UpdateApplicationRequest$application": "<p>The name or ID of the application that will be updated.</p>"
       }
     },
@@ -131,15 +133,29 @@
       "refs": {
         "AssociateAttributeGroupResponse$attributeGroupArn": "<p>The Amazon resource name (ARN) of the attribute group that contains the application's new attributes.</p>",
         "AttributeGroup$arn": "<p>The Amazon resource name (ARN) that specifies the attribute group across services.</p>",
+        "AttributeGroupDetails$arn": "<p>The Amazon resource name (ARN) that specifies the attribute group.</p>",
         "AttributeGroupSummary$arn": "<p>The Amazon resource name (ARN) that specifies the attribute group across services.</p>",
         "DisassociateAttributeGroupResponse$attributeGroupArn": "<p>The Amazon resource name (ARN) that specifies the attribute group.</p>",
         "GetAttributeGroupResponse$arn": "<p>The Amazon resource name (ARN) that specifies the attribute group across services.</p>"
+      }
+    },
+    "AttributeGroupDetails": {
+      "base": "<p> The details related to a specific AttributeGroup. </p>",
+      "refs": {
+        "AttributeGroupDetailsList$member": null
+      }
+    },
+    "AttributeGroupDetailsList": {
+      "base": null,
+      "refs": {
+        "ListAttributeGroupsForApplicationResponse$attributeGroupsDetails": "<p> The details related to a specific AttributeGroup. </p>"
       }
     },
     "AttributeGroupId": {
       "base": null,
       "refs": {
         "AttributeGroup$id": "<p>The globally unique attribute group identifier of the attribute group.</p>",
+        "AttributeGroupDetails$id": "<p>The unique identifier of the attribute group.</p>",
         "AttributeGroupIds$member": null,
         "AttributeGroupSummary$id": "<p>The globally unique attribute group identifier of the attribute group.</p>",
         "GetAttributeGroupResponse$id": "<p>The identifier of the attribute group.</p>"
@@ -340,6 +356,16 @@
       "refs": {
       }
     },
+    "ListAttributeGroupsForApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAttributeGroupsForApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListAttributeGroupsRequest": {
       "base": null,
       "refs": {
@@ -366,6 +392,7 @@
         "ListApplicationsRequest$maxResults": "<p>The upper bound of the number of results to return (cannot exceed 25). If this parameter is omitted, it defaults to 25. This value is optional.</p>",
         "ListAssociatedAttributeGroupsRequest$maxResults": "<p>The upper bound of the number of results to return (cannot exceed 25). If this parameter is omitted, it defaults to 25. This value is optional.</p>",
         "ListAssociatedResourcesRequest$maxResults": "<p>The upper bound of the number of results to return (cannot exceed 25). If this parameter is omitted, it defaults to 25. This value is optional.</p>",
+        "ListAttributeGroupsForApplicationRequest$maxResults": "<p>The upper bound of the number of results to return. The value cannot exceed 25. If you omit this parameter, it defaults to 25. This value is optional.</p>",
         "ListAttributeGroupsRequest$maxResults": "<p>The upper bound of the number of results to return (cannot exceed 25). If this parameter is omitted, it defaults to 25. This value is optional.</p>"
       }
     },
@@ -375,13 +402,14 @@
         "Application$name": "<p>The name of the application. The name must be unique in the region in which you are creating the application.</p>",
         "ApplicationSummary$name": "<p>The name of the application. The name must be unique in the region in which you are creating the application.</p>",
         "AttributeGroup$name": "<p>The name of the attribute group.</p>",
+        "AttributeGroupDetails$name": "<p>The name of the attribute group. </p>",
         "AttributeGroupSummary$name": "<p>The name of the attribute group.</p>",
         "CreateApplicationRequest$name": "<p>The name of the application. The name must be unique in the region in which you are creating the application.</p>",
         "CreateAttributeGroupRequest$name": "<p>The name of the attribute group.</p>",
         "GetApplicationResponse$name": "<p>The name of the application. The name must be unique in the region in which you are creating the application.</p>",
         "GetAttributeGroupResponse$name": "<p>The name of the attribute group.</p>",
-        "UpdateApplicationRequest$name": "<p>The new name of the application. The name must be unique in the region in which you are updating the application.</p>",
-        "UpdateAttributeGroupRequest$name": "<p>The new name of the attribute group. The name must be unique in the region in which you are updating the attribute group.</p>"
+        "UpdateApplicationRequest$name": "<p>Deprecated: The new name of the application. The name must be unique in the region in which you are updating the application. Please do not use this field as we have stopped supporting name updates.</p>",
+        "UpdateAttributeGroupRequest$name": "<p>Deprecated: The new name of the attribute group. The name must be unique in the region in which you are updating the attribute group. Please do not use this field as we have stopped supporting name updates.</p>"
       }
     },
     "NextToken": {
@@ -393,6 +421,8 @@
         "ListAssociatedAttributeGroupsResponse$nextToken": "<p>The token to use to get the next page of results after a previous API call. </p>",
         "ListAssociatedResourcesRequest$nextToken": "<p>The token to use to get the next page of results after a previous API call. </p>",
         "ListAssociatedResourcesResponse$nextToken": "<p>The token to use to get the next page of results after a previous API call. </p>",
+        "ListAttributeGroupsForApplicationRequest$nextToken": "<p>This token retrieves the next page of results after a previous API call.</p>",
+        "ListAttributeGroupsForApplicationResponse$nextToken": "<p>The token to use to get the next page of results after a previous API call.</p>",
         "ListAttributeGroupsRequest$nextToken": "<p>The token to use to get the next page of results after a previous API call. </p>",
         "ListAttributeGroupsResponse$nextToken": "<p>The token to use to get the next page of results after a previous API call. </p>"
       }

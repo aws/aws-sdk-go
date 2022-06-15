@@ -1825,6 +1825,7 @@
       "pattern":"^ami\\-([a-f0-9]{8}|[a-f0-9]{17})$"
     },
     "ErrorType":{"type":"string"},
+    "ExceptionErrorCode":{"type":"string"},
     "ExceptionMessage":{"type":"string"},
     "FailedCreateWorkspaceRequest":{
       "type":"structure",
@@ -2225,7 +2226,8 @@
     "OperationNotSupportedException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ExceptionMessage"}
+        "message":{"shape":"ExceptionMessage"},
+        "reason":{"shape":"ExceptionErrorCode"}
       },
       "exception":true
     },

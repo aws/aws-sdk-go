@@ -82,6 +82,10 @@ func (c *AppRegistry) AssociateAttributeGroupRequest(input *AssociateAttributeGr
 //   * ServiceQuotaExceededException
 //   The maximum number of resources per account has been reached.
 //
+//   * ConflictException
+//   There was a conflict when processing the request (for example, a resource
+//   with the given name already exists within the account).
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/AssociateAttributeGroup
 func (c *AppRegistry) AssociateAttributeGroup(input *AssociateAttributeGroupInput) (*AssociateAttributeGroupOutput, error) {
 	req, out := c.AssociateAttributeGroupRequest(input)
@@ -172,6 +176,9 @@ func (c *AppRegistry) AssociateResourceRequest(input *AssociateResourceInput) (r
 //   There was a conflict when processing the request (for example, a resource
 //   with the given name already exists within the account).
 //
+//   * ValidationException
+//   The request has invalid or missing parameters.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/AssociateResource
 func (c *AppRegistry) AssociateResource(input *AssociateResourceInput) (*AssociateResourceOutput, error) {
 	req, out := c.AssociateResourceRequest(input)
@@ -258,6 +265,9 @@ func (c *AppRegistry) CreateApplicationRequest(input *CreateApplicationInput) (r
 //
 //   * InternalServerException
 //   The service is experiencing internal problems.
+//
+//   * ValidationException
+//   The request has invalid or missing parameters.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/CreateApplication
 func (c *AppRegistry) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
@@ -694,6 +704,9 @@ func (c *AppRegistry) DisassociateResourceRequest(input *DisassociateResourceInp
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
+//   * ValidationException
+//   The request has invalid or missing parameters.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/DisassociateResource
 func (c *AppRegistry) DisassociateResource(input *DisassociateResourceInput) (*DisassociateResourceOutput, error) {
 	req, out := c.DisassociateResourceRequest(input)
@@ -783,6 +796,10 @@ func (c *AppRegistry) GetApplicationRequest(input *GetApplicationInput) (req *re
 //
 //   * InternalServerException
 //   The service is experiencing internal problems.
+//
+//   * ConflictException
+//   There was a conflict when processing the request (for example, a resource
+//   with the given name already exists within the account).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/GetApplication
 func (c *AppRegistry) GetApplication(input *GetApplicationInput) (*GetApplicationOutput, error) {
@@ -954,6 +971,10 @@ func (c *AppRegistry) GetAttributeGroupRequest(input *GetAttributeGroupInput) (r
 //
 //   * InternalServerException
 //   The service is experiencing internal problems.
+//
+//   * ConflictException
+//   There was a conflict when processing the request (for example, a resource
+//   with the given name already exists within the account).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/GetAttributeGroup
 func (c *AppRegistry) GetAttributeGroup(input *GetAttributeGroupInput) (*GetAttributeGroupOutput, error) {
@@ -1545,6 +1566,150 @@ func (c *AppRegistry) ListAttributeGroupsPagesWithContext(ctx aws.Context, input
 	return p.Err()
 }
 
+const opListAttributeGroupsForApplication = "ListAttributeGroupsForApplication"
+
+// ListAttributeGroupsForApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the ListAttributeGroupsForApplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAttributeGroupsForApplication for more information on using the ListAttributeGroupsForApplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAttributeGroupsForApplicationRequest method.
+//    req, resp := client.ListAttributeGroupsForApplicationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/ListAttributeGroupsForApplication
+func (c *AppRegistry) ListAttributeGroupsForApplicationRequest(input *ListAttributeGroupsForApplicationInput) (req *request.Request, output *ListAttributeGroupsForApplicationOutput) {
+	op := &request.Operation{
+		Name:       opListAttributeGroupsForApplication,
+		HTTPMethod: "GET",
+		HTTPPath:   "/applications/{application}/attribute-group-details",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAttributeGroupsForApplicationInput{}
+	}
+
+	output = &ListAttributeGroupsForApplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAttributeGroupsForApplication API operation for AWS Service Catalog App Registry.
+//
+// Lists the details of all attribute groups associated with a specific application.
+// The results display in pages.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog App Registry's
+// API operation ListAttributeGroupsForApplication for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * ValidationException
+//   The request has invalid or missing parameters.
+//
+//   * InternalServerException
+//   The service is experiencing internal problems.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/ListAttributeGroupsForApplication
+func (c *AppRegistry) ListAttributeGroupsForApplication(input *ListAttributeGroupsForApplicationInput) (*ListAttributeGroupsForApplicationOutput, error) {
+	req, out := c.ListAttributeGroupsForApplicationRequest(input)
+	return out, req.Send()
+}
+
+// ListAttributeGroupsForApplicationWithContext is the same as ListAttributeGroupsForApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAttributeGroupsForApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRegistry) ListAttributeGroupsForApplicationWithContext(ctx aws.Context, input *ListAttributeGroupsForApplicationInput, opts ...request.Option) (*ListAttributeGroupsForApplicationOutput, error) {
+	req, out := c.ListAttributeGroupsForApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAttributeGroupsForApplicationPages iterates over the pages of a ListAttributeGroupsForApplication operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAttributeGroupsForApplication method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAttributeGroupsForApplication operation.
+//    pageNum := 0
+//    err := client.ListAttributeGroupsForApplicationPages(params,
+//        func(page *appregistry.ListAttributeGroupsForApplicationOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AppRegistry) ListAttributeGroupsForApplicationPages(input *ListAttributeGroupsForApplicationInput, fn func(*ListAttributeGroupsForApplicationOutput, bool) bool) error {
+	return c.ListAttributeGroupsForApplicationPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAttributeGroupsForApplicationPagesWithContext same as ListAttributeGroupsForApplicationPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRegistry) ListAttributeGroupsForApplicationPagesWithContext(ctx aws.Context, input *ListAttributeGroupsForApplicationInput, fn func(*ListAttributeGroupsForApplicationOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAttributeGroupsForApplicationInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAttributeGroupsForApplicationRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAttributeGroupsForApplicationOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -1963,6 +2128,9 @@ func (c *AppRegistry) UpdateApplicationRequest(input *UpdateApplicationInput) (r
 //
 //   * InternalServerException
 //   The service is experiencing internal problems.
+//
+//   * ValidationException
+//   The request has invalid or missing parameters.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/UpdateApplication
 func (c *AppRegistry) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
@@ -2563,6 +2731,56 @@ func (s *AttributeGroup) SetName(v string) *AttributeGroup {
 // SetTags sets the Tags field's value.
 func (s *AttributeGroup) SetTags(v map[string]*string) *AttributeGroup {
 	s.Tags = v
+	return s
+}
+
+// The details related to a specific AttributeGroup.
+type AttributeGroupDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon resource name (ARN) that specifies the attribute group.
+	Arn *string `locationName:"arn" type:"string"`
+
+	// The unique identifier of the attribute group.
+	Id *string `locationName:"id" min:"26" type:"string"`
+
+	// The name of the attribute group.
+	Name *string `locationName:"name" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeGroupDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeGroupDetails) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AttributeGroupDetails) SetArn(v string) *AttributeGroupDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AttributeGroupDetails) SetId(v string) *AttributeGroupDetails {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AttributeGroupDetails) SetName(v string) *AttributeGroupDetails {
+	s.Name = &v
 	return s
 }
 
@@ -4187,6 +4405,120 @@ func (s *ListAssociatedResourcesOutput) SetResources(v []*ResourceInfo) *ListAss
 	return s
 }
 
+type ListAttributeGroupsForApplicationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name or ID of the application.
+	//
+	// Application is a required field
+	Application *string `location:"uri" locationName:"application" min:"1" type:"string" required:"true"`
+
+	// The upper bound of the number of results to return. The value cannot exceed
+	// 25. If you omit this parameter, it defaults to 25. This value is optional.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// This token retrieves the next page of results after a previous API call.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAttributeGroupsForApplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAttributeGroupsForApplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAttributeGroupsForApplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAttributeGroupsForApplicationInput"}
+	if s.Application == nil {
+		invalidParams.Add(request.NewErrParamRequired("Application"))
+	}
+	if s.Application != nil && len(*s.Application) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Application", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplication sets the Application field's value.
+func (s *ListAttributeGroupsForApplicationInput) SetApplication(v string) *ListAttributeGroupsForApplicationInput {
+	s.Application = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAttributeGroupsForApplicationInput) SetMaxResults(v int64) *ListAttributeGroupsForApplicationInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAttributeGroupsForApplicationInput) SetNextToken(v string) *ListAttributeGroupsForApplicationInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAttributeGroupsForApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details related to a specific AttributeGroup.
+	AttributeGroupsDetails []*AttributeGroupDetails `locationName:"attributeGroupsDetails" type:"list"`
+
+	// The token to use to get the next page of results after a previous API call.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAttributeGroupsForApplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAttributeGroupsForApplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttributeGroupsDetails sets the AttributeGroupsDetails field's value.
+func (s *ListAttributeGroupsForApplicationOutput) SetAttributeGroupsDetails(v []*AttributeGroupDetails) *ListAttributeGroupsForApplicationOutput {
+	s.AttributeGroupsDetails = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAttributeGroupsForApplicationOutput) SetNextToken(v string) *ListAttributeGroupsForApplicationOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListAttributeGroupsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -4986,8 +5318,9 @@ type UpdateApplicationInput struct {
 	// The new description of the application.
 	Description *string `locationName:"description" type:"string"`
 
-	// The new name of the application. The name must be unique in the region in
-	// which you are updating the application.
+	// Deprecated: The new name of the application. The name must be unique in the
+	// region in which you are updating the application. Please do not use this
+	// field as we have stopped supporting name updates.
 	//
 	// Deprecated: Name update for application is deprecated.
 	Name *string `locationName:"name" min:"1" deprecated:"true" type:"string"`
@@ -5095,8 +5428,9 @@ type UpdateAttributeGroupInput struct {
 	// The description of the attribute group that the user provides.
 	Description *string `locationName:"description" type:"string"`
 
-	// The new name of the attribute group. The name must be unique in the region
-	// in which you are updating the attribute group.
+	// Deprecated: The new name of the attribute group. The name must be unique
+	// in the region in which you are updating the attribute group. Please do not
+	// use this field as we have stopped supporting name updates.
 	//
 	// Deprecated: Name update for attribute group is deprecated.
 	Name *string `locationName:"name" min:"1" deprecated:"true" type:"string"`

@@ -1,3 +1,14 @@
+Release v1.44.35 (2022-06-15)
+===
+
+### Service Client Updates
+* `service/finspace-data`: Updates service API and documentation
+* `service/guardduty`: Updates service API and documentation
+  * Adds finding fields available from GuardDuty Console. Adds FreeTrial related operations. Deprecates the use of various APIs related to Master Accounts and Replace them with Administrator Accounts.
+* `service/servicecatalog-appregistry`: Updates service API, documentation, and paginators
+* `service/workspaces`: Updates service API and documentation
+  * Added new field "reason" to OperationNotSupportedException. Receiving this exception in the DeregisterWorkspaceDirectory API will now return a reason giving more context on the failure.
+
 Release v1.44.34 (2022-06-14)
 ===
 

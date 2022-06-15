@@ -12,6 +12,20 @@
     "uid":"guardduty-2017-11-28"
   },
   "operations":{
+    "AcceptAdministratorInvitation":{
+      "name":"AcceptAdministratorInvitation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/administrator",
+        "responseCode":200
+      },
+      "input":{"shape":"AcceptAdministratorInvitationRequest"},
+      "output":{"shape":"AcceptAdministratorInvitationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "AcceptInvitation":{
       "name":"AcceptInvitation",
       "http":{
@@ -24,7 +38,9 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This operation is deprecated, use AcceptAdministratorInvitation instead"
     },
     "ArchiveFindings":{
       "name":"ArchiveFindings",
@@ -292,6 +308,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "DisassociateFromAdministratorAccount":{
+      "name":"DisassociateFromAdministratorAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/administrator/disassociate",
+        "responseCode":200
+      },
+      "input":{"shape":"DisassociateFromAdministratorAccountRequest"},
+      "output":{"shape":"DisassociateFromAdministratorAccountResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "DisassociateFromMasterAccount":{
       "name":"DisassociateFromMasterAccount",
       "http":{
@@ -304,7 +334,9 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This operation is deprecated, use DisassociateFromAdministratorAccount instead"
     },
     "DisassociateMembers":{
       "name":"DisassociateMembers",
@@ -329,6 +361,20 @@
       },
       "input":{"shape":"EnableOrganizationAdminAccountRequest"},
       "output":{"shape":"EnableOrganizationAdminAccountResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "GetAdministratorAccount":{
+      "name":"GetAdministratorAccount",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/administrator",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAdministratorAccountRequest"},
+      "output":{"shape":"GetAdministratorAccountResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
@@ -430,7 +476,9 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This operation is deprecated, use GetAdministratorAccount instead"
     },
     "GetMemberDetectors":{
       "name":"GetMemberDetectors",
@@ -455,6 +503,20 @@
       },
       "input":{"shape":"GetMembersRequest"},
       "output":{"shape":"GetMembersResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "GetRemainingFreeTrialDays":{
+      "name":"GetRemainingFreeTrialDays",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/freeTrial/daysRemaining",
+        "responseCode":200
+      },
+      "input":{"shape":"GetRemainingFreeTrialDaysRequest"},
+      "output":{"shape":"GetRemainingFreeTrialDaysResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
@@ -826,6 +888,34 @@
     }
   },
   "shapes":{
+    "AcceptAdministratorInvitationRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "AdministratorId",
+        "InvitationId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "AdministratorId":{
+          "shape":"String",
+          "locationName":"administratorId"
+        },
+        "InvitationId":{
+          "shape":"String",
+          "locationName":"invitationId"
+        }
+      }
+    },
+    "AcceptAdministratorInvitationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "AcceptInvitationRequest":{
       "type":"structure",
       "required":[
@@ -847,12 +937,16 @@
           "shape":"String",
           "locationName":"invitationId"
         }
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This input is deprecated, use AcceptAdministratorInvitationRequest instead"
     },
     "AcceptInvitationResponse":{
       "type":"structure",
       "members":{
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This output is deprecated, use AcceptAdministratorInvitationResponse instead"
     },
     "AccessControlList":{
       "type":"structure",
@@ -910,6 +1004,23 @@
       "member":{"shape":"AccountDetail"},
       "max":50,
       "min":1
+    },
+    "AccountFreeTrialInfo":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"String",
+          "locationName":"accountId"
+        },
+        "DataSources":{
+          "shape":"DataSourcesFreeTrial",
+          "locationName":"dataSources"
+        }
+      }
+    },
+    "AccountFreeTrialInfos":{
+      "type":"list",
+      "member":{"shape":"AccountFreeTrialInfo"}
     },
     "AccountId":{
       "type":"string",
@@ -988,6 +1099,32 @@
       "max":300,
       "min":1
     },
+    "Administrator":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "locationName":"accountId"
+        },
+        "InvitationId":{
+          "shape":"String",
+          "locationName":"invitationId"
+        },
+        "RelationshipStatus":{
+          "shape":"String",
+          "locationName":"relationshipStatus"
+        },
+        "InvitedAt":{
+          "shape":"String",
+          "locationName":"invitedAt"
+        }
+      }
+    },
+    "AffectedResources":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
+    },
     "ArchiveFindingsRequest":{
       "type":"structure",
       "required":[
@@ -1045,6 +1182,10 @@
         "RemoteAccountDetails":{
           "shape":"RemoteAccountDetails",
           "locationName":"remoteAccountDetails"
+        },
+        "AffectedResources":{
+          "shape":"AffectedResources",
+          "locationName":"affectedResources"
         }
       }
     },
@@ -1602,6 +1743,15 @@
         }
       }
     },
+    "DataSourceFreeTrial":{
+      "type":"structure",
+      "members":{
+        "FreeTrialDaysRemaining":{
+          "shape":"Integer",
+          "locationName":"freeTrialDaysRemaining"
+        }
+      }
+    },
     "DataSourceList":{
       "type":"list",
       "member":{"shape":"DataSource"}
@@ -1614,6 +1764,31 @@
       ],
       "max":300,
       "min":1
+    },
+    "DataSourcesFreeTrial":{
+      "type":"structure",
+      "members":{
+        "CloudTrail":{
+          "shape":"DataSourceFreeTrial",
+          "locationName":"cloudTrail"
+        },
+        "DnsLogs":{
+          "shape":"DataSourceFreeTrial",
+          "locationName":"dnsLogs"
+        },
+        "FlowLogs":{
+          "shape":"DataSourceFreeTrial",
+          "locationName":"flowLogs"
+        },
+        "S3Logs":{
+          "shape":"DataSourceFreeTrial",
+          "locationName":"s3Logs"
+        },
+        "Kubernetes":{
+          "shape":"KubernetesDataSourceFreeTrial",
+          "locationName":"kubernetes"
+        }
+      }
     },
     "DeclineInvitationsRequest":{
       "type":"structure",
@@ -1971,7 +2146,7 @@
       "members":{
       }
     },
-    "DisassociateFromMasterAccountRequest":{
+    "DisassociateFromAdministratorAccountRequest":{
       "type":"structure",
       "required":["DetectorId"],
       "members":{
@@ -1982,10 +2157,30 @@
         }
       }
     },
-    "DisassociateFromMasterAccountResponse":{
+    "DisassociateFromAdministratorAccountResponse":{
       "type":"structure",
       "members":{
       }
+    },
+    "DisassociateFromMasterAccountRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This input is deprecated, use DisassociateFromAdministratorAccountRequest instead"
+    },
+    "DisassociateFromMasterAccountResponse":{
+      "type":"structure",
+      "members":{
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This output is deprecated, use DisassociateFromAdministratorAccountResponse instead"
     },
     "DisassociateMembersRequest":{
       "type":"structure",
@@ -2021,6 +2216,14 @@
         "Domain":{
           "shape":"String",
           "locationName":"domain"
+        },
+        "Protocol":{
+          "shape":"String",
+          "locationName":"protocol"
+        },
+        "Blocked":{
+          "shape":"Boolean",
+          "locationName":"blocked"
         }
       }
     },
@@ -2301,6 +2504,27 @@
         }
       }
     },
+    "GetAdministratorAccountRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        }
+      }
+    },
+    "GetAdministratorAccountResponse":{
+      "type":"structure",
+      "required":["Administrator"],
+      "members":{
+        "Administrator":{
+          "shape":"Administrator",
+          "locationName":"administrator"
+        }
+      }
+    },
     "GetDetectorRequest":{
       "type":"structure",
       "required":["DetectorId"],
@@ -2539,7 +2763,9 @@
           "location":"uri",
           "locationName":"detectorId"
         }
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This input is deprecated, use GetAdministratorAccountRequest instead"
     },
     "GetMasterAccountResponse":{
       "type":"structure",
@@ -2549,7 +2775,9 @@
           "shape":"Master",
           "locationName":"master"
         }
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This output is deprecated, use GetAdministratorAccountResponse instead"
     },
     "GetMemberDetectorsRequest":{
       "type":"structure",
@@ -2614,6 +2842,34 @@
         "Members":{
           "shape":"Members",
           "locationName":"members"
+        },
+        "UnprocessedAccounts":{
+          "shape":"UnprocessedAccounts",
+          "locationName":"unprocessedAccounts"
+        }
+      }
+    },
+    "GetRemainingFreeTrialDaysRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "AccountIds":{
+          "shape":"AccountIds",
+          "locationName":"accountIds"
+        }
+      }
+    },
+    "GetRemainingFreeTrialDaysResponse":{
+      "type":"structure",
+      "members":{
+        "Accounts":{
+          "shape":"AccountFreeTrialInfos",
+          "locationName":"accounts"
         },
         "UnprocessedAccounts":{
           "shape":"UnprocessedAccounts",
@@ -2991,6 +3247,15 @@
       "members":{
         "AuditLogs":{
           "shape":"KubernetesAuditLogsConfigurationResult",
+          "locationName":"auditLogs"
+        }
+      }
+    },
+    "KubernetesDataSourceFreeTrial":{
+      "type":"structure",
+      "members":{
+        "AuditLogs":{
+          "shape":"DataSourceFreeTrial",
           "locationName":"auditLogs"
         }
       }
@@ -3474,6 +3739,10 @@
         "UpdatedAt":{
           "shape":"String",
           "locationName":"updatedAt"
+        },
+        "AdministratorId":{
+          "shape":"String",
+          "locationName":"administratorId"
         }
       }
     },
@@ -3794,11 +4063,11 @@
       "members":{
         "Code":{
           "shape":"String",
-          "locationName":"code"
+          "locationName":"productCodeId"
         },
         "ProductType":{
           "shape":"String",
-          "locationName":"productType"
+          "locationName":"productCodeType"
         }
       }
     },
@@ -4043,6 +4312,23 @@
         "UserFeedback":{
           "shape":"String",
           "locationName":"userFeedback"
+        },
+        "AdditionalInfo":{
+          "shape":"ServiceAdditionalInfo",
+          "locationName":"additionalInfo"
+        }
+      }
+    },
+    "ServiceAdditionalInfo":{
+      "type":"structure",
+      "members":{
+        "Value":{
+          "shape":"String",
+          "locationName":"value"
+        },
+        "Type":{
+          "shape":"String",
+          "locationName":"type"
         }
       }
     },

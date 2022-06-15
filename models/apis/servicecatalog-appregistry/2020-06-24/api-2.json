@@ -25,7 +25,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ServiceQuotaExceededException"}
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"}
       ]
     },
     "AssociateResource":{
@@ -40,7 +41,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"}
       ]
     },
     "CreateApplication":{
@@ -55,7 +57,8 @@
       "errors":[
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ConflictException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
       ]
     },
     "CreateAttributeGroup":{
@@ -126,7 +129,8 @@
       "output":{"shape":"DisassociateResourceResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
       ]
     },
     "GetApplication":{
@@ -140,7 +144,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"}
       ]
     },
     "GetAssociatedResource":{
@@ -169,7 +174,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"}
       ]
     },
     "ListApplications":{
@@ -225,6 +231,21 @@
       "input":{"shape":"ListAttributeGroupsRequest"},
       "output":{"shape":"ListAttributeGroupsResponse"},
       "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "ListAttributeGroupsForApplication":{
+      "name":"ListAttributeGroupsForApplication",
+      "http":{
+        "method":"GET",
+        "requestUri":"/applications/{application}/attribute-group-details"
+      },
+      "input":{"shape":"ListAttributeGroupsForApplicationRequest"},
+      "output":{"shape":"ListAttributeGroupsForApplicationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ],
@@ -297,7 +318,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
       ]
     },
     "UpdateAttributeGroup":{
@@ -443,6 +465,18 @@
     "AttributeGroupArn":{
       "type":"string",
       "pattern":"arn:aws[-a-z]*:servicecatalog:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:/attribute-groups/[a-z0-9]+"
+    },
+    "AttributeGroupDetails":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"AttributeGroupId"},
+        "arn":{"shape":"AttributeGroupArn"},
+        "name":{"shape":"Name"}
+      }
+    },
+    "AttributeGroupDetailsList":{
+      "type":"list",
+      "member":{"shape":"AttributeGroupDetails"}
     },
     "AttributeGroupId":{
       "type":"string",
@@ -810,6 +844,35 @@
       "type":"structure",
       "members":{
         "resources":{"shape":"Resources"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAttributeGroupsForApplicationRequest":{
+      "type":"structure",
+      "required":["application"],
+      "members":{
+        "application":{
+          "shape":"ApplicationSpecifier",
+          "location":"uri",
+          "locationName":"application"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListAttributeGroupsForApplicationResponse":{
+      "type":"structure",
+      "members":{
+        "attributeGroupsDetails":{"shape":"AttributeGroupDetailsList"},
         "nextToken":{"shape":"NextToken"}
       }
     },
