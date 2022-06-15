@@ -1,7 +1,8 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon GuardDuty is a continuous security monitoring service that analyzes and processes the following data sources: VPC Flow Logs, Amazon Web Services CloudTrail event logs, and DNS logs. It uses threat intelligence feeds (such as lists of malicious IPs and domains) and machine learning to identify unexpected, potentially unauthorized, and malicious activity within your Amazon Web Services environment. This can include issues like escalations of privileges, uses of exposed credentials, or communication with malicious IPs, URLs, or domains. For example, GuardDuty can detect compromised EC2 instances that serve malware or mine bitcoin. </p> <p>GuardDuty also monitors Amazon Web Services account access behavior for signs of compromise. Some examples of this are unauthorized infrastructure deployments such as EC2 instances deployed in a Region that has never been used, or unusual API calls like a password policy change to reduce password strength. </p> <p>GuardDuty informs you of the status of your Amazon Web Services environment by producing security findings that you can view in the GuardDuty console or through Amazon CloudWatch events. For more information, see the <i> <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html\">Amazon GuardDuty User Guide</a> </i>. </p>",
+  "service": "<p>Amazon GuardDuty is a continuous security monitoring service that analyzes and processes the following data sources: VPC Flow Logs, AWS CloudTrail management event logs, CloudTrail S3 data event logs, EKS audit logs, and DNS logs. It uses threat intelligence feeds (such as lists of malicious IPs and domains) and machine learning to identify unexpected, potentially unauthorized, and malicious activity within your Amazon Web Services environment. This can include issues like escalations of privileges, uses of exposed credentials, or communication with malicious IPs, URLs, or domains. For example, GuardDuty can detect compromised EC2 instances that serve malware or mine bitcoin. </p> <p>GuardDuty also monitors Amazon Web Services account access behavior for signs of compromise. Some examples of this are unauthorized infrastructure deployments such as EC2 instances deployed in a Region that has never been used, or unusual API calls like a password policy change to reduce password strength. </p> <p>GuardDuty informs you of the status of your Amazon Web Services environment by producing security findings that you can view in the GuardDuty console or through Amazon CloudWatch events. For more information, see the <i> <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html\">Amazon GuardDuty User Guide</a> </i>. </p>",
   "operations": {
+    "AcceptAdministratorInvitation": "<p>Accepts the invitation to be a member account and get monitored by a GuardDuty administrator account that sent the invitation.</p>",
     "AcceptInvitation": "<p>Accepts the invitation to be monitored by a GuardDuty administrator account.</p>",
     "ArchiveFindings": "<p>Archives GuardDuty findings that are specified by the list of finding IDs.</p> <note> <p>Only the administrator account can archive findings. Member accounts don't have permission to archive findings from their accounts.</p> </note>",
     "CreateDetector": "<p>Creates a single Amazon GuardDuty detector. A detector is a resource that represents the GuardDuty service. To start using GuardDuty, you must create a detector in each Region where you enable the service. You can have only one detector per account per Region. All data sources are enabled in a new detector by default.</p>",
@@ -22,9 +23,11 @@
     "DescribeOrganizationConfiguration": "<p>Returns information about the account selected as the delegated administrator for GuardDuty.</p>",
     "DescribePublishingDestination": "<p>Returns information about the publishing destination specified by the provided <code>destinationId</code>.</p>",
     "DisableOrganizationAdminAccount": "<p>Disables an Amazon Web Services account within the Organization as the GuardDuty delegated administrator.</p>",
+    "DisassociateFromAdministratorAccount": "<p>Disassociates the current GuardDuty member account from its administrator account.</p>",
     "DisassociateFromMasterAccount": "<p>Disassociates the current GuardDuty member account from its administrator account.</p>",
-    "DisassociateMembers": "<p>Disassociates GuardDuty member accounts (to the current GuardDuty administrator account) specified by the account IDs. Member accounts added through <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_invitations.html\">Invitation</a> get deleted from the current GuardDuty administrator account after 30 days of disassociation.</p>",
+    "DisassociateMembers": "<p>Disassociates GuardDuty member accounts (to the current GuardDuty administrator account) specified by the account IDs.</p>",
     "EnableOrganizationAdminAccount": "<p>Enables an Amazon Web Services account within the organization as the GuardDuty delegated administrator.</p>",
+    "GetAdministratorAccount": "<p>Provides the details for the GuardDuty administrator account associated with the current GuardDuty member account.</p>",
     "GetDetector": "<p>Retrieves an Amazon GuardDuty detector specified by the detectorId.</p>",
     "GetFilter": "<p>Returns the details of the filter specified by the filter name.</p>",
     "GetFindings": "<p>Describes Amazon GuardDuty findings specified by finding IDs.</p>",
@@ -34,8 +37,9 @@
     "GetMasterAccount": "<p>Provides the details for the GuardDuty administrator account associated with the current GuardDuty member account.</p>",
     "GetMemberDetectors": "<p>Describes which data sources are enabled for the member account's detector.</p>",
     "GetMembers": "<p>Retrieves GuardDuty member accounts (of the current GuardDuty administrator account) specified by the account IDs.</p>",
+    "GetRemainingFreeTrialDays": "<p>Provides the number of days left for each data source used in the free trial period.</p>",
     "GetThreatIntelSet": "<p>Retrieves the ThreatIntelSet that is specified by the ThreatIntelSet ID.</p>",
-    "GetUsageStatistics": "<p>Lists Amazon GuardDuty usage statistics over the last 30 days for the specified detector ID. For newly enabled detectors or data sources the cost returned will include only the usage so far under 30 days, this may differ from the cost metrics in the console, which projects usage over 30 days to provide a monthly cost estimate. For more information see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/monitoring_costs.html#usage-calculations\">Understanding How Usage Costs are Calculated</a>.</p>",
+    "GetUsageStatistics": "<p>Lists Amazon GuardDuty usage statistics over the last 30 days for the specified detector ID. For newly enabled detectors or data sources, the cost returned will include only the usage so far under 30 days. This may differ from the cost metrics in the console, which project usage over 30 days to provide a monthly cost estimate. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/monitoring_costs.html#usage-calculations\">Understanding How Usage Costs are Calculated</a>.</p>",
     "InviteMembers": "<p>Invites other Amazon Web Services accounts (created as members of the current Amazon Web Services account by CreateMembers) to enable GuardDuty, and allow the current Amazon Web Services account to view and manage these accounts' findings on their behalf as the GuardDuty administrator account.</p>",
     "ListDetectors": "<p>Lists detectorIds of all the existing Amazon GuardDuty detector resources.</p>",
     "ListFilters": "<p>Returns a paginated list of the current filters.</p>",
@@ -62,6 +66,16 @@
     "UpdateThreatIntelSet": "<p>Updates the ThreatIntelSet specified by the ThreatIntelSet ID.</p>"
   },
   "shapes": {
+    "AcceptAdministratorInvitationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AcceptAdministratorInvitationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AcceptInvitationRequest": {
       "base": null,
       "refs": {
@@ -96,11 +110,24 @@
         "CreateMembersRequest$AccountDetails": "<p>A list of account ID and email address pairs of the accounts that you want to associate with the GuardDuty administrator account.</p>"
       }
     },
+    "AccountFreeTrialInfo": {
+      "base": "<p>Provides details of the GuardDuty member account that uses a free trial service.</p>",
+      "refs": {
+        "AccountFreeTrialInfos$member": null
+      }
+    },
+    "AccountFreeTrialInfos": {
+      "base": null,
+      "refs": {
+        "GetRemainingFreeTrialDaysResponse$Accounts": "<p>The member accounts which were included in a request and were processed successfully.</p>"
+      }
+    },
     "AccountId": {
       "base": null,
       "refs": {
         "AccountDetail$AccountId": "<p>The member account ID.</p>",
         "AccountIds$member": null,
+        "Administrator$AccountId": "<p>The ID of the account used as the administrator account.</p>",
         "Invitation$AccountId": "<p>The ID of the account that the invitation was sent from.</p>",
         "Master$AccountId": "<p>The ID of the account used as the administrator account.</p>",
         "Member$AccountId": "<p>The ID of the member account.</p>",
@@ -118,6 +145,7 @@
         "DisassociateMembersRequest$AccountIds": "<p>A list of account IDs of the GuardDuty member accounts that you want to disassociate from the administrator account.</p>",
         "GetMemberDetectorsRequest$AccountIds": "<p>The account ID of the member account.</p>",
         "GetMembersRequest$AccountIds": "<p>A list of account IDs of the GuardDuty member accounts that you want to describe.</p>",
+        "GetRemainingFreeTrialDaysRequest$AccountIds": "<p>A list of account identifiers of the GuardDuty member account.</p>",
         "InviteMembersRequest$AccountIds": "<p>A list of account IDs of the accounts that you want to invite to GuardDuty as members.</p>",
         "StartMonitoringMembersRequest$AccountIds": "<p>A list of account IDs of the GuardDuty member accounts to start monitoring.</p>",
         "StopMonitoringMembersRequest$AccountIds": "<p>A list of account IDs for the member accounts to stop monitoring.</p>",
@@ -153,6 +181,18 @@
       "base": null,
       "refs": {
         "AdminAccount$AdminStatus": "<p>Indicates whether the account is enabled as the delegated administrator.</p>"
+      }
+    },
+    "Administrator": {
+      "base": "<p>Contains information about the administrator account and invitation.</p>",
+      "refs": {
+        "GetAdministratorAccountResponse$Administrator": "<p>The administrator account details.</p>"
+      }
+    },
+    "AffectedResources": {
+      "base": null,
+      "refs": {
+        "AwsApiCallAction$AffectedResources": "<p>The details of the Amazon Web Services account that made the API call. This field identifies the resources that were affected by this API call.</p>"
       }
     },
     "ArchiveFindingsRequest": {
@@ -199,6 +239,7 @@
         "CreateThreatIntelSetRequest$Activate": "<p>A Boolean value that indicates whether GuardDuty is to start using the uploaded ThreatIntelSet.</p>",
         "DescribeOrganizationConfigurationResponse$AutoEnable": "<p>Indicates whether GuardDuty is automatically enabled for accounts added to the organization.</p>",
         "DescribeOrganizationConfigurationResponse$MemberAccountLimitReached": "<p>Indicates whether the maximum number of allowed member accounts are already associated with the delegated administrator account for your organization.</p>",
+        "DnsRequestAction$Blocked": "<p>Indicates whether the targeted port is blocked.</p>",
         "InviteMembersRequest$DisableEmailNotification": "<p>A Boolean value that specifies whether you want to disable email notification to the accounts that you are inviting to GuardDuty as members.</p>",
         "KubernetesAuditLogsConfiguration$Enable": "<p>The status of Kubernetes audit logs as a data source.</p>",
         "KubernetesWorkloadDetails$HostNetwork": "<p>Whether the hostNetwork flag is enabled for the pods included in the workload.</p>",
@@ -386,6 +427,16 @@
         "MemberDataSourceConfiguration$DataSources": "<p>Contains information on the status of data sources for the account.</p>"
       }
     },
+    "DataSourceFreeTrial": {
+      "base": "<p>Contains information about which data sources are enabled for the GuardDuty member account.</p>",
+      "refs": {
+        "DataSourcesFreeTrial$CloudTrail": "<p>Describes whether any AWS CloudTrail management event logs are enabled as data sources.</p>",
+        "DataSourcesFreeTrial$DnsLogs": "<p>Describes whether any DNS logs are enabled as data sources.</p>",
+        "DataSourcesFreeTrial$FlowLogs": "<p>Describes whether any VPC Flow logs are enabled as data sources.</p>",
+        "DataSourcesFreeTrial$S3Logs": "<p>Describes whether any S3 data event logs are enabled as data sources.</p>",
+        "KubernetesDataSourceFreeTrial$AuditLogs": "<p>Describes whether Kubernetes audit logs are enabled as a data source.</p>"
+      }
+    },
     "DataSourceList": {
       "base": null,
       "refs": {
@@ -400,6 +451,12 @@
         "FlowLogsConfigurationResult$Status": "<p>Denotes whether VPC flow logs is enabled as a data source.</p>",
         "KubernetesAuditLogsConfigurationResult$Status": "<p>A value that describes whether Kubernetes audit logs are enabled as a data source.</p>",
         "S3LogsConfigurationResult$Status": "<p>A value that describes whether S3 data event logs are automatically enabled for new members of the organization.</p>"
+      }
+    },
+    "DataSourcesFreeTrial": {
+      "base": "<p>Contains information about which data sources are enabled for the GuardDuty member account.</p>",
+      "refs": {
+        "AccountFreeTrialInfo$DataSources": "<p>Describes the data source enabled for the GuardDuty member account.</p>"
       }
     },
     "DeclineInvitationsRequest": {
@@ -539,6 +596,7 @@
     "DetectorId": {
       "base": null,
       "refs": {
+        "AcceptAdministratorInvitationRequest$DetectorId": "<p>The unique ID of the detector of the GuardDuty member account.</p>",
         "AcceptInvitationRequest$DetectorId": "<p>The unique ID of the detector of the GuardDuty member account.</p>",
         "ArchiveFindingsRequest$DetectorId": "<p>The ID of the detector that specifies the GuardDuty service whose findings you want to archive.</p>",
         "CreateDetectorResponse$DetectorId": "<p>The unique ID of the created detector.</p>",
@@ -557,8 +615,10 @@
         "DescribeOrganizationConfigurationRequest$DetectorId": "<p>The ID of the detector to retrieve information about the delegated administrator from.</p>",
         "DescribePublishingDestinationRequest$DetectorId": "<p>The unique ID of the detector associated with the publishing destination to retrieve.</p>",
         "DetectorIds$member": null,
+        "DisassociateFromAdministratorAccountRequest$DetectorId": "<p>The unique ID of the detector of the GuardDuty member account.</p>",
         "DisassociateFromMasterAccountRequest$DetectorId": "<p>The unique ID of the detector of the GuardDuty member account.</p>",
         "DisassociateMembersRequest$DetectorId": "<p>The unique ID of the detector of the GuardDuty account whose members you want to disassociate from the administrator account.</p>",
+        "GetAdministratorAccountRequest$DetectorId": "<p>The unique ID of the detector of the GuardDuty member account.</p>",
         "GetDetectorRequest$DetectorId": "<p>The unique ID of the detector that you want to get.</p>",
         "GetFilterRequest$DetectorId": "<p>The unique ID of the detector that the filter is associated with.</p>",
         "GetFindingsRequest$DetectorId": "<p>The ID of the detector that specifies the GuardDuty service whose findings you want to retrieve.</p>",
@@ -567,6 +627,7 @@
         "GetMasterAccountRequest$DetectorId": "<p>The unique ID of the detector of the GuardDuty member account.</p>",
         "GetMemberDetectorsRequest$DetectorId": "<p>The detector ID for the administrator account.</p>",
         "GetMembersRequest$DetectorId": "<p>The unique ID of the detector of the GuardDuty account whose members you want to retrieve.</p>",
+        "GetRemainingFreeTrialDaysRequest$DetectorId": "<p>The unique ID of the detector of the GuardDuty member account.</p>",
         "GetThreatIntelSetRequest$DetectorId": "<p>The unique ID of the detector that the threatIntelSet is associated with.</p>",
         "GetUsageStatisticsRequest$DetectorId": "<p>The ID of the detector that specifies the GuardDuty service whose usage statistics you want to retrieve.</p>",
         "InviteMembersRequest$DetectorId": "<p>The unique ID of the detector of the GuardDuty account that you want to invite members with.</p>",
@@ -609,6 +670,16 @@
       }
     },
     "DisableOrganizationAdminAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateFromAdministratorAccountRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateFromAdministratorAccountResponse": {
       "base": null,
       "refs": {
       }
@@ -830,6 +901,16 @@
         "RemoteIpDetails$GeoLocation": "<p>The location information of the remote IP address.</p>"
       }
     },
+    "GetAdministratorAccountRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAdministratorAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetDetectorRequest": {
       "base": null,
       "refs": {
@@ -920,6 +1001,16 @@
       "refs": {
       }
     },
+    "GetRemainingFreeTrialDaysRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRemainingFreeTrialDaysResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetThreatIntelSetRequest": {
       "base": null,
       "refs": {
@@ -980,6 +1071,7 @@
         "Condition$Lt": "<p>Represents a <i>less than</i> condition to be applied to a single field when querying for findings.</p>",
         "Condition$Lte": "<p>Represents a <i>less than or equal</i> condition to be applied to a single field when querying for findings.</p>",
         "CountBySeverity$value": null,
+        "DataSourceFreeTrial$FreeTrialDaysRemaining": "<p>A value that specifies the number of days left to use each enabled data source.</p>",
         "GetInvitationsCountResponse$InvitationsCount": "<p>The number of received invitations.</p>",
         "KubernetesApiCallAction$StatusCode": "<p>The resulting HTTP response code of the Kubernetes API call action.</p>",
         "LocalPortDetails$Port": "<p>The port number of the local connection.</p>",
@@ -1067,6 +1159,12 @@
       "base": "<p>Describes whether any Kubernetes logs will be enabled as a data source.</p>",
       "refs": {
         "DataSourceConfigurationsResult$Kubernetes": "<p>An object that contains information on the status of all Kubernetes data sources.</p>"
+      }
+    },
+    "KubernetesDataSourceFreeTrial": {
+      "base": "<p>Provides details about the Kubernetes resources when it is enabled as a data source.</p>",
+      "refs": {
+        "DataSourcesFreeTrial$Kubernetes": "<p>Describes whether any Kubernetes logs are enabled as data sources.</p>"
       }
     },
     "KubernetesDetails": {
@@ -1517,6 +1615,12 @@
         "Finding$Service": null
       }
     },
+    "ServiceAdditionalInfo": {
+      "base": "<p>Additional information about the generated finding.</p>",
+      "refs": {
+        "Service$AdditionalInfo": "<p>Contains additional information about the generated finding.</p>"
+      }
+    },
     "SortCriteria": {
       "base": "<p>Contains information about the criteria used for sorting findings.</p>",
       "refs": {
@@ -1553,14 +1657,22 @@
     "String": {
       "base": null,
       "refs": {
+        "AcceptAdministratorInvitationRequest$AdministratorId": "<p>The account ID of the GuardDuty administrator account whose invitation you're accepting.</p>",
+        "AcceptAdministratorInvitationRequest$InvitationId": "<p>The value that is used to validate the administrator account to the member account.</p>",
         "AcceptInvitationRequest$MasterId": "<p>The account ID of the GuardDuty administrator account whose invitation you're accepting.</p>",
         "AcceptInvitationRequest$InvitationId": "<p>The value that is used to validate the administrator account to the member account.</p>",
         "AccessKeyDetails$AccessKeyId": "<p>The access key ID of the user.</p>",
         "AccessKeyDetails$PrincipalId": "<p>The principal ID of the user.</p>",
         "AccessKeyDetails$UserName": "<p>The name of the user.</p>",
         "AccessKeyDetails$UserType": "<p>The type of the user.</p>",
+        "AccountFreeTrialInfo$AccountId": "<p>The account identifier of the GuardDuty member account.</p>",
         "Action$ActionType": "<p>The GuardDuty finding activity type.</p>",
         "AdminAccount$AdminAccountId": "<p>The Amazon Web Services account ID for the account.</p>",
+        "Administrator$InvitationId": "<p>The value that is used to validate the administrator account to the member account.</p>",
+        "Administrator$RelationshipStatus": "<p>The status of the relationship between the administrator and member accounts.</p>",
+        "Administrator$InvitedAt": "<p>The timestamp when the invitation was sent.</p>",
+        "AffectedResources$key": null,
+        "AffectedResources$value": null,
         "AwsApiCallAction$Api": "<p>The Amazon Web Services API name.</p>",
         "AwsApiCallAction$CallerType": "<p>The Amazon Web Services API caller type.</p>",
         "AwsApiCallAction$ErrorCode": "<p>The error code of the failed Amazon Web Services API action.</p>",
@@ -1594,6 +1706,7 @@
         "DestinationProperties$KmsKeyArn": "<p>The ARN of the KMS key to use for encryption.</p>",
         "DisableOrganizationAdminAccountRequest$AdminAccountId": "<p>The Amazon Web Services Account ID for the organizations account to be disabled as a GuardDuty delegated administrator.</p>",
         "DnsRequestAction$Domain": "<p>The domain information for the API request.</p>",
+        "DnsRequestAction$Protocol": "<p>The network connection protocol observed in the activity that prompted GuardDuty to generate the finding.</p>",
         "DomainDetails$Domain": "<p>The domain information for the Amazon Web Services API call.</p>",
         "EksClusterDetails$Name": "<p>EKS cluster name.</p>",
         "EksClusterDetails$Arn": "<p>EKS cluster ARN.</p>",
@@ -1680,6 +1793,7 @@
         "Member$RelationshipStatus": "<p>The status of the relationship between the member and the administrator.</p>",
         "Member$InvitedAt": "<p>The timestamp when the invitation was sent.</p>",
         "Member$UpdatedAt": "<p>The last-updated timestamp of the member.</p>",
+        "Member$AdministratorId": "<p>The administrator account ID.</p>",
         "Neq$member": null,
         "NetworkConnectionAction$ConnectionDirection": "<p>The network connection direction.</p>",
         "NetworkConnectionAction$Protocol": "<p>The network connection protocol.</p>",
@@ -1716,6 +1830,8 @@
         "Service$ResourceRole": "<p>The resource role information for this finding.</p>",
         "Service$ServiceName": "<p>The name of the Amazon Web Services service (GuardDuty) that generated a finding.</p>",
         "Service$UserFeedback": "<p>Feedback that was submitted about the finding.</p>",
+        "ServiceAdditionalInfo$Value": "<p>This field specifies the value of the additional information.</p>",
+        "ServiceAdditionalInfo$Type": "<p>Describes the type of the additional information.</p>",
         "SortCriteria$AttributeName": "<p>Represents the finding attribute (for example, accountId) to sort findings by.</p>",
         "SourceIps$member": null,
         "Tag$Key": "<p>The EC2 instance tag key.</p>",
@@ -1873,6 +1989,7 @@
         "DisassociateMembersResponse$UnprocessedAccounts": "<p>A list of objects that contain the unprocessed account and a result string that explains why it was unprocessed.</p>",
         "GetMemberDetectorsResponse$UnprocessedAccounts": "<p>A list of member account IDs that were unable to be processed along with an explanation for why they were not processed.</p>",
         "GetMembersResponse$UnprocessedAccounts": "<p>A list of objects that contain the unprocessed account and a result string that explains why it was unprocessed.</p>",
+        "GetRemainingFreeTrialDaysResponse$UnprocessedAccounts": "<p>The member account that was included in a request but for which the request could not be processed.</p>",
         "InviteMembersResponse$UnprocessedAccounts": "<p>A list of objects that contain the unprocessed account and a result string that explains why it was unprocessed.</p>",
         "StartMonitoringMembersResponse$UnprocessedAccounts": "<p>A list of objects that contain the unprocessed account and a result string that explains why it was unprocessed.</p>",
         "StopMonitoringMembersResponse$UnprocessedAccounts": "<p>A list of objects that contain an accountId for each account that could not be processed, and a result string that indicates why the account was not processed. </p>",

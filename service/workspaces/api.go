@@ -7550,8 +7550,8 @@ type DefaultClientBrandingAttributes struct {
 	// is en_US.
 	LoginMessage map[string]*string `type:"map"`
 
-	// The logo URL. This is the link where users can download the logo image. The
-	// only supported image format is .png.
+	// The logo URL. The only image format accepted is a binary data object that
+	// is converted from a .png file.
 	LogoUrl *string `min:"1" type:"string"`
 
 	// The support email. The company's customer support email address.
@@ -7639,8 +7639,8 @@ type DefaultImportClientBrandingAttributes struct {
 	// is en_US.
 	LoginMessage map[string]*string `type:"map"`
 
-	// The logo. This is the link where users can download the logo image. The only
-	// image format accepted is .png.
+	// The logo. The only image format accepted is a binary data object that is
+	// converted from a .png file.
 	// Logo is automatically base64 encoded/decoded by the SDK.
 	Logo []byte `min:"1" type:"blob"`
 
@@ -10648,11 +10648,7 @@ type ImportWorkspaceImageInput struct {
 	// for Windows 10 BYOL images. For more information about subscribing to Office
 	// for BYOL images, see Bring Your Own Windows Desktop Licenses (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
 	//
-	//    * Although this parameter is an array, only one item is allowed at this
-	//    time
-	//
-	//    * Microsoft Office 2016 application subscription through AWS is currently
-	//    not supported for Graphics.g4dn Bring Your Own License (BYOL) images
+	// Although this parameter is an array, only one item is allowed at this time.
 	Applications []*string `min:"1" type:"list" enum:"Application"`
 
 	// The identifier of the EC2 image.
@@ -10675,11 +10671,8 @@ type ImportWorkspaceImageInput struct {
 	// Streaming Protocol (WSP). To use WSP, specify a value that ends in _WSP.
 	// To use PCoIP, specify a value that does not end in _WSP.
 	//
-	// For non-GPU-enabled images (bundles other than Graphics.g4dn, GraphicsPro.g4dn,
-	// Graphics, or GraphicsPro), specify BYOL_REGULAR or BYOL_REGULAR_WSP, depending
-	// on the protocol.
-	//
-	// Use BYOL_GRAPHICS_G4DN ingestion for both Graphics.g4dn and GraphicsPro.g4dn.
+	// For non-GPU-enabled bundles (bundles other than Graphics or GraphicsPro),
+	// specify BYOL_REGULAR or BYOL_REGULAR_WSP, depending on the protocol.
 	//
 	// IngestionProcess is a required field
 	IngestionProcess *string `type:"string" required:"true" enum:"WorkspaceImageIngestionProcess"`
@@ -10961,7 +10954,8 @@ type IosClientBrandingAttributes struct {
 	LoginMessage map[string]*string `type:"map"`
 
 	// The @2x version of the logo. This is the higher resolution display that offers
-	// a scale factor of 2.0 (or @2x).
+	// a scale factor of 2.0 (or @2x). The only image format accepted is a binary
+	// data object that is converted from a .png file.
 	//
 	// For more information about iOS image size and resolution, see Image Size
 	// and Resolution (https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/)
@@ -10969,16 +10963,17 @@ type IosClientBrandingAttributes struct {
 	Logo2xUrl *string `min:"1" type:"string"`
 
 	// The @3x version of the logo. This is the higher resolution display that offers
-	// a scale factor of 3.0 (or @3x).
+	// a scale factor of 3.0 (or @3x).The only image format accepted is a binary
+	// data object that is converted from a .png file.
 	//
 	// For more information about iOS image size and resolution, see Image Size
 	// and Resolution (https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/)
 	// in the Apple Human Interface Guidelines.
 	Logo3xUrl *string `min:"1" type:"string"`
 
-	// The logo. This is the link where users can download the logo image. This
-	// is the standard-resolution display that has a 1:1 pixel density (or @1x),
-	// where one pixel is equal to one point.
+	// The logo. This is the standard-resolution display that has a 1:1 pixel density
+	// (or @1x), where one pixel is equal to one point. The only image format accepted
+	// is a binary data object that is converted from a .png file.
 	LogoUrl *string `min:"1" type:"string"`
 
 	// The support email. The company's customer support email address.
@@ -11078,14 +11073,15 @@ type IosImportClientBrandingAttributes struct {
 	// is en_US.
 	LoginMessage map[string]*string `type:"map"`
 
-	// The logo. This is the link where users can download the logo image. This
-	// is the standard-resolution display that has a 1:1 pixel density (or @1x),
-	// where one pixel is equal to one point.
+	// The logo. This is the standard-resolution display that has a 1:1 pixel density
+	// (or @1x), where one pixel is equal to one point. The only image format accepted
+	// is a binary data object that is converted from a .png file.
 	// Logo is automatically base64 encoded/decoded by the SDK.
 	Logo []byte `min:"1" type:"blob"`
 
 	// The @2x version of the logo. This is the higher resolution display that offers
-	// a scale factor of 2.0 (or @2x).
+	// a scale factor of 2.0 (or @2x). The only image format accepted is a binary
+	// data object that is converted from a .png file.
 	//
 	// For more information about iOS image size and resolution, see Image Size
 	// and Resolution (https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/)
@@ -11094,7 +11090,8 @@ type IosImportClientBrandingAttributes struct {
 	Logo2x []byte `min:"1" type:"blob"`
 
 	// The @3x version of the logo. This is the higher resolution display that offers
-	// a scale factor of 3.0 (or @3x).
+	// a scale factor of 3.0 (or @3x). The only image format accepted is a binary
+	// data object that is converted from a .png file.
 	//
 	// For more information about iOS image size and resolution, see Image Size
 	// and Resolution (https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/)
@@ -12245,7 +12242,11 @@ type OperationNotSupportedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The exception error message.
 	Message_ *string `locationName:"message" type:"string"`
+
+	// The exception error reason.
+	Reason *string `locationName:"reason" type:"string"`
 }
 
 // String returns the string representation.
@@ -12291,7 +12292,7 @@ func (s *OperationNotSupportedException) OrigErr() error {
 }
 
 func (s *OperationNotSupportedException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.

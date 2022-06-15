@@ -13,6 +13,90 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opAcceptAdministratorInvitation = "AcceptAdministratorInvitation"
+
+// AcceptAdministratorInvitationRequest generates a "aws/request.Request" representing the
+// client's request for the AcceptAdministratorInvitation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AcceptAdministratorInvitation for more information on using the AcceptAdministratorInvitation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AcceptAdministratorInvitationRequest method.
+//    req, resp := client.AcceptAdministratorInvitationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/AcceptAdministratorInvitation
+func (c *GuardDuty) AcceptAdministratorInvitationRequest(input *AcceptAdministratorInvitationInput) (req *request.Request, output *AcceptAdministratorInvitationOutput) {
+	op := &request.Operation{
+		Name:       opAcceptAdministratorInvitation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/detector/{detectorId}/administrator",
+	}
+
+	if input == nil {
+		input = &AcceptAdministratorInvitationInput{}
+	}
+
+	output = &AcceptAdministratorInvitationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AcceptAdministratorInvitation API operation for Amazon GuardDuty.
+//
+// Accepts the invitation to be a member account and get monitored by a GuardDuty
+// administrator account that sent the invitation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon GuardDuty's
+// API operation AcceptAdministratorInvitation for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   A bad request exception object.
+//
+//   * InternalServerErrorException
+//   An internal server error exception object.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/AcceptAdministratorInvitation
+func (c *GuardDuty) AcceptAdministratorInvitation(input *AcceptAdministratorInvitationInput) (*AcceptAdministratorInvitationOutput, error) {
+	req, out := c.AcceptAdministratorInvitationRequest(input)
+	return out, req.Send()
+}
+
+// AcceptAdministratorInvitationWithContext is the same as AcceptAdministratorInvitation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AcceptAdministratorInvitation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GuardDuty) AcceptAdministratorInvitationWithContext(ctx aws.Context, input *AcceptAdministratorInvitationInput, opts ...request.Option) (*AcceptAdministratorInvitationOutput, error) {
+	req, out := c.AcceptAdministratorInvitationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAcceptInvitation = "AcceptInvitation"
 
 // AcceptInvitationRequest generates a "aws/request.Request" representing the
@@ -39,7 +123,12 @@ const opAcceptInvitation = "AcceptInvitation"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/AcceptInvitation
+//
+// Deprecated: This operation is deprecated, use AcceptAdministratorInvitation instead
 func (c *GuardDuty) AcceptInvitationRequest(input *AcceptInvitationInput) (req *request.Request, output *AcceptInvitationOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, AcceptInvitation, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opAcceptInvitation,
 		HTTPMethod: "POST",
@@ -75,6 +164,8 @@ func (c *GuardDuty) AcceptInvitationRequest(input *AcceptInvitationInput) (req *
 //   An internal server error exception object.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/AcceptInvitation
+//
+// Deprecated: This operation is deprecated, use AcceptAdministratorInvitation instead
 func (c *GuardDuty) AcceptInvitation(input *AcceptInvitationInput) (*AcceptInvitationOutput, error) {
 	req, out := c.AcceptInvitationRequest(input)
 	return out, req.Send()
@@ -89,6 +180,8 @@ func (c *GuardDuty) AcceptInvitation(input *AcceptInvitationInput) (*AcceptInvit
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This operation is deprecated, use AcceptAdministratorInvitation instead
 func (c *GuardDuty) AcceptInvitationWithContext(ctx aws.Context, input *AcceptInvitationInput, opts ...request.Option) (*AcceptInvitationOutput, error) {
 	req, out := c.AcceptInvitationRequest(input)
 	req.SetContext(ctx)
@@ -1697,6 +1790,90 @@ func (c *GuardDuty) DisableOrganizationAdminAccountWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opDisassociateFromAdministratorAccount = "DisassociateFromAdministratorAccount"
+
+// DisassociateFromAdministratorAccountRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateFromAdministratorAccount operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateFromAdministratorAccount for more information on using the DisassociateFromAdministratorAccount
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateFromAdministratorAccountRequest method.
+//    req, resp := client.DisassociateFromAdministratorAccountRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/DisassociateFromAdministratorAccount
+func (c *GuardDuty) DisassociateFromAdministratorAccountRequest(input *DisassociateFromAdministratorAccountInput) (req *request.Request, output *DisassociateFromAdministratorAccountOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateFromAdministratorAccount,
+		HTTPMethod: "POST",
+		HTTPPath:   "/detector/{detectorId}/administrator/disassociate",
+	}
+
+	if input == nil {
+		input = &DisassociateFromAdministratorAccountInput{}
+	}
+
+	output = &DisassociateFromAdministratorAccountOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateFromAdministratorAccount API operation for Amazon GuardDuty.
+//
+// Disassociates the current GuardDuty member account from its administrator
+// account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon GuardDuty's
+// API operation DisassociateFromAdministratorAccount for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   A bad request exception object.
+//
+//   * InternalServerErrorException
+//   An internal server error exception object.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/DisassociateFromAdministratorAccount
+func (c *GuardDuty) DisassociateFromAdministratorAccount(input *DisassociateFromAdministratorAccountInput) (*DisassociateFromAdministratorAccountOutput, error) {
+	req, out := c.DisassociateFromAdministratorAccountRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateFromAdministratorAccountWithContext is the same as DisassociateFromAdministratorAccount with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateFromAdministratorAccount for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GuardDuty) DisassociateFromAdministratorAccountWithContext(ctx aws.Context, input *DisassociateFromAdministratorAccountInput, opts ...request.Option) (*DisassociateFromAdministratorAccountOutput, error) {
+	req, out := c.DisassociateFromAdministratorAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociateFromMasterAccount = "DisassociateFromMasterAccount"
 
 // DisassociateFromMasterAccountRequest generates a "aws/request.Request" representing the
@@ -1723,7 +1900,12 @@ const opDisassociateFromMasterAccount = "DisassociateFromMasterAccount"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/DisassociateFromMasterAccount
+//
+// Deprecated: This operation is deprecated, use DisassociateFromAdministratorAccount instead
 func (c *GuardDuty) DisassociateFromMasterAccountRequest(input *DisassociateFromMasterAccountInput) (req *request.Request, output *DisassociateFromMasterAccountOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DisassociateFromMasterAccount, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDisassociateFromMasterAccount,
 		HTTPMethod: "POST",
@@ -1760,6 +1942,8 @@ func (c *GuardDuty) DisassociateFromMasterAccountRequest(input *DisassociateFrom
 //   An internal server error exception object.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/DisassociateFromMasterAccount
+//
+// Deprecated: This operation is deprecated, use DisassociateFromAdministratorAccount instead
 func (c *GuardDuty) DisassociateFromMasterAccount(input *DisassociateFromMasterAccountInput) (*DisassociateFromMasterAccountOutput, error) {
 	req, out := c.DisassociateFromMasterAccountRequest(input)
 	return out, req.Send()
@@ -1774,6 +1958,8 @@ func (c *GuardDuty) DisassociateFromMasterAccount(input *DisassociateFromMasterA
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This operation is deprecated, use DisassociateFromAdministratorAccount instead
 func (c *GuardDuty) DisassociateFromMasterAccountWithContext(ctx aws.Context, input *DisassociateFromMasterAccountInput, opts ...request.Option) (*DisassociateFromMasterAccountOutput, error) {
 	req, out := c.DisassociateFromMasterAccountRequest(input)
 	req.SetContext(ctx)
@@ -1826,10 +2012,7 @@ func (c *GuardDuty) DisassociateMembersRequest(input *DisassociateMembersInput) 
 // DisassociateMembers API operation for Amazon GuardDuty.
 //
 // Disassociates GuardDuty member accounts (to the current GuardDuty administrator
-// account) specified by the account IDs. Member accounts added through Invitation
-// (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_invitations.html)
-// get deleted from the current GuardDuty administrator account after 30 days
-// of disassociation.
+// account) specified by the account IDs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1946,6 +2129,89 @@ func (c *GuardDuty) EnableOrganizationAdminAccount(input *EnableOrganizationAdmi
 // for more information on using Contexts.
 func (c *GuardDuty) EnableOrganizationAdminAccountWithContext(ctx aws.Context, input *EnableOrganizationAdminAccountInput, opts ...request.Option) (*EnableOrganizationAdminAccountOutput, error) {
 	req, out := c.EnableOrganizationAdminAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAdministratorAccount = "GetAdministratorAccount"
+
+// GetAdministratorAccountRequest generates a "aws/request.Request" representing the
+// client's request for the GetAdministratorAccount operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAdministratorAccount for more information on using the GetAdministratorAccount
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAdministratorAccountRequest method.
+//    req, resp := client.GetAdministratorAccountRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/GetAdministratorAccount
+func (c *GuardDuty) GetAdministratorAccountRequest(input *GetAdministratorAccountInput) (req *request.Request, output *GetAdministratorAccountOutput) {
+	op := &request.Operation{
+		Name:       opGetAdministratorAccount,
+		HTTPMethod: "GET",
+		HTTPPath:   "/detector/{detectorId}/administrator",
+	}
+
+	if input == nil {
+		input = &GetAdministratorAccountInput{}
+	}
+
+	output = &GetAdministratorAccountOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAdministratorAccount API operation for Amazon GuardDuty.
+//
+// Provides the details for the GuardDuty administrator account associated with
+// the current GuardDuty member account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon GuardDuty's
+// API operation GetAdministratorAccount for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   A bad request exception object.
+//
+//   * InternalServerErrorException
+//   An internal server error exception object.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/GetAdministratorAccount
+func (c *GuardDuty) GetAdministratorAccount(input *GetAdministratorAccountInput) (*GetAdministratorAccountOutput, error) {
+	req, out := c.GetAdministratorAccountRequest(input)
+	return out, req.Send()
+}
+
+// GetAdministratorAccountWithContext is the same as GetAdministratorAccount with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAdministratorAccount for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GuardDuty) GetAdministratorAccountWithContext(ctx aws.Context, input *GetAdministratorAccountInput, opts ...request.Option) (*GetAdministratorAccountOutput, error) {
+	req, out := c.GetAdministratorAccountRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2470,7 +2736,12 @@ const opGetMasterAccount = "GetMasterAccount"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/GetMasterAccount
+//
+// Deprecated: This operation is deprecated, use GetAdministratorAccount instead
 func (c *GuardDuty) GetMasterAccountRequest(input *GetMasterAccountInput) (req *request.Request, output *GetMasterAccountOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, GetMasterAccount, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opGetMasterAccount,
 		HTTPMethod: "GET",
@@ -2506,6 +2777,8 @@ func (c *GuardDuty) GetMasterAccountRequest(input *GetMasterAccountInput) (req *
 //   An internal server error exception object.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/GetMasterAccount
+//
+// Deprecated: This operation is deprecated, use GetAdministratorAccount instead
 func (c *GuardDuty) GetMasterAccount(input *GetMasterAccountInput) (*GetMasterAccountOutput, error) {
 	req, out := c.GetMasterAccountRequest(input)
 	return out, req.Send()
@@ -2520,6 +2793,8 @@ func (c *GuardDuty) GetMasterAccount(input *GetMasterAccountInput) (*GetMasterAc
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This operation is deprecated, use GetAdministratorAccount instead
 func (c *GuardDuty) GetMasterAccountWithContext(ctx aws.Context, input *GetMasterAccountInput, opts ...request.Option) (*GetMasterAccountOutput, error) {
 	req, out := c.GetMasterAccountRequest(input)
 	req.SetContext(ctx)
@@ -2692,6 +2967,89 @@ func (c *GuardDuty) GetMembersWithContext(ctx aws.Context, input *GetMembersInpu
 	return out, req.Send()
 }
 
+const opGetRemainingFreeTrialDays = "GetRemainingFreeTrialDays"
+
+// GetRemainingFreeTrialDaysRequest generates a "aws/request.Request" representing the
+// client's request for the GetRemainingFreeTrialDays operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRemainingFreeTrialDays for more information on using the GetRemainingFreeTrialDays
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetRemainingFreeTrialDaysRequest method.
+//    req, resp := client.GetRemainingFreeTrialDaysRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/GetRemainingFreeTrialDays
+func (c *GuardDuty) GetRemainingFreeTrialDaysRequest(input *GetRemainingFreeTrialDaysInput) (req *request.Request, output *GetRemainingFreeTrialDaysOutput) {
+	op := &request.Operation{
+		Name:       opGetRemainingFreeTrialDays,
+		HTTPMethod: "POST",
+		HTTPPath:   "/detector/{detectorId}/freeTrial/daysRemaining",
+	}
+
+	if input == nil {
+		input = &GetRemainingFreeTrialDaysInput{}
+	}
+
+	output = &GetRemainingFreeTrialDaysOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRemainingFreeTrialDays API operation for Amazon GuardDuty.
+//
+// Provides the number of days left for each data source used in the free trial
+// period.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon GuardDuty's
+// API operation GetRemainingFreeTrialDays for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   A bad request exception object.
+//
+//   * InternalServerErrorException
+//   An internal server error exception object.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/GetRemainingFreeTrialDays
+func (c *GuardDuty) GetRemainingFreeTrialDays(input *GetRemainingFreeTrialDaysInput) (*GetRemainingFreeTrialDaysOutput, error) {
+	req, out := c.GetRemainingFreeTrialDaysRequest(input)
+	return out, req.Send()
+}
+
+// GetRemainingFreeTrialDaysWithContext is the same as GetRemainingFreeTrialDays with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRemainingFreeTrialDays for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GuardDuty) GetRemainingFreeTrialDaysWithContext(ctx aws.Context, input *GetRemainingFreeTrialDaysInput, opts ...request.Option) (*GetRemainingFreeTrialDaysOutput, error) {
+	req, out := c.GetRemainingFreeTrialDaysRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetThreatIntelSet = "GetThreatIntelSet"
 
 // GetThreatIntelSetRequest generates a "aws/request.Request" representing the
@@ -2825,10 +3183,10 @@ func (c *GuardDuty) GetUsageStatisticsRequest(input *GetUsageStatisticsInput) (r
 // GetUsageStatistics API operation for Amazon GuardDuty.
 //
 // Lists Amazon GuardDuty usage statistics over the last 30 days for the specified
-// detector ID. For newly enabled detectors or data sources the cost returned
-// will include only the usage so far under 30 days, this may differ from the
-// cost metrics in the console, which projects usage over 30 days to provide
-// a monthly cost estimate. For more information see Understanding How Usage
+// detector ID. For newly enabled detectors or data sources, the cost returned
+// will include only the usage so far under 30 days. This may differ from the
+// cost metrics in the console, which project usage over 30 days to provide
+// a monthly cost estimate. For more information, see Understanding How Usage
 // Costs are Calculated (https://docs.aws.amazon.com/guardduty/latest/ug/monitoring_costs.html#usage-calculations).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5433,8 +5791,110 @@ func (c *GuardDuty) UpdateThreatIntelSetWithContext(ctx aws.Context, input *Upda
 	return out, req.Send()
 }
 
-type AcceptInvitationInput struct {
+type AcceptAdministratorInvitationInput struct {
 	_ struct{} `type:"structure"`
+
+	// The account ID of the GuardDuty administrator account whose invitation you're
+	// accepting.
+	//
+	// AdministratorId is a required field
+	AdministratorId *string `locationName:"administratorId" type:"string" required:"true"`
+
+	// The unique ID of the detector of the GuardDuty member account.
+	//
+	// DetectorId is a required field
+	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
+
+	// The value that is used to validate the administrator account to the member
+	// account.
+	//
+	// InvitationId is a required field
+	InvitationId *string `locationName:"invitationId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AcceptAdministratorInvitationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AcceptAdministratorInvitationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AcceptAdministratorInvitationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AcceptAdministratorInvitationInput"}
+	if s.AdministratorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AdministratorId"))
+	}
+	if s.DetectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DetectorId"))
+	}
+	if s.DetectorId != nil && len(*s.DetectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorId", 1))
+	}
+	if s.InvitationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InvitationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdministratorId sets the AdministratorId field's value.
+func (s *AcceptAdministratorInvitationInput) SetAdministratorId(v string) *AcceptAdministratorInvitationInput {
+	s.AdministratorId = &v
+	return s
+}
+
+// SetDetectorId sets the DetectorId field's value.
+func (s *AcceptAdministratorInvitationInput) SetDetectorId(v string) *AcceptAdministratorInvitationInput {
+	s.DetectorId = &v
+	return s
+}
+
+// SetInvitationId sets the InvitationId field's value.
+func (s *AcceptAdministratorInvitationInput) SetInvitationId(v string) *AcceptAdministratorInvitationInput {
+	s.InvitationId = &v
+	return s
+}
+
+type AcceptAdministratorInvitationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AcceptAdministratorInvitationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AcceptAdministratorInvitationOutput) GoString() string {
+	return s.String()
+}
+
+// Deprecated: This input is deprecated, use AcceptAdministratorInvitationRequest instead
+type AcceptInvitationInput struct {
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The unique ID of the detector of the GuardDuty member account.
 	//
@@ -5512,8 +5972,9 @@ func (s *AcceptInvitationInput) SetMasterId(v string) *AcceptInvitationInput {
 	return s
 }
 
+// Deprecated: This output is deprecated, use AcceptAdministratorInvitationResponse instead
 type AcceptInvitationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 }
 
 // String returns the string representation.
@@ -5703,6 +6164,47 @@ func (s *AccountDetail) SetEmail(v string) *AccountDetail {
 	return s
 }
 
+// Provides details of the GuardDuty member account that uses a free trial service.
+type AccountFreeTrialInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The account identifier of the GuardDuty member account.
+	AccountId *string `locationName:"accountId" type:"string"`
+
+	// Describes the data source enabled for the GuardDuty member account.
+	DataSources *DataSourcesFreeTrial `locationName:"dataSources" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountFreeTrialInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountFreeTrialInfo) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AccountFreeTrialInfo) SetAccountId(v string) *AccountFreeTrialInfo {
+	s.AccountId = &v
+	return s
+}
+
+// SetDataSources sets the DataSources field's value.
+func (s *AccountFreeTrialInfo) SetDataSources(v *DataSourcesFreeTrial) *AccountFreeTrialInfo {
+	s.DataSources = v
+	return s
+}
+
 // Contains information about the account level permissions on the S3 bucket.
 type AccountLevelPermissions struct {
 	_ struct{} `type:"structure"`
@@ -5854,6 +6356,66 @@ func (s *AdminAccount) SetAdminStatus(v string) *AdminAccount {
 	return s
 }
 
+// Contains information about the administrator account and invitation.
+type Administrator struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the account used as the administrator account.
+	AccountId *string `locationName:"accountId" min:"12" type:"string"`
+
+	// The value that is used to validate the administrator account to the member
+	// account.
+	InvitationId *string `locationName:"invitationId" type:"string"`
+
+	// The timestamp when the invitation was sent.
+	InvitedAt *string `locationName:"invitedAt" type:"string"`
+
+	// The status of the relationship between the administrator and member accounts.
+	RelationshipStatus *string `locationName:"relationshipStatus" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Administrator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Administrator) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *Administrator) SetAccountId(v string) *Administrator {
+	s.AccountId = &v
+	return s
+}
+
+// SetInvitationId sets the InvitationId field's value.
+func (s *Administrator) SetInvitationId(v string) *Administrator {
+	s.InvitationId = &v
+	return s
+}
+
+// SetInvitedAt sets the InvitedAt field's value.
+func (s *Administrator) SetInvitedAt(v string) *Administrator {
+	s.InvitedAt = &v
+	return s
+}
+
+// SetRelationshipStatus sets the RelationshipStatus field's value.
+func (s *Administrator) SetRelationshipStatus(v string) *Administrator {
+	s.RelationshipStatus = &v
+	return s
+}
+
 type ArchiveFindingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5944,6 +6506,10 @@ func (s ArchiveFindingsOutput) GoString() string {
 type AwsApiCallAction struct {
 	_ struct{} `type:"structure"`
 
+	// The details of the Amazon Web Services account that made the API call. This
+	// field identifies the resources that were affected by this API call.
+	AffectedResources map[string]*string `locationName:"affectedResources" type:"map"`
+
 	// The Amazon Web Services API name.
 	Api *string `locationName:"api" type:"string"`
 
@@ -5987,6 +6553,12 @@ func (s AwsApiCallAction) String() string {
 // value will be replaced with "sensitive".
 func (s AwsApiCallAction) GoString() string {
 	return s.String()
+}
+
+// SetAffectedResources sets the AffectedResources field's value.
+func (s *AwsApiCallAction) SetAffectedResources(v map[string]*string) *AwsApiCallAction {
+	s.AffectedResources = v
+	return s
 }
 
 // SetApi sets the Api field's value.
@@ -7858,6 +8430,109 @@ func (s *DataSourceConfigurationsResult) SetS3Logs(v *S3LogsConfigurationResult)
 	return s
 }
 
+// Contains information about which data sources are enabled for the GuardDuty
+// member account.
+type DataSourceFreeTrial struct {
+	_ struct{} `type:"structure"`
+
+	// A value that specifies the number of days left to use each enabled data source.
+	FreeTrialDaysRemaining *int64 `locationName:"freeTrialDaysRemaining" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceFreeTrial) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceFreeTrial) GoString() string {
+	return s.String()
+}
+
+// SetFreeTrialDaysRemaining sets the FreeTrialDaysRemaining field's value.
+func (s *DataSourceFreeTrial) SetFreeTrialDaysRemaining(v int64) *DataSourceFreeTrial {
+	s.FreeTrialDaysRemaining = &v
+	return s
+}
+
+// Contains information about which data sources are enabled for the GuardDuty
+// member account.
+type DataSourcesFreeTrial struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether any AWS CloudTrail management event logs are enabled as
+	// data sources.
+	CloudTrail *DataSourceFreeTrial `locationName:"cloudTrail" type:"structure"`
+
+	// Describes whether any DNS logs are enabled as data sources.
+	DnsLogs *DataSourceFreeTrial `locationName:"dnsLogs" type:"structure"`
+
+	// Describes whether any VPC Flow logs are enabled as data sources.
+	FlowLogs *DataSourceFreeTrial `locationName:"flowLogs" type:"structure"`
+
+	// Describes whether any Kubernetes logs are enabled as data sources.
+	Kubernetes *KubernetesDataSourceFreeTrial `locationName:"kubernetes" type:"structure"`
+
+	// Describes whether any S3 data event logs are enabled as data sources.
+	S3Logs *DataSourceFreeTrial `locationName:"s3Logs" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourcesFreeTrial) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourcesFreeTrial) GoString() string {
+	return s.String()
+}
+
+// SetCloudTrail sets the CloudTrail field's value.
+func (s *DataSourcesFreeTrial) SetCloudTrail(v *DataSourceFreeTrial) *DataSourcesFreeTrial {
+	s.CloudTrail = v
+	return s
+}
+
+// SetDnsLogs sets the DnsLogs field's value.
+func (s *DataSourcesFreeTrial) SetDnsLogs(v *DataSourceFreeTrial) *DataSourcesFreeTrial {
+	s.DnsLogs = v
+	return s
+}
+
+// SetFlowLogs sets the FlowLogs field's value.
+func (s *DataSourcesFreeTrial) SetFlowLogs(v *DataSourceFreeTrial) *DataSourcesFreeTrial {
+	s.FlowLogs = v
+	return s
+}
+
+// SetKubernetes sets the Kubernetes field's value.
+func (s *DataSourcesFreeTrial) SetKubernetes(v *KubernetesDataSourceFreeTrial) *DataSourcesFreeTrial {
+	s.Kubernetes = v
+	return s
+}
+
+// SetS3Logs sets the S3Logs field's value.
+func (s *DataSourcesFreeTrial) SetS3Logs(v *DataSourceFreeTrial) *DataSourcesFreeTrial {
+	s.S3Logs = v
+	return s
+}
+
 type DeclineInvitationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9017,8 +9692,80 @@ func (s DisableOrganizationAdminAccountOutput) GoString() string {
 	return s.String()
 }
 
-type DisassociateFromMasterAccountInput struct {
+type DisassociateFromAdministratorAccountInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique ID of the detector of the GuardDuty member account.
+	//
+	// DetectorId is a required field
+	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateFromAdministratorAccountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateFromAdministratorAccountInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateFromAdministratorAccountInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateFromAdministratorAccountInput"}
+	if s.DetectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DetectorId"))
+	}
+	if s.DetectorId != nil && len(*s.DetectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDetectorId sets the DetectorId field's value.
+func (s *DisassociateFromAdministratorAccountInput) SetDetectorId(v string) *DisassociateFromAdministratorAccountInput {
+	s.DetectorId = &v
+	return s
+}
+
+type DisassociateFromAdministratorAccountOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateFromAdministratorAccountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateFromAdministratorAccountOutput) GoString() string {
+	return s.String()
+}
+
+// Deprecated: This input is deprecated, use DisassociateFromAdministratorAccountRequest instead
+type DisassociateFromMasterAccountInput struct {
+	_ struct{} `deprecated:"true" type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector of the GuardDuty member account.
 	//
@@ -9066,8 +9813,9 @@ func (s *DisassociateFromMasterAccountInput) SetDetectorId(v string) *Disassocia
 	return s
 }
 
+// Deprecated: This output is deprecated, use DisassociateFromAdministratorAccountResponse instead
 type DisassociateFromMasterAccountOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 }
 
 // String returns the string representation.
@@ -9194,8 +9942,15 @@ func (s *DisassociateMembersOutput) SetUnprocessedAccounts(v []*UnprocessedAccou
 type DnsRequestAction struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether the targeted port is blocked.
+	Blocked *bool `locationName:"blocked" type:"boolean"`
+
 	// The domain information for the API request.
 	Domain *string `locationName:"domain" type:"string"`
+
+	// The network connection protocol observed in the activity that prompted GuardDuty
+	// to generate the finding.
+	Protocol *string `locationName:"protocol" type:"string"`
 }
 
 // String returns the string representation.
@@ -9216,9 +9971,21 @@ func (s DnsRequestAction) GoString() string {
 	return s.String()
 }
 
+// SetBlocked sets the Blocked field's value.
+func (s *DnsRequestAction) SetBlocked(v bool) *DnsRequestAction {
+	s.Blocked = &v
+	return s
+}
+
 // SetDomain sets the Domain field's value.
 func (s *DnsRequestAction) SetDomain(v string) *DnsRequestAction {
 	s.Domain = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *DnsRequestAction) SetProtocol(v string) *DnsRequestAction {
+	s.Protocol = &v
 	return s
 }
 
@@ -9749,6 +10516,88 @@ func (s *GeoLocation) SetLat(v float64) *GeoLocation {
 // SetLon sets the Lon field's value.
 func (s *GeoLocation) SetLon(v float64) *GeoLocation {
 	s.Lon = &v
+	return s
+}
+
+type GetAdministratorAccountInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique ID of the detector of the GuardDuty member account.
+	//
+	// DetectorId is a required field
+	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAdministratorAccountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAdministratorAccountInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAdministratorAccountInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAdministratorAccountInput"}
+	if s.DetectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DetectorId"))
+	}
+	if s.DetectorId != nil && len(*s.DetectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDetectorId sets the DetectorId field's value.
+func (s *GetAdministratorAccountInput) SetDetectorId(v string) *GetAdministratorAccountInput {
+	s.DetectorId = &v
+	return s
+}
+
+type GetAdministratorAccountOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The administrator account details.
+	//
+	// Administrator is a required field
+	Administrator *Administrator `locationName:"administrator" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAdministratorAccountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAdministratorAccountOutput) GoString() string {
+	return s.String()
+}
+
+// SetAdministrator sets the Administrator field's value.
+func (s *GetAdministratorAccountOutput) SetAdministrator(v *Administrator) *GetAdministratorAccountOutput {
+	s.Administrator = v
 	return s
 }
 
@@ -10446,8 +11295,9 @@ func (s *GetInvitationsCountOutput) SetInvitationsCount(v int64) *GetInvitations
 	return s
 }
 
+// Deprecated: This input is deprecated, use GetAdministratorAccountRequest instead
 type GetMasterAccountInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `deprecated:"true" type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector of the GuardDuty member account.
 	//
@@ -10495,8 +11345,9 @@ func (s *GetMasterAccountInput) SetDetectorId(v string) *GetMasterAccountInput {
 	return s
 }
 
+// Deprecated: This output is deprecated, use GetAdministratorAccountResponse instead
 type GetMasterAccountOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The administrator account details.
 	//
@@ -10747,6 +11598,108 @@ func (s *GetMembersOutput) SetMembers(v []*Member) *GetMembersOutput {
 
 // SetUnprocessedAccounts sets the UnprocessedAccounts field's value.
 func (s *GetMembersOutput) SetUnprocessedAccounts(v []*UnprocessedAccount) *GetMembersOutput {
+	s.UnprocessedAccounts = v
+	return s
+}
+
+type GetRemainingFreeTrialDaysInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of account identifiers of the GuardDuty member account.
+	AccountIds []*string `locationName:"accountIds" min:"1" type:"list"`
+
+	// The unique ID of the detector of the GuardDuty member account.
+	//
+	// DetectorId is a required field
+	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRemainingFreeTrialDaysInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRemainingFreeTrialDaysInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRemainingFreeTrialDaysInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRemainingFreeTrialDaysInput"}
+	if s.AccountIds != nil && len(s.AccountIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountIds", 1))
+	}
+	if s.DetectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DetectorId"))
+	}
+	if s.DetectorId != nil && len(*s.DetectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *GetRemainingFreeTrialDaysInput) SetAccountIds(v []*string) *GetRemainingFreeTrialDaysInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetDetectorId sets the DetectorId field's value.
+func (s *GetRemainingFreeTrialDaysInput) SetDetectorId(v string) *GetRemainingFreeTrialDaysInput {
+	s.DetectorId = &v
+	return s
+}
+
+type GetRemainingFreeTrialDaysOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The member accounts which were included in a request and were processed successfully.
+	Accounts []*AccountFreeTrialInfo `locationName:"accounts" type:"list"`
+
+	// The member account that was included in a request but for which the request
+	// could not be processed.
+	UnprocessedAccounts []*UnprocessedAccount `locationName:"unprocessedAccounts" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRemainingFreeTrialDaysOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRemainingFreeTrialDaysOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccounts sets the Accounts field's value.
+func (s *GetRemainingFreeTrialDaysOutput) SetAccounts(v []*AccountFreeTrialInfo) *GetRemainingFreeTrialDaysOutput {
+	s.Accounts = v
+	return s
+}
+
+// SetUnprocessedAccounts sets the UnprocessedAccounts field's value.
+func (s *GetRemainingFreeTrialDaysOutput) SetUnprocessedAccounts(v []*UnprocessedAccount) *GetRemainingFreeTrialDaysOutput {
 	s.UnprocessedAccounts = v
 	return s
 }
@@ -11768,6 +12721,39 @@ func (s KubernetesConfigurationResult) GoString() string {
 
 // SetAuditLogs sets the AuditLogs field's value.
 func (s *KubernetesConfigurationResult) SetAuditLogs(v *KubernetesAuditLogsConfigurationResult) *KubernetesConfigurationResult {
+	s.AuditLogs = v
+	return s
+}
+
+// Provides details about the Kubernetes resources when it is enabled as a data
+// source.
+type KubernetesDataSourceFreeTrial struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether Kubernetes audit logs are enabled as a data source.
+	AuditLogs *DataSourceFreeTrial `locationName:"auditLogs" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesDataSourceFreeTrial) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesDataSourceFreeTrial) GoString() string {
+	return s.String()
+}
+
+// SetAuditLogs sets the AuditLogs field's value.
+func (s *KubernetesDataSourceFreeTrial) SetAuditLogs(v *DataSourceFreeTrial) *KubernetesDataSourceFreeTrial {
 	s.AuditLogs = v
 	return s
 }
@@ -13296,6 +14282,9 @@ type Member struct {
 	// AccountId is a required field
 	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
 
+	// The administrator account ID.
+	AdministratorId *string `locationName:"administratorId" type:"string"`
+
 	// The detector ID of the member account.
 	DetectorId *string `locationName:"detectorId" min:"1" type:"string"`
 
@@ -13344,6 +14333,12 @@ func (s Member) GoString() string {
 // SetAccountId sets the AccountId field's value.
 func (s *Member) SetAccountId(v string) *Member {
 	s.AccountId = &v
+	return s
+}
+
+// SetAdministratorId sets the AdministratorId field's value.
+func (s *Member) SetAdministratorId(v string) *Member {
+	s.AdministratorId = &v
 	return s
 }
 
@@ -14264,10 +15259,10 @@ type ProductCode struct {
 	_ struct{} `type:"structure"`
 
 	// The product code information.
-	Code *string `locationName:"code" type:"string"`
+	Code *string `locationName:"productCodeId" type:"string"`
 
 	// The product code type.
-	ProductType *string `locationName:"productType" type:"string"`
+	ProductType *string `locationName:"productCodeType" type:"string"`
 }
 
 // String returns the string representation.
@@ -14833,6 +15828,9 @@ type Service struct {
 	// Information about the activity that is described in a finding.
 	Action *Action `locationName:"action" type:"structure"`
 
+	// Contains additional information about the generated finding.
+	AdditionalInfo *ServiceAdditionalInfo `locationName:"additionalInfo" type:"structure"`
+
 	// Indicates whether this finding is archived.
 	Archived *bool `locationName:"archived" type:"boolean"`
 
@@ -14888,6 +15886,12 @@ func (s *Service) SetAction(v *Action) *Service {
 	return s
 }
 
+// SetAdditionalInfo sets the AdditionalInfo field's value.
+func (s *Service) SetAdditionalInfo(v *ServiceAdditionalInfo) *Service {
+	s.AdditionalInfo = v
+	return s
+}
+
 // SetArchived sets the Archived field's value.
 func (s *Service) SetArchived(v bool) *Service {
 	s.Archived = &v
@@ -14939,6 +15943,47 @@ func (s *Service) SetServiceName(v string) *Service {
 // SetUserFeedback sets the UserFeedback field's value.
 func (s *Service) SetUserFeedback(v string) *Service {
 	s.UserFeedback = &v
+	return s
+}
+
+// Additional information about the generated finding.
+type ServiceAdditionalInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the type of the additional information.
+	Type *string `locationName:"type" type:"string"`
+
+	// This field specifies the value of the additional information.
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceAdditionalInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceAdditionalInfo) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *ServiceAdditionalInfo) SetType(v string) *ServiceAdditionalInfo {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ServiceAdditionalInfo) SetValue(v string) *ServiceAdditionalInfo {
+	s.Value = &v
 	return s
 }
 

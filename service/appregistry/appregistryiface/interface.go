@@ -132,6 +132,13 @@ type AppRegistryAPI interface {
 	ListAttributeGroupsPages(*appregistry.ListAttributeGroupsInput, func(*appregistry.ListAttributeGroupsOutput, bool) bool) error
 	ListAttributeGroupsPagesWithContext(aws.Context, *appregistry.ListAttributeGroupsInput, func(*appregistry.ListAttributeGroupsOutput, bool) bool, ...request.Option) error
 
+	ListAttributeGroupsForApplication(*appregistry.ListAttributeGroupsForApplicationInput) (*appregistry.ListAttributeGroupsForApplicationOutput, error)
+	ListAttributeGroupsForApplicationWithContext(aws.Context, *appregistry.ListAttributeGroupsForApplicationInput, ...request.Option) (*appregistry.ListAttributeGroupsForApplicationOutput, error)
+	ListAttributeGroupsForApplicationRequest(*appregistry.ListAttributeGroupsForApplicationInput) (*request.Request, *appregistry.ListAttributeGroupsForApplicationOutput)
+
+	ListAttributeGroupsForApplicationPages(*appregistry.ListAttributeGroupsForApplicationInput, func(*appregistry.ListAttributeGroupsForApplicationOutput, bool) bool) error
+	ListAttributeGroupsForApplicationPagesWithContext(aws.Context, *appregistry.ListAttributeGroupsForApplicationInput, func(*appregistry.ListAttributeGroupsForApplicationOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*appregistry.ListTagsForResourceInput) (*appregistry.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *appregistry.ListTagsForResourceInput, ...request.Option) (*appregistry.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*appregistry.ListTagsForResourceInput) (*request.Request, *appregistry.ListTagsForResourceOutput)
