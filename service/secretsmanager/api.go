@@ -1120,6 +1120,10 @@ func (c *SecretsManager) ListSecretsRequest(input *ListSecretsInput) (req *reque
 // account, not including secrets that are marked for deletion. To see secrets
 // marked for deletion, use the Secrets Manager console.
 //
+// ListSecrets is eventually consistent, however it might not reflect changes
+// from the last five minutes. To get the latest information for a specific
+// secret, use DescribeSecret.
+//
 // To list the versions of a secret, use ListSecretVersionIds.
 //
 // To get the secret value from SecretString or SecretBinary, call GetSecretValue.
@@ -1400,11 +1404,11 @@ func (c *SecretsManager) PutSecretValueRequest(input *PutSecretValueInput) (req 
 // to this version, then Secrets Manager also automatically moves the staging
 // label AWSPREVIOUS to the version that AWSCURRENT was removed from.
 //
-// This operation is idempotent. If a version with a VersionId with the same
-// value as the ClientRequestToken parameter already exists, and you specify
-// the same secret data, the operation succeeds but does nothing. However, if
-// the secret data is different, then the operation fails because you can't
-// modify an existing version; you can only create new ones.
+// This operation is idempotent. If you call this operation with a ClientRequestToken
+// that matches an existing version's VersionId, and you specify the same secret
+// data, the operation succeeds but does nothing. However, if the secret data
+// is different, then the operation fails because you can't modify an existing
+// version; you can only create new ones.
 //
 // Required permissions: secretsmanager:PutSecretValue. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -2313,9 +2317,9 @@ func (c *SecretsManager) UpdateSecretRequest(input *UpdateSecretInput) (req *req
 // Secrets Manager automatically attaches the staging label AWSCURRENT to the
 // new version.
 //
-// If you call this operation with a VersionId that matches an existing version's
-// ClientRequestToken, the operation results in an error. You can't modify an
-// existing version, you can only create a new version. To remove a version,
+// If you call this operation with a ClientRequestToken that matches an existing
+// version's VersionId, the operation results in an error. You can't modify
+// an existing version, you can only create a new version. To remove a version,
 // remove all staging labels from it. See UpdateSecretVersionStage.
 //
 // If you don't specify an KMS encryption key, Secrets Manager uses the Amazon

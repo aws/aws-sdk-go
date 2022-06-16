@@ -455,6 +455,30 @@
         "AwsCertificateManagerCertificateDomainValidationOption$ResourceRecord": "<p>The CNAME record that is added to the DNS database for domain validation.</p>"
       }
     },
+    "AwsCloudFormationStackDetails": {
+      "base": "<p>Nests a stack as a resource in a top-level template. Nested stacks are stacks created as resources for another stack.</p>",
+      "refs": {
+        "ResourceDetails$AwsCloudFormationStack": "<p>Details about an CloudFormation stack. A stack is a collection of Amazon Web Services resources that you can manage as a single unit.</p>"
+      }
+    },
+    "AwsCloudFormationStackDriftInformationDetails": {
+      "base": "<p>Provides information about the stack's conformity to its expected template configuration. </p>",
+      "refs": {
+        "AwsCloudFormationStackDetails$DriftInformation": "<p>Information about whether a stack's actual configuration differs, or has drifted, from its expected configuration, as defined in the stack template and any values specified as template parameters. </p>"
+      }
+    },
+    "AwsCloudFormationStackOutputsDetails": {
+      "base": "<p>Provides information about the CloudFormation stack output. </p>",
+      "refs": {
+        "AwsCloudFormationStackOutputsList$member": null
+      }
+    },
+    "AwsCloudFormationStackOutputsList": {
+      "base": null,
+      "refs": {
+        "AwsCloudFormationStackDetails$Outputs": "<p>A list of output structures. </p>"
+      }
+    },
     "AwsCloudFrontDistributionCacheBehavior": {
       "base": "<p>Information about a cache behavior for the distribution.</p>",
       "refs": {
@@ -462,7 +486,7 @@
       }
     },
     "AwsCloudFrontDistributionCacheBehaviors": {
-      "base": "<p>Provides information about caching for the distribution.</p>",
+      "base": "<p>Provides information about caching for the CloudFront distribution.</p>",
       "refs": {
         "AwsCloudFrontDistributionDetails$CacheBehaviors": "<p>Provides information about the cache configuration for the distribution.</p>"
       }
@@ -474,25 +498,31 @@
       }
     },
     "AwsCloudFrontDistributionDefaultCacheBehavior": {
-      "base": "<p>Contains information about the default cache configuration for the distribution.</p>",
+      "base": "<p>Contains information about the default cache configuration for the CloudFront distribution.</p>",
       "refs": {
         "AwsCloudFrontDistributionDetails$DefaultCacheBehavior": "<p>The default cache behavior for the configuration.</p>"
       }
     },
     "AwsCloudFrontDistributionDetails": {
-      "base": "<p>A distribution configuration.</p>",
+      "base": "<p>A CloudFront distribution configuration.</p>",
       "refs": {
         "ResourceDetails$AwsCloudFrontDistribution": "<p>Details about a CloudFront distribution.</p>"
       }
     },
     "AwsCloudFrontDistributionLogging": {
-      "base": "<p>A complex type that controls whether access logs are written for the distribution.</p>",
+      "base": "<p>A complex type that controls whether access logs are written for the CloudFront distribution.</p>",
       "refs": {
         "AwsCloudFrontDistributionDetails$Logging": "<p>A complex type that controls whether access logs are written for the distribution.</p>"
       }
     },
+    "AwsCloudFrontDistributionOriginCustomOriginConfig": {
+      "base": "<p>A custom origin. A custom origin is any origin that is not an Amazon S3 bucket, with one exception. An Amazon S3 bucket that is <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html\">configured with static website hosting</a> is a custom origin. </p>",
+      "refs": {
+        "AwsCloudFrontDistributionOriginItem$CustomOriginConfig": "<p>An origin that is not an Amazon S3 bucket, with one exception. If the Amazon S3 bucket is configured with static website hosting, use this attribute. If the Amazon S3 bucket is not configured with static website hosting, use the <code>S3OriginConfig</code> type instead. </p>"
+      }
+    },
     "AwsCloudFrontDistributionOriginGroup": {
-      "base": "<p>Information about an origin group for the distribution.</p>",
+      "base": "<p>Information about an origin group for the CloudFront distribution.</p>",
       "refs": {
         "AwsCloudFrontDistributionOriginGroupsItemList$member": null
       }
@@ -516,7 +546,7 @@
       }
     },
     "AwsCloudFrontDistributionOriginGroups": {
-      "base": "<p>Provides information about origin groups that are associated with the distribution.</p>",
+      "base": "<p>Provides information about origin groups that are associated with the CloudFront distribution.</p>",
       "refs": {
         "AwsCloudFrontDistributionDetails$OriginGroups": "<p>Provides information about the origin groups in the distribution.</p>"
       }
@@ -528,7 +558,7 @@
       }
     },
     "AwsCloudFrontDistributionOriginItem": {
-      "base": "<p>A complex type that describes the S3 bucket, HTTP server (for example, a web server), AWS Elemental MediaStore, or other server from which CloudFront gets your files.</p>",
+      "base": "<p>A complex type that describes the Amazon S3 bucket, HTTP server (for example, a web server), AWS Elemental MediaStore, or other server from which CloudFront gets your files.</p>",
       "refs": {
         "AwsCloudFrontDistributionOriginItemList$member": null
       }
@@ -540,19 +570,25 @@
       }
     },
     "AwsCloudFrontDistributionOriginS3OriginConfig": {
-      "base": "<p>Information about an origin that is an S3 bucket that is not configured with static website hosting.</p>",
+      "base": "<p>Information about an origin that is an Amazon S3 bucket that is not configured with static website hosting.</p>",
       "refs": {
         "AwsCloudFrontDistributionOriginItem$S3OriginConfig": "<p>An origin that is an S3 bucket that is not configured with static website hosting.</p>"
       }
     },
+    "AwsCloudFrontDistributionOriginSslProtocols": {
+      "base": "<p>A complex type that contains information about the SSL/TLS protocols that CloudFront can use when establishing an HTTPS connection with your origin. </p>",
+      "refs": {
+        "AwsCloudFrontDistributionOriginCustomOriginConfig$OriginSslProtocols": "<p>Specifies the minimum SSL/TLS protocol that CloudFront uses when connecting to your origin over HTTPS. </p>"
+      }
+    },
     "AwsCloudFrontDistributionOrigins": {
-      "base": "<p>A complex type that contains information about origins and origin groups for this distribution.</p>",
+      "base": "<p>A complex type that contains information about origins and origin groups for this CloudFront distribution.</p>",
       "refs": {
         "AwsCloudFrontDistributionDetails$Origins": "<p>A complex type that contains information about origins for this distribution.</p>"
       }
     },
     "AwsCloudFrontDistributionViewerCertificate": {
-      "base": "<p>Provides information about the TLS/SSL configuration that the distribution uses to communicate with viewers.</p>",
+      "base": "<p>Provides information about the TLS/SSL configuration that the CloudFront distribution uses to communicate with viewers.</p>",
       "refs": {
         "AwsCloudFrontDistributionDetails$ViewerCertificate": "<p>Provides information about the TLS/SSL configuration that the distribution uses to communicate with viewers.</p>"
       }
@@ -561,6 +597,24 @@
       "base": "<p>Provides details about a CloudTrail trail.</p>",
       "refs": {
         "ResourceDetails$AwsCloudTrailTrail": "<p>Provides details about a CloudTrail trail.</p>"
+      }
+    },
+    "AwsCloudWatchAlarmDetails": {
+      "base": "<p>Specifies an alarm and associates it with the specified metric or metric math expression. </p>",
+      "refs": {
+        "ResourceDetails$AwsCloudWatchAlarm": "<p>Details about an Amazon CloudWatch alarm. An alarm allows you to monitor and receive alerts about your Amazon Web Services resources and applications across multiple Regions.</p>"
+      }
+    },
+    "AwsCloudWatchAlarmDimensionsDetails": {
+      "base": "<p>Details about the dimensions for the metric associated with the alarm. </p>",
+      "refs": {
+        "AwsCloudWatchAlarmDimensionsList$member": null
+      }
+    },
+    "AwsCloudWatchAlarmDimensionsList": {
+      "base": null,
+      "refs": {
+        "AwsCloudWatchAlarmDetails$Dimensions": "<p>The dimensions for the metric associated with the alarm. </p>"
       }
     },
     "AwsCodeBuildProjectArtifactsDetails": {
@@ -774,13 +828,19 @@
       }
     },
     "AwsEc2InstanceDetails": {
-      "base": "<p>The details of an EC2 instance.</p>",
+      "base": "<p>The details of an Amazon EC2 instance.</p>",
       "refs": {
         "ResourceDetails$AwsEc2Instance": "<p>Details about an EC2 instance related to a finding.</p>"
       }
     },
+    "AwsEc2InstanceMetadataOptions": {
+      "base": "<p>Metadata options that allow you to configure and secure the Amazon EC2 instance.</p>",
+      "refs": {
+        "AwsEc2InstanceDetails$MetadataOptions": "<p>Details about the metadata options for the Amazon EC2 instance. </p>"
+      }
+    },
     "AwsEc2InstanceNetworkInterfacesDetails": {
-      "base": "<p>Identifies a network interface for the EC2 instance.</p>",
+      "base": "<p>Identifies a network interface for the Amazon EC2 instance.</p>",
       "refs": {
         "AwsEc2InstanceNetworkInterfacesList$member": null
       }
@@ -804,7 +864,7 @@
       }
     },
     "AwsEc2NetworkAclDetails": {
-      "base": "<p>Contains details about an EC2 network access control list (ACL).</p>",
+      "base": "<p>Contains details about an Amazon EC2 network access control list (ACL).</p>",
       "refs": {
         "ResourceDetails$AwsEc2NetworkAcl": "<p>Details about an EC2 network access control list (ACL).</p>"
       }
@@ -870,7 +930,7 @@
       }
     },
     "AwsEc2SecurityGroupDetails": {
-      "base": "<p>Details about an EC2 security group.</p>",
+      "base": "<p>Details about an Amazon EC2 security group.</p>",
       "refs": {
         "ResourceDetails$AwsEc2SecurityGroup": "<p>Details for an EC2 security group.</p>"
       }
@@ -942,6 +1002,12 @@
         "ResourceDetails$AwsEc2Subnet": "<p>Details about a subnet in Amazon EC2.</p>"
       }
     },
+    "AwsEc2TransitGatewayDetails": {
+      "base": "<p>Information about an Amazon Web Services Amazon EC2 Transit Gateway that interconnects virtual private clouds (VPCs) and on-premises networks. </p>",
+      "refs": {
+        "ResourceDetails$AwsEc2TransitGateway": "<p>Details about an Amazon EC2 transit gateway that interconnects your virtual private clouds (VPC) and on-premises networks.</p>"
+      }
+    },
     "AwsEc2VolumeAttachment": {
       "base": "<p>An attachment to an Amazon EC2 volume.</p>",
       "refs": {
@@ -957,13 +1023,13 @@
     "AwsEc2VolumeDetails": {
       "base": "<p>Details about an EC2 volume.</p>",
       "refs": {
-        "ResourceDetails$AwsEc2Volume": "<p>Details for an EC2 volume.</p>"
+        "ResourceDetails$AwsEc2Volume": "<p>Details for an Amazon EC2 volume.</p>"
       }
     },
     "AwsEc2VpcDetails": {
       "base": "<p>Details about an EC2 VPC.</p>",
       "refs": {
-        "ResourceDetails$AwsEc2Vpc": "<p>Details for an EC2 VPC.</p>"
+        "ResourceDetails$AwsEc2Vpc": "<p>Details for an Amazon EC2 VPC.</p>"
       }
     },
     "AwsEc2VpcEndpointServiceDetails": {
@@ -984,10 +1050,29 @@
         "AwsEc2VpcEndpointServiceDetails$ServiceType": "<p>The types for the service.</p>"
       }
     },
+    "AwsEc2VpcPeeringConnectionDetails": {
+      "base": "<p>Provides information about a VPC peering connection between two VPCs: a requester VPC that you own and an accepter VPC with which to create the connection. </p>",
+      "refs": {
+        "ResourceDetails$AwsEc2VpcPeeringConnection": "<p>Details about an Amazon EC2 VPC peering connection. A VPC peering connection is a networking connection between two VPCs that enables you to route traffic between them privately. </p>"
+      }
+    },
+    "AwsEc2VpcPeeringConnectionStatusDetails": {
+      "base": "<p>Details about the status of the VPC peering connection. </p>",
+      "refs": {
+        "AwsEc2VpcPeeringConnectionDetails$Status": "<p>The status of the VPC peering connection. </p>"
+      }
+    },
+    "AwsEc2VpcPeeringConnectionVpcInfoDetails": {
+      "base": "<p>Describes a VPC in a VPC peering connection. </p>",
+      "refs": {
+        "AwsEc2VpcPeeringConnectionDetails$AccepterVpcInfo": "<p>Information about the accepter VPC. </p>",
+        "AwsEc2VpcPeeringConnectionDetails$RequesterVpcInfo": "<p>Information about the requester VPC. </p>"
+      }
+    },
     "AwsEc2VpnConnectionDetails": {
       "base": "<p>Details about an Amazon EC2 VPN connection.</p>",
       "refs": {
-        "ResourceDetails$AwsEc2VpnConnection": "<p>Details about an EC2 VPN connection.</p>"
+        "ResourceDetails$AwsEc2VpnConnection": "<p>Details about an Amazon EC2 VPN connection.</p>"
       }
     },
     "AwsEc2VpnConnectionOptionsDetails": {
@@ -1099,9 +1184,22 @@
       }
     },
     "AwsEcsClusterDetails": {
-      "base": "<p>provides details about an ECS cluster.</p>",
+      "base": "<p>Provides details about an Amazon ECS cluster.</p>",
       "refs": {
-        "ResourceDetails$AwsEcsCluster": "<p>Details about an ECS cluster.</p>"
+        "ResourceDetails$AwsEcsCluster": "<p>Details about an Amazon ECS cluster.</p>"
+      }
+    },
+    "AwsEcsContainerDetails": {
+      "base": "<p>Provides information about an Amazon ECS container. </p>",
+      "refs": {
+        "AwsEcsContainerDetailsList$member": null,
+        "ResourceDetails$AwsEcsContainer": "<p>Provides information about a Docker container that's part of a task. </p>"
+      }
+    },
+    "AwsEcsContainerDetailsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDetails$Containers": "<p>The containers that are associated with the task. </p>"
       }
     },
     "AwsEcsServiceCapacityProviderStrategyDetails": {
@@ -1417,7 +1515,7 @@
       }
     },
     "AwsEcsTaskDefinitionDetails": {
-      "base": "<p>details about a task definition. A task definition describes the container and volume definitions of an Amazon Elastic Container Service task.</p>",
+      "base": "<p>Details about a task definition. A task definition describes the container and volume definitions of an Amazon Elastic Container Service task.</p>",
       "refs": {
         "ResourceDetails$AwsEcsTaskDefinition": "<p>Details about a task definition. A task definition describes the container and volume definitions of an Amazon Elastic Container Service task.</p>"
       }
@@ -1498,6 +1596,54 @@
       "base": null,
       "refs": {
         "AwsEcsTaskDefinitionDetails$Volumes": "<p>The data volume definitions for the task.</p>"
+      }
+    },
+    "AwsEcsTaskDetails": {
+      "base": "<p>Provides details about a task in a cluster. </p>",
+      "refs": {
+        "ResourceDetails$AwsEcsTask": "<p>Details about a task in a cluster. </p>"
+      }
+    },
+    "AwsEcsTaskVolumeDetails": {
+      "base": "<p>Provides information about a data volume that's used in a task definition. </p>",
+      "refs": {
+        "AwsEcsTaskVolumeDetailsList$member": null
+      }
+    },
+    "AwsEcsTaskVolumeDetailsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDetails$Volumes": "<p>Details about the data volume that is used in a task definition. </p>"
+      }
+    },
+    "AwsEcsTaskVolumeHostDetails": {
+      "base": "<p>Provides details on a container instance bind mount host volume. </p>",
+      "refs": {
+        "AwsEcsTaskVolumeDetails$Host": "<p>This parameter is specified when you use bind mount host volumes. The contents of the <code>host</code> parameter determine whether your bind mount host volume persists on the host container instance and where it's stored. </p>"
+      }
+    },
+    "AwsEfsAccessPointDetails": {
+      "base": "<p>Provides information about an Amazon EFS access point. </p>",
+      "refs": {
+        "ResourceDetails$AwsEfsAccessPoint": "<p>Details about an Amazon EFS access point. An access point is an application-specific view into an EFS file system that applies an operating system user and group, and a file system path, to any file system request made through the access point. </p>"
+      }
+    },
+    "AwsEfsAccessPointPosixUserDetails": {
+      "base": "<p>Provides details for all file system operations using this Amazon EFS access point. </p>",
+      "refs": {
+        "AwsEfsAccessPointDetails$PosixUser": "<p>The full POSIX identity, including the user ID, group ID, and secondary group IDs on the access point, that is used for all file operations by NFS clients using the access point. </p>"
+      }
+    },
+    "AwsEfsAccessPointRootDirectoryCreationInfoDetails": {
+      "base": "<p>Provides information about the settings that Amazon EFS uses to create the root directory when a client connects to an access point. </p>",
+      "refs": {
+        "AwsEfsAccessPointRootDirectoryDetails$CreationInfo": "<p>Specifies the POSIX IDs and permissions to apply to the access point's root directory. </p>"
+      }
+    },
+    "AwsEfsAccessPointRootDirectoryDetails": {
+      "base": "<p>Provides information about the directory on the Amazon EFS file system that the access point exposes as the root directory to NFS clients using the access point. </p>",
+      "refs": {
+        "AwsEfsAccessPointDetails$RootDirectory": "<p>The directory on the Amazon EFS file system that the access point exposes as the root directory to NFS clients using the access point. </p>"
       }
     },
     "AwsEksClusterDetails": {
@@ -1932,6 +2078,18 @@
         "AwsIamUserDetails$UserPolicyList": "<p>The list of inline policies that are embedded in the user.</p>"
       }
     },
+    "AwsKinesisStreamDetails": {
+      "base": "<p>Provides information about an Amazon Kinesis data stream. </p>",
+      "refs": {
+        "ResourceDetails$AwsKinesisStream": "<p>Details about an Amazon Kinesis data stream.</p>"
+      }
+    },
+    "AwsKinesisStreamStreamEncryptionDetails": {
+      "base": "<p>Provides information about stream encryption. </p>",
+      "refs": {
+        "AwsKinesisStreamDetails$StreamEncryption": "<p>When specified, enables or updates server-side encryption using an KMS key for a specified stream. Removing this property from your stack template and updating your stack disables encryption. </p>"
+      }
+    },
     "AwsKmsKeyDetails": {
       "base": "<p>Contains metadata about an KMS key.</p>",
       "refs": {
@@ -2004,6 +2162,18 @@
         "AwsLambdaLayerVersionDetails$Version": "<p>The version number.</p>"
       }
     },
+    "AwsMountPoint": {
+      "base": "<p>Details for a volume mount point that's used in a container definition. </p>",
+      "refs": {
+        "AwsMountPointList$member": null
+      }
+    },
+    "AwsMountPointList": {
+      "base": null,
+      "refs": {
+        "AwsEcsContainerDetails$MountPoints": "<p>The mount points for data volumes in your container. </p>"
+      }
+    },
     "AwsNetworkFirewallFirewallDetails": {
       "base": "<p>Details about an Network Firewall firewall.</p>",
       "refs": {
@@ -2032,6 +2202,12 @@
       "base": "<p>Details about an Network Firewall rule group. Rule groups are used to inspect and control network traffic. Stateless rule groups apply to individual packets. Stateful rule groups apply to packets in the context of their traffic flow.</p> <p>Rule groups are referenced in firewall policies. </p>",
       "refs": {
         "ResourceDetails$AwsNetworkFirewallRuleGroup": "<p>Details about an Network Firewall rule group.</p>"
+      }
+    },
+    "AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails": {
+      "base": "<p>Provides information about domain access control options. </p>",
+      "refs": {
+        "AwsOpenSearchServiceDomainDetails$AdvancedSecurityOptions": "<p>Specifies options for fine-grained access control. </p>"
       }
     },
     "AwsOpenSearchServiceDomainClusterConfigDetails": {
@@ -2076,6 +2252,12 @@
       "base": "<p>Configures the CloudWatch Logs to publish for the OpenSearch domain.</p>",
       "refs": {
         "AwsOpenSearchServiceDomainDetails$LogPublishingOptions": "<p>Configures the CloudWatch Logs to publish for the OpenSearch domain.</p>"
+      }
+    },
+    "AwsOpenSearchServiceDomainMasterUserOptionsDetails": {
+      "base": "<p>Specifies information about the master user of the domain. </p>",
+      "refs": {
+        "AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails$MasterUserOptions": "<p>Specifies information about the master user of the domain. </p>"
       }
     },
     "AwsOpenSearchServiceDomainNodeToNodeEncryptionOptionsDetails": {
@@ -2740,7 +2922,7 @@
       }
     },
     "AwsSnsTopicDetails": {
-      "base": "<p>A wrapper type for the topic's ARN.</p>",
+      "base": "<p>Provides information about an Amazon SNS topic to which notifications can be published.</p>",
       "refs": {
         "ResourceDetails$AwsSnsTopic": "<p>Details about an SNS topic.</p>"
       }
@@ -2754,7 +2936,7 @@
     "AwsSnsTopicSubscriptionList": {
       "base": null,
       "refs": {
-        "AwsSnsTopicDetails$Subscription": "<p>Subscription is an embedded property that describes the subscription endpoints of an SNS topic.</p>"
+        "AwsSnsTopicDetails$Subscription": "<p>Subscription is an embedded property that describes the subscription endpoints of an Amazon SNS topic.</p>"
       }
     },
     "AwsSqsQueueDetails": {
@@ -2817,14 +2999,128 @@
         "AwsWafRegionalRateBasedRuleDetails$MatchPredicates": "<p>The predicates to include in the rate-based rule.</p>"
       }
     },
-    "AwsWafWebAclDetails": {
-      "base": "<p>Details about an WAF WebACL.</p>",
+    "AwsWafRegionalRuleDetails": {
+      "base": "<p>Provides information about an WAF Regional rule. This rule identifies the web requests that you want to allow, block, or count. </p>",
       "refs": {
-        "ResourceDetails$AwsWafWebAcl": "<p>Details for an WAF WebACL.</p>"
+        "ResourceDetails$AwsWafRegionalRule": "<p>Details about an WAF rule for Regional resources. </p>"
+      }
+    },
+    "AwsWafRegionalRuleGroupDetails": {
+      "base": "<p>Provides information about an WAF Regional rule group. The rule group is a collection of rules for inspecting and controlling web requests. </p>",
+      "refs": {
+        "ResourceDetails$AwsWafRegionalRuleGroup": "<p>Details about an WAF rule group for Regional resources. </p>"
+      }
+    },
+    "AwsWafRegionalRuleGroupRulesActionDetails": {
+      "base": "<p>Describes the action that AWS WAF should take on a web request when it matches the criteria defined in the rule. </p>",
+      "refs": {
+        "AwsWafRegionalRuleGroupRulesDetails$Action": "<p>The action that WAF should take on a web request when it matches the criteria defined in the rule. </p>"
+      }
+    },
+    "AwsWafRegionalRuleGroupRulesDetails": {
+      "base": "<p>Provides information about the rules attached to a rule group </p>",
+      "refs": {
+        "AwsWafRegionalRuleGroupRulesList$member": null
+      }
+    },
+    "AwsWafRegionalRuleGroupRulesList": {
+      "base": null,
+      "refs": {
+        "AwsWafRegionalRuleGroupDetails$Rules": "<p>Provides information about the rule statements used to identify the web requests that you want to allow, block, or count. </p>"
+      }
+    },
+    "AwsWafRegionalRulePredicateList": {
+      "base": null,
+      "refs": {
+        "AwsWafRegionalRuleDetails$PredicateList": "<p>Specifies the <code>ByteMatchSet</code>, <code>IPSet</code>, <code>SqlInjectionMatchSet</code>, <code>XssMatchSet</code>, <code>RegexMatchSet</code>, <code>GeoMatchSet</code>, and <code>SizeConstraintSet</code> objects that you want to add to a rule and, for each object, indicates whether you want to negate the settings. </p>"
+      }
+    },
+    "AwsWafRegionalRulePredicateListDetails": {
+      "base": "<p>Provides details about the <code>ByteMatchSet</code>, <code>IPSet</code>, <code>SqlInjectionMatchSet</code>, <code>XssMatchSet</code>, <code>RegexMatchSet</code>, <code>GeoMatchSet</code>, and <code>SizeConstraintSet</code> objects that you want to add to a rule and, for each object, indicates whether you want to negate the settings. </p>",
+      "refs": {
+        "AwsWafRegionalRulePredicateList$member": null
+      }
+    },
+    "AwsWafRegionalWebAclDetails": {
+      "base": "<p>Provides information about the web access control list (web ACL). The web ACL contains the rules that identify the requests that you want to allow, block, or count. </p>",
+      "refs": {
+        "ResourceDetails$AwsWafRegionalWebAcl": "<p>Details about an WAF web access control list (web ACL) for Regional resources. </p>"
+      }
+    },
+    "AwsWafRegionalWebAclRulesList": {
+      "base": null,
+      "refs": {
+        "AwsWafRegionalWebAclDetails$RulesList": "<p>An array that contains the action for each rule in a web ACL, the priority of the rule, and the ID of the rule. </p>"
+      }
+    },
+    "AwsWafRegionalWebAclRulesListActionDetails": {
+      "base": "<p>The action that WAF takes when a web request matches all conditions in the rule, such as allow, block, or count the request. </p>",
+      "refs": {
+        "AwsWafRegionalWebAclRulesListDetails$Action": "<p>The action that AWS WAF takes when a web request matches all conditions in the rule, such as allow, block, or count the request. </p>"
+      }
+    },
+    "AwsWafRegionalWebAclRulesListDetails": {
+      "base": "<p>A combination of <code>ByteMatchSet</code>, <code>IPSet</code>, and/or <code>SqlInjectionMatchSet</code> objects that identify the web requests that you want to allow, block, or count. </p>",
+      "refs": {
+        "AwsWafRegionalWebAclRulesList$member": null
+      }
+    },
+    "AwsWafRegionalWebAclRulesListOverrideActionDetails": {
+      "base": "<p>Provides details about the action to use in the place of the action that results from the rule group evaluation. </p>",
+      "refs": {
+        "AwsWafRegionalWebAclRulesListDetails$OverrideAction": "<p>Overrides the rule evaluation result in the rule group. </p>"
+      }
+    },
+    "AwsWafRuleDetails": {
+      "base": "<p>Provides information about a WAF rule. This rule specifies the web requests that you want to allow, block, or count. </p>",
+      "refs": {
+        "ResourceDetails$AwsWafRule": "<p>Details about an WAF rule for global resources. </p>"
+      }
+    },
+    "AwsWafRuleGroupDetails": {
+      "base": "<p>Provides information about an WAF rule group. A rule group is a collection of rules for inspecting and controlling web requests. </p>",
+      "refs": {
+        "ResourceDetails$AwsWafRuleGroup": "<p>Details about an WAF rule group for global resources. </p>"
+      }
+    },
+    "AwsWafRuleGroupRulesActionDetails": {
+      "base": "<p>Provides information about what action WAF should take on a web request when it matches the criteria defined in the rule. </p>",
+      "refs": {
+        "AwsWafRuleGroupRulesDetails$Action": "<p>Provides information about what action WAF should take on a web request when it matches the criteria defined in the rule. </p>"
+      }
+    },
+    "AwsWafRuleGroupRulesDetails": {
+      "base": "<p>Provides information about the rules attached to the rule group. These rules identify the web requests that you want to allow, block, or count. </p>",
+      "refs": {
+        "AwsWafRuleGroupRulesList$member": null
+      }
+    },
+    "AwsWafRuleGroupRulesList": {
+      "base": null,
+      "refs": {
+        "AwsWafRuleGroupDetails$Rules": "<p>Provides information about the rules attached to the rule group. These rules identify the web requests that you want to allow, block, or count. </p>"
+      }
+    },
+    "AwsWafRulePredicateList": {
+      "base": null,
+      "refs": {
+        "AwsWafRuleDetails$PredicateList": "<p>Specifies the <code>ByteMatchSet</code>, <code>IPSet</code>, <code>SqlInjectionMatchSet</code>, <code>XssMatchSet</code>, <code>RegexMatchSet</code>, <code>GeoMatchSet</code>, and <code>SizeConstraintSet</code> objects that you want to add to a rule and, for each object, indicates whether you want to negate the settings. </p>"
+      }
+    },
+    "AwsWafRulePredicateListDetails": {
+      "base": "<p>Provides details about the <code>ByteMatchSet</code>, <code>IPSet</code>, <code>SqlInjectionMatchSet</code>, <code>XssMatchSet</code>, <code>RegexMatchSet</code>, <code>GeoMatchSet</code>, and <code>SizeConstraintSet</code> objects that you want to add to a rule and, for each object, indicates whether you want to negate the settings. </p>",
+      "refs": {
+        "AwsWafRulePredicateList$member": null
+      }
+    },
+    "AwsWafWebAclDetails": {
+      "base": "<p>Provides information about an WAF web access control list (web ACL).</p>",
+      "refs": {
+        "ResourceDetails$AwsWafWebAcl": "<p>Details for an WAF web ACL.</p>"
       }
     },
     "AwsWafWebAclRule": {
-      "base": "<p>Details for a rule in an WAF WebACL.</p>",
+      "base": "<p>Details for a rule in an WAF web ACL.</p>",
       "refs": {
         "AwsWafWebAclRuleList$member": null
       }
@@ -2832,7 +3128,7 @@
     "AwsWafWebAclRuleList": {
       "base": null,
       "refs": {
-        "AwsWafWebAclDetails$Rules": "<p>An array that contains the action for each rule in a WebACL, the priority of the rule, and the ID of the rule.</p>"
+        "AwsWafWebAclDetails$Rules": "<p>An array that contains the action for each rule in a web ACL, the priority of the rule, and the ID of the rule.</p>"
       }
     },
     "AwsXrayEncryptionConfigDetails": {
@@ -2921,6 +3217,8 @@
         "AwsAutoScalingLaunchConfigurationDetails$AssociatePublicIpAddress": "<p>For Auto Scaling groups that run in a VPC, specifies whether to assign a public IP address to the group's instances.</p>",
         "AwsAutoScalingLaunchConfigurationDetails$EbsOptimized": "<p>Whether the launch configuration is optimized for Amazon EBS I/O.</p>",
         "AwsAutoScalingLaunchConfigurationInstanceMonitoringDetails$Enabled": "<p>If set to <code>true</code>, then instances in the group launch with detailed monitoring.</p> <p>If set to <code>false</code>, then instances in the group launch with basic monitoring.</p>",
+        "AwsCloudFormationStackDetails$DisableRollback": "<p>Boolean to enable or disable rollback on stack creation failures. </p>",
+        "AwsCloudFormationStackDetails$EnableTerminationProtection": "<p>Whether termination protection is enabled for the stack. </p>",
         "AwsCloudFrontDistributionLogging$Enabled": "<p>With this field, you can enable or disable the selected distribution.</p>",
         "AwsCloudFrontDistributionLogging$IncludeCookies": "<p>Specifies whether you want CloudFront to include cookies in access logs.</p>",
         "AwsCloudFrontDistributionViewerCertificate$CloudFrontDefaultCertificate": "<p>Whether the distribution uses the CloudFront domain name. If set to <code>false</code>, then you provide either <code>AcmCertificateArn</code> or <code>IamCertificateId</code>.</p>",
@@ -2929,6 +3227,7 @@
         "AwsCloudTrailTrailDetails$IsMultiRegionTrail": "<p>Indicates whether the trail applies only to the current Region or to all Regions.</p>",
         "AwsCloudTrailTrailDetails$IsOrganizationTrail": "<p>Whether the trail is created for all accounts in an organization in Organizations, or only for the current Amazon Web Services account.</p>",
         "AwsCloudTrailTrailDetails$LogFileValidationEnabled": "<p>Indicates whether CloudTrail log file validation is enabled.</p>",
+        "AwsCloudWatchAlarmDetails$ActionsEnabled": "<p>Indicates whether actions should be executed during any changes to the alarm state. </p>",
         "AwsCodeBuildProjectArtifactsDetails$EncryptionDisabled": "<p>Indicates whether to disable encryption on the artifact. Only valid when <code>Type</code> is <code>S3</code>.</p>",
         "AwsCodeBuildProjectArtifactsDetails$OverrideArtifactName": "<p>Whether the name specified in the buildspec file overrides the artifact name.</p>",
         "AwsCodeBuildProjectEnvironment$PrivilegedMode": "<p>Whether to allow the Docker daemon to run inside a Docker container. Set to <code>true</code> if the build project is used to build Docker images.</p>",
@@ -2946,13 +3245,14 @@
         "AwsEc2SubnetDetails$DefaultForAz": "<p>Whether this subnet is the default subnet for the Availability Zone.</p>",
         "AwsEc2SubnetDetails$MapPublicIpOnLaunch": "<p>Whether instances in this subnet receive a public IP address.</p>",
         "AwsEc2VolumeAttachment$DeleteOnTermination": "<p>Whether the EBS volume is deleted when the EC2 instance is terminated.</p>",
-        "AwsEc2VolumeDetails$Encrypted": "<p>Whether the volume is encrypted.</p>",
+        "AwsEc2VolumeDetails$Encrypted": "<p>Specifies whether the volume is encrypted.</p>",
         "AwsEc2VpcEndpointServiceDetails$AcceptanceRequired": "<p>Whether requests from other Amazon Web Services accounts to create an endpoint to the service must first be accepted.</p>",
         "AwsEc2VpcEndpointServiceDetails$ManagesVpcEndpoints": "<p>Whether the service manages its VPC endpoints.</p>",
         "AwsEc2VpnConnectionOptionsDetails$StaticRoutesOnly": "<p>Whether the VPN connection uses static routes only.</p>",
         "AwsEcrRepositoryImageScanningConfigurationDetails$ScanOnPush": "<p>Whether to scan images after they are pushed to a repository.</p>",
         "AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails$CloudWatchEncryptionEnabled": "<p>Whether to enable encryption on the CloudWatch logs.</p>",
         "AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails$S3EncryptionEnabled": "<p>Whether to encrypt the logs that are sent to the S3 bucket.</p>",
+        "AwsEcsContainerDetails$Privileged": "<p>When this parameter is true, the container is given elevated privileges on the host container instance (similar to the root user). </p>",
         "AwsEcsServiceDeploymentConfigurationDeploymentCircuitBreakerDetails$Enable": "<p>Whether to enable the deployment circuit breaker logic for the service.</p>",
         "AwsEcsServiceDeploymentConfigurationDeploymentCircuitBreakerDetails$Rollback": "<p>Whether to roll back the service if a service deployment fails. If rollback is enabled, when a service deployment fails, the service is rolled back to the last deployment that completed successfully.</p>",
         "AwsEcsServiceDetails$EnableEcsManagedTags": "<p>Whether to enable Amazon ECS managed tags for the tasks in the service.</p>",
@@ -2986,6 +3286,8 @@
         "AwsNetworkFirewallFirewallDetails$DeleteProtection": "<p>Whether the firewall is protected from deletion. If set to <code>true</code>, then the firewall cannot be deleted.</p>",
         "AwsNetworkFirewallFirewallDetails$FirewallPolicyChangeProtection": "<p>Whether the firewall is protected from a change to the firewall policy. If set to <code>true</code>, you cannot associate a different policy with the firewall.</p>",
         "AwsNetworkFirewallFirewallDetails$SubnetChangeProtection": "<p>Whether the firewall is protected from a change to the subnet associations. If set to <code>true</code>, you cannot map different subnets to the firewall.</p>",
+        "AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails$Enabled": "<p>Enables fine-grained access control. </p>",
+        "AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails$InternalUserDatabaseEnabled": "<p>Enables the internal user database. </p>",
         "AwsOpenSearchServiceDomainClusterConfigDetails$WarmEnabled": "<p>Whether UltraWarm is enabled.</p>",
         "AwsOpenSearchServiceDomainClusterConfigDetails$DedicatedMasterEnabled": "<p>Whether to use a dedicated master node for the OpenSearch domain. A dedicated master node performs cluster management tasks, but does not hold data or respond to data upload requests.</p>",
         "AwsOpenSearchServiceDomainClusterConfigDetails$ZoneAwarenessEnabled": "<p>Whether to enable zone awareness for the OpenSearch domain. When zone awareness is enabled, OpenSearch Service allocates the cluster's nodes and replica index shards across Availability Zones (AZs) in the same Region. This prevents data loss and minimizes downtime if a node or data center fails.</p>",
@@ -3040,8 +3342,11 @@
         "AwsSecurityFinding$Sample": "<p>Indicates whether the finding is a sample finding.</p>",
         "AwsWafRateBasedRuleMatchPredicate$Negated": "<p>If set to <code>true</code>, then the rule actions are performed on requests that match the predicate settings.</p> <p>If set to <code>false</code>, then the rule actions are performed on all requests except those that match the predicate settings. </p>",
         "AwsWafRegionalRateBasedRuleMatchPredicate$Negated": "<p>If set to <code>true</code>, then the rule actions are performed on requests that match the predicate settings.</p> <p>If set to <code>false</code>, then the rule actions are performed on all requests except those that match the predicate settings.</p>",
+        "AwsWafRegionalRulePredicateListDetails$Negated": "<p>Specifies if you want WAF to allow, block, or count requests based on the settings in the <code>ByteMatchSet</code>, <code>IPSet</code>, <code>SqlInjectionMatchSet</code>, <code>XssMatchSet</code>, <code>RegexMatchSet</code>, <code>GeoMatchSet</code>, or <code>SizeConstraintSet</code>. </p>",
+        "AwsWafRulePredicateListDetails$Negated": "<p>Specifies if you want WAF to allow, block, or count requests based on the settings in the <code>ByteMatchSet</code>, <code>IPSet</code>, <code>SqlInjectionMatchSet</code>, <code>XssMatchSet</code>, <code>RegexMatchSet</code>, <code>GeoMatchSet</code>, or <code>SizeConstraintSet</code>. </p>",
         "BooleanFilter$Value": "<p>The value of the boolean.</p>",
         "ClassificationResult$AdditionalOccurrences": "<p>Indicates whether there are additional occurrences of sensitive data that are not included in the finding. This occurs when the number of occurrences exceeds the maximum that can be included.</p>",
+        "ContainerDetails$Privileged": "<p>When this parameter is <code>true</code>, the container is given elevated privileges on the host container instance (similar to the root user). </p>",
         "DescribeHubResponse$AutoEnableControls": "<p>Whether to automatically enable new controls when they are added to standards that are enabled.</p> <p>If set to <code>true</code>, then new controls for enabled standards are enabled automatically. If set to <code>false</code>, then new controls are not enabled.</p>",
         "DescribeOrganizationConfigurationResponse$AutoEnable": "<p>Whether to automatically enable Security Hub for new accounts in the organization.</p> <p>If set to <code>true</code>, then Security Hub is enabled for new accounts. If set to false, then new accounts are not added automatically.</p>",
         "DescribeOrganizationConfigurationResponse$MemberAccountLimitReached": "<p>Whether the maximum number of allowed member accounts are already associated with the Security Hub administrator account.</p>",
@@ -3052,7 +3357,10 @@
         "PortProbeAction$Blocked": "<p>Indicates whether the port probe was blocked.</p>",
         "Standard$EnabledByDefault": "<p>Whether the standard is enabled by default. When Security Hub is enabled from the console, if a standard is enabled by default, the check box for that standard is selected by default.</p> <p>When Security Hub is enabled using the <code>EnableSecurityHub</code> API operation, the standard is enabled by default unless <code>EnableDefaultStandards</code> is set to <code>false</code>.</p>",
         "UpdateOrganizationConfigurationRequest$AutoEnable": "<p>Whether to automatically enable Security Hub for new accounts in the organization.</p> <p>By default, this is <code>false</code>, and new accounts are not added automatically.</p> <p>To automatically enable Security Hub for new accounts, set this to <code>true</code>.</p>",
-        "UpdateSecurityHubConfigurationRequest$AutoEnableControls": "<p>Whether to automatically enable new controls when they are added to standards that are enabled.</p> <p>By default, this is set to <code>true</code>, and new controls are enabled automatically. To not automatically enable new controls, set this to <code>false</code>. </p>"
+        "UpdateSecurityHubConfigurationRequest$AutoEnableControls": "<p>Whether to automatically enable new controls when they are added to standards that are enabled.</p> <p>By default, this is set to <code>true</code>, and new controls are enabled automatically. To not automatically enable new controls, set this to <code>false</code>. </p>",
+        "VpcInfoPeeringOptionsDetails$AllowDnsResolutionFromRemoteVpc": "<p>Indicates whether a local VPC can resolve public DNS hostnames to private IP addresses when queried from instances in a peer VPC. </p>",
+        "VpcInfoPeeringOptionsDetails$AllowEgressFromLocalClassicLinkToRemoteVpc": "<p>Indicates whether a local ClassicLink connection can communicate with the peer VPC over the VPC peering connection. </p>",
+        "VpcInfoPeeringOptionsDetails$AllowEgressFromLocalVpcToRemoteClassicLink": "<p>Indicates whether a local VPC can communicate with a ClassicLink connection in the peer VPC over the VPC peering connection. </p>"
       }
     },
     "BooleanFilter": {
@@ -3455,6 +3763,7 @@
         "AwsApiGatewayCanarySettings$PercentTraffic": "<p>The percentage of traffic that is diverted to a canary deployment.</p>",
         "AwsApiGatewayMethodSettings$ThrottlingRateLimit": "<p>The throttling rate limit for the method.</p>",
         "AwsApiGatewayV2RouteSettings$ThrottlingRateLimit": "<p>The throttling rate limit.</p>",
+        "AwsCloudWatchAlarmDetails$Threshold": "<p>The value to compare with the specified statistic. </p>",
         "AwsKmsKeyDetails$CreationDate": "<p>Indicates when the KMS key was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsRedshiftClusterRestoreStatus$CurrentRestoreRateInMegaBytesPerSecond": "<p>The number of megabytes per second being transferred from the backup storage. Returns the average rate for a completed backup.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
         "Cvss$BaseScore": "<p>The base CVSS score.</p>",
@@ -3517,6 +3826,18 @@
         "BatchUpdateFindingsRequest$UserDefinedFields": "<p>A list of name/value string pairs associated with the finding. These are custom, user-defined fields added to a finding.</p>",
         "Resource$Tags": "<p>A list of Amazon Web Services tags associated with a resource at the time the finding was processed.</p>",
         "ResourceDetails$Other": "<p>Details about a resource that are not available in a type-specific details object. Use the <code>Other</code> object in the following cases.</p> <ul> <li> <p>The type-specific object does not contain all of the fields that you want to populate. In this case, first use the type-specific object to populate those fields. Use the <code>Other</code> object to populate the fields that are missing from the type-specific object.</p> </li> <li> <p>The resource type does not have a corresponding object. This includes resources for which the type is <code>Other</code>. </p> </li> </ul>"
+      }
+    },
+    "FilePathList": {
+      "base": null,
+      "refs": {
+        "Threat$FilePaths": "<p>Provides information about the file paths that were affected by the threat. </p>"
+      }
+    },
+    "FilePaths": {
+      "base": "<p>Provides information about the file paths that were affected by the threat. </p>",
+      "refs": {
+        "FilePathList$member": null
       }
     },
     "FindingAggregator": {
@@ -3745,8 +4066,17 @@
         "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails$Iops": "<p>The number of input/output (I/O) operations per second (IOPS) to provision for the volume.</p> <p>Only supported for <code>gp3</code> or <code>io1</code> volumes. Required for <code>io1</code> volumes. Not used with <code>standard</code>, <code>gp2</code>, <code>st1</code>, or <code>sc1</code> volumes.</p>",
         "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails$VolumeSize": "<p>The volume size, in GiBs. The following are the supported volumes sizes for each volume type:</p> <ul> <li> <p>gp2 and gp3: 1-16,384</p> </li> <li> <p>io1: 4-16,384</p> </li> <li> <p>st1 and sc1: 125-16,384</p> </li> <li> <p>standard: 1-1,024</p> </li> </ul> <p>You must specify either <code>SnapshotId</code> or <code>VolumeSize</code>. If you specify both <code>SnapshotId</code> and <code>VolumeSize</code>, the volume size must be equal or greater than the size of the snapshot.</p>",
         "AwsAutoScalingLaunchConfigurationMetadataOptions$HttpPutResponseHopLimit": "<p>The HTTP <code>PUT</code> response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel.</p>",
+        "AwsCloudFormationStackDetails$TimeoutInMinutes": "<p>The length of time, in minutes, that CloudFormation waits for the nested stack to reach the <code>CREATE_COMPLETE</code> state. </p>",
+        "AwsCloudFrontDistributionOriginCustomOriginConfig$HttpPort": "<p>The HTTP port that CloudFront uses to connect to the origin. </p>",
+        "AwsCloudFrontDistributionOriginCustomOriginConfig$HttpsPort": "<p>The HTTPS port that CloudFront uses to connect to the origin. </p>",
+        "AwsCloudFrontDistributionOriginCustomOriginConfig$OriginKeepaliveTimeout": "<p>Specifies how long, in seconds, CloudFront persists its connection to the origin. </p>",
+        "AwsCloudFrontDistributionOriginCustomOriginConfig$OriginReadTimeout": "<p>Specifies how long, in seconds, CloudFront waits for a response from the origin. </p>",
         "AwsCloudFrontDistributionOriginGroupFailoverStatusCodes$Quantity": "<p>The number of status codes that can cause a failover.</p>",
         "AwsCloudFrontDistributionOriginGroupFailoverStatusCodesItemList$member": null,
+        "AwsCloudFrontDistributionOriginSslProtocols$Quantity": "<p>The number of SSL/TLS protocols that you want to allow CloudFront to use when establishing an HTTPS connection with this origin. </p>",
+        "AwsCloudWatchAlarmDetails$DatapointsToAlarm": "<p>The number of datapoints that must be breaching to trigger the alarm. </p>",
+        "AwsCloudWatchAlarmDetails$EvaluationPeriods": "<p>The number of periods over which data is compared to the specified threshold. </p>",
+        "AwsCloudWatchAlarmDetails$Period": "<p>The period, in seconds, over which the statistic is applied. This is required for an alarm based on a metric. </p>",
         "AwsCodeBuildProjectSource$GitCloneDepth": "<p>Information about the Git clone depth for the build project.</p>",
         "AwsCorsConfiguration$MaxAge": "<p>The number of seconds for which the browser caches preflight request results.</p>",
         "AwsDynamoDbTableDetails$ItemCount": "<p>The number of items in the table.</p>",
@@ -3755,11 +4085,13 @@
         "AwsDynamoDbTableProvisionedThroughput$ReadCapacityUnits": "<p>The maximum number of strongly consistent reads consumed per second before DynamoDB returns a <code>ThrottlingException</code>.</p>",
         "AwsDynamoDbTableProvisionedThroughput$WriteCapacityUnits": "<p>The maximum number of writes consumed per second before DynamoDB returns a <code>ThrottlingException</code>.</p>",
         "AwsDynamoDbTableProvisionedThroughputOverride$ReadCapacityUnits": "<p>The read capacity units for the replica.</p>",
+        "AwsEc2InstanceMetadataOptions$HttpPutResponseHopLimit": "<p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. </p>",
         "AwsEc2NetworkAclEntry$RuleNumber": "<p>The rule number. The rules are processed in order by their number.</p>",
         "AwsEc2NetworkInterfaceAttachment$DeviceIndex": "<p>The device index of the network interface attachment on the instance.</p>",
         "AwsEc2SecurityGroupIpPermission$FromPort": "<p>The start of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number.</p> <p>A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes. </p>",
-        "AwsEc2SecurityGroupIpPermission$ToPort": "<p>The end of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code.</p> <p>A value of -1 indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>",
+        "AwsEc2SecurityGroupIpPermission$ToPort": "<p>The end of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code.</p> <p>A value of <code>-1</code> indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>",
         "AwsEc2SubnetDetails$AvailableIpAddressCount": "<p>The number of available IPV4 addresses in the subnet. Does not include addresses for stopped instances.</p>",
+        "AwsEc2TransitGatewayDetails$AmazonSideAsn": "<p>A private Autonomous System Number (ASN) for the Amazon side of a BGP session. </p>",
         "AwsEc2VolumeDetails$Size": "<p>The size of the volume, in GiBs.</p>",
         "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$DpdTimeoutSeconds": "<p>The number of seconds after which a Dead Peer Detection (DPD) timeout occurs.</p>",
         "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$Phase1LifetimeSeconds": "<p>The lifetime for phase 1 of the IKE negotiation, in seconds.</p>",
@@ -3770,6 +4102,9 @@
         "AwsEc2VpnConnectionVgwTelemetryDetails$AcceptedRouteCount": "<p>The number of accepted routes.</p>",
         "AwsEcsClusterDefaultCapacityProviderStrategyDetails$Base": "<p>The minimum number of tasks to run on the specified capacity provider.</p>",
         "AwsEcsClusterDefaultCapacityProviderStrategyDetails$Weight": "<p>The relative percentage of the total number of tasks launched that should use the capacity provider.</p>",
+        "AwsEcsClusterDetails$ActiveServicesCount": "<p>The number of services that are running on the cluster in an <code>ACTIVE</code> state. You can view these services with the Amazon ECS <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListServices.html\"> <code>ListServices</code> </a> API operation. </p>",
+        "AwsEcsClusterDetails$RegisteredContainerInstancesCount": "<p>The number of container instances registered into the cluster. This includes container instances in both <code>ACTIVE</code> and <code>DRAINING</code> status. </p>",
+        "AwsEcsClusterDetails$RunningTasksCount": "<p>The number of tasks in the cluster that are in the <code>RUNNING</code> state. </p>",
         "AwsEcsServiceCapacityProviderStrategyDetails$Base": "<p>The minimum number of tasks to run on the capacity provider. Only one strategy item can specify a value for <code>Base</code>.</p> <p>The value must be between 0 and 100000.</p>",
         "AwsEcsServiceCapacityProviderStrategyDetails$Weight": "<p>The relative percentage of the total number of tasks that should use the capacity provider.</p> <p>If no weight is specified, the default value is 0. At least one capacity provider must have a weight greater than 0.</p> <p>The value can be between 0 and 1000.</p>",
         "AwsEcsServiceDeploymentConfigurationDetails$MaximumPercent": "<p>For a service that uses the rolling update (<code>ECS</code>) deployment type, the maximum number of tasks in a service that are allowed in the <code>RUNNING</code> or <code>PENDING</code> state during a deployment, and for tasks that use the EC2 launch type, when any container instances are in the <code>DRAINING</code> state. Provided as a percentage of the desired number of tasks. The default value is 200%.</p> <p>For a service that uses the blue/green (<code>CODE_DEPLOY</code>) or <code>EXTERNAL</code> deployment types, and tasks that use the EC2 launch type, the maximum number of tasks in the service that remain in the <code>RUNNING</code> state while the container instances are in the <code>DRAINING</code> state.</p> <p>For the Fargate launch type, the maximum percent value is not used.</p>",
@@ -3813,6 +4148,8 @@
         "AwsIamPolicyDetails$AttachmentCount": "<p>The number of users, groups, and roles that the policy is attached to.</p>",
         "AwsIamPolicyDetails$PermissionsBoundaryUsageCount": "<p>The number of users and roles that use the policy to set the permissions boundary.</p>",
         "AwsIamRoleDetails$MaxSessionDuration": "<p>The maximum session duration (in seconds) that you want to set for the specified role.</p>",
+        "AwsKinesisStreamDetails$ShardCount": "<p>The number of shards that the stream uses. </p>",
+        "AwsKinesisStreamDetails$RetentionPeriodHours": "<p>The number of hours for the data records that are stored in shards to remain accessible. </p>",
         "AwsLambdaFunctionDetails$MemorySize": "<p>The memory that is allocated to the function.</p>",
         "AwsLambdaFunctionDetails$Timeout": "<p>The amount of time that Lambda allows a function to run before stopping it.</p>",
         "AwsLambdaFunctionLayer$CodeSize": "<p>The size of the layer archive in bytes.</p>",
@@ -3845,10 +4182,10 @@
         "AwsRdsDbSnapshotDetails$Port": "<p>The port that the database engine was listening on at the time of the snapshot.</p>",
         "AwsRdsDbSnapshotDetails$Iops": "<p>The provisioned IOPS (I/O operations per second) value of the DB instance at the time of the snapshot.</p>",
         "AwsRdsDbSnapshotDetails$PercentProgress": "<p>The percentage of the estimated data that has been transferred.</p>",
-        "AwsRedshiftClusterClusterSnapshotCopyStatus$ManualSnapshotRetentionPeriod": "<p>The number of days that manual snapshots are retained in the destination region after they are copied from a source region.</p> <p>If the value is -1, then the manual snapshot is retained indefinitely.</p> <p>Valid values: Either -1 or an integer between 1 and 3,653</p>",
+        "AwsRedshiftClusterClusterSnapshotCopyStatus$ManualSnapshotRetentionPeriod": "<p>The number of days that manual snapshots are retained in the destination region after they are copied from a source region.</p> <p>If the value is <code>-1</code>, then the manual snapshot is retained indefinitely.</p> <p>Valid values: Either <code>-1</code> or an integer between 1 and 3,653</p>",
         "AwsRedshiftClusterClusterSnapshotCopyStatus$RetentionPeriod": "<p>The number of days to retain automated snapshots in the destination Region after they are copied from a source Region.</p>",
         "AwsRedshiftClusterDetails$AutomatedSnapshotRetentionPeriod": "<p>The number of days that automatic cluster snapshots are retained.</p>",
-        "AwsRedshiftClusterDetails$ManualSnapshotRetentionPeriod": "<p>The default number of days to retain a manual snapshot.</p> <p>If the value is -1, the snapshot is retained indefinitely.</p> <p>This setting doesn't change the retention period of existing snapshots.</p> <p>Valid values: Either -1 or an integer between 1 and 3,653</p>",
+        "AwsRedshiftClusterDetails$ManualSnapshotRetentionPeriod": "<p>The default number of days to retain a manual snapshot.</p> <p>If the value is <code>-1</code>, the snapshot is retained indefinitely.</p> <p>This setting doesn't change the retention period of existing snapshots.</p> <p>Valid values: Either <code>-1</code> or an integer between 1 and 3,653</p>",
         "AwsRedshiftClusterDetails$NumberOfNodes": "<p>The number of compute nodes in the cluster.</p>",
         "AwsRedshiftClusterEndpoint$Port": "<p>The port that the database engine listens on.</p>",
         "AwsRedshiftClusterPendingModifiedValues$AutomatedSnapshotRetentionPeriod": "<p>The pending or in-progress change to the automated snapshot retention period.</p>",
@@ -3874,14 +4211,17 @@
         "AwsSsmComplianceSummary$CompliantLowCount": "<p>For the patches that are compliant, the number that have a severity of <code>LOW</code>.</p>",
         "AwsSsmComplianceSummary$NonCompliantMediumCount": "<p>For the patches that are noncompliant, the number that have a severity of <code>MEDIUM</code>.</p>",
         "AwsSsmComplianceSummary$NonCompliantUnspecifiedCount": "<p>For the patches that are noncompliant, the number that have a severity of <code>UNSPECIFIED</code>.</p>",
-        "AwsWafWebAclRule$Priority": "<p>Specifies the order in which the rules in a WebACL are evaluated. Rules with a lower value for <code>Priority</code> are evaluated before rules with a higher value. The value must be a unique integer. If you add multiple rules to a WebACL, the values do not need to be consecutive.</p>",
+        "AwsWafRegionalRuleGroupRulesDetails$Priority": "<p>If you define more than one rule in a web ACL, WAF evaluates each request against the rules in order based on the value of <code>Priority</code>. </p>",
+        "AwsWafRegionalWebAclRulesListDetails$Priority": "<p>The order in which WAF evaluates the rules in a web ACL. </p>",
+        "AwsWafRuleGroupRulesDetails$Priority": "<p>If you define more than one rule in a web ACL, WAF evaluates each request against the rules in order based on the value of <code>Priority</code>.</p>",
+        "AwsWafWebAclRule$Priority": "<p>Specifies the order in which the rules in a web ACL are evaluated. Rules with a lower value for <code>Priority</code> are evaluated before rules with a higher value. The value must be a unique integer. If you add multiple rules to a web ACL, the values do not need to be consecutive.</p>",
         "BatchImportFindingsResponse$FailedCount": "<p>The number of findings that failed to import.</p>",
         "BatchImportFindingsResponse$SuccessCount": "<p>The number of findings that were successfully imported.</p>",
         "DateRange$Value": "<p>A date range value for the date filter.</p>",
         "FirewallPolicyStatelessRuleGroupReferencesDetails$Priority": "<p>The order in which to run the stateless rule group.</p>",
         "GetInvitationsCountResponse$InvitationsCount": "<p>The number of all membership invitations sent to this Security Hub member account, not including the currently accepted invitation.</p>",
-        "IcmpTypeCode$Code": "<p>The ICMP code for which to deny or allow access. To deny or allow all codes, use the value -1.</p>",
-        "IcmpTypeCode$Type": "<p>The ICMP type for which to deny or allow access. To deny or allow all types, use the value -1.</p>",
+        "IcmpTypeCode$Code": "<p>The ICMP code for which to deny or allow access. To deny or allow all codes, use the value <code>-1</code>.</p>",
+        "IcmpTypeCode$Type": "<p>The ICMP type for which to deny or allow access. To deny or allow all types, use the value <code>-1</code>.</p>",
         "InsightResultValue$Count": "<p>The number of findings returned for each <code>GroupByAttributeValue</code>.</p>",
         "IntegerList$member": null,
         "IpOrganizationDetails$Asn": "<p>The Autonomous System Number (ASN) of the internet provider</p>",
@@ -3905,7 +4245,8 @@
         "RuleGroupSourceStatelessRuleMatchAttributesSourcePorts$FromPort": "<p>The starting port value for the port range.</p>",
         "RuleGroupSourceStatelessRuleMatchAttributesSourcePorts$ToPort": "<p>The ending port value for the port range.</p>",
         "RuleGroupSourceStatelessRulesDetails$Priority": "<p>Indicates the order in which to run this rule relative to all of the rules in the stateless rule group.</p>",
-        "Severity$Normalized": "<p>Deprecated. The normalized severity of a finding. This attribute is being deprecated. Instead of providing <code>Normalized</code>, provide <code>Label</code>.</p> <p>If you provide <code>Label</code> and do not provide <code>Normalized</code>, then <code>Normalized</code> is set automatically as follows.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - 0</p> </li> <li> <p> <code>LOW</code> - 1</p> </li> <li> <p> <code>MEDIUM</code> - 40</p> </li> <li> <p> <code>HIGH</code> - 70</p> </li> <li> <p> <code>CRITICAL</code> - 90</p> </li> </ul>"
+        "Severity$Normalized": "<p>Deprecated. The normalized severity of a finding. This attribute is being deprecated. Instead of providing <code>Normalized</code>, provide <code>Label</code>.</p> <p>If you provide <code>Label</code> and do not provide <code>Normalized</code>, then <code>Normalized</code> is set automatically as follows.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - 0</p> </li> <li> <p> <code>LOW</code> - 1</p> </li> <li> <p> <code>MEDIUM</code> - 40</p> </li> <li> <p> <code>HIGH</code> - 70</p> </li> <li> <p> <code>CRITICAL</code> - 90</p> </li> </ul>",
+        "Threat$ItemCount": "<p>This total number of items in which the threat has been detected. </p>"
       }
     },
     "IntegerList": {
@@ -4386,6 +4727,18 @@
         "AwsCertificateManagerCertificateResourceRecord$Name": "<p>The name of the resource.</p>",
         "AwsCertificateManagerCertificateResourceRecord$Type": "<p>The type of resource.</p>",
         "AwsCertificateManagerCertificateResourceRecord$Value": "<p>The value of the resource.</p>",
+        "AwsCloudFormationStackDetails$CreationTime": "<p>The time at which the stack was created. </p>",
+        "AwsCloudFormationStackDetails$Description": "<p>A user-defined description associated with the stack. </p>",
+        "AwsCloudFormationStackDetails$LastUpdatedTime": "<p>The time the nested stack was last updated. This field will only be returned if the stack has been updated at least once.</p>",
+        "AwsCloudFormationStackDetails$RoleArn": "<p>The ARN of an IAM role that's associated with the stack. </p>",
+        "AwsCloudFormationStackDetails$StackId": "<p>Unique identifier of the stack. </p>",
+        "AwsCloudFormationStackDetails$StackName": "<p>The name associated with the stack. </p>",
+        "AwsCloudFormationStackDetails$StackStatus": "<p>Current status of the stack. </p>",
+        "AwsCloudFormationStackDetails$StackStatusReason": "<p>Success or failure message associated with the stack status. </p>",
+        "AwsCloudFormationStackDriftInformationDetails$StackDriftStatus": "<p>Status of the stack's actual configuration compared to its expected template configuration. </p>",
+        "AwsCloudFormationStackOutputsDetails$Description": "<p>A user-defined description associated with the output. </p>",
+        "AwsCloudFormationStackOutputsDetails$OutputKey": "<p>The key associated with the output. </p>",
+        "AwsCloudFormationStackOutputsDetails$OutputValue": "<p>The value associated with the output. </p>",
         "AwsCloudFrontDistributionCacheBehavior$ViewerProtocolPolicy": "<p>The protocol that viewers can use to access the files in an origin. You can specify the following options:</p> <ul> <li> <p> <code>allow-all</code> - Viewers can use HTTP or HTTPS.</p> </li> <li> <p> <code>redirect-to-https</code> - CloudFront responds to HTTP requests with an HTTP status code of 301 (Moved Permanently) and the HTTPS URL. The viewer then uses the new URL to resubmit.</p> </li> <li> <p> <code>https-only</code> - CloudFront responds to HTTP request with an HTTP status code of 403 (Forbidden).</p> </li> </ul>",
         "AwsCloudFrontDistributionDefaultCacheBehavior$ViewerProtocolPolicy": "<p>The protocol that viewers can use to access the files in an origin. You can specify the following options:</p> <ul> <li> <p> <code>allow-all</code> - Viewers can use HTTP or HTTPS.</p> </li> <li> <p> <code>redirect-to-https</code> - CloudFront responds to HTTP requests with an HTTP status code of 301 (Moved Permanently) and the HTTPS URL. The viewer then uses the new URL to resubmit.</p> </li> <li> <p> <code>https-only</code> - CloudFront responds to HTTP request with an HTTP status code of 403 (Forbidden).</p> </li> </ul>",
         "AwsCloudFrontDistributionDetails$DefaultRootObject": "<p>The object that CloudFront sends in response to requests from the origin (for example, index.html) when a viewer requests the root URL for the distribution (http://www.example.com) instead of an object in your distribution (http://www.example.com/product-description.html). </p>",
@@ -4396,6 +4749,7 @@
         "AwsCloudFrontDistributionDetails$WebAclId": "<p>A unique identifier that specifies the WAF web ACL, if any, to associate with this distribution.</p>",
         "AwsCloudFrontDistributionLogging$Bucket": "<p>The S3 bucket to store the access logs in.</p>",
         "AwsCloudFrontDistributionLogging$Prefix": "<p>An optional string that you want CloudFront to use as a prefix to the access log filenames for this distribution.</p>",
+        "AwsCloudFrontDistributionOriginCustomOriginConfig$OriginProtocolPolicy": "<p>Specifies the protocol (HTTP or HTTPS) that CloudFront uses to connect to the origin. </p>",
         "AwsCloudFrontDistributionOriginItem$DomainName": "<p>Amazon S3 origins: The DNS name of the S3 bucket from which you want CloudFront to get objects for this origin.</p>",
         "AwsCloudFrontDistributionOriginItem$Id": "<p>A unique identifier for the origin or origin group.</p>",
         "AwsCloudFrontDistributionOriginItem$OriginPath": "<p>An optional element that causes CloudFront to request your content from a directory in your Amazon S3 bucket or your custom origin.</p>",
@@ -4416,6 +4770,21 @@
         "AwsCloudTrailTrailDetails$SnsTopicArn": "<p>The ARN of the SNS topic that is used for notifications of log file delivery.</p>",
         "AwsCloudTrailTrailDetails$SnsTopicName": "<p>The name of the SNS topic that is used for notifications of log file delivery.</p>",
         "AwsCloudTrailTrailDetails$TrailArn": "<p>The ARN of the trail.</p>",
+        "AwsCloudWatchAlarmDetails$AlarmArn": "<p>The ARN of the alarm. </p>",
+        "AwsCloudWatchAlarmDetails$AlarmConfigurationUpdatedTimestamp": "<p>The time stamp of the last update to the alarm configuration. </p>",
+        "AwsCloudWatchAlarmDetails$AlarmDescription": "<p>The description of the alarm. </p>",
+        "AwsCloudWatchAlarmDetails$AlarmName": "<p>The name of the alarm. If you don't specify a name, CloudFront generates a unique physical ID and uses that ID for the alarm name. </p>",
+        "AwsCloudWatchAlarmDetails$ComparisonOperator": "<p>The arithmetic operation to use when comparing the specified statistic and threshold. The specified statistic value is used as the first operand. </p>",
+        "AwsCloudWatchAlarmDetails$EvaluateLowSampleCountPercentile": "<p>Used only for alarms based on percentiles. If <code>ignore</code>, the alarm state does not change during periods with too few data points to be statistically significant. If <code>evaluate</code> or this parameter is not used, the alarm is always evaluated and possibly changes state no matter how many data points are available. </p>",
+        "AwsCloudWatchAlarmDetails$ExtendedStatistic": "<p>The percentile statistic for the metric associated with the alarm. </p>",
+        "AwsCloudWatchAlarmDetails$MetricName": "<p>The name of the metric associated with the alarm. This is required for an alarm based on a metric. For an alarm based on a math expression, you use <code>Metrics</code> instead and you can't specify <code>MetricName</code>. </p>",
+        "AwsCloudWatchAlarmDetails$Namespace": "<p>The namespace of the metric associated with the alarm. This is required for an alarm based on a metric. For an alarm based on a math expression, you can't specify <code>Namespace</code> and you use <code>Metrics</code> instead. </p>",
+        "AwsCloudWatchAlarmDetails$Statistic": "<p>The statistic for the metric associated with the alarm, other than percentile. For percentile statistics, use <code>ExtendedStatistic</code>.</p> <p>For an alarm based on a metric, you must specify either <code>Statistic</code> or <code>ExtendedStatistic</code> but not both.</p> <p>For an alarm based on a math expression, you can't specify <code>Statistic</code>. Instead, you use <code>Metrics</code>.</p>",
+        "AwsCloudWatchAlarmDetails$ThresholdMetricId": "<p>n an alarm based on an anomaly detection model, this is the ID of the <code>ANOMALY_DETECTION_BAND</code> function used as the threshold for the alarm. </p>",
+        "AwsCloudWatchAlarmDetails$TreatMissingData": "<p>Sets how this alarm is to handle missing data points. </p>",
+        "AwsCloudWatchAlarmDetails$Unit": "<p>The unit of the metric associated with the alarm. </p>",
+        "AwsCloudWatchAlarmDimensionsDetails$Name": "<p>The name of a dimension. </p>",
+        "AwsCloudWatchAlarmDimensionsDetails$Value": "<p>The value of a dimension. </p>",
         "AwsCodeBuildProjectArtifactsDetails$ArtifactIdentifier": "<p>An identifier for the artifact definition.</p>",
         "AwsCodeBuildProjectArtifactsDetails$Location": "<p>Only used when <code>Type</code> is <code>S3</code>. The name of the S3 bucket where the artifact is located.</p>",
         "AwsCodeBuildProjectArtifactsDetails$Name": "<p>Only used when Type is S3. The name of the artifact. Used with <code>NamepaceType</code> and <code>Path</code> to determine the pattern for storing the artifact.</p>",
@@ -4493,6 +4862,11 @@
         "AwsEc2InstanceDetails$VpcId": "<p>The identifier of the VPC that the instance was launched in.</p>",
         "AwsEc2InstanceDetails$SubnetId": "<p>The identifier of the subnet that the instance was launched in.</p>",
         "AwsEc2InstanceDetails$LaunchedAt": "<p>Indicates when the instance was launched.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsEc2InstanceDetails$VirtualizationType": "<p>The virtualization type of the Amazon Machine Image (AMI) required to launch the instance. </p>",
+        "AwsEc2InstanceMetadataOptions$HttpEndpoint": "<p>Enables or disables the HTTP metadata endpoint on the instance. </p>",
+        "AwsEc2InstanceMetadataOptions$HttpProtocolIpv6": "<p>Enables or disables the IPv6 endpoint for the instance metadata service. </p>",
+        "AwsEc2InstanceMetadataOptions$HttpTokens": "<p>The state of token usage for your instance metadata requests. </p>",
+        "AwsEc2InstanceMetadataOptions$InstanceMetadataTags": "<p>Specifies whether to allow access to instance tags from the instance metadata. </p>",
         "AwsEc2InstanceNetworkInterfacesDetails$NetworkInterfaceId": "<p>The identifier of the network interface. The details are in a corresponding <code>AwsEc2NetworkInterfacesDetails</code> object.</p>",
         "AwsEc2NetworkAclAssociation$NetworkAclAssociationId": "<p>The identifier of the association between the network ACL and the subnet.</p>",
         "AwsEc2NetworkAclAssociation$NetworkAclId": "<p>The identifier of the network ACL.</p>",
@@ -4502,7 +4876,7 @@
         "AwsEc2NetworkAclDetails$VpcId": "<p>The identifier of the VPC for the network ACL.</p>",
         "AwsEc2NetworkAclEntry$CidrBlock": "<p>The IPV4 network range for which to deny or allow access.</p>",
         "AwsEc2NetworkAclEntry$Ipv6CidrBlock": "<p>The IPV6 network range for which to deny or allow access.</p>",
-        "AwsEc2NetworkAclEntry$Protocol": "<p>The protocol that the rule applies to. To deny or allow access to all protocols, use the value -1.</p>",
+        "AwsEc2NetworkAclEntry$Protocol": "<p>The protocol that the rule applies to. To deny or allow access to all protocols, use the value <code>-1</code>.</p>",
         "AwsEc2NetworkAclEntry$RuleAction": "<p>Whether the rule is used to allow access or deny access.</p>",
         "AwsEc2NetworkInterfaceAttachment$AttachTime": "<p>Indicates when the attachment initiated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsEc2NetworkInterfaceAttachment$AttachmentId": "<p>The identifier of the network interface attachment</p>",
@@ -4521,7 +4895,7 @@
         "AwsEc2SecurityGroupDetails$GroupId": "<p>The ID of the security group.</p>",
         "AwsEc2SecurityGroupDetails$OwnerId": "<p>The Amazon Web Services account ID of the owner of the security group.</p>",
         "AwsEc2SecurityGroupDetails$VpcId": "<p>[VPC only] The ID of the VPC for the security group.</p>",
-        "AwsEc2SecurityGroupIpPermission$IpProtocol": "<p>The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>) or number.</p> <p>[VPC only] Use <code>-1</code> to specify all protocols.</p> <p>When authorizing security group rules, specifying -1 or a protocol number other than <code>tcp</code>, <code>udp</code>, <code>icmp</code>, or <code>icmpv6</code> allows traffic on all ports, regardless of any port range you specify.</p> <p>For <code>tcp</code>, <code>udp</code>, and <code>icmp</code>, you must specify a port range.</p> <p>For <code>icmpv6</code>, the port range is optional. If you omit the port range, traffic for all types and codes is allowed. </p>",
+        "AwsEc2SecurityGroupIpPermission$IpProtocol": "<p>The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>) or number.</p> <p>[VPC only] Use <code>-1</code> to specify all protocols.</p> <p>When authorizing security group rules, specifying <code>-1</code> or a protocol number other than <code>tcp</code>, <code>udp</code>, <code>icmp</code>, or <code>icmpv6</code> allows traffic on all ports, regardless of any port range you specify.</p> <p>For <code>tcp</code>, <code>udp</code>, and <code>icmp</code>, you must specify a port range.</p> <p>For <code>icmpv6</code>, the port range is optional. If you omit the port range, traffic for all types and codes is allowed. </p>",
         "AwsEc2SecurityGroupIpRange$CidrIp": "<p>The IPv4 CIDR range. You can specify either a CIDR range or a source security group, but not both. To specify a single IPv4 address, use the /32 prefix length.</p>",
         "AwsEc2SecurityGroupIpv6Range$CidrIpv6": "<p>The IPv6 CIDR range. You can specify either a CIDR range or a source security group, but not both. To specify a single IPv6 address, use the /128 prefix length.</p>",
         "AwsEc2SecurityGroupPrefixListId$PrefixListId": "<p>The ID of the prefix.</p>",
@@ -4539,13 +4913,27 @@
         "AwsEc2SubnetDetails$SubnetArn": "<p>The ARN of the subnet.</p>",
         "AwsEc2SubnetDetails$SubnetId": "<p>The identifier of the subnet.</p>",
         "AwsEc2SubnetDetails$VpcId": "<p>The identifier of the VPC that contains the subnet.</p>",
+        "AwsEc2TransitGatewayDetails$Id": "<p>The ID of the transit gateway. </p>",
+        "AwsEc2TransitGatewayDetails$Description": "<p>The description of the transit gateway. </p>",
+        "AwsEc2TransitGatewayDetails$DefaultRouteTablePropagation": "<p>Turn on or turn off automatic propagation of routes to the default propagation route table. </p>",
+        "AwsEc2TransitGatewayDetails$AutoAcceptSharedAttachments": "<p>Turn on or turn off automatic acceptance of attachment requests. </p>",
+        "AwsEc2TransitGatewayDetails$DefaultRouteTableAssociation": "<p>Turn on or turn off automatic association with the default association route table. </p>",
+        "AwsEc2TransitGatewayDetails$AssociationDefaultRouteTableId": "<p>The ID of the default association route table. </p>",
+        "AwsEc2TransitGatewayDetails$PropagationDefaultRouteTableId": "<p>The ID of the default propagation route table. </p>",
+        "AwsEc2TransitGatewayDetails$VpnEcmpSupport": "<p>Turn on or turn off Equal Cost Multipath Protocol (ECMP) support. </p>",
+        "AwsEc2TransitGatewayDetails$DnsSupport": "<p>Turn on or turn off DNS support. </p>",
+        "AwsEc2TransitGatewayDetails$MulticastSupport": "<p>Indicates whether multicast is supported on the transit gateway. </p>",
         "AwsEc2VolumeAttachment$AttachTime": "<p>The datetime when the attachment initiated.</p>",
         "AwsEc2VolumeAttachment$InstanceId": "<p>The identifier of the EC2 instance.</p>",
         "AwsEc2VolumeAttachment$Status": "<p>The attachment state of the volume.</p>",
         "AwsEc2VolumeDetails$CreateTime": "<p>Indicates when the volume was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsEc2VolumeDetails$DeviceName": "<p>The device name for the volume that is attached to the instance. </p>",
         "AwsEc2VolumeDetails$SnapshotId": "<p>The snapshot from which the volume was created.</p>",
         "AwsEc2VolumeDetails$Status": "<p>The volume state.</p>",
         "AwsEc2VolumeDetails$KmsKeyId": "<p>The ARN of the KMS key that was used to protect the volume encryption key for the volume.</p>",
+        "AwsEc2VolumeDetails$VolumeId": "<p>The ID of the volume. </p>",
+        "AwsEc2VolumeDetails$VolumeType": "<p>The volume type. </p>",
+        "AwsEc2VolumeDetails$VolumeScanStatus": "<p>Indicates whether the volume was scanned or skipped. </p>",
         "AwsEc2VpcDetails$DhcpOptionsId": "<p>The identifier of the set of Dynamic Host Configuration Protocol (DHCP) options that are associated with the VPC. If the default options are associated with the VPC, then this is default.</p>",
         "AwsEc2VpcDetails$State": "<p>The current state of the VPC.</p>",
         "AwsEc2VpcEndpointServiceDetails$PrivateDnsName": "<p>The private DNS name for the service.</p>",
@@ -4553,6 +4941,14 @@
         "AwsEc2VpcEndpointServiceDetails$ServiceName": "<p>The name of the service.</p>",
         "AwsEc2VpcEndpointServiceDetails$ServiceState": "<p>The current state of the service.</p>",
         "AwsEc2VpcEndpointServiceServiceTypeDetails$ServiceType": "<p>The type of service.</p>",
+        "AwsEc2VpcPeeringConnectionDetails$ExpirationTime": "<p>The time at which an unaccepted VPC peering connection will expire. </p>",
+        "AwsEc2VpcPeeringConnectionDetails$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection. </p>",
+        "AwsEc2VpcPeeringConnectionStatusDetails$Code": "<p>The status of the VPC peering connection. </p>",
+        "AwsEc2VpcPeeringConnectionStatusDetails$Message": "<p>A message that provides more information about the status, if applicable. </p>",
+        "AwsEc2VpcPeeringConnectionVpcInfoDetails$CidrBlock": "<p>The IPv4 CIDR block for the VPC. </p>",
+        "AwsEc2VpcPeeringConnectionVpcInfoDetails$OwnerId": "<p>The ID of the Amazon Web Services account that owns the VPC. </p>",
+        "AwsEc2VpcPeeringConnectionVpcInfoDetails$Region": "<p>The Amazon Web Services Region in which the VPC is located. </p>",
+        "AwsEc2VpcPeeringConnectionVpcInfoDetails$VpcId": "<p>The ID of the VPC. </p>",
         "AwsEc2VpnConnectionDetails$VpnConnectionId": "<p>The identifier of the VPN connection.</p>",
         "AwsEc2VpnConnectionDetails$State": "<p>The current state of the VPN connection.</p>",
         "AwsEc2VpnConnectionDetails$CustomerGatewayId": "<p>The identifier of the customer gateway that is at your end of the VPN connection.</p>",
@@ -4590,6 +4986,11 @@
         "AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails$S3BucketName": "<p>The name of the S3 bucket to send logs to.</p>",
         "AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails$S3KeyPrefix": "<p>Identifies the folder in the S3 bucket to send the logs to.</p>",
         "AwsEcsClusterDefaultCapacityProviderStrategyDetails$CapacityProvider": "<p>The name of the capacity provider.</p>",
+        "AwsEcsClusterDetails$ClusterArn": "<p>The Amazon Resource Name (ARN) that identifies the cluster. </p>",
+        "AwsEcsClusterDetails$ClusterName": "<p>A name that you use to identify your cluster. </p>",
+        "AwsEcsClusterDetails$Status": "<p>The status of the cluster. </p>",
+        "AwsEcsContainerDetails$Name": "<p>The name of the container. </p>",
+        "AwsEcsContainerDetails$Image": "<p>The image used for the container. </p>",
         "AwsEcsServiceCapacityProviderStrategyDetails$CapacityProvider": "<p>The short name of the capacity provider.</p>",
         "AwsEcsServiceDeploymentControllerDetails$Type": "<p>The rolling update (<code>ECS</code>) deployment type replaces the current running version of the container with the latest version.</p> <p>The blue/green (<code>CODE_DEPLOY</code>) deployment type uses the blue/green deployment model that is powered by CodeDeploy. This deployment model a new deployment of a service can be verified before production traffic is sent to it.</p> <p>The external (<code>EXTERNAL</code>) deployment type allows the use of any third-party deployment controller for full control over the deployment process for an Amazon ECS service.</p> <p>Valid values: <code>ECS</code> | <code>CODE_DEPLOY</code> | <code>EXTERNAL</code> </p>",
         "AwsEcsServiceDetails$Cluster": "<p>The ARN of the cluster that hosts the service.</p>",
@@ -4669,6 +5070,25 @@
         "AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails$RootDirectory": "<p>The directory within the Amazon EFS file system to mount as the root directory inside the host.</p>",
         "AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails$TransitEncryption": "<p>Whether to enable encryption for Amazon EFS data in transit between the Amazon ECS host and the Amazon EFS server. </p>",
         "AwsEcsTaskDefinitionVolumesHostDetails$SourcePath": "<p>The path on the host container instance that is presented to the container.</p>",
+        "AwsEcsTaskDetails$ClusterArn": "<p>The Amazon Resource Name (ARN) of the cluster that hosts the task. </p>",
+        "AwsEcsTaskDetails$TaskDefinitionArn": "<p>The ARN of the task definition that creates the task. </p>",
+        "AwsEcsTaskDetails$Version": "<p>The version counter for the task. </p>",
+        "AwsEcsTaskDetails$CreatedAt": "<p>The Unix timestamp for the time when the task was created. More specifically, it's for the time when the task entered the <code>PENDING</code> state. </p>",
+        "AwsEcsTaskDetails$StartedAt": "<p>The Unix timestamp for the time when the task started. More specifically, it's for the time when the task transitioned from the <code>PENDING</code> state to the <code>RUNNING</code> state. </p>",
+        "AwsEcsTaskDetails$StartedBy": "<p>The tag specified when a task is started. If an Amazon ECS service started the task, the <code>startedBy</code> parameter contains the deployment ID of that service. </p>",
+        "AwsEcsTaskDetails$Group": "<p>The name of the task group that's associated with the task. </p>",
+        "AwsEcsTaskVolumeDetails$Name": "<p>The name of the volume. Up to 255 letters (uppercase and lowercase), numbers, underscores, and hyphens are allowed. This name is referenced in the <code>sourceVolume</code> parameter of container definition <code>mountPoints</code>. </p>",
+        "AwsEcsTaskVolumeHostDetails$SourcePath": "<p>When the <code>host</code> parameter is used, specify a <code>sourcePath</code> to declare the path on the host container instance that's presented to the container. </p>",
+        "AwsEfsAccessPointDetails$AccessPointId": "<p>The ID of the Amazon EFS access point. </p>",
+        "AwsEfsAccessPointDetails$Arn": "<p>The Amazon Resource Name (ARN) of the Amazon EFS access point. </p>",
+        "AwsEfsAccessPointDetails$ClientToken": "<p>The opaque string specified in the request to ensure idempotent creation. </p>",
+        "AwsEfsAccessPointDetails$FileSystemId": "<p>The ID of the Amazon EFS file system that the access point applies to. </p>",
+        "AwsEfsAccessPointPosixUserDetails$Gid": "<p>The POSIX group ID used for all file system operations using this access point. </p>",
+        "AwsEfsAccessPointPosixUserDetails$Uid": "<p>The POSIX user ID used for all file system operations using this access point. </p>",
+        "AwsEfsAccessPointRootDirectoryCreationInfoDetails$OwnerGid": "<p>Specifies the POSIX group ID to apply to the root directory. </p>",
+        "AwsEfsAccessPointRootDirectoryCreationInfoDetails$OwnerUid": "<p>Specifies the POSIX user ID to apply to the root directory. </p>",
+        "AwsEfsAccessPointRootDirectoryCreationInfoDetails$Permissions": "<p>Specifies the POSIX permissions to apply to the root directory, in the format of an octal number representing the file's mode bits. </p>",
+        "AwsEfsAccessPointRootDirectoryDetails$Path": "<p>Specifies the path on the Amazon EFS file system to expose as the root directory to NFS clients using the access point to access the EFS file system. A path can have up to four subdirectories. If the specified path does not exist, you are required to provide <code>CreationInfo</code>. </p>",
         "AwsEksClusterDetails$Arn": "<p>The ARN of the cluster.</p>",
         "AwsEksClusterDetails$CertificateAuthorityData": "<p>The certificate authority data for the cluster.</p>",
         "AwsEksClusterDetails$ClusterStatus": "<p>The status of the cluster.</p>",
@@ -4706,7 +5126,7 @@
         "AwsElasticsearchDomainDomainEndpointOptions$TLSSecurityPolicy": "<p>The TLS security policy to apply to the HTTPS endpoint of the OpenSearch domain.</p> <p>Valid values:</p> <ul> <li> <p> <code>Policy-Min-TLS-1-0-2019-07</code>, which supports TLSv1.0 and higher</p> </li> <li> <p> <code>Policy-Min-TLS-1-2-2019-07</code>, which only supports TLSv1.2</p> </li> </ul>",
         "AwsElasticsearchDomainElasticsearchClusterConfigDetails$DedicatedMasterType": "<p>The hardware configuration of the computer that hosts the dedicated master node. For example, <code>m3.medium.elasticsearch</code>. If this attribute is specified, then <code>DedicatedMasterEnabled</code> must be <code>true</code>.</p>",
         "AwsElasticsearchDomainElasticsearchClusterConfigDetails$InstanceType": "<p>The instance type for your data nodes. For example, <code>m3.medium.elasticsearch</code>.</p>",
-        "AwsElasticsearchDomainEncryptionAtRestOptions$KmsKeyId": "<p>The KMS key ID. Takes the form 1a2a3a4-1a2a-3a4a-5a6a-1a2a3a4a5a6a.</p>",
+        "AwsElasticsearchDomainEncryptionAtRestOptions$KmsKeyId": "<p>The KMS key ID. Takes the form <code>1a2a3a4-1a2a-3a4a-5a6a-1a2a3a4a5a6a</code>.</p>",
         "AwsElasticsearchDomainLogPublishingOptionsLogConfig$CloudWatchLogsLogGroupArn": "<p>The ARN of the CloudWatch Logs group to publish the logs to.</p>",
         "AwsElasticsearchDomainServiceSoftwareOptions$AutomatedUpdateDate": "<p>The epoch time when the deployment window closes for required updates. After this time, Amazon OpenSearch Service schedules the software upgrade automatically.</p>",
         "AwsElasticsearchDomainServiceSoftwareOptions$CurrentVersion": "<p>The version of the service software that is currently installed on the domain.</p>",
@@ -4795,12 +5215,16 @@
         "AwsIamUserDetails$UserId": "<p>The unique identifier for the user.</p>",
         "AwsIamUserDetails$UserName": "<p>The name of the user.</p>",
         "AwsIamUserPolicy$PolicyName": "<p>The name of the policy.</p>",
+        "AwsKinesisStreamDetails$Name": "<p>The name of the Kinesis stream. If you don't specify a name, CloudFront generates a unique physical ID and uses that ID for the stream name. </p>",
+        "AwsKinesisStreamDetails$Arn": "<p>The Amazon Resource Name (ARN) of the Kinesis data stream. </p>",
+        "AwsKinesisStreamStreamEncryptionDetails$EncryptionType": "<p>The encryption type to use. </p>",
+        "AwsKinesisStreamStreamEncryptionDetails$KeyId": "<p>The globally unique identifier for the customer-managed KMS key to use for encryption. </p>",
         "AwsKmsKeyDetails$AWSAccountId": "<p>The twelve-digit account ID of the Amazon Web Services account that owns the KMS key.</p>",
         "AwsKmsKeyDetails$KeyId": "<p>The globally unique identifier for the KMS key.</p>",
         "AwsKmsKeyDetails$KeyManager": "<p>The manager of the KMS key. KMS keys in your Amazon Web Services account are either customer managed or Amazon Web Services managed.</p>",
         "AwsKmsKeyDetails$KeyState": "<p>The state of the KMS key.</p>",
         "AwsKmsKeyDetails$Origin": "<p>The source of the KMS key material.</p> <p>When this value is <code>AWS_KMS</code>, KMS created the key material.</p> <p>When this value is <code>EXTERNAL</code>, the key material was imported from your existing key management infrastructure or the KMS key lacks key material.</p> <p>When this value is <code>AWS_CLOUDHSM</code>, the key material was created in the CloudHSM cluster associated with a custom key store.</p>",
-        "AwsKmsKeyDetails$Description": "<p>A description of the key.</p>",
+        "AwsKmsKeyDetails$Description": "<p>A description of the KMS key.</p>",
         "AwsLambdaFunctionCode$S3Bucket": "<p>An Amazon S3 bucket in the same Amazon Web Services Region as your function. The bucket can be in a different Amazon Web Services account.</p>",
         "AwsLambdaFunctionCode$S3Key": "<p>The Amazon S3 key of the deployment package.</p>",
         "AwsLambdaFunctionCode$S3ObjectVersion": "<p>For versioned objects, the version of the deployment package object to use.</p>",
@@ -4822,6 +5246,8 @@
         "AwsLambdaFunctionTracingConfig$Mode": "<p>The tracing mode.</p>",
         "AwsLambdaFunctionVpcConfig$VpcId": "<p>The ID of the VPC.</p>",
         "AwsLambdaLayerVersionDetails$CreatedDate": "<p>Indicates when the version was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsMountPoint$SourceVolume": "<p>The name of the volume to mount. Must be a volume name referenced in the <code>name</code> parameter of task definition <code>volume</code>. </p>",
+        "AwsMountPoint$ContainerPath": "<p>The path on the container to mount the host volume at. </p>",
         "AwsNetworkFirewallFirewallDetails$Description": "<p>A description of the firewall.</p>",
         "AwsNetworkFirewallFirewallDetails$FirewallArn": "<p>The ARN of the firewall.</p>",
         "AwsNetworkFirewallFirewallDetails$FirewallId": "<p>The identifier of the firewall.</p>",
@@ -4852,6 +5278,9 @@
         "AwsOpenSearchServiceDomainDomainEndpointOptionsDetails$TLSSecurityPolicy": "<p>The TLS security policy to apply to the HTTPS endpoint of the OpenSearch domain.</p>",
         "AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails$KmsKeyId": "<p>The KMS key ID.</p>",
         "AwsOpenSearchServiceDomainLogPublishingOption$CloudWatchLogsLogGroupArn": "<p>The ARN of the CloudWatch Logs group to publish the logs to.</p>",
+        "AwsOpenSearchServiceDomainMasterUserOptionsDetails$MasterUserArn": "<p>The Amazon Resource Name (ARN) for the master user. </p>",
+        "AwsOpenSearchServiceDomainMasterUserOptionsDetails$MasterUserName": "<p>The username for the master user. </p>",
+        "AwsOpenSearchServiceDomainMasterUserOptionsDetails$MasterUserPassword": "<p>The password for the master user. </p>",
         "AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails$AutomatedUpdateDate": "<p>The epoch time when the deployment window closes for required updates. After this time, OpenSearch Service schedules the software upgrade automatically.</p>",
         "AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails$CurrentVersion": "<p>The version of the service software that is currently installed on the domain.</p>",
         "AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails$Description": "<p>A more detailed description of the service software status.</p>",
@@ -5122,8 +5551,15 @@
         "AwsSecurityFindingIdentifier$Id": "<p>The identifier of the finding that was specified by the finding provider.</p>",
         "AwsSecurityFindingIdentifier$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a product that generates findings. This can be the ARN for a third-party product that is integrated with Security Hub, or the ARN for a custom integration.</p>",
         "AwsSnsTopicDetails$KmsMasterKeyId": "<p>The ID of an Amazon Web Services managed key for Amazon SNS or a customer managed key.</p>",
-        "AwsSnsTopicDetails$TopicName": "<p>The name of the topic.</p>",
+        "AwsSnsTopicDetails$TopicName": "<p>The name of the Amazon SNS topic.</p>",
         "AwsSnsTopicDetails$Owner": "<p>The subscription's owner.</p>",
+        "AwsSnsTopicDetails$SqsSuccessFeedbackRoleArn": "<p>Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint. </p>",
+        "AwsSnsTopicDetails$SqsFailureFeedbackRoleArn": "<p>Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint. </p>",
+        "AwsSnsTopicDetails$ApplicationSuccessFeedbackRoleArn": "<p>Indicates failed message delivery status for an Amazon SNS topic that is subscribed to a platform application endpoint. </p>",
+        "AwsSnsTopicDetails$FirehoseSuccessFeedbackRoleArn": "<p>Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint. </p>",
+        "AwsSnsTopicDetails$FirehoseFailureFeedbackRoleArn": "<p>Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint. </p>",
+        "AwsSnsTopicDetails$HttpSuccessFeedbackRoleArn": "<p>Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an HTTP endpoint. </p>",
+        "AwsSnsTopicDetails$HttpFailureFeedbackRoleArn": "<p>Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an HTTP endpoint. </p>",
         "AwsSnsTopicSubscription$Endpoint": "<p>The subscription's endpoint (format depends on the protocol).</p>",
         "AwsSnsTopicSubscription$Protocol": "<p>The subscription's protocol.</p>",
         "AwsSqsQueueDetails$KmsMasterKeyId": "<p>The ID of an Amazon Web Services managed key for Amazon SQS or a custom KMS key.</p>",
@@ -5147,9 +5583,39 @@
         "AwsWafRegionalRateBasedRuleDetails$RuleId": "<p>The unique identifier for the rate-based rule.</p>",
         "AwsWafRegionalRateBasedRuleMatchPredicate$DataId": "<p>The unique identifier for the predicate.</p>",
         "AwsWafRegionalRateBasedRuleMatchPredicate$Type": "<p>The type of predicate.</p>",
-        "AwsWafWebAclDetails$Name": "<p>A friendly name or description of the WebACL. You can't change the name of a WebACL after you create it.</p>",
-        "AwsWafWebAclDetails$DefaultAction": "<p>The action to perform if none of the rules contained in the WebACL match.</p>",
-        "AwsWafWebAclDetails$WebAclId": "<p>A unique identifier for a WebACL.</p>",
+        "AwsWafRegionalRuleDetails$MetricName": "<p>A name for the metrics for the rule. </p>",
+        "AwsWafRegionalRuleDetails$Name": "<p>A descriptive name for the rule. </p>",
+        "AwsWafRegionalRuleDetails$RuleId": "<p>The ID of the rule. </p>",
+        "AwsWafRegionalRuleGroupDetails$MetricName": "<p>A name for the metrics for this rule group. </p>",
+        "AwsWafRegionalRuleGroupDetails$Name": "<p>The descriptive name of the rule group. </p>",
+        "AwsWafRegionalRuleGroupDetails$RuleGroupId": "<p>The ID of the rule group. </p>",
+        "AwsWafRegionalRuleGroupRulesActionDetails$Type": "<p>Specifies the <code>ByteMatchSet</code>, <code>IPSet</code>, <code>SqlInjectionMatchSet</code>, <code>XssMatchSet</code>, <code>RegexMatchSet</code>, <code>GeoMatchSet</code>, and <code>SizeConstraintSet</code> objects that you want to add to a rule and, for each object, indicates whether you want to negate the settings.</p>",
+        "AwsWafRegionalRuleGroupRulesDetails$RuleId": "<p>The ID for a rule. </p>",
+        "AwsWafRegionalRuleGroupRulesDetails$Type": "<p>The type of rule in the rule group. </p>",
+        "AwsWafRegionalRulePredicateListDetails$DataId": "<p>A unique identifier for a predicate in a rule, such as <code>ByteMatchSetId</code> or <code>IPSetId</code>. </p>",
+        "AwsWafRegionalRulePredicateListDetails$Type": "<p>The type of predicate in a rule, such as <code>ByteMatch</code> or <code>IPSet</code>. </p>",
+        "AwsWafRegionalWebAclDetails$DefaultAction": "<p>The action to perform if none of the rules contained in the web ACL match. </p>",
+        "AwsWafRegionalWebAclDetails$MetricName": "<p>A name for the metrics for this web ACL. </p>",
+        "AwsWafRegionalWebAclDetails$Name": "<p>A descriptive name for the web ACL. </p>",
+        "AwsWafRegionalWebAclDetails$WebAclId": "<p>The ID of the web ACL. </p>",
+        "AwsWafRegionalWebAclRulesListActionDetails$Type": "<p>For actions that are associated with a rule, the action that WAF takes when a web request matches all conditions in a rule. </p>",
+        "AwsWafRegionalWebAclRulesListDetails$RuleId": "<p>The ID of an WAF Regional rule to associate with a web ACL. </p>",
+        "AwsWafRegionalWebAclRulesListDetails$Type": "<p>For actions that are associated with a rule, the action that WAF takes when a web request matches all conditions in a rule. </p>",
+        "AwsWafRegionalWebAclRulesListOverrideActionDetails$Type": "<p>Overrides the rule evaluation result in the rule group. </p>",
+        "AwsWafRuleDetails$MetricName": "<p>The name of the metrics for this rule. </p>",
+        "AwsWafRuleDetails$Name": "<p>A descriptive name for the rule. </p>",
+        "AwsWafRuleDetails$RuleId": "<p>The ID of the WAF rule. </p>",
+        "AwsWafRuleGroupDetails$MetricName": "<p>The name of the metrics for this rule group. </p>",
+        "AwsWafRuleGroupDetails$Name": "<p>The name of the rule group. </p>",
+        "AwsWafRuleGroupDetails$RuleGroupId": "<p>The ID of the rule group. </p>",
+        "AwsWafRuleGroupRulesActionDetails$Type": "<p>The action that WAF should take on a web request when it matches the rule's statement.</p>",
+        "AwsWafRuleGroupRulesDetails$RuleId": "<p>The rule ID for a rule. </p>",
+        "AwsWafRuleGroupRulesDetails$Type": "<p>The type of rule. </p>",
+        "AwsWafRulePredicateListDetails$DataId": "<p>A unique identifier for a predicate in a rule, such as <code>ByteMatchSetId</code> or <code>IPSetId</code>. </p>",
+        "AwsWafRulePredicateListDetails$Type": "<p>The type of predicate in a rule, such as <code>ByteMatch</code> or <code>IPSet</code>. </p>",
+        "AwsWafWebAclDetails$Name": "<p>A friendly name or description of the web ACL. You can't change the name of a web ACL after you create it.</p>",
+        "AwsWafWebAclDetails$DefaultAction": "<p>The action to perform if none of the rules contained in the web ACL match.</p>",
+        "AwsWafWebAclDetails$WebAclId": "<p>A unique identifier for a web ACL.</p>",
         "AwsWafWebAclRule$RuleId": "<p>The identifier for a rule.</p>",
         "AwsWafWebAclRule$Type": "<p>The rule type.</p> <p>Valid values: <code>REGULAR</code> | <code>RATE_BASED</code> | <code>GROUP</code> </p> <p>The default is <code>REGULAR</code>.</p>",
         "AwsXrayEncryptionConfigDetails$KeyId": "<p>The identifier of the KMS key that is used for encryption. Provided if <code>Type</code> is <code>KMS</code>.</p>",
@@ -5167,9 +5633,10 @@
         "ClassificationResult$MimeType": "<p>The type of content that the finding applies to.</p>",
         "ClassificationStatus$Code": "<p>The code that represents the status of the sensitive data detection.</p>",
         "ClassificationStatus$Reason": "<p>A longer description of the current status of the sensitive data detection.</p>",
+        "ContainerDetails$ContainerRuntime": "<p>The runtime of the container. </p>",
         "ContainerDetails$Name": "<p>The name of the container related to a finding.</p>",
-        "ContainerDetails$ImageId": "<p>The identifier of the image related to a finding.</p>",
-        "ContainerDetails$ImageName": "<p>The name of the image related to a finding.</p>",
+        "ContainerDetails$ImageId": "<p>The identifier of the container image related to a finding.</p>",
+        "ContainerDetails$ImageName": "<p>The name of the container image related to a finding.</p>",
         "ContainerDetails$LaunchedAt": "<p>Indicates when the container started.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "Country$CountryCode": "<p>The 2-letter ISO 3166 country code for the country.</p>",
         "Country$CountryName": "<p>The name of the country.</p>",
@@ -5211,6 +5678,10 @@
         "EnableOrganizationAdminAccountRequest$AdminAccountId": "<p>The Amazon Web Services account identifier of the account to designate as the Security Hub administrator account.</p>",
         "FieldMap$key": null,
         "FieldMap$value": null,
+        "FilePaths$FilePath": "<p>Path to the infected or suspicious file on the resource it was detected on. </p>",
+        "FilePaths$FileName": "<p>The name of the infected or suspicious file corresponding to the hash. </p>",
+        "FilePaths$ResourceId": "<p>The Amazon Resource Name (ARN) of the resource on which the threat was detected. </p>",
+        "FilePaths$Hash": "<p>The hash value for the infected or suspicious file. </p>",
         "FindingAggregator$FindingAggregatorArn": "<p>The ARN of the finding aggregator. You use the finding aggregator ARN to retrieve details for, update, and delete the finding aggregator.</p>",
         "FindingProviderSeverity$Original": "<p>The finding provider's original value for the severity.</p>",
         "FirewallPolicyStatefulRuleGroupReferencesDetails$ResourceArn": "<p>The ARN of the stateful rule group.</p>",
@@ -5357,6 +5828,8 @@
         "StatusReason$Description": "<p>The corresponding description for the status reason code.</p>",
         "StringFilter$Value": "<p>The string filter value. Filter values are case sensitive. For example, the product name for control-based findings is <code>Security Hub</code>. If you provide <code>security hub</code> as the filter text, then there is no match.</p>",
         "StringList$member": null,
+        "Threat$Name": "<p>The name of the threat. </p>",
+        "Threat$Severity": "<p>The severity of the threat. </p>",
         "ThreatIntelIndicator$Value": "<p>The value of a threat intelligence indicator.</p>",
         "ThreatIntelIndicator$LastObservedAt": "<p>Indicates when the most recent instance of a threat intelligence indicator was observed.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "ThreatIntelIndicator$Source": "<p>The source of the threat intelligence indicator.</p>",
@@ -5375,13 +5848,17 @@
         "UpdateInsightRequest$GroupByAttribute": "<p>The updated <code>GroupBy</code> attribute that defines this insight.</p>",
         "UpdateStandardsControlRequest$StandardsControlArn": "<p>The ARN of the security standard control to enable or disable.</p>",
         "UpdateStandardsControlRequest$DisabledReason": "<p>A description of the reason why you are disabling a security standard control. If you are disabling a control, then this is required.</p>",
+        "VolumeMount$Name": "<p>The name of the volume. </p>",
+        "VolumeMount$MountPath": "<p>The path in the container at which the volume should be mounted. </p>",
+        "VpcInfoCidrBlockSetDetails$CidrBlock": "<p>The IPv4 CIDR block for the VPC. </p>",
+        "VpcInfoIpv6CidrBlockSetDetails$Ipv6CidrBlock": "<p>The IPv6 CIDR block for the VPC. </p>",
         "Vulnerability$Id": "<p>The identifier of the vulnerability.</p>",
         "VulnerabilityVendor$Name": "<p>The name of the vendor.</p>",
         "VulnerabilityVendor$Url": "<p>The URL of the vulnerability advisory.</p>",
         "VulnerabilityVendor$VendorSeverity": "<p>The severity that the vendor assigned to the vulnerability.</p>",
         "VulnerabilityVendor$VendorCreatedAt": "<p>Indicates when the vulnerability advisory was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "VulnerabilityVendor$VendorUpdatedAt": "<p>Indicates when the vulnerability advisory was last updated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
-        "WafAction$Type": "<p>Specifies how you want WAF to respond to requests that match the settings in a rule.</p> <p>Valid settings include the following:</p> <ul> <li> <p> <code>ALLOW</code> - WAF allows requests</p> </li> <li> <p> <code>BLOCK</code> - WAF blocks requests</p> </li> <li> <p> <code>COUNT</code> - WAF increments a counter of the requests that match all of the conditions in the rule. WAF then continues to inspect the web request based on the remaining rules in the web ACL. You can't specify <code>COUNT</code> for the default action for a WebACL.</p> </li> </ul>",
+        "WafAction$Type": "<p>Specifies how you want WAF to respond to requests that match the settings in a rule.</p> <p>Valid settings include the following:</p> <ul> <li> <p> <code>ALLOW</code> - WAF allows requests</p> </li> <li> <p> <code>BLOCK</code> - WAF blocks requests</p> </li> <li> <p> <code>COUNT</code> - WAF increments a counter of the requests that match all of the conditions in the rule. WAF then continues to inspect the web request based on the remaining rules in the web ACL. You can't specify <code>COUNT</code> for the default action for a web ACL.</p> </li> </ul>",
         "WafExcludedRule$RuleId": "<p>The unique identifier for the rule to exclude from the rule group.</p>",
         "WafOverrideAction$Type": "<p> <code>COUNT</code> overrides the action specified by the individual rule within a <code>RuleGroup</code> .</p> <p>If set to <code>NONE</code>, the rule's action takes place.</p>"
       }
@@ -5393,12 +5870,19 @@
         "AwsApiGatewayRestApiDetails$BinaryMediaTypes": "<p>The list of binary media types supported by the REST API.</p>",
         "AwsAutoScalingLaunchConfigurationDetails$ClassicLinkVpcSecurityGroups": "<p>The identifiers of one or more security groups for the VPC that is specified in <code>ClassicLinkVPCId</code>.</p>",
         "AwsAutoScalingLaunchConfigurationDetails$SecurityGroups": "<p>The security groups to assign to the instances in the Auto Scaling group.</p>",
+        "AwsCloudFormationStackDetails$Capabilities": "<p>The capabilities allowed in the stack. </p>",
+        "AwsCloudFormationStackDetails$NotificationArns": "<p>The Amazon Resource Names (ARNs) of the Amazon SNS topic to which stack-related events are published. </p>",
+        "AwsCloudFrontDistributionOriginSslProtocols$Items": "<p>A list that contains allowed SSL/TLS protocols for this distribution. </p>",
+        "AwsCloudWatchAlarmDetails$AlarmActions": "<p>The list of actions, specified as Amazon Resource Names (ARNs) to execute when this alarm transitions into an <code>ALARM</code> state from any other state. </p>",
+        "AwsCloudWatchAlarmDetails$InsufficientDataActions": "<p>The actions to execute when this alarm transitions to the <code>INSUFFICIENT_DATA</code> state from any other state. Each action is specified as an ARN. </p>",
+        "AwsCloudWatchAlarmDetails$OkActions": "<p>The actions to execute when this alarm transitions to the <code>OK</code> state from any other state. Each action is specified as an ARN. </p>",
         "AwsCodeBuildProjectVpcConfig$Subnets": "<p>A list of one or more subnet IDs in your VPC.</p>",
         "AwsCodeBuildProjectVpcConfig$SecurityGroupIds": "<p>A list of one or more security group IDs in your VPC.</p>",
         "AwsCorsConfiguration$AllowOrigins": "<p>The allowed origins for CORS requests.</p>",
         "AwsCorsConfiguration$ExposeHeaders": "<p>The exposed headers for CORS requests.</p>",
         "AwsCorsConfiguration$AllowMethods": "<p>The allowed methods for CORS requests.</p>",
         "AwsCorsConfiguration$AllowHeaders": "<p>The allowed headers for CORS requests.</p>",
+        "AwsEc2TransitGatewayDetails$TransitGatewayCidrBlocks": "<p>The transit gateway Classless Inter-Domain Routing (CIDR) blocks. </p>",
         "AwsEc2VpcEndpointServiceDetails$AvailabilityZones": "<p>The Availability Zones where the service is available.</p>",
         "AwsEc2VpcEndpointServiceDetails$BaseEndpointDnsNames": "<p>The DNS names for the service.</p>",
         "AwsEc2VpcEndpointServiceDetails$GatewayLoadBalancerArns": "<p>The ARNs of the Gateway Load Balancers for the service.</p>",
@@ -5424,6 +5908,7 @@
         "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails$Permissions": "<p>The explicit permissions to provide to the container for the device. By default, the container has permissions for read, write, and <code>mknod</code> for the device.</p>",
         "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails$MountOptions": "<p>The list of tmpfs volume mount options.</p>",
         "AwsEcsTaskDefinitionDetails$RequiresCompatibilities": "<p>The task launch types that the task definition was validated against.</p>",
+        "AwsEfsAccessPointPosixUserDetails$SecondaryGids": "<p>Secondary POSIX group IDs used for all file system operations using this access point. </p>",
         "AwsEksClusterLoggingClusterLoggingDetails$Types": "<p>A list of logging types.</p>",
         "AwsEksClusterResourcesVpcConfigDetails$SecurityGroupIds": "<p>The security groups that are associated with the cross-account elastic network interfaces that are used to allow communication between your nodes and the Amazon EKS control plane.</p>",
         "AwsEksClusterResourcesVpcConfigDetails$SubnetIds": "<p>The subnets that are associated with the cluster.</p>",
@@ -6251,6 +6736,12 @@
         "TagMap$value": null
       }
     },
+    "Threat": {
+      "base": "<p>Provides information about the threat detected in a security finding and the file paths that were affected by the threat. </p>",
+      "refs": {
+        "ThreatList$member": null
+      }
+    },
     "ThreatIntelIndicator": {
       "base": "<p>Details about the threat intelligence related to a finding.</p>",
       "refs": {
@@ -6273,6 +6764,12 @@
       "base": null,
       "refs": {
         "ThreatIntelIndicator$Type": "<p>The type of threat intelligence indicator.</p>"
+      }
+    },
+    "ThreatList": {
+      "base": null,
+      "refs": {
+        "AwsSecurityFinding$Threats": "<p>Details about the threat detected in a security finding and the file paths that were affected by the threat. </p>"
       }
     },
     "Timestamp": {
@@ -6379,6 +6876,48 @@
         "BatchUpdateFindingsRequest$VerificationState": "<p>Indicates the veracity of a finding.</p> <p>The available values for <code>VerificationState</code> are as follows.</p> <ul> <li> <p> <code>UNKNOWN</code> – The default disposition of a security finding</p> </li> <li> <p> <code>TRUE_POSITIVE</code> – The security finding is confirmed</p> </li> <li> <p> <code>FALSE_POSITIVE</code> – The security finding was determined to be a false alarm</p> </li> <li> <p> <code>BENIGN_POSITIVE</code> – A special case of <code>TRUE_POSITIVE</code> where the finding doesn't pose any threat, is expected, or both</p> </li> </ul>"
       }
     },
+    "VolumeMount": {
+      "base": "<p>Describes the mounting of a volume in a container. </p>",
+      "refs": {
+        "VolumeMountList$member": null
+      }
+    },
+    "VolumeMountList": {
+      "base": null,
+      "refs": {
+        "ContainerDetails$VolumeMounts": "<p>Provides information about the mounting of a volume in a container. </p>"
+      }
+    },
+    "VpcInfoCidrBlockSetDetails": {
+      "base": "<p>Provides details about the IPv4 CIDR blocks for the VPC. </p>",
+      "refs": {
+        "VpcInfoCidrBlockSetList$member": null
+      }
+    },
+    "VpcInfoCidrBlockSetList": {
+      "base": null,
+      "refs": {
+        "AwsEc2VpcPeeringConnectionVpcInfoDetails$CidrBlockSet": "<p>Information about the IPv4 CIDR blocks for the VPC. </p>"
+      }
+    },
+    "VpcInfoIpv6CidrBlockSetDetails": {
+      "base": "<p>Provides details about the IPv6 CIDR blocks for the VPC. </p>",
+      "refs": {
+        "VpcInfoIpv6CidrBlockSetList$member": null
+      }
+    },
+    "VpcInfoIpv6CidrBlockSetList": {
+      "base": null,
+      "refs": {
+        "AwsEc2VpcPeeringConnectionVpcInfoDetails$Ipv6CidrBlockSet": "<p>The IPv6 CIDR block for the VPC. </p>"
+      }
+    },
+    "VpcInfoPeeringOptionsDetails": {
+      "base": "<p>Provides information about the VPC peering connection options for the accepter or requester VPC. </p>",
+      "refs": {
+        "AwsEc2VpcPeeringConnectionVpcInfoDetails$PeeringOptions": "<p>Information about the VPC peering connection options for the accepter or requester VPC. </p>"
+      }
+    },
     "Vulnerability": {
       "base": "<p>A vulnerability associated with a finding.</p>",
       "refs": {
@@ -6418,7 +6957,7 @@
     "WafOverrideAction": {
       "base": "<p>Details about an override action for a rule.</p>",
       "refs": {
-        "AwsWafWebAclRule$OverrideAction": "<p>Use the <code>OverrideAction</code> to test your RuleGroup.</p> <p>Any rule in a RuleGroup can potentially block a request. If you set the <code>OverrideAction</code> to <code>None</code>, the RuleGroup blocks a request if any individual rule in the RuleGroup matches the request and is configured to block that request.</p> <p>However, if you first want to test the RuleGroup, set the <code>OverrideAction</code> to <code>Count</code>. The RuleGroup then overrides any block action specified by individual rules contained within the group. Instead of blocking matching requests, those requests are counted.</p> <p> <code>ActivatedRule</code>|<code>OverrideAction</code> applies only when updating or adding a RuleGroup to a WebACL. In this case you do not use <code>ActivatedRule</code>|<code>Action</code>. For all other update requests, <code>ActivatedRule</code>|<code>Action</code> is used instead of <code>ActivatedRule</code>|<code>OverrideAction</code>. </p>"
+        "AwsWafWebAclRule$OverrideAction": "<p>Use the <code>OverrideAction</code> to test your <code>RuleGroup</code>.</p> <p>Any rule in a <code>RuleGroup</code> can potentially block a request. If you set the <code>OverrideAction</code> to <code>None</code>, the <code>RuleGroup</code> blocks a request if any individual rule in the <code>RuleGroup</code> matches the request and is configured to block that request.</p> <p>However, if you first want to test the <code>RuleGroup</code>, set the <code>OverrideAction</code> to <code>Count</code>. The <code>RuleGroup</code> then overrides any block action specified by individual rules contained within the group. Instead of blocking matching requests, those requests are counted.</p> <p> <code>ActivatedRule</code>|<code>OverrideAction</code> applies only when updating or adding a <code>RuleGroup</code> to a web ACL. In this case you do not use <code>ActivatedRule</code> <code>Action</code>. For all other update requests, <code>ActivatedRule</code> <code>Action</code> is used instead of <code>ActivatedRule</code> <code>OverrideAction</code>.</p>"
       }
     },
     "Workflow": {
