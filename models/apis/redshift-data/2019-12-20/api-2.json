@@ -188,7 +188,8 @@
         "SecretArn":{"shape":"SecretArn"},
         "Sqls":{"shape":"SqlList"},
         "StatementName":{"shape":"StatementNameString"},
-        "WithEvent":{"shape":"Boolean"}
+        "WithEvent":{"shape":"Boolean"},
+        "WorkgroupName":{"shape":"WorkgroupNameString"}
       }
     },
     "BatchExecuteStatementOutput":{
@@ -199,7 +200,8 @@
         "Database":{"shape":"String"},
         "DbUser":{"shape":"String"},
         "Id":{"shape":"StatementId"},
-        "SecretArn":{"shape":"SecretArn"}
+        "SecretArn":{"shape":"SecretArn"},
+        "WorkgroupName":{"shape":"WorkgroupNameString"}
       }
     },
     "Blob":{"type":"blob"},
@@ -299,7 +301,8 @@
         "SecretArn":{"shape":"SecretArn"},
         "Status":{"shape":"StatusString"},
         "SubStatements":{"shape":"SubStatementList"},
-        "UpdatedAt":{"shape":"Timestamp"}
+        "UpdatedAt":{"shape":"Timestamp"},
+        "WorkgroupName":{"shape":"WorkgroupNameString"}
       }
     },
     "DescribeTableRequest":{
@@ -314,7 +317,8 @@
         "NextToken":{"shape":"String"},
         "Schema":{"shape":"String"},
         "SecretArn":{"shape":"SecretArn"},
-        "Table":{"shape":"String"}
+        "Table":{"shape":"String"},
+        "WorkgroupName":{"shape":"WorkgroupNameString"}
       }
     },
     "DescribeTableResponse":{
@@ -352,7 +356,8 @@
         "SecretArn":{"shape":"SecretArn"},
         "Sql":{"shape":"StatementString"},
         "StatementName":{"shape":"StatementNameString"},
-        "WithEvent":{"shape":"Boolean"}
+        "WithEvent":{"shape":"Boolean"},
+        "WorkgroupName":{"shape":"WorkgroupNameString"}
       }
     },
     "ExecuteStatementOutput":{
@@ -363,7 +368,8 @@
         "Database":{"shape":"String"},
         "DbUser":{"shape":"String"},
         "Id":{"shape":"StatementId"},
-        "SecretArn":{"shape":"SecretArn"}
+        "SecretArn":{"shape":"SecretArn"},
+        "WorkgroupName":{"shape":"WorkgroupNameString"}
       }
     },
     "Field":{
@@ -419,7 +425,8 @@
         "DbUser":{"shape":"String"},
         "MaxResults":{"shape":"PageSize"},
         "NextToken":{"shape":"String"},
-        "SecretArn":{"shape":"SecretArn"}
+        "SecretArn":{"shape":"SecretArn"},
+        "WorkgroupName":{"shape":"WorkgroupNameString"}
       }
     },
     "ListDatabasesResponse":{
@@ -440,7 +447,8 @@
         "MaxResults":{"shape":"PageSize"},
         "NextToken":{"shape":"String"},
         "SchemaPattern":{"shape":"String"},
-        "SecretArn":{"shape":"SecretArn"}
+        "SecretArn":{"shape":"SecretArn"},
+        "WorkgroupName":{"shape":"WorkgroupNameString"}
       }
     },
     "ListSchemasResponse":{
@@ -485,7 +493,8 @@
         "NextToken":{"shape":"String"},
         "SchemaPattern":{"shape":"String"},
         "SecretArn":{"shape":"SecretArn"},
-        "TablePattern":{"shape":"String"}
+        "TablePattern":{"shape":"String"},
+        "WorkgroupName":{"shape":"WorkgroupNameString"}
       }
     },
     "ListTablesResponse":{
@@ -651,6 +660,12 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "WorkgroupNameString":{
+      "type":"string",
+      "max":64,
+      "min":3,
+      "pattern":"^[a-z0-9-]+$"
     },
     "bool":{"type":"boolean"}
   }

@@ -1,3 +1,13 @@
+Release v1.44.36 (2022-06-16)
+===
+
+### Service Client Updates
+* `service/redshift-data`: Updates service API and documentation
+* `service/redshiftserverless`: Adds new service
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.44.35 (2022-06-15)
 ===
 

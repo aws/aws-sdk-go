@@ -9698,6 +9698,254 @@ func (s *AwsCertificateManagerCertificateResourceRecord) SetValue(v string) *Aws
 	return s
 }
 
+// Nests a stack as a resource in a top-level template. Nested stacks are stacks
+// created as resources for another stack.
+type AwsCloudFormationStackDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The capabilities allowed in the stack.
+	Capabilities []*string `type:"list"`
+
+	// The time at which the stack was created.
+	CreationTime *string `type:"string"`
+
+	// A user-defined description associated with the stack.
+	Description *string `type:"string"`
+
+	// Boolean to enable or disable rollback on stack creation failures.
+	DisableRollback *bool `type:"boolean"`
+
+	// Information about whether a stack's actual configuration differs, or has
+	// drifted, from its expected configuration, as defined in the stack template
+	// and any values specified as template parameters.
+	DriftInformation *AwsCloudFormationStackDriftInformationDetails `type:"structure"`
+
+	// Whether termination protection is enabled for the stack.
+	EnableTerminationProtection *bool `type:"boolean"`
+
+	// The time the nested stack was last updated. This field will only be returned
+	// if the stack has been updated at least once.
+	LastUpdatedTime *string `type:"string"`
+
+	// The Amazon Resource Names (ARNs) of the Amazon SNS topic to which stack-related
+	// events are published.
+	NotificationArns []*string `type:"list"`
+
+	// A list of output structures.
+	Outputs []*AwsCloudFormationStackOutputsDetails `type:"list"`
+
+	// The ARN of an IAM role that's associated with the stack.
+	RoleArn *string `type:"string"`
+
+	// Unique identifier of the stack.
+	StackId *string `type:"string"`
+
+	// The name associated with the stack.
+	StackName *string `type:"string"`
+
+	// Current status of the stack.
+	StackStatus *string `type:"string"`
+
+	// Success or failure message associated with the stack status.
+	StackStatusReason *string `type:"string"`
+
+	// The length of time, in minutes, that CloudFormation waits for the nested
+	// stack to reach the CREATE_COMPLETE state.
+	TimeoutInMinutes *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudFormationStackDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudFormationStackDetails) GoString() string {
+	return s.String()
+}
+
+// SetCapabilities sets the Capabilities field's value.
+func (s *AwsCloudFormationStackDetails) SetCapabilities(v []*string) *AwsCloudFormationStackDetails {
+	s.Capabilities = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *AwsCloudFormationStackDetails) SetCreationTime(v string) *AwsCloudFormationStackDetails {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsCloudFormationStackDetails) SetDescription(v string) *AwsCloudFormationStackDetails {
+	s.Description = &v
+	return s
+}
+
+// SetDisableRollback sets the DisableRollback field's value.
+func (s *AwsCloudFormationStackDetails) SetDisableRollback(v bool) *AwsCloudFormationStackDetails {
+	s.DisableRollback = &v
+	return s
+}
+
+// SetDriftInformation sets the DriftInformation field's value.
+func (s *AwsCloudFormationStackDetails) SetDriftInformation(v *AwsCloudFormationStackDriftInformationDetails) *AwsCloudFormationStackDetails {
+	s.DriftInformation = v
+	return s
+}
+
+// SetEnableTerminationProtection sets the EnableTerminationProtection field's value.
+func (s *AwsCloudFormationStackDetails) SetEnableTerminationProtection(v bool) *AwsCloudFormationStackDetails {
+	s.EnableTerminationProtection = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *AwsCloudFormationStackDetails) SetLastUpdatedTime(v string) *AwsCloudFormationStackDetails {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetNotificationArns sets the NotificationArns field's value.
+func (s *AwsCloudFormationStackDetails) SetNotificationArns(v []*string) *AwsCloudFormationStackDetails {
+	s.NotificationArns = v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *AwsCloudFormationStackDetails) SetOutputs(v []*AwsCloudFormationStackOutputsDetails) *AwsCloudFormationStackDetails {
+	s.Outputs = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *AwsCloudFormationStackDetails) SetRoleArn(v string) *AwsCloudFormationStackDetails {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStackId sets the StackId field's value.
+func (s *AwsCloudFormationStackDetails) SetStackId(v string) *AwsCloudFormationStackDetails {
+	s.StackId = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *AwsCloudFormationStackDetails) SetStackName(v string) *AwsCloudFormationStackDetails {
+	s.StackName = &v
+	return s
+}
+
+// SetStackStatus sets the StackStatus field's value.
+func (s *AwsCloudFormationStackDetails) SetStackStatus(v string) *AwsCloudFormationStackDetails {
+	s.StackStatus = &v
+	return s
+}
+
+// SetStackStatusReason sets the StackStatusReason field's value.
+func (s *AwsCloudFormationStackDetails) SetStackStatusReason(v string) *AwsCloudFormationStackDetails {
+	s.StackStatusReason = &v
+	return s
+}
+
+// SetTimeoutInMinutes sets the TimeoutInMinutes field's value.
+func (s *AwsCloudFormationStackDetails) SetTimeoutInMinutes(v int64) *AwsCloudFormationStackDetails {
+	s.TimeoutInMinutes = &v
+	return s
+}
+
+// Provides information about the stack's conformity to its expected template
+// configuration.
+type AwsCloudFormationStackDriftInformationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Status of the stack's actual configuration compared to its expected template
+	// configuration.
+	StackDriftStatus *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudFormationStackDriftInformationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudFormationStackDriftInformationDetails) GoString() string {
+	return s.String()
+}
+
+// SetStackDriftStatus sets the StackDriftStatus field's value.
+func (s *AwsCloudFormationStackDriftInformationDetails) SetStackDriftStatus(v string) *AwsCloudFormationStackDriftInformationDetails {
+	s.StackDriftStatus = &v
+	return s
+}
+
+// Provides information about the CloudFormation stack output.
+type AwsCloudFormationStackOutputsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A user-defined description associated with the output.
+	Description *string `type:"string"`
+
+	// The key associated with the output.
+	OutputKey *string `type:"string"`
+
+	// The value associated with the output.
+	OutputValue *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudFormationStackOutputsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudFormationStackOutputsDetails) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsCloudFormationStackOutputsDetails) SetDescription(v string) *AwsCloudFormationStackOutputsDetails {
+	s.Description = &v
+	return s
+}
+
+// SetOutputKey sets the OutputKey field's value.
+func (s *AwsCloudFormationStackOutputsDetails) SetOutputKey(v string) *AwsCloudFormationStackOutputsDetails {
+	s.OutputKey = &v
+	return s
+}
+
+// SetOutputValue sets the OutputValue field's value.
+func (s *AwsCloudFormationStackOutputsDetails) SetOutputValue(v string) *AwsCloudFormationStackOutputsDetails {
+	s.OutputValue = &v
+	return s
+}
+
 // Information about a cache behavior for the distribution.
 type AwsCloudFrontDistributionCacheBehavior struct {
 	_ struct{} `type:"structure"`
@@ -9740,7 +9988,7 @@ func (s *AwsCloudFrontDistributionCacheBehavior) SetViewerProtocolPolicy(v strin
 	return s
 }
 
-// Provides information about caching for the distribution.
+// Provides information about caching for the CloudFront distribution.
 type AwsCloudFrontDistributionCacheBehaviors struct {
 	_ struct{} `type:"structure"`
 
@@ -9772,7 +10020,8 @@ func (s *AwsCloudFrontDistributionCacheBehaviors) SetItems(v []*AwsCloudFrontDis
 	return s
 }
 
-// Contains information about the default cache configuration for the distribution.
+// Contains information about the default cache configuration for the CloudFront
+// distribution.
 type AwsCloudFrontDistributionDefaultCacheBehavior struct {
 	_ struct{} `type:"structure"`
 
@@ -9814,7 +10063,7 @@ func (s *AwsCloudFrontDistributionDefaultCacheBehavior) SetViewerProtocolPolicy(
 	return s
 }
 
-// A distribution configuration.
+// A CloudFront distribution configuration.
 type AwsCloudFrontDistributionDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -9953,7 +10202,8 @@ func (s *AwsCloudFrontDistributionDetails) SetWebAclId(v string) *AwsCloudFrontD
 	return s
 }
 
-// A complex type that controls whether access logs are written for the distribution.
+// A complex type that controls whether access logs are written for the CloudFront
+// distribution.
 type AwsCloudFrontDistributionLogging struct {
 	_ struct{} `type:"structure"`
 
@@ -10013,7 +10263,91 @@ func (s *AwsCloudFrontDistributionLogging) SetPrefix(v string) *AwsCloudFrontDis
 	return s
 }
 
-// Information about an origin group for the distribution.
+// A custom origin. A custom origin is any origin that is not an Amazon S3 bucket,
+// with one exception. An Amazon S3 bucket that is configured with static website
+// hosting (https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html)
+// is a custom origin.
+type AwsCloudFrontDistributionOriginCustomOriginConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The HTTP port that CloudFront uses to connect to the origin.
+	HttpPort *int64 `type:"integer"`
+
+	// The HTTPS port that CloudFront uses to connect to the origin.
+	HttpsPort *int64 `type:"integer"`
+
+	// Specifies how long, in seconds, CloudFront persists its connection to the
+	// origin.
+	OriginKeepaliveTimeout *int64 `type:"integer"`
+
+	// Specifies the protocol (HTTP or HTTPS) that CloudFront uses to connect to
+	// the origin.
+	OriginProtocolPolicy *string `type:"string"`
+
+	// Specifies how long, in seconds, CloudFront waits for a response from the
+	// origin.
+	OriginReadTimeout *int64 `type:"integer"`
+
+	// Specifies the minimum SSL/TLS protocol that CloudFront uses when connecting
+	// to your origin over HTTPS.
+	OriginSslProtocols *AwsCloudFrontDistributionOriginSslProtocols `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudFrontDistributionOriginCustomOriginConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudFrontDistributionOriginCustomOriginConfig) GoString() string {
+	return s.String()
+}
+
+// SetHttpPort sets the HttpPort field's value.
+func (s *AwsCloudFrontDistributionOriginCustomOriginConfig) SetHttpPort(v int64) *AwsCloudFrontDistributionOriginCustomOriginConfig {
+	s.HttpPort = &v
+	return s
+}
+
+// SetHttpsPort sets the HttpsPort field's value.
+func (s *AwsCloudFrontDistributionOriginCustomOriginConfig) SetHttpsPort(v int64) *AwsCloudFrontDistributionOriginCustomOriginConfig {
+	s.HttpsPort = &v
+	return s
+}
+
+// SetOriginKeepaliveTimeout sets the OriginKeepaliveTimeout field's value.
+func (s *AwsCloudFrontDistributionOriginCustomOriginConfig) SetOriginKeepaliveTimeout(v int64) *AwsCloudFrontDistributionOriginCustomOriginConfig {
+	s.OriginKeepaliveTimeout = &v
+	return s
+}
+
+// SetOriginProtocolPolicy sets the OriginProtocolPolicy field's value.
+func (s *AwsCloudFrontDistributionOriginCustomOriginConfig) SetOriginProtocolPolicy(v string) *AwsCloudFrontDistributionOriginCustomOriginConfig {
+	s.OriginProtocolPolicy = &v
+	return s
+}
+
+// SetOriginReadTimeout sets the OriginReadTimeout field's value.
+func (s *AwsCloudFrontDistributionOriginCustomOriginConfig) SetOriginReadTimeout(v int64) *AwsCloudFrontDistributionOriginCustomOriginConfig {
+	s.OriginReadTimeout = &v
+	return s
+}
+
+// SetOriginSslProtocols sets the OriginSslProtocols field's value.
+func (s *AwsCloudFrontDistributionOriginCustomOriginConfig) SetOriginSslProtocols(v *AwsCloudFrontDistributionOriginSslProtocols) *AwsCloudFrontDistributionOriginCustomOriginConfig {
+	s.OriginSslProtocols = v
+	return s
+}
+
+// Information about an origin group for the CloudFront distribution.
 type AwsCloudFrontDistributionOriginGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -10118,7 +10452,8 @@ func (s *AwsCloudFrontDistributionOriginGroupFailoverStatusCodes) SetQuantity(v 
 	return s
 }
 
-// Provides information about origin groups that are associated with the distribution.
+// Provides information about origin groups that are associated with the CloudFront
+// distribution.
 type AwsCloudFrontDistributionOriginGroups struct {
 	_ struct{} `type:"structure"`
 
@@ -10150,11 +10485,17 @@ func (s *AwsCloudFrontDistributionOriginGroups) SetItems(v []*AwsCloudFrontDistr
 	return s
 }
 
-// A complex type that describes the S3 bucket, HTTP server (for example, a
-// web server), AWS Elemental MediaStore, or other server from which CloudFront
+// A complex type that describes the Amazon S3 bucket, HTTP server (for example,
+// a web server), AWS Elemental MediaStore, or other server from which CloudFront
 // gets your files.
 type AwsCloudFrontDistributionOriginItem struct {
 	_ struct{} `type:"structure"`
+
+	// An origin that is not an Amazon S3 bucket, with one exception. If the Amazon
+	// S3 bucket is configured with static website hosting, use this attribute.
+	// If the Amazon S3 bucket is not configured with static website hosting, use
+	// the S3OriginConfig type instead.
+	CustomOriginConfig *AwsCloudFrontDistributionOriginCustomOriginConfig `type:"structure"`
 
 	// Amazon S3 origins: The DNS name of the S3 bucket from which you want CloudFront
 	// to get objects for this origin.
@@ -10190,6 +10531,12 @@ func (s AwsCloudFrontDistributionOriginItem) GoString() string {
 	return s.String()
 }
 
+// SetCustomOriginConfig sets the CustomOriginConfig field's value.
+func (s *AwsCloudFrontDistributionOriginItem) SetCustomOriginConfig(v *AwsCloudFrontDistributionOriginCustomOriginConfig) *AwsCloudFrontDistributionOriginItem {
+	s.CustomOriginConfig = v
+	return s
+}
+
 // SetDomainName sets the DomainName field's value.
 func (s *AwsCloudFrontDistributionOriginItem) SetDomainName(v string) *AwsCloudFrontDistributionOriginItem {
 	s.DomainName = &v
@@ -10214,8 +10561,8 @@ func (s *AwsCloudFrontDistributionOriginItem) SetS3OriginConfig(v *AwsCloudFront
 	return s
 }
 
-// Information about an origin that is an S3 bucket that is not configured with
-// static website hosting.
+// Information about an origin that is an Amazon S3 bucket that is not configured
+// with static website hosting.
 type AwsCloudFrontDistributionOriginS3OriginConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -10247,8 +10594,51 @@ func (s *AwsCloudFrontDistributionOriginS3OriginConfig) SetOriginAccessIdentity(
 	return s
 }
 
+// A complex type that contains information about the SSL/TLS protocols that
+// CloudFront can use when establishing an HTTPS connection with your origin.
+type AwsCloudFrontDistributionOriginSslProtocols struct {
+	_ struct{} `type:"structure"`
+
+	// A list that contains allowed SSL/TLS protocols for this distribution.
+	Items []*string `type:"list"`
+
+	// The number of SSL/TLS protocols that you want to allow CloudFront to use
+	// when establishing an HTTPS connection with this origin.
+	Quantity *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudFrontDistributionOriginSslProtocols) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudFrontDistributionOriginSslProtocols) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *AwsCloudFrontDistributionOriginSslProtocols) SetItems(v []*string) *AwsCloudFrontDistributionOriginSslProtocols {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *AwsCloudFrontDistributionOriginSslProtocols) SetQuantity(v int64) *AwsCloudFrontDistributionOriginSslProtocols {
+	s.Quantity = &v
+	return s
+}
+
 // A complex type that contains information about origins and origin groups
-// for this distribution.
+// for this CloudFront distribution.
 type AwsCloudFrontDistributionOrigins struct {
 	_ struct{} `type:"structure"`
 
@@ -10280,8 +10670,8 @@ func (s *AwsCloudFrontDistributionOrigins) SetItems(v []*AwsCloudFrontDistributi
 	return s
 }
 
-// Provides information about the TLS/SSL configuration that the distribution
-// uses to communicate with viewers.
+// Provides information about the TLS/SSL configuration that the CloudFront
+// distribution uses to communicate with viewers.
 type AwsCloudFrontDistributionViewerCertificate struct {
 	_ struct{} `type:"structure"`
 
@@ -10536,6 +10926,291 @@ func (s *AwsCloudTrailTrailDetails) SetSnsTopicName(v string) *AwsCloudTrailTrai
 // SetTrailArn sets the TrailArn field's value.
 func (s *AwsCloudTrailTrailDetails) SetTrailArn(v string) *AwsCloudTrailTrailDetails {
 	s.TrailArn = &v
+	return s
+}
+
+// Specifies an alarm and associates it with the specified metric or metric
+// math expression.
+type AwsCloudWatchAlarmDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether actions should be executed during any changes to the alarm
+	// state.
+	ActionsEnabled *bool `type:"boolean"`
+
+	// The list of actions, specified as Amazon Resource Names (ARNs) to execute
+	// when this alarm transitions into an ALARM state from any other state.
+	AlarmActions []*string `type:"list"`
+
+	// The ARN of the alarm.
+	AlarmArn *string `type:"string"`
+
+	// The time stamp of the last update to the alarm configuration.
+	AlarmConfigurationUpdatedTimestamp *string `type:"string"`
+
+	// The description of the alarm.
+	AlarmDescription *string `type:"string"`
+
+	// The name of the alarm. If you don't specify a name, CloudFront generates
+	// a unique physical ID and uses that ID for the alarm name.
+	AlarmName *string `type:"string"`
+
+	// The arithmetic operation to use when comparing the specified statistic and
+	// threshold. The specified statistic value is used as the first operand.
+	ComparisonOperator *string `type:"string"`
+
+	// The number of datapoints that must be breaching to trigger the alarm.
+	DatapointsToAlarm *int64 `type:"integer"`
+
+	// The dimensions for the metric associated with the alarm.
+	Dimensions []*AwsCloudWatchAlarmDimensionsDetails `type:"list"`
+
+	// Used only for alarms based on percentiles. If ignore, the alarm state does
+	// not change during periods with too few data points to be statistically significant.
+	// If evaluate or this parameter is not used, the alarm is always evaluated
+	// and possibly changes state no matter how many data points are available.
+	EvaluateLowSampleCountPercentile *string `type:"string"`
+
+	// The number of periods over which data is compared to the specified threshold.
+	EvaluationPeriods *int64 `type:"integer"`
+
+	// The percentile statistic for the metric associated with the alarm.
+	ExtendedStatistic *string `type:"string"`
+
+	// The actions to execute when this alarm transitions to the INSUFFICIENT_DATA
+	// state from any other state. Each action is specified as an ARN.
+	InsufficientDataActions []*string `type:"list"`
+
+	// The name of the metric associated with the alarm. This is required for an
+	// alarm based on a metric. For an alarm based on a math expression, you use
+	// Metrics instead and you can't specify MetricName.
+	MetricName *string `type:"string"`
+
+	// The namespace of the metric associated with the alarm. This is required for
+	// an alarm based on a metric. For an alarm based on a math expression, you
+	// can't specify Namespace and you use Metrics instead.
+	Namespace *string `type:"string"`
+
+	// The actions to execute when this alarm transitions to the OK state from any
+	// other state. Each action is specified as an ARN.
+	OkActions []*string `type:"list"`
+
+	// The period, in seconds, over which the statistic is applied. This is required
+	// for an alarm based on a metric.
+	Period *int64 `type:"integer"`
+
+	// The statistic for the metric associated with the alarm, other than percentile.
+	// For percentile statistics, use ExtendedStatistic.
+	//
+	// For an alarm based on a metric, you must specify either Statistic or ExtendedStatistic
+	// but not both.
+	//
+	// For an alarm based on a math expression, you can't specify Statistic. Instead,
+	// you use Metrics.
+	Statistic *string `type:"string"`
+
+	// The value to compare with the specified statistic.
+	Threshold *float64 `type:"double"`
+
+	// n an alarm based on an anomaly detection model, this is the ID of the ANOMALY_DETECTION_BAND
+	// function used as the threshold for the alarm.
+	ThresholdMetricId *string `type:"string"`
+
+	// Sets how this alarm is to handle missing data points.
+	TreatMissingData *string `type:"string"`
+
+	// The unit of the metric associated with the alarm.
+	Unit *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudWatchAlarmDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudWatchAlarmDetails) GoString() string {
+	return s.String()
+}
+
+// SetActionsEnabled sets the ActionsEnabled field's value.
+func (s *AwsCloudWatchAlarmDetails) SetActionsEnabled(v bool) *AwsCloudWatchAlarmDetails {
+	s.ActionsEnabled = &v
+	return s
+}
+
+// SetAlarmActions sets the AlarmActions field's value.
+func (s *AwsCloudWatchAlarmDetails) SetAlarmActions(v []*string) *AwsCloudWatchAlarmDetails {
+	s.AlarmActions = v
+	return s
+}
+
+// SetAlarmArn sets the AlarmArn field's value.
+func (s *AwsCloudWatchAlarmDetails) SetAlarmArn(v string) *AwsCloudWatchAlarmDetails {
+	s.AlarmArn = &v
+	return s
+}
+
+// SetAlarmConfigurationUpdatedTimestamp sets the AlarmConfigurationUpdatedTimestamp field's value.
+func (s *AwsCloudWatchAlarmDetails) SetAlarmConfigurationUpdatedTimestamp(v string) *AwsCloudWatchAlarmDetails {
+	s.AlarmConfigurationUpdatedTimestamp = &v
+	return s
+}
+
+// SetAlarmDescription sets the AlarmDescription field's value.
+func (s *AwsCloudWatchAlarmDetails) SetAlarmDescription(v string) *AwsCloudWatchAlarmDetails {
+	s.AlarmDescription = &v
+	return s
+}
+
+// SetAlarmName sets the AlarmName field's value.
+func (s *AwsCloudWatchAlarmDetails) SetAlarmName(v string) *AwsCloudWatchAlarmDetails {
+	s.AlarmName = &v
+	return s
+}
+
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *AwsCloudWatchAlarmDetails) SetComparisonOperator(v string) *AwsCloudWatchAlarmDetails {
+	s.ComparisonOperator = &v
+	return s
+}
+
+// SetDatapointsToAlarm sets the DatapointsToAlarm field's value.
+func (s *AwsCloudWatchAlarmDetails) SetDatapointsToAlarm(v int64) *AwsCloudWatchAlarmDetails {
+	s.DatapointsToAlarm = &v
+	return s
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *AwsCloudWatchAlarmDetails) SetDimensions(v []*AwsCloudWatchAlarmDimensionsDetails) *AwsCloudWatchAlarmDetails {
+	s.Dimensions = v
+	return s
+}
+
+// SetEvaluateLowSampleCountPercentile sets the EvaluateLowSampleCountPercentile field's value.
+func (s *AwsCloudWatchAlarmDetails) SetEvaluateLowSampleCountPercentile(v string) *AwsCloudWatchAlarmDetails {
+	s.EvaluateLowSampleCountPercentile = &v
+	return s
+}
+
+// SetEvaluationPeriods sets the EvaluationPeriods field's value.
+func (s *AwsCloudWatchAlarmDetails) SetEvaluationPeriods(v int64) *AwsCloudWatchAlarmDetails {
+	s.EvaluationPeriods = &v
+	return s
+}
+
+// SetExtendedStatistic sets the ExtendedStatistic field's value.
+func (s *AwsCloudWatchAlarmDetails) SetExtendedStatistic(v string) *AwsCloudWatchAlarmDetails {
+	s.ExtendedStatistic = &v
+	return s
+}
+
+// SetInsufficientDataActions sets the InsufficientDataActions field's value.
+func (s *AwsCloudWatchAlarmDetails) SetInsufficientDataActions(v []*string) *AwsCloudWatchAlarmDetails {
+	s.InsufficientDataActions = v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *AwsCloudWatchAlarmDetails) SetMetricName(v string) *AwsCloudWatchAlarmDetails {
+	s.MetricName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *AwsCloudWatchAlarmDetails) SetNamespace(v string) *AwsCloudWatchAlarmDetails {
+	s.Namespace = &v
+	return s
+}
+
+// SetOkActions sets the OkActions field's value.
+func (s *AwsCloudWatchAlarmDetails) SetOkActions(v []*string) *AwsCloudWatchAlarmDetails {
+	s.OkActions = v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *AwsCloudWatchAlarmDetails) SetPeriod(v int64) *AwsCloudWatchAlarmDetails {
+	s.Period = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *AwsCloudWatchAlarmDetails) SetStatistic(v string) *AwsCloudWatchAlarmDetails {
+	s.Statistic = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *AwsCloudWatchAlarmDetails) SetThreshold(v float64) *AwsCloudWatchAlarmDetails {
+	s.Threshold = &v
+	return s
+}
+
+// SetThresholdMetricId sets the ThresholdMetricId field's value.
+func (s *AwsCloudWatchAlarmDetails) SetThresholdMetricId(v string) *AwsCloudWatchAlarmDetails {
+	s.ThresholdMetricId = &v
+	return s
+}
+
+// SetTreatMissingData sets the TreatMissingData field's value.
+func (s *AwsCloudWatchAlarmDetails) SetTreatMissingData(v string) *AwsCloudWatchAlarmDetails {
+	s.TreatMissingData = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *AwsCloudWatchAlarmDetails) SetUnit(v string) *AwsCloudWatchAlarmDetails {
+	s.Unit = &v
+	return s
+}
+
+// Details about the dimensions for the metric associated with the alarm.
+type AwsCloudWatchAlarmDimensionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a dimension.
+	Name *string `type:"string"`
+
+	// The value of a dimension.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudWatchAlarmDimensionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudWatchAlarmDimensionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AwsCloudWatchAlarmDimensionsDetails) SetName(v string) *AwsCloudWatchAlarmDimensionsDetails {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsCloudWatchAlarmDimensionsDetails) SetValue(v string) *AwsCloudWatchAlarmDimensionsDetails {
+	s.Value = &v
 	return s
 }
 
@@ -12383,7 +13058,7 @@ func (s *AwsEc2EipDetails) SetPublicIpv4Pool(v string) *AwsEc2EipDetails {
 	return s
 }
 
-// The details of an EC2 instance.
+// The details of an Amazon EC2 instance.
 type AwsEc2InstanceDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -12409,6 +13084,9 @@ type AwsEc2InstanceDetails struct {
 	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
 	LaunchedAt *string `type:"string"`
 
+	// Details about the metadata options for the Amazon EC2 instance.
+	MetadataOptions *AwsEc2InstanceMetadataOptions `type:"structure"`
+
 	// The identifiers of the network interfaces for the EC2 instance. The details
 	// for each network interface are in a corresponding AwsEc2NetworkInterfacesDetails
 	// object.
@@ -12419,6 +13097,10 @@ type AwsEc2InstanceDetails struct {
 
 	// The instance type of the instance.
 	Type *string `type:"string"`
+
+	// The virtualization type of the Amazon Machine Image (AMI) required to launch
+	// the instance.
+	VirtualizationType *string `type:"string"`
 
 	// The identifier of the VPC that the instance was launched in.
 	VpcId *string `type:"string"`
@@ -12478,6 +13160,12 @@ func (s *AwsEc2InstanceDetails) SetLaunchedAt(v string) *AwsEc2InstanceDetails {
 	return s
 }
 
+// SetMetadataOptions sets the MetadataOptions field's value.
+func (s *AwsEc2InstanceDetails) SetMetadataOptions(v *AwsEc2InstanceMetadataOptions) *AwsEc2InstanceDetails {
+	s.MetadataOptions = v
+	return s
+}
+
 // SetNetworkInterfaces sets the NetworkInterfaces field's value.
 func (s *AwsEc2InstanceDetails) SetNetworkInterfaces(v []*AwsEc2InstanceNetworkInterfacesDetails) *AwsEc2InstanceDetails {
 	s.NetworkInterfaces = v
@@ -12496,13 +13184,88 @@ func (s *AwsEc2InstanceDetails) SetType(v string) *AwsEc2InstanceDetails {
 	return s
 }
 
+// SetVirtualizationType sets the VirtualizationType field's value.
+func (s *AwsEc2InstanceDetails) SetVirtualizationType(v string) *AwsEc2InstanceDetails {
+	s.VirtualizationType = &v
+	return s
+}
+
 // SetVpcId sets the VpcId field's value.
 func (s *AwsEc2InstanceDetails) SetVpcId(v string) *AwsEc2InstanceDetails {
 	s.VpcId = &v
 	return s
 }
 
-// Identifies a network interface for the EC2 instance.
+// Metadata options that allow you to configure and secure the Amazon EC2 instance.
+type AwsEc2InstanceMetadataOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables the HTTP metadata endpoint on the instance.
+	HttpEndpoint *string `type:"string"`
+
+	// Enables or disables the IPv6 endpoint for the instance metadata service.
+	HttpProtocolIpv6 *string `type:"string"`
+
+	// The desired HTTP PUT response hop limit for instance metadata requests. The
+	// larger the number, the further instance metadata requests can travel.
+	HttpPutResponseHopLimit *int64 `type:"integer"`
+
+	// The state of token usage for your instance metadata requests.
+	HttpTokens *string `type:"string"`
+
+	// Specifies whether to allow access to instance tags from the instance metadata.
+	InstanceMetadataTags *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2InstanceMetadataOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2InstanceMetadataOptions) GoString() string {
+	return s.String()
+}
+
+// SetHttpEndpoint sets the HttpEndpoint field's value.
+func (s *AwsEc2InstanceMetadataOptions) SetHttpEndpoint(v string) *AwsEc2InstanceMetadataOptions {
+	s.HttpEndpoint = &v
+	return s
+}
+
+// SetHttpProtocolIpv6 sets the HttpProtocolIpv6 field's value.
+func (s *AwsEc2InstanceMetadataOptions) SetHttpProtocolIpv6(v string) *AwsEc2InstanceMetadataOptions {
+	s.HttpProtocolIpv6 = &v
+	return s
+}
+
+// SetHttpPutResponseHopLimit sets the HttpPutResponseHopLimit field's value.
+func (s *AwsEc2InstanceMetadataOptions) SetHttpPutResponseHopLimit(v int64) *AwsEc2InstanceMetadataOptions {
+	s.HttpPutResponseHopLimit = &v
+	return s
+}
+
+// SetHttpTokens sets the HttpTokens field's value.
+func (s *AwsEc2InstanceMetadataOptions) SetHttpTokens(v string) *AwsEc2InstanceMetadataOptions {
+	s.HttpTokens = &v
+	return s
+}
+
+// SetInstanceMetadataTags sets the InstanceMetadataTags field's value.
+func (s *AwsEc2InstanceMetadataOptions) SetInstanceMetadataTags(v string) *AwsEc2InstanceMetadataOptions {
+	s.InstanceMetadataTags = &v
+	return s
+}
+
+// Identifies a network interface for the Amazon EC2 instance.
 type AwsEc2InstanceNetworkInterfacesDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -12585,7 +13348,7 @@ func (s *AwsEc2NetworkAclAssociation) SetSubnetId(v string) *AwsEc2NetworkAclAss
 	return s
 }
 
-// Contains details about an EC2 network access control list (ACL).
+// Contains details about an Amazon EC2 network access control list (ACL).
 type AwsEc2NetworkAclDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -13064,7 +13827,7 @@ func (s *AwsEc2NetworkInterfaceSecurityGroup) SetGroupName(v string) *AwsEc2Netw
 	return s
 }
 
-// Details about an EC2 security group.
+// Details about an Amazon EC2 security group.
 type AwsEc2SecurityGroupDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -13574,6 +14337,140 @@ func (s *AwsEc2SubnetDetails) SetVpcId(v string) *AwsEc2SubnetDetails {
 	return s
 }
 
+// Information about an Amazon Web Services Amazon EC2 Transit Gateway that
+// interconnects virtual private clouds (VPCs) and on-premises networks.
+type AwsEc2TransitGatewayDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A private Autonomous System Number (ASN) for the Amazon side of a BGP session.
+	AmazonSideAsn *int64 `type:"integer"`
+
+	// The ID of the default association route table.
+	AssociationDefaultRouteTableId *string `type:"string"`
+
+	// Turn on or turn off automatic acceptance of attachment requests.
+	AutoAcceptSharedAttachments *string `type:"string"`
+
+	// Turn on or turn off automatic association with the default association route
+	// table.
+	DefaultRouteTableAssociation *string `type:"string"`
+
+	// Turn on or turn off automatic propagation of routes to the default propagation
+	// route table.
+	DefaultRouteTablePropagation *string `type:"string"`
+
+	// The description of the transit gateway.
+	Description *string `type:"string"`
+
+	// Turn on or turn off DNS support.
+	DnsSupport *string `type:"string"`
+
+	// The ID of the transit gateway.
+	Id *string `type:"string"`
+
+	// Indicates whether multicast is supported on the transit gateway.
+	MulticastSupport *string `type:"string"`
+
+	// The ID of the default propagation route table.
+	PropagationDefaultRouteTableId *string `type:"string"`
+
+	// The transit gateway Classless Inter-Domain Routing (CIDR) blocks.
+	TransitGatewayCidrBlocks []*string `type:"list"`
+
+	// Turn on or turn off Equal Cost Multipath Protocol (ECMP) support.
+	VpnEcmpSupport *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2TransitGatewayDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2TransitGatewayDetails) GoString() string {
+	return s.String()
+}
+
+// SetAmazonSideAsn sets the AmazonSideAsn field's value.
+func (s *AwsEc2TransitGatewayDetails) SetAmazonSideAsn(v int64) *AwsEc2TransitGatewayDetails {
+	s.AmazonSideAsn = &v
+	return s
+}
+
+// SetAssociationDefaultRouteTableId sets the AssociationDefaultRouteTableId field's value.
+func (s *AwsEc2TransitGatewayDetails) SetAssociationDefaultRouteTableId(v string) *AwsEc2TransitGatewayDetails {
+	s.AssociationDefaultRouteTableId = &v
+	return s
+}
+
+// SetAutoAcceptSharedAttachments sets the AutoAcceptSharedAttachments field's value.
+func (s *AwsEc2TransitGatewayDetails) SetAutoAcceptSharedAttachments(v string) *AwsEc2TransitGatewayDetails {
+	s.AutoAcceptSharedAttachments = &v
+	return s
+}
+
+// SetDefaultRouteTableAssociation sets the DefaultRouteTableAssociation field's value.
+func (s *AwsEc2TransitGatewayDetails) SetDefaultRouteTableAssociation(v string) *AwsEc2TransitGatewayDetails {
+	s.DefaultRouteTableAssociation = &v
+	return s
+}
+
+// SetDefaultRouteTablePropagation sets the DefaultRouteTablePropagation field's value.
+func (s *AwsEc2TransitGatewayDetails) SetDefaultRouteTablePropagation(v string) *AwsEc2TransitGatewayDetails {
+	s.DefaultRouteTablePropagation = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsEc2TransitGatewayDetails) SetDescription(v string) *AwsEc2TransitGatewayDetails {
+	s.Description = &v
+	return s
+}
+
+// SetDnsSupport sets the DnsSupport field's value.
+func (s *AwsEc2TransitGatewayDetails) SetDnsSupport(v string) *AwsEc2TransitGatewayDetails {
+	s.DnsSupport = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AwsEc2TransitGatewayDetails) SetId(v string) *AwsEc2TransitGatewayDetails {
+	s.Id = &v
+	return s
+}
+
+// SetMulticastSupport sets the MulticastSupport field's value.
+func (s *AwsEc2TransitGatewayDetails) SetMulticastSupport(v string) *AwsEc2TransitGatewayDetails {
+	s.MulticastSupport = &v
+	return s
+}
+
+// SetPropagationDefaultRouteTableId sets the PropagationDefaultRouteTableId field's value.
+func (s *AwsEc2TransitGatewayDetails) SetPropagationDefaultRouteTableId(v string) *AwsEc2TransitGatewayDetails {
+	s.PropagationDefaultRouteTableId = &v
+	return s
+}
+
+// SetTransitGatewayCidrBlocks sets the TransitGatewayCidrBlocks field's value.
+func (s *AwsEc2TransitGatewayDetails) SetTransitGatewayCidrBlocks(v []*string) *AwsEc2TransitGatewayDetails {
+	s.TransitGatewayCidrBlocks = v
+	return s
+}
+
+// SetVpnEcmpSupport sets the VpnEcmpSupport field's value.
+func (s *AwsEc2TransitGatewayDetails) SetVpnEcmpSupport(v string) *AwsEc2TransitGatewayDetails {
+	s.VpnEcmpSupport = &v
+	return s
+}
+
 // An attachment to an Amazon EC2 volume.
 type AwsEc2VolumeAttachment struct {
 	_ struct{} `type:"structure"`
@@ -13647,7 +14544,10 @@ type AwsEc2VolumeDetails struct {
 	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
 	CreateTime *string `type:"string"`
 
-	// Whether the volume is encrypted.
+	// The device name for the volume that is attached to the instance.
+	DeviceName *string `type:"string"`
+
+	// Specifies whether the volume is encrypted.
 	Encrypted *bool `type:"boolean"`
 
 	// The ARN of the KMS key that was used to protect the volume encryption key
@@ -13662,6 +14562,15 @@ type AwsEc2VolumeDetails struct {
 
 	// The volume state.
 	Status *string `type:"string"`
+
+	// The ID of the volume.
+	VolumeId *string `type:"string"`
+
+	// Indicates whether the volume was scanned or skipped.
+	VolumeScanStatus *string `type:"string"`
+
+	// The volume type.
+	VolumeType *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -13694,6 +14603,12 @@ func (s *AwsEc2VolumeDetails) SetCreateTime(v string) *AwsEc2VolumeDetails {
 	return s
 }
 
+// SetDeviceName sets the DeviceName field's value.
+func (s *AwsEc2VolumeDetails) SetDeviceName(v string) *AwsEc2VolumeDetails {
+	s.DeviceName = &v
+	return s
+}
+
 // SetEncrypted sets the Encrypted field's value.
 func (s *AwsEc2VolumeDetails) SetEncrypted(v bool) *AwsEc2VolumeDetails {
 	s.Encrypted = &v
@@ -13721,6 +14636,24 @@ func (s *AwsEc2VolumeDetails) SetSnapshotId(v string) *AwsEc2VolumeDetails {
 // SetStatus sets the Status field's value.
 func (s *AwsEc2VolumeDetails) SetStatus(v string) *AwsEc2VolumeDetails {
 	s.Status = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *AwsEc2VolumeDetails) SetVolumeId(v string) *AwsEc2VolumeDetails {
+	s.VolumeId = &v
+	return s
+}
+
+// SetVolumeScanStatus sets the VolumeScanStatus field's value.
+func (s *AwsEc2VolumeDetails) SetVolumeScanStatus(v string) *AwsEc2VolumeDetails {
+	s.VolumeScanStatus = &v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *AwsEc2VolumeDetails) SetVolumeType(v string) *AwsEc2VolumeDetails {
+	s.VolumeType = &v
 	return s
 }
 
@@ -13937,6 +14870,203 @@ func (s AwsEc2VpcEndpointServiceServiceTypeDetails) GoString() string {
 // SetServiceType sets the ServiceType field's value.
 func (s *AwsEc2VpcEndpointServiceServiceTypeDetails) SetServiceType(v string) *AwsEc2VpcEndpointServiceServiceTypeDetails {
 	s.ServiceType = &v
+	return s
+}
+
+// Provides information about a VPC peering connection between two VPCs: a requester
+// VPC that you own and an accepter VPC with which to create the connection.
+type AwsEc2VpcPeeringConnectionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the accepter VPC.
+	AccepterVpcInfo *AwsEc2VpcPeeringConnectionVpcInfoDetails `type:"structure"`
+
+	// The time at which an unaccepted VPC peering connection will expire.
+	ExpirationTime *string `type:"string"`
+
+	// Information about the requester VPC.
+	RequesterVpcInfo *AwsEc2VpcPeeringConnectionVpcInfoDetails `type:"structure"`
+
+	// The status of the VPC peering connection.
+	Status *AwsEc2VpcPeeringConnectionStatusDetails `type:"structure"`
+
+	// The ID of the VPC peering connection.
+	VpcPeeringConnectionId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2VpcPeeringConnectionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2VpcPeeringConnectionDetails) GoString() string {
+	return s.String()
+}
+
+// SetAccepterVpcInfo sets the AccepterVpcInfo field's value.
+func (s *AwsEc2VpcPeeringConnectionDetails) SetAccepterVpcInfo(v *AwsEc2VpcPeeringConnectionVpcInfoDetails) *AwsEc2VpcPeeringConnectionDetails {
+	s.AccepterVpcInfo = v
+	return s
+}
+
+// SetExpirationTime sets the ExpirationTime field's value.
+func (s *AwsEc2VpcPeeringConnectionDetails) SetExpirationTime(v string) *AwsEc2VpcPeeringConnectionDetails {
+	s.ExpirationTime = &v
+	return s
+}
+
+// SetRequesterVpcInfo sets the RequesterVpcInfo field's value.
+func (s *AwsEc2VpcPeeringConnectionDetails) SetRequesterVpcInfo(v *AwsEc2VpcPeeringConnectionVpcInfoDetails) *AwsEc2VpcPeeringConnectionDetails {
+	s.RequesterVpcInfo = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsEc2VpcPeeringConnectionDetails) SetStatus(v *AwsEc2VpcPeeringConnectionStatusDetails) *AwsEc2VpcPeeringConnectionDetails {
+	s.Status = v
+	return s
+}
+
+// SetVpcPeeringConnectionId sets the VpcPeeringConnectionId field's value.
+func (s *AwsEc2VpcPeeringConnectionDetails) SetVpcPeeringConnectionId(v string) *AwsEc2VpcPeeringConnectionDetails {
+	s.VpcPeeringConnectionId = &v
+	return s
+}
+
+// Details about the status of the VPC peering connection.
+type AwsEc2VpcPeeringConnectionStatusDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the VPC peering connection.
+	Code *string `type:"string"`
+
+	// A message that provides more information about the status, if applicable.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2VpcPeeringConnectionStatusDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2VpcPeeringConnectionStatusDetails) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *AwsEc2VpcPeeringConnectionStatusDetails) SetCode(v string) *AwsEc2VpcPeeringConnectionStatusDetails {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *AwsEc2VpcPeeringConnectionStatusDetails) SetMessage(v string) *AwsEc2VpcPeeringConnectionStatusDetails {
+	s.Message = &v
+	return s
+}
+
+// Describes a VPC in a VPC peering connection.
+type AwsEc2VpcPeeringConnectionVpcInfoDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The IPv4 CIDR block for the VPC.
+	CidrBlock *string `type:"string"`
+
+	// Information about the IPv4 CIDR blocks for the VPC.
+	CidrBlockSet []*VpcInfoCidrBlockSetDetails `type:"list"`
+
+	// The IPv6 CIDR block for the VPC.
+	Ipv6CidrBlockSet []*VpcInfoIpv6CidrBlockSetDetails `type:"list"`
+
+	// The ID of the Amazon Web Services account that owns the VPC.
+	OwnerId *string `type:"string"`
+
+	// Information about the VPC peering connection options for the accepter or
+	// requester VPC.
+	PeeringOptions *VpcInfoPeeringOptionsDetails `type:"structure"`
+
+	// The Amazon Web Services Region in which the VPC is located.
+	Region *string `type:"string"`
+
+	// The ID of the VPC.
+	VpcId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2VpcPeeringConnectionVpcInfoDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2VpcPeeringConnectionVpcInfoDetails) GoString() string {
+	return s.String()
+}
+
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *AwsEc2VpcPeeringConnectionVpcInfoDetails) SetCidrBlock(v string) *AwsEc2VpcPeeringConnectionVpcInfoDetails {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetCidrBlockSet sets the CidrBlockSet field's value.
+func (s *AwsEc2VpcPeeringConnectionVpcInfoDetails) SetCidrBlockSet(v []*VpcInfoCidrBlockSetDetails) *AwsEc2VpcPeeringConnectionVpcInfoDetails {
+	s.CidrBlockSet = v
+	return s
+}
+
+// SetIpv6CidrBlockSet sets the Ipv6CidrBlockSet field's value.
+func (s *AwsEc2VpcPeeringConnectionVpcInfoDetails) SetIpv6CidrBlockSet(v []*VpcInfoIpv6CidrBlockSetDetails) *AwsEc2VpcPeeringConnectionVpcInfoDetails {
+	s.Ipv6CidrBlockSet = v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *AwsEc2VpcPeeringConnectionVpcInfoDetails) SetOwnerId(v string) *AwsEc2VpcPeeringConnectionVpcInfoDetails {
+	s.OwnerId = &v
+	return s
+}
+
+// SetPeeringOptions sets the PeeringOptions field's value.
+func (s *AwsEc2VpcPeeringConnectionVpcInfoDetails) SetPeeringOptions(v *VpcInfoPeeringOptionsDetails) *AwsEc2VpcPeeringConnectionVpcInfoDetails {
+	s.PeeringOptions = v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *AwsEc2VpcPeeringConnectionVpcInfoDetails) SetRegion(v string) *AwsEc2VpcPeeringConnectionVpcInfoDetails {
+	s.Region = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *AwsEc2VpcPeeringConnectionVpcInfoDetails) SetVpcId(v string) *AwsEc2VpcPeeringConnectionVpcInfoDetails {
+	s.VpcId = &v
 	return s
 }
 
@@ -14882,12 +16012,23 @@ func (s *AwsEcsClusterDefaultCapacityProviderStrategyDetails) SetWeight(v int64)
 	return s
 }
 
-// provides details about an ECS cluster.
+// Provides details about an Amazon ECS cluster.
 type AwsEcsClusterDetails struct {
 	_ struct{} `type:"structure"`
 
+	// The number of services that are running on the cluster in an ACTIVE state.
+	// You can view these services with the Amazon ECS ListServices (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListServices.html)
+	// API operation.
+	ActiveServicesCount *int64 `type:"integer"`
+
 	// The short name of one or more capacity providers to associate with the cluster.
 	CapacityProviders []*string `type:"list"`
+
+	// The Amazon Resource Name (ARN) that identifies the cluster.
+	ClusterArn *string `type:"string"`
+
+	// A name that you use to identify your cluster.
+	ClusterName *string `type:"string"`
 
 	// The setting to use to create the cluster. Specifically used to configure
 	// whether to enable CloudWatch Container Insights for the cluster.
@@ -14900,6 +16041,16 @@ type AwsEcsClusterDetails struct {
 	// provider strategy is used when services or tasks are run without a specified
 	// launch type or capacity provider strategy.
 	DefaultCapacityProviderStrategy []*AwsEcsClusterDefaultCapacityProviderStrategyDetails `type:"list"`
+
+	// The number of container instances registered into the cluster. This includes
+	// container instances in both ACTIVE and DRAINING status.
+	RegisteredContainerInstancesCount *int64 `type:"integer"`
+
+	// The number of tasks in the cluster that are in the RUNNING state.
+	RunningTasksCount *int64 `type:"integer"`
+
+	// The status of the cluster.
+	Status *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -14920,9 +16071,27 @@ func (s AwsEcsClusterDetails) GoString() string {
 	return s.String()
 }
 
+// SetActiveServicesCount sets the ActiveServicesCount field's value.
+func (s *AwsEcsClusterDetails) SetActiveServicesCount(v int64) *AwsEcsClusterDetails {
+	s.ActiveServicesCount = &v
+	return s
+}
+
 // SetCapacityProviders sets the CapacityProviders field's value.
 func (s *AwsEcsClusterDetails) SetCapacityProviders(v []*string) *AwsEcsClusterDetails {
 	s.CapacityProviders = v
+	return s
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *AwsEcsClusterDetails) SetClusterArn(v string) *AwsEcsClusterDetails {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *AwsEcsClusterDetails) SetClusterName(v string) *AwsEcsClusterDetails {
+	s.ClusterName = &v
 	return s
 }
 
@@ -14941,6 +16110,84 @@ func (s *AwsEcsClusterDetails) SetConfiguration(v *AwsEcsClusterConfigurationDet
 // SetDefaultCapacityProviderStrategy sets the DefaultCapacityProviderStrategy field's value.
 func (s *AwsEcsClusterDetails) SetDefaultCapacityProviderStrategy(v []*AwsEcsClusterDefaultCapacityProviderStrategyDetails) *AwsEcsClusterDetails {
 	s.DefaultCapacityProviderStrategy = v
+	return s
+}
+
+// SetRegisteredContainerInstancesCount sets the RegisteredContainerInstancesCount field's value.
+func (s *AwsEcsClusterDetails) SetRegisteredContainerInstancesCount(v int64) *AwsEcsClusterDetails {
+	s.RegisteredContainerInstancesCount = &v
+	return s
+}
+
+// SetRunningTasksCount sets the RunningTasksCount field's value.
+func (s *AwsEcsClusterDetails) SetRunningTasksCount(v int64) *AwsEcsClusterDetails {
+	s.RunningTasksCount = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsEcsClusterDetails) SetStatus(v string) *AwsEcsClusterDetails {
+	s.Status = &v
+	return s
+}
+
+// Provides information about an Amazon ECS container.
+type AwsEcsContainerDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The image used for the container.
+	Image *string `type:"string"`
+
+	// The mount points for data volumes in your container.
+	MountPoints []*AwsMountPoint `type:"list"`
+
+	// The name of the container.
+	Name *string `type:"string"`
+
+	// When this parameter is true, the container is given elevated privileges on
+	// the host container instance (similar to the root user).
+	Privileged *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEcsContainerDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEcsContainerDetails) GoString() string {
+	return s.String()
+}
+
+// SetImage sets the Image field's value.
+func (s *AwsEcsContainerDetails) SetImage(v string) *AwsEcsContainerDetails {
+	s.Image = &v
+	return s
+}
+
+// SetMountPoints sets the MountPoints field's value.
+func (s *AwsEcsContainerDetails) SetMountPoints(v []*AwsMountPoint) *AwsEcsContainerDetails {
+	s.MountPoints = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsEcsContainerDetails) SetName(v string) *AwsEcsContainerDetails {
+	s.Name = &v
+	return s
+}
+
+// SetPrivileged sets the Privileged field's value.
+func (s *AwsEcsContainerDetails) SetPrivileged(v bool) *AwsEcsContainerDetails {
+	s.Privileged = &v
 	return s
 }
 
@@ -17134,7 +18381,7 @@ func (s *AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails) SetSourceCo
 	return s
 }
 
-// details about a task definition. A task definition describes the container
+// Details about a task definition. A task definition describes the container
 // and volume definitions of an Amazon Elastic Container Service task.
 type AwsEcsTaskDefinitionDetails struct {
 	_ struct{} `type:"structure"`
@@ -17735,6 +18982,424 @@ func (s AwsEcsTaskDefinitionVolumesHostDetails) GoString() string {
 // SetSourcePath sets the SourcePath field's value.
 func (s *AwsEcsTaskDefinitionVolumesHostDetails) SetSourcePath(v string) *AwsEcsTaskDefinitionVolumesHostDetails {
 	s.SourcePath = &v
+	return s
+}
+
+// Provides details about a task in a cluster.
+type AwsEcsTaskDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the cluster that hosts the task.
+	ClusterArn *string `type:"string"`
+
+	// The containers that are associated with the task.
+	Containers []*AwsEcsContainerDetails `type:"list"`
+
+	// The Unix timestamp for the time when the task was created. More specifically,
+	// it's for the time when the task entered the PENDING state.
+	CreatedAt *string `type:"string"`
+
+	// The name of the task group that's associated with the task.
+	Group *string `type:"string"`
+
+	// The Unix timestamp for the time when the task started. More specifically,
+	// it's for the time when the task transitioned from the PENDING state to the
+	// RUNNING state.
+	StartedAt *string `type:"string"`
+
+	// The tag specified when a task is started. If an Amazon ECS service started
+	// the task, the startedBy parameter contains the deployment ID of that service.
+	StartedBy *string `type:"string"`
+
+	// The ARN of the task definition that creates the task.
+	TaskDefinitionArn *string `type:"string"`
+
+	// The version counter for the task.
+	Version *string `type:"string"`
+
+	// Details about the data volume that is used in a task definition.
+	Volumes []*AwsEcsTaskVolumeDetails `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEcsTaskDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEcsTaskDetails) GoString() string {
+	return s.String()
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *AwsEcsTaskDetails) SetClusterArn(v string) *AwsEcsTaskDetails {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetContainers sets the Containers field's value.
+func (s *AwsEcsTaskDetails) SetContainers(v []*AwsEcsContainerDetails) *AwsEcsTaskDetails {
+	s.Containers = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *AwsEcsTaskDetails) SetCreatedAt(v string) *AwsEcsTaskDetails {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetGroup sets the Group field's value.
+func (s *AwsEcsTaskDetails) SetGroup(v string) *AwsEcsTaskDetails {
+	s.Group = &v
+	return s
+}
+
+// SetStartedAt sets the StartedAt field's value.
+func (s *AwsEcsTaskDetails) SetStartedAt(v string) *AwsEcsTaskDetails {
+	s.StartedAt = &v
+	return s
+}
+
+// SetStartedBy sets the StartedBy field's value.
+func (s *AwsEcsTaskDetails) SetStartedBy(v string) *AwsEcsTaskDetails {
+	s.StartedBy = &v
+	return s
+}
+
+// SetTaskDefinitionArn sets the TaskDefinitionArn field's value.
+func (s *AwsEcsTaskDetails) SetTaskDefinitionArn(v string) *AwsEcsTaskDetails {
+	s.TaskDefinitionArn = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *AwsEcsTaskDetails) SetVersion(v string) *AwsEcsTaskDetails {
+	s.Version = &v
+	return s
+}
+
+// SetVolumes sets the Volumes field's value.
+func (s *AwsEcsTaskDetails) SetVolumes(v []*AwsEcsTaskVolumeDetails) *AwsEcsTaskDetails {
+	s.Volumes = v
+	return s
+}
+
+// Provides information about a data volume that's used in a task definition.
+type AwsEcsTaskVolumeDetails struct {
+	_ struct{} `type:"structure"`
+
+	// This parameter is specified when you use bind mount host volumes. The contents
+	// of the host parameter determine whether your bind mount host volume persists
+	// on the host container instance and where it's stored.
+	Host *AwsEcsTaskVolumeHostDetails `type:"structure"`
+
+	// The name of the volume. Up to 255 letters (uppercase and lowercase), numbers,
+	// underscores, and hyphens are allowed. This name is referenced in the sourceVolume
+	// parameter of container definition mountPoints.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEcsTaskVolumeDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEcsTaskVolumeDetails) GoString() string {
+	return s.String()
+}
+
+// SetHost sets the Host field's value.
+func (s *AwsEcsTaskVolumeDetails) SetHost(v *AwsEcsTaskVolumeHostDetails) *AwsEcsTaskVolumeDetails {
+	s.Host = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsEcsTaskVolumeDetails) SetName(v string) *AwsEcsTaskVolumeDetails {
+	s.Name = &v
+	return s
+}
+
+// Provides details on a container instance bind mount host volume.
+type AwsEcsTaskVolumeHostDetails struct {
+	_ struct{} `type:"structure"`
+
+	// When the host parameter is used, specify a sourcePath to declare the path
+	// on the host container instance that's presented to the container.
+	SourcePath *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEcsTaskVolumeHostDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEcsTaskVolumeHostDetails) GoString() string {
+	return s.String()
+}
+
+// SetSourcePath sets the SourcePath field's value.
+func (s *AwsEcsTaskVolumeHostDetails) SetSourcePath(v string) *AwsEcsTaskVolumeHostDetails {
+	s.SourcePath = &v
+	return s
+}
+
+// Provides information about an Amazon EFS access point.
+type AwsEfsAccessPointDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon EFS access point.
+	AccessPointId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the Amazon EFS access point.
+	Arn *string `type:"string"`
+
+	// The opaque string specified in the request to ensure idempotent creation.
+	ClientToken *string `type:"string"`
+
+	// The ID of the Amazon EFS file system that the access point applies to.
+	FileSystemId *string `type:"string"`
+
+	// The full POSIX identity, including the user ID, group ID, and secondary group
+	// IDs on the access point, that is used for all file operations by NFS clients
+	// using the access point.
+	PosixUser *AwsEfsAccessPointPosixUserDetails `type:"structure"`
+
+	// The directory on the Amazon EFS file system that the access point exposes
+	// as the root directory to NFS clients using the access point.
+	RootDirectory *AwsEfsAccessPointRootDirectoryDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEfsAccessPointDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEfsAccessPointDetails) GoString() string {
+	return s.String()
+}
+
+// SetAccessPointId sets the AccessPointId field's value.
+func (s *AwsEfsAccessPointDetails) SetAccessPointId(v string) *AwsEfsAccessPointDetails {
+	s.AccessPointId = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *AwsEfsAccessPointDetails) SetArn(v string) *AwsEfsAccessPointDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *AwsEfsAccessPointDetails) SetClientToken(v string) *AwsEfsAccessPointDetails {
+	s.ClientToken = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *AwsEfsAccessPointDetails) SetFileSystemId(v string) *AwsEfsAccessPointDetails {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetPosixUser sets the PosixUser field's value.
+func (s *AwsEfsAccessPointDetails) SetPosixUser(v *AwsEfsAccessPointPosixUserDetails) *AwsEfsAccessPointDetails {
+	s.PosixUser = v
+	return s
+}
+
+// SetRootDirectory sets the RootDirectory field's value.
+func (s *AwsEfsAccessPointDetails) SetRootDirectory(v *AwsEfsAccessPointRootDirectoryDetails) *AwsEfsAccessPointDetails {
+	s.RootDirectory = v
+	return s
+}
+
+// Provides details for all file system operations using this Amazon EFS access
+// point.
+type AwsEfsAccessPointPosixUserDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The POSIX group ID used for all file system operations using this access
+	// point.
+	Gid *string `type:"string"`
+
+	// Secondary POSIX group IDs used for all file system operations using this
+	// access point.
+	SecondaryGids []*string `type:"list"`
+
+	// The POSIX user ID used for all file system operations using this access point.
+	Uid *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEfsAccessPointPosixUserDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEfsAccessPointPosixUserDetails) GoString() string {
+	return s.String()
+}
+
+// SetGid sets the Gid field's value.
+func (s *AwsEfsAccessPointPosixUserDetails) SetGid(v string) *AwsEfsAccessPointPosixUserDetails {
+	s.Gid = &v
+	return s
+}
+
+// SetSecondaryGids sets the SecondaryGids field's value.
+func (s *AwsEfsAccessPointPosixUserDetails) SetSecondaryGids(v []*string) *AwsEfsAccessPointPosixUserDetails {
+	s.SecondaryGids = v
+	return s
+}
+
+// SetUid sets the Uid field's value.
+func (s *AwsEfsAccessPointPosixUserDetails) SetUid(v string) *AwsEfsAccessPointPosixUserDetails {
+	s.Uid = &v
+	return s
+}
+
+// Provides information about the settings that Amazon EFS uses to create the
+// root directory when a client connects to an access point.
+type AwsEfsAccessPointRootDirectoryCreationInfoDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the POSIX group ID to apply to the root directory.
+	OwnerGid *string `type:"string"`
+
+	// Specifies the POSIX user ID to apply to the root directory.
+	OwnerUid *string `type:"string"`
+
+	// Specifies the POSIX permissions to apply to the root directory, in the format
+	// of an octal number representing the file's mode bits.
+	Permissions *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEfsAccessPointRootDirectoryCreationInfoDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEfsAccessPointRootDirectoryCreationInfoDetails) GoString() string {
+	return s.String()
+}
+
+// SetOwnerGid sets the OwnerGid field's value.
+func (s *AwsEfsAccessPointRootDirectoryCreationInfoDetails) SetOwnerGid(v string) *AwsEfsAccessPointRootDirectoryCreationInfoDetails {
+	s.OwnerGid = &v
+	return s
+}
+
+// SetOwnerUid sets the OwnerUid field's value.
+func (s *AwsEfsAccessPointRootDirectoryCreationInfoDetails) SetOwnerUid(v string) *AwsEfsAccessPointRootDirectoryCreationInfoDetails {
+	s.OwnerUid = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *AwsEfsAccessPointRootDirectoryCreationInfoDetails) SetPermissions(v string) *AwsEfsAccessPointRootDirectoryCreationInfoDetails {
+	s.Permissions = &v
+	return s
+}
+
+// Provides information about the directory on the Amazon EFS file system that
+// the access point exposes as the root directory to NFS clients using the access
+// point.
+type AwsEfsAccessPointRootDirectoryDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the POSIX IDs and permissions to apply to the access point's root
+	// directory.
+	CreationInfo *AwsEfsAccessPointRootDirectoryCreationInfoDetails `type:"structure"`
+
+	// Specifies the path on the Amazon EFS file system to expose as the root directory
+	// to NFS clients using the access point to access the EFS file system. A path
+	// can have up to four subdirectories. If the specified path does not exist,
+	// you are required to provide CreationInfo.
+	Path *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEfsAccessPointRootDirectoryDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEfsAccessPointRootDirectoryDetails) GoString() string {
+	return s.String()
+}
+
+// SetCreationInfo sets the CreationInfo field's value.
+func (s *AwsEfsAccessPointRootDirectoryDetails) SetCreationInfo(v *AwsEfsAccessPointRootDirectoryCreationInfoDetails) *AwsEfsAccessPointRootDirectoryDetails {
+	s.CreationInfo = v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *AwsEfsAccessPointRootDirectoryDetails) SetPath(v string) *AwsEfsAccessPointRootDirectoryDetails {
+	s.Path = &v
 	return s
 }
 
@@ -21172,6 +22837,120 @@ func (s *AwsIamUserPolicy) SetPolicyName(v string) *AwsIamUserPolicy {
 	return s
 }
 
+// Provides information about an Amazon Kinesis data stream.
+type AwsKinesisStreamDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Kinesis data stream.
+	Arn *string `type:"string"`
+
+	// The name of the Kinesis stream. If you don't specify a name, CloudFront generates
+	// a unique physical ID and uses that ID for the stream name.
+	Name *string `type:"string"`
+
+	// The number of hours for the data records that are stored in shards to remain
+	// accessible.
+	RetentionPeriodHours *int64 `type:"integer"`
+
+	// The number of shards that the stream uses.
+	ShardCount *int64 `type:"integer"`
+
+	// When specified, enables or updates server-side encryption using an KMS key
+	// for a specified stream. Removing this property from your stack template and
+	// updating your stack disables encryption.
+	StreamEncryption *AwsKinesisStreamStreamEncryptionDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsKinesisStreamDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsKinesisStreamDetails) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AwsKinesisStreamDetails) SetArn(v string) *AwsKinesisStreamDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsKinesisStreamDetails) SetName(v string) *AwsKinesisStreamDetails {
+	s.Name = &v
+	return s
+}
+
+// SetRetentionPeriodHours sets the RetentionPeriodHours field's value.
+func (s *AwsKinesisStreamDetails) SetRetentionPeriodHours(v int64) *AwsKinesisStreamDetails {
+	s.RetentionPeriodHours = &v
+	return s
+}
+
+// SetShardCount sets the ShardCount field's value.
+func (s *AwsKinesisStreamDetails) SetShardCount(v int64) *AwsKinesisStreamDetails {
+	s.ShardCount = &v
+	return s
+}
+
+// SetStreamEncryption sets the StreamEncryption field's value.
+func (s *AwsKinesisStreamDetails) SetStreamEncryption(v *AwsKinesisStreamStreamEncryptionDetails) *AwsKinesisStreamDetails {
+	s.StreamEncryption = v
+	return s
+}
+
+// Provides information about stream encryption.
+type AwsKinesisStreamStreamEncryptionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The encryption type to use.
+	EncryptionType *string `type:"string"`
+
+	// The globally unique identifier for the customer-managed KMS key to use for
+	// encryption.
+	KeyId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsKinesisStreamStreamEncryptionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsKinesisStreamStreamEncryptionDetails) GoString() string {
+	return s.String()
+}
+
+// SetEncryptionType sets the EncryptionType field's value.
+func (s *AwsKinesisStreamStreamEncryptionDetails) SetEncryptionType(v string) *AwsKinesisStreamStreamEncryptionDetails {
+	s.EncryptionType = &v
+	return s
+}
+
+// SetKeyId sets the KeyId field's value.
+func (s *AwsKinesisStreamStreamEncryptionDetails) SetKeyId(v string) *AwsKinesisStreamStreamEncryptionDetails {
+	s.KeyId = &v
+	return s
+}
+
 // Contains metadata about an KMS key.
 type AwsKmsKeyDetails struct {
 	_ struct{} `type:"structure"`
@@ -21187,7 +22966,7 @@ type AwsKmsKeyDetails struct {
 	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
 	CreationDate *float64 `type:"double"`
 
-	// A description of the key.
+	// A description of the KMS key.
 	Description *string `type:"string"`
 
 	// The globally unique identifier for the KMS key.
@@ -21829,6 +23608,48 @@ func (s *AwsLambdaLayerVersionDetails) SetVersion(v int64) *AwsLambdaLayerVersio
 	return s
 }
 
+// Details for a volume mount point that's used in a container definition.
+type AwsMountPoint struct {
+	_ struct{} `type:"structure"`
+
+	// The path on the container to mount the host volume at.
+	ContainerPath *string `type:"string"`
+
+	// The name of the volume to mount. Must be a volume name referenced in the
+	// name parameter of task definition volume.
+	SourceVolume *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMountPoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMountPoint) GoString() string {
+	return s.String()
+}
+
+// SetContainerPath sets the ContainerPath field's value.
+func (s *AwsMountPoint) SetContainerPath(v string) *AwsMountPoint {
+	s.ContainerPath = &v
+	return s
+}
+
+// SetSourceVolume sets the SourceVolume field's value.
+func (s *AwsMountPoint) SetSourceVolume(v string) *AwsMountPoint {
+	s.SourceVolume = &v
+	return s
+}
+
 // Details about an Network Firewall firewall.
 type AwsNetworkFirewallFirewallDetails struct {
 	_ struct{} `type:"structure"`
@@ -22137,6 +23958,56 @@ func (s *AwsNetworkFirewallRuleGroupDetails) SetType(v string) *AwsNetworkFirewa
 	return s
 }
 
+// Provides information about domain access control options.
+type AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Enables fine-grained access control.
+	Enabled *bool `type:"boolean"`
+
+	// Enables the internal user database.
+	InternalUserDatabaseEnabled *bool `type:"boolean"`
+
+	// Specifies information about the master user of the domain.
+	MasterUserOptions *AwsOpenSearchServiceDomainMasterUserOptionsDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails) SetEnabled(v bool) *AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails {
+	s.Enabled = &v
+	return s
+}
+
+// SetInternalUserDatabaseEnabled sets the InternalUserDatabaseEnabled field's value.
+func (s *AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails) SetInternalUserDatabaseEnabled(v bool) *AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails {
+	s.InternalUserDatabaseEnabled = &v
+	return s
+}
+
+// SetMasterUserOptions sets the MasterUserOptions field's value.
+func (s *AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails) SetMasterUserOptions(v *AwsOpenSearchServiceDomainMasterUserOptionsDetails) *AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails {
+	s.MasterUserOptions = v
+	return s
+}
+
 // Details about the configuration of an OpenSearch cluster.
 type AwsOpenSearchServiceDomainClusterConfigDetails struct {
 	_ struct{} `type:"structure"`
@@ -22301,6 +24172,9 @@ type AwsOpenSearchServiceDomainDetails struct {
 	// Service domain.
 	AccessPolicies *string `type:"string"`
 
+	// Specifies options for fine-grained access control.
+	AdvancedSecurityOptions *AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails `type:"structure"`
+
 	// The ARN of the OpenSearch Service domain.
 	Arn *string `type:"string"`
 
@@ -22365,6 +24239,12 @@ func (s AwsOpenSearchServiceDomainDetails) GoString() string {
 // SetAccessPolicies sets the AccessPolicies field's value.
 func (s *AwsOpenSearchServiceDomainDetails) SetAccessPolicies(v string) *AwsOpenSearchServiceDomainDetails {
 	s.AccessPolicies = &v
+	return s
+}
+
+// SetAdvancedSecurityOptions sets the AdvancedSecurityOptions field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetAdvancedSecurityOptions(v *AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails) *AwsOpenSearchServiceDomainDetails {
+	s.AdvancedSecurityOptions = v
 	return s
 }
 
@@ -22645,6 +24525,56 @@ func (s *AwsOpenSearchServiceDomainLogPublishingOptionsDetails) SetIndexSlowLogs
 // SetSearchSlowLogs sets the SearchSlowLogs field's value.
 func (s *AwsOpenSearchServiceDomainLogPublishingOptionsDetails) SetSearchSlowLogs(v *AwsOpenSearchServiceDomainLogPublishingOption) *AwsOpenSearchServiceDomainLogPublishingOptionsDetails {
 	s.SearchSlowLogs = v
+	return s
+}
+
+// Specifies information about the master user of the domain.
+type AwsOpenSearchServiceDomainMasterUserOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the master user.
+	MasterUserArn *string `type:"string"`
+
+	// The username for the master user.
+	MasterUserName *string `type:"string"`
+
+	// The password for the master user.
+	MasterUserPassword *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainMasterUserOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainMasterUserOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetMasterUserArn sets the MasterUserArn field's value.
+func (s *AwsOpenSearchServiceDomainMasterUserOptionsDetails) SetMasterUserArn(v string) *AwsOpenSearchServiceDomainMasterUserOptionsDetails {
+	s.MasterUserArn = &v
+	return s
+}
+
+// SetMasterUserName sets the MasterUserName field's value.
+func (s *AwsOpenSearchServiceDomainMasterUserOptionsDetails) SetMasterUserName(v string) *AwsOpenSearchServiceDomainMasterUserOptionsDetails {
+	s.MasterUserName = &v
+	return s
+}
+
+// SetMasterUserPassword sets the MasterUserPassword field's value.
+func (s *AwsOpenSearchServiceDomainMasterUserOptionsDetails) SetMasterUserPassword(v string) *AwsOpenSearchServiceDomainMasterUserOptionsDetails {
+	s.MasterUserPassword = &v
 	return s
 }
 
@@ -28619,6 +30549,10 @@ type AwsSecurityFinding struct {
 	// Threat intelligence details related to a finding.
 	ThreatIntelIndicators []*ThreatIntelIndicator `type:"list"`
 
+	// Details about the threat detected in a security finding and the file paths
+	// that were affected by the threat.
+	Threats []*Threat `type:"list"`
+
 	// A finding's title.
 	//
 	// In this release, Title is a required property.
@@ -28966,6 +30900,12 @@ func (s *AwsSecurityFinding) SetSourceUrl(v string) *AwsSecurityFinding {
 // SetThreatIntelIndicators sets the ThreatIntelIndicators field's value.
 func (s *AwsSecurityFinding) SetThreatIntelIndicators(v []*ThreatIntelIndicator) *AwsSecurityFinding {
 	s.ThreatIntelIndicators = v
+	return s
+}
+
+// SetThreats sets the Threats field's value.
+func (s *AwsSecurityFinding) SetThreats(v []*Threat) *AwsSecurityFinding {
+	s.Threats = v
 	return s
 }
 
@@ -30042,9 +31982,30 @@ func (s *AwsSecurityFindingIdentifier) SetProductArn(v string) *AwsSecurityFindi
 	return s
 }
 
-// A wrapper type for the topic's ARN.
+// Provides information about an Amazon SNS topic to which notifications can
+// be published.
 type AwsSnsTopicDetails struct {
 	_ struct{} `type:"structure"`
+
+	// Indicates failed message delivery status for an Amazon SNS topic that is
+	// subscribed to a platform application endpoint.
+	ApplicationSuccessFeedbackRoleArn *string `type:"string"`
+
+	// Indicates failed message delivery status for an Amazon SNS topic that is
+	// subscribed to an Amazon Kinesis Data Firehose endpoint.
+	FirehoseFailureFeedbackRoleArn *string `type:"string"`
+
+	// Indicates successful message delivery status for an Amazon SNS topic that
+	// is subscribed to an Amazon Kinesis Data Firehose endpoint.
+	FirehoseSuccessFeedbackRoleArn *string `type:"string"`
+
+	// Indicates failed message delivery status for an Amazon SNS topic that is
+	// subscribed to an HTTP endpoint.
+	HttpFailureFeedbackRoleArn *string `type:"string"`
+
+	// Indicates successful message delivery status for an Amazon SNS topic that
+	// is subscribed to an HTTP endpoint.
+	HttpSuccessFeedbackRoleArn *string `type:"string"`
 
 	// The ID of an Amazon Web Services managed key for Amazon SNS or a customer
 	// managed key.
@@ -30053,11 +32014,19 @@ type AwsSnsTopicDetails struct {
 	// The subscription's owner.
 	Owner *string `type:"string"`
 
+	// Indicates failed message delivery status for an Amazon SNS topic that is
+	// subscribed to an Amazon SQS endpoint.
+	SqsFailureFeedbackRoleArn *string `type:"string"`
+
+	// Indicates successful message delivery status for an Amazon SNS topic that
+	// is subscribed to an Amazon SQS endpoint.
+	SqsSuccessFeedbackRoleArn *string `type:"string"`
+
 	// Subscription is an embedded property that describes the subscription endpoints
-	// of an SNS topic.
+	// of an Amazon SNS topic.
 	Subscription []*AwsSnsTopicSubscription `type:"list"`
 
-	// The name of the topic.
+	// The name of the Amazon SNS topic.
 	TopicName *string `type:"string"`
 }
 
@@ -30079,6 +32048,36 @@ func (s AwsSnsTopicDetails) GoString() string {
 	return s.String()
 }
 
+// SetApplicationSuccessFeedbackRoleArn sets the ApplicationSuccessFeedbackRoleArn field's value.
+func (s *AwsSnsTopicDetails) SetApplicationSuccessFeedbackRoleArn(v string) *AwsSnsTopicDetails {
+	s.ApplicationSuccessFeedbackRoleArn = &v
+	return s
+}
+
+// SetFirehoseFailureFeedbackRoleArn sets the FirehoseFailureFeedbackRoleArn field's value.
+func (s *AwsSnsTopicDetails) SetFirehoseFailureFeedbackRoleArn(v string) *AwsSnsTopicDetails {
+	s.FirehoseFailureFeedbackRoleArn = &v
+	return s
+}
+
+// SetFirehoseSuccessFeedbackRoleArn sets the FirehoseSuccessFeedbackRoleArn field's value.
+func (s *AwsSnsTopicDetails) SetFirehoseSuccessFeedbackRoleArn(v string) *AwsSnsTopicDetails {
+	s.FirehoseSuccessFeedbackRoleArn = &v
+	return s
+}
+
+// SetHttpFailureFeedbackRoleArn sets the HttpFailureFeedbackRoleArn field's value.
+func (s *AwsSnsTopicDetails) SetHttpFailureFeedbackRoleArn(v string) *AwsSnsTopicDetails {
+	s.HttpFailureFeedbackRoleArn = &v
+	return s
+}
+
+// SetHttpSuccessFeedbackRoleArn sets the HttpSuccessFeedbackRoleArn field's value.
+func (s *AwsSnsTopicDetails) SetHttpSuccessFeedbackRoleArn(v string) *AwsSnsTopicDetails {
+	s.HttpSuccessFeedbackRoleArn = &v
+	return s
+}
+
 // SetKmsMasterKeyId sets the KmsMasterKeyId field's value.
 func (s *AwsSnsTopicDetails) SetKmsMasterKeyId(v string) *AwsSnsTopicDetails {
 	s.KmsMasterKeyId = &v
@@ -30088,6 +32087,18 @@ func (s *AwsSnsTopicDetails) SetKmsMasterKeyId(v string) *AwsSnsTopicDetails {
 // SetOwner sets the Owner field's value.
 func (s *AwsSnsTopicDetails) SetOwner(v string) *AwsSnsTopicDetails {
 	s.Owner = &v
+	return s
+}
+
+// SetSqsFailureFeedbackRoleArn sets the SqsFailureFeedbackRoleArn field's value.
+func (s *AwsSnsTopicDetails) SetSqsFailureFeedbackRoleArn(v string) *AwsSnsTopicDetails {
+	s.SqsFailureFeedbackRoleArn = &v
+	return s
+}
+
+// SetSqsSuccessFeedbackRoleArn sets the SqsSuccessFeedbackRoleArn field's value.
+func (s *AwsSnsTopicDetails) SetSqsSuccessFeedbackRoleArn(v string) *AwsSnsTopicDetails {
+	s.SqsSuccessFeedbackRoleArn = &v
 	return s
 }
 
@@ -30752,22 +32763,781 @@ func (s *AwsWafRegionalRateBasedRuleMatchPredicate) SetType(v string) *AwsWafReg
 	return s
 }
 
-// Details about an WAF WebACL.
+// Provides information about an WAF Regional rule. This rule identifies the
+// web requests that you want to allow, block, or count.
+type AwsWafRegionalRuleDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A name for the metrics for the rule.
+	MetricName *string `type:"string"`
+
+	// A descriptive name for the rule.
+	Name *string `type:"string"`
+
+	// Specifies the ByteMatchSet, IPSet, SqlInjectionMatchSet, XssMatchSet, RegexMatchSet,
+	// GeoMatchSet, and SizeConstraintSet objects that you want to add to a rule
+	// and, for each object, indicates whether you want to negate the settings.
+	PredicateList []*AwsWafRegionalRulePredicateListDetails `type:"list"`
+
+	// The ID of the rule.
+	RuleId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalRuleDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalRuleDetails) GoString() string {
+	return s.String()
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *AwsWafRegionalRuleDetails) SetMetricName(v string) *AwsWafRegionalRuleDetails {
+	s.MetricName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsWafRegionalRuleDetails) SetName(v string) *AwsWafRegionalRuleDetails {
+	s.Name = &v
+	return s
+}
+
+// SetPredicateList sets the PredicateList field's value.
+func (s *AwsWafRegionalRuleDetails) SetPredicateList(v []*AwsWafRegionalRulePredicateListDetails) *AwsWafRegionalRuleDetails {
+	s.PredicateList = v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *AwsWafRegionalRuleDetails) SetRuleId(v string) *AwsWafRegionalRuleDetails {
+	s.RuleId = &v
+	return s
+}
+
+// Provides information about an WAF Regional rule group. The rule group is
+// a collection of rules for inspecting and controlling web requests.
+type AwsWafRegionalRuleGroupDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A name for the metrics for this rule group.
+	MetricName *string `type:"string"`
+
+	// The descriptive name of the rule group.
+	Name *string `type:"string"`
+
+	// The ID of the rule group.
+	RuleGroupId *string `type:"string"`
+
+	// Provides information about the rule statements used to identify the web requests
+	// that you want to allow, block, or count.
+	Rules []*AwsWafRegionalRuleGroupRulesDetails `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalRuleGroupDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalRuleGroupDetails) GoString() string {
+	return s.String()
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *AwsWafRegionalRuleGroupDetails) SetMetricName(v string) *AwsWafRegionalRuleGroupDetails {
+	s.MetricName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsWafRegionalRuleGroupDetails) SetName(v string) *AwsWafRegionalRuleGroupDetails {
+	s.Name = &v
+	return s
+}
+
+// SetRuleGroupId sets the RuleGroupId field's value.
+func (s *AwsWafRegionalRuleGroupDetails) SetRuleGroupId(v string) *AwsWafRegionalRuleGroupDetails {
+	s.RuleGroupId = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *AwsWafRegionalRuleGroupDetails) SetRules(v []*AwsWafRegionalRuleGroupRulesDetails) *AwsWafRegionalRuleGroupDetails {
+	s.Rules = v
+	return s
+}
+
+// Describes the action that AWS WAF should take on a web request when it matches
+// the criteria defined in the rule.
+type AwsWafRegionalRuleGroupRulesActionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the ByteMatchSet, IPSet, SqlInjectionMatchSet, XssMatchSet, RegexMatchSet,
+	// GeoMatchSet, and SizeConstraintSet objects that you want to add to a rule
+	// and, for each object, indicates whether you want to negate the settings.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalRuleGroupRulesActionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalRuleGroupRulesActionDetails) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *AwsWafRegionalRuleGroupRulesActionDetails) SetType(v string) *AwsWafRegionalRuleGroupRulesActionDetails {
+	s.Type = &v
+	return s
+}
+
+// Provides information about the rules attached to a rule group
+type AwsWafRegionalRuleGroupRulesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The action that WAF should take on a web request when it matches the criteria
+	// defined in the rule.
+	Action *AwsWafRegionalRuleGroupRulesActionDetails `type:"structure"`
+
+	// If you define more than one rule in a web ACL, WAF evaluates each request
+	// against the rules in order based on the value of Priority.
+	Priority *int64 `type:"integer"`
+
+	// The ID for a rule.
+	RuleId *string `type:"string"`
+
+	// The type of rule in the rule group.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalRuleGroupRulesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalRuleGroupRulesDetails) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *AwsWafRegionalRuleGroupRulesDetails) SetAction(v *AwsWafRegionalRuleGroupRulesActionDetails) *AwsWafRegionalRuleGroupRulesDetails {
+	s.Action = v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *AwsWafRegionalRuleGroupRulesDetails) SetPriority(v int64) *AwsWafRegionalRuleGroupRulesDetails {
+	s.Priority = &v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *AwsWafRegionalRuleGroupRulesDetails) SetRuleId(v string) *AwsWafRegionalRuleGroupRulesDetails {
+	s.RuleId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsWafRegionalRuleGroupRulesDetails) SetType(v string) *AwsWafRegionalRuleGroupRulesDetails {
+	s.Type = &v
+	return s
+}
+
+// Provides details about the ByteMatchSet, IPSet, SqlInjectionMatchSet, XssMatchSet,
+// RegexMatchSet, GeoMatchSet, and SizeConstraintSet objects that you want to
+// add to a rule and, for each object, indicates whether you want to negate
+// the settings.
+type AwsWafRegionalRulePredicateListDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for a predicate in a rule, such as ByteMatchSetId or
+	// IPSetId.
+	DataId *string `type:"string"`
+
+	// Specifies if you want WAF to allow, block, or count requests based on the
+	// settings in the ByteMatchSet, IPSet, SqlInjectionMatchSet, XssMatchSet, RegexMatchSet,
+	// GeoMatchSet, or SizeConstraintSet.
+	Negated *bool `type:"boolean"`
+
+	// The type of predicate in a rule, such as ByteMatch or IPSet.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalRulePredicateListDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalRulePredicateListDetails) GoString() string {
+	return s.String()
+}
+
+// SetDataId sets the DataId field's value.
+func (s *AwsWafRegionalRulePredicateListDetails) SetDataId(v string) *AwsWafRegionalRulePredicateListDetails {
+	s.DataId = &v
+	return s
+}
+
+// SetNegated sets the Negated field's value.
+func (s *AwsWafRegionalRulePredicateListDetails) SetNegated(v bool) *AwsWafRegionalRulePredicateListDetails {
+	s.Negated = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsWafRegionalRulePredicateListDetails) SetType(v string) *AwsWafRegionalRulePredicateListDetails {
+	s.Type = &v
+	return s
+}
+
+// Provides information about the web access control list (web ACL). The web
+// ACL contains the rules that identify the requests that you want to allow,
+// block, or count.
+type AwsWafRegionalWebAclDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The action to perform if none of the rules contained in the web ACL match.
+	DefaultAction *string `type:"string"`
+
+	// A name for the metrics for this web ACL.
+	MetricName *string `type:"string"`
+
+	// A descriptive name for the web ACL.
+	Name *string `type:"string"`
+
+	// An array that contains the action for each rule in a web ACL, the priority
+	// of the rule, and the ID of the rule.
+	RulesList []*AwsWafRegionalWebAclRulesListDetails `type:"list"`
+
+	// The ID of the web ACL.
+	WebAclId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalWebAclDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalWebAclDetails) GoString() string {
+	return s.String()
+}
+
+// SetDefaultAction sets the DefaultAction field's value.
+func (s *AwsWafRegionalWebAclDetails) SetDefaultAction(v string) *AwsWafRegionalWebAclDetails {
+	s.DefaultAction = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *AwsWafRegionalWebAclDetails) SetMetricName(v string) *AwsWafRegionalWebAclDetails {
+	s.MetricName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsWafRegionalWebAclDetails) SetName(v string) *AwsWafRegionalWebAclDetails {
+	s.Name = &v
+	return s
+}
+
+// SetRulesList sets the RulesList field's value.
+func (s *AwsWafRegionalWebAclDetails) SetRulesList(v []*AwsWafRegionalWebAclRulesListDetails) *AwsWafRegionalWebAclDetails {
+	s.RulesList = v
+	return s
+}
+
+// SetWebAclId sets the WebAclId field's value.
+func (s *AwsWafRegionalWebAclDetails) SetWebAclId(v string) *AwsWafRegionalWebAclDetails {
+	s.WebAclId = &v
+	return s
+}
+
+// The action that WAF takes when a web request matches all conditions in the
+// rule, such as allow, block, or count the request.
+type AwsWafRegionalWebAclRulesListActionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// For actions that are associated with a rule, the action that WAF takes when
+	// a web request matches all conditions in a rule.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalWebAclRulesListActionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalWebAclRulesListActionDetails) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *AwsWafRegionalWebAclRulesListActionDetails) SetType(v string) *AwsWafRegionalWebAclRulesListActionDetails {
+	s.Type = &v
+	return s
+}
+
+// A combination of ByteMatchSet, IPSet, and/or SqlInjectionMatchSet objects
+// that identify the web requests that you want to allow, block, or count.
+type AwsWafRegionalWebAclRulesListDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The action that AWS WAF takes when a web request matches all conditions in
+	// the rule, such as allow, block, or count the request.
+	Action *AwsWafRegionalWebAclRulesListActionDetails `type:"structure"`
+
+	// Overrides the rule evaluation result in the rule group.
+	OverrideAction *AwsWafRegionalWebAclRulesListOverrideActionDetails `type:"structure"`
+
+	// The order in which WAF evaluates the rules in a web ACL.
+	Priority *int64 `type:"integer"`
+
+	// The ID of an WAF Regional rule to associate with a web ACL.
+	RuleId *string `type:"string"`
+
+	// For actions that are associated with a rule, the action that WAF takes when
+	// a web request matches all conditions in a rule.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalWebAclRulesListDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalWebAclRulesListDetails) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *AwsWafRegionalWebAclRulesListDetails) SetAction(v *AwsWafRegionalWebAclRulesListActionDetails) *AwsWafRegionalWebAclRulesListDetails {
+	s.Action = v
+	return s
+}
+
+// SetOverrideAction sets the OverrideAction field's value.
+func (s *AwsWafRegionalWebAclRulesListDetails) SetOverrideAction(v *AwsWafRegionalWebAclRulesListOverrideActionDetails) *AwsWafRegionalWebAclRulesListDetails {
+	s.OverrideAction = v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *AwsWafRegionalWebAclRulesListDetails) SetPriority(v int64) *AwsWafRegionalWebAclRulesListDetails {
+	s.Priority = &v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *AwsWafRegionalWebAclRulesListDetails) SetRuleId(v string) *AwsWafRegionalWebAclRulesListDetails {
+	s.RuleId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsWafRegionalWebAclRulesListDetails) SetType(v string) *AwsWafRegionalWebAclRulesListDetails {
+	s.Type = &v
+	return s
+}
+
+// Provides details about the action to use in the place of the action that
+// results from the rule group evaluation.
+type AwsWafRegionalWebAclRulesListOverrideActionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Overrides the rule evaluation result in the rule group.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalWebAclRulesListOverrideActionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalWebAclRulesListOverrideActionDetails) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *AwsWafRegionalWebAclRulesListOverrideActionDetails) SetType(v string) *AwsWafRegionalWebAclRulesListOverrideActionDetails {
+	s.Type = &v
+	return s
+}
+
+// Provides information about a WAF rule. This rule specifies the web requests
+// that you want to allow, block, or count.
+type AwsWafRuleDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the metrics for this rule.
+	MetricName *string `type:"string"`
+
+	// A descriptive name for the rule.
+	Name *string `type:"string"`
+
+	// Specifies the ByteMatchSet, IPSet, SqlInjectionMatchSet, XssMatchSet, RegexMatchSet,
+	// GeoMatchSet, and SizeConstraintSet objects that you want to add to a rule
+	// and, for each object, indicates whether you want to negate the settings.
+	PredicateList []*AwsWafRulePredicateListDetails `type:"list"`
+
+	// The ID of the WAF rule.
+	RuleId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRuleDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRuleDetails) GoString() string {
+	return s.String()
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *AwsWafRuleDetails) SetMetricName(v string) *AwsWafRuleDetails {
+	s.MetricName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsWafRuleDetails) SetName(v string) *AwsWafRuleDetails {
+	s.Name = &v
+	return s
+}
+
+// SetPredicateList sets the PredicateList field's value.
+func (s *AwsWafRuleDetails) SetPredicateList(v []*AwsWafRulePredicateListDetails) *AwsWafRuleDetails {
+	s.PredicateList = v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *AwsWafRuleDetails) SetRuleId(v string) *AwsWafRuleDetails {
+	s.RuleId = &v
+	return s
+}
+
+// Provides information about an WAF rule group. A rule group is a collection
+// of rules for inspecting and controlling web requests.
+type AwsWafRuleGroupDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the metrics for this rule group.
+	MetricName *string `type:"string"`
+
+	// The name of the rule group.
+	Name *string `type:"string"`
+
+	// The ID of the rule group.
+	RuleGroupId *string `type:"string"`
+
+	// Provides information about the rules attached to the rule group. These rules
+	// identify the web requests that you want to allow, block, or count.
+	Rules []*AwsWafRuleGroupRulesDetails `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRuleGroupDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRuleGroupDetails) GoString() string {
+	return s.String()
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *AwsWafRuleGroupDetails) SetMetricName(v string) *AwsWafRuleGroupDetails {
+	s.MetricName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsWafRuleGroupDetails) SetName(v string) *AwsWafRuleGroupDetails {
+	s.Name = &v
+	return s
+}
+
+// SetRuleGroupId sets the RuleGroupId field's value.
+func (s *AwsWafRuleGroupDetails) SetRuleGroupId(v string) *AwsWafRuleGroupDetails {
+	s.RuleGroupId = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *AwsWafRuleGroupDetails) SetRules(v []*AwsWafRuleGroupRulesDetails) *AwsWafRuleGroupDetails {
+	s.Rules = v
+	return s
+}
+
+// Provides information about what action WAF should take on a web request when
+// it matches the criteria defined in the rule.
+type AwsWafRuleGroupRulesActionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The action that WAF should take on a web request when it matches the rule's
+	// statement.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRuleGroupRulesActionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRuleGroupRulesActionDetails) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *AwsWafRuleGroupRulesActionDetails) SetType(v string) *AwsWafRuleGroupRulesActionDetails {
+	s.Type = &v
+	return s
+}
+
+// Provides information about the rules attached to the rule group. These rules
+// identify the web requests that you want to allow, block, or count.
+type AwsWafRuleGroupRulesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Provides information about what action WAF should take on a web request when
+	// it matches the criteria defined in the rule.
+	Action *AwsWafRuleGroupRulesActionDetails `type:"structure"`
+
+	// If you define more than one rule in a web ACL, WAF evaluates each request
+	// against the rules in order based on the value of Priority.
+	Priority *int64 `type:"integer"`
+
+	// The rule ID for a rule.
+	RuleId *string `type:"string"`
+
+	// The type of rule.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRuleGroupRulesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRuleGroupRulesDetails) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *AwsWafRuleGroupRulesDetails) SetAction(v *AwsWafRuleGroupRulesActionDetails) *AwsWafRuleGroupRulesDetails {
+	s.Action = v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *AwsWafRuleGroupRulesDetails) SetPriority(v int64) *AwsWafRuleGroupRulesDetails {
+	s.Priority = &v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *AwsWafRuleGroupRulesDetails) SetRuleId(v string) *AwsWafRuleGroupRulesDetails {
+	s.RuleId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsWafRuleGroupRulesDetails) SetType(v string) *AwsWafRuleGroupRulesDetails {
+	s.Type = &v
+	return s
+}
+
+// Provides details about the ByteMatchSet, IPSet, SqlInjectionMatchSet, XssMatchSet,
+// RegexMatchSet, GeoMatchSet, and SizeConstraintSet objects that you want to
+// add to a rule and, for each object, indicates whether you want to negate
+// the settings.
+type AwsWafRulePredicateListDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for a predicate in a rule, such as ByteMatchSetId or
+	// IPSetId.
+	DataId *string `type:"string"`
+
+	// Specifies if you want WAF to allow, block, or count requests based on the
+	// settings in the ByteMatchSet, IPSet, SqlInjectionMatchSet, XssMatchSet, RegexMatchSet,
+	// GeoMatchSet, or SizeConstraintSet.
+	Negated *bool `type:"boolean"`
+
+	// The type of predicate in a rule, such as ByteMatch or IPSet.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRulePredicateListDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRulePredicateListDetails) GoString() string {
+	return s.String()
+}
+
+// SetDataId sets the DataId field's value.
+func (s *AwsWafRulePredicateListDetails) SetDataId(v string) *AwsWafRulePredicateListDetails {
+	s.DataId = &v
+	return s
+}
+
+// SetNegated sets the Negated field's value.
+func (s *AwsWafRulePredicateListDetails) SetNegated(v bool) *AwsWafRulePredicateListDetails {
+	s.Negated = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsWafRulePredicateListDetails) SetType(v string) *AwsWafRulePredicateListDetails {
+	s.Type = &v
+	return s
+}
+
+// Provides information about an WAF web access control list (web ACL).
 type AwsWafWebAclDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The action to perform if none of the rules contained in the WebACL match.
+	// The action to perform if none of the rules contained in the web ACL match.
 	DefaultAction *string `type:"string"`
 
-	// A friendly name or description of the WebACL. You can't change the name of
-	// a WebACL after you create it.
+	// A friendly name or description of the web ACL. You can't change the name
+	// of a web ACL after you create it.
 	Name *string `type:"string"`
 
-	// An array that contains the action for each rule in a WebACL, the priority
+	// An array that contains the action for each rule in a web ACL, the priority
 	// of the rule, and the ID of the rule.
 	Rules []*AwsWafWebAclRule `type:"list"`
 
-	// A unique identifier for a WebACL.
+	// A unique identifier for a web ACL.
 	WebAclId *string `type:"string"`
 }
 
@@ -30813,7 +33583,7 @@ func (s *AwsWafWebAclDetails) SetWebAclId(v string) *AwsWafWebAclDetails {
 	return s
 }
 
-// Details for a rule in an WAF WebACL.
+// Details for a rule in an WAF web ACL.
 type AwsWafWebAclRule struct {
 	_ struct{} `type:"structure"`
 
@@ -30836,14 +33606,14 @@ type AwsWafWebAclRule struct {
 	// those requests are counted.
 	//
 	// ActivatedRule|OverrideAction applies only when updating or adding a RuleGroup
-	// to a WebACL. In this case you do not use ActivatedRule|Action. For all other
-	// update requests, ActivatedRule|Action is used instead of ActivatedRule|OverrideAction.
+	// to a web ACL. In this case you do not use ActivatedRule Action. For all other
+	// update requests, ActivatedRule Action is used instead of ActivatedRule OverrideAction.
 	OverrideAction *WafOverrideAction `type:"structure"`
 
-	// Specifies the order in which the rules in a WebACL are evaluated. Rules with
-	// a lower value for Priority are evaluated before rules with a higher value.
-	// The value must be a unique integer. If you add multiple rules to a WebACL,
-	// the values do not need to be consecutive.
+	// Specifies the order in which the rules in a web ACL are evaluated. Rules
+	// with a lower value for Priority are evaluated before rules with a higher
+	// value. The value must be a unique integer. If you add multiple rules to a
+	// web ACL, the values do not need to be consecutive.
 	Priority *int64 `type:"integer"`
 
 	// The identifier for a rule.
@@ -31933,10 +34703,13 @@ func (s *Compliance) SetStatusReasons(v []*StatusReason) *Compliance {
 type ContainerDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the image related to a finding.
+	// The runtime of the container.
+	ContainerRuntime *string `type:"string"`
+
+	// The identifier of the container image related to a finding.
 	ImageId *string `type:"string"`
 
-	// The name of the image related to a finding.
+	// The name of the container image related to a finding.
 	ImageName *string `type:"string"`
 
 	// Indicates when the container started.
@@ -31948,6 +34721,13 @@ type ContainerDetails struct {
 
 	// The name of the container related to a finding.
 	Name *string `type:"string"`
+
+	// When this parameter is true, the container is given elevated privileges on
+	// the host container instance (similar to the root user).
+	Privileged *bool `type:"boolean"`
+
+	// Provides information about the mounting of a volume in a container.
+	VolumeMounts []*VolumeMount `type:"list"`
 }
 
 // String returns the string representation.
@@ -31966,6 +34746,12 @@ func (s ContainerDetails) String() string {
 // value will be replaced with "sensitive".
 func (s ContainerDetails) GoString() string {
 	return s.String()
+}
+
+// SetContainerRuntime sets the ContainerRuntime field's value.
+func (s *ContainerDetails) SetContainerRuntime(v string) *ContainerDetails {
+	s.ContainerRuntime = &v
+	return s
 }
 
 // SetImageId sets the ImageId field's value.
@@ -31989,6 +34775,18 @@ func (s *ContainerDetails) SetLaunchedAt(v string) *ContainerDetails {
 // SetName sets the Name field's value.
 func (s *ContainerDetails) SetName(v string) *ContainerDetails {
 	s.Name = &v
+	return s
+}
+
+// SetPrivileged sets the Privileged field's value.
+func (s *ContainerDetails) SetPrivileged(v bool) *ContainerDetails {
+	s.Privileged = &v
+	return s
+}
+
+// SetVolumeMounts sets the VolumeMounts field's value.
+func (s *ContainerDetails) SetVolumeMounts(v []*VolumeMount) *ContainerDetails {
+	s.VolumeMounts = v
 	return s
 }
 
@@ -34466,6 +37264,65 @@ func (s EnableSecurityHubOutput) String() string {
 // value will be replaced with "sensitive".
 func (s EnableSecurityHubOutput) GoString() string {
 	return s.String()
+}
+
+// Provides information about the file paths that were affected by the threat.
+type FilePaths struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the infected or suspicious file corresponding to the hash.
+	FileName *string `type:"string"`
+
+	// Path to the infected or suspicious file on the resource it was detected on.
+	FilePath *string `type:"string"`
+
+	// The hash value for the infected or suspicious file.
+	Hash *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the resource on which the threat was detected.
+	ResourceId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilePaths) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilePaths) GoString() string {
+	return s.String()
+}
+
+// SetFileName sets the FileName field's value.
+func (s *FilePaths) SetFileName(v string) *FilePaths {
+	s.FileName = &v
+	return s
+}
+
+// SetFilePath sets the FilePath field's value.
+func (s *FilePaths) SetFilePath(v string) *FilePaths {
+	s.FilePath = &v
+	return s
+}
+
+// SetHash sets the Hash field's value.
+func (s *FilePaths) SetHash(v string) *FilePaths {
+	s.Hash = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *FilePaths) SetResourceId(v string) *FilePaths {
+	s.ResourceId = &v
+	return s
 }
 
 // A finding aggregator. A finding aggregator contains the configuration for
@@ -39093,11 +41950,20 @@ type ResourceDetails struct {
 	// Provides details about an Certificate Manager certificate.
 	AwsCertificateManagerCertificate *AwsCertificateManagerCertificateDetails `type:"structure"`
 
+	// Details about an CloudFormation stack. A stack is a collection of Amazon
+	// Web Services resources that you can manage as a single unit.
+	AwsCloudFormationStack *AwsCloudFormationStackDetails `type:"structure"`
+
 	// Details about a CloudFront distribution.
 	AwsCloudFrontDistribution *AwsCloudFrontDistributionDetails `type:"structure"`
 
 	// Provides details about a CloudTrail trail.
 	AwsCloudTrailTrail *AwsCloudTrailTrailDetails `type:"structure"`
+
+	// Details about an Amazon CloudWatch alarm. An alarm allows you to monitor
+	// and receive alerts about your Amazon Web Services resources and applications
+	// across multiple Regions.
+	AwsCloudWatchAlarm *AwsCloudWatchAlarmDetails `type:"structure"`
 
 	// Details for an CodeBuild project.
 	AwsCodeBuildProject *AwsCodeBuildProjectDetails `type:"structure"`
@@ -39123,16 +41989,25 @@ type ResourceDetails struct {
 	// Details about a subnet in Amazon EC2.
 	AwsEc2Subnet *AwsEc2SubnetDetails `type:"structure"`
 
-	// Details for an EC2 volume.
+	// Details about an Amazon EC2 transit gateway that interconnects your virtual
+	// private clouds (VPC) and on-premises networks.
+	AwsEc2TransitGateway *AwsEc2TransitGatewayDetails `type:"structure"`
+
+	// Details for an Amazon EC2 volume.
 	AwsEc2Volume *AwsEc2VolumeDetails `type:"structure"`
 
-	// Details for an EC2 VPC.
+	// Details for an Amazon EC2 VPC.
 	AwsEc2Vpc *AwsEc2VpcDetails `type:"structure"`
 
 	// Details about the service configuration for a VPC endpoint service.
 	AwsEc2VpcEndpointService *AwsEc2VpcEndpointServiceDetails `type:"structure"`
 
-	// Details about an EC2 VPN connection.
+	// Details about an Amazon EC2 VPC peering connection. A VPC peering connection
+	// is a networking connection between two VPCs that enables you to route traffic
+	// between them privately.
+	AwsEc2VpcPeeringConnection *AwsEc2VpcPeeringConnectionDetails `type:"structure"`
+
+	// Details about an Amazon EC2 VPN connection.
 	AwsEc2VpnConnection *AwsEc2VpnConnectionDetails `type:"structure"`
 
 	// Information about an Amazon ECR image.
@@ -39141,15 +42016,27 @@ type ResourceDetails struct {
 	// Information about an Amazon Elastic Container Registry repository.
 	AwsEcrRepository *AwsEcrRepositoryDetails `type:"structure"`
 
-	// Details about an ECS cluster.
+	// Details about an Amazon ECS cluster.
 	AwsEcsCluster *AwsEcsClusterDetails `type:"structure"`
+
+	// Provides information about a Docker container that's part of a task.
+	AwsEcsContainer *AwsEcsContainerDetails `type:"structure"`
 
 	// Details about a service within an ECS cluster.
 	AwsEcsService *AwsEcsServiceDetails `type:"structure"`
 
+	// Details about a task in a cluster.
+	AwsEcsTask *AwsEcsTaskDetails `type:"structure"`
+
 	// Details about a task definition. A task definition describes the container
 	// and volume definitions of an Amazon Elastic Container Service task.
 	AwsEcsTaskDefinition *AwsEcsTaskDefinitionDetails `type:"structure"`
+
+	// Details about an Amazon EFS access point. An access point is an application-specific
+	// view into an EFS file system that applies an operating system user and group,
+	// and a file system path, to any file system request made through the access
+	// point.
+	AwsEfsAccessPoint *AwsEfsAccessPointDetails `type:"structure"`
 
 	// Details about an Amazon EKS cluster.
 	AwsEksCluster *AwsEksClusterDetails `type:"structure"`
@@ -39180,6 +42067,9 @@ type ResourceDetails struct {
 
 	// Details about an IAM user.
 	AwsIamUser *AwsIamUserDetails `type:"structure"`
+
+	// Details about an Amazon Kinesis data stream.
+	AwsKinesisStream *AwsKinesisStreamDetails `type:"structure"`
 
 	// Details about an KMS key.
 	AwsKmsKey *AwsKmsKeyDetails `type:"structure"`
@@ -39251,7 +42141,22 @@ type ResourceDetails struct {
 	// Details about a rate-based rule for Regional resources.
 	AwsWafRegionalRateBasedRule *AwsWafRegionalRateBasedRuleDetails `type:"structure"`
 
-	// Details for an WAF WebACL.
+	// Details about an WAF rule for Regional resources.
+	AwsWafRegionalRule *AwsWafRegionalRuleDetails `type:"structure"`
+
+	// Details about an WAF rule group for Regional resources.
+	AwsWafRegionalRuleGroup *AwsWafRegionalRuleGroupDetails `type:"structure"`
+
+	// Details about an WAF web access control list (web ACL) for Regional resources.
+	AwsWafRegionalWebAcl *AwsWafRegionalWebAclDetails `type:"structure"`
+
+	// Details about an WAF rule for global resources.
+	AwsWafRule *AwsWafRuleDetails `type:"structure"`
+
+	// Details about an WAF rule group for global resources.
+	AwsWafRuleGroup *AwsWafRuleGroupDetails `type:"structure"`
+
+	// Details for an WAF web ACL.
 	AwsWafWebAcl *AwsWafWebAclDetails `type:"structure"`
 
 	// Information about the encryption configuration for X-Ray.
@@ -39348,6 +42253,12 @@ func (s *ResourceDetails) SetAwsCertificateManagerCertificate(v *AwsCertificateM
 	return s
 }
 
+// SetAwsCloudFormationStack sets the AwsCloudFormationStack field's value.
+func (s *ResourceDetails) SetAwsCloudFormationStack(v *AwsCloudFormationStackDetails) *ResourceDetails {
+	s.AwsCloudFormationStack = v
+	return s
+}
+
 // SetAwsCloudFrontDistribution sets the AwsCloudFrontDistribution field's value.
 func (s *ResourceDetails) SetAwsCloudFrontDistribution(v *AwsCloudFrontDistributionDetails) *ResourceDetails {
 	s.AwsCloudFrontDistribution = v
@@ -39357,6 +42268,12 @@ func (s *ResourceDetails) SetAwsCloudFrontDistribution(v *AwsCloudFrontDistribut
 // SetAwsCloudTrailTrail sets the AwsCloudTrailTrail field's value.
 func (s *ResourceDetails) SetAwsCloudTrailTrail(v *AwsCloudTrailTrailDetails) *ResourceDetails {
 	s.AwsCloudTrailTrail = v
+	return s
+}
+
+// SetAwsCloudWatchAlarm sets the AwsCloudWatchAlarm field's value.
+func (s *ResourceDetails) SetAwsCloudWatchAlarm(v *AwsCloudWatchAlarmDetails) *ResourceDetails {
+	s.AwsCloudWatchAlarm = v
 	return s
 }
 
@@ -39408,6 +42325,12 @@ func (s *ResourceDetails) SetAwsEc2Subnet(v *AwsEc2SubnetDetails) *ResourceDetai
 	return s
 }
 
+// SetAwsEc2TransitGateway sets the AwsEc2TransitGateway field's value.
+func (s *ResourceDetails) SetAwsEc2TransitGateway(v *AwsEc2TransitGatewayDetails) *ResourceDetails {
+	s.AwsEc2TransitGateway = v
+	return s
+}
+
 // SetAwsEc2Volume sets the AwsEc2Volume field's value.
 func (s *ResourceDetails) SetAwsEc2Volume(v *AwsEc2VolumeDetails) *ResourceDetails {
 	s.AwsEc2Volume = v
@@ -39423,6 +42346,12 @@ func (s *ResourceDetails) SetAwsEc2Vpc(v *AwsEc2VpcDetails) *ResourceDetails {
 // SetAwsEc2VpcEndpointService sets the AwsEc2VpcEndpointService field's value.
 func (s *ResourceDetails) SetAwsEc2VpcEndpointService(v *AwsEc2VpcEndpointServiceDetails) *ResourceDetails {
 	s.AwsEc2VpcEndpointService = v
+	return s
+}
+
+// SetAwsEc2VpcPeeringConnection sets the AwsEc2VpcPeeringConnection field's value.
+func (s *ResourceDetails) SetAwsEc2VpcPeeringConnection(v *AwsEc2VpcPeeringConnectionDetails) *ResourceDetails {
+	s.AwsEc2VpcPeeringConnection = v
 	return s
 }
 
@@ -39450,15 +42379,33 @@ func (s *ResourceDetails) SetAwsEcsCluster(v *AwsEcsClusterDetails) *ResourceDet
 	return s
 }
 
+// SetAwsEcsContainer sets the AwsEcsContainer field's value.
+func (s *ResourceDetails) SetAwsEcsContainer(v *AwsEcsContainerDetails) *ResourceDetails {
+	s.AwsEcsContainer = v
+	return s
+}
+
 // SetAwsEcsService sets the AwsEcsService field's value.
 func (s *ResourceDetails) SetAwsEcsService(v *AwsEcsServiceDetails) *ResourceDetails {
 	s.AwsEcsService = v
 	return s
 }
 
+// SetAwsEcsTask sets the AwsEcsTask field's value.
+func (s *ResourceDetails) SetAwsEcsTask(v *AwsEcsTaskDetails) *ResourceDetails {
+	s.AwsEcsTask = v
+	return s
+}
+
 // SetAwsEcsTaskDefinition sets the AwsEcsTaskDefinition field's value.
 func (s *ResourceDetails) SetAwsEcsTaskDefinition(v *AwsEcsTaskDefinitionDetails) *ResourceDetails {
 	s.AwsEcsTaskDefinition = v
+	return s
+}
+
+// SetAwsEfsAccessPoint sets the AwsEfsAccessPoint field's value.
+func (s *ResourceDetails) SetAwsEfsAccessPoint(v *AwsEfsAccessPointDetails) *ResourceDetails {
+	s.AwsEfsAccessPoint = v
 	return s
 }
 
@@ -39519,6 +42466,12 @@ func (s *ResourceDetails) SetAwsIamRole(v *AwsIamRoleDetails) *ResourceDetails {
 // SetAwsIamUser sets the AwsIamUser field's value.
 func (s *ResourceDetails) SetAwsIamUser(v *AwsIamUserDetails) *ResourceDetails {
 	s.AwsIamUser = v
+	return s
+}
+
+// SetAwsKinesisStream sets the AwsKinesisStream field's value.
+func (s *ResourceDetails) SetAwsKinesisStream(v *AwsKinesisStreamDetails) *ResourceDetails {
+	s.AwsKinesisStream = v
 	return s
 }
 
@@ -39657,6 +42610,36 @@ func (s *ResourceDetails) SetAwsWafRateBasedRule(v *AwsWafRateBasedRuleDetails) 
 // SetAwsWafRegionalRateBasedRule sets the AwsWafRegionalRateBasedRule field's value.
 func (s *ResourceDetails) SetAwsWafRegionalRateBasedRule(v *AwsWafRegionalRateBasedRuleDetails) *ResourceDetails {
 	s.AwsWafRegionalRateBasedRule = v
+	return s
+}
+
+// SetAwsWafRegionalRule sets the AwsWafRegionalRule field's value.
+func (s *ResourceDetails) SetAwsWafRegionalRule(v *AwsWafRegionalRuleDetails) *ResourceDetails {
+	s.AwsWafRegionalRule = v
+	return s
+}
+
+// SetAwsWafRegionalRuleGroup sets the AwsWafRegionalRuleGroup field's value.
+func (s *ResourceDetails) SetAwsWafRegionalRuleGroup(v *AwsWafRegionalRuleGroupDetails) *ResourceDetails {
+	s.AwsWafRegionalRuleGroup = v
+	return s
+}
+
+// SetAwsWafRegionalWebAcl sets the AwsWafRegionalWebAcl field's value.
+func (s *ResourceDetails) SetAwsWafRegionalWebAcl(v *AwsWafRegionalWebAclDetails) *ResourceDetails {
+	s.AwsWafRegionalWebAcl = v
+	return s
+}
+
+// SetAwsWafRule sets the AwsWafRule field's value.
+func (s *ResourceDetails) SetAwsWafRule(v *AwsWafRuleDetails) *ResourceDetails {
+	s.AwsWafRule = v
+	return s
+}
+
+// SetAwsWafRuleGroup sets the AwsWafRuleGroup field's value.
+func (s *ResourceDetails) SetAwsWafRuleGroup(v *AwsWafRuleGroupDetails) *ResourceDetails {
+	s.AwsWafRuleGroup = v
 	return s
 }
 
@@ -41788,6 +44771,66 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Provides information about the threat detected in a security finding and
+// the file paths that were affected by the threat.
+type Threat struct {
+	_ struct{} `type:"structure"`
+
+	// Provides information about the file paths that were affected by the threat.
+	FilePaths []*FilePaths `type:"list"`
+
+	// This total number of items in which the threat has been detected.
+	ItemCount *int64 `type:"integer"`
+
+	// The name of the threat.
+	Name *string `type:"string"`
+
+	// The severity of the threat.
+	Severity *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Threat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Threat) GoString() string {
+	return s.String()
+}
+
+// SetFilePaths sets the FilePaths field's value.
+func (s *Threat) SetFilePaths(v []*FilePaths) *Threat {
+	s.FilePaths = v
+	return s
+}
+
+// SetItemCount sets the ItemCount field's value.
+func (s *Threat) SetItemCount(v int64) *Threat {
+	s.ItemCount = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Threat) SetName(v string) *Threat {
+	s.Name = &v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *Threat) SetSeverity(v string) *Threat {
+	s.Severity = &v
+	return s
+}
+
 // Details about the threat intelligence related to a finding.
 type ThreatIntelIndicator struct {
 	_ struct{} `type:"structure"`
@@ -42628,6 +45671,165 @@ func (s UpdateStandardsControlOutput) GoString() string {
 	return s.String()
 }
 
+// Describes the mounting of a volume in a container.
+type VolumeMount struct {
+	_ struct{} `type:"structure"`
+
+	// The path in the container at which the volume should be mounted.
+	MountPath *string `type:"string"`
+
+	// The name of the volume.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VolumeMount) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VolumeMount) GoString() string {
+	return s.String()
+}
+
+// SetMountPath sets the MountPath field's value.
+func (s *VolumeMount) SetMountPath(v string) *VolumeMount {
+	s.MountPath = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *VolumeMount) SetName(v string) *VolumeMount {
+	s.Name = &v
+	return s
+}
+
+// Provides details about the IPv4 CIDR blocks for the VPC.
+type VpcInfoCidrBlockSetDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The IPv4 CIDR block for the VPC.
+	CidrBlock *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcInfoCidrBlockSetDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcInfoCidrBlockSetDetails) GoString() string {
+	return s.String()
+}
+
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *VpcInfoCidrBlockSetDetails) SetCidrBlock(v string) *VpcInfoCidrBlockSetDetails {
+	s.CidrBlock = &v
+	return s
+}
+
+// Provides details about the IPv6 CIDR blocks for the VPC.
+type VpcInfoIpv6CidrBlockSetDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The IPv6 CIDR block for the VPC.
+	Ipv6CidrBlock *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcInfoIpv6CidrBlockSetDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcInfoIpv6CidrBlockSetDetails) GoString() string {
+	return s.String()
+}
+
+// SetIpv6CidrBlock sets the Ipv6CidrBlock field's value.
+func (s *VpcInfoIpv6CidrBlockSetDetails) SetIpv6CidrBlock(v string) *VpcInfoIpv6CidrBlockSetDetails {
+	s.Ipv6CidrBlock = &v
+	return s
+}
+
+// Provides information about the VPC peering connection options for the accepter
+// or requester VPC.
+type VpcInfoPeeringOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether a local VPC can resolve public DNS hostnames to private
+	// IP addresses when queried from instances in a peer VPC.
+	AllowDnsResolutionFromRemoteVpc *bool `type:"boolean"`
+
+	// Indicates whether a local ClassicLink connection can communicate with the
+	// peer VPC over the VPC peering connection.
+	AllowEgressFromLocalClassicLinkToRemoteVpc *bool `type:"boolean"`
+
+	// Indicates whether a local VPC can communicate with a ClassicLink connection
+	// in the peer VPC over the VPC peering connection.
+	AllowEgressFromLocalVpcToRemoteClassicLink *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcInfoPeeringOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcInfoPeeringOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetAllowDnsResolutionFromRemoteVpc sets the AllowDnsResolutionFromRemoteVpc field's value.
+func (s *VpcInfoPeeringOptionsDetails) SetAllowDnsResolutionFromRemoteVpc(v bool) *VpcInfoPeeringOptionsDetails {
+	s.AllowDnsResolutionFromRemoteVpc = &v
+	return s
+}
+
+// SetAllowEgressFromLocalClassicLinkToRemoteVpc sets the AllowEgressFromLocalClassicLinkToRemoteVpc field's value.
+func (s *VpcInfoPeeringOptionsDetails) SetAllowEgressFromLocalClassicLinkToRemoteVpc(v bool) *VpcInfoPeeringOptionsDetails {
+	s.AllowEgressFromLocalClassicLinkToRemoteVpc = &v
+	return s
+}
+
+// SetAllowEgressFromLocalVpcToRemoteClassicLink sets the AllowEgressFromLocalVpcToRemoteClassicLink field's value.
+func (s *VpcInfoPeeringOptionsDetails) SetAllowEgressFromLocalVpcToRemoteClassicLink(v bool) *VpcInfoPeeringOptionsDetails {
+	s.AllowEgressFromLocalVpcToRemoteClassicLink = &v
+	return s
+}
+
 // A vulnerability associated with a finding.
 type Vulnerability struct {
 	_ struct{} `type:"structure"`
@@ -42833,7 +46035,7 @@ type WafAction struct {
 	//    * COUNT - WAF increments a counter of the requests that match all of the
 	//    conditions in the rule. WAF then continues to inspect the web request
 	//    based on the remaining rules in the web ACL. You can't specify COUNT for
-	//    the default action for a WebACL.
+	//    the default action for a web ACL.
 	Type *string `type:"string"`
 }
 
