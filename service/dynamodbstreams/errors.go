@@ -27,16 +27,16 @@ const (
 	//
 	// There is no limit to the number of daily on-demand backups that can be taken.
 	//
-	// Up to 50 simultaneous table operations are allowed per account. These operations
+	// Up to 500 simultaneous table operations are allowed per account. These operations
 	// include CreateTable, UpdateTable, DeleteTable,UpdateTimeToLive, RestoreTableFromBackup,
 	// and RestoreTableToPointInTime.
 	//
 	// The only exception is when you are creating a table with one or more secondary
-	// indexes. You can have up to 25 such requests running at a time; however,
+	// indexes. You can have up to 250 such requests running at a time; however,
 	// if the table or index specifications are complex, DynamoDB might temporarily
 	// reduce the number of concurrent operations.
 	//
-	// There is a soft account quota of 256 tables.
+	// There is a soft account quota of 2,500 tables.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeResourceNotFoundException for service response error code
