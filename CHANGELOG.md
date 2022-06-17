@@ -1,3 +1,13 @@
+Release v1.44.37 (2022-06-17)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API
+* `service/connectcampaigns`: Adds new service
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Doc only update for DynamoDB service
+* `service/streams.dynamodb`: Updates service documentation
+
 Release v1.44.36 (2022-06-16)
 ===
 
