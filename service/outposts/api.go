@@ -2971,6 +2971,9 @@ type AssetInfo struct {
 	// The ID of the asset.
 	AssetId *string `min:"1" type:"string"`
 
+	// The position of an asset in a rack.
+	AssetLocation *AssetLocation `type:"structure"`
+
 	// The type of the asset.
 	AssetType *string `type:"string" enum:"AssetType"`
 
@@ -3005,6 +3008,12 @@ func (s *AssetInfo) SetAssetId(v string) *AssetInfo {
 	return s
 }
 
+// SetAssetLocation sets the AssetLocation field's value.
+func (s *AssetInfo) SetAssetLocation(v *AssetLocation) *AssetInfo {
+	s.AssetLocation = v
+	return s
+}
+
 // SetAssetType sets the AssetType field's value.
 func (s *AssetInfo) SetAssetType(v string) *AssetInfo {
 	s.AssetType = &v
@@ -3020,6 +3029,38 @@ func (s *AssetInfo) SetComputeAttributes(v *ComputeAttributes) *AssetInfo {
 // SetRackId sets the RackId field's value.
 func (s *AssetInfo) SetRackId(v string) *AssetInfo {
 	s.RackId = &v
+	return s
+}
+
+// Information about the position of the asset in a rack.
+type AssetLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The position of an asset in a rack measured in rack units.
+	RackElevation *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetLocation) GoString() string {
+	return s.String()
+}
+
+// SetRackElevation sets the RackElevation field's value.
+func (s *AssetLocation) SetRackElevation(v float64) *AssetLocation {
+	s.RackElevation = &v
 	return s
 }
 

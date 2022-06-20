@@ -179,6 +179,10 @@ type DirectoryServiceAPI interface {
 	DescribeRegionsWithContext(aws.Context, *directoryservice.DescribeRegionsInput, ...request.Option) (*directoryservice.DescribeRegionsOutput, error)
 	DescribeRegionsRequest(*directoryservice.DescribeRegionsInput) (*request.Request, *directoryservice.DescribeRegionsOutput)
 
+	DescribeSettings(*directoryservice.DescribeSettingsInput) (*directoryservice.DescribeSettingsOutput, error)
+	DescribeSettingsWithContext(aws.Context, *directoryservice.DescribeSettingsInput, ...request.Option) (*directoryservice.DescribeSettingsOutput, error)
+	DescribeSettingsRequest(*directoryservice.DescribeSettingsInput) (*request.Request, *directoryservice.DescribeSettingsOutput)
+
 	DescribeSharedDirectories(*directoryservice.DescribeSharedDirectoriesInput) (*directoryservice.DescribeSharedDirectoriesOutput, error)
 	DescribeSharedDirectoriesWithContext(aws.Context, *directoryservice.DescribeSharedDirectoriesInput, ...request.Option) (*directoryservice.DescribeSharedDirectoriesOutput, error)
 	DescribeSharedDirectoriesRequest(*directoryservice.DescribeSharedDirectoriesInput) (*request.Request, *directoryservice.DescribeSharedDirectoriesOutput)
@@ -306,6 +310,10 @@ type DirectoryServiceAPI interface {
 	UpdateRadius(*directoryservice.UpdateRadiusInput) (*directoryservice.UpdateRadiusOutput, error)
 	UpdateRadiusWithContext(aws.Context, *directoryservice.UpdateRadiusInput, ...request.Option) (*directoryservice.UpdateRadiusOutput, error)
 	UpdateRadiusRequest(*directoryservice.UpdateRadiusInput) (*request.Request, *directoryservice.UpdateRadiusOutput)
+
+	UpdateSettings(*directoryservice.UpdateSettingsInput) (*directoryservice.UpdateSettingsOutput, error)
+	UpdateSettingsWithContext(aws.Context, *directoryservice.UpdateSettingsInput, ...request.Option) (*directoryservice.UpdateSettingsOutput, error)
+	UpdateSettingsRequest(*directoryservice.UpdateSettingsInput) (*request.Request, *directoryservice.UpdateSettingsOutput)
 
 	UpdateTrust(*directoryservice.UpdateTrustInput) (*directoryservice.UpdateTrustOutput, error)
 	UpdateTrustWithContext(aws.Context, *directoryservice.UpdateTrustInput, ...request.Option) (*directoryservice.UpdateTrustOutput, error)

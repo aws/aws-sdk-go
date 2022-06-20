@@ -31,6 +31,7 @@
     "DescribeEventTopics": "<p>Obtains information about which Amazon SNS topics receive status messages from the specified directory.</p> <p>If no input parameters are provided, such as DirectoryId or TopicName, this request describes all of the associations in the account.</p>",
     "DescribeLDAPSSettings": "<p>Describes the status of LDAP security for the specified directory.</p>",
     "DescribeRegions": "<p>Provides information about the Regions that are configured for multi-Region replication.</p>",
+    "DescribeSettings": "<p>Retrieves information about the configurable settings for the specified directory.</p>",
     "DescribeSharedDirectories": "<p>Returns the shared directories in your account. </p>",
     "DescribeSnapshots": "<p>Obtains information about the directory snapshots that belong to this account.</p> <p>This operation supports pagination with the use of the <i>NextToken</i> request and response parameters. If more results are available, the <i>DescribeSnapshots.NextToken</i> member contains a token that you pass in the next call to <a>DescribeSnapshots</a> to retrieve the next set of items.</p> <p>You can also specify a maximum number of return results with the <i>Limit</i> parameter.</p>",
     "DescribeTrusts": "<p>Obtains information about the trust relationships for this account.</p> <p>If no input parameters are provided, such as DirectoryId or TrustIds, this request describes all the trust relationships belonging to the account.</p>",
@@ -63,6 +64,7 @@
     "UpdateConditionalForwarder": "<p>Updates a conditional forwarder that has been set up for your Amazon Web Services directory.</p>",
     "UpdateNumberOfDomainControllers": "<p>Adds or removes domain controllers to or from the directory. Based on the difference between current value and new value (provided through this API call), domain controllers will be added or removed. It may take up to 45 minutes for any new domain controllers to become fully active once the requested number of domain controllers is updated. During this time, you cannot make another update request.</p>",
     "UpdateRadius": "<p>Updates the Remote Authentication Dial In User Service (RADIUS) server information for an AD Connector or Microsoft AD directory.</p>",
+    "UpdateSettings": "<p>Updates the configurable settings for the specified directory.</p>",
     "UpdateTrust": "<p>Updates the trust that has been set up between your Managed Microsoft AD directory and an self-managed Active Directory.</p>",
     "VerifyTrust": "<p>Directory Service for Microsoft Active Directory allows you to configure and verify trust relationships.</p> <p>This action verifies a trust relationship between your Managed Microsoft AD directory and an external domain.</p>"
   },
@@ -666,6 +668,16 @@
       "refs": {
       }
     },
+    "DescribeSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeSettingsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeSharedDirectoriesRequest": {
       "base": null,
       "refs": {
@@ -725,6 +737,65 @@
     "DirectoryAlreadySharedException": {
       "base": "<p>The specified directory has already been shared with this Amazon Web Services account.</p>",
       "refs": {
+      }
+    },
+    "DirectoryConfigurationSettingAllowedValues": {
+      "base": null,
+      "refs": {
+        "SettingEntry$AllowedValues": "<p>The valid range of values for the directory setting.</p>"
+      }
+    },
+    "DirectoryConfigurationSettingLastRequestedDateTime": {
+      "base": null,
+      "refs": {
+        "SettingEntry$LastRequestedDateTime": "<p>The date and time when the request to update a directory setting was last submitted.</p>"
+      }
+    },
+    "DirectoryConfigurationSettingLastUpdatedDateTime": {
+      "base": null,
+      "refs": {
+        "SettingEntry$LastUpdatedDateTime": "<p>The date and time when the directory setting was last updated.</p>"
+      }
+    },
+    "DirectoryConfigurationSettingName": {
+      "base": null,
+      "refs": {
+        "Setting$Name": "<p>The name of the directory setting. For example:</p> <p> <code>TLS_1_0</code> </p>",
+        "SettingEntry$Name": "<p>The name of the directory setting. For example:</p> <p> <code>TLS_1_0</code> </p>"
+      }
+    },
+    "DirectoryConfigurationSettingRequestDetailedStatus": {
+      "base": null,
+      "refs": {
+        "SettingEntry$RequestDetailedStatus": "<p>Details about the status of the request to update the directory setting. If the directory setting is deployed in more than one region, status is returned for the request in each region where the setting is deployed.</p>"
+      }
+    },
+    "DirectoryConfigurationSettingRequestStatusMessage": {
+      "base": null,
+      "refs": {
+        "SettingEntry$RequestStatusMessage": "<p>The last status message for the directory status request.</p>"
+      }
+    },
+    "DirectoryConfigurationSettingType": {
+      "base": null,
+      "refs": {
+        "SettingEntry$Type": "<p>The type of directory setting. For example, <code>Protocol</code> or <code>Cipher</code>.</p>"
+      }
+    },
+    "DirectoryConfigurationSettingValue": {
+      "base": null,
+      "refs": {
+        "Setting$Value": "<p>The value of the directory setting for which to retrieve information. For example, for <code>TLS_1_0</code>, the valid values are: <code>Enable</code> and <code>Disable</code>.</p>",
+        "SettingEntry$AppliedValue": "<p>The value of the directory setting that is applied to the directory.</p>",
+        "SettingEntry$RequestedValue": "<p>The value that was last requested for the directory setting.</p>"
+      }
+    },
+    "DirectoryConfigurationStatus": {
+      "base": null,
+      "refs": {
+        "DescribeSettingsRequest$Status": "<p>The status of the directory settings for which to retrieve information.</p>",
+        "DirectoryConfigurationSettingRequestDetailedStatus$value": null,
+        "SettingEntry$RequestStatus": "<p>The overall status of the request to update the directory setting request. If the directory setting is deployed in more than one region, and the request fails in any region, the overall status is <code>Failed</code>.</p>"
       }
     },
     "DirectoryConnectSettings": {
@@ -793,6 +864,8 @@
         "DescribeEventTopicsRequest$DirectoryId": "<p>The Directory ID for which to get the list of associated Amazon SNS topics. If this member is null, associations for all Directory IDs are returned.</p>",
         "DescribeLDAPSSettingsRequest$DirectoryId": "<p>The identifier of the directory.</p>",
         "DescribeRegionsRequest$DirectoryId": "<p>The identifier of the directory.</p>",
+        "DescribeSettingsRequest$DirectoryId": "<p>The identifier of the directory for which to retrieve information.</p>",
+        "DescribeSettingsResult$DirectoryId": "<p>The identifier of the directory.</p>",
         "DescribeSharedDirectoriesRequest$OwnerDirectoryId": "<p>Returns the identifier of the directory in the directory owner account. </p>",
         "DescribeSnapshotsRequest$DirectoryId": "<p>The identifier of the directory for which to retrieve snapshot information.</p>",
         "DescribeTrustsRequest$DirectoryId": "<p>The Directory ID of the Amazon Web Services directory that is a part of the requested trust relationship.</p>",
@@ -836,7 +909,9 @@
         "UnshareDirectoryResult$SharedDirectoryId": "<p>Identifier of the directory stored in the directory consumer account that is to be unshared from the specified directory (<code>DirectoryId</code>).</p>",
         "UpdateConditionalForwarderRequest$DirectoryId": "<p>The directory ID of the Amazon Web Services directory for which to update the conditional forwarder.</p>",
         "UpdateNumberOfDomainControllersRequest$DirectoryId": "<p>Identifier of the directory to which the domain controllers will be added or removed.</p>",
-        "UpdateRadiusRequest$DirectoryId": "<p>The identifier of the directory for which to update the RADIUS server information.</p>"
+        "UpdateRadiusRequest$DirectoryId": "<p>The identifier of the directory for which to update the RADIUS server information.</p>",
+        "UpdateSettingsRequest$DirectoryId": "<p>The identifier of the directory for which to update settings.</p>",
+        "UpdateSettingsResult$DirectoryId": "<p>The identifier of the directory.</p>"
       }
     },
     "DirectoryIds": {
@@ -1103,6 +1178,7 @@
         "DomainControllerLimitExceededException$Message": null,
         "EntityAlreadyExistsException$Message": null,
         "EntityDoesNotExistException$Message": null,
+        "IncompatibleSettingsException$Message": null,
         "InsufficientPermissionsException$Message": null,
         "InvalidCertificateException$Message": null,
         "InvalidClientAuthStatusException$Message": null,
@@ -1120,6 +1196,7 @@
         "SnapshotLimitExceededException$Message": null,
         "TagLimitExceededException$Message": null,
         "UnsupportedOperationException$Message": null,
+        "UnsupportedSettingsException$Message": null,
         "UserDoesNotExistException$Message": null
       }
     },
@@ -1140,6 +1217,11 @@
     },
     "GetSnapshotLimitsResult": {
       "base": "<p>Contains the results of the <a>GetSnapshotLimits</a> operation.</p>",
+      "refs": {
+      }
+    },
+    "IncompatibleSettingsException": {
+      "base": "<p>The specified directory setting is not compatible with other settings.</p>",
       "refs": {
       }
     },
@@ -1406,6 +1488,8 @@
         "DescribeLDAPSSettingsResult$NextToken": "<p>The next token used to retrieve the LDAPS settings if the number of setting types exceeds page limit and there is another page.</p>",
         "DescribeRegionsRequest$NextToken": "<p>The <code>DescribeRegionsResult.NextToken</code> value from a previous call to <a>DescribeRegions</a>. Pass null if this is the first call.</p>",
         "DescribeRegionsResult$NextToken": "<p>If not null, more results are available. Pass this value for the <code>NextToken</code> parameter in a subsequent call to <a>DescribeRegions</a> to retrieve the next set of items.</p>",
+        "DescribeSettingsRequest$NextToken": "<p>The <code>DescribeSettingsResult.NextToken</code> value from a previous call to <a>DescribeSettings</a>. Pass null if this is the first call.</p>",
+        "DescribeSettingsResult$NextToken": "<p>If not null, token that indicates that more results are available. Pass this value for the <code>NextToken</code> parameter in a subsequent call to <code>DescribeSettings</code> to retrieve the next set of items. </p>",
         "DescribeSharedDirectoriesRequest$NextToken": "<p>The <code>DescribeSharedDirectoriesResult.NextToken</code> value from a previous call to <a>DescribeSharedDirectories</a>. Pass null if this is the first call. </p>",
         "DescribeSharedDirectoriesResult$NextToken": "<p>If not null, token that indicates that more results are available. Pass this value for the <code>NextToken</code> parameter in a subsequent call to <a>DescribeSharedDirectories</a> to retrieve the next set of items.</p>",
         "DescribeSnapshotsRequest$NextToken": "<p>The <i>DescribeSnapshotsResult.NextToken</i> value from a previous call to <a>DescribeSnapshots</a>. Pass null if this is the first call.</p>",
@@ -1544,6 +1628,7 @@
         "AddRegionRequest$RegionName": "<p>The name of the Region where you want to add domain controllers for replication. For example, <code>us-east-1</code>.</p>",
         "AdditionalRegions$member": null,
         "DescribeRegionsRequest$RegionName": "<p>The name of the Region. For example, <code>us-east-1</code>.</p>",
+        "DirectoryConfigurationSettingRequestDetailedStatus$key": null,
         "RegionDescription$RegionName": "<p>The name of the Region. For example, <code>us-east-1</code>.</p>",
         "RegionsInfo$PrimaryRegion": "<p>The Region where the Managed Microsoft AD directory was originally created.</p>"
       }
@@ -1669,6 +1754,7 @@
         "DomainControllerLimitExceededException$RequestId": null,
         "EntityAlreadyExistsException$RequestId": null,
         "EntityDoesNotExistException$RequestId": null,
+        "IncompatibleSettingsException$RequestId": null,
         "InsufficientPermissionsException$RequestId": null,
         "InvalidCertificateException$RequestId": null,
         "InvalidClientAuthStatusException$RequestId": null,
@@ -1686,6 +1772,7 @@
         "SnapshotLimitExceededException$RequestId": null,
         "TagLimitExceededException$RequestId": null,
         "UnsupportedOperationException$RequestId": null,
+        "UnsupportedSettingsException$RequestId": null,
         "UpdateTrustResult$RequestId": null,
         "UserDoesNotExistException$RequestId": null
       }
@@ -1786,6 +1873,30 @@
     "ServiceException": {
       "base": "<p>An exception has occurred in Directory Service.</p>",
       "refs": {
+      }
+    },
+    "Setting": {
+      "base": "<p>Contains information about the configurable settings for a directory.</p>",
+      "refs": {
+        "Settings$member": null
+      }
+    },
+    "SettingEntries": {
+      "base": null,
+      "refs": {
+        "DescribeSettingsResult$SettingEntries": "<p>The list of <a>SettingEntry</a> objects that were retrieved.</p> <p>It is possible that this list contains less than the number of items specified in the <code>Limit</code> member of the request. This occurs if there are less than the requested number of items left to retrieve, or if the limitations of the operation have been exceeded.</p>"
+      }
+    },
+    "SettingEntry": {
+      "base": "<p>Contains information about the specified configurable setting for a directory.</p>",
+      "refs": {
+        "SettingEntries$member": null
+      }
+    },
+    "Settings": {
+      "base": null,
+      "refs": {
+        "UpdateSettingsRequest$Settings": "<p>The list of <a>Setting</a> objects.</p>"
       }
     },
     "ShareDirectoryRequest": {
@@ -2125,6 +2236,11 @@
       "refs": {
       }
     },
+    "UnsupportedSettingsException": {
+      "base": "<p>The specified directory setting is not supported.</p>",
+      "refs": {
+      }
+    },
     "UpdateConditionalForwarderRequest": {
       "base": "<p>Updates a conditional forwarder.</p>",
       "refs": {
@@ -2159,6 +2275,16 @@
       "base": null,
       "refs": {
         "AddIpRoutesRequest$UpdateSecurityGroupForDirectoryControllers": "<p>If set to true, updates the inbound and outbound rules of the security group that has the description: \"Amazon Web Services created security group for <i>directory ID</i> directory controllers.\" Following are the new rules: </p> <p>Inbound:</p> <ul> <li> <p>Type: Custom UDP Rule, Protocol: UDP, Range: 88, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom UDP Rule, Protocol: UDP, Range: 123, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom UDP Rule, Protocol: UDP, Range: 138, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom UDP Rule, Protocol: UDP, Range: 389, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom UDP Rule, Protocol: UDP, Range: 464, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom UDP Rule, Protocol: UDP, Range: 445, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom TCP Rule, Protocol: TCP, Range: 88, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom TCP Rule, Protocol: TCP, Range: 135, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom TCP Rule, Protocol: TCP, Range: 445, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom TCP Rule, Protocol: TCP, Range: 464, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom TCP Rule, Protocol: TCP, Range: 636, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom TCP Rule, Protocol: TCP, Range: 1024-65535, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom TCP Rule, Protocol: TCP, Range: 3268-33269, Source: 0.0.0.0/0</p> </li> <li> <p>Type: DNS (UDP), Protocol: UDP, Range: 53, Source: 0.0.0.0/0</p> </li> <li> <p>Type: DNS (TCP), Protocol: TCP, Range: 53, Source: 0.0.0.0/0</p> </li> <li> <p>Type: LDAP, Protocol: TCP, Range: 389, Source: 0.0.0.0/0</p> </li> <li> <p>Type: All ICMP, Protocol: All, Range: N/A, Source: 0.0.0.0/0</p> </li> </ul> <p/> <p>Outbound:</p> <ul> <li> <p>Type: All traffic, Protocol: All, Range: All, Destination: 0.0.0.0/0</p> </li> </ul> <p>These security rules impact an internal network interface that is not exposed publicly.</p>"
+      }
+    },
+    "UpdateSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSettingsResult": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateTrustRequest": {

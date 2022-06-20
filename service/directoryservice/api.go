@@ -2866,6 +2866,100 @@ func (c *DirectoryService) DescribeRegionsWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+const opDescribeSettings = "DescribeSettings"
+
+// DescribeSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeSettings for more information on using the DescribeSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeSettingsRequest method.
+//    req, resp := client.DescribeSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeSettings
+func (c *DirectoryService) DescribeSettingsRequest(input *DescribeSettingsInput) (req *request.Request, output *DescribeSettingsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeSettingsInput{}
+	}
+
+	output = &DescribeSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeSettings API operation for AWS Directory Service.
+//
+// Retrieves information about the configurable settings for the specified directory.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Directory Service's
+// API operation DescribeSettings for usage and error information.
+//
+// Returned Error Types:
+//   * DirectoryDoesNotExistException
+//   The specified directory does not exist in the system.
+//
+//   * UnsupportedOperationException
+//   The operation is not supported.
+//
+//   * InvalidParameterException
+//   One or more parameters are not valid.
+//
+//   * InvalidNextTokenException
+//   The NextToken value is not valid.
+//
+//   * ClientException
+//   A client exception has occurred.
+//
+//   * ServiceException
+//   An exception has occurred in Directory Service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeSettings
+func (c *DirectoryService) DescribeSettings(input *DescribeSettingsInput) (*DescribeSettingsOutput, error) {
+	req, out := c.DescribeSettingsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeSettingsWithContext is the same as DescribeSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectoryService) DescribeSettingsWithContext(ctx aws.Context, input *DescribeSettingsInput, opts ...request.Option) (*DescribeSettingsOutput, error) {
+	req, out := c.DescribeSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeSharedDirectories = "DescribeSharedDirectories"
 
 // DescribeSharedDirectoriesRequest generates a "aws/request.Request" representing the
@@ -5923,6 +6017,106 @@ func (c *DirectoryService) UpdateRadius(input *UpdateRadiusInput) (*UpdateRadius
 // for more information on using Contexts.
 func (c *DirectoryService) UpdateRadiusWithContext(ctx aws.Context, input *UpdateRadiusInput, opts ...request.Option) (*UpdateRadiusOutput, error) {
 	req, out := c.UpdateRadiusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateSettings = "UpdateSettings"
+
+// UpdateSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSettings for more information on using the UpdateSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSettingsRequest method.
+//    req, resp := client.UpdateSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/UpdateSettings
+func (c *DirectoryService) UpdateSettingsRequest(input *UpdateSettingsInput) (req *request.Request, output *UpdateSettingsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateSettingsInput{}
+	}
+
+	output = &UpdateSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSettings API operation for AWS Directory Service.
+//
+// Updates the configurable settings for the specified directory.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Directory Service's
+// API operation UpdateSettings for usage and error information.
+//
+// Returned Error Types:
+//   * DirectoryDoesNotExistException
+//   The specified directory does not exist in the system.
+//
+//   * UnsupportedOperationException
+//   The operation is not supported.
+//
+//   * DirectoryUnavailableException
+//   The specified directory is unavailable or could not be found.
+//
+//   * IncompatibleSettingsException
+//   The specified directory setting is not compatible with other settings.
+//
+//   * UnsupportedSettingsException
+//   The specified directory setting is not supported.
+//
+//   * InvalidParameterException
+//   One or more parameters are not valid.
+//
+//   * ClientException
+//   A client exception has occurred.
+//
+//   * ServiceException
+//   An exception has occurred in Directory Service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/UpdateSettings
+func (c *DirectoryService) UpdateSettings(input *UpdateSettingsInput) (*UpdateSettingsOutput, error) {
+	req, out := c.UpdateSettingsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSettingsWithContext is the same as UpdateSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectoryService) UpdateSettingsWithContext(ctx aws.Context, input *UpdateSettingsInput, opts ...request.Option) (*UpdateSettingsOutput, error) {
+	req, out := c.UpdateSettingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -10152,6 +10346,127 @@ func (s *DescribeRegionsOutput) SetRegionsDescription(v []*RegionDescription) *D
 	return s
 }
 
+type DescribeSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the directory for which to retrieve information.
+	//
+	// DirectoryId is a required field
+	DirectoryId *string `type:"string" required:"true"`
+
+	// The DescribeSettingsResult.NextToken value from a previous call to DescribeSettings.
+	// Pass null if this is the first call.
+	NextToken *string `type:"string"`
+
+	// The status of the directory settings for which to retrieve information.
+	Status *string `type:"string" enum:"DirectoryConfigurationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeSettingsInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *DescribeSettingsInput) SetDirectoryId(v string) *DescribeSettingsInput {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSettingsInput) SetNextToken(v string) *DescribeSettingsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeSettingsInput) SetStatus(v string) *DescribeSettingsInput {
+	s.Status = &v
+	return s
+}
+
+type DescribeSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the directory.
+	DirectoryId *string `type:"string"`
+
+	// If not null, token that indicates that more results are available. Pass this
+	// value for the NextToken parameter in a subsequent call to DescribeSettings
+	// to retrieve the next set of items.
+	NextToken *string `type:"string"`
+
+	// The list of SettingEntry objects that were retrieved.
+	//
+	// It is possible that this list contains less than the number of items specified
+	// in the Limit member of the request. This occurs if there are less than the
+	// requested number of items left to retrieve, or if the limitations of the
+	// operation have been exceeded.
+	SettingEntries []*SettingEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *DescribeSettingsOutput) SetDirectoryId(v string) *DescribeSettingsOutput {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSettingsOutput) SetNextToken(v string) *DescribeSettingsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSettingEntries sets the SettingEntries field's value.
+func (s *DescribeSettingsOutput) SetSettingEntries(v []*SettingEntry) *DescribeSettingsOutput {
+	s.SettingEntries = v
+	return s
+}
+
 type DescribeSharedDirectoriesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12809,6 +13124,74 @@ func (s GetSnapshotLimitsOutput) GoString() string {
 func (s *GetSnapshotLimitsOutput) SetSnapshotLimits(v *SnapshotLimits) *GetSnapshotLimitsOutput {
 	s.SnapshotLimits = v
 	return s
+}
+
+// The specified directory setting is not compatible with other settings.
+type IncompatibleSettingsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The descriptive message for the exception.
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The Amazon Web Services request identifier.
+	RequestId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IncompatibleSettingsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IncompatibleSettingsException) GoString() string {
+	return s.String()
+}
+
+func newErrorIncompatibleSettingsException(v protocol.ResponseMetadata) error {
+	return &IncompatibleSettingsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *IncompatibleSettingsException) Code() string {
+	return "IncompatibleSettingsException"
+}
+
+// Message returns the exception's message.
+func (s *IncompatibleSettingsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *IncompatibleSettingsException) OrigErr() error {
+	return nil
+}
+
+func (s *IncompatibleSettingsException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *IncompatibleSettingsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *IncompatibleSettingsException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // The account does not have sufficient permission to perform the operation.
@@ -15584,6 +15967,196 @@ func (s *ServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Contains information about the configurable settings for a directory.
+type Setting struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the directory setting. For example:
+	//
+	// TLS_1_0
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The value of the directory setting for which to retrieve information. For
+	// example, for TLS_1_0, the valid values are: Enable and Disable.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Setting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Setting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Setting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Setting"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *Setting) SetName(v string) *Setting {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Setting) SetValue(v string) *Setting {
+	s.Value = &v
+	return s
+}
+
+// Contains information about the specified configurable setting for a directory.
+type SettingEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The valid range of values for the directory setting.
+	AllowedValues *string `type:"string"`
+
+	// The value of the directory setting that is applied to the directory.
+	AppliedValue *string `min:"1" type:"string"`
+
+	// The date and time when the request to update a directory setting was last
+	// submitted.
+	LastRequestedDateTime *time.Time `type:"timestamp"`
+
+	// The date and time when the directory setting was last updated.
+	LastUpdatedDateTime *time.Time `type:"timestamp"`
+
+	// The name of the directory setting. For example:
+	//
+	// TLS_1_0
+	Name *string `min:"1" type:"string"`
+
+	// Details about the status of the request to update the directory setting.
+	// If the directory setting is deployed in more than one region, status is returned
+	// for the request in each region where the setting is deployed.
+	RequestDetailedStatus map[string]*string `type:"map"`
+
+	// The overall status of the request to update the directory setting request.
+	// If the directory setting is deployed in more than one region, and the request
+	// fails in any region, the overall status is Failed.
+	RequestStatus *string `type:"string" enum:"DirectoryConfigurationStatus"`
+
+	// The last status message for the directory status request.
+	RequestStatusMessage *string `type:"string"`
+
+	// The value that was last requested for the directory setting.
+	RequestedValue *string `min:"1" type:"string"`
+
+	// The type of directory setting. For example, Protocol or Cipher.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SettingEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SettingEntry) GoString() string {
+	return s.String()
+}
+
+// SetAllowedValues sets the AllowedValues field's value.
+func (s *SettingEntry) SetAllowedValues(v string) *SettingEntry {
+	s.AllowedValues = &v
+	return s
+}
+
+// SetAppliedValue sets the AppliedValue field's value.
+func (s *SettingEntry) SetAppliedValue(v string) *SettingEntry {
+	s.AppliedValue = &v
+	return s
+}
+
+// SetLastRequestedDateTime sets the LastRequestedDateTime field's value.
+func (s *SettingEntry) SetLastRequestedDateTime(v time.Time) *SettingEntry {
+	s.LastRequestedDateTime = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *SettingEntry) SetLastUpdatedDateTime(v time.Time) *SettingEntry {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SettingEntry) SetName(v string) *SettingEntry {
+	s.Name = &v
+	return s
+}
+
+// SetRequestDetailedStatus sets the RequestDetailedStatus field's value.
+func (s *SettingEntry) SetRequestDetailedStatus(v map[string]*string) *SettingEntry {
+	s.RequestDetailedStatus = v
+	return s
+}
+
+// SetRequestStatus sets the RequestStatus field's value.
+func (s *SettingEntry) SetRequestStatus(v string) *SettingEntry {
+	s.RequestStatus = &v
+	return s
+}
+
+// SetRequestStatusMessage sets the RequestStatusMessage field's value.
+func (s *SettingEntry) SetRequestStatusMessage(v string) *SettingEntry {
+	s.RequestStatusMessage = &v
+	return s
+}
+
+// SetRequestedValue sets the RequestedValue field's value.
+func (s *SettingEntry) SetRequestedValue(v string) *SettingEntry {
+	s.RequestedValue = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SettingEntry) SetType(v string) *SettingEntry {
+	s.Type = &v
+	return s
+}
+
 type ShareDirectoryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16781,6 +17354,74 @@ func (s *UnsupportedOperationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The specified directory setting is not supported.
+type UnsupportedSettingsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The descriptive message for the exception.
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The Amazon Web Services request identifier.
+	RequestId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsupportedSettingsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsupportedSettingsException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnsupportedSettingsException(v protocol.ResponseMetadata) error {
+	return &UnsupportedSettingsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *UnsupportedSettingsException) Code() string {
+	return "UnsupportedSettingsException"
+}
+
+// Message returns the exception's message.
+func (s *UnsupportedSettingsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *UnsupportedSettingsException) OrigErr() error {
+	return nil
+}
+
+func (s *UnsupportedSettingsException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *UnsupportedSettingsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *UnsupportedSettingsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Updates a conditional forwarder.
 type UpdateConditionalForwarderInput struct {
 	_ struct{} `type:"structure"`
@@ -17055,6 +17696,107 @@ func (s UpdateRadiusOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateRadiusOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the directory for which to update settings.
+	//
+	// DirectoryId is a required field
+	DirectoryId *string `type:"string" required:"true"`
+
+	// The list of Setting objects.
+	//
+	// Settings is a required field
+	Settings []*Setting `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSettingsInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.Settings == nil {
+		invalidParams.Add(request.NewErrParamRequired("Settings"))
+	}
+	if s.Settings != nil {
+		for i, v := range s.Settings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Settings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *UpdateSettingsInput) SetDirectoryId(v string) *UpdateSettingsInput {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetSettings sets the Settings field's value.
+func (s *UpdateSettingsInput) SetSettings(v []*Setting) *UpdateSettingsInput {
+	s.Settings = v
+	return s
+}
+
+type UpdateSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the directory.
+	DirectoryId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *UpdateSettingsOutput) SetDirectoryId(v string) *UpdateSettingsOutput {
+	s.DirectoryId = &v
+	return s
 }
 
 type UpdateTrustInput struct {
@@ -17367,12 +18109,44 @@ func ClientAuthenticationStatus_Values() []string {
 const (
 	// ClientAuthenticationTypeSmartCard is a ClientAuthenticationType enum value
 	ClientAuthenticationTypeSmartCard = "SmartCard"
+
+	// ClientAuthenticationTypeSmartCardOrPassword is a ClientAuthenticationType enum value
+	ClientAuthenticationTypeSmartCardOrPassword = "SmartCardOrPassword"
 )
 
 // ClientAuthenticationType_Values returns all elements of the ClientAuthenticationType enum
 func ClientAuthenticationType_Values() []string {
 	return []string{
 		ClientAuthenticationTypeSmartCard,
+		ClientAuthenticationTypeSmartCardOrPassword,
+	}
+}
+
+const (
+	// DirectoryConfigurationStatusRequested is a DirectoryConfigurationStatus enum value
+	DirectoryConfigurationStatusRequested = "Requested"
+
+	// DirectoryConfigurationStatusUpdating is a DirectoryConfigurationStatus enum value
+	DirectoryConfigurationStatusUpdating = "Updating"
+
+	// DirectoryConfigurationStatusUpdated is a DirectoryConfigurationStatus enum value
+	DirectoryConfigurationStatusUpdated = "Updated"
+
+	// DirectoryConfigurationStatusFailed is a DirectoryConfigurationStatus enum value
+	DirectoryConfigurationStatusFailed = "Failed"
+
+	// DirectoryConfigurationStatusDefault is a DirectoryConfigurationStatus enum value
+	DirectoryConfigurationStatusDefault = "Default"
+)
+
+// DirectoryConfigurationStatus_Values returns all elements of the DirectoryConfigurationStatus enum
+func DirectoryConfigurationStatus_Values() []string {
+	return []string{
+		DirectoryConfigurationStatusRequested,
+		DirectoryConfigurationStatusUpdating,
+		DirectoryConfigurationStatusUpdated,
+		DirectoryConfigurationStatusFailed,
+		DirectoryConfigurationStatusDefault,
 	}
 }
 

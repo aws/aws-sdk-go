@@ -488,12 +488,19 @@
         "AssetId":{"shape":"AssetId"},
         "RackId":{"shape":"RackId"},
         "AssetType":{"shape":"AssetType"},
-        "ComputeAttributes":{"shape":"ComputeAttributes"}
+        "ComputeAttributes":{"shape":"ComputeAttributes"},
+        "AssetLocation":{"shape":"AssetLocation"}
       }
     },
     "AssetListDefinition":{
       "type":"list",
       "member":{"shape":"AssetInfo"}
+    },
+    "AssetLocation":{
+      "type":"structure",
+      "members":{
+        "RackElevation":{"shape":"RackElevation"}
+      }
     },
     "AssetType":{
       "type":"string",
@@ -1441,6 +1448,12 @@
       ]
     },
     "Quantity":{"type":"string"},
+    "RackElevation":{
+      "type":"float",
+      "box":true,
+      "max":99,
+      "min":0
+    },
     "RackId":{
       "type":"string",
       "max":20,
