@@ -492,6 +492,23 @@
         {"shape":"ServiceException"}
       ]
     },
+    "DescribeSettings":{
+      "name":"DescribeSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeSettingsRequest"},
+      "output":{"shape":"DescribeSettingsResult"},
+      "errors":[
+        {"shape":"DirectoryDoesNotExistException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "DescribeSharedDirectories":{
       "name":"DescribeSharedDirectories",
       "http":{
@@ -1019,6 +1036,25 @@
         {"shape":"ServiceException"}
       ]
     },
+    "UpdateSettings":{
+      "name":"UpdateSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateSettingsRequest"},
+      "output":{"shape":"UpdateSettingsResult"},
+      "errors":[
+        {"shape":"DirectoryDoesNotExistException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"DirectoryUnavailableException"},
+        {"shape":"IncompatibleSettingsException"},
+        {"shape":"UnsupportedSettingsException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "UpdateTrust":{
       "name":"UpdateTrust",
       "http":{
@@ -1304,7 +1340,10 @@
     },
     "ClientAuthenticationType":{
       "type":"string",
-      "enum":["SmartCard"]
+      "enum":[
+        "SmartCard",
+        "SmartCardOrPassword"
+      ]
     },
     "ClientCertAuthSettings":{
       "type":"structure",
@@ -1780,6 +1819,23 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeSettingsRequest":{
+      "type":"structure",
+      "required":["DirectoryId"],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "Status":{"shape":"DirectoryConfigurationStatus"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeSettingsResult":{
+      "type":"structure",
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "SettingEntries":{"shape":"SettingEntries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "DescribeSharedDirectoriesRequest":{
       "type":"structure",
       "required":["OwnerDirectoryId"],
@@ -1854,6 +1910,38 @@
         "RequestId":{"shape":"RequestId"}
       },
       "exception":true
+    },
+    "DirectoryConfigurationSettingAllowedValues":{"type":"string"},
+    "DirectoryConfigurationSettingLastRequestedDateTime":{"type":"timestamp"},
+    "DirectoryConfigurationSettingLastUpdatedDateTime":{"type":"timestamp"},
+    "DirectoryConfigurationSettingName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-/. _]*$"
+    },
+    "DirectoryConfigurationSettingRequestDetailedStatus":{
+      "type":"map",
+      "key":{"shape":"RegionName"},
+      "value":{"shape":"DirectoryConfigurationStatus"}
+    },
+    "DirectoryConfigurationSettingRequestStatusMessage":{"type":"string"},
+    "DirectoryConfigurationSettingType":{"type":"string"},
+    "DirectoryConfigurationSettingValue":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9]*$"
+    },
+    "DirectoryConfigurationStatus":{
+      "type":"string",
+      "enum":[
+        "Requested",
+        "Updating",
+        "Updated",
+        "Failed",
+        "Default"
+      ]
     },
     "DirectoryConnectSettings":{
       "type":"structure",
@@ -2263,6 +2351,14 @@
       "members":{
         "SnapshotLimits":{"shape":"SnapshotLimits"}
       }
+    },
+    "IncompatibleSettingsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"},
+        "RequestId":{"shape":"RequestId"}
+      },
+      "exception":true
     },
     "InsufficientPermissionsException":{
       "type":"structure",
@@ -2885,6 +2981,40 @@
       "exception":true,
       "fault":true
     },
+    "Setting":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Name":{"shape":"DirectoryConfigurationSettingName"},
+        "Value":{"shape":"DirectoryConfigurationSettingValue"}
+      }
+    },
+    "SettingEntries":{
+      "type":"list",
+      "member":{"shape":"SettingEntry"}
+    },
+    "SettingEntry":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"DirectoryConfigurationSettingType"},
+        "Name":{"shape":"DirectoryConfigurationSettingName"},
+        "AllowedValues":{"shape":"DirectoryConfigurationSettingAllowedValues"},
+        "AppliedValue":{"shape":"DirectoryConfigurationSettingValue"},
+        "RequestedValue":{"shape":"DirectoryConfigurationSettingValue"},
+        "RequestStatus":{"shape":"DirectoryConfigurationStatus"},
+        "RequestDetailedStatus":{"shape":"DirectoryConfigurationSettingRequestDetailedStatus"},
+        "RequestStatusMessage":{"shape":"DirectoryConfigurationSettingRequestStatusMessage"},
+        "LastUpdatedDateTime":{"shape":"DirectoryConfigurationSettingLastUpdatedDateTime"},
+        "LastRequestedDateTime":{"shape":"DirectoryConfigurationSettingLastRequestedDateTime"}
+      }
+    },
+    "Settings":{
+      "type":"list",
+      "member":{"shape":"Setting"}
+    },
     "ShareDirectoryRequest":{
       "type":"structure",
       "required":[
@@ -3162,7 +3292,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"(.|\\s)*\\S(.|\\s)*",
+      "pattern":"^(\\p{LD}|\\p{Punct}| )+$",
       "sensitive":true
     },
     "TrustState":{
@@ -3229,6 +3359,14 @@
       },
       "exception":true
     },
+    "UnsupportedSettingsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"},
+        "RequestId":{"shape":"RequestId"}
+      },
+      "exception":true
+    },
     "UpdateConditionalForwarderRequest":{
       "type":"structure",
       "required":[
@@ -3280,6 +3418,23 @@
       }
     },
     "UpdateSecurityGroupForDirectoryControllers":{"type":"boolean"},
+    "UpdateSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "DirectoryId",
+        "Settings"
+      ],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "Settings":{"shape":"Settings"}
+      }
+    },
+    "UpdateSettingsResult":{
+      "type":"structure",
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"}
+      }
+    },
     "UpdateTrustRequest":{
       "type":"structure",
       "required":["TrustId"],

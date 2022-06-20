@@ -1,3 +1,12 @@
+Release v1.44.38 (2022-06-20)
+===
+
+### Service Client Updates
+* `service/ds`: Updates service API and documentation
+  * This release adds support for describing and updating AWS Managed Microsoft AD settings
+* `service/kafka`: Updates service documentation
+* `service/outposts`: Updates service API and documentation
+
 Release v1.44.37 (2022-06-17)
 ===
 

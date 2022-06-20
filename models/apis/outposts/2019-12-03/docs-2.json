@@ -105,6 +105,12 @@
         "ListAssetsOutput$Assets": "<p> Information about hardware assets. </p>"
       }
     },
+    "AssetLocation": {
+      "base": "<p> Information about the position of the asset in a rack. </p>",
+      "refs": {
+        "AssetInfo$AssetLocation": "<p> The position of an asset in a rack. </p>"
+      }
+    },
     "AssetType": {
       "base": null,
       "refs": {
@@ -819,6 +825,12 @@
       "base": null,
       "refs": {
         "EC2Capacity$Quantity": "<p> The quantity of the EC2 capacity. </p>"
+      }
+    },
+    "RackElevation": {
+      "base": null,
+      "refs": {
+        "AssetLocation$RackElevation": "<p> The position of an asset in a rack measured in rack units. </p>"
       }
     },
     "RackId": {

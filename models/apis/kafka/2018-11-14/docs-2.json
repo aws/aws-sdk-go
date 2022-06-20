@@ -791,7 +791,7 @@
       "base" : null,
       "refs" : {
         "BatchAssociateScramSecretRequest$SecretArnList" : "<p>List of AWS Secrets Manager secret ARNs.</p>",
-        "BrokerNodeGroupInfo$ClientSubnets" : "<p>The list of subnets to connect to in the client virtual private cloud (VPC). AWS creates elastic network interfaces inside these subnets. Client applications use elastic network interfaces to produce and consume data. Client subnets can't be in Availability Zone us-east-1e.</p>",
+        "BrokerNodeGroupInfo$ClientSubnets" : "<p>The list of subnets to connect to in the client virtual private cloud (VPC). AWS creates elastic network interfaces inside these subnets. Client applications use elastic network interfaces to produce and consume data. Client subnets can't occupy the Availability Zone with ID use use1-az3.</p>",
         "BrokerNodeGroupInfo$SecurityGroups" : "<p>The AWS security groups to associate with the elastic network interfaces in order to specify who can connect to and communicate with the Amazon MSK cluster. If you don't specify a security group, Amazon MSK uses the default security group associated with the VPC. If you specify security groups that were shared with you, you must ensure that you have permissions to them. Specifically, you need the ec2:DescribeSecurityGroups permission.</p>",
         "BrokerNodeInfo$Endpoints" : "<p>Endpoints for accessing the broker.</p>",
         "Configuration$KafkaVersions" : "<p>An array of the versions of Apache Kafka with which you can use this MSK configuration. You can use this configuration for an MSK cluster only if the Apache Kafka version specified for the cluster appears in this array.</p>",
