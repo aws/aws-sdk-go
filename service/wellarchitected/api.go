@@ -3223,6 +3223,8 @@ func (c *WellArchitected) ListTagsForResourceRequest(input *ListTagsForResourceI
 //
 // List the tags for a resource.
 //
+// The WorkloadArn parameter can be either a workload ARN or a custom lens ARN.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3601,6 +3603,8 @@ func (c *WellArchitected) TagResourceRequest(input *TagResourceInput) (req *requ
 //
 // Adds one or more tags to the specified resource.
 //
+// The WorkloadArn parameter can be either a workload ARN or a custom lens ARN.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3683,6 +3687,8 @@ func (c *WellArchitected) UntagResourceRequest(input *UntagResourceInput) (req *
 // UntagResource API operation for AWS Well-Architected Tool.
 //
 // Deletes specified tags from a resource.
+//
+// The WorkloadArn parameter can be either a workload ARN or a custom lens ARN.
 //
 // To specify multiple tags, use separate tagKeys parameters, for example:
 //
@@ -4354,6 +4360,48 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The choice level additional resources.
+type AdditionalResources struct {
+	_ struct{} `type:"structure"`
+
+	// The URLs for additional resources, either helpful resources or improvement
+	// plans. Up to five additional URLs can be specified.
+	Content []*ChoiceContent `type:"list"`
+
+	// Type of additional resource.
+	Type *string `type:"string" enum:"AdditionalResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdditionalResources) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdditionalResources) GoString() string {
+	return s.String()
+}
+
+// SetContent sets the Content field's value.
+func (s *AdditionalResources) SetContent(v []*ChoiceContent) *AdditionalResources {
+	s.Content = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AdditionalResources) SetType(v string) *AdditionalResources {
+	s.Type = &v
+	return s
+}
+
 // An answer of the question.
 type Answer struct {
 	_ struct{} `type:"structure"`
@@ -4714,6 +4762,11 @@ func (s AssociateLensesOutput) GoString() string {
 type Choice struct {
 	_ struct{} `type:"structure"`
 
+	// The additional resources for a choice. A choice can have up to two additional
+	// resources: one of type HELPFUL_RESOURCE, one of type IMPROVEMENT_PLAN, or
+	// both.
+	AdditionalResources []*AdditionalResources `type:"list"`
+
 	// The ID of a choice.
 	ChoiceId *string `min:"1" type:"string"`
 
@@ -4746,6 +4799,12 @@ func (s Choice) String() string {
 // value will be replaced with "sensitive".
 func (s Choice) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalResources sets the AdditionalResources field's value.
+func (s *Choice) SetAdditionalResources(v []*AdditionalResources) *Choice {
+	s.AdditionalResources = v
+	return s
 }
 
 // SetChoiceId sets the ChoiceId field's value.
@@ -5136,7 +5195,12 @@ type CreateLensShareInput struct {
 	// or the request will fail.
 	ClientRequestToken *string `type:"string" idempotencyToken:"true"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -5258,7 +5322,12 @@ type CreateLensVersionInput struct {
 	// Set to true if this new major lens version.
 	IsMajorVersion *bool `type:"boolean"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -5625,9 +5694,7 @@ type CreateWorkloadInput struct {
 
 	// The review owner of the workload. The name, email address, or identifier
 	// for the primary group or individual that owns the workload review process.
-	//
-	// ReviewOwner is a required field
-	ReviewOwner *string `min:"3" type:"string" required:"true"`
+	ReviewOwner *string `min:"3" type:"string"`
 
 	// The tags to be associated with the workload.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -5673,9 +5740,6 @@ func (s *CreateWorkloadInput) Validate() error {
 	}
 	if s.Lenses == nil {
 		invalidParams.Add(request.NewErrParamRequired("Lenses"))
-	}
-	if s.ReviewOwner == nil {
-		invalidParams.Add(request.NewErrParamRequired("ReviewOwner"))
 	}
 	if s.ReviewOwner != nil && len(*s.ReviewOwner) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("ReviewOwner", 3))
@@ -5988,7 +6052,12 @@ type DeleteLensInput struct {
 	// or the request will fail.
 	ClientRequestToken *string `location:"querystring" locationName:"ClientRequestToken" type:"string" idempotencyToken:"true"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -6094,7 +6163,12 @@ type DeleteLensShareInput struct {
 	// or the request will fail.
 	ClientRequestToken *string `location:"querystring" locationName:"ClientRequestToken" type:"string" idempotencyToken:"true"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -6484,7 +6558,12 @@ func (s DisassociateLensesOutput) GoString() string {
 type ExportLensInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -6579,7 +6658,12 @@ func (s *ExportLensOutput) SetLensJSON(v string) *ExportLensOutput {
 type GetAnswerInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -6683,7 +6767,12 @@ type GetAnswerOutput struct {
 	// An answer of the question.
 	Answer *Answer `type:"structure"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	LensAlias *string `min:"1" type:"string"`
@@ -6752,7 +6841,12 @@ func (s *GetAnswerOutput) SetWorkloadId(v string) *GetAnswerOutput {
 type GetLensInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -6847,7 +6941,12 @@ func (s *GetLensOutput) SetLens(v *Lens) *GetLensOutput {
 type GetLensReviewInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -6984,7 +7083,12 @@ func (s *GetLensReviewOutput) SetWorkloadId(v string) *GetLensReviewOutput {
 type GetLensReviewReportInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -7123,7 +7227,12 @@ type GetLensVersionDifferenceInput struct {
 	// The base version of the lens.
 	BaseLensVersion *string `location:"querystring" locationName:"BaseLensVersion" min:"1" type:"string"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -7201,7 +7310,12 @@ type GetLensVersionDifferenceOutput struct {
 	// The latest version of the lens.
 	LatestLensVersion *string `min:"1" type:"string"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	LensAlias *string `min:"1" type:"string"`
@@ -7486,7 +7600,12 @@ type ImportLensInput struct {
 	// JSONString is a required field
 	JSONString *string `min:"2" type:"string" required:"true"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	LensAlias *string `min:"1" type:"string"`
@@ -7766,6 +7885,9 @@ type Lens struct {
 
 	// The ID assigned to the share invitation.
 	ShareInvitationId *string `type:"string"`
+
+	// The tags assigned to the lens.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
 // String returns the string representation.
@@ -7822,11 +7944,22 @@ func (s *Lens) SetShareInvitationId(v string) *Lens {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *Lens) SetTags(v map[string]*string) *Lens {
+	s.Tags = v
+	return s
+}
+
 // A lens review of a question.
 type LensReview struct {
 	_ struct{} `type:"structure"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	LensAlias *string `min:"1" type:"string"`
@@ -7946,7 +8079,12 @@ type LensReviewReport struct {
 	// This data can be used to create a PDF file.
 	Base64String *string `type:"string"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	LensAlias *string `min:"1" type:"string"`
@@ -7995,7 +8133,12 @@ func (s *LensReviewReport) SetLensArn(v string) *LensReviewReport {
 type LensReviewSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	LensAlias *string `min:"1" type:"string"`
@@ -8140,7 +8283,12 @@ type LensSummary struct {
 	// The description of the lens.
 	Description *string `min:"1" type:"string"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	LensAlias *string `min:"1" type:"string"`
@@ -8255,7 +8403,12 @@ type LensUpgradeSummary struct {
 	// The latest version of the lens.
 	LatestLensVersion *string `min:"1" type:"string"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	LensAlias *string `min:"1" type:"string"`
@@ -8332,7 +8485,12 @@ func (s *LensUpgradeSummary) SetWorkloadName(v string) *LensUpgradeSummary {
 type ListAnswersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -8454,7 +8612,12 @@ type ListAnswersOutput struct {
 	// List of answer summaries of lens review in a workload.
 	AnswerSummaries []*AnswerSummary `type:"list"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	LensAlias *string `min:"1" type:"string"`
@@ -8533,7 +8696,12 @@ func (s *ListAnswersOutput) SetWorkloadId(v string) *ListAnswersOutput {
 type ListLensReviewImprovementsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -8655,7 +8823,12 @@ type ListLensReviewImprovementsOutput struct {
 	// List of improvement summaries of lens review in a workload.
 	ImprovementSummaries []*ImprovementSummary `type:"list"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	LensAlias *string `min:"1" type:"string"`
@@ -8881,7 +9054,12 @@ func (s *ListLensReviewsOutput) SetWorkloadId(v string) *ListLensReviewsOutput {
 type ListLensSharesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -10291,7 +10469,12 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type ShareInvitation struct {
 	_ struct{} `type:"structure"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	LensAlias *string `min:"1" type:"string"`
@@ -10726,7 +10909,12 @@ type UpdateAnswerInput struct {
 	// Defines whether this question is applicable to a lens review.
 	IsApplicable *bool `type:"boolean"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -10867,7 +11055,12 @@ type UpdateAnswerOutput struct {
 	// An answer of the question.
 	Answer *Answer `type:"structure"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	LensAlias *string `min:"1" type:"string"`
@@ -10926,7 +11119,12 @@ func (s *UpdateAnswerOutput) SetWorkloadId(v string) *UpdateAnswerOutput {
 type UpdateLensReviewInput struct {
 	_ struct{} `type:"structure"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -11571,7 +11769,12 @@ type UpgradeLensReviewInput struct {
 	// or the request will fail.
 	ClientRequestToken *string `type:"string"`
 
-	// The alias of the lens, for example, serverless.
+	// The alias of the lens.
+	//
+	// For Amazon Web Services official lenses, this is either the lens alias, such
+	// as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless.
+	//
+	// For custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens.
 	//
 	// Each lens is identified by its LensSummary$LensAlias.
 	//
@@ -12380,6 +12583,22 @@ func (s *WorkloadSummary) SetWorkloadId(v string) *WorkloadSummary {
 func (s *WorkloadSummary) SetWorkloadName(v string) *WorkloadSummary {
 	s.WorkloadName = &v
 	return s
+}
+
+const (
+	// AdditionalResourceTypeHelpfulResource is a AdditionalResourceType enum value
+	AdditionalResourceTypeHelpfulResource = "HELPFUL_RESOURCE"
+
+	// AdditionalResourceTypeImprovementPlan is a AdditionalResourceType enum value
+	AdditionalResourceTypeImprovementPlan = "IMPROVEMENT_PLAN"
+)
+
+// AdditionalResourceType_Values returns all elements of the AdditionalResourceType enum
+func AdditionalResourceType_Values() []string {
+	return []string{
+		AdditionalResourceTypeHelpfulResource,
+		AdditionalResourceTypeImprovementPlan,
+	}
 }
 
 const (

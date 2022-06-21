@@ -651,6 +651,24 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "AdditionalResourceType":{
+      "type":"string",
+      "enum":[
+        "HELPFUL_RESOURCE",
+        "IMPROVEMENT_PLAN"
+      ]
+    },
+    "AdditionalResources":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"AdditionalResourceType"},
+        "Content":{"shape":"Urls"}
+      }
+    },
+    "AdditionalResourcesList":{
+      "type":"list",
+      "member":{"shape":"AdditionalResources"}
+    },
     "Answer":{
       "type":"structure",
       "members":{
@@ -729,7 +747,8 @@
         "Title":{"shape":"ChoiceTitle"},
         "Description":{"shape":"ChoiceDescription"},
         "HelpfulResource":{"shape":"ChoiceContent"},
-        "ImprovementPlan":{"shape":"ChoiceContent"}
+        "ImprovementPlan":{"shape":"ChoiceContent"},
+        "AdditionalResources":{"shape":"AdditionalResourcesList"}
       }
     },
     "ChoiceAnswer":{
@@ -948,7 +967,6 @@
         "WorkloadName",
         "Description",
         "Environment",
-        "ReviewOwner",
         "Lenses",
         "ClientRequestToken"
       ],
@@ -1438,7 +1456,8 @@
         "Name":{"shape":"LensName"},
         "Description":{"shape":"LensDescription"},
         "Owner":{"shape":"LensOwner"},
-        "ShareInvitationId":{"shape":"ShareInvitationId"}
+        "ShareInvitationId":{"shape":"ShareInvitationId"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "LensAlias":{
@@ -2462,6 +2481,10 @@
         "MilestoneName":{"shape":"MilestoneName"},
         "ClientRequestToken":{"shape":"ClientRequestToken"}
       }
+    },
+    "Urls":{
+      "type":"list",
+      "member":{"shape":"ChoiceContent"}
     },
     "ValidationException":{
       "type":"structure",

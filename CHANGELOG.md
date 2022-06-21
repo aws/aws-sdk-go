@@ -1,3 +1,13 @@
+Release v1.44.39 (2022-06-21)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for Private IP VPNs, a new feature allowing S2S VPN connections to use private ip addresses as the tunnel outside ip address over Direct Connect as transport.
+* `service/ecs`: Updates service documentation
+  * Amazon ECS UpdateService now supports the following parameters: PlacementStrategies, PlacementConstraints and CapacityProviderStrategy.
+* `service/wellarchitected`: Updates service API and documentation
+
 Release v1.44.38 (2022-06-20)
 ===
 

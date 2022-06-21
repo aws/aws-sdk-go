@@ -172,7 +172,7 @@ func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *request.Requ
 // manage required resources in other Amazon Web Services services on your behalf.
 // However, if the IAM user that makes the call doesn't have permissions to
 // create the service-linked role, it isn't created. For more information, see
-// Using Service-Linked Roles for Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html)
+// Using service-linked roles for Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -270,7 +270,7 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 // In addition to maintaining the desired count of tasks in your service, you
 // can optionally run your service behind one or more load balancers. The load
 // balancers distribute traffic across the tasks that are associated with the
-// service. For more information, see Service Load Balancing (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html)
+// service. For more information, see Service load balancing (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
 // Tasks for services that don't use a load balancer are considered healthy
@@ -284,7 +284,7 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 //    desired number of tasks across your cluster. By default, the service scheduler
 //    spreads tasks across Availability Zones. You can use task placement strategies
 //    and constraints to customize task placement decisions. For more information,
-//    see Service Scheduler Concepts (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html)
+//    see Service scheduler concepts (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html)
 //    in the Amazon Elastic Container Service Developer Guide.
 //
 //    * DAEMON - The daemon scheduling strategy deploys exactly one task on
@@ -294,7 +294,7 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 //    that don't meet the placement constraints. When using this strategy, you
 //    don't need to specify a desired number of tasks, a task placement strategy,
 //    or use Service Auto Scaling policies. For more information, see Service
-//    Scheduler Concepts (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html)
+//    scheduler concepts (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html)
 //    in the Amazon Elastic Container Service Developer Guide.
 //
 // You can optionally specify a deployment configuration for your service. The
@@ -343,8 +343,8 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 // When creating a service that uses the EXTERNAL deployment controller, you
 // can specify only parameters that aren't controlled at the task set level.
 // The only required parameter is the service name. You control your services
-// using the CreateTaskSet operation. For more information, see Amazon ECS Deployment
-// Types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)
+// using the CreateTaskSet operation. For more information, see Amazon ECS deployment
+// types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
 // When the service scheduler launches new tasks, it determines task placement
@@ -472,7 +472,7 @@ func (c *ECS) CreateTaskSetRequest(input *CreateTaskSetInput) (req *request.Requ
 //
 // Create a task set in the specified cluster and service. This is used when
 // a service uses the EXTERNAL deployment controller type. For more information,
-// see Amazon ECS Deployment Types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)
+// see Amazon ECS deployment types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1105,7 +1105,7 @@ func (c *ECS) DeleteTaskSetRequest(input *DeleteTaskSetInput) (req *request.Requ
 //
 // Deletes a specified task set within a service. This is used when a service
 // uses the EXTERNAL deployment controller type. For more information, see Amazon
-// ECS Deployment Types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)
+// ECS deployment types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1999,6 +1999,9 @@ func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *request.Requ
 //
 // Describes a specified task or tasks.
 //
+// Currently, stopped tasks appear in the returned results for at least one
+// hour.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2180,6 +2183,11 @@ func (c *ECS) ExecuteCommandRequest(input *ExecuteCommandInput) (req *request.Re
 // ExecuteCommand API operation for Amazon EC2 Container Service.
 //
 // Runs a command remotely on a container within a task.
+//
+// If you use a condition key in your IAM policy to refine the conditions for
+// the policy statement, for example limit the actions to a specific cluster,
+// you recevie an AccessDeniedException when there is a mismatch between the
+// condition key value and the corresponding parameter value.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5587,13 +5595,6 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 
 // UpdateService API operation for Amazon EC2 Container Service.
 //
-//
-// Updating the task placement strategies and constraints on an Amazon ECS service
-// remains in preview and is a Beta Service as defined by and subject to the
-// Beta Service Participation Service Terms located at https://aws.amazon.com/service-terms
-// (https://aws.amazon.com/service-terms) ("Beta Terms"). These Beta Terms apply
-// to your participation in this preview.
-//
 // Modifies the parameters of a service.
 //
 // For services using the rolling update (ECS) you can update the desired count,
@@ -6935,8 +6936,8 @@ type Cluster struct {
 	ActiveServicesCount *int64 `locationName:"activeServicesCount" type:"integer"`
 
 	// The resources attached to a cluster. When using a capacity provider with
-	// a cluster, the Auto Scaling plan that's created is returned as a cluster
-	// attachment.
+	// a cluster, the capacity provider and associated resources are returned as
+	// cluster attachments.
 	Attachments []*Attachment `locationName:"attachments" type:"list"`
 
 	// The status of the capacity providers associated with the cluster. The following
@@ -6944,8 +6945,7 @@ type Cluster struct {
 	//
 	// UPDATE_IN_PROGRESS
 	//
-	// The available capacity providers for the cluster are updating. This occurs
-	// when the Auto Scaling plan is provisioning or deprovisioning.
+	// The available capacity providers for the cluster are updating.
 	//
 	// UPDATE_COMPLETE
 	//
@@ -6959,10 +6959,9 @@ type Cluster struct {
 	// The capacity providers associated with the cluster.
 	CapacityProviders []*string `locationName:"capacityProviders" type:"list"`
 
-	// The Amazon Resource Name (ARN) that identifies the cluster. The ARN contains
-	// the arn:aws:ecs namespace, followed by the Region of the cluster, the Amazon
-	// Web Services account ID of the cluster owner, the cluster namespace, and
-	// then the cluster name. For example, arn:aws:ecs:region:012345678910:cluster/test.
+	// The Amazon Resource Name (ARN) that identifies the cluster. For more information
+	// about the ARN format, see Amazon Resource Name (ARN) (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids)
+	// in the Amazon ECS Developer Guide.
 	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
 	// A user-generated string that you use to identify your cluster.
@@ -8043,12 +8042,10 @@ type ContainerDefinition struct {
 	// is placed. Otherwise, the value of memory is used.
 	//
 	// The Docker 20.10.0 or later daemon reserves a minimum of 6 MiB of memory
-	// for a container, so you should not specify fewer than 6 MiB of memory for
-	// your containers.
+	// for a container. So, don't specify less than 6 MiB of memory for your containers.
 	//
 	// The Docker 19.03.13-ce or earlier daemon reserves a minimum of 4 MiB of memory
-	// for a container, so you should not specify fewer than 4 MiB of memory for
-	// your containers.
+	// for a container. So, don't specify less than 4 MiB of memory for your containers.
 	Memory *int64 `locationName:"memory" type:"integer"`
 
 	// The soft limit (in MiB) of memory to reserve for the container. When system
@@ -8745,21 +8742,22 @@ func (s *ContainerDependency) SetContainerName(v string) *ContainerDependency {
 	return s
 }
 
-// An EC2 instance that's running the Amazon ECS agent and has been registered
-// with a cluster.
+// An Amazon EC2 or External instance that's running the Amazon ECS agent and
+// has been registered with a cluster.
 type ContainerInstance struct {
 	_ struct{} `type:"structure"`
 
-	// This parameter returns true if the agent is connected to Amazon ECS. Registered
-	// instances with an agent that may be unhealthy or stopped return false. Only
-	// instances connected to an agent can accept placement requests.
+	// This parameter returns true if the agent is connected to Amazon ECS. An instance
+	// with an agent that may be unhealthy or stopped return false. Only instances
+	// connected to an agent can accept task placement requests.
 	AgentConnected *bool `locationName:"agentConnected" type:"boolean"`
 
 	// The status of the most recent agent update. If an update wasn't ever requested,
 	// this value is NULL.
 	AgentUpdateStatus *string `locationName:"agentUpdateStatus" type:"string" enum:"AgentUpdateStatus"`
 
-	// The resources attached to a container instance, such as elastic network interfaces.
+	// The resources attached to a container instance, such as an elastic network
+	// interface.
 	Attachments []*Attachment `locationName:"attachments" type:"list"`
 
 	// The attributes set for the container instance, either by the Amazon ECS container
@@ -8769,10 +8767,9 @@ type ContainerInstance struct {
 	// The capacity provider that's associated with the container instance.
 	CapacityProviderName *string `locationName:"capacityProviderName" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the container instance. The ARN contains
-	// the arn:aws:ecs namespace, followed by the Region of the container instance,
-	// the Amazon Web Services account ID of the container instance owner, the container-instance
-	// namespace, and then the container instance ID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
+	// The Amazon Resource Name (ARN) of the container instance. For more information
+	// about the ARN format, see Amazon Resource Name (ARN) (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids)
+	// in the Amazon ECS Developer Guide.
 	ContainerInstanceArn *string `locationName:"containerInstanceArn" type:"string"`
 
 	// The ID of the container instance. For Amazon EC2 instances, this value is
@@ -8826,7 +8823,7 @@ type ContainerInstance struct {
 	// The ACTIVE status indicates that the container instance can accept tasks.
 	// The DRAINING indicates that new tasks aren't placed on the container instance
 	// and any service tasks running on the container instance are removed if possible.
-	// For more information, see Container Instance Draining (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/container-instance-draining.html)
+	// For more information, see Container instance draining (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/container-instance-draining.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	Status *string `locationName:"status" type:"string"`
 
@@ -9642,7 +9639,7 @@ type CreateServiceInput struct {
 	DesiredCount *int64 `locationName:"desiredCount" type:"integer"`
 
 	// Specifies whether to turn on Amazon ECS managed tags for the tasks within
-	// the service. For more information, see Tagging Your Amazon ECS Resources
+	// the service. For more information, see Tagging your Amazon ECS resources
 	// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	EnableECSManagedTags *bool `locationName:"enableECSManagedTags" type:"boolean"`
@@ -9693,7 +9690,7 @@ type CreateServiceInput struct {
 	LaunchType *string `locationName:"launchType" type:"string" enum:"LaunchType"`
 
 	// A load balancer object representing the load balancers to use with your service.
-	// For more information, see Service Load Balancing (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html)
+	// For more information, see Service load balancing (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	//
 	// If the service uses the rolling update (ECS) deployment controller and using
@@ -10153,7 +10150,7 @@ type CreateTaskSetInput struct {
 	ExternalId *string `locationName:"externalId" type:"string"`
 
 	// The launch type that new tasks in the task set uses. For more information,
-	// see Amazon ECS Launch Types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html)
+	// see Amazon ECS launch types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	//
 	// If a launchType is specified, the capacityProviderStrategy parameter must
@@ -10184,7 +10181,7 @@ type CreateTaskSetInput struct {
 	Service *string `locationName:"service" type:"string" required:"true"`
 
 	// The details of the service discovery registries to assign to this task set.
-	// For more information, see Service Discovery (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html).
+	// For more information, see Service discovery (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html).
 	ServiceRegistries []*ServiceRegistry `locationName:"serviceRegistries" type:"list"`
 
 	// The metadata that you apply to the task set to help you categorize and organize
@@ -11260,19 +11257,18 @@ type DeploymentConfiguration struct {
 	// the service is rolled back to the last deployment that completed successfully.
 	DeploymentCircuitBreaker *DeploymentCircuitBreaker `locationName:"deploymentCircuitBreaker" type:"structure"`
 
-	// If a service is using the rolling update (ECS) deployment type, the maximum
-	// percent parameter represents an upper limit on the number of tasks in a service
+	// If a service is using the rolling update (ECS) deployment type, the maximumPercent
+	// parameter represents an upper limit on the number of your service's tasks
 	// that are allowed in the RUNNING or PENDING state during a deployment, as
-	// a percentage of the desired number of tasks (rounded down to the nearest
-	// integer), and while any container instances are in the DRAINING state if
-	// the service contains tasks using the EC2 launch type. This parameter enables
-	// you to define the deployment batch size. For example, if your service has
-	// a desired number of four tasks and a maximum percent value of 200%, the scheduler
-	// may start four new tasks before stopping the four older tasks (provided that
-	// the cluster resources required to do this are available). The default value
-	// for maximum percent is 200%.
+	// a percentage of the desiredCount (rounded down to the nearest integer). This
+	// parameter enables you to define the deployment batch size. For example, if
+	// your service is using the REPLICA service scheduler and has a desiredCount
+	// of four tasks and a maximumPercent value of 200%, the scheduler may start
+	// four new tasks before stopping the four older tasks (provided that the cluster
+	// resources required to do this are available). The default maximumPercent
+	// value for a service using the REPLICA service scheduler is 200%.
 	//
-	// If a service is using the blue/green (CODE_DEPLOY) or EXTERNAL deployment
+	// If a service is using either the blue/green (CODE_DEPLOY) or EXTERNAL deployment
 	// types and tasks that use the EC2 launch type, the maximum percent value is
 	// set to the default value and is used to define the upper limit on the number
 	// of the tasks in the service that remain in the RUNNING state while the container
@@ -11281,28 +11277,51 @@ type DeploymentConfiguration struct {
 	// returned when describing your service.
 	MaximumPercent *int64 `locationName:"maximumPercent" type:"integer"`
 
-	// If a service is using the rolling update (ECS) deployment type, the minimum
-	// healthy percent represents a lower limit on the number of tasks in a service
-	// that must remain in the RUNNING state during a deployment, as a percentage
-	// of the desired number of tasks (rounded up to the nearest integer), and while
-	// any container instances are in the DRAINING state if the service contains
-	// tasks using the EC2 launch type. This parameter enables you to deploy without
-	// using additional cluster capacity. For example, if your service has a desired
-	// number of four tasks and a minimum healthy percent of 50%, the scheduler
-	// may stop two existing tasks to free up cluster capacity before starting two
-	// new tasks. Tasks for services that do not use a load balancer are considered
-	// healthy if they're in the RUNNING state; tasks for services that do use a
-	// load balancer are considered healthy if they're in the RUNNING state and
-	// they're reported as healthy by the load balancer. The default value for minimum
-	// healthy percent is 100%.
+	// If a service is using the rolling update (ECS) deployment type, the minimumHealthyPercent
+	// represents a lower limit on the number of your service's tasks that must
+	// remain in the RUNNING state during a deployment, as a percentage of the desiredCount
+	// (rounded up to the nearest integer). This parameter enables you to deploy
+	// without using additional cluster capacity. For example, if your service has
+	// a desiredCount of four tasks and a minimumHealthyPercent of 50%, the service
+	// scheduler may stop two existing tasks to free up cluster capacity before
+	// starting two new tasks.
 	//
-	// If a service is using the blue/green (CODE_DEPLOY) or EXTERNAL deployment
-	// types and tasks that use the EC2 launch type, the minimum healthy percent
-	// value is set to the default value and is used to define the lower limit on
-	// the number of the tasks in the service that remain in the RUNNING state while
-	// the container instances are in the DRAINING state. If the tasks in the service
-	// use the Fargate launch type, the minimum healthy percent value is not used,
-	// although it is returned when describing your service.
+	// For services that do not use a load balancer, the following should be noted:
+	//
+	//    * A service is considered healthy if all essential containers within the
+	//    tasks in the service pass their health checks.
+	//
+	//    * If a task has no essential containers with a health check defined, the
+	//    service scheduler will wait for 40 seconds after a task reaches a RUNNING
+	//    state before the task is counted towards the minimum healthy percent total.
+	//
+	//    * If a task has one or more essential containers with a health check defined,
+	//    the service scheduler will wait for the task to reach a healthy status
+	//    before counting it towards the minimum healthy percent total. A task is
+	//    considered healthy when all essential containers within the task have
+	//    passed their health checks. The amount of time the service scheduler can
+	//    wait for is determined by the container health check settings.
+	//
+	// For services are that do use a load balancer, the following should be noted:
+	//
+	//    * If a task has no essential containers with a health check defined, the
+	//    service scheduler will wait for the load balancer target group health
+	//    check to return a healthy status before counting the task towards the
+	//    minimum healthy percent total.
+	//
+	//    * If a task has an essential container with a health check defined, the
+	//    service scheduler will wait for both the task to reach a healthy status
+	//    and the load balancer target group health check to return a healthy status
+	//    before counting the task towards the minimum healthy percent total.
+	//
+	// If a service is using either the blue/green (CODE_DEPLOY) or EXTERNAL deployment
+	// types and is running tasks that use the EC2 launch type, the minimum healthy
+	// percent value is set to the default value and is used to define the lower
+	// limit on the number of the tasks in the service that remain in the RUNNING
+	// state while the container instances are in the DRAINING state. If a service
+	// is using either the blue/green (CODE_DEPLOY) or EXTERNAL deployment types
+	// and is running tasks that use the Fargate launch type, the minimum healthy
+	// percent value is not used, although it is returned when describing your service.
 	MinimumHealthyPercent *int64 `locationName:"minimumHealthyPercent" type:"integer"`
 }
 
@@ -11358,7 +11377,7 @@ func (s *DeploymentConfiguration) SetMinimumHealthyPercent(v int64) *DeploymentC
 }
 
 // The deployment controller to use for the service. For more information, see
-// Amazon ECS Deployment Types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)
+// Amazon ECS deployment types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)
 // in the Amazon Elastic Container Service Developer Guide.
 type DeploymentController struct {
 	_ struct{} `type:"structure"`
@@ -11437,10 +11456,9 @@ type DeregisterContainerInstanceInput struct {
 	Cluster *string `locationName:"cluster" type:"string"`
 
 	// The container instance ID or full ARN of the container instance to deregister.
-	// The ARN contains the arn:aws:ecs namespace, followed by the Region of the
-	// container instance, the Amazon Web Services account ID of the container instance
-	// owner, the container-instance namespace, and then the container instance
-	// ID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
+	// For more information about the ARN format, see Amazon Resource Name (ARN)
+	// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids)
+	// in the Amazon ECS Developer Guide.
 	//
 	// ContainerInstance is a required field
 	ContainerInstance *string `locationName:"containerInstance" type:"string" required:"true"`
@@ -12488,11 +12506,9 @@ type DiscoverPollEndpointInput struct {
 	// container instance belongs to.
 	Cluster *string `locationName:"cluster" type:"string"`
 
-	// The container instance ID or full ARN of the container instance. The ARN
-	// contains the arn:aws:ecs namespace, followed by the Region of the container
-	// instance, the Amazon Web Services account ID of the container instance owner,
-	// the container-instance namespace, and then the container instance ID. For
-	// example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
+	// The container instance ID or full ARN of the container instance. For more
+	// information about the ARN format, see Amazon Resource Name (ARN) (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids)
+	// in the Amazon ECS Developer Guide.
 	ContainerInstance *string `locationName:"containerInstance" type:"string"`
 }
 
@@ -12666,7 +12682,7 @@ type EFSAuthorizationConfig struct {
 	// be omitted or set to / which will enforce the path set on the EFS access
 	// point. If an access point is used, transit encryption must be enabled in
 	// the EFSVolumeConfiguration. For more information, see Working with Amazon
-	// EFS Access Points (https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html)
+	// EFS access points (https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html)
 	// in the Amazon Elastic File System User Guide.
 	AccessPointId *string `locationName:"accessPointId" type:"string"`
 
@@ -12674,7 +12690,7 @@ type EFSAuthorizationConfig struct {
 	// definition when mounting the Amazon EFS file system. If enabled, transit
 	// encryption must be enabled in the EFSVolumeConfiguration. If this parameter
 	// is omitted, the default value of DISABLED is used. For more information,
-	// see Using Amazon EFS Access Points (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/efs-volumes.html#efs-volume-accesspoints)
+	// see Using Amazon EFS access points (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/efs-volumes.html#efs-volume-accesspoints)
 	// in the Amazon Elastic Container Service Developer Guide.
 	Iam *string `locationName:"iam" type:"string" enum:"EFSAuthorizationConfigIAM"`
 }
@@ -12710,7 +12726,7 @@ func (s *EFSAuthorizationConfig) SetIam(v string) *EFSAuthorizationConfig {
 }
 
 // This parameter is specified when you're using an Amazon Elastic File System
-// file system for task storage. For more information, see Amazon EFS Volumes
+// file system for task storage. For more information, see Amazon EFS volumes
 // (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/efs-volumes.html)
 // in the Amazon Elastic Container Service Developer Guide.
 type EFSVolumeConfiguration struct {
@@ -12738,14 +12754,14 @@ type EFSVolumeConfiguration struct {
 	// the Amazon ECS host and the Amazon EFS server. Transit encryption must be
 	// enabled if Amazon EFS IAM authorization is used. If this parameter is omitted,
 	// the default value of DISABLED is used. For more information, see Encrypting
-	// Data in Transit (https://docs.aws.amazon.com/efs/latest/ug/encryption-in-transit.html)
+	// data in transit (https://docs.aws.amazon.com/efs/latest/ug/encryption-in-transit.html)
 	// in the Amazon Elastic File System User Guide.
 	TransitEncryption *string `locationName:"transitEncryption" type:"string" enum:"EFSTransitEncryption"`
 
 	// The port to use when sending encrypted data between the Amazon ECS host and
 	// the Amazon EFS server. If you do not specify a transit encryption port, it
 	// will use the port selection strategy that the Amazon EFS mount helper uses.
-	// For more information, see EFS Mount Helper (https://docs.aws.amazon.com/efs/latest/ug/efs-mount-helper.html)
+	// For more information, see EFS mount helper (https://docs.aws.amazon.com/efs/latest/ug/efs-mount-helper.html)
 	// in the Amazon Elastic File System User Guide.
 	TransitEncryptionPort *int64 `locationName:"transitEncryptionPort" type:"integer"`
 }
@@ -13261,7 +13277,7 @@ func (s *ExecuteCommandOutput) SetTaskArn(v string) *ExecuteCommandOutput {
 
 // The authorization configuration details for Amazon FSx for Windows File Server
 // file system. See FSxWindowsFileServerVolumeConfiguration (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_FSxWindowsFileServerVolumeConfiguration.html)
-// in the Amazon Elastic Container Service API Reference.
+// in the Amazon ECS API Reference.
 //
 // For more information and the input format, see Amazon FSx for Windows File
 // Server Volumes (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/wfsx-volumes.html)
@@ -13271,7 +13287,7 @@ type FSxWindowsFileServerAuthorizationConfig struct {
 
 	// The authorization credential option to use. The authorization credential
 	// options can be provided using either the Amazon Resource Name (ARN) of an
-	// Secrets Manager secret or SSM Parameter Store parameter. The ARNs refer to
+	// Secrets Manager secret or SSM Parameter Store parameter. The ARN refers to
 	// the stored credentials.
 	//
 	// CredentialsParameter is a required field
@@ -13335,7 +13351,7 @@ func (s *FSxWindowsFileServerAuthorizationConfig) SetDomain(v string) *FSxWindow
 // file system for task storage.
 //
 // For more information and the input format, see Amazon FSx for Windows File
-// Server Volumes (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/wfsx-volumes.html)
+// Server volumes (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/wfsx-volumes.html)
 // in the Amazon Elastic Container Service Developer Guide.
 type FSxWindowsFileServerVolumeConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -13471,7 +13487,7 @@ func (s *Failure) SetReason(v string) *Failure {
 
 // The FireLens configuration for the container. This is used to specify and
 // configure a log router for container logs. For more information, see Custom
-// Log Routing (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_firelens.html)
+// log routing (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_firelens.html)
 // in the Amazon Elastic Container Service Developer Guide.
 type FirelensConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -13480,8 +13496,8 @@ type FirelensConfiguration struct {
 	// and can be used to specify a custom configuration file or to add additional
 	// metadata, such as the task, task definition, cluster, and container instance
 	// details to the log event. If specified, the syntax to use is "options":{"enable-ecs-log-metadata":"true|false","config-file-type:"s3|file","config-file-value":"arn:aws:s3:::mybucket/fluent.conf|filepath"}.
-	// For more information, see Creating a Task Definition that Uses a FireLens
-	// Configuration (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_firelens.html#firelens-taskdef)
+	// For more information, see Creating a task definition that uses a FireLens
+	// configuration (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_firelens.html#firelens-taskdef)
 	// in the Amazon Elastic Container Service Developer Guide.
 	//
 	// Tasks hosted on Fargate only support the file configuration file type.
@@ -13581,11 +13597,11 @@ func (s *FirelensConfiguration) SetType(v string) *FirelensConfiguration {
 //
 //    * Container health checks require version 1.17.0 or greater of the Amazon
 //    ECS container agent. For more information, see Updating the Amazon ECS
-//    Container Agent (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html).
+//    container agent (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html).
 //
 //    * Container health checks are supported for Fargate tasks if you're using
-//    platform version 1.1.0 or greater. For more information, see Fargate Platform
-//    Versions (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html).
+//    platform version 1.1.0 or greater. For more information, see Fargate platform
+//    versions (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html).
 //
 //    * Container health checks aren't supported for tasks that are part of
 //    a service that's configured to use a Classic Load Balancer.
@@ -15545,7 +15561,7 @@ func (s *ListTasksOutput) SetTaskArns(v []*string) *ListTasksOutput {
 // the Elastic Load Balancing configuration.
 //
 // A service-linked role is required for services that use multiple target groups.
-// For more information, see Service-linked roles (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html)
+// For more information, see Using service-linked roles (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html)
 // in the Amazon Elastic Container Service Developer Guide.
 type LoadBalancer struct {
 	_ struct{} `type:"structure"`
@@ -15577,13 +15593,13 @@ type LoadBalancer struct {
 	// target group ARN.
 	//
 	// For services using the ECS deployment controller, you can specify one or
-	// multiple target groups. For more information, see Registering Multiple Target
-	// Groups with a Service (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html)
+	// multiple target groups. For more information, see Registering multiple target
+	// groups with a service (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	//
 	// For services using the CODE_DEPLOY deployment controller, you're required
 	// to define two target groups for the load balancer. For more information,
-	// see Blue/Green Deployment with CodeDeploy (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-bluegreen.html)
+	// see Blue/green deployment with CodeDeploy (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-bluegreen.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	//
 	// If your service's task definition uses the awsvpc network mode, you must
@@ -15706,7 +15722,7 @@ type LogConfiguration struct {
 	Options map[string]*string `locationName:"options" type:"map"`
 
 	// The secrets to pass to the log configuration. For more information, see Specifying
-	// Sensitive Data (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html)
+	// sensitive data (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	SecretOptions []*Secret `locationName:"secretOptions" type:"list"`
 }
@@ -15920,7 +15936,7 @@ func (s *ManagedAgentStateChange) SetStatus(v string) *ManagedAgentStateChange {
 // actions of the Auto Scaling group. Amazon ECS manages a target tracking scaling
 // policy using an Amazon ECS managed CloudWatch metric with the specified targetCapacity
 // value as the target value for the metric. For more information, see Using
-// Managed Scaling (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/asg-capacity-providers.html#asg-capacity-providers-managed-scaling)
+// managed scaling (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/asg-capacity-providers.html#asg-capacity-providers-managed-scaling)
 // in the Amazon Elastic Container Service Developer Guide.
 //
 // If managed scaling is disabled, the user must manage the scaling of the Auto
@@ -16368,7 +16384,7 @@ func (s *NoUpdateAvailableException) RequestID() string {
 }
 
 // An object representing a constraint on task placement. For more information,
-// see Task Placement Constraints (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html)
+// see Task placement constraints (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
 // If you're using the Fargate launch type, task placement constraints aren't
@@ -16420,7 +16436,7 @@ func (s *PlacementConstraint) SetType(v string) *PlacementConstraint {
 }
 
 // The task placement strategy for a task or service. For more information,
-// see Task Placement Strategies (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-strategies.html)
+// see Task placement strategies (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-strategies.html)
 // in the Amazon Elastic Container Service Developer Guide.
 type PlacementStrategy struct {
 	_ struct{} `type:"structure"`
@@ -18742,7 +18758,7 @@ type RuntimePlatform struct {
 	// The CPU architecture.
 	//
 	// You can run your Linux tasks on an ARM-based platform by setting the value
-	// to ARM64. This option is avaiable for tasks that run on Linuc Amazon EC2
+	// to ARM64. This option is avaiable for tasks that run on Linux Amazon EC2
 	// instance or Linux containers on Fargate.
 	CpuArchitecture *string `locationName:"cpuArchitecture" type:"string" enum:"CPUArchitecture"`
 
@@ -18832,7 +18848,7 @@ func (s *Scale) SetValue(v float64) *Scale {
 //    * To reference sensitive information in the log configuration of a container,
 //    use the secretOptions container definition parameter.
 //
-// For more information, see Specifying Sensitive Data (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html)
+// For more information, see Specifying sensitive data (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html)
 // in the Amazon Elastic Container Service Developer Guide.
 type Secret struct {
 	_ struct{} `type:"structure"`
@@ -19092,10 +19108,9 @@ type Service struct {
 	//    scheduling strategy.
 	SchedulingStrategy *string `locationName:"schedulingStrategy" type:"string" enum:"SchedulingStrategy"`
 
-	// The ARN that identifies the service. The ARN contains the arn:aws:ecs namespace,
-	// followed by the Region of the service, the Amazon Web Services account ID
-	// of the service owner, the service namespace, and then the service name. For
-	// example, arn:aws:ecs:region:012345678910:service/my-service.
+	// The ARN that identifies the service. For more information about the ARN format,
+	// see Amazon Resource Name (ARN) (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids)
+	// in the Amazon ECS Developer Guide.
 	ServiceArn *string `locationName:"serviceArn" type:"string"`
 
 	// The name of your service. Up to 255 letters (uppercase and lowercase), numbers,

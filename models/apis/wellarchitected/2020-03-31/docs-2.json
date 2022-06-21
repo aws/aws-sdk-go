@@ -30,11 +30,11 @@
     "ListMilestones": "<p>List all milestones for an existing workload.</p>",
     "ListNotifications": "<p>List lens notifications.</p>",
     "ListShareInvitations": "<p>List the workload invitations.</p>",
-    "ListTagsForResource": "<p>List the tags for a resource.</p>",
+    "ListTagsForResource": "<p>List the tags for a resource.</p> <note> <p>The WorkloadArn parameter can be either a workload ARN or a custom lens ARN.</p> </note>",
     "ListWorkloadShares": "<p>List the workload shares associated with the workload.</p>",
     "ListWorkloads": "<p>List workloads. Paginated.</p>",
-    "TagResource": "<p>Adds one or more tags to the specified resource.</p>",
-    "UntagResource": "<p>Deletes specified tags from a resource.</p> <p>To specify multiple tags, use separate <b>tagKeys</b> parameters, for example:</p> <p> <code>DELETE /tags/WorkloadArn?tagKeys=key1&amp;tagKeys=key2</code> </p>",
+    "TagResource": "<p>Adds one or more tags to the specified resource.</p> <note> <p>The WorkloadArn parameter can be either a workload ARN or a custom lens ARN.</p> </note>",
+    "UntagResource": "<p>Deletes specified tags from a resource.</p> <note> <p>The WorkloadArn parameter can be either a workload ARN or a custom lens ARN.</p> </note> <p>To specify multiple tags, use separate <b>tagKeys</b> parameters, for example:</p> <p> <code>DELETE /tags/WorkloadArn?tagKeys=key1&amp;tagKeys=key2</code> </p>",
     "UpdateAnswer": "<p>Update the answer to a specific question in a workload review.</p>",
     "UpdateLensReview": "<p>Update lens review.</p>",
     "UpdateShareInvitation": "<p>Update a workload invitation.</p>",
@@ -46,6 +46,24 @@
     "AccessDeniedException": {
       "base": "<p>User does not have sufficient access to perform this action.</p>",
       "refs": {
+      }
+    },
+    "AdditionalResourceType": {
+      "base": null,
+      "refs": {
+        "AdditionalResources$Type": "<p>Type of additional resource.</p>"
+      }
+    },
+    "AdditionalResources": {
+      "base": "<p>The choice level additional resources.</p>",
+      "refs": {
+        "AdditionalResourcesList$member": null
+      }
+    },
+    "AdditionalResourcesList": {
+      "base": null,
+      "refs": {
+        "Choice$AdditionalResources": "<p>The additional resources for a choice. A choice can have up to two additional resources: one of type <code>HELPFUL_RESOURCE</code>, one of type <code>IMPROVEMENT_PLAN</code>, or both.</p>"
       }
     },
     "Answer": {
@@ -137,7 +155,8 @@
       "base": "<p>The choice content.</p>",
       "refs": {
         "Choice$HelpfulResource": "<p>The choice level helpful resource.</p>",
-        "Choice$ImprovementPlan": "<p>The choice level improvement plan.</p>"
+        "Choice$ImprovementPlan": "<p>The choice level improvement plan.</p>",
+        "Urls$member": null
       }
     },
     "ChoiceContentDisplayText": {
@@ -529,7 +548,7 @@
       }
     },
     "LensAlias": {
-      "base": "<p>The alias of the lens, for example, <code>serverless</code>.</p> <p>Each lens is identified by its <a>LensSummary$LensAlias</a>.</p>",
+      "base": "<p>The alias of the lens.</p> <p>For Amazon Web Services official lenses, this is either the lens alias, such as <code>serverless</code>, or the lens ARN, such as <code>arn:aws:wellarchitected:us-west-2::lens/serverless</code>.</p> <p>For custom lenses, this is the lens ARN, such as <code>arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens</code>. </p> <p>Each lens is identified by its <a>LensSummary$LensAlias</a>.</p>",
       "refs": {
         "CreateLensShareInput$LensAlias": null,
         "CreateLensVersionInput$LensAlias": null,
@@ -1234,6 +1253,7 @@
       "refs": {
         "CreateWorkloadInput$Tags": "<p>The tags to be associated with the workload.</p>",
         "ImportLensInput$Tags": "<p>Tags to associate to a lens.</p>",
+        "Lens$Tags": "<p>The tags assigned to the lens.</p>",
         "ListTagsForResourceOutput$Tags": "<p>The tags for the resource.</p>",
         "TagResourceInput$Tags": "<p>The tags for the resource.</p>",
         "Workload$Tags": "<p>The tags associated with the workload.</p>"
@@ -1337,6 +1357,12 @@
     "UpgradeLensReviewInput": {
       "base": null,
       "refs": {
+      }
+    },
+    "Urls": {
+      "base": null,
+      "refs": {
+        "AdditionalResources$Content": "<p>The URLs for additional resources, either helpful resources or improvement plans. Up to five additional URLs can be specified.</p>"
       }
     },
     "ValidationException": {

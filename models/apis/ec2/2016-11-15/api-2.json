@@ -8833,10 +8833,7 @@
       ],
       "members":{
         "BgpAsn":{"shape":"Integer"},
-        "PublicIp":{
-          "shape":"String",
-          "locationName":"IpAddress"
-        },
+        "PublicIp":{"shape":"String"},
         "CertificateArn":{"shape":"String"},
         "Type":{"shape":"GatewayType"},
         "TagSpecifications":{
@@ -8844,6 +8841,7 @@
           "locationName":"TagSpecification"
         },
         "DeviceName":{"shape":"String"},
+        "IpAddress":{"shape":"String"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -39790,6 +39788,14 @@
           "shape":"String",
           "locationName":"remoteIpv6NetworkCidr"
         },
+        "OutsideIpAddressType":{
+          "shape":"String",
+          "locationName":"outsideIpAddressType"
+        },
+        "TransportTransitGatewayAttachmentId":{
+          "shape":"String",
+          "locationName":"transportTransitGatewayAttachmentId"
+        },
         "TunnelInsideIpVersion":{
           "shape":"TunnelInsideIpVersion",
           "locationName":"tunnelInsideIpVersion"
@@ -39813,7 +39819,9 @@
         "LocalIpv4NetworkCidr":{"shape":"String"},
         "RemoteIpv4NetworkCidr":{"shape":"String"},
         "LocalIpv6NetworkCidr":{"shape":"String"},
-        "RemoteIpv6NetworkCidr":{"shape":"String"}
+        "RemoteIpv6NetworkCidr":{"shape":"String"},
+        "OutsideIpAddressType":{"shape":"String"},
+        "TransportTransitGatewayAttachmentId":{"shape":"TransitGatewayAttachmentId"}
       }
     },
     "VpnEcmpSupportValue":{
