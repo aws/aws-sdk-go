@@ -1,3 +1,13 @@
+Release v1.44.40 (2022-06-22)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service documentation
+  * Documentation updates for Amazon API Gateway
+* `service/pricing`: Updates service API and documentation
+* `service/transfer`: Updates service API and documentation
+  * Until today, the service supported only RSA host keys and user keys. Now with this launch, Transfer Family has expanded the support for ECDSA and ED25519 host keys and user keys, enabling customers to support a broader set of clients by choosing RSA, ECDSA, and ED25519 host and user keys.
+
 Release v1.44.39 (2022-06-21)
 ===
 

@@ -65,8 +65,6 @@ const (
 	// "ThrottlingException".
 	//
 	// The request was denied due to request throttling.
-	//
-	// HTTP Status Code: 400
 	ErrCodeThrottlingException = "ThrottlingException"
 )
 
