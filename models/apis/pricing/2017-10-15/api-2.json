@@ -156,6 +156,7 @@
     },
     "GetProductsRequest":{
       "type":"structure",
+      "required":["ServiceCode"],
       "members":{
         "ServiceCode":{"shape":"String"},
         "Filters":{"shape":"Filters"},
@@ -213,6 +214,7 @@
     "PriceListItemJSON":{"type":"string"},
     "Service":{
       "type":"structure",
+      "required":["ServiceCode"],
       "members":{
         "ServiceCode":{"shape":"String"},
         "AttributeNames":{"shape":"AttributeNameList"}
