@@ -1319,6 +1319,160 @@ func (c *LookoutEquipment) ListDatasetsPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opListInferenceEvents = "ListInferenceEvents"
+
+// ListInferenceEventsRequest generates a "aws/request.Request" representing the
+// client's request for the ListInferenceEvents operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListInferenceEvents for more information on using the ListInferenceEvents
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListInferenceEventsRequest method.
+//    req, resp := client.ListInferenceEventsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/ListInferenceEvents
+func (c *LookoutEquipment) ListInferenceEventsRequest(input *ListInferenceEventsInput) (req *request.Request, output *ListInferenceEventsOutput) {
+	op := &request.Operation{
+		Name:       opListInferenceEvents,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListInferenceEventsInput{}
+	}
+
+	output = &ListInferenceEventsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListInferenceEvents API operation for Amazon Lookout for Equipment.
+//
+// Lists all inference events that have been found for the specified inference
+// scheduler.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation ListInferenceEvents for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//   or a related AWS service that's being utilized.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The resource requested could not be found. Verify the resource ID and retry
+//   your request.
+//
+//   * AccessDeniedException
+//   The request could not be completed because you do not have access to the
+//   resource.
+//
+//   * InternalServerException
+//   Processing of the request has failed because of an unknown error, exception
+//   or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/ListInferenceEvents
+func (c *LookoutEquipment) ListInferenceEvents(input *ListInferenceEventsInput) (*ListInferenceEventsOutput, error) {
+	req, out := c.ListInferenceEventsRequest(input)
+	return out, req.Send()
+}
+
+// ListInferenceEventsWithContext is the same as ListInferenceEvents with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListInferenceEvents for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) ListInferenceEventsWithContext(ctx aws.Context, input *ListInferenceEventsInput, opts ...request.Option) (*ListInferenceEventsOutput, error) {
+	req, out := c.ListInferenceEventsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListInferenceEventsPages iterates over the pages of a ListInferenceEvents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListInferenceEvents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListInferenceEvents operation.
+//    pageNum := 0
+//    err := client.ListInferenceEventsPages(params,
+//        func(page *lookoutequipment.ListInferenceEventsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LookoutEquipment) ListInferenceEventsPages(input *ListInferenceEventsInput, fn func(*ListInferenceEventsOutput, bool) bool) error {
+	return c.ListInferenceEventsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListInferenceEventsPagesWithContext same as ListInferenceEventsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) ListInferenceEventsPagesWithContext(ctx aws.Context, input *ListInferenceEventsInput, fn func(*ListInferenceEventsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListInferenceEventsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListInferenceEventsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListInferenceEventsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListInferenceExecutions = "ListInferenceExecutions"
 
 // ListInferenceExecutionsRequest generates a "aws/request.Request" representing the
@@ -4266,7 +4420,7 @@ func (s *DescribeDatasetInput) SetDatasetName(v string) *DescribeDatasetInput {
 type DescribeDatasetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the time the dataset was created in Amazon Lookout for Equipment.
+	// Specifies the time the dataset was created in Lookout for Equipment.
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// Indicates the latest timestamp corresponding to data that was successfully
@@ -4934,6 +5088,86 @@ func (s DuplicateTimestamps) GoString() string {
 // SetTotalNumberOfDuplicateTimestamps sets the TotalNumberOfDuplicateTimestamps field's value.
 func (s *DuplicateTimestamps) SetTotalNumberOfDuplicateTimestamps(v int64) *DuplicateTimestamps {
 	s.TotalNumberOfDuplicateTimestamps = &v
+	return s
+}
+
+// Contains information about the specific inference event, including start
+// and end time, diagnostics information, event duration and so on.
+type InferenceEventSummary struct {
+	_ struct{} `type:"structure"`
+
+	// An array which specifies the names and values of all sensors contributing
+	// to an inference event.
+	Diagnostics *string `min:"1" type:"string"`
+
+	// Indicates the size of an inference event in seconds.
+	EventDurationInSeconds *int64 `type:"long"`
+
+	// Indicates the ending time of an inference event.
+	EventEndTime *time.Time `type:"timestamp"`
+
+	// Indicates the starting time of an inference event.
+	EventStartTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the inference scheduler being used for
+	// the inference event.
+	InferenceSchedulerArn *string `min:"20" type:"string"`
+
+	// The name of the inference scheduler being used for the inference events.
+	InferenceSchedulerName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceEventSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceEventSummary) GoString() string {
+	return s.String()
+}
+
+// SetDiagnostics sets the Diagnostics field's value.
+func (s *InferenceEventSummary) SetDiagnostics(v string) *InferenceEventSummary {
+	s.Diagnostics = &v
+	return s
+}
+
+// SetEventDurationInSeconds sets the EventDurationInSeconds field's value.
+func (s *InferenceEventSummary) SetEventDurationInSeconds(v int64) *InferenceEventSummary {
+	s.EventDurationInSeconds = &v
+	return s
+}
+
+// SetEventEndTime sets the EventEndTime field's value.
+func (s *InferenceEventSummary) SetEventEndTime(v time.Time) *InferenceEventSummary {
+	s.EventEndTime = &v
+	return s
+}
+
+// SetEventStartTime sets the EventStartTime field's value.
+func (s *InferenceEventSummary) SetEventStartTime(v time.Time) *InferenceEventSummary {
+	s.EventStartTime = &v
+	return s
+}
+
+// SetInferenceSchedulerArn sets the InferenceSchedulerArn field's value.
+func (s *InferenceEventSummary) SetInferenceSchedulerArn(v string) *InferenceEventSummary {
+	s.InferenceSchedulerArn = &v
+	return s
+}
+
+// SetInferenceSchedulerName sets the InferenceSchedulerName field's value.
+func (s *InferenceEventSummary) SetInferenceSchedulerName(v string) *InferenceEventSummary {
+	s.InferenceSchedulerName = &v
 	return s
 }
 
@@ -6203,6 +6437,150 @@ func (s *ListDatasetsOutput) SetDatasetSummaries(v []*DatasetSummary) *ListDatas
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListDatasetsOutput) SetNextToken(v string) *ListDatasetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListInferenceEventsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the inference scheduler for the inference events listed.
+	//
+	// InferenceSchedulerName is a required field
+	InferenceSchedulerName *string `min:"1" type:"string" required:"true"`
+
+	// Lookout for Equipment will return all the inference events with end time
+	// equal to or less than the end time given.
+	//
+	// IntervalEndTime is a required field
+	IntervalEndTime *time.Time `type:"timestamp" required:"true"`
+
+	// Lookout for Equipment will return all the inference events with start time
+	// equal to or greater than the start time given.
+	//
+	// IntervalStartTime is a required field
+	IntervalStartTime *time.Time `type:"timestamp" required:"true"`
+
+	// Specifies the maximum number of inference events to list.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// An opaque pagination token indicating where to continue the listing of inference
+	// events.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceEventsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceEventsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListInferenceEventsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListInferenceEventsInput"}
+	if s.InferenceSchedulerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("InferenceSchedulerName"))
+	}
+	if s.InferenceSchedulerName != nil && len(*s.InferenceSchedulerName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InferenceSchedulerName", 1))
+	}
+	if s.IntervalEndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("IntervalEndTime"))
+	}
+	if s.IntervalStartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("IntervalStartTime"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInferenceSchedulerName sets the InferenceSchedulerName field's value.
+func (s *ListInferenceEventsInput) SetInferenceSchedulerName(v string) *ListInferenceEventsInput {
+	s.InferenceSchedulerName = &v
+	return s
+}
+
+// SetIntervalEndTime sets the IntervalEndTime field's value.
+func (s *ListInferenceEventsInput) SetIntervalEndTime(v time.Time) *ListInferenceEventsInput {
+	s.IntervalEndTime = &v
+	return s
+}
+
+// SetIntervalStartTime sets the IntervalStartTime field's value.
+func (s *ListInferenceEventsInput) SetIntervalStartTime(v time.Time) *ListInferenceEventsInput {
+	s.IntervalStartTime = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListInferenceEventsInput) SetMaxResults(v int64) *ListInferenceEventsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInferenceEventsInput) SetNextToken(v string) *ListInferenceEventsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListInferenceEventsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides an array of information about the individual inference events returned
+	// from the ListInferenceEvents operation, including scheduler used, event start
+	// time, event end time, diagnostics, and so on.
+	InferenceEventSummaries []*InferenceEventSummary `type:"list"`
+
+	// An opaque pagination token indicating where to continue the listing of inference
+	// executions.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceEventsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceEventsOutput) GoString() string {
+	return s.String()
+}
+
+// SetInferenceEventSummaries sets the InferenceEventSummaries field's value.
+func (s *ListInferenceEventsOutput) SetInferenceEventSummaries(v []*InferenceEventSummary) *ListInferenceEventsOutput {
+	s.InferenceEventSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInferenceEventsOutput) SetNextToken(v string) *ListInferenceEventsOutput {
 	s.NextToken = &v
 	return s
 }

@@ -3,13 +3,16 @@
   "service": "<p>The Application Migration Service service.</p>",
   "operations": {
     "ChangeServerLifeCycleState": "<p>Allows the user to set the SourceServer.LifeCycle.state property for specific Source Server IDs to one of the following: READY_FOR_TEST or READY_FOR_CUTOVER. This command only works if the Source Server is already launchable (dataReplicationInfo.lagDuration is not null.)</p>",
+    "CreateLaunchConfigurationTemplate": "<p>Creates a new ReplicationConfigurationTemplate.</p>",
     "CreateReplicationConfigurationTemplate": "<p>Creates a new ReplicationConfigurationTemplate.</p>",
     "DeleteJob": "<p>Deletes a single Job by ID.</p>",
+    "DeleteLaunchConfigurationTemplate": "<p>Creates a new ReplicationConfigurationTemplate.</p>",
     "DeleteReplicationConfigurationTemplate": "<p>Deletes a single Replication Configuration Template by ID</p>",
     "DeleteSourceServer": "<p>Deletes a single source server by ID.</p>",
     "DeleteVcenterClient": "<p>Deletes a given vCenter client by ID.</p>",
     "DescribeJobLogItems": "<p>Retrieves detailed job log items with paging.</p>",
     "DescribeJobs": "<p>Returns a list of Jobs. Use the JobsID and fromDate and toData filters to limit which jobs are returned. The response is sorted by creationDataTime - latest date first. Jobs are normally created by the StartTest, StartCutover, and TerminateTargetInstances APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets.</p>",
+    "DescribeLaunchConfigurationTemplates": "<p>Creates a new ReplicationConfigurationTemplate.</p>",
     "DescribeReplicationConfigurationTemplates": "<p>Lists all ReplicationConfigurationTemplates, filtered by Source Server IDs.</p>",
     "DescribeSourceServers": "<p>Retrieves all SourceServers or multiple SourceServers by ID.</p>",
     "DescribeVcenterClients": "<p>Returns a list of the installed vCenter clients.</p>",
@@ -28,6 +31,7 @@
     "TerminateTargetInstances": "<p>Starts a job that terminates specific launched EC2 Test and Cutover instances. This command will not work for any Source Server with a lifecycle.state of TESTING, CUTTING_OVER, or CUTOVER.</p>",
     "UntagResource": "<p>Deletes the specified set of tags from the specified set of Application Migration Service resources.</p>",
     "UpdateLaunchConfiguration": "<p>Updates multiple LaunchConfigurations by Source Server ID.</p>",
+    "UpdateLaunchConfigurationTemplate": "<p>Creates a new ReplicationConfigurationTemplate.</p>",
     "UpdateReplicationConfiguration": "<p>Allows you to update multiple ReplicationConfigurations by Source Server ID.</p>",
     "UpdateReplicationConfigurationTemplate": "<p>Updates multiple ReplicationConfigurationTemplates by ID.</p>",
     "UpdateSourceServerReplicationType": "<p>Allows you to change between the AGENT_BASED replication type and the SNAPSHOT_SHIPPING replication type.</p>"
@@ -38,6 +42,7 @@
       "refs": {
         "CreateReplicationConfigurationTemplateRequest$ebsEncryptionKeyArn": "<p>Request to configure an EBS encryption key during Replication Settings template creation.</p>",
         "Job$arn": "<p>the ARN of the specific Job.</p>",
+        "LaunchConfigurationTemplate$arn": "<p>Copy Private IP during Launch Configuration.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>List tags for resource request by ARN.</p>",
         "ReplicationConfiguration$ebsEncryptionKeyArn": "<p>Replication Configuration EBS encryption key ARN.</p>",
         "ReplicationConfigurationTemplate$arn": "<p>Replication Configuration template ARN.</p>",
@@ -75,6 +80,7 @@
         "ReplicationConfigurationTemplate$createPublicIP": "<p>Replication Configuration template create Public IP.</p>",
         "ReplicationConfigurationTemplate$useDedicatedReplicationServer": "<p>Replication Configuration template use Dedicated Replication Server.</p>",
         "SourceServer$isArchived": "<p>Source server archived status.</p>",
+        "SsmDocument$mustSucceedForCutover": "<p>Source server replication type.</p>",
         "UpdateLaunchConfigurationRequest$copyPrivateIp": "<p>Update Launch configuration copy Private IP request.</p>",
         "UpdateLaunchConfigurationRequest$copyTags": "<p>Update Launch configuration copy Tags request.</p>",
         "UpdateReplicationConfigurationRequest$associateDefaultSecurityGroup": "<p>Update replication configuration associate default Application Migration Service Security group request.</p>",
@@ -98,15 +104,20 @@
         "CPU$modelName": "<p>The source server's CPU model name.</p>",
         "DataReplicationInfoReplicatedDisk$deviceName": "<p>Request to query device name.</p>",
         "Disk$deviceName": "<p>The disk or device name.</p>",
+        "ErrorDetails$code": "<p>Error details code.</p>",
         "IPsList$member": null,
         "IdentificationHints$fqdn": "<p>FQDN address identification hint.</p>",
         "IdentificationHints$hostname": "<p>Hostname identification hint.</p>",
         "IdentificationHints$vmPath": "<p>vCenter VM path identification hint.</p>",
         "IdentificationHints$vmWareUuid": "<p>vmWare UUID identification hint.</p>",
+        "JobPostLaunchActionsLaunchStatus$executionID": "<p>Job type.</p>",
+        "JobPostLaunchActionsLaunchStatus$failureReason": "<p>Job type.</p>",
         "LaunchConfiguration$ec2LaunchTemplateID": "<p>Launch configuration EC2 Launch template ID.</p>",
         "NetworkInterface$macAddress": "<p>Network interface Mac address.</p>",
         "OS$fullString": "<p>OS full string.</p>",
+        "PostLaunchActions$s3OutputKeyPrefix": "<p>Server participating in Job.</p>",
         "ReplicationConfigurationReplicatedDisk$deviceName": "<p>Replication Configuration replicated disk device name.</p>",
+        "SsmDocument$actionName": "<p>Source server replication type.</p>",
         "VcenterClient$datacenterName": "<p>Datacenter name of vCenter client.</p>",
         "VcenterClient$hostname": "<p>Hostname of vCenter client .</p>",
         "VcenterClient$vcenterUUID": "<p>Vcenter UUID of vCenter client.</p>"
@@ -135,15 +146,32 @@
         "ChangeServerLifeCycleStateSourceServerLifecycle$state": "<p>The request to change the source server migration lifecycle state.</p>"
       }
     },
+    "CloudWatchLogGroupName": {
+      "base": null,
+      "refs": {
+        "PostLaunchActions$cloudWatchLogGroupName": "<p>Server participating in Job.</p>"
+      }
+    },
     "ConflictException": {
       "base": "<p>The request could not be completed due to a conflict with the current state of the target resource.</p>",
       "refs": {
+      }
+    },
+    "ConflictExceptionErrors": {
+      "base": null,
+      "refs": {
+        "ConflictException$errors": "<p>Conflict Exception specific errors.</p>"
       }
     },
     "Cpus": {
       "base": null,
       "refs": {
         "SourceProperties$cpus": "<p>Source Server CPUs.</p>"
+      }
+    },
+    "CreateLaunchConfigurationTemplateRequest": {
+      "base": null,
+      "refs": {
       }
     },
     "CreateReplicationConfigurationTemplateRequest": {
@@ -227,6 +255,16 @@
       "refs": {
       }
     },
+    "DeleteLaunchConfigurationTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLaunchConfigurationTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteReplicationConfigurationTemplateRequest": {
       "base": null,
       "refs": {
@@ -280,6 +318,16 @@
       }
     },
     "DescribeJobsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeLaunchConfigurationTemplatesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeLaunchConfigurationTemplatesResponse": {
       "base": null,
       "refs": {
       }
@@ -349,7 +397,8 @@
         "IdentificationHints$awsInstanceID": "<p>AWS Instance ID identification hint.</p>",
         "JobLogEventData$conversionServerID": "<p>Job Event conversion Server ID.</p>",
         "JobLogEventData$targetInstanceID": "<p>Job Event Target instance ID.</p>",
-        "LaunchedInstance$ec2InstanceID": "<p>Launched instance EC2 ID.</p>"
+        "LaunchedInstance$ec2InstanceID": "<p>Launched instance EC2 ID.</p>",
+        "ParticipatingServer$launchedEc2InstanceID": "<p>Participating server Source Server ID.</p>"
       }
     },
     "EC2InstanceType": {
@@ -361,6 +410,12 @@
         "SourceProperties$recommendedInstanceType": "<p>Source server recommended instance type.</p>",
         "UpdateReplicationConfigurationRequest$replicationServerInstanceType": "<p>Update replication configuration Replication Server instance type request.</p>",
         "UpdateReplicationConfigurationTemplateRequest$replicationServerInstanceType": "<p>Update replication configuration template Replication Server instance type request.</p>"
+      }
+    },
+    "ErrorDetails": {
+      "base": "<p>Error details.</p>",
+      "refs": {
+        "ConflictExceptionErrors$member": null
       }
     },
     "FinalizeCutoverRequest": {
@@ -394,7 +449,6 @@
       "base": null,
       "refs": {
         "DataReplicationInfo$etaDateTime": "<p>Request to query the time when data replication will be complete.</p>",
-        "DataReplicationInfo$lagDuration": "<p>Request to query data replication lag duration.</p>",
         "DataReplicationInfo$lastSnapshotDateTime": "<p>Request to query data replication last snapshot time.</p>",
         "DataReplicationInitiation$nextAttemptDateTime": "<p>Request to query next data initiation date and time.</p>",
         "DataReplicationInitiation$startDateTime": "<p>Request to query data initiation start date and time.</p>",
@@ -404,7 +458,6 @@
         "Job$endDateTime": "<p>Job end time.</p>",
         "JobLog$logDateTime": "<p>Job log event date and time.</p>",
         "LifeCycle$addedToServiceDateTime": "<p>Lifecycle added to service data and time.</p>",
-        "LifeCycle$elapsedReplicationDuration": "<p>Lifecycle elapsed time and duration.</p>",
         "LifeCycle$firstByteDateTime": "<p>Lifecycle replication initiation date and time.</p>",
         "LifeCycle$lastSeenByServiceDateTime": "<p>Lifecycle last seen date and time.</p>",
         "LifeCycleLastCutoverFinalized$apiCallDateTime": "<p>Lifecycle Cutover finalized date and time.</p>",
@@ -413,8 +466,16 @@
         "LifeCycleLastTestFinalized$apiCallDateTime": "<p>Lifecycle Test failed API call date and time.</p>",
         "LifeCycleLastTestInitiated$apiCallDateTime": "<p>Lifecycle last Test initiated API call date and time.</p>",
         "LifeCycleLastTestReverted$apiCallDateTime": "<p>Lifecycle last Test reverted API call date and time.</p>",
+        "PostLaunchActionsStatus$ssmAgentDiscoveryDatetime": "<p>Server participating in Job.</p>",
         "SourceProperties$lastUpdatedDateTime": "<p>Source server last update date and time.</p>",
         "VcenterClient$lastSeenDatetime": "<p>Last seen time of vCenter client.</p>"
+      }
+    },
+    "ISO8601DurationString": {
+      "base": null,
+      "refs": {
+        "DataReplicationInfo$lagDuration": "<p>Request to query data replication lag duration.</p>",
+        "LifeCycle$elapsedReplicationDuration": "<p>Lifecycle elapsed time and duration.</p>"
       }
     },
     "IdentificationHints": {
@@ -489,6 +550,12 @@
         "DescribeJobLogItemsResponse$items": "<p>Request to describe Job log response items.</p>"
       }
     },
+    "JobPostLaunchActionsLaunchStatus": {
+      "base": "<p>Job type.</p>",
+      "refs": {
+        "PostLaunchActionsLaunchStatusList$member": null
+      }
+    },
     "JobStatus": {
       "base": null,
       "refs": {
@@ -517,6 +584,9 @@
         "ConflictException$resourceId": "<p>A conflict occurred when prompting for the Resource ID.</p>",
         "ConflictException$resourceType": "<p>A conflict occurred when prompting for resource type.</p>",
         "DataReplicationError$rawError": "<p>Error in data replication.</p>",
+        "ErrorDetails$message": "<p>Error details message.</p>",
+        "ErrorDetails$resourceId": "<p>Error details resourceId.</p>",
+        "ErrorDetails$resourceType": "<p>Error details resourceType.</p>",
         "InternalServerException$message": null,
         "JobLogEventData$rawError": "<p>Job error.</p>",
         "ResourceNotFoundException$code": null,
@@ -544,6 +614,33 @@
     "LaunchConfiguration": {
       "base": null,
       "refs": {
+      }
+    },
+    "LaunchConfigurationTemplate": {
+      "base": null,
+      "refs": {
+        "LaunchConfigurationTemplates$member": null
+      }
+    },
+    "LaunchConfigurationTemplateID": {
+      "base": null,
+      "refs": {
+        "DeleteLaunchConfigurationTemplateRequest$launchConfigurationTemplateID": "<p>ID of resource to be deleted.</p>",
+        "LaunchConfigurationTemplate$launchConfigurationTemplateID": "<p>Copy Private IP during Launch Configuration.</p>",
+        "LaunchConfigurationTemplateIDs$member": null,
+        "UpdateLaunchConfigurationTemplateRequest$launchConfigurationTemplateID": "<p>Update Launch configuration Target instance right sizing request.</p>"
+      }
+    },
+    "LaunchConfigurationTemplateIDs": {
+      "base": null,
+      "refs": {
+        "DescribeLaunchConfigurationTemplatesRequest$launchConfigurationTemplateIDs": "<p>Request to disconnect Source Server from service by Server ID.</p>"
+      }
+    },
+    "LaunchConfigurationTemplates": {
+      "base": null,
+      "refs": {
+        "DescribeLaunchConfigurationTemplatesResponse$items": "<p>Request to disconnect Source Server from service by Server ID.</p>"
       }
     },
     "LaunchDisposition": {
@@ -679,6 +776,8 @@
         "DescribeJobLogItemsResponse$nextToken": "<p>Request to describe Job log response next token.</p>",
         "DescribeJobsRequest$nextToken": "<p>Request to describe job log items by next token.</p>",
         "DescribeJobsResponse$nextToken": "<p>Request to describe Job response by next token.</p>",
+        "DescribeLaunchConfigurationTemplatesRequest$nextToken": "<p>Request to disconnect Source Server from service by Server ID.</p>",
+        "DescribeLaunchConfigurationTemplatesResponse$nextToken": "<p>Request to disconnect Source Server from service by Server ID.</p>",
         "DescribeReplicationConfigurationTemplatesRequest$nextToken": "<p>Request to describe Replication Configuration template by next token.</p>",
         "DescribeReplicationConfigurationTemplatesResponse$nextToken": "<p>Request to describe Replication Configuration template by next token.</p>",
         "DescribeSourceServersRequest$nextToken": "<p>Request to filter Source Servers list by next token.</p>",
@@ -717,6 +816,40 @@
         "SourceProperties$ramBytes": "<p>Source server RAM in bytes.</p>",
         "UpdateReplicationConfigurationRequest$bandwidthThrottling": "<p>Update replication configuration bandwidth throttling request.</p>",
         "UpdateReplicationConfigurationTemplateRequest$bandwidthThrottling": "<p>Update replication configuration template bandwidth throttling request.</p>"
+      }
+    },
+    "PostLaunchActionExecutionStatus": {
+      "base": null,
+      "refs": {
+        "JobPostLaunchActionsLaunchStatus$executionStatus": "<p>Job type.</p>"
+      }
+    },
+    "PostLaunchActions": {
+      "base": "<p>Server participating in Job.</p>",
+      "refs": {
+        "CreateLaunchConfigurationTemplateRequest$postLaunchActions": "<p>Request to associate the default Application Migration Service Security group with the Replication Settings template.</p>",
+        "LaunchConfiguration$postLaunchActions": null,
+        "LaunchConfigurationTemplate$postLaunchActions": "<p>Copy Private IP during Launch Configuration.</p>",
+        "UpdateLaunchConfigurationRequest$postLaunchActions": null,
+        "UpdateLaunchConfigurationTemplateRequest$postLaunchActions": "<p>Update Launch configuration Target instance right sizing request.</p>"
+      }
+    },
+    "PostLaunchActionsDeploymentType": {
+      "base": null,
+      "refs": {
+        "PostLaunchActions$deployment": "<p>Server participating in Job.</p>"
+      }
+    },
+    "PostLaunchActionsLaunchStatusList": {
+      "base": null,
+      "refs": {
+        "PostLaunchActionsStatus$postLaunchActionsLaunchStatusList": "<p>Server participating in Job.</p>"
+      }
+    },
+    "PostLaunchActionsStatus": {
+      "base": "<p>Server participating in Job.</p>",
+      "refs": {
+        "ParticipatingServer$postLaunchActionsStatus": "<p>Participating server Source Server ID.</p>"
       }
     },
     "ReplicationConfiguration": {
@@ -834,6 +967,12 @@
       "refs": {
       }
     },
+    "S3LogBucketName": {
+      "base": null,
+      "refs": {
+        "PostLaunchActions$s3LogBucket": "<p>Server participating in Job.</p>"
+      }
+    },
     "SecurityGroupID": {
       "base": null,
       "refs": {
@@ -898,6 +1037,67 @@
         "DescribeSourceServersResponse$items": "<p>Request to filter Source Servers list by item.</p>"
       }
     },
+    "SsmDocument": {
+      "base": "<p>Source server replication type.</p>",
+      "refs": {
+        "JobPostLaunchActionsLaunchStatus$ssmDocument": "<p>Job type.</p>",
+        "SsmDocuments$member": null
+      }
+    },
+    "SsmDocumentName": {
+      "base": null,
+      "refs": {
+        "SsmDocument$ssmDocumentName": "<p>Source server replication type.</p>"
+      }
+    },
+    "SsmDocumentParameterName": {
+      "base": null,
+      "refs": {
+        "SsmDocumentParameters$key": null
+      }
+    },
+    "SsmDocumentParameters": {
+      "base": null,
+      "refs": {
+        "SsmDocument$parameters": "<p>Source server replication type.</p>"
+      }
+    },
+    "SsmDocumentType": {
+      "base": null,
+      "refs": {
+        "JobPostLaunchActionsLaunchStatus$ssmDocumentType": "<p>Job type.</p>"
+      }
+    },
+    "SsmDocuments": {
+      "base": null,
+      "refs": {
+        "PostLaunchActions$ssmDocuments": "<p>Server participating in Job.</p>"
+      }
+    },
+    "SsmParameterStoreParameter": {
+      "base": "<p>Source server replication type.</p>",
+      "refs": {
+        "SsmParameterStoreParameters$member": null
+      }
+    },
+    "SsmParameterStoreParameterName": {
+      "base": null,
+      "refs": {
+        "SsmParameterStoreParameter$parameterName": "<p>Source server replication type.</p>"
+      }
+    },
+    "SsmParameterStoreParameterType": {
+      "base": null,
+      "refs": {
+        "SsmParameterStoreParameter$parameterType": "<p>Source server replication type.</p>"
+      }
+    },
+    "SsmParameterStoreParameters": {
+      "base": null,
+      "refs": {
+        "SsmDocumentParameters$value": null
+      }
+    },
     "StartCutoverRequest": {
       "base": null,
       "refs": {
@@ -940,10 +1140,12 @@
       "refs": {
         "DescribeJobLogItemsRequest$maxResults": "<p>Request to describe Job log item maximum results.</p>",
         "DescribeJobsRequest$maxResults": "<p>Request to describe job log items by max results.</p>",
+        "DescribeLaunchConfigurationTemplatesRequest$maxResults": "<p>Request to disconnect Source Server from service by Server ID.</p>",
         "DescribeReplicationConfigurationTemplatesRequest$maxResults": "<p>Request to describe Replication Configuration template by max results.</p>",
         "DescribeSourceServersRequest$maxResults": "<p>Request to filter Source Servers list by maximum results.</p>",
         "DescribeVcenterClientsRequest$maxResults": "<p>Maximum results to be returned in DescribeVcenterClients.</p>",
-        "ServiceQuotaExceededException$quotaValue": "<p>Exceeded the service quota value.</p>"
+        "ServiceQuotaExceededException$quotaValue": "<p>Exceeded the service quota value.</p>",
+        "SsmDocument$timeoutSeconds": "<p>Source server replication type.</p>"
       }
     },
     "SubnetID": {
@@ -983,9 +1185,11 @@
     "TagsMap": {
       "base": null,
       "refs": {
+        "CreateLaunchConfigurationTemplateRequest$tags": "<p>Request to associate the default Application Migration Service Security group with the Replication Settings template.</p>",
         "CreateReplicationConfigurationTemplateRequest$stagingAreaTags": "<p>Request to configure Staging Area tags during Replication Settings template creation.</p>",
         "CreateReplicationConfigurationTemplateRequest$tags": "<p>Request to configure tags during Replication Settings template creation.</p>",
         "Job$tags": "<p>Tags associated with specific Job.</p>",
+        "LaunchConfigurationTemplate$tags": "<p>Copy Private IP during Launch Configuration.</p>",
         "ListTagsForResourceResponse$tags": "<p>List tags for resource response.</p>",
         "ReplicationConfiguration$stagingAreaTags": "<p>Replication Configuration Staging Area tags.</p>",
         "ReplicationConfigurationTemplate$stagingAreaTags": "<p>Replication Configuration template Staging Area Tags.</p>",
@@ -1040,6 +1244,11 @@
       }
     },
     "UpdateLaunchConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLaunchConfigurationTemplateRequest": {
       "base": null,
       "refs": {
       }

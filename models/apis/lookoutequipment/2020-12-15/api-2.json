@@ -206,6 +206,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListInferenceEvents":{
+      "name":"ListInferenceEvents",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListInferenceEventsRequest"},
+      "output":{"shape":"ListInferenceEventsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListInferenceExecutions":{
       "name":"ListInferenceExecutions",
       "http":{
@@ -789,6 +805,10 @@
         "TotalNumberOfDuplicateTimestamps":{"shape":"Integer"}
       }
     },
+    "EventDurationInSeconds":{
+      "type":"long",
+      "min":0
+    },
     "FileNameTimestampFormat":{
       "type":"string",
       "pattern":"^EPOCH|yyyy-MM-dd-HH-mm-ss|yyyyMMddHHmmss$"
@@ -805,6 +825,21 @@
       "max":256,
       "min":1,
       "pattern":"\\p{ASCII}{1,256}"
+    },
+    "InferenceEventSummaries":{
+      "type":"list",
+      "member":{"shape":"InferenceEventSummary"}
+    },
+    "InferenceEventSummary":{
+      "type":"structure",
+      "members":{
+        "InferenceSchedulerArn":{"shape":"InferenceSchedulerArn"},
+        "InferenceSchedulerName":{"shape":"InferenceSchedulerName"},
+        "EventStartTime":{"shape":"Timestamp"},
+        "EventEndTime":{"shape":"Timestamp"},
+        "Diagnostics":{"shape":"ModelMetrics"},
+        "EventDurationInSeconds":{"shape":"EventDurationInSeconds"}
+      }
     },
     "InferenceExecutionStatus":{
       "type":"string",
@@ -1061,6 +1096,28 @@
         "DatasetSummaries":{"shape":"DatasetSummaries"}
       }
     },
+    "ListInferenceEventsRequest":{
+      "type":"structure",
+      "required":[
+        "InferenceSchedulerName",
+        "IntervalStartTime",
+        "IntervalEndTime"
+      ],
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "InferenceSchedulerName":{"shape":"InferenceSchedulerIdentifier"},
+        "IntervalStartTime":{"shape":"Timestamp"},
+        "IntervalEndTime":{"shape":"Timestamp"}
+      }
+    },
+    "ListInferenceEventsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "InferenceEventSummaries":{"shape":"InferenceEventSummaries"}
+      }
+    },
     "ListInferenceExecutionsRequest":{
       "type":"structure",
       "required":["InferenceSchedulerName"],
@@ -1285,7 +1342,7 @@
       "type":"string",
       "max":1024,
       "min":0,
-      "pattern":"(^$)|([\\P{M}\\p{M}]{1,1023}/$)"
+      "pattern":"(^$)|([\\u0009\\u000A\\u000D\\u0020-\\u00FF]{1,1023}/$)"
     },
     "SensorName":{
       "type":"string",
