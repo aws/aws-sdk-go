@@ -267,6 +267,12 @@ func (c *MigrationHubRefactorSpaces) CreateRouteRequest(input *CreateRouteInput)
 // If an application does not have any routes, then the first route must be
 // created as a DEFAULT RouteType.
 //
+// When created, the default route defaults to an active state so state is not
+// a required input. However, like all other state values the state of the default
+// route can be updated after creation, but only when all other routes are also
+// inactive. Conversely, no route can be active without the default route also
+// being active.
+//
 // When you create a route, Refactor Spaces configures the Amazon API Gateway
 // to send traffic to the target service as follows:
 //
@@ -280,9 +286,11 @@ func (c *MigrationHubRefactorSpaces) CreateRouteRequest(input *CreateRouteInput)
 //    configures the Lambda function's resource policy to allow the application's
 //    API Gateway to invoke the function.
 //
-// A one-time health check is performed on the service when the route is created.
-// If the health check fails, the route transitions to FAILED, and no traffic
-// is sent to the service.
+// A one-time health check is performed on the service when either the route
+// is updated from inactive to active, or when it is created with an active
+// state. If the health check fails, the route transitions the route state to
+// FAILED, an error code of SERVICE_ENDPOINT_HEALTH_CHECK_FAILURE is provided,
+// and no traffic is sent to the service.
 //
 // For Lambda functions, the Lambda function state is checked. If the function
 // is not active, the function configuration is updated so that Lambda resources
@@ -291,20 +299,22 @@ func (c *MigrationHubRefactorSpaces) CreateRouteRequest(input *CreateRouteInput)
 // (https://docs.aws.amazon.com/lambda/latest/dg/API_GetFunctionConfiguration.html#SSS-GetFunctionConfiguration-response-State)
 // in the Lambda Developer Guide.
 //
+// For Lambda endpoints, a check is performed to determine that a Lambda function
+// with the specified ARN exists. If it does not exist, the health check fails.
 // For public URLs, a connection is opened to the public endpoint. If the URL
-// is not reachable, the health check fails. For private URLs, a target group
-// is created and the target group health check is run.
+// is not reachable, the health check fails.
 //
-// The HealthCheckProtocol, HealthCheckPort, and HealthCheckPath are the same
-// protocol, port, and path specified in the URL or health URL, if used. All
-// other settings use the default values, as described in Health checks for
-// your target groups (https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html).
+// For private URLS, a target group is created on the Elastic Load Balancing
+// and the target group health check is run. The HealthCheckProtocol, HealthCheckPort,
+// and HealthCheckPath are the same protocol, port, and path specified in the
+// URL or health URL, if used. All other settings use the default values, as
+// described in Health checks for your target groups (https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html).
 // The health check is considered successful if at least one target within the
 // target group transitions to a healthy state.
 //
 // Services can have HTTP or HTTPS URL endpoints. For HTTPS URLs, publicly-signed
 // certificates are supported. Private Certificate Authorities (CAs) are permitted
-// only if the CA's domain is publicly resolvable.
+// only if the CA's domain is also publicly resolvable.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2523,6 +2533,97 @@ func (c *MigrationHubRefactorSpaces) UntagResourceWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+const opUpdateRoute = "UpdateRoute"
+
+// UpdateRouteRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRoute operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRoute for more information on using the UpdateRoute
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateRouteRequest method.
+//    req, resp := client.UpdateRouteRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/migration-hub-refactor-spaces-2021-10-26/UpdateRoute
+func (c *MigrationHubRefactorSpaces) UpdateRouteRequest(input *UpdateRouteInput) (req *request.Request, output *UpdateRouteOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRoute,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/environments/{EnvironmentIdentifier}/applications/{ApplicationIdentifier}/routes/{RouteIdentifier}",
+	}
+
+	if input == nil {
+		input = &UpdateRouteInput{}
+	}
+
+	output = &UpdateRouteOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateRoute API operation for AWS Migration Hub Refactor Spaces.
+//
+// Updates an Amazon Web Services Migration Hub Refactor Spaces route.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Migration Hub Refactor Spaces's
+// API operation UpdateRoute for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The request references a resource that does not exist.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing the request.
+//
+//   * ValidationException
+//   The input does not satisfy the constraints specified by an Amazon Web Service.
+//
+//   * ThrottlingException
+//   Request was denied because the request was throttled.
+//
+//   * AccessDeniedException
+//   The user does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/migration-hub-refactor-spaces-2021-10-26/UpdateRoute
+func (c *MigrationHubRefactorSpaces) UpdateRoute(input *UpdateRouteInput) (*UpdateRouteOutput, error) {
+	req, out := c.UpdateRouteRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRouteWithContext is the same as UpdateRoute with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRoute for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MigrationHubRefactorSpaces) UpdateRouteWithContext(ctx aws.Context, input *UpdateRouteInput, opts ...request.Option) (*UpdateRouteOutput, error) {
+	req, out := c.UpdateRouteRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // The user does not have sufficient access to perform this action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -3570,6 +3671,9 @@ type CreateRouteInput struct {
 	// of the request.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
+	// Configuration for the default route type.
+	DefaultRoute *DefaultRouteInput_ `type:"structure"`
+
 	// The ID of the environment in which the route is created.
 	//
 	// EnvironmentIdentifier is a required field
@@ -3670,6 +3774,12 @@ func (s *CreateRouteInput) SetClientToken(v string) *CreateRouteInput {
 	return s
 }
 
+// SetDefaultRoute sets the DefaultRoute field's value.
+func (s *CreateRouteInput) SetDefaultRoute(v *DefaultRouteInput_) *CreateRouteInput {
+	s.DefaultRoute = v
+	return s
+}
+
 // SetEnvironmentIdentifier sets the EnvironmentIdentifier field's value.
 func (s *CreateRouteInput) SetEnvironmentIdentifier(v string) *CreateRouteInput {
 	s.EnvironmentIdentifier = &v
@@ -3733,7 +3843,8 @@ type CreateRouteOutput struct {
 	// route is forwarded to this service.
 	ServiceId *string `min:"14" type:"string"`
 
-	// The current state of the route.
+	// The current state of the route. Activation state only allows ACTIVE or INACTIVE
+	// as user inputs. FAILED is a route state that is system generated.
 	State *string `type:"string" enum:"RouteState"`
 
 	// The tags assigned to the created route. A tag is a label that you assign
@@ -3744,7 +3855,7 @@ type CreateRouteOutput struct {
 	// String and GoString methods.
 	Tags map[string]*string `type:"map" sensitive:"true"`
 
-	// onfiguration for the URI path route type.
+	// Configuration for the URI path route type.
 	UriPathRoute *UriPathRouteInput_ `type:"structure"`
 }
 
@@ -4183,6 +4294,39 @@ func (s *CreateServiceOutput) SetUrlEndpoint(v *UrlEndpointInput_) *CreateServic
 // SetVpcId sets the VpcId field's value.
 func (s *CreateServiceOutput) SetVpcId(v string) *CreateServiceOutput {
 	s.VpcId = &v
+	return s
+}
+
+// The configuration for the default route type.
+type DefaultRouteInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// If set to ACTIVE, traffic is forwarded to this route’s service after the
+	// route is created.
+	ActivationState *string `type:"string" enum:"RouteActivationState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultRouteInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultRouteInput_) GoString() string {
+	return s.String()
+}
+
+// SetActivationState sets the ActivationState field's value.
+func (s *DefaultRouteInput_) SetActivationState(v string) *DefaultRouteInput_ {
+	s.ActivationState = &v
 	return s
 }
 
@@ -7701,7 +7845,7 @@ func (s *ServiceSummary) SetVpcId(v string) *ServiceSummary {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource
+	// The Amazon Resource Name (ARN) of the resource.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
@@ -7951,11 +8095,188 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateRouteInput struct {
+	_ struct{} `type:"structure"`
+
+	// If set to ACTIVE, traffic is forwarded to this route’s service after the
+	// route is updated.
+	//
+	// ActivationState is a required field
+	ActivationState *string `type:"string" required:"true" enum:"RouteActivationState"`
+
+	// The ID of the application within which the route is being updated.
+	//
+	// ApplicationIdentifier is a required field
+	ApplicationIdentifier *string `location:"uri" locationName:"ApplicationIdentifier" min:"14" type:"string" required:"true"`
+
+	// The ID of the environment in which the route is being updated.
+	//
+	// EnvironmentIdentifier is a required field
+	EnvironmentIdentifier *string `location:"uri" locationName:"EnvironmentIdentifier" min:"14" type:"string" required:"true"`
+
+	// The unique identifier of the route to update.
+	//
+	// RouteIdentifier is a required field
+	RouteIdentifier *string `location:"uri" locationName:"RouteIdentifier" min:"14" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRouteInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRouteInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRouteInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRouteInput"}
+	if s.ActivationState == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActivationState"))
+	}
+	if s.ApplicationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationIdentifier"))
+	}
+	if s.ApplicationIdentifier != nil && len(*s.ApplicationIdentifier) < 14 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationIdentifier", 14))
+	}
+	if s.EnvironmentIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnvironmentIdentifier"))
+	}
+	if s.EnvironmentIdentifier != nil && len(*s.EnvironmentIdentifier) < 14 {
+		invalidParams.Add(request.NewErrParamMinLen("EnvironmentIdentifier", 14))
+	}
+	if s.RouteIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("RouteIdentifier"))
+	}
+	if s.RouteIdentifier != nil && len(*s.RouteIdentifier) < 14 {
+		invalidParams.Add(request.NewErrParamMinLen("RouteIdentifier", 14))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActivationState sets the ActivationState field's value.
+func (s *UpdateRouteInput) SetActivationState(v string) *UpdateRouteInput {
+	s.ActivationState = &v
+	return s
+}
+
+// SetApplicationIdentifier sets the ApplicationIdentifier field's value.
+func (s *UpdateRouteInput) SetApplicationIdentifier(v string) *UpdateRouteInput {
+	s.ApplicationIdentifier = &v
+	return s
+}
+
+// SetEnvironmentIdentifier sets the EnvironmentIdentifier field's value.
+func (s *UpdateRouteInput) SetEnvironmentIdentifier(v string) *UpdateRouteInput {
+	s.EnvironmentIdentifier = &v
+	return s
+}
+
+// SetRouteIdentifier sets the RouteIdentifier field's value.
+func (s *UpdateRouteInput) SetRouteIdentifier(v string) *UpdateRouteInput {
+	s.RouteIdentifier = &v
+	return s
+}
+
+type UpdateRouteOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the application in which the route is being updated.
+	ApplicationId *string `min:"14" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the route. The format for this ARN is arn:aws:refactor-spaces:region:account-id:resource-type/resource-id
+	// . For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	Arn *string `min:"20" type:"string"`
+
+	// A timestamp that indicates when the route was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The unique identifier of the route.
+	RouteId *string `min:"14" type:"string"`
+
+	// The ID of service in which the route was created. Traffic that matches this
+	// route is forwarded to this service.
+	ServiceId *string `min:"14" type:"string"`
+
+	// The current state of the route.
+	State *string `type:"string" enum:"RouteState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRouteOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRouteOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *UpdateRouteOutput) SetApplicationId(v string) *UpdateRouteOutput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateRouteOutput) SetArn(v string) *UpdateRouteOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *UpdateRouteOutput) SetLastUpdatedTime(v time.Time) *UpdateRouteOutput {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetRouteId sets the RouteId field's value.
+func (s *UpdateRouteOutput) SetRouteId(v string) *UpdateRouteOutput {
+	s.RouteId = &v
+	return s
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *UpdateRouteOutput) SetServiceId(v string) *UpdateRouteOutput {
+	s.ServiceId = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *UpdateRouteOutput) SetState(v string) *UpdateRouteOutput {
+	s.State = &v
+	return s
+}
+
 // The configuration for the URI path route type.
 type UriPathRouteInput_ struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether traffic is forwarded to this route’s service after the
+	// If set to ACTIVE, traffic is forwarded to this route’s service after the
 	// route is created.
 	//
 	// ActivationState is a required field
@@ -8530,12 +8851,16 @@ func ProxyType_Values() []string {
 const (
 	// RouteActivationStateActive is a RouteActivationState enum value
 	RouteActivationStateActive = "ACTIVE"
+
+	// RouteActivationStateInactive is a RouteActivationState enum value
+	RouteActivationStateInactive = "INACTIVE"
 )
 
 // RouteActivationState_Values returns all elements of the RouteActivationState enum
 func RouteActivationState_Values() []string {
 	return []string{
 		RouteActivationStateActive,
+		RouteActivationStateInactive,
 	}
 }
 

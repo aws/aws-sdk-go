@@ -422,6 +422,23 @@
         {"shape":"ValidationException"}
       ],
       "idempotent":true
+    },
+    "UpdateRoute":{
+      "name":"UpdateRoute",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/environments/{EnvironmentIdentifier}/applications/{ApplicationIdentifier}/routes/{RouteIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateRouteRequest"},
+      "output":{"shape":"UpdateRouteResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
     }
   },
   "shapes":{
@@ -674,6 +691,7 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
+        "DefaultRoute":{"shape":"DefaultRouteInput"},
         "EnvironmentIdentifier":{
           "shape":"EnvironmentId",
           "location":"uri",
@@ -753,6 +771,12 @@
         "Tags":{"shape":"TagMap"},
         "UrlEndpoint":{"shape":"UrlEndpointInput"},
         "VpcId":{"shape":"VpcId"}
+      }
+    },
+    "DefaultRouteInput":{
+      "type":"structure",
+      "members":{
+        "ActivationState":{"shape":"RouteActivationState"}
       }
     },
     "DeleteApplicationRequest":{
@@ -1539,7 +1563,10 @@
     "RetryAfterSeconds":{"type":"integer"},
     "RouteActivationState":{
       "type":"string",
-      "enum":["ACTIVE"]
+      "enum":[
+        "ACTIVE",
+        "INACTIVE"
+      ]
     },
     "RouteId":{
       "type":"string",
@@ -1765,6 +1792,44 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateRouteRequest":{
+      "type":"structure",
+      "required":[
+        "ActivationState",
+        "ApplicationIdentifier",
+        "EnvironmentIdentifier",
+        "RouteIdentifier"
+      ],
+      "members":{
+        "ActivationState":{"shape":"RouteActivationState"},
+        "ApplicationIdentifier":{
+          "shape":"ApplicationId",
+          "location":"uri",
+          "locationName":"ApplicationIdentifier"
+        },
+        "EnvironmentIdentifier":{
+          "shape":"EnvironmentId",
+          "location":"uri",
+          "locationName":"EnvironmentIdentifier"
+        },
+        "RouteIdentifier":{
+          "shape":"RouteId",
+          "location":"uri",
+          "locationName":"RouteIdentifier"
+        }
+      }
+    },
+    "UpdateRouteResponse":{
+      "type":"structure",
+      "members":{
+        "ApplicationId":{"shape":"ApplicationId"},
+        "Arn":{"shape":"ResourceArn"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "RouteId":{"shape":"RouteId"},
+        "ServiceId":{"shape":"ServiceId"},
+        "State":{"shape":"RouteState"}
       }
     },
     "Uri":{

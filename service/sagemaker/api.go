@@ -2638,8 +2638,8 @@ func (c *SageMaker) CreateModelRequest(input *CreateModelInput) (req *request.Re
 // environment.
 //
 // For an example that calls this method when deploying a model to SageMaker
-// hosting services, see Deploy the Model to Amazon SageMaker Hosting Services
-// (Amazon Web Services SDK for Python (Boto 3)). (https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto)
+// hosting services, see Create a Model (Amazon Web Services SDK for Python
+// (Boto 3)). (https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints-deployment.html#realtime-endpoints-deployment-create-model)
 //
 // To run a batch transform using your model, you start a job with the CreateTransformJob
 // API. SageMaker uses your model and your dataset to get inferences which are
@@ -23864,6 +23864,8 @@ func (c *SageMaker) UpdateWorkforceRequest(input *UpdateWorkforceInput) (req *re
 // require that workers use specific IP addresses to work on tasks and to update
 // your OpenID Connect (OIDC) Identity Provider (IdP) workforce configuration.
 //
+// The worker portal is now supported in VPC and public internet.
+//
 // Use SourceIpConfig to restrict worker access to tasks to a specific range
 // of IP addresses. You specify allowed IP addresses by creating a list of up
 // to ten CIDRs (https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html).
@@ -23871,6 +23873,12 @@ func (c *SageMaker) UpdateWorkforceRequest(input *UpdateWorkforceInput) (req *re
 // specify a range of IP addresses, workers who attempt to access tasks using
 // any IP address outside the specified range are denied and get a Not Found
 // error message on the worker portal.
+//
+// To restrict access to all the workers in public internet, add the SourceIpConfig
+// CIDR value as "0.0.0.0/0".
+//
+// Amazon SageMaker does not support Source Ip restriction for worker portals
+// in VPC.
 //
 // Use OidcConfig to update the configuration of a workforce created using your
 // own OIDC IdP.
@@ -23890,6 +23898,12 @@ func (c *SageMaker) UpdateWorkforceRequest(input *UpdateWorkforceInput) (req *re
 //
 // See the AWS API reference guide for Amazon SageMaker Service's
 // API operation UpdateWorkforce for usage and error information.
+//
+// Returned Error Types:
+//   * ConflictException
+//   There was a conflict when you attempted to modify a SageMaker entity such
+//   as an Experiment or Artifact.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateWorkforce
 func (c *SageMaker) UpdateWorkforce(input *UpdateWorkforceInput) (*UpdateWorkforceOutput, error) {
 	req, out := c.UpdateWorkforceRequest(input)
@@ -27191,8 +27205,6 @@ type AutoMLDataSource struct {
 
 	// The Amazon S3 location of the input data.
 	//
-	// The input data must be in CSV format and contain at least 500 rows.
-	//
 	// S3DataSource is a required field
 	S3DataSource *AutoMLS3DataSource `type:"structure" required:"true"`
 }
@@ -27239,9 +27251,9 @@ func (s *AutoMLDataSource) SetS3DataSource(v *AutoMLS3DataSource) *AutoMLDataSou
 	return s
 }
 
-// This structure specifies how to split the data into train and test datasets.
-// The validation and training datasets must contain the same headers. The validation
-// dataset must be less than 2 GB in size.
+// This structure specifies how to split the data into train and validation
+// datasets. The validation and training datasets must contain the same headers.
+// The validation dataset must be less than 2 GB in size.
 type AutoMLDataSplitConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -27799,6 +27811,20 @@ type AutoMLS3DataSource struct {
 	_ struct{} `type:"structure"`
 
 	// The data type.
+	//
+	// A ManifestFile should have the format shown below:
+	//
+	// [ {"prefix": "s3://DOC-EXAMPLE-BUCKET/DOC-EXAMPLE-FOLDER/DOC-EXAMPLE-PREFIX/"},
+	//
+	// "DOC-EXAMPLE-RELATIVE-PATH/DOC-EXAMPLE-FOLDER/DATA-1",
+	//
+	// "DOC-EXAMPLE-RELATIVE-PATH/DOC-EXAMPLE-FOLDER/DATA-2",
+	//
+	// ... "DOC-EXAMPLE-RELATIVE-PATH/DOC-EXAMPLE-FOLDER/DATA-N" ]
+	//
+	// An S3Prefix should have the following format:
+	//
+	// s3://DOC-EXAMPLE-BUCKET/DOC-EXAMPLE-FOLDER-OR-FILE
 	//
 	// S3DataType is a required field
 	S3DataType *string `type:"string" required:"true" enum:"AutoMLS3DataType"`
@@ -30829,6 +30855,12 @@ type CreateAppInput struct {
 
 	// The instance type and the Amazon Resource Name (ARN) of the SageMaker image
 	// created on the instance.
+	//
+	// The value of InstanceType passed as part of the ResourceSpec in the CreateApp
+	// call overrides the value passed as part of the ResourceSpec configured for
+	// the user profile or the domain. If InstanceType is not specified in any of
+	// those three ResourceSpec values for a KernelGateway app, the CreateApp call
+	// fails with a request validation error.
 	ResourceSpec *ResourceSpec `type:"structure"`
 
 	// Each tag consists of a key and an optional value. Tag keys must be unique
@@ -38817,6 +38849,9 @@ type CreateWorkforceInput struct {
 	//
 	// WorkforceName is a required field
 	WorkforceName *string `min:"1" type:"string" required:"true"`
+
+	// Use this parameter to configure a workforce using VPC.
+	WorkforceVpcConfig *WorkforceVpcConfigRequest `type:"structure"`
 }
 
 // String returns the string representation.
@@ -38871,6 +38906,11 @@ func (s *CreateWorkforceInput) Validate() error {
 			}
 		}
 	}
+	if s.WorkforceVpcConfig != nil {
+		if err := s.WorkforceVpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("WorkforceVpcConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -38905,6 +38945,12 @@ func (s *CreateWorkforceInput) SetTags(v []*Tag) *CreateWorkforceInput {
 // SetWorkforceName sets the WorkforceName field's value.
 func (s *CreateWorkforceInput) SetWorkforceName(v string) *CreateWorkforceInput {
 	s.WorkforceName = &v
+	return s
+}
+
+// SetWorkforceVpcConfig sets the WorkforceVpcConfig field's value.
+func (s *CreateWorkforceInput) SetWorkforceVpcConfig(v *WorkforceVpcConfigRequest) *CreateWorkforceInput {
+	s.WorkforceVpcConfig = v
 	return s
 }
 
@@ -61300,6 +61346,11 @@ func (s *LabelingJobAlgorithmsConfig) Validate() error {
 	if s.LabelingJobAlgorithmSpecificationArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("LabelingJobAlgorithmSpecificationArn"))
 	}
+	if s.LabelingJobResourceConfig != nil {
+		if err := s.LabelingJobResourceConfig.Validate(); err != nil {
+			invalidParams.AddNested("LabelingJobResourceConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -61733,6 +61784,13 @@ type LabelingJobResourceConfig struct {
 	//
 	//    * Amazon Resource Name (ARN) of a KMS Key "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
 	VolumeKmsKeyId *string `type:"string"`
+
+	// Specifies a VPC that your training jobs and hosted models have access to.
+	// Control access to and from your training and model containers by configuring
+	// the VPC. For more information, see Protect Endpoints by Using an Amazon Virtual
+	// Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html)
+	// and Protect Training Jobs by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html).
+	VpcConfig *VpcConfig `type:"structure"`
 }
 
 // String returns the string representation.
@@ -61753,9 +61811,30 @@ func (s LabelingJobResourceConfig) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LabelingJobResourceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LabelingJobResourceConfig"}
+	if s.VpcConfig != nil {
+		if err := s.VpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
 func (s *LabelingJobResourceConfig) SetVolumeKmsKeyId(v string) *LabelingJobResourceConfig {
 	s.VolumeKmsKeyId = &v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *LabelingJobResourceConfig) SetVpcConfig(v *VpcConfig) *LabelingJobResourceConfig {
+	s.VpcConfig = v
 	return s
 }
 
@@ -71389,7 +71468,7 @@ type ModelBiasAppSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// JSON formatted S3 file that defines bias parameters. For more information
-	// on this JSON configuration file, see Configure bias parameters (https://docs.aws.amazon.com/sagemaker/latest/json-bias-parameter-config.html).
+	// on this JSON configuration file, see Configure bias parameters (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html).
 	//
 	// ConfigUri is a required field
 	ConfigUri *string `type:"string" required:"true"`
@@ -71858,7 +71937,7 @@ type ModelExplainabilityAppSpecification struct {
 
 	// JSON formatted S3 file that defines explainability parameters. For more information
 	// on this JSON configuration file, see Configure model explainability parameters
-	// (https://docs.aws.amazon.com/sagemaker/latest/json-model-explainability-parameter-config.html).
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html).
 	//
 	// ConfigUri is a required field
 	ConfigUri *string `type:"string" required:"true"`
@@ -82949,9 +83028,10 @@ type ResourceSpec struct {
 
 	// The instance type that the image version runs on.
 	//
-	// JupyterServer Apps only support the system value. KernelGateway Apps do not
-	// support the system value, but support all other values for available instance
-	// types.
+	// JupyterServer apps only support the system value.
+	//
+	// For KernelGateway apps, the system value is translated to ml.t3.medium. KernelGateway
+	// apps also support all other values for available instance types.
 	InstanceType *string `type:"string" enum:"AppInstanceType"`
 
 	// The Amazon Resource Name (ARN) of the Lifecycle Configuration attached to
@@ -92843,6 +92923,9 @@ type UpdateWorkforceInput struct {
 	//
 	// WorkforceName is a required field
 	WorkforceName *string `min:"1" type:"string" required:"true"`
+
+	// Use this parameter to update your VPC configuration for a workforce.
+	WorkforceVpcConfig *WorkforceVpcConfigRequest `type:"structure"`
 }
 
 // String returns the string representation.
@@ -92882,6 +92965,11 @@ func (s *UpdateWorkforceInput) Validate() error {
 			invalidParams.AddNested("SourceIpConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.WorkforceVpcConfig != nil {
+		if err := s.WorkforceVpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("WorkforceVpcConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -92904,6 +92992,12 @@ func (s *UpdateWorkforceInput) SetSourceIpConfig(v *SourceIpConfig) *UpdateWorkf
 // SetWorkforceName sets the WorkforceName field's value.
 func (s *UpdateWorkforceInput) SetWorkforceName(v string) *UpdateWorkforceInput {
 	s.WorkforceName = &v
+	return s
+}
+
+// SetWorkforceVpcConfig sets the WorkforceVpcConfig field's value.
+func (s *UpdateWorkforceInput) SetWorkforceVpcConfig(v *WorkforceVpcConfigRequest) *UpdateWorkforceInput {
+	s.WorkforceVpcConfig = v
 	return s
 }
 
@@ -93542,6 +93636,9 @@ type Workforce struct {
 	// The date that the workforce is created.
 	CreateDate *time.Time `type:"timestamp"`
 
+	// The reason your workforce failed.
+	FailureReason *string `min:"1" type:"string"`
+
 	// The most recent date that was used to successfully add one or more IP address
 	// ranges (CIDRs (https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html))
 	// to a private workforce's allow list.
@@ -93555,6 +93652,9 @@ type Workforce struct {
 	// to specific IP addresses.
 	SourceIpConfig *SourceIpConfig `type:"structure"`
 
+	// The status of your workforce.
+	Status *string `type:"string" enum:"WorkforceStatus"`
+
 	// The subdomain for your OIDC Identity Provider.
 	SubDomain *string `type:"string"`
 
@@ -93567,6 +93667,9 @@ type Workforce struct {
 	//
 	// WorkforceName is a required field
 	WorkforceName *string `min:"1" type:"string" required:"true"`
+
+	// The configuration of a VPC workforce.
+	WorkforceVpcConfig *WorkforceVpcConfigResponse `type:"structure"`
 }
 
 // String returns the string representation.
@@ -93599,6 +93702,12 @@ func (s *Workforce) SetCreateDate(v time.Time) *Workforce {
 	return s
 }
 
+// SetFailureReason sets the FailureReason field's value.
+func (s *Workforce) SetFailureReason(v string) *Workforce {
+	s.FailureReason = &v
+	return s
+}
+
 // SetLastUpdatedDate sets the LastUpdatedDate field's value.
 func (s *Workforce) SetLastUpdatedDate(v time.Time) *Workforce {
 	s.LastUpdatedDate = &v
@@ -93617,6 +93726,12 @@ func (s *Workforce) SetSourceIpConfig(v *SourceIpConfig) *Workforce {
 	return s
 }
 
+// SetStatus sets the Status field's value.
+func (s *Workforce) SetStatus(v string) *Workforce {
+	s.Status = &v
+	return s
+}
+
 // SetSubDomain sets the SubDomain field's value.
 func (s *Workforce) SetSubDomain(v string) *Workforce {
 	s.SubDomain = &v
@@ -93632,6 +93747,147 @@ func (s *Workforce) SetWorkforceArn(v string) *Workforce {
 // SetWorkforceName sets the WorkforceName field's value.
 func (s *Workforce) SetWorkforceName(v string) *Workforce {
 	s.WorkforceName = &v
+	return s
+}
+
+// SetWorkforceVpcConfig sets the WorkforceVpcConfig field's value.
+func (s *Workforce) SetWorkforceVpcConfig(v *WorkforceVpcConfigResponse) *Workforce {
+	s.WorkforceVpcConfig = v
+	return s
+}
+
+// The VPC object you use to create or update a workforce.
+type WorkforceVpcConfigRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The VPC security group IDs, in the form sg-xxxxxxxx. The security groups
+	// must be for the same VPC as specified in the subnet.
+	SecurityGroupIds []*string `min:"1" type:"list"`
+
+	// The ID of the subnets in the VPC that you want to connect.
+	Subnets []*string `min:"1" type:"list"`
+
+	// The ID of the VPC that the workforce uses for communication.
+	VpcId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkforceVpcConfigRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkforceVpcConfigRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkforceVpcConfigRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkforceVpcConfigRequest"}
+	if s.SecurityGroupIds != nil && len(s.SecurityGroupIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupIds", 1))
+	}
+	if s.Subnets != nil && len(s.Subnets) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Subnets", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *WorkforceVpcConfigRequest) SetSecurityGroupIds(v []*string) *WorkforceVpcConfigRequest {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnets sets the Subnets field's value.
+func (s *WorkforceVpcConfigRequest) SetSubnets(v []*string) *WorkforceVpcConfigRequest {
+	s.Subnets = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *WorkforceVpcConfigRequest) SetVpcId(v string) *WorkforceVpcConfigRequest {
+	s.VpcId = &v
+	return s
+}
+
+// A VpcConfig object that specifies the VPC that you want your workforce to
+// connect to.
+type WorkforceVpcConfigResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The VPC security group IDs, in the form sg-xxxxxxxx. The security groups
+	// must be for the same VPC as specified in the subnet.
+	//
+	// SecurityGroupIds is a required field
+	SecurityGroupIds []*string `min:"1" type:"list" required:"true"`
+
+	// The ID of the subnets in the VPC that you want to connect.
+	//
+	// Subnets is a required field
+	Subnets []*string `min:"1" type:"list" required:"true"`
+
+	// The IDs for the VPC service endpoints of your VPC workforce when it is created
+	// and updated.
+	VpcEndpointId *string `min:"1" type:"string"`
+
+	// The ID of the VPC that the workforce uses for communication.
+	//
+	// VpcId is a required field
+	VpcId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkforceVpcConfigResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkforceVpcConfigResponse) GoString() string {
+	return s.String()
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *WorkforceVpcConfigResponse) SetSecurityGroupIds(v []*string) *WorkforceVpcConfigResponse {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnets sets the Subnets field's value.
+func (s *WorkforceVpcConfigResponse) SetSubnets(v []*string) *WorkforceVpcConfigResponse {
+	s.Subnets = v
+	return s
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *WorkforceVpcConfigResponse) SetVpcEndpointId(v string) *WorkforceVpcConfigResponse {
+	s.VpcEndpointId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *WorkforceVpcConfigResponse) SetVpcId(v string) *WorkforceVpcConfigResponse {
+	s.VpcId = &v
 	return s
 }
 
@@ -99114,5 +99370,33 @@ func VariantStatus_Values() []string {
 		VariantStatusDeleting,
 		VariantStatusActivatingTraffic,
 		VariantStatusBaking,
+	}
+}
+
+const (
+	// WorkforceStatusInitializing is a WorkforceStatus enum value
+	WorkforceStatusInitializing = "Initializing"
+
+	// WorkforceStatusUpdating is a WorkforceStatus enum value
+	WorkforceStatusUpdating = "Updating"
+
+	// WorkforceStatusDeleting is a WorkforceStatus enum value
+	WorkforceStatusDeleting = "Deleting"
+
+	// WorkforceStatusFailed is a WorkforceStatus enum value
+	WorkforceStatusFailed = "Failed"
+
+	// WorkforceStatusActive is a WorkforceStatus enum value
+	WorkforceStatusActive = "Active"
+)
+
+// WorkforceStatus_Values returns all elements of the WorkforceStatus enum
+func WorkforceStatus_Values() []string {
+	return []string{
+		WorkforceStatusInitializing,
+		WorkforceStatusUpdating,
+		WorkforceStatusDeleting,
+		WorkforceStatusFailed,
+		WorkforceStatusActive,
 	}
 }

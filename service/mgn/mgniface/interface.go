@@ -64,6 +64,10 @@ type MgnAPI interface {
 	ChangeServerLifeCycleStateWithContext(aws.Context, *mgn.ChangeServerLifeCycleStateInput, ...request.Option) (*mgn.ChangeServerLifeCycleStateOutput, error)
 	ChangeServerLifeCycleStateRequest(*mgn.ChangeServerLifeCycleStateInput) (*request.Request, *mgn.ChangeServerLifeCycleStateOutput)
 
+	CreateLaunchConfigurationTemplate(*mgn.CreateLaunchConfigurationTemplateInput) (*mgn.CreateLaunchConfigurationTemplateOutput, error)
+	CreateLaunchConfigurationTemplateWithContext(aws.Context, *mgn.CreateLaunchConfigurationTemplateInput, ...request.Option) (*mgn.CreateLaunchConfigurationTemplateOutput, error)
+	CreateLaunchConfigurationTemplateRequest(*mgn.CreateLaunchConfigurationTemplateInput) (*request.Request, *mgn.CreateLaunchConfigurationTemplateOutput)
+
 	CreateReplicationConfigurationTemplate(*mgn.CreateReplicationConfigurationTemplateInput) (*mgn.CreateReplicationConfigurationTemplateOutput, error)
 	CreateReplicationConfigurationTemplateWithContext(aws.Context, *mgn.CreateReplicationConfigurationTemplateInput, ...request.Option) (*mgn.CreateReplicationConfigurationTemplateOutput, error)
 	CreateReplicationConfigurationTemplateRequest(*mgn.CreateReplicationConfigurationTemplateInput) (*request.Request, *mgn.CreateReplicationConfigurationTemplateOutput)
@@ -71,6 +75,10 @@ type MgnAPI interface {
 	DeleteJob(*mgn.DeleteJobInput) (*mgn.DeleteJobOutput, error)
 	DeleteJobWithContext(aws.Context, *mgn.DeleteJobInput, ...request.Option) (*mgn.DeleteJobOutput, error)
 	DeleteJobRequest(*mgn.DeleteJobInput) (*request.Request, *mgn.DeleteJobOutput)
+
+	DeleteLaunchConfigurationTemplate(*mgn.DeleteLaunchConfigurationTemplateInput) (*mgn.DeleteLaunchConfigurationTemplateOutput, error)
+	DeleteLaunchConfigurationTemplateWithContext(aws.Context, *mgn.DeleteLaunchConfigurationTemplateInput, ...request.Option) (*mgn.DeleteLaunchConfigurationTemplateOutput, error)
+	DeleteLaunchConfigurationTemplateRequest(*mgn.DeleteLaunchConfigurationTemplateInput) (*request.Request, *mgn.DeleteLaunchConfigurationTemplateOutput)
 
 	DeleteReplicationConfigurationTemplate(*mgn.DeleteReplicationConfigurationTemplateInput) (*mgn.DeleteReplicationConfigurationTemplateOutput, error)
 	DeleteReplicationConfigurationTemplateWithContext(aws.Context, *mgn.DeleteReplicationConfigurationTemplateInput, ...request.Option) (*mgn.DeleteReplicationConfigurationTemplateOutput, error)
@@ -97,6 +105,13 @@ type MgnAPI interface {
 
 	DescribeJobsPages(*mgn.DescribeJobsInput, func(*mgn.DescribeJobsOutput, bool) bool) error
 	DescribeJobsPagesWithContext(aws.Context, *mgn.DescribeJobsInput, func(*mgn.DescribeJobsOutput, bool) bool, ...request.Option) error
+
+	DescribeLaunchConfigurationTemplates(*mgn.DescribeLaunchConfigurationTemplatesInput) (*mgn.DescribeLaunchConfigurationTemplatesOutput, error)
+	DescribeLaunchConfigurationTemplatesWithContext(aws.Context, *mgn.DescribeLaunchConfigurationTemplatesInput, ...request.Option) (*mgn.DescribeLaunchConfigurationTemplatesOutput, error)
+	DescribeLaunchConfigurationTemplatesRequest(*mgn.DescribeLaunchConfigurationTemplatesInput) (*request.Request, *mgn.DescribeLaunchConfigurationTemplatesOutput)
+
+	DescribeLaunchConfigurationTemplatesPages(*mgn.DescribeLaunchConfigurationTemplatesInput, func(*mgn.DescribeLaunchConfigurationTemplatesOutput, bool) bool) error
+	DescribeLaunchConfigurationTemplatesPagesWithContext(aws.Context, *mgn.DescribeLaunchConfigurationTemplatesInput, func(*mgn.DescribeLaunchConfigurationTemplatesOutput, bool) bool, ...request.Option) error
 
 	DescribeReplicationConfigurationTemplates(*mgn.DescribeReplicationConfigurationTemplatesInput) (*mgn.DescribeReplicationConfigurationTemplatesOutput, error)
 	DescribeReplicationConfigurationTemplatesWithContext(aws.Context, *mgn.DescribeReplicationConfigurationTemplatesInput, ...request.Option) (*mgn.DescribeReplicationConfigurationTemplatesOutput, error)
@@ -178,6 +193,10 @@ type MgnAPI interface {
 	UpdateLaunchConfiguration(*mgn.UpdateLaunchConfigurationInput) (*mgn.UpdateLaunchConfigurationOutput, error)
 	UpdateLaunchConfigurationWithContext(aws.Context, *mgn.UpdateLaunchConfigurationInput, ...request.Option) (*mgn.UpdateLaunchConfigurationOutput, error)
 	UpdateLaunchConfigurationRequest(*mgn.UpdateLaunchConfigurationInput) (*request.Request, *mgn.UpdateLaunchConfigurationOutput)
+
+	UpdateLaunchConfigurationTemplate(*mgn.UpdateLaunchConfigurationTemplateInput) (*mgn.UpdateLaunchConfigurationTemplateOutput, error)
+	UpdateLaunchConfigurationTemplateWithContext(aws.Context, *mgn.UpdateLaunchConfigurationTemplateInput, ...request.Option) (*mgn.UpdateLaunchConfigurationTemplateOutput, error)
+	UpdateLaunchConfigurationTemplateRequest(*mgn.UpdateLaunchConfigurationTemplateInput) (*request.Request, *mgn.UpdateLaunchConfigurationTemplateOutput)
 
 	UpdateReplicationConfiguration(*mgn.UpdateReplicationConfigurationInput) (*mgn.UpdateReplicationConfigurationOutput, error)
 	UpdateReplicationConfigurationWithContext(aws.Context, *mgn.UpdateReplicationConfigurationInput, ...request.Option) (*mgn.UpdateReplicationConfigurationOutput, error)

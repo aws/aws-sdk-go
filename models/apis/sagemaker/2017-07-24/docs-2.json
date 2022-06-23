@@ -30,7 +30,7 @@
     "CreateImageVersion": "<p>Creates a version of the SageMaker image specified by <code>ImageName</code>. The version represents the Amazon Elastic Container Registry (ECR) container image specified by <code>BaseImage</code>.</p>",
     "CreateInferenceRecommendationsJob": "<p>Starts a recommendation job. You can create either an instance recommendation or load test job.</p>",
     "CreateLabelingJob": "<p>Creates a job that uses workers to label the data objects in your input dataset. You can use the labeled data to train machine learning models. </p> <p>You can select your workforce from one of three providers:</p> <ul> <li> <p>A private workforce that you create. It can include employees, contractors, and outside experts. Use a private workforce when want the data to stay within your organization or when a specific set of skills is required.</p> </li> <li> <p>One or more vendors that you select from the Amazon Web Services Marketplace. Vendors provide expertise in specific areas. </p> </li> <li> <p>The Amazon Mechanical Turk workforce. This is the largest workforce, but it should only be used for public data or data that has been stripped of any personally identifiable information.</p> </li> </ul> <p>You can also use <i>automated data labeling</i> to reduce the number of data objects that need to be labeled by a human. Automated data labeling uses <i>active learning</i> to determine if a data object can be labeled by machine or if it needs to be sent to a human worker. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-automated-labeling.html\">Using Automated Data Labeling</a>.</p> <p>The data objects to be labeled are contained in an Amazon S3 bucket. You create a <i>manifest file</i> that describes the location of each object. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-data.html\">Using Input and Output Data</a>.</p> <p>The output can be used as the manifest file for another labeling job or as training data for your machine learning models.</p> <p>You can use this operation to create a static labeling job or a streaming labeling job. A static labeling job stops if all data objects in the input manifest file identified in <code>ManifestS3Uri</code> have been labeled. A streaming labeling job runs perpetually until it is manually stopped, or remains idle for 10 days. You can send new data objects to an active (<code>InProgress</code>) streaming labeling job in real time. To learn how to create a static labeling job, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-create-labeling-job-api.html\">Create a Labeling Job (API) </a> in the Amazon SageMaker Developer Guide. To learn how to create a streaming labeling job, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-streaming-create-job.html\">Create a Streaming Labeling Job</a>.</p>",
-    "CreateModel": "<p>Creates a model in SageMaker. In the request, you name the model and describe a primary container. For the primary container, you specify the Docker image that contains inference code, artifacts (from prior training), and a custom environment map that the inference code uses when you deploy the model for predictions.</p> <p>Use this API to create a model if you want to use SageMaker hosting services or run a batch transform job.</p> <p>To host your model, you create an endpoint configuration with the <code>CreateEndpointConfig</code> API, and then create an endpoint with the <code>CreateEndpoint</code> API. SageMaker then deploys all of the containers that you defined for the model in the hosting environment. </p> <p>For an example that calls this method when deploying a model to SageMaker hosting services, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto\">Deploy the Model to Amazon SageMaker Hosting Services (Amazon Web Services SDK for Python (Boto 3)).</a> </p> <p>To run a batch transform using your model, you start a job with the <code>CreateTransformJob</code> API. SageMaker uses your model and your dataset to get inferences which are then saved to a specified S3 location.</p> <p>In the request, you also provide an IAM role that SageMaker can assume to access model artifacts and docker image for deployment on ML compute hosting instances or for batch transform jobs. In addition, you also use the IAM role to manage permissions the inference code needs. For example, if the inference code access any other Amazon Web Services resources, you grant necessary permissions via this role.</p>",
+    "CreateModel": "<p>Creates a model in SageMaker. In the request, you name the model and describe a primary container. For the primary container, you specify the Docker image that contains inference code, artifacts (from prior training), and a custom environment map that the inference code uses when you deploy the model for predictions.</p> <p>Use this API to create a model if you want to use SageMaker hosting services or run a batch transform job.</p> <p>To host your model, you create an endpoint configuration with the <code>CreateEndpointConfig</code> API, and then create an endpoint with the <code>CreateEndpoint</code> API. SageMaker then deploys all of the containers that you defined for the model in the hosting environment. </p> <p>For an example that calls this method when deploying a model to SageMaker hosting services, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints-deployment.html#realtime-endpoints-deployment-create-model\">Create a Model (Amazon Web Services SDK for Python (Boto 3)).</a> </p> <p>To run a batch transform using your model, you start a job with the <code>CreateTransformJob</code> API. SageMaker uses your model and your dataset to get inferences which are then saved to a specified S3 location.</p> <p>In the request, you also provide an IAM role that SageMaker can assume to access model artifacts and docker image for deployment on ML compute hosting instances or for batch transform jobs. In addition, you also use the IAM role to manage permissions the inference code needs. For example, if the inference code access any other Amazon Web Services resources, you grant necessary permissions via this role.</p>",
     "CreateModelBiasJobDefinition": "<p>Creates the definition for a model bias job.</p>",
     "CreateModelExplainabilityJobDefinition": "<p>Creates the definition for a model explainability job.</p>",
     "CreateModelPackage": "<p>Creates a model package that you can use to create SageMaker models or list on Amazon Web Services Marketplace, or a versioned model that is part of a model group. Buyers can subscribe to model packages listed on Amazon Web Services Marketplace to create models in SageMaker.</p> <p>To create a model package by specifying a Docker container that contains your inference code and the Amazon S3 location of your model artifacts, provide values for <code>InferenceSpecification</code>. To create a model from an algorithm resource that you created or subscribed to in Amazon Web Services Marketplace, provide a value for <code>SourceAlgorithmSpecification</code>.</p> <note> <p>There are two types of model packages:</p> <ul> <li> <p>Versioned - a model that is part of a model group in the model registry.</p> </li> <li> <p>Unversioned - a model package that is not part of a model group.</p> </li> </ul> </note>",
@@ -251,7 +251,7 @@
     "UpdateTrial": "<p>Updates the display name of a trial.</p>",
     "UpdateTrialComponent": "<p>Updates one or more properties of a trial component.</p>",
     "UpdateUserProfile": "<p>Updates a user profile.</p>",
-    "UpdateWorkforce": "<p>Use this operation to update your workforce. You can use this operation to require that workers use specific IP addresses to work on tasks and to update your OpenID Connect (OIDC) Identity Provider (IdP) workforce configuration.</p> <p> Use <code>SourceIpConfig</code> to restrict worker access to tasks to a specific range of IP addresses. You specify allowed IP addresses by creating a list of up to ten <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html\">CIDRs</a>. By default, a workforce isn't restricted to specific IP addresses. If you specify a range of IP addresses, workers who attempt to access tasks using any IP address outside the specified range are denied and get a <code>Not Found</code> error message on the worker portal.</p> <p>Use <code>OidcConfig</code> to update the configuration of a workforce created using your own OIDC IdP. </p> <important> <p>You can only update your OIDC IdP configuration when there are no work teams associated with your workforce. You can delete work teams using the operation.</p> </important> <p>After restricting access to a range of IP addresses or updating your OIDC IdP configuration with this operation, you can view details about your update workforce using the operation.</p> <important> <p>This operation only applies to private workforces.</p> </important>",
+    "UpdateWorkforce": "<p>Use this operation to update your workforce. You can use this operation to require that workers use specific IP addresses to work on tasks and to update your OpenID Connect (OIDC) Identity Provider (IdP) workforce configuration.</p> <p>The worker portal is now supported in VPC and public internet.</p> <p> Use <code>SourceIpConfig</code> to restrict worker access to tasks to a specific range of IP addresses. You specify allowed IP addresses by creating a list of up to ten <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html\">CIDRs</a>. By default, a workforce isn't restricted to specific IP addresses. If you specify a range of IP addresses, workers who attempt to access tasks using any IP address outside the specified range are denied and get a <code>Not Found</code> error message on the worker portal.</p> <p>To restrict access to all the workers in public internet, add the <code>SourceIpConfig</code> CIDR value as \"0.0.0.0/0\".</p> <important> <p>Amazon SageMaker does not support Source Ip restriction for worker portals in VPC.</p> </important> <p>Use <code>OidcConfig</code> to update the configuration of a workforce created using your own OIDC IdP. </p> <important> <p>You can only update your OIDC IdP configuration when there are no work teams associated with your workforce. You can delete work teams using the operation.</p> </important> <p>After restricting access to a range of IP addresses or updating your OIDC IdP configuration with this operation, you can view details about your update workforce using the operation.</p> <important> <p>This operation only applies to private workforces.</p> </important>",
     "UpdateWorkteam": "<p>Updates an existing work team with new member definitions or description.</p>"
   },
   "shapes": {
@@ -530,7 +530,7 @@
     "AppInstanceType": {
       "base": null,
       "refs": {
-        "ResourceSpec$InstanceType": "<p>The instance type that the image version runs on.</p> <note> <p>JupyterServer Apps only support the <code>system</code> value. KernelGateway Apps do not support the <code>system</code> value, but support all other values for available instance types.</p> </note>"
+        "ResourceSpec$InstanceType": "<p>The instance type that the image version runs on.</p> <note> <p> <b>JupyterServer apps</b> only support the <code>system</code> value.</p> <p>For <b>KernelGateway apps</b>, the <code>system</code> value is translated to <code>ml.t3.medium</code>. KernelGateway apps also support all other values for available instance types.</p> </note>"
       }
     },
     "AppList": {
@@ -887,7 +887,7 @@
       }
     },
     "AutoMLDataSplitConfig": {
-      "base": "<p>This structure specifies how to split the data into train and test datasets. The validation and training datasets must contain the same headers. The validation dataset must be less than 2 GB in size.</p>",
+      "base": "<p>This structure specifies how to split the data into train and validation datasets. The validation and training datasets must contain the same headers. The validation dataset must be less than 2 GB in size.</p>",
       "refs": {
         "AutoMLJobConfig$DataSplitConfig": "<p>The configuration for splitting the input training dataset.</p> <p>Type: AutoMLDataSplitConfig</p>"
       }
@@ -1044,13 +1044,13 @@
     "AutoMLS3DataSource": {
       "base": "<p>The Amazon S3 data source.</p>",
       "refs": {
-        "AutoMLDataSource$S3DataSource": "<p>The Amazon S3 location of the input data.</p> <note> <p>The input data must be in CSV format and contain at least 500 rows.</p> </note>"
+        "AutoMLDataSource$S3DataSource": "<p>The Amazon S3 location of the input data.</p>"
       }
     },
     "AutoMLS3DataType": {
       "base": null,
       "refs": {
-        "AutoMLS3DataSource$S3DataType": "<p>The data type.</p>"
+        "AutoMLS3DataSource$S3DataType": "<p>The data type.</p> <p>A ManifestFile should have the format shown below:</p> <p> <code>[ {\"prefix\": \"s3://DOC-EXAMPLE-BUCKET/DOC-EXAMPLE-FOLDER/DOC-EXAMPLE-PREFIX/\"}, </code> </p> <p> <code>\"DOC-EXAMPLE-RELATIVE-PATH/DOC-EXAMPLE-FOLDER/DATA-1\",</code> </p> <p> <code>\"DOC-EXAMPLE-RELATIVE-PATH/DOC-EXAMPLE-FOLDER/DATA-2\",</code> </p> <p> <code>... \"DOC-EXAMPLE-RELATIVE-PATH/DOC-EXAMPLE-FOLDER/DATA-N\" ]</code> </p> <p>An S3Prefix should have the following format: </p> <p> <code>s3://DOC-EXAMPLE-BUCKET/DOC-EXAMPLE-FOLDER-OR-FILE</code> </p>"
       }
     },
     "AutoMLSecurityConfig": {
@@ -9239,7 +9239,7 @@
     "ResourceSpec": {
       "base": "<p>Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on.</p>",
       "refs": {
-        "CreateAppRequest$ResourceSpec": "<p>The instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance.</p>",
+        "CreateAppRequest$ResourceSpec": "<p>The instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance.</p> <note> <p>The value of <code>InstanceType</code> passed as part of the <code>ResourceSpec</code> in the <code>CreateApp</code> call overrides the value passed as part of the <code>ResourceSpec</code> configured for the user profile or the domain. If <code>InstanceType</code> is not specified in any of those three <code>ResourceSpec</code> values for a <code>KernelGateway</code> app, the <code>CreateApp</code> call fails with a request validation error.</p> </note>",
         "DescribeAppResponse$ResourceSpec": "<p>The instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance.</p>",
         "JupyterServerAppSettings$DefaultResourceSpec": "<p>The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the JupyterServer app. If you use the <code>LifecycleConfigArns</code> parameter, then this parameter is also required.</p>",
         "KernelGatewayAppSettings$DefaultResourceSpec": "<p>The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the KernelGateway app.</p> <note> <p>The Amazon SageMaker Studio UI does not use the default instance type value set here. The default instance type set here is used when Apps are created using the Amazon Web Services Command Line Interface or Amazon Web Services CloudFormation and the instance type parameter value is not passed.</p> </note>",
@@ -9441,8 +9441,8 @@
         "LabelingJobS3DataSource$ManifestS3Uri": "<p>The Amazon S3 location of the manifest file that describes the input data objects. </p> <p>The input manifest file referenced in <code>ManifestS3Uri</code> must contain one of the following keys: <code>source-ref</code> or <code>source</code>. The value of the keys are interpreted as follows:</p> <ul> <li> <p> <code>source-ref</code>: The source of the object is the Amazon S3 object specified in the value. Use this value when the object is a binary object, such as an image.</p> </li> <li> <p> <code>source</code>: The source of the object is the value. Use this value when the object is a text value.</p> </li> </ul> <p>If you are a new user of Ground Truth, it is recommended you review <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-input-data-input-manifest.html\">Use an Input Manifest File </a> in the Amazon SageMaker Developer Guide to learn how to create an input manifest file.</p>",
         "MetricsSource$S3Uri": "<p/>",
         "ModelArtifacts$S3ModelArtifacts": "<p>The path of the S3 object that contains the model artifacts. For example, <code>s3://bucket-name/keynameprefix/model.tar.gz</code>.</p>",
-        "ModelBiasAppSpecification$ConfigUri": "<p>JSON formatted S3 file that defines bias parameters. For more information on this JSON configuration file, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/json-bias-parameter-config.html\">Configure bias parameters</a>.</p>",
-        "ModelExplainabilityAppSpecification$ConfigUri": "<p>JSON formatted S3 file that defines explainability parameters. For more information on this JSON configuration file, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/json-model-explainability-parameter-config.html\">Configure model explainability parameters</a>.</p>",
+        "ModelBiasAppSpecification$ConfigUri": "<p>JSON formatted S3 file that defines bias parameters. For more information on this JSON configuration file, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html\">Configure bias parameters</a>.</p>",
+        "ModelExplainabilityAppSpecification$ConfigUri": "<p>JSON formatted S3 file that defines explainability parameters. For more information on this JSON configuration file, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html\">Configure model explainability parameters</a>.</p>",
         "ModelQualityAppSpecification$RecordPreprocessorSourceUri": "<p>An Amazon S3 URI to a script that is called per row prior to running analysis. It can base64 decode the payload and convert it into a flatted json so that the built-in container can use the converted data. Applicable only for the built-in (first party) containers.</p>",
         "ModelQualityAppSpecification$PostAnalyticsProcessorSourceUri": "<p>An Amazon S3 URI to a script that is called after analysis has been performed. Applicable only for the built-in (first party) containers.</p>",
         "MonitoringAppSpecification$RecordPreprocessorSourceUri": "<p>An Amazon S3 URI to a script that is called per row prior to running analysis. It can base64 decode the payload and convert it into a flatted json so that the built-in container can use the converted data. Applicable only for the built-in (first party) containers.</p>",
@@ -11862,6 +11862,7 @@
         "DescribeModelOutput$VpcConfig": "<p>A <a>VpcConfig</a> object that specifies the VPC that this model has access to. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html\">Protect Endpoints by Using an Amazon Virtual Private Cloud</a> </p>",
         "DescribeTrainingJobResponse$VpcConfig": "<p>A <a>VpcConfig</a> object that specifies the VPC that this training job has access to. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html\">Protect Training Jobs by Using an Amazon Virtual Private Cloud</a>.</p>",
         "HyperParameterTrainingJobDefinition$VpcConfig": "<p>The <a>VpcConfig</a> object that specifies the VPC that you want the training jobs that this hyperparameter tuning job launches to connect to. Control access to and from your training container by configuring the VPC. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html\">Protect Training Jobs by Using an Amazon Virtual Private Cloud</a>.</p>",
+        "LabelingJobResourceConfig$VpcConfig": null,
         "MonitoringNetworkConfig$VpcConfig": null,
         "NetworkConfig$VpcConfig": null,
         "TrainingJob$VpcConfig": "<p>A <a>VpcConfig</a> object that specifies the VPC that this training job has access to. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html\">Protect Training Jobs by Using an Amazon Virtual Private Cloud</a>.</p>"
@@ -11902,6 +11903,12 @@
         "Workteam$WorkforceArn": "<p>The Amazon Resource Name (ARN) of the workforce.</p>"
       }
     },
+    "WorkforceFailureReason": {
+      "base": null,
+      "refs": {
+        "Workforce$FailureReason": "<p>The reason your workforce failed.</p>"
+      }
+    },
     "WorkforceName": {
       "base": null,
       "refs": {
@@ -11912,6 +11919,64 @@
         "ListWorkforcesRequest$NameContains": "<p>A filter you can use to search for workforces using part of the workforce name.</p>",
         "UpdateWorkforceRequest$WorkforceName": "<p>The name of the private workforce that you want to update. You can find your workforce name by using the operation.</p>",
         "Workforce$WorkforceName": "<p>The name of the private workforce.</p>"
+      }
+    },
+    "WorkforceSecurityGroupId": {
+      "base": null,
+      "refs": {
+        "WorkforceSecurityGroupIds$member": null
+      }
+    },
+    "WorkforceSecurityGroupIds": {
+      "base": null,
+      "refs": {
+        "WorkforceVpcConfigRequest$SecurityGroupIds": "<p>The VPC security group IDs, in the form sg-xxxxxxxx. The security groups must be for the same VPC as specified in the subnet.</p>",
+        "WorkforceVpcConfigResponse$SecurityGroupIds": "<p>The VPC security group IDs, in the form sg-xxxxxxxx. The security groups must be for the same VPC as specified in the subnet.</p>"
+      }
+    },
+    "WorkforceStatus": {
+      "base": null,
+      "refs": {
+        "Workforce$Status": "<p>The status of your workforce.</p>"
+      }
+    },
+    "WorkforceSubnetId": {
+      "base": null,
+      "refs": {
+        "WorkforceSubnets$member": null
+      }
+    },
+    "WorkforceSubnets": {
+      "base": null,
+      "refs": {
+        "WorkforceVpcConfigRequest$Subnets": "<p>The ID of the subnets in the VPC that you want to connect.</p>",
+        "WorkforceVpcConfigResponse$Subnets": "<p>The ID of the subnets in the VPC that you want to connect.</p>"
+      }
+    },
+    "WorkforceVpcConfigRequest": {
+      "base": "<p>The VPC object you use to create or update a workforce.</p>",
+      "refs": {
+        "CreateWorkforceRequest$WorkforceVpcConfig": "<p>Use this parameter to configure a workforce using VPC.</p>",
+        "UpdateWorkforceRequest$WorkforceVpcConfig": "<p>Use this parameter to update your VPC configuration for a workforce.</p>"
+      }
+    },
+    "WorkforceVpcConfigResponse": {
+      "base": "<p>A VpcConfig object that specifies the VPC that you want your workforce to connect to.</p>",
+      "refs": {
+        "Workforce$WorkforceVpcConfig": "<p>The configuration of a VPC workforce.</p>"
+      }
+    },
+    "WorkforceVpcEndpointId": {
+      "base": null,
+      "refs": {
+        "WorkforceVpcConfigResponse$VpcEndpointId": "<p>The IDs for the VPC service endpoints of your VPC workforce when it is created and updated.</p>"
+      }
+    },
+    "WorkforceVpcId": {
+      "base": null,
+      "refs": {
+        "WorkforceVpcConfigRequest$VpcId": "<p>The ID of the VPC that the workforce uses for communication.</p>",
+        "WorkforceVpcConfigResponse$VpcId": "<p>The ID of the VPC that the workforce uses for communication.</p>"
       }
     },
     "Workforces": {

@@ -2762,7 +2762,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"UpdateWorkforceRequest"},
-      "output":{"shape":"UpdateWorkforceResponse"}
+      "output":{"shape":"UpdateWorkforceResponse"},
+      "errors":[
+        {"shape":"ConflictException"}
+      ]
     },
     "UpdateWorkteam":{
       "name":"UpdateWorkteam",
@@ -5580,7 +5583,8 @@
         "OidcConfig":{"shape":"OidcConfig"},
         "SourceIpConfig":{"shape":"SourceIpConfig"},
         "WorkforceName":{"shape":"WorkforceName"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "WorkforceVpcConfig":{"shape":"WorkforceVpcConfigRequest"}
       }
     },
     "CreateWorkforceResponse":{
@@ -9932,7 +9936,8 @@
     "LabelingJobResourceConfig":{
       "type":"structure",
       "members":{
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "LabelingJobS3DataSource":{
@@ -16492,7 +16497,8 @@
       "members":{
         "WorkforceName":{"shape":"WorkforceName"},
         "SourceIpConfig":{"shape":"SourceIpConfig"},
-        "OidcConfig":{"shape":"OidcConfig"}
+        "OidcConfig":{"shape":"OidcConfig"},
+        "WorkforceVpcConfig":{"shape":"WorkforceVpcConfigRequest"}
       }
     },
     "UpdateWorkforceResponse":{
@@ -16706,7 +16712,10 @@
         "SubDomain":{"shape":"String"},
         "CognitoConfig":{"shape":"CognitoConfig"},
         "OidcConfig":{"shape":"OidcConfigForResponse"},
-        "CreateDate":{"shape":"Timestamp"}
+        "CreateDate":{"shape":"Timestamp"},
+        "WorkforceVpcConfig":{"shape":"WorkforceVpcConfigResponse"},
+        "Status":{"shape":"WorkforceStatus"},
+        "FailureReason":{"shape":"WorkforceFailureReason"}
       }
     },
     "WorkforceArn":{
@@ -16714,11 +16723,82 @@
       "max":256,
       "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:workforce/.*"
     },
+    "WorkforceFailureReason":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":".+"
+    },
     "WorkforceName":{
       "type":"string",
       "max":63,
       "min":1,
       "pattern":"^[a-zA-Z0-9]([a-zA-Z0-9\\-]){0,62}$"
+    },
+    "WorkforceSecurityGroupId":{
+      "type":"string",
+      "max":32,
+      "pattern":"^sg-[0-9a-z]*$"
+    },
+    "WorkforceSecurityGroupIds":{
+      "type":"list",
+      "member":{"shape":"WorkforceSecurityGroupId"},
+      "max":5,
+      "min":1
+    },
+    "WorkforceStatus":{
+      "type":"string",
+      "enum":[
+        "Initializing",
+        "Updating",
+        "Deleting",
+        "Failed",
+        "Active"
+      ]
+    },
+    "WorkforceSubnetId":{
+      "type":"string",
+      "max":32,
+      "pattern":"^subnet-[0-9a-z]*$"
+    },
+    "WorkforceSubnets":{
+      "type":"list",
+      "member":{"shape":"WorkforceSubnetId"},
+      "max":16,
+      "min":1
+    },
+    "WorkforceVpcConfigRequest":{
+      "type":"structure",
+      "members":{
+        "VpcId":{"shape":"WorkforceVpcId"},
+        "SecurityGroupIds":{"shape":"WorkforceSecurityGroupIds"},
+        "Subnets":{"shape":"WorkforceSubnets"}
+      }
+    },
+    "WorkforceVpcConfigResponse":{
+      "type":"structure",
+      "required":[
+        "VpcId",
+        "SecurityGroupIds",
+        "Subnets"
+      ],
+      "members":{
+        "VpcId":{"shape":"WorkforceVpcId"},
+        "SecurityGroupIds":{"shape":"WorkforceSecurityGroupIds"},
+        "Subnets":{"shape":"WorkforceSubnets"},
+        "VpcEndpointId":{"shape":"WorkforceVpcEndpointId"}
+      }
+    },
+    "WorkforceVpcEndpointId":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^vpce-[0-9a-z]*$"
+    },
+    "WorkforceVpcId":{
+      "type":"string",
+      "max":32,
+      "pattern":"^vpc-[0-9a-z]*$"
     },
     "Workforces":{
       "type":"list",

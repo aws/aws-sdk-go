@@ -14,6 +14,7 @@
     "DescribeModel": "<p>Provides a JSON containing the overall information about a specific ML model, including model name and ARN, dataset, training and evaluation information, status, and so on. </p>",
     "ListDataIngestionJobs": "<p>Provides a list of all data ingestion jobs, including dataset name and ARN, S3 location of the input data, status, and so on. </p>",
     "ListDatasets": "<p>Lists all datasets currently available in your account, filtering on the dataset name. </p>",
+    "ListInferenceEvents": "<p> Lists all inference events that have been found for the specified inference scheduler. </p>",
     "ListInferenceExecutions": "<p> Lists all inference executions that have been performed by the specified inference scheduler. </p>",
     "ListInferenceSchedulers": "<p>Retrieves a list of all inference schedulers currently available for your account. </p>",
     "ListModels": "<p>Generates a list of all models in the account, including model name and ARN, dataset, and status. </p>",
@@ -299,6 +300,12 @@
         "DataQualitySummary$DuplicateTimestamps": "<p> Parameter that gives information about duplicate timestamps in the input data. </p>"
       }
     },
+    "EventDurationInSeconds": {
+      "base": null,
+      "refs": {
+        "InferenceEventSummary$EventDurationInSeconds": "<p> Indicates the size of an inference event in seconds. </p>"
+      }
+    },
     "FileNameTimestampFormat": {
       "base": null,
       "refs": {
@@ -331,6 +338,18 @@
         "CreateInferenceSchedulerRequest$ClientToken": "<p> A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one. </p>",
         "CreateModelRequest$ClientToken": "<p>A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one. </p>",
         "StartDataIngestionJobRequest$ClientToken": "<p> A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one. </p>"
+      }
+    },
+    "InferenceEventSummaries": {
+      "base": null,
+      "refs": {
+        "ListInferenceEventsResponse$InferenceEventSummaries": "<p>Provides an array of information about the individual inference events returned from the <code>ListInferenceEvents</code> operation, including scheduler used, event start time, event end time, diagnostics, and so on. </p>"
+      }
+    },
+    "InferenceEventSummary": {
+      "base": "<p>Contains information about the specific inference event, including start and end time, diagnostics information, event duration and so on.</p>",
+      "refs": {
+        "InferenceEventSummaries$member": null
       }
     },
     "InferenceExecutionStatus": {
@@ -393,6 +412,7 @@
       "refs": {
         "CreateInferenceSchedulerResponse$InferenceSchedulerArn": "<p>The Amazon Resource Name (ARN) of the inference scheduler being created. </p>",
         "DescribeInferenceSchedulerResponse$InferenceSchedulerArn": "<p>The Amazon Resource Name (ARN) of the inference scheduler being described. </p>",
+        "InferenceEventSummary$InferenceSchedulerArn": "<p> The Amazon Resource Name (ARN) of the inference scheduler being used for the inference event. </p>",
         "InferenceExecutionSummary$InferenceSchedulerArn": "<p> The Amazon Resource Name (ARN) of the inference scheduler being used for the inference execution. </p>",
         "InferenceSchedulerSummary$InferenceSchedulerArn": "<p> The Amazon Resource Name (ARN) of the inference scheduler. </p>",
         "StartInferenceSchedulerResponse$InferenceSchedulerArn": "<p>The Amazon Resource Name (ARN) of the inference scheduler being started. </p>",
@@ -404,6 +424,7 @@
       "refs": {
         "DeleteInferenceSchedulerRequest$InferenceSchedulerName": "<p>The name of the inference scheduler to be deleted. </p>",
         "DescribeInferenceSchedulerRequest$InferenceSchedulerName": "<p>The name of the inference scheduler being described. </p>",
+        "ListInferenceEventsRequest$InferenceSchedulerName": "<p>The name of the inference scheduler for the inference events listed. </p>",
         "ListInferenceExecutionsRequest$InferenceSchedulerName": "<p>The name of the inference scheduler for the inference execution listed. </p>",
         "ListInferenceSchedulersRequest$InferenceSchedulerNameBeginsWith": "<p>The beginning of the name of the inference schedulers to be listed. </p>",
         "StartInferenceSchedulerRequest$InferenceSchedulerName": "<p>The name of the inference scheduler to be started. </p>",
@@ -417,6 +438,7 @@
         "CreateInferenceSchedulerRequest$InferenceSchedulerName": "<p>The name of the inference scheduler being created. </p>",
         "CreateInferenceSchedulerResponse$InferenceSchedulerName": "<p>The name of inference scheduler being created. </p>",
         "DescribeInferenceSchedulerResponse$InferenceSchedulerName": "<p>The name of the inference scheduler being described. </p>",
+        "InferenceEventSummary$InferenceSchedulerName": "<p>The name of the inference scheduler being used for the inference events. </p>",
         "InferenceExecutionSummary$InferenceSchedulerName": "<p>The name of the inference scheduler being used for the inference execution. </p>",
         "InferenceSchedulerSummary$InferenceSchedulerName": "<p>The name of the inference scheduler. </p>",
         "StartInferenceSchedulerResponse$InferenceSchedulerName": "<p>The name of the inference scheduler being started. </p>",
@@ -583,6 +605,16 @@
       "refs": {
       }
     },
+    "ListInferenceEventsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInferenceEventsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListInferenceExecutionsRequest": {
       "base": null,
       "refs": {
@@ -644,6 +676,7 @@
       "refs": {
         "ListDataIngestionJobsRequest$MaxResults": "<p> Specifies the maximum number of data ingestion jobs to list. </p>",
         "ListDatasetsRequest$MaxResults": "<p> Specifies the maximum number of datasets to list. </p>",
+        "ListInferenceEventsRequest$MaxResults": "<p>Specifies the maximum number of inference events to list. </p>",
         "ListInferenceExecutionsRequest$MaxResults": "<p>Specifies the maximum number of inference executions to list. </p>",
         "ListInferenceSchedulersRequest$MaxResults": "<p> Specifies the maximum number of inference schedulers to list. </p>",
         "ListModelsRequest$MaxResults": "<p> Specifies the maximum number of ML models to list. </p>",
@@ -678,7 +711,8 @@
     "ModelMetrics": {
       "base": null,
       "refs": {
-        "DescribeModelResponse$ModelMetrics": "<p>The Model Metrics show an aggregated summary of the model's performance within the evaluation time range. This is the JSON content of the metrics created when evaluating the model. </p>"
+        "DescribeModelResponse$ModelMetrics": "<p>The Model Metrics show an aggregated summary of the model's performance within the evaluation time range. This is the JSON content of the metrics created when evaluating the model. </p>",
+        "InferenceEventSummary$Diagnostics": "<p> An array which specifies the names and values of all sensors contributing to an inference event.</p>"
       }
     },
     "ModelName": {
@@ -754,6 +788,8 @@
         "ListDataIngestionJobsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of data ingestion jobs. </p>",
         "ListDatasetsRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of datasets. </p>",
         "ListDatasetsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of datasets. </p>",
+        "ListInferenceEventsRequest$NextToken": "<p>An opaque pagination token indicating where to continue the listing of inference events.</p>",
+        "ListInferenceEventsResponse$NextToken": "<p>An opaque pagination token indicating where to continue the listing of inference executions. </p>",
         "ListInferenceExecutionsRequest$NextToken": "<p>An opaque pagination token indicating where to continue the listing of inference executions.</p>",
         "ListInferenceExecutionsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of inference executions. </p>",
         "ListInferenceSchedulersRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of inference schedulers. </p>",
@@ -949,7 +985,7 @@
         "DescribeDataIngestionJobResponse$CreatedAt": "<p>The time at which the data ingestion job was created. </p>",
         "DescribeDataIngestionJobResponse$DataStartTime": "<p> Indicates the earliest timestamp corresponding to data that was successfully ingested during this specific ingestion job. </p>",
         "DescribeDataIngestionJobResponse$DataEndTime": "<p> Indicates the latest timestamp corresponding to data that was successfully ingested during this specific ingestion job. </p>",
-        "DescribeDatasetResponse$CreatedAt": "<p>Specifies the time the dataset was created in Amazon Lookout for Equipment. </p>",
+        "DescribeDatasetResponse$CreatedAt": "<p>Specifies the time the dataset was created in Lookout for Equipment. </p>",
         "DescribeDatasetResponse$LastUpdatedAt": "<p>Specifies the time the dataset was last updated, if it was. </p>",
         "DescribeDatasetResponse$DataStartTime": "<p> Indicates the earliest timestamp corresponding to data that was successfully ingested during the most recent ingestion of this particular dataset. </p>",
         "DescribeDatasetResponse$DataEndTime": "<p> Indicates the latest timestamp corresponding to data that was successfully ingested during the most recent ingestion of this particular dataset. </p>",
@@ -963,9 +999,13 @@
         "DescribeModelResponse$TrainingExecutionEndTime": "<p>Indicates the time at which the training of the ML model was completed. </p>",
         "DescribeModelResponse$LastUpdatedTime": "<p>Indicates the last time the ML model was updated. The type of update is not specified. </p>",
         "DescribeModelResponse$CreatedAt": "<p>Indicates the time and date at which the ML model was created. </p>",
+        "InferenceEventSummary$EventStartTime": "<p>Indicates the starting time of an inference event. </p>",
+        "InferenceEventSummary$EventEndTime": "<p>Indicates the ending time of an inference event. </p>",
         "InferenceExecutionSummary$ScheduledStartTime": "<p>Indicates the start time at which the inference scheduler began the specific inference execution. </p>",
         "InferenceExecutionSummary$DataStartTime": "<p>Indicates the time reference in the dataset at which the inference execution began. </p>",
         "InferenceExecutionSummary$DataEndTime": "<p>Indicates the time reference in the dataset at which the inference execution stopped. </p>",
+        "ListInferenceEventsRequest$IntervalStartTime": "<p> Lookout for Equipment will return all the inference events with start time equal to or greater than the start time given.</p>",
+        "ListInferenceEventsRequest$IntervalEndTime": "<p>Lookout for Equipment will return all the inference events with end time equal to or less than the end time given.</p>",
         "ListInferenceExecutionsRequest$DataStartTimeAfter": "<p>The time reference in the inferenced dataset after which Amazon Lookout for Equipment started the inference execution. </p>",
         "ListInferenceExecutionsRequest$DataEndTimeBefore": "<p>The time reference in the inferenced dataset before which Amazon Lookout for Equipment stopped the inference execution. </p>",
         "ModelSummary$CreatedAt": "<p>The time at which the specific model was created. </p>",

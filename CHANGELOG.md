@@ -1,3 +1,15 @@
+Release v1.44.41 (2022-06-23)
+===
+
+### Service Client Updates
+* `service/lookoutequipment`: Updates service API, documentation, and paginators
+* `service/mediaconvert`: Updates service documentation
+  * AWS Elemental MediaConvert SDK has released support for automatic DolbyVision metadata generation when converting HDR10 to DolbyVision.
+* `service/mgn`: Updates service API, documentation, and paginators
+* `service/migration-hub-refactor-spaces`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker Ground Truth now supports Virtual Private Cloud. Customers can launch labeling jobs and access to their private workforce in VPC mode.
+
 Release v1.44.40 (2022-06-22)
 ===
 

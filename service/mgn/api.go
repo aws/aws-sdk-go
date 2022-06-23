@@ -104,6 +104,91 @@ func (c *Mgn) ChangeServerLifeCycleStateWithContext(ctx aws.Context, input *Chan
 	return out, req.Send()
 }
 
+const opCreateLaunchConfigurationTemplate = "CreateLaunchConfigurationTemplate"
+
+// CreateLaunchConfigurationTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLaunchConfigurationTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLaunchConfigurationTemplate for more information on using the CreateLaunchConfigurationTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateLaunchConfigurationTemplateRequest method.
+//    req, resp := client.CreateLaunchConfigurationTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/CreateLaunchConfigurationTemplate
+func (c *Mgn) CreateLaunchConfigurationTemplateRequest(input *CreateLaunchConfigurationTemplateInput) (req *request.Request, output *CreateLaunchConfigurationTemplateOutput) {
+	op := &request.Operation{
+		Name:       opCreateLaunchConfigurationTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CreateLaunchConfigurationTemplate",
+	}
+
+	if input == nil {
+		input = &CreateLaunchConfigurationTemplateInput{}
+	}
+
+	output = &CreateLaunchConfigurationTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLaunchConfigurationTemplate API operation for Application Migration Service.
+//
+// Creates a new ReplicationConfigurationTemplate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation CreateLaunchConfigurationTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * UninitializedAccountException
+//   Uninitialized account exception.
+//
+//   * ValidationException
+//   Validate exception.
+//
+//   * AccessDeniedException
+//   Operating denied due to a file permission or access check error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/CreateLaunchConfigurationTemplate
+func (c *Mgn) CreateLaunchConfigurationTemplate(input *CreateLaunchConfigurationTemplateInput) (*CreateLaunchConfigurationTemplateOutput, error) {
+	req, out := c.CreateLaunchConfigurationTemplateRequest(input)
+	return out, req.Send()
+}
+
+// CreateLaunchConfigurationTemplateWithContext is the same as CreateLaunchConfigurationTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLaunchConfigurationTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) CreateLaunchConfigurationTemplateWithContext(ctx aws.Context, input *CreateLaunchConfigurationTemplateInput, opts ...request.Option) (*CreateLaunchConfigurationTemplateOutput, error) {
+	req, out := c.CreateLaunchConfigurationTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateReplicationConfigurationTemplate = "CreateReplicationConfigurationTemplate"
 
 // CreateReplicationConfigurationTemplateRequest generates a "aws/request.Request" representing the
@@ -271,6 +356,93 @@ func (c *Mgn) DeleteJob(input *DeleteJobInput) (*DeleteJobOutput, error) {
 // for more information on using Contexts.
 func (c *Mgn) DeleteJobWithContext(ctx aws.Context, input *DeleteJobInput, opts ...request.Option) (*DeleteJobOutput, error) {
 	req, out := c.DeleteJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteLaunchConfigurationTemplate = "DeleteLaunchConfigurationTemplate"
+
+// DeleteLaunchConfigurationTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteLaunchConfigurationTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteLaunchConfigurationTemplate for more information on using the DeleteLaunchConfigurationTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteLaunchConfigurationTemplateRequest method.
+//    req, resp := client.DeleteLaunchConfigurationTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/DeleteLaunchConfigurationTemplate
+func (c *Mgn) DeleteLaunchConfigurationTemplateRequest(input *DeleteLaunchConfigurationTemplateInput) (req *request.Request, output *DeleteLaunchConfigurationTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDeleteLaunchConfigurationTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeleteLaunchConfigurationTemplate",
+	}
+
+	if input == nil {
+		input = &DeleteLaunchConfigurationTemplateInput{}
+	}
+
+	output = &DeleteLaunchConfigurationTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteLaunchConfigurationTemplate API operation for Application Migration Service.
+//
+// Creates a new ReplicationConfigurationTemplate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation DeleteLaunchConfigurationTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * UninitializedAccountException
+//   Uninitialized account exception.
+//
+//   * ResourceNotFoundException
+//   Resource not found exception.
+//
+//   * ConflictException
+//   The request could not be completed due to a conflict with the current state
+//   of the target resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/DeleteLaunchConfigurationTemplate
+func (c *Mgn) DeleteLaunchConfigurationTemplate(input *DeleteLaunchConfigurationTemplateInput) (*DeleteLaunchConfigurationTemplateOutput, error) {
+	req, out := c.DeleteLaunchConfigurationTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DeleteLaunchConfigurationTemplateWithContext is the same as DeleteLaunchConfigurationTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteLaunchConfigurationTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) DeleteLaunchConfigurationTemplateWithContext(ctx aws.Context, input *DeleteLaunchConfigurationTemplateInput, opts ...request.Option) (*DeleteLaunchConfigurationTemplateOutput, error) {
+	req, out := c.DeleteLaunchConfigurationTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -814,6 +986,149 @@ func (c *Mgn) DescribeJobsPagesWithContext(ctx aws.Context, input *DescribeJobsI
 
 	for p.Next() {
 		if !fn(p.Page().(*DescribeJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeLaunchConfigurationTemplates = "DescribeLaunchConfigurationTemplates"
+
+// DescribeLaunchConfigurationTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLaunchConfigurationTemplates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLaunchConfigurationTemplates for more information on using the DescribeLaunchConfigurationTemplates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeLaunchConfigurationTemplatesRequest method.
+//    req, resp := client.DescribeLaunchConfigurationTemplatesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/DescribeLaunchConfigurationTemplates
+func (c *Mgn) DescribeLaunchConfigurationTemplatesRequest(input *DescribeLaunchConfigurationTemplatesInput) (req *request.Request, output *DescribeLaunchConfigurationTemplatesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLaunchConfigurationTemplates,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DescribeLaunchConfigurationTemplates",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeLaunchConfigurationTemplatesInput{}
+	}
+
+	output = &DescribeLaunchConfigurationTemplatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLaunchConfigurationTemplates API operation for Application Migration Service.
+//
+// Creates a new ReplicationConfigurationTemplate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation DescribeLaunchConfigurationTemplates for usage and error information.
+//
+// Returned Error Types:
+//   * UninitializedAccountException
+//   Uninitialized account exception.
+//
+//   * ResourceNotFoundException
+//   Resource not found exception.
+//
+//   * ValidationException
+//   Validate exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/DescribeLaunchConfigurationTemplates
+func (c *Mgn) DescribeLaunchConfigurationTemplates(input *DescribeLaunchConfigurationTemplatesInput) (*DescribeLaunchConfigurationTemplatesOutput, error) {
+	req, out := c.DescribeLaunchConfigurationTemplatesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLaunchConfigurationTemplatesWithContext is the same as DescribeLaunchConfigurationTemplates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLaunchConfigurationTemplates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) DescribeLaunchConfigurationTemplatesWithContext(ctx aws.Context, input *DescribeLaunchConfigurationTemplatesInput, opts ...request.Option) (*DescribeLaunchConfigurationTemplatesOutput, error) {
+	req, out := c.DescribeLaunchConfigurationTemplatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeLaunchConfigurationTemplatesPages iterates over the pages of a DescribeLaunchConfigurationTemplates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeLaunchConfigurationTemplates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeLaunchConfigurationTemplates operation.
+//    pageNum := 0
+//    err := client.DescribeLaunchConfigurationTemplatesPages(params,
+//        func(page *mgn.DescribeLaunchConfigurationTemplatesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Mgn) DescribeLaunchConfigurationTemplatesPages(input *DescribeLaunchConfigurationTemplatesInput, fn func(*DescribeLaunchConfigurationTemplatesOutput, bool) bool) error {
+	return c.DescribeLaunchConfigurationTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeLaunchConfigurationTemplatesPagesWithContext same as DescribeLaunchConfigurationTemplatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) DescribeLaunchConfigurationTemplatesPagesWithContext(ctx aws.Context, input *DescribeLaunchConfigurationTemplatesInput, fn func(*DescribeLaunchConfigurationTemplatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeLaunchConfigurationTemplatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeLaunchConfigurationTemplatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeLaunchConfigurationTemplatesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2592,6 +2907,94 @@ func (c *Mgn) UpdateLaunchConfigurationWithContext(ctx aws.Context, input *Updat
 	return out, req.Send()
 }
 
+const opUpdateLaunchConfigurationTemplate = "UpdateLaunchConfigurationTemplate"
+
+// UpdateLaunchConfigurationTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLaunchConfigurationTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLaunchConfigurationTemplate for more information on using the UpdateLaunchConfigurationTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateLaunchConfigurationTemplateRequest method.
+//    req, resp := client.UpdateLaunchConfigurationTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/UpdateLaunchConfigurationTemplate
+func (c *Mgn) UpdateLaunchConfigurationTemplateRequest(input *UpdateLaunchConfigurationTemplateInput) (req *request.Request, output *UpdateLaunchConfigurationTemplateOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLaunchConfigurationTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/UpdateLaunchConfigurationTemplate",
+	}
+
+	if input == nil {
+		input = &UpdateLaunchConfigurationTemplateInput{}
+	}
+
+	output = &UpdateLaunchConfigurationTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateLaunchConfigurationTemplate API operation for Application Migration Service.
+//
+// Creates a new ReplicationConfigurationTemplate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation UpdateLaunchConfigurationTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * UninitializedAccountException
+//   Uninitialized account exception.
+//
+//   * ResourceNotFoundException
+//   Resource not found exception.
+//
+//   * ValidationException
+//   Validate exception.
+//
+//   * AccessDeniedException
+//   Operating denied due to a file permission or access check error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/UpdateLaunchConfigurationTemplate
+func (c *Mgn) UpdateLaunchConfigurationTemplate(input *UpdateLaunchConfigurationTemplateInput) (*UpdateLaunchConfigurationTemplateOutput, error) {
+	req, out := c.UpdateLaunchConfigurationTemplateRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLaunchConfigurationTemplateWithContext is the same as UpdateLaunchConfigurationTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLaunchConfigurationTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) UpdateLaunchConfigurationTemplateWithContext(ctx aws.Context, input *UpdateLaunchConfigurationTemplateInput, opts ...request.Option) (*UpdateLaunchConfigurationTemplateOutput, error) {
+	req, out := c.UpdateLaunchConfigurationTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateReplicationConfiguration = "UpdateReplicationConfiguration"
 
 // UpdateReplicationConfigurationRequest generates a "aws/request.Request" representing the
@@ -3210,6 +3613,9 @@ type ConflictException struct {
 
 	Code_ *string `locationName:"code" type:"string"`
 
+	// Conflict Exception specific errors.
+	Errors []*ErrorDetails `locationName:"errors" type:"list"`
+
 	Message_ *string `locationName:"message" type:"string"`
 
 	// A conflict occurred when prompting for the Resource ID.
@@ -3273,6 +3679,131 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type CreateLaunchConfigurationTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// Request to associate the default Application Migration Service Security group
+	// with the Replication Settings template.
+	PostLaunchActions *PostLaunchActions `locationName:"postLaunchActions" type:"structure"`
+
+	// Request to associate the default Application Migration Service Security group
+	// with the Replication Settings template.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateLaunchConfigurationTemplateInput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLaunchConfigurationTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLaunchConfigurationTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLaunchConfigurationTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLaunchConfigurationTemplateInput"}
+	if s.PostLaunchActions != nil {
+		if err := s.PostLaunchActions.Validate(); err != nil {
+			invalidParams.AddNested("PostLaunchActions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPostLaunchActions sets the PostLaunchActions field's value.
+func (s *CreateLaunchConfigurationTemplateInput) SetPostLaunchActions(v *PostLaunchActions) *CreateLaunchConfigurationTemplateInput {
+	s.PostLaunchActions = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLaunchConfigurationTemplateInput) SetTags(v map[string]*string) *CreateLaunchConfigurationTemplateInput {
+	s.Tags = v
+	return s
+}
+
+type CreateLaunchConfigurationTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Copy Private IP during Launch Configuration.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// Copy Private IP during Launch Configuration.
+	//
+	// LaunchConfigurationTemplateID is a required field
+	LaunchConfigurationTemplateID *string `locationName:"launchConfigurationTemplateID" min:"21" type:"string" required:"true"`
+
+	// Copy Private IP during Launch Configuration.
+	PostLaunchActions *PostLaunchActions `locationName:"postLaunchActions" type:"structure"`
+
+	// Copy Private IP during Launch Configuration.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateLaunchConfigurationTemplateOutput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLaunchConfigurationTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLaunchConfigurationTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateLaunchConfigurationTemplateOutput) SetArn(v string) *CreateLaunchConfigurationTemplateOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetLaunchConfigurationTemplateID sets the LaunchConfigurationTemplateID field's value.
+func (s *CreateLaunchConfigurationTemplateOutput) SetLaunchConfigurationTemplateID(v string) *CreateLaunchConfigurationTemplateOutput {
+	s.LaunchConfigurationTemplateID = &v
+	return s
+}
+
+// SetPostLaunchActions sets the PostLaunchActions field's value.
+func (s *CreateLaunchConfigurationTemplateOutput) SetPostLaunchActions(v *PostLaunchActions) *CreateLaunchConfigurationTemplateOutput {
+	s.PostLaunchActions = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLaunchConfigurationTemplateOutput) SetTags(v map[string]*string) *CreateLaunchConfigurationTemplateOutput {
+	s.Tags = v
+	return s
 }
 
 type CreateReplicationConfigurationTemplateInput struct {
@@ -3727,7 +4258,7 @@ type DataReplicationInfo struct {
 	EtaDateTime *string `locationName:"etaDateTime" min:"19" type:"string"`
 
 	// Request to query data replication lag duration.
-	LagDuration *string `locationName:"lagDuration" min:"19" type:"string"`
+	LagDuration *string `locationName:"lagDuration" min:"1" type:"string"`
 
 	// Request to query data replication last snapshot time.
 	LastSnapshotDateTime *string `locationName:"lastSnapshotDateTime" min:"19" type:"string"`
@@ -4023,6 +4554,77 @@ func (s DeleteJobOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteJobOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteLaunchConfigurationTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of resource to be deleted.
+	//
+	// LaunchConfigurationTemplateID is a required field
+	LaunchConfigurationTemplateID *string `locationName:"launchConfigurationTemplateID" min:"21" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLaunchConfigurationTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLaunchConfigurationTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLaunchConfigurationTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLaunchConfigurationTemplateInput"}
+	if s.LaunchConfigurationTemplateID == nil {
+		invalidParams.Add(request.NewErrParamRequired("LaunchConfigurationTemplateID"))
+	}
+	if s.LaunchConfigurationTemplateID != nil && len(*s.LaunchConfigurationTemplateID) < 21 {
+		invalidParams.Add(request.NewErrParamMinLen("LaunchConfigurationTemplateID", 21))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLaunchConfigurationTemplateID sets the LaunchConfigurationTemplateID field's value.
+func (s *DeleteLaunchConfigurationTemplateInput) SetLaunchConfigurationTemplateID(v string) *DeleteLaunchConfigurationTemplateInput {
+	s.LaunchConfigurationTemplateID = &v
+	return s
+}
+
+type DeleteLaunchConfigurationTemplateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLaunchConfigurationTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLaunchConfigurationTemplateOutput) GoString() string {
 	return s.String()
 }
 
@@ -4520,6 +5122,108 @@ func (s *DescribeJobsRequestFilters) SetJobIDs(v []*string) *DescribeJobsRequest
 // SetToDate sets the ToDate field's value.
 func (s *DescribeJobsRequestFilters) SetToDate(v string) *DescribeJobsRequestFilters {
 	s.ToDate = &v
+	return s
+}
+
+type DescribeLaunchConfigurationTemplatesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Request to disconnect Source Server from service by Server ID.
+	LaunchConfigurationTemplateIDs []*string `locationName:"launchConfigurationTemplateIDs" type:"list"`
+
+	// Request to disconnect Source Server from service by Server ID.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// Request to disconnect Source Server from service by Server ID.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLaunchConfigurationTemplatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLaunchConfigurationTemplatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLaunchConfigurationTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLaunchConfigurationTemplatesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLaunchConfigurationTemplateIDs sets the LaunchConfigurationTemplateIDs field's value.
+func (s *DescribeLaunchConfigurationTemplatesInput) SetLaunchConfigurationTemplateIDs(v []*string) *DescribeLaunchConfigurationTemplatesInput {
+	s.LaunchConfigurationTemplateIDs = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeLaunchConfigurationTemplatesInput) SetMaxResults(v int64) *DescribeLaunchConfigurationTemplatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeLaunchConfigurationTemplatesInput) SetNextToken(v string) *DescribeLaunchConfigurationTemplatesInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeLaunchConfigurationTemplatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Request to disconnect Source Server from service by Server ID.
+	Items []*LaunchConfigurationTemplate `locationName:"items" type:"list"`
+
+	// Request to disconnect Source Server from service by Server ID.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLaunchConfigurationTemplatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLaunchConfigurationTemplatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *DescribeLaunchConfigurationTemplatesOutput) SetItems(v []*LaunchConfigurationTemplate) *DescribeLaunchConfigurationTemplatesOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeLaunchConfigurationTemplatesOutput) SetNextToken(v string) *DescribeLaunchConfigurationTemplatesOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -5085,6 +5789,65 @@ func (s *Disk) SetDeviceName(v string) *Disk {
 	return s
 }
 
+// Error details.
+type ErrorDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Error details code.
+	Code *string `locationName:"code" type:"string"`
+
+	// Error details message.
+	Message *string `locationName:"message" type:"string"`
+
+	// Error details resourceId.
+	ResourceId *string `locationName:"resourceId" type:"string"`
+
+	// Error details resourceType.
+	ResourceType *string `locationName:"resourceType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorDetails) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ErrorDetails) SetCode(v string) *ErrorDetails {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ErrorDetails) SetMessage(v string) *ErrorDetails {
+	s.Message = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ErrorDetails) SetResourceId(v string) *ErrorDetails {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ErrorDetails) SetResourceType(v string) *ErrorDetails {
+	s.ResourceType = &v
+	return s
+}
+
 type FinalizeCutoverInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5323,6 +6086,9 @@ type GetLaunchConfigurationOutput struct {
 	// Launch configuration name.
 	Name *string `locationName:"name" type:"string"`
 
+	// Server participating in Job.
+	PostLaunchActions *PostLaunchActions `locationName:"postLaunchActions" type:"structure"`
+
 	// Launch configuration Source Server ID.
 	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
 
@@ -5387,6 +6153,12 @@ func (s *GetLaunchConfigurationOutput) SetLicensing(v *Licensing) *GetLaunchConf
 // SetName sets the Name field's value.
 func (s *GetLaunchConfigurationOutput) SetName(v string) *GetLaunchConfigurationOutput {
 	s.Name = &v
+	return s
+}
+
+// SetPostLaunchActions sets the PostLaunchActions field's value.
+func (s *GetLaunchConfigurationOutput) SetPostLaunchActions(v *PostLaunchActions) *GetLaunchConfigurationOutput {
+	s.PostLaunchActions = v
 	return s
 }
 
@@ -6013,6 +6785,138 @@ func (s *JobLogEventData) SetTargetInstanceID(v string) *JobLogEventData {
 	return s
 }
 
+// Job type.
+type JobPostLaunchActionsLaunchStatus struct {
+	_ struct{} `type:"structure"`
+
+	// Job type.
+	ExecutionID *string `locationName:"executionID" type:"string"`
+
+	// Job type.
+	ExecutionStatus *string `locationName:"executionStatus" type:"string" enum:"PostLaunchActionExecutionStatus"`
+
+	// Job type.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// Job type.
+	SsmDocument *SsmDocument `locationName:"ssmDocument" type:"structure"`
+
+	// Job type.
+	SsmDocumentType *string `locationName:"ssmDocumentType" type:"string" enum:"SsmDocumentType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobPostLaunchActionsLaunchStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobPostLaunchActionsLaunchStatus) GoString() string {
+	return s.String()
+}
+
+// SetExecutionID sets the ExecutionID field's value.
+func (s *JobPostLaunchActionsLaunchStatus) SetExecutionID(v string) *JobPostLaunchActionsLaunchStatus {
+	s.ExecutionID = &v
+	return s
+}
+
+// SetExecutionStatus sets the ExecutionStatus field's value.
+func (s *JobPostLaunchActionsLaunchStatus) SetExecutionStatus(v string) *JobPostLaunchActionsLaunchStatus {
+	s.ExecutionStatus = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *JobPostLaunchActionsLaunchStatus) SetFailureReason(v string) *JobPostLaunchActionsLaunchStatus {
+	s.FailureReason = &v
+	return s
+}
+
+// SetSsmDocument sets the SsmDocument field's value.
+func (s *JobPostLaunchActionsLaunchStatus) SetSsmDocument(v *SsmDocument) *JobPostLaunchActionsLaunchStatus {
+	s.SsmDocument = v
+	return s
+}
+
+// SetSsmDocumentType sets the SsmDocumentType field's value.
+func (s *JobPostLaunchActionsLaunchStatus) SetSsmDocumentType(v string) *JobPostLaunchActionsLaunchStatus {
+	s.SsmDocumentType = &v
+	return s
+}
+
+type LaunchConfigurationTemplate struct {
+	_ struct{} `type:"structure"`
+
+	// Copy Private IP during Launch Configuration.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// Copy Private IP during Launch Configuration.
+	//
+	// LaunchConfigurationTemplateID is a required field
+	LaunchConfigurationTemplateID *string `locationName:"launchConfigurationTemplateID" min:"21" type:"string" required:"true"`
+
+	// Copy Private IP during Launch Configuration.
+	PostLaunchActions *PostLaunchActions `locationName:"postLaunchActions" type:"structure"`
+
+	// Copy Private IP during Launch Configuration.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by LaunchConfigurationTemplate's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LaunchConfigurationTemplate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LaunchConfigurationTemplate) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *LaunchConfigurationTemplate) SetArn(v string) *LaunchConfigurationTemplate {
+	s.Arn = &v
+	return s
+}
+
+// SetLaunchConfigurationTemplateID sets the LaunchConfigurationTemplateID field's value.
+func (s *LaunchConfigurationTemplate) SetLaunchConfigurationTemplateID(v string) *LaunchConfigurationTemplate {
+	s.LaunchConfigurationTemplateID = &v
+	return s
+}
+
+// SetPostLaunchActions sets the PostLaunchActions field's value.
+func (s *LaunchConfigurationTemplate) SetPostLaunchActions(v *PostLaunchActions) *LaunchConfigurationTemplate {
+	s.PostLaunchActions = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *LaunchConfigurationTemplate) SetTags(v map[string]*string) *LaunchConfigurationTemplate {
+	s.Tags = v
+	return s
+}
+
 // Launched instance.
 type LaunchedInstance struct {
 	_ struct{} `type:"structure"`
@@ -6103,7 +7007,7 @@ type LifeCycle struct {
 	AddedToServiceDateTime *string `locationName:"addedToServiceDateTime" min:"19" type:"string"`
 
 	// Lifecycle elapsed time and duration.
-	ElapsedReplicationDuration *string `locationName:"elapsedReplicationDuration" min:"19" type:"string"`
+	ElapsedReplicationDuration *string `locationName:"elapsedReplicationDuration" min:"1" type:"string"`
 
 	// Lifecycle replication initiation date and time.
 	FirstByteDateTime *string `locationName:"firstByteDateTime" min:"19" type:"string"`
@@ -6829,7 +7733,15 @@ type ParticipatingServer struct {
 	LaunchStatus *string `locationName:"launchStatus" type:"string" enum:"LaunchStatus"`
 
 	// Participating server Source Server ID.
-	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
+	LaunchedEc2InstanceID *string `locationName:"launchedEc2InstanceID" type:"string"`
+
+	// Participating server Source Server ID.
+	PostLaunchActionsStatus *PostLaunchActionsStatus `locationName:"postLaunchActionsStatus" type:"structure"`
+
+	// Participating server Source Server ID.
+	//
+	// SourceServerID is a required field
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -6856,9 +7768,156 @@ func (s *ParticipatingServer) SetLaunchStatus(v string) *ParticipatingServer {
 	return s
 }
 
+// SetLaunchedEc2InstanceID sets the LaunchedEc2InstanceID field's value.
+func (s *ParticipatingServer) SetLaunchedEc2InstanceID(v string) *ParticipatingServer {
+	s.LaunchedEc2InstanceID = &v
+	return s
+}
+
+// SetPostLaunchActionsStatus sets the PostLaunchActionsStatus field's value.
+func (s *ParticipatingServer) SetPostLaunchActionsStatus(v *PostLaunchActionsStatus) *ParticipatingServer {
+	s.PostLaunchActionsStatus = v
+	return s
+}
+
 // SetSourceServerID sets the SourceServerID field's value.
 func (s *ParticipatingServer) SetSourceServerID(v string) *ParticipatingServer {
 	s.SourceServerID = &v
+	return s
+}
+
+// Server participating in Job.
+type PostLaunchActions struct {
+	_ struct{} `type:"structure"`
+
+	// Server participating in Job.
+	CloudWatchLogGroupName *string `locationName:"cloudWatchLogGroupName" min:"1" type:"string"`
+
+	// Server participating in Job.
+	Deployment *string `locationName:"deployment" type:"string" enum:"PostLaunchActionsDeploymentType"`
+
+	// Server participating in Job.
+	S3LogBucket *string `locationName:"s3LogBucket" min:"3" type:"string"`
+
+	// Server participating in Job.
+	S3OutputKeyPrefix *string `locationName:"s3OutputKeyPrefix" type:"string"`
+
+	// Server participating in Job.
+	SsmDocuments []*SsmDocument `locationName:"ssmDocuments" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostLaunchActions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostLaunchActions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PostLaunchActions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PostLaunchActions"}
+	if s.CloudWatchLogGroupName != nil && len(*s.CloudWatchLogGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CloudWatchLogGroupName", 1))
+	}
+	if s.S3LogBucket != nil && len(*s.S3LogBucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("S3LogBucket", 3))
+	}
+	if s.SsmDocuments != nil {
+		for i, v := range s.SsmDocuments {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SsmDocuments", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCloudWatchLogGroupName sets the CloudWatchLogGroupName field's value.
+func (s *PostLaunchActions) SetCloudWatchLogGroupName(v string) *PostLaunchActions {
+	s.CloudWatchLogGroupName = &v
+	return s
+}
+
+// SetDeployment sets the Deployment field's value.
+func (s *PostLaunchActions) SetDeployment(v string) *PostLaunchActions {
+	s.Deployment = &v
+	return s
+}
+
+// SetS3LogBucket sets the S3LogBucket field's value.
+func (s *PostLaunchActions) SetS3LogBucket(v string) *PostLaunchActions {
+	s.S3LogBucket = &v
+	return s
+}
+
+// SetS3OutputKeyPrefix sets the S3OutputKeyPrefix field's value.
+func (s *PostLaunchActions) SetS3OutputKeyPrefix(v string) *PostLaunchActions {
+	s.S3OutputKeyPrefix = &v
+	return s
+}
+
+// SetSsmDocuments sets the SsmDocuments field's value.
+func (s *PostLaunchActions) SetSsmDocuments(v []*SsmDocument) *PostLaunchActions {
+	s.SsmDocuments = v
+	return s
+}
+
+// Server participating in Job.
+type PostLaunchActionsStatus struct {
+	_ struct{} `type:"structure"`
+
+	// Server participating in Job.
+	PostLaunchActionsLaunchStatusList []*JobPostLaunchActionsLaunchStatus `locationName:"postLaunchActionsLaunchStatusList" type:"list"`
+
+	// Server participating in Job.
+	SsmAgentDiscoveryDatetime *string `locationName:"ssmAgentDiscoveryDatetime" min:"19" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostLaunchActionsStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostLaunchActionsStatus) GoString() string {
+	return s.String()
+}
+
+// SetPostLaunchActionsLaunchStatusList sets the PostLaunchActionsLaunchStatusList field's value.
+func (s *PostLaunchActionsStatus) SetPostLaunchActionsLaunchStatusList(v []*JobPostLaunchActionsLaunchStatus) *PostLaunchActionsStatus {
+	s.PostLaunchActionsLaunchStatusList = v
+	return s
+}
+
+// SetSsmAgentDiscoveryDatetime sets the SsmAgentDiscoveryDatetime field's value.
+func (s *PostLaunchActionsStatus) SetSsmAgentDiscoveryDatetime(v string) *PostLaunchActionsStatus {
+	s.SsmAgentDiscoveryDatetime = &v
 	return s
 }
 
@@ -7624,6 +8683,145 @@ func (s *SourceServer) SetTags(v map[string]*string) *SourceServer {
 // SetVcenterClientID sets the VcenterClientID field's value.
 func (s *SourceServer) SetVcenterClientID(v string) *SourceServer {
 	s.VcenterClientID = &v
+	return s
+}
+
+// Source server replication type.
+type SsmDocument struct {
+	_ struct{} `type:"structure"`
+
+	// Source server replication type.
+	//
+	// ActionName is a required field
+	ActionName *string `locationName:"actionName" type:"string" required:"true"`
+
+	// Source server replication type.
+	MustSucceedForCutover *bool `locationName:"mustSucceedForCutover" type:"boolean"`
+
+	// Source server replication type.
+	Parameters map[string][]*SsmParameterStoreParameter `locationName:"parameters" type:"map"`
+
+	// Source server replication type.
+	//
+	// SsmDocumentName is a required field
+	SsmDocumentName *string `locationName:"ssmDocumentName" min:"3" type:"string" required:"true"`
+
+	// Source server replication type.
+	TimeoutSeconds *int64 `locationName:"timeoutSeconds" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SsmDocument) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SsmDocument) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SsmDocument) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SsmDocument"}
+	if s.ActionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionName"))
+	}
+	if s.SsmDocumentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SsmDocumentName"))
+	}
+	if s.SsmDocumentName != nil && len(*s.SsmDocumentName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("SsmDocumentName", 3))
+	}
+	if s.TimeoutSeconds != nil && *s.TimeoutSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TimeoutSeconds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionName sets the ActionName field's value.
+func (s *SsmDocument) SetActionName(v string) *SsmDocument {
+	s.ActionName = &v
+	return s
+}
+
+// SetMustSucceedForCutover sets the MustSucceedForCutover field's value.
+func (s *SsmDocument) SetMustSucceedForCutover(v bool) *SsmDocument {
+	s.MustSucceedForCutover = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *SsmDocument) SetParameters(v map[string][]*SsmParameterStoreParameter) *SsmDocument {
+	s.Parameters = v
+	return s
+}
+
+// SetSsmDocumentName sets the SsmDocumentName field's value.
+func (s *SsmDocument) SetSsmDocumentName(v string) *SsmDocument {
+	s.SsmDocumentName = &v
+	return s
+}
+
+// SetTimeoutSeconds sets the TimeoutSeconds field's value.
+func (s *SsmDocument) SetTimeoutSeconds(v int64) *SsmDocument {
+	s.TimeoutSeconds = &v
+	return s
+}
+
+// Source server replication type.
+type SsmParameterStoreParameter struct {
+	_ struct{} `type:"structure"`
+
+	// Source server replication type.
+	//
+	// ParameterName is a required field
+	ParameterName *string `locationName:"parameterName" min:"1" type:"string" required:"true"`
+
+	// Source server replication type.
+	//
+	// ParameterType is a required field
+	ParameterType *string `locationName:"parameterType" type:"string" required:"true" enum:"SsmParameterStoreParameterType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SsmParameterStoreParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SsmParameterStoreParameter) GoString() string {
+	return s.String()
+}
+
+// SetParameterName sets the ParameterName field's value.
+func (s *SsmParameterStoreParameter) SetParameterName(v string) *SsmParameterStoreParameter {
+	s.ParameterName = &v
+	return s
+}
+
+// SetParameterType sets the ParameterType field's value.
+func (s *SsmParameterStoreParameter) SetParameterType(v string) *SsmParameterStoreParameter {
+	s.ParameterType = &v
 	return s
 }
 
@@ -8409,6 +9607,9 @@ type UpdateLaunchConfigurationInput struct {
 	// Update Launch configuration name request.
 	Name *string `locationName:"name" type:"string"`
 
+	// Server participating in Job.
+	PostLaunchActions *PostLaunchActions `locationName:"postLaunchActions" type:"structure"`
+
 	// Update Launch configuration by Source Server ID request.
 	//
 	// SourceServerID is a required field
@@ -8444,6 +9645,11 @@ func (s *UpdateLaunchConfigurationInput) Validate() error {
 	}
 	if s.SourceServerID != nil && len(*s.SourceServerID) < 19 {
 		invalidParams.Add(request.NewErrParamMinLen("SourceServerID", 19))
+	}
+	if s.PostLaunchActions != nil {
+		if err := s.PostLaunchActions.Validate(); err != nil {
+			invalidParams.AddNested("PostLaunchActions", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8488,6 +9694,12 @@ func (s *UpdateLaunchConfigurationInput) SetName(v string) *UpdateLaunchConfigur
 	return s
 }
 
+// SetPostLaunchActions sets the PostLaunchActions field's value.
+func (s *UpdateLaunchConfigurationInput) SetPostLaunchActions(v *PostLaunchActions) *UpdateLaunchConfigurationInput {
+	s.PostLaunchActions = v
+	return s
+}
+
 // SetSourceServerID sets the SourceServerID field's value.
 func (s *UpdateLaunchConfigurationInput) SetSourceServerID(v string) *UpdateLaunchConfigurationInput {
 	s.SourceServerID = &v
@@ -8523,6 +9735,9 @@ type UpdateLaunchConfigurationOutput struct {
 
 	// Launch configuration name.
 	Name *string `locationName:"name" type:"string"`
+
+	// Server participating in Job.
+	PostLaunchActions *PostLaunchActions `locationName:"postLaunchActions" type:"structure"`
 
 	// Launch configuration Source Server ID.
 	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
@@ -8591,6 +9806,12 @@ func (s *UpdateLaunchConfigurationOutput) SetName(v string) *UpdateLaunchConfigu
 	return s
 }
 
+// SetPostLaunchActions sets the PostLaunchActions field's value.
+func (s *UpdateLaunchConfigurationOutput) SetPostLaunchActions(v *PostLaunchActions) *UpdateLaunchConfigurationOutput {
+	s.PostLaunchActions = v
+	return s
+}
+
 // SetSourceServerID sets the SourceServerID field's value.
 func (s *UpdateLaunchConfigurationOutput) SetSourceServerID(v string) *UpdateLaunchConfigurationOutput {
 	s.SourceServerID = &v
@@ -8600,6 +9821,133 @@ func (s *UpdateLaunchConfigurationOutput) SetSourceServerID(v string) *UpdateLau
 // SetTargetInstanceTypeRightSizingMethod sets the TargetInstanceTypeRightSizingMethod field's value.
 func (s *UpdateLaunchConfigurationOutput) SetTargetInstanceTypeRightSizingMethod(v string) *UpdateLaunchConfigurationOutput {
 	s.TargetInstanceTypeRightSizingMethod = &v
+	return s
+}
+
+type UpdateLaunchConfigurationTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// Update Launch configuration Target instance right sizing request.
+	//
+	// LaunchConfigurationTemplateID is a required field
+	LaunchConfigurationTemplateID *string `locationName:"launchConfigurationTemplateID" min:"21" type:"string" required:"true"`
+
+	// Update Launch configuration Target instance right sizing request.
+	PostLaunchActions *PostLaunchActions `locationName:"postLaunchActions" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLaunchConfigurationTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLaunchConfigurationTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLaunchConfigurationTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLaunchConfigurationTemplateInput"}
+	if s.LaunchConfigurationTemplateID == nil {
+		invalidParams.Add(request.NewErrParamRequired("LaunchConfigurationTemplateID"))
+	}
+	if s.LaunchConfigurationTemplateID != nil && len(*s.LaunchConfigurationTemplateID) < 21 {
+		invalidParams.Add(request.NewErrParamMinLen("LaunchConfigurationTemplateID", 21))
+	}
+	if s.PostLaunchActions != nil {
+		if err := s.PostLaunchActions.Validate(); err != nil {
+			invalidParams.AddNested("PostLaunchActions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLaunchConfigurationTemplateID sets the LaunchConfigurationTemplateID field's value.
+func (s *UpdateLaunchConfigurationTemplateInput) SetLaunchConfigurationTemplateID(v string) *UpdateLaunchConfigurationTemplateInput {
+	s.LaunchConfigurationTemplateID = &v
+	return s
+}
+
+// SetPostLaunchActions sets the PostLaunchActions field's value.
+func (s *UpdateLaunchConfigurationTemplateInput) SetPostLaunchActions(v *PostLaunchActions) *UpdateLaunchConfigurationTemplateInput {
+	s.PostLaunchActions = v
+	return s
+}
+
+type UpdateLaunchConfigurationTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Copy Private IP during Launch Configuration.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// Copy Private IP during Launch Configuration.
+	//
+	// LaunchConfigurationTemplateID is a required field
+	LaunchConfigurationTemplateID *string `locationName:"launchConfigurationTemplateID" min:"21" type:"string" required:"true"`
+
+	// Copy Private IP during Launch Configuration.
+	PostLaunchActions *PostLaunchActions `locationName:"postLaunchActions" type:"structure"`
+
+	// Copy Private IP during Launch Configuration.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateLaunchConfigurationTemplateOutput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLaunchConfigurationTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLaunchConfigurationTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateLaunchConfigurationTemplateOutput) SetArn(v string) *UpdateLaunchConfigurationTemplateOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetLaunchConfigurationTemplateID sets the LaunchConfigurationTemplateID field's value.
+func (s *UpdateLaunchConfigurationTemplateOutput) SetLaunchConfigurationTemplateID(v string) *UpdateLaunchConfigurationTemplateOutput {
+	s.LaunchConfigurationTemplateID = &v
+	return s
+}
+
+// SetPostLaunchActions sets the PostLaunchActions field's value.
+func (s *UpdateLaunchConfigurationTemplateOutput) SetPostLaunchActions(v *PostLaunchActions) *UpdateLaunchConfigurationTemplateOutput {
+	s.PostLaunchActions = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateLaunchConfigurationTemplateOutput) SetTags(v map[string]*string) *UpdateLaunchConfigurationTemplateOutput {
+	s.Tags = v
 	return s
 }
 
@@ -10181,6 +11529,42 @@ func LifeCycleState_Values() []string {
 }
 
 const (
+	// PostLaunchActionExecutionStatusInProgress is a PostLaunchActionExecutionStatus enum value
+	PostLaunchActionExecutionStatusInProgress = "IN_PROGRESS"
+
+	// PostLaunchActionExecutionStatusSuccess is a PostLaunchActionExecutionStatus enum value
+	PostLaunchActionExecutionStatusSuccess = "SUCCESS"
+
+	// PostLaunchActionExecutionStatusFailed is a PostLaunchActionExecutionStatus enum value
+	PostLaunchActionExecutionStatusFailed = "FAILED"
+)
+
+// PostLaunchActionExecutionStatus_Values returns all elements of the PostLaunchActionExecutionStatus enum
+func PostLaunchActionExecutionStatus_Values() []string {
+	return []string{
+		PostLaunchActionExecutionStatusInProgress,
+		PostLaunchActionExecutionStatusSuccess,
+		PostLaunchActionExecutionStatusFailed,
+	}
+}
+
+const (
+	// PostLaunchActionsDeploymentTypeTestAndCutover is a PostLaunchActionsDeploymentType enum value
+	PostLaunchActionsDeploymentTypeTestAndCutover = "TEST_AND_CUTOVER"
+
+	// PostLaunchActionsDeploymentTypeCutoverOnly is a PostLaunchActionsDeploymentType enum value
+	PostLaunchActionsDeploymentTypeCutoverOnly = "CUTOVER_ONLY"
+)
+
+// PostLaunchActionsDeploymentType_Values returns all elements of the PostLaunchActionsDeploymentType enum
+func PostLaunchActionsDeploymentType_Values() []string {
+	return []string{
+		PostLaunchActionsDeploymentTypeTestAndCutover,
+		PostLaunchActionsDeploymentTypeCutoverOnly,
+	}
+}
+
+const (
 	// ReplicationConfigurationDataPlaneRoutingPrivateIp is a ReplicationConfigurationDataPlaneRouting enum value
 	ReplicationConfigurationDataPlaneRoutingPrivateIp = "PRIVATE_IP"
 
@@ -10285,6 +11669,34 @@ func ReplicationType_Values() []string {
 	return []string{
 		ReplicationTypeAgentBased,
 		ReplicationTypeSnapshotShipping,
+	}
+}
+
+const (
+	// SsmDocumentTypeAutomation is a SsmDocumentType enum value
+	SsmDocumentTypeAutomation = "AUTOMATION"
+
+	// SsmDocumentTypeCommand is a SsmDocumentType enum value
+	SsmDocumentTypeCommand = "COMMAND"
+)
+
+// SsmDocumentType_Values returns all elements of the SsmDocumentType enum
+func SsmDocumentType_Values() []string {
+	return []string{
+		SsmDocumentTypeAutomation,
+		SsmDocumentTypeCommand,
+	}
+}
+
+const (
+	// SsmParameterStoreParameterTypeString is a SsmParameterStoreParameterType enum value
+	SsmParameterStoreParameterTypeString = "STRING"
+)
+
+// SsmParameterStoreParameterType_Values returns all elements of the SsmParameterStoreParameterType enum
+func SsmParameterStoreParameterType_Values() []string {
+	return []string{
+		SsmParameterStoreParameterTypeString,
 	}
 }
 

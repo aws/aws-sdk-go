@@ -114,6 +114,13 @@ type LookoutEquipmentAPI interface {
 	ListDatasetsPages(*lookoutequipment.ListDatasetsInput, func(*lookoutequipment.ListDatasetsOutput, bool) bool) error
 	ListDatasetsPagesWithContext(aws.Context, *lookoutequipment.ListDatasetsInput, func(*lookoutequipment.ListDatasetsOutput, bool) bool, ...request.Option) error
 
+	ListInferenceEvents(*lookoutequipment.ListInferenceEventsInput) (*lookoutequipment.ListInferenceEventsOutput, error)
+	ListInferenceEventsWithContext(aws.Context, *lookoutequipment.ListInferenceEventsInput, ...request.Option) (*lookoutequipment.ListInferenceEventsOutput, error)
+	ListInferenceEventsRequest(*lookoutequipment.ListInferenceEventsInput) (*request.Request, *lookoutequipment.ListInferenceEventsOutput)
+
+	ListInferenceEventsPages(*lookoutequipment.ListInferenceEventsInput, func(*lookoutequipment.ListInferenceEventsOutput, bool) bool) error
+	ListInferenceEventsPagesWithContext(aws.Context, *lookoutequipment.ListInferenceEventsInput, func(*lookoutequipment.ListInferenceEventsOutput, bool) bool, ...request.Option) error
+
 	ListInferenceExecutions(*lookoutequipment.ListInferenceExecutionsInput) (*lookoutequipment.ListInferenceExecutionsOutput, error)
 	ListInferenceExecutionsWithContext(aws.Context, *lookoutequipment.ListInferenceExecutionsInput, ...request.Option) (*lookoutequipment.ListInferenceExecutionsOutput, error)
 	ListInferenceExecutionsRequest(*lookoutequipment.ListInferenceExecutionsInput) (*request.Request, *lookoutequipment.ListInferenceExecutionsOutput)
