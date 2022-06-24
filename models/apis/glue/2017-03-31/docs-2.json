@@ -128,6 +128,7 @@
     "ImportCatalogToGlue": "<p>Imports an existing Amazon Athena Data Catalog to Glue.</p>",
     "ListBlueprints": "<p>Lists all the blueprint names in an account.</p>",
     "ListCrawlers": "<p>Retrieves the names of all crawler resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
+    "ListCrawls": "<p>Returns all the crawls of a specified crawler. Returns only the crawls that have occurred since the launch date of the crawler history feature, and only retains up to 12 months of crawls. Older crawls will not be returned.</p> <p>You may use this API to:</p> <ul> <li> <p>Retrive all the crawls of a specified crawler.</p> </li> <li> <p>Retrieve all the crawls of a specified crawler within a limited count.</p> </li> <li> <p>Retrieve all the crawls of a specified crawler in a specific time range.</p> </li> <li> <p>Retrieve all the crawls of a specified crawler with a particular state, crawl ID, or DPU hour value.</p> </li> </ul>",
     "ListCustomEntityTypes": "<p>Lists all the custom patterns that have been created.</p>",
     "ListDevEndpoints": "<p>Retrieves the names of all <code>DevEndpoint</code> resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListJobs": "<p>Retrieves the names of all job resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
@@ -1331,6 +1332,12 @@
         "CrawlList$member": null
       }
     },
+    "CrawlId": {
+      "base": null,
+      "refs": {
+        "CrawlerHistory$CrawlId": "<p>A UUID identifier for each crawl.</p>"
+      }
+    },
     "CrawlList": {
       "base": null,
       "refs": {
@@ -1357,6 +1364,24 @@
         "Crawler$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/define-crawler.html#crawler-data-stores-exclude\">Include and Exclude Patterns</a>.</p>",
         "CreateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>",
         "UpdateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>"
+      }
+    },
+    "CrawlerHistory": {
+      "base": "<p>Contains the information for a run of a crawler.</p>",
+      "refs": {
+        "CrawlerHistoryList$member": null
+      }
+    },
+    "CrawlerHistoryList": {
+      "base": null,
+      "refs": {
+        "ListCrawlsResponse$Crawls": "<p>A list of <code>CrawlerHistory</code> objects representing the crawl runs that meet your criteria.</p>"
+      }
+    },
+    "CrawlerHistoryState": {
+      "base": null,
+      "refs": {
+        "CrawlerHistory$State": "<p>The state of the crawl.</p>"
       }
     },
     "CrawlerLineageSettings": {
@@ -1434,6 +1459,18 @@
         "Crawler$Targets": "<p>A collection of targets to crawl.</p>",
         "CreateCrawlerRequest$Targets": "<p>A list of collection of targets to crawl.</p>",
         "UpdateCrawlerRequest$Targets": "<p>A list of targets to crawl.</p>"
+      }
+    },
+    "CrawlsFilter": {
+      "base": "<p>A list of fields, comparators and value that you can use to filter the crawler runs for a specified crawler.</p>",
+      "refs": {
+        "CrawlsFilterList$member": null
+      }
+    },
+    "CrawlsFilterList": {
+      "base": null,
+      "refs": {
+        "ListCrawlsRequest$Filters": "<p>Filters the crawls by the criteria you specify in a list of <code>CrawlsFilter</code> objects.</p>"
       }
     },
     "CreateBlueprintRequest": {
@@ -2130,6 +2167,7 @@
         "ConnectionInput$Description": "<p>The description of the connection.</p>",
         "Crawl$ErrorMessage": "<p>The error message associated with the crawl.</p>",
         "Crawler$Description": "<p>A description of the crawler.</p>",
+        "CrawlerHistory$ErrorMessage": "<p>If an error occurred, the error message associated with the crawl.</p>",
         "CreateCrawlerRequest$Description": "<p>A description of the new crawler.</p>",
         "CreateJobRequest$Description": "<p>Description of the job being defined.</p>",
         "CreateMLTransformRequest$Description": "<p>A description of the machine learning transform that is being defined. The default is an empty string.</p>",
@@ -2564,6 +2602,12 @@
         "CustomCode$Code": "<p>The custom code that is used to perform the data transformation.</p>"
       }
     },
+    "FieldName": {
+      "base": null,
+      "refs": {
+        "CrawlsFilter$FieldName": "<p>A key used to filter the crawler runs for a specified crawler. Valid values for each of the field names are:</p> <ul> <li> <p> <code>CRAWL_ID</code>: A string representing the UUID identifier for a crawl.</p> </li> <li> <p> <code>STATE</code>: A string representing the state of the crawl.</p> </li> <li> <p> <code>START_TIME</code> and <code>END_TIME</code>: The epoch timestamp in milliseconds.</p> </li> <li> <p> <code>DPU_HOUR</code>: The number of data processing unit (DPU) hours used for the crawl.</p> </li> </ul>"
+      }
+    },
     "FieldType": {
       "base": null,
       "refs": {
@@ -2605,6 +2649,12 @@
       "base": null,
       "refs": {
         "FilterExpression$Operation": "<p>The type of operation to perform in the expression.</p>"
+      }
+    },
+    "FilterOperator": {
+      "base": null,
+      "refs": {
+        "CrawlsFilter$FilterOperator": "<p>A defined comparator that operates on the value. The available operators are:</p> <ul> <li> <p> <code>GT</code>: Greater than.</p> </li> <li> <p> <code>GE</code>: Greater than or equal to.</p> </li> <li> <p> <code>LT</code>: Less than.</p> </li> <li> <p> <code>LE</code>: Less than or equal to.</p> </li> <li> <p> <code>EQ</code>: Equal to.</p> </li> <li> <p> <code>NE</code>: Not equal to.</p> </li> </ul>"
       }
     },
     "FilterString": {
@@ -2706,6 +2756,7 @@
         "AdditionalPlanOptionsMap$value": null,
         "Blueprint$BlueprintLocation": "<p>Specifies the path in Amazon S3 where the blueprint is published.</p>",
         "Blueprint$BlueprintServiceLocation": "<p>Specifies a path in Amazon S3 where the blueprint is copied when you call <code>CreateBlueprint/UpdateBlueprint</code> to register the blueprint in Glue.</p>",
+        "CrawlsFilter$FieldValue": "<p>The value provided for comparison on the crawl field. </p>",
         "CreateDevEndpointRequest$EndpointName": "<p>The name to be assigned to the new <code>DevEndpoint</code>.</p>",
         "CreateDevEndpointRequest$SubnetId": "<p>The subnet ID for the new <code>DevEndpoint</code> to use.</p>",
         "CreateDevEndpointRequest$PublicKey": "<p>The public key to be used by this <code>DevEndpoint</code> for authentication. This attribute is provided for backward compatibility because the recommended attribute to use is public keys.</p>",
@@ -3992,11 +4043,11 @@
       }
     },
     "LakeFormationConfiguration": {
-      "base": "<p>Specifies AWS Lake Formation configuration settings for the crawler.</p>",
+      "base": "<p>Specifies Lake Formation configuration settings for the crawler.</p>",
       "refs": {
-        "Crawler$LakeFormationConfiguration": "<p>Specifies whether the crawler should use AWS Lake Formation credentials for the crawler instead of the IAM role credentials.</p>",
-        "CreateCrawlerRequest$LakeFormationConfiguration": null,
-        "UpdateCrawlerRequest$LakeFormationConfiguration": null
+        "Crawler$LakeFormationConfiguration": "<p>Specifies whether the crawler should use Lake Formation credentials for the crawler instead of the IAM role credentials.</p>",
+        "CreateCrawlerRequest$LakeFormationConfiguration": "<p>Specifies Lake Formation configuration settings for the crawler.</p>",
+        "UpdateCrawlerRequest$LakeFormationConfiguration": "<p>Specifies Lake Formation configuration settings for the crawler.</p>"
       }
     },
     "Language": {
@@ -4068,6 +4119,16 @@
       }
     },
     "ListCrawlersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCrawlsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCrawlsResponse": {
       "base": null,
       "refs": {
       }
@@ -4212,6 +4273,7 @@
       "base": null,
       "refs": {
         "Crawl$LogGroup": "<p>The log group associated with the crawl.</p>",
+        "CrawlerHistory$LogGroup": "<p>The log group associated with the crawl.</p>",
         "LastCrawlInfo$LogGroup": "<p>The log group for the last crawl.</p>"
       }
     },
@@ -4219,6 +4281,7 @@
       "base": null,
       "refs": {
         "Crawl$LogStream": "<p>The log stream associated with the crawl.</p>",
+        "CrawlerHistory$LogStream": "<p>The log stream associated with the crawl.</p>",
         "LastCrawlInfo$LogStream": "<p>The log stream for the last crawl.</p>"
       }
     },
@@ -4364,6 +4427,7 @@
     "MessagePrefix": {
       "base": null,
       "refs": {
+        "CrawlerHistory$MessagePrefix": "<p>The prefix for a CloudWatch message about this crawl.</p>",
         "LastCrawlInfo$MessagePrefix": "<p>The prefix for a message about this crawl.</p>"
       }
     },
@@ -4532,6 +4596,7 @@
         "ConnectionPasswordEncryption$AwsKmsKeyId": "<p>An KMS key that is used to encrypt the connection password. </p> <p>If connection password protection is enabled, the caller of <code>CreateConnection</code> and <code>UpdateConnection</code> needs at least <code>kms:Encrypt</code> permission on the specified KMS key, to encrypt passwords before storing them in the Data Catalog. </p> <p>You can set the decrypt permission to enable or restrict access on the password key according to your security requirements.</p>",
         "ContextWords$member": null,
         "Crawler$Name": "<p>The name of the crawler.</p>",
+        "CrawlerHistory$Summary": "<p>A run summary for the specific crawl in JSON. Contains the catalog tables and partitions that were added, updated, or deleted.</p>",
         "CrawlerMetrics$CrawlerName": "<p>The name of the crawler.</p>",
         "CrawlerNameList$member": null,
         "CreateBlueprintResponse$Name": "<p>Returns the name of the blueprint that was registered.</p>",
@@ -4680,6 +4745,7 @@
         "JsonClassifier$Name": "<p>The name of the classifier.</p>",
         "KeyList$member": null,
         "KeySchemaElement$Name": "<p>The name of a partition key.</p>",
+        "ListCrawlsRequest$CrawlerName": "<p>The name of the crawler whose runs you want to retrieve.</p>",
         "ListStatementsRequest$SessionId": "<p>The Session ID of the statements.</p>",
         "ListTriggersRequest$DependentJobName": "<p> The name of the job for which to retrieve triggers. The trigger that can start this job is returned. If there is no such trigger, all triggers are returned.</p>",
         "MLTransform$Name": "<p>A user-defined name for the machine learning transform. Names are not guaranteed unique and can be changed at any time.</p>",
@@ -4886,6 +4952,7 @@
       "base": null,
       "refs": {
         "BinaryColumnStatisticsData$AverageLength": "<p>The average bit sequence length in the column.</p>",
+        "CrawlerHistory$DPUHour": "<p>The number of data processing units (DPU) used in hours for the crawl.</p>",
         "CrawlerMetrics$TimeLeftSeconds": "<p>The estimated time left to complete a running crawl.</p>",
         "CrawlerMetrics$LastRuntimeSeconds": "<p>The duration of the crawler's most recent run, in seconds.</p>",
         "CrawlerMetrics$MedianRuntimeSeconds": "<p>The median duration of this crawler's runs, in seconds.</p>",
@@ -4984,7 +5051,7 @@
         "GetWorkflowRequest$IncludeGraph": "<p>Specifies whether to include a graph when returning the workflow resource metadata.</p>",
         "GetWorkflowRunRequest$IncludeGraph": "<p>Specifies whether to include the workflow graph in response or not.</p>",
         "GetWorkflowRunsRequest$IncludeGraph": "<p>Specifies whether to include the workflow graph in response or not.</p>",
-        "LakeFormationConfiguration$UseLakeFormationCredentials": "<p>Specifies whether to use AWS Lake Formation credentials for the crawler instead of the IAM role credentials.</p>",
+        "LakeFormationConfiguration$UseLakeFormationCredentials": "<p>Specifies whether to use Lake Formation credentials for the crawler instead of the IAM role credentials.</p>",
         "MongoDBTarget$ScanAll": "<p>Indicates whether to scan all the records, or to sample rows from the table. Scanning all the records can take a long time when the table is not a high throughput table.</p> <p>A value of <code>true</code> means to scan all records, while a value of <code>false</code> means to sample the records. If no value is specified, the value defaults to <code>true</code>.</p>",
         "UpdateCsvClassifierRequest$DisableValueTrimming": "<p>Specifies not to trim values before identifying the type of column values. The default value is true.</p>",
         "UpdateCsvClassifierRequest$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>"
@@ -5214,6 +5281,7 @@
         "GetWorkflowRunsRequest$MaxResults": "<p>The maximum number of workflow runs to be included in the response.</p>",
         "ListBlueprintsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListCrawlersRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
+        "ListCrawlsRequest$MaxResults": "<p>The maximum number of results to return. The default is 20, and maximum is 100.</p>",
         "ListCustomEntityTypesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListDevEndpointsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListJobsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
@@ -6765,6 +6833,8 @@
         "Connection$LastUpdatedTime": "<p>The last time that this connection definition was updated.</p>",
         "Crawler$CreationTime": "<p>The time that the crawler was created.</p>",
         "Crawler$LastUpdated": "<p>The time that the crawler was last updated.</p>",
+        "CrawlerHistory$StartTime": "<p>The date and time on which the crawl started.</p>",
+        "CrawlerHistory$EndTime": "<p>The date and time on which the crawl ended.</p>",
         "CsvClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
         "CsvClassifier$LastUpdated": "<p>The time that this classifier was last updated.</p>",
         "Database$CreateTime": "<p>The time at which the metadata database was created in the catalog.</p>",
@@ -6870,6 +6940,8 @@
         "GetUserDefinedFunctionsResponse$NextToken": "<p>A continuation token, if the list of functions returned does not include the last requested function.</p>",
         "ListCrawlersRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
         "ListCrawlersResponse$NextToken": "<p>A continuation token, if the returned list does not contain the last metric available.</p>",
+        "ListCrawlsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
+        "ListCrawlsResponse$NextToken": "<p>A continuation token for paginating the returned list of tokens, returned if the current segment of the list is not the last.</p>",
         "SearchTablesRequest$NextToken": "<p>A continuation token, included if this is a continuation call.</p>",
         "SearchTablesResponse$NextToken": "<p>A continuation token, present if the current list segment is not the last.</p>"
       }

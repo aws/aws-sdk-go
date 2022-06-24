@@ -12782,6 +12782,104 @@ func (c *Glue) ListCrawlersPagesWithContext(ctx aws.Context, input *ListCrawlers
 	return p.Err()
 }
 
+const opListCrawls = "ListCrawls"
+
+// ListCrawlsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCrawls operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCrawls for more information on using the ListCrawls
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCrawlsRequest method.
+//    req, resp := client.ListCrawlsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListCrawls
+func (c *Glue) ListCrawlsRequest(input *ListCrawlsInput) (req *request.Request, output *ListCrawlsOutput) {
+	op := &request.Operation{
+		Name:       opListCrawls,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListCrawlsInput{}
+	}
+
+	output = &ListCrawlsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCrawls API operation for AWS Glue.
+//
+// Returns all the crawls of a specified crawler. Returns only the crawls that
+// have occurred since the launch date of the crawler history feature, and only
+// retains up to 12 months of crawls. Older crawls will not be returned.
+//
+// You may use this API to:
+//
+//    * Retrive all the crawls of a specified crawler.
+//
+//    * Retrieve all the crawls of a specified crawler within a limited count.
+//
+//    * Retrieve all the crawls of a specified crawler in a specific time range.
+//
+//    * Retrieve all the crawls of a specified crawler with a particular state,
+//    crawl ID, or DPU hour value.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation ListCrawls for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListCrawls
+func (c *Glue) ListCrawls(input *ListCrawlsInput) (*ListCrawlsOutput, error) {
+	req, out := c.ListCrawlsRequest(input)
+	return out, req.Send()
+}
+
+// ListCrawlsWithContext is the same as ListCrawls with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCrawls for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListCrawlsWithContext(ctx aws.Context, input *ListCrawlsInput, opts ...request.Option) (*ListCrawlsOutput, error) {
+	req, out := c.ListCrawlsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListCustomEntityTypes = "ListCustomEntityTypes"
 
 // ListCustomEntityTypesRequest generates a "aws/request.Request" representing the
@@ -25291,8 +25389,8 @@ type Crawler struct {
 	// A description of the crawler.
 	Description *string `type:"string"`
 
-	// Specifies whether the crawler should use AWS Lake Formation credentials for
-	// the crawler instead of the IAM role credentials.
+	// Specifies whether the crawler should use Lake Formation credentials for the
+	// crawler instead of the IAM role credentials.
 	LakeFormationConfiguration *LakeFormationConfiguration `type:"structure"`
 
 	// The status of the last crawl, and potentially error information if an error
@@ -25470,6 +25568,120 @@ func (s *Crawler) SetTargets(v *CrawlerTargets) *Crawler {
 // SetVersion sets the Version field's value.
 func (s *Crawler) SetVersion(v int64) *Crawler {
 	s.Version = &v
+	return s
+}
+
+// Contains the information for a run of a crawler.
+type CrawlerHistory struct {
+	_ struct{} `type:"structure"`
+
+	// A UUID identifier for each crawl.
+	CrawlId *string `type:"string"`
+
+	// The number of data processing units (DPU) used in hours for the crawl.
+	DPUHour *float64 `type:"double"`
+
+	// The date and time on which the crawl ended.
+	EndTime *time.Time `type:"timestamp"`
+
+	// If an error occurred, the error message associated with the crawl.
+	ErrorMessage *string `type:"string"`
+
+	// The log group associated with the crawl.
+	LogGroup *string `min:"1" type:"string"`
+
+	// The log stream associated with the crawl.
+	LogStream *string `min:"1" type:"string"`
+
+	// The prefix for a CloudWatch message about this crawl.
+	MessagePrefix *string `min:"1" type:"string"`
+
+	// The date and time on which the crawl started.
+	StartTime *time.Time `type:"timestamp"`
+
+	// The state of the crawl.
+	State *string `type:"string" enum:"CrawlerHistoryState"`
+
+	// A run summary for the specific crawl in JSON. Contains the catalog tables
+	// and partitions that were added, updated, or deleted.
+	Summary *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrawlerHistory) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrawlerHistory) GoString() string {
+	return s.String()
+}
+
+// SetCrawlId sets the CrawlId field's value.
+func (s *CrawlerHistory) SetCrawlId(v string) *CrawlerHistory {
+	s.CrawlId = &v
+	return s
+}
+
+// SetDPUHour sets the DPUHour field's value.
+func (s *CrawlerHistory) SetDPUHour(v float64) *CrawlerHistory {
+	s.DPUHour = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *CrawlerHistory) SetEndTime(v time.Time) *CrawlerHistory {
+	s.EndTime = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *CrawlerHistory) SetErrorMessage(v string) *CrawlerHistory {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetLogGroup sets the LogGroup field's value.
+func (s *CrawlerHistory) SetLogGroup(v string) *CrawlerHistory {
+	s.LogGroup = &v
+	return s
+}
+
+// SetLogStream sets the LogStream field's value.
+func (s *CrawlerHistory) SetLogStream(v string) *CrawlerHistory {
+	s.LogStream = &v
+	return s
+}
+
+// SetMessagePrefix sets the MessagePrefix field's value.
+func (s *CrawlerHistory) SetMessagePrefix(v string) *CrawlerHistory {
+	s.MessagePrefix = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *CrawlerHistory) SetStartTime(v time.Time) *CrawlerHistory {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CrawlerHistory) SetState(v string) *CrawlerHistory {
+	s.State = &v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *CrawlerHistory) SetSummary(v string) *CrawlerHistory {
+	s.Summary = &v
 	return s
 }
 
@@ -25893,6 +26105,80 @@ func (s *CrawlerTargets) SetS3Targets(v []*S3Target) *CrawlerTargets {
 	return s
 }
 
+// A list of fields, comparators and value that you can use to filter the crawler
+// runs for a specified crawler.
+type CrawlsFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A key used to filter the crawler runs for a specified crawler. Valid values
+	// for each of the field names are:
+	//
+	//    * CRAWL_ID: A string representing the UUID identifier for a crawl.
+	//
+	//    * STATE: A string representing the state of the crawl.
+	//
+	//    * START_TIME and END_TIME: The epoch timestamp in milliseconds.
+	//
+	//    * DPU_HOUR: The number of data processing unit (DPU) hours used for the
+	//    crawl.
+	FieldName *string `type:"string" enum:"FieldName"`
+
+	// The value provided for comparison on the crawl field.
+	FieldValue *string `type:"string"`
+
+	// A defined comparator that operates on the value. The available operators
+	// are:
+	//
+	//    * GT: Greater than.
+	//
+	//    * GE: Greater than or equal to.
+	//
+	//    * LT: Less than.
+	//
+	//    * LE: Less than or equal to.
+	//
+	//    * EQ: Equal to.
+	//
+	//    * NE: Not equal to.
+	FilterOperator *string `type:"string" enum:"FilterOperator"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrawlsFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrawlsFilter) GoString() string {
+	return s.String()
+}
+
+// SetFieldName sets the FieldName field's value.
+func (s *CrawlsFilter) SetFieldName(v string) *CrawlsFilter {
+	s.FieldName = &v
+	return s
+}
+
+// SetFieldValue sets the FieldValue field's value.
+func (s *CrawlsFilter) SetFieldValue(v string) *CrawlsFilter {
+	s.FieldValue = &v
+	return s
+}
+
+// SetFilterOperator sets the FilterOperator field's value.
+func (s *CrawlsFilter) SetFilterOperator(v string) *CrawlsFilter {
+	s.FilterOperator = &v
+	return s
+}
+
 type CreateBlueprintInput struct {
 	_ struct{} `type:"structure"`
 
@@ -26238,7 +26524,7 @@ type CreateCrawlerInput struct {
 	// A description of the new crawler.
 	Description *string `type:"string"`
 
-	// Specifies AWS Lake Formation configuration settings for the crawler.
+	// Specifies Lake Formation configuration settings for the crawler.
 	LakeFormationConfiguration *LakeFormationConfiguration `type:"structure"`
 
 	// Specifies data lineage configuration settings for the crawler.
@@ -45865,7 +46151,7 @@ func (s *LabelingSetGenerationTaskRunProperties) SetOutputS3Path(v string) *Labe
 	return s
 }
 
-// Specifies AWS Lake Formation configuration settings for the crawler.
+// Specifies Lake Formation configuration settings for the crawler.
 type LakeFormationConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -45873,7 +46159,7 @@ type LakeFormationConfiguration struct {
 	// data, this can be left as null.
 	AccountId *string `type:"string"`
 
-	// Specifies whether to use AWS Lake Formation credentials for the crawler instead
+	// Specifies whether to use Lake Formation credentials for the crawler instead
 	// of the IAM role credentials.
 	UseLakeFormationCredentials *bool `type:"boolean"`
 }
@@ -46295,6 +46581,129 @@ func (s *ListCrawlersOutput) SetCrawlerNames(v []*string) *ListCrawlersOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListCrawlersOutput) SetNextToken(v string) *ListCrawlersOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCrawlsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the crawler whose runs you want to retrieve.
+	//
+	// CrawlerName is a required field
+	CrawlerName *string `min:"1" type:"string" required:"true"`
+
+	// Filters the crawls by the criteria you specify in a list of CrawlsFilter
+	// objects.
+	Filters []*CrawlsFilter `type:"list"`
+
+	// The maximum number of results to return. The default is 20, and maximum is
+	// 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A continuation token, if this is a continuation call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrawlsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrawlsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCrawlsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCrawlsInput"}
+	if s.CrawlerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CrawlerName"))
+	}
+	if s.CrawlerName != nil && len(*s.CrawlerName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CrawlerName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCrawlerName sets the CrawlerName field's value.
+func (s *ListCrawlsInput) SetCrawlerName(v string) *ListCrawlsInput {
+	s.CrawlerName = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListCrawlsInput) SetFilters(v []*CrawlsFilter) *ListCrawlsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCrawlsInput) SetMaxResults(v int64) *ListCrawlsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCrawlsInput) SetNextToken(v string) *ListCrawlsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCrawlsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of CrawlerHistory objects representing the crawl runs that meet your
+	// criteria.
+	Crawls []*CrawlerHistory `type:"list"`
+
+	// A continuation token for paginating the returned list of tokens, returned
+	// if the current segment of the list is not the last.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrawlsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrawlsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCrawls sets the Crawls field's value.
+func (s *ListCrawlsOutput) SetCrawls(v []*CrawlerHistory) *ListCrawlsOutput {
+	s.Crawls = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCrawlsOutput) SetNextToken(v string) *ListCrawlsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -60541,7 +60950,7 @@ type UpdateCrawlerInput struct {
 	// A description of the new crawler.
 	Description *string `type:"string"`
 
-	// Specifies AWS Lake Formation configuration settings for the crawler.
+	// Specifies Lake Formation configuration settings for the crawler.
 	LakeFormationConfiguration *LakeFormationConfiguration `type:"structure"`
 
 	// Specifies data lineage configuration settings for the crawler.
@@ -63842,6 +64251,30 @@ func CrawlState_Values() []string {
 }
 
 const (
+	// CrawlerHistoryStateRunning is a CrawlerHistoryState enum value
+	CrawlerHistoryStateRunning = "RUNNING"
+
+	// CrawlerHistoryStateCompleted is a CrawlerHistoryState enum value
+	CrawlerHistoryStateCompleted = "COMPLETED"
+
+	// CrawlerHistoryStateFailed is a CrawlerHistoryState enum value
+	CrawlerHistoryStateFailed = "FAILED"
+
+	// CrawlerHistoryStateStopped is a CrawlerHistoryState enum value
+	CrawlerHistoryStateStopped = "STOPPED"
+)
+
+// CrawlerHistoryState_Values returns all elements of the CrawlerHistoryState enum
+func CrawlerHistoryState_Values() []string {
+	return []string{
+		CrawlerHistoryStateRunning,
+		CrawlerHistoryStateCompleted,
+		CrawlerHistoryStateFailed,
+		CrawlerHistoryStateStopped,
+	}
+}
+
+const (
 	// CrawlerLineageSettingsEnable is a CrawlerLineageSettings enum value
 	CrawlerLineageSettingsEnable = "ENABLE"
 
@@ -63974,6 +64407,34 @@ func ExistCondition_Values() []string {
 }
 
 const (
+	// FieldNameCrawlId is a FieldName enum value
+	FieldNameCrawlId = "CRAWL_ID"
+
+	// FieldNameState is a FieldName enum value
+	FieldNameState = "STATE"
+
+	// FieldNameStartTime is a FieldName enum value
+	FieldNameStartTime = "START_TIME"
+
+	// FieldNameEndTime is a FieldName enum value
+	FieldNameEndTime = "END_TIME"
+
+	// FieldNameDpuHour is a FieldName enum value
+	FieldNameDpuHour = "DPU_HOUR"
+)
+
+// FieldName_Values returns all elements of the FieldName enum
+func FieldName_Values() []string {
+	return []string{
+		FieldNameCrawlId,
+		FieldNameState,
+		FieldNameStartTime,
+		FieldNameEndTime,
+		FieldNameDpuHour,
+	}
+}
+
+const (
 	// FilterLogicalOperatorAnd is a FilterLogicalOperator enum value
 	FilterLogicalOperatorAnd = "AND"
 
@@ -64022,6 +64483,38 @@ func FilterOperation_Values() []string {
 		FilterOperationGte,
 		FilterOperationRegex,
 		FilterOperationIsnull,
+	}
+}
+
+const (
+	// FilterOperatorGt is a FilterOperator enum value
+	FilterOperatorGt = "GT"
+
+	// FilterOperatorGe is a FilterOperator enum value
+	FilterOperatorGe = "GE"
+
+	// FilterOperatorLt is a FilterOperator enum value
+	FilterOperatorLt = "LT"
+
+	// FilterOperatorLe is a FilterOperator enum value
+	FilterOperatorLe = "LE"
+
+	// FilterOperatorEq is a FilterOperator enum value
+	FilterOperatorEq = "EQ"
+
+	// FilterOperatorNe is a FilterOperator enum value
+	FilterOperatorNe = "NE"
+)
+
+// FilterOperator_Values returns all elements of the FilterOperator enum
+func FilterOperator_Values() []string {
+	return []string{
+		FilterOperatorGt,
+		FilterOperatorGe,
+		FilterOperatorLt,
+		FilterOperatorLe,
+		FilterOperatorEq,
+		FilterOperatorNe,
 	}
 }
 

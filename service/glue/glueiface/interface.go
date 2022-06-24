@@ -633,6 +633,10 @@ type GlueAPI interface {
 	ListCrawlersPages(*glue.ListCrawlersInput, func(*glue.ListCrawlersOutput, bool) bool) error
 	ListCrawlersPagesWithContext(aws.Context, *glue.ListCrawlersInput, func(*glue.ListCrawlersOutput, bool) bool, ...request.Option) error
 
+	ListCrawls(*glue.ListCrawlsInput) (*glue.ListCrawlsOutput, error)
+	ListCrawlsWithContext(aws.Context, *glue.ListCrawlsInput, ...request.Option) (*glue.ListCrawlsOutput, error)
+	ListCrawlsRequest(*glue.ListCrawlsInput) (*request.Request, *glue.ListCrawlsOutput)
+
 	ListCustomEntityTypes(*glue.ListCustomEntityTypesInput) (*glue.ListCustomEntityTypesOutput, error)
 	ListCustomEntityTypesWithContext(aws.Context, *glue.ListCustomEntityTypesInput, ...request.Option) (*glue.ListCustomEntityTypesOutput, error)
 	ListCustomEntityTypesRequest(*glue.ListCustomEntityTypesInput) (*request.Request, *glue.ListCustomEntityTypesOutput)
