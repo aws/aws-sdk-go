@@ -1953,6 +1953,20 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "ListCrawls":{
+      "name":"ListCrawls",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListCrawlsRequest"},
+      "output":{"shape":"ListCrawlsResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "ListCustomEntityTypes":{
       "name":"ListCustomEntityTypes",
       "http":{
@@ -4191,6 +4205,7 @@
         "LogStream":{"shape":"LogStream"}
       }
     },
+    "CrawlId":{"type":"string"},
     "CrawlList":{
       "type":"list",
       "member":{"shape":"Crawl"}
@@ -4231,6 +4246,34 @@
       }
     },
     "CrawlerConfiguration":{"type":"string"},
+    "CrawlerHistory":{
+      "type":"structure",
+      "members":{
+        "CrawlId":{"shape":"CrawlId"},
+        "State":{"shape":"CrawlerHistoryState"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "Summary":{"shape":"NameString"},
+        "ErrorMessage":{"shape":"DescriptionString"},
+        "LogGroup":{"shape":"LogGroup"},
+        "LogStream":{"shape":"LogStream"},
+        "MessagePrefix":{"shape":"MessagePrefix"},
+        "DPUHour":{"shape":"NonNegativeDouble"}
+      }
+    },
+    "CrawlerHistoryList":{
+      "type":"list",
+      "member":{"shape":"CrawlerHistory"}
+    },
+    "CrawlerHistoryState":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "COMPLETED",
+        "FAILED",
+        "STOPPED"
+      ]
+    },
     "CrawlerLineageSettings":{
       "type":"string",
       "enum":[
@@ -4315,6 +4358,18 @@
         "CatalogTargets":{"shape":"CatalogTargetList"},
         "DeltaTargets":{"shape":"DeltaTargetList"}
       }
+    },
+    "CrawlsFilter":{
+      "type":"structure",
+      "members":{
+        "FieldName":{"shape":"FieldName"},
+        "FilterOperator":{"shape":"FilterOperator"},
+        "FieldValue":{"shape":"GenericString"}
+      }
+    },
+    "CrawlsFilterList":{
+      "type":"list",
+      "member":{"shape":"CrawlsFilter"}
     },
     "CreateBlueprintRequest":{
       "type":"structure",
@@ -5720,6 +5775,16 @@
       "type":"string",
       "pattern":"[\\s\\S]*"
     },
+    "FieldName":{
+      "type":"string",
+      "enum":[
+        "CRAWL_ID",
+        "STATE",
+        "START_TIME",
+        "END_TIME",
+        "DPU_HOUR"
+      ]
+    },
     "FieldType":{"type":"string"},
     "FillMissingValues":{
       "type":"structure",
@@ -5783,6 +5848,17 @@
         "GTE",
         "REGEX",
         "ISNULL"
+      ]
+    },
+    "FilterOperator":{
+      "type":"string",
+      "enum":[
+        "GT",
+        "GE",
+        "LT",
+        "LE",
+        "EQ",
+        "NE"
       ]
     },
     "FilterString":{
@@ -7686,6 +7762,23 @@
       "type":"structure",
       "members":{
         "CrawlerNames":{"shape":"CrawlerNameList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListCrawlsRequest":{
+      "type":"structure",
+      "required":["CrawlerName"],
+      "members":{
+        "CrawlerName":{"shape":"NameString"},
+        "MaxResults":{"shape":"PageSize"},
+        "Filters":{"shape":"CrawlsFilterList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListCrawlsResponse":{
+      "type":"structure",
+      "members":{
+        "Crawls":{"shape":"CrawlerHistoryList"},
         "NextToken":{"shape":"Token"}
       }
     },

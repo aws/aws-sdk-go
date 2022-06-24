@@ -1,3 +1,11 @@
+Release v1.44.42 (2022-06-24)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * This release enables the new ListCrawls API for viewing the AWS Glue Crawler run history.
+* `service/rds-data`: Updates service documentation
+
 Release v1.44.41 (2022-06-23)
 ===
 
