@@ -61250,7 +61250,7 @@ type Tag struct {
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// The tag's value.
-	Value *string `min:"1" type:"string"`
+	Value *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -61279,9 +61279,6 @@ func (s *Tag) Validate() error {
 	}
 	if s.Key != nil && len(*s.Key) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
-	}
-	if s.Value != nil && len(*s.Value) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
 	}
 
 	if invalidParams.Len() > 0 {
