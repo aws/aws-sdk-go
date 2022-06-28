@@ -116,6 +116,10 @@ type FinSpaceDataAPI interface {
 	GetDatasetWithContext(aws.Context, *finspacedata.GetDatasetInput, ...request.Option) (*finspacedata.GetDatasetOutput, error)
 	GetDatasetRequest(*finspacedata.GetDatasetInput) (*request.Request, *finspacedata.GetDatasetOutput)
 
+	GetExternalDataViewAccessDetails(*finspacedata.GetExternalDataViewAccessDetailsInput) (*finspacedata.GetExternalDataViewAccessDetailsOutput, error)
+	GetExternalDataViewAccessDetailsWithContext(aws.Context, *finspacedata.GetExternalDataViewAccessDetailsInput, ...request.Option) (*finspacedata.GetExternalDataViewAccessDetailsOutput, error)
+	GetExternalDataViewAccessDetailsRequest(*finspacedata.GetExternalDataViewAccessDetailsInput) (*request.Request, *finspacedata.GetExternalDataViewAccessDetailsOutput)
+
 	GetPermissionGroup(*finspacedata.GetPermissionGroupInput) (*finspacedata.GetPermissionGroupOutput, error)
 	GetPermissionGroupWithContext(aws.Context, *finspacedata.GetPermissionGroupInput, ...request.Option) (*finspacedata.GetPermissionGroupOutput, error)
 	GetPermissionGroupRequest(*finspacedata.GetPermissionGroupInput) (*request.Request, *finspacedata.GetPermissionGroupOutput)

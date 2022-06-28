@@ -1355,6 +1355,104 @@ func (c *FinSpaceData) GetDatasetWithContext(ctx aws.Context, input *GetDatasetI
 	return out, req.Send()
 }
 
+const opGetExternalDataViewAccessDetails = "GetExternalDataViewAccessDetails"
+
+// GetExternalDataViewAccessDetailsRequest generates a "aws/request.Request" representing the
+// client's request for the GetExternalDataViewAccessDetails operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetExternalDataViewAccessDetails for more information on using the GetExternalDataViewAccessDetails
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetExternalDataViewAccessDetailsRequest method.
+//    req, resp := client.GetExternalDataViewAccessDetailsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetExternalDataViewAccessDetails
+func (c *FinSpaceData) GetExternalDataViewAccessDetailsRequest(input *GetExternalDataViewAccessDetailsInput) (req *request.Request, output *GetExternalDataViewAccessDetailsOutput) {
+	op := &request.Operation{
+		Name:       opGetExternalDataViewAccessDetails,
+		HTTPMethod: "POST",
+		HTTPPath:   "/datasets/{datasetId}/dataviewsv2/{dataviewId}/external-access-details",
+	}
+
+	if input == nil {
+		input = &GetExternalDataViewAccessDetailsInput{}
+	}
+
+	output = &GetExternalDataViewAccessDetailsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetExternalDataViewAccessDetails API operation for FinSpace Public API.
+//
+// Returns the credentials to access the external Dataview from an S3 location.
+// To call this API:
+//
+//    * You must retrieve the programmatic credentials.
+//
+//    * You must be a member of a FinSpace user group, where the dataset that
+//    you want to access has Read Dataset Data permissions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation GetExternalDataViewAccessDetails for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetExternalDataViewAccessDetails
+func (c *FinSpaceData) GetExternalDataViewAccessDetails(input *GetExternalDataViewAccessDetailsInput) (*GetExternalDataViewAccessDetailsOutput, error) {
+	req, out := c.GetExternalDataViewAccessDetailsRequest(input)
+	return out, req.Send()
+}
+
+// GetExternalDataViewAccessDetailsWithContext is the same as GetExternalDataViewAccessDetails with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetExternalDataViewAccessDetails for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) GetExternalDataViewAccessDetailsWithContext(ctx aws.Context, input *GetExternalDataViewAccessDetailsInput, opts ...request.Option) (*GetExternalDataViewAccessDetailsOutput, error) {
+	req, out := c.GetExternalDataViewAccessDetailsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetPermissionGroup = "GetPermissionGroup"
 
 // GetPermissionGroupRequest generates a "aws/request.Request" representing the
@@ -3301,6 +3399,73 @@ func (s *AssociateUserToPermissionGroupOutput) SetStatusCode(v int64) *Associate
 	return s
 }
 
+// The credentials required to access the external Dataview from the S3 location.
+type AwsCredentials struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the security credentials.
+	AccessKeyId *string `locationName:"accessKeyId" min:"1" type:"string"`
+
+	// The Epoch time when the current credentials expire.
+	Expiration *int64 `locationName:"expiration" type:"long"`
+
+	// The secret access key that can be used to sign requests.
+	//
+	// SecretAccessKey is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AwsCredentials's
+	// String and GoString methods.
+	SecretAccessKey *string `locationName:"secretAccessKey" min:"1" type:"string" sensitive:"true"`
+
+	// The token that users must pass to use the credentials.
+	//
+	// SessionToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AwsCredentials's
+	// String and GoString methods.
+	SessionToken *string `locationName:"sessionToken" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCredentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCredentials) GoString() string {
+	return s.String()
+}
+
+// SetAccessKeyId sets the AccessKeyId field's value.
+func (s *AwsCredentials) SetAccessKeyId(v string) *AwsCredentials {
+	s.AccessKeyId = &v
+	return s
+}
+
+// SetExpiration sets the Expiration field's value.
+func (s *AwsCredentials) SetExpiration(v int64) *AwsCredentials {
+	s.Expiration = &v
+	return s
+}
+
+// SetSecretAccessKey sets the SecretAccessKey field's value.
+func (s *AwsCredentials) SetSecretAccessKey(v string) *AwsCredentials {
+	s.SecretAccessKey = &v
+	return s
+}
+
+// SetSessionToken sets the SessionToken field's value.
+func (s *AwsCredentials) SetSessionToken(v string) *AwsCredentials {
+	s.SessionToken = &v
+	return s
+}
+
 // The structure with error messages.
 type ChangesetErrorInfo struct {
 	_ struct{} `type:"structure"`
@@ -4184,13 +4349,20 @@ type CreatePermissionGroupInput struct {
 	// The option to indicate FinSpace application permissions that are granted
 	// to a specific group.
 	//
+	// When assigning application permissions, be aware that the permission ManageUsersAndGroups
+	// allows users to grant themselves or others access to any functionality in
+	// their FinSpace environment's application. It should only be granted to trusted
+	// users.
+	//
 	//    * CreateDataset – Group members can create new datasets.
 	//
 	//    * ManageClusters – Group members can manage Apache Spark clusters from
 	//    FinSpace notebooks.
 	//
 	//    * ManageUsersAndGroups – Group members can manage users and permission
-	//    groups.
+	//    groups. This is a privileged permission that allows users to grant themselves
+	//    or others access to any functionality in the application. It should only
+	//    be granted to trusted users.
 	//
 	//    * ManageAttributeSets – Group members can manage attribute sets.
 	//
@@ -6138,6 +6310,112 @@ func (s *GetDatasetOutput) SetStatus(v string) *GetDatasetOutput {
 	return s
 }
 
+type GetExternalDataViewAccessDetailsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for the Dataview that you want to access.
+	//
+	// DataViewId is a required field
+	DataViewId *string `location:"uri" locationName:"dataviewId" min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the Dataset.
+	//
+	// DatasetId is a required field
+	DatasetId *string `location:"uri" locationName:"datasetId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExternalDataViewAccessDetailsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExternalDataViewAccessDetailsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetExternalDataViewAccessDetailsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetExternalDataViewAccessDetailsInput"}
+	if s.DataViewId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataViewId"))
+	}
+	if s.DataViewId != nil && len(*s.DataViewId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataViewId", 1))
+	}
+	if s.DatasetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
+	}
+	if s.DatasetId != nil && len(*s.DatasetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataViewId sets the DataViewId field's value.
+func (s *GetExternalDataViewAccessDetailsInput) SetDataViewId(v string) *GetExternalDataViewAccessDetailsInput {
+	s.DataViewId = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *GetExternalDataViewAccessDetailsInput) SetDatasetId(v string) *GetExternalDataViewAccessDetailsInput {
+	s.DatasetId = &v
+	return s
+}
+
+type GetExternalDataViewAccessDetailsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The credentials required to access the external Dataview from the S3 location.
+	Credentials *AwsCredentials `locationName:"credentials" type:"structure"`
+
+	// The location where the external Dataview is stored.
+	S3Location *S3Location `locationName:"s3Location" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExternalDataViewAccessDetailsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExternalDataViewAccessDetailsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCredentials sets the Credentials field's value.
+func (s *GetExternalDataViewAccessDetailsOutput) SetCredentials(v *AwsCredentials) *GetExternalDataViewAccessDetailsOutput {
+	s.Credentials = v
+	return s
+}
+
+// SetS3Location sets the S3Location field's value.
+func (s *GetExternalDataViewAccessDetailsOutput) SetS3Location(v *S3Location) *GetExternalDataViewAccessDetailsOutput {
+	s.S3Location = v
+	return s
+}
+
 type GetPermissionGroupInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7515,13 +7793,20 @@ type PermissionGroup struct {
 	// Indicates the permissions that are granted to a specific group for accessing
 	// the FinSpace application.
 	//
+	// When assigning application permissions, be aware that the permission ManageUsersAndGroups
+	// allows users to grant themselves or others access to any functionality in
+	// their FinSpace environment's application. It should only be granted to trusted
+	// users.
+	//
 	//    * CreateDataset – Group members can create new datasets.
 	//
 	//    * ManageClusters – Group members can manage Apache Spark clusters from
 	//    FinSpace notebooks.
 	//
 	//    * ManageUsersAndGroups – Group members can manage users and permission
-	//    groups.
+	//    groups. This is a privileged permission that allows users to grant themselves
+	//    or others access to any functionality in the application. It should only
+	//    be granted to trusted users.
 	//
 	//    * ManageAttributeSets – Group members can manage attribute sets.
 	//
@@ -7999,6 +8284,51 @@ func (s *ResourcePermission) Validate() error {
 // SetPermission sets the Permission field's value.
 func (s *ResourcePermission) SetPermission(v string) *ResourcePermission {
 	s.Permission = &v
+	return s
+}
+
+// The location of an external Dataview in an S3 bucket.
+type S3Location struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the S3 bucket.
+	//
+	// Bucket is a required field
+	Bucket *string `locationName:"bucket" min:"1" type:"string" required:"true"`
+
+	// The path of the folder, within the S3 bucket that contains the Dataset.
+	//
+	// Key is a required field
+	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Location) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Location) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3Location) SetBucket(v string) *S3Location {
+	s.Bucket = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *S3Location) SetKey(v string) *S3Location {
+	s.Key = &v
 	return s
 }
 
@@ -8492,13 +8822,20 @@ type UpdatePermissionGroupInput struct {
 	// The permissions that are granted to a specific group for accessing the FinSpace
 	// application.
 	//
+	// When assigning application permissions, be aware that the permission ManageUsersAndGroups
+	// allows users to grant themselves or others access to any functionality in
+	// their FinSpace environment's application. It should only be granted to trusted
+	// users.
+	//
 	//    * CreateDataset – Group members can create new datasets.
 	//
 	//    * ManageClusters – Group members can manage Apache Spark clusters from
 	//    FinSpace notebooks.
 	//
 	//    * ManageUsersAndGroups – Group members can manage users and permission
-	//    groups.
+	//    groups. This is a privileged permission that allows users to grant themselves
+	//    or others access to any functionality in the application. It should only
+	//    be granted to trusted users.
 	//
 	//    * ManageAttributeSets – Group members can manage attribute sets.
 	//

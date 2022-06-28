@@ -66,6 +66,19 @@
         {"shape":"InternalException"}
       ]
     },
+    "CreateLocationFsxOntap":{
+      "name":"CreateLocationFsxOntap",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocationFsxOntapRequest"},
+      "output":{"shape":"CreateLocationFsxOntapResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "CreateLocationFsxOpenZfs":{
       "name":"CreateLocationFsxOpenZfs",
       "http":{
@@ -243,6 +256,19 @@
       },
       "input":{"shape":"DescribeLocationFsxLustreRequest"},
       "output":{"shape":"DescribeLocationFsxLustreResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "DescribeLocationFsxOntap":{
+      "name":"DescribeLocationFsxOntap",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocationFsxOntapRequest"},
+      "output":{"shape":"DescribeLocationFsxOntapResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
@@ -679,6 +705,27 @@
         "LocationArn":{"shape":"LocationArn"}
       }
     },
+    "CreateLocationFsxOntapRequest":{
+      "type":"structure",
+      "required":[
+        "Protocol",
+        "SecurityGroupArns",
+        "StorageVirtualMachineArn"
+      ],
+      "members":{
+        "Protocol":{"shape":"FsxProtocol"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "StorageVirtualMachineArn":{"shape":"StorageVirtualMachineArn"},
+        "Subdirectory":{"shape":"FsxOntapSubdirectory"},
+        "Tags":{"shape":"InputTagList"}
+      }
+    },
+    "CreateLocationFsxOntapResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
     "CreateLocationFsxOpenZfsRequest":{
       "type":"structure",
       "required":[
@@ -958,6 +1005,25 @@
         "LocationUri":{"shape":"LocationUri"},
         "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
         "CreationTime":{"shape":"Time"}
+      }
+    },
+    "DescribeLocationFsxOntapRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "DescribeLocationFsxOntapResponse":{
+      "type":"structure",
+      "members":{
+        "CreationTime":{"shape":"Time"},
+        "LocationArn":{"shape":"LocationArn"},
+        "LocationUri":{"shape":"LocationUri"},
+        "Protocol":{"shape":"FsxProtocol"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "StorageVirtualMachineArn":{"shape":"StorageVirtualMachineArn"},
+        "FsxFilesystemArn":{"shape":"FsxFilesystemArn"}
       }
     },
     "DescribeLocationFsxOpenZfsRequest":{
@@ -1259,6 +1325,11 @@
       "max":4096,
       "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
     },
+    "FsxOntapSubdirectory":{
+      "type":"string",
+      "max":255,
+      "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,255}$"
+    },
     "FsxOpenZfsSubdirectory":{
       "type":"string",
       "max":4096,
@@ -1267,13 +1338,27 @@
     "FsxProtocol":{
       "type":"structure",
       "members":{
-        "NFS":{"shape":"FsxProtocolNfs"}
+        "NFS":{"shape":"FsxProtocolNfs"},
+        "SMB":{"shape":"FsxProtocolSmb"}
       }
     },
     "FsxProtocolNfs":{
       "type":"structure",
       "members":{
         "MountOptions":{"shape":"NfsMountOptions"}
+      }
+    },
+    "FsxProtocolSmb":{
+      "type":"structure",
+      "required":[
+        "Password",
+        "User"
+      ],
+      "members":{
+        "Domain":{"shape":"SmbDomain"},
+        "MountOptions":{"shape":"SmbMountOptions"},
+        "Password":{"shape":"SmbPassword"},
+        "User":{"shape":"SmbUser"}
       }
     },
     "FsxWindowsSubdirectory":{
@@ -1533,8 +1618,8 @@
     },
     "LocationUri":{
       "type":"string",
-      "max":4356,
-      "pattern":"^(efs|nfs|s3|smb|hdfs|fsx[a-z0-9]+)://[a-zA-Z0-9.:/\\-]+$"
+      "max":4360,
+      "pattern":"^(efs|nfs|s3|smb|hdfs|fsx[a-z0-9-]+)://[a-zA-Z0-9.:/\\-]+$"
     },
     "LogGroupArn":{
       "type":"string",
@@ -1784,7 +1869,7 @@
     "SmbDomain":{
       "type":"string",
       "max":253,
-      "pattern":"^([A-Za-z0-9]+[A-Za-z0-9-.]*)*[A-Za-z0-9-]*[A-Za-z0-9]$"
+      "pattern":"^[A-Za-z0-9]((\\.|-+)?[A-Za-z0-9]){0,252}$"
     },
     "SmbMountOptions":{
       "type":"structure",
@@ -1843,6 +1928,11 @@
       "members":{
         "TaskExecutionArn":{"shape":"TaskExecutionArn"}
       }
+    },
+    "StorageVirtualMachineArn":{
+      "type":"string",
+      "max":162,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):fsx:[a-z\\-0-9]+:[0-9]{12}:storage-virtual-machine/fs-[0-9a-f]+/svm-[0-9a-f]{17,}$"
     },
     "TagKey":{
       "type":"string",

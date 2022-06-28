@@ -1,3 +1,14 @@
+Release v1.44.44 (2022-06-28)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds a new spread placement group to EC2 Placement Groups: host level spread, which spread instances between physical hosts, available to Outpost customers only. CreatePlacementGroup and DescribePlacementGroups APIs were updated with a new parameter: SpreadLevel to support this feature.
+* `service/finspace-data`: Updates service API and documentation
+* `service/polly`: Updates service API
+  * Add 4 new neural voices - Pedro (es-US), Liam (fr-CA), Daniel (de-DE) and Arthur (en-GB).
+
 Release v1.44.43 (2022-06-27)
 ===
 

@@ -255,6 +255,22 @@
         {"shape":"ConflictException"}
       ]
     },
+    "GetExternalDataViewAccessDetails":{
+      "name":"GetExternalDataViewAccessDetails",
+      "http":{
+        "method":"POST",
+        "requestUri":"/datasets/{datasetId}/dataviewsv2/{dataviewId}/external-access-details"
+      },
+      "input":{"shape":"GetExternalDataViewAccessDetailsRequest"},
+      "output":{"shape":"GetExternalDataViewAccessDetailsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GetPermissionGroup":{
       "name":"GetPermissionGroup",
       "http":{
@@ -523,6 +539,12 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "AccessKeyId":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\s\\S]*\\S[\\s\\S]*"
+    },
     "AliasString":{
       "type":"string",
       "max":255,
@@ -582,6 +604,15 @@
           "shape":"StatusCode",
           "location":"statusCode"
         }
+      }
+    },
+    "AwsCredentials":{
+      "type":"structure",
+      "members":{
+        "accessKeyId":{"shape":"AccessKeyId"},
+        "secretAccessKey":{"shape":"SecretAccessKey"},
+        "sessionToken":{"shape":"SessionToken"},
+        "expiration":{"shape":"TimestampEpoch"}
       }
     },
     "Boolean":{"type":"boolean"},
@@ -1230,6 +1261,32 @@
         "status":{"shape":"DatasetStatus"}
       }
     },
+    "GetExternalDataViewAccessDetailsRequest":{
+      "type":"structure",
+      "required":[
+        "dataViewId",
+        "datasetId"
+      ],
+      "members":{
+        "dataViewId":{
+          "shape":"DataViewId",
+          "location":"uri",
+          "locationName":"dataviewId"
+        },
+        "datasetId":{
+          "shape":"DatasetId",
+          "location":"uri",
+          "locationName":"datasetId"
+        }
+      }
+    },
+    "GetExternalDataViewAccessDetailsResponse":{
+      "type":"structure",
+      "members":{
+        "credentials":{"shape":"AwsCredentials"},
+        "s3Location":{"shape":"S3Location"}
+      }
+    },
     "GetPermissionGroupRequest":{
       "type":"structure",
       "required":["permissionGroupId"],
@@ -1679,10 +1736,33 @@
       "min":20,
       "pattern":"^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$"
     },
+    "S3BucketName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^.*\\S.*$"
+    },
     "S3DestinationFormatOptions":{
       "type":"map",
       "key":{"shape":"StringMapKey"},
       "value":{"shape":"StringMapValue"}
+    },
+    "S3Key":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^.*\\S.*$"
+    },
+    "S3Location":{
+      "type":"structure",
+      "required":[
+        "bucket",
+        "key"
+      ],
+      "members":{
+        "bucket":{"shape":"S3BucketName"},
+        "key":{"shape":"S3Key"}
+      }
     },
     "SchemaDefinition":{
       "type":"structure",
@@ -1697,10 +1777,24 @@
         "tabularSchemaConfig":{"shape":"SchemaDefinition"}
       }
     },
+    "SecretAccessKey":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":"[\\s\\S]*\\S[\\s\\S]*",
+      "sensitive":true
+    },
     "SessionDuration":{
       "type":"long",
       "max":720,
       "min":60
+    },
+    "SessionToken":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":"[\\s\\S]*\\S[\\s\\S]*",
+      "sensitive":true
     },
     "SortColumnList":{
       "type":"list",

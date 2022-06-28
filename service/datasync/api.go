@@ -370,6 +370,90 @@ func (c *DataSync) CreateLocationFsxLustreWithContext(ctx aws.Context, input *Cr
 	return out, req.Send()
 }
 
+const opCreateLocationFsxOntap = "CreateLocationFsxOntap"
+
+// CreateLocationFsxOntapRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLocationFsxOntap operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLocationFsxOntap for more information on using the CreateLocationFsxOntap
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateLocationFsxOntapRequest method.
+//    req, resp := client.CreateLocationFsxOntapRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxOntap
+func (c *DataSync) CreateLocationFsxOntapRequest(input *CreateLocationFsxOntapInput) (req *request.Request, output *CreateLocationFsxOntapOutput) {
+	op := &request.Operation{
+		Name:       opCreateLocationFsxOntap,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLocationFsxOntapInput{}
+	}
+
+	output = &CreateLocationFsxOntapOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLocationFsxOntap API operation for AWS DataSync.
+//
+// Creates an endpoint for an Amazon FSx for NetApp ONTAP file system that DataSync
+// can access for a transfer. For more information, see Creating a location
+// for FSx for ONTAP (https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation CreateLocationFsxOntap for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxOntap
+func (c *DataSync) CreateLocationFsxOntap(input *CreateLocationFsxOntapInput) (*CreateLocationFsxOntapOutput, error) {
+	req, out := c.CreateLocationFsxOntapRequest(input)
+	return out, req.Send()
+}
+
+// CreateLocationFsxOntapWithContext is the same as CreateLocationFsxOntap with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLocationFsxOntap for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) CreateLocationFsxOntapWithContext(ctx aws.Context, input *CreateLocationFsxOntapInput, opts ...request.Option) (*CreateLocationFsxOntapOutput, error) {
+	req, out := c.CreateLocationFsxOntapRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLocationFsxOpenZfs = "CreateLocationFsxOpenZfs"
 
 // CreateLocationFsxOpenZfsRequest generates a "aws/request.Request" representing the
@@ -743,9 +827,9 @@ func (c *DataSync) CreateLocationObjectStorageRequest(input *CreateLocationObjec
 
 // CreateLocationObjectStorage API operation for AWS DataSync.
 //
-// Creates an endpoint for a self-managed object storage bucket. For more information
-// about self-managed object storage locations, see Creating a location for
-// object storage (https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html).
+// Creates an endpoint for an object storage system that DataSync can access
+// for a transfer. For more information, see Creating a location for object
+// storage (https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1554,6 +1638,89 @@ func (c *DataSync) DescribeLocationFsxLustreWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opDescribeLocationFsxOntap = "DescribeLocationFsxOntap"
+
+// DescribeLocationFsxOntapRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLocationFsxOntap operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLocationFsxOntap for more information on using the DescribeLocationFsxOntap
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeLocationFsxOntapRequest method.
+//    req, resp := client.DescribeLocationFsxOntapRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxOntap
+func (c *DataSync) DescribeLocationFsxOntapRequest(input *DescribeLocationFsxOntapInput) (req *request.Request, output *DescribeLocationFsxOntapOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLocationFsxOntap,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLocationFsxOntapInput{}
+	}
+
+	output = &DescribeLocationFsxOntapOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLocationFsxOntap API operation for AWS DataSync.
+//
+// Provides details about how an DataSync location for an Amazon FSx for NetApp
+// ONTAP file system is configured.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeLocationFsxOntap for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxOntap
+func (c *DataSync) DescribeLocationFsxOntap(input *DescribeLocationFsxOntapInput) (*DescribeLocationFsxOntapOutput, error) {
+	req, out := c.DescribeLocationFsxOntapRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLocationFsxOntapWithContext is the same as DescribeLocationFsxOntap with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLocationFsxOntap for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeLocationFsxOntapWithContext(ctx aws.Context, input *DescribeLocationFsxOntapInput, opts ...request.Option) (*DescribeLocationFsxOntapOutput, error) {
+	req, out := c.DescribeLocationFsxOntapRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeLocationFsxOpenZfs = "DescribeLocationFsxOpenZfs"
 
 // DescribeLocationFsxOpenZfsRequest generates a "aws/request.Request" representing the
@@ -1929,9 +2096,7 @@ func (c *DataSync) DescribeLocationObjectStorageRequest(input *DescribeLocationO
 
 // DescribeLocationObjectStorage API operation for AWS DataSync.
 //
-// Returns metadata about a self-managed object storage server location. For
-// more information about self-managed object storage locations, see Creating
-// a location for object storage (https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html).
+// Returns metadata about your DataSync location for an object storage system.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4180,8 +4345,8 @@ type CreateLocationEfsInput struct {
 	// when mounting the Amazon EFS file system.
 	FileSystemAccessRoleArn *string `type:"string"`
 
-	// Specifies whether you want DataSync to use TLS encryption when transferring
-	// data to or from your Amazon EFS file system.
+	// Specifies whether you want DataSync to use Transport Layer Security (TLS)
+	// 1.2 encryption when it copies data to or from the Amazon EFS file system.
 	//
 	// If you specify an access point using AccessPointArn or an IAM role using
 	// FileSystemAccessRoleArn, you must set this parameter to TLS1_2.
@@ -4454,6 +4619,165 @@ func (s *CreateLocationFsxLustreOutput) SetLocationArn(v string) *CreateLocation
 	return s
 }
 
+type CreateLocationFsxOntapInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the data transfer protocol that DataSync uses to access your Amazon
+	// FSx file system.
+	//
+	// Protocol is a required field
+	Protocol *FsxProtocol `type:"structure" required:"true"`
+
+	// Specifies the security groups that DataSync can use to access your FSx for
+	// ONTAP file system. You must configure the security groups to allow outbound
+	// traffic on the following ports (depending on the protocol that you're using):
+	//
+	//    * Network File System (NFS): TCP port 2049
+	//
+	//    * Server Message Block (SMB): TCP port 445
+	//
+	// Your file system's security groups must also allow inbound traffic on the
+	// same port.
+	//
+	// SecurityGroupArns is a required field
+	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
+
+	// Specifies the ARN of the storage virtual machine (SVM) on your file system
+	// where you're copying data to or from.
+	//
+	// StorageVirtualMachineArn is a required field
+	StorageVirtualMachineArn *string `type:"string" required:"true"`
+
+	// Specifies the junction path (also known as a mount point) in the SVM volume
+	// where you're copying data to or from (for example, /vol1).
+	//
+	// Don't specify a junction path in the SVM's root volume. For more information,
+	// see Managing FSx for ONTAP storage virtual machines (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html)
+	// in the Amazon FSx for NetApp ONTAP User Guide.
+	Subdirectory *string `type:"string"`
+
+	// Specifies labels that help you categorize, filter, and search for your Amazon
+	// Web Services resources. We recommend creating at least a name tag for your
+	// location.
+	Tags []*TagListEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOntapInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOntapInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLocationFsxOntapInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLocationFsxOntapInput"}
+	if s.Protocol == nil {
+		invalidParams.Add(request.NewErrParamRequired("Protocol"))
+	}
+	if s.SecurityGroupArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupArns"))
+	}
+	if s.SecurityGroupArns != nil && len(s.SecurityGroupArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupArns", 1))
+	}
+	if s.StorageVirtualMachineArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageVirtualMachineArn"))
+	}
+	if s.Protocol != nil {
+		if err := s.Protocol.Validate(); err != nil {
+			invalidParams.AddNested("Protocol", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *CreateLocationFsxOntapInput) SetProtocol(v *FsxProtocol) *CreateLocationFsxOntapInput {
+	s.Protocol = v
+	return s
+}
+
+// SetSecurityGroupArns sets the SecurityGroupArns field's value.
+func (s *CreateLocationFsxOntapInput) SetSecurityGroupArns(v []*string) *CreateLocationFsxOntapInput {
+	s.SecurityGroupArns = v
+	return s
+}
+
+// SetStorageVirtualMachineArn sets the StorageVirtualMachineArn field's value.
+func (s *CreateLocationFsxOntapInput) SetStorageVirtualMachineArn(v string) *CreateLocationFsxOntapInput {
+	s.StorageVirtualMachineArn = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *CreateLocationFsxOntapInput) SetSubdirectory(v string) *CreateLocationFsxOntapInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLocationFsxOntapInput) SetTags(v []*TagListEntry) *CreateLocationFsxOntapInput {
+	s.Tags = v
+	return s
+}
+
+type CreateLocationFsxOntapOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the ARN of the FSx for ONTAP file system location that you create.
+	LocationArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOntapOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOntapOutput) GoString() string {
+	return s.String()
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *CreateLocationFsxOntapOutput) SetLocationArn(v string) *CreateLocationFsxOntapOutput {
+	s.LocationArn = &v
+	return s
+}
+
 type CreateLocationFsxOpenZfsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4517,6 +4841,11 @@ func (s *CreateLocationFsxOpenZfsInput) Validate() error {
 	}
 	if s.SecurityGroupArns != nil && len(s.SecurityGroupArns) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupArns", 1))
+	}
+	if s.Protocol != nil {
+		if err := s.Protocol.Validate(); err != nil {
+			invalidParams.AddNested("Protocol", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -5221,57 +5550,50 @@ func (s *CreateLocationNfsOutput) SetLocationArn(v string) *CreateLocationNfsOut
 type CreateLocationObjectStorageInput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional. The access key is used if credentials are required to access the
-	// self-managed object storage server. If your object storage requires a user
-	// name and password to authenticate, use AccessKey and SecretKey to provide
-	// the user name and password, respectively.
+	// Specifies the access key (for example, a user name) if credentials are required
+	// to authenticate with the object storage server.
 	AccessKey *string `min:"8" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the agents associated with the self-managed
-	// object storage server location.
+	// Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can
+	// securely connect with your location.
 	//
 	// AgentArns is a required field
 	AgentArns []*string `min:"1" type:"list" required:"true"`
 
-	// The bucket on the self-managed object storage server that is used to read
-	// data from.
+	// Specifies the name of the object storage bucket involved in the transfer.
 	//
 	// BucketName is a required field
 	BucketName *string `min:"3" type:"string" required:"true"`
 
-	// Optional. The secret key is used if credentials are required to access the
-	// self-managed object storage server. If your object storage requires a user
-	// name and password to authenticate, use AccessKey and SecretKey to provide
-	// the user name and password, respectively.
+	// Specifies the secret key (for example, a password) if credentials are required
+	// to authenticate with the object storage server.
 	//
 	// SecretKey is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateLocationObjectStorageInput's
 	// String and GoString methods.
 	SecretKey *string `min:"8" type:"string" sensitive:"true"`
 
-	// The name of the self-managed object storage server. This value is the IP
-	// address or Domain Name Service (DNS) name of the object storage server. An
+	// Specifies the domain name or IP address of the object storage server. A DataSync
 	// agent uses this hostname to mount the object storage server in a network.
 	//
 	// ServerHostname is a required field
 	ServerHostname *string `type:"string" required:"true"`
 
-	// The port that your self-managed object storage server accepts inbound network
-	// traffic on. The server port is set by default to TCP 80 (HTTP) or TCP 443
-	// (HTTPS). You can specify a custom port if your self-managed object storage
-	// server requires one.
+	// Specifies the port that your object storage server accepts inbound network
+	// traffic on (for example, port 443).
 	ServerPort *int64 `min:"1" type:"integer"`
 
-	// The protocol that the object storage server uses to communicate. Valid values
-	// are HTTP or HTTPS.
+	// Specifies the protocol that your object storage server uses to communicate.
 	ServerProtocol *string `type:"string" enum:"ObjectStorageServerProtocol"`
 
-	// The subdirectory in the self-managed object storage server that is used to
-	// read data from.
+	// Specifies the object prefix for your object storage server. If this is a
+	// source location, DataSync only copies objects with this prefix. If this is
+	// a destination location, DataSync writes all objects with this prefix.
 	Subdirectory *string `type:"string"`
 
-	// The key-value pair that represents the tag that you want to add to the location.
-	// The value can be an empty string. We recommend using tags to name your resources.
+	// Specifies the key-value pair that represents a tag that you want to add to
+	// the resource. Tags can help you manage, filter, and search for your resources.
+	// We recommend creating a name tag for your location.
 	Tags []*TagListEntry `type:"list"`
 }
 
@@ -5395,8 +5717,7 @@ func (s *CreateLocationObjectStorageInput) SetTags(v []*TagListEntry) *CreateLoc
 type CreateLocationObjectStorageOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the agents associated with the self-managed
-	// object storage server location.
+	// Specifies the ARN of the object storage system location that you create.
 	LocationArn *string `type:"string"`
 }
 
@@ -5654,7 +5975,8 @@ type CreateLocationSmbInput struct {
 	// folders in the SMB share.
 	//
 	// For information about choosing a user name that ensures sufficient permissions
-	// to files, folders, and metadata, see user (create-smb-location.html#SMBuser).
+	// to files, folders, and metadata, see the User setting (create-smb-location.html#SMBuser)
+	// for SMB locations.
 	//
 	// User is a required field
 	User *string `type:"string" required:"true"`
@@ -6410,8 +6732,8 @@ type DescribeLocationEfsOutput struct {
 	// mounting the Amazon EFS file system.
 	FileSystemAccessRoleArn *string `type:"string"`
 
-	// Whether DataSync uses TLS encryption when transferring data to or from your
-	// Amazon EFS file system.
+	// Describes whether DataSync uses Transport Layer Security (TLS) encryption
+	// when copying data to or from the Amazon EFS file system.
 	InTransitEncryption *string `type:"string" enum:"EfsInTransitEncryption"`
 
 	// The ARN of the Amazon EFS file system location.
@@ -6583,6 +6905,141 @@ func (s *DescribeLocationFsxLustreOutput) SetLocationUri(v string) *DescribeLoca
 // SetSecurityGroupArns sets the SecurityGroupArns field's value.
 func (s *DescribeLocationFsxLustreOutput) SetSecurityGroupArns(v []*string) *DescribeLocationFsxLustreOutput {
 	s.SecurityGroupArns = v
+	return s
+}
+
+type DescribeLocationFsxOntapInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon Resource Name (ARN) of the FSx for ONTAP file system
+	// location that you want information about.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOntapInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOntapInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLocationFsxOntapInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLocationFsxOntapInput"}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationFsxOntapInput) SetLocationArn(v string) *DescribeLocationFsxOntapInput {
+	s.LocationArn = &v
+	return s
+}
+
+type DescribeLocationFsxOntapOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the location was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The ARN of the FSx for ONTAP file system.
+	FsxFilesystemArn *string `type:"string"`
+
+	// The ARN of the FSx for ONTAP file system location.
+	LocationArn *string `type:"string"`
+
+	// The uniform resource identifier (URI) of the FSx for ONTAP file system location.
+	LocationUri *string `type:"string"`
+
+	// Specifies the data transfer protocol that DataSync uses to access your Amazon
+	// FSx file system.
+	Protocol *FsxProtocol `type:"structure"`
+
+	// The security groups that DataSync uses to access your FSx for ONTAP file
+	// system.
+	SecurityGroupArns []*string `min:"1" type:"list"`
+
+	// The ARN of the storage virtual machine (SVM) on your FSx for ONTAP file system
+	// where you're copying data to or from.
+	StorageVirtualMachineArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOntapOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOntapOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeLocationFsxOntapOutput) SetCreationTime(v time.Time) *DescribeLocationFsxOntapOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFsxFilesystemArn sets the FsxFilesystemArn field's value.
+func (s *DescribeLocationFsxOntapOutput) SetFsxFilesystemArn(v string) *DescribeLocationFsxOntapOutput {
+	s.FsxFilesystemArn = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationFsxOntapOutput) SetLocationArn(v string) *DescribeLocationFsxOntapOutput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetLocationUri sets the LocationUri field's value.
+func (s *DescribeLocationFsxOntapOutput) SetLocationUri(v string) *DescribeLocationFsxOntapOutput {
+	s.LocationUri = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *DescribeLocationFsxOntapOutput) SetProtocol(v *FsxProtocol) *DescribeLocationFsxOntapOutput {
+	s.Protocol = v
+	return s
+}
+
+// SetSecurityGroupArns sets the SecurityGroupArns field's value.
+func (s *DescribeLocationFsxOntapOutput) SetSecurityGroupArns(v []*string) *DescribeLocationFsxOntapOutput {
+	s.SecurityGroupArns = v
+	return s
+}
+
+// SetStorageVirtualMachineArn sets the StorageVirtualMachineArn field's value.
+func (s *DescribeLocationFsxOntapOutput) SetStorageVirtualMachineArn(v string) *DescribeLocationFsxOntapOutput {
+	s.StorageVirtualMachineArn = &v
 	return s
 }
 
@@ -7131,8 +7588,8 @@ func (s *DescribeLocationNfsOutput) SetOnPremConfig(v *OnPremConfig) *DescribeLo
 type DescribeLocationObjectStorageInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the self-managed object storage server
-	// location that was described.
+	// The Amazon Resource Name (ARN) of the object storage system location that
+	// you want information about.
 	//
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
@@ -7179,34 +7636,27 @@ func (s *DescribeLocationObjectStorageInput) SetLocationArn(v string) *DescribeL
 type DescribeLocationObjectStorageOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional. The access key is used if credentials are required to access the
-	// self-managed object storage server. If your object storage requires a user
-	// name and password to authenticate, use AccessKey and SecretKey to provide
-	// the user name and password, respectively.
+	// The access key (for example, a user name) required to authenticate with the
+	// object storage server.
 	AccessKey *string `min:"8" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the agents associated with the self-managed
-	// object storage server location.
+	// The ARNs of the DataSync agents that can securely connect with your location.
 	AgentArns []*string `min:"1" type:"list"`
 
-	// The time that the self-managed object storage server agent was created.
+	// The time that the location was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The Amazon Resource Name (ARN) of the self-managed object storage server
-	// location to describe.
+	// The ARN of the object storage system location.
 	LocationArn *string `type:"string"`
 
-	// The URL of the source self-managed object storage server location that was
-	// described.
+	// The URL of the object storage system location.
 	LocationUri *string `type:"string"`
 
-	// The port that your self-managed object storage server accepts inbound network
-	// traffic on. The server port is set by default to TCP 80 (HTTP) or TCP 443
-	// (HTTPS).
+	// The port that your object storage server accepts inbound network traffic
+	// on (for example, port 443).
 	ServerPort *int64 `min:"1" type:"integer"`
 
-	// The protocol that the object storage server uses to communicate. Valid values
-	// are HTTP or HTTPS.
+	// The protocol that your object storage server uses to communicate.
 	ServerProtocol *string `type:"string" enum:"ObjectStorageServerProtocol"`
 }
 
@@ -8120,14 +8570,19 @@ func (s *FilterRule) SetValue(v string) *FilterRule {
 	return s
 }
 
-// Represents the protocol that DataSync uses to access your Amazon FSx for
-// OpenZFS file system.
+// Specifies the data transfer protocol that DataSync uses to access your Amazon
+// FSx file system.
 type FsxProtocol struct {
 	_ struct{} `type:"structure"`
 
-	// Represents the Network File System (NFS) protocol that DataSync uses to access
-	// your FSx for OpenZFS file system.
+	// Specifies the Network File System (NFS) protocol configuration that DataSync
+	// uses to access your FSx for OpenZFS file system or FSx for ONTAP file system's
+	// storage virtual machine (SVM).
 	NFS *FsxProtocolNfs `type:"structure"`
+
+	// Specifies the Server Message Block (SMB) protocol configuration that DataSync
+	// uses to access your FSx for ONTAP file system's SVM.
+	SMB *FsxProtocolSmb `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8148,19 +8603,40 @@ func (s FsxProtocol) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FsxProtocol) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FsxProtocol"}
+	if s.SMB != nil {
+		if err := s.SMB.Validate(); err != nil {
+			invalidParams.AddNested("SMB", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetNFS sets the NFS field's value.
 func (s *FsxProtocol) SetNFS(v *FsxProtocolNfs) *FsxProtocol {
 	s.NFS = v
 	return s
 }
 
-// Represents the Network File System (NFS) protocol that DataSync uses to access
-// your Amazon FSx for OpenZFS file system.
+// SetSMB sets the SMB field's value.
+func (s *FsxProtocol) SetSMB(v *FsxProtocolSmb) *FsxProtocol {
+	s.SMB = v
+	return s
+}
+
+// Specifies the Network File System (NFS) protocol configuration that DataSync
+// uses to access your Amazon FSx for OpenZFS or Amazon FSx for NetApp ONTAP
+// file system.
 type FsxProtocolNfs struct {
 	_ struct{} `type:"structure"`
 
-	// Represents the mount options that are available for DataSync to access an
-	// NFS location.
+	// Specifies how DataSync can access a location using the NFS protocol.
 	MountOptions *NfsMountOptions `type:"structure"`
 }
 
@@ -8185,6 +8661,92 @@ func (s FsxProtocolNfs) GoString() string {
 // SetMountOptions sets the MountOptions field's value.
 func (s *FsxProtocolNfs) SetMountOptions(v *NfsMountOptions) *FsxProtocolNfs {
 	s.MountOptions = v
+	return s
+}
+
+// Specifies the Server Message Block (SMB) protocol configuration that DataSync
+// uses to access your Amazon FSx for NetApp ONTAP file system. For more information,
+// see Accessing FSx for ONTAP file systems (https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html#create-ontap-location-access).
+type FsxProtocolSmb struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the fully qualified domain name (FQDN) of the Microsoft Active
+	// Directory that your storage virtual machine (SVM) belongs to.
+	Domain *string `type:"string"`
+
+	// Specifies how DataSync can access a location using the SMB protocol.
+	MountOptions *SmbMountOptions `type:"structure"`
+
+	// Specifies the password of a user who has permission to access your SVM.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by FsxProtocolSmb's
+	// String and GoString methods.
+	//
+	// Password is a required field
+	Password *string `type:"string" required:"true" sensitive:"true"`
+
+	// Specifies a user who has permission to access your SVM.
+	//
+	// User is a required field
+	User *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FsxProtocolSmb) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FsxProtocolSmb) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FsxProtocolSmb) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FsxProtocolSmb"}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.User == nil {
+		invalidParams.Add(request.NewErrParamRequired("User"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *FsxProtocolSmb) SetDomain(v string) *FsxProtocolSmb {
+	s.Domain = &v
+	return s
+}
+
+// SetMountOptions sets the MountOptions field's value.
+func (s *FsxProtocolSmb) SetMountOptions(v *SmbMountOptions) *FsxProtocolSmb {
+	s.MountOptions = v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *FsxProtocolSmb) SetPassword(v string) *FsxProtocolSmb {
+	s.Password = &v
+	return s
+}
+
+// SetUser sets the User field's value.
+func (s *FsxProtocolSmb) SetUser(v string) *FsxProtocolSmb {
+	s.User = &v
 	return s
 }
 
@@ -9052,28 +9614,29 @@ func (s *LocationListEntry) SetLocationUri(v string) *LocationListEntry {
 	return s
 }
 
-// Represents the mount options that are available for DataSync to access an
-// NFS location.
+// Specifies how DataSync can access a location using the NFS protocol.
 type NfsMountOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The specific NFS version that you want DataSync to use to mount your NFS
-	// share. If the server refuses to use the version specified, the sync will
-	// fail. If you don't specify a version, DataSync defaults to AUTOMATIC. That
-	// is, DataSync automatically selects a version based on negotiation with the
-	// NFS server.
+	// Specifies the NFS version that you want DataSync to use when mounting your
+	// NFS share. If the server refuses to use the version specified, the task fails.
 	//
-	// You can specify the following NFS versions:
+	// You can specify the following options:
 	//
-	//    * NFSv3 (https://tools.ietf.org/html/rfc1813) - stateless protocol version
-	//    that allows for asynchronous writes on the server.
+	//    * AUTOMATIC (default): DataSync chooses NFS version 4.1.
 	//
-	//    * NFSv4.0 (https://tools.ietf.org/html/rfc3530) - stateful, firewall-friendly
-	//    protocol version that supports delegations and pseudo file systems.
+	//    * NFS3: Stateless protocol version that allows for asynchronous writes
+	//    on the server.
 	//
-	//    * NFSv4.1 (https://tools.ietf.org/html/rfc5661) - stateful protocol version
-	//    that supports sessions, directory delegations, and parallel data processing.
-	//    Version 4.1 also includes all features available in version 4.0.
+	//    * NFSv4_0: Stateful, firewall-friendly protocol version that supports
+	//    delegations and pseudo file systems.
+	//
+	//    * NFSv4_1: Stateful protocol version that supports sessions, directory
+	//    delegations, and parallel data processing. NFS version 4.1 also includes
+	//    all features available in version 4.0.
+	//
+	// DataSync currently only supports NFS version 3 with Amazon FSx for NetApp
+	// ONTAP locations.
 	Version *string `type:"string" enum:"NfsVersion"`
 }
 
@@ -9173,7 +9736,7 @@ type Options struct {
 	// behavior is not fully standard across platforms, so DataSync can only do
 	// this on a best-effort basis.
 	//
-	// Default value: BEST_EFFORT.
+	// Default value: BEST_EFFORT
 	//
 	// BEST_EFFORT: Attempt to preserve the per-file Atime value (recommended).
 	//
@@ -9188,9 +9751,9 @@ type Options struct {
 	// DataSync to use a maximum of 1 MB, set this value to 1048576 (=1024*1024).
 	BytesPerSecond *int64 `type:"long"`
 
-	// The POSIX group ID (GID) of the file's owners. This option should only be
-	// set for NFS, EFS, and S3 locations. For more information about what metadata
-	// is copied by DataSync, see Metadata Copied by DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html#metadata-copied).
+	// The POSIX group ID (GID) of the file's owners.
+	//
+	// For more information, see Metadata copied by DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html#metadata-copied).
 	//
 	// Default value: INT_VALUE. This preserves the integer value of the ID.
 	//
@@ -9242,11 +9805,11 @@ type Options struct {
 	OverwriteMode *string `type:"string" enum:"OverwriteMode"`
 
 	// A value that determines which users or groups can access a file for a specific
-	// purpose such as reading, writing, or execution of the file. This option should
-	// only be set for NFS, EFS, and S3 locations. For more information about what
-	// metadata is copied by DataSync, see Metadata Copied by DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html#metadata-copied).
+	// purpose such as reading, writing, or execution of the file.
 	//
-	// Default value: PRESERVE.
+	// For more information, see Metadata copied by DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html#metadata-copied).
+	//
+	// Default value: PRESERVE
 	//
 	// PRESERVE: Preserve POSIX-style permissions (recommended).
 	//
@@ -9262,7 +9825,7 @@ type Options struct {
 	// Considerations when working with Amazon S3 storage classes in DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes)
 	// in the DataSync User Guide.
 	//
-	// Default value: PRESERVE.
+	// Default value: PRESERVE
 	//
 	// PRESERVE: Ignore such destination files (recommended).
 	//
@@ -9277,7 +9840,7 @@ type Options struct {
 	// DataSync can't sync the actual contents of such devices, because they are
 	// nonterminal and don't return an end-of-file (EOF) marker.
 	//
-	// Default value: NONE.
+	// Default value: NONE
 	//
 	// NONE: Ignore special devices (recommended).
 	//
@@ -9293,7 +9856,7 @@ type Options struct {
 	// locations. For more information about how DataSync handles metadata, see
 	// How DataSync Handles Metadata and Special Files (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html).
 	//
-	// Default value: OWNER_DACL.
+	// Default value: OWNER_DACL
 	//
 	// OWNER_DACL: For each copied object, DataSync copies the following metadata:
 	//
@@ -9345,9 +9908,9 @@ type Options struct {
 	// comparing to existing content on the destination.
 	TransferMode *string `type:"string" enum:"TransferMode"`
 
-	// The POSIX user ID (UID) of the file's owner. This option should only be set
-	// for NFS, EFS, and S3 locations. To learn more about what metadata is copied
-	// by DataSync, see Metadata Copied by DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html#metadata-copied).
+	// The POSIX user ID (UID) of the file's owner.
+	//
+	// For more information, see Metadata copied by DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html#metadata-copied).
 	//
 	// Default value: INT_VALUE. This preserves the integer value of the ID.
 	//
@@ -9360,7 +9923,7 @@ type Options struct {
 	// at the end of a task execution after all data and metadata have been transferred.
 	// For more information, see Configure task settings (https://docs.aws.amazon.com/datasync/latest/userguide/create-task.html).
 	//
-	// Default value: POINT_IN_TIME_CONSISTENT.
+	// Default value: POINT_IN_TIME_CONSISTENT
 	//
 	// ONLY_FILES_TRANSFERRED (recommended): Perform verification only on files
 	// that were transferred.
@@ -9663,15 +10226,13 @@ func (s *S3Config) SetBucketAccessRoleArn(v string) *S3Config {
 	return s
 }
 
-// Represents the mount options that are available for DataSync to access an
-// SMB location.
+// Specifies how DataSync can access a location using the SMB protocol.
 type SmbMountOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The specific SMB version that you want DataSync to use to mount your SMB
-	// share. If you don't specify a version, DataSync defaults to AUTOMATIC. That
-	// is, DataSync automatically selects a version based on negotiation with the
-	// SMB server.
+	// Specifies the SMB version that you want DataSync to use when mounting your
+	// SMB share. If you don't specify a version, DataSync defaults to AUTOMATIC
+	// and chooses a version based on negotiation with the SMB server.
 	Version *string `type:"string" enum:"SmbVersion"`
 }
 
@@ -10718,8 +11279,7 @@ type UpdateLocationNfsInput struct {
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
 
-	// Represents the mount options that are available for DataSync to access an
-	// NFS location.
+	// Specifies how DataSync can access a location using the NFS protocol.
 	MountOptions *NfsMountOptions `type:"structure"`
 
 	// A list of Amazon Resource Names (ARNs) of agents to use for a Network File
@@ -11001,8 +11561,7 @@ type UpdateLocationSmbInput struct {
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
 
-	// Represents the mount options that are available for DataSync to access an
-	// SMB location.
+	// Specifies how DataSync can access a location using the SMB protocol.
 	MountOptions *SmbMountOptions `type:"structure"`
 
 	// The password of the user who can mount the share has the permissions to access

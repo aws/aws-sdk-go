@@ -76,6 +76,10 @@ type DataSyncAPI interface {
 	CreateLocationFsxLustreWithContext(aws.Context, *datasync.CreateLocationFsxLustreInput, ...request.Option) (*datasync.CreateLocationFsxLustreOutput, error)
 	CreateLocationFsxLustreRequest(*datasync.CreateLocationFsxLustreInput) (*request.Request, *datasync.CreateLocationFsxLustreOutput)
 
+	CreateLocationFsxOntap(*datasync.CreateLocationFsxOntapInput) (*datasync.CreateLocationFsxOntapOutput, error)
+	CreateLocationFsxOntapWithContext(aws.Context, *datasync.CreateLocationFsxOntapInput, ...request.Option) (*datasync.CreateLocationFsxOntapOutput, error)
+	CreateLocationFsxOntapRequest(*datasync.CreateLocationFsxOntapInput) (*request.Request, *datasync.CreateLocationFsxOntapOutput)
+
 	CreateLocationFsxOpenZfs(*datasync.CreateLocationFsxOpenZfsInput) (*datasync.CreateLocationFsxOpenZfsOutput, error)
 	CreateLocationFsxOpenZfsWithContext(aws.Context, *datasync.CreateLocationFsxOpenZfsInput, ...request.Option) (*datasync.CreateLocationFsxOpenZfsOutput, error)
 	CreateLocationFsxOpenZfsRequest(*datasync.CreateLocationFsxOpenZfsInput) (*request.Request, *datasync.CreateLocationFsxOpenZfsOutput)
@@ -131,6 +135,10 @@ type DataSyncAPI interface {
 	DescribeLocationFsxLustre(*datasync.DescribeLocationFsxLustreInput) (*datasync.DescribeLocationFsxLustreOutput, error)
 	DescribeLocationFsxLustreWithContext(aws.Context, *datasync.DescribeLocationFsxLustreInput, ...request.Option) (*datasync.DescribeLocationFsxLustreOutput, error)
 	DescribeLocationFsxLustreRequest(*datasync.DescribeLocationFsxLustreInput) (*request.Request, *datasync.DescribeLocationFsxLustreOutput)
+
+	DescribeLocationFsxOntap(*datasync.DescribeLocationFsxOntapInput) (*datasync.DescribeLocationFsxOntapOutput, error)
+	DescribeLocationFsxOntapWithContext(aws.Context, *datasync.DescribeLocationFsxOntapInput, ...request.Option) (*datasync.DescribeLocationFsxOntapOutput, error)
+	DescribeLocationFsxOntapRequest(*datasync.DescribeLocationFsxOntapInput) (*request.Request, *datasync.DescribeLocationFsxOntapOutput)
 
 	DescribeLocationFsxOpenZfs(*datasync.DescribeLocationFsxOpenZfsInput) (*datasync.DescribeLocationFsxOpenZfsOutput, error)
 	DescribeLocationFsxOpenZfsWithContext(aws.Context, *datasync.DescribeLocationFsxOpenZfsInput, ...request.Option) (*datasync.DescribeLocationFsxOpenZfsOutput, error)
