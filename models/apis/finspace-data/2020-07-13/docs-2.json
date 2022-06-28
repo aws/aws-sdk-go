@@ -16,6 +16,7 @@
     "GetChangeset": "<p>Get information about a Changeset.</p>",
     "GetDataView": "<p>Gets information about a Dataview.</p>",
     "GetDataset": "<p>Returns information about a Dataset.</p>",
+    "GetExternalDataViewAccessDetails": "<p>Returns the credentials to access the external Dataview from an S3 location. To call this API:</p> <ul> <li> <p>You must retrieve the programmatic credentials.</p> </li> <li> <p>You must be a member of a FinSpace user group, where the dataset that you want to access has <code>Read Dataset Data</code> permissions.</p> </li> </ul>",
     "GetPermissionGroup": "<p>Retrieves the details of a specific permission group.</p>",
     "GetProgrammaticAccessCredentials": "<p>Request programmatic credentials to use with FinSpace SDK.</p>",
     "GetUser": "<p>Retrieves details for a specific user.</p>",
@@ -37,6 +38,12 @@
     "AccessDeniedException": {
       "base": "<p>You do not have sufficient access to perform this action.</p>",
       "refs": {
+      }
+    },
+    "AccessKeyId": {
+      "base": null,
+      "refs": {
+        "AwsCredentials$accessKeyId": "<p> The unique identifier for the security credentials.</p>"
       }
     },
     "AliasString": {
@@ -67,9 +74,9 @@
     "ApplicationPermissionList": {
       "base": null,
       "refs": {
-        "CreatePermissionGroupRequest$applicationPermissions": "<p>The option to indicate FinSpace application permissions that are granted to a specific group.</p> <ul> <li> <p> <code>CreateDataset</code> – Group members can create new datasets.</p> </li> <li> <p> <code>ManageClusters</code> – Group members can manage Apache Spark clusters from FinSpace notebooks.</p> </li> <li> <p> <code>ManageUsersAndGroups</code> – Group members can manage users and permission groups.</p> </li> <li> <p> <code>ManageAttributeSets</code> – Group members can manage attribute sets.</p> </li> <li> <p> <code>ViewAuditData</code> – Group members can view audit data.</p> </li> <li> <p> <code>AccessNotebooks</code> – Group members will have access to FinSpace notebooks.</p> </li> <li> <p> <code>GetTemporaryCredentials</code> – Group members can get temporary API credentials.</p> </li> </ul>",
-        "PermissionGroup$applicationPermissions": "<p>Indicates the permissions that are granted to a specific group for accessing the FinSpace application.</p> <ul> <li> <p> <code>CreateDataset</code> – Group members can create new datasets.</p> </li> <li> <p> <code>ManageClusters</code> – Group members can manage Apache Spark clusters from FinSpace notebooks.</p> </li> <li> <p> <code>ManageUsersAndGroups</code> – Group members can manage users and permission groups.</p> </li> <li> <p> <code>ManageAttributeSets</code> – Group members can manage attribute sets.</p> </li> <li> <p> <code>ViewAuditData</code> – Group members can view audit data.</p> </li> <li> <p> <code>AccessNotebooks</code> – Group members will have access to FinSpace notebooks.</p> </li> <li> <p> <code>GetTemporaryCredentials</code> – Group members can get temporary API credentials.</p> </li> </ul>",
-        "UpdatePermissionGroupRequest$applicationPermissions": "<p>The permissions that are granted to a specific group for accessing the FinSpace application.</p> <ul> <li> <p> <code>CreateDataset</code> – Group members can create new datasets.</p> </li> <li> <p> <code>ManageClusters</code> – Group members can manage Apache Spark clusters from FinSpace notebooks.</p> </li> <li> <p> <code>ManageUsersAndGroups</code> – Group members can manage users and permission groups.</p> </li> <li> <p> <code>ManageAttributeSets</code> – Group members can manage attribute sets.</p> </li> <li> <p> <code>ViewAuditData</code> – Group members can view audit data.</p> </li> <li> <p> <code>AccessNotebooks</code> – Group members will have access to FinSpace notebooks.</p> </li> <li> <p> <code>GetTemporaryCredentials</code> – Group members can get temporary API credentials.</p> </li> </ul>"
+        "CreatePermissionGroupRequest$applicationPermissions": "<p>The option to indicate FinSpace application permissions that are granted to a specific group.</p> <important> <p>When assigning application permissions, be aware that the permission <code>ManageUsersAndGroups</code> allows users to grant themselves or others access to any functionality in their FinSpace environment's application. It should only be granted to trusted users.</p> </important> <ul> <li> <p> <code>CreateDataset</code> – Group members can create new datasets.</p> </li> <li> <p> <code>ManageClusters</code> – Group members can manage Apache Spark clusters from FinSpace notebooks.</p> </li> <li> <p> <code>ManageUsersAndGroups</code> – Group members can manage users and permission groups. This is a privileged permission that allows users to grant themselves or others access to any functionality in the application. It should only be granted to trusted users.</p> </li> <li> <p> <code>ManageAttributeSets</code> – Group members can manage attribute sets.</p> </li> <li> <p> <code>ViewAuditData</code> – Group members can view audit data.</p> </li> <li> <p> <code>AccessNotebooks</code> – Group members will have access to FinSpace notebooks.</p> </li> <li> <p> <code>GetTemporaryCredentials</code> – Group members can get temporary API credentials.</p> </li> </ul>",
+        "PermissionGroup$applicationPermissions": "<p>Indicates the permissions that are granted to a specific group for accessing the FinSpace application.</p> <important> <p>When assigning application permissions, be aware that the permission <code>ManageUsersAndGroups</code> allows users to grant themselves or others access to any functionality in their FinSpace environment's application. It should only be granted to trusted users.</p> </important> <ul> <li> <p> <code>CreateDataset</code> – Group members can create new datasets.</p> </li> <li> <p> <code>ManageClusters</code> – Group members can manage Apache Spark clusters from FinSpace notebooks.</p> </li> <li> <p> <code>ManageUsersAndGroups</code> – Group members can manage users and permission groups. This is a privileged permission that allows users to grant themselves or others access to any functionality in the application. It should only be granted to trusted users.</p> </li> <li> <p> <code>ManageAttributeSets</code> – Group members can manage attribute sets.</p> </li> <li> <p> <code>ViewAuditData</code> – Group members can view audit data.</p> </li> <li> <p> <code>AccessNotebooks</code> – Group members will have access to FinSpace notebooks.</p> </li> <li> <p> <code>GetTemporaryCredentials</code> – Group members can get temporary API credentials.</p> </li> </ul>",
+        "UpdatePermissionGroupRequest$applicationPermissions": "<p>The permissions that are granted to a specific group for accessing the FinSpace application.</p> <important> <p>When assigning application permissions, be aware that the permission <code>ManageUsersAndGroups</code> allows users to grant themselves or others access to any functionality in their FinSpace environment's application. It should only be granted to trusted users.</p> </important> <ul> <li> <p> <code>CreateDataset</code> – Group members can create new datasets.</p> </li> <li> <p> <code>ManageClusters</code> – Group members can manage Apache Spark clusters from FinSpace notebooks.</p> </li> <li> <p> <code>ManageUsersAndGroups</code> – Group members can manage users and permission groups. This is a privileged permission that allows users to grant themselves or others access to any functionality in the application. It should only be granted to trusted users.</p> </li> <li> <p> <code>ManageAttributeSets</code> – Group members can manage attribute sets.</p> </li> <li> <p> <code>ViewAuditData</code> – Group members can view audit data.</p> </li> <li> <p> <code>AccessNotebooks</code> – Group members will have access to FinSpace notebooks.</p> </li> <li> <p> <code>GetTemporaryCredentials</code> – Group members can get temporary API credentials.</p> </li> </ul>"
       }
     },
     "AssociateUserToPermissionGroupRequest": {
@@ -80,6 +87,12 @@
     "AssociateUserToPermissionGroupResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "AwsCredentials": {
+      "base": "<p> The credentials required to access the external Dataview from the S3 location.</p>",
+      "refs": {
+        "GetExternalDataViewAccessDetailsResponse$credentials": "<p>The credentials required to access the external Dataview from the S3 location.</p>"
       }
     },
     "Boolean": {
@@ -292,7 +305,8 @@
         "CreateDataViewResponse$dataViewId": "<p>The unique identifier for the created Dataview.</p>",
         "DataViewSummary$dataViewId": "<p>The unique identifier for the Dataview.</p>",
         "GetDataViewRequest$dataViewId": "<p>The unique identifier for the Dataview.</p>",
-        "GetDataViewResponse$dataViewId": "<p>The unique identifier for the Dataview.</p>"
+        "GetDataViewResponse$dataViewId": "<p>The unique identifier for the Dataview.</p>",
+        "GetExternalDataViewAccessDetailsRequest$dataViewId": "<p>The unique identifier for the Dataview that you want to access.</p>"
       }
     },
     "DataViewList": {
@@ -354,6 +368,7 @@
         "GetDataViewRequest$datasetId": "<p>The unique identifier for the Dataset used in the Dataview.</p>",
         "GetDataViewResponse$datasetId": "<p>The unique identifier for the Dataset used in the Dataview.</p>",
         "GetDatasetResponse$datasetId": "<p>The unique identifier for a Dataset.</p>",
+        "GetExternalDataViewAccessDetailsRequest$datasetId": "<p>The unique identifier for the Dataset.</p>",
         "ListChangesetsRequest$datasetId": "<p>The unique identifier for the FinSpace Dataset to which the Changeset belongs.</p>",
         "ListDataViewsRequest$datasetId": "<p>The unique identifier of the Dataset for which to retrieve Dataviews.</p>",
         "UpdateChangesetRequest$datasetId": "<p>The unique identifier for the FinSpace Dataset in which the Changeset is created.</p>",
@@ -525,6 +540,16 @@
     },
     "GetDatasetResponse": {
       "base": "Response for the GetDataset operation",
+      "refs": {
+      }
+    },
+    "GetExternalDataViewAccessDetailsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetExternalDataViewAccessDetailsResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -838,10 +863,28 @@
         "UserByPermissionGroup$apiAccessPrincipalArn": "<p>The IAM ARN identifier that is attached to FinSpace API calls.</p>"
       }
     },
+    "S3BucketName": {
+      "base": null,
+      "refs": {
+        "S3Location$bucket": "<p> The name of the S3 bucket.</p>"
+      }
+    },
     "S3DestinationFormatOptions": {
       "base": null,
       "refs": {
         "DataViewDestinationTypeParams$s3DestinationExportFileFormatOptions": "<p>Format Options for S3 Destination type.</p> <p>Here is an example of how you could specify the <code>s3DestinationExportFileFormatOptions</code> </p> <p> <code> { \"header\": \"true\", \"delimiter\": \",\", \"compression\": \"gzip\" }</code> </p>"
+      }
+    },
+    "S3Key": {
+      "base": null,
+      "refs": {
+        "S3Location$key": "<p> The path of the folder, within the S3 bucket that contains the Dataset.</p>"
+      }
+    },
+    "S3Location": {
+      "base": "<p>The location of an external Dataview in an S3 bucket.</p>",
+      "refs": {
+        "GetExternalDataViewAccessDetailsResponse$s3Location": "<p>The location where the external Dataview is stored.</p>"
       }
     },
     "SchemaDefinition": {
@@ -859,11 +902,23 @@
         "UpdateDatasetRequest$schemaDefinition": "<p>Definition for a schema on a tabular Dataset.</p>"
       }
     },
+    "SecretAccessKey": {
+      "base": null,
+      "refs": {
+        "AwsCredentials$secretAccessKey": "<p> The secret access key that can be used to sign requests.</p>"
+      }
+    },
     "SessionDuration": {
       "base": null,
       "refs": {
         "GetProgrammaticAccessCredentialsRequest$durationInMinutes": "<p>The time duration in which the credentials remain valid. </p>",
         "GetProgrammaticAccessCredentialsResponse$durationInMinutes": "<p>Returns the duration in which the credentials will remain valid.</p>"
+      }
+    },
+    "SessionToken": {
+      "base": null,
+      "refs": {
+        "AwsCredentials$sessionToken": "<p> The token that users must pass to use the credentials.</p>"
       }
     },
     "SortColumnList": {
@@ -928,6 +983,7 @@
     "TimestampEpoch": {
       "base": "Milliseconds since UTC epoch",
       "refs": {
+        "AwsCredentials$expiration": "<p> The Epoch time when the current credentials expire.</p>",
         "ChangesetSummary$createTime": "<p>The timestamp at which the Changeset was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "ChangesetSummary$activeUntilTimestamp": "<p>Time until which the Changeset is active. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "ChangesetSummary$activeFromTimestamp": "<p>Beginning time from which the Changeset is active. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",

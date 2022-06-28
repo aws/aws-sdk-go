@@ -9803,7 +9803,8 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
-        }
+        },
+        "SpreadLevel":{"shape":"SpreadLevel"}
       }
     },
     "CreatePlacementGroupResult":{
@@ -30337,6 +30338,10 @@
         "GroupArn":{
           "shape":"String",
           "locationName":"groupArn"
+        },
+        "SpreadLevel":{
+          "shape":"SpreadLevel",
+          "locationName":"spreadLevel"
         }
       }
     },
@@ -35628,6 +35633,13 @@
         "shape":"SpotPrice",
         "locationName":"item"
       }
+    },
+    "SpreadLevel":{
+      "type":"string",
+      "enum":[
+        "host",
+        "rack"
+      ]
     },
     "StaleIpPermission":{
       "type":"structure",
