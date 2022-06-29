@@ -488,6 +488,10 @@ type SageMakerAPI interface {
 	DescribeFeatureGroupWithContext(aws.Context, *sagemaker.DescribeFeatureGroupInput, ...request.Option) (*sagemaker.DescribeFeatureGroupOutput, error)
 	DescribeFeatureGroupRequest(*sagemaker.DescribeFeatureGroupInput) (*request.Request, *sagemaker.DescribeFeatureGroupOutput)
 
+	DescribeFeatureMetadata(*sagemaker.DescribeFeatureMetadataInput) (*sagemaker.DescribeFeatureMetadataOutput, error)
+	DescribeFeatureMetadataWithContext(aws.Context, *sagemaker.DescribeFeatureMetadataInput, ...request.Option) (*sagemaker.DescribeFeatureMetadataOutput, error)
+	DescribeFeatureMetadataRequest(*sagemaker.DescribeFeatureMetadataInput) (*request.Request, *sagemaker.DescribeFeatureMetadataOutput)
+
 	DescribeFlowDefinition(*sagemaker.DescribeFlowDefinitionInput) (*sagemaker.DescribeFlowDefinitionOutput, error)
 	DescribeFlowDefinitionWithContext(aws.Context, *sagemaker.DescribeFlowDefinitionInput, ...request.Option) (*sagemaker.DescribeFlowDefinitionOutput, error)
 	DescribeFlowDefinitionRequest(*sagemaker.DescribeFlowDefinitionInput) (*request.Request, *sagemaker.DescribeFlowDefinitionOutput)
@@ -1184,6 +1188,14 @@ type SageMakerAPI interface {
 	UpdateExperiment(*sagemaker.UpdateExperimentInput) (*sagemaker.UpdateExperimentOutput, error)
 	UpdateExperimentWithContext(aws.Context, *sagemaker.UpdateExperimentInput, ...request.Option) (*sagemaker.UpdateExperimentOutput, error)
 	UpdateExperimentRequest(*sagemaker.UpdateExperimentInput) (*request.Request, *sagemaker.UpdateExperimentOutput)
+
+	UpdateFeatureGroup(*sagemaker.UpdateFeatureGroupInput) (*sagemaker.UpdateFeatureGroupOutput, error)
+	UpdateFeatureGroupWithContext(aws.Context, *sagemaker.UpdateFeatureGroupInput, ...request.Option) (*sagemaker.UpdateFeatureGroupOutput, error)
+	UpdateFeatureGroupRequest(*sagemaker.UpdateFeatureGroupInput) (*request.Request, *sagemaker.UpdateFeatureGroupOutput)
+
+	UpdateFeatureMetadata(*sagemaker.UpdateFeatureMetadataInput) (*sagemaker.UpdateFeatureMetadataOutput, error)
+	UpdateFeatureMetadataWithContext(aws.Context, *sagemaker.UpdateFeatureMetadataInput, ...request.Option) (*sagemaker.UpdateFeatureMetadataOutput, error)
+	UpdateFeatureMetadataRequest(*sagemaker.UpdateFeatureMetadataInput) (*request.Request, *sagemaker.UpdateFeatureMetadataOutput)
 
 	UpdateImage(*sagemaker.UpdateImageInput) (*sagemaker.UpdateImageOutput, error)
 	UpdateImageWithContext(aws.Context, *sagemaker.UpdateImageInput, ...request.Option) (*sagemaker.UpdateImageOutput, error)

@@ -150,6 +150,12 @@
       "refs": {
       }
     },
+    "AccessibilityType": {
+      "base": "Accessibility Type",
+      "refs": {
+        "CaptionDescription$Accessibility": "Indicates whether the caption track implements accessibility features such as written descriptions of spoken dialog, music, and sounds."
+      }
+    },
     "AfdSignaling": {
       "base": "Afd Signaling",
       "refs": {
@@ -2708,12 +2714,26 @@
         "AudioDescription$RemixSettings": "Settings that control how input audio channels are remixed into the output audio channels."
       }
     },
+    "RenewalSettings": {
+      "base": "The Renewal settings for Reservations",
+      "refs": {
+        "PurchaseOffering$RenewalSettings": "Renewal settings for the reservation",
+        "Reservation$RenewalSettings": "Renewal settings for the reservation",
+        "UpdateReservation$RenewalSettings": "Renewal settings for the reservation"
+      }
+    },
     "Reservation": {
       "base": "Reserved resources available to use",
       "refs": {
         "PurchaseOfferingResultModel$Reservation": null,
         "UpdateReservationResultModel$Reservation": null,
         "__listOfReservation$member": null
+      }
+    },
+    "ReservationAutomaticRenewal": {
+      "base": "Automatic Renewal Status for Reservation",
+      "refs": {
+        "RenewalSettings$AutomaticRenewal": "Automatic renewal status for the reservation"
       }
     },
     "ReservationCodec": {
@@ -3731,6 +3751,7 @@
         "Mpeg2Settings$FramerateNumerator": "The framerate numerator. For example, 24000. The framerate is the numerator divided by the denominator. For example, 24000 / 1001 = 23.976 FPS.",
         "MsSmoothGroupSettings$FragmentLength": "Length of mp4 fragments to generate (in seconds). Fragment length must be compatible with GOP size and framerate.",
         "PurchaseOffering$Count": "Number of resources",
+        "RenewalSettings$RenewalCount": "Count for the reservation renewal",
         "RtmpOutputSettings$ConnectionRetryInterval": "Number of seconds to wait before retrying a connection to the Flash Media server if the connection is lost.",
         "Scte27SourceSettings$Pid": "The pid field is used in conjunction with the caption selector languageCode field as follows:\n  - Specify PID and Language: Extracts captions from that PID; the language is \"informational\".\n  - Specify PID and omit Language: Extracts the specified PID.\n  - Omit PID and specify Language: Extracts the specified language, whichever PID that happens to be.\n  - Omit PID and omit Language: Valid only if source is DVB-Sub that is being passed through; all languages will be passed through.",
         "StaticImageActivateScheduleActionSettings$Height": "The height of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified height. Leave blank to use the native height of the overlay.",
@@ -4550,6 +4571,18 @@
       "base": null,
       "refs": {
         "EbuTtDDestinationSettings$CopyrightHolder": "Complete this field if you want to include the name of the copyright holder in the copyright tag in the captions metadata."
+      }
+    },
+    "__stringMax2048": {
+      "base": null,
+      "refs": {
+        "InputLocation$Uri": "Uniform Resource Identifier - This should be a path to a file accessible to the Live system (eg. a http:// URI) depending on the output type. For example, a RTMP destination should have a uri simliar to: \"rtmp://fmsserver/live\"."
+      }
+    },
+    "__stringMax255": {
+      "base": null,
+      "refs": {
+        "AudioDescription$Name": "The name of this AudioDescription. Outputs will use this name to uniquely identify this AudioDescription.  Description names should be unique within this Live Event."
       }
     },
     "__stringMax256": {

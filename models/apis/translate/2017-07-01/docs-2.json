@@ -8,7 +8,8 @@
     "DescribeTextTranslationJob": "<p>Gets the properties associated with an asynchronous batch translation job including name, ID, status, source and target languages, input/output S3 buckets, and so on.</p>",
     "GetParallelData": "<p>Provides information about a parallel data resource.</p>",
     "GetTerminology": "<p>Retrieves a custom terminology.</p>",
-    "ImportTerminology": "<p>Creates or updates a custom terminology, depending on whether or not one already exists for the given terminology name. Importing a terminology with the same name as an existing one will merge the terminologies based on the chosen merge strategy. Currently, the only supported merge strategy is OVERWRITE, and so the imported terminology will overwrite an existing terminology of the same name.</p> <p>If you import a terminology that overwrites an existing one, the new terminology take up to 10 minutes to fully propagate and be available for use in a translation due to cache policies with the DataPlane service that performs the translations.</p>",
+    "ImportTerminology": "<p>Creates or updates a custom terminology, depending on whether one already exists for the given terminology name. Importing a terminology with the same name as an existing one will merge the terminologies based on the chosen merge strategy. The only supported merge strategy is OVERWRITE, where the imported terminology overwrites the existing terminology of the same name.</p> <p>If you import a terminology that overwrites an existing one, the new terminology takes up to 10 minutes to fully propagate. After that, translations have access to the new terminology.</p>",
+    "ListLanguages": "<p>Provides a list of languages (RFC-5646 codes and names) that Amazon Translate supports.</p>",
     "ListParallelData": "<p>Provides a list of your parallel data resources in Amazon Translate.</p>",
     "ListTerminologies": "<p>Provides a list of custom terminologies associated with your account.</p>",
     "ListTextTranslationJobs": "<p>Gets a list of the batch translation jobs that you have submitted.</p>",
@@ -40,7 +41,7 @@
       "base": null,
       "refs": {
         "CreateParallelDataRequest$ClientToken": "<p>A unique identifier for the request. This token is automatically generated when you use Amazon Translate through an AWS SDK.</p>",
-        "StartTextTranslationJobRequest$ClientToken": "<p>A unique identifier for the request. This token is auto-generated when using the Amazon Translate SDK.</p>",
+        "StartTextTranslationJobRequest$ClientToken": "<p>A unique identifier for the request. This token is generated for you when using the Amazon Translate SDK.</p>",
         "UpdateParallelDataRequest$ClientToken": "<p>A unique identifier for the request. This token is automatically generated when you use Amazon Translate through an AWS SDK.</p>"
       }
     },
@@ -113,8 +114,15 @@
     "Directionality": {
       "base": null,
       "refs": {
-        "TerminologyData$Directionality": "<p>The directionality of your terminology resource indicates whether it has one source language (uni-directional) or multiple (multi-directional).</p> <dl> <dt>UNI</dt> <dd> <p>The terminology resource has one source language (for example, the first column in a CSV file), and all of its other languages are target languages. </p> </dd> <dt>MULTI</dt> <dd> <p>Any language in the terminology resource can be the source language or a target language. A single multi-directional terminology resource can be used for jobs that translate different language pairs. For example, if the terminology contains terms in English and Spanish, then it can be used for jobs that translate English to Spanish and jobs that translate Spanish to English.</p> </dd> </dl> <p>When you create a custom terminology resource without specifying the directionality, it behaves as uni-directional terminology, although this parameter will have a null value.</p>",
+        "TerminologyData$Directionality": "<p>The directionality of your terminology resource indicates whether it has one source language (uni-directional) or multiple (multi-directional).</p> <dl> <dt>UNI</dt> <dd> <p>The terminology resource has one source language (for example, the first column in a CSV file), and all of its other languages are target languages. </p> </dd> <dt>MULTI</dt> <dd> <p>Any language in the terminology resource can be the source language or a target language. A single multi-directional terminology resource can be used for jobs that translate different language pairs. For example, if the terminology contains English and Spanish terms, it can be used for jobs that translate English to Spanish and Spanish to English.</p> </dd> </dl> <p>When you create a custom terminology resource without specifying the directionality, it behaves as uni-directional terminology, although this parameter will have a null value.</p>",
         "TerminologyProperties$Directionality": "<p>The directionality of your terminology resource indicates whether it has one source language (uni-directional) or multiple (multi-directional). </p> <dl> <dt>UNI</dt> <dd> <p>The terminology resource has one source language (the first column in a CSV file), and all of its other languages are target languages.</p> </dd> <dt>MULTI</dt> <dd> <p>Any language in the terminology resource can be the source language.</p> </dd> </dl>"
+      }
+    },
+    "DisplayLanguageCode": {
+      "base": null,
+      "refs": {
+        "ListLanguagesRequest$DisplayLanguageCode": "<p>The language code for the language to use to display the language names in the response. The language code is <code>en</code> by default. </p>",
+        "ListLanguagesResponse$DisplayLanguageCode": "<p>The language code passed in with the request.</p>"
       }
     },
     "EncryptionKey": {
@@ -142,7 +150,7 @@
     "Formality": {
       "base": null,
       "refs": {
-        "TranslationSettings$Formality": null
+        "TranslationSettings$Formality": "<p>You can optionally specify the desired level of formality for real-time translations to supported target languages. The formality setting controls the level of formal language usage (also known as <a href=\"https://en.wikipedia.org/wiki/Register_(sociolinguistics)\">register</a>) in the translation output. You can set the value to informal or formal. If you don't specify a value for formality, or if the target language doesn't support formality, the translation will ignore the formality setting.</p> <p>Note that asynchronous translation jobs don't support formality. If you provide a value for formality, the <code>StartTextTranslationJob</code> API throws an exception (InvalidRequestException).</p> <p>For target languages that support formality, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/what-is.html\">Supported Languages and Language Codes in the Amazon Translate Developer Guide</a>.</p>"
       }
     },
     "GetParallelDataRequest": {
@@ -185,7 +193,7 @@
     "InputDataConfig": {
       "base": "<p>The input configuration properties for requesting a batch translation job.</p>",
       "refs": {
-        "StartTextTranslationJobRequest$InputDataConfig": "<p>Specifies the format and S3 location of the input documents for the translation job.</p>",
+        "StartTextTranslationJobRequest$InputDataConfig": "<p>Specifies the format and location of the input documents for the translation job.</p>",
         "TextTranslationJobProperties$InputDataConfig": "<p>The input configuration properties that were specified when the job was requested.</p>"
       }
     },
@@ -206,17 +214,17 @@
       }
     },
     "InvalidFilterException": {
-      "base": "<p>The filter specified for the operation is invalid. Specify a different filter.</p>",
+      "base": "<p>The filter specified for the operation is not valid. Specify a different filter.</p>",
       "refs": {
       }
     },
     "InvalidParameterValueException": {
-      "base": "<p>The value of the parameter is invalid. Review the value of the parameter you are using to correct it, and then retry your operation.</p>",
+      "base": "<p>The value of the parameter is not valid. Review the value of the parameter you are using to correct it, and then retry your operation.</p>",
       "refs": {
       }
     },
     "InvalidRequestException": {
-      "base": "<p> The request that you made is invalid. Check your request to determine why it's invalid and then retry the request. </p>",
+      "base": "<p> The request that you made is not valid. Check your request to determine why it's not valid and then retry the request. </p>",
       "refs": {
       }
     },
@@ -253,20 +261,28 @@
         "TextTranslationJobProperties$JobStatus": "<p>The status of the translation job.</p>"
       }
     },
+    "Language": {
+      "base": "<p>A supported language.</p>",
+      "refs": {
+        "LanguagesList$member": null
+      }
+    },
     "LanguageCodeString": {
       "base": null,
       "refs": {
         "DetectedLanguageLowConfidenceException$DetectedLanguageCode": "<p>The language code of the auto-detected language from Amazon Comprehend.</p>",
+        "Language$LanguageCode": "<p>Language code for the supported language.</p>",
         "LanguageCodeStringList$member": null,
         "ParallelDataProperties$SourceLanguageCode": "<p>The source language of the translations in the parallel data file.</p>",
         "StartTextTranslationJobRequest$SourceLanguageCode": "<p>The language code of the input language. For a list of language codes, see <a>what-is-languages</a>.</p> <p>Amazon Translate does not automatically detect a source language during batch translation jobs.</p>",
         "TargetLanguageCodeStringList$member": null,
         "TerminologyProperties$SourceLanguageCode": "<p>The language code for the source text of the translation request for which the custom terminology is being used.</p>",
         "TextTranslationJobProperties$SourceLanguageCode": "<p>The language code of the language of the source text. The language must be a language supported by Amazon Translate.</p>",
-        "TranslateTextRequest$SourceLanguageCode": "<p>The language code for the language of the source text. The language must be a language supported by Amazon Translate. For a list of language codes, see <a>what-is-languages</a>.</p> <p>To have Amazon Translate determine the source language of your text, you can specify <code>auto</code> in the <code>SourceLanguageCode</code> field. If you specify <code>auto</code>, Amazon Translate will call <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/comprehend-general.html\">Amazon Comprehend</a> to determine the source language.</p>",
+        "TranslateTextRequest$SourceLanguageCode": "<p>The language code for the language of the source text. The language must be a language supported by Amazon Translate. For a list of language codes, see <a>what-is-languages</a>.</p> <p>To have Amazon Translate determine the source language of your text, you can specify <code>auto</code> in the <code>SourceLanguageCode</code> field. If you specify <code>auto</code>, Amazon Translate will call <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/comprehend-general.html\">Amazon Comprehend</a> to determine the source language.</p> <note> <p>If you specify <code>auto</code>, you must send the <code>TranslateText</code> request in a region that supports Amazon Comprehend. Otherwise, the request returns an error indicating that autodetect is not supported. </p> </note>",
         "TranslateTextRequest$TargetLanguageCode": "<p>The language code requested for the language of the target text. The language must be a language supported by Amazon Translate.</p>",
         "TranslateTextResponse$SourceLanguageCode": "<p>The language code for the language of the source text.</p>",
         "TranslateTextResponse$TargetLanguageCode": "<p>The language code for the language of the target text. </p>",
+        "UnsupportedDisplayLanguageCodeException$DisplayLanguageCode": "<p>Language code passed in with the request.</p>",
         "UnsupportedLanguagePairException$SourceLanguageCode": "<p>The language code for the language of the input text. </p>",
         "UnsupportedLanguagePairException$TargetLanguageCode": "<p>The language code for the language of the translated text. </p>"
       }
@@ -278,8 +294,24 @@
         "TerminologyProperties$TargetLanguageCodes": "<p>The language codes for the target languages available with the custom terminology resource. All possible target languages are returned in array.</p>"
       }
     },
+    "LanguagesList": {
+      "base": null,
+      "refs": {
+        "ListLanguagesResponse$Languages": "<p>The list of supported languages.</p>"
+      }
+    },
     "LimitExceededException": {
       "base": "<p>The specified limit has been exceeded. Review your request and retry it with a quantity below the stated limit.</p>",
+      "refs": {
+      }
+    },
+    "ListLanguagesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLanguagesResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -313,6 +345,12 @@
       "refs": {
       }
     },
+    "LocalizedNameString": {
+      "base": null,
+      "refs": {
+        "Language$LanguageName": "<p>Language name of the supported language.</p>"
+      }
+    },
     "Long": {
       "base": null,
       "refs": {
@@ -325,6 +363,7 @@
     "MaxResultsInteger": {
       "base": null,
       "refs": {
+        "ListLanguagesRequest$MaxResults": "<p>The maximum number of results to return in each response.</p>",
         "ListParallelDataRequest$MaxResults": "<p>The maximum number of parallel data resources returned for each request.</p>",
         "ListTerminologiesRequest$MaxResults": "<p>The maximum number of custom terminologies returned per list request.</p>",
         "ListTextTranslationJobsRequest$MaxResults": "<p>The maximum number of results to return in each page. The default value is 100.</p>"
@@ -339,6 +378,8 @@
     "NextToken": {
       "base": null,
       "refs": {
+        "ListLanguagesRequest$NextToken": "<p>Include the NextToken value to fetch the next group of supported languages. </p>",
+        "ListLanguagesResponse$NextToken": "<p> If the response does not include all remaining results, use the NextToken in the next request to fetch the next group of supported languages.</p>",
         "ListParallelDataRequest$NextToken": "<p>A string that specifies the next page of results to return in a paginated response.</p>",
         "ListParallelDataResponse$NextToken": "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "ListTerminologiesRequest$NextToken": "<p>If the result of the request to ListTerminologies was truncated, include the NextToken to fetch the next group of custom terminologies. </p>",
@@ -371,9 +412,9 @@
     "ParallelDataDataLocation": {
       "base": "<p>The location of the most recent parallel data input file that was successfully imported into Amazon Translate.</p>",
       "refs": {
-        "GetParallelDataResponse$DataLocation": "<p>The Amazon S3 location of the most recent parallel data input file that was successfully imported into Amazon Translate. The location is returned as a presigned URL that has a 30 minute expiration.</p> <important> <p>Amazon Translate doesn't scan all input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download an input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
-        "GetParallelDataResponse$AuxiliaryDataLocation": "<p>The Amazon S3 location of a file that provides any errors or warnings that were produced by your input file. This file was created when Amazon Translate attempted to create a parallel data resource. The location is returned as a presigned URL to that has a 30 minute expiration.</p>",
-        "GetParallelDataResponse$LatestUpdateAttemptAuxiliaryDataLocation": "<p>The Amazon S3 location of a file that provides any errors or warnings that were produced by your input file. This file was created when Amazon Translate attempted to update a parallel data resource. The location is returned as a presigned URL to that has a 30 minute expiration.</p>"
+        "GetParallelDataResponse$DataLocation": "<p>The Amazon S3 location of the most recent parallel data input file that was successfully imported into Amazon Translate. The location is returned as a presigned URL that has a 30-minute expiration.</p> <important> <p>Amazon Translate doesn't scan all input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download an input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
+        "GetParallelDataResponse$AuxiliaryDataLocation": "<p>The Amazon S3 location of a file that provides any errors or warnings that were produced by your input file. This file was created when Amazon Translate attempted to create a parallel data resource. The location is returned as a presigned URL to that has a 30-minute expiration.</p>",
+        "GetParallelDataResponse$LatestUpdateAttemptAuxiliaryDataLocation": "<p>The Amazon S3 location of a file that provides any errors or warnings that were produced by your input file. This file was created when Amazon Translate attempted to update a parallel data resource. The location is returned as a presigned URL to that has a 30-minute expiration.</p>"
       }
     },
     "ParallelDataFormat": {
@@ -409,7 +450,7 @@
     "Profanity": {
       "base": null,
       "refs": {
-        "TranslationSettings$Profanity": "<p>Enable the profanity setting if you want Amazon Translate to mask profane words and phrases in your translation output.</p> <p>To mask profane words and phrases, Amazon Translate replaces them with the grawlix string “?$#@$“. This 5-character sequence is used for each profane word or phrase, regardless of the length or number of words.</p> <p>Amazon Translate does not detect profanity in all of its supported languages. For languages that support profanity detection, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/what-is.html#what-is-languages\">Supported Languages and Language Codes in the Amazon Translate Developer Guide</a>.</p>"
+        "TranslationSettings$Profanity": "<p>Enable the profanity setting if you want Amazon Translate to mask profane words and phrases in your translation output.</p> <p>To mask profane words and phrases, Amazon Translate replaces them with the grawlix string “?$#@$“. This 5-character sequence is used for each profane word or phrase, regardless of the length or number of words.</p> <p>Amazon Translate doesn't detect profanity in all of its supported languages. For languages that support profanity detection, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/what-is.html\">Supported Languages and Language Codes in the Amazon Translate Developer Guide</a>.</p>"
       }
     },
     "ResourceName": {
@@ -449,13 +490,13 @@
     "S3Uri": {
       "base": null,
       "refs": {
-        "InputDataConfig$S3Uri": "<p>The URI of the AWS S3 folder that contains the input file. The folder must be in the same Region as the API endpoint you are calling.</p>",
+        "InputDataConfig$S3Uri": "<p>The URI of the AWS S3 folder that contains the input files. Amazon Translate translates all the files in the folder. The folder must be in the same Region as the API endpoint you are calling.</p> <note> <p>The URI can also point to a single input document, or it can provide the prefix for a collection of input documents. For example. if you use the URI <code>S3://bucketName/prefix</code> and the prefix is a single file, Amazon Translate uses that files as input. If more than one file begins with the prefix, Amazon Translate uses all of them as input.</p> </note>",
         "OutputDataConfig$S3Uri": "<p>The URI of the S3 folder that contains a translation job's output file. The folder must be in the same Region as the API endpoint that you are calling.</p>",
         "ParallelDataConfig$S3Uri": "<p>The URI of the Amazon S3 folder that contains the parallel data input file. The folder must be in the same Region as the API endpoint you are calling.</p>"
       }
     },
     "ServiceUnavailableException": {
-      "base": "<p>The Amazon Translate service is temporarily unavailable. Please wait a bit and then retry your request.</p>",
+      "base": "<p>The Amazon Translate service is temporarily unavailable. Wait a bit and then retry your request.</p>",
       "refs": {
       }
     },
@@ -491,16 +532,17 @@
         "InvalidRequestException$Message": null,
         "LimitExceededException$Message": null,
         "ParallelDataDataLocation$RepositoryType": "<p>Describes the repository that contains the parallel data input file.</p>",
-        "ParallelDataDataLocation$Location": "<p>The Amazon S3 location of the parallel data input file. The location is returned as a presigned URL to that has a 30 minute expiration.</p> <important> <p>Amazon Translate doesn't scan all input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download an input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
+        "ParallelDataDataLocation$Location": "<p>The Amazon S3 location of the parallel data input file. The location is returned as a presigned URL to that has a 30-minute expiration.</p> <important> <p>Amazon Translate doesn't scan all input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download an input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
         "ResourceNotFoundException$Message": null,
         "ServiceUnavailableException$Message": null,
         "Term$SourceText": "<p>The source text of the term being translated by the custom terminology.</p>",
         "Term$TargetText": "<p>The target text of the term being translated by the custom terminology.</p>",
         "TerminologyDataLocation$RepositoryType": "<p>The repository type for the custom terminology data.</p>",
-        "TerminologyDataLocation$Location": "<p>The Amazon S3 location of the most recent custom terminology input file that was successfully imported into Amazon Translate. The location is returned as a presigned URL that has a 30 minute expiration.</p> <important> <p>Amazon Translate doesn't scan all input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download an input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
+        "TerminologyDataLocation$Location": "<p>The Amazon S3 location of the most recent custom terminology input file that was successfully imported into Amazon Translate. The location is returned as a presigned URL that has a 30-minute expiration .</p> <important> <p>Amazon Translate doesn't scan all input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download an input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
         "TextSizeLimitExceededException$Message": null,
         "TooManyRequestsException$Message": null,
         "TranslateTextResponse$TranslatedText": "<p>The translated text.</p>",
+        "UnsupportedDisplayLanguageCodeException$Message": null,
         "UnsupportedLanguagePairException$Message": null
       }
     },
@@ -530,7 +572,7 @@
       }
     },
     "TerminologyData": {
-      "base": "<p>The data associated with the custom terminology.</p>",
+      "base": "<p>The data associated with the custom terminology. For information about the custom terminology file, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/creating-custom-terminology.html\"> Creating a Custom Terminology</a>.</p>",
       "refs": {
         "ImportTerminologyRequest$TerminologyData": "<p>The terminology data for the custom terminology being imported.</p>"
       }
@@ -538,7 +580,7 @@
     "TerminologyDataFormat": {
       "base": null,
       "refs": {
-        "GetTerminologyRequest$TerminologyDataFormat": "<p>The data format of the custom terminology being retrieved.</p> <p>If you don't specify this parameter, Amazon Translate returns a file that has the same format as the file that was imported to create the terminology. </p> <p>If you specify this parameter when you retrieve a multi-directional terminology resource, you must specify the same format as that of the input file that was imported to create it. Otherwise, Amazon Translate throws an error.</p>",
+        "GetTerminologyRequest$TerminologyDataFormat": "<p>The data format of the custom terminology being retrieved.</p> <p>If you don't specify this parameter, Amazon Translate returns a file with the same format as the file that was imported to create the terminology. </p> <p>If you specify this parameter when you retrieve a multi-directional terminology resource, you must specify the same format as the input file that was imported to create it. Otherwise, Amazon Translate throws an error.</p>",
         "TerminologyData$Format": "<p>The data format of the custom terminology.</p>",
         "TerminologyProperties$Format": "<p>The format of the custom terminology input file.</p>"
       }
@@ -546,8 +588,8 @@
     "TerminologyDataLocation": {
       "base": "<p>The location of the custom terminology data.</p>",
       "refs": {
-        "GetTerminologyResponse$TerminologyDataLocation": "<p>The Amazon S3 location of the most recent custom terminology input file that was successfully imported into Amazon Translate. The location is returned as a presigned URL that has a 30 minute expiration.</p> <important> <p>Amazon Translate doesn't scan all input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download an input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
-        "GetTerminologyResponse$AuxiliaryDataLocation": "<p>The Amazon S3 location of a file that provides any errors or warnings that were produced by your input file. This file was created when Amazon Translate attempted to create a terminology resource. The location is returned as a presigned URL to that has a 30 minute expiration.</p>",
+        "GetTerminologyResponse$TerminologyDataLocation": "<p>The Amazon S3 location of the most recent custom terminology input file that was successfully imported into Amazon Translate. The location is returned as a presigned URL that has a 30-minute expiration.</p> <important> <p>Amazon Translate doesn't scan all input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download an input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
+        "GetTerminologyResponse$AuxiliaryDataLocation": "<p>The Amazon S3 location of a file that provides any errors or warnings that were produced by your input file. This file was created when Amazon Translate attempted to create a terminology resource. The location is returned as a presigned URL to that has a 30-minute expiration.</p>",
         "ImportTerminologyResponse$AuxiliaryDataLocation": "<p>The Amazon S3 location of a file that provides any errors or warnings that were produced by your input file. This file was created when Amazon Translate attempted to create a terminology resource. The location is returned as a presigned URL to that has a 30 minute expiration.</p>"
       }
     },
@@ -628,9 +670,9 @@
     "TranslationSettings": {
       "base": "<p>Settings that configure the translation output.</p>",
       "refs": {
-        "StartTextTranslationJobRequest$Settings": "<p>Settings to configure your translation output, including the option to mask profane words and phrases.</p>",
+        "StartTextTranslationJobRequest$Settings": "<p>Settings to configure your translation output, including the option to mask profane words and phrases. <code>StartTextTranslationJob</code> does not support the formality setting.</p>",
         "TextTranslationJobProperties$Settings": "<p>Settings that configure the translation output.</p>",
-        "TranslateTextRequest$Settings": "<p>Settings to configure your translation output, including the option to mask profane words and phrases.</p>",
+        "TranslateTextRequest$Settings": "<p>Settings to configure your translation output, including the option to set the formality level of the output text and the option to mask profane words and phrases.</p>",
         "TranslateTextResponse$AppliedSettings": "<p>Settings that configure the translation output.</p>"
       }
     },
@@ -640,6 +682,11 @@
         "ParallelDataProperties$Message": "<p>Additional information from Amazon Translate about the parallel data resource. </p>",
         "TerminologyProperties$Message": "<p>Additional information from Amazon Translate about the terminology resource.</p>",
         "TextTranslationJobProperties$Message": "<p>An explanation of any errors that may have occurred during the translation job.</p>"
+      }
+    },
+    "UnsupportedDisplayLanguageCodeException": {
+      "base": "<p>Requested display language code is not supported.</p>",
+      "refs": {
       }
     },
     "UnsupportedLanguagePairException": {

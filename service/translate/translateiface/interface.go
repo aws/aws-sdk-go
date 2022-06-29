@@ -88,6 +88,13 @@ type TranslateAPI interface {
 	ImportTerminologyWithContext(aws.Context, *translate.ImportTerminologyInput, ...request.Option) (*translate.ImportTerminologyOutput, error)
 	ImportTerminologyRequest(*translate.ImportTerminologyInput) (*request.Request, *translate.ImportTerminologyOutput)
 
+	ListLanguages(*translate.ListLanguagesInput) (*translate.ListLanguagesOutput, error)
+	ListLanguagesWithContext(aws.Context, *translate.ListLanguagesInput, ...request.Option) (*translate.ListLanguagesOutput, error)
+	ListLanguagesRequest(*translate.ListLanguagesInput) (*request.Request, *translate.ListLanguagesOutput)
+
+	ListLanguagesPages(*translate.ListLanguagesInput, func(*translate.ListLanguagesOutput, bool) bool) error
+	ListLanguagesPagesWithContext(aws.Context, *translate.ListLanguagesInput, func(*translate.ListLanguagesOutput, bool) bool, ...request.Option) error
+
 	ListParallelData(*translate.ListParallelDataInput) (*translate.ListParallelDataOutput, error)
 	ListParallelDataWithContext(aws.Context, *translate.ListParallelDataInput, ...request.Option) (*translate.ListParallelDataOutput, error)
 	ListParallelDataRequest(*translate.ListParallelDataInput) (*request.Request, *translate.ListParallelDataOutput)

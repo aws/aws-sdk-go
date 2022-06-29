@@ -1428,7 +1428,8 @@
         "ApplicationSettings":{"shape":"ApplicationSettings"},
         "Tags":{"shape":"Tags"},
         "AccessEndpoints":{"shape":"AccessEndpointList"},
-        "EmbedHostDomains":{"shape":"EmbedHostDomains"}
+        "EmbedHostDomains":{"shape":"EmbedHostDomains"},
+        "StreamingExperienceSettings":{"shape":"StreamingExperienceSettings"}
       }
     },
     "CreateStackResult":{
@@ -2518,6 +2519,13 @@
       "member":{"shape":"PlatformType"},
       "max":4
     },
+    "PreferredProtocol":{
+      "type":"string",
+      "enum":[
+        "TCP",
+        "UDP"
+      ]
+    },
     "RedirectURL":{
       "type":"string",
       "max":1000
@@ -2707,7 +2715,8 @@
         "UserSettings":{"shape":"UserSettingList"},
         "ApplicationSettings":{"shape":"ApplicationSettingsResponse"},
         "AccessEndpoints":{"shape":"AccessEndpointList"},
-        "EmbedHostDomains":{"shape":"EmbedHostDomains"}
+        "EmbedHostDomains":{"shape":"EmbedHostDomains"},
+        "StreamingExperienceSettings":{"shape":"StreamingExperienceSettings"}
       }
     },
     "StackAttribute":{
@@ -2723,7 +2732,8 @@
         "USER_SETTINGS",
         "EMBED_HOST_DOMAINS",
         "IAM_ROLE_ARN",
-        "ACCESS_ENDPOINTS"
+        "ACCESS_ENDPOINTS",
+        "STREAMING_EXPERIENCE_SETTINGS"
       ]
     },
     "StackAttributes":{
@@ -2830,6 +2840,12 @@
         "APP",
         "DESKTOP"
       ]
+    },
+    "StreamingExperienceSettings":{
+      "type":"structure",
+      "members":{
+        "PreferredProtocol":{"shape":"PreferredProtocol"}
+      }
     },
     "StreamingUrlUserId":{
       "type":"string",
@@ -3034,7 +3050,8 @@
         "UserSettings":{"shape":"UserSettingList"},
         "ApplicationSettings":{"shape":"ApplicationSettings"},
         "AccessEndpoints":{"shape":"AccessEndpointList"},
-        "EmbedHostDomains":{"shape":"EmbedHostDomains"}
+        "EmbedHostDomains":{"shape":"EmbedHostDomains"},
+        "StreamingExperienceSettings":{"shape":"StreamingExperienceSettings"}
       }
     },
     "UpdateStackResult":{

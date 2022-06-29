@@ -6625,6 +6625,10 @@ type AudioDescription struct {
 	// ISO 639 language code specified by the input.
 	LanguageCodeControl *string `locationName:"languageCodeControl" type:"string" enum:"AudioDescriptionLanguageCodeControl"`
 
+	// The name of this AudioDescription. Outputs will use this name to uniquely
+	// identify this AudioDescription. Description names should be unique within
+	// this Live Event.
+	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
@@ -8879,6 +8883,10 @@ func (s CancelInputDeviceTransferOutput) GoString() string {
 type CaptionDescription struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether the caption track implements accessibility features such
+	// as written descriptions of spoken dialog, music, and sounds.
+	Accessibility *string `locationName:"accessibility" type:"string" enum:"AccessibilityType"`
+
 	// Specifies which input caption selector to use as a caption source when generating
 	// output captions. This field should match a captionSelector name.
 	//
@@ -8940,6 +8948,12 @@ func (s *CaptionDescription) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccessibility sets the Accessibility field's value.
+func (s *CaptionDescription) SetAccessibility(v string) *CaptionDescription {
+	s.Accessibility = &v
+	return s
 }
 
 // SetCaptionSelectorName sets the CaptionSelectorName field's value.
@@ -11649,6 +11663,9 @@ type DeleteReservationOutput struct {
 
 	Region *string `locationName:"region" type:"string"`
 
+	// The Renewal settings for Reservations
+	RenewalSettings *RenewalSettings `locationName:"renewalSettings" type:"structure"`
+
 	ReservationId *string `locationName:"reservationId" type:"string"`
 
 	// Resource configuration (codec, resolution, bitrate, ...)
@@ -11751,6 +11768,12 @@ func (s *DeleteReservationOutput) SetOfferingType(v string) *DeleteReservationOu
 // SetRegion sets the Region field's value.
 func (s *DeleteReservationOutput) SetRegion(v string) *DeleteReservationOutput {
 	s.Region = &v
+	return s
+}
+
+// SetRenewalSettings sets the RenewalSettings field's value.
+func (s *DeleteReservationOutput) SetRenewalSettings(v *RenewalSettings) *DeleteReservationOutput {
+	s.RenewalSettings = v
 	return s
 }
 
@@ -13291,6 +13314,9 @@ type DescribeReservationOutput struct {
 
 	Region *string `locationName:"region" type:"string"`
 
+	// The Renewal settings for Reservations
+	RenewalSettings *RenewalSettings `locationName:"renewalSettings" type:"structure"`
+
 	ReservationId *string `locationName:"reservationId" type:"string"`
 
 	// Resource configuration (codec, resolution, bitrate, ...)
@@ -13393,6 +13419,12 @@ func (s *DescribeReservationOutput) SetOfferingType(v string) *DescribeReservati
 // SetRegion sets the Region field's value.
 func (s *DescribeReservationOutput) SetRegion(v string) *DescribeReservationOutput {
 	s.Region = &v
+	return s
+}
+
+// SetRenewalSettings sets the RenewalSettings field's value.
+func (s *DescribeReservationOutput) SetRenewalSettings(v *RenewalSettings) *DescribeReservationOutput {
+	s.RenewalSettings = v
 	return s
 }
 
@@ -25359,6 +25391,9 @@ type PurchaseOfferingInput struct {
 	// OfferingId is a required field
 	OfferingId *string `location:"uri" locationName:"offeringId" type:"string" required:"true"`
 
+	// The Renewal settings for Reservations
+	RenewalSettings *RenewalSettings `locationName:"renewalSettings" type:"structure"`
+
 	RequestId *string `locationName:"requestId" type:"string" idempotencyToken:"true"`
 
 	Start *string `locationName:"start" type:"string"`
@@ -25399,6 +25434,11 @@ func (s *PurchaseOfferingInput) Validate() error {
 	if s.OfferingId != nil && len(*s.OfferingId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OfferingId", 1))
 	}
+	if s.RenewalSettings != nil {
+		if err := s.RenewalSettings.Validate(); err != nil {
+			invalidParams.AddNested("RenewalSettings", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -25421,6 +25461,12 @@ func (s *PurchaseOfferingInput) SetName(v string) *PurchaseOfferingInput {
 // SetOfferingId sets the OfferingId field's value.
 func (s *PurchaseOfferingInput) SetOfferingId(v string) *PurchaseOfferingInput {
 	s.OfferingId = &v
+	return s
+}
+
+// SetRenewalSettings sets the RenewalSettings field's value.
+func (s *PurchaseOfferingInput) SetRenewalSettings(v *RenewalSettings) *PurchaseOfferingInput {
+	s.RenewalSettings = v
 	return s
 }
 
@@ -25692,6 +25738,60 @@ func (s *RemixSettings) SetChannelsOut(v int64) *RemixSettings {
 	return s
 }
 
+// The Renewal settings for Reservations
+type RenewalSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Automatic renewal status for the reservation
+	AutomaticRenewal *string `locationName:"automaticRenewal" type:"string" enum:"ReservationAutomaticRenewal"`
+
+	// Count for the reservation renewal
+	RenewalCount *int64 `locationName:"renewalCount" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RenewalSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RenewalSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RenewalSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RenewalSettings"}
+	if s.RenewalCount != nil && *s.RenewalCount < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("RenewalCount", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutomaticRenewal sets the AutomaticRenewal field's value.
+func (s *RenewalSettings) SetAutomaticRenewal(v string) *RenewalSettings {
+	s.AutomaticRenewal = &v
+	return s
+}
+
+// SetRenewalCount sets the RenewalCount field's value.
+func (s *RenewalSettings) SetRenewalCount(v int64) *RenewalSettings {
+	s.RenewalCount = &v
+	return s
+}
+
 // Reserved resources available to use
 type Reservation struct {
 	_ struct{} `type:"structure"`
@@ -25732,6 +25832,9 @@ type Reservation struct {
 
 	// AWS region, e.g. 'us-west-2'
 	Region *string `locationName:"region" type:"string"`
+
+	// Renewal settings for the reservation
+	RenewalSettings *RenewalSettings `locationName:"renewalSettings" type:"structure"`
 
 	// Unique reservation ID, e.g. '1234567'
 	ReservationId *string `locationName:"reservationId" type:"string"`
@@ -25839,6 +25942,12 @@ func (s *Reservation) SetOfferingType(v string) *Reservation {
 // SetRegion sets the Region field's value.
 func (s *Reservation) SetRegion(v string) *Reservation {
 	s.Region = &v
+	return s
+}
+
+// SetRenewalSettings sets the RenewalSettings field's value.
+func (s *Reservation) SetRenewalSettings(v *RenewalSettings) *Reservation {
+	s.RenewalSettings = v
 	return s
 }
 
@@ -30157,6 +30266,9 @@ type UpdateReservationInput struct {
 
 	Name *string `locationName:"name" type:"string"`
 
+	// The Renewal settings for Reservations
+	RenewalSettings *RenewalSettings `locationName:"renewalSettings" type:"structure"`
+
 	// ReservationId is a required field
 	ReservationId *string `location:"uri" locationName:"reservationId" type:"string" required:"true"`
 }
@@ -30188,6 +30300,11 @@ func (s *UpdateReservationInput) Validate() error {
 	if s.ReservationId != nil && len(*s.ReservationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ReservationId", 1))
 	}
+	if s.RenewalSettings != nil {
+		if err := s.RenewalSettings.Validate(); err != nil {
+			invalidParams.AddNested("RenewalSettings", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -30198,6 +30315,12 @@ func (s *UpdateReservationInput) Validate() error {
 // SetName sets the Name field's value.
 func (s *UpdateReservationInput) SetName(v string) *UpdateReservationInput {
 	s.Name = &v
+	return s
+}
+
+// SetRenewalSettings sets the RenewalSettings field's value.
+func (s *UpdateReservationInput) SetRenewalSettings(v *RenewalSettings) *UpdateReservationInput {
+	s.RenewalSettings = v
 	return s
 }
 
@@ -31258,6 +31381,23 @@ func AcceptHeader_Values() []string {
 	}
 }
 
+// Accessibility Type
+const (
+	// AccessibilityTypeDoesNotImplementAccessibilityFeatures is a AccessibilityType enum value
+	AccessibilityTypeDoesNotImplementAccessibilityFeatures = "DOES_NOT_IMPLEMENT_ACCESSIBILITY_FEATURES"
+
+	// AccessibilityTypeImplementsAccessibilityFeatures is a AccessibilityType enum value
+	AccessibilityTypeImplementsAccessibilityFeatures = "IMPLEMENTS_ACCESSIBILITY_FEATURES"
+)
+
+// AccessibilityType_Values returns all elements of the AccessibilityType enum
+func AccessibilityType_Values() []string {
+	return []string{
+		AccessibilityTypeDoesNotImplementAccessibilityFeatures,
+		AccessibilityTypeImplementsAccessibilityFeatures,
+	}
+}
+
 // Afd Signaling
 const (
 	// AfdSignalingAuto is a AfdSignaling enum value
@@ -31778,6 +31918,9 @@ const (
 
 	// DeviceUpdateStatusNotUpToDate is a DeviceUpdateStatus enum value
 	DeviceUpdateStatusNotUpToDate = "NOT_UP_TO_DATE"
+
+	// DeviceUpdateStatusUpdating is a DeviceUpdateStatus enum value
+	DeviceUpdateStatusUpdating = "UPDATING"
 )
 
 // DeviceUpdateStatus_Values returns all elements of the DeviceUpdateStatus enum
@@ -31785,6 +31928,7 @@ func DeviceUpdateStatus_Values() []string {
 	return []string{
 		DeviceUpdateStatusUpToDate,
 		DeviceUpdateStatusNotUpToDate,
+		DeviceUpdateStatusUpdating,
 	}
 }
 
@@ -35254,6 +35398,27 @@ func PreferredChannelPipeline_Values() []string {
 		PreferredChannelPipelineCurrentlyActive,
 		PreferredChannelPipelinePipeline0,
 		PreferredChannelPipelinePipeline1,
+	}
+}
+
+// Automatic Renewal Status for Reservation
+const (
+	// ReservationAutomaticRenewalDisabled is a ReservationAutomaticRenewal enum value
+	ReservationAutomaticRenewalDisabled = "DISABLED"
+
+	// ReservationAutomaticRenewalEnabled is a ReservationAutomaticRenewal enum value
+	ReservationAutomaticRenewalEnabled = "ENABLED"
+
+	// ReservationAutomaticRenewalUnavailable is a ReservationAutomaticRenewal enum value
+	ReservationAutomaticRenewalUnavailable = "UNAVAILABLE"
+)
+
+// ReservationAutomaticRenewal_Values returns all elements of the ReservationAutomaticRenewal enum
+func ReservationAutomaticRenewal_Values() []string {
+	return []string{
+		ReservationAutomaticRenewalDisabled,
+		ReservationAutomaticRenewalEnabled,
+		ReservationAutomaticRenewalUnavailable,
 	}
 }
 

@@ -9207,6 +9207,85 @@ func (c *SageMaker) DescribeFeatureGroupWithContext(ctx aws.Context, input *Desc
 	return out, req.Send()
 }
 
+const opDescribeFeatureMetadata = "DescribeFeatureMetadata"
+
+// DescribeFeatureMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFeatureMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFeatureMetadata for more information on using the DescribeFeatureMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFeatureMetadataRequest method.
+//    req, resp := client.DescribeFeatureMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeFeatureMetadata
+func (c *SageMaker) DescribeFeatureMetadataRequest(input *DescribeFeatureMetadataInput) (req *request.Request, output *DescribeFeatureMetadataOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFeatureMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeFeatureMetadataInput{}
+	}
+
+	output = &DescribeFeatureMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFeatureMetadata API operation for Amazon SageMaker Service.
+//
+// Shows the metadata for a feature within a feature group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeFeatureMetadata for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeFeatureMetadata
+func (c *SageMaker) DescribeFeatureMetadata(input *DescribeFeatureMetadataInput) (*DescribeFeatureMetadataOutput, error) {
+	req, out := c.DescribeFeatureMetadataRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFeatureMetadataWithContext is the same as DescribeFeatureMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFeatureMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeFeatureMetadataWithContext(ctx aws.Context, input *DescribeFeatureMetadataInput, opts ...request.Option) (*DescribeFeatureMetadataOutput, error) {
+	req, out := c.DescribeFeatureMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeFlowDefinition = "DescribeFlowDefinition"
 
 // DescribeFlowDefinitionRequest generates a "aws/request.Request" representing the
@@ -22843,6 +22922,165 @@ func (c *SageMaker) UpdateExperimentWithContext(ctx aws.Context, input *UpdateEx
 	return out, req.Send()
 }
 
+const opUpdateFeatureGroup = "UpdateFeatureGroup"
+
+// UpdateFeatureGroupRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFeatureGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFeatureGroup for more information on using the UpdateFeatureGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFeatureGroupRequest method.
+//    req, resp := client.UpdateFeatureGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateFeatureGroup
+func (c *SageMaker) UpdateFeatureGroupRequest(input *UpdateFeatureGroupInput) (req *request.Request, output *UpdateFeatureGroupOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFeatureGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateFeatureGroupInput{}
+	}
+
+	output = &UpdateFeatureGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFeatureGroup API operation for Amazon SageMaker Service.
+//
+// Updates the feature group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation UpdateFeatureGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateFeatureGroup
+func (c *SageMaker) UpdateFeatureGroup(input *UpdateFeatureGroupInput) (*UpdateFeatureGroupOutput, error) {
+	req, out := c.UpdateFeatureGroupRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFeatureGroupWithContext is the same as UpdateFeatureGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFeatureGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) UpdateFeatureGroupWithContext(ctx aws.Context, input *UpdateFeatureGroupInput, opts ...request.Option) (*UpdateFeatureGroupOutput, error) {
+	req, out := c.UpdateFeatureGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFeatureMetadata = "UpdateFeatureMetadata"
+
+// UpdateFeatureMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFeatureMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFeatureMetadata for more information on using the UpdateFeatureMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFeatureMetadataRequest method.
+//    req, resp := client.UpdateFeatureMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateFeatureMetadata
+func (c *SageMaker) UpdateFeatureMetadataRequest(input *UpdateFeatureMetadataInput) (req *request.Request, output *UpdateFeatureMetadataOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFeatureMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateFeatureMetadataInput{}
+	}
+
+	output = &UpdateFeatureMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateFeatureMetadata API operation for Amazon SageMaker Service.
+//
+// Updates the description and parameters of the feature group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation UpdateFeatureMetadata for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateFeatureMetadata
+func (c *SageMaker) UpdateFeatureMetadata(input *UpdateFeatureMetadataInput) (*UpdateFeatureMetadataOutput, error) {
+	req, out := c.UpdateFeatureMetadataRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFeatureMetadataWithContext is the same as UpdateFeatureMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFeatureMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) UpdateFeatureMetadataWithContext(ctx aws.Context, input *UpdateFeatureMetadataInput, opts ...request.Option) (*UpdateFeatureMetadataOutput, error) {
+	req, out := c.UpdateFeatureMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateImage = "UpdateImage"
 
 // UpdateImageRequest generates a "aws/request.Request" representing the
@@ -28244,8 +28482,10 @@ func (s *BatchDescribeModelPackageSummary) SetModelPackageVersion(v int64) *Batc
 type Bias struct {
 	_ struct{} `type:"structure"`
 
+	// The post-training bias report for a model.
 	PostTrainingReport *MetricsSource `type:"structure"`
 
+	// The pre-training bias report for a model.
 	PreTrainingReport *MetricsSource `type:"structure"`
 
 	// The bias report for a model
@@ -46753,6 +46993,12 @@ type DescribeFeatureGroupOutput struct {
 	// The status of the feature group.
 	FeatureGroupStatus *string `type:"string" enum:"FeatureGroupStatus"`
 
+	// A timestamp indicating when the feature group was last updated.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// A value indicating whether the update made to the feature group was successful.
+	LastUpdateStatus *LastUpdateStatus `type:"structure"`
+
 	// A token to resume pagination of the list of Features (FeatureDefinitions).
 	//
 	// NextToken is a required field
@@ -46769,6 +47015,9 @@ type DescribeFeatureGroupOutput struct {
 
 	// The configuration for the OnlineStore.
 	OnlineStoreConfig *OnlineStoreConfig `type:"structure"`
+
+	// The size of the OnlineStore in bytes.
+	OnlineStoreTotalSizeBytes *int64 `type:"long"`
 
 	// The name of the Feature used for RecordIdentifier, whose value uniquely identifies
 	// a record stored in the feature store.
@@ -46847,6 +47096,18 @@ func (s *DescribeFeatureGroupOutput) SetFeatureGroupStatus(v string) *DescribeFe
 	return s
 }
 
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeFeatureGroupOutput) SetLastModifiedTime(v time.Time) *DescribeFeatureGroupOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLastUpdateStatus sets the LastUpdateStatus field's value.
+func (s *DescribeFeatureGroupOutput) SetLastUpdateStatus(v *LastUpdateStatus) *DescribeFeatureGroupOutput {
+	s.LastUpdateStatus = v
+	return s
+}
+
 // SetNextToken sets the NextToken field's value.
 func (s *DescribeFeatureGroupOutput) SetNextToken(v string) *DescribeFeatureGroupOutput {
 	s.NextToken = &v
@@ -46871,6 +47132,12 @@ func (s *DescribeFeatureGroupOutput) SetOnlineStoreConfig(v *OnlineStoreConfig) 
 	return s
 }
 
+// SetOnlineStoreTotalSizeBytes sets the OnlineStoreTotalSizeBytes field's value.
+func (s *DescribeFeatureGroupOutput) SetOnlineStoreTotalSizeBytes(v int64) *DescribeFeatureGroupOutput {
+	s.OnlineStoreTotalSizeBytes = &v
+	return s
+}
+
 // SetRecordIdentifierFeatureName sets the RecordIdentifierFeatureName field's value.
 func (s *DescribeFeatureGroupOutput) SetRecordIdentifierFeatureName(v string) *DescribeFeatureGroupOutput {
 	s.RecordIdentifierFeatureName = &v
@@ -46880,6 +47147,180 @@ func (s *DescribeFeatureGroupOutput) SetRecordIdentifierFeatureName(v string) *D
 // SetRoleArn sets the RoleArn field's value.
 func (s *DescribeFeatureGroupOutput) SetRoleArn(v string) *DescribeFeatureGroupOutput {
 	s.RoleArn = &v
+	return s
+}
+
+type DescribeFeatureMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the feature group containing the feature.
+	//
+	// FeatureGroupName is a required field
+	FeatureGroupName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the feature.
+	//
+	// FeatureName is a required field
+	FeatureName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFeatureMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFeatureMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFeatureMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFeatureMetadataInput"}
+	if s.FeatureGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FeatureGroupName"))
+	}
+	if s.FeatureGroupName != nil && len(*s.FeatureGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeatureGroupName", 1))
+	}
+	if s.FeatureName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FeatureName"))
+	}
+	if s.FeatureName != nil && len(*s.FeatureName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeatureName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFeatureGroupName sets the FeatureGroupName field's value.
+func (s *DescribeFeatureMetadataInput) SetFeatureGroupName(v string) *DescribeFeatureMetadataInput {
+	s.FeatureGroupName = &v
+	return s
+}
+
+// SetFeatureName sets the FeatureName field's value.
+func (s *DescribeFeatureMetadataInput) SetFeatureName(v string) *DescribeFeatureMetadataInput {
+	s.FeatureName = &v
+	return s
+}
+
+type DescribeFeatureMetadataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A timestamp indicating when the feature was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// The description you added to describe the feature.
+	Description *string `type:"string"`
+
+	// The Amazon Resource Number (ARN) of the feature group that contains the feature.
+	//
+	// FeatureGroupArn is a required field
+	FeatureGroupArn *string `type:"string" required:"true"`
+
+	// The name of the feature group that you've specified.
+	//
+	// FeatureGroupName is a required field
+	FeatureGroupName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the feature that you've specified.
+	//
+	// FeatureName is a required field
+	FeatureName *string `min:"1" type:"string" required:"true"`
+
+	// The data type of the feature.
+	//
+	// FeatureType is a required field
+	FeatureType *string `type:"string" required:"true" enum:"FeatureType"`
+
+	// A timestamp indicating when the metadata for the feature group was modified.
+	// For example, if you add a parameter describing the feature, the timestamp
+	// changes to reflect the last time you
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The key-value pairs that you added to describe the feature.
+	Parameters []*FeatureParameter `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFeatureMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFeatureMetadataOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeFeatureMetadataOutput) SetCreationTime(v time.Time) *DescribeFeatureMetadataOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeFeatureMetadataOutput) SetDescription(v string) *DescribeFeatureMetadataOutput {
+	s.Description = &v
+	return s
+}
+
+// SetFeatureGroupArn sets the FeatureGroupArn field's value.
+func (s *DescribeFeatureMetadataOutput) SetFeatureGroupArn(v string) *DescribeFeatureMetadataOutput {
+	s.FeatureGroupArn = &v
+	return s
+}
+
+// SetFeatureGroupName sets the FeatureGroupName field's value.
+func (s *DescribeFeatureMetadataOutput) SetFeatureGroupName(v string) *DescribeFeatureMetadataOutput {
+	s.FeatureGroupName = &v
+	return s
+}
+
+// SetFeatureName sets the FeatureName field's value.
+func (s *DescribeFeatureMetadataOutput) SetFeatureName(v string) *DescribeFeatureMetadataOutput {
+	s.FeatureName = &v
+	return s
+}
+
+// SetFeatureType sets the FeatureType field's value.
+func (s *DescribeFeatureMetadataOutput) SetFeatureType(v string) *DescribeFeatureMetadataOutput {
+	s.FeatureType = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeFeatureMetadataOutput) SetLastModifiedTime(v time.Time) *DescribeFeatureMetadataOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *DescribeFeatureMetadataOutput) SetParameters(v []*FeatureParameter) *DescribeFeatureMetadataOutput {
+	s.Parameters = v
 	return s
 }
 
@@ -53730,8 +54171,10 @@ type DriftCheckBias struct {
 	// The bias config file for a model.
 	ConfigFile *FileSource `type:"structure"`
 
+	// The post-training constraints.
 	PostTrainingConstraints *MetricsSource `type:"structure"`
 
+	// The pre-training constraints.
 	PreTrainingConstraints *MetricsSource `type:"structure"`
 }
 
@@ -53804,6 +54247,7 @@ type DriftCheckExplainability struct {
 	// The explainability config file for the model.
 	ConfigFile *FileSource `type:"structure"`
 
+	// The drift check explainability constraints.
 	Constraints *MetricsSource `type:"structure"`
 }
 
@@ -53862,8 +54306,10 @@ func (s *DriftCheckExplainability) SetConstraints(v *MetricsSource) *DriftCheckE
 type DriftCheckModelDataQuality struct {
 	_ struct{} `type:"structure"`
 
+	// The drift check model data quality constraints.
 	Constraints *MetricsSource `type:"structure"`
 
+	// The drift check model data quality statistics.
 	Statistics *MetricsSource `type:"structure"`
 }
 
@@ -53922,8 +54368,10 @@ func (s *DriftCheckModelDataQuality) SetStatistics(v *MetricsSource) *DriftCheck
 type DriftCheckModelQuality struct {
 	_ struct{} `type:"structure"`
 
+	// The drift check model quality constraints.
 	Constraints *MetricsSource `type:"structure"`
 
+	// The drift check model quality statistics.
 	Statistics *MetricsSource `type:"structure"`
 }
 
@@ -55791,6 +56239,12 @@ type FeatureGroup struct {
 	// A FeatureGroup status.
 	FeatureGroupStatus *string `type:"string" enum:"FeatureGroupStatus"`
 
+	// A timestamp indicating the last time you updated the feature group.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// A value that indicates whether the feature group was updated successfully.
+	LastUpdateStatus *LastUpdateStatus `type:"structure"`
+
 	// The configuration of an OfflineStore.
 	//
 	// Provide an OfflineStoreConfig in a request to CreateFeatureGroup to create
@@ -55884,6 +56338,18 @@ func (s *FeatureGroup) SetFeatureGroupName(v string) *FeatureGroup {
 // SetFeatureGroupStatus sets the FeatureGroupStatus field's value.
 func (s *FeatureGroup) SetFeatureGroupStatus(v string) *FeatureGroup {
 	s.FeatureGroupStatus = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *FeatureGroup) SetLastModifiedTime(v time.Time) *FeatureGroup {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLastUpdateStatus sets the LastUpdateStatus field's value.
+func (s *FeatureGroup) SetLastUpdateStatus(v *LastUpdateStatus) *FeatureGroup {
+	s.LastUpdateStatus = v
 	return s
 }
 
@@ -55997,6 +56463,159 @@ func (s *FeatureGroupSummary) SetFeatureGroupStatus(v string) *FeatureGroupSumma
 // SetOfflineStoreStatus sets the OfflineStoreStatus field's value.
 func (s *FeatureGroupSummary) SetOfflineStoreStatus(v *OfflineStoreStatus) *FeatureGroupSummary {
 	s.OfflineStoreStatus = v
+	return s
+}
+
+// The metadata for a feature. It can either be metadata that you specify, or
+// metadata that is updated automatically.
+type FeatureMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// A timestamp indicating when the feature was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// An optional description that you specify to better describe the feature.
+	Description *string `type:"string"`
+
+	// The Amazon Resource Number (ARN) of the feature group.
+	FeatureGroupArn *string `type:"string"`
+
+	// The name of the feature group containing the feature.
+	FeatureGroupName *string `min:"1" type:"string"`
+
+	// The name of feature.
+	FeatureName *string `min:"1" type:"string"`
+
+	// The data type of the feature.
+	FeatureType *string `type:"string" enum:"FeatureType"`
+
+	// A timestamp indicating when the feature was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// Optional key-value pairs that you specify to better describe the feature.
+	Parameters []*FeatureParameter `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FeatureMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FeatureMetadata) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *FeatureMetadata) SetCreationTime(v time.Time) *FeatureMetadata {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *FeatureMetadata) SetDescription(v string) *FeatureMetadata {
+	s.Description = &v
+	return s
+}
+
+// SetFeatureGroupArn sets the FeatureGroupArn field's value.
+func (s *FeatureMetadata) SetFeatureGroupArn(v string) *FeatureMetadata {
+	s.FeatureGroupArn = &v
+	return s
+}
+
+// SetFeatureGroupName sets the FeatureGroupName field's value.
+func (s *FeatureMetadata) SetFeatureGroupName(v string) *FeatureMetadata {
+	s.FeatureGroupName = &v
+	return s
+}
+
+// SetFeatureName sets the FeatureName field's value.
+func (s *FeatureMetadata) SetFeatureName(v string) *FeatureMetadata {
+	s.FeatureName = &v
+	return s
+}
+
+// SetFeatureType sets the FeatureType field's value.
+func (s *FeatureMetadata) SetFeatureType(v string) *FeatureMetadata {
+	s.FeatureType = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *FeatureMetadata) SetLastModifiedTime(v time.Time) *FeatureMetadata {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *FeatureMetadata) SetParameters(v []*FeatureParameter) *FeatureMetadata {
+	s.Parameters = v
+	return s
+}
+
+// A key-value pair that you specify to describe the feature.
+type FeatureParameter struct {
+	_ struct{} `type:"structure"`
+
+	// A key that must contain a value to describe the feature.
+	Key *string `min:"1" type:"string"`
+
+	// The value that belongs to a key.
+	Value *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FeatureParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FeatureParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FeatureParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FeatureParameter"}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *FeatureParameter) SetKey(v string) *FeatureParameter {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *FeatureParameter) SetValue(v string) *FeatureParameter {
+	s.Value = &v
 	return s
 }
 
@@ -62202,6 +62821,49 @@ func (s *LambdaStepMetadata) SetArn(v string) *LambdaStepMetadata {
 // SetOutputParameters sets the OutputParameters field's value.
 func (s *LambdaStepMetadata) SetOutputParameters(v []*OutputParameter) *LambdaStepMetadata {
 	s.OutputParameters = v
+	return s
+}
+
+// A value that indicates whether the update was successful.
+type LastUpdateStatus struct {
+	_ struct{} `type:"structure"`
+
+	// If the update wasn't successful, indicates the reason why it failed.
+	FailureReason *string `type:"string"`
+
+	// A value that indicates whether the update was made successful.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"LastUpdateStatusValue"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LastUpdateStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LastUpdateStatus) GoString() string {
+	return s.String()
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *LastUpdateStatus) SetFailureReason(v string) *LastUpdateStatus {
+	s.FailureReason = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *LastUpdateStatus) SetStatus(v string) *LastUpdateStatus {
+	s.Status = &v
 	return s
 }
 
@@ -71359,14 +72021,20 @@ func (s *MetricDefinition) SetRegex(v string) *MetricDefinition {
 	return s
 }
 
+// Details about the metrics source.
 type MetricsSource struct {
 	_ struct{} `type:"structure"`
 
+	// The hash key used for the metrics source.
 	ContentDigest *string `type:"string"`
 
+	// The metric source content type.
+	//
 	// ContentType is a required field
 	ContentType *string `type:"string" required:"true"`
 
+	// The S3 URI for the metrics source.
+	//
 	// S3Uri is a required field
 	S3Uri *string `type:"string" required:"true"`
 }
@@ -83858,6 +84526,9 @@ type SearchRecord struct {
 	// In principle, a Feature Group is composed of features and values per features.
 	FeatureGroup *FeatureGroup `type:"structure"`
 
+	// The feature metadata used to search through the features.
+	FeatureMetadata *FeatureMetadata `type:"structure"`
+
 	// A versioned model that can be deployed for SageMaker inference.
 	ModelPackage *ModelPackage `type:"structure"`
 
@@ -83916,6 +84587,12 @@ func (s *SearchRecord) SetExperiment(v *Experiment) *SearchRecord {
 // SetFeatureGroup sets the FeatureGroup field's value.
 func (s *SearchRecord) SetFeatureGroup(v *FeatureGroup) *SearchRecord {
 	s.FeatureGroup = v
+	return s
+}
+
+// SetFeatureMetadata sets the FeatureMetadata field's value.
+func (s *SearchRecord) SetFeatureMetadata(v *FeatureMetadata) *SearchRecord {
+	s.FeatureMetadata = v
 	return s
 }
 
@@ -91275,6 +91952,236 @@ func (s *UpdateExperimentOutput) SetExperimentArn(v string) *UpdateExperimentOut
 	return s
 }
 
+type UpdateFeatureGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the features that you're adding to the feature group.
+	FeatureAdditions []*FeatureDefinition `min:"1" type:"list"`
+
+	// The name of the feature group that you're updating.
+	//
+	// FeatureGroupName is a required field
+	FeatureGroupName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFeatureGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFeatureGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFeatureGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFeatureGroupInput"}
+	if s.FeatureAdditions != nil && len(s.FeatureAdditions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeatureAdditions", 1))
+	}
+	if s.FeatureGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FeatureGroupName"))
+	}
+	if s.FeatureGroupName != nil && len(*s.FeatureGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeatureGroupName", 1))
+	}
+	if s.FeatureAdditions != nil {
+		for i, v := range s.FeatureAdditions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FeatureAdditions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFeatureAdditions sets the FeatureAdditions field's value.
+func (s *UpdateFeatureGroupInput) SetFeatureAdditions(v []*FeatureDefinition) *UpdateFeatureGroupInput {
+	s.FeatureAdditions = v
+	return s
+}
+
+// SetFeatureGroupName sets the FeatureGroupName field's value.
+func (s *UpdateFeatureGroupInput) SetFeatureGroupName(v string) *UpdateFeatureGroupInput {
+	s.FeatureGroupName = &v
+	return s
+}
+
+type UpdateFeatureGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the feature group that you're updating.
+	//
+	// FeatureGroupArn is a required field
+	FeatureGroupArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFeatureGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFeatureGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetFeatureGroupArn sets the FeatureGroupArn field's value.
+func (s *UpdateFeatureGroupOutput) SetFeatureGroupArn(v string) *UpdateFeatureGroupOutput {
+	s.FeatureGroupArn = &v
+	return s
+}
+
+type UpdateFeatureMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description that you can write to better describe the feature.
+	Description *string `type:"string"`
+
+	// The name of the feature group containing the feature that you're updating.
+	//
+	// FeatureGroupName is a required field
+	FeatureGroupName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the feature that you're updating.
+	//
+	// FeatureName is a required field
+	FeatureName *string `min:"1" type:"string" required:"true"`
+
+	// A list of key-value pairs that you can add to better describe the feature.
+	ParameterAdditions []*FeatureParameter `type:"list"`
+
+	// A list of parameter keys that you can specify to remove parameters that describe
+	// your feature.
+	ParameterRemovals []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFeatureMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFeatureMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFeatureMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFeatureMetadataInput"}
+	if s.FeatureGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FeatureGroupName"))
+	}
+	if s.FeatureGroupName != nil && len(*s.FeatureGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeatureGroupName", 1))
+	}
+	if s.FeatureName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FeatureName"))
+	}
+	if s.FeatureName != nil && len(*s.FeatureName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeatureName", 1))
+	}
+	if s.ParameterAdditions != nil {
+		for i, v := range s.ParameterAdditions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ParameterAdditions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateFeatureMetadataInput) SetDescription(v string) *UpdateFeatureMetadataInput {
+	s.Description = &v
+	return s
+}
+
+// SetFeatureGroupName sets the FeatureGroupName field's value.
+func (s *UpdateFeatureMetadataInput) SetFeatureGroupName(v string) *UpdateFeatureMetadataInput {
+	s.FeatureGroupName = &v
+	return s
+}
+
+// SetFeatureName sets the FeatureName field's value.
+func (s *UpdateFeatureMetadataInput) SetFeatureName(v string) *UpdateFeatureMetadataInput {
+	s.FeatureName = &v
+	return s
+}
+
+// SetParameterAdditions sets the ParameterAdditions field's value.
+func (s *UpdateFeatureMetadataInput) SetParameterAdditions(v []*FeatureParameter) *UpdateFeatureMetadataInput {
+	s.ParameterAdditions = v
+	return s
+}
+
+// SetParameterRemovals sets the ParameterRemovals field's value.
+func (s *UpdateFeatureMetadataInput) SetParameterRemovals(v []*string) *UpdateFeatureMetadataInput {
+	s.ParameterRemovals = v
+	return s
+}
+
+type UpdateFeatureMetadataOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFeatureMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFeatureMetadataOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateImageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -96292,6 +97199,26 @@ func LabelingJobStatus_Values() []string {
 }
 
 const (
+	// LastUpdateStatusValueSuccessful is a LastUpdateStatusValue enum value
+	LastUpdateStatusValueSuccessful = "Successful"
+
+	// LastUpdateStatusValueFailed is a LastUpdateStatusValue enum value
+	LastUpdateStatusValueFailed = "Failed"
+
+	// LastUpdateStatusValueInProgress is a LastUpdateStatusValue enum value
+	LastUpdateStatusValueInProgress = "InProgress"
+)
+
+// LastUpdateStatusValue_Values returns all elements of the LastUpdateStatusValue enum
+func LastUpdateStatusValue_Values() []string {
+	return []string{
+		LastUpdateStatusValueSuccessful,
+		LastUpdateStatusValueFailed,
+		LastUpdateStatusValueInProgress,
+	}
+}
+
+const (
 	// LineageTypeTrialComponent is a LineageType enum value
 	LineageTypeTrialComponent = "TrialComponent"
 
@@ -97982,6 +98909,9 @@ const (
 
 	// ResourceTypeProject is a ResourceType enum value
 	ResourceTypeProject = "Project"
+
+	// ResourceTypeFeatureMetadata is a ResourceType enum value
+	ResourceTypeFeatureMetadata = "FeatureMetadata"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -97998,6 +98928,7 @@ func ResourceType_Values() []string {
 		ResourceTypePipelineExecution,
 		ResourceTypeFeatureGroup,
 		ResourceTypeProject,
+		ResourceTypeFeatureMetadata,
 	}
 }
 

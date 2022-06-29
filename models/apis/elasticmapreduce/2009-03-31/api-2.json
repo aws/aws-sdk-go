@@ -3019,6 +3019,10 @@
         "JobFlowIds":{"shape":"XmlStringList"}
       }
     },
+    "ThroughputVal":{
+      "type":"integer",
+      "min":0
+    },
     "Unit":{
       "type":"string",
       "enum":[
@@ -3086,7 +3090,8 @@
       "members":{
         "VolumeType":{"shape":"String"},
         "Iops":{"shape":"Integer"},
-        "SizeInGB":{"shape":"Integer"}
+        "SizeInGB":{"shape":"Integer"},
+        "Throughput":{"shape":"ThroughputVal"}
       }
     },
     "WholeNumber":{
