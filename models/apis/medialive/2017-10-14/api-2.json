@@ -2355,6 +2355,13 @@
         }
       }
     },
+    "AccessibilityType": {
+      "type": "string",
+      "enum": [
+        "DOES_NOT_IMPLEMENT_ACCESSIBILITY_FEATURES",
+        "IMPLEMENTS_ACCESSIBILITY_FEATURES"
+      ]
+    },
     "AfdSignaling": {
       "type": "string",
       "enum": [
@@ -2542,7 +2549,7 @@
           "locationName": "languageCodeControl"
         },
         "Name": {
-          "shape": "__string",
+          "shape": "__stringMax255",
           "locationName": "name"
         },
         "RemixSettings": {
@@ -3377,6 +3384,10 @@
     "CaptionDescription": {
       "type": "structure",
       "members": {
+        "Accessibility": {
+          "shape": "AccessibilityType",
+          "locationName": "accessibility"
+        },
         "CaptionSelectorName": {
           "shape": "__string",
           "locationName": "captionSelectorName"
@@ -4611,6 +4622,10 @@
           "shape": "__string",
           "locationName": "region"
         },
+        "RenewalSettings": {
+          "shape": "RenewalSettings",
+          "locationName": "renewalSettings"
+        },
         "ReservationId": {
           "shape": "__string",
           "locationName": "reservationId"
@@ -5231,6 +5246,10 @@
           "shape": "__string",
           "locationName": "region"
         },
+        "RenewalSettings": {
+          "shape": "RenewalSettings",
+          "locationName": "renewalSettings"
+        },
         "ReservationId": {
           "shape": "__string",
           "locationName": "reservationId"
@@ -5304,7 +5323,8 @@
       "type": "string",
       "enum": [
         "UP_TO_DATE",
-        "NOT_UP_TO_DATE"
+        "NOT_UP_TO_DATE",
+        "UPDATING"
       ]
     },
     "DvbNitSettings": {
@@ -7962,7 +7982,7 @@
           "locationName": "passwordParam"
         },
         "Uri": {
-          "shape": "__string",
+          "shape": "__stringMax2048",
           "locationName": "uri"
         },
         "Username": {
@@ -10577,6 +10597,10 @@
           "shape": "__string",
           "locationName": "name"
         },
+        "RenewalSettings": {
+          "shape": "RenewalSettings",
+          "locationName": "renewalSettings"
+        },
         "RequestId": {
           "shape": "__string",
           "locationName": "requestId",
@@ -10610,6 +10634,10 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "offeringId"
+        },
+        "RenewalSettings": {
+          "shape": "RenewalSettings",
+          "locationName": "renewalSettings"
         },
         "RequestId": {
           "shape": "__string",
@@ -10701,6 +10729,19 @@
         "ChannelMappings"
       ]
     },
+    "RenewalSettings": {
+      "type": "structure",
+      "members": {
+        "AutomaticRenewal": {
+          "shape": "ReservationAutomaticRenewal",
+          "locationName": "automaticRenewal"
+        },
+        "RenewalCount": {
+          "shape": "__integerMin1",
+          "locationName": "renewalCount"
+        }
+      }
+    },
     "Reservation": {
       "type": "structure",
       "members": {
@@ -10752,6 +10793,10 @@
           "shape": "__string",
           "locationName": "region"
         },
+        "RenewalSettings": {
+          "shape": "RenewalSettings",
+          "locationName": "renewalSettings"
+        },
         "ReservationId": {
           "shape": "__string",
           "locationName": "reservationId"
@@ -10777,6 +10822,14 @@
           "locationName": "usagePrice"
         }
       }
+    },
+    "ReservationAutomaticRenewal": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "UNAVAILABLE"
+      ]
     },
     "ReservationCodec": {
       "type": "string",
@@ -12666,6 +12719,10 @@
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "RenewalSettings": {
+          "shape": "RenewalSettings",
+          "locationName": "renewalSettings"
         }
       }
     },
@@ -12675,6 +12732,10 @@
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "RenewalSettings": {
+          "shape": "RenewalSettings",
+          "locationName": "renewalSettings"
         },
         "ReservationId": {
           "shape": "__string",
@@ -13562,6 +13623,14 @@
     "__stringMax1000": {
       "type": "string",
       "max": 1000
+    },
+    "__stringMax2048": {
+      "type": "string",
+      "max": 2048
+    },
+    "__stringMax255": {
+      "type": "string",
+      "max": 255
     },
     "__stringMax256": {
       "type": "string",

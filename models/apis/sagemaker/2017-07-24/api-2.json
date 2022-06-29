@@ -1248,6 +1248,18 @@
         {"shape":"ResourceNotFound"}
       ]
     },
+    "DescribeFeatureMetadata":{
+      "name":"DescribeFeatureMetadata",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeFeatureMetadataRequest"},
+      "output":{"shape":"DescribeFeatureMetadataResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
     "DescribeFlowDefinition":{
       "name":"DescribeFlowDefinition",
       "http":{
@@ -2608,6 +2620,29 @@
       "output":{"shape":"UpdateExperimentResponse"},
       "errors":[
         {"shape":"ConflictException"},
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "UpdateFeatureGroup":{
+      "name":"UpdateFeatureGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateFeatureGroupRequest"},
+      "output":{"shape":"UpdateFeatureGroupResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "UpdateFeatureMetadata":{
+      "name":"UpdateFeatureMetadata",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateFeatureMetadataRequest"},
+      "errors":[
         {"shape":"ResourceNotFound"}
       ]
     },
@@ -6790,14 +6825,49 @@
         "EventTimeFeatureName":{"shape":"FeatureName"},
         "FeatureDefinitions":{"shape":"FeatureDefinitions"},
         "CreationTime":{"shape":"CreationTime"},
+        "LastModifiedTime":{"shape":"LastModifiedTime"},
         "OnlineStoreConfig":{"shape":"OnlineStoreConfig"},
         "OfflineStoreConfig":{"shape":"OfflineStoreConfig"},
         "RoleArn":{"shape":"RoleArn"},
         "FeatureGroupStatus":{"shape":"FeatureGroupStatus"},
         "OfflineStoreStatus":{"shape":"OfflineStoreStatus"},
+        "LastUpdateStatus":{"shape":"LastUpdateStatus"},
         "FailureReason":{"shape":"FailureReason"},
         "Description":{"shape":"Description"},
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "OnlineStoreTotalSizeBytes":{"shape":"OnlineStoreTotalSizeBytes"}
+      }
+    },
+    "DescribeFeatureMetadataRequest":{
+      "type":"structure",
+      "required":[
+        "FeatureGroupName",
+        "FeatureName"
+      ],
+      "members":{
+        "FeatureGroupName":{"shape":"FeatureGroupName"},
+        "FeatureName":{"shape":"FeatureName"}
+      }
+    },
+    "DescribeFeatureMetadataResponse":{
+      "type":"structure",
+      "required":[
+        "FeatureGroupArn",
+        "FeatureGroupName",
+        "FeatureName",
+        "FeatureType",
+        "CreationTime",
+        "LastModifiedTime"
+      ],
+      "members":{
+        "FeatureGroupArn":{"shape":"FeatureGroupArn"},
+        "FeatureGroupName":{"shape":"FeatureGroupName"},
+        "FeatureName":{"shape":"FeatureName"},
+        "FeatureType":{"shape":"FeatureType"},
+        "CreationTime":{"shape":"CreationTime"},
+        "LastModifiedTime":{"shape":"LastModifiedTime"},
+        "Description":{"shape":"FeatureDescription"},
+        "Parameters":{"shape":"FeatureParameters"}
       }
     },
     "DescribeFlowDefinitionRequest":{
@@ -8490,6 +8560,12 @@
       "type":"string",
       "max":1024
     },
+    "FeatureAdditions":{
+      "type":"list",
+      "member":{"shape":"FeatureDefinition"},
+      "max":100,
+      "min":1
+    },
     "FeatureDefinition":{
       "type":"structure",
       "members":{
@@ -8503,6 +8579,12 @@
       "max":2500,
       "min":1
     },
+    "FeatureDescription":{
+      "type":"string",
+      "max":255,
+      "min":0,
+      "pattern":".*"
+    },
     "FeatureGroup":{
       "type":"structure",
       "members":{
@@ -8512,11 +8594,13 @@
         "EventTimeFeatureName":{"shape":"FeatureName"},
         "FeatureDefinitions":{"shape":"FeatureDefinitions"},
         "CreationTime":{"shape":"CreationTime"},
+        "LastModifiedTime":{"shape":"LastModifiedTime"},
         "OnlineStoreConfig":{"shape":"OnlineStoreConfig"},
         "OfflineStoreConfig":{"shape":"OfflineStoreConfig"},
         "RoleArn":{"shape":"RoleArn"},
         "FeatureGroupStatus":{"shape":"FeatureGroupStatus"},
         "OfflineStoreStatus":{"shape":"OfflineStoreStatus"},
+        "LastUpdateStatus":{"shape":"LastUpdateStatus"},
         "FailureReason":{"shape":"FailureReason"},
         "Description":{"shape":"Description"},
         "Tags":{"shape":"TagList"}
@@ -8588,11 +8672,59 @@
         "OfflineStoreStatus":{"shape":"OfflineStoreStatus"}
       }
     },
+    "FeatureMetadata":{
+      "type":"structure",
+      "members":{
+        "FeatureGroupArn":{"shape":"FeatureGroupArn"},
+        "FeatureGroupName":{"shape":"FeatureGroupName"},
+        "FeatureName":{"shape":"FeatureName"},
+        "FeatureType":{"shape":"FeatureType"},
+        "CreationTime":{"shape":"CreationTime"},
+        "LastModifiedTime":{"shape":"LastModifiedTime"},
+        "Description":{"shape":"FeatureDescription"},
+        "Parameters":{"shape":"FeatureParameters"}
+      }
+    },
     "FeatureName":{
       "type":"string",
       "max":64,
       "min":1,
       "pattern":"^[a-zA-Z0-9]([-_]*[a-zA-Z0-9]){0,63}"
+    },
+    "FeatureParameter":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"FeatureParameterKey"},
+        "Value":{"shape":"FeatureParameterValue"}
+      }
+    },
+    "FeatureParameterAdditions":{
+      "type":"list",
+      "member":{"shape":"FeatureParameter"},
+      "max":25
+    },
+    "FeatureParameterKey":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$"
+    },
+    "FeatureParameterRemovals":{
+      "type":"list",
+      "member":{"shape":"FeatureParameterKey"},
+      "max":25
+    },
+    "FeatureParameterValue":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$"
+    },
+    "FeatureParameters":{
+      "type":"list",
+      "member":{"shape":"FeatureParameter"},
+      "max":25,
+      "min":0
     },
     "FeatureType":{
       "type":"string",
@@ -10016,6 +10148,22 @@
       }
     },
     "LastModifiedTime":{"type":"timestamp"},
+    "LastUpdateStatus":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"LastUpdateStatusValue"},
+        "FailureReason":{"shape":"FailureReason"}
+      }
+    },
+    "LastUpdateStatusValue":{
+      "type":"string",
+      "enum":[
+        "Successful",
+        "Failed",
+        "InProgress"
+      ]
+    },
     "LifecycleConfigArns":{
       "type":"list",
       "member":{"shape":"StudioLifecycleConfigArn"}
@@ -12741,6 +12889,7 @@
         "KmsKeyId":{"shape":"KmsKeyId"}
       }
     },
+    "OnlineStoreTotalSizeBytes":{"type":"long"},
     "Operator":{
       "type":"string",
       "enum":[
@@ -14327,7 +14476,8 @@
         "Pipeline",
         "PipelineExecution",
         "FeatureGroup",
-        "Project"
+        "Project",
+        "FeatureMetadata"
       ]
     },
     "ResponseMIMEType":{
@@ -14520,7 +14670,8 @@
         "Pipeline":{"shape":"Pipeline"},
         "PipelineExecution":{"shape":"PipelineExecution"},
         "FeatureGroup":{"shape":"FeatureGroup"},
-        "Project":{"shape":"Project"}
+        "Project":{"shape":"Project"},
+        "FeatureMetadata":{"shape":"FeatureMetadata"}
       }
     },
     "SearchRequest":{
@@ -16273,6 +16424,35 @@
       "type":"structure",
       "members":{
         "ExperimentArn":{"shape":"ExperimentArn"}
+      }
+    },
+    "UpdateFeatureGroupRequest":{
+      "type":"structure",
+      "required":["FeatureGroupName"],
+      "members":{
+        "FeatureGroupName":{"shape":"FeatureGroupName"},
+        "FeatureAdditions":{"shape":"FeatureAdditions"}
+      }
+    },
+    "UpdateFeatureGroupResponse":{
+      "type":"structure",
+      "required":["FeatureGroupArn"],
+      "members":{
+        "FeatureGroupArn":{"shape":"FeatureGroupArn"}
+      }
+    },
+    "UpdateFeatureMetadataRequest":{
+      "type":"structure",
+      "required":[
+        "FeatureGroupName",
+        "FeatureName"
+      ],
+      "members":{
+        "FeatureGroupName":{"shape":"FeatureGroupName"},
+        "FeatureName":{"shape":"FeatureName"},
+        "Description":{"shape":"FeatureDescription"},
+        "ParameterAdditions":{"shape":"FeatureParameterAdditions"},
+        "ParameterRemovals":{"shape":"FeatureParameterRemovals"}
       }
     },
     "UpdateImageRequest":{

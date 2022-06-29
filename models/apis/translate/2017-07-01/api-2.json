@@ -118,6 +118,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListLanguages":{
+      "name":"ListLanguages",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListLanguagesRequest"},
+      "output":{"shape":"ListLanguagesResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"UnsupportedDisplayLanguageCodeException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListParallelData":{
       "name":"ListParallelData",
       "http":{
@@ -353,6 +368,21 @@
         "MULTI"
       ]
     },
+    "DisplayLanguageCode":{
+      "type":"string",
+      "enum":[
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "ja",
+        "ko",
+        "pt",
+        "zh",
+        "zh-TW"
+      ]
+    },
     "EncryptionKey":{
       "type":"structure",
       "required":[
@@ -514,6 +544,17 @@
         "STOPPED"
       ]
     },
+    "Language":{
+      "type":"structure",
+      "required":[
+        "LanguageName",
+        "LanguageCode"
+      ],
+      "members":{
+        "LanguageName":{"shape":"LocalizedNameString"},
+        "LanguageCode":{"shape":"LanguageCodeString"}
+      }
+    },
     "LanguageCodeString":{
       "type":"string",
       "max":5,
@@ -523,12 +564,32 @@
       "type":"list",
       "member":{"shape":"LanguageCodeString"}
     },
+    "LanguagesList":{
+      "type":"list",
+      "member":{"shape":"Language"}
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "ListLanguagesRequest":{
+      "type":"structure",
+      "members":{
+        "DisplayLanguageCode":{"shape":"DisplayLanguageCode"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResultsInteger"}
+      }
+    },
+    "ListLanguagesResponse":{
+      "type":"structure",
+      "members":{
+        "Languages":{"shape":"LanguagesList"},
+        "DisplayLanguageCode":{"shape":"DisplayLanguageCode"},
+        "NextToken":{"shape":"NextToken"}
+      }
     },
     "ListParallelDataRequest":{
       "type":"structure",
@@ -572,6 +633,11 @@
         "TextTranslationJobPropertiesList":{"shape":"TextTranslationJobPropertiesList"},
         "NextToken":{"shape":"NextToken"}
       }
+    },
+    "LocalizedNameString":{
+      "type":"string",
+      "max":256,
+      "min":1
     },
     "Long":{"type":"long"},
     "MaxResultsInteger":{
@@ -920,6 +986,14 @@
       }
     },
     "UnboundedLengthString":{"type":"string"},
+    "UnsupportedDisplayLanguageCodeException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"},
+        "DisplayLanguageCode":{"shape":"LanguageCodeString"}
+      },
+      "exception":true
+    },
     "UnsupportedLanguagePairException":{
       "type":"structure",
       "members":{

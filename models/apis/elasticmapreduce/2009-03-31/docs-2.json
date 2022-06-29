@@ -602,7 +602,7 @@
       }
     },
     "EbsBlockDeviceConfig": {
-      "base": "<p>Configuration of requested EBS block device associated with the instance group with count of volumes that will be associated to every instance.</p>",
+      "base": "<p>Configuration of requested EBS block device associated with the instance group with count of volumes that are associated to every instance.</p>",
       "refs": {
         "EbsBlockDeviceConfigList$member": null
       }
@@ -1067,7 +1067,7 @@
         "ComputeLimits$MaximumCapacityUnits": "<p> The upper boundary of EC2 units. It is measured through vCPU cores or instances for instance groups and measured through units for instance fleets. Managed scaling activities are not allowed beyond this boundary. The limit only applies to the core and task nodes. The master node cannot be scaled after initial configuration. </p>",
         "ComputeLimits$MaximumOnDemandCapacityUnits": "<p> The upper boundary of On-Demand EC2 units. It is measured through vCPU cores or instances for instance groups and measured through units for instance fleets. The On-Demand units are not allowed to scale beyond this boundary. The parameter is used to split capacity allocation between On-Demand and Spot Instances. </p>",
         "ComputeLimits$MaximumCoreCapacityUnits": "<p> The upper boundary of EC2 units for core node type in a cluster. It is measured through vCPU cores or instances for instance groups and measured through units for instance fleets. The core units are not allowed to scale beyond this boundary. The parameter is used to split capacity allocation between core and task nodes. </p>",
-        "EbsBlockDeviceConfig$VolumesPerInstance": "<p>Number of EBS volumes with a specific volume configuration that will be associated with every instance in the instance group</p>",
+        "EbsBlockDeviceConfig$VolumesPerInstance": "<p>Number of EBS volumes with a specific volume configuration that are associated with every instance in the instance group</p>",
         "InstanceGroup$RequestedInstanceCount": "<p>The target number of instances for the instance group.</p>",
         "InstanceGroup$RunningInstanceCount": "<p>The number of instances currently running in this instance group.</p>",
         "InstanceGroupConfig$InstanceCount": "<p>Target number of instances for the instance group.</p>",
@@ -2051,6 +2051,12 @@
       "refs": {
       }
     },
+    "ThroughputVal": {
+      "base": null,
+      "refs": {
+        "VolumeSpecification$Throughput": "<p>The throughput, in mebibyte per second (MiB/s). This optional parameter can be a number from 125 - 1000 and is valid only for gp3 volumes.</p>"
+      }
+    },
     "Unit": {
       "base": null,
       "refs": {
@@ -2068,10 +2074,10 @@
       }
     },
     "VolumeSpecification": {
-      "base": "<p>EBS volume specifications such as volume type, IOPS, and size (GiB) that will be requested for the EBS volume attached to an EC2 instance in the cluster.</p>",
+      "base": "<p>EBS volume specifications such as volume type, IOPS, size (GiB) and throughput (MiB/s) that are requested for the EBS volume attached to an EC2 instance in the cluster.</p>",
       "refs": {
-        "EbsBlockDevice$VolumeSpecification": "<p>EBS volume specifications such as volume type, IOPS, and size (GiB) that will be requested for the EBS volume attached to an EC2 instance in the cluster.</p>",
-        "EbsBlockDeviceConfig$VolumeSpecification": "<p>EBS volume specifications such as volume type, IOPS, and size (GiB) that will be requested for the EBS volume attached to an EC2 instance in the cluster.</p>"
+        "EbsBlockDevice$VolumeSpecification": "<p>EBS volume specifications such as volume type, IOPS, size (GiB) and throughput (MiB/s) that are requested for the EBS volume attached to an EC2 instance in the cluster.</p>",
+        "EbsBlockDeviceConfig$VolumeSpecification": "<p>EBS volume specifications such as volume type, IOPS, size (GiB) and throughput (MiB/s) that are requested for the EBS volume attached to an EC2 instance in the cluster.</p>"
       }
     },
     "WholeNumber": {

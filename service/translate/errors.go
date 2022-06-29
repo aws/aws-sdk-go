@@ -40,21 +40,22 @@ const (
 	// ErrCodeInvalidFilterException for service response error code
 	// "InvalidFilterException".
 	//
-	// The filter specified for the operation is invalid. Specify a different filter.
+	// The filter specified for the operation is not valid. Specify a different
+	// filter.
 	ErrCodeInvalidFilterException = "InvalidFilterException"
 
 	// ErrCodeInvalidParameterValueException for service response error code
 	// "InvalidParameterValueException".
 	//
-	// The value of the parameter is invalid. Review the value of the parameter
+	// The value of the parameter is not valid. Review the value of the parameter
 	// you are using to correct it, and then retry your operation.
 	ErrCodeInvalidParameterValueException = "InvalidParameterValueException"
 
 	// ErrCodeInvalidRequestException for service response error code
 	// "InvalidRequestException".
 	//
-	// The request that you made is invalid. Check your request to determine why
-	// it's invalid and then retry the request.
+	// The request that you made is not valid. Check your request to determine why
+	// it's not valid and then retry the request.
 	ErrCodeInvalidRequestException = "InvalidRequestException"
 
 	// ErrCodeLimitExceededException for service response error code
@@ -75,8 +76,8 @@ const (
 	// ErrCodeServiceUnavailableException for service response error code
 	// "ServiceUnavailableException".
 	//
-	// The Amazon Translate service is temporarily unavailable. Please wait a bit
-	// and then retry your request.
+	// The Amazon Translate service is temporarily unavailable. Wait a bit and then
+	// retry your request.
 	ErrCodeServiceUnavailableException = "ServiceUnavailableException"
 
 	// ErrCodeTextSizeLimitExceededException for service response error code
@@ -93,6 +94,12 @@ const (
 	// short time and then try your request again.
 	ErrCodeTooManyRequestsException = "TooManyRequestsException"
 
+	// ErrCodeUnsupportedDisplayLanguageCodeException for service response error code
+	// "UnsupportedDisplayLanguageCodeException".
+	//
+	// Requested display language code is not supported.
+	ErrCodeUnsupportedDisplayLanguageCodeException = "UnsupportedDisplayLanguageCodeException"
+
 	// ErrCodeUnsupportedLanguagePairException for service response error code
 	// "UnsupportedLanguagePairException".
 	//
@@ -102,17 +109,18 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"ConcurrentModificationException":        newErrorConcurrentModificationException,
-	"ConflictException":                      newErrorConflictException,
-	"DetectedLanguageLowConfidenceException": newErrorDetectedLanguageLowConfidenceException,
-	"InternalServerException":                newErrorInternalServerException,
-	"InvalidFilterException":                 newErrorInvalidFilterException,
-	"InvalidParameterValueException":         newErrorInvalidParameterValueException,
-	"InvalidRequestException":                newErrorInvalidRequestException,
-	"LimitExceededException":                 newErrorLimitExceededException,
-	"ResourceNotFoundException":              newErrorResourceNotFoundException,
-	"ServiceUnavailableException":            newErrorServiceUnavailableException,
-	"TextSizeLimitExceededException":         newErrorTextSizeLimitExceededException,
-	"TooManyRequestsException":               newErrorTooManyRequestsException,
-	"UnsupportedLanguagePairException":       newErrorUnsupportedLanguagePairException,
+	"ConcurrentModificationException":         newErrorConcurrentModificationException,
+	"ConflictException":                       newErrorConflictException,
+	"DetectedLanguageLowConfidenceException":  newErrorDetectedLanguageLowConfidenceException,
+	"InternalServerException":                 newErrorInternalServerException,
+	"InvalidFilterException":                  newErrorInvalidFilterException,
+	"InvalidParameterValueException":          newErrorInvalidParameterValueException,
+	"InvalidRequestException":                 newErrorInvalidRequestException,
+	"LimitExceededException":                  newErrorLimitExceededException,
+	"ResourceNotFoundException":               newErrorResourceNotFoundException,
+	"ServiceUnavailableException":             newErrorServiceUnavailableException,
+	"TextSizeLimitExceededException":          newErrorTextSizeLimitExceededException,
+	"TooManyRequestsException":                newErrorTooManyRequestsException,
+	"UnsupportedDisplayLanguageCodeException": newErrorUnsupportedDisplayLanguageCodeException,
+	"UnsupportedLanguagePairException":        newErrorUnsupportedLanguagePairException,
 }

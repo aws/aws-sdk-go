@@ -8552,8 +8552,9 @@ type EbsBlockDevice struct {
 	// The device name that is exposed to the instance, such as /dev/sdh.
 	Device *string `type:"string"`
 
-	// EBS volume specifications such as volume type, IOPS, and size (GiB) that
-	// will be requested for the EBS volume attached to an EC2 instance in the cluster.
+	// EBS volume specifications such as volume type, IOPS, size (GiB) and throughput
+	// (MiB/s) that are requested for the EBS volume attached to an EC2 instance
+	// in the cluster.
 	VolumeSpecification *VolumeSpecification `type:"structure"`
 }
 
@@ -8588,17 +8589,18 @@ func (s *EbsBlockDevice) SetVolumeSpecification(v *VolumeSpecification) *EbsBloc
 }
 
 // Configuration of requested EBS block device associated with the instance
-// group with count of volumes that will be associated to every instance.
+// group with count of volumes that are associated to every instance.
 type EbsBlockDeviceConfig struct {
 	_ struct{} `type:"structure"`
 
-	// EBS volume specifications such as volume type, IOPS, and size (GiB) that
-	// will be requested for the EBS volume attached to an EC2 instance in the cluster.
+	// EBS volume specifications such as volume type, IOPS, size (GiB) and throughput
+	// (MiB/s) that are requested for the EBS volume attached to an EC2 instance
+	// in the cluster.
 	//
 	// VolumeSpecification is a required field
 	VolumeSpecification *VolumeSpecification `type:"structure" required:"true"`
 
-	// Number of EBS volumes with a specific volume configuration that will be associated
+	// Number of EBS volumes with a specific volume configuration that are associated
 	// with every instance in the instance group
 	VolumesPerInstance *int64 `type:"integer"`
 }
@@ -18284,8 +18286,9 @@ func (s UpdateStudioSessionMappingOutput) GoString() string {
 	return s.String()
 }
 
-// EBS volume specifications such as volume type, IOPS, and size (GiB) that
-// will be requested for the EBS volume attached to an EC2 instance in the cluster.
+// EBS volume specifications such as volume type, IOPS, size (GiB) and throughput
+// (MiB/s) that are requested for the EBS volume attached to an EC2 instance
+// in the cluster.
 type VolumeSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -18297,6 +18300,10 @@ type VolumeSpecification struct {
 	//
 	// SizeInGB is a required field
 	SizeInGB *int64 `type:"integer" required:"true"`
+
+	// The throughput, in mebibyte per second (MiB/s). This optional parameter can
+	// be a number from 125 - 1000 and is valid only for gp3 volumes.
+	Throughput *int64 `type:"integer"`
 
 	// The volume type. Volume types supported are gp2, io1, and standard.
 	//
@@ -18347,6 +18354,12 @@ func (s *VolumeSpecification) SetIops(v int64) *VolumeSpecification {
 // SetSizeInGB sets the SizeInGB field's value.
 func (s *VolumeSpecification) SetSizeInGB(v int64) *VolumeSpecification {
 	s.SizeInGB = &v
+	return s
+}
+
+// SetThroughput sets the Throughput field's value.
+func (s *VolumeSpecification) SetThroughput(v int64) *VolumeSpecification {
+	s.Throughput = &v
 	return s
 }
 

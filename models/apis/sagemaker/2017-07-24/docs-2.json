@@ -109,6 +109,7 @@
     "DescribeEndpointConfig": "<p>Returns the description of an endpoint configuration created using the <code>CreateEndpointConfig</code> API.</p>",
     "DescribeExperiment": "<p>Provides a list of an experiment's properties.</p>",
     "DescribeFeatureGroup": "<p>Use this operation to describe a <code>FeatureGroup</code>. The response includes information on the creation time, <code>FeatureGroup</code> name, the unique identifier for each <code>FeatureGroup</code>, and more.</p>",
+    "DescribeFeatureMetadata": "<p>Shows the metadata for a feature within a feature group.</p>",
     "DescribeFlowDefinition": "<p>Returns information about the specified flow definition.</p>",
     "DescribeHumanTaskUi": "<p>Returns information about the requested human task user interface (worker task template).</p>",
     "DescribeHyperParameterTuningJob": "<p>Gets a description of a hyperparameter tuning job.</p>",
@@ -239,6 +240,8 @@
     "UpdateEndpoint": "<p>Deploys the new <code>EndpointConfig</code> specified in the request, switches to using newly created endpoint, and then deletes resources provisioned for the endpoint using the previous <code>EndpointConfig</code> (there is no availability loss). </p> <p>When SageMaker receives the request, it sets the endpoint status to <code>Updating</code>. After updating the endpoint, it sets the status to <code>InService</code>. To check the status of an endpoint, use the <a>DescribeEndpoint</a> API. </p> <note> <p>You must not delete an <code>EndpointConfig</code> in use by an endpoint that is live or while the <code>UpdateEndpoint</code> or <code>CreateEndpoint</code> operations are being performed on the endpoint. To update an endpoint, you must create a new <code>EndpointConfig</code>.</p> <p>If you delete the <code>EndpointConfig</code> of an endpoint that is active or being created or updated you may lose visibility into the instance type the endpoint is using. The endpoint must be deleted in order to stop incurring charges.</p> </note>",
     "UpdateEndpointWeightsAndCapacities": "<p>Updates variant weight of one or more variants associated with an existing endpoint, or capacity of one variant associated with an existing endpoint. When it receives the request, SageMaker sets the endpoint status to <code>Updating</code>. After updating the endpoint, it sets the status to <code>InService</code>. To check the status of an endpoint, use the <a>DescribeEndpoint</a> API. </p>",
     "UpdateExperiment": "<p>Adds, updates, or removes the description of an experiment. Updates the display name of an experiment.</p>",
+    "UpdateFeatureGroup": "<p>Updates the feature group.</p>",
+    "UpdateFeatureMetadata": "<p>Updates the description and parameters of the feature group.</p>",
     "UpdateImage": "<p>Updates the properties of a SageMaker image. To change the image's tags, use the <a>AddTags</a> and <a>DeleteTags</a> APIs.</p>",
     "UpdateModelPackage": "<p>Updates a versioned model.</p>",
     "UpdateMonitoringSchedule": "<p>Updates a previously created schedule.</p>",
@@ -1738,7 +1741,7 @@
       "base": null,
       "refs": {
         "FileSource$ContentDigest": "<p>The digest of the file source.</p>",
-        "MetricsSource$ContentDigest": "<p/>"
+        "MetricsSource$ContentDigest": "<p>The hash key used for the metrics source.</p>"
       }
     },
     "ContentType": {
@@ -1748,7 +1751,7 @@
         "Channel$ContentType": "<p>The MIME type of the data.</p>",
         "ContentTypes$member": null,
         "FileSource$ContentType": "<p>The type of content stored in the file source.</p>",
-        "MetricsSource$ContentType": "<p/>",
+        "MetricsSource$ContentType": "<p>The metric source content type.</p>",
         "TransformInput$ContentType": "<p>The multipurpose internet mail extension (MIME) type of the data. Amazon SageMaker uses the MIME type with each http call to transfer data to the transform job.</p>"
       }
     },
@@ -2272,6 +2275,7 @@
         "DescribeCompilationJobResponse$CreationTime": "<p>The time that the model compilation job was created.</p>",
         "DescribeDomainResponse$CreationTime": "<p>The creation time.</p>",
         "DescribeFeatureGroupResponse$CreationTime": "<p>A timestamp indicating when SageMaker created the <code>FeatureGroup</code>.</p>",
+        "DescribeFeatureMetadataResponse$CreationTime": "<p>A timestamp indicating when the feature was created.</p>",
         "DescribeInferenceRecommendationsJobResponse$CreationTime": "<p>A timestamp that shows when the job was created.</p>",
         "DescribeModelPackageGroupOutput$CreationTime": "<p>The time that the model group was created.</p>",
         "DescribeModelPackageOutput$CreationTime": "<p>A timestamp specifying when the model package was created.</p>",
@@ -2280,6 +2284,7 @@
         "DescribeUserProfileResponse$CreationTime": "<p>The creation time.</p>",
         "DomainDetails$CreationTime": "<p>The creation time.</p>",
         "FeatureGroup$CreationTime": "<p>The time a <code>FeatureGroup</code> was created.</p>",
+        "FeatureMetadata$CreationTime": "<p>A timestamp indicating when the feature was created.</p>",
         "InferenceRecommendationsJob$CreationTime": "<p>A timestamp that shows when the job was created.</p>",
         "ListAlgorithmsInput$CreationTimeAfter": "<p>A filter that returns only algorithms created after the specified time (timestamp).</p>",
         "ListAlgorithmsInput$CreationTimeBefore": "<p>A filter that returns only algorithms created before the specified time (timestamp).</p>",
@@ -2961,6 +2966,16 @@
       }
     },
     "DescribeFeatureGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFeatureMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFeatureMetadataResponse": {
       "base": null,
       "refs": {
       }
@@ -4279,6 +4294,7 @@
         "ImageVersion$FailureReason": "<p>When a create or delete operation fails, the reason for the failure.</p>",
         "InferenceRecommendationsJob$FailureReason": "<p>If the job fails, provides information why the job failed.</p>",
         "LabelingJobSummary$FailureReason": "<p>If the <code>LabelingJobStatus</code> field is <code>Failed</code>, this field contains a description of the error.</p>",
+        "LastUpdateStatus$FailureReason": "<p>If the update wasn't successful, indicates the reason why it failed.</p>",
         "MonitoringExecutionSummary$FailureReason": "<p>Contains the reason a monitoring job failed, if it failed.</p>",
         "MonitoringSchedule$FailureReason": "<p>If the monitoring schedule failed, the reason it failed.</p>",
         "PipelineExecutionStep$FailureReason": "<p>The reason why the step failed execution. This is only returned if the step failed its execution.</p>",
@@ -4292,9 +4308,16 @@
         "TransformJobSummary$FailureReason": "<p>If the transform job failed, the reason it failed.</p>"
       }
     },
+    "FeatureAdditions": {
+      "base": null,
+      "refs": {
+        "UpdateFeatureGroupRequest$FeatureAdditions": "<p>A list of the features that you're adding to the feature group.</p>"
+      }
+    },
     "FeatureDefinition": {
       "base": "<p>A list of features. You must include <code>FeatureName</code> and <code>FeatureType</code>. Valid feature <code>FeatureType</code>s are <code>Integral</code>, <code>Fractional</code> and <code>String</code>. </p>",
       "refs": {
+        "FeatureAdditions$member": null,
         "FeatureDefinitions$member": null
       }
     },
@@ -4304,6 +4327,14 @@
         "CreateFeatureGroupRequest$FeatureDefinitions": "<p>A list of <code>Feature</code> names and types. <code>Name</code> and <code>Type</code> is compulsory per <code>Feature</code>. </p> <p>Valid feature <code>FeatureType</code>s are <code>Integral</code>, <code>Fractional</code> and <code>String</code>.</p> <p> <code>FeatureName</code>s cannot be any of the following: <code>is_deleted</code>, <code>write_time</code>, <code>api_invocation_time</code> </p> <p>You can create up to 2,500 <code>FeatureDefinition</code>s per <code>FeatureGroup</code>.</p>",
         "DescribeFeatureGroupResponse$FeatureDefinitions": "<p>A list of the <code>Features</code> in the <code>FeatureGroup</code>. Each feature is defined by a <code>FeatureName</code> and <code>FeatureType</code>.</p>",
         "FeatureGroup$FeatureDefinitions": "<p>A list of <code>Feature</code>s. Each <code>Feature</code> must include a <code>FeatureName</code> and a <code>FeatureType</code>. </p> <p>Valid <code>FeatureType</code>s are <code>Integral</code>, <code>Fractional</code> and <code>String</code>. </p> <p> <code>FeatureName</code>s cannot be any of the following: <code>is_deleted</code>, <code>write_time</code>, <code>api_invocation_time</code>.</p> <p>You can create up to 2,500 <code>FeatureDefinition</code>s per <code>FeatureGroup</code>.</p>"
+      }
+    },
+    "FeatureDescription": {
+      "base": null,
+      "refs": {
+        "DescribeFeatureMetadataResponse$Description": "<p>The description you added to describe the feature.</p>",
+        "FeatureMetadata$Description": "<p>An optional description that you specify to better describe the feature.</p>",
+        "UpdateFeatureMetadataRequest$Description": "<p>A description that you can write to better describe the feature.</p>"
       }
     },
     "FeatureGroup": {
@@ -4317,8 +4348,11 @@
       "refs": {
         "CreateFeatureGroupResponse$FeatureGroupArn": "<p>The Amazon Resource Name (ARN) of the <code>FeatureGroup</code>. This is a unique identifier for the feature group. </p>",
         "DescribeFeatureGroupResponse$FeatureGroupArn": "<p>The Amazon Resource Name (ARN) of the <code>FeatureGroup</code>. </p>",
+        "DescribeFeatureMetadataResponse$FeatureGroupArn": "<p>The Amazon Resource Number (ARN) of the feature group that contains the feature.</p>",
         "FeatureGroup$FeatureGroupArn": "<p>The Amazon Resource Name (ARN) of a <code>FeatureGroup</code>.</p>",
-        "FeatureGroupSummary$FeatureGroupArn": "<p>Unique identifier for the <code>FeatureGroup</code>.</p>"
+        "FeatureGroupSummary$FeatureGroupArn": "<p>Unique identifier for the <code>FeatureGroup</code>.</p>",
+        "FeatureMetadata$FeatureGroupArn": "<p>The Amazon Resource Number (ARN) of the feature group.</p>",
+        "UpdateFeatureGroupResponse$FeatureGroupArn": "<p>The Amazon Resource Number (ARN) of the feature group that you're updating.</p>"
       }
     },
     "FeatureGroupMaxResults": {
@@ -4334,9 +4368,14 @@
         "DeleteFeatureGroupRequest$FeatureGroupName": "<p>The name of the <code>FeatureGroup</code> you want to delete. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. </p>",
         "DescribeFeatureGroupRequest$FeatureGroupName": "<p>The name of the <code>FeatureGroup</code> you want described. </p>",
         "DescribeFeatureGroupResponse$FeatureGroupName": "<p>he name of the <code>FeatureGroup</code>.</p>",
+        "DescribeFeatureMetadataRequest$FeatureGroupName": "<p>The name of the feature group containing the feature.</p>",
+        "DescribeFeatureMetadataResponse$FeatureGroupName": "<p>The name of the feature group that you've specified.</p>",
         "FeatureGroup$FeatureGroupName": "<p>The name of the <code>FeatureGroup</code>.</p>",
         "FeatureGroupSummary$FeatureGroupName": "<p>The name of <code>FeatureGroup</code>.</p>",
-        "ProcessingFeatureStoreOutput$FeatureGroupName": "<p>The name of the Amazon SageMaker FeatureGroup to use as the destination for processing job output. Note that your processing script is responsible for putting records into your Feature Store.</p>"
+        "FeatureMetadata$FeatureGroupName": "<p>The name of the feature group containing the feature.</p>",
+        "ProcessingFeatureStoreOutput$FeatureGroupName": "<p>The name of the Amazon SageMaker FeatureGroup to use as the destination for processing job output. Note that your processing script is responsible for putting records into your Feature Store.</p>",
+        "UpdateFeatureGroupRequest$FeatureGroupName": "<p>The name of the feature group that you're updating.</p>",
+        "UpdateFeatureMetadataRequest$FeatureGroupName": "<p>The name of the feature group containing the feature that you're updating.</p>"
       }
     },
     "FeatureGroupNameContains": {
@@ -4378,6 +4417,12 @@
         "FeatureGroupSummaries$member": null
       }
     },
+    "FeatureMetadata": {
+      "base": "<p>The metadata for a feature. It can either be metadata that you specify, or metadata that is updated automatically.</p>",
+      "refs": {
+        "SearchRecord$FeatureMetadata": "<p>The feature metadata used to search through the features.</p>"
+      }
+    },
     "FeatureName": {
       "base": null,
       "refs": {
@@ -4385,15 +4430,60 @@
         "CreateFeatureGroupRequest$EventTimeFeatureName": "<p>The name of the feature that stores the <code>EventTime</code> of a <code>Record</code> in a <code>FeatureGroup</code>.</p> <p>An <code>EventTime</code> is a point in time when a new event occurs that corresponds to the creation or update of a <code>Record</code> in a <code>FeatureGroup</code>. All <code>Records</code> in the <code>FeatureGroup</code> must have a corresponding <code>EventTime</code>.</p> <p>An <code>EventTime</code> can be a <code>String</code> or <code>Fractional</code>. </p> <ul> <li> <p> <code>Fractional</code>: <code>EventTime</code> feature values must be a Unix timestamp in seconds.</p> </li> <li> <p> <code>String</code>: <code>EventTime</code> feature values must be an ISO-8601 string in the format. The following formats are supported <code>yyyy-MM-dd'T'HH:mm:ssZ</code> and <code>yyyy-MM-dd'T'HH:mm:ss.SSSZ</code> where <code>yyyy</code>, <code>MM</code>, and <code>dd</code> represent the year, month, and day respectively and <code>HH</code>, <code>mm</code>, <code>ss</code>, and if applicable, <code>SSS</code> represent the hour, month, second and milliseconds respsectively. <code>'T'</code> and <code>Z</code> are constants.</p> </li> </ul>",
         "DescribeFeatureGroupResponse$RecordIdentifierFeatureName": "<p>The name of the <code>Feature</code> used for <code>RecordIdentifier</code>, whose value uniquely identifies a record stored in the feature store.</p>",
         "DescribeFeatureGroupResponse$EventTimeFeatureName": "<p>The name of the feature that stores the <code>EventTime</code> of a Record in a <code>FeatureGroup</code>.</p> <p> An <code>EventTime</code> is a point in time when a new event occurs that corresponds to the creation or update of a <code>Record</code> in a <code>FeatureGroup</code>. All <code>Records</code> in the <code>FeatureGroup</code> have a corresponding <code>EventTime</code>.</p>",
+        "DescribeFeatureMetadataRequest$FeatureName": "<p>The name of the feature.</p>",
+        "DescribeFeatureMetadataResponse$FeatureName": "<p>The name of the feature that you've specified.</p>",
         "FeatureDefinition$FeatureName": "<p>The name of a feature. The type must be a string. <code>FeatureName</code> cannot be any of the following: <code>is_deleted</code>, <code>write_time</code>, <code>api_invocation_time</code>.</p>",
         "FeatureGroup$RecordIdentifierFeatureName": "<p>The name of the <code>Feature</code> whose value uniquely identifies a <code>Record</code> defined in the <code>FeatureGroup</code> <code>FeatureDefinitions</code>.</p>",
-        "FeatureGroup$EventTimeFeatureName": "<p>The name of the feature that stores the <code>EventTime</code> of a Record in a <code>FeatureGroup</code>.</p> <p>A <code>EventTime</code> is point in time when a new event occurs that corresponds to the creation or update of a <code>Record</code> in <code>FeatureGroup</code>. All <code>Records</code> in the <code>FeatureGroup</code> must have a corresponding <code>EventTime</code>.</p>"
+        "FeatureGroup$EventTimeFeatureName": "<p>The name of the feature that stores the <code>EventTime</code> of a Record in a <code>FeatureGroup</code>.</p> <p>A <code>EventTime</code> is point in time when a new event occurs that corresponds to the creation or update of a <code>Record</code> in <code>FeatureGroup</code>. All <code>Records</code> in the <code>FeatureGroup</code> must have a corresponding <code>EventTime</code>.</p>",
+        "FeatureMetadata$FeatureName": "<p>The name of feature.</p>",
+        "UpdateFeatureMetadataRequest$FeatureName": "<p>The name of the feature that you're updating.</p>"
+      }
+    },
+    "FeatureParameter": {
+      "base": "<p>A key-value pair that you specify to describe the feature.</p>",
+      "refs": {
+        "FeatureParameterAdditions$member": null,
+        "FeatureParameters$member": null
+      }
+    },
+    "FeatureParameterAdditions": {
+      "base": null,
+      "refs": {
+        "UpdateFeatureMetadataRequest$ParameterAdditions": "<p>A list of key-value pairs that you can add to better describe the feature.</p>"
+      }
+    },
+    "FeatureParameterKey": {
+      "base": null,
+      "refs": {
+        "FeatureParameter$Key": "<p>A key that must contain a value to describe the feature.</p>",
+        "FeatureParameterRemovals$member": null
+      }
+    },
+    "FeatureParameterRemovals": {
+      "base": null,
+      "refs": {
+        "UpdateFeatureMetadataRequest$ParameterRemovals": "<p>A list of parameter keys that you can specify to remove parameters that describe your feature.</p>"
+      }
+    },
+    "FeatureParameterValue": {
+      "base": null,
+      "refs": {
+        "FeatureParameter$Value": "<p>The value that belongs to a key.</p>"
+      }
+    },
+    "FeatureParameters": {
+      "base": null,
+      "refs": {
+        "DescribeFeatureMetadataResponse$Parameters": "<p>The key-value pairs that you added to describe the feature.</p>",
+        "FeatureMetadata$Parameters": "<p>Optional key-value pairs that you specify to better describe the feature.</p>"
       }
     },
     "FeatureType": {
       "base": null,
       "refs": {
-        "FeatureDefinition$FeatureType": "<p>The value type of a feature. Valid values are Integral, Fractional, or String.</p>"
+        "DescribeFeatureMetadataResponse$FeatureType": "<p>The data type of the feature.</p>",
+        "FeatureDefinition$FeatureType": "<p>The value type of a feature. Valid values are Integral, Fractional, or String.</p>",
+        "FeatureMetadata$FeatureType": "<p>The data type of the feature.</p>"
       }
     },
     "FileSource": {
@@ -5181,7 +5271,7 @@
         "CreateModelPackageInput$InferenceSpecification": "<p>Specifies details about inference jobs that can be run with models based on this model package, including the following:</p> <ul> <li> <p>The Amazon ECR paths of containers that contain the inference code and model artifacts.</p> </li> <li> <p>The instance types that the model package supports for transform jobs and real-time endpoints used for inference.</p> </li> <li> <p>The input and output content formats that the model package supports for inference.</p> </li> </ul>",
         "DescribeAlgorithmOutput$InferenceSpecification": "<p>Details about inference jobs that the algorithm runs.</p>",
         "DescribeModelPackageOutput$InferenceSpecification": "<p>Details about inference jobs that can be run with models based on this model package.</p>",
-        "ModelPackage$InferenceSpecification": null
+        "ModelPackage$InferenceSpecification": "<p>Defines how to perform inference generation after a training job is run.</p>"
       }
     },
     "InferenceSpecificationName": {
@@ -5622,11 +5712,15 @@
         "DescribeCodeRepositoryOutput$LastModifiedTime": "<p>The date and time that the repository was last changed.</p>",
         "DescribeCompilationJobResponse$LastModifiedTime": "<p>The time that the status of the model compilation job was last modified.</p>",
         "DescribeDomainResponse$LastModifiedTime": "<p>The last modified time.</p>",
+        "DescribeFeatureGroupResponse$LastModifiedTime": "<p>A timestamp indicating when the feature group was last updated.</p>",
+        "DescribeFeatureMetadataResponse$LastModifiedTime": "<p>A timestamp indicating when the metadata for the feature group was modified. For example, if you add a parameter describing the feature, the timestamp changes to reflect the last time you </p>",
         "DescribeInferenceRecommendationsJobResponse$LastModifiedTime": "<p>A timestamp that shows when the job was last modified.</p>",
         "DescribeNotebookInstanceLifecycleConfigOutput$LastModifiedTime": "<p>A timestamp that tells when the lifecycle configuration was last modified.</p>",
         "DescribeNotebookInstanceOutput$LastModifiedTime": "<p>A timestamp. Use this parameter to retrieve the time when the notebook instance was last modified. </p>",
         "DescribeUserProfileResponse$LastModifiedTime": "<p>The last modified time.</p>",
         "DomainDetails$LastModifiedTime": "<p>The last modified time.</p>",
+        "FeatureGroup$LastModifiedTime": "<p>A timestamp indicating the last time you updated the feature group.</p>",
+        "FeatureMetadata$LastModifiedTime": "<p>A timestamp indicating when the feature was last modified.</p>",
         "InferenceRecommendationsJob$LastModifiedTime": "<p>A timestamp that shows when the job was last modified.</p>",
         "ListCompilationJobsRequest$LastModifiedTimeAfter": "<p>A filter that returns the model compilation jobs that were modified after a specified time.</p>",
         "ListCompilationJobsRequest$LastModifiedTimeBefore": "<p>A filter that returns the model compilation jobs that were modified before a specified time.</p>",
@@ -5639,6 +5733,19 @@
         "NotebookInstanceLifecycleConfigSummary$LastModifiedTime": "<p>A timestamp that tells when the lifecycle configuration was last modified.</p>",
         "NotebookInstanceSummary$LastModifiedTime": "<p>A timestamp that shows when the notebook instance was last modified.</p>",
         "UserProfileDetails$LastModifiedTime": "<p>The last modified time.</p>"
+      }
+    },
+    "LastUpdateStatus": {
+      "base": "<p>A value that indicates whether the update was successful.</p>",
+      "refs": {
+        "DescribeFeatureGroupResponse$LastUpdateStatus": "<p>A value indicating whether the update made to the feature group was successful.</p>",
+        "FeatureGroup$LastUpdateStatus": "<p>A value that indicates whether the feature group was updated successfully.</p>"
+      }
+    },
+    "LastUpdateStatusValue": {
+      "base": null,
+      "refs": {
+        "LastUpdateStatus$Status": "<p>A value that indicates whether the update was made successful.</p>"
       }
     },
     "LifecycleConfigArns": {
@@ -6557,7 +6664,7 @@
         "DescribeModelPackageOutput$MetadataProperties": null,
         "DescribeTrialComponentResponse$MetadataProperties": null,
         "DescribeTrialResponse$MetadataProperties": null,
-        "ModelPackage$MetadataProperties": null,
+        "ModelPackage$MetadataProperties": "<p>Metadata properties of the tracking entity, trial, or trial component.</p>",
         "Trial$MetadataProperties": null,
         "TrialComponent$MetadataProperties": null
       }
@@ -6633,18 +6740,18 @@
       }
     },
     "MetricsSource": {
-      "base": "<p/>",
+      "base": "<p>Details about the metrics source.</p>",
       "refs": {
         "Bias$Report": "<p>The bias report for a model</p>",
-        "Bias$PreTrainingReport": null,
-        "Bias$PostTrainingReport": null,
-        "DriftCheckBias$PreTrainingConstraints": null,
-        "DriftCheckBias$PostTrainingConstraints": null,
-        "DriftCheckExplainability$Constraints": null,
-        "DriftCheckModelDataQuality$Statistics": null,
-        "DriftCheckModelDataQuality$Constraints": null,
-        "DriftCheckModelQuality$Statistics": null,
-        "DriftCheckModelQuality$Constraints": null,
+        "Bias$PreTrainingReport": "<p>The pre-training bias report for a model.</p>",
+        "Bias$PostTrainingReport": "<p>The post-training bias report for a model.</p>",
+        "DriftCheckBias$PreTrainingConstraints": "<p>The pre-training constraints.</p>",
+        "DriftCheckBias$PostTrainingConstraints": "<p>The post-training constraints.</p>",
+        "DriftCheckExplainability$Constraints": "<p>The drift check explainability constraints.</p>",
+        "DriftCheckModelDataQuality$Statistics": "<p>The drift check model data quality statistics.</p>",
+        "DriftCheckModelDataQuality$Constraints": "<p>The drift check model data quality constraints.</p>",
+        "DriftCheckModelQuality$Statistics": "<p>The drift check model quality statistics.</p>",
+        "DriftCheckModelQuality$Constraints": "<p>The drift check model quality constraints.</p>",
         "Explainability$Report": "<p>The explainability report for a model.</p>",
         "ModelDataQuality$Statistics": "<p>Data quality statistics for a model.</p>",
         "ModelDataQuality$Constraints": "<p>Data quality constraints for a model.</p>",
@@ -6967,7 +7074,7 @@
       "base": "<p>Specifies the validation and image scan statuses of the model package.</p>",
       "refs": {
         "DescribeModelPackageOutput$ModelPackageStatusDetails": "<p>Details about the current status of the model package.</p>",
-        "ModelPackage$ModelPackageStatusDetails": null
+        "ModelPackage$ModelPackageStatusDetails": "<p>Specifies the validation and image scan statuses of the model package.</p>"
       }
     },
     "ModelPackageStatusItem": {
@@ -7024,7 +7131,7 @@
       "refs": {
         "CreateModelPackageInput$ValidationSpecification": "<p>Specifies configurations for one or more transform jobs that SageMaker runs to test the model package.</p>",
         "DescribeModelPackageOutput$ValidationSpecification": "<p>Configurations for one or more transform jobs that SageMaker runs to test the model package.</p>",
-        "ModelPackage$ValidationSpecification": null
+        "ModelPackage$ValidationSpecification": "<p>Specifies batch transform jobs that SageMaker runs to validate your model package.</p>"
       }
     },
     "ModelPackageVersion": {
@@ -7926,6 +8033,12 @@
       "base": "<p>The security configuration for <code>OnlineStore</code>.</p>",
       "refs": {
         "OnlineStoreConfig$SecurityConfig": "<p>Use to specify KMS Key ID (<code>KMSKeyId</code>) for at-rest encryption of your <code>OnlineStore</code>.</p>"
+      }
+    },
+    "OnlineStoreTotalSizeBytes": {
+      "base": null,
+      "refs": {
+        "DescribeFeatureGroupResponse$OnlineStoreTotalSizeBytes": "<p>The size of the <code>OnlineStore</code> in bytes.</p>"
       }
     },
     "Operator": {
@@ -9439,7 +9552,7 @@
         "LabelingJobOutput$OutputDatasetS3Uri": "<p>The Amazon S3 bucket location of the manifest file for labeled data. </p>",
         "LabelingJobOutputConfig$S3OutputPath": "<p>The Amazon S3 location to write output data.</p>",
         "LabelingJobS3DataSource$ManifestS3Uri": "<p>The Amazon S3 location of the manifest file that describes the input data objects. </p> <p>The input manifest file referenced in <code>ManifestS3Uri</code> must contain one of the following keys: <code>source-ref</code> or <code>source</code>. The value of the keys are interpreted as follows:</p> <ul> <li> <p> <code>source-ref</code>: The source of the object is the Amazon S3 object specified in the value. Use this value when the object is a binary object, such as an image.</p> </li> <li> <p> <code>source</code>: The source of the object is the value. Use this value when the object is a text value.</p> </li> </ul> <p>If you are a new user of Ground Truth, it is recommended you review <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-input-data-input-manifest.html\">Use an Input Manifest File </a> in the Amazon SageMaker Developer Guide to learn how to create an input manifest file.</p>",
-        "MetricsSource$S3Uri": "<p/>",
+        "MetricsSource$S3Uri": "<p>The S3 URI for the metrics source.</p>",
         "ModelArtifacts$S3ModelArtifacts": "<p>The path of the S3 object that contains the model artifacts. For example, <code>s3://bucket-name/keynameprefix/model.tar.gz</code>.</p>",
         "ModelBiasAppSpecification$ConfigUri": "<p>JSON formatted S3 file that defines bias parameters. For more information on this JSON configuration file, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html\">Configure bias parameters</a>.</p>",
         "ModelExplainabilityAppSpecification$ConfigUri": "<p>JSON formatted S3 file that defines explainability parameters. For more information on this JSON configuration file, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html\">Configure model explainability parameters</a>.</p>",
@@ -9822,7 +9935,7 @@
       "refs": {
         "CreateModelPackageInput$SourceAlgorithmSpecification": "<p>Details about the algorithm that was used to create the model package.</p>",
         "DescribeModelPackageOutput$SourceAlgorithmSpecification": "<p>Details about the algorithm that was used to create the model package.</p>",
-        "ModelPackage$SourceAlgorithmSpecification": null
+        "ModelPackage$SourceAlgorithmSpecification": "<p>A list of algorithms that were used to create a model package.</p>"
       }
     },
     "SourceIpConfig": {
@@ -11506,6 +11619,21 @@
       "refs": {
       }
     },
+    "UpdateFeatureGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFeatureGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFeatureMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateImageRequest": {
       "base": null,
       "refs": {
@@ -11684,8 +11812,8 @@
         "DescribeTrialResponse$LastModifiedBy": "<p>Who last modified the trial.</p>",
         "Experiment$CreatedBy": "<p>Who created the experiment.</p>",
         "Experiment$LastModifiedBy": null,
-        "ModelPackage$CreatedBy": null,
-        "ModelPackage$LastModifiedBy": null,
+        "ModelPackage$CreatedBy": "<p>Information about the user who created or modified an experiment, trial, trial component, lineage group, or project.</p>",
+        "ModelPackage$LastModifiedBy": "<p>Information about the user who created or modified an experiment, trial, trial component, lineage group, or project.</p>",
         "ModelPackageGroup$CreatedBy": null,
         "Pipeline$CreatedBy": null,
         "Pipeline$LastModifiedBy": null,

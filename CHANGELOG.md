@@ -1,3 +1,19 @@
+Release v1.44.45 (2022-06-29)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * Includes support for StreamingExperienceSettings in CreateStack and UpdateStack APIs
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/elasticmapreduce`: Updates service API and documentation
+  * This release introduces additional optional parameter "Throughput" to VolumeSpecification to enable user to configure throughput for gp3 ebs volumes.
+* `service/medialive`: Updates service API and documentation
+  * This release adds support for automatic renewal of MediaLive reservations at the end of each reservation term. Automatic renewal is optional. This release also adds support for labelling accessibility-focused audio and caption tracks in HLS outputs.
+* `service/redshift-serverless`: Adds new service
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds: UpdateFeatureGroup, UpdateFeatureMetadata, DescribeFeatureMetadata APIs; FeatureMetadata type in Search API; LastModifiedTime, LastUpdateStatus, OnlineStoreTotalSizeBytes in DescribeFeatureGroup API.
+* `service/translate`: Updates service API, documentation, and paginators
+
 Release v1.44.44 (2022-06-28)
 ===
 

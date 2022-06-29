@@ -5644,8 +5644,8 @@ func (c *AppStream) UpdateFleetRequest(input *UpdateFleetInput) (req *request.Re
 //    and DisconnectTimeoutInSeconds attributes.
 //
 //    * Elastic fleet type You can update the DisplayName, IdleDisconnectTimeoutInSeconds,
-//    DisconnectTimeoutInSeconds, MaxConcurrentSessions, and UsbDeviceFilterStrings
-//    attributes.
+//    DisconnectTimeoutInSeconds, MaxConcurrentSessions, SessionScriptS3Location
+//    and UsbDeviceFilterStrings attributes.
 //
 // If the fleet is in the STARTING or STOPPED state, you can't update it.
 //
@@ -8620,6 +8620,10 @@ type CreateStackInput struct {
 	// The storage connectors to enable.
 	StorageConnectors []*StorageConnector `type:"list"`
 
+	// The streaming protocol you want your stack to prefer. This can be UDP or
+	// TCP. Currently, UDP is only supported in the Windows native client.
+	StreamingExperienceSettings *StreamingExperienceSettings `type:"structure"`
+
 	// The tags to associate with the stack. A tag is a key-value pair, and the
 	// value is optional. For example, Environment=Test. If you do not specify a
 	// value, Environment=.
@@ -8769,6 +8773,12 @@ func (s *CreateStackInput) SetRedirectURL(v string) *CreateStackInput {
 // SetStorageConnectors sets the StorageConnectors field's value.
 func (s *CreateStackInput) SetStorageConnectors(v []*StorageConnector) *CreateStackInput {
 	s.StorageConnectors = v
+	return s
+}
+
+// SetStreamingExperienceSettings sets the StreamingExperienceSettings field's value.
+func (s *CreateStackInput) SetStreamingExperienceSettings(v *StreamingExperienceSettings) *CreateStackInput {
+	s.StreamingExperienceSettings = v
 	return s
 }
 
@@ -15406,6 +15416,10 @@ type Stack struct {
 	// The storage connectors to enable.
 	StorageConnectors []*StorageConnector `type:"list"`
 
+	// The streaming protocol you want your stack to prefer. This can be UDP or
+	// TCP. Currently, UDP is only supported in the Windows native client.
+	StreamingExperienceSettings *StreamingExperienceSettings `type:"structure"`
+
 	// The actions that are enabled or disabled for users during their streaming
 	// sessions. By default these actions are enabled.
 	UserSettings []*UserSetting `min:"1" type:"list"`
@@ -15498,6 +15512,12 @@ func (s *Stack) SetStackErrors(v []*StackError) *Stack {
 // SetStorageConnectors sets the StorageConnectors field's value.
 func (s *Stack) SetStorageConnectors(v []*StorageConnector) *Stack {
 	s.StorageConnectors = v
+	return s
+}
+
+// SetStreamingExperienceSettings sets the StreamingExperienceSettings field's value.
+func (s *Stack) SetStreamingExperienceSettings(v *StreamingExperienceSettings) *Stack {
+	s.StreamingExperienceSettings = v
 	return s
 }
 
@@ -15928,6 +15948,39 @@ func (s *StorageConnector) SetDomains(v []*string) *StorageConnector {
 // SetResourceIdentifier sets the ResourceIdentifier field's value.
 func (s *StorageConnector) SetResourceIdentifier(v string) *StorageConnector {
 	s.ResourceIdentifier = &v
+	return s
+}
+
+// The streaming protocol you want your stack to prefer. This can be UDP or
+// TCP. Currently, UDP is only supported in the Windows native client.
+type StreamingExperienceSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The preferred protocol that you want to use while streaming your application.
+	PreferredProtocol *string `type:"string" enum:"PreferredProtocol"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamingExperienceSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamingExperienceSettings) GoString() string {
+	return s.String()
+}
+
+// SetPreferredProtocol sets the PreferredProtocol field's value.
+func (s *StreamingExperienceSettings) SetPreferredProtocol(v string) *StreamingExperienceSettings {
+	s.PreferredProtocol = &v
 	return s
 }
 
@@ -17049,6 +17102,10 @@ type UpdateStackInput struct {
 	// The storage connectors to enable.
 	StorageConnectors []*StorageConnector `type:"list"`
 
+	// The streaming protocol you want your stack to prefer. This can be UDP or
+	// TCP. Currently, UDP is only supported in the Windows native client.
+	StreamingExperienceSettings *StreamingExperienceSettings `type:"structure"`
+
 	// The actions that are enabled or disabled for users during their streaming
 	// sessions. By default, these actions are enabled.
 	UserSettings []*UserSetting `min:"1" type:"list"`
@@ -17195,6 +17252,12 @@ func (s *UpdateStackInput) SetRedirectURL(v string) *UpdateStackInput {
 // SetStorageConnectors sets the StorageConnectors field's value.
 func (s *UpdateStackInput) SetStorageConnectors(v []*StorageConnector) *UpdateStackInput {
 	s.StorageConnectors = v
+	return s
+}
+
+// SetStreamingExperienceSettings sets the StreamingExperienceSettings field's value.
+func (s *UpdateStackInput) SetStreamingExperienceSettings(v *StreamingExperienceSettings) *UpdateStackInput {
+	s.StreamingExperienceSettings = v
 	return s
 }
 
@@ -18164,6 +18227,22 @@ func PlatformType_Values() []string {
 }
 
 const (
+	// PreferredProtocolTcp is a PreferredProtocol enum value
+	PreferredProtocolTcp = "TCP"
+
+	// PreferredProtocolUdp is a PreferredProtocol enum value
+	PreferredProtocolUdp = "UDP"
+)
+
+// PreferredProtocol_Values returns all elements of the PreferredProtocol enum
+func PreferredProtocol_Values() []string {
+	return []string{
+		PreferredProtocolTcp,
+		PreferredProtocolUdp,
+	}
+}
+
+const (
 	// SessionConnectionStateConnected is a SessionConnectionState enum value
 	SessionConnectionStateConnected = "CONNECTED"
 
@@ -18233,6 +18312,9 @@ const (
 
 	// StackAttributeAccessEndpoints is a StackAttribute enum value
 	StackAttributeAccessEndpoints = "ACCESS_ENDPOINTS"
+
+	// StackAttributeStreamingExperienceSettings is a StackAttribute enum value
+	StackAttributeStreamingExperienceSettings = "STREAMING_EXPERIENCE_SETTINGS"
 )
 
 // StackAttribute_Values returns all elements of the StackAttribute enum
@@ -18249,6 +18331,7 @@ func StackAttribute_Values() []string {
 		StackAttributeEmbedHostDomains,
 		StackAttributeIamRoleArn,
 		StackAttributeAccessEndpoints,
+		StackAttributeStreamingExperienceSettings,
 	}
 }
 
