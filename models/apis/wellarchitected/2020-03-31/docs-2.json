@@ -36,6 +36,7 @@
     "TagResource": "<p>Adds one or more tags to the specified resource.</p> <note> <p>The WorkloadArn parameter can be either a workload ARN or a custom lens ARN.</p> </note>",
     "UntagResource": "<p>Deletes specified tags from a resource.</p> <note> <p>The WorkloadArn parameter can be either a workload ARN or a custom lens ARN.</p> </note> <p>To specify multiple tags, use separate <b>tagKeys</b> parameters, for example:</p> <p> <code>DELETE /tags/WorkloadArn?tagKeys=key1&amp;tagKeys=key2</code> </p>",
     "UpdateAnswer": "<p>Update the answer to a specific question in a workload review.</p>",
+    "UpdateGlobalSettings": "<p>Updates whether the Amazon Web Services account is opted into organization sharing features.</p>",
     "UpdateLensReview": "<p>Update lens review.</p>",
     "UpdateShareInvitation": "<p>Update a workload invitation.</p>",
     "UpdateWorkload": "<p>Update an existing workload.</p>",
@@ -1004,6 +1005,12 @@
         "NotificationSummary$Type": "<p>The type of notification.</p>"
       }
     },
+    "OrganizationSharingStatus": {
+      "base": null,
+      "refs": {
+        "UpdateGlobalSettingsInput$OrganizationSharingStatus": "<p>The status of organization sharing settings.</p>"
+      }
+    },
     "PermissionType": {
       "base": "<p>Permission granted on a workload share.</p>",
       "refs": {
@@ -1213,6 +1220,8 @@
       "base": "<p>The status of a workload share.</p>",
       "refs": {
         "LensShareSummary$Status": null,
+        "ListLensSharesInput$Status": null,
+        "ListWorkloadSharesInput$Status": null,
         "WorkloadShare$Status": null,
         "WorkloadShareSummary$Status": null
       }
@@ -1233,6 +1242,13 @@
       "refs": {
         "ListLensSharesInput$SharedWithPrefix": "<p>The Amazon Web Services account ID or IAM role with which the lens is shared.</p>",
         "ListWorkloadSharesInput$SharedWithPrefix": "<p>The Amazon Web Services account ID or IAM role with which the workload is shared.</p>"
+      }
+    },
+    "StatusMessage": {
+      "base": null,
+      "refs": {
+        "LensShareSummary$StatusMessage": "<p>Optional message to compliment the Status field.</p>",
+        "WorkloadShareSummary$StatusMessage": "<p>Optional message to compliment the Status field.</p>"
       }
     },
     "TagKey": {
@@ -1311,6 +1327,11 @@
     },
     "UpdateAnswerOutput": {
       "base": "<p>Output of a update answer call.</p>",
+      "refs": {
+      }
+    },
+    "UpdateGlobalSettingsInput": {
+      "base": null,
       "refs": {
       }
     },

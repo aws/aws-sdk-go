@@ -4484,7 +4484,8 @@
       "required":["DatabaseInput"],
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
-        "DatabaseInput":{"shape":"DatabaseInput"}
+        "DatabaseInput":{"shape":"DatabaseInput"},
+        "Tags":{"shape":"TagsMap"}
       }
     },
     "CreateDatabaseResponse":{

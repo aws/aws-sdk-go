@@ -86,6 +86,23 @@
       ],
       "idempotent":true
     },
+    "CreateAvailabilityConfiguration":{
+      "name":"CreateAvailabilityConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateAvailabilityConfigurationRequest"},
+      "output":{"shape":"CreateAvailabilityConfigurationResponse"},
+      "errors":[
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"NameAvailabilityException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"LimitExceededException"}
+      ],
+      "idempotent":true
+    },
     "CreateGroup":{
       "name":"CreateGroup",
       "http":{
@@ -203,6 +220,20 @@
         {"shape":"EntityNotFoundException"},
         {"shape":"EntityStateException"},
         {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteAvailabilityConfiguration":{
+      "name":"DeleteAvailabilityConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAvailabilityConfigurationRequest"},
+      "output":{"shape":"DeleteAvailabilityConfigurationResponse"},
+      "errors":[
         {"shape":"OrganizationNotFoundException"},
         {"shape":"OrganizationStateException"}
       ],
@@ -654,6 +685,19 @@
       ],
       "idempotent":true
     },
+    "ListAvailabilityConfigurations":{
+      "name":"ListAvailabilityConfigurations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAvailabilityConfigurationsRequest"},
+      "output":{"shape":"ListAvailabilityConfigurationsResponse"},
+      "errors":[
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ]
+    },
     "ListGroupMembers":{
       "name":"ListGroupMembers",
       "http":{
@@ -1021,6 +1065,21 @@
         {"shape":"OrganizationStateException"}
       ]
     },
+    "TestAvailabilityConfiguration":{
+      "name":"TestAvailabilityConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TestAvailabilityConfigurationRequest"},
+      "output":{"shape":"TestAvailabilityConfigurationResponse"},
+      "errors":[
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
     "UntagResource":{
       "name":"UntagResource",
       "http":{
@@ -1032,6 +1091,22 @@
       "errors":[
         {"shape":"ResourceNotFoundException"}
       ]
+    },
+    "UpdateAvailabilityConfiguration":{
+      "name":"UpdateAvailabilityConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateAvailabilityConfigurationRequest"},
+      "output":{"shape":"UpdateAvailabilityConfigurationResponse"},
+      "errors":[
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"}
+      ],
+      "idempotent":true
     },
     "UpdateDefaultMailDomain":{
       "name":"UpdateDefaultMailDomain",
@@ -1234,6 +1309,28 @@
       "members":{
       }
     },
+    "AvailabilityConfiguration":{
+      "type":"structure",
+      "members":{
+        "DomainName":{"shape":"DomainName"},
+        "ProviderType":{"shape":"AvailabilityProviderType"},
+        "EwsProvider":{"shape":"RedactedEwsAvailabilityProvider"},
+        "LambdaProvider":{"shape":"LambdaAvailabilityProvider"},
+        "DateCreated":{"shape":"Timestamp"},
+        "DateModified":{"shape":"Timestamp"}
+      }
+    },
+    "AvailabilityConfigurationList":{
+      "type":"list",
+      "member":{"shape":"AvailabilityConfiguration"}
+    },
+    "AvailabilityProviderType":{
+      "type":"string",
+      "enum":[
+        "EWS",
+        "LAMBDA"
+      ]
+    },
     "BookingOptions":{
       "type":"structure",
       "members":{
@@ -1279,6 +1376,28 @@
       }
     },
     "CreateAliasResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "CreateAvailabilityConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "DomainName"
+      ],
+      "members":{
+        "ClientToken":{
+          "shape":"IdempotencyClientToken",
+          "idempotencyToken":true
+        },
+        "OrganizationId":{"shape":"OrganizationId"},
+        "DomainName":{"shape":"DomainName"},
+        "EwsProvider":{"shape":"EwsAvailabilityProvider"},
+        "LambdaProvider":{"shape":"LambdaAvailabilityProvider"}
+      }
+    },
+    "CreateAvailabilityConfigurationResponse":{
       "type":"structure",
       "members":{
       }
@@ -1434,6 +1553,22 @@
       }
     },
     "DeleteAliasResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteAvailabilityConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "DomainName"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "DomainName":{"shape":"DomainName"}
+      }
+    },
+    "DeleteAvailabilityConfigurationResponse":{
       "type":"structure",
       "members":{
       }
@@ -1976,6 +2111,24 @@
       },
       "exception":true
     },
+    "EwsAvailabilityProvider":{
+      "type":"structure",
+      "required":[
+        "EwsEndpoint",
+        "EwsUsername",
+        "EwsPassword"
+      ],
+      "members":{
+        "EwsEndpoint":{"shape":"Url"},
+        "EwsUsername":{"shape":"ExternalUserName"},
+        "EwsPassword":{"shape":"Password"}
+      }
+    },
+    "ExternalUserName":{
+      "type":"string",
+      "max":256,
+      "pattern":"[\\u0020-\\u00FF]+"
+    },
     "FolderConfiguration":{
       "type":"structure",
       "required":[
@@ -2210,6 +2363,19 @@
       "min":20,
       "pattern":"arn:aws:kms:[a-z0-9-]*:[a-z0-9-]+:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}"
     },
+    "LambdaArn":{
+      "type":"string",
+      "max":256,
+      "min":49,
+      "pattern":"arn:aws:lambda:[a-z]{2}-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9\\-_\\.]+(:(\\$LATEST|[a-zA-Z0-9\\-_]+))?"
+    },
+    "LambdaAvailabilityProvider":{
+      "type":"structure",
+      "required":["LambdaArn"],
+      "members":{
+        "LambdaArn":{"shape":"LambdaArn"}
+      }
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -2247,6 +2413,22 @@
       "type":"structure",
       "members":{
         "Aliases":{"shape":"Aliases"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAvailabilityConfigurationsRequest":{
+      "type":"structure",
+      "required":["OrganizationId"],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAvailabilityConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "AvailabilityConfigurations":{"shape":"AvailabilityConfigurationList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -2856,6 +3038,13 @@
       "members":{
       }
     },
+    "RedactedEwsAvailabilityProvider":{
+      "type":"structure",
+      "members":{
+        "EwsEndpoint":{"shape":"Url"},
+        "EwsUsername":{"shape":"ExternalUserName"}
+      }
+    },
     "RegisterMailDomainRequest":{
       "type":"structure",
       "required":[
@@ -3086,6 +3275,23 @@
       "max":256,
       "min":0
     },
+    "TestAvailabilityConfigurationRequest":{
+      "type":"structure",
+      "required":["OrganizationId"],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "DomainName":{"shape":"DomainName"},
+        "EwsProvider":{"shape":"EwsAvailabilityProvider"},
+        "LambdaProvider":{"shape":"LambdaAvailabilityProvider"}
+      }
+    },
+    "TestAvailabilityConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "TestPassed":{"shape":"Boolean"},
+        "FailureReason":{"shape":"String"}
+      }
+    },
     "Timestamp":{"type":"timestamp"},
     "TooManyTagsException":{
       "type":"structure",
@@ -3113,6 +3319,24 @@
       }
     },
     "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateAvailabilityConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "DomainName"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "DomainName":{"shape":"DomainName"},
+        "EwsProvider":{"shape":"EwsAvailabilityProvider"},
+        "LambdaProvider":{"shape":"LambdaAvailabilityProvider"}
+      }
+    },
+    "UpdateAvailabilityConfigurationResponse":{
       "type":"structure",
       "members":{
       }
@@ -3215,6 +3439,11 @@
       "type":"structure",
       "members":{
       }
+    },
+    "Url":{
+      "type":"string",
+      "max":256,
+      "pattern":"https?://[A-Za-z0-9.-]+(:[0-9]+)?/.*"
     },
     "User":{
       "type":"structure",

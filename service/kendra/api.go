@@ -444,6 +444,9 @@ func (c *Kendra) BatchPutDocumentRequest(input *BatchPutDocumentInput) (req *req
 // batch using Amazon Web Services CloudWatch. Any error messages related to
 // processing the batch are sent to your Amazon Web Services CloudWatch log.
 //
+// For an example of ingesting inline documents using Python and Java SDKs,
+// see Adding files directly to an index (https://docs.aws.amazon.com/kendra/latest/dg/in-adding-binary-doc.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -642,6 +645,11 @@ func (c *Kendra) CreateDataSourceRequest(input *CreateDataSourceInput) (req *req
 // data sources are the only supported data sources in the Amazon Web Services
 // GovCloud (US-West) region.
 //
+// For an example of creating an index and data source using the Python SDK,
+// see Getting started with Python SDK (https://docs.aws.amazon.com/kendra/latest/dg/gs-python.html).
+// For an example of creating an index and data source using the Java SDK, see
+// Getting started with Java SDK (https://docs.aws.amazon.com/kendra/latest/dg/gs-java.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -733,8 +741,8 @@ func (c *Kendra) CreateExperienceRequest(input *CreateExperienceInput) (req *req
 // CreateExperience API operation for AWSKendraFrontendService.
 //
 // Creates an Amazon Kendra experience such as a search application. For more
-// information on creating a search application experience, see Building a search
-// experience with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+// information on creating a search application experience, including using
+// the Python and Java SDKs, see Building a search experience with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -827,6 +835,9 @@ func (c *Kendra) CreateFaqRequest(input *CreateFaqInput) (req *request.Request, 
 // Creates an new set of frequently asked question (FAQ) questions and answers.
 //
 // Adding FAQs to an index is an asynchronous operation.
+//
+// For an example of adding an FAQ to an index using Python and Java SDKs, see
+// Using you FAQ file (https://docs.aws.amazon.com/kendra/latest/dg/in-creating-faq.html#using-faq-file).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -923,6 +934,11 @@ func (c *Kendra) CreateIndexRequest(input *CreateIndexInput) (req *request.Reque
 //
 // Once the index is active you can index your documents using the BatchPutDocument
 // API or using one of the supported data sources.
+//
+// For an example of creating an index and data source using the Python SDK,
+// see Getting started with Python SDK (https://docs.aws.amazon.com/kendra/latest/dg/gs-python.html).
+// For an example of creating an index and data source using the Java SDK, see
+// Getting started with Java SDK (https://docs.aws.amazon.com/kendra/latest/dg/gs-java.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1027,6 +1043,9 @@ func (c *Kendra) CreateQuerySuggestionsBlockListRequest(input *CreateQuerySugges
 // CreateQuerySuggestionsBlockList is currently not supported in the Amazon
 // Web Services GovCloud (US-West) region.
 //
+// For an example of creating a block list for query suggestions using the Python
+// SDK, see Query suggestions block list (https://docs.aws.amazon.com/kendra/latest/dg/query-suggestions.html#suggestions-block-list).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1117,6 +1136,9 @@ func (c *Kendra) CreateThesaurusRequest(input *CreateThesaurusInput) (req *reque
 //
 // Creates a thesaurus for an index. The thesaurus contains a list of synonyms
 // in Solr format.
+//
+// For an example of adding a thesaurus file to an index, see Adding custom
+// synonyms to an index (https://docs.aws.amazon.com/kendra/latest/dg/index-synonyms-adding-thesaurus-file.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5968,6 +5990,267 @@ func (s *AdditionalResultAttributeValue) SetTextWithHighlightsValue(v *TextWithH
 	return s
 }
 
+// Provides the configuration information to connect to Alfresco as your data
+// source.
+type AlfrescoConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Alfresco blogs to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to Alfresco fields. For more
+	// information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Alfresco data source field names must exist in your Alfresco custom metadata.
+	BlogFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// TRUE to index comments of wikis and blogs.
+	CrawlComments *bool `type:"boolean"`
+
+	// TRUE to index shared files.
+	CrawlSystemFolders *bool `type:"boolean"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Alfresco document libraries to Amazon Kendra index field names.
+	// To create custom fields, use the UpdateIndex API before you map to Alfresco
+	// fields. For more information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Alfresco data source field names must exist in your Alfresco custom metadata.
+	DocumentLibraryFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// Specify whether to index document libraries, wikis, or blogs. You can specify
+	// one or more of these options.
+	EntityFilter []*string `min:"1" type:"list" enum:"AlfrescoEntity"`
+
+	// A list of regular expression patterns to exclude certain files in your Alfresco
+	// data source. Files that match the patterns are excluded from the index. Files
+	// that don't match the patterns are included in the index. If a file matches
+	// both an inclusion pattern and an exclusion pattern, the exclusion pattern
+	// takes precedence and the file isn't included in the index.
+	ExclusionPatterns []*string `type:"list"`
+
+	// A list of regular expression patterns to include certain files in your Alfresco
+	// data source. Files that match the patterns are included in the index. Files
+	// that don't match the patterns are excluded from the index. If a file matches
+	// both an inclusion pattern and an exclusion pattern, the exclusion pattern
+	// takes precedence and the file isn't included in the index.
+	InclusionPatterns []*string `type:"list"`
+
+	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
+	// the key-value pairs required to connect to your Alfresco data source. The
+	// secret must contain a JSON structure with the following keys:
+	//
+	//    * username—The user name of the Alfresco account.
+	//
+	//    * password—The password of the Alfresco account.
+	//
+	// SecretArn is a required field
+	SecretArn *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Alfresco site. For example, my-site.
+	//
+	// SiteId is a required field
+	SiteId *string `min:"1" type:"string" required:"true"`
+
+	// The URL of the Alfresco site. For example, https://hostname:8080.
+	//
+	// SiteUrl is a required field
+	SiteUrl *string `min:"1" type:"string" required:"true"`
+
+	// The path to the SSL certificate stored in an Amazon S3 bucket. You use this
+	// to connect to Alfresco.
+	//
+	// SslCertificateS3Path is a required field
+	SslCertificateS3Path *S3Path `type:"structure" required:"true"`
+
+	// Configuration information for an Amazon Virtual Private Cloud to connect
+	// to your Alfresco. For more information, see Configuring a VPC (https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html).
+	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Alfresco wikis to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to Alfresco fields. For more
+	// information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Alfresco data source field names must exist in your Alfresco custom metadata.
+	WikiFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AlfrescoConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AlfrescoConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AlfrescoConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AlfrescoConfiguration"}
+	if s.BlogFieldMappings != nil && len(s.BlogFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlogFieldMappings", 1))
+	}
+	if s.DocumentLibraryFieldMappings != nil && len(s.DocumentLibraryFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentLibraryFieldMappings", 1))
+	}
+	if s.EntityFilter != nil && len(s.EntityFilter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityFilter", 1))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.SecretArn != nil && len(*s.SecretArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 1))
+	}
+	if s.SiteId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SiteId"))
+	}
+	if s.SiteId != nil && len(*s.SiteId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SiteId", 1))
+	}
+	if s.SiteUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("SiteUrl"))
+	}
+	if s.SiteUrl != nil && len(*s.SiteUrl) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SiteUrl", 1))
+	}
+	if s.SslCertificateS3Path == nil {
+		invalidParams.Add(request.NewErrParamRequired("SslCertificateS3Path"))
+	}
+	if s.WikiFieldMappings != nil && len(s.WikiFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WikiFieldMappings", 1))
+	}
+	if s.BlogFieldMappings != nil {
+		for i, v := range s.BlogFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BlogFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DocumentLibraryFieldMappings != nil {
+		for i, v := range s.DocumentLibraryFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DocumentLibraryFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SslCertificateS3Path != nil {
+		if err := s.SslCertificateS3Path.Validate(); err != nil {
+			invalidParams.AddNested("SslCertificateS3Path", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WikiFieldMappings != nil {
+		for i, v := range s.WikiFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "WikiFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlogFieldMappings sets the BlogFieldMappings field's value.
+func (s *AlfrescoConfiguration) SetBlogFieldMappings(v []*DataSourceToIndexFieldMapping) *AlfrescoConfiguration {
+	s.BlogFieldMappings = v
+	return s
+}
+
+// SetCrawlComments sets the CrawlComments field's value.
+func (s *AlfrescoConfiguration) SetCrawlComments(v bool) *AlfrescoConfiguration {
+	s.CrawlComments = &v
+	return s
+}
+
+// SetCrawlSystemFolders sets the CrawlSystemFolders field's value.
+func (s *AlfrescoConfiguration) SetCrawlSystemFolders(v bool) *AlfrescoConfiguration {
+	s.CrawlSystemFolders = &v
+	return s
+}
+
+// SetDocumentLibraryFieldMappings sets the DocumentLibraryFieldMappings field's value.
+func (s *AlfrescoConfiguration) SetDocumentLibraryFieldMappings(v []*DataSourceToIndexFieldMapping) *AlfrescoConfiguration {
+	s.DocumentLibraryFieldMappings = v
+	return s
+}
+
+// SetEntityFilter sets the EntityFilter field's value.
+func (s *AlfrescoConfiguration) SetEntityFilter(v []*string) *AlfrescoConfiguration {
+	s.EntityFilter = v
+	return s
+}
+
+// SetExclusionPatterns sets the ExclusionPatterns field's value.
+func (s *AlfrescoConfiguration) SetExclusionPatterns(v []*string) *AlfrescoConfiguration {
+	s.ExclusionPatterns = v
+	return s
+}
+
+// SetInclusionPatterns sets the InclusionPatterns field's value.
+func (s *AlfrescoConfiguration) SetInclusionPatterns(v []*string) *AlfrescoConfiguration {
+	s.InclusionPatterns = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *AlfrescoConfiguration) SetSecretArn(v string) *AlfrescoConfiguration {
+	s.SecretArn = &v
+	return s
+}
+
+// SetSiteId sets the SiteId field's value.
+func (s *AlfrescoConfiguration) SetSiteId(v string) *AlfrescoConfiguration {
+	s.SiteId = &v
+	return s
+}
+
+// SetSiteUrl sets the SiteUrl field's value.
+func (s *AlfrescoConfiguration) SetSiteUrl(v string) *AlfrescoConfiguration {
+	s.SiteUrl = &v
+	return s
+}
+
+// SetSslCertificateS3Path sets the SslCertificateS3Path field's value.
+func (s *AlfrescoConfiguration) SetSslCertificateS3Path(v *S3Path) *AlfrescoConfiguration {
+	s.SslCertificateS3Path = v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *AlfrescoConfiguration) SetVpcConfiguration(v *DataSourceVpcConfiguration) *AlfrescoConfiguration {
+	s.VpcConfiguration = v
+	return s
+}
+
+// SetWikiFieldMappings sets the WikiFieldMappings field's value.
+func (s *AlfrescoConfiguration) SetWikiFieldMappings(v []*DataSourceToIndexFieldMapping) *AlfrescoConfiguration {
+	s.WikiFieldMappings = v
+	return s
+}
+
 type AssociateEntitiesToExperienceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7393,7 +7676,8 @@ type CapacityUnitsConfiguration struct {
 	// capacity.
 	//
 	// A single extra capacity unit for an index provides 0.1 queries per second
-	// or approximately 8,000 queries per day.
+	// or approximately 8,000 queries per day. You can add up to 100 extra capacity
+	// units.
 	//
 	// GetQuerySuggestions capacity is five times the provisioned query capacity
 	// for an index, or the base capacity of 2.5 calls per second, whichever is
@@ -7408,7 +7692,7 @@ type CapacityUnitsConfiguration struct {
 
 	// The amount of extra storage capacity for an index. A single capacity unit
 	// provides 30 GB of storage space or 100,000 documents, whichever is reached
-	// first.
+	// first. You can add up to 100 extra capacity units.
 	//
 	// StorageCapacityUnits is a required field
 	StorageCapacityUnits *int64 `type:"integer" required:"true"`
@@ -7797,8 +8081,7 @@ type ConfluenceAttachmentConfiguration struct {
 	// least one field mapping.
 	AttachmentFieldMappings []*ConfluenceAttachmentToIndexFieldMapping `min:"1" type:"list"`
 
-	// Indicates whether Amazon Kendra indexes attachments to the pages and blogs
-	// in the Confluence data source.
+	// TRUE to index attachments of pages and blogs in Confluence.
 	CrawlAttachments *bool `type:"boolean"`
 }
 
@@ -8080,7 +8363,7 @@ type ConfluenceConfiguration struct {
 	// Configuration information for indexing Confluence blogs.
 	BlogConfiguration *ConfluenceBlogConfiguration `type:"structure"`
 
-	// >A list of regular expression patterns to exclude certain blog posts, pages,
+	// A list of regular expression patterns to exclude certain blog posts, pages,
 	// spaces, or attachments in your Confluence. Content that matches the patterns
 	// are excluded from the index. Content that doesn't match the patterns is included
 	// in the index. If content matches both an inclusion and exclusion pattern,
@@ -8100,14 +8383,9 @@ type ConfluenceConfiguration struct {
 	PageConfiguration *ConfluencePageConfiguration `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
-	// the key-value pairs required to connect to your Confluence server. The secret
-	// must contain a JSON structure with the following keys:
-	//
-	//    * username—The user name or email address of a user with administrative
-	//    privileges for the Confluence server.
-	//
-	//    * password—The password associated with the user logging in to the Confluence
-	//    server.
+	// the user name and password required to connect to the Confluence instance.
+	// If you use Confluence cloud, you use a generated API token as the password.
+	// For more information, see Using a Confluemce data source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-confluence.html).
 	//
 	// SecretArn is a required field
 	SecretArn *string `min:"1" type:"string" required:"true"`
@@ -8122,8 +8400,7 @@ type ConfluenceConfiguration struct {
 	// Configuration information for indexing Confluence spaces.
 	SpaceConfiguration *ConfluenceSpaceConfiguration `type:"structure"`
 
-	// Specifies the version of the Confluence installation that you are connecting
-	// to.
+	// The version or the type of the Confluence installation to connect to.
 	//
 	// Version is a required field
 	Version *string `type:"string" required:"true" enum:"ConfluenceVersion"`
@@ -8265,7 +8542,7 @@ func (s *ConfluenceConfiguration) SetVpcConfiguration(v *DataSourceVpcConfigurat
 type ConfluencePageConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// >Maps attributes or field names of Confluence pages to Amazon Kendra index
+	// Maps attributes or field names of Confluence pages to Amazon Kendra index
 	// field names. To create custom fields, use the UpdateIndex API before you
 	// map to Confluence fields. For more information, see Mapping data source fields
 	// (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html). The Confluence
@@ -8400,14 +8677,13 @@ func (s *ConfluencePageToIndexFieldMapping) SetIndexFieldName(v string) *Conflue
 type ConfluenceSpaceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether Amazon Kendra should index archived spaces.
+	// TRUE to index archived spaces.
 	CrawlArchivedSpaces *bool `type:"boolean"`
 
-	// Specifies whether Amazon Kendra should index personal spaces. Users can add
-	// restrictions to items in personal spaces. If personal spaces are indexed,
-	// queries without user context information may return restricted items from
-	// a personal space in their results. For more information, see Filtering on
-	// user context (https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html).
+	// TRUE to index personal spaces. You can add restrictions to items in personal
+	// spaces. If personal spaces are indexed, queries without user context information
+	// may return restricted items from a personal space in their results. For more
+	// information, see Filtering on user context (https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html).
 	CrawlPersonalSpaces *bool `type:"boolean"`
 
 	// A list of space keys of Confluence spaces. If you include a key, the blogs,
@@ -10134,6 +10410,10 @@ func (s *CustomDocumentEnrichmentConfiguration) SetRoleArn(v string) *CustomDocu
 type DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Provides the configuration information to connect to Alfresco as your data
+	// source.
+	AlfrescoConfiguration *AlfrescoConfiguration `type:"structure"`
+
 	// Provides the configuration information to connect to Box as your data source.
 	BoxConfiguration *BoxConfiguration `type:"structure"`
 
@@ -10215,6 +10495,11 @@ func (s DataSourceConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DataSourceConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DataSourceConfiguration"}
+	if s.AlfrescoConfiguration != nil {
+		if err := s.AlfrescoConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AlfrescoConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.BoxConfiguration != nil {
 		if err := s.BoxConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("BoxConfiguration", err.(request.ErrInvalidParams))
@@ -10300,6 +10585,12 @@ func (s *DataSourceConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAlfrescoConfiguration sets the AlfrescoConfiguration field's value.
+func (s *DataSourceConfiguration) SetAlfrescoConfiguration(v *AlfrescoConfiguration) *DataSourceConfiguration {
+	s.AlfrescoConfiguration = v
+	return s
 }
 
 // SetBoxConfiguration sets the BoxConfiguration field's value.
@@ -17185,7 +17476,7 @@ type JiraConfiguration struct {
 	// one or more of these options to crawl.
 	IssueType []*string `type:"list"`
 
-	// The URL of the Jira account. For example, company.attlassian.net or https://jira.company.com.
+	// The URL of the Jira account. For example, company.atlassian.net or https://jira.company.com.
 	// You can find your Jira account URL in the URL of your profile page for Jira
 	// desktop.
 	//
@@ -17203,13 +17494,14 @@ type JiraConfiguration struct {
 	// The Jira data source field names must exist in your Jira custom metadata.
 	ProjectFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
-	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
-	// the key-value pairs required to connect to your Jira data source. The secret
+	// The Amazon Resource Name (ARN) of a secret in Secrets Manager contains the
+	// key-value pairs required to connect to your Jira data source. The secret
 	// must contain a JSON structure with the following keys:
 	//
-	//    * jira-id—The ID of the Jira account.
+	//    * jiraId—The Jira username.
 	//
-	//    * jiraCredentials—The password of the Jira account user.
+	//    * jiraCredentials—The Jira API token. For more information on creating
+	//    an API token in Jira, see Authentication for a Jira data source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-jira.html#jira-authentication).
 	//
 	// SecretArn is a required field
 	SecretArn *string `min:"1" type:"string" required:"true"`
@@ -17218,7 +17510,10 @@ type JiraConfiguration struct {
 	// one or more of these options to crawl.
 	Status []*string `type:"list"`
 
-	// Specify to use the change log option to update your index.
+	// TRUE to use the Jira change log to determine which documents require updating
+	// in the index. Depending on the change log's size, it may take longer for
+	// Amazon Kendra to use the change log than to scan all of your documents in
+	// Jira.
 	UseChangeLog *bool `type:"boolean"`
 
 	// Configuration information for an Amazon Virtual Private Cloud to connect
@@ -19077,7 +19372,8 @@ type OnPremiseConfiguration struct {
 	// OrganizationName is a required field
 	OrganizationName *string `min:"1" type:"string" required:"true"`
 
-	// Information required to find a specific file in an Amazon S3 bucket.
+	// The path to the SSL certificate stored in an Amazon S3 bucket. You use this
+	// to connect to GitHub.
 	//
 	// SslCertificateS3Path is a required field
 	SslCertificateS3Path *S3Path `type:"structure" required:"true"`
@@ -19154,8 +19450,7 @@ func (s *OnPremiseConfiguration) SetSslCertificateS3Path(v *S3Path) *OnPremiseCo
 type OneDriveConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A Boolean value that specifies whether local groups are disabled (True) or
-	// enabled (False).
+	// TRUE to disable local groups information.
 	DisableLocalGroups *bool `type:"boolean"`
 
 	// A list of regular expression patterns to exclude certain documents in your
@@ -20335,16 +20630,13 @@ type QuipConfiguration struct {
 	// The Quip field names must exist in your Quip custom metadata.
 	AttachmentFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
-	// Specify whether to crawl attachments in Quip. You can specify one or more
-	// of these options.
+	// TRUE to index attachments.
 	CrawlAttachments *bool `type:"boolean"`
 
-	// Specify whether to crawl chat rooms in Quip. You can specify one or more
-	// of these options.
+	// TRUE to index the contents of chat rooms.
 	CrawlChatRooms *bool `type:"boolean"`
 
-	// Specify whether to crawl file comments in Quip. You can specify one or more
-	// of these options.
+	// TRUE to index file comments.
 	CrawlFileComments *bool `type:"boolean"`
 
 	// The Quip site domain.
@@ -20359,7 +20651,7 @@ type QuipConfiguration struct {
 	// takes precedence, and the file isn't included in the index.
 	ExclusionPatterns []*string `type:"list"`
 
-	// The identifier of the Quip folder IDs to index.
+	// The identifier of the Quip folders you want to index.
 	FolderIds []*string `type:"list"`
 
 	// A list of regular expression patterns to include certain files in your Quip
@@ -22277,6 +22569,9 @@ type ServiceNowConfiguration struct {
 
 	// The Amazon Resource Name (ARN) of the Secrets Manager secret that contains
 	// the user name and password required to connect to the ServiceNow instance.
+	// You can also provide OAuth authentication credentials of user name, password,
+	// client ID, and client secret. For more information, see Authentication for
+	// a ServiceNow data source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-servicenow.html#servicenow-authentication).
 	//
 	// SecretArn is a required field
 	SecretArn *string `min:"1" type:"string" required:"true"`
@@ -22727,12 +23022,10 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type SharePointConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// TRUE to include attachments to documents stored in your Microsoft SharePoint
-	// site in the index; otherwise, FALSE.
+	// TRUE to index document attachments.
 	CrawlAttachments *bool `type:"boolean"`
 
-	// A Boolean value that specifies whether local groups are disabled (True) or
-	// enabled (False).
+	// TRUE to disable local groups information.
 	DisableLocalGroups *bool `type:"boolean"`
 
 	// The Microsoft SharePoint attribute field that contains the title of the document.
@@ -22744,7 +23037,7 @@ type SharePointConfiguration struct {
 	// matches both an inclusion and exclusion pattern, the exclusion pattern takes
 	// precedence and the document isn't included in the index.
 	//
-	// The regex is applied to the display URL of the SharePoint document.
+	// The regex applies to the display URL of the SharePoint document.
 	ExclusionPatterns []*string `type:"list"`
 
 	// A list of DataSourceToIndexFieldMapping objects that map SharePoint data
@@ -22761,29 +23054,28 @@ type SharePointConfiguration struct {
 	// document matches both an inclusion and exclusion pattern, the exclusion pattern
 	// takes precedence and the document isn't included in the index.
 	//
-	// The regex is applied to the display URL of the SharePoint document.
+	// The regex applies to the display URL of the SharePoint document.
 	InclusionPatterns []*string `type:"list"`
 
-	// The Amazon Resource Name (ARN) of credentials stored in Secrets Manager.
-	// The credentials should be a user/password pair. If you use SharePoint Server,
-	// you also need to provide the sever domain name as part of the credentials.
-	// For more information, see Using a Microsoft SharePoint Data Source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html).
-	// For more information about Secrets Manager see What Is Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
-	// in the Secrets Manager user guide.
+	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
+	// the user name and password required to connect to the SharePoint instance.
+	// If you use SharePoint Server, you also need to provide the sever domain name
+	// as part of the credentials. For more information, see Using a Microsoft SharePoint
+	// Data Source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html).
 	//
 	// SecretArn is a required field
 	SecretArn *string `min:"1" type:"string" required:"true"`
 
-	// The version of Microsoft SharePoint that you are using as a data source.
+	// The version of Microsoft SharePoint that you use.
 	//
 	// SharePointVersion is a required field
 	SharePointVersion *string `type:"string" required:"true" enum:"SharePointVersion"`
 
-	// Information required to find a specific file in an Amazon S3 bucket.
+	// The path to the SSL certificate stored in an Amazon S3 bucket. You use this
+	// to connect to SharePoint.
 	SslCertificateS3Path *S3Path `type:"structure"`
 
-	// The URLs of the Microsoft SharePoint site that contains the documents that
-	// should be indexed.
+	// The Microsoft SharePoint site URLs for the documents you want to indext.
 	//
 	// Urls is a required field
 	Urls []*string `min:"1" type:"list" required:"true"`
@@ -22794,7 +23086,9 @@ type SharePointConfiguration struct {
 	// in SharePoint.
 	UseChangeLog *bool `type:"boolean"`
 
-	// Provides the configuration information to connect to an Amazon VPC.
+	// Configuration information for an Amazon Virtual Private Cloud to connect
+	// to your Microsoft SharePoint. For more information, see Configuring a VPC
+	// (https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html).
 	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
 }
 
@@ -26277,6 +26571,26 @@ func AdditionalResultAttributeValueType_Values() []string {
 }
 
 const (
+	// AlfrescoEntityWiki is a AlfrescoEntity enum value
+	AlfrescoEntityWiki = "wiki"
+
+	// AlfrescoEntityBlog is a AlfrescoEntity enum value
+	AlfrescoEntityBlog = "blog"
+
+	// AlfrescoEntityDocumentLibrary is a AlfrescoEntity enum value
+	AlfrescoEntityDocumentLibrary = "documentLibrary"
+)
+
+// AlfrescoEntity_Values returns all elements of the AlfrescoEntity enum
+func AlfrescoEntity_Values() []string {
+	return []string{
+		AlfrescoEntityWiki,
+		AlfrescoEntityBlog,
+		AlfrescoEntityDocumentLibrary,
+	}
+}
+
+const (
 	// ConditionOperatorGreaterThan is a ConditionOperator enum value
 	ConditionOperatorGreaterThan = "GreaterThan"
 
@@ -26663,6 +26977,9 @@ const (
 
 	// DataSourceTypeGithub is a DataSourceType enum value
 	DataSourceTypeGithub = "GITHUB"
+
+	// DataSourceTypeAlfresco is a DataSourceType enum value
+	DataSourceTypeAlfresco = "ALFRESCO"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -26685,6 +27002,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeQuip,
 		DataSourceTypeJira,
 		DataSourceTypeGithub,
+		DataSourceTypeAlfresco,
 	}
 }
 

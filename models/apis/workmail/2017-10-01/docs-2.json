@@ -6,6 +6,7 @@
     "AssociateMemberToGroup": "<p>Adds a member (user or group) to the group's set.</p>",
     "CancelMailboxExportJob": "<p>Cancels a mailbox export job.</p> <note> <p>If the mailbox export job is near completion, it might not be possible to cancel it.</p> </note>",
     "CreateAlias": "<p>Adds an alias to the set of a given member (user or group) of Amazon WorkMail.</p>",
+    "CreateAvailabilityConfiguration": "<p>Creates an <code>AvailabilityConfiguration</code> for the given WorkMail organization and domain.</p>",
     "CreateGroup": "<p>Creates a group that can be used in Amazon WorkMail by calling the <a>RegisterToWorkMail</a> operation.</p>",
     "CreateMobileDeviceAccessRule": "<p>Creates a new mobile device access rule for the specified Amazon WorkMail organization.</p>",
     "CreateOrganization": "<p>Creates a new Amazon WorkMail organization. Optionally, you can choose to associate an existing AWS Directory Service directory with your organization. If an AWS Directory Service directory ID is specified, the organization alias must match the directory alias. If you choose not to associate an existing directory with your organization, then we create a new Amazon WorkMail directory for you. For more information, see <a href=\"https://docs.aws.amazon.com/workmail/latest/adminguide/add_new_organization.html\">Adding an organization</a> in the <i>Amazon WorkMail Administrator Guide</i>.</p> <p>You can associate multiple email domains with an organization, then set your default email domain from the Amazon WorkMail console. You can also associate a domain that is managed in an Amazon Route 53 public hosted zone. For more information, see <a href=\"https://docs.aws.amazon.com/workmail/latest/adminguide/add_domain.html\">Adding a domain</a> and <a href=\"https://docs.aws.amazon.com/workmail/latest/adminguide/default_domain.html\">Choosing the default domain</a> in the <i>Amazon WorkMail Administrator Guide</i>.</p> <p>Optionally, you can use a customer managed master key from AWS Key Management Service (AWS KMS) to encrypt email for your organization. If you don't associate an AWS KMS key, Amazon WorkMail creates a default AWS managed master key for you.</p>",
@@ -13,6 +14,7 @@
     "CreateUser": "<p>Creates a user who can be used in Amazon WorkMail by calling the <a>RegisterToWorkMail</a> operation.</p>",
     "DeleteAccessControlRule": "<p>Deletes an access control rule for the specified WorkMail organization.</p> <note> <p>Deleting already deleted and non-existing rules does not produce an error. In those cases, the service sends back an HTTP 200 response with an empty HTTP body.</p> </note>",
     "DeleteAlias": "<p>Remove one or more specified aliases from a set of aliases for a given user.</p>",
+    "DeleteAvailabilityConfiguration": "<p>Deletes the <code>AvailabilityConfiguration</code> for the given WorkMail organization and domain.</p>",
     "DeleteEmailMonitoringConfiguration": "<p>Deletes the email monitoring configuration for a specified organization.</p>",
     "DeleteGroup": "<p>Deletes a group from Amazon WorkMail.</p>",
     "DeleteMailboxPermissions": "<p>Deletes permissions granted to a member (user or group).</p>",
@@ -41,6 +43,7 @@
     "GetMobileDeviceAccessOverride": "<p>Gets the mobile device access override for the given WorkMail organization, user, and device.</p>",
     "ListAccessControlRules": "<p>Lists the access control rules for the specified organization.</p>",
     "ListAliases": "<p>Creates a paginated call to list the aliases associated with a given entity.</p>",
+    "ListAvailabilityConfigurations": "<p>List all the <code>AvailabilityConfiguration</code>'s for the given WorkMail organization.</p>",
     "ListGroupMembers": "<p>Returns an overview of the members of a group. Users and groups can be members of a group.</p>",
     "ListGroups": "<p>Returns summaries of the organization's groups.</p>",
     "ListMailDomains": "<p>Lists the mail domains in a given Amazon WorkMail organization.</p>",
@@ -64,7 +67,9 @@
     "ResetPassword": "<p>Allows the administrator to reset the password for a user.</p>",
     "StartMailboxExportJob": "<p>Starts a mailbox export job to export MIME-format email messages and calendar items from the specified mailbox to the specified Amazon Simple Storage Service (Amazon S3) bucket. For more information, see <a href=\"https://docs.aws.amazon.com/workmail/latest/adminguide/mail-export.html\">Exporting mailbox content</a> in the <i>Amazon WorkMail Administrator Guide</i>.</p>",
     "TagResource": "<p>Applies the specified tags to the specified Amazon WorkMail organization resource.</p>",
+    "TestAvailabilityConfiguration": "<p>Performs a test on an availability provider to ensure that access is allowed. For EWS, it verifies the provided credentials can be used to successfully log in. For Lambda, it verifies that the Lambda function can be invoked and that the resource access policy was configured to deny anonymous access. An anonymous invocation is one done without providing either a <code>SourceArn</code> or <code>SourceAccount</code> header.</p> <note> <p>The request must contain either one provider definition (<code>EwsProvider</code> or <code>LambdaProvider</code>) or the <code>DomainName</code> parameter. If the <code>DomainName</code> parameter is provided, the configuration stored under the <code>DomainName</code> will be tested. </p> </note>",
     "UntagResource": "<p>Untags the specified tags from the specified Amazon WorkMail organization resource.</p>",
+    "UpdateAvailabilityConfiguration": "<p>Updates an existing <code>AvailabilityConfiguration</code> for the given WorkMail organization and domain.</p>",
     "UpdateDefaultMailDomain": "<p>Updates the default mail domain for an organization. The default mail domain is used by the WorkMail AWS Console to suggest an email address when enabling a mail user. You can only have one default domain.</p>",
     "UpdateMailboxQuota": "<p>Updates a user's current mailbox quota for a specified organization and user.</p>",
     "UpdateMobileDeviceAccessRule": "<p>Updates a mobile device access rule for the specified Amazon WorkMail organization.</p>",
@@ -165,6 +170,24 @@
       "refs": {
       }
     },
+    "AvailabilityConfiguration": {
+      "base": "<p>List all the <code>AvailabilityConfiguration</code>'s for the given WorkMail organization.</p>",
+      "refs": {
+        "AvailabilityConfigurationList$member": null
+      }
+    },
+    "AvailabilityConfigurationList": {
+      "base": null,
+      "refs": {
+        "ListAvailabilityConfigurationsResponse$AvailabilityConfigurations": "<p>The list of <code>AvailabilityConfiguration</code>'s that exist for the specified Amazon WorkMail organization.</p>"
+      }
+    },
+    "AvailabilityProviderType": {
+      "base": null,
+      "refs": {
+        "AvailabilityConfiguration$ProviderType": "<p>Displays the provider type that applies to this domain.</p>"
+      }
+    },
     "BookingOptions": {
       "base": "<p>At least one delegate must be associated to the resource to disable automatic replies from the resource.</p>",
       "refs": {
@@ -183,7 +206,8 @@
         "DescribeInboundDmarcSettingsResponse$Enforced": "<p>Lists the enforcement setting of the applied policy.</p>",
         "GetMailDomainResponse$IsTestDomain": "<p>Specifies whether the domain is a test domain provided by WorkMail, or a custom domain.</p>",
         "GetMailDomainResponse$IsDefault": "<p>Specifies whether the domain is the default domain for your organization.</p>",
-        "MailDomainSummary$DefaultDomain": "<p>Whether the domain is default or not.</p>"
+        "MailDomainSummary$DefaultDomain": "<p>Whether the domain is default or not.</p>",
+        "TestAvailabilityConfigurationResponse$TestPassed": "<p>Boolean indicating whether the test passed or failed.</p>"
       }
     },
     "BooleanObject": {
@@ -208,6 +232,16 @@
       }
     },
     "CreateAliasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAvailabilityConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAvailabilityConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -284,6 +318,16 @@
       }
     },
     "DeleteAliasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAvailabilityConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAvailabilityConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -628,9 +672,14 @@
     "DomainName": {
       "base": null,
       "refs": {
+        "AvailabilityConfiguration$DomainName": "<p>Displays the domain to which the provider applies.</p>",
+        "CreateAvailabilityConfigurationRequest$DomainName": "<p>The domain to which the provider applies.</p>",
+        "DeleteAvailabilityConfigurationRequest$DomainName": "<p>The domain for which the <code>AvailabilityConfiguration</code> will be deleted.</p>",
         "Domain$DomainName": "<p>The fully qualified domain name.</p>",
         "MailDomainSummary$DomainName": "<p>The domain name.</p>",
-        "OrganizationSummary$DefaultMailDomain": "<p>The default email domain associated with the organization.</p>"
+        "OrganizationSummary$DefaultMailDomain": "<p>The default email domain associated with the organization.</p>",
+        "TestAvailabilityConfigurationRequest$DomainName": "<p>The domain to which the provider applies. If this field is provided, a stored availability provider associated to this domain name will be tested.</p>",
+        "UpdateAvailabilityConfigurationRequest$DomainName": "<p>The domain to which the provider applies the availability configuration.</p>"
       }
     },
     "Domains": {
@@ -694,6 +743,21 @@
     "EntityStateException": {
       "base": "<p>You are performing an operation on a user, group, or resource that isn't in the expected state, such as trying to delete an active user.</p>",
       "refs": {
+      }
+    },
+    "EwsAvailabilityProvider": {
+      "base": "<p>Describes an EWS based availability provider. This is only used as input to the service.</p>",
+      "refs": {
+        "CreateAvailabilityConfigurationRequest$EwsProvider": "<p>Exchange Web Services (EWS) availability provider definition. The request must contain exactly one provider definition, either <code>EwsProvider</code> or <code>LambdaProvider</code>.</p>",
+        "TestAvailabilityConfigurationRequest$EwsProvider": null,
+        "UpdateAvailabilityConfigurationRequest$EwsProvider": "<p>The EWS availability provider definition. The request must contain exactly one provider definition, either <code>EwsProvider</code> or <code>LambdaProvider</code>. The previously stored provider will be overridden by the one provided.</p>"
+      }
+    },
+    "ExternalUserName": {
+      "base": null,
+      "refs": {
+        "EwsAvailabilityProvider$EwsUsername": "<p>The username used to authenticate the remote EWS server.</p>",
+        "RedactedEwsAvailabilityProvider$EwsUsername": "<p>The username used to authenticate the remote EWS server.</p>"
       }
     },
     "FolderConfiguration": {
@@ -805,6 +869,7 @@
       "base": null,
       "refs": {
         "CancelMailboxExportJobRequest$ClientToken": "<p>The idempotency token for the client request.</p>",
+        "CreateAvailabilityConfigurationRequest$ClientToken": "<p>An idempotent token that ensures that an API request is executed only once.</p>",
         "CreateMobileDeviceAccessRuleRequest$ClientToken": "<p>The idempotency token for the client request.</p>",
         "CreateOrganizationRequest$ClientToken": "<p>The idempotency token associated with the request.</p>",
         "DeleteOrganizationRequest$ClientToken": "<p>The idempotency token associated with the request.</p>",
@@ -867,6 +932,21 @@
         "StartMailboxExportJobRequest$KmsKeyArn": "<p>The Amazon Resource Name (ARN) of the symmetric AWS Key Management Service (AWS KMS) key that encrypts the exported mailbox content.</p>"
       }
     },
+    "LambdaArn": {
+      "base": null,
+      "refs": {
+        "LambdaAvailabilityProvider$LambdaArn": "<p>The Amazon Resource Name (ARN) of the Lambda that acts as the availability provider.</p>"
+      }
+    },
+    "LambdaAvailabilityProvider": {
+      "base": "<p>Describes a Lambda based availability provider.</p>",
+      "refs": {
+        "AvailabilityConfiguration$LambdaProvider": "<p>If ProviderType is <code>LAMBDA</code> then this field contains <code>LambdaAvailabilityProvider</code>. Otherwise, it is not required.</p>",
+        "CreateAvailabilityConfigurationRequest$LambdaProvider": "<p>Lambda availability provider definition. The request must contain exactly one provider definition, either <code>EwsProvider</code> or <code>LambdaProvider</code>.</p>",
+        "TestAvailabilityConfigurationRequest$LambdaProvider": null,
+        "UpdateAvailabilityConfigurationRequest$LambdaProvider": "<p>The Lambda availability provider definition. The request must contain exactly one provider definition, either <code>EwsProvider</code> or <code>LambdaProvider</code>. The previously stored provider will be overridden by the one provided.</p>"
+      }
+    },
     "LimitExceededException": {
       "base": "<p>The request exceeds the limit of the resource.</p>",
       "refs": {
@@ -888,6 +968,16 @@
       }
     },
     "ListAliasesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAvailabilityConfigurationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAvailabilityConfigurationsResponse": {
       "base": null,
       "refs": {
       }
@@ -1091,6 +1181,7 @@
       "base": null,
       "refs": {
         "ListAliasesRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
+        "ListAvailabilityConfigurationsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListGroupMembersRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListGroupsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListMailDomainsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
@@ -1211,6 +1302,8 @@
       "refs": {
         "ListAliasesRequest$NextToken": "<p>The token to use to retrieve the next page of results. The first call does not contain any tokens.</p>",
         "ListAliasesResponse$NextToken": "<p>The token to use to retrieve the next page of results. The value is \"null\" when there are no more results to return.</p>",
+        "ListAvailabilityConfigurationsRequest$NextToken": "<p>The token to use to retrieve the next page of results. The first call does not require a token.</p>",
+        "ListAvailabilityConfigurationsResponse$NextToken": "<p>The token to use to retrieve the next page of results. The value is <code>null</code> when there are no further results to return.</p>",
         "ListGroupMembersRequest$NextToken": "<p> The token to use to retrieve the next page of results. The first call does not contain any tokens.</p>",
         "ListGroupMembersResponse$NextToken": "<p>The token to use to retrieve the next page of results. The first call does not contain any tokens.</p>",
         "ListGroupsRequest$NextToken": "<p>The token to use to retrieve the next page of results. The first call does not contain any tokens.</p>",
@@ -1240,6 +1333,7 @@
         "AssociateMemberToGroupRequest$OrganizationId": "<p>The organization under which the group exists.</p>",
         "CancelMailboxExportJobRequest$OrganizationId": "<p>The organization ID.</p>",
         "CreateAliasRequest$OrganizationId": "<p>The organization under which the member (user or group) exists.</p>",
+        "CreateAvailabilityConfigurationRequest$OrganizationId": "<p>The Amazon WorkMail organization for which the <code>AvailabilityConfiguration</code> will be created.</p>",
         "CreateGroupRequest$OrganizationId": "<p>The organization under which the group is to be created.</p>",
         "CreateMobileDeviceAccessRuleRequest$OrganizationId": "<p>The Amazon WorkMail organization under which the rule will be created.</p>",
         "CreateOrganizationResponse$OrganizationId": "<p>The organization ID.</p>",
@@ -1247,6 +1341,7 @@
         "CreateUserRequest$OrganizationId": "<p>The identifier of the organization for which the user is created.</p>",
         "DeleteAccessControlRuleRequest$OrganizationId": "<p>The identifier for the organization.</p>",
         "DeleteAliasRequest$OrganizationId": "<p>The identifier for the organization under which the user exists.</p>",
+        "DeleteAvailabilityConfigurationRequest$OrganizationId": "<p>The Amazon WorkMail organization for which the <code>AvailabilityConfiguration</code> will be deleted.</p>",
         "DeleteEmailMonitoringConfigurationRequest$OrganizationId": "<p>The ID of the organization from which the email monitoring configuration is deleted.</p>",
         "DeleteGroupRequest$OrganizationId": "<p>The organization that contains the group.</p>",
         "DeleteMailboxPermissionsRequest$OrganizationId": "<p>The identifier of the organization under which the member (user or group) exists.</p>",
@@ -1277,6 +1372,7 @@
         "GetMobileDeviceAccessOverrideRequest$OrganizationId": "<p>The Amazon WorkMail organization to which you want to apply the override.</p>",
         "ListAccessControlRulesRequest$OrganizationId": "<p>The identifier for the organization.</p>",
         "ListAliasesRequest$OrganizationId": "<p>The identifier for the organization under which the entity exists.</p>",
+        "ListAvailabilityConfigurationsRequest$OrganizationId": "<p>The Amazon WorkMail organization for which the <code>AvailabilityConfiguration</code>'s will be listed.</p>",
         "ListGroupMembersRequest$OrganizationId": "<p>The identifier for the organization under which the group exists.</p>",
         "ListGroupsRequest$OrganizationId": "<p>The identifier for the organization under which the groups exist.</p>",
         "ListMailDomainsRequest$OrganizationId": "<p>The Amazon WorkMail organization for which to list domains.</p>",
@@ -1298,6 +1394,8 @@
         "RegisterToWorkMailRequest$OrganizationId": "<p>The identifier for the organization under which the user, group, or resource exists.</p>",
         "ResetPasswordRequest$OrganizationId": "<p>The identifier of the organization that contains the user for which the password is reset.</p>",
         "StartMailboxExportJobRequest$OrganizationId": "<p>The identifier associated with the organization.</p>",
+        "TestAvailabilityConfigurationRequest$OrganizationId": "<p>The Amazon WorkMail organization where the availability provider will be tested.</p>",
+        "UpdateAvailabilityConfigurationRequest$OrganizationId": "<p>The Amazon WorkMail organization for which the <code>AvailabilityConfiguration</code> will be updated.</p>",
         "UpdateDefaultMailDomainRequest$OrganizationId": "<p>The Amazon WorkMail organization for which to list domains.</p>",
         "UpdateMailboxQuotaRequest$OrganizationId": "<p>The identifier for the organization that contains the user for whom to update the mailbox quota.</p>",
         "UpdateMobileDeviceAccessRuleRequest$OrganizationId": "<p>The Amazon WorkMail organization under which the rule will be updated.</p>",
@@ -1339,6 +1437,7 @@
       "base": null,
       "refs": {
         "CreateUserRequest$Password": "<p>The password for the new user.</p>",
+        "EwsAvailabilityProvider$EwsPassword": "<p>The password used to authenticate the remote EWS server.</p>",
         "ResetPasswordRequest$Password": "<p>The new password for the user.</p>"
       }
     },
@@ -1438,6 +1537,12 @@
     "PutRetentionPolicyResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "RedactedEwsAvailabilityProvider": {
+      "base": "<p>Describes an EWS based availability provider when returned from the service. It does not contain the password of the endpoint.</p>",
+      "refs": {
+        "AvailabilityConfiguration$EwsProvider": "<p>If <code>ProviderType</code> is <code>EWS</code>, then this field contains <code>RedactedEwsAvailabilityProvider</code>. Otherwise, it is not requried.</p>"
       }
     },
     "RegisterMailDomainRequest": {
@@ -1625,6 +1730,7 @@
         "OrganizationSummary$State": "<p>The state associated with the organization.</p>",
         "ReservedNameException$Message": null,
         "ResourceNotFoundException$Message": null,
+        "TestAvailabilityConfigurationResponse$FailureReason": "<p>String containing the reason for a failed test if <code>TestPassed</code> is false.</p>",
         "TooManyTagsException$Message": null,
         "UnsupportedOperationException$Message": null,
         "User$DisplayName": "<p>The display name of the user.</p>"
@@ -1672,11 +1778,23 @@
         "Tag$Value": "<p>The value of the tag.</p>"
       }
     },
+    "TestAvailabilityConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TestAvailabilityConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Timestamp": {
       "base": null,
       "refs": {
         "AccessControlRule$DateCreated": "<p>The date that the rule was created.</p>",
         "AccessControlRule$DateModified": "<p>The date that the rule was modified.</p>",
+        "AvailabilityConfiguration$DateCreated": "<p>The date and time at which the availability configuration was created.</p>",
+        "AvailabilityConfiguration$DateModified": "<p>The date and time at which the availability configuration was last modified.</p>",
         "DescribeGroupResponse$EnabledDate": "<p>The date and time when a user was registered to WorkMail, in UNIX epoch time format.</p>",
         "DescribeGroupResponse$DisabledDate": "<p>The date and time when a user was deregistered from WorkMail, in UNIX epoch time format.</p>",
         "DescribeMailboxExportJobResponse$StartTime": "<p>The mailbox export job start timestamp.</p>",
@@ -1720,6 +1838,16 @@
       }
     },
     "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAvailabilityConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAvailabilityConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -1772,6 +1900,13 @@
     "UpdateResourceResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Url": {
+      "base": null,
+      "refs": {
+        "EwsAvailabilityProvider$EwsEndpoint": "<p>The endpoint of the remote EWS server.</p>",
+        "RedactedEwsAvailabilityProvider$EwsEndpoint": "<p>The endpoint of the remote EWS server.</p>"
       }
     },
     "User": {

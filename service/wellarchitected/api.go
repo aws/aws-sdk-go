@@ -3824,6 +3824,99 @@ func (c *WellArchitected) UpdateAnswerWithContext(ctx aws.Context, input *Update
 	return out, req.Send()
 }
 
+const opUpdateGlobalSettings = "UpdateGlobalSettings"
+
+// UpdateGlobalSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateGlobalSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateGlobalSettings for more information on using the UpdateGlobalSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateGlobalSettingsRequest method.
+//    req, resp := client.UpdateGlobalSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/UpdateGlobalSettings
+func (c *WellArchitected) UpdateGlobalSettingsRequest(input *UpdateGlobalSettingsInput) (req *request.Request, output *UpdateGlobalSettingsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateGlobalSettings,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/global-settings",
+	}
+
+	if input == nil {
+		input = &UpdateGlobalSettingsInput{}
+	}
+
+	output = &UpdateGlobalSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateGlobalSettings API operation for AWS Well-Architected Tool.
+//
+// Updates whether the Amazon Web Services account is opted into organization
+// sharing features.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Well-Architected Tool's
+// API operation UpdateGlobalSettings for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The user input is not valid.
+//
+//   * ConflictException
+//   The resource already exists.
+//
+//   * InternalServerException
+//   There is a problem with the Well-Architected Tool API service.
+//
+//   * AccessDeniedException
+//   User does not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   Request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/UpdateGlobalSettings
+func (c *WellArchitected) UpdateGlobalSettings(input *UpdateGlobalSettingsInput) (*UpdateGlobalSettingsOutput, error) {
+	req, out := c.UpdateGlobalSettingsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateGlobalSettingsWithContext is the same as UpdateGlobalSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateGlobalSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WellArchitected) UpdateGlobalSettingsWithContext(ctx aws.Context, input *UpdateGlobalSettingsInput, opts ...request.Option) (*UpdateGlobalSettingsOutput, error) {
+	req, out := c.UpdateGlobalSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateLensReview = "UpdateLensReview"
 
 // UpdateLensReviewRequest generates a "aws/request.Request" representing the
@@ -8235,6 +8328,9 @@ type LensShareSummary struct {
 
 	// The status of a workload share.
 	Status *string `type:"string" enum:"ShareStatus"`
+
+	// Optional message to compliment the Status field.
+	StatusMessage *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -8270,6 +8366,12 @@ func (s *LensShareSummary) SetSharedWith(v string) *LensShareSummary {
 // SetStatus sets the Status field's value.
 func (s *LensShareSummary) SetStatus(v string) *LensShareSummary {
 	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *LensShareSummary) SetStatusMessage(v string) *LensShareSummary {
+	s.StatusMessage = &v
 	return s
 }
 
@@ -9074,6 +9176,9 @@ type ListLensSharesInput struct {
 
 	// The Amazon Web Services account ID or IAM role with which the lens is shared.
 	SharedWithPrefix *string `location:"querystring" locationName:"SharedWithPrefix" type:"string"`
+
+	// The status of a workload share.
+	Status *string `location:"querystring" locationName:"Status" type:"string" enum:"ShareStatus"`
 }
 
 // String returns the string representation.
@@ -9134,6 +9239,12 @@ func (s *ListLensSharesInput) SetNextToken(v string) *ListLensSharesInput {
 // SetSharedWithPrefix sets the SharedWithPrefix field's value.
 func (s *ListLensSharesInput) SetSharedWithPrefix(v string) *ListLensSharesInput {
 	s.SharedWithPrefix = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListLensSharesInput) SetStatus(v string) *ListLensSharesInput {
+	s.Status = &v
 	return s
 }
 
@@ -9746,6 +9857,9 @@ type ListWorkloadSharesInput struct {
 	// shared.
 	SharedWithPrefix *string `location:"querystring" locationName:"SharedWithPrefix" type:"string"`
 
+	// The status of a workload share.
+	Status *string `location:"querystring" locationName:"Status" type:"string" enum:"ShareStatus"`
+
 	// The ID assigned to the workload. This ID is unique within an Amazon Web Services
 	// Region.
 	//
@@ -9805,6 +9919,12 @@ func (s *ListWorkloadSharesInput) SetNextToken(v string) *ListWorkloadSharesInpu
 // SetSharedWithPrefix sets the SharedWithPrefix field's value.
 func (s *ListWorkloadSharesInput) SetSharedWithPrefix(v string) *ListWorkloadSharesInput {
 	s.SharedWithPrefix = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListWorkloadSharesInput) SetStatus(v string) *ListWorkloadSharesInput {
+	s.Status = &v
 	return s
 }
 
@@ -11113,6 +11233,59 @@ func (s *UpdateAnswerOutput) SetLensArn(v string) *UpdateAnswerOutput {
 func (s *UpdateAnswerOutput) SetWorkloadId(v string) *UpdateAnswerOutput {
 	s.WorkloadId = &v
 	return s
+}
+
+type UpdateGlobalSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of organization sharing settings.
+	OrganizationSharingStatus *string `type:"string" enum:"OrganizationSharingStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGlobalSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGlobalSettingsInput) GoString() string {
+	return s.String()
+}
+
+// SetOrganizationSharingStatus sets the OrganizationSharingStatus field's value.
+func (s *UpdateGlobalSettingsInput) SetOrganizationSharingStatus(v string) *UpdateGlobalSettingsInput {
+	s.OrganizationSharingStatus = &v
+	return s
+}
+
+type UpdateGlobalSettingsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGlobalSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGlobalSettingsOutput) GoString() string {
+	return s.String()
 }
 
 // Input for update lens review.
@@ -12441,6 +12614,9 @@ type WorkloadShareSummary struct {
 
 	// The status of a workload share.
 	Status *string `type:"string" enum:"ShareStatus"`
+
+	// Optional message to compliment the Status field.
+	StatusMessage *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -12482,6 +12658,12 @@ func (s *WorkloadShareSummary) SetSharedWith(v string) *WorkloadShareSummary {
 // SetStatus sets the Status field's value.
 func (s *WorkloadShareSummary) SetStatus(v string) *WorkloadShareSummary {
 	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *WorkloadShareSummary) SetStatusMessage(v string) *WorkloadShareSummary {
+	s.StatusMessage = &v
 	return s
 }
 
@@ -12801,6 +12983,22 @@ func NotificationType_Values() []string {
 	}
 }
 
+const (
+	// OrganizationSharingStatusEnabled is a OrganizationSharingStatus enum value
+	OrganizationSharingStatusEnabled = "ENABLED"
+
+	// OrganizationSharingStatusDisabled is a OrganizationSharingStatus enum value
+	OrganizationSharingStatusDisabled = "DISABLED"
+)
+
+// OrganizationSharingStatus_Values returns all elements of the OrganizationSharingStatus enum
+func OrganizationSharingStatus_Values() []string {
+	return []string{
+		OrganizationSharingStatusEnabled,
+		OrganizationSharingStatusDisabled,
+	}
+}
+
 // Permission granted on a workload share.
 const (
 	// PermissionTypeReadonly is a PermissionType enum value
@@ -12896,6 +13094,15 @@ const (
 
 	// ShareStatusExpired is a ShareStatus enum value
 	ShareStatusExpired = "EXPIRED"
+
+	// ShareStatusAssociating is a ShareStatus enum value
+	ShareStatusAssociating = "ASSOCIATING"
+
+	// ShareStatusAssociated is a ShareStatus enum value
+	ShareStatusAssociated = "ASSOCIATED"
+
+	// ShareStatusFailed is a ShareStatus enum value
+	ShareStatusFailed = "FAILED"
 )
 
 // ShareStatus_Values returns all elements of the ShareStatus enum
@@ -12906,6 +13113,9 @@ func ShareStatus_Values() []string {
 		ShareStatusPending,
 		ShareStatusRevoked,
 		ShareStatusExpired,
+		ShareStatusAssociating,
+		ShareStatusAssociated,
+		ShareStatusFailed,
 	}
 }
 

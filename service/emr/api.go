@@ -5336,6 +5336,15 @@ func (s *AddInstanceGroupsOutput) SetJobFlowId(v string) *AddInstanceGroupsOutpu
 type AddJobFlowStepsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the runtime role for a step on the cluster.
+	// The runtime role can be a cross-account IAM role. The runtime role ARN is
+	// a combination of account ID, role name, and role type using the following
+	// format: arn:partition:service:region:account:resource.
+	//
+	// For example, arn:aws:iam::1234567890:role/ReadOnly is a correctly formatted
+	// runtime role ARN.
+	ExecutionRoleArn *string `min:"20" type:"string"`
+
 	// A string that uniquely identifies the job flow. This identifier is returned
 	// by RunJobFlow and can also be obtained from ListClusters.
 	//
@@ -5369,6 +5378,9 @@ func (s AddJobFlowStepsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AddJobFlowStepsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AddJobFlowStepsInput"}
+	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))
+	}
 	if s.JobFlowId == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobFlowId"))
 	}
@@ -5390,6 +5402,12 @@ func (s *AddJobFlowStepsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *AddJobFlowStepsInput) SetExecutionRoleArn(v string) *AddJobFlowStepsInput {
+	s.ExecutionRoleArn = &v
+	return s
 }
 
 // SetJobFlowId sets the JobFlowId field's value.
@@ -17059,6 +17077,15 @@ type Step struct {
 	// The Hadoop job configuration of the cluster step.
 	Config *HadoopStepConfig `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the runtime role for a step on the cluster.
+	// The runtime role can be a cross-account IAM role. The runtime role ARN is
+	// a combination of account ID, role name, and role type using the following
+	// format: arn:partition:service:region:account:resource.
+	//
+	// For example, arn:aws:iam::1234567890:role/ReadOnly is a correctly formatted
+	// runtime role ARN.
+	ExecutionRoleArn *string `type:"string"`
+
 	// The identifier of the cluster step.
 	Id *string `type:"string"`
 
@@ -17096,6 +17123,12 @@ func (s *Step) SetActionOnFailure(v string) *Step {
 // SetConfig sets the Config field's value.
 func (s *Step) SetConfig(v *HadoopStepConfig) *Step {
 	s.Config = v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *Step) SetExecutionRoleArn(v string) *Step {
+	s.ExecutionRoleArn = &v
 	return s
 }
 

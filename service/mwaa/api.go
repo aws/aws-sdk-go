@@ -1200,9 +1200,9 @@ type CreateEnvironmentInput struct {
 	AirflowConfigurationOptions map[string]*string `type:"map" sensitive:"true"`
 
 	// The Apache Airflow version for your environment. If no value is specified,
-	// defaults to the latest version. Valid values: 1.10.12, 2.0.2. To learn more,
-	// see Apache Airflow versions on Amazon Managed Workflows for Apache Airflow
-	// (MWAA) (https://docs.aws.amazon.com/mwaa/latest/userguide/airflow-versions.html).
+	// it defaults to the latest version. Valid values: 1.10.12, 2.0.2, and 2.2.2.
+	// To learn more, see Apache Airflow versions on Amazon Managed Workflows for
+	// Apache Airflow (MWAA) (https://docs.aws.amazon.com/mwaa/latest/userguide/airflow-versions.html).
 	AirflowVersion *string `min:"1" type:"string"`
 
 	// The relative path to the DAGs folder on your Amazon S3 bucket. For example,
@@ -1283,9 +1283,9 @@ type CreateEnvironmentInput struct {
 	// The number of Apache Airflow schedulers to run in your environment. Valid
 	// values:
 	//
-	//    * v2.0.2 - Accepts between 2 to 5. Defaults to 2.
+	//    * v2 - Accepts between 2 to 5. Defaults to 2.
 	//
-	//    * v1.10.12 - Accepts 1.
+	//    * v1 - Accepts 1.
 	Schedulers *int64 `type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the Amazon S3 bucket where your DAG code
@@ -1794,9 +1794,14 @@ type Environment struct {
 	// A list of key-value pairs containing the Apache Airflow configuration options
 	// attached to your environment. To learn more, see Apache Airflow configuration
 	// options (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-env-variables.html).
-	AirflowConfigurationOptions map[string]*string `type:"map"`
+	//
+	// AirflowConfigurationOptions is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Environment's
+	// String and GoString methods.
+	AirflowConfigurationOptions map[string]*string `type:"map" sensitive:"true"`
 
-	// The Apache Airflow version on your environment. Valid values: 1.10.12, 2.0.2.
+	// The Apache Airflow version on your environment. Valid values: 1.10.12, 2.0.2,
+	// and 2.2.2.
 	AirflowVersion *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the Amazon MWAA environment.
@@ -3344,7 +3349,7 @@ type UpdateEnvironmentInput struct {
 	AirflowConfigurationOptions map[string]*string `type:"map" sensitive:"true"`
 
 	// The Apache Airflow version for your environment. If no value is specified,
-	// defaults to the latest version. Valid values: 1.10.12, 2.0.2.
+	// defaults to the latest version. Valid values: 1.10.12, 2.0.2, and 2.2.2.
 	AirflowVersion *string `min:"1" type:"string"`
 
 	// The relative path to the DAGs folder on your Amazon S3 bucket. For example,

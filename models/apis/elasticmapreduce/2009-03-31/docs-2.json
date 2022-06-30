@@ -128,6 +128,7 @@
       "refs": {
         "AddInstanceFleetOutput$ClusterArn": "<p>The Amazon Resource Name of the cluster.</p>",
         "AddInstanceGroupsOutput$ClusterArn": "<p>The Amazon Resource Name of the cluster.</p>",
+        "AddJobFlowStepsInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the runtime role for a step on the cluster. The runtime role can be a cross-account IAM role. The runtime role ARN is a combination of account ID, role name, and role type using the following format: <code>arn:partition:service:region:account:resource</code>. </p> <p>For example, <code>arn:aws:iam::1234567890:role/ReadOnly</code> is a correctly formatted runtime role ARN.</p>",
         "BlockPublicAccessConfigurationMetadata$CreatedByArn": "<p>The Amazon Resource Name that created or last modified the configuration.</p>",
         "Cluster$ClusterArn": "<p>The Amazon Resource Name of the cluster.</p>",
         "ClusterSummary$ClusterArn": "<p>The Amazon Resource Name of the cluster.</p>",
@@ -1454,7 +1455,8 @@
       "base": null,
       "refs": {
         "Cluster$OutpostArn": "<p> The Amazon Resource Name (ARN) of the Outpost where the cluster is launched. </p>",
-        "ClusterSummary$OutpostArn": "<p> The Amazon Resource Name (ARN) of the Outpost where the cluster is launched. </p>"
+        "ClusterSummary$OutpostArn": "<p> The Amazon Resource Name (ARN) of the Outpost where the cluster is launched. </p>",
+        "Step$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the runtime role for a step on the cluster. The runtime role can be a cross-account IAM role. The runtime role ARN is a combination of account ID, role name, and role type using the following format: <code>arn:partition:service:region:account:resource</code>. </p> <p>For example, <code>arn:aws:iam::1234567890:role/ReadOnly</code> is a correctly formatted runtime role ARN.</p>"
       }
     },
     "PlacementGroupConfig": {

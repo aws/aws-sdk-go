@@ -6,14 +6,14 @@
     "AssociatePersonasToEntities": "<p>Defines the specific permissions of users or groups in your Amazon Web Services SSO identity source with access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
     "BatchDeleteDocument": "<p>Removes one or more documents from an index. The documents must have been added with the <code>BatchPutDocument</code> API.</p> <p>The documents are deleted asynchronously. You can see the progress of the deletion by using Amazon Web Services CloudWatch. Any error messages related to the processing of the batch are sent to you CloudWatch log.</p>",
     "BatchGetDocumentStatus": "<p>Returns the indexing status for one or more documents submitted with the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html\"> BatchPutDocument</a> API.</p> <p>When you use the <code>BatchPutDocument</code> API, documents are indexed asynchronously. You can use the <code>BatchGetDocumentStatus</code> API to get the current status of a list of documents so that you can determine if they have been successfully indexed.</p> <p>You can also use the <code>BatchGetDocumentStatus</code> API to check the status of the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchDeleteDocument.html\"> BatchDeleteDocument</a> API. When a document is deleted from the index, Amazon Kendra returns <code>NOT_FOUND</code> as the status.</p>",
-    "BatchPutDocument": "<p>Adds one or more documents to an index.</p> <p>The <code>BatchPutDocument</code> API enables you to ingest inline documents or a set of documents stored in an Amazon S3 bucket. Use this API to ingest your text and unstructured text into an index, add custom attributes to the documents, and to attach an access control list to the documents added to the index.</p> <p>The documents are indexed asynchronously. You can see the progress of the batch using Amazon Web Services CloudWatch. Any error messages related to processing the batch are sent to your Amazon Web Services CloudWatch log.</p>",
+    "BatchPutDocument": "<p>Adds one or more documents to an index.</p> <p>The <code>BatchPutDocument</code> API enables you to ingest inline documents or a set of documents stored in an Amazon S3 bucket. Use this API to ingest your text and unstructured text into an index, add custom attributes to the documents, and to attach an access control list to the documents added to the index.</p> <p>The documents are indexed asynchronously. You can see the progress of the batch using Amazon Web Services CloudWatch. Any error messages related to processing the batch are sent to your Amazon Web Services CloudWatch log.</p> <p>For an example of ingesting inline documents using Python and Java SDKs, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/in-adding-binary-doc.html\">Adding files directly to an index</a>.</p>",
     "ClearQuerySuggestions": "<p>Clears existing query suggestions from an index.</p> <p>This deletes existing suggestions only, not the queries in the query log. After you clear suggestions, Amazon Kendra learns new suggestions based on new queries added to the query log from the time you cleared suggestions. If you do not see any new suggestions, then please allow Amazon Kendra to collect enough queries to learn new suggestions.</p> <p> <code>ClearQuerySuggestions</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
-    "CreateDataSource": "<p>Creates a data source that you want to use with an Amazon Kendra index. </p> <p>You specify a name, data source connector type and description for your data source. You also specify configuration information for the data source connector.</p> <p> <code>CreateDataSource</code> is a synchronous operation. The operation returns 200 if the data source was successfully created. Otherwise, an exception is raised.</p> <p>Amazon S3 and <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-custom.html\">custom</a> data sources are the only supported data sources in the Amazon Web Services GovCloud (US-West) region.</p>",
-    "CreateExperience": "<p>Creates an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
-    "CreateFaq": "<p>Creates an new set of frequently asked question (FAQ) questions and answers.</p> <p>Adding FAQs to an index is an asynchronous operation.</p>",
-    "CreateIndex": "<p>Creates a new Amazon Kendra index. Index creation is an asynchronous API. To determine if index creation has completed, check the <code>Status</code> field returned from a call to <code>DescribeIndex</code>. The <code>Status</code> field is set to <code>ACTIVE</code> when the index is ready to use.</p> <p>Once the index is active you can index your documents using the <code>BatchPutDocument</code> API or using one of the supported data sources. </p>",
-    "CreateQuerySuggestionsBlockList": "<p>Creates a block list to exlcude certain queries from suggestions.</p> <p>Any query that contains words or phrases specified in the block list is blocked or filtered out from being shown as a suggestion.</p> <p>You need to provide the file location of your block list text file in your S3 bucket. In your text file, enter each block word or phrase on a separate line.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p> <p> <code>CreateQuerySuggestionsBlockList</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
-    "CreateThesaurus": "<p>Creates a thesaurus for an index. The thesaurus contains a list of synonyms in Solr format.</p>",
+    "CreateDataSource": "<p>Creates a data source that you want to use with an Amazon Kendra index. </p> <p>You specify a name, data source connector type and description for your data source. You also specify configuration information for the data source connector.</p> <p> <code>CreateDataSource</code> is a synchronous operation. The operation returns 200 if the data source was successfully created. Otherwise, an exception is raised.</p> <p>Amazon S3 and <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-custom.html\">custom</a> data sources are the only supported data sources in the Amazon Web Services GovCloud (US-West) region.</p> <p>For an example of creating an index and data source using the Python SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/gs-python.html\">Getting started with Python SDK</a>. For an example of creating an index and data source using the Java SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/gs-java.html\">Getting started with Java SDK</a>.</p>",
+    "CreateExperience": "<p>Creates an Amazon Kendra experience such as a search application. For more information on creating a search application experience, including using the Python and Java SDKs, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
+    "CreateFaq": "<p>Creates an new set of frequently asked question (FAQ) questions and answers.</p> <p>Adding FAQs to an index is an asynchronous operation.</p> <p>For an example of adding an FAQ to an index using Python and Java SDKs, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/in-creating-faq.html#using-faq-file\">Using you FAQ file</a>.</p>",
+    "CreateIndex": "<p>Creates a new Amazon Kendra index. Index creation is an asynchronous API. To determine if index creation has completed, check the <code>Status</code> field returned from a call to <code>DescribeIndex</code>. The <code>Status</code> field is set to <code>ACTIVE</code> when the index is ready to use.</p> <p>Once the index is active you can index your documents using the <code>BatchPutDocument</code> API or using one of the supported data sources.</p> <p>For an example of creating an index and data source using the Python SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/gs-python.html\">Getting started with Python SDK</a>. For an example of creating an index and data source using the Java SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/gs-java.html\">Getting started with Java SDK</a>.</p>",
+    "CreateQuerySuggestionsBlockList": "<p>Creates a block list to exlcude certain queries from suggestions.</p> <p>Any query that contains words or phrases specified in the block list is blocked or filtered out from being shown as a suggestion.</p> <p>You need to provide the file location of your block list text file in your S3 bucket. In your text file, enter each block word or phrase on a separate line.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p> <p> <code>CreateQuerySuggestionsBlockList</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p> <p>For an example of creating a block list for query suggestions using the Python SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/query-suggestions.html#suggestions-block-list\">Query suggestions block list</a>.</p>",
+    "CreateThesaurus": "<p>Creates a thesaurus for an index. The thesaurus contains a list of synonyms in Solr format.</p> <p>For an example of adding a thesaurus file to an index, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/index-synonyms-adding-thesaurus-file.html\">Adding custom synonyms to an index</a>.</p>",
     "DeleteDataSource": "<p>Deletes an Amazon Kendra data source. An exception is not thrown if the data source is already being deleted. While the data source is being deleted, the <code>Status</code> field returned by a call to the <code>DescribeDataSource</code> API is set to <code>DELETING</code>. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html\">Deleting Data Sources</a>.</p>",
     "DeleteExperience": "<p>Deletes your Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
     "DeleteFaq": "<p>Removes an FAQ from an index.</p>",
@@ -98,6 +98,18 @@
       "base": null,
       "refs": {
         "AdditionalResultAttribute$ValueType": "<p>The data type of the <code>Value</code> property.</p>"
+      }
+    },
+    "AlfrescoConfiguration": {
+      "base": "<p>Provides the configuration information to connect to Alfresco as your data source.</p>",
+      "refs": {
+        "DataSourceConfiguration$AlfrescoConfiguration": "<p>Provides the configuration information to connect to Alfresco as your data source.</p>"
+      }
+    },
+    "AlfrescoEntity": {
+      "base": null,
+      "refs": {
+        "EntityFilter$member": null
       }
     },
     "AmazonResourceName": {
@@ -248,13 +260,15 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "AlfrescoConfiguration$CrawlSystemFolders": "<p> <code>TRUE</code> to index shared files.</p>",
+        "AlfrescoConfiguration$CrawlComments": "<p> <code>TRUE</code> to index comments of wikis and blogs.</p>",
         "BoxConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the Slack change log to determine which documents require updating in the index. Depending on the data source change log's size, it may take longer for Amazon Kendra to use the change log than to scan all of your documents.</p>",
         "BoxConfiguration$CrawlComments": "<p> <code>TRUE</code> to index comments.</p>",
         "BoxConfiguration$CrawlTasks": "<p> <code>TRUE</code> to index the contents of tasks.</p>",
         "BoxConfiguration$CrawlWebLinks": "<p> <code>TRUE</code> to index web links.</p>",
-        "ConfluenceAttachmentConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra indexes attachments to the pages and blogs in the Confluence data source. </p>",
-        "ConfluenceSpaceConfiguration$CrawlPersonalSpaces": "<p>Specifies whether Amazon Kendra should index personal spaces. Users can add restrictions to items in personal spaces. If personal spaces are indexed, queries without user context information may return restricted items from a personal space in their results. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html\">Filtering on user context</a>.</p>",
-        "ConfluenceSpaceConfiguration$CrawlArchivedSpaces": "<p>Specifies whether Amazon Kendra should index archived spaces.</p>",
+        "ConfluenceAttachmentConfiguration$CrawlAttachments": "<p> <code>TRUE</code> to index attachments of pages and blogs in Confluence.</p>",
+        "ConfluenceSpaceConfiguration$CrawlPersonalSpaces": "<p> <code>TRUE</code> to index personal spaces. You can add restrictions to items in personal spaces. If personal spaces are indexed, queries without user context information may return restricted items from a personal space in their results. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html\">Filtering on user context</a>.</p>",
+        "ConfluenceSpaceConfiguration$CrawlArchivedSpaces": "<p> <code>TRUE</code> to index archived spaces.</p>",
         "ContentSourceConfiguration$DirectPutContent": "<p> <code>TRUE</code> to use documents you indexed directly using the <code>BatchPutDocument</code> API.</p>",
         "DocumentAttributeTarget$TargetDocumentAttributeValueDeletion": "<p> <code>TRUE</code> to delete the existing target value for your specified target attribute key. You cannot create a target value and set this to <code>TRUE</code>. To create a target value (<code>TargetDocumentAttributeValue</code>), set this to <code>FALSE</code>.</p>",
         "GitHubConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the GitHub change log to determine which documents require updating in the index. Depending on the GitHub change log's size, it may take longer for Amazon Kendra to use the change log than to scan all of your documents in GitHub.</p>",
@@ -267,11 +281,11 @@
         "GitHubDocumentCrawlProperties$CrawlPullRequestCommentAttachment": "<p> <code>TRUE</code> to include all comment attachments for pull requests.</p>",
         "Highlight$TopAnswer": "<p>Indicates whether the response is the best response. True if this is the best response; otherwise, false.</p>",
         "InlineCustomDocumentEnrichmentConfiguration$DocumentContentDeletion": "<p> <code>TRUE</code> to delete content if the condition used for the target attribute is met.</p>",
-        "JiraConfiguration$UseChangeLog": "<p>Specify to use the change log option to update your index.</p>",
-        "OneDriveConfiguration$DisableLocalGroups": "<p>A Boolean value that specifies whether local groups are disabled (<code>True</code>) or enabled (<code>False</code>). </p>",
-        "QuipConfiguration$CrawlFileComments": "<p>Specify whether to crawl file comments in Quip. You can specify one or more of these options.</p>",
-        "QuipConfiguration$CrawlChatRooms": "<p>Specify whether to crawl chat rooms in Quip. You can specify one or more of these options.</p>",
-        "QuipConfiguration$CrawlAttachments": "<p>Specify whether to crawl attachments in Quip. You can specify one or more of these options.</p>",
+        "JiraConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the Jira change log to determine which documents require updating in the index. Depending on the change log's size, it may take longer for Amazon Kendra to use the change log than to scan all of your documents in Jira.</p>",
+        "OneDriveConfiguration$DisableLocalGroups": "<p> <code>TRUE</code> to disable local groups information.</p>",
+        "QuipConfiguration$CrawlFileComments": "<p> <code>TRUE</code> to index file comments.</p>",
+        "QuipConfiguration$CrawlChatRooms": "<p> <code>TRUE</code> to index the contents of chat rooms.</p>",
+        "QuipConfiguration$CrawlAttachments": "<p> <code>TRUE</code> to index attachments.</p>",
         "SalesforceConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra should index attachments to Salesforce objects.</p>",
         "Search$Facetable": "<p>Indicates that the field can be used to create search facets, a count of results for each value in the field. The default is <code>false</code> .</p>",
         "Search$Searchable": "<p>Determines whether the field is used in the search. If the <code>Searchable</code> field is <code>true</code>, you can use relevance tuning to manually tune how Amazon Kendra weights the field in the search. The default is <code>true</code> for string fields and <code>false</code> for number and date fields.</p>",
@@ -279,9 +293,9 @@
         "Search$Sortable": "<p>Determines whether the field can be used to sort the results of a query. If you specify sorting on a field that does not have <code>Sortable</code> set to <code>true</code>, Amazon Kendra returns an exception. The default is <code>false</code>.</p>",
         "ServiceNowKnowledgeArticleConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra should index attachments to knowledge articles.</p>",
         "ServiceNowServiceCatalogConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra should crawl attachments to the service catalog items. </p>",
-        "SharePointConfiguration$CrawlAttachments": "<p> <code>TRUE</code> to include attachments to documents stored in your Microsoft SharePoint site in the index; otherwise, <code>FALSE</code>.</p>",
+        "SharePointConfiguration$CrawlAttachments": "<p> <code>TRUE</code> to index document attachments.</p>",
         "SharePointConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the SharePoint change log to determine which documents require updating in the index. Depending on the change log's size, it may take longer for Amazon Kendra to use the change log than to scan all of your documents in SharePoint.</p>",
-        "SharePointConfiguration$DisableLocalGroups": "<p>A Boolean value that specifies whether local groups are disabled (<code>True</code>) or enabled (<code>False</code>). </p>",
+        "SharePointConfiguration$DisableLocalGroups": "<p> <code>TRUE</code> to disable local groups information.</p>",
         "SlackConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the Slack change log to determine which documents require updating in the index. Depending on the Slack change log's size, it may take longer for Amazon Kendra to use the change log than to scan all of your documents in Slack.</p>",
         "SlackConfiguration$CrawlBotMessage": "<p> <code>TRUE</code> to index bot messages from your Slack workspace team.</p>",
         "SlackConfiguration$ExcludeArchived": "<p> <code>TRUE</code> to exclude archived messages to index from your Slack workspace team.</p>",
@@ -433,7 +447,7 @@
     "ConfluencePageFieldMappingsList": {
       "base": null,
       "refs": {
-        "ConfluencePageConfiguration$PageFieldMappings": "<p>&gt;Maps attributes or field names of Confluence pages to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Confluence fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Confluence data source field names must exist in your Confluence custom metadata.</p> <p>If you specify the <code>PageFieldMappings</code> parameter, you must specify at least one field mapping.</p>"
+        "ConfluencePageConfiguration$PageFieldMappings": "<p>Maps attributes or field names of Confluence pages to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Confluence fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Confluence data source field names must exist in your Confluence custom metadata.</p> <p>If you specify the <code>PageFieldMappings</code> parameter, you must specify at least one field mapping.</p>"
       }
     },
     "ConfluencePageFieldName": {
@@ -488,7 +502,7 @@
     "ConfluenceVersion": {
       "base": null,
       "refs": {
-        "ConfluenceConfiguration$Version": "<p>Specifies the version of the Confluence installation that you are connecting to.</p>"
+        "ConfluenceConfiguration$Version": "<p>The version or the type of the Confluence installation to connect to.</p>"
       }
     },
     "ConnectionConfiguration": {
@@ -679,10 +693,12 @@
     "DataSourceInclusionsExclusionsStrings": {
       "base": null,
       "refs": {
+        "AlfrescoConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain files in your Alfresco data source. Files that match the patterns are included in the index. Files that don't match the patterns are excluded from the index. If a file matches both an inclusion pattern and an exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
+        "AlfrescoConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain files in your Alfresco data source. Files that match the patterns are excluded from the index. Files that don't match the patterns are included in the index. If a file matches both an inclusion pattern and an exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
         "BoxConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain files and folders in your Box platform. Files and folders that match the patterns are included in the index. Files and folders that don't match the patterns are excluded from the index. If a file or folder matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file or folder isn't included in the index.</p>",
         "BoxConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain files and folders from your Box platform. Files and folders that match the patterns are excluded from the index.Files and folders that don't match the patterns are included in the index. If a file or folder matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file or folder isn't included in the index.</p>",
         "ConfluenceConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain blog posts, pages, spaces, or attachments in your Confluence. Content that matches the patterns are included in the index. Content that doesn't match the patterns is excluded from the index. If content matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the content isn't included in the index.</p>",
-        "ConfluenceConfiguration$ExclusionPatterns": "<p>&gt;A list of regular expression patterns to exclude certain blog posts, pages, spaces, or attachments in your Confluence. Content that matches the patterns are excluded from the index. Content that doesn't match the patterns is included in the index. If content matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the content isn't included in the index.</p>",
+        "ConfluenceConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain blog posts, pages, spaces, or attachments in your Confluence. Content that matches the patterns are excluded from the index. Content that doesn't match the patterns is included in the index. If content matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the content isn't included in the index.</p>",
         "FsxConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain files in your Amazon FSx file system. Files that match the patterns are included in the index. Files that don't match the patterns are excluded from the index. If a file matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
         "FsxConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain files in your Amazon FSx file system. Files that match the patterns are excluded from the index. Files that don't match the patterns are included in the index. If a file matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
         "GoogleDriveConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain items in your Google Drive, including shared drives and users' My Drives. Items that match the patterns are included in the index. Items that don't match the patterns are excluded from the index. If an item matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the item isn't included in the index.</p>",
@@ -702,8 +718,8 @@
         "ServiceNowKnowledgeArticleConfiguration$ExcludeAttachmentFilePatterns": "<p>A list of regular expression patterns to exclude certain attachments of knowledge articles in your ServiceNow. Item that match the patterns are excluded from the index. Items that don't match the patterns are included in the index. If an item matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the item isn't included in the index.</p> <p>The regex is applied to the field specified in the <code>PatternTargetField</code>.</p>",
         "ServiceNowServiceCatalogConfiguration$IncludeAttachmentFilePatterns": "<p>A list of regular expression patterns to include certain attachments of catalogs in your ServiceNow. Item that match the patterns are included in the index. Items that don't match the patterns are excluded from the index. If an item matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the item isn't included in the index.</p> <p>The regex is applied to the file name of the attachment.</p>",
         "ServiceNowServiceCatalogConfiguration$ExcludeAttachmentFilePatterns": "<p>A list of regular expression patterns to exclude certain attachments of catalogs in your ServiceNow. Item that match the patterns are excluded from the index. Items that don't match the patterns are included in the index. If an item matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the item isn't included in the index.</p> <p>The regex is applied to the file name of the attachment.</p>",
-        "SharePointConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain documents in your SharePoint. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the document isn't included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>",
-        "SharePointConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain documents in your SharePoint. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the document isn't included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>",
+        "SharePointConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain documents in your SharePoint. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the document isn't included in the index.</p> <p>The regex applies to the display URL of the SharePoint document.</p>",
+        "SharePointConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain documents in your SharePoint. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the document isn't included in the index.</p> <p>The regex applies to the display URL of the SharePoint document.</p>",
         "SlackConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain attached files in your Slack workspace team. Files that match the patterns are included in the index. Files that don't match the patterns are excluded from the index. If a file matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
         "SlackConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain attached files in your Slack workspace team. Files that match the patterns are excluded from the index. Files that don’t match the patterns are included in the index. If a file matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
         "WebCrawlerConfiguration$UrlInclusionPatterns": "<p>A list of regular expression patterns to include certain URLs to crawl. URLs that match the patterns are included in the index. URLs that don't match the patterns are excluded from the index. If a URL matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the URL file isn't included in the index.</p>",
@@ -792,6 +808,9 @@
     "DataSourceToIndexFieldMappingList": {
       "base": null,
       "refs": {
+        "AlfrescoConfiguration$DocumentLibraryFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of Alfresco document libraries to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Alfresco fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\"> Mapping data source fields</a>. The Alfresco data source field names must exist in your Alfresco custom metadata.</p>",
+        "AlfrescoConfiguration$BlogFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of Alfresco blogs to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Alfresco fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\"> Mapping data source fields</a>. The Alfresco data source field names must exist in your Alfresco custom metadata.</p>",
+        "AlfrescoConfiguration$WikiFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of Alfresco wikis to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Alfresco fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\"> Mapping data source fields</a>. The Alfresco data source field names must exist in your Alfresco custom metadata.</p>",
         "BoxConfiguration$FileFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of Box files to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Box fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Box field names must exist in your Box custom metadata.</p>",
         "BoxConfiguration$TaskFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of Box tasks to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Box fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Box field names must exist in your Box custom metadata.</p>",
         "BoxConfiguration$CommentFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of Box comments to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Box fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Box field names must exist in your Box custom metadata.</p>",
@@ -839,6 +858,7 @@
     "DataSourceVpcConfiguration": {
       "base": "<p>Provides the configuration information to connect to an Amazon VPC.</p>",
       "refs": {
+        "AlfrescoConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Alfresco. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "BoxConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon VPC to connect to your Box. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "ConfluenceConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Confluence. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "DatabaseConfiguration$VpcConfiguration": null,
@@ -846,7 +866,7 @@
         "GitHubConfiguration$VpcConfiguration": "<p>Configuration information of an Amazon Virtual Private Cloud to connect to your GitHub. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "JiraConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Jira. Your Jira account must reside inside your VPC.</p>",
         "QuipConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud (VPC) to connect to your Quip. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
-        "SharePointConfiguration$VpcConfiguration": null,
+        "SharePointConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Microsoft SharePoint. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "SlackConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Slack. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>"
       }
     },
@@ -1282,6 +1302,12 @@
         "ExperienceEntitiesSummary$DisplayData": "<p>Information about the user entity.</p>"
       }
     },
+    "EntityFilter": {
+      "base": null,
+      "refs": {
+        "AlfrescoConfiguration$EntityFilter": "<p>Specify whether to index document libraries, wikis, or blogs. You can specify one or more of these options.</p>"
+      }
+    },
     "EntityId": {
       "base": null,
       "refs": {
@@ -1576,7 +1602,7 @@
     "FolderIdList": {
       "base": null,
       "refs": {
-        "QuipConfiguration$FolderIds": "<p>The identifier of the Quip folder IDs to index.</p>"
+        "QuipConfiguration$FolderIds": "<p>The identifier of the Quip folders you want to index.</p>"
       }
     },
     "FsxConfiguration": {
@@ -1944,7 +1970,7 @@
     "JiraAccountUrl": {
       "base": null,
       "refs": {
-        "JiraConfiguration$JiraAccountUrl": "<p>The URL of the Jira account. For example, company.attlassian.net or https://jira.company.com. You can find your Jira account URL in the URL of your profile page for Jira desktop.</p>"
+        "JiraConfiguration$JiraAccountUrl": "<p>The URL of the Jira account. For example, <i>company.atlassian.net</i> or <i>https://jira.company.com</i>. You can find your Jira account URL in the URL of your profile page for Jira desktop.</p>"
       }
     },
     "JiraConfiguration": {
@@ -2467,7 +2493,7 @@
     "QueryCapacityUnit": {
       "base": null,
       "refs": {
-        "CapacityUnitsConfiguration$QueryCapacityUnits": "<p>The amount of extra query capacity for an index and <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html\">GetQuerySuggestions</a> capacity.</p> <p>A single extra capacity unit for an index provides 0.1 queries per second or approximately 8,000 queries per day.</p> <p> <code>GetQuerySuggestions</code> capacity is five times the provisioned query capacity for an index, or the base capacity of 2.5 calls per second, whichever is higher. For example, the base capacity for an index is 0.1 queries per second, and <code>GetQuerySuggestions</code> capacity has a base of 2.5 calls per second. If you add another 0.1 queries per second to total 0.2 queries per second for an index, the <code>GetQuerySuggestions</code> capacity is 2.5 calls per second (higher than five times 0.2 queries per second).</p>"
+        "CapacityUnitsConfiguration$QueryCapacityUnits": "<p>The amount of extra query capacity for an index and <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html\">GetQuerySuggestions</a> capacity.</p> <p>A single extra capacity unit for an index provides 0.1 queries per second or approximately 8,000 queries per day. You can add up to 100 extra capacity units.</p> <p> <code>GetQuerySuggestions</code> capacity is five times the provisioned query capacity for an index, or the base capacity of 2.5 calls per second, whichever is higher. For example, the base capacity for an index is 0.1 queries per second, and <code>GetQuerySuggestions</code> capacity has a base of 2.5 calls per second. If you add another 0.1 queries per second to total 0.2 queries per second for an index, the <code>GetQuerySuggestions</code> capacity is 2.5 calls per second (higher than five times 0.2 queries per second).</p>"
       }
     },
     "QueryId": {
@@ -2698,6 +2724,7 @@
     "S3Path": {
       "base": "<p>Information required to find a specific file in an Amazon S3 bucket.</p>",
       "refs": {
+        "AlfrescoConfiguration$SslCertificateS3Path": "<p>The path to the SSL certificate stored in an Amazon S3 bucket. You use this to connect to Alfresco.</p>",
         "CreateFaqRequest$S3Path": "<p>The S3 location of the FAQ input data.</p>",
         "CreateQuerySuggestionsBlockListRequest$SourceS3Path": "<p>The S3 path to your block list text file in your S3 bucket.</p> <p>Each block word or phrase should be on a separate line in a text file.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p>",
         "CreateThesaurusRequest$SourceS3Path": "<p>The thesaurus file Amazon S3 source path. </p>",
@@ -2706,9 +2733,9 @@
         "DescribeThesaurusResponse$SourceS3Path": null,
         "Document$S3Path": null,
         "GroupMembers$S3PathforGroupMembers": "<p>If you have more than 1000 users and/or sub groups for a single group, you need to provide the path to the S3 file that lists your users and sub groups for a group. Your sub groups can contain more than 1000 users, but the list of sub groups that belong to a group (and/or users) must be no more than 1000.</p> <p>You can download this <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/samples/group_members.zip\">example S3 file</a> that uses the correct format for listing group members. Note, <code>dataSourceId</code> is optional. The value of <code>type</code> for a group is always <code>GROUP</code> and for a user it is always <code>USER</code>.</p>",
-        "OnPremiseConfiguration$SslCertificateS3Path": "<p>Information required to find a specific file in an Amazon S3 bucket.</p>",
+        "OnPremiseConfiguration$SslCertificateS3Path": "<p>The path to the SSL certificate stored in an Amazon S3 bucket. You use this to connect to GitHub. </p>",
         "OneDriveUsers$OneDriveUserS3Path": "<p>The S3 bucket location of a file containing a list of users whose documents should be indexed.</p>",
-        "SharePointConfiguration$SslCertificateS3Path": null,
+        "SharePointConfiguration$SslCertificateS3Path": "<p>The path to the SSL certificate stored in an Amazon S3 bucket. You use this to connect to SharePoint.</p>",
         "UpdateQuerySuggestionsBlockListRequest$SourceS3Path": "<p>The S3 path where your block list text file sits in S3.</p> <p>If you update your block list and provide the same path to the block list text file in S3, then Amazon Kendra reloads the file to refresh the block list. Amazon Kendra does not automatically refresh your block list. You need to call the <code>UpdateQuerySuggestionsBlockList</code> API to refresh you block list.</p> <p>If you update your block list, then Amazon Kendra asynchronously refreshes all query suggestions with the latest content in the S3 file. This means changes might not take effect immediately.</p>",
         "UpdateThesaurusRequest$SourceS3Path": null
       }
@@ -2838,20 +2865,21 @@
     "SecretArn": {
       "base": null,
       "refs": {
+        "AlfrescoConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Alfresco data source. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The user name of the Alfresco account.</p> </li> <li> <p>password—The password of the Alfresco account.</p> </li> </ul>",
         "BasicAuthenticationConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> </p> <p>You use a secret if basic authentication credentials are required to connect to a website. The secret stores your credentials of user name and password.</p>",
         "BoxConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Box platform. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>clientID—The identifier of the client OAuth 2.0 authentication application created in Box.</p> </li> <li> <p>clientSecret—A set of characters known only to the OAuth 2.0 authentication application created in Box.</p> </li> <li> <p>publicKeyId—The identifier of the public key contained within an identity certificate.</p> </li> <li> <p>privateKey—A set of characters that make up an encryption key.</p> </li> <li> <p>passphrase—A set of characters that act like a password.</p> </li> </ul> <p>You create an application in Box to generate the keys or credentials required for the secret. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-box.html#box-authentication\">Authentication for a Box data source</a>.</p>",
-        "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Confluence server. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The user name or email address of a user with administrative privileges for the Confluence server.</p> </li> <li> <p>password—The password associated with the user logging in to the Confluence server.</p> </li> </ul>",
+        "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the user name and password required to connect to the Confluence instance. If you use Confluence cloud, you use a generated API token as the password. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-confluence.html\">Using a Confluemce data source</a>.</p>",
         "ConnectionConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in Secrets Manager. The credentials should be a user/password pair. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html\">Using a Database Data Source</a>. For more information about Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is Secrets Manager</a> in the <i> Secrets Manager </i> user guide.</p>",
         "FsxConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Amazon FSx file system. Windows is currently the only supported type. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The Active Directory user name, along with the Domain Name System (DNS) domain name. For example, <i>user@corp.example.com</i>. The Active Directory user account must have read and mounting access to the Amazon FSx file system for Windows.</p> </li> <li> <p>password—The password of the Active Directory user account with read and mounting access to the Amazon FSx Windows file system.</p> </li> </ul>",
         "GitHubConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your GitHub. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>githubToken—The access token created in GitHub. For more information on creating a token in GitHub, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-github.html#github-authentication\">Authentication for a GitHub data source</a>.</p> </li> </ul>",
         "GoogleDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of a Secrets Managersecret that contains the credentials required to connect to Google Drive. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html\">Using a Google Workspace Drive data source</a>.</p>",
-        "JiraConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Jira data source. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>jira-id—The ID of the Jira account.</p> </li> <li> <p>jiraCredentials—The password of the Jira account user.</p> </li> </ul>",
+        "JiraConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of a secret in Secrets Manager contains the key-value pairs required to connect to your Jira data source. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>jiraId—The Jira username.</p> </li> <li> <p>jiraCredentials—The Jira API token. For more information on creating an API token in Jira, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-jira.html#jira-authentication\"> Authentication for a Jira data source</a>.</p> </li> </ul>",
         "OneDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the user name and password to connect to OneDrive. The user namd should be the application ID for the OneDrive application, and the password is the application key for the OneDrive application.</p>",
         "ProxyConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> </p> <p>The credentials are optional. You use a secret if web proxy credentials are required to connect to a website host. Amazon Kendra currently support basic authentication to connect to a web proxy server. The secret stores your credentials.</p>",
         "QuipConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs that are required to connect to your Quip. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>accessToken—The token created in Quip. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-slack.html#quip-authentication\">Authentication for a Quip data source</a>.</p> </li> </ul>",
         "SalesforceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the key/value pairs required to connect to your Salesforce instance. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>authenticationUrl - The OAUTH endpoint that Amazon Kendra connects to get an OAUTH token. </p> </li> <li> <p>consumerKey - The application public key generated when you created your Salesforce application.</p> </li> <li> <p>consumerSecret - The application private key generated when you created your Salesforce application.</p> </li> <li> <p>password - The password associated with the user logging in to the Salesforce instance.</p> </li> <li> <p>securityToken - The token associated with the user account logging in to the Salesforce instance.</p> </li> <li> <p>username - The user name of the user logging in to the Salesforce instance.</p> </li> </ul>",
-        "ServiceNowConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of the Secrets Manager secret that contains the user name and password required to connect to the ServiceNow instance.</p>",
-        "SharePointConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in Secrets Manager. The credentials should be a user/password pair. If you use SharePoint Server, you also need to provide the sever domain name as part of the credentials. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html\">Using a Microsoft SharePoint Data Source</a>. For more information about Secrets Manager see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is Secrets Manager</a> in the <i>Secrets Manager </i> user guide.</p>",
+        "ServiceNowConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of the Secrets Manager secret that contains the user name and password required to connect to the ServiceNow instance. You can also provide OAuth authentication credentials of user name, password, client ID, and client secret. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-servicenow.html#servicenow-authentication\">Authentication for a ServiceNow data source</a>.</p>",
+        "SharePointConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the user name and password required to connect to the SharePoint instance. If you use SharePoint Server, you also need to provide the sever domain name as part of the credentials. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html\">Using a Microsoft SharePoint Data Source</a>.</p>",
         "SlackConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Slack workspace team. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>slackToken—The user or bot token created in Slack. For more information on creating a token in Slack, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-slack.html#slack-authentication\">Authentication for a Slack data source</a>.</p> </li> </ul>"
       }
     },
@@ -2942,13 +2970,13 @@
     "SharePointUrlList": {
       "base": null,
       "refs": {
-        "SharePointConfiguration$Urls": "<p>The URLs of the Microsoft SharePoint site that contains the documents that should be indexed.</p>"
+        "SharePointConfiguration$Urls": "<p>The Microsoft SharePoint site URLs for the documents you want to indext.</p>"
       }
     },
     "SharePointVersion": {
       "base": null,
       "refs": {
-        "SharePointConfiguration$SharePointVersion": "<p>The version of Microsoft SharePoint that you are using as a data source.</p>"
+        "SharePointConfiguration$SharePointVersion": "<p>The version of Microsoft SharePoint that you use.</p>"
       }
     },
     "SharedDriveId": {
@@ -2961,6 +2989,12 @@
       "base": null,
       "refs": {
         "SlackConfiguration$SinceCrawlDate": "<p>The date to start crawling your data from your Slack workspace team. The date must follow this format: <code>yyyy-mm-dd</code>.</p>"
+      }
+    },
+    "SiteId": {
+      "base": null,
+      "refs": {
+        "AlfrescoConfiguration$SiteId": "<p>The identifier of the Alfresco site. For example, <i>my-site</i>.</p>"
       }
     },
     "SiteMap": {
@@ -2979,6 +3013,12 @@
       "base": null,
       "refs": {
         "SiteMapsConfiguration$SiteMaps": "<p>The list of sitemap URLs of the websites you want to crawl.</p> <p>The list can include a maximum of three sitemap URLs.</p>"
+      }
+    },
+    "SiteUrl": {
+      "base": null,
+      "refs": {
+        "AlfrescoConfiguration$SiteUrl": "<p>The URL of the Alfresco site. For example, <i>https://hostname:8080</i>.</p>"
       }
     },
     "SlackConfiguration": {
@@ -3077,7 +3117,7 @@
     "StorageCapacityUnit": {
       "base": null,
       "refs": {
-        "CapacityUnitsConfiguration$StorageCapacityUnits": "<p>The amount of extra storage capacity for an index. A single capacity unit provides 30 GB of storage space or 100,000 documents, whichever is reached first.</p>"
+        "CapacityUnitsConfiguration$StorageCapacityUnits": "<p>The amount of extra storage capacity for an index. A single capacity unit provides 30 GB of storage space or 100,000 documents, whichever is reached first. You can add up to 100 extra capacity units.</p>"
       }
     },
     "String": {

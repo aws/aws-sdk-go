@@ -696,7 +696,8 @@
       ],
       "members":{
         "JobFlowId":{"shape":"XmlStringMaxLen256"},
-        "Steps":{"shape":"StepConfigList"}
+        "Steps":{"shape":"StepConfigList"},
+        "ExecutionRoleArn":{"shape":"ArnType"}
       }
     },
     "AddJobFlowStepsOutput":{
@@ -2801,7 +2802,8 @@
         "Name":{"shape":"String"},
         "Config":{"shape":"HadoopStepConfig"},
         "ActionOnFailure":{"shape":"ActionOnFailure"},
-        "Status":{"shape":"StepStatus"}
+        "Status":{"shape":"StepStatus"},
+        "ExecutionRoleArn":{"shape":"OptionalArnType"}
       }
     },
     "StepCancellationOption":{
