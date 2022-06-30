@@ -419,6 +419,101 @@ func (c *WorkMail) CreateAliasWithContext(ctx aws.Context, input *CreateAliasInp
 	return out, req.Send()
 }
 
+const opCreateAvailabilityConfiguration = "CreateAvailabilityConfiguration"
+
+// CreateAvailabilityConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAvailabilityConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAvailabilityConfiguration for more information on using the CreateAvailabilityConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAvailabilityConfigurationRequest method.
+//    req, resp := client.CreateAvailabilityConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/CreateAvailabilityConfiguration
+func (c *WorkMail) CreateAvailabilityConfigurationRequest(input *CreateAvailabilityConfigurationInput) (req *request.Request, output *CreateAvailabilityConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opCreateAvailabilityConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateAvailabilityConfigurationInput{}
+	}
+
+	output = &CreateAvailabilityConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateAvailabilityConfiguration API operation for Amazon WorkMail.
+//
+// Creates an AvailabilityConfiguration for the given WorkMail organization
+// and domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation CreateAvailabilityConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+//   * NameAvailabilityException
+//   The user, group, or resource name isn't unique in Amazon WorkMail.
+//
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * LimitExceededException
+//   The request exceeds the limit of the resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/CreateAvailabilityConfiguration
+func (c *WorkMail) CreateAvailabilityConfiguration(input *CreateAvailabilityConfigurationInput) (*CreateAvailabilityConfigurationOutput, error) {
+	req, out := c.CreateAvailabilityConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// CreateAvailabilityConfigurationWithContext is the same as CreateAvailabilityConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAvailabilityConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) CreateAvailabilityConfigurationWithContext(ctx aws.Context, input *CreateAvailabilityConfigurationInput, opts ...request.Option) (*CreateAvailabilityConfigurationOutput, error) {
+	req, out := c.CreateAvailabilityConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateGroup = "CreateGroup"
 
 // CreateGroupRequest generates a "aws/request.Request" representing the
@@ -1109,6 +1204,92 @@ func (c *WorkMail) DeleteAlias(input *DeleteAliasInput) (*DeleteAliasOutput, err
 // for more information on using Contexts.
 func (c *WorkMail) DeleteAliasWithContext(ctx aws.Context, input *DeleteAliasInput, opts ...request.Option) (*DeleteAliasOutput, error) {
 	req, out := c.DeleteAliasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAvailabilityConfiguration = "DeleteAvailabilityConfiguration"
+
+// DeleteAvailabilityConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAvailabilityConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAvailabilityConfiguration for more information on using the DeleteAvailabilityConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAvailabilityConfigurationRequest method.
+//    req, resp := client.DeleteAvailabilityConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteAvailabilityConfiguration
+func (c *WorkMail) DeleteAvailabilityConfigurationRequest(input *DeleteAvailabilityConfigurationInput) (req *request.Request, output *DeleteAvailabilityConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAvailabilityConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteAvailabilityConfigurationInput{}
+	}
+
+	output = &DeleteAvailabilityConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAvailabilityConfiguration API operation for Amazon WorkMail.
+//
+// Deletes the AvailabilityConfiguration for the given WorkMail organization
+// and domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation DeleteAvailabilityConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteAvailabilityConfiguration
+func (c *WorkMail) DeleteAvailabilityConfiguration(input *DeleteAvailabilityConfigurationInput) (*DeleteAvailabilityConfigurationOutput, error) {
+	req, out := c.DeleteAvailabilityConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAvailabilityConfigurationWithContext is the same as DeleteAvailabilityConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAvailabilityConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) DeleteAvailabilityConfigurationWithContext(ctx aws.Context, input *DeleteAvailabilityConfigurationInput, opts ...request.Option) (*DeleteAvailabilityConfigurationOutput, error) {
+	req, out := c.DeleteAvailabilityConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3763,6 +3944,148 @@ func (c *WorkMail) ListAliasesPagesWithContext(ctx aws.Context, input *ListAlias
 
 	for p.Next() {
 		if !fn(p.Page().(*ListAliasesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAvailabilityConfigurations = "ListAvailabilityConfigurations"
+
+// ListAvailabilityConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAvailabilityConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAvailabilityConfigurations for more information on using the ListAvailabilityConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAvailabilityConfigurationsRequest method.
+//    req, resp := client.ListAvailabilityConfigurationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListAvailabilityConfigurations
+func (c *WorkMail) ListAvailabilityConfigurationsRequest(input *ListAvailabilityConfigurationsInput) (req *request.Request, output *ListAvailabilityConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opListAvailabilityConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAvailabilityConfigurationsInput{}
+	}
+
+	output = &ListAvailabilityConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAvailabilityConfigurations API operation for Amazon WorkMail.
+//
+// List all the AvailabilityConfiguration's for the given WorkMail organization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation ListAvailabilityConfigurations for usage and error information.
+//
+// Returned Error Types:
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListAvailabilityConfigurations
+func (c *WorkMail) ListAvailabilityConfigurations(input *ListAvailabilityConfigurationsInput) (*ListAvailabilityConfigurationsOutput, error) {
+	req, out := c.ListAvailabilityConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// ListAvailabilityConfigurationsWithContext is the same as ListAvailabilityConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAvailabilityConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) ListAvailabilityConfigurationsWithContext(ctx aws.Context, input *ListAvailabilityConfigurationsInput, opts ...request.Option) (*ListAvailabilityConfigurationsOutput, error) {
+	req, out := c.ListAvailabilityConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAvailabilityConfigurationsPages iterates over the pages of a ListAvailabilityConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAvailabilityConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAvailabilityConfigurations operation.
+//    pageNum := 0
+//    err := client.ListAvailabilityConfigurationsPages(params,
+//        func(page *workmail.ListAvailabilityConfigurationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *WorkMail) ListAvailabilityConfigurationsPages(input *ListAvailabilityConfigurationsInput, fn func(*ListAvailabilityConfigurationsOutput, bool) bool) error {
+	return c.ListAvailabilityConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAvailabilityConfigurationsPagesWithContext same as ListAvailabilityConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) ListAvailabilityConfigurationsPagesWithContext(ctx aws.Context, input *ListAvailabilityConfigurationsInput, fn func(*ListAvailabilityConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAvailabilityConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAvailabilityConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAvailabilityConfigurationsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6486,6 +6809,105 @@ func (c *WorkMail) TagResourceWithContext(ctx aws.Context, input *TagResourceInp
 	return out, req.Send()
 }
 
+const opTestAvailabilityConfiguration = "TestAvailabilityConfiguration"
+
+// TestAvailabilityConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the TestAvailabilityConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TestAvailabilityConfiguration for more information on using the TestAvailabilityConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TestAvailabilityConfigurationRequest method.
+//    req, resp := client.TestAvailabilityConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/TestAvailabilityConfiguration
+func (c *WorkMail) TestAvailabilityConfigurationRequest(input *TestAvailabilityConfigurationInput) (req *request.Request, output *TestAvailabilityConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opTestAvailabilityConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TestAvailabilityConfigurationInput{}
+	}
+
+	output = &TestAvailabilityConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// TestAvailabilityConfiguration API operation for Amazon WorkMail.
+//
+// Performs a test on an availability provider to ensure that access is allowed.
+// For EWS, it verifies the provided credentials can be used to successfully
+// log in. For Lambda, it verifies that the Lambda function can be invoked and
+// that the resource access policy was configured to deny anonymous access.
+// An anonymous invocation is one done without providing either a SourceArn
+// or SourceAccount header.
+//
+// The request must contain either one provider definition (EwsProvider or LambdaProvider)
+// or the DomainName parameter. If the DomainName parameter is provided, the
+// configuration stored under the DomainName will be tested.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation TestAvailabilityConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+//   * ResourceNotFoundException
+//   The resource cannot be found.
+//
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/TestAvailabilityConfiguration
+func (c *WorkMail) TestAvailabilityConfiguration(input *TestAvailabilityConfigurationInput) (*TestAvailabilityConfigurationOutput, error) {
+	req, out := c.TestAvailabilityConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// TestAvailabilityConfigurationWithContext is the same as TestAvailabilityConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TestAvailabilityConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) TestAvailabilityConfigurationWithContext(ctx aws.Context, input *TestAvailabilityConfigurationInput, opts ...request.Option) (*TestAvailabilityConfigurationOutput, error) {
+	req, out := c.TestAvailabilityConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUntagResource = "UntagResource"
 
 // UntagResourceRequest generates a "aws/request.Request" representing the
@@ -6562,6 +6984,98 @@ func (c *WorkMail) UntagResource(input *UntagResourceInput) (*UntagResourceOutpu
 // for more information on using Contexts.
 func (c *WorkMail) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateAvailabilityConfiguration = "UpdateAvailabilityConfiguration"
+
+// UpdateAvailabilityConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAvailabilityConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAvailabilityConfiguration for more information on using the UpdateAvailabilityConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateAvailabilityConfigurationRequest method.
+//    req, resp := client.UpdateAvailabilityConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/UpdateAvailabilityConfiguration
+func (c *WorkMail) UpdateAvailabilityConfigurationRequest(input *UpdateAvailabilityConfigurationInput) (req *request.Request, output *UpdateAvailabilityConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAvailabilityConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateAvailabilityConfigurationInput{}
+	}
+
+	output = &UpdateAvailabilityConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateAvailabilityConfiguration API operation for Amazon WorkMail.
+//
+// Updates an existing AvailabilityConfiguration for the given WorkMail organization
+// and domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation UpdateAvailabilityConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+//   * ResourceNotFoundException
+//   The resource cannot be found.
+//
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/UpdateAvailabilityConfiguration
+func (c *WorkMail) UpdateAvailabilityConfiguration(input *UpdateAvailabilityConfigurationInput) (*UpdateAvailabilityConfigurationOutput, error) {
+	req, out := c.UpdateAvailabilityConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAvailabilityConfigurationWithContext is the same as UpdateAvailabilityConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAvailabilityConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) UpdateAvailabilityConfigurationWithContext(ctx aws.Context, input *UpdateAvailabilityConfigurationInput, opts ...request.Option) (*UpdateAvailabilityConfigurationOutput, error) {
+	req, out := c.UpdateAvailabilityConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7425,6 +7939,85 @@ func (s AssociateMemberToGroupOutput) GoString() string {
 	return s.String()
 }
 
+// List all the AvailabilityConfiguration's for the given WorkMail organization.
+type AvailabilityConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time at which the availability configuration was created.
+	DateCreated *time.Time `type:"timestamp"`
+
+	// The date and time at which the availability configuration was last modified.
+	DateModified *time.Time `type:"timestamp"`
+
+	// Displays the domain to which the provider applies.
+	DomainName *string `min:"3" type:"string"`
+
+	// If ProviderType is EWS, then this field contains RedactedEwsAvailabilityProvider.
+	// Otherwise, it is not requried.
+	EwsProvider *RedactedEwsAvailabilityProvider `type:"structure"`
+
+	// If ProviderType is LAMBDA then this field contains LambdaAvailabilityProvider.
+	// Otherwise, it is not required.
+	LambdaProvider *LambdaAvailabilityProvider `type:"structure"`
+
+	// Displays the provider type that applies to this domain.
+	ProviderType *string `type:"string" enum:"AvailabilityProviderType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AvailabilityConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AvailabilityConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *AvailabilityConfiguration) SetDateCreated(v time.Time) *AvailabilityConfiguration {
+	s.DateCreated = &v
+	return s
+}
+
+// SetDateModified sets the DateModified field's value.
+func (s *AvailabilityConfiguration) SetDateModified(v time.Time) *AvailabilityConfiguration {
+	s.DateModified = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *AvailabilityConfiguration) SetDomainName(v string) *AvailabilityConfiguration {
+	s.DomainName = &v
+	return s
+}
+
+// SetEwsProvider sets the EwsProvider field's value.
+func (s *AvailabilityConfiguration) SetEwsProvider(v *RedactedEwsAvailabilityProvider) *AvailabilityConfiguration {
+	s.EwsProvider = v
+	return s
+}
+
+// SetLambdaProvider sets the LambdaProvider field's value.
+func (s *AvailabilityConfiguration) SetLambdaProvider(v *LambdaAvailabilityProvider) *AvailabilityConfiguration {
+	s.LambdaProvider = v
+	return s
+}
+
+// SetProviderType sets the ProviderType field's value.
+func (s *AvailabilityConfiguration) SetProviderType(v string) *AvailabilityConfiguration {
+	s.ProviderType = &v
+	return s
+}
+
 // At least one delegate must be associated to the resource to disable automatic
 // replies from the resource.
 type BookingOptions struct {
@@ -7679,6 +8272,137 @@ func (s CreateAliasOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s CreateAliasOutput) GoString() string {
+	return s.String()
+}
+
+type CreateAvailabilityConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// An idempotent token that ensures that an API request is executed only once.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The domain to which the provider applies.
+	//
+	// DomainName is a required field
+	DomainName *string `min:"3" type:"string" required:"true"`
+
+	// Exchange Web Services (EWS) availability provider definition. The request
+	// must contain exactly one provider definition, either EwsProvider or LambdaProvider.
+	EwsProvider *EwsAvailabilityProvider `type:"structure"`
+
+	// Lambda availability provider definition. The request must contain exactly
+	// one provider definition, either EwsProvider or LambdaProvider.
+	LambdaProvider *LambdaAvailabilityProvider `type:"structure"`
+
+	// The Amazon WorkMail organization for which the AvailabilityConfiguration
+	// will be created.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAvailabilityConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAvailabilityConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAvailabilityConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAvailabilityConfigurationInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+	if s.EwsProvider != nil {
+		if err := s.EwsProvider.Validate(); err != nil {
+			invalidParams.AddNested("EwsProvider", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LambdaProvider != nil {
+		if err := s.LambdaProvider.Validate(); err != nil {
+			invalidParams.AddNested("LambdaProvider", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateAvailabilityConfigurationInput) SetClientToken(v string) *CreateAvailabilityConfigurationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *CreateAvailabilityConfigurationInput) SetDomainName(v string) *CreateAvailabilityConfigurationInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetEwsProvider sets the EwsProvider field's value.
+func (s *CreateAvailabilityConfigurationInput) SetEwsProvider(v *EwsAvailabilityProvider) *CreateAvailabilityConfigurationInput {
+	s.EwsProvider = v
+	return s
+}
+
+// SetLambdaProvider sets the LambdaProvider field's value.
+func (s *CreateAvailabilityConfigurationInput) SetLambdaProvider(v *LambdaAvailabilityProvider) *CreateAvailabilityConfigurationInput {
+	s.LambdaProvider = v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *CreateAvailabilityConfigurationInput) SetOrganizationId(v string) *CreateAvailabilityConfigurationInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type CreateAvailabilityConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAvailabilityConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAvailabilityConfigurationOutput) GoString() string {
 	return s.String()
 }
 
@@ -8641,6 +9365,95 @@ func (s DeleteAliasOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteAliasOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteAvailabilityConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The domain for which the AvailabilityConfiguration will be deleted.
+	//
+	// DomainName is a required field
+	DomainName *string `min:"3" type:"string" required:"true"`
+
+	// The Amazon WorkMail organization for which the AvailabilityConfiguration
+	// will be deleted.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAvailabilityConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAvailabilityConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAvailabilityConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAvailabilityConfigurationInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *DeleteAvailabilityConfigurationInput) SetDomainName(v string) *DeleteAvailabilityConfigurationInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *DeleteAvailabilityConfigurationInput) SetOrganizationId(v string) *DeleteAvailabilityConfigurationInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type DeleteAvailabilityConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAvailabilityConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAvailabilityConfigurationOutput) GoString() string {
 	return s.String()
 }
 
@@ -11447,6 +12260,86 @@ func (s *EntityStateException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Describes an EWS based availability provider. This is only used as input
+// to the service.
+type EwsAvailabilityProvider struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint of the remote EWS server.
+	//
+	// EwsEndpoint is a required field
+	EwsEndpoint *string `type:"string" required:"true"`
+
+	// The password used to authenticate the remote EWS server.
+	//
+	// EwsPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EwsAvailabilityProvider's
+	// String and GoString methods.
+	//
+	// EwsPassword is a required field
+	EwsPassword *string `type:"string" required:"true" sensitive:"true"`
+
+	// The username used to authenticate the remote EWS server.
+	//
+	// EwsUsername is a required field
+	EwsUsername *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EwsAvailabilityProvider) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EwsAvailabilityProvider) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EwsAvailabilityProvider) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EwsAvailabilityProvider"}
+	if s.EwsEndpoint == nil {
+		invalidParams.Add(request.NewErrParamRequired("EwsEndpoint"))
+	}
+	if s.EwsPassword == nil {
+		invalidParams.Add(request.NewErrParamRequired("EwsPassword"))
+	}
+	if s.EwsUsername == nil {
+		invalidParams.Add(request.NewErrParamRequired("EwsUsername"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEwsEndpoint sets the EwsEndpoint field's value.
+func (s *EwsAvailabilityProvider) SetEwsEndpoint(v string) *EwsAvailabilityProvider {
+	s.EwsEndpoint = &v
+	return s
+}
+
+// SetEwsPassword sets the EwsPassword field's value.
+func (s *EwsAvailabilityProvider) SetEwsPassword(v string) *EwsAvailabilityProvider {
+	s.EwsPassword = &v
+	return s
+}
+
+// SetEwsUsername sets the EwsUsername field's value.
+func (s *EwsAvailabilityProvider) SetEwsUsername(v string) *EwsAvailabilityProvider {
+	s.EwsUsername = &v
+	return s
+}
+
 // The configuration applied to an organization's folders by its retention policy.
 type FolderConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -12657,6 +13550,57 @@ func (s *InvalidPasswordException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Describes a Lambda based availability provider.
+type LambdaAvailabilityProvider struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Lambda that acts as the availability
+	// provider.
+	//
+	// LambdaArn is a required field
+	LambdaArn *string `min:"49" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaAvailabilityProvider) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaAvailabilityProvider) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LambdaAvailabilityProvider) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LambdaAvailabilityProvider"}
+	if s.LambdaArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LambdaArn"))
+	}
+	if s.LambdaArn != nil && len(*s.LambdaArn) < 49 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaArn", 49))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLambdaArn sets the LambdaArn field's value.
+func (s *LambdaAvailabilityProvider) SetLambdaArn(v string) *LambdaAvailabilityProvider {
+	s.LambdaArn = &v
+	return s
+}
+
 // The request exceeds the limit of the resource.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -12929,6 +13873,123 @@ func (s *ListAliasesOutput) SetAliases(v []*string) *ListAliasesOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListAliasesOutput) SetNextToken(v string) *ListAliasesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAvailabilityConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in a single call.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token to use to retrieve the next page of results. The first call does
+	// not require a token.
+	NextToken *string `min:"1" type:"string"`
+
+	// The Amazon WorkMail organization for which the AvailabilityConfiguration's
+	// will be listed.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailabilityConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailabilityConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAvailabilityConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAvailabilityConfigurationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAvailabilityConfigurationsInput) SetMaxResults(v int64) *ListAvailabilityConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAvailabilityConfigurationsInput) SetNextToken(v string) *ListAvailabilityConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *ListAvailabilityConfigurationsInput) SetOrganizationId(v string) *ListAvailabilityConfigurationsInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type ListAvailabilityConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of AvailabilityConfiguration's that exist for the specified Amazon
+	// WorkMail organization.
+	AvailabilityConfigurations []*AvailabilityConfiguration `type:"list"`
+
+	// The token to use to retrieve the next page of results. The value is null
+	// when there are no further results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailabilityConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailabilityConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityConfigurations sets the AvailabilityConfigurations field's value.
+func (s *ListAvailabilityConfigurationsOutput) SetAvailabilityConfigurations(v []*AvailabilityConfiguration) *ListAvailabilityConfigurationsOutput {
+	s.AvailabilityConfigurations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAvailabilityConfigurationsOutput) SetNextToken(v string) *ListAvailabilityConfigurationsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -16095,6 +17156,48 @@ func (s PutRetentionPolicyOutput) GoString() string {
 	return s.String()
 }
 
+// Describes an EWS based availability provider when returned from the service.
+// It does not contain the password of the endpoint.
+type RedactedEwsAvailabilityProvider struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint of the remote EWS server.
+	EwsEndpoint *string `type:"string"`
+
+	// The username used to authenticate the remote EWS server.
+	EwsUsername *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedactedEwsAvailabilityProvider) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedactedEwsAvailabilityProvider) GoString() string {
+	return s.String()
+}
+
+// SetEwsEndpoint sets the EwsEndpoint field's value.
+func (s *RedactedEwsAvailabilityProvider) SetEwsEndpoint(v string) *RedactedEwsAvailabilityProvider {
+	s.EwsEndpoint = &v
+	return s
+}
+
+// SetEwsUsername sets the EwsUsername field's value.
+func (s *RedactedEwsAvailabilityProvider) SetEwsUsername(v string) *RedactedEwsAvailabilityProvider {
+	s.EwsUsername = &v
+	return s
+}
+
 type RegisterMailDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16969,6 +18072,138 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type TestAvailabilityConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The domain to which the provider applies. If this field is provided, a stored
+	// availability provider associated to this domain name will be tested.
+	DomainName *string `min:"3" type:"string"`
+
+	// Describes an EWS based availability provider. This is only used as input
+	// to the service.
+	EwsProvider *EwsAvailabilityProvider `type:"structure"`
+
+	// Describes a Lambda based availability provider.
+	LambdaProvider *LambdaAvailabilityProvider `type:"structure"`
+
+	// The Amazon WorkMail organization where the availability provider will be
+	// tested.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestAvailabilityConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestAvailabilityConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestAvailabilityConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestAvailabilityConfigurationInput"}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+	if s.EwsProvider != nil {
+		if err := s.EwsProvider.Validate(); err != nil {
+			invalidParams.AddNested("EwsProvider", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LambdaProvider != nil {
+		if err := s.LambdaProvider.Validate(); err != nil {
+			invalidParams.AddNested("LambdaProvider", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *TestAvailabilityConfigurationInput) SetDomainName(v string) *TestAvailabilityConfigurationInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetEwsProvider sets the EwsProvider field's value.
+func (s *TestAvailabilityConfigurationInput) SetEwsProvider(v *EwsAvailabilityProvider) *TestAvailabilityConfigurationInput {
+	s.EwsProvider = v
+	return s
+}
+
+// SetLambdaProvider sets the LambdaProvider field's value.
+func (s *TestAvailabilityConfigurationInput) SetLambdaProvider(v *LambdaAvailabilityProvider) *TestAvailabilityConfigurationInput {
+	s.LambdaProvider = v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *TestAvailabilityConfigurationInput) SetOrganizationId(v string) *TestAvailabilityConfigurationInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type TestAvailabilityConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// String containing the reason for a failed test if TestPassed is false.
+	FailureReason *string `type:"string"`
+
+	// Boolean indicating whether the test passed or failed.
+	TestPassed *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestAvailabilityConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestAvailabilityConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *TestAvailabilityConfigurationOutput) SetFailureReason(v string) *TestAvailabilityConfigurationOutput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetTestPassed sets the TestPassed field's value.
+func (s *TestAvailabilityConfigurationOutput) SetTestPassed(v bool) *TestAvailabilityConfigurationOutput {
+	s.TestPassed = &v
+	return s
+}
+
 // The resource can have up to 50 user-applied tags.
 type TooManyTagsException struct {
 	_            struct{}                  `type:"structure"`
@@ -17179,6 +18414,127 @@ func (s UntagResourceOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateAvailabilityConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The domain to which the provider applies the availability configuration.
+	//
+	// DomainName is a required field
+	DomainName *string `min:"3" type:"string" required:"true"`
+
+	// The EWS availability provider definition. The request must contain exactly
+	// one provider definition, either EwsProvider or LambdaProvider. The previously
+	// stored provider will be overridden by the one provided.
+	EwsProvider *EwsAvailabilityProvider `type:"structure"`
+
+	// The Lambda availability provider definition. The request must contain exactly
+	// one provider definition, either EwsProvider or LambdaProvider. The previously
+	// stored provider will be overridden by the one provided.
+	LambdaProvider *LambdaAvailabilityProvider `type:"structure"`
+
+	// The Amazon WorkMail organization for which the AvailabilityConfiguration
+	// will be updated.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAvailabilityConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAvailabilityConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAvailabilityConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAvailabilityConfigurationInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+	if s.EwsProvider != nil {
+		if err := s.EwsProvider.Validate(); err != nil {
+			invalidParams.AddNested("EwsProvider", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LambdaProvider != nil {
+		if err := s.LambdaProvider.Validate(); err != nil {
+			invalidParams.AddNested("LambdaProvider", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *UpdateAvailabilityConfigurationInput) SetDomainName(v string) *UpdateAvailabilityConfigurationInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetEwsProvider sets the EwsProvider field's value.
+func (s *UpdateAvailabilityConfigurationInput) SetEwsProvider(v *EwsAvailabilityProvider) *UpdateAvailabilityConfigurationInput {
+	s.EwsProvider = v
+	return s
+}
+
+// SetLambdaProvider sets the LambdaProvider field's value.
+func (s *UpdateAvailabilityConfigurationInput) SetLambdaProvider(v *LambdaAvailabilityProvider) *UpdateAvailabilityConfigurationInput {
+	s.LambdaProvider = v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *UpdateAvailabilityConfigurationInput) SetOrganizationId(v string) *UpdateAvailabilityConfigurationInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type UpdateAvailabilityConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAvailabilityConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAvailabilityConfigurationOutput) GoString() string {
 	return s.String()
 }
 
@@ -17930,6 +19286,22 @@ func AccessControlRuleEffect_Values() []string {
 	return []string{
 		AccessControlRuleEffectAllow,
 		AccessControlRuleEffectDeny,
+	}
+}
+
+const (
+	// AvailabilityProviderTypeEws is a AvailabilityProviderType enum value
+	AvailabilityProviderTypeEws = "EWS"
+
+	// AvailabilityProviderTypeLambda is a AvailabilityProviderType enum value
+	AvailabilityProviderTypeLambda = "LAMBDA"
+)
+
+// AvailabilityProviderType_Values returns all elements of the AvailabilityProviderType enum
+func AvailabilityProviderType_Values() []string {
+	return []string{
+		AvailabilityProviderTypeEws,
+		AvailabilityProviderTypeLambda,
 	}
 }
 

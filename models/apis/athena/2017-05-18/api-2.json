@@ -25,6 +25,19 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "BatchGetPreparedStatement":{
+      "name":"BatchGetPreparedStatement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetPreparedStatementInput"},
+      "output":{"shape":"BatchGetPreparedStatementOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "BatchGetQueryExecution":{
       "name":"BatchGetQueryExecution",
       "http":{
@@ -521,6 +534,24 @@
         "UnprocessedNamedQueryIds":{"shape":"UnprocessedNamedQueryIdList"}
       }
     },
+    "BatchGetPreparedStatementInput":{
+      "type":"structure",
+      "required":[
+        "PreparedStatementNames",
+        "WorkGroup"
+      ],
+      "members":{
+        "PreparedStatementNames":{"shape":"PreparedStatementNameList"},
+        "WorkGroup":{"shape":"WorkGroupName"}
+      }
+    },
+    "BatchGetPreparedStatementOutput":{
+      "type":"structure",
+      "members":{
+        "PreparedStatements":{"shape":"PreparedStatementDetailsList"},
+        "UnprocessedPreparedStatementNames":{"shape":"UnprocessedPreparedStatementNameList"}
+      }
+    },
     "BatchGetQueryExecutionInput":{
       "type":"structure",
       "required":["QueryExecutionIds"],
@@ -839,6 +870,16 @@
       "box":true,
       "max":9999,
       "min":0
+    },
+    "ExecutionParameter":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "ExecutionParameters":{
+      "type":"list",
+      "member":{"shape":"ExecutionParameter"},
+      "min":1
     },
     "ExpressionString":{
       "type":"string",
@@ -1259,6 +1300,14 @@
         "LastModifiedTime":{"shape":"Date"}
       }
     },
+    "PreparedStatementDetailsList":{
+      "type":"list",
+      "member":{"shape":"PreparedStatement"}
+    },
+    "PreparedStatementNameList":{
+      "type":"list",
+      "member":{"shape":"StatementName"}
+    },
     "PreparedStatementSummary":{
       "type":"structure",
       "members":{
@@ -1283,7 +1332,8 @@
         "Status":{"shape":"QueryExecutionStatus"},
         "Statistics":{"shape":"QueryExecutionStatistics"},
         "WorkGroup":{"shape":"WorkGroupName"},
-        "EngineVersion":{"shape":"EngineVersion"}
+        "EngineVersion":{"shape":"EngineVersion"},
+        "ExecutionParameters":{"shape":"ExecutionParameters"}
       }
     },
     "QueryExecutionContext":{
@@ -1409,7 +1459,8 @@
         },
         "QueryExecutionContext":{"shape":"QueryExecutionContext"},
         "ResultConfiguration":{"shape":"ResultConfiguration"},
-        "WorkGroup":{"shape":"WorkGroupName"}
+        "WorkGroup":{"shape":"WorkGroupName"},
+        "ExecutionParameters":{"shape":"ExecutionParameters"}
       }
     },
     "StartQueryExecutionOutput":{
@@ -1545,6 +1596,18 @@
     "UnprocessedNamedQueryIdList":{
       "type":"list",
       "member":{"shape":"UnprocessedNamedQueryId"}
+    },
+    "UnprocessedPreparedStatementName":{
+      "type":"structure",
+      "members":{
+        "StatementName":{"shape":"StatementName"},
+        "ErrorCode":{"shape":"ErrorCode"},
+        "ErrorMessage":{"shape":"ErrorMessage"}
+      }
+    },
+    "UnprocessedPreparedStatementNameList":{
+      "type":"list",
+      "member":{"shape":"UnprocessedPreparedStatementName"}
     },
     "UnprocessedQueryExecutionId":{
       "type":"structure",

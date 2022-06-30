@@ -76,6 +76,10 @@ type WorkMailAPI interface {
 	CreateAliasWithContext(aws.Context, *workmail.CreateAliasInput, ...request.Option) (*workmail.CreateAliasOutput, error)
 	CreateAliasRequest(*workmail.CreateAliasInput) (*request.Request, *workmail.CreateAliasOutput)
 
+	CreateAvailabilityConfiguration(*workmail.CreateAvailabilityConfigurationInput) (*workmail.CreateAvailabilityConfigurationOutput, error)
+	CreateAvailabilityConfigurationWithContext(aws.Context, *workmail.CreateAvailabilityConfigurationInput, ...request.Option) (*workmail.CreateAvailabilityConfigurationOutput, error)
+	CreateAvailabilityConfigurationRequest(*workmail.CreateAvailabilityConfigurationInput) (*request.Request, *workmail.CreateAvailabilityConfigurationOutput)
+
 	CreateGroup(*workmail.CreateGroupInput) (*workmail.CreateGroupOutput, error)
 	CreateGroupWithContext(aws.Context, *workmail.CreateGroupInput, ...request.Option) (*workmail.CreateGroupOutput, error)
 	CreateGroupRequest(*workmail.CreateGroupInput) (*request.Request, *workmail.CreateGroupOutput)
@@ -103,6 +107,10 @@ type WorkMailAPI interface {
 	DeleteAlias(*workmail.DeleteAliasInput) (*workmail.DeleteAliasOutput, error)
 	DeleteAliasWithContext(aws.Context, *workmail.DeleteAliasInput, ...request.Option) (*workmail.DeleteAliasOutput, error)
 	DeleteAliasRequest(*workmail.DeleteAliasInput) (*request.Request, *workmail.DeleteAliasOutput)
+
+	DeleteAvailabilityConfiguration(*workmail.DeleteAvailabilityConfigurationInput) (*workmail.DeleteAvailabilityConfigurationOutput, error)
+	DeleteAvailabilityConfigurationWithContext(aws.Context, *workmail.DeleteAvailabilityConfigurationInput, ...request.Option) (*workmail.DeleteAvailabilityConfigurationOutput, error)
+	DeleteAvailabilityConfigurationRequest(*workmail.DeleteAvailabilityConfigurationInput) (*request.Request, *workmail.DeleteAvailabilityConfigurationOutput)
 
 	DeleteEmailMonitoringConfiguration(*workmail.DeleteEmailMonitoringConfigurationInput) (*workmail.DeleteEmailMonitoringConfigurationOutput, error)
 	DeleteEmailMonitoringConfigurationWithContext(aws.Context, *workmail.DeleteEmailMonitoringConfigurationInput, ...request.Option) (*workmail.DeleteEmailMonitoringConfigurationOutput, error)
@@ -218,6 +226,13 @@ type WorkMailAPI interface {
 
 	ListAliasesPages(*workmail.ListAliasesInput, func(*workmail.ListAliasesOutput, bool) bool) error
 	ListAliasesPagesWithContext(aws.Context, *workmail.ListAliasesInput, func(*workmail.ListAliasesOutput, bool) bool, ...request.Option) error
+
+	ListAvailabilityConfigurations(*workmail.ListAvailabilityConfigurationsInput) (*workmail.ListAvailabilityConfigurationsOutput, error)
+	ListAvailabilityConfigurationsWithContext(aws.Context, *workmail.ListAvailabilityConfigurationsInput, ...request.Option) (*workmail.ListAvailabilityConfigurationsOutput, error)
+	ListAvailabilityConfigurationsRequest(*workmail.ListAvailabilityConfigurationsInput) (*request.Request, *workmail.ListAvailabilityConfigurationsOutput)
+
+	ListAvailabilityConfigurationsPages(*workmail.ListAvailabilityConfigurationsInput, func(*workmail.ListAvailabilityConfigurationsOutput, bool) bool) error
+	ListAvailabilityConfigurationsPagesWithContext(aws.Context, *workmail.ListAvailabilityConfigurationsInput, func(*workmail.ListAvailabilityConfigurationsOutput, bool) bool, ...request.Option) error
 
 	ListGroupMembers(*workmail.ListGroupMembersInput) (*workmail.ListGroupMembersOutput, error)
 	ListGroupMembersWithContext(aws.Context, *workmail.ListGroupMembersInput, ...request.Option) (*workmail.ListGroupMembersOutput, error)
@@ -341,9 +356,17 @@ type WorkMailAPI interface {
 	TagResourceWithContext(aws.Context, *workmail.TagResourceInput, ...request.Option) (*workmail.TagResourceOutput, error)
 	TagResourceRequest(*workmail.TagResourceInput) (*request.Request, *workmail.TagResourceOutput)
 
+	TestAvailabilityConfiguration(*workmail.TestAvailabilityConfigurationInput) (*workmail.TestAvailabilityConfigurationOutput, error)
+	TestAvailabilityConfigurationWithContext(aws.Context, *workmail.TestAvailabilityConfigurationInput, ...request.Option) (*workmail.TestAvailabilityConfigurationOutput, error)
+	TestAvailabilityConfigurationRequest(*workmail.TestAvailabilityConfigurationInput) (*request.Request, *workmail.TestAvailabilityConfigurationOutput)
+
 	UntagResource(*workmail.UntagResourceInput) (*workmail.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *workmail.UntagResourceInput, ...request.Option) (*workmail.UntagResourceOutput, error)
 	UntagResourceRequest(*workmail.UntagResourceInput) (*request.Request, *workmail.UntagResourceOutput)
+
+	UpdateAvailabilityConfiguration(*workmail.UpdateAvailabilityConfigurationInput) (*workmail.UpdateAvailabilityConfigurationOutput, error)
+	UpdateAvailabilityConfigurationWithContext(aws.Context, *workmail.UpdateAvailabilityConfigurationInput, ...request.Option) (*workmail.UpdateAvailabilityConfigurationOutput, error)
+	UpdateAvailabilityConfigurationRequest(*workmail.UpdateAvailabilityConfigurationInput) (*request.Request, *workmail.UpdateAvailabilityConfigurationOutput)
 
 	UpdateDefaultMailDomain(*workmail.UpdateDefaultMailDomainInput) (*workmail.UpdateDefaultMailDomainOutput, error)
 	UpdateDefaultMailDomainWithContext(aws.Context, *workmail.UpdateDefaultMailDomainInput, ...request.Option) (*workmail.UpdateDefaultMailDomainOutput, error)

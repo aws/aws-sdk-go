@@ -105,6 +105,94 @@ func (c *Athena) BatchGetNamedQueryWithContext(ctx aws.Context, input *BatchGetN
 	return out, req.Send()
 }
 
+const opBatchGetPreparedStatement = "BatchGetPreparedStatement"
+
+// BatchGetPreparedStatementRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetPreparedStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetPreparedStatement for more information on using the BatchGetPreparedStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchGetPreparedStatementRequest method.
+//    req, resp := client.BatchGetPreparedStatementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/BatchGetPreparedStatement
+func (c *Athena) BatchGetPreparedStatementRequest(input *BatchGetPreparedStatementInput) (req *request.Request, output *BatchGetPreparedStatementOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetPreparedStatement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchGetPreparedStatementInput{}
+	}
+
+	output = &BatchGetPreparedStatementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetPreparedStatement API operation for Amazon Athena.
+//
+// Returns the details of a single prepared statement or a list of up to 256
+// prepared statements for the array of prepared statement names that you provide.
+// Requires you to have access to the workgroup to which the prepared statements
+// belong. If a prepared statement cannot be retrieved for the name specified,
+// the statement is listed in UnprocessedPreparedStatementNames.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation BatchGetPreparedStatement for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   Indicates a platform issue, which may be due to a transient condition or
+//   outage.
+//
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a required parameter may be missing or out of range.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/BatchGetPreparedStatement
+func (c *Athena) BatchGetPreparedStatement(input *BatchGetPreparedStatementInput) (*BatchGetPreparedStatementOutput, error) {
+	req, out := c.BatchGetPreparedStatementRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetPreparedStatementWithContext is the same as BatchGetPreparedStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetPreparedStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) BatchGetPreparedStatementWithContext(ctx aws.Context, input *BatchGetPreparedStatementInput, opts ...request.Option) (*BatchGetPreparedStatementOutput, error) {
+	req, out := c.BatchGetPreparedStatementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchGetQueryExecution = "BatchGetQueryExecution"
 
 // BatchGetQueryExecutionRequest generates a "aws/request.Request" representing the
@@ -2229,7 +2317,7 @@ func (c *Athena) ListPreparedStatementsRequest(input *ListPreparedStatementsInpu
 
 // ListPreparedStatements API operation for Amazon Athena.
 //
-// Lists the prepared statements in the specfied workgroup.
+// Lists the prepared statements in the specified workgroup.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3834,6 +3922,107 @@ func (s *BatchGetNamedQueryOutput) SetNamedQueries(v []*NamedQuery) *BatchGetNam
 // SetUnprocessedNamedQueryIds sets the UnprocessedNamedQueryIds field's value.
 func (s *BatchGetNamedQueryOutput) SetUnprocessedNamedQueryIds(v []*UnprocessedNamedQueryId) *BatchGetNamedQueryOutput {
 	s.UnprocessedNamedQueryIds = v
+	return s
+}
+
+type BatchGetPreparedStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of prepared statement names to return.
+	//
+	// PreparedStatementNames is a required field
+	PreparedStatementNames []*string `type:"list" required:"true"`
+
+	// The name of the workgroup to which the prepared statements belong.
+	//
+	// WorkGroup is a required field
+	WorkGroup *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetPreparedStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetPreparedStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetPreparedStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetPreparedStatementInput"}
+	if s.PreparedStatementNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("PreparedStatementNames"))
+	}
+	if s.WorkGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkGroup"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPreparedStatementNames sets the PreparedStatementNames field's value.
+func (s *BatchGetPreparedStatementInput) SetPreparedStatementNames(v []*string) *BatchGetPreparedStatementInput {
+	s.PreparedStatementNames = v
+	return s
+}
+
+// SetWorkGroup sets the WorkGroup field's value.
+func (s *BatchGetPreparedStatementInput) SetWorkGroup(v string) *BatchGetPreparedStatementInput {
+	s.WorkGroup = &v
+	return s
+}
+
+type BatchGetPreparedStatementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of prepared statements returned.
+	PreparedStatements []*PreparedStatement `type:"list"`
+
+	// A list of one or more prepared statements that were requested but could not
+	// be returned.
+	UnprocessedPreparedStatementNames []*UnprocessedPreparedStatementName `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetPreparedStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetPreparedStatementOutput) GoString() string {
+	return s.String()
+}
+
+// SetPreparedStatements sets the PreparedStatements field's value.
+func (s *BatchGetPreparedStatementOutput) SetPreparedStatements(v []*PreparedStatement) *BatchGetPreparedStatementOutput {
+	s.PreparedStatements = v
+	return s
+}
+
+// SetUnprocessedPreparedStatementNames sets the UnprocessedPreparedStatementNames field's value.
+func (s *BatchGetPreparedStatementOutput) SetUnprocessedPreparedStatementNames(v []*UnprocessedPreparedStatementName) *BatchGetPreparedStatementOutput {
+	s.UnprocessedPreparedStatementNames = v
 	return s
 }
 
@@ -7426,6 +7615,10 @@ type QueryExecution struct {
 	// The engine version that executed the query.
 	EngineVersion *EngineVersion `type:"structure"`
 
+	// A list of values for the parameters in a query. The values are applied sequentially
+	// to the parameters in the query in the order in which the parameters occur.
+	ExecutionParameters []*string `min:"1" type:"list"`
+
 	// The SQL query statements which the query execution ran.
 	Query *string `min:"1" type:"string"`
 
@@ -7482,6 +7675,12 @@ func (s QueryExecution) GoString() string {
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *QueryExecution) SetEngineVersion(v *EngineVersion) *QueryExecution {
 	s.EngineVersion = v
+	return s
+}
+
+// SetExecutionParameters sets the ExecutionParameters field's value.
+func (s *QueryExecution) SetExecutionParameters(v []*string) *QueryExecution {
+	s.ExecutionParameters = v
 	return s
 }
 
@@ -7776,6 +7975,7 @@ type ResourceNotFoundException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
+	// The name of the Amazon resource.
 	ResourceName *string `min:"1" type:"string"`
 }
 
@@ -8224,6 +8424,10 @@ type StartQueryExecutionInput struct {
 	// Services CLI, you must provide this token or the action will fail.
 	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
 
+	// A list of values for the parameters in a query. The values are applied sequentially
+	// to the parameters in the query in the order in which the parameters occur.
+	ExecutionParameters []*string `min:"1" type:"list"`
+
 	// The database within which the query executes.
 	QueryExecutionContext *QueryExecutionContext `type:"structure"`
 
@@ -8267,6 +8471,9 @@ func (s *StartQueryExecutionInput) Validate() error {
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 32 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 32))
 	}
+	if s.ExecutionParameters != nil && len(s.ExecutionParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionParameters", 1))
+	}
 	if s.QueryString == nil {
 		invalidParams.Add(request.NewErrParamRequired("QueryString"))
 	}
@@ -8293,6 +8500,12 @@ func (s *StartQueryExecutionInput) Validate() error {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *StartQueryExecutionInput) SetClientRequestToken(v string) *StartQueryExecutionInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetExecutionParameters sets the ExecutionParameters field's value.
+func (s *StartQueryExecutionInput) SetExecutionParameters(v []*string) *StartQueryExecutionInput {
+	s.ExecutionParameters = v
 	return s
 }
 
@@ -8775,6 +8988,66 @@ func (s *UnprocessedNamedQueryId) SetErrorMessage(v string) *UnprocessedNamedQue
 // SetNamedQueryId sets the NamedQueryId field's value.
 func (s *UnprocessedNamedQueryId) SetNamedQueryId(v string) *UnprocessedNamedQueryId {
 	s.NamedQueryId = &v
+	return s
+}
+
+// The name of a prepared statement that could not be returned.
+type UnprocessedPreparedStatementName struct {
+	_ struct{} `type:"structure"`
+
+	// The error code returned when the request for the prepared statement failed.
+	ErrorCode *string `min:"1" type:"string"`
+
+	// The error message containing the reason why the prepared statement could
+	// not be returned. The following error messages are possible:
+	//
+	//    * INVALID_INPUT - The name of the prepared statement that was provided
+	//    is not valid (for example, the name is too long).
+	//
+	//    * STATEMENT_NOT_FOUND - A prepared statement with the name provided could
+	//    not be found.
+	//
+	//    * UNAUTHORIZED - The requester does not have permission to access the
+	//    workgroup that contains the prepared statement.
+	ErrorMessage *string `type:"string"`
+
+	// The name of a prepared statement that could not be returned due to an error.
+	StatementName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessedPreparedStatementName) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessedPreparedStatementName) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *UnprocessedPreparedStatementName) SetErrorCode(v string) *UnprocessedPreparedStatementName {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *UnprocessedPreparedStatementName) SetErrorMessage(v string) *UnprocessedPreparedStatementName {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetStatementName sets the StatementName field's value.
+func (s *UnprocessedPreparedStatementName) SetStatementName(v string) *UnprocessedPreparedStatementName {
+	s.StatementName = &v
 	return s
 }
 

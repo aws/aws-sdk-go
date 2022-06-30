@@ -3694,7 +3694,12 @@ type AddProfileKeyInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
 
-	// A searchable identifier of a customer profile.
+	// A searchable identifier of a customer profile. The predefined keys you can
+	// use include: _account, _profileId, _assetId, _caseId, _orderId, _fullName,
+	// _phone, _email, _ctrContactId, _marketoLeadId, _salesforceAccountId, _salesforceContactId,
+	// _salesforceAssetId, _zendeskUserId, _zendeskExternalId, _zendeskTicketId,
+	// _serviceNowSystemId, _serviceNowIncidentId, _segmentUserId, _shopifyCustomerId,
+	// _shopifyOrderId.
 	//
 	// KeyName is a required field
 	KeyName *string `min:"1" type:"string" required:"true"`
@@ -4293,6 +4298,11 @@ type AutoMerging struct {
 	//
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
+
+	// A number between 0 and 1 that represents the minimum confidence score required
+	// for profiles within a matching group to be merged during the auto-merge process.
+	// A higher score means higher similarity required to merge profiles.
+	MinAllowedConfidenceScoreForMerging *float64 `type:"double"`
 }
 
 // String returns the string representation.
@@ -4351,6 +4361,12 @@ func (s *AutoMerging) SetConsolidation(v *Consolidation) *AutoMerging {
 // SetEnabled sets the Enabled field's value.
 func (s *AutoMerging) SetEnabled(v bool) *AutoMerging {
 	s.Enabled = &v
+	return s
+}
+
+// SetMinAllowedConfidenceScoreForMerging sets the MinAllowedConfidenceScoreForMerging field's value.
+func (s *AutoMerging) SetMinAllowedConfidenceScoreForMerging(v float64) *AutoMerging {
+	s.MinAllowedConfidenceScoreForMerging = &v
 	return s
 }
 
@@ -6640,6 +6656,10 @@ type GetAutoMergingPreviewInput struct {
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// Minimum confidence score required for profiles within a matching group to
+	// be merged during the auto-merge process.
+	MinAllowedConfidenceScoreForMerging *float64 `type:"double"`
 }
 
 // String returns the string representation.
@@ -6707,6 +6727,12 @@ func (s *GetAutoMergingPreviewInput) SetConsolidation(v *Consolidation) *GetAuto
 // SetDomainName sets the DomainName field's value.
 func (s *GetAutoMergingPreviewInput) SetDomainName(v string) *GetAutoMergingPreviewInput {
 	s.DomainName = &v
+	return s
+}
+
+// SetMinAllowedConfidenceScoreForMerging sets the MinAllowedConfidenceScoreForMerging field's value.
+func (s *GetAutoMergingPreviewInput) SetMinAllowedConfidenceScoreForMerging(v float64) *GetAutoMergingPreviewInput {
+	s.MinAllowedConfidenceScoreForMerging = &v
 	return s
 }
 
@@ -10021,8 +10047,14 @@ func (s *MarketoSourceProperties) SetObject(v string) *MarketoSourceProperties {
 type MatchItem struct {
 	_ struct{} `type:"structure"`
 
-	// A number between 0 and 1 that represents the confidence level of assigning
-	// profiles to a matching group. A score of 1 likely indicates an exact match.
+	// A number between 0 and 1, where a higher score means higher similarity. Examining
+	// match confidence scores lets you distinguish between groups of similar records
+	// in which the system is highly confident (which you may decide to merge),
+	// groups of similar records about which the system is uncertain (which you
+	// may decide to have reviewed by a human), and groups of similar records that
+	// the system deems to be unlikely (which you may decide to reject). Given confidence
+	// scores vary as per the data input, it should not be used an absolute measure
+	// of matching quality.
 	ConfidenceScore *float64 `type:"double"`
 
 	// The unique identifiers for this group of profiles that match.
@@ -11134,7 +11166,12 @@ type PutProfileObjectTypeInput struct {
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 
-	// A unique identifier for the object template.
+	// A unique identifier for the object template. For some attributes in the request,
+	// the service will use the default value from the object template when TemplateId
+	// is present. If these attributes are present in the request, the service may
+	// return a BadRequestException. These attributes include: AllowProfileCreation,
+	// SourceLastUpdatedTimestampFormat, Fields, and Keys. For example, if AllowProfileCreation
+	// is set to true when TemplateId is set, the service may return a BadRequestException.
 	TemplateId *string `min:"1" type:"string"`
 }
 

@@ -5,6 +5,12 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListAvailabilityConfigurations": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "AvailabilityConfigurations"
+    },
     "ListGroupMembers": {
       "input_token": "NextToken",
       "output_token": "NextToken",

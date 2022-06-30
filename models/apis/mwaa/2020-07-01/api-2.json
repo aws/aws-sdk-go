@@ -204,7 +204,8 @@
     "AirflowConfigurationOptions":{
       "type":"map",
       "key":{"shape":"ConfigKey"},
-      "value":{"shape":"ConfigValue"}
+      "value":{"shape":"ConfigValue"},
+      "sensitive":true
     },
     "AirflowVersion":{
       "type":"string",
@@ -228,7 +229,8 @@
       "type":"string",
       "max":65536,
       "min":1,
-      "pattern":"^[ -~]+$"
+      "pattern":"^[ -~]+$",
+      "sensitive":true
     },
     "CreateCliTokenRequest":{
       "type":"structure",
@@ -244,7 +246,7 @@
     "CreateCliTokenResponse":{
       "type":"structure",
       "members":{
-        "CliToken":{"shape":"SyntheticCreateCliTokenResponseToken"},
+        "CliToken":{"shape":"Token"},
         "WebServerHostname":{"shape":"Hostname"}
       }
     },
@@ -258,7 +260,7 @@
         "SourceBucketArn"
       ],
       "members":{
-        "AirflowConfigurationOptions":{"shape":"SyntheticCreateEnvironmentInputAirflowConfigurationOptions"},
+        "AirflowConfigurationOptions":{"shape":"AirflowConfigurationOptions"},
         "AirflowVersion":{"shape":"AirflowVersion"},
         "DagS3Path":{"shape":"RelativePath"},
         "EnvironmentClass":{"shape":"EnvironmentClass"},
@@ -305,7 +307,7 @@
       "type":"structure",
       "members":{
         "WebServerHostname":{"shape":"Hostname"},
-        "WebToken":{"shape":"SyntheticCreateWebLoginTokenResponseToken"}
+        "WebToken":{"shape":"Token"}
       }
     },
     "CreatedAt":{"type":"timestamp"},
@@ -700,26 +702,6 @@
       "max":2,
       "min":2
     },
-    "SyntheticCreateCliTokenResponseToken":{
-      "type":"string",
-      "sensitive":true
-    },
-    "SyntheticCreateEnvironmentInputAirflowConfigurationOptions":{
-      "type":"map",
-      "key":{"shape":"ConfigKey"},
-      "value":{"shape":"ConfigValue"},
-      "sensitive":true
-    },
-    "SyntheticCreateWebLoginTokenResponseToken":{
-      "type":"string",
-      "sensitive":true
-    },
-    "SyntheticUpdateEnvironmentInputAirflowConfigurationOptions":{
-      "type":"map",
-      "key":{"shape":"ConfigKey"},
-      "value":{"shape":"ConfigValue"},
-      "sensitive":true
-    },
     "TagKey":{
       "type":"string",
       "max":128,
@@ -766,6 +748,10 @@
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "Timestamp":{"type":"timestamp"},
+    "Token":{
+      "type":"string",
+      "sensitive":true
+    },
     "Unit":{
       "type":"string",
       "enum":[
@@ -827,7 +813,7 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "AirflowConfigurationOptions":{"shape":"SyntheticUpdateEnvironmentInputAirflowConfigurationOptions"},
+        "AirflowConfigurationOptions":{"shape":"AirflowConfigurationOptions"},
         "AirflowVersion":{"shape":"AirflowVersion"},
         "DagS3Path":{"shape":"RelativePath"},
         "EnvironmentClass":{"shape":"EnvironmentClass"},

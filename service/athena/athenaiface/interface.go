@@ -64,6 +64,10 @@ type AthenaAPI interface {
 	BatchGetNamedQueryWithContext(aws.Context, *athena.BatchGetNamedQueryInput, ...request.Option) (*athena.BatchGetNamedQueryOutput, error)
 	BatchGetNamedQueryRequest(*athena.BatchGetNamedQueryInput) (*request.Request, *athena.BatchGetNamedQueryOutput)
 
+	BatchGetPreparedStatement(*athena.BatchGetPreparedStatementInput) (*athena.BatchGetPreparedStatementOutput, error)
+	BatchGetPreparedStatementWithContext(aws.Context, *athena.BatchGetPreparedStatementInput, ...request.Option) (*athena.BatchGetPreparedStatementOutput, error)
+	BatchGetPreparedStatementRequest(*athena.BatchGetPreparedStatementInput) (*request.Request, *athena.BatchGetPreparedStatementOutput)
+
 	BatchGetQueryExecution(*athena.BatchGetQueryExecutionInput) (*athena.BatchGetQueryExecutionOutput, error)
 	BatchGetQueryExecutionWithContext(aws.Context, *athena.BatchGetQueryExecutionInput, ...request.Option) (*athena.BatchGetQueryExecutionOutput, error)
 	BatchGetQueryExecutionRequest(*athena.BatchGetQueryExecutionInput) (*request.Request, *athena.BatchGetQueryExecutionOutput)

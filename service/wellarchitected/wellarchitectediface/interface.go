@@ -226,6 +226,10 @@ type WellArchitectedAPI interface {
 	UpdateAnswerWithContext(aws.Context, *wellarchitected.UpdateAnswerInput, ...request.Option) (*wellarchitected.UpdateAnswerOutput, error)
 	UpdateAnswerRequest(*wellarchitected.UpdateAnswerInput) (*request.Request, *wellarchitected.UpdateAnswerOutput)
 
+	UpdateGlobalSettings(*wellarchitected.UpdateGlobalSettingsInput) (*wellarchitected.UpdateGlobalSettingsOutput, error)
+	UpdateGlobalSettingsWithContext(aws.Context, *wellarchitected.UpdateGlobalSettingsInput, ...request.Option) (*wellarchitected.UpdateGlobalSettingsOutput, error)
+	UpdateGlobalSettingsRequest(*wellarchitected.UpdateGlobalSettingsInput) (*request.Request, *wellarchitected.UpdateGlobalSettingsOutput)
+
 	UpdateLensReview(*wellarchitected.UpdateLensReviewInput) (*wellarchitected.UpdateLensReviewOutput, error)
 	UpdateLensReviewWithContext(aws.Context, *wellarchitected.UpdateLensReviewInput, ...request.Option) (*wellarchitected.UpdateLensReviewOutput, error)
 	UpdateLensReviewRequest(*wellarchitected.UpdateLensReviewInput) (*request.Request, *wellarchitected.UpdateLensReviewOutput)

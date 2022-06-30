@@ -106,16 +106,16 @@
       "refs": {
       }
     },
-    "PriceList": {
+    "PriceListJsonItem": {
+      "base": null,
+      "refs": {
+        "PriceListJsonItems$member": null
+      }
+    },
+    "PriceListJsonItems": {
       "base": null,
       "refs": {
         "GetProductsResponse$PriceList": "<p>The list of products that match your filters. The list contains both the product metadata and the price information.</p>"
-      }
-    },
-    "PriceListItemJSON": {
-      "base": null,
-      "refs": {
-        "PriceList$member": null
       }
     },
     "Service": {

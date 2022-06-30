@@ -743,7 +743,8 @@
       "members":{
         "Enabled":{"shape":"optionalBoolean"},
         "Consolidation":{"shape":"Consolidation"},
-        "ConflictResolution":{"shape":"ConflictResolution"}
+        "ConflictResolution":{"shape":"ConflictResolution"},
+        "MinAllowedConfidenceScoreForMerging":{"shape":"Double0To1"}
       }
     },
     "BadRequestException":{
@@ -1120,6 +1121,11 @@
       }
     },
     "Double":{"type":"double"},
+    "Double0To1":{
+      "type":"double",
+      "max":1.0,
+      "min":0.0
+    },
     "ExportingConfig":{
       "type":"structure",
       "members":{
@@ -1227,7 +1233,8 @@
           "locationName":"DomainName"
         },
         "Consolidation":{"shape":"Consolidation"},
-        "ConflictResolution":{"shape":"ConflictResolution"}
+        "ConflictResolution":{"shape":"ConflictResolution"},
+        "MinAllowedConfidenceScoreForMerging":{"shape":"Double0To1"}
       }
     },
     "GetAutoMergingPreviewResponse":{

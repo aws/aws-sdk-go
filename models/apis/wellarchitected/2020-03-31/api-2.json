@@ -556,6 +556,21 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "UpdateGlobalSettings":{
+      "name":"UpdateGlobalSettings",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/global-settings"
+      },
+      "input":{"shape":"UpdateGlobalSettingsInput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "UpdateLensReview":{
       "name":"UpdateLensReview",
       "http":{
@@ -1539,7 +1554,8 @@
       "members":{
         "ShareId":{"shape":"ShareId"},
         "SharedWith":{"shape":"SharedWith"},
-        "Status":{"shape":"ShareStatus"}
+        "Status":{"shape":"ShareStatus"},
+        "StatusMessage":{"shape":"StatusMessage"}
       }
     },
     "LensStatus":{
@@ -1771,6 +1787,11 @@
           "shape":"ListWorkloadSharesMaxResults",
           "location":"querystring",
           "locationName":"MaxResults"
+        },
+        "Status":{
+          "shape":"ShareStatus",
+          "location":"querystring",
+          "locationName":"Status"
         }
       }
     },
@@ -1941,6 +1962,11 @@
           "shape":"ListWorkloadSharesMaxResults",
           "location":"querystring",
           "locationName":"MaxResults"
+        },
+        "Status":{
+          "shape":"ShareStatus",
+          "location":"querystring",
+          "locationName":"Status"
         }
       }
     },
@@ -2035,6 +2061,13 @@
       "enum":[
         "LENS_VERSION_UPGRADED",
         "LENS_VERSION_DEPRECATED"
+      ]
+    },
+    "OrganizationSharingStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
       ]
     },
     "PermissionType":{
@@ -2222,7 +2255,10 @@
         "REJECTED",
         "PENDING",
         "REVOKED",
-        "EXPIRED"
+        "EXPIRED",
+        "ASSOCIATING",
+        "ASSOCIATED",
+        "FAILED"
       ]
     },
     "SharedWith":{
@@ -2233,6 +2269,11 @@
     "SharedWithPrefix":{
       "type":"string",
       "max":100
+    },
+    "StatusMessage":{
+      "type":"string",
+      "max":512,
+      "min":1
     },
     "TagKey":{
       "type":"string",
@@ -2350,6 +2391,12 @@
         "LensAlias":{"shape":"LensAlias"},
         "LensArn":{"shape":"LensArn"},
         "Answer":{"shape":"Answer"}
+      }
+    },
+    "UpdateGlobalSettingsInput":{
+      "type":"structure",
+      "members":{
+        "OrganizationSharingStatus":{"shape":"OrganizationSharingStatus"}
       }
     },
     "UpdateLensReviewInput":{
@@ -2659,7 +2706,8 @@
         "ShareId":{"shape":"ShareId"},
         "SharedWith":{"shape":"SharedWith"},
         "PermissionType":{"shape":"PermissionType"},
-        "Status":{"shape":"ShareStatus"}
+        "Status":{"shape":"ShareStatus"},
+        "StatusMessage":{"shape":"StatusMessage"}
       }
     },
     "WorkloadSummaries":{

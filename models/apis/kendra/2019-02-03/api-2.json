@@ -970,6 +970,38 @@
       "type":"string",
       "enum":["TEXT_WITH_HIGHLIGHTS_VALUE"]
     },
+    "AlfrescoConfiguration":{
+      "type":"structure",
+      "required":[
+        "SiteUrl",
+        "SiteId",
+        "SecretArn",
+        "SslCertificateS3Path"
+      ],
+      "members":{
+        "SiteUrl":{"shape":"SiteUrl"},
+        "SiteId":{"shape":"SiteId"},
+        "SecretArn":{"shape":"SecretArn"},
+        "SslCertificateS3Path":{"shape":"S3Path"},
+        "CrawlSystemFolders":{"shape":"Boolean"},
+        "CrawlComments":{"shape":"Boolean"},
+        "EntityFilter":{"shape":"EntityFilter"},
+        "DocumentLibraryFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "BlogFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "WikiFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "InclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "VpcConfiguration":{"shape":"DataSourceVpcConfiguration"}
+      }
+    },
+    "AlfrescoEntity":{
+      "type":"string",
+      "enum":[
+        "wiki",
+        "blog",
+        "documentLibrary"
+      ]
+    },
     "AmazonResourceName":{
       "type":"string",
       "max":1011,
@@ -1704,7 +1736,8 @@
         "BoxConfiguration":{"shape":"BoxConfiguration"},
         "QuipConfiguration":{"shape":"QuipConfiguration"},
         "JiraConfiguration":{"shape":"JiraConfiguration"},
-        "GitHubConfiguration":{"shape":"GitHubConfiguration"}
+        "GitHubConfiguration":{"shape":"GitHubConfiguration"},
+        "AlfrescoConfiguration":{"shape":"AlfrescoConfiguration"}
       }
     },
     "DataSourceDateFieldFormat":{
@@ -1881,7 +1914,8 @@
         "BOX",
         "QUIP",
         "JIRA",
-        "GITHUB"
+        "GITHUB",
+        "ALFRESCO"
       ]
     },
     "DataSourceVpcConfiguration":{
@@ -2520,6 +2554,12 @@
         "FirstName":{"shape":"NameType"},
         "LastName":{"shape":"NameType"}
       }
+    },
+    "EntityFilter":{
+      "type":"list",
+      "member":{"shape":"AlfrescoEntity"},
+      "max":3,
+      "min":1
     },
     "EntityId":{
       "type":"string",
@@ -4367,6 +4407,12 @@
       "min":10,
       "pattern":"(20\\d{2})-(0?[1-9]|1[0-2])-(0?[1-9]|1\\d|2\\d|3[01])"
     },
+    "SiteId":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[A-Za-z0-9-]+$"
+    },
     "SiteMap":{
       "type":"string",
       "max":2048,
@@ -4385,6 +4431,12 @@
       "member":{"shape":"SiteMap"},
       "max":3,
       "min":0
+    },
+    "SiteUrl":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^https:\\/\\/[a-zA-Z0-9_\\-\\.]+$"
     },
     "SlackConfiguration":{
       "type":"structure",

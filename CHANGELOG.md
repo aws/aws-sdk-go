@@ -1,3 +1,22 @@
+Release v1.44.46 (2022-06-30)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * This feature introduces the API support for Athena's parameterized query and BatchGetPreparedStatement API.
+* `service/customer-profiles`: Updates service API and documentation
+* `service/elasticmapreduce`: Updates service API and documentation
+  * This release adds support for the ExecutionRoleArn parameter in the AddJobFlowSteps and DescribeStep APIs. Customers can use ExecutionRoleArn to specify the IAM role used for each job they submit using the AddJobFlowSteps API.
+* `service/glue`: Updates service API and documentation
+  * This release adds tag as an input of CreateDatabase
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now provides a data source connector for alfresco
+* `service/mwaa`: Updates service API and documentation
+* `service/pricing`: Updates service API and documentation
+* `service/wellarchitected`: Updates service API and documentation
+* `service/workmail`: Updates service API, documentation, and paginators
+  * This release adds support for managing user availability configurations in Amazon WorkMail.
+
 Release v1.44.45 (2022-06-29)
 ===
 
