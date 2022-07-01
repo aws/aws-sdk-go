@@ -14,6 +14,6 @@ import "github.com/aws/aws-sdk-go/aws/request"
 // This is a no-op for Go 1.18 and above.
 func ApplyHTTPTransportFixes(r *request.Request) {
 	r.Handlers.Sign.PushBack(func(r *request.Request) {
-		r.HTTPRequest.Header.Set("Expect", "100-Continue")
+		r.HTTPRequest.Header.Set("Expect", "100-continue")
 	})
 }
