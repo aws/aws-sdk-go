@@ -11734,7 +11734,7 @@ type DescribeFleetAdvisorDatabasesInput struct {
 	// If you specify any of the following filters, the output includes information
 	// for only those databases that meet the filter criteria:
 	//
-	//    * database-id – The ID of the database, for example d4610ac5-e323-4ad9-bc50-eaf7249dfe9d.
+	//    * database-id – The ID of the database.
 	//
 	//    * database-name – The name of the database.
 	//
@@ -11746,7 +11746,7 @@ type DescribeFleetAdvisorDatabasesInput struct {
 	//
 	//    * collector-name – The name of the associated Fleet Advisor collector.
 	//
-	// An example is: describe-fleet-advisor-databases --filter Name="database-id",Values="d4610ac5-e323-4ad9-bc50-eaf7249dfe9d"
+	// An example is: describe-fleet-advisor-databases --filter Name="database-id",Values="45"
 	Filters []*Filter `type:"list"`
 
 	// Sets the maximum number of records returned in the response.
@@ -13878,6 +13878,11 @@ type ElasticsearchSettings struct {
 	//
 	// ServiceAccessRoleArn is a required field
 	ServiceAccessRoleArn *string `type:"string" required:"true"`
+
+	// Set this option to true for DMS to migrate documentation using the documentation
+	// type _doc. OpenSearch and an Elasticsearch cluster only support the _doc
+	// documentation type in versions 7. x and later. The default value is false.
+	UseNewMappingType *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -13935,6 +13940,12 @@ func (s *ElasticsearchSettings) SetFullLoadErrorPercentage(v int64) *Elasticsear
 // SetServiceAccessRoleArn sets the ServiceAccessRoleArn field's value.
 func (s *ElasticsearchSettings) SetServiceAccessRoleArn(v string) *ElasticsearchSettings {
 	s.ServiceAccessRoleArn = &v
+	return s
+}
+
+// SetUseNewMappingType sets the UseNewMappingType field's value.
+func (s *ElasticsearchSettings) SetUseNewMappingType(v bool) *ElasticsearchSettings {
+	s.UseNewMappingType = &v
 	return s
 }
 
@@ -16623,6 +16634,10 @@ type MicrosoftSQLServerSettings struct {
 	// Fully qualified domain name of the endpoint.
 	ServerName *string `type:"string"`
 
+	// Use the TrimSpaceInChar source endpoint setting to trim data on CHAR and
+	// NCHAR data types during migration. The default value is true.
+	TrimSpaceInChar *bool `type:"boolean"`
+
 	// Use this to attribute to transfer data for full-load operations using BCP.
 	// When the target table contains an identity column that does not exist in
 	// the source table, you must disable the use BCP for loading table option.
@@ -16717,6 +16732,12 @@ func (s *MicrosoftSQLServerSettings) SetSecretsManagerSecretId(v string) *Micros
 // SetServerName sets the ServerName field's value.
 func (s *MicrosoftSQLServerSettings) SetServerName(v string) *MicrosoftSQLServerSettings {
 	s.ServerName = &v
+	return s
+}
+
+// SetTrimSpaceInChar sets the TrimSpaceInChar field's value.
+func (s *MicrosoftSQLServerSettings) SetTrimSpaceInChar(v bool) *MicrosoftSQLServerSettings {
+	s.TrimSpaceInChar = &v
 	return s
 }
 
@@ -18700,6 +18721,10 @@ type OracleSettings struct {
 	// eliminates the need to connect to an active database that might be in production.
 	StandbyDelayTime *int64 `type:"integer"`
 
+	// Use the TrimSpaceInChar source endpoint setting to trim data on CHAR and
+	// NCHAR data types during migration. The default value is true.
+	TrimSpaceInChar *bool `type:"boolean"`
+
 	// Set this attribute to true in order to use the Binary Reader to capture change
 	// data for an Amazon RDS for Oracle as the source. This tells the DMS instance
 	// to use any specified prefix replacement to access all online redo logs.
@@ -18956,6 +18981,12 @@ func (s *OracleSettings) SetSpatialDataOptionToGeoJsonFunctionName(v string) *Or
 // SetStandbyDelayTime sets the StandbyDelayTime field's value.
 func (s *OracleSettings) SetStandbyDelayTime(v int64) *OracleSettings {
 	s.StandbyDelayTime = &v
+	return s
+}
+
+// SetTrimSpaceInChar sets the TrimSpaceInChar field's value.
+func (s *OracleSettings) SetTrimSpaceInChar(v bool) *OracleSettings {
+	s.TrimSpaceInChar = &v
 	return s
 }
 
@@ -19314,6 +19345,10 @@ type PostgreSQLSettings struct {
 	// and ModifyReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_ModifyReplicationTask.html).
 	SlotName *string `type:"string"`
 
+	// Use the TrimSpaceInChar source endpoint setting to trim data on CHAR and
+	// NCHAR data types during migration. The default value is true.
+	TrimSpaceInChar *bool `type:"boolean"`
+
 	// Endpoint connection user name.
 	Username *string `type:"string"`
 }
@@ -19435,6 +19470,12 @@ func (s *PostgreSQLSettings) SetServerName(v string) *PostgreSQLSettings {
 // SetSlotName sets the SlotName field's value.
 func (s *PostgreSQLSettings) SetSlotName(v string) *PostgreSQLSettings {
 	s.SlotName = &v
+	return s
+}
+
+// SetTrimSpaceInChar sets the TrimSpaceInChar field's value.
+func (s *PostgreSQLSettings) SetTrimSpaceInChar(v bool) *PostgreSQLSettings {
+	s.TrimSpaceInChar = &v
 	return s
 }
 
@@ -21109,17 +21150,38 @@ type ReplicationTask struct {
 	// The reason the replication task was stopped. This response parameter can
 	// return one of the following values:
 	//
-	//    * "STOP_REASON_FULL_LOAD_COMPLETED" – Full-load migration completed.
+	//    * "Stop Reason NORMAL"
 	//
-	//    * "STOP_REASON_CACHED_CHANGES_APPLIED" – Change data capture (CDC) load
-	//    completed.
+	//    * "Stop Reason RECOVERABLE_ERROR"
 	//
-	//    * "STOP_REASON_CACHED_CHANGES_NOT_APPLIED" – In a full-load and CDC
-	//    migration, the full load stopped as specified before starting the CDC
-	//    migration.
+	//    * "Stop Reason FATAL_ERROR"
 	//
-	//    * "STOP_REASON_SERVER_TIME" – The migration stopped at the specified
-	//    server time.
+	//    * "Stop Reason FULL_LOAD_ONLY_FINISHED"
+	//
+	//    * "Stop Reason STOPPED_AFTER_FULL_LOAD" – Full load completed, with
+	//    cached changes not applied
+	//
+	//    * "Stop Reason STOPPED_AFTER_CACHED_EVENTS" – Full load completed, with
+	//    cached changes applied
+	//
+	//    * "Stop Reason EXPRESS_LICENSE_LIMITS_REACHED"
+	//
+	//    * "Stop Reason STOPPED_AFTER_DDL_APPLY" – User-defined stop task after
+	//    DDL applied
+	//
+	//    * "Stop Reason STOPPED_DUE_TO_LOW_MEMORY"
+	//
+	//    * "Stop Reason STOPPED_DUE_TO_LOW_DISK"
+	//
+	//    * "Stop Reason STOPPED_AT_SERVER_TIME" – User-defined server time for
+	//    stopping task
+	//
+	//    * "Stop Reason STOPPED_AT_COMMIT_TIME" – User-defined commit time for
+	//    stopping task
+	//
+	//    * "Stop Reason RECONFIGURATION_RESTART"
+	//
+	//    * "Stop Reason RECYCLE_TASK"
 	StopReason *string `type:"string"`
 
 	// Table mappings specified in the task.
@@ -22225,6 +22287,10 @@ type S3Settings struct {
 	// The default value is false. Valid values are true, false, y, and n.
 	AddColumnName *bool `type:"boolean"`
 
+	// Use the S3 target endpoint setting AddTrailingPaddingCharacter to add padding
+	// on string data. The default value is false.
+	AddTrailingPaddingCharacter *bool `type:"boolean"`
+
 	// An optional parameter to set a folder name in the S3 bucket. If provided,
 	// tables are created in the path bucketFolder/schema_name/table_name/. If this
 	// parameter isn't specified, then the path used is schema_name/table_name/.
@@ -22471,6 +22537,15 @@ type S3Settings struct {
 	//    * s3:DeleteBucketPolicy
 	EncryptionMode *string `type:"string" enum:"EncryptionModeValue"`
 
+	// To specify a bucket owner and prevent sniping, you can use the ExpectedBucketOwner
+	// endpoint setting.
+	//
+	// Example: --s3-settings='{"ExpectedBucketOwner": "AWS_Account_ID"}'
+	//
+	// When you make a request to test a connection or perform a migration, S3 checks
+	// the account ID of the bucket owner against the specified parameter.
+	ExpectedBucketOwner *string `type:"string"`
+
 	// Specifies how tables are defined in the S3 source files only.
 	ExternalTableDefinition *string `type:"string"`
 
@@ -22647,6 +22722,12 @@ func (s *S3Settings) SetAddColumnName(v bool) *S3Settings {
 	return s
 }
 
+// SetAddTrailingPaddingCharacter sets the AddTrailingPaddingCharacter field's value.
+func (s *S3Settings) SetAddTrailingPaddingCharacter(v bool) *S3Settings {
+	s.AddTrailingPaddingCharacter = &v
+	return s
+}
+
 // SetBucketFolder sets the BucketFolder field's value.
 func (s *S3Settings) SetBucketFolder(v string) *S3Settings {
 	s.BucketFolder = &v
@@ -22782,6 +22863,12 @@ func (s *S3Settings) SetEncodingType(v string) *S3Settings {
 // SetEncryptionMode sets the EncryptionMode field's value.
 func (s *S3Settings) SetEncryptionMode(v string) *S3Settings {
 	s.EncryptionMode = &v
+	return s
+}
+
+// SetExpectedBucketOwner sets the ExpectedBucketOwner field's value.
+func (s *S3Settings) SetExpectedBucketOwner(v string) *S3Settings {
+	s.ExpectedBucketOwner = &v
 	return s
 }
 

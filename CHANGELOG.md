@@ -1,3 +1,12 @@
+Release v1.44.47 (2022-07-01)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API and documentation
+  * Added new features for AWS DMS version 3.4.7 that includes new endpoint settings for S3, OpenSearch, Postgres, SQLServer and Oracle.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds support for additional retention periods to Performance Insights.
+
 Release v1.44.46 (2022-06-30)
 ===
 

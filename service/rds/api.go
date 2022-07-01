@@ -619,7 +619,7 @@ func (c *RDS) BacktrackDBClusterRequest(input *BacktrackDBClusterInput) (req *re
 // (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.Backtrack.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora MySQL DB clusters.
+// This action applies only to Aurora MySQL DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -877,42 +877,13 @@ func (c *RDS) CopyDBClusterSnapshotRequest(input *CopyDBClusterSnapshotInput) (r
 //
 // You can copy an encrypted DB cluster snapshot from another Amazon Web Services
 // Region. In that case, the Amazon Web Services Region where you call the CopyDBClusterSnapshot
-// action is the destination Amazon Web Services Region for the encrypted DB
-// cluster snapshot to be copied to. To copy an encrypted DB cluster snapshot
+// operation is the destination Amazon Web Services Region for the encrypted
+// DB cluster snapshot to be copied to. To copy an encrypted DB cluster snapshot
 // from another Amazon Web Services Region, you must provide the following values:
 //
 //    * KmsKeyId - The Amazon Web Services Key Management System (Amazon Web
 //    Services KMS) key identifier for the key to use to encrypt the copy of
 //    the DB cluster snapshot in the destination Amazon Web Services Region.
-//
-//    * PreSignedUrl - A URL that contains a Signature Version 4 signed request
-//    for the CopyDBClusterSnapshot action to be called in the source Amazon
-//    Web Services Region where the DB cluster snapshot is copied from. The
-//    pre-signed URL must be a valid request for the CopyDBClusterSnapshot API
-//    action that can be executed in the source Amazon Web Services Region that
-//    contains the encrypted DB cluster snapshot to be copied. The pre-signed
-//    URL request must contain the following parameter values: KmsKeyId - The
-//    Amazon Web Services KMS key identifier for the KMS key to use to encrypt
-//    the copy of the DB cluster snapshot in the destination Amazon Web Services
-//    Region. This is the same identifier for both the CopyDBClusterSnapshot
-//    action that is called in the destination Amazon Web Services Region, and
-//    the action contained in the pre-signed URL. DestinationRegion - The name
-//    of the Amazon Web Services Region that the DB cluster snapshot is to be
-//    created in. SourceDBClusterSnapshotIdentifier - The DB cluster snapshot
-//    identifier for the encrypted DB cluster snapshot to be copied. This identifier
-//    must be in the Amazon Resource Name (ARN) format for the source Amazon
-//    Web Services Region. For example, if you are copying an encrypted DB cluster
-//    snapshot from the us-west-2 Amazon Web Services Region, then your SourceDBClusterSnapshotIdentifier
-//    looks like the following example: arn:aws:rds:us-west-2:123456789012:cluster-snapshot:aurora-cluster1-snapshot-20161115.
-//    To learn how to generate a Signature Version 4 signed request, see Authenticating
-//    Requests: Using Query Parameters (Amazon Web Services Signature Version
-//    4) (https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html)
-//    and Signature Version 4 Signing Process (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
-//    If you are using an Amazon Web Services SDK tool or the CLI, you can specify
-//    SourceRegion (or --source-region for the CLI) instead of specifying PreSignedUrl
-//    manually. Specifying SourceRegion autogenerates a pre-signed URL that
-//    is a valid request for the operation that can be executed in the source
-//    Amazon Web Services Region.
 //
 //    * TargetDBClusterSnapshotIdentifier - The identifier for the new copy
 //    of the DB cluster snapshot in the destination Amazon Web Services Region.
@@ -920,7 +891,7 @@ func (c *RDS) CopyDBClusterSnapshotRequest(input *CopyDBClusterSnapshotInput) (r
 //    * SourceDBClusterSnapshotIdentifier - The DB cluster snapshot identifier
 //    for the encrypted DB cluster snapshot to be copied. This identifier must
 //    be in the ARN format for the source Amazon Web Services Region and is
-//    the same value as the SourceDBClusterSnapshotIdentifier in the pre-signed
+//    the same value as the SourceDBClusterSnapshotIdentifier in the presigned
 //    URL.
 //
 // To cancel the copy operation once it is in progress, delete the target DB
@@ -1122,7 +1093,7 @@ func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *request.Re
 //
 // You can copy a snapshot from one Amazon Web Services Region to another. In
 // that case, the Amazon Web Services Region where you call the CopyDBSnapshot
-// action is the destination Amazon Web Services Region for the DB snapshot
+// operation is the destination Amazon Web Services Region for the DB snapshot
 // copy.
 //
 // This command doesn't apply to RDS Custom.
@@ -1435,9 +1406,7 @@ func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.
 //
 // You can use the ReplicationSourceIdentifier parameter to create an Amazon
 // Aurora DB cluster as a read replica of another DB cluster or Amazon RDS MySQL
-// or PostgreSQL DB instance. For cross-Region replication where the DB cluster
-// identified by ReplicationSourceIdentifier is encrypted, also specify the
-// PreSignedUrl parameter.
+// or PostgreSQL DB instance.
 //
 // For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
@@ -1587,7 +1556,7 @@ func (c *RDS) CreateDBClusterEndpointRequest(input *CreateDBClusterEndpointInput
 // Creates a new custom endpoint and associates it with an Amazon Aurora DB
 // cluster.
 //
-// This action only applies to Aurora DB clusters.
+// This action applies only to Aurora DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1709,8 +1678,8 @@ func (c *RDS) CreateDBClusterParameterGroupRequest(input *CreateDBClusterParamet
 // character set for the default database defined by the character_set_database
 // parameter. You can use the Parameter Groups option of the Amazon RDS console
 // (https://console.aws.amazon.com/rds/) or the DescribeDBClusterParameters
-// action to verify that your DB cluster parameter group has been created or
-// modified.
+// operation to verify that your DB cluster parameter group has been created
+// or modified.
 //
 // For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
@@ -1900,6 +1869,18 @@ func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *reques
 //
 // Creates a new DB instance.
 //
+// The new DB instance can be an RDS DB instance, or it can be a DB instance
+// in an Aurora DB cluster. For an Aurora DB cluster, you can call this operation
+// multiple times to add more than one DB instance to the cluster.
+//
+// For more information about creating an RDS DB instance, see Creating an Amazon
+// RDS DB instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreateDBInstance.html)
+// in the Amazon RDS User Guide.
+//
+// For more information about creating a DB instance in an Aurora DB cluster,
+// see Creating an Amazon Aurora DB cluster (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.CreateInstance.html)
+// in the Amazon Aurora User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2049,7 +2030,7 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 // with Read Replicas (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html)
 // in the Amazon RDS User Guide.
 //
-// Amazon Aurora doesn't support this action. Call the CreateDBInstance action
+// Amazon Aurora doesn't support this operation. Call the CreateDBInstance operation
 // to create a DB instance for an Aurora DB cluster.
 //
 // All read replica DB instances are created with backups disabled. All other
@@ -2767,10 +2748,11 @@ func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput
 
 // CreateEventSubscription API operation for Amazon Relational Database Service.
 //
-// Creates an RDS event notification subscription. This action requires a topic
-// Amazon Resource Name (ARN) created by either the RDS console, the SNS console,
-// or the SNS API. To obtain an ARN with SNS, you must create a topic in Amazon
-// SNS and subscribe to the topic. The ARN is displayed in the SNS console.
+// Creates an RDS event notification subscription. This operation requires a
+// topic Amazon Resource Name (ARN) created by either the RDS console, the SNS
+// console, or the SNS API. To obtain an ARN with SNS, you must create a topic
+// in Amazon SNS and subscribe to the topic. The ARN is displayed in the SNS
+// console.
 //
 // You can specify the type of source (SourceType) that you want to be notified
 // of and provide a list of RDS sources (SourceIds) that triggers the events.
@@ -2896,7 +2878,7 @@ func (c *RDS) CreateGlobalClusterRequest(input *CreateGlobalClusterInput) (req *
 // Aurora cluster during the create operation, and this cluster becomes the
 // primary cluster of the global database.
 //
-// This action only applies to Aurora DB clusters.
+// This action applies only to Aurora DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8141,6 +8123,11 @@ func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *request.Re
 // DB parameter group, DB security group, DB snapshot, DB cluster snapshot group,
 // or RDS Proxy can be obtained by providing the name as a parameter.
 //
+// For more information on working with events, see Monitoring Amazon RDS events
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/working-with-events.html)
+// in the Amazon RDS User Guide and Monitoring Amazon Aurora events (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/working-with-events.html)
+// in the Amazon Aurora User Guide.
+//
 // By default, RDS returns events that were generated in the past hour.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9738,7 +9725,7 @@ func (c *RDS) FailoverDBClusterRequest(input *FailoverDBClusterInput) (req *requ
 //
 // An Amazon Aurora DB cluster automatically fails over to an Aurora Replica,
 // if one exists, when the primary DB instance fails. A Multi-AZ DB cluster
-// automatically fails over to a readbable standby DB instance when the primary
+// automatically fails over to a readable standby DB instance when the primary
 // DB instance fails.
 //
 // To simulate a failure of a primary instance for testing, you can force a
@@ -10577,7 +10564,7 @@ func (c *RDS) ModifyDBClusterParameterGroupRequest(input *ModifyDBClusterParamet
 // when creating the default database for a DB cluster, such as the character
 // set for the default database defined by the character_set_database parameter.
 // You can use the Parameter Groups option of the Amazon RDS console (https://console.aws.amazon.com/rds/)
-// or the DescribeDBClusterParameters action to verify that your DB cluster
+// or the DescribeDBClusterParameters operation to verify that your DB cluster
 // parameter group has been created or modified.
 //
 // If the modified DB cluster parameter group is used by an Aurora Serverless
@@ -10697,7 +10684,7 @@ func (c *RDS) ModifyDBClusterSnapshotAttributeRequest(input *ModifyDBClusterSnap
 //
 // To view which Amazon Web Services accounts have access to copy or restore
 // a manual DB cluster snapshot, or whether a manual DB cluster snapshot is
-// public or private, use the DescribeDBClusterSnapshotAttributes API action.
+// public or private, use the DescribeDBClusterSnapshotAttributes API operation.
 // The accounts are returned as values for the restore attribute.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -11394,7 +11381,7 @@ func (c *RDS) ModifyDBSnapshotAttributeRequest(input *ModifyDBSnapshotAttributeI
 //
 // To view which Amazon Web Services accounts have access to copy or restore
 // a manual DB snapshot, or whether a manual DB snapshot public or private,
-// use the DescribeDBSnapshotAttributes API action. The accounts are returned
+// use the DescribeDBSnapshotAttributes API operation. The accounts are returned
 // as values for the restore attribute.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -14913,7 +14900,7 @@ func (c *RDS) StopDBInstanceAutomatedBackupsReplicationRequest(input *StopDBInst
 //
 // Stops automated backup replication for a DB instance.
 //
-// This command doesn't apply to RDS Custom.
+// This command doesn't apply to RDS Custom, Aurora MySQL, and Aurora PostgreSQL.
 //
 // For more information, see Replicating Automated Backups to Another Amazon
 // Web Services Region (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReplicateBackups.html)
@@ -16853,23 +16840,27 @@ type CopyDBClusterSnapshotInput struct {
 	// KmsKeyId parameter, an error is returned.
 	KmsKeyId *string `type:"string"`
 
-	// The URL that contains a Signature Version 4 signed request for the CopyDBClusterSnapshot
-	// API action in the Amazon Web Services Region that contains the source DB
-	// cluster snapshot to copy. The PreSignedUrl parameter must be used when copying
-	// an encrypted DB cluster snapshot from another Amazon Web Services Region.
-	// Don't specify PreSignedUrl when you are copying an encrypted DB cluster snapshot
-	// in the same Amazon Web Services Region.
+	// When you are copying a DB cluster snapshot from one Amazon Web Services GovCloud
+	// (US) Region to another, the URL that contains a Signature Version 4 signed
+	// request for the CopyDBClusterSnapshot API operation in the Amazon Web Services
+	// Region that contains the source DB cluster snapshot to copy. Use the PreSignedUrl
+	// parameter when copying an encrypted DB cluster snapshot from another Amazon
+	// Web Services Region. Don't specify PreSignedUrl when copying an encrypted
+	// DB cluster snapshot in the same Amazon Web Services Region.
 	//
-	// The pre-signed URL must be a valid request for the CopyDBClusterSnapshot
-	// API action that can be executed in the source Amazon Web Services Region
-	// that contains the encrypted DB cluster snapshot to be copied. The pre-signed
-	// URL request must contain the following parameter values:
+	// This setting applies only to Amazon Web Services GovCloud (US) Regions. It's
+	// ignored in other Amazon Web Services Regions.
 	//
-	//    * KmsKeyId - The Amazon Web Services KMS key identifier for the KMS key
-	//    to use to encrypt the copy of the DB cluster snapshot in the destination
-	//    Amazon Web Services Region. This is the same identifier for both the CopyDBClusterSnapshot
-	//    action that is called in the destination Amazon Web Services Region, and
-	//    the action contained in the pre-signed URL.
+	// The presigned URL must be a valid request for the CopyDBClusterSnapshot API
+	// operation that can run in the source Amazon Web Services Region that contains
+	// the encrypted DB cluster snapshot to copy. The presigned URL request must
+	// contain the following parameter values:
+	//
+	//    * KmsKeyId - The KMS key identifier for the KMS key to use to encrypt
+	//    the copy of the DB cluster snapshot in the destination Amazon Web Services
+	//    Region. This is the same identifier for both the CopyDBClusterSnapshot
+	//    operation that is called in the destination Amazon Web Services Region,
+	//    and the operation contained in the presigned URL.
 	//
 	//    * DestinationRegion - The name of the Amazon Web Services Region that
 	//    the DB cluster snapshot is to be created in.
@@ -16888,9 +16879,9 @@ type CopyDBClusterSnapshotInput struct {
 	//
 	// If you are using an Amazon Web Services SDK tool or the CLI, you can specify
 	// SourceRegion (or --source-region for the CLI) instead of specifying PreSignedUrl
-	// manually. Specifying SourceRegion autogenerates a pre-signed URL that is
-	// a valid request for the operation that can be executed in the source Amazon
-	// Web Services Region.
+	// manually. Specifying SourceRegion autogenerates a presigned URL that is a
+	// valid request for the operation that can run in the source Amazon Web Services
+	// Region.
 	PreSignedUrl *string `type:"string"`
 
 	// The identifier of the DB cluster snapshot to copy. This parameter isn't case-sensitive.
@@ -17236,36 +17227,40 @@ type CopyDBSnapshotInput struct {
 	// in the Amazon RDS User Guide.
 	OptionGroupName *string `type:"string"`
 
-	// The URL that contains a Signature Version 4 signed request for the CopyDBSnapshot
-	// API action in the source Amazon Web Services Region that contains the source
-	// DB snapshot to copy.
+	// When you are copying a snapshot from one Amazon Web Services GovCloud (US)
+	// Region to another, the URL that contains a Signature Version 4 signed request
+	// for the CopyDBSnapshot API operation in the source Amazon Web Services Region
+	// that contains the source DB snapshot to copy.
+	//
+	// This setting applies only to Amazon Web Services GovCloud (US) Regions. It's
+	// ignored in other Amazon Web Services Regions.
 	//
 	// You must specify this parameter when you copy an encrypted DB snapshot from
 	// another Amazon Web Services Region by using the Amazon RDS API. Don't specify
 	// PreSignedUrl when you are copying an encrypted DB snapshot in the same Amazon
 	// Web Services Region.
 	//
-	// The presigned URL must be a valid request for the CopyDBSnapshot API action
-	// that can be executed in the source Amazon Web Services Region that contains
-	// the encrypted DB snapshot to be copied. The presigned URL request must contain
-	// the following parameter values:
+	// The presigned URL must be a valid request for the CopyDBClusterSnapshot API
+	// operation that can run in the source Amazon Web Services Region that contains
+	// the encrypted DB cluster snapshot to copy. The presigned URL request must
+	// contain the following parameter values:
 	//
 	//    * DestinationRegion - The Amazon Web Services Region that the encrypted
 	//    DB snapshot is copied to. This Amazon Web Services Region is the same
-	//    one where the CopyDBSnapshot action is called that contains this presigned
+	//    one where the CopyDBSnapshot operation is called that contains this presigned
 	//    URL. For example, if you copy an encrypted DB snapshot from the us-west-2
 	//    Amazon Web Services Region to the us-east-1 Amazon Web Services Region,
-	//    then you call the CopyDBSnapshot action in the us-east-1 Amazon Web Services
-	//    Region and provide a presigned URL that contains a call to the CopyDBSnapshot
-	//    action in the us-west-2 Amazon Web Services Region. For this example,
-	//    the DestinationRegion in the presigned URL must be set to the us-east-1
-	//    Amazon Web Services Region.
+	//    then you call the CopyDBSnapshot operation in the us-east-1 Amazon Web
+	//    Services Region and provide a presigned URL that contains a call to the
+	//    CopyDBSnapshot operation in the us-west-2 Amazon Web Services Region.
+	//    For this example, the DestinationRegion in the presigned URL must be set
+	//    to the us-east-1 Amazon Web Services Region.
 	//
-	//    * KmsKeyId - The Amazon Web Services KMS key identifier for the KMS key
-	//    to use to encrypt the copy of the DB snapshot in the destination Amazon
-	//    Web Services Region. This is the same identifier for both the CopyDBSnapshot
-	//    action that is called in the destination Amazon Web Services Region, and
-	//    the action contained in the presigned URL.
+	//    * KmsKeyId - The KMS key identifier for the KMS key to use to encrypt
+	//    the copy of the DB snapshot in the destination Amazon Web Services Region.
+	//    This is the same identifier for both the CopyDBSnapshot operation that
+	//    is called in the destination Amazon Web Services Region, and the operation
+	//    contained in the presigned URL.
 	//
 	//    * SourceDBSnapshotIdentifier - The DB snapshot identifier for the encrypted
 	//    snapshot to be copied. This identifier must be in the Amazon Resource
@@ -17281,9 +17276,9 @@ type CopyDBSnapshotInput struct {
 	//
 	// If you are using an Amazon Web Services SDK tool or the CLI, you can specify
 	// SourceRegion (or --source-region for the CLI) instead of specifying PreSignedUrl
-	// manually. Specifying SourceRegion autogenerates a pre-signed URL that is
-	// a valid request for the operation that can be executed in the source Amazon
-	// Web Services Region.
+	// manually. Specifying SourceRegion autogenerates a presigned URL that is a
+	// valid request for the operation that can run in the source Amazon Web Services
+	// Region.
 	PreSignedUrl *string `type:"string"`
 
 	// The identifier for the source DB snapshot.
@@ -17299,8 +17294,7 @@ type CopyDBSnapshotInput struct {
 	// be the Amazon Resource Name (ARN) of the shared DB snapshot.
 	//
 	// If you are copying an encrypted snapshot this parameter must be in the ARN
-	// format for the source Amazon Web Services Region, and must match the SourceDBSnapshotIdentifier
-	// in the PreSignedUrl parameter.
+	// format for the source Amazon Web Services Region.
 	//
 	// Constraints:
 	//
@@ -18539,7 +18533,7 @@ type CreateDBClusterInput struct {
 	// isn't enabled.
 	//
 	// For more information, see IAM Database Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html)
-	// in the Amazon Aurora User Guide..
+	// in the Amazon Aurora User Guide.
 	//
 	// Valid for: Aurora DB clusters only
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
@@ -18584,6 +18578,8 @@ type CreateDBClusterInput struct {
 	// The multimaster engine mode only applies for DB clusters created with Aurora
 	// MySQL version 5.6.10a.
 	//
+	// The serverless engine mode only applies for Aurora Serverless v1 DB clusters.
+	//
 	// For Aurora PostgreSQL, the global engine mode isn't required, and both the
 	// parallelquery and the multimaster engine modes currently aren't supported.
 	//
@@ -18591,6 +18587,8 @@ type CreateDBClusterInput struct {
 	// see the following sections in the Amazon Aurora User Guide:
 	//
 	//    * Limitations of Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html#aurora-serverless.limitations)
+	//
+	//    * Requirements for Aurora Serverless v2 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.requirements.html)
 	//
 	//    * Limitations of Parallel Query (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-mysql-parallel-query.html#aurora-mysql-parallel-query-limitations)
 	//
@@ -18765,8 +18763,27 @@ type CreateDBClusterInput struct {
 	// Valid for: Multi-AZ DB clusters only
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
-	// The amount of time, in days, to retain Performance Insights data. Valid values
-	// are 7 or 731 (2 years).
+	// The number of days to retain Performance Insights data. The default is 7
+	// days. The following values are valid:
+	//
+	//    * 7
+	//
+	//    * month * 31, where month is a number of months from 1-23
+	//
+	//    * 731
+	//
+	// For example, the following values are valid:
+	//
+	//    * 93 (3 months * 31)
+	//
+	//    * 341 (11 months * 31)
+	//
+	//    * 589 (19 months * 31)
+	//
+	//    * 731
+	//
+	// If you specify a retention period such as 94, which isn't a valid value,
+	// RDS issues an error.
 	//
 	// Valid for: Multi-AZ DB clusters only
 	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
@@ -18788,22 +18805,24 @@ type CreateDBClusterInput struct {
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	Port *int64 `type:"integer"`
 
-	// A URL that contains a Signature Version 4 signed request for the CreateDBCluster
-	// action to be called in the source Amazon Web Services Region where the DB
-	// cluster is replicated from. Specify PreSignedUrl only when you are performing
-	// cross-Region replication from an encrypted DB cluster.
+	// When you are replicating a DB cluster from one Amazon Web Services GovCloud
+	// (US) Region to another, an URL that contains a Signature Version 4 signed
+	// request for the CreateDBCluster operation to be called in the source Amazon
+	// Web Services Region where the DB cluster is replicated from. Specify PreSignedUrl
+	// only when you are performing cross-Region replication from an encrypted DB
+	// cluster.
 	//
-	// The pre-signed URL must be a valid request for the CreateDBCluster API action
-	// that can be executed in the source Amazon Web Services Region that contains
-	// the encrypted DB cluster to be copied.
+	// The presigned URL must be a valid request for the CreateDBCluster API operation
+	// that can run in the source Amazon Web Services Region that contains the encrypted
+	// DB cluster to copy.
 	//
-	// The pre-signed URL request must contain the following parameter values:
+	// The presigned URL request must contain the following parameter values:
 	//
-	//    * KmsKeyId - The Amazon Web Services KMS key identifier for the KMS key
-	//    to use to encrypt the copy of the DB cluster in the destination Amazon
-	//    Web Services Region. This should refer to the same KMS key for both the
-	//    CreateDBCluster action that is called in the destination Amazon Web Services
-	//    Region, and the action contained in the pre-signed URL.
+	//    * KmsKeyId - The KMS key identifier for the KMS key to use to encrypt
+	//    the copy of the DB cluster in the destination Amazon Web Services Region.
+	//    This should refer to the same KMS key for both the CreateDBCluster operation
+	//    that is called in the destination Amazon Web Services Region, and the
+	//    operation contained in the presigned URL.
 	//
 	//    * DestinationRegion - The name of the Amazon Web Services Region that
 	//    Aurora read replica will be created in.
@@ -18822,9 +18841,9 @@ type CreateDBClusterInput struct {
 	//
 	// If you are using an Amazon Web Services SDK tool or the CLI, you can specify
 	// SourceRegion (or --source-region for the CLI) instead of specifying PreSignedUrl
-	// manually. Specifying SourceRegion autogenerates a pre-signed URL that is
-	// a valid request for the operation that can be executed in the source Amazon
-	// Web Services Region.
+	// manually. Specifying SourceRegion autogenerates a presigned URL that is a
+	// valid request for the operation that can run in the source Amazon Web Services
+	// Region.
 	//
 	// Valid for: Aurora DB clusters only
 	PreSignedUrl *string `type:"string"`
@@ -19734,7 +19753,7 @@ type CreateDBInstanceInput struct {
 	//
 	//    * Can't be set to 0 if the DB instance is a source to read replicas
 	//
-	//    * Can't be set to 0 or 35 for an RDS Custom for Oracle DB instance
+	//    * Can't be set to 0 for an RDS Custom for Oracle DB instance
 	BackupRetentionPeriod *int64 `type:"integer"`
 
 	// Specifies where automated backups and manual snapshots are stored.
@@ -19791,11 +19810,12 @@ type CreateDBInstanceInput struct {
 	// This setting doesn't apply to RDS Custom.
 	DBClusterIdentifier *string `type:"string"`
 
-	// The compute and memory capacity of the DB instance, for example db.m4.large.
+	// The compute and memory capacity of the DB instance, for example db.m5.large.
 	// Not all DB instance classes are available in all Amazon Web Services Regions,
 	// or for all database engines. For the full list of DB instance classes, and
-	// availability for your engine, see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
-	// in the Amazon RDS User Guide.
+	// availability for your engine, see DB instance classes (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
+	// in the Amazon RDS User Guide or Aurora DB instance classes (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html)
+	// in the Amazon Aurora User Guide.
 	//
 	// DBInstanceClass is a required field
 	DBInstanceClass *string `type:"string" required:"true"`
@@ -19942,7 +19962,8 @@ type CreateDBInstanceInput struct {
 
 	// A list of DB security groups to associate with this DB instance.
 	//
-	// Default: The default DB security group for the database engine.
+	// This setting applies to the legacy EC2-Classic platform, which is no longer
+	// used to create new DB instances. Use the VpcSecurityGroupIds setting instead.
 	DBSecurityGroups []*string `locationNameList:"DBSecurityGroupName" type:"list"`
 
 	// A DB subnet group to associate with this DB instance.
@@ -19974,12 +19995,20 @@ type CreateDBInstanceInput struct {
 	// in the Amazon RDS User Guide.
 	//
 	// This setting doesn't apply to RDS Custom.
+	//
+	// Amazon Aurora
+	//
+	// Not applicable. The domain is managed by the DB cluster.
 	Domain *string `type:"string"`
 
 	// Specify the name of the IAM role to be used when making API calls to the
 	// Directory Service.
 	//
 	// This setting doesn't apply to RDS Custom.
+	//
+	// Amazon Aurora
+	//
+	// Not applicable. The domain is managed by the DB cluster.
 	DomainIAMRoleName *string `type:"string"`
 
 	// The list of log types that need to be enabled for exporting to CloudWatch
@@ -20036,13 +20065,16 @@ type CreateDBInstanceInput struct {
 	// and Access Management (IAM) accounts to database accounts. By default, mapping
 	// isn't enabled.
 	//
-	// This setting doesn't apply to RDS Custom or Amazon Aurora. In Aurora, mapping
-	// Amazon Web Services IAM accounts to database accounts is managed by the DB
-	// cluster.
-	//
 	// For more information, see IAM Database Authentication for MySQL and PostgreSQL
 	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
+	//
+	// Amazon Aurora
+	//
+	// Not applicable. Mapping Amazon Web Services IAM accounts to database accounts
+	// is managed by the DB cluster.
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
 
 	// A value that indicates whether to enable Performance Insights for the DB
@@ -20099,7 +20131,7 @@ type CreateDBInstanceInput struct {
 
 	// The version number of the database engine to use.
 	//
-	// For a list of valid engine versions, use the DescribeDBEngineVersions action.
+	// For a list of valid engine versions, use the DescribeDBEngineVersions operation.
 	//
 	// The following are the database engines and links to information about the
 	// major and minor versions that are available with Amazon RDS. Not every database
@@ -20158,6 +20190,10 @@ type CreateDBInstanceInput struct {
 	// be a multiple between .5 and 50 of the storage amount for the DB instance.
 	// For SQL Server DB instances, must be a multiple between 1 and 50 of the storage
 	// amount for the DB instance.
+	//
+	// Amazon Aurora
+	//
+	// Not applicable. Storage is managed by the DB cluster.
 	Iops *int64 `type:"integer"`
 
 	// The Amazon Web Services KMS key identifier for an encrypted DB instance.
@@ -20189,6 +20225,10 @@ type CreateDBInstanceInput struct {
 	// Valid values: license-included | bring-your-own-license | general-public-license
 	//
 	// This setting doesn't apply to RDS Custom.
+	//
+	// Amazon Aurora
+	//
+	// Not applicable.
 	LicenseModel *string `type:"string"`
 
 	// The password for the master user. The password can include any printable
@@ -20247,6 +20287,10 @@ type CreateDBInstanceInput struct {
 	// in the Amazon RDS User Guide.
 	//
 	// This setting doesn't apply to RDS Custom.
+	//
+	// Amazon Aurora
+	//
+	// Not applicable. Storage is managed by the DB cluster.
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
@@ -20278,6 +20322,11 @@ type CreateDBInstanceInput struct {
 	// deployment.
 	//
 	// This setting doesn't apply to RDS Custom.
+	//
+	// Amazon Aurora
+	//
+	// Not applicable. DB instance Availability Zones (AZs) are managed by the DB
+	// cluster.
 	MultiAZ *bool `type:"boolean"`
 
 	// The name of the NCHAR character set for the Oracle DB instance.
@@ -20309,6 +20358,10 @@ type CreateDBInstanceInput struct {
 	// from a DB instance after it is associated with a DB instance.
 	//
 	// This setting doesn't apply to RDS Custom.
+	//
+	// Amazon Aurora
+	//
+	// Not applicable.
 	OptionGroupName *string `type:"string"`
 
 	// The Amazon Web Services KMS key identifier for encryption of Performance
@@ -20325,8 +20378,27 @@ type CreateDBInstanceInput struct {
 	// This setting doesn't apply to RDS Custom.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
-	// The amount of time, in days, to retain Performance Insights data. Valid values
-	// are 7 or 731 (2 years).
+	// The number of days to retain Performance Insights data. The default is 7
+	// days. The following values are valid:
+	//
+	//    * 7
+	//
+	//    * month * 31, where month is a number of months from 1-23
+	//
+	//    * 731
+	//
+	// For example, the following values are valid:
+	//
+	//    * 93 (3 months * 31)
+	//
+	//    * 341 (11 months * 31)
+	//
+	//    * 589 (19 months * 31)
+	//
+	//    * 731
+	//
+	// If you specify a retention period such as 94, which isn't a valid value,
+	// RDS issues an error.
 	//
 	// This setting doesn't apply to RDS Custom.
 	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
@@ -20421,6 +20493,10 @@ type CreateDBInstanceInput struct {
 	// class of the DB instance.
 	//
 	// This setting doesn't apply to RDS Custom.
+	//
+	// Amazon Aurora
+	//
+	// Not applicable.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
 	// A value that specifies the order in which an Aurora Replica is promoted to
@@ -20487,6 +20563,10 @@ type CreateDBInstanceInput struct {
 	// If you specify io1, you must also include a value for the Iops parameter.
 	//
 	// Default: io1 if the Iops parameter is specified, otherwise gp2
+	//
+	// Amazon Aurora
+	//
+	// Not applicable. Storage is managed by the DB cluster.
 	StorageType *string `type:"string"`
 
 	// Tags to assign to the DB instance.
@@ -20495,6 +20575,10 @@ type CreateDBInstanceInput struct {
 	// The ARN from the key store with which to associate the instance for TDE encryption.
 	//
 	// This setting doesn't apply to RDS Custom.
+	//
+	// Amazon Aurora
+	//
+	// Not applicable.
 	TdeCredentialArn *string `type:"string"`
 
 	// The password for the given ARN from the key store in order to access the
@@ -20961,8 +21045,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	// or the default DBParameterGroup for the specified DB engine for a cross-Region
 	// read replica.
 	//
-	// Specifying a parameter group for this operation is only supported for Oracle
-	// DB instances. It isn't supported for RDS Custom.
+	// Specifying a parameter group for this operation is only supported for MySQL
+	// and Oracle DB instances. It isn't supported for RDS Custom.
 	//
 	// Constraints:
 	//
@@ -21157,8 +21241,27 @@ type CreateDBInstanceReadReplicaInput struct {
 	// This setting doesn't apply to RDS Custom.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
-	// The amount of time, in days, to retain Performance Insights data. Valid values
-	// are 7 or 731 (2 years).
+	// The number of days to retain Performance Insights data. The default is 7
+	// days. The following values are valid:
+	//
+	//    * 7
+	//
+	//    * month * 31, where month is a number of months from 1-23
+	//
+	//    * 731
+	//
+	// For example, the following values are valid:
+	//
+	//    * 93 (3 months * 31)
+	//
+	//    * 341 (11 months * 31)
+	//
+	//    * 589 (19 months * 31)
+	//
+	//    * 731
+	//
+	// If you specify a retention period such as 94, which isn't a valid value,
+	// RDS issues an error.
 	//
 	// This setting doesn't apply to RDS Custom.
 	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
@@ -21170,9 +21273,15 @@ type CreateDBInstanceReadReplicaInput struct {
 	// Valid Values: 1150-65535
 	Port *int64 `type:"integer"`
 
-	// The URL that contains a Signature Version 4 signed request for the CreateDBInstanceReadReplica
-	// API action in the source Amazon Web Services Region that contains the source
-	// DB instance.
+	// When you are creating a read replica from one Amazon Web Services GovCloud
+	// (US) Region to another or from one China Amazon Web Services Region to another,
+	// the URL that contains a Signature Version 4 signed request for the CreateDBInstanceReadReplica
+	// API operation in the source Amazon Web Services Region that contains the
+	// source DB instance.
+	//
+	// This setting applies only to Amazon Web Services GovCloud (US) Regions and
+	// China Amazon Web Services Regions. It's ignored in other Amazon Web Services
+	// Regions.
 	//
 	// You must specify this parameter when you create an encrypted read replica
 	// from another Amazon Web Services Region by using the Amazon RDS API. Don't
@@ -21180,27 +21289,27 @@ type CreateDBInstanceReadReplicaInput struct {
 	// same Amazon Web Services Region.
 	//
 	// The presigned URL must be a valid request for the CreateDBInstanceReadReplica
-	// API action that can be executed in the source Amazon Web Services Region
-	// that contains the encrypted source DB instance. The presigned URL request
-	// must contain the following parameter values:
+	// API operation that can run in the source Amazon Web Services Region that
+	// contains the encrypted source DB instance. The presigned URL request must
+	// contain the following parameter values:
 	//
 	//    * DestinationRegion - The Amazon Web Services Region that the encrypted
 	//    read replica is created in. This Amazon Web Services Region is the same
-	//    one where the CreateDBInstanceReadReplica action is called that contains
+	//    one where the CreateDBInstanceReadReplica operation is called that contains
 	//    this presigned URL. For example, if you create an encrypted DB instance
 	//    in the us-west-1 Amazon Web Services Region, from a source DB instance
 	//    in the us-east-2 Amazon Web Services Region, then you call the CreateDBInstanceReadReplica
-	//    action in the us-east-1 Amazon Web Services Region and provide a presigned
-	//    URL that contains a call to the CreateDBInstanceReadReplica action in
-	//    the us-west-2 Amazon Web Services Region. For this example, the DestinationRegion
+	//    operation in the us-east-1 Amazon Web Services Region and provide a presigned
+	//    URL that contains a call to the CreateDBInstanceReadReplica operation
+	//    in the us-west-2 Amazon Web Services Region. For this example, the DestinationRegion
 	//    in the presigned URL must be set to the us-east-1 Amazon Web Services
 	//    Region.
 	//
-	//    * KmsKeyId - The Amazon Web Services KMS key identifier for the key to
-	//    use to encrypt the read replica in the destination Amazon Web Services
-	//    Region. This is the same identifier for both the CreateDBInstanceReadReplica
-	//    action that is called in the destination Amazon Web Services Region, and
-	//    the action contained in the presigned URL.
+	//    * KmsKeyId - The KMS key identifier for the key to use to encrypt the
+	//    read replica in the destination Amazon Web Services Region. This is the
+	//    same identifier for both the CreateDBInstanceReadReplica operation that
+	//    is called in the destination Amazon Web Services Region, and the operation
+	//    contained in the presigned URL.
 	//
 	//    * SourceDBInstanceIdentifier - The DB instance identifier for the encrypted
 	//    DB instance to be replicated. This identifier must be in the Amazon Resource
@@ -21217,11 +21326,11 @@ type CreateDBInstanceReadReplicaInput struct {
 	// If you are using an Amazon Web Services SDK tool or the CLI, you can specify
 	// SourceRegion (or --source-region for the CLI) instead of specifying PreSignedUrl
 	// manually. Specifying SourceRegion autogenerates a presigned URL that is a
-	// valid request for the operation that can be executed in the source Amazon
-	// Web Services Region.
+	// valid request for the operation that can run in the source Amazon Web Services
+	// Region.
 	//
-	// SourceRegion isn't supported for SQL Server, because SQL Server on Amazon
-	// RDS doesn't support cross-Region read replicas.
+	// SourceRegion isn't supported for SQL Server, because Amazon RDS for SQL Server
+	// doesn't support cross-Region read replicas.
 	//
 	// This setting doesn't apply to RDS Custom.
 	PreSignedUrl *string `type:"string"`
@@ -22685,7 +22794,7 @@ func (s *CreateEventSubscriptionOutput) SetEventSubscription(v *EventSubscriptio
 type CreateGlobalClusterInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name for your database of up to 64 alpha-numeric characters. If you do
+	// The name for your database of up to 64 alphanumeric characters. If you do
 	// not provide a name, Amazon Aurora will not create a database in the global
 	// database cluster you are creating.
 	DatabaseName *string `type:"string"`
@@ -23227,8 +23336,24 @@ type DBCluster struct {
 	// This setting is only for non-Aurora Multi-AZ DB clusters.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
-	// The amount of time, in days, to retain Performance Insights data. Valid values
-	// are 7 or 731 (2 years).
+	// The number of days to retain Performance Insights data. The default is 7
+	// days. The following values are valid:
+	//
+	//    * 7
+	//
+	//    * month * 31, where month is a number of months from 1-23
+	//
+	//    * 731
+	//
+	// For example, the following values are valid:
+	//
+	//    * 93 (3 months * 31)
+	//
+	//    * 341 (11 months * 31)
+	//
+	//    * 589 (19 months * 31)
+	//
+	//    * 731
 	//
 	// This setting is only for non-Aurora Multi-AZ DB clusters.
 	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
@@ -25080,8 +25205,24 @@ type DBInstance struct {
 	// ARN, or alias name for the KMS key.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
-	// The amount of time, in days, to retain Performance Insights data. Valid values
-	// are 7 or 731 (2 years).
+	// The number of days to retain Performance Insights data. The default is 7
+	// days. The following values are valid:
+	//
+	//    * 7
+	//
+	//    * month * 31, where month is a number of months from 1-23
+	//
+	//    * 731
+	//
+	// For example, the following values are valid:
+	//
+	//    * 93 (3 months * 31)
+	//
+	//    * 341 (11 months * 31)
+	//
+	//    * 589 (19 months * 31)
+	//
+	//    * 731
 	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
 
 	// Specifies the daily time range during which automated backups are created
@@ -35617,7 +35758,8 @@ func (s *EngineDefaults) SetParameters(v []*Parameter) *EngineDefaults {
 	return s
 }
 
-// This data type is used as a response element in the DescribeEvents action.
+// This data type is used as a response element in the DescribeEvents (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeEvents.html)
+// action.
 type Event struct {
 	_ struct{} `type:"structure"`
 
@@ -35695,6 +35837,7 @@ func (s *Event) SetSourceType(v string) *Event {
 }
 
 // Contains the results of a successful invocation of the DescribeEventCategories
+// (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeEventCategories.html)
 // operation.
 type EventCategoriesMap struct {
 	_ struct{} `type:"structure"`
@@ -37964,8 +38107,27 @@ type ModifyDBClusterInput struct {
 	// Valid for: Multi-AZ DB clusters only
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
-	// The amount of time, in days, to retain Performance Insights data. Valid values
-	// are 7 or 731 (2 years).
+	// The number of days to retain Performance Insights data. The default is 7
+	// days. The following values are valid:
+	//
+	//    * 7
+	//
+	//    * month * 31, where month is a number of months from 1-23
+	//
+	//    * 731
+	//
+	// For example, the following values are valid:
+	//
+	//    * 93 (3 months * 31)
+	//
+	//    * 341 (11 months * 31)
+	//
+	//    * 589 (19 months * 31)
+	//
+	//    * 731
+	//
+	// If you specify a retention period such as 94, which isn't a valid value,
+	// RDS issues an error.
 	//
 	// Valid for: Multi-AZ DB clusters only
 	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
@@ -38416,7 +38578,7 @@ type ModifyDBClusterSnapshotAttributeInput struct {
 	// restore a manual DB cluster snapshot, set this value to restore.
 	//
 	// To view the list of attributes available to modify, use the DescribeDBClusterSnapshotAttributes
-	// API action.
+	// API operation.
 	//
 	// AttributeName is a required field
 	AttributeName *string `type:"string" required:"true"`
@@ -38632,8 +38794,8 @@ type ModifyDBInstanceInput struct {
 	// Constraints:
 	//
 	//    * It must be a value from 0 to 35. It can't be set to 0 if the DB instance
-	//    is a source to read replicas. It can't be set to 0 or 35 for an RDS Custom
-	//    for Oracle DB instance.
+	//    is a source to read replicas. It can't be set to 0 for an RDS Custom for
+	//    Oracle DB instance.
 	//
 	//    * It can be specified for a MySQL read replica only if the source is running
 	//    MySQL 5.6 or later.
@@ -38690,11 +38852,12 @@ type ModifyDBInstanceInput struct {
 	// For more information, see ModifyDBCluster.
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
-	// The new compute and memory capacity of the DB instance, for example db.m4.large.
+	// The new compute and memory capacity of the DB instance, for example db.m5.large.
 	// Not all DB instance classes are available in all Amazon Web Services Regions,
 	// or for all database engines. For the full list of DB instance classes, and
-	// availability for your engine, see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
-	// in the Amazon RDS User Guide.
+	// availability for your engine, see DB instance classes (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
+	// in the Amazon RDS User Guide or Aurora DB instance classes (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html)
+	// in the Amazon Aurora User Guide.
 	//
 	// If you modify the DB instance class, an outage occurs during the change.
 	// The change is applied during the next maintenance window, unless ApplyImmediately
@@ -38865,7 +39028,7 @@ type ModifyDBInstanceInput struct {
 	// instance.
 	//
 	// For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html)
-	// in the Amazon RDS User Guide..
+	// in the Amazon RDS User Guide.
 	//
 	// This setting doesn't apply to RDS Custom.
 	EnablePerformanceInsights *bool `type:"boolean"`
@@ -38960,7 +39123,7 @@ type ModifyDBInstanceInput struct {
 	//
 	// Constraints: Must contain from 8 to 128 characters.
 	//
-	// Amazon RDS API actions never return the password, so this action provides
+	// Amazon RDS API operations never return the password, so this action provides
 	// a way to regain access to a primary instance user if the password is lost.
 	// This includes restoring privileges that might have been accidentally revoked.
 	MasterUserPassword *string `type:"string"`
@@ -39075,8 +39238,27 @@ type ModifyDBInstanceInput struct {
 	// This setting doesn't apply to RDS Custom.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
-	// The amount of time, in days, to retain Performance Insights data. Valid values
-	// are 7 or 731 (2 years).
+	// The number of days to retain Performance Insights data. The default is 7
+	// days. The following values are valid:
+	//
+	//    * 7
+	//
+	//    * month * 31, where month is a number of months from 1-23
+	//
+	//    * 731
+	//
+	// For example, the following values are valid:
+	//
+	//    * 93 (3 months * 31)
+	//
+	//    * 341 (11 months * 31)
+	//
+	//    * 589 (19 months * 31)
+	//
+	//    * 731
+	//
+	// If you specify a retention period such as 94, which isn't a valid value,
+	// RDS issues an error.
 	//
 	// This setting doesn't apply to RDS Custom.
 	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
@@ -39952,7 +40134,7 @@ type ModifyDBProxyTargetGroupInput struct {
 	// for the target group.
 	ConnectionPoolConfig *ConnectionPoolConfiguration `type:"structure"`
 
-	// The name of the new proxy to which to assign the target group.
+	// The name of the proxy.
 	//
 	// DBProxyName is a required field
 	DBProxyName *string `type:"string" required:"true"`
@@ -39962,7 +40144,7 @@ type ModifyDBProxyTargetGroupInput struct {
 	// end with a hyphen or contain two consecutive hyphens.
 	NewName *string `type:"string"`
 
-	// The name of the new target group to assign to the proxy.
+	// The name of the target group to modify.
 	//
 	// TargetGroupName is a required field
 	TargetGroupName *string `type:"string" required:"true"`
@@ -40066,7 +40248,7 @@ type ModifyDBSnapshotAttributeInput struct {
 	// restore a manual DB snapshot, set this value to restore.
 	//
 	// To view the list of attributes available to modify, use the DescribeDBSnapshotAttributes
-	// API action.
+	// API operation.
 	//
 	// AttributeName is a required field
 	AttributeName *string `type:"string" required:"true"`
@@ -44263,8 +44445,8 @@ type RestoreDBClusterFromS3Input struct {
 
 	// The name of the database engine to be used for this DB cluster.
 	//
-	// Valid Values: aurora (for MySQL 5.6-compatible Aurora), aurora-mysql (for
-	// MySQL 5.7-compatible and MySQL 8.0-compatible Aurora), and aurora-postgresql
+	// Valid Values: aurora (for MySQL 5.6-compatible Aurora) and aurora-mysql (for
+	// MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
 	//
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
@@ -44281,19 +44463,9 @@ type RestoreDBClusterFromS3Input struct {
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
 	//
-	// To list all of the available engine versions for aurora-postgresql, use the
-	// following command:
-	//
-	// aws rds describe-db-engine-versions --engine aurora-postgresql --query "DBEngineVersions[].EngineVersion"
-	//
 	// Aurora MySQL
 	//
-	// Example: 5.6.10a, 5.6.mysql_aurora.1.19.2, 5.7.12, 5.7.mysql_aurora.2.04.5,
-	// 8.0.mysql_aurora.3.01.0
-	//
-	// Aurora PostgreSQL
-	//
-	// Example: 9.6.3, 10.7
+	// Example: 5.6.10a, 5.6.mysql_aurora.1.19.2, 5.7.mysql_aurora.2.07.1, 8.0.mysql_aurora.3.02.0
 	EngineVersion *string `type:"string"`
 
 	// The Amazon Web Services KMS key identifier for an encrypted DB cluster.
@@ -44859,7 +45031,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//
 	// For more information about exporting CloudWatch Logs for Amazon RDS, see
 	// Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
-	// in the Amazon RDS User Guide..
+	// in the Amazon RDS User Guide.
 	//
 	// For more information about exporting CloudWatch Logs for Amazon Aurora, see
 	// Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
@@ -45447,7 +45619,7 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//
 	// For more information about exporting CloudWatch Logs for Amazon RDS, see
 	// Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
-	// in the Amazon RDS User Guide..
+	// in the Amazon RDS User Guide.
 	//
 	// For more information about exporting CloudWatch Logs for Amazon Aurora, see
 	// Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
@@ -46614,7 +46786,7 @@ type RestoreDBInstanceFromS3Input struct {
 	// instance.
 	//
 	// For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html)
-	// in the Amazon RDS User Guide..
+	// in the Amazon RDS User Guide.
 	EnablePerformanceInsights *bool `type:"boolean"`
 
 	// The name of the database engine to be used for this instance.
@@ -46737,8 +46909,27 @@ type RestoreDBInstanceFromS3Input struct {
 	// KMS key for each Amazon Web Services Region.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
-	// The amount of time, in days, to retain Performance Insights data. Valid values
-	// are 7 or 731 (2 years).
+	// The number of days to retain Performance Insights data. The default is 7
+	// days. The following values are valid:
+	//
+	//    * 7
+	//
+	//    * month * 31, where month is a number of months from 1-23
+	//
+	//    * 731
+	//
+	// For example, the following values are valid:
+	//
+	//    * 93 (3 months * 31)
+	//
+	//    * 341 (11 months * 31)
+	//
+	//    * 589 (19 months * 31)
+	//
+	//    * 731
+	//
+	// If you specify a retention period such as 94, which isn't a valid value,
+	// RDS issues an error.
 	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
 
 	// The port number on which the database accepts connections.
@@ -48692,11 +48883,26 @@ type StartDBInstanceAutomatedBackupsReplicationInput struct {
 	// arn:aws:kms:us-east-1:123456789012:key/AKIAIOSFODNN7EXAMPLE.
 	KmsKeyId *string `type:"string"`
 
-	// A URL that contains a Signature Version 4 signed request for the StartDBInstanceAutomatedBackupsReplication
-	// action to be called in the Amazon Web Services Region of the source DB instance.
+	// In an Amazon Web Services GovCloud (US) Region, an URL that contains a Signature
+	// Version 4 signed request for the StartDBInstanceAutomatedBackupsReplication
+	// operation to call in the Amazon Web Services Region of the source DB instance.
 	// The presigned URL must be a valid request for the StartDBInstanceAutomatedBackupsReplication
-	// API action that can be executed in the Amazon Web Services Region that contains
+	// API operation that can run in the Amazon Web Services Region that contains
 	// the source DB instance.
+	//
+	// This setting applies only to Amazon Web Services GovCloud (US) Regions. It's
+	// ignored in other Amazon Web Services Regions.
+	//
+	// To learn how to generate a Signature Version 4 signed request, see Authenticating
+	// Requests: Using Query Parameters (Amazon Web Services Signature Version 4)
+	// (https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html)
+	// and Signature Version 4 Signing Process (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+	//
+	// If you are using an Amazon Web Services SDK tool or the CLI, you can specify
+	// SourceRegion (or --source-region for the CLI) instead of specifying PreSignedUrl
+	// manually. Specifying SourceRegion autogenerates a presigned URL that is a
+	// valid request for the operation that can run in the source Amazon Web Services
+	// Region.
 	PreSignedUrl *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the source DB instance for the replicated
@@ -50186,7 +50392,9 @@ func (s *ValidStorageOptions) SetSupportsStorageAutoscaling(v bool) *ValidStorag
 type VpcSecurityGroupMembership struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the VPC security group.
+	// The membership status of the VPC security group.
+	//
+	// Currently, the only valid status is active.
 	Status *string `type:"string"`
 
 	// The name of the VPC security group.

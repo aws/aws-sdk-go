@@ -1929,7 +1929,8 @@
         "ServiceAccessRoleArn":{"shape":"String"},
         "EndpointUri":{"shape":"String"},
         "FullLoadErrorPercentage":{"shape":"IntegerOptional"},
-        "ErrorRetryDuration":{"shape":"IntegerOptional"}
+        "ErrorRetryDuration":{"shape":"IntegerOptional"},
+        "UseNewMappingType":{"shape":"BooleanOptional"}
       }
     },
     "EncodingTypeValue":{
@@ -2366,7 +2367,8 @@
         "UseBcpFullLoad":{"shape":"BooleanOptional"},
         "UseThirdPartyBackupDevice":{"shape":"BooleanOptional"},
         "SecretsManagerAccessRoleArn":{"shape":"String"},
-        "SecretsManagerSecretId":{"shape":"String"}
+        "SecretsManagerSecretId":{"shape":"String"},
+        "TrimSpaceInChar":{"shape":"BooleanOptional"}
       }
     },
     "MigrationTypeValue":{
@@ -2621,7 +2623,8 @@
         "SecretsManagerAccessRoleArn":{"shape":"String"},
         "SecretsManagerSecretId":{"shape":"String"},
         "SecretsManagerOracleAsmAccessRoleArn":{"shape":"String"},
-        "SecretsManagerOracleAsmSecretId":{"shape":"String"}
+        "SecretsManagerOracleAsmSecretId":{"shape":"String"},
+        "TrimSpaceInChar":{"shape":"BooleanOptional"}
       }
     },
     "OrderableReplicationInstance":{
@@ -2696,7 +2699,8 @@
         "SlotName":{"shape":"String"},
         "PluginName":{"shape":"PluginNameValue"},
         "SecretsManagerAccessRoleArn":{"shape":"String"},
-        "SecretsManagerSecretId":{"shape":"String"}
+        "SecretsManagerSecretId":{"shape":"String"},
+        "TrimSpaceInChar":{"shape":"BooleanOptional"}
       }
     },
     "RebootReplicationInstanceMessage":{
@@ -3141,7 +3145,9 @@
         "IgnoreHeaderRows":{"shape":"IntegerOptional"},
         "MaxFileSize":{"shape":"IntegerOptional"},
         "Rfc4180":{"shape":"BooleanOptional"},
-        "DatePartitionTimezone":{"shape":"String"}
+        "DatePartitionTimezone":{"shape":"String"},
+        "AddTrailingPaddingCharacter":{"shape":"BooleanOptional"},
+        "ExpectedBucketOwner":{"shape":"String"}
       }
     },
     "SNSInvalidTopicFault":{
