@@ -68,6 +68,10 @@ type QuickSightAPI interface {
 	CreateAccountCustomizationWithContext(aws.Context, *quicksight.CreateAccountCustomizationInput, ...request.Option) (*quicksight.CreateAccountCustomizationOutput, error)
 	CreateAccountCustomizationRequest(*quicksight.CreateAccountCustomizationInput) (*request.Request, *quicksight.CreateAccountCustomizationOutput)
 
+	CreateAccountSubscription(*quicksight.CreateAccountSubscriptionInput) (*quicksight.CreateAccountSubscriptionOutput, error)
+	CreateAccountSubscriptionWithContext(aws.Context, *quicksight.CreateAccountSubscriptionInput, ...request.Option) (*quicksight.CreateAccountSubscriptionOutput, error)
+	CreateAccountSubscriptionRequest(*quicksight.CreateAccountSubscriptionInput) (*request.Request, *quicksight.CreateAccountSubscriptionOutput)
+
 	CreateAnalysis(*quicksight.CreateAnalysisInput) (*quicksight.CreateAnalysisOutput, error)
 	CreateAnalysisWithContext(aws.Context, *quicksight.CreateAnalysisInput, ...request.Option) (*quicksight.CreateAnalysisOutput, error)
 	CreateAnalysisRequest(*quicksight.CreateAnalysisInput) (*request.Request, *quicksight.CreateAnalysisOutput)
@@ -203,6 +207,10 @@ type QuickSightAPI interface {
 	DescribeAccountSettings(*quicksight.DescribeAccountSettingsInput) (*quicksight.DescribeAccountSettingsOutput, error)
 	DescribeAccountSettingsWithContext(aws.Context, *quicksight.DescribeAccountSettingsInput, ...request.Option) (*quicksight.DescribeAccountSettingsOutput, error)
 	DescribeAccountSettingsRequest(*quicksight.DescribeAccountSettingsInput) (*request.Request, *quicksight.DescribeAccountSettingsOutput)
+
+	DescribeAccountSubscription(*quicksight.DescribeAccountSubscriptionInput) (*quicksight.DescribeAccountSubscriptionOutput, error)
+	DescribeAccountSubscriptionWithContext(aws.Context, *quicksight.DescribeAccountSubscriptionInput, ...request.Option) (*quicksight.DescribeAccountSubscriptionOutput, error)
+	DescribeAccountSubscriptionRequest(*quicksight.DescribeAccountSubscriptionInput) (*request.Request, *quicksight.DescribeAccountSubscriptionOutput)
 
 	DescribeAnalysis(*quicksight.DescribeAnalysisInput) (*quicksight.DescribeAnalysisOutput, error)
 	DescribeAnalysisWithContext(aws.Context, *quicksight.DescribeAnalysisInput, ...request.Option) (*quicksight.DescribeAnalysisOutput, error)

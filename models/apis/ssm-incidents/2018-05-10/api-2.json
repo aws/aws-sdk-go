@@ -1082,6 +1082,7 @@
       "members":{
         "dedupeString":{"shape":"DedupeString"},
         "impact":{"shape":"Impact"},
+        "incidentTags":{"shape":"TagMap"},
         "notificationTargets":{"shape":"NotificationTargetSet"},
         "summary":{"shape":"IncidentSummary"},
         "title":{"shape":"IncidentTitle"}
@@ -1653,6 +1654,13 @@
       "max":50,
       "min":1
     },
+    "TagMapUpdate":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":50,
+      "min":0
+    },
     "TagResourceRequest":{
       "type":"structure",
       "required":[
@@ -1881,6 +1889,7 @@
         "incidentTemplateImpact":{"shape":"Impact"},
         "incidentTemplateNotificationTargets":{"shape":"NotificationTargetSet"},
         "incidentTemplateSummary":{"shape":"IncidentSummary"},
+        "incidentTemplateTags":{"shape":"TagMapUpdate"},
         "incidentTemplateTitle":{"shape":"IncidentTitle"}
       }
     },

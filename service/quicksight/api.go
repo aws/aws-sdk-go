@@ -154,7 +154,7 @@ func (c *QuickSight) CreateAccountCustomizationRequest(input *CreateAccountCusto
 
 // CreateAccountCustomization API operation for Amazon QuickSight.
 //
-// Creates Amazon QuickSight customizations the current Amazon Web Services
+// Creates Amazon QuickSight customizations for the current Amazon Web Services
 // Region. Currently, you can add a custom default theme by using the CreateAccountCustomization
 // or UpdateAccountCustomization API operation. To further customize Amazon
 // QuickSight by removing Amazon QuickSight sample assets and videos for all
@@ -230,6 +230,142 @@ func (c *QuickSight) CreateAccountCustomization(input *CreateAccountCustomizatio
 // for more information on using Contexts.
 func (c *QuickSight) CreateAccountCustomizationWithContext(ctx aws.Context, input *CreateAccountCustomizationInput, opts ...request.Option) (*CreateAccountCustomizationOutput, error) {
 	req, out := c.CreateAccountCustomizationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateAccountSubscription = "CreateAccountSubscription"
+
+// CreateAccountSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAccountSubscription operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAccountSubscription for more information on using the CreateAccountSubscription
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAccountSubscriptionRequest method.
+//    req, resp := client.CreateAccountSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateAccountSubscription
+func (c *QuickSight) CreateAccountSubscriptionRequest(input *CreateAccountSubscriptionInput) (req *request.Request, output *CreateAccountSubscriptionOutput) {
+	op := &request.Operation{
+		Name:       opCreateAccountSubscription,
+		HTTPMethod: "POST",
+		HTTPPath:   "/account/{AwsAccountId}",
+	}
+
+	if input == nil {
+		input = &CreateAccountSubscriptionInput{}
+	}
+
+	output = &CreateAccountSubscriptionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAccountSubscription API operation for Amazon QuickSight.
+//
+// Creates an Amazon QuickSight account, or subscribes to Amazon QuickSight
+// Q.
+//
+// The Amazon Web Services Region for the account is derived from what is configured
+// in the CLI or SDK. This operation isn't supported in the US East (Ohio) Region,
+// South America (Sao Paulo) Region, or Asia Pacific (Singapore) Region.
+//
+// Before you use this operation, make sure that you can connect to an existing
+// Amazon Web Services account. If you don't have an Amazon Web Services account,
+// see Sign up for Amazon Web Services (https://docs.aws.amazon.com/quicksight/latest/user/setting-up-aws-sign-up.html)
+// in the Amazon QuickSight User Guide. The person who signs up for Amazon QuickSight
+// needs to have the correct Identity and Access Management (IAM) permissions.
+// For more information, see IAM Policy Examples for Amazon QuickSight (https://docs.aws.amazon.com/quicksight/latest/user/iam-policy-examples.html)
+// in the Amazon QuickSight User Guide.
+//
+// If your IAM policy includes both the Subscribe and CreateAccountSubscription
+// actions, make sure that both actions are set to Allow. If either action is
+// set to Deny, the Deny action prevails and your API call fails.
+//
+// You can't pass an existing IAM role to access other Amazon Web Services services
+// using this API operation. To pass your existing IAM role to Amazon QuickSight,
+// see Passing IAM roles to Amazon QuickSight (https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html#security-create-iam-role)
+// in the Amazon QuickSight User Guide.
+//
+// You can't set default resource access on the new account from the Amazon
+// QuickSight API. Instead, add default resource access from the Amazon QuickSight
+// console. For more information about setting default resource access to Amazon
+// Web Services services, see Setting default resource access to Amazon Web
+// Services services (https://docs.aws.amazon.com/quicksight/latest/user/scoping-policies-defaults.html)
+// in the Amazon QuickSight User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation CreateAccountSubscription for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * ResourceExistsException
+//   The resource specified already exists.
+//
+//   * PreconditionNotMetException
+//   One or more preconditions aren't met.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ResourceUnavailableException
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateAccountSubscription
+func (c *QuickSight) CreateAccountSubscription(input *CreateAccountSubscriptionInput) (*CreateAccountSubscriptionOutput, error) {
+	req, out := c.CreateAccountSubscriptionRequest(input)
+	return out, req.Send()
+}
+
+// CreateAccountSubscriptionWithContext is the same as CreateAccountSubscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAccountSubscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) CreateAccountSubscriptionWithContext(ctx aws.Context, input *CreateAccountSubscriptionInput, opts ...request.Option) (*CreateAccountSubscriptionOutput, error) {
+	req, out := c.CreateAccountSubscriptionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3822,6 +3958,107 @@ func (c *QuickSight) DescribeAccountSettingsWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opDescribeAccountSubscription = "DescribeAccountSubscription"
+
+// DescribeAccountSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAccountSubscription operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAccountSubscription for more information on using the DescribeAccountSubscription
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAccountSubscriptionRequest method.
+//    req, resp := client.DescribeAccountSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeAccountSubscription
+func (c *QuickSight) DescribeAccountSubscriptionRequest(input *DescribeAccountSubscriptionInput) (req *request.Request, output *DescribeAccountSubscriptionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAccountSubscription,
+		HTTPMethod: "GET",
+		HTTPPath:   "/account/{AwsAccountId}",
+	}
+
+	if input == nil {
+		input = &DescribeAccountSubscriptionInput{}
+	}
+
+	output = &DescribeAccountSubscriptionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAccountSubscription API operation for Amazon QuickSight.
+//
+// Use the DescribeAccountSubscription operation to receive a description of
+// a Amazon QuickSight account's subscription. A successful API call returns
+// an AccountInfo object that includes an account's name, subscription status,
+// authentication type, edition, and notification email address.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeAccountSubscription for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ResourceUnavailableException
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeAccountSubscription
+func (c *QuickSight) DescribeAccountSubscription(input *DescribeAccountSubscriptionInput) (*DescribeAccountSubscriptionOutput, error) {
+	req, out := c.DescribeAccountSubscriptionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAccountSubscriptionWithContext is the same as DescribeAccountSubscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAccountSubscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeAccountSubscriptionWithContext(ctx aws.Context, input *DescribeAccountSubscriptionInput, opts ...request.Option) (*DescribeAccountSubscriptionOutput, error) {
+	req, out := c.DescribeAccountSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeAnalysis = "DescribeAnalysis"
 
 // DescribeAnalysisRequest generates a "aws/request.Request" representing the
@@ -6518,14 +6755,13 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 
 // GetDashboardEmbedUrl API operation for Amazon QuickSight.
 //
-// Generates a session URL and authorization code that you can use to embed
-// an Amazon Amazon QuickSight read-only dashboard in your web server code.
+// Generates a temporary session URL and authorization code that you can use
+// to embed an Amazon QuickSight read-only dashboard in your website or application.
 // Before you use this command, make sure that you have configured the dashboards
 // and permissions.
 //
 // Currently, you can use GetDashboardEmbedURL only from the server, not from
-// the user's browser. The following rules apply to the combination of URL and
-// authorization code:
+// the user's browser. The following rules apply to the generated URL:
 //
 //    * They must be used together.
 //
@@ -6533,7 +6769,9 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 //
 //    * They are valid for 5 minutes after you run this command.
 //
-//    * The resulting user session is valid for 10 hours.
+//    * The resulting user session is valid for 15 minutes (default) up to 10
+//    hours (maximum). You can use the optional SessionLifetimeInMinutes parameter
+//    to customi session duration.
 //
 // For more information, see Embedding Analytics Using GetDashboardEmbedUrl
 // (https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics-deprecated.html)
@@ -10637,8 +10875,8 @@ func (c *QuickSight) UpdateAccountCustomizationRequest(input *UpdateAccountCusto
 
 // UpdateAccountCustomization API operation for Amazon QuickSight.
 //
-// Updates Amazon QuickSight customizations the current Amazon Web Services
-// Region. Currently, the only customization you can use is a theme.
+// Updates Amazon QuickSight customizations for the current Amazon Web Services
+// Region. Currently, the only customization that you can use is a theme.
 //
 // You can use customizations for your Amazon Web Services account or, if you
 // specify a namespace, for a Amazon QuickSight namespace instead. Customizations
@@ -12259,16 +12497,17 @@ func (c *QuickSight) UpdatePublicSharingSettingsRequest(input *UpdatePublicShari
 
 // UpdatePublicSharingSettings API operation for Amazon QuickSight.
 //
-// Use the UpdatePublicSharingSettings operation to enable or disable the public
-// sharing settings of an Amazon QuickSight dashboard.
+// Use the UpdatePublicSharingSettings operation to turn on or turn off the
+// public sharing settings of an Amazon QuickSight dashboard.
 //
-// To use this operation, enable session capacity pricing on your Amazon QuickSight
+// To use this operation, turn on session capacity pricing for your Amazon QuickSight
 // account.
 //
-// Before you can enable public sharing on your account, you need to allow public
-// sharing permissions to an administrative user in the IAM console. For more
-// information on using IAM with Amazon QuickSight, see Using Amazon QuickSight
-// with IAM (https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html).
+// Before you can turn on public sharing on your account, make sure to give
+// public sharing permissions to an administrative user in the Identity and
+// Access Management (IAM) console. For more information on using IAM with Amazon
+// QuickSight, see Using Amazon QuickSight with IAM (https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html)
+// in the Amazon QuickSight User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13163,6 +13402,89 @@ func (s *AccountCustomization) SetDefaultTheme(v string) *AccountCustomization {
 	return s
 }
 
+// A structure that contains the following account information elements:
+//
+//    * Your Amazon QuickSight account name.
+//
+//    * The edition of Amazon QuickSight that your account is using.
+//
+//    * The notification email address that is associated with the Amazon QuickSight
+//    account.
+//
+//    * The authentication type of the Amazon QuickSight account.
+//
+//    * The status of the Amazon QuickSight account's subscription.
+type AccountInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The account name that you provided for the Amazon QuickSight subscription
+	// in your Amazon Web Services account. You create this name when you sign up
+	// for Amazon QuickSight. It's unique over all of Amazon Web Services, and it
+	// appears only when users sign in.
+	AccountName *string `type:"string"`
+
+	// The status of your account subscription.
+	AccountSubscriptionStatus *string `type:"string"`
+
+	// The way that your Amazon QuickSight account is authenticated.
+	AuthenticationType *string `type:"string"`
+
+	// The edition of your Amazon QuickSight account.
+	Edition *string `type:"string" enum:"Edition"`
+
+	// The email address that will be used for Amazon QuickSight to send notifications
+	// regarding your Amazon Web Services account or Amazon QuickSight subscription.
+	NotificationEmail *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountInfo) GoString() string {
+	return s.String()
+}
+
+// SetAccountName sets the AccountName field's value.
+func (s *AccountInfo) SetAccountName(v string) *AccountInfo {
+	s.AccountName = &v
+	return s
+}
+
+// SetAccountSubscriptionStatus sets the AccountSubscriptionStatus field's value.
+func (s *AccountInfo) SetAccountSubscriptionStatus(v string) *AccountInfo {
+	s.AccountSubscriptionStatus = &v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *AccountInfo) SetAuthenticationType(v string) *AccountInfo {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetEdition sets the Edition field's value.
+func (s *AccountInfo) SetEdition(v string) *AccountInfo {
+	s.Edition = &v
+	return s
+}
+
+// SetNotificationEmail sets the NotificationEmail field's value.
+func (s *AccountInfo) SetNotificationEmail(v string) *AccountInfo {
+	s.NotificationEmail = &v
+	return s
+}
+
 // The Amazon QuickSight settings associated with your Amazon Web Services account.
 type AccountSettings struct {
 	_ struct{} `type:"structure"`
@@ -13183,9 +13505,9 @@ type AccountSettings struct {
 	// The main notification email for your Amazon QuickSight subscription.
 	NotificationEmail *string `type:"string"`
 
-	// A boolean that indicates whether or not public sharing is enabled on an Amazon
-	// QuickSight account. For more information about enabling public sharing, see
-	// UpdatePublicSharingSettings (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdatePublicSharingSettings.html).
+	// A Boolean value that indicates whether public sharing is turned on for an
+	// Amazon QuickSight account. For more information about turning on public sharing,
+	// see UpdatePublicSharingSettings (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdatePublicSharingSettings.html).
 	PublicSharingEnabled *bool `type:"boolean"`
 }
 
@@ -13278,7 +13600,7 @@ func (s *ActiveIAMPolicyAssignment) SetPolicyArn(v string) *ActiveIAMPolicyAssig
 	return s
 }
 
-// Ad hoc (one-time) filtering option.
+// An ad hoc (one-time) filtering option.
 type AdHocFilteringOption struct {
 	_ struct{} `type:"structure"`
 
@@ -15136,6 +15458,294 @@ func (s *CreateAccountCustomizationOutput) SetRequestId(v string) *CreateAccount
 
 // SetStatus sets the Status field's value.
 func (s *CreateAccountCustomizationOutput) SetStatus(v int64) *CreateAccountCustomizationOutput {
+	s.Status = &v
+	return s
+}
+
+type CreateAccountSubscriptionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of your Amazon QuickSight account. This name is unique over all
+	// of Amazon Web Services, and it appears only when users sign in. You can't
+	// change AccountName value after the Amazon QuickSight account is created.
+	//
+	// AccountName is a required field
+	AccountName *string `type:"string" required:"true"`
+
+	// The name of your Active Directory. This field is required if ACTIVE_DIRECTORY
+	// is the selected authentication method of the new Amazon QuickSight account.
+	ActiveDirectoryName *string `type:"string"`
+
+	// The admin group associated with your Active Directory. This field is required
+	// if ACTIVE_DIRECTORY is the selected authentication method of the new Amazon
+	// QuickSight account. For more information about using Active Directory in
+	// Amazon QuickSight, see Using Active Directory with Amazon QuickSight Enterprise
+	// Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
+	// in the Amazon QuickSight User Guide.
+	AdminGroup []*string `type:"list"`
+
+	// The method that you want to use to authenticate your Amazon QuickSight account.
+	// Currently, the valid values for this parameter are IAM_AND_QUICKSIGHT, IAM_ONLY,
+	// and ACTIVE_DIRECTORY.
+	//
+	// If you choose ACTIVE_DIRECTORY, provide an ActiveDirectoryName and an AdminGroup
+	// associated with your Active Directory.
+	//
+	// AuthenticationMethod is a required field
+	AuthenticationMethod *string `type:"string" required:"true" enum:"AuthenticationMethodOption"`
+
+	// The author group associated with your Active Directory. For more information
+	// about using Active Directory in Amazon QuickSight, see Using Active Directory
+	// with Amazon QuickSight Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
+	// in the Amazon QuickSight User Guide.
+	AuthorGroup []*string `type:"list"`
+
+	// The Amazon Web Services account ID of the account that you're using to create
+	// your Amazon QuickSight account.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// A 10-digit phone number for the author of the Amazon QuickSight account to
+	// use for future communications. This field is required if ENTERPPRISE_AND_Q
+	// is the selected edition of the new Amazon QuickSight account.
+	ContactNumber *string `type:"string"`
+
+	// The ID of the Active Directory that is associated with your Amazon QuickSight
+	// account.
+	DirectoryId *string `type:"string"`
+
+	// The edition of Amazon QuickSight that you want your account to have. Currently,
+	// you can choose from ENTERPRISE or ENTERPRISE_AND_Q.
+	//
+	// If you choose ENTERPRISE_AND_Q, the following parameters are required:
+	//
+	//    * FirstName
+	//
+	//    * LastName
+	//
+	//    * EmailAddress
+	//
+	//    * ContactNumber
+	//
+	// Edition is a required field
+	Edition *string `type:"string" required:"true" enum:"Edition"`
+
+	// The email address of the author of the Amazon QuickSight account to use for
+	// future communications. This field is required if ENTERPPRISE_AND_Q is the
+	// selected edition of the new Amazon QuickSight account.
+	EmailAddress *string `type:"string"`
+
+	// The first name of the author of the Amazon QuickSight account to use for
+	// future communications. This field is required if ENTERPPRISE_AND_Q is the
+	// selected edition of the new Amazon QuickSight account.
+	FirstName *string `type:"string"`
+
+	// The last name of the author of the Amazon QuickSight account to use for future
+	// communications. This field is required if ENTERPPRISE_AND_Q is the selected
+	// edition of the new Amazon QuickSight account.
+	LastName *string `type:"string"`
+
+	// The email address that you want Amazon QuickSight to send notifications to
+	// regarding your Amazon QuickSight account or Amazon QuickSight subscription.
+	//
+	// NotificationEmail is a required field
+	NotificationEmail *string `type:"string" required:"true"`
+
+	// The reader group associated with your Active Direcrtory. For more information
+	// about using Active Directory in Amazon QuickSight, see Using Active Directory
+	// with Amazon QuickSight Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
+	// in the Amazon QuickSight User Guide.
+	ReaderGroup []*string `type:"list"`
+
+	// The realm of the Active Directory that is associated with your Amazon QuickSight
+	// account. This field is required if ACTIVE_DIRECTORY is the selected authentication
+	// method of the new Amazon QuickSight account.
+	Realm *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccountSubscriptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccountSubscriptionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAccountSubscriptionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAccountSubscriptionInput"}
+	if s.AccountName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountName"))
+	}
+	if s.AuthenticationMethod == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthenticationMethod"))
+	}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Edition == nil {
+		invalidParams.Add(request.NewErrParamRequired("Edition"))
+	}
+	if s.NotificationEmail == nil {
+		invalidParams.Add(request.NewErrParamRequired("NotificationEmail"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountName sets the AccountName field's value.
+func (s *CreateAccountSubscriptionInput) SetAccountName(v string) *CreateAccountSubscriptionInput {
+	s.AccountName = &v
+	return s
+}
+
+// SetActiveDirectoryName sets the ActiveDirectoryName field's value.
+func (s *CreateAccountSubscriptionInput) SetActiveDirectoryName(v string) *CreateAccountSubscriptionInput {
+	s.ActiveDirectoryName = &v
+	return s
+}
+
+// SetAdminGroup sets the AdminGroup field's value.
+func (s *CreateAccountSubscriptionInput) SetAdminGroup(v []*string) *CreateAccountSubscriptionInput {
+	s.AdminGroup = v
+	return s
+}
+
+// SetAuthenticationMethod sets the AuthenticationMethod field's value.
+func (s *CreateAccountSubscriptionInput) SetAuthenticationMethod(v string) *CreateAccountSubscriptionInput {
+	s.AuthenticationMethod = &v
+	return s
+}
+
+// SetAuthorGroup sets the AuthorGroup field's value.
+func (s *CreateAccountSubscriptionInput) SetAuthorGroup(v []*string) *CreateAccountSubscriptionInput {
+	s.AuthorGroup = v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *CreateAccountSubscriptionInput) SetAwsAccountId(v string) *CreateAccountSubscriptionInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetContactNumber sets the ContactNumber field's value.
+func (s *CreateAccountSubscriptionInput) SetContactNumber(v string) *CreateAccountSubscriptionInput {
+	s.ContactNumber = &v
+	return s
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *CreateAccountSubscriptionInput) SetDirectoryId(v string) *CreateAccountSubscriptionInput {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetEdition sets the Edition field's value.
+func (s *CreateAccountSubscriptionInput) SetEdition(v string) *CreateAccountSubscriptionInput {
+	s.Edition = &v
+	return s
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *CreateAccountSubscriptionInput) SetEmailAddress(v string) *CreateAccountSubscriptionInput {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetFirstName sets the FirstName field's value.
+func (s *CreateAccountSubscriptionInput) SetFirstName(v string) *CreateAccountSubscriptionInput {
+	s.FirstName = &v
+	return s
+}
+
+// SetLastName sets the LastName field's value.
+func (s *CreateAccountSubscriptionInput) SetLastName(v string) *CreateAccountSubscriptionInput {
+	s.LastName = &v
+	return s
+}
+
+// SetNotificationEmail sets the NotificationEmail field's value.
+func (s *CreateAccountSubscriptionInput) SetNotificationEmail(v string) *CreateAccountSubscriptionInput {
+	s.NotificationEmail = &v
+	return s
+}
+
+// SetReaderGroup sets the ReaderGroup field's value.
+func (s *CreateAccountSubscriptionInput) SetReaderGroup(v []*string) *CreateAccountSubscriptionInput {
+	s.ReaderGroup = v
+	return s
+}
+
+// SetRealm sets the Realm field's value.
+func (s *CreateAccountSubscriptionInput) SetRealm(v string) *CreateAccountSubscriptionInput {
+	s.Realm = &v
+	return s
+}
+
+type CreateAccountSubscriptionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// A SignupResponse object that returns information about a newly created Amazon
+	// QuickSight account.
+	SignupResponse *SignupResponse `type:"structure"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccountSubscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccountSubscriptionOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateAccountSubscriptionOutput) SetRequestId(v string) *CreateAccountSubscriptionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetSignupResponse sets the SignupResponse field's value.
+func (s *CreateAccountSubscriptionOutput) SetSignupResponse(v *SignupResponse) *CreateAccountSubscriptionOutput {
+	s.SignupResponse = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateAccountSubscriptionOutput) SetStatus(v int64) *CreateAccountSubscriptionOutput {
 	s.Status = &v
 	return s
 }
@@ -22939,9 +23549,11 @@ type DescribeAccountSettingsOutput struct {
 	// The Amazon QuickSight settings for this Amazon Web Services account. This
 	// information includes the edition of Amazon Amazon QuickSight that you subscribed
 	// to (Standard or Enterprise) and the notification email for the Amazon QuickSight
-	// subscription. In the QuickSight console, the Amazon QuickSight subscription
-	// is sometimes referred to as a QuickSight "account" even though it's technically
-	// not an account by itself. Instead, it's a subscription to the Amazon QuickSight
+	// subscription.
+	//
+	// In the QuickSight console, the Amazon QuickSight subscription is sometimes
+	// referred to as a QuickSight "account" even though it's technically not an
+	// account by itself. Instead, it's a subscription to the Amazon QuickSight
 	// service for your Amazon Web Services account. The edition that you subscribe
 	// to applies to Amazon QuickSight in every Amazon Web Services Region where
 	// you use it.
@@ -22986,6 +23598,116 @@ func (s *DescribeAccountSettingsOutput) SetRequestId(v string) *DescribeAccountS
 
 // SetStatus sets the Status field's value.
 func (s *DescribeAccountSettingsOutput) SetStatus(v int64) *DescribeAccountSettingsOutput {
+	s.Status = &v
+	return s
+}
+
+type DescribeAccountSubscriptionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID associated with your Amazon QuickSight
+	// account.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAccountSubscriptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAccountSubscriptionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAccountSubscriptionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAccountSubscriptionInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeAccountSubscriptionInput) SetAwsAccountId(v string) *DescribeAccountSubscriptionInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+type DescribeAccountSubscriptionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains the following elements:
+	//
+	//    * Your Amazon QuickSight account name.
+	//
+	//    * The edition of Amazon QuickSight that your account is using.
+	//
+	//    * The notification email address that is associated with the Amazon QuickSight
+	//    account.
+	//
+	//    * The authentication type of the Amazon QuickSight account.
+	//
+	//    * The status of the Amazon QuickSight account's subscription.
+	AccountInfo *AccountInfo `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAccountSubscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAccountSubscriptionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountInfo sets the AccountInfo field's value.
+func (s *DescribeAccountSubscriptionOutput) SetAccountInfo(v *AccountInfo) *DescribeAccountSubscriptionOutput {
+	s.AccountInfo = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeAccountSubscriptionOutput) SetRequestId(v string) *DescribeAccountSubscriptionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeAccountSubscriptionOutput) SetStatus(v int64) *DescribeAccountSubscriptionOutput {
 	s.Status = &v
 	return s
 }
@@ -26723,11 +27445,22 @@ func (s *FolderSummary) SetName(v string) *FolderSummary {
 type GenerateEmbedUrlForAnonymousUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Names for the Amazon QuickSight resources that the user
-	// is authorized to access during the lifetime of the session. If you choose
-	// Dashboard embedding experience, pass the list of dashboard ARNs in the account
-	// that you want the user to be able to view. Currently, you can pass up to
-	// 25 dashboard ARNs in each API call.
+	// The domains that you want to add to the allow list for access to the generated
+	// URL that is then embedded. This optional parameter overrides the static domains
+	// that are configured in the Manage QuickSight menu in the Amazon QuickSight
+	// console and instead allows only the domains that you include in this parameter.
+	// You can list up to three domains or subdomains in each API call.
+	//
+	// To include a subdomain, use * to include all subdomains under a specific
+	// domain to the allow list. For example, https://*.sapp.amazon.com, includes
+	// all subdomains under https://sapp.amazon.com.
+	AllowedDomains []*string `type:"list"`
+
+	// The Amazon Resource Names (ARNs) for the Amazon QuickSight resources that
+	// the user is authorized to access during the lifetime of the session. If you
+	// choose Dashboard embedding experience, pass the list of dashboard ARNs in
+	// the account that you want the user to be able to view. Currently, you can
+	// pass up to 25 dashboard ARNs in each API call.
 	//
 	// AuthorizedResourceArns is a required field
 	AuthorizedResourceArns []*string `type:"list" required:"true"`
@@ -26738,7 +27471,7 @@ type GenerateEmbedUrlForAnonymousUserInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The configuration of the experience you are embedding.
+	// The configuration of the experience that you are embedding.
 	//
 	// ExperienceConfiguration is a required field
 	ExperienceConfiguration *AnonymousUserEmbeddingExperienceConfiguration `type:"structure" required:"true"`
@@ -26760,7 +27493,8 @@ type GenerateEmbedUrlForAnonymousUserInput struct {
 	//
 	// These are not the tags used for the Amazon Web Services resource tagging
 	// feature. For more information, see Using Row-Level Security (RLS) with Tags
-	// (https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-rls-tags.html).
+	// (https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-rls-tags.html)in
+	// the Amazon QuickSight User Guide.
 	SessionTags []*SessionTag `min:"1" type:"list"`
 }
 
@@ -26826,6 +27560,12 @@ func (s *GenerateEmbedUrlForAnonymousUserInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAllowedDomains sets the AllowedDomains field's value.
+func (s *GenerateEmbedUrlForAnonymousUserInput) SetAllowedDomains(v []*string) *GenerateEmbedUrlForAnonymousUserInput {
+	s.AllowedDomains = v
+	return s
 }
 
 // SetAuthorizedResourceArns sets the AuthorizedResourceArns field's value.
@@ -26926,6 +27666,17 @@ func (s *GenerateEmbedUrlForAnonymousUserOutput) SetStatus(v int64) *GenerateEmb
 type GenerateEmbedUrlForRegisteredUserInput struct {
 	_ struct{} `type:"structure"`
 
+	// The domains that you want to add to the allow list for access to the generated
+	// URL that is then embedded. This optional parameter overrides the static domains
+	// that are configured in the Manage QuickSight menu in the Amazon QuickSight
+	// console and instead allows only the domains that you include in this parameter.
+	// You can list up to three domains or subdomains in each API call.
+	//
+	// To include a subdomain, use * to include all subdomains under a specific
+	// domain to the allow list. For example, https://*.sapp.amazon.com, includes
+	// all subdomains under https://sapp.amazon.com.
+	AllowedDomains []*string `type:"list"`
+
 	// The ID for the Amazon Web Services account that contains the dashboard that
 	// you're embedding.
 	//
@@ -26994,6 +27745,12 @@ func (s *GenerateEmbedUrlForRegisteredUserInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAllowedDomains sets the AllowedDomains field's value.
+func (s *GenerateEmbedUrlForRegisteredUserInput) SetAllowedDomains(v []*string) *GenerateEmbedUrlForRegisteredUserInput {
+	s.AllowedDomains = v
+	return s
 }
 
 // SetAwsAccountId sets the AwsAccountId field's value.
@@ -27163,9 +27920,9 @@ func (s *GeoSpatialColumnGroup) SetName(v string) *GeoSpatialColumnGroup {
 type GetDashboardEmbedUrlInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// A list of one or more dashboard IDs that you want to add to a session that
-	// includes anonymous users. The IdentityType parameter must be set to ANONYMOUS
-	// for this to work, because other identity types authenticate as Amazon QuickSight
+	// A list of one or more dashboard IDs that you want anonymous users to have
+	// tempporary access to. Currently, the IdentityType parameter must be set to
+	// ANONYMOUS because other identity types authenticate as Amazon QuickSight
 	// or IAM users. For example, if you set "--dashboard-id dash_id1 --dashboard-id
 	// dash_id2 dash_id3 identity-type ANONYMOUS", the session can access all three
 	// dashboards.
@@ -33592,7 +34349,8 @@ type RegisteredUserEmbeddingExperienceConfiguration struct {
 	// The configuration details for embedding the Q search bar.
 	//
 	// For more information about embedding the Q search bar, see Embedding Overview
-	// (https://docs.aws.amazon.com/quicksight/latest/user/embedding-overview.html).
+	// (https://docs.aws.amazon.com/quicksight/latest/user/embedding-overview.html)
+	// in the Amazon QuickSight User Guide.
 	QSearchBar *RegisteredUserQSearchBarEmbeddingConfiguration `type:"structure"`
 
 	// The configuration details for providing each Amazon QuickSight console embedding
@@ -35775,6 +36533,67 @@ func (s *SheetStyle) SetTile(v *TileStyle) *SheetStyle {
 // SetTileLayout sets the TileLayout field's value.
 func (s *SheetStyle) SetTileLayout(v *TileLayoutStyle) *SheetStyle {
 	s.TileLayout = v
+	return s
+}
+
+// A SignupResponse object that contains a summary of a newly created account.
+type SignupResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The name of your Amazon QuickSight account.
+	AccountName *string `locationName:"accountName" type:"string"`
+
+	// The type of Active Directory that is being used to authenticate the Amazon
+	// QuickSight account. Valid values are SIMPLE_AD, AD_CONNECTOR, and MICROSOFT_AD.
+	DirectoryType *string `locationName:"directoryType" type:"string"`
+
+	// A Boolean that is TRUE if the Amazon QuickSight uses IAM as an authentication
+	// method.
+	IAMUser *bool `type:"boolean"`
+
+	// The user login name for your Amazon QuickSight account.
+	UserLoginName *string `locationName:"userLoginName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignupResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignupResponse) GoString() string {
+	return s.String()
+}
+
+// SetAccountName sets the AccountName field's value.
+func (s *SignupResponse) SetAccountName(v string) *SignupResponse {
+	s.AccountName = &v
+	return s
+}
+
+// SetDirectoryType sets the DirectoryType field's value.
+func (s *SignupResponse) SetDirectoryType(v string) *SignupResponse {
+	s.DirectoryType = &v
+	return s
+}
+
+// SetIAMUser sets the IAMUser field's value.
+func (s *SignupResponse) SetIAMUser(v bool) *SignupResponse {
+	s.IAMUser = &v
+	return s
+}
+
+// SetUserLoginName sets the UserLoginName field's value.
+func (s *SignupResponse) SetUserLoginName(v string) *SignupResponse {
+	s.UserLoginName = &v
 	return s
 }
 
@@ -38530,8 +39349,8 @@ type UpdateAccountSettingsInput struct {
 
 	// The default namespace for this Amazon Web Services account. Currently, the
 	// default is default. Identity and Access Management (IAM) users that register
-	// for the first time with Amazon QuickSight provide an email that becomes associated
-	// with the default namespace.
+	// for the first time with Amazon QuickSight provide an email address that becomes
+	// associated with the default namespace.
 	//
 	// DefaultNamespace is a required field
 	DefaultNamespace *string `type:"string" required:"true"`
@@ -41299,8 +42118,8 @@ type UpdatePublicSharingSettingsInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// A boolean that indicates whether or not public sharing is enabled on a Amazon
-	// QuickSight account.
+	// A Boolean value that indicates whether public sharing is turned on for an
+	// Amazon QuickSight account.
 	PublicSharingEnabled *bool `type:"boolean"`
 }
 
@@ -43121,6 +43940,26 @@ func AssignmentStatus_Values() []string {
 }
 
 const (
+	// AuthenticationMethodOptionIamAndQuicksight is a AuthenticationMethodOption enum value
+	AuthenticationMethodOptionIamAndQuicksight = "IAM_AND_QUICKSIGHT"
+
+	// AuthenticationMethodOptionIamOnly is a AuthenticationMethodOption enum value
+	AuthenticationMethodOptionIamOnly = "IAM_ONLY"
+
+	// AuthenticationMethodOptionActiveDirectory is a AuthenticationMethodOption enum value
+	AuthenticationMethodOptionActiveDirectory = "ACTIVE_DIRECTORY"
+)
+
+// AuthenticationMethodOption_Values returns all elements of the AuthenticationMethodOption enum
+func AuthenticationMethodOption_Values() []string {
+	return []string{
+		AuthenticationMethodOptionIamAndQuicksight,
+		AuthenticationMethodOptionIamOnly,
+		AuthenticationMethodOptionActiveDirectory,
+	}
+}
+
+const (
 	// ColumnDataTypeString is a ColumnDataType enum value
 	ColumnDataTypeString = "STRING"
 
@@ -43422,6 +44261,9 @@ const (
 
 	// EditionEnterprise is a Edition enum value
 	EditionEnterprise = "ENTERPRISE"
+
+	// EditionEnterpriseAndQ is a Edition enum value
+	EditionEnterpriseAndQ = "ENTERPRISE_AND_Q"
 )
 
 // Edition_Values returns all elements of the Edition enum
@@ -43429,6 +44271,7 @@ func Edition_Values() []string {
 	return []string{
 		EditionStandard,
 		EditionEnterprise,
+		EditionEnterpriseAndQ,
 	}
 }
 

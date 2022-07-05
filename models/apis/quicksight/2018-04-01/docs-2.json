@@ -3,7 +3,8 @@
   "service": "<fullname>Amazon QuickSight API Reference</fullname> <p>Amazon QuickSight is a fully managed, serverless business intelligence service for the Amazon Web Services Cloud that makes it easy to extend data and insights to every user in your organization. This API reference contains documentation for a programming interface that you can use to manage Amazon QuickSight. </p>",
   "operations": {
     "CancelIngestion": "<p>Cancels an ongoing ingestion of data into SPICE.</p>",
-    "CreateAccountCustomization": "<p>Creates Amazon QuickSight customizations the current Amazon Web Services Region. Currently, you can add a custom default theme by using the <code>CreateAccountCustomization</code> or <code>UpdateAccountCustomization</code> API operation. To further customize Amazon QuickSight by removing Amazon QuickSight sample assets and videos for all new users, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-quicksight.html\">Customizing Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p> <p>You can create customizations for your Amazon Web Services account or, if you specify a namespace, for a QuickSight namespace instead. Customizations that apply to a namespace always override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation.</p> <p>Before you use the <code>CreateAccountCustomization</code> API operation to add a theme as the namespace default, make sure that you first share the theme with the namespace. If you don't share it with the namespace, the theme isn't visible to your users even if you make it the default theme. To check if the theme is shared, view the current permissions by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeThemePermissions.html\">DescribeThemePermissions</a> </code> API operation. To share the theme, grant permissions by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateThemePermissions.html\">UpdateThemePermissions</a> </code> API operation. </p>",
+    "CreateAccountCustomization": "<p>Creates Amazon QuickSight customizations for the current Amazon Web Services Region. Currently, you can add a custom default theme by using the <code>CreateAccountCustomization</code> or <code>UpdateAccountCustomization</code> API operation. To further customize Amazon QuickSight by removing Amazon QuickSight sample assets and videos for all new users, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-quicksight.html\">Customizing Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p> <p>You can create customizations for your Amazon Web Services account or, if you specify a namespace, for a QuickSight namespace instead. Customizations that apply to a namespace always override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation.</p> <p>Before you use the <code>CreateAccountCustomization</code> API operation to add a theme as the namespace default, make sure that you first share the theme with the namespace. If you don't share it with the namespace, the theme isn't visible to your users even if you make it the default theme. To check if the theme is shared, view the current permissions by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeThemePermissions.html\">DescribeThemePermissions</a> </code> API operation. To share the theme, grant permissions by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateThemePermissions.html\">UpdateThemePermissions</a> </code> API operation. </p>",
+    "CreateAccountSubscription": "<p>Creates an Amazon QuickSight account, or subscribes to Amazon QuickSight Q.</p> <p>The Amazon Web Services Region for the account is derived from what is configured in the CLI or SDK. This operation isn't supported in the US East (Ohio) Region, South America (Sao Paulo) Region, or Asia Pacific (Singapore) Region. </p> <p>Before you use this operation, make sure that you can connect to an existing Amazon Web Services account. If you don't have an Amazon Web Services account, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/setting-up-aws-sign-up.html\">Sign up for Amazon Web Services</a> in the <i>Amazon QuickSight User Guide</i>. The person who signs up for Amazon QuickSight needs to have the correct Identity and Access Management (IAM) permissions. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/iam-policy-examples.html\">IAM Policy Examples for Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>If your IAM policy includes both the <code>Subscribe</code> and <code>CreateAccountSubscription</code> actions, make sure that both actions are set to <code>Allow</code>. If either action is set to <code>Deny</code>, the <code>Deny</code> action prevails and your API call fails.</p> <p>You can't pass an existing IAM role to access other Amazon Web Services services using this API operation. To pass your existing IAM role to Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html#security-create-iam-role\">Passing IAM roles to Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>You can't set default resource access on the new account from the Amazon QuickSight API. Instead, add default resource access from the Amazon QuickSight console. For more information about setting default resource access to Amazon Web Services services, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/scoping-policies-defaults.html\">Setting default resource access to Amazon Web Services services</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
     "CreateAnalysis": "<p>Creates an analysis in Amazon QuickSight.</p>",
     "CreateDashboard": "<p>Creates a dashboard from a template. To first create a template, see the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html\">CreateTemplate</a> </code> API operation.</p> <p>A dashboard is an entity in Amazon QuickSight that identifies Amazon QuickSight reports, created from analyses. You can share Amazon QuickSight dashboards. With the right permissions, you can create scheduled email reports from them. If you have the correct permissions, you can create a dashboard from a template that exists in a different Amazon Web Services account.</p>",
     "CreateDataSet": "<p>Creates a dataset. This operation doesn't support datasets that include uploaded files as a source.</p>",
@@ -38,6 +39,7 @@
     "DeleteUserByPrincipalId": "<p>Deletes a user identified by its principal ID. </p>",
     "DescribeAccountCustomization": "<p>Describes the customizations associated with the provided Amazon Web Services account and Amazon Amazon QuickSight namespace in an Amazon Web Services Region. The Amazon QuickSight console evaluates which customizations to apply by running this API operation with the <code>Resolved</code> flag included. </p> <p>To determine what customizations display when you run this command, it can help to visualize the relationship of the entities involved. </p> <ul> <li> <p> <code>Amazon Web Services account</code> - The Amazon Web Services account exists at the top of the hierarchy. It has the potential to use all of the Amazon Web Services Regions and Amazon Web Services Services. When you subscribe to Amazon QuickSight, you choose one Amazon Web Services Region to use as your home Region. That's where your free SPICE capacity is located. You can use Amazon QuickSight in any supported Amazon Web Services Region. </p> </li> <li> <p> <code>Amazon Web Services Region</code> - In each Amazon Web Services Region where you sign in to Amazon QuickSight at least once, Amazon QuickSight acts as a separate instance of the same service. If you have a user directory, it resides in us-east-1, which is the US East (N. Virginia). Generally speaking, these users have access to Amazon QuickSight in any Amazon Web Services Region, unless they are constrained to a namespace. </p> <p>To run the command in a different Amazon Web Services Region, you change your Region settings. If you're using the CLI, you can use one of the following options:</p> <ul> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html\">command line options</a>. </p> </li> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html\">named profiles</a>. </p> </li> <li> <p>Run <code>aws configure</code> to change your default Amazon Web Services Region. Use Enter to key the same settings for your keys. For more information, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html\">Configuring the CLI</a>.</p> </li> </ul> </li> <li> <p> <code>Namespace</code> - A QuickSight namespace is a partition that contains users and assets (data sources, datasets, dashboards, and so on). To access assets that are in a specific namespace, users and groups must also be part of the same namespace. People who share a namespace are completely isolated from users and assets in other namespaces, even if they are in the same Amazon Web Services account and Amazon Web Services Region.</p> </li> <li> <p> <code>Applied customizations</code> - Within an Amazon Web Services Region, a set of Amazon QuickSight customizations can apply to an Amazon Web Services account or to a namespace. Settings that you apply to a namespace override settings that you apply to an Amazon Web Services account. All settings are isolated to a single Amazon Web Services Region. To apply them in other Amazon Web Services Regions, run the <code>CreateAccountCustomization</code> command in each Amazon Web Services Region where you want to apply the same customizations. </p> </li> </ul>",
     "DescribeAccountSettings": "<p>Describes the settings that were used when your Amazon QuickSight subscription was first created in this Amazon Web Services account.</p>",
+    "DescribeAccountSubscription": "<p>Use the DescribeAccountSubscription operation to receive a description of a Amazon QuickSight account's subscription. A successful API call returns an <code>AccountInfo</code> object that includes an account's name, subscription status, authentication type, edition, and notification email address.</p>",
     "DescribeAnalysis": "<p>Provides a summary of the metadata for an analysis.</p>",
     "DescribeAnalysisPermissions": "<p>Provides the read and write permissions for an analysis.</p>",
     "DescribeDashboard": "<p>Provides a summary for a dashboard.</p>",
@@ -62,9 +64,9 @@
     "DescribeThemeAlias": "<p>Describes the alias for a theme.</p>",
     "DescribeThemePermissions": "<p>Describes the read and write permissions for a theme.</p>",
     "DescribeUser": "<p>Returns information about a user, given the user name. </p>",
-    "GenerateEmbedUrlForAnonymousUser": "<p>Generates an embed URL that you can use to embed an Amazon QuickSight dashboard in your website, without having to register any reader users. Before you use this action, make sure that you have configured the dashboards and permissions.</p> <p>The following rules apply to the generated URL:</p> <ul> <li> <p>It contains a temporary bearer token. It is valid for 5 minutes after it is generated. Once redeemed within this period, it cannot be re-used again.</p> </li> <li> <p>The URL validity period should not be confused with the actual session lifetime that can be customized using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForAnonymousUser.html#QS-GenerateEmbedUrlForAnonymousUser-request-SessionLifetimeInMinutes\">SessionLifetimeInMinutes</a> </code> parameter.</p> <p>The resulting user session is valid for 15 minutes (minimum) to 10 hours (maximum). The default session duration is 10 hours. </p> </li> <li> <p>You are charged only when the URL is used or there is interaction with Amazon QuickSight.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html\">Embedded Analytics</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-portal.html\">Amazon QuickSight Developer Portal</a>.</p>",
+    "GenerateEmbedUrlForAnonymousUser": "<p>Generates an embed URL that you can use to embed an Amazon QuickSight dashboard in your website, without having to register any reader users. Before you use this action, make sure that you have configured the dashboards and permissions.</p> <p>The following rules apply to the generated URL:</p> <ul> <li> <p>It contains a temporary bearer token. It is valid for 5 minutes after it is generated. Once redeemed within this period, it cannot be re-used again.</p> </li> <li> <p>The URL validity period should not be confused with the actual session lifetime that can be customized using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForAnonymousUser.html#QS-GenerateEmbedUrlForAnonymousUser-request-SessionLifetimeInMinutes\">SessionLifetimeInMinutes</a> </code> parameter. The resulting user session is valid for 15 minutes (minimum) to 10 hours (maximum). The default session duration is 10 hours.</p> </li> <li> <p>You are charged only when the URL is used or there is interaction with Amazon QuickSight.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html\">Embedded Analytics</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-portal.html\">Amazon QuickSight Developer Portal</a>.</p>",
     "GenerateEmbedUrlForRegisteredUser": "<p>Generates an embed URL that you can use to embed an Amazon QuickSight experience in your website. This action can be used for any type of user registered in an Amazon QuickSight account. Before you use this action, make sure that you have configured the relevant Amazon QuickSight resource and permissions.</p> <p>The following rules apply to the generated URL:</p> <ul> <li> <p>It contains a temporary bearer token. It is valid for 5 minutes after it is generated. Once redeemed within this period, it cannot be re-used again.</p> </li> <li> <p>The URL validity period should not be confused with the actual session lifetime that can be customized using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForRegisteredUser.html#QS-GenerateEmbedUrlForRegisteredUser-request-SessionLifetimeInMinutes\">SessionLifetimeInMinutes</a> </code> parameter.</p> <p>The resulting user session is valid for 15 minutes (minimum) to 10 hours (maximum). The default session duration is 10 hours.</p> </li> <li> <p>You are charged only when the URL is used or there is interaction with Amazon QuickSight.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html\">Embedded Analytics</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-portal.html\">Amazon QuickSight Developer Portal</a>.</p>",
-    "GetDashboardEmbedUrl": "<p>Generates a session URL and authorization code that you can use to embed an Amazon Amazon QuickSight read-only dashboard in your web server code. Before you use this command, make sure that you have configured the dashboards and permissions. </p> <p>Currently, you can use <code>GetDashboardEmbedURL</code> only from the server, not from the user's browser. The following rules apply to the combination of URL and authorization code:</p> <ul> <li> <p>They must be used together.</p> </li> <li> <p>They can be used one time only.</p> </li> <li> <p>They are valid for 5 minutes after you run this command.</p> </li> <li> <p>The resulting user session is valid for 10 hours.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics-deprecated.html\">Embedding Analytics Using GetDashboardEmbedUrl</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-portal.html\">Amazon QuickSight Developer Portal</a>.</p>",
+    "GetDashboardEmbedUrl": "<p>Generates a temporary session URL and authorization code that you can use to embed an Amazon QuickSight read-only dashboard in your website or application. Before you use this command, make sure that you have configured the dashboards and permissions. </p> <p>Currently, you can use <code>GetDashboardEmbedURL</code> only from the server, not from the user's browser. The following rules apply to the generated URL:</p> <ul> <li> <p>They must be used together.</p> </li> <li> <p>They can be used one time only.</p> </li> <li> <p>They are valid for 5 minutes after you run this command.</p> </li> <li> <p>The resulting user session is valid for 15 minutes (default) up to 10 hours (maximum). You can use the optional <code>SessionLifetimeInMinutes</code> parameter to customi session duration.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics-deprecated.html\">Embedding Analytics Using GetDashboardEmbedUrl</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-portal.html\">Amazon QuickSight Developer Portal</a>.</p>",
     "GetSessionEmbedUrl": "<p>Generates a session URL and authorization code that you can use to embed the Amazon Amazon QuickSight console in your web server code. Use <code>GetSessionEmbedUrl</code> where you want to provide an authoring portal that allows users to create data sources, datasets, analyses, and dashboards. The users who access an embedded Amazon QuickSight console need belong to the author or admin security cohort. If you want to restrict permissions to some of these features, add a custom permissions profile to the user with the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateUser.html\">UpdateUser</a> </code> API operation. Use <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_RegisterUser.html\">RegisterUser</a> </code> API operation to add a new user with a custom permission profile attached. For more information, see the following sections in the <i>Amazon QuickSight User Guide</i>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html\">Embedding Analytics</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-permissions-to-the-quicksight-console.html\">Customizing Access to the Amazon QuickSight Console</a> </p> </li> </ul>",
     "ListAnalyses": "<p>Lists Amazon QuickSight analyses that exist in the specified Amazon Web Services account.</p>",
     "ListDashboardVersions": "<p>Lists all the versions of the dashboards in the Amazon QuickSight subscription.</p>",
@@ -96,7 +98,7 @@
     "SearchGroups": "<p>Use the <code>SearchGroups</code> operation to search groups in a specified Amazon QuickSight namespace using the supplied filters.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, and template. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other Amazon Web Services services, except for the following:</p> <ul> <li> <p>You can't use tags to track costs for Amazon QuickSight. This isn't possible because you can't tag the resources that Amazon QuickSight costs are based on, for example Amazon QuickSight storage capacity (SPICE), number of users, type of users, and usage metrics.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the tag editor for Resource Groups.</p> </li> </ul>",
     "UntagResource": "<p>Removes a tag or tags from a resource.</p>",
-    "UpdateAccountCustomization": "<p>Updates Amazon QuickSight customizations the current Amazon Web Services Region. Currently, the only customization you can use is a theme.</p> <p>You can use customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation. </p>",
+    "UpdateAccountCustomization": "<p>Updates Amazon QuickSight customizations for the current Amazon Web Services Region. Currently, the only customization that you can use is a theme.</p> <p>You can use customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation. </p>",
     "UpdateAccountSettings": "<p>Updates the Amazon QuickSight settings in your Amazon Web Services account.</p>",
     "UpdateAnalysis": "<p>Updates an analysis in Amazon QuickSight</p>",
     "UpdateAnalysisPermissions": "<p>Updates the read and write permissions for an analysis.</p>",
@@ -112,7 +114,7 @@
     "UpdateGroup": "<p>Changes a group description. </p>",
     "UpdateIAMPolicyAssignment": "<p>Updates an existing IAM policy assignment. This operation updates only the optional parameter or parameters that are specified in the request. This overwrites all of the users included in <code>Identities</code>. </p>",
     "UpdateIpRestriction": "<p>Updates the content and status of IP rules. To use this operation, you need to provide the entire map of rules. You can use the <code>DescribeIpRestriction</code> operation to get the current rule map.</p>",
-    "UpdatePublicSharingSettings": "<p>Use the UpdatePublicSharingSettings operation to enable or disable the public sharing settings of an Amazon QuickSight dashboard.</p> <p>To use this operation, enable session capacity pricing on your Amazon QuickSight account.</p> <p>Before you can enable public sharing on your account, you need to allow public sharing permissions to an administrative user in the IAM console. For more information on using IAM with Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html\">Using Amazon QuickSight with IAM</a>.</p>",
+    "UpdatePublicSharingSettings": "<p>Use the <code>UpdatePublicSharingSettings</code> operation to turn on or turn off the public sharing settings of an Amazon QuickSight dashboard.</p> <p>To use this operation, turn on session capacity pricing for your Amazon QuickSight account.</p> <p>Before you can turn on public sharing on your account, make sure to give public sharing permissions to an administrative user in the Identity and Access Management (IAM) console. For more information on using IAM with Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html\">Using Amazon QuickSight with IAM</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
     "UpdateTemplate": "<p>Updates a template from an existing Amazon QuickSight analysis or another template.</p>",
     "UpdateTemplateAlias": "<p>Updates the template alias of a template.</p>",
     "UpdateTemplatePermissions": "<p>Updates the resource permissions for a template.</p>",
@@ -137,10 +139,16 @@
         "UpdateAccountCustomizationResponse$AccountCustomization": "<p>The Amazon QuickSight customizations you're updating in the current Amazon Web Services Region. </p>"
       }
     },
+    "AccountInfo": {
+      "base": "<p>A structure that contains the following account information elements:</p> <ul> <li> <p>Your Amazon QuickSight account name.</p> </li> <li> <p>The edition of Amazon QuickSight that your account is using.</p> </li> <li> <p>The notification email address that is associated with the Amazon QuickSight account. </p> </li> <li> <p>The authentication type of the Amazon QuickSight account.</p> </li> <li> <p>The status of the Amazon QuickSight account's subscription.</p> </li> </ul>",
+      "refs": {
+        "DescribeAccountSubscriptionResponse$AccountInfo": "<p>A structure that contains the following elements:</p> <ul> <li> <p>Your Amazon QuickSight account name.</p> </li> <li> <p>The edition of Amazon QuickSight that your account is using.</p> </li> <li> <p>The notification email address that is associated with the Amazon QuickSight account. </p> </li> <li> <p>The authentication type of the Amazon QuickSight account.</p> </li> <li> <p>The status of the Amazon QuickSight account's subscription.</p> </li> </ul>"
+      }
+    },
     "AccountSettings": {
       "base": "<p>The Amazon QuickSight settings associated with your Amazon Web Services account.</p>",
       "refs": {
-        "DescribeAccountSettingsResponse$AccountSettings": "<p>The Amazon QuickSight settings for this Amazon Web Services account. This information includes the edition of Amazon Amazon QuickSight that you subscribed to (Standard or Enterprise) and the notification email for the Amazon QuickSight subscription. In the QuickSight console, the Amazon QuickSight subscription is sometimes referred to as a QuickSight \"account\" even though it's technically not an account by itself. Instead, it's a subscription to the Amazon QuickSight service for your Amazon Web Services account. The edition that you subscribe to applies to Amazon QuickSight in every Amazon Web Services Region where you use it.</p>"
+        "DescribeAccountSettingsResponse$AccountSettings": "<p>The Amazon QuickSight settings for this Amazon Web Services account. This information includes the edition of Amazon Amazon QuickSight that you subscribed to (Standard or Enterprise) and the notification email for the Amazon QuickSight subscription. </p> <p>In the QuickSight console, the Amazon QuickSight subscription is sometimes referred to as a QuickSight \"account\" even though it's technically not an account by itself. Instead, it's a subscription to the Amazon QuickSight service for your Amazon Web Services account. The edition that you subscribe to applies to Amazon QuickSight in every Amazon Web Services Region where you use it.</p>"
       }
     },
     "ActionList": {
@@ -162,7 +170,7 @@
       }
     },
     "AdHocFilteringOption": {
-      "base": "<p>Ad hoc (one-time) filtering option.</p>",
+      "base": "<p>An ad hoc (one-time) filtering option.</p>",
       "refs": {
         "DashboardPublishOptions$AdHocFilteringOption": "<p>Ad hoc (one-time) filtering option.</p>"
       }
@@ -170,7 +178,7 @@
     "AdditionalDashboardIdList": {
       "base": null,
       "refs": {
-        "GetDashboardEmbedUrlRequest$AdditionalDashboardIds": "<p>A list of one or more dashboard IDs that you want to add to a session that includes anonymous users. The <code>IdentityType</code> parameter must be set to <code>ANONYMOUS</code> for this to work, because other identity types authenticate as Amazon QuickSight or IAM users. For example, if you set \"<code>--dashboard-id dash_id1 --dashboard-id dash_id2 dash_id3 identity-type ANONYMOUS</code>\", the session can access all three dashboards. </p>"
+        "GetDashboardEmbedUrlRequest$AdditionalDashboardIds": "<p>A list of one or more dashboard IDs that you want anonymous users to have tempporary access to. Currently, the <code>IdentityType</code> parameter must be set to <code>ANONYMOUS</code> because other identity types authenticate as Amazon QuickSight or IAM users. For example, if you set \"<code>--dashboard-id dash_id1 --dashboard-id dash_id2 dash_id3 identity-type ANONYMOUS</code>\", the session can access all three dashboards.</p>"
       }
     },
     "AliasName": {
@@ -291,7 +299,7 @@
     "AnonymousUserEmbeddingExperienceConfiguration": {
       "base": "<p>The type of experience you want to embed. For anonymous users, you can embed Amazon QuickSight dashboards.</p>",
       "refs": {
-        "GenerateEmbedUrlForAnonymousUserRequest$ExperienceConfiguration": "<p>The configuration of the experience you are embedding.</p>"
+        "GenerateEmbedUrlForAnonymousUserRequest$ExperienceConfiguration": "<p>The configuration of the experience that you are embedding.</p>"
       }
     },
     "Arn": {
@@ -421,7 +429,7 @@
     "ArnList": {
       "base": null,
       "refs": {
-        "GenerateEmbedUrlForAnonymousUserRequest$AuthorizedResourceArns": "<p>The Amazon Resource Names for the Amazon QuickSight resources that the user is authorized to access during the lifetime of the session. If you choose <code>Dashboard</code> embedding experience, pass the list of dashboard ARNs in the account that you want the user to be able to view. Currently, you can pass up to 25 dashboard ARNs in each API call.</p>"
+        "GenerateEmbedUrlForAnonymousUserRequest$AuthorizedResourceArns": "<p>The Amazon Resource Names (ARNs) for the Amazon QuickSight resources that the user is authorized to access during the lifetime of the session. If you choose <code>Dashboard</code> embedding experience, pass the list of dashboard ARNs in the account that you want the user to be able to view. Currently, you can pass up to 25 dashboard ARNs in each API call.</p>"
       }
     },
     "AssignmentStatus": {
@@ -454,12 +462,19 @@
         "DataSourceParameters$AuroraPostgreSqlParameters": "<p>The parameters for Amazon Aurora.</p>"
       }
     },
+    "AuthenticationMethodOption": {
+      "base": null,
+      "refs": {
+        "CreateAccountSubscriptionRequest$AuthenticationMethod": "<p>The method that you want to use to authenticate your Amazon QuickSight account. Currently, the valid values for this parameter are <code>IAM_AND_QUICKSIGHT</code>, <code>IAM_ONLY</code>, and <code>ACTIVE_DIRECTORY</code>.</p> <p>If you choose <code>ACTIVE_DIRECTORY</code>, provide an <code>ActiveDirectoryName</code> and an <code>AdminGroup</code> associated with your Active Directory.</p>"
+      }
+    },
     "AwsAccountId": {
       "base": null,
       "refs": {
         "CancelIngestionRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "CreateAccountCustomizationRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to customize Amazon QuickSight for.</p>",
         "CreateAccountCustomizationResponse$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to customize Amazon QuickSight for.</p>",
+        "CreateAccountSubscriptionRequest$AwsAccountId": "<p>The Amazon Web Services account ID of the account that you're using to create your Amazon QuickSight account.</p>",
         "CreateAnalysisRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account where you are creating an analysis.</p>",
         "CreateDashboardRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account where you want to create the dashboard.</p>",
         "CreateDataSetRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
@@ -495,6 +510,7 @@
         "DescribeAccountCustomizationRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to describe Amazon QuickSight customizations for.</p>",
         "DescribeAccountCustomizationResponse$AwsAccountId": "<p>The ID for the Amazon Web Services account that you're describing.</p>",
         "DescribeAccountSettingsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the settings that you want to list.</p>",
+        "DescribeAccountSubscriptionRequest$AwsAccountId": "<p>The Amazon Web Services account ID associated with your Amazon QuickSight account.</p>",
         "DescribeAnalysisPermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analysis whose permissions you're describing. You must be using the Amazon Web Services account that the analysis is in.</p>",
         "DescribeAnalysisRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analysis. You must be using the Amazon Web Services account that the analysis is in.</p>",
         "DescribeDashboardPermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're describing permissions for.</p>",
@@ -594,7 +610,7 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "AccountSettings$PublicSharingEnabled": "<p>A boolean that indicates whether or not public sharing is enabled on an Amazon QuickSight account. For more information about enabling public sharing, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdatePublicSharingSettings.html\">UpdatePublicSharingSettings</a>.</p>",
+        "AccountSettings$PublicSharingEnabled": "<p>A Boolean value that indicates whether public sharing is turned on for an Amazon QuickSight account. For more information about turning on public sharing, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdatePublicSharingSettings.html\">UpdatePublicSharingSettings</a>.</p>",
         "DataSetSummary$RowLevelPermissionTagConfigurationApplied": "<p>Whether or not the row level permission tags are applied.</p>",
         "DataSetSummary$ColumnLevelPermissionRulesApplied": "<p>A value that indicates if the dataset has column level permission configured.</p>",
         "DataSetUsageConfiguration$DisableUseAsDirectQuerySource": "<p>An option that controls whether a child dataset of a direct query can use this dataset as a source.</p>",
@@ -603,8 +619,9 @@
         "GetDashboardEmbedUrlRequest$ResetDisabled": "<p>Remove the reset button on the embedded dashboard. The default is FALSE, which enables the reset button.</p>",
         "GetDashboardEmbedUrlRequest$StatePersistenceEnabled": "<p>Adds persistence of state for the user session in an embedded dashboard. Persistence applies to the sheet and the parameter settings. These are control settings that the dashboard subscriber (Amazon QuickSight reader) chooses while viewing the dashboard. If this is set to <code>TRUE</code>, the settings are the same when the subscriber reopens the same dashboard URL. The state is stored in Amazon QuickSight, not in a browser cookie. If this is set to FALSE, the state of the user session is not persisted. The default is <code>FALSE</code>.</p>",
         "JoinKeyProperties$UniqueKey": "<p>A value that indicates that a row in a table is uniquely identified by the columns in a join key. This is used by Amazon QuickSight to optimize query performance.</p>",
+        "SignupResponse$IAMUser": "<p>A Boolean that is <code>TRUE</code> if the Amazon QuickSight uses IAM as an authentication method.</p>",
         "SslProperties$DisableSsl": "<p>A Boolean option to control whether SSL should be disabled.</p>",
-        "UpdatePublicSharingSettingsRequest$PublicSharingEnabled": "<p>A boolean that indicates whether or not public sharing is enabled on a Amazon QuickSight account.</p>",
+        "UpdatePublicSharingSettingsRequest$PublicSharingEnabled": "<p>A Boolean value that indicates whether public sharing is turned on for an Amazon QuickSight account.</p>",
         "UpdateUserRequest$UnapplyCustomPermissions": "<p>A flag that you use to indicate that you want to remove all custom permissions from this user. Using this parameter resets the user to the state it was in before a custom permissions profile was applied. This parameter defaults to NULL and it doesn't accept any other value.</p>",
         "UploadSettings$ContainsHeader": "<p>Whether the file has a header row, or the files each have a header row.</p>",
         "User$Active": "<p>The active status of user. When you create an Amazon QuickSight user that’s not an IAM user or an Active Directory user, that user is inactive until they sign in and provide a password.</p>"
@@ -837,6 +854,16 @@
       }
     },
     "CreateAccountCustomizationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAccountSubscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAccountSubscriptionResponse": {
       "base": null,
       "refs": {
       }
@@ -1507,6 +1534,16 @@
       "refs": {
       }
     },
+    "DescribeAccountSubscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAccountSubscriptionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeAnalysisPermissionsRequest": {
       "base": null,
       "refs": {
@@ -1774,7 +1811,9 @@
     "Edition": {
       "base": null,
       "refs": {
-        "AccountSettings$Edition": "<p>The edition of Amazon QuickSight that you're currently subscribed to: Enterprise edition or Standard edition.</p>"
+        "AccountInfo$Edition": "<p>The edition of your Amazon QuickSight account.</p>",
+        "AccountSettings$Edition": "<p>The edition of Amazon QuickSight that you're currently subscribed to: Enterprise edition or Standard edition.</p>",
+        "CreateAccountSubscriptionRequest$Edition": "<p>The edition of Amazon QuickSight that you want your account to have. Currently, you can choose from <code>ENTERPRISE</code> or <code>ENTERPRISE_AND_Q</code>.</p> <p>If you choose <code>ENTERPRISE_AND_Q</code>, the following parameters are required:</p> <ul> <li> <p> <code>FirstName</code> </p> </li> <li> <p> <code>LastName</code> </p> </li> <li> <p> <code>EmailAddress</code> </p> </li> <li> <p> <code>ContactNumber</code> </p> </li> </ul>"
       }
     },
     "EmbeddingIdentityType": {
@@ -2098,6 +2137,14 @@
       "base": null,
       "refs": {
         "SearchGroupsRequest$Filters": "<p>The structure for the search filters that you want to apply to your search.</p>"
+      }
+    },
+    "GroupsList": {
+      "base": null,
+      "refs": {
+        "CreateAccountSubscriptionRequest$AdminGroup": "<p>The admin group associated with your Active Directory. This field is required if <code>ACTIVE_DIRECTORY</code> is the selected authentication method of the new Amazon QuickSight account. For more information about using Active Directory in Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html\">Using Active Directory with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight User Guide.</p>",
+        "CreateAccountSubscriptionRequest$AuthorGroup": "<p>The author group associated with your Active Directory. For more information about using Active Directory in Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html\">Using Active Directory with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight User Guide.</p>",
+        "CreateAccountSubscriptionRequest$ReaderGroup": "<p>The reader group associated with your Active Direcrtory. For more information about using Active Directory in Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html\">Using Active Directory with Amazon QuickSight Enterprise Edition</a> in the <i>Amazon QuickSight User Guide</i>.</p>"
       }
     },
     "GutterStyle": {
@@ -2764,7 +2811,7 @@
         "SearchGroupsRequest$Namespace": "<p>The namespace that you want to search.</p>",
         "UpdateAccountCustomizationRequest$Namespace": "<p>The namespace that you want to update Amazon QuickSight customizations for.</p>",
         "UpdateAccountCustomizationResponse$Namespace": "<p>The namespace associated with the customization that you're updating.</p>",
-        "UpdateAccountSettingsRequest$DefaultNamespace": "<p>The default namespace for this Amazon Web Services account. Currently, the default is <code>default</code>. Identity and Access Management (IAM) users that register for the first time with Amazon QuickSight provide an email that becomes associated with the default namespace.</p>",
+        "UpdateAccountSettingsRequest$DefaultNamespace": "<p>The default namespace for this Amazon Web Services account. Currently, the default is <code>default</code>. Identity and Access Management (IAM) users that register for the first time with Amazon QuickSight provide an email address that becomes associated with the default namespace. </p>",
         "UpdateGroupRequest$Namespace": "<p>The namespace of the group that you want to update.</p>",
         "UpdateIAMPolicyAssignmentRequest$Namespace": "<p>The namespace of the assignment.</p>",
         "UpdateUserRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>"
@@ -3020,7 +3067,7 @@
     "RegisteredUserQSearchBarEmbeddingConfiguration": {
       "base": "<p>Information about the Q search bar embedding experience.</p>",
       "refs": {
-        "RegisteredUserEmbeddingExperienceConfiguration$QSearchBar": "<p>The configuration details for embedding the Q search bar.</p> <p>For more information about embedding the Q search bar, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedding-overview.html\">Embedding Overview</a>.</p>"
+        "RegisteredUserEmbeddingExperienceConfiguration$QSearchBar": "<p>The configuration details for embedding the Q search bar.</p> <p>For more information about embedding the Q search bar, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedding-overview.html\">Embedding Overview</a> in the <i>Amazon QuickSight User Guide</i>.</p>"
       }
     },
     "RegisteredUserQuickSightConsoleEmbeddingConfiguration": {
@@ -3466,7 +3513,7 @@
     "SessionTagList": {
       "base": null,
       "refs": {
-        "GenerateEmbedUrlForAnonymousUserRequest$SessionTags": "<p>The session tags used for row-level security. Before you use this parameter, make sure that you have configured the relevant datasets using the <code>DataSet$RowLevelPermissionTagConfiguration</code> parameter so that session tags can be used to provide row-level security.</p> <p>These are not the tags used for the Amazon Web Services resource tagging feature. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-rls-tags.html\">Using Row-Level Security (RLS) with Tags</a>.</p>"
+        "GenerateEmbedUrlForAnonymousUserRequest$SessionTags": "<p>The session tags used for row-level security. Before you use this parameter, make sure that you have configured the relevant datasets using the <code>DataSet$RowLevelPermissionTagConfiguration</code> parameter so that session tags can be used to provide row-level security.</p> <p>These are not the tags used for the Amazon Web Services resource tagging feature. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-rls-tags.html\">Using Row-Level Security (RLS) with Tags</a>in the <i>Amazon QuickSight User Guide</i>.</p>"
       }
     },
     "SessionTagValue": {
@@ -3500,6 +3547,12 @@
       "base": "<p>The theme display options for sheets. </p>",
       "refs": {
         "ThemeConfiguration$Sheet": "<p>Display options related to sheets.</p>"
+      }
+    },
+    "SignupResponse": {
+      "base": "<p>A <code>SignupResponse</code> object that contains a summary of a newly created account.</p>",
+      "refs": {
+        "CreateAccountSubscriptionResponse$SignupResponse": "<p>A <code>SignupResponse</code> object that returns information about a newly created Amazon QuickSight account.</p>"
       }
     },
     "SiteBaseUrl": {
@@ -3553,6 +3606,7 @@
       "refs": {
         "CancelIngestionResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateAccountCustomizationResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateAccountSubscriptionResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateAnalysisResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateDashboardResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateDataSetResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -3587,6 +3641,7 @@
         "DeleteUserResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeAccountCustomizationResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeAccountSettingsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeAccountSubscriptionResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeAnalysisPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeAnalysisResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDashboardPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -3676,6 +3731,10 @@
       "refs": {
         "AccessDeniedException$Message": null,
         "AccessDeniedException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
+        "AccountInfo$AccountName": "<p>The account name that you provided for the Amazon QuickSight subscription in your Amazon Web Services account. You create this name when you sign up for Amazon QuickSight. It's unique over all of Amazon Web Services, and it appears only when users sign in.</p>",
+        "AccountInfo$NotificationEmail": "<p>The email address that will be used for Amazon QuickSight to send notifications regarding your Amazon Web Services account or Amazon QuickSight subscription.</p>",
+        "AccountInfo$AuthenticationType": "<p>The way that your Amazon QuickSight account is authenticated.</p>",
+        "AccountInfo$AccountSubscriptionStatus": "<p>The status of your account subscription.</p>",
         "AccountSettings$AccountName": "<p>The \"account name\" you provided for the Amazon QuickSight subscription in your Amazon Web Services account. You create this name when you sign up for Amazon QuickSight. It is unique in all of Amazon Web Services and it appears only when users sign in.</p>",
         "AccountSettings$NotificationEmail": "<p>The main notification email for your Amazon QuickSight subscription.</p>",
         "ActionList$member": null,
@@ -3693,6 +3752,16 @@
         "ConflictException$Message": null,
         "ConflictException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
         "CreateAccountCustomizationResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "CreateAccountSubscriptionRequest$AccountName": "<p>The name of your Amazon QuickSight account. This name is unique over all of Amazon Web Services, and it appears only when users sign in. You can't change <code>AccountName</code> value after the Amazon QuickSight account is created.</p>",
+        "CreateAccountSubscriptionRequest$NotificationEmail": "<p>The email address that you want Amazon QuickSight to send notifications to regarding your Amazon QuickSight account or Amazon QuickSight subscription.</p>",
+        "CreateAccountSubscriptionRequest$ActiveDirectoryName": "<p>The name of your Active Directory. This field is required if <code>ACTIVE_DIRECTORY</code> is the selected authentication method of the new Amazon QuickSight account.</p>",
+        "CreateAccountSubscriptionRequest$Realm": "<p>The realm of the Active Directory that is associated with your Amazon QuickSight account. This field is required if <code>ACTIVE_DIRECTORY</code> is the selected authentication method of the new Amazon QuickSight account.</p>",
+        "CreateAccountSubscriptionRequest$DirectoryId": "<p>The ID of the Active Directory that is associated with your Amazon QuickSight account.</p>",
+        "CreateAccountSubscriptionRequest$FirstName": "<p>The first name of the author of the Amazon QuickSight account to use for future communications. This field is required if <code>ENTERPPRISE_AND_Q</code> is the selected edition of the new Amazon QuickSight account.</p>",
+        "CreateAccountSubscriptionRequest$LastName": "<p>The last name of the author of the Amazon QuickSight account to use for future communications. This field is required if <code>ENTERPPRISE_AND_Q</code> is the selected edition of the new Amazon QuickSight account.</p>",
+        "CreateAccountSubscriptionRequest$EmailAddress": "<p>The email address of the author of the Amazon QuickSight account to use for future communications. This field is required if <code>ENTERPPRISE_AND_Q</code> is the selected edition of the new Amazon QuickSight account.</p>",
+        "CreateAccountSubscriptionRequest$ContactNumber": "<p>A 10-digit phone number for the author of the Amazon QuickSight account to use for future communications. This field is required if <code>ENTERPPRISE_AND_Q</code> is the selected edition of the new Amazon QuickSight account.</p>",
+        "CreateAccountSubscriptionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateAnalysisResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateDashboardResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateDataSetResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -3734,6 +3803,7 @@
         "DeleteUserResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeAccountCustomizationResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeAccountSettingsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeAccountSubscriptionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeAnalysisPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeAnalysisResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDashboardPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -3770,6 +3840,7 @@
         "GetSessionEmbedUrlResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "Group$PrincipalId": "<p>The principal ID of the group.</p>",
         "GroupSearchFilter$Value": "<p>The value of the named item, in this case <code>GROUP_NAME</code>, that you want to use as a filter.</p>",
+        "GroupsList$member": null,
         "IAMPolicyAssignment$AssignmentId": "<p>Assignment ID.</p>",
         "IdentityMap$key": null,
         "IdentityTypeNotSupportedException$Message": null,
@@ -3886,6 +3957,9 @@
         "SearchGroupsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "SessionLifetimeInMinutesInvalidException$Message": null,
         "SessionLifetimeInMinutesInvalidException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
+        "SignupResponse$userLoginName": "<p>The user login name for your Amazon QuickSight account.</p>",
+        "SignupResponse$accountName": "<p>The name of your Amazon QuickSight account.</p>",
+        "SignupResponse$directoryType": "<p>The type of Active Directory that is being used to authenticate the Amazon QuickSight account. Valid values are <code>SIMPLE_AD</code>, <code>AD_CONNECTOR</code>, and <code>MICROSOFT_AD</code>.</p>",
         "StringList$member": null,
         "TagResourceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ThrottlingException$Message": null,
@@ -3935,6 +4009,8 @@
     "StringList": {
       "base": null,
       "refs": {
+        "GenerateEmbedUrlForAnonymousUserRequest$AllowedDomains": "<p>The domains that you want to add to the allow list for access to the generated URL that is then embedded. This optional parameter overrides the static domains that are configured in the Manage QuickSight menu in the Amazon QuickSight console and instead allows only the domains that you include in this parameter. You can list up to three domains or subdomains in each API call.</p> <p>To include a subdomain, use <code>*</code> to include all subdomains under a specific domain to the allow list. For example, <code>https://*.sapp.amazon.com,</code> includes all subdomains under <code>https://sapp.amazon.com</code>.</p>",
+        "GenerateEmbedUrlForRegisteredUserRequest$AllowedDomains": "<p>The domains that you want to add to the allow list for access to the generated URL that is then embedded. This optional parameter overrides the static domains that are configured in the Manage QuickSight menu in the Amazon QuickSight console and instead allows only the domains that you include in this parameter. You can list up to three domains or subdomains in each API call.</p> <p>To include a subdomain, use <code>*</code> to include all subdomains under a specific domain to the allow list. For example, <code>https://*.sapp.amazon.com,</code> includes all subdomains under <code>https://sapp.amazon.com</code>.</p>",
         "StringParameter$Values": "<p>The values of a string parameter.</p>"
       }
     },

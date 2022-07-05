@@ -4130,6 +4130,13 @@
       "max":5,
       "min":1
     },
+    "MessageSelectionStrategy":{
+      "type":"string",
+      "enum":[
+        "Random",
+        "Ordered"
+      ]
+    },
     "MessageVariationsList":{
       "type":"list",
       "member":{"shape":"Message"},
@@ -4295,7 +4302,8 @@
       "members":{
         "messageGroups":{"shape":"MessageGroupsList"},
         "maxRetries":{"shape":"PromptMaxRetries"},
-        "allowInterrupt":{"shape":"BoxedBoolean"}
+        "allowInterrupt":{"shape":"BoxedBoolean"},
+        "messageSelectionStrategy":{"shape":"MessageSelectionStrategy"}
       }
     },
     "QueryFilterString":{

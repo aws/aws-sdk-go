@@ -4215,9 +4215,23 @@ func (c *ConfigService) DescribeOrganizationConfigRulesRequest(input *DescribeOr
 // Returns a list of organization Config rules.
 //
 // When you specify the limit and the next token, you receive a paginated response.
+//
 // Limit and next token are not applicable if you specify organization Config
 // rule names. It is only applicable, when you request all the organization
 // Config rules.
+//
+// For accounts within an organzation
+//
+// If you deploy an organizational rule or conformance pack in an organization
+// administrator account, and then establish a delegated administrator and deploy
+// an organizational rule or conformance pack in the delegated administrator
+// account, you won't be able to see the organizational rule or conformance
+// pack in the organization administrator account from the delegated administrator
+// account or see the organizational rule or conformance pack in the delegated
+// administrator account from organization administrator account. The DescribeOrganizationConfigRules
+// and DescribeOrganizationConformancePacks APIs can only see and interact with
+// the organization-related resource that were deployed from within the account
+// calling those APIs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4577,6 +4591,19 @@ func (c *ConfigService) DescribeOrganizationConformancePacksRequest(input *Descr
 // Limit and next token are not applicable if you specify organization conformance
 // packs names. They are only applicable, when you request all the organization
 // conformance packs.
+//
+// For accounts within an organzation
+//
+// If you deploy an organizational rule or conformance pack in an organization
+// administrator account, and then establish a delegated administrator and deploy
+// an organizational rule or conformance pack in the delegated administrator
+// account, you won't be able to see the organizational rule or conformance
+// pack in the organization administrator account from the delegated administrator
+// account or see the organizational rule or conformance pack in the delegated
+// administrator account from organization administrator account. The DescribeOrganizationConfigRules
+// and DescribeOrganizationConformancePacks APIs can only see and interact with
+// the organization-related resource that were deployed from within the account
+// calling those APIs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9652,11 +9679,14 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 // PutOrganizationConformancePack API operation for AWS Config.
 //
 // Deploys conformance packs across member accounts in an Amazon Web Services
-// Organization.
+// Organization. For information on how many organization conformance packs
+// and how many Config rules you can have per account, see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+// in the Config Developer Guide.
 //
 // Only a master account and a delegated administrator can call this API. When
 // calling this API with a delegated administrator, you must ensure Organizations
-// ListDelegatedAdministrator permissions are added.
+// ListDelegatedAdministrator permissions are added. An organization can have
+// up to 3 delegated administrators.
 //
 // This API enables organization service access for config-multiaccountsetup.amazonaws.com
 // through the EnableAWSServiceAccess action and creates a service linked role
@@ -9676,9 +9706,6 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 // Config sets the state of a conformance pack to CREATE_IN_PROGRESS and UPDATE_IN_PROGRESS
 // until the conformance pack is created or updated. You cannot update a conformance
 // pack while it is in this state.
-//
-// You can create 50 conformance packs with 25 Config rules in each pack and
-// 3 delegated administrator per organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9860,6 +9887,14 @@ func (c *ConfigService) PutRemediationConfigurationsRequest(input *PutRemediatio
 // This API does not support adding remediation configurations for service-linked
 // Config Rules such as Organization Config rules, the rules deployed by conformance
 // packs, and rules deployed by Amazon Web Services Security Hub.
+//
+// For manual remediation configuration, you need to provide a value for automationAssumeRole
+// or use a value in the assumeRolefield to remediate your resources. The SSM
+// automation document can use either as long as it maps to a valid parameter.
+//
+// However, for automatic remediation configuration, the only valid assumeRole
+// field value is AutomationAssumeRole and you need to provide a value for AutomationAssumeRole
+// to remediate your resources.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12955,8 +12990,7 @@ type ConfigRule struct {
 	// The maximum frequency with which Config runs evaluations for a rule. You
 	// can specify a value for MaximumExecutionFrequency when:
 	//
-	//    * You are using an Config managed rule that is triggered at a periodic
-	//    frequency.
+	//    * This is for an Config managed rule that is triggered at a periodic frequency.
 	//
 	//    * Your custom rule is triggered when Config delivers the configuration
 	//    snapshot. For more information, see ConfigSnapshotDeliveryProperties.
@@ -13859,6 +13893,9 @@ type ConfigurationRecorder struct {
 
 	// Amazon Resource Name (ARN) of the IAM role used to describe the Amazon Web
 	// Services resources associated with the account.
+	//
+	// While the API model does not require this field, the server will reject a
+	// request without a defined roleARN for the configuration recorder.
 	RoleARN *string `locationName:"roleARN" type:"string"`
 }
 
@@ -25926,8 +25963,8 @@ type OrganizationManagedRuleMetadata struct {
 	// Lambda function.
 	InputParameters *string `min:"1" type:"string"`
 
-	// The maximum frequency with which Config runs evaluations for a rule. You
-	// are using an Config managed rule that is triggered at a periodic frequency.
+	// The maximum frequency with which Config runs evaluations for a rule. This
+	// is for an Config managed rule that is triggered at a periodic frequency.
 	//
 	// By default, rules with a periodic trigger are evaluated every 24 hours. To
 	// change the frequency, specify a valid value for the MaximumExecutionFrequency
@@ -27628,6 +27665,10 @@ type PutResourceConfigInput struct {
 	SchemaVersionId *string `min:"1" type:"string" required:"true"`
 
 	// Tags associated with the resource.
+	//
+	// This field is not to be confused with the Amazon Web Services-wide tag feature
+	// for Amazon Web Services resources. Tags for PutResourceConfig are tags that
+	// you supply for the configuration items of your custom resources.
 	Tags map[string]*string `type:"map"`
 }
 

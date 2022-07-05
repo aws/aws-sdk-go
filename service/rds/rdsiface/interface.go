@@ -699,6 +699,12 @@ type RDSAPI interface {
 	StopDBInstanceAutomatedBackupsReplicationWithContext(aws.Context, *rds.StopDBInstanceAutomatedBackupsReplicationInput, ...request.Option) (*rds.StopDBInstanceAutomatedBackupsReplicationOutput, error)
 	StopDBInstanceAutomatedBackupsReplicationRequest(*rds.StopDBInstanceAutomatedBackupsReplicationInput) (*request.Request, *rds.StopDBInstanceAutomatedBackupsReplicationOutput)
 
+	WaitUntilDBClusterAvailable(*rds.DescribeDBClustersInput) error
+	WaitUntilDBClusterAvailableWithContext(aws.Context, *rds.DescribeDBClustersInput, ...request.WaiterOption) error
+
+	WaitUntilDBClusterDeleted(*rds.DescribeDBClustersInput) error
+	WaitUntilDBClusterDeletedWithContext(aws.Context, *rds.DescribeDBClustersInput, ...request.WaiterOption) error
+
 	WaitUntilDBClusterSnapshotAvailable(*rds.DescribeDBClusterSnapshotsInput) error
 	WaitUntilDBClusterSnapshotAvailableWithContext(aws.Context, *rds.DescribeDBClusterSnapshotsInput, ...request.WaiterOption) error
 
