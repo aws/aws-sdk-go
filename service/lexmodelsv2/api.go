@@ -7465,7 +7465,7 @@ type AssociatedTranscript struct {
 	_ struct{} `type:"structure"`
 
 	// The content of the transcript that meets the search filter criteria. For
-	// the JSON format of the transcript, see Output transcript format (https://docs.aws.amazon.com/lex/latest/dg/designing-output-format.html).
+	// the JSON format of the transcript, see Output transcript format (https://docs.aws.amazon.com/lexv2/latest/dg/designing-output-format.html).
 	Transcript *string `locationName:"transcript" min:"1" type:"string"`
 }
 
@@ -8680,7 +8680,7 @@ func (s *BotRecommendationResultStatistics) SetSlotTypes(v *SlotTypeStatistics) 
 }
 
 // The object representing the URL of the bot definition, the URL of the associated
-// transcript and a statistical summary of the bot recommendation results.
+// transcript, and a statistical summary of the bot recommendation results.
 type BotRecommendationResults struct {
 	_ struct{} `type:"structure"`
 
@@ -10879,7 +10879,7 @@ type CreateExportOutput struct {
 	ExportId *string `locationName:"exportId" min:"10" type:"string"`
 
 	// The status of the export. When the status is Completed, you can use the DescribeExport
-	// (https://docs.aws.amazon.com/latest/dg/API_DescribeExport.html) operation
+	// (https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeExport.html) operation
 	// to get the pre-signed S3 URL link to your exported bot or bot locale.
 	ExportStatus *string `locationName:"exportStatus" type:"string" enum:"ExportStatus"`
 
@@ -22256,6 +22256,9 @@ type PromptSpecification struct {
 	//
 	// MessageGroups is a required field
 	MessageGroups []*MessageGroup `locationName:"messageGroups" min:"1" type:"list" required:"true"`
+
+	// Indicates how a message is selected from a message group among retries.
+	MessageSelectionStrategy *string `locationName:"messageSelectionStrategy" type:"string" enum:"MessageSelectionStrategy"`
 }
 
 // String returns the string representation.
@@ -22320,6 +22323,12 @@ func (s *PromptSpecification) SetMaxRetries(v int64) *PromptSpecification {
 // SetMessageGroups sets the MessageGroups field's value.
 func (s *PromptSpecification) SetMessageGroups(v []*MessageGroup) *PromptSpecification {
 	s.MessageGroups = v
+	return s
+}
+
+// SetMessageSelectionStrategy sets the MessageSelectionStrategy field's value.
+func (s *PromptSpecification) SetMessageSelectionStrategy(v string) *PromptSpecification {
+	s.MessageSelectionStrategy = &v
 	return s
 }
 
@@ -28588,6 +28597,22 @@ func MergeStrategy_Values() []string {
 		MergeStrategyOverwrite,
 		MergeStrategyFailOnConflict,
 		MergeStrategyAppend,
+	}
+}
+
+const (
+	// MessageSelectionStrategyRandom is a MessageSelectionStrategy enum value
+	MessageSelectionStrategyRandom = "Random"
+
+	// MessageSelectionStrategyOrdered is a MessageSelectionStrategy enum value
+	MessageSelectionStrategyOrdered = "Ordered"
+)
+
+// MessageSelectionStrategy_Values returns all elements of the MessageSelectionStrategy enum
+func MessageSelectionStrategy_Values() []string {
+	return []string{
+		MessageSelectionStrategyRandom,
+		MessageSelectionStrategyOrdered,
 	}
 }
 

@@ -929,7 +929,8 @@
       "base": null,
       "refs": {
         "TagKeyList$member": null,
-        "TagMap$key": null
+        "TagMap$key": null,
+        "TagMapUpdate$key": null
       }
     },
     "TagKeyList": {
@@ -942,8 +943,15 @@
       "base": null,
       "refs": {
         "CreateResponsePlanInput$tags": "<p>A list of tags that you are adding to the response plan.</p>",
+        "IncidentTemplate$incidentTags": "<p>Tags to apply to an incident when calling the <code>StartIncident</code> API action.</p>",
         "ListTagsForResourceResponse$tags": "<p>A list of tags for the response plan.</p>",
         "TagResourceRequest$tags": "<p>A list of tags that you are adding to the response plan.</p>"
+      }
+    },
+    "TagMapUpdate": {
+      "base": null,
+      "refs": {
+        "UpdateResponsePlanInput$incidentTemplateTags": "<p>Tags to apply to an incident when calling the <code>StartIncident</code> API action. To call this action, you must also have permission to call the <code>TagResource</code> API action for the incident record resource.</p>"
       }
     },
     "TagResourceRequest": {
@@ -959,7 +967,8 @@
     "TagValue": {
       "base": null,
       "refs": {
-        "TagMap$value": null
+        "TagMap$value": null,
+        "TagMapUpdate$value": null
       }
     },
     "ThrottlingException": {

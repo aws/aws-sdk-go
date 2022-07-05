@@ -421,7 +421,7 @@
       }
     },
     "BotRecommendationResults": {
-      "base": "<p>The object representing the URL of the bot definition, the URL of the associated transcript and a statistical summary of the bot recommendation results.</p>",
+      "base": "<p>The object representing the URL of the bot definition, the URL of the associated transcript, and a statistical summary of the bot recommendation results.</p>",
       "refs": {
         "DescribeBotRecommendationResponse$botRecommendationResults": "<p>The object representing the URL of the bot definition, the URL of the associated transcript and a statistical summary of the bot recommendation results.</p>"
       }
@@ -1353,7 +1353,7 @@
     "ExportStatus": {
       "base": null,
       "refs": {
-        "CreateExportResponse$exportStatus": "<p>The status of the export. When the status is <code>Completed</code>, you can use the <a href=\"https://docs.aws.amazon.com/latest/dg/API_DescribeExport.html\">DescribeExport</a> operation to get the pre-signed S3 URL link to your exported bot or bot locale.</p>",
+        "CreateExportResponse$exportStatus": "<p>The status of the export. When the status is <code>Completed</code>, you can use the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeExport.html\">DescribeExport</a> operation to get the pre-signed S3 URL link to your exported bot or bot locale.</p>",
         "DeleteExportResponse$exportStatus": "<p>The current status of the deletion. When the deletion is complete, the export will no longer be returned by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_ListExports.html\">ListExports</a> operation and calls to the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeExport.html\"> DescribeExport</a> operation with the export identifier will fail.</p>",
         "DescribeExportResponse$exportStatus": "<p>The status of the export. When the status is <code>Complete</code> the export archive file is available for download.</p>",
         "ExportSummary$exportStatus": "<p>The status of the export. When the status is <code>Completed</code> the export is ready to download.</p>",
@@ -2190,6 +2190,12 @@
         "PromptSpecification$messageGroups": "<p>A collection of messages that Amazon Lex can send to the user. Amazon Lex chooses the actual message to send at runtime.</p>",
         "ResponseSpecification$messageGroups": "<p>A collection of responses that Amazon Lex can send to the user. Amazon Lex chooses the actual response to send at runtime.</p>",
         "StillWaitingResponseSpecification$messageGroups": "<p>One or more message groups, each containing one or more messages, that define the prompts that Amazon Lex sends to the user.</p>"
+      }
+    },
+    "MessageSelectionStrategy": {
+      "base": null,
+      "refs": {
+        "PromptSpecification$messageSelectionStrategy": "<p>Indicates how a message is selected from a message group among retries.</p>"
       }
     },
     "MessageVariationsList": {
@@ -3124,7 +3130,7 @@
     "Transcript": {
       "base": null,
       "refs": {
-        "AssociatedTranscript$transcript": "<p>The content of the transcript that meets the search filter criteria. For the JSON format of the transcript, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/designing-output-format.html\">Output transcript format</a>.</p>"
+        "AssociatedTranscript$transcript": "<p>The content of the transcript that meets the search filter criteria. For the JSON format of the transcript, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/designing-output-format.html\">Output transcript format</a>.</p>"
       }
     },
     "TranscriptFilter": {

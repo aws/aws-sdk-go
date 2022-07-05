@@ -5401,6 +5401,9 @@ type IncidentTemplate struct {
 	// Impact is a required field
 	Impact *int64 `locationName:"impact" min:"1" type:"integer" required:"true"`
 
+	// Tags to apply to an incident when calling the StartIncident API action.
+	IncidentTags map[string]*string `locationName:"incidentTags" min:"1" type:"map"`
+
 	// The Amazon SNS targets that are notified when updates are made to an incident.
 	NotificationTargets []*NotificationTargetItem `locationName:"notificationTargets" type:"list"`
 
@@ -5441,6 +5444,9 @@ func (s *IncidentTemplate) Validate() error {
 	if s.Impact != nil && *s.Impact < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Impact", 1))
 	}
+	if s.IncidentTags != nil && len(s.IncidentTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IncidentTags", 1))
+	}
 	if s.Title == nil {
 		invalidParams.Add(request.NewErrParamRequired("Title"))
 	}
@@ -5460,6 +5466,12 @@ func (s *IncidentTemplate) SetDedupeString(v string) *IncidentTemplate {
 // SetImpact sets the Impact field's value.
 func (s *IncidentTemplate) SetImpact(v int64) *IncidentTemplate {
 	s.Impact = &v
+	return s
+}
+
+// SetIncidentTags sets the IncidentTags field's value.
+func (s *IncidentTemplate) SetIncidentTags(v map[string]*string) *IncidentTemplate {
+	s.IncidentTags = v
 	return s
 }
 
@@ -8320,6 +8332,11 @@ type UpdateResponsePlanInput struct {
 	// what's currently happening, and next steps.
 	IncidentTemplateSummary *string `locationName:"incidentTemplateSummary" type:"string"`
 
+	// Tags to apply to an incident when calling the StartIncident API action. To
+	// call this action, you must also have permission to call the TagResource API
+	// action for the incident record resource.
+	IncidentTemplateTags map[string]*string `locationName:"incidentTemplateTags" type:"map"`
+
 	// The short format name of the incident. The title can't contain spaces.
 	IncidentTemplateTitle *string `locationName:"incidentTemplateTitle" type:"string"`
 }
@@ -8430,6 +8447,12 @@ func (s *UpdateResponsePlanInput) SetIncidentTemplateNotificationTargets(v []*No
 // SetIncidentTemplateSummary sets the IncidentTemplateSummary field's value.
 func (s *UpdateResponsePlanInput) SetIncidentTemplateSummary(v string) *UpdateResponsePlanInput {
 	s.IncidentTemplateSummary = &v
+	return s
+}
+
+// SetIncidentTemplateTags sets the IncidentTemplateTags field's value.
+func (s *UpdateResponsePlanInput) SetIncidentTemplateTags(v map[string]*string) *UpdateResponsePlanInput {
+	s.IncidentTemplateTags = v
 	return s
 }
 

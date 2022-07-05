@@ -1,0 +1,526 @@
+{
+  "version": "2.0",
+  "service": "<p>AWS Identity and Access Management Roles Anywhere provides a secure way for your workloads such as servers, containers, and applications running outside of AWS to obtain Temporary AWS credentials. Your workloads can use the same IAM policies and roles that you have configured with native AWS applications to access AWS resources. Using IAM Roles Anywhere will eliminate the need to manage long term credentials for workloads running outside of AWS.</p> <p>To use IAM Roles Anywhere customer workloads will need to use X.509 certificates issued by their Certificate Authority (CA) . The Certificate Authority (CA) needs to be registered with IAM Roles Anywhere as a trust anchor to establish trust between customer PKI and IAM Roles Anywhere. Customers who do not manage their own PKI system can use AWS Certificate Manager Private Certificate Authority (ACM PCA) to create a Certificate Authority and use that to establish trust with IAM Roles Anywhere</p> <p>This guide describes the IAM rolesanywhere operations that you can call programmatically. For general information about IAM Roles Anywhere see <a href=\"https://docs.aws.amazon.com/\">https://docs.aws.amazon.com/</a> </p>",
+  "operations": {
+    "CreateProfile": "<p>Creates a profile. A profile is configuration resource to list the roles that RolesAnywhere service is trusted to assume. In addition, by applying a profile you can intersect permissions with IAM managed policies.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:CreateProfile</code>. </p>",
+    "CreateTrustAnchor": "<p>Creates a trust anchor. You establish trust between IAM Roles Anywhere and your certificate authority (CA) by configuring a trust anchor. A Trust Anchor is defined either as a reference to a AWS Certificate Manager Private Certificate Authority (ACM PCA), or by uploading a Certificate Authority (CA) certificate. Your AWS workloads can authenticate with the trust anchor using certificates issued by the trusted Certificate Authority (CA) in exchange for temporary AWS credentials.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:CreateTrustAnchor</code>. </p>",
+    "DeleteCrl": "<p>Deletes a certificate revocation list (CRL).</p> <p> <b>Required permissions: </b> <code>rolesanywhere:DeleteCrl</code>. </p>",
+    "DeleteProfile": "<p>Deletes a profile.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:DeleteProfile</code>. </p>",
+    "DeleteTrustAnchor": "<p>Deletes a trust anchor.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:DeleteTrustAnchor</code>. </p>",
+    "DisableCrl": "<p>Disables a certificate revocation list (CRL).</p> <p> <b>Required permissions: </b> <code>rolesanywhere:DisableCrl</code>. </p>",
+    "DisableProfile": "<p>Disables a profile. When disabled, <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a> requests with this profile fail.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:DisableProfile</code>. </p>",
+    "DisableTrustAnchor": "<p>Disables a trust anchor. When disabled, <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a> requests specifying this trust anchor are unauthorized.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:DisableTrustAnchor</code>. </p>",
+    "EnableCrl": "<p>Enables a certificate revocation list (CRL). When enabled, certificates stored in the CRL are unauthorized to receive session credentials.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:EnableCrl</code>. </p>",
+    "EnableProfile": "<p>Enables the roles in a profile to receive session credentials in <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a>. </p> <p> <b>Required permissions: </b> <code>rolesanywhere:EnableProfile</code>. </p>",
+    "EnableTrustAnchor": "<p>Enables a trust anchor. When enabled, certificates in the trust anchor chain are authorized for trust validation. </p> <p> <b>Required permissions: </b> <code>rolesanywhere:EnableTrustAnchor</code>. </p>",
+    "GetCrl": "<p>Gets a certificate revocation list (CRL).</p> <p> <b>Required permissions: </b> <code>rolesanywhere:GetCrl</code>. </p>",
+    "GetProfile": "<p>Gets a profile.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:GetProfile</code>. </p>",
+    "GetSubject": "<p>Gets a Subject. A Subject associates a certificate identity with authentication attempts by CreateSession. The Subject resources stores audit information such as status of the last authentication attempt, the certificate data used in the attempt, and the last time the associated identity attempted authentication. </p> <p> <b>Required permissions: </b> <code>rolesanywhere:GetSubject</code>. </p>",
+    "GetTrustAnchor": "<p>Gets a trust anchor.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:GetTrustAnchor</code>. </p>",
+    "ImportCrl": "<p>Imports the certificate revocation list (CRL). CRl is a list of certificates that have been revoked by the issuing certificate Authority (CA). IAM Roles Anywhere validates against the crl list before issuing credentials. </p> <p> <b>Required permissions: </b> <code>rolesanywhere:ImportCrl</code>. </p>",
+    "ListCrls": "<p>Lists all Crls in the authenticated account and Amazon Web Services Region.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:ListCrls</code>. </p>",
+    "ListProfiles": "<p>Lists all profiles in the authenticated account and Amazon Web Services Region.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:ListProfiles</code>. </p>",
+    "ListSubjects": "<p>Lists the subjects in the authenticated account and Amazon Web Services Region.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:ListSubjects</code>. </p>",
+    "ListTagsForResource": "<p>Lists the tags attached to the resource.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:ListTagsForResource</code>. </p>",
+    "ListTrustAnchors": "<p>Lists the trust anchors in the authenticated account and Amazon Web Services Region.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:ListTrustAnchors</code>. </p>",
+    "TagResource": "<p>Attaches tags to a resource.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:TagResource</code>. </p>",
+    "UntagResource": "<p>Removes tags from the resource.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:UntagResource</code>. </p>",
+    "UpdateCrl": "<p>Updates the certificate revocation list (CRL). CRl is a list of certificates that have been revoked by the issuing certificate Authority (CA). IAM Roles Anywhere validates against the crl list before issuing credentials.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:UpdateCrl</code>. </p>",
+    "UpdateProfile": "<p>Updates the profile. A profile is configuration resource to list the roles that RolesAnywhere service is trusted to assume. In addition, by applying a profile you can scope-down permissions with IAM managed policies.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:UpdateProfile</code>. </p>",
+    "UpdateTrustAnchor": "<p>Updates the trust anchor.You establish trust between IAM Roles Anywhere and your certificate authority (CA) by configuring a trust anchor. A Trust Anchor is defined either as a reference to a AWS Certificate Manager Private Certificate Authority (ACM PCA), or by uploading a Certificate Authority (CA) certificate. Your AWS workloads can authenticate with the trust anchor using certificates issued by the trusted Certificate Authority (CA) in exchange for temporary AWS credentials.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:UpdateTrustAnchor</code>. </p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>You do not have sufficient access to perform this action.</p>",
+      "refs": {
+      }
+    },
+    "AmazonResourceName": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
+        "TagResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The ARN of the resource.</p>"
+      }
+    },
+    "Blob": {
+      "base": null,
+      "refs": {
+        "CrlDetail$crlData": "<p>The state of the certificate revocation list (CRL) after a read or write operation.</p>"
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "CreateProfileRequest$enabled": "<p>Specifies whether the profile is enabled.</p>",
+        "CreateProfileRequest$requireInstanceProperties": "<p>Specifies whether instance properties are required in <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a> requests with this profile. </p>",
+        "CreateTrustAnchorRequest$enabled": "<p>Specifies whether the trust anchor is enabled.</p>",
+        "CredentialSummary$enabled": "<p>Indicates whether the credential is enabled.</p>",
+        "CredentialSummary$failed": "<p>Indicates whether the <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a> operation was successful. </p>",
+        "CrlDetail$enabled": "<p>Indicates whether the certificate revocation list (CRL) is enabled.</p>",
+        "ImportCrlRequest$enabled": "<p>Specifies whether the certificate revocation list (CRL) is enabled.</p>",
+        "InstanceProperty$failed": "<p>Indicates whether the <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a> operation was successful. </p>",
+        "ProfileDetail$enabled": "<p>Indicates whether the profile is enabled.</p>",
+        "ProfileDetail$requireInstanceProperties": "<p>Specifies whether instance properties are required in <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a> requests with this profile. </p>",
+        "SubjectDetail$enabled": "<p>The enabled status of the subject.</p>",
+        "SubjectSummary$enabled": "<p>The enabled status of the Subject. </p>",
+        "TrustAnchorDetail$enabled": "<p>Indicates whether the trust anchor is enabled.</p>"
+      }
+    },
+    "CreateProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProfileRequestDurationSecondsInteger": {
+      "base": null,
+      "refs": {
+        "CreateProfileRequest$durationSeconds": "<p> The number of seconds the vended session credentials are valid for. </p>"
+      }
+    },
+    "CreateTrustAnchorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CredentialSummaries": {
+      "base": null,
+      "refs": {
+        "SubjectDetail$credentials": "<p>The temporary session credentials vended at the last authenticating call with this Subject.</p>"
+      }
+    },
+    "CredentialSummary": {
+      "base": "<p>A record of a presented X509 credential to <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a>. </p>",
+      "refs": {
+        "CredentialSummaries$member": null
+      }
+    },
+    "CrlDetail": {
+      "base": "<p>The state of the certificate revocation list (CRL) after a read or write operation.</p>",
+      "refs": {
+        "CrlDetailResponse$crl": "<p>The state of the certificate revocation list (CRL) after a read or write operation.</p>",
+        "CrlDetails$member": null
+      }
+    },
+    "CrlDetailResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CrlDetails": {
+      "base": null,
+      "refs": {
+        "ListCrlsResponse$crls": "<p>A list of certificate revocation lists (CRL). </p>"
+      }
+    },
+    "ImportCrlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ImportCrlRequestCrlDataBlob": {
+      "base": null,
+      "refs": {
+        "ImportCrlRequest$crlData": "<p>The x509 v3 specified certificate revocation list</p>"
+      }
+    },
+    "InstanceProperties": {
+      "base": null,
+      "refs": {
+        "SubjectDetail$instanceProperties": "<p>The specified instance properties associated with the request.</p>"
+      }
+    },
+    "InstanceProperty": {
+      "base": "<p>A key-value pair you set that identifies a property of the authenticating instance.</p>",
+      "refs": {
+        "InstanceProperties$member": null
+      }
+    },
+    "InstancePropertyMap": {
+      "base": null,
+      "refs": {
+        "InstanceProperty$properties": "<p>A list of instanceProperty objects. </p>"
+      }
+    },
+    "InstancePropertyMapKeyString": {
+      "base": null,
+      "refs": {
+        "InstancePropertyMap$key": null
+      }
+    },
+    "InstancePropertyMapValueString": {
+      "base": null,
+      "refs": {
+        "InstancePropertyMap$value": null
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "ListRequest$pageSize": "<p>The number of resources in the paginated list. </p>",
+        "ProfileDetail$durationSeconds": "<p> The number of seconds the vended session credentials are valid for. </p>"
+      }
+    },
+    "ListCrlsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProfilesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRequestNextTokenString": {
+      "base": null,
+      "refs": {
+        "ListRequest$nextToken": "<p>A token that indicates where the output should continue from, if a previous operation did not show all results. To get the next results, call the operation again with this value.</p>"
+      }
+    },
+    "ListSubjectsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTrustAnchorsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ManagedPolicyList": {
+      "base": null,
+      "refs": {
+        "CreateProfileRequest$managedPolicyArns": "<p>A list of managed policy ARNs that apply to the vended session credentials. </p>",
+        "ProfileDetail$managedPolicyArns": "<p>A list of managed policy ARNs that apply to the vended session credentials. </p>",
+        "UpdateProfileRequest$managedPolicyArns": "<p>A list of managed policy ARNs that apply to the vended session credentials. </p>"
+      }
+    },
+    "ManagedPolicyListMemberString": {
+      "base": null,
+      "refs": {
+        "ManagedPolicyList$member": null
+      }
+    },
+    "ProfileArn": {
+      "base": null,
+      "refs": {
+        "ProfileDetail$profileArn": "<p>The ARN of the profile.</p>"
+      }
+    },
+    "ProfileDetail": {
+      "base": "<p>The state of the profile after a read or write operation.</p>",
+      "refs": {
+        "ProfileDetailResponse$profile": "<p>The state of the profile after a read or write operation.</p>",
+        "ProfileDetails$member": null
+      }
+    },
+    "ProfileDetailResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ProfileDetails": {
+      "base": null,
+      "refs": {
+        "ListProfilesResponse$profiles": "<p>A list of profiles.</p>"
+      }
+    },
+    "ResourceName": {
+      "base": null,
+      "refs": {
+        "CreateProfileRequest$name": "<p>The name of the profile.</p>",
+        "CreateTrustAnchorRequest$name": "<p>The name of the trust anchor.</p>",
+        "ImportCrlRequest$name": "<p>The name of the certificate revocation list (CRL).</p>",
+        "ProfileDetail$name": "<p>The name of the profile.</p>",
+        "TrustAnchorDetail$name": "<p>The name of the trust anchor.</p>",
+        "UpdateCrlRequest$name": "<p>The name of the Crl.</p>",
+        "UpdateProfileRequest$name": "<p>The name of the profile.</p>",
+        "UpdateTrustAnchorRequest$name": "<p>The name of the trust anchor.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>The resource could not be found.</p>",
+      "refs": {
+      }
+    },
+    "RoleArn": {
+      "base": null,
+      "refs": {
+        "RoleArnList$member": null
+      }
+    },
+    "RoleArnList": {
+      "base": null,
+      "refs": {
+        "CreateProfileRequest$roleArns": "<p>A list of IAM roles that this profile can assume in a <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a> operation.</p>",
+        "ProfileDetail$roleArns": "<p>A list of IAM roles that this profile can assume in a <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a> operation.</p>",
+        "UpdateProfileRequest$roleArns": "<p>A list of IAM roles that this profile can assume in a <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a> operation.</p>"
+      }
+    },
+    "ScalarCrlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ScalarProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ScalarSubjectRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ScalarTrustAnchorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Source": {
+      "base": "<p>The trust anchor type and its related certificate data.</p>",
+      "refs": {
+        "CreateTrustAnchorRequest$source": "<p>The trust anchor type and its related certificate data.</p>",
+        "TrustAnchorDetail$source": "<p>The trust anchor type and its related certificate data.</p>",
+        "UpdateTrustAnchorRequest$source": "<p>The trust anchor type and its related certificate data.</p>"
+      }
+    },
+    "SourceData": {
+      "base": "<p>The data field of the trust anchor depending on its type. </p>",
+      "refs": {
+        "Source$sourceData": "<p>The data field of the trust anchor depending on its type. </p>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$message": null,
+        "CreateProfileRequest$sessionPolicy": "<p>A session policy that applies to the trust boundary of the vended session credentials. </p>",
+        "CredentialSummary$issuer": "<p>The fully qualified domain name of the issuing certificate for the presented end-entity certificate.</p>",
+        "CredentialSummary$serialNumber": "<p>The serial number of the certificate.</p>",
+        "CredentialSummary$x509CertificateData": "<p>The PEM-encoded data of the certificate.</p>",
+        "CrlDetail$crlArn": "<p>The ARN of the certificate revocation list (CRL).</p>",
+        "CrlDetail$name": "<p>The name of the certificate revocation list (CRL).</p>",
+        "CrlDetail$trustAnchorArn": "<p>The ARN of the TrustAnchor the certificate revocation list (CRL) will provide revocation for. </p>",
+        "ListCrlsResponse$nextToken": "<p>A token that indicates where the output should continue from, if a previous operation did not show all results. To get the next results, call the operation again with this value.</p>",
+        "ListProfilesResponse$nextToken": "<p>A token that indicates where the output should continue from, if a previous operation did not show all results. To get the next results, call the operation again with this value.</p>",
+        "ListSubjectsResponse$nextToken": "<p>A token that indicates where the output should continue from, if a previous operation did not show all results. To get the next results, call the operation again with this value.</p>",
+        "ListTrustAnchorsResponse$nextToken": "<p>A token that indicates where the output should continue from, if a previous operation did not show all results. To get the next results, call the operation again with this value.</p>",
+        "ProfileDetail$createdBy": "<p>The Amazon Web Services account that created the profile.</p>",
+        "ProfileDetail$sessionPolicy": "<p>A session policy that applies to the trust boundary of the vended session credentials. </p>",
+        "ResourceNotFoundException$message": null,
+        "SourceData$acmPcaArn": "<p>The root certificate of the Certificate Manager Private Certificate Authority specified by this ARN is used in trust validation for <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a> operations. Included for trust anchors of type <code>AWS_ACM_PCA</code>. </p>",
+        "SourceData$x509CertificateData": "<p>The PEM-encoded data for the certificate anchor. Included for trust anchors of type <code>CERTIFICATE_BUNDLE</code>. </p>",
+        "SubjectDetail$subjectArn": "<p>The ARN of the resource.</p>",
+        "SubjectDetail$x509Subject": "<p>The x509 principal identifier of the authenticating certificate.</p>",
+        "SubjectSummary$subjectArn": "<p>The ARN of the resource.</p>",
+        "SubjectSummary$x509Subject": "<p>The x509 principal identifier of the authenticating certificate.</p>",
+        "TooManyTagsException$message": null,
+        "TrustAnchorDetail$trustAnchorArn": "<p>The ARN of the trust anchor.</p>",
+        "ValidationException$message": null
+      }
+    },
+    "SubjectDetail": {
+      "base": "<p>The state of the subject after a read or write operation.</p>",
+      "refs": {
+        "SubjectDetailResponse$subject": "<p>The state of the subject after a read or write operation.</p>"
+      }
+    },
+    "SubjectDetailResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SubjectSummaries": {
+      "base": null,
+      "refs": {
+        "ListSubjectsResponse$subjects": "<p>A list of subjects.</p>"
+      }
+    },
+    "SubjectSummary": {
+      "base": "<p>A summary representation of Subject resources returned in read operations; primarily ListSubjects.</p>",
+      "refs": {
+        "SubjectSummaries$member": null
+      }
+    },
+    "SyntheticTimestamp_date_time": {
+      "base": null,
+      "refs": {
+        "CredentialSummary$seenAt": "<p>The ISO-8601 time stamp of when the certificate was last used in a <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a> operation.</p>",
+        "CrlDetail$createdAt": "<p>The ISO-8601 timestamp when the certificate revocation list (CRL) was created. </p>",
+        "CrlDetail$updatedAt": "<p>The ISO-8601 timestamp when the certificate revocation list (CRL) was last updated. </p>",
+        "InstanceProperty$seenAt": "<p>The ISO-8601 time stamp of when the certificate was last used in a <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a> operation.</p>",
+        "ProfileDetail$createdAt": "<p>The ISO-8601 timestamp when the profile was created. </p>",
+        "ProfileDetail$updatedAt": "<p>The ISO-8601 timestamp when the profile was last updated. </p>",
+        "SubjectDetail$createdAt": "<p>The ISO-8601 timestamp when the subject was created. </p>",
+        "SubjectDetail$lastSeenAt": "<p>The ISO-8601 timestamp of the last time this Subject requested temporary session credentials.</p>",
+        "SubjectDetail$updatedAt": "<p>The ISO-8601 timestamp when the subject was last updated.</p>",
+        "SubjectSummary$createdAt": "<p>The ISO-8601 time stamp of when the certificate was first used in a <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a> operation.</p>",
+        "SubjectSummary$lastSeenAt": "<p>The ISO-8601 time stamp of when the certificate was last used in a <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_CreateSession.html\">CreateSession</a> operation.</p>",
+        "SubjectSummary$updatedAt": "<p>The ISO-8601 timestamp when the subject was last updated. </p>",
+        "TrustAnchorDetail$createdAt": "<p>The ISO-8601 timestamp when the trust anchor was created. </p>",
+        "TrustAnchorDetail$updatedAt": "<p>The ISO-8601 timestamp when the trust anchor was last updated. </p>"
+      }
+    },
+    "Tag": {
+      "base": "<p>A label that consists of a key and value you define. </p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$key": "<p>The tag key.</p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>A list of keys. Tag keys are the unique identifiers of tags. </p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateProfileRequest$tags": "<p>The tags to attach to the profile.</p>",
+        "CreateTrustAnchorRequest$tags": "<p>The tags to attach to the trust anchor.</p>",
+        "ImportCrlRequest$tags": "<p>A list of tags to attach to the certificate revocation list (CRL).</p>",
+        "ListTagsForResourceResponse$tags": "<p>A list of tags attached to the resource.</p>",
+        "TagResourceRequest$tags": "<p>The tags to attach to the resource.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$value": "<p>The tag value.</p>"
+      }
+    },
+    "TooManyTagsException": {
+      "base": "<p>Too many tags.</p>",
+      "refs": {
+      }
+    },
+    "TrustAnchorArn": {
+      "base": null,
+      "refs": {
+        "ImportCrlRequest$trustAnchorArn": "<p>The ARN of the TrustAnchor the certificate revocation list (CRL) will provide revocation for.</p>"
+      }
+    },
+    "TrustAnchorDetail": {
+      "base": "<p>The state of the trust anchor after a read or write operation. </p>",
+      "refs": {
+        "TrustAnchorDetailResponse$trustAnchor": "<p>The state of the trust anchor after a read or write operation. </p>",
+        "TrustAnchorDetails$member": null
+      }
+    },
+    "TrustAnchorDetailResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TrustAnchorDetails": {
+      "base": null,
+      "refs": {
+        "ListTrustAnchorsResponse$trustAnchors": "<p>A list of trust anchors.</p>"
+      }
+    },
+    "TrustAnchorType": {
+      "base": null,
+      "refs": {
+        "Source$sourceType": "<p>The type of the trust anchor. </p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCrlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCrlRequestCrlDataBlob": {
+      "base": null,
+      "refs": {
+        "UpdateCrlRequest$crlData": "<p>The x509 v3 specified certificate revocation list</p>"
+      }
+    },
+    "UpdateProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProfileRequestDurationSecondsInteger": {
+      "base": null,
+      "refs": {
+        "UpdateProfileRequest$durationSeconds": "<p> The number of seconds the vended session credentials are valid for. </p>"
+      }
+    },
+    "UpdateProfileRequestSessionPolicyString": {
+      "base": null,
+      "refs": {
+        "UpdateProfileRequest$sessionPolicy": "<p>A session policy that applies to the trust boundary of the vended session credentials. </p>"
+      }
+    },
+    "UpdateTrustAnchorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Uuid": {
+      "base": null,
+      "refs": {
+        "CrlDetail$crlId": "<p>The unique identifier of the certificate revocation list (CRL).</p>",
+        "ProfileDetail$profileId": "<p>The unique identifier of the profile.</p>",
+        "ScalarCrlRequest$crlId": "<p>The unique identifier of the certificate revocation list (CRL).</p>",
+        "ScalarProfileRequest$profileId": "<p>The unique identifier of the profile.</p>",
+        "ScalarSubjectRequest$subjectId": "<p>The unique identifier of the subject. </p>",
+        "ScalarTrustAnchorRequest$trustAnchorId": "<p>The unique identifier of the trust anchor.</p>",
+        "SubjectDetail$subjectId": "<p>The id of the resource</p>",
+        "SubjectSummary$subjectId": "<p>The id of the resource.</p>",
+        "TrustAnchorDetail$trustAnchorId": "<p>The unique identifier of the trust anchor.</p>",
+        "UpdateCrlRequest$crlId": "<p>The unique identifier of the certificate revocation list (CRL).</p>",
+        "UpdateProfileRequest$profileId": "<p>The unique identifier of the profile.</p>",
+        "UpdateTrustAnchorRequest$trustAnchorId": "<p>The unique identifier of the trust anchor.</p>"
+      }
+    },
+    "ValidationException": {
+      "base": "<p>Validation exception error.</p>",
+      "refs": {
+      }
+    }
+  }
+}

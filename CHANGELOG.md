@@ -1,3 +1,16 @@
+Release v1.44.48 (2022-07-05)
+===
+
+### Service Client Updates
+* `service/config`: Updates service documentation
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * This release allows customers to programmatically create QuickSight accounts with Enterprise and Enterprise + Q editions. It also releases allowlisting domains for embedding QuickSight dashboards at runtime through the embedding APIs.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds waiters support for DBCluster.
+* `service/rolesanywhere`: Adds new service
+* `service/ssm-incidents`: Updates service API and documentation
+
 Release v1.44.47 (2022-07-01)
 ===
 
