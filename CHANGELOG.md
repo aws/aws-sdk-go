@@ -1,3 +1,11 @@
+Release v1.44.49 (2022-07-06)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * My AWS Service (placeholder) - Add a new feature Account-level Targeting for StackSet operation
+* `service/synthetics`: Updates service API, documentation, and paginators
+
 Release v1.44.48 (2022-07-05)
 ===
 

@@ -998,6 +998,15 @@
       "type":"string",
       "pattern":"^[0-9]{12}$"
     },
+    "AccountFilterType":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "INTERSECTION",
+        "DIFFERENCE",
+        "UNION"
+      ]
+    },
     "AccountGateResult":{
       "type":"structure",
       "members":{
@@ -1564,7 +1573,8 @@
       "members":{
         "Accounts":{"shape":"AccountList"},
         "AccountsUrl":{"shape":"AccountsUrl"},
-        "OrganizationalUnitIds":{"shape":"OrganizationalUnitIdList"}
+        "OrganizationalUnitIds":{"shape":"OrganizationalUnitIdList"},
+        "AccountFilterType":{"shape":"AccountFilterType"}
       }
     },
     "DeprecatedStatus":{

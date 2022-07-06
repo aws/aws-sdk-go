@@ -13,6 +13,22 @@
     "uid":"synthetics-2017-10-11"
   },
   "operations":{
+    "AssociateResource":{
+      "name":"AssociateResource",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/group/{groupIdentifier}/associate"
+      },
+      "input":{"shape":"AssociateResourceRequest"},
+      "output":{"shape":"AssociateResourceResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "CreateCanary":{
       "name":"CreateCanary",
       "http":{
@@ -27,6 +43,21 @@
         {"shape":"RequestEntityTooLargeException"}
       ]
     },
+    "CreateGroup":{
+      "name":"CreateGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/group"
+      },
+      "input":{"shape":"CreateGroupRequest"},
+      "output":{"shape":"CreateGroupResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "DeleteCanary":{
       "name":"DeleteCanary",
       "http":{
@@ -35,6 +66,21 @@
       },
       "input":{"shape":"DeleteCanaryRequest"},
       "output":{"shape":"DeleteCanaryResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "DeleteGroup":{
+      "name":"DeleteGroup",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/group/{groupIdentifier}"
+      },
+      "input":{"shape":"DeleteGroupRequest"},
+      "output":{"shape":"DeleteGroupResponse"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
@@ -81,6 +127,21 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DisassociateResource":{
+      "name":"DisassociateResource",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/group/{groupIdentifier}/disassociate"
+      },
+      "input":{"shape":"DisassociateResourceRequest"},
+      "output":{"shape":"DisassociateResourceResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "GetCanary":{
       "name":"GetCanary",
       "http":{
@@ -108,6 +169,63 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetGroup":{
+      "name":"GetGroup",
+      "http":{
+        "method":"GET",
+        "requestUri":"/group/{groupIdentifier}"
+      },
+      "input":{"shape":"GetGroupRequest"},
+      "output":{"shape":"GetGroupResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "ListAssociatedGroups":{
+      "name":"ListAssociatedGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/resource/{resourceArn}/groups"
+      },
+      "input":{"shape":"ListAssociatedGroupsRequest"},
+      "output":{"shape":"ListAssociatedGroupsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListGroupResources":{
+      "name":"ListGroupResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/group/{groupIdentifier}/resources"
+      },
+      "input":{"shape":"ListGroupResourcesRequest"},
+      "output":{"shape":"ListGroupResourcesResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "ListGroups":{
+      "name":"ListGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/groups"
+      },
+      "input":{"shape":"ListGroupsRequest"},
+      "output":{"shape":"ListGroupsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -117,9 +235,11 @@
       "input":{"shape":"ListTagsForResourceRequest"},
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ValidationException"}
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalFailureException"}
       ]
     },
     "StartCanary":{
@@ -161,9 +281,11 @@
       "input":{"shape":"TagResourceRequest"},
       "output":{"shape":"TagResourceResponse"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ValidationException"}
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalFailureException"}
       ]
     },
     "UntagResource":{
@@ -175,9 +297,11 @@
       "input":{"shape":"UntagResourceRequest"},
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ValidationException"}
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalFailureException"}
       ]
     },
     "UpdateCanary":{
@@ -209,6 +333,34 @@
       "members":{
         "S3Encryption":{"shape":"S3EncryptionConfig"}
       }
+    },
+    "AssociateResourceRequest":{
+      "type":"structure",
+      "required":[
+        "GroupIdentifier",
+        "ResourceArn"
+      ],
+      "members":{
+        "GroupIdentifier":{
+          "shape":"GroupIdentifier",
+          "location":"uri",
+          "locationName":"groupIdentifier"
+        },
+        "ResourceArn":{"shape":"CanaryArn"}
+      }
+    },
+    "AssociateResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "BadRequestException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
     "BaseScreenshot":{
       "type":"structure",
@@ -473,6 +625,20 @@
         "Canary":{"shape":"Canary"}
       }
     },
+    "CreateGroupRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"GroupName"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateGroupResponse":{
+      "type":"structure",
+      "members":{
+        "Group":{"shape":"Group"}
+      }
+    },
     "DeleteCanaryRequest":{
       "type":"structure",
       "required":["Name"],
@@ -490,6 +656,22 @@
       }
     },
     "DeleteCanaryResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteGroupRequest":{
+      "type":"structure",
+      "required":["GroupIdentifier"],
+      "members":{
+        "GroupIdentifier":{
+          "shape":"GroupIdentifier",
+          "location":"uri",
+          "locationName":"groupIdentifier"
+        }
+      }
+    },
+    "DeleteGroupResponse":{
       "type":"structure",
       "members":{
       }
@@ -548,6 +730,26 @@
       "members":{
         "RuntimeVersions":{"shape":"RuntimeVersionList"},
         "NextToken":{"shape":"Token"}
+      }
+    },
+    "DisassociateResourceRequest":{
+      "type":"structure",
+      "required":[
+        "GroupIdentifier",
+        "ResourceArn"
+      ],
+      "members":{
+        "GroupIdentifier":{
+          "shape":"GroupIdentifier",
+          "location":"uri",
+          "locationName":"groupIdentifier"
+        },
+        "ResourceArn":{"shape":"CanaryArn"}
+      }
+    },
+    "DisassociateResourceResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "EncryptionMode":{
@@ -611,6 +813,70 @@
         "NextToken":{"shape":"Token"}
       }
     },
+    "GetGroupRequest":{
+      "type":"structure",
+      "required":["GroupIdentifier"],
+      "members":{
+        "GroupIdentifier":{
+          "shape":"GroupIdentifier",
+          "location":"uri",
+          "locationName":"groupIdentifier"
+        }
+      }
+    },
+    "GetGroupResponse":{
+      "type":"structure",
+      "members":{
+        "Group":{"shape":"Group"}
+      }
+    },
+    "Group":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"String"},
+        "Name":{"shape":"GroupName"},
+        "Arn":{"shape":"GroupArn"},
+        "Tags":{"shape":"TagMap"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
+    "GroupArn":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"arn:(aws[a-zA-Z-]*)?:synthetics:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}:\\d{12}:group:[0-9a-z]+"
+    },
+    "GroupIdentifier":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "GroupName":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "GroupSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"String"},
+        "Name":{"shape":"GroupName"},
+        "Arn":{"shape":"GroupArn"}
+      }
+    },
+    "GroupSummaryList":{
+      "type":"list",
+      "member":{"shape":"GroupSummary"}
+    },
+    "InternalFailureException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":500},
+      "exception":true
+    },
     "InternalServerException":{
       "type":"structure",
       "members":{
@@ -625,12 +891,66 @@
       "min":1,
       "pattern":"arn:(aws[a-zA-Z-]*)?:kms:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}:\\d{12}:key/[\\w\\-\\/]+"
     },
+    "ListAssociatedGroupsRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"MaxGroupResults"},
+        "ResourceArn":{
+          "shape":"CanaryArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListAssociatedGroupsResponse":{
+      "type":"structure",
+      "members":{
+        "Groups":{"shape":"GroupSummaryList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListGroupResourcesRequest":{
+      "type":"structure",
+      "required":["GroupIdentifier"],
+      "members":{
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"MaxGroupResults"},
+        "GroupIdentifier":{
+          "shape":"GroupIdentifier",
+          "location":"uri",
+          "locationName":"groupIdentifier"
+        }
+      }
+    },
+    "ListGroupResourcesResponse":{
+      "type":"structure",
+      "members":{
+        "Resources":{"shape":"StringList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListGroupsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"MaxGroupResults"}
+      }
+    },
+    "ListGroupsResponse":{
+      "type":"structure",
+      "members":{
+        "Groups":{"shape":"GroupSummaryList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["ResourceArn"],
       "members":{
         "ResourceArn":{
-          "shape":"CanaryArn",
+          "shape":"ResourceArn",
           "location":"uri",
           "locationName":"resourceArn"
         }
@@ -652,6 +972,11 @@
       "max":840,
       "min":3
     },
+    "MaxGroupResults":{
+      "type":"integer",
+      "max":20,
+      "min":1
+    },
     "MaxOneYearInSeconds":{
       "type":"long",
       "max":31622400,
@@ -672,7 +997,21 @@
       "max":3008,
       "min":960
     },
+    "NotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
     "NullableBoolean":{"type":"boolean"},
+    "PaginationToken":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"^.+$"
+    },
     "RequestEntityTooLargeException":{
       "type":"structure",
       "members":{
@@ -680,6 +1019,12 @@
       },
       "error":{"httpStatusCode":413},
       "exception":true
+    },
+    "ResourceArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:(aws[a-zA-Z-]*)?:synthetics:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}:\\d{12}:(canary|group):[0-9a-z_\\-]+"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -722,6 +1067,14 @@
       "max":5,
       "min":0
     },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":402},
+      "exception":true
+    },
     "StartCanaryRequest":{
       "type":"structure",
       "required":["Name"],
@@ -759,6 +1112,10 @@
       "max":1024,
       "min":1
     },
+    "StringList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "SubnetId":{"type":"string"},
     "SubnetIds":{
       "type":"list",
@@ -793,7 +1150,7 @@
       ],
       "members":{
         "ResourceArn":{
-          "shape":"CanaryArn",
+          "shape":"ResourceArn",
           "location":"uri",
           "locationName":"resourceArn"
         },
@@ -815,6 +1172,14 @@
       "max":252,
       "min":4
     },
+    "TooManyRequestsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":429},
+      "exception":true
+    },
     "UUID":{
       "type":"string",
       "pattern":"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
@@ -827,7 +1192,7 @@
       ],
       "members":{
         "ResourceArn":{
-          "shape":"CanaryArn",
+          "shape":"ResourceArn",
           "location":"uri",
           "locationName":"resourceArn"
         },
