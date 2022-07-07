@@ -388,6 +388,10 @@ type DatabaseMigrationServiceAPI interface {
 	TestConnectionWithContext(aws.Context, *databasemigrationservice.TestConnectionInput, ...request.Option) (*databasemigrationservice.TestConnectionOutput, error)
 	TestConnectionRequest(*databasemigrationservice.TestConnectionInput) (*request.Request, *databasemigrationservice.TestConnectionOutput)
 
+	UpdateSubscriptionsToEventBridge(*databasemigrationservice.UpdateSubscriptionsToEventBridgeInput) (*databasemigrationservice.UpdateSubscriptionsToEventBridgeOutput, error)
+	UpdateSubscriptionsToEventBridgeWithContext(aws.Context, *databasemigrationservice.UpdateSubscriptionsToEventBridgeInput, ...request.Option) (*databasemigrationservice.UpdateSubscriptionsToEventBridgeOutput, error)
+	UpdateSubscriptionsToEventBridgeRequest(*databasemigrationservice.UpdateSubscriptionsToEventBridgeInput) (*request.Request, *databasemigrationservice.UpdateSubscriptionsToEventBridgeOutput)
+
 	WaitUntilEndpointDeleted(*databasemigrationservice.DescribeEndpointsInput) error
 	WaitUntilEndpointDeletedWithContext(aws.Context, *databasemigrationservice.DescribeEndpointsInput, ...request.WaiterOption) error
 

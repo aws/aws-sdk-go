@@ -5323,6 +5323,31 @@
         "ChannelSpecification$SupportedInputModes": "<p>The allowed input mode, either FILE or PIPE.</p> <p>In FILE mode, Amazon SageMaker copies the data from the input source onto the local Amazon Elastic Block Store (Amazon EBS) volumes before starting your training algorithm. This is the most commonly used input mode.</p> <p>In PIPE mode, Amazon SageMaker streams input data from the source directly to your algorithm without using the EBS volume.</p>"
       }
     },
+    "InstanceGroup": {
+      "base": "<p>Defines an instance group for heterogeneous cluster training. When requesting a training job using the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html\">CreateTrainingJob</a> API, you can configure up to 5 different ML training instance groups.</p>",
+      "refs": {
+        "InstanceGroups$member": null
+      }
+    },
+    "InstanceGroupName": {
+      "base": null,
+      "refs": {
+        "InstanceGroup$InstanceGroupName": "<p>Specifies the name of the instance group.</p>",
+        "InstanceGroupNames$member": null
+      }
+    },
+    "InstanceGroupNames": {
+      "base": null,
+      "refs": {
+        "S3DataSource$InstanceGroupNames": "<p>A list of names of instance groups that get data from the S3 data source.</p>"
+      }
+    },
+    "InstanceGroups": {
+      "base": null,
+      "refs": {
+        "ResourceConfig$InstanceGroups": "<p>The configuration of a heterogeneous cluster in JSON format.</p>"
+      }
+    },
     "InstanceMetadataServiceConfiguration": {
       "base": "<p>Information on the IMDS configuration of the notebook instance</p>",
       "refs": {
@@ -11013,12 +11038,14 @@
     "TrainingInstanceCount": {
       "base": null,
       "refs": {
+        "InstanceGroup$InstanceCount": "<p>Specifies the number of instances of the instance group.</p>",
         "ResourceConfig$InstanceCount": "<p>The number of ML compute instances to use. For distributed training, provide a value greater than 1. </p>"
       }
     },
     "TrainingInstanceType": {
       "base": null,
       "refs": {
+        "InstanceGroup$InstanceType": "<p>Specifies the instance type of the instance group.</p>",
         "ResourceConfig$InstanceType": "<p>The ML compute instance type. </p>",
         "TrainingInstanceTypes$member": null
       }

@@ -61319,6 +61319,86 @@ func (s *InputConfig) SetS3Uri(v string) *InputConfig {
 	return s
 }
 
+// Defines an instance group for heterogeneous cluster training. When requesting
+// a training job using the CreateTrainingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html)
+// API, you can configure up to 5 different ML training instance groups.
+type InstanceGroup struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the number of instances of the instance group.
+	//
+	// InstanceCount is a required field
+	InstanceCount *int64 `type:"integer" required:"true"`
+
+	// Specifies the name of the instance group.
+	//
+	// InstanceGroupName is a required field
+	InstanceGroupName *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the instance type of the instance group.
+	//
+	// InstanceType is a required field
+	InstanceType *string `type:"string" required:"true" enum:"TrainingInstanceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceGroup) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InstanceGroup) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InstanceGroup"}
+	if s.InstanceCount == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceCount"))
+	}
+	if s.InstanceGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceGroupName"))
+	}
+	if s.InstanceGroupName != nil && len(*s.InstanceGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceGroupName", 1))
+	}
+	if s.InstanceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *InstanceGroup) SetInstanceCount(v int64) *InstanceGroup {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetInstanceGroupName sets the InstanceGroupName field's value.
+func (s *InstanceGroup) SetInstanceGroupName(v string) *InstanceGroup {
+	s.InstanceGroupName = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *InstanceGroup) SetInstanceType(v string) *InstanceGroup {
+	s.InstanceType = &v
+	return s
+}
+
 // Information on the IMDS configuration of the notebook instance
 type InstanceMetadataServiceConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -83304,14 +83384,13 @@ type ResourceConfig struct {
 
 	// The number of ML compute instances to use. For distributed training, provide
 	// a value greater than 1.
-	//
-	// InstanceCount is a required field
-	InstanceCount *int64 `min:"1" type:"integer" required:"true"`
+	InstanceCount *int64 `type:"integer"`
+
+	// The configuration of a heterogeneous cluster in JSON format.
+	InstanceGroups []*InstanceGroup `type:"list"`
 
 	// The ML compute instance type.
-	//
-	// InstanceType is a required field
-	InstanceType *string `type:"string" required:"true" enum:"TrainingInstanceType"`
+	InstanceType *string `type:"string" enum:"TrainingInstanceType"`
 
 	// The Amazon Web Services KMS key that SageMaker uses to encrypt data on the
 	// storage volume attached to the ML compute instance(s) that run the training
@@ -83380,20 +83459,21 @@ func (s ResourceConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ResourceConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ResourceConfig"}
-	if s.InstanceCount == nil {
-		invalidParams.Add(request.NewErrParamRequired("InstanceCount"))
-	}
-	if s.InstanceCount != nil && *s.InstanceCount < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("InstanceCount", 1))
-	}
-	if s.InstanceType == nil {
-		invalidParams.Add(request.NewErrParamRequired("InstanceType"))
-	}
 	if s.VolumeSizeInGB == nil {
 		invalidParams.Add(request.NewErrParamRequired("VolumeSizeInGB"))
 	}
 	if s.VolumeSizeInGB != nil && *s.VolumeSizeInGB < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("VolumeSizeInGB", 1))
+	}
+	if s.InstanceGroups != nil {
+		for i, v := range s.InstanceGroups {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InstanceGroups", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -83405,6 +83485,12 @@ func (s *ResourceConfig) Validate() error {
 // SetInstanceCount sets the InstanceCount field's value.
 func (s *ResourceConfig) SetInstanceCount(v int64) *ResourceConfig {
 	s.InstanceCount = &v
+	return s
+}
+
+// SetInstanceGroups sets the InstanceGroups field's value.
+func (s *ResourceConfig) SetInstanceGroups(v []*InstanceGroup) *ResourceConfig {
+	s.InstanceGroups = v
 	return s
 }
 
@@ -83958,6 +84044,9 @@ type S3DataSource struct {
 	// augmented manifest file.
 	AttributeNames []*string `type:"list"`
 
+	// A list of names of instance groups that get data from the S3 data source.
+	InstanceGroupNames []*string `type:"list"`
+
 	// If you want SageMaker to replicate the entire dataset on each ML compute
 	// instance that is launched for model training, specify FullyReplicated.
 	//
@@ -84054,6 +84143,12 @@ func (s *S3DataSource) Validate() error {
 // SetAttributeNames sets the AttributeNames field's value.
 func (s *S3DataSource) SetAttributeNames(v []*string) *S3DataSource {
 	s.AttributeNames = v
+	return s
+}
+
+// SetInstanceGroupNames sets the InstanceGroupNames field's value.
+func (s *S3DataSource) SetInstanceGroupNames(v []*string) *S3DataSource {
+	s.InstanceGroupNames = v
 	return s
 }
 

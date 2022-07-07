@@ -786,6 +786,39 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "GetPosition":{
+      "name":"GetPosition",
+      "http":{
+        "method":"GET",
+        "requestUri":"/positions/{ResourceIdentifier}"
+      },
+      "input":{"shape":"GetPositionRequest"},
+      "output":{"shape":"GetPositionResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetPositionConfiguration":{
+      "name":"GetPositionConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/position-configurations/{ResourceIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetPositionConfigurationRequest"},
+      "output":{"shape":"GetPositionConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetResourceEventConfiguration":{
       "name":"GetResourceEventConfiguration",
       "http":{
@@ -1101,6 +1134,22 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListPositionConfigurations":{
+      "name":"ListPositionConfigurations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/position-configurations",
+        "responseCode":200
+      },
+      "input":{"shape":"ListPositionConfigurationsRequest"},
+      "output":{"shape":"ListPositionConfigurationsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListQueuedMessages":{
       "name":"ListQueuedMessages",
       "http":{
@@ -1191,6 +1240,23 @@
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "PutPositionConfiguration":{
+      "name":"PutPositionConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/position-configurations/{ResourceIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"PutPositionConfigurationRequest"},
+      "output":{"shape":"PutPositionConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "PutResourceLogLevel":{
@@ -1519,6 +1585,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "UpdatePosition":{
+      "name":"UpdatePosition",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/positions/{ResourceIdentifier}",
+        "responseCode":204
+      },
+      "input":{"shape":"UpdatePositionRequest"},
+      "output":{"shape":"UpdatePositionResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "UpdateResourceEventConfiguration":{
       "name":"UpdateResourceEventConfiguration",
       "http":{
@@ -1598,6 +1681,13 @@
       "exception":true
     },
     "AccountLinked":{"type":"boolean"},
+    "Accuracy":{
+      "type":"structure",
+      "members":{
+        "HorizontalAccuracy":{"shape":"HorizontalAccuracy"},
+        "VerticalAccuracy":{"shape":"VerticalAccuracy"}
+      }
+    },
     "AddGwMetadata":{"type":"boolean"},
     "AmazonId":{
       "type":"string",
@@ -2656,7 +2746,8 @@
       "members":{
         "Fuota":{"shape":"FPort"},
         "Multicast":{"shape":"FPort"},
-        "ClockSync":{"shape":"FPort"}
+        "ClockSync":{"shape":"FPort"},
+        "Positioning":{"shape":"Positioning"}
       }
     },
     "FactoryPresetFreqsList":{
@@ -2920,6 +3011,62 @@
       "members":{
         "Sidewalk":{"shape":"SidewalkAccountInfoWithFingerprint"},
         "AccountLinked":{"shape":"AccountLinked"}
+      }
+    },
+    "GetPositionConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceIdentifier",
+        "ResourceType"
+      ],
+      "members":{
+        "ResourceIdentifier":{
+          "shape":"PositionResourceIdentifier",
+          "location":"uri",
+          "locationName":"ResourceIdentifier"
+        },
+        "ResourceType":{
+          "shape":"PositionResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        }
+      }
+    },
+    "GetPositionConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "Solvers":{"shape":"PositionSolverDetails"},
+        "Destination":{"shape":"DestinationName"}
+      }
+    },
+    "GetPositionRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceIdentifier",
+        "ResourceType"
+      ],
+      "members":{
+        "ResourceIdentifier":{
+          "shape":"PositionResourceIdentifier",
+          "location":"uri",
+          "locationName":"ResourceIdentifier"
+        },
+        "ResourceType":{
+          "shape":"PositionResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        }
+      }
+    },
+    "GetPositionResponse":{
+      "type":"structure",
+      "members":{
+        "Position":{"shape":"PositionCoordinate"},
+        "Accuracy":{"shape":"Accuracy"},
+        "SolverType":{"shape":"PositionSolverType"},
+        "SolverProvider":{"shape":"PositionSolverProvider"},
+        "SolverVersion":{"shape":"PositionSolverVersion"},
+        "Timestamp":{"shape":"ISODateTimeString"}
       }
     },
     "GetResourceEventConfigurationRequest":{
@@ -3198,6 +3345,10 @@
         "Status":{"shape":"WirelessGatewayTaskStatus"}
       }
     },
+    "HorizontalAccuracy":{
+      "type":"float",
+      "min":0
+    },
     "HrAllowed":{"type":"boolean"},
     "ISODateTimeString":{
       "type":"string",
@@ -3446,6 +3597,33 @@
       "members":{
         "NextToken":{"shape":"NextToken"},
         "Sidewalk":{"shape":"SidewalkAccountList"}
+      }
+    },
+    "ListPositionConfigurationsRequest":{
+      "type":"structure",
+      "members":{
+        "ResourceType":{
+          "shape":"PositionResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListPositionConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "PositionConfigurationList":{"shape":"PositionConfigurationList"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "ListQueuedMessagesRequest":{
@@ -3827,7 +4005,8 @@
         "DeviceProfileId":{"shape":"DeviceProfileId"},
         "ServiceProfileId":{"shape":"ServiceProfileId"},
         "AbpV1_1":{"shape":"UpdateAbpV1_1"},
-        "AbpV1_0_x":{"shape":"UpdateAbpV1_0_x"}
+        "AbpV1_0_x":{"shape":"UpdateAbpV1_0_x"},
+        "FPorts":{"shape":"UpdateFPorts"}
       }
     },
     "LoRaWANUpdateGatewayTaskCreate":{
@@ -4054,6 +4233,82 @@
       "max":4096,
       "min":128
     },
+    "PositionConfigurationFec":{
+      "type":"string",
+      "enum":[
+        "ROSE",
+        "NONE"
+      ]
+    },
+    "PositionConfigurationItem":{
+      "type":"structure",
+      "members":{
+        "ResourceIdentifier":{"shape":"PositionResourceIdentifier"},
+        "ResourceType":{"shape":"PositionResourceType"},
+        "Solvers":{"shape":"PositionSolverDetails"},
+        "Destination":{"shape":"DestinationName"}
+      }
+    },
+    "PositionConfigurationList":{
+      "type":"list",
+      "member":{"shape":"PositionConfigurationItem"}
+    },
+    "PositionConfigurationStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
+    "PositionCoordinate":{
+      "type":"list",
+      "member":{"shape":"PositionCoordinateValue"}
+    },
+    "PositionCoordinateValue":{"type":"float"},
+    "PositionResourceIdentifier":{
+      "type":"string",
+      "pattern":"[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+    },
+    "PositionResourceType":{
+      "type":"string",
+      "enum":[
+        "WirelessDevice",
+        "WirelessGateway"
+      ]
+    },
+    "PositionSolverConfigurations":{
+      "type":"structure",
+      "members":{
+        "SemtechGnss":{"shape":"SemtechGnssConfiguration"}
+      }
+    },
+    "PositionSolverDetails":{
+      "type":"structure",
+      "members":{
+        "SemtechGnss":{"shape":"SemtechGnssDetail"}
+      }
+    },
+    "PositionSolverProvider":{
+      "type":"string",
+      "enum":["Semtech"]
+    },
+    "PositionSolverType":{
+      "type":"string",
+      "enum":["GNSS"]
+    },
+    "PositionSolverVersion":{
+      "type":"string",
+      "max":50,
+      "min":0
+    },
+    "Positioning":{
+      "type":"structure",
+      "members":{
+        "ClockSync":{"shape":"FPort"},
+        "Stream":{"shape":"FPort"},
+        "Gnss":{"shape":"FPort"}
+      }
+    },
     "PrAllowed":{"type":"boolean"},
     "PresetFreq":{
       "type":"integer",
@@ -4071,6 +4326,32 @@
       "type":"structure",
       "members":{
         "Sidewalk":{"shape":"SidewalkResourceTypeEventConfiguration"}
+      }
+    },
+    "PutPositionConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceIdentifier",
+        "ResourceType"
+      ],
+      "members":{
+        "ResourceIdentifier":{
+          "shape":"PositionResourceIdentifier",
+          "location":"uri",
+          "locationName":"ResourceIdentifier"
+        },
+        "ResourceType":{
+          "shape":"PositionResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
+        "Solvers":{"shape":"PositionSolverConfigurations"},
+        "Destination":{"shape":"DestinationName"}
+      }
+    },
+    "PutPositionConfigurationResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "PutResourceLogLevelRequest":{
@@ -4196,6 +4477,26 @@
     "SNwkSIntKey":{
       "type":"string",
       "pattern":"[a-fA-F0-9]{32}"
+    },
+    "SemtechGnssConfiguration":{
+      "type":"structure",
+      "required":[
+        "Status",
+        "Fec"
+      ],
+      "members":{
+        "Status":{"shape":"PositionConfigurationStatus"},
+        "Fec":{"shape":"PositionConfigurationFec"}
+      }
+    },
+    "SemtechGnssDetail":{
+      "type":"structure",
+      "members":{
+        "Provider":{"shape":"PositionSolverProvider"},
+        "Type":{"shape":"PositionSolverType"},
+        "Status":{"shape":"PositionConfigurationStatus"},
+        "Fec":{"shape":"PositionConfigurationFec"}
+      }
     },
     "SendDataToMulticastGroupRequest":{
       "type":"structure",
@@ -4682,6 +4983,12 @@
       "members":{
       }
     },
+    "UpdateFPorts":{
+      "type":"structure",
+      "members":{
+        "Positioning":{"shape":"Positioning"}
+      }
+    },
     "UpdateFuotaTaskRequest":{
       "type":"structure",
       "required":["Id"],
@@ -4779,6 +5086,32 @@
       }
     },
     "UpdatePartnerAccountResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdatePositionRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceIdentifier",
+        "ResourceType",
+        "Position"
+      ],
+      "members":{
+        "ResourceIdentifier":{
+          "shape":"PositionResourceIdentifier",
+          "location":"uri",
+          "locationName":"ResourceIdentifier"
+        },
+        "ResourceType":{
+          "shape":"PositionResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
+        "Position":{"shape":"PositionCoordinate"}
+      }
+    },
+    "UpdatePositionResponse":{
       "type":"structure",
       "members":{
       }
@@ -4884,6 +5217,10 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "VerticalAccuracy":{
+      "type":"float",
+      "min":0
     },
     "WirelessDeviceArn":{"type":"string"},
     "WirelessDeviceEvent":{

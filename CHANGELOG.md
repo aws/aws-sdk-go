@@ -1,3 +1,16 @@
+Release v1.44.50 (2022-07-07)
+===
+
+### Service Client Updates
+* `service/chime-sdk-meetings`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * New api to migrate event subscriptions to event bridge rules
+* `service/iot`: Updates service API and documentation
+  * This release adds support to register a CA certificate without having to provide a verification certificate. This also allows multiple AWS accounts to register the same CA in the same region.
+* `service/iotwireless`: Updates service API, documentation, and paginators
+* `service/sagemaker`: Updates service API and documentation
+  * Heterogeneous clusters: the ability to launch training jobs with multiple instance types. This enables running component of the training job on the instance type that is most suitable for it. e.g. doing data processing and augmentation on CPU instances and neural network training on GPU instances
+
 Release v1.44.49 (2022-07-06)
 ===
 

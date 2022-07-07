@@ -41,7 +41,7 @@ const (
 	// ErrCodeServiceFailureException for service response error code
 	// "ServiceFailureException".
 	//
-	// The service is currently unavailable.
+	// The service encountered an unexpected error.
 	ErrCodeServiceFailureException = "ServiceFailureException"
 
 	// ErrCodeServiceUnavailableException for service response error code
@@ -53,7 +53,7 @@ const (
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
-	// The number of requests exceeds the limit.
+	// The number of customer requests exceeds the request rate limit.
 	ErrCodeThrottlingException = "ThrottlingException"
 
 	// ErrCodeUnauthorizedException for service response error code

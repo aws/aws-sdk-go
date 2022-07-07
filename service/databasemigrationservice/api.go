@@ -7001,6 +7001,102 @@ func (c *DatabaseMigrationService) TestConnectionWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opUpdateSubscriptionsToEventBridge = "UpdateSubscriptionsToEventBridge"
+
+// UpdateSubscriptionsToEventBridgeRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSubscriptionsToEventBridge operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSubscriptionsToEventBridge for more information on using the UpdateSubscriptionsToEventBridge
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSubscriptionsToEventBridgeRequest method.
+//    req, resp := client.UpdateSubscriptionsToEventBridgeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/UpdateSubscriptionsToEventBridge
+func (c *DatabaseMigrationService) UpdateSubscriptionsToEventBridgeRequest(input *UpdateSubscriptionsToEventBridgeInput) (req *request.Request, output *UpdateSubscriptionsToEventBridgeOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSubscriptionsToEventBridge,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateSubscriptionsToEventBridgeInput{}
+	}
+
+	output = &UpdateSubscriptionsToEventBridgeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSubscriptionsToEventBridge API operation for AWS Database Migration Service.
+//
+// Migrates 10 active and enabled Amazon SNS subscriptions at a time and converts
+// them to corresponding Amazon EventBridge rules. By default, this operation
+// migrates subscriptions only when all your replication instance versions are
+// 3.4.6 or higher. If any replication instances are from versions earlier than
+// 3.4.6, the operation raises an error and tells you to upgrade these instances
+// to version 3.4.6 or higher. To enable migration regardless of version, set
+// the Force option to true. However, if you don't upgrade instances earlier
+// than version 3.4.6, some types of events might not be available when you
+// use Amazon EventBridge.
+//
+// To call this operation, make sure that you have certain permissions added
+// to your user account. For more information, see Migrating event subscriptions
+// to Amazon EventBridge (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html#CHAP_Events-migrate-to-eventbridge)
+// in the Amazon Web Services Database Migration Service User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation UpdateSubscriptionsToEventBridge for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedFault
+//   DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/UpdateSubscriptionsToEventBridge
+func (c *DatabaseMigrationService) UpdateSubscriptionsToEventBridge(input *UpdateSubscriptionsToEventBridgeInput) (*UpdateSubscriptionsToEventBridgeOutput, error) {
+	req, out := c.UpdateSubscriptionsToEventBridgeRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSubscriptionsToEventBridgeWithContext is the same as UpdateSubscriptionsToEventBridge with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSubscriptionsToEventBridge for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) UpdateSubscriptionsToEventBridgeWithContext(ctx aws.Context, input *UpdateSubscriptionsToEventBridgeInput, opts ...request.Option) (*UpdateSubscriptionsToEventBridgeOutput, error) {
+	req, out := c.UpdateSubscriptionsToEventBridgeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // DMS was denied access to the endpoint. Check that the role is correctly configured.
 type AccessDeniedFault struct {
 	_            struct{}                  `type:"structure"`
@@ -24620,6 +24716,72 @@ func (s TestConnectionOutput) GoString() string {
 // SetConnection sets the Connection field's value.
 func (s *TestConnectionOutput) SetConnection(v *Connection) *TestConnectionOutput {
 	s.Connection = v
+	return s
+}
+
+type UpdateSubscriptionsToEventBridgeInput struct {
+	_ struct{} `type:"structure"`
+
+	// When set to true, this operation migrates DMS subscriptions for Amazon SNS
+	// notifications no matter what your replication instance version is. If not
+	// set or set to false, this operation runs only when all your replication instances
+	// are from DMS version 3.4.6 or higher.
+	ForceMove *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSubscriptionsToEventBridgeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSubscriptionsToEventBridgeInput) GoString() string {
+	return s.String()
+}
+
+// SetForceMove sets the ForceMove field's value.
+func (s *UpdateSubscriptionsToEventBridgeInput) SetForceMove(v bool) *UpdateSubscriptionsToEventBridgeInput {
+	s.ForceMove = &v
+	return s
+}
+
+type UpdateSubscriptionsToEventBridgeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A string that indicates how many event subscriptions were migrated and how
+	// many remain to be migrated.
+	Result *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSubscriptionsToEventBridgeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSubscriptionsToEventBridgeOutput) GoString() string {
+	return s.String()
+}
+
+// SetResult sets the Result field's value.
+func (s *UpdateSubscriptionsToEventBridgeOutput) SetResult(v string) *UpdateSubscriptionsToEventBridgeOutput {
+	s.Result = &v
 	return s
 }
 

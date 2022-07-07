@@ -91,10 +91,10 @@ func (c *ChimeSDKMeetings) BatchCreateAttendeeRequest(input *BatchCreateAttendee
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service is currently unavailable.
+//   The service encountered an unexpected error.
 //
 //   * ThrottlingException
-//   The number of requests exceeds the limit.
+//   The number of customer requests exceeds the request rate limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/BatchCreateAttendee
 func (c *ChimeSDKMeetings) BatchCreateAttendee(input *BatchCreateAttendeeInput) (*BatchCreateAttendeeOutput, error) {
@@ -165,6 +165,27 @@ func (c *ChimeSDKMeetings) BatchUpdateAttendeeCapabilitiesExceptRequest(input *B
 //
 // Updates AttendeeCapabilities except the capabilities listed in an ExcludedAttendeeIds
 // table.
+//
+// You use the capabilities with a set of values that control what the capabilities
+// can do, such as SendReceive data. For more information about those values,
+// see .
+//
+// When using capabilities, be aware of these corner cases:
+//
+//    * You can't set content capabilities to SendReceive or Receive unless
+//    you also set video capabilities to SendReceive or Receive. If you don't
+//    set the video capability to receive, the response will contain an HTTP
+//    400 Bad Request status code. However, you can set your video capability
+//    to receive and you set your content capability to not receive.
+//
+//    * When you change an audio capability from None or Receive to Send or
+//    SendReceive , and if the attendee left their microphone unmuted, audio
+//    will flow from the attendee to the other meeting participants.
+//
+//    * When you change a video or content capability from None or Receive to
+//    Send or SendReceive , and if the attendee turned on their video or content
+//    streams, remote attendess can receive those streams, but only after media
+//    renegotiation between the client and the Amazon Chime back-end server.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -293,10 +314,10 @@ func (c *ChimeSDKMeetings) CreateAttendeeRequest(input *CreateAttendeeInput) (re
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service is currently unavailable.
+//   The service encountered an unexpected error.
 //
 //   * ThrottlingException
-//   The number of requests exceeds the limit.
+//   The number of customer requests exceeds the request rate limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/CreateAttendee
 func (c *ChimeSDKMeetings) CreateAttendee(input *CreateAttendeeInput) (*CreateAttendeeOutput, error) {
@@ -389,10 +410,10 @@ func (c *ChimeSDKMeetings) CreateMeetingRequest(input *CreateMeetingInput) (req 
 //   The user isn't authorized to request a resource.
 //
 //   * ThrottlingException
-//   The number of requests exceeds the limit.
+//   The number of customer requests exceeds the request rate limit.
 //
 //   * ServiceFailureException
-//   The service is currently unavailable.
+//   The service encountered an unexpected error.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
@@ -491,10 +512,10 @@ func (c *ChimeSDKMeetings) CreateMeetingWithAttendeesRequest(input *CreateMeetin
 //   The user isn't authorized to request a resource.
 //
 //   * ThrottlingException
-//   The number of requests exceeds the limit.
+//   The number of customer requests exceeds the request rate limit.
 //
 //   * ServiceFailureException
-//   The service is currently unavailable.
+//   The service encountered an unexpected error.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
@@ -599,10 +620,10 @@ func (c *ChimeSDKMeetings) DeleteAttendeeRequest(input *DeleteAttendeeInput) (re
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service is currently unavailable.
+//   The service encountered an unexpected error.
 //
 //   * ThrottlingException
-//   The number of requests exceeds the limit.
+//   The number of customer requests exceeds the request rate limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/DeleteAttendee
 func (c *ChimeSDKMeetings) DeleteAttendee(input *DeleteAttendeeInput) (*DeleteAttendeeOutput, error) {
@@ -701,10 +722,10 @@ func (c *ChimeSDKMeetings) DeleteMeetingRequest(input *DeleteMeetingInput) (req 
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service is currently unavailable.
+//   The service encountered an unexpected error.
 //
 //   * ThrottlingException
-//   The number of requests exceeds the limit.
+//   The number of customer requests exceeds the request rate limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/DeleteMeeting
 func (c *ChimeSDKMeetings) DeleteMeeting(input *DeleteMeetingInput) (*DeleteMeetingOutput, error) {
@@ -801,10 +822,10 @@ func (c *ChimeSDKMeetings) GetAttendeeRequest(input *GetAttendeeInput) (req *req
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service is currently unavailable.
+//   The service encountered an unexpected error.
 //
 //   * ThrottlingException
-//   The number of requests exceeds the limit.
+//   The number of customer requests exceeds the request rate limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/GetAttendee
 func (c *ChimeSDKMeetings) GetAttendee(input *GetAttendeeInput) (*GetAttendeeOutput, error) {
@@ -901,10 +922,10 @@ func (c *ChimeSDKMeetings) GetMeetingRequest(input *GetMeetingInput) (req *reque
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service is currently unavailable.
+//   The service encountered an unexpected error.
 //
 //   * ThrottlingException
-//   The number of requests exceeds the limit.
+//   The number of customer requests exceeds the request rate limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/GetMeeting
 func (c *ChimeSDKMeetings) GetMeeting(input *GetMeetingInput) (*GetMeetingOutput, error) {
@@ -1006,10 +1027,10 @@ func (c *ChimeSDKMeetings) ListAttendeesRequest(input *ListAttendeesInput) (req 
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service is currently unavailable.
+//   The service encountered an unexpected error.
 //
 //   * ThrottlingException
-//   The number of requests exceeds the limit.
+//   The number of customer requests exceeds the request rate limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/ListAttendees
 func (c *ChimeSDKMeetings) ListAttendees(input *ListAttendeesInput) (*ListAttendeesOutput, error) {
@@ -1160,13 +1181,13 @@ func (c *ChimeSDKMeetings) StartMeetingTranscriptionRequest(input *StartMeetingT
 //   errors.
 //
 //   * ThrottlingException
-//   The number of requests exceeds the limit.
+//   The number of customer requests exceeds the request rate limit.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service is currently unavailable.
+//   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/StartMeetingTranscription
 func (c *ChimeSDKMeetings) StartMeetingTranscription(input *StartMeetingTranscriptionInput) (*StartMeetingTranscriptionOutput, error) {
@@ -1262,13 +1283,13 @@ func (c *ChimeSDKMeetings) StopMeetingTranscriptionRequest(input *StopMeetingTra
 //   errors.
 //
 //   * ThrottlingException
-//   The number of requests exceeds the limit.
+//   The number of customer requests exceeds the request rate limit.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service is currently unavailable.
+//   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/StopMeetingTranscription
 func (c *ChimeSDKMeetings) StopMeetingTranscription(input *StopMeetingTranscriptionInput) (*StopMeetingTranscriptionOutput, error) {
@@ -1338,6 +1359,27 @@ func (c *ChimeSDKMeetings) UpdateAttendeeCapabilitiesRequest(input *UpdateAttend
 //
 // The capabilties that you want to update.
 //
+// You use the capabilities with a set of values that control what the capabilities
+// can do, such as SendReceive data. For more information about those values,
+// see .
+//
+// When using capabilities, be aware of these corner cases:
+//
+//    * You can't set content capabilities to SendReceive or Receive unless
+//    you also set video capabilities to SendReceive or Receive. If you don't
+//    set the video capability to receive, the response will contain an HTTP
+//    400 Bad Request status code. However, you can set your video capability
+//    to receive and you set your content capability to not receive.
+//
+//    * When you change an audio capability from None or Receive to Send or
+//    SendReceive , and if the attendee left their microphone unmuted, audio
+//    will flow from the attendee to the other meeting participants.
+//
+//    * When you change a video or content capability from None or Receive to
+//    Send or SendReceive , and if the attendee turned on their video or content
+//    streams, remote attendess can receive those streams, but only after media
+//    renegotiation between the client and the Amazon Chime back-end server.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1400,7 +1442,28 @@ type Attendee struct {
 	// The Amazon Chime SDK attendee ID.
 	AttendeeId *string `type:"string"`
 
-	// The capabilities (audio, video, or content) assigned to an attendee.
+	// The capabilities assigned to an attendee: audio, video, or content.
+	//
+	// You use the capabilities with a set of values that control what the capabilities
+	// can do, such as SendReceive data. For more information about those values,
+	// see .
+	//
+	// When using capabilities, be aware of these corner cases:
+	//
+	//    * You can't set content capabilities to SendReceive or Receive unless
+	//    you also set video capabilities to SendReceive or Receive. If you don't
+	//    set the video capability to receive, the response will contain an HTTP
+	//    400 Bad Request status code. However, you can set your video capability
+	//    to receive and you set your content capability to not receive.
+	//
+	//    * When you change an audio capability from None or Receive to Send or
+	//    SendReceive , and if the attendee left their microphone unmuted, audio
+	//    will flow from the attendee to the other meeting participants.
+	//
+	//    * When you change a video or content capability from None or Receive to
+	//    Send or SendReceive , and if the attendee turned on their video or content
+	//    streams, remote attendess can receive those streams, but only after media
+	//    renegotiation between the client and the Amazon Chime back-end server.
 	Capabilities *AttendeeCapabilities `type:"structure"`
 
 	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
@@ -1461,7 +1524,28 @@ func (s *Attendee) SetJoinToken(v string) *Attendee {
 	return s
 }
 
-// The media capabilities of an attendee, including audio, video and content.
+// The media capabilities of an attendee: audio, video, or content.
+//
+// You use the capabilities with a set of values that control what the capabilities
+// can do, such as SendReceive data. For more information about those values,
+// see .
+//
+// When using capabilities, be aware of these corner cases:
+//
+//    * You can't set content capabilities to SendReceive or Receive unless
+//    you also set video capabilities to SendReceive or Receive. If you don't
+//    set the video capability to receive, the response will contain an HTTP
+//    400 Bad Request status code. However, you can set your video capability
+//    to receive and you set your content capability to not receive.
+//
+//    * When you change an audio capability from None or Receive to Send or
+//    SendReceive , and if the attendee left their microphone unmuted, audio
+//    will flow from the attendee to the other meeting participants.
+//
+//    * When you change a video or content capability from None or Receive to
+//    Send or SendReceive , and if the attendee turned on their video or content
+//    streams, remote attendess can receive those streams, but only after media
+//    renegotiation between the client and the Amazon Chime back-end server.
 type AttendeeCapabilities struct {
 	_ struct{} `type:"structure"`
 
@@ -2050,6 +2134,27 @@ type CreateAttendeeInput struct {
 	// The capabilities (audio, video, or content) that you want to grant an attendee.
 	// If you don't specify capabilities, all users have send and receive capabilities
 	// on all media channels by default.
+	//
+	// You use the capabilities with a set of values that control what the capabilities
+	// can do, such as SendReceive data. For more information about those values,
+	// see .
+	//
+	// When using capabilities, be aware of these corner cases:
+	//
+	//    * You can't set content capabilities to SendReceive or Receive unless
+	//    you also set video capabilities to SendReceive or Receive. If you don't
+	//    set the video capability to receive, the response will contain an HTTP
+	//    400 Bad Request status code. However, you can set your video capability
+	//    to receive and you set your content capability to not receive.
+	//
+	//    * When you change an audio capability from None or Receive to Send or
+	//    SendReceive , and if the attendee left their microphone unmuted, audio
+	//    will flow from the attendee to the other meeting participants.
+	//
+	//    * When you change a video or content capability from None or Receive to
+	//    Send or SendReceive , and if the attendee turned on their video or content
+	//    streams, remote attendess can receive those streams, but only after media
+	//    renegotiation between the client and the Amazon Chime back-end server.
 	Capabilities *AttendeeCapabilities `type:"structure"`
 
 	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
@@ -2281,6 +2386,10 @@ type CreateMeetingInput struct {
 	// When specified, replicates the media from the primary meeting to the new
 	// meeting.
 	PrimaryMeetingId *string `min:"2" type:"string"`
+
+	// A consistent and opaque identifier, created and maintained by the builder
+	// to represent a segment of their users.
+	TenantIds []*string `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -2324,6 +2433,9 @@ func (s *CreateMeetingInput) Validate() error {
 	}
 	if s.PrimaryMeetingId != nil && len(*s.PrimaryMeetingId) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("PrimaryMeetingId", 2))
+	}
+	if s.TenantIds != nil && len(s.TenantIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TenantIds", 1))
 	}
 	if s.NotificationsConfiguration != nil {
 		if err := s.NotificationsConfiguration.Validate(); err != nil {
@@ -2376,6 +2488,12 @@ func (s *CreateMeetingInput) SetNotificationsConfiguration(v *NotificationsConfi
 // SetPrimaryMeetingId sets the PrimaryMeetingId field's value.
 func (s *CreateMeetingInput) SetPrimaryMeetingId(v string) *CreateMeetingInput {
 	s.PrimaryMeetingId = &v
+	return s
+}
+
+// SetTenantIds sets the TenantIds field's value.
+func (s *CreateMeetingInput) SetTenantIds(v []*string) *CreateMeetingInput {
+	s.TenantIds = v
 	return s
 }
 
@@ -2464,6 +2582,10 @@ type CreateMeetingWithAttendeesInput struct {
 	// When specified, replicates the media from the primary meeting to the new
 	// meeting.
 	PrimaryMeetingId *string `min:"2" type:"string"`
+
+	// A consistent and opaque identifier, created and maintained by the builder
+	// to represent a segment of their users.
+	TenantIds []*string `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -2513,6 +2635,9 @@ func (s *CreateMeetingWithAttendeesInput) Validate() error {
 	}
 	if s.PrimaryMeetingId != nil && len(*s.PrimaryMeetingId) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("PrimaryMeetingId", 2))
+	}
+	if s.TenantIds != nil && len(s.TenantIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TenantIds", 1))
 	}
 	if s.Attendees != nil {
 		for i, v := range s.Attendees {
@@ -2581,6 +2706,12 @@ func (s *CreateMeetingWithAttendeesInput) SetNotificationsConfiguration(v *Notif
 // SetPrimaryMeetingId sets the PrimaryMeetingId field's value.
 func (s *CreateMeetingWithAttendeesInput) SetPrimaryMeetingId(v string) *CreateMeetingWithAttendeesInput {
 	s.PrimaryMeetingId = &v
+	return s
+}
+
+// SetTenantIds sets the TenantIds field's value.
+func (s *CreateMeetingWithAttendeesInput) SetTenantIds(v []*string) *CreateMeetingWithAttendeesInput {
+	s.TenantIds = v
 	return s
 }
 
@@ -3642,6 +3773,9 @@ type Meeting struct {
 
 	// When specified, replicates the media from the primary meeting to this meeting.
 	PrimaryMeetingId *string `min:"2" type:"string"`
+
+	// Array of strings.
+	TenantIds []*string `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -3701,6 +3835,12 @@ func (s *Meeting) SetMeetingId(v string) *Meeting {
 // SetPrimaryMeetingId sets the PrimaryMeetingId field's value.
 func (s *Meeting) SetPrimaryMeetingId(v string) *Meeting {
 	s.PrimaryMeetingId = &v
+	return s
+}
+
+// SetTenantIds sets the TenantIds field's value.
+func (s *Meeting) SetTenantIds(v []*string) *Meeting {
+	s.TenantIds = v
 	return s
 }
 
@@ -3887,7 +4027,7 @@ func (s *NotificationsConfiguration) SetSqsQueueArn(v string) *NotificationsConf
 	return s
 }
 
-// The service is currently unavailable.
+// The service encountered an unexpected error.
 type ServiceFailureException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4189,7 +4329,7 @@ func (s StopMeetingTranscriptionOutput) GoString() string {
 	return s.String()
 }
 
-// The number of requests exceeds the limit.
+// The number of customer requests exceeds the request rate limit.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4546,14 +4686,7 @@ func (s *UpdateAttendeeCapabilitiesInput) SetMeetingId(v string) *UpdateAttendee
 type UpdateAttendeeCapabilitiesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Chime SDK meeting attendee. Includes a unique AttendeeId and JoinToken.
-	// The JoinToken allows a client to authenticate and join as the specified attendee.
-	// The JoinToken expires when the meeting ends, or when DeleteAttendee is called.
-	// After that, the attendee is unable to join the meeting.
-	//
-	// We recommend securely transferring each JoinToken from your server application
-	// to the client so that no other client has access to the token except for
-	// the one authorized to represent the attendee.
+	// The updated attendee data.
 	Attendee *Attendee `type:"structure"`
 }
 

@@ -437,7 +437,8 @@
         "ExternalMeetingId":{"shape":"ExternalMeetingId"},
         "NotificationsConfiguration":{"shape":"NotificationsConfiguration"},
         "MeetingFeatures":{"shape":"MeetingFeaturesConfiguration"},
-        "PrimaryMeetingId":{"shape":"PrimaryMeetingId"}
+        "PrimaryMeetingId":{"shape":"PrimaryMeetingId"},
+        "TenantIds":{"shape":"TenantIdList"}
       }
     },
     "CreateMeetingResponse":{
@@ -465,7 +466,8 @@
         "MeetingFeatures":{"shape":"MeetingFeaturesConfiguration"},
         "NotificationsConfiguration":{"shape":"NotificationsConfiguration"},
         "Attendees":{"shape":"CreateMeetingWithAttendeesRequestItemList"},
-        "PrimaryMeetingId":{"shape":"PrimaryMeetingId"}
+        "PrimaryMeetingId":{"shape":"PrimaryMeetingId"},
+        "TenantIds":{"shape":"TenantIdList"}
       }
     },
     "CreateMeetingWithAttendeesRequestItemList":{
@@ -695,7 +697,8 @@
         "MediaRegion":{"shape":"MediaRegion"},
         "MediaPlacement":{"shape":"MediaPlacement"},
         "MeetingFeatures":{"shape":"MeetingFeaturesConfiguration"},
-        "PrimaryMeetingId":{"shape":"PrimaryMeetingId"}
+        "PrimaryMeetingId":{"shape":"PrimaryMeetingId"},
+        "TenantIds":{"shape":"TenantIdList"}
       }
     },
     "MeetingFeatureStatus":{
@@ -796,6 +799,18 @@
     "String":{
       "type":"string",
       "max":4096
+    },
+    "TenantId":{
+      "type":"string",
+      "max":256,
+      "min":2,
+      "pattern":"^(?!.*?(.)\\1{3})[-_!@#$a-zA-Z0-9]*$"
+    },
+    "TenantIdList":{
+      "type":"list",
+      "member":{"shape":"TenantId"},
+      "max":5,
+      "min":1
     },
     "ThrottlingException":{
       "type":"structure",

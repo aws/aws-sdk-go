@@ -874,6 +874,19 @@
         {"shape":"ResourceQuotaExceededFault"},
         {"shape":"AccessDeniedFault"}
       ]
+    },
+    "UpdateSubscriptionsToEventBridge":{
+      "name":"UpdateSubscriptionsToEventBridge",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateSubscriptionsToEventBridgeMessage"},
+      "output":{"shape":"UpdateSubscriptionsToEventBridgeResponse"},
+      "errors":[
+        {"shape":"AccessDeniedFault"},
+        {"shape":"InvalidResourceStateFault"}
+      ]
     }
   },
   "shapes":{
@@ -3446,6 +3459,18 @@
       "type":"structure",
       "members":{
         "Connection":{"shape":"Connection"}
+      }
+    },
+    "UpdateSubscriptionsToEventBridgeMessage":{
+      "type":"structure",
+      "members":{
+        "ForceMove":{"shape":"BooleanOptional"}
+      }
+    },
+    "UpdateSubscriptionsToEventBridgeResponse":{
+      "type":"structure",
+      "members":{
+        "Result":{"shape":"String"}
       }
     },
     "UpgradeDependencyFailureFault":{

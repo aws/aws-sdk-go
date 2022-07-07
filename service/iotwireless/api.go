@@ -3608,7 +3608,7 @@ func (c *IoTWireless) GetEventConfigurationByResourceTypesRequest(input *GetEven
 
 // GetEventConfigurationByResourceTypes API operation for AWS IoT Wireless.
 //
-// Get the event configuration by resource types.
+// Get the event configuration based on resource types.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4190,6 +4190,188 @@ func (c *IoTWireless) GetPartnerAccount(input *GetPartnerAccountInput) (*GetPart
 // for more information on using Contexts.
 func (c *IoTWireless) GetPartnerAccountWithContext(ctx aws.Context, input *GetPartnerAccountInput, opts ...request.Option) (*GetPartnerAccountOutput, error) {
 	req, out := c.GetPartnerAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPosition = "GetPosition"
+
+// GetPositionRequest generates a "aws/request.Request" representing the
+// client's request for the GetPosition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPosition for more information on using the GetPosition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetPositionRequest method.
+//    req, resp := client.GetPositionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetPosition
+func (c *IoTWireless) GetPositionRequest(input *GetPositionInput) (req *request.Request, output *GetPositionOutput) {
+	op := &request.Operation{
+		Name:       opGetPosition,
+		HTTPMethod: "GET",
+		HTTPPath:   "/positions/{ResourceIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetPositionInput{}
+	}
+
+	output = &GetPositionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPosition API operation for AWS IoT Wireless.
+//
+// Get the position information for a given resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation GetPosition for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetPosition
+func (c *IoTWireless) GetPosition(input *GetPositionInput) (*GetPositionOutput, error) {
+	req, out := c.GetPositionRequest(input)
+	return out, req.Send()
+}
+
+// GetPositionWithContext is the same as GetPosition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPosition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) GetPositionWithContext(ctx aws.Context, input *GetPositionInput, opts ...request.Option) (*GetPositionOutput, error) {
+	req, out := c.GetPositionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPositionConfiguration = "GetPositionConfiguration"
+
+// GetPositionConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetPositionConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPositionConfiguration for more information on using the GetPositionConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetPositionConfigurationRequest method.
+//    req, resp := client.GetPositionConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetPositionConfiguration
+func (c *IoTWireless) GetPositionConfigurationRequest(input *GetPositionConfigurationInput) (req *request.Request, output *GetPositionConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetPositionConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/position-configurations/{ResourceIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetPositionConfigurationInput{}
+	}
+
+	output = &GetPositionConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPositionConfiguration API operation for AWS IoT Wireless.
+//
+// Get position configuration for a given resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation GetPositionConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetPositionConfiguration
+func (c *IoTWireless) GetPositionConfiguration(input *GetPositionConfigurationInput) (*GetPositionConfigurationOutput, error) {
+	req, out := c.GetPositionConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetPositionConfigurationWithContext is the same as GetPositionConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPositionConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) GetPositionConfigurationWithContext(ctx aws.Context, input *GetPositionConfigurationInput, opts ...request.Option) (*GetPositionConfigurationOutput, error) {
+	req, out := c.GetPositionConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6342,6 +6524,152 @@ func (c *IoTWireless) ListPartnerAccountsWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+const opListPositionConfigurations = "ListPositionConfigurations"
+
+// ListPositionConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPositionConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPositionConfigurations for more information on using the ListPositionConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListPositionConfigurationsRequest method.
+//    req, resp := client.ListPositionConfigurationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListPositionConfigurations
+func (c *IoTWireless) ListPositionConfigurationsRequest(input *ListPositionConfigurationsInput) (req *request.Request, output *ListPositionConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opListPositionConfigurations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/position-configurations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPositionConfigurationsInput{}
+	}
+
+	output = &ListPositionConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPositionConfigurations API operation for AWS IoT Wireless.
+//
+// List position configurations for a given resource, such as positioning solvers.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation ListPositionConfigurations for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListPositionConfigurations
+func (c *IoTWireless) ListPositionConfigurations(input *ListPositionConfigurationsInput) (*ListPositionConfigurationsOutput, error) {
+	req, out := c.ListPositionConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// ListPositionConfigurationsWithContext is the same as ListPositionConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPositionConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) ListPositionConfigurationsWithContext(ctx aws.Context, input *ListPositionConfigurationsInput, opts ...request.Option) (*ListPositionConfigurationsOutput, error) {
+	req, out := c.ListPositionConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPositionConfigurationsPages iterates over the pages of a ListPositionConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPositionConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPositionConfigurations operation.
+//    pageNum := 0
+//    err := client.ListPositionConfigurationsPages(params,
+//        func(page *iotwireless.ListPositionConfigurationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoTWireless) ListPositionConfigurationsPages(input *ListPositionConfigurationsInput, fn func(*ListPositionConfigurationsOutput, bool) bool) error {
+	return c.ListPositionConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPositionConfigurationsPagesWithContext same as ListPositionConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) ListPositionConfigurationsPagesWithContext(ctx aws.Context, input *ListPositionConfigurationsInput, fn func(*ListPositionConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPositionConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPositionConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPositionConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListQueuedMessages = "ListQueuedMessages"
 
 // ListQueuedMessagesRequest generates a "aws/request.Request" representing the
@@ -7106,6 +7434,98 @@ func (c *IoTWireless) ListWirelessGatewaysPagesWithContext(ctx aws.Context, inpu
 	}
 
 	return p.Err()
+}
+
+const opPutPositionConfiguration = "PutPositionConfiguration"
+
+// PutPositionConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutPositionConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutPositionConfiguration for more information on using the PutPositionConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutPositionConfigurationRequest method.
+//    req, resp := client.PutPositionConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/PutPositionConfiguration
+func (c *IoTWireless) PutPositionConfigurationRequest(input *PutPositionConfigurationInput) (req *request.Request, output *PutPositionConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutPositionConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/position-configurations/{ResourceIdentifier}",
+	}
+
+	if input == nil {
+		input = &PutPositionConfigurationInput{}
+	}
+
+	output = &PutPositionConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutPositionConfiguration API operation for AWS IoT Wireless.
+//
+// Put position configuration for a given resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation PutPositionConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/PutPositionConfiguration
+func (c *IoTWireless) PutPositionConfiguration(input *PutPositionConfigurationInput) (*PutPositionConfigurationOutput, error) {
+	req, out := c.PutPositionConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutPositionConfigurationWithContext is the same as PutPositionConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutPositionConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) PutPositionConfigurationWithContext(ctx aws.Context, input *PutPositionConfigurationInput, opts ...request.Option) (*PutPositionConfigurationOutput, error) {
+	req, out := c.PutPositionConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opPutResourceLogLevel = "PutResourceLogLevel"
@@ -8358,7 +8778,7 @@ func (c *IoTWireless) UpdateEventConfigurationByResourceTypesRequest(input *Upda
 
 // UpdateEventConfigurationByResourceTypes API operation for AWS IoT Wireless.
 //
-// Update the event configuration by resource types.
+// Update the event configuration based on resource types.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8870,6 +9290,98 @@ func (c *IoTWireless) UpdatePartnerAccountWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
+const opUpdatePosition = "UpdatePosition"
+
+// UpdatePositionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePosition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePosition for more information on using the UpdatePosition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdatePositionRequest method.
+//    req, resp := client.UpdatePositionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdatePosition
+func (c *IoTWireless) UpdatePositionRequest(input *UpdatePositionInput) (req *request.Request, output *UpdatePositionOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePosition,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/positions/{ResourceIdentifier}",
+	}
+
+	if input == nil {
+		input = &UpdatePositionInput{}
+	}
+
+	output = &UpdatePositionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdatePosition API operation for AWS IoT Wireless.
+//
+// Update the position information of a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation UpdatePosition for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdatePosition
+func (c *IoTWireless) UpdatePosition(input *UpdatePositionInput) (*UpdatePositionOutput, error) {
+	req, out := c.UpdatePositionRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePositionWithContext is the same as UpdatePosition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePosition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) UpdatePositionWithContext(ctx aws.Context, input *UpdatePositionInput, opts ...request.Option) (*UpdatePositionOutput, error) {
+	req, out := c.UpdatePositionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateResourceEventConfiguration = "UpdateResourceEventConfiguration"
 
 // UpdateResourceEventConfigurationRequest generates a "aws/request.Request" representing the
@@ -9311,6 +9823,50 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The accuracy of the estimated position in meters. An empty value indicates
+// that no position data is available. A value of ‘0.0’ value indicates
+// that position data is available. This data corresponds to the position information
+// that you specified instead of the position computed by solver.
+type Accuracy struct {
+	_ struct{} `type:"structure"`
+
+	// The horizontal accuracy of the estimated position in meters.
+	HorizontalAccuracy *float64 `type:"float"`
+
+	// The vertical accuracy of the estimated position in meters.
+	VerticalAccuracy *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Accuracy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Accuracy) GoString() string {
+	return s.String()
+}
+
+// SetHorizontalAccuracy sets the HorizontalAccuracy field's value.
+func (s *Accuracy) SetHorizontalAccuracy(v float64) *Accuracy {
+	s.HorizontalAccuracy = &v
+	return s
+}
+
+// SetVerticalAccuracy sets the VerticalAccuracy field's value.
+func (s *Accuracy) SetVerticalAccuracy(v float64) *Accuracy {
+	s.VerticalAccuracy = &v
+	return s
 }
 
 type AssociateAwsAccountWithPartnerAccountInput struct {
@@ -10155,8 +10711,8 @@ type ConnectionStatusEventConfiguration struct {
 	// related event topics.
 	LoRaWAN *LoRaWANConnectionStatusEventNotificationConfigurations `type:"structure"`
 
-	// Enum to denote whether the wireless gateway id connection status event topic
-	// is enabled or disabled .
+	// Enum to denote whether the wireless gateway ID connection status event topic
+	// is enabled or disabled.
 	WirelessGatewayIdEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
 
@@ -13447,6 +14003,10 @@ type FPorts struct {
 
 	// The Fport value.
 	Multicast *int64 `min:"1" type:"integer"`
+
+	// FPort values for the GNSS, stream, and ClockSync functions of the positioning
+	// information.
+	Positioning *Positioning `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13479,6 +14039,11 @@ func (s *FPorts) Validate() error {
 	if s.Multicast != nil && *s.Multicast < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Multicast", 1))
 	}
+	if s.Positioning != nil {
+		if err := s.Positioning.Validate(); err != nil {
+			invalidParams.AddNested("Positioning", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -13501,6 +14066,12 @@ func (s *FPorts) SetFuota(v int64) *FPorts {
 // SetMulticast sets the Multicast field's value.
 func (s *FPorts) SetMulticast(v int64) *FPorts {
 	s.Multicast = &v
+	return s
+}
+
+// SetPositioning sets the Positioning field's value.
+func (s *FPorts) SetPositioning(v *Positioning) *FPorts {
+	s.Positioning = v
 	return s
 }
 
@@ -13811,16 +14382,16 @@ func (s GetEventConfigurationByResourceTypesInput) GoString() string {
 type GetEventConfigurationByResourceTypesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Resource type event configuration for the connection status event
+	// Resource type event configuration for the connection status event.
 	ConnectionStatus *ConnectionStatusResourceTypeEventConfiguration `type:"structure"`
 
-	// Resource type event configuration for the device registration state event
+	// Resource type event configuration for the device registration state event.
 	DeviceRegistrationState *DeviceRegistrationStateResourceTypeEventConfiguration `type:"structure"`
 
-	// Resource type event configuration for the join event
+	// Resource type event configuration for the join event.
 	Join *JoinResourceTypeEventConfiguration `type:"structure"`
 
-	// Resource type event configuration for the proximity event
+	// Resource type event configuration for the proximity event.
 	Proximity *ProximityResourceTypeEventConfiguration `type:"structure"`
 }
 
@@ -14537,6 +15108,252 @@ func (s *GetPartnerAccountOutput) SetSidewalk(v *SidewalkAccountInfoWithFingerpr
 	return s
 }
 
+type GetPositionConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Resource identifier used in a position configuration.
+	//
+	// ResourceIdentifier is a required field
+	ResourceIdentifier *string `location:"uri" locationName:"ResourceIdentifier" type:"string" required:"true"`
+
+	// Resource type of the resource for which position configuration is retrieved.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true" enum:"PositionResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPositionConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPositionConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPositionConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPositionConfigurationInput"}
+	if s.ResourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdentifier"))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *GetPositionConfigurationInput) SetResourceIdentifier(v string) *GetPositionConfigurationInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GetPositionConfigurationInput) SetResourceType(v string) *GetPositionConfigurationInput {
+	s.ResourceType = &v
+	return s
+}
+
+type GetPositionConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The position data destination that describes the AWS IoT rule that processes
+	// the device's position data for use by AWS IoT Core for LoRaWAN.
+	Destination *string `type:"string"`
+
+	// The wrapper for the solver configuration details object.
+	Solvers *PositionSolverDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPositionConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPositionConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetDestination sets the Destination field's value.
+func (s *GetPositionConfigurationOutput) SetDestination(v string) *GetPositionConfigurationOutput {
+	s.Destination = &v
+	return s
+}
+
+// SetSolvers sets the Solvers field's value.
+func (s *GetPositionConfigurationOutput) SetSolvers(v *PositionSolverDetails) *GetPositionConfigurationOutput {
+	s.Solvers = v
+	return s
+}
+
+type GetPositionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Resource identifier used to retrieve the position information.
+	//
+	// ResourceIdentifier is a required field
+	ResourceIdentifier *string `location:"uri" locationName:"ResourceIdentifier" type:"string" required:"true"`
+
+	// Resource type of the resource for which position information is retrieved.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true" enum:"PositionResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPositionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPositionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPositionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPositionInput"}
+	if s.ResourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdentifier"))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *GetPositionInput) SetResourceIdentifier(v string) *GetPositionInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GetPositionInput) SetResourceType(v string) *GetPositionInput {
+	s.ResourceType = &v
+	return s
+}
+
+type GetPositionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The accuracy of the estimated position in meters. An empty value indicates
+	// that no position data is available. A value of ‘0.0’ value indicates
+	// that position data is available. This data corresponds to the position information
+	// that you specified instead of the position computed by solver.
+	Accuracy *Accuracy `type:"structure"`
+
+	// The position information of the resource.
+	Position []*float64 `type:"list"`
+
+	// The vendor of the positioning solver.
+	SolverProvider *string `type:"string" enum:"PositionSolverProvider"`
+
+	// The type of solver used to identify the position of the resource.
+	SolverType *string `type:"string" enum:"PositionSolverType"`
+
+	// The version of the positioning solver.
+	SolverVersion *string `type:"string"`
+
+	// The timestamp at which the device's position was determined.
+	Timestamp *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPositionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPositionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccuracy sets the Accuracy field's value.
+func (s *GetPositionOutput) SetAccuracy(v *Accuracy) *GetPositionOutput {
+	s.Accuracy = v
+	return s
+}
+
+// SetPosition sets the Position field's value.
+func (s *GetPositionOutput) SetPosition(v []*float64) *GetPositionOutput {
+	s.Position = v
+	return s
+}
+
+// SetSolverProvider sets the SolverProvider field's value.
+func (s *GetPositionOutput) SetSolverProvider(v string) *GetPositionOutput {
+	s.SolverProvider = &v
+	return s
+}
+
+// SetSolverType sets the SolverType field's value.
+func (s *GetPositionOutput) SetSolverType(v string) *GetPositionOutput {
+	s.SolverType = &v
+	return s
+}
+
+// SetSolverVersion sets the SolverVersion field's value.
+func (s *GetPositionOutput) SetSolverVersion(v string) *GetPositionOutput {
+	s.SolverVersion = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *GetPositionOutput) SetTimestamp(v string) *GetPositionOutput {
+	s.Timestamp = &v
+	return s
+}
+
 type GetResourceEventConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -14615,13 +15432,13 @@ type GetResourceEventConfigurationOutput struct {
 	// Event configuration for the connection status event.
 	ConnectionStatus *ConnectionStatusEventConfiguration `type:"structure"`
 
-	// Event configuration for the device registration state event
+	// Event configuration for the device registration state event.
 	DeviceRegistrationState *DeviceRegistrationStateEventConfiguration `type:"structure"`
 
 	// Event configuration for the join event.
 	Join *JoinEventConfiguration `type:"structure"`
 
-	// Event configuration for the Proximity event
+	// Event configuration for the proximity event.
 	Proximity *ProximityEventConfiguration `type:"structure"`
 }
 
@@ -16725,6 +17542,97 @@ func (s *ListPartnerAccountsOutput) SetSidewalk(v []*SidewalkAccountInfoWithFing
 	return s
 }
 
+type ListPositionConfigurationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return in this operation.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// Resource type for which position configurations are listed.
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" enum:"PositionResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPositionConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPositionConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPositionConfigurationsInput) SetMaxResults(v int64) *ListPositionConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPositionConfigurationsInput) SetNextToken(v string) *ListPositionConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ListPositionConfigurationsInput) SetResourceType(v string) *ListPositionConfigurationsInput {
+	s.ResourceType = &v
+	return s
+}
+
+type ListPositionConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
+	NextToken *string `type:"string"`
+
+	// A list of position configurations.
+	PositionConfigurationList []*PositionConfigurationItem `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPositionConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPositionConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPositionConfigurationsOutput) SetNextToken(v string) *ListPositionConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPositionConfigurationList sets the PositionConfigurationList field's value.
+func (s *ListPositionConfigurationsOutput) SetPositionConfigurationList(v []*PositionConfigurationItem) *ListPositionConfigurationsOutput {
+	s.PositionConfigurationList = v
+	return s
+}
+
 type ListQueuedMessagesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -17322,7 +18230,7 @@ func (s *ListWirelessGatewaysOutput) SetWirelessGatewayList(v []*WirelessGateway
 type LoRaWANConnectionStatusEventNotificationConfigurations struct {
 	_ struct{} `type:"structure"`
 
-	// Enum to denote whether the gateway eui connection status event topic is enabled
+	// Enum to denote whether the gateway EUI connection status event topic is enabled
 	// or disabled.
 	GatewayEuiEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
@@ -18276,7 +19184,7 @@ func (s *LoRaWANGetServiceProfileInfo) SetUlRatePolicy(v string) *LoRaWANGetServ
 type LoRaWANJoinEventNotificationConfigurations struct {
 	_ struct{} `type:"structure"`
 
-	// Enum to denote whether the dev eui join event topic is enabled or disabled.
+	// Enum to denote whether the Dev EUI join event topic is enabled or disabled.
 	DevEuiEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
 
@@ -18713,6 +19621,9 @@ type LoRaWANUpdateDevice struct {
 	// The ID of the device profile for the wireless device.
 	DeviceProfileId *string `type:"string"`
 
+	// FPorts object for the positioning information of the device.
+	FPorts *UpdateFPorts `type:"structure"`
+
 	// The ID of the service profile.
 	ServiceProfileId *string `type:"string"`
 }
@@ -18735,6 +19646,21 @@ func (s LoRaWANUpdateDevice) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LoRaWANUpdateDevice) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LoRaWANUpdateDevice"}
+	if s.FPorts != nil {
+		if err := s.FPorts.Validate(); err != nil {
+			invalidParams.AddNested("FPorts", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetAbpV1_0_x sets the AbpV1_0_x field's value.
 func (s *LoRaWANUpdateDevice) SetAbpV1_0_x(v *UpdateAbpV10X) *LoRaWANUpdateDevice {
 	s.AbpV1_0_x = v
@@ -18750,6 +19676,12 @@ func (s *LoRaWANUpdateDevice) SetAbpV1_1(v *UpdateAbpV11) *LoRaWANUpdateDevice {
 // SetDeviceProfileId sets the DeviceProfileId field's value.
 func (s *LoRaWANUpdateDevice) SetDeviceProfileId(v string) *LoRaWANUpdateDevice {
 	s.DeviceProfileId = &v
+	return s
+}
+
+// SetFPorts sets the FPorts field's value.
+func (s *LoRaWANUpdateDevice) SetFPorts(v *UpdateFPorts) *LoRaWANUpdateDevice {
+	s.FPorts = v
 	return s
 }
 
@@ -19155,6 +20087,214 @@ func (s *OtaaV11) SetNwkKey(v string) *OtaaV11 {
 	return s
 }
 
+// The wrapper for a position configuration.
+type PositionConfigurationItem struct {
+	_ struct{} `type:"structure"`
+
+	// The position data destination that describes the AWS IoT rule that processes
+	// the device's position data for use by AWS IoT Core for LoRaWAN.
+	Destination *string `type:"string"`
+
+	// Resource identifier for the position configuration.
+	ResourceIdentifier *string `type:"string"`
+
+	// Resource type of the resource for the position configuration.
+	ResourceType *string `type:"string" enum:"PositionResourceType"`
+
+	// The details of the positioning solver object used to compute the location.
+	Solvers *PositionSolverDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PositionConfigurationItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PositionConfigurationItem) GoString() string {
+	return s.String()
+}
+
+// SetDestination sets the Destination field's value.
+func (s *PositionConfigurationItem) SetDestination(v string) *PositionConfigurationItem {
+	s.Destination = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *PositionConfigurationItem) SetResourceIdentifier(v string) *PositionConfigurationItem {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *PositionConfigurationItem) SetResourceType(v string) *PositionConfigurationItem {
+	s.ResourceType = &v
+	return s
+}
+
+// SetSolvers sets the Solvers field's value.
+func (s *PositionConfigurationItem) SetSolvers(v *PositionSolverDetails) *PositionConfigurationItem {
+	s.Solvers = v
+	return s
+}
+
+// The wrapper for position solver configurations.
+type PositionSolverConfigurations struct {
+	_ struct{} `type:"structure"`
+
+	// The Semtech GNSS solver configuration object.
+	SemtechGnss *SemtechGnssConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PositionSolverConfigurations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PositionSolverConfigurations) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PositionSolverConfigurations) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PositionSolverConfigurations"}
+	if s.SemtechGnss != nil {
+		if err := s.SemtechGnss.Validate(); err != nil {
+			invalidParams.AddNested("SemtechGnss", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSemtechGnss sets the SemtechGnss field's value.
+func (s *PositionSolverConfigurations) SetSemtechGnss(v *SemtechGnssConfiguration) *PositionSolverConfigurations {
+	s.SemtechGnss = v
+	return s
+}
+
+// The wrapper for position solver details.
+type PositionSolverDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Semtech GNSS solver object details.
+	SemtechGnss *SemtechGnssDetail `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PositionSolverDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PositionSolverDetails) GoString() string {
+	return s.String()
+}
+
+// SetSemtechGnss sets the SemtechGnss field's value.
+func (s *PositionSolverDetails) SetSemtechGnss(v *SemtechGnssDetail) *PositionSolverDetails {
+	s.SemtechGnss = v
+	return s
+}
+
+// The FPorts for the position information.
+type Positioning struct {
+	_ struct{} `type:"structure"`
+
+	// The Fport value.
+	ClockSync *int64 `min:"1" type:"integer"`
+
+	// The Fport value.
+	Gnss *int64 `min:"1" type:"integer"`
+
+	// The Fport value.
+	Stream *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Positioning) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Positioning) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Positioning) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Positioning"}
+	if s.ClockSync != nil && *s.ClockSync < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ClockSync", 1))
+	}
+	if s.Gnss != nil && *s.Gnss < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Gnss", 1))
+	}
+	if s.Stream != nil && *s.Stream < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Stream", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClockSync sets the ClockSync field's value.
+func (s *Positioning) SetClockSync(v int64) *Positioning {
+	s.ClockSync = &v
+	return s
+}
+
+// SetGnss sets the Gnss field's value.
+func (s *Positioning) SetGnss(v int64) *Positioning {
+	s.Gnss = &v
+	return s
+}
+
+// SetStream sets the Stream field's value.
+func (s *Positioning) SetStream(v int64) *Positioning {
+	s.Stream = &v
+	return s
+}
+
 // Proximity event configuration object for enabling and disabling relevant
 // topics.
 type ProximityEventConfiguration struct {
@@ -19231,6 +20371,116 @@ func (s ProximityResourceTypeEventConfiguration) GoString() string {
 func (s *ProximityResourceTypeEventConfiguration) SetSidewalk(v *SidewalkResourceTypeEventConfiguration) *ProximityResourceTypeEventConfiguration {
 	s.Sidewalk = v
 	return s
+}
+
+type PutPositionConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The position data destination that describes the AWS IoT rule that processes
+	// the device's position data for use by AWS IoT Core for LoRaWAN.
+	Destination *string `type:"string"`
+
+	// Resource identifier used to update the position configuration.
+	//
+	// ResourceIdentifier is a required field
+	ResourceIdentifier *string `location:"uri" locationName:"ResourceIdentifier" type:"string" required:"true"`
+
+	// Resource type of the resource for which you want to update the position configuration.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true" enum:"PositionResourceType"`
+
+	// The positioning solvers used to update the position configuration of the
+	// resource.
+	Solvers *PositionSolverConfigurations `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPositionConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPositionConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutPositionConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutPositionConfigurationInput"}
+	if s.ResourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdentifier"))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.Solvers != nil {
+		if err := s.Solvers.Validate(); err != nil {
+			invalidParams.AddNested("Solvers", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestination sets the Destination field's value.
+func (s *PutPositionConfigurationInput) SetDestination(v string) *PutPositionConfigurationInput {
+	s.Destination = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *PutPositionConfigurationInput) SetResourceIdentifier(v string) *PutPositionConfigurationInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *PutPositionConfigurationInput) SetResourceType(v string) *PutPositionConfigurationInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetSolvers sets the Solvers field's value.
+func (s *PutPositionConfigurationInput) SetSolvers(v *PositionSolverConfigurations) *PutPositionConfigurationInput {
+	s.Solvers = v
+	return s
+}
+
+type PutPositionConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPositionConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPositionConfigurationOutput) GoString() string {
+	return s.String()
 }
 
 type PutResourceLogLevelInput struct {
@@ -19533,6 +20783,126 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Information about the Semtech GNSS solver configuration.
+type SemtechGnssConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Whether forward error correction is enabled.
+	//
+	// Fec is a required field
+	Fec *string `type:"string" required:"true" enum:"PositionConfigurationFec"`
+
+	// The status indicating whether the solver is enabled.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"PositionConfigurationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SemtechGnssConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SemtechGnssConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SemtechGnssConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SemtechGnssConfiguration"}
+	if s.Fec == nil {
+		invalidParams.Add(request.NewErrParamRequired("Fec"))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFec sets the Fec field's value.
+func (s *SemtechGnssConfiguration) SetFec(v string) *SemtechGnssConfiguration {
+	s.Fec = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SemtechGnssConfiguration) SetStatus(v string) *SemtechGnssConfiguration {
+	s.Status = &v
+	return s
+}
+
+// Details of the Semtech GNSS solver object.
+type SemtechGnssDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Whether forward error correction is enabled.
+	Fec *string `type:"string" enum:"PositionConfigurationFec"`
+
+	// The vendor of the solver object.
+	Provider *string `type:"string" enum:"PositionSolverProvider"`
+
+	// The status indicating whether the solver is enabled.
+	Status *string `type:"string" enum:"PositionConfigurationStatus"`
+
+	// The type of positioning solver used.
+	Type *string `type:"string" enum:"PositionSolverType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SemtechGnssDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SemtechGnssDetail) GoString() string {
+	return s.String()
+}
+
+// SetFec sets the Fec field's value.
+func (s *SemtechGnssDetail) SetFec(v string) *SemtechGnssDetail {
+	s.Fec = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *SemtechGnssDetail) SetProvider(v string) *SemtechGnssDetail {
+	s.Provider = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SemtechGnssDetail) SetStatus(v string) *SemtechGnssDetail {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SemtechGnssDetail) SetType(v string) *SemtechGnssDetail {
+	s.Type = &v
+	return s
 }
 
 type SendDataToMulticastGroupInput struct {
@@ -20151,8 +21521,8 @@ func (s *SidewalkDeviceMetadata) SetRssi(v int64) *SidewalkDeviceMetadata {
 	return s
 }
 
-// SidewalkEventNotificationConfigurations object Event configuration object
-// for Sidewalk related event topics.
+// SidewalkEventNotificationConfigurations object, which is the event configuration
+// object for Sidewalk-related event topics.
 type SidewalkEventNotificationConfigurations struct {
 	_ struct{} `type:"structure"`
 
@@ -21498,6 +22868,53 @@ func (s UpdateEventConfigurationByResourceTypesOutput) GoString() string {
 	return s.String()
 }
 
+// Object for updating the FPorts information.
+type UpdateFPorts struct {
+	_ struct{} `type:"structure"`
+
+	// Positioning FPorts for the ClockSync, Stream, and GNSS functions.
+	Positioning *Positioning `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFPorts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFPorts) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFPorts) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFPorts"}
+	if s.Positioning != nil {
+		if err := s.Positioning.Validate(); err != nil {
+			invalidParams.AddNested("Positioning", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPositioning sets the Positioning field's value.
+func (s *UpdateFPorts) SetPositioning(v *Positioning) *UpdateFPorts {
+	s.Positioning = v
+	return s
+}
+
 type UpdateFuotaTaskInput struct {
 	_ struct{} `type:"structure"`
 
@@ -22055,13 +23472,112 @@ func (s UpdatePartnerAccountOutput) GoString() string {
 	return s.String()
 }
 
+type UpdatePositionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The position information of the resource.
+	//
+	// Position is a required field
+	Position []*float64 `type:"list" required:"true"`
+
+	// Resource identifier of the resource for which position is updated.
+	//
+	// ResourceIdentifier is a required field
+	ResourceIdentifier *string `location:"uri" locationName:"ResourceIdentifier" type:"string" required:"true"`
+
+	// Resource type of the resource for which position is updated.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true" enum:"PositionResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePositionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePositionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePositionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePositionInput"}
+	if s.Position == nil {
+		invalidParams.Add(request.NewErrParamRequired("Position"))
+	}
+	if s.ResourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdentifier"))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPosition sets the Position field's value.
+func (s *UpdatePositionInput) SetPosition(v []*float64) *UpdatePositionInput {
+	s.Position = v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *UpdatePositionInput) SetResourceIdentifier(v string) *UpdatePositionInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *UpdatePositionInput) SetResourceType(v string) *UpdatePositionInput {
+	s.ResourceType = &v
+	return s
+}
+
+type UpdatePositionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePositionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePositionOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateResourceEventConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Event configuration for the connection status event
+	// Event configuration for the connection status event.
 	ConnectionStatus *ConnectionStatusEventConfiguration `type:"structure"`
 
-	// Event configuration for the device registration state event
+	// Event configuration for the device registration state event.
 	DeviceRegistrationState *DeviceRegistrationStateEventConfiguration `type:"structure"`
 
 	// Resource identifier to opt in for event messaging.
@@ -22074,13 +23590,13 @@ type UpdateResourceEventConfigurationInput struct {
 	// IdentifierType is a required field
 	IdentifierType *string `location:"querystring" locationName:"identifierType" type:"string" required:"true" enum:"IdentifierType"`
 
-	// Event configuration for the join event
+	// Event configuration for the join event.
 	Join *JoinEventConfiguration `type:"structure"`
 
 	// Partner type of the resource if the identifier type is PartnerAccountId
 	PartnerType *string `location:"querystring" locationName:"partnerType" type:"string" enum:"EventNotificationPartnerType"`
 
-	// Event configuration for the Proximity event
+	// Event configuration for the proximity event.
 	Proximity *ProximityEventConfiguration `type:"structure"`
 }
 
@@ -22232,6 +23748,11 @@ func (s *UpdateWirelessDeviceInput) Validate() error {
 	}
 	if s.Id != nil && len(*s.Id) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.LoRaWAN != nil {
+		if err := s.LoRaWAN.Validate(); err != nil {
+			invalidParams.AddNested("LoRaWAN", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -23480,6 +25001,78 @@ const (
 func PartnerType_Values() []string {
 	return []string{
 		PartnerTypeSidewalk,
+	}
+}
+
+const (
+	// PositionConfigurationFecRose is a PositionConfigurationFec enum value
+	PositionConfigurationFecRose = "ROSE"
+
+	// PositionConfigurationFecNone is a PositionConfigurationFec enum value
+	PositionConfigurationFecNone = "NONE"
+)
+
+// PositionConfigurationFec_Values returns all elements of the PositionConfigurationFec enum
+func PositionConfigurationFec_Values() []string {
+	return []string{
+		PositionConfigurationFecRose,
+		PositionConfigurationFecNone,
+	}
+}
+
+const (
+	// PositionConfigurationStatusEnabled is a PositionConfigurationStatus enum value
+	PositionConfigurationStatusEnabled = "Enabled"
+
+	// PositionConfigurationStatusDisabled is a PositionConfigurationStatus enum value
+	PositionConfigurationStatusDisabled = "Disabled"
+)
+
+// PositionConfigurationStatus_Values returns all elements of the PositionConfigurationStatus enum
+func PositionConfigurationStatus_Values() []string {
+	return []string{
+		PositionConfigurationStatusEnabled,
+		PositionConfigurationStatusDisabled,
+	}
+}
+
+const (
+	// PositionResourceTypeWirelessDevice is a PositionResourceType enum value
+	PositionResourceTypeWirelessDevice = "WirelessDevice"
+
+	// PositionResourceTypeWirelessGateway is a PositionResourceType enum value
+	PositionResourceTypeWirelessGateway = "WirelessGateway"
+)
+
+// PositionResourceType_Values returns all elements of the PositionResourceType enum
+func PositionResourceType_Values() []string {
+	return []string{
+		PositionResourceTypeWirelessDevice,
+		PositionResourceTypeWirelessGateway,
+	}
+}
+
+const (
+	// PositionSolverProviderSemtech is a PositionSolverProvider enum value
+	PositionSolverProviderSemtech = "Semtech"
+)
+
+// PositionSolverProvider_Values returns all elements of the PositionSolverProvider enum
+func PositionSolverProvider_Values() []string {
+	return []string{
+		PositionSolverProviderSemtech,
+	}
+}
+
+const (
+	// PositionSolverTypeGnss is a PositionSolverType enum value
+	PositionSolverTypeGnss = "GNSS"
+)
+
+// PositionSolverType_Values returns all elements of the PositionSolverType enum
+func PositionSolverType_Values() []string {
+	return []string{
+		PositionSolverTypeGnss,
 	}
 }
 
