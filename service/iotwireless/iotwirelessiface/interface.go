@@ -240,6 +240,14 @@ type IoTWirelessAPI interface {
 	GetPartnerAccountWithContext(aws.Context, *iotwireless.GetPartnerAccountInput, ...request.Option) (*iotwireless.GetPartnerAccountOutput, error)
 	GetPartnerAccountRequest(*iotwireless.GetPartnerAccountInput) (*request.Request, *iotwireless.GetPartnerAccountOutput)
 
+	GetPosition(*iotwireless.GetPositionInput) (*iotwireless.GetPositionOutput, error)
+	GetPositionWithContext(aws.Context, *iotwireless.GetPositionInput, ...request.Option) (*iotwireless.GetPositionOutput, error)
+	GetPositionRequest(*iotwireless.GetPositionInput) (*request.Request, *iotwireless.GetPositionOutput)
+
+	GetPositionConfiguration(*iotwireless.GetPositionConfigurationInput) (*iotwireless.GetPositionConfigurationOutput, error)
+	GetPositionConfigurationWithContext(aws.Context, *iotwireless.GetPositionConfigurationInput, ...request.Option) (*iotwireless.GetPositionConfigurationOutput, error)
+	GetPositionConfigurationRequest(*iotwireless.GetPositionConfigurationInput) (*request.Request, *iotwireless.GetPositionConfigurationOutput)
+
 	GetResourceEventConfiguration(*iotwireless.GetResourceEventConfigurationInput) (*iotwireless.GetResourceEventConfigurationOutput, error)
 	GetResourceEventConfigurationWithContext(aws.Context, *iotwireless.GetResourceEventConfigurationInput, ...request.Option) (*iotwireless.GetResourceEventConfigurationOutput, error)
 	GetResourceEventConfigurationRequest(*iotwireless.GetResourceEventConfigurationInput) (*request.Request, *iotwireless.GetResourceEventConfigurationOutput)
@@ -338,6 +346,13 @@ type IoTWirelessAPI interface {
 	ListPartnerAccountsWithContext(aws.Context, *iotwireless.ListPartnerAccountsInput, ...request.Option) (*iotwireless.ListPartnerAccountsOutput, error)
 	ListPartnerAccountsRequest(*iotwireless.ListPartnerAccountsInput) (*request.Request, *iotwireless.ListPartnerAccountsOutput)
 
+	ListPositionConfigurations(*iotwireless.ListPositionConfigurationsInput) (*iotwireless.ListPositionConfigurationsOutput, error)
+	ListPositionConfigurationsWithContext(aws.Context, *iotwireless.ListPositionConfigurationsInput, ...request.Option) (*iotwireless.ListPositionConfigurationsOutput, error)
+	ListPositionConfigurationsRequest(*iotwireless.ListPositionConfigurationsInput) (*request.Request, *iotwireless.ListPositionConfigurationsOutput)
+
+	ListPositionConfigurationsPages(*iotwireless.ListPositionConfigurationsInput, func(*iotwireless.ListPositionConfigurationsOutput, bool) bool) error
+	ListPositionConfigurationsPagesWithContext(aws.Context, *iotwireless.ListPositionConfigurationsInput, func(*iotwireless.ListPositionConfigurationsOutput, bool) bool, ...request.Option) error
+
 	ListQueuedMessages(*iotwireless.ListQueuedMessagesInput) (*iotwireless.ListQueuedMessagesOutput, error)
 	ListQueuedMessagesWithContext(aws.Context, *iotwireless.ListQueuedMessagesInput, ...request.Option) (*iotwireless.ListQueuedMessagesOutput, error)
 	ListQueuedMessagesRequest(*iotwireless.ListQueuedMessagesInput) (*request.Request, *iotwireless.ListQueuedMessagesOutput)
@@ -373,6 +388,10 @@ type IoTWirelessAPI interface {
 
 	ListWirelessGatewaysPages(*iotwireless.ListWirelessGatewaysInput, func(*iotwireless.ListWirelessGatewaysOutput, bool) bool) error
 	ListWirelessGatewaysPagesWithContext(aws.Context, *iotwireless.ListWirelessGatewaysInput, func(*iotwireless.ListWirelessGatewaysOutput, bool) bool, ...request.Option) error
+
+	PutPositionConfiguration(*iotwireless.PutPositionConfigurationInput) (*iotwireless.PutPositionConfigurationOutput, error)
+	PutPositionConfigurationWithContext(aws.Context, *iotwireless.PutPositionConfigurationInput, ...request.Option) (*iotwireless.PutPositionConfigurationOutput, error)
+	PutPositionConfigurationRequest(*iotwireless.PutPositionConfigurationInput) (*request.Request, *iotwireless.PutPositionConfigurationOutput)
 
 	PutResourceLogLevel(*iotwireless.PutResourceLogLevelInput) (*iotwireless.PutResourceLogLevelOutput, error)
 	PutResourceLogLevelWithContext(aws.Context, *iotwireless.PutResourceLogLevelInput, ...request.Option) (*iotwireless.PutResourceLogLevelOutput, error)
@@ -449,6 +468,10 @@ type IoTWirelessAPI interface {
 	UpdatePartnerAccount(*iotwireless.UpdatePartnerAccountInput) (*iotwireless.UpdatePartnerAccountOutput, error)
 	UpdatePartnerAccountWithContext(aws.Context, *iotwireless.UpdatePartnerAccountInput, ...request.Option) (*iotwireless.UpdatePartnerAccountOutput, error)
 	UpdatePartnerAccountRequest(*iotwireless.UpdatePartnerAccountInput) (*request.Request, *iotwireless.UpdatePartnerAccountOutput)
+
+	UpdatePosition(*iotwireless.UpdatePositionInput) (*iotwireless.UpdatePositionOutput, error)
+	UpdatePositionWithContext(aws.Context, *iotwireless.UpdatePositionInput, ...request.Option) (*iotwireless.UpdatePositionOutput, error)
+	UpdatePositionRequest(*iotwireless.UpdatePositionInput) (*request.Request, *iotwireless.UpdatePositionOutput)
 
 	UpdateResourceEventConfiguration(*iotwireless.UpdateResourceEventConfigurationInput) (*iotwireless.UpdateResourceEventConfigurationOutput, error)
 	UpdateResourceEventConfigurationWithContext(aws.Context, *iotwireless.UpdateResourceEventConfigurationInput, ...request.Option) (*iotwireless.UpdateResourceEventConfigurationOutput, error)

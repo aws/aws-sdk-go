@@ -4810,7 +4810,8 @@
         "lastModifiedDate":{"shape":"DateType"},
         "customerVersion":{"shape":"CustomerVersion"},
         "generationId":{"shape":"GenerationId"},
-        "validity":{"shape":"CertificateValidity"}
+        "validity":{"shape":"CertificateValidity"},
+        "certificateMode":{"shape":"CertificateMode"}
       }
     },
     "CACertificateStatus":{
@@ -11275,10 +11276,7 @@
     "Regex":{"type":"string"},
     "RegisterCACertificateRequest":{
       "type":"structure",
-      "required":[
-        "caCertificate",
-        "verificationCertificate"
-      ],
+      "required":["caCertificate"],
       "members":{
         "caCertificate":{"shape":"CertificatePem"},
         "verificationCertificate":{"shape":"CertificatePem"},
@@ -11293,7 +11291,8 @@
           "locationName":"allowAutoRegistration"
         },
         "registrationConfig":{"shape":"RegistrationConfig"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "certificateMode":{"shape":"CertificateMode"}
       }
     },
     "RegisterCACertificateResponse":{

@@ -3,7 +3,7 @@
   "service": "<p>The Amazon Chime SDK meetings APIs in this section allow software developers to create Amazon Chime SDK meetings, set the AWS Regions for meetings, create and manage users, and send and receive meeting notifications. For more information about the meeting APIs, see <a href=\"https://docs.aws.amazon.com/chime/latest/APIReference/API_Operations_Amazon_Chime_SDK_Meetings.html\">Amazon Chime SDK meetings</a>.</p>",
   "operations": {
     "BatchCreateAttendee": "<p>Creates up to 100 attendees for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
-    "BatchUpdateAttendeeCapabilitiesExcept": "<p>Updates <code>AttendeeCapabilities</code> except the capabilities listed in an <code>ExcludedAttendeeIds</code> table.</p>",
+    "BatchUpdateAttendeeCapabilitiesExcept": "<p>Updates <code>AttendeeCapabilities</code> except the capabilities listed in an <code>ExcludedAttendeeIds</code> table.</p> <note> <p>You use the capabilities with a set of values that control what the capabilities can do, such as <code>SendReceive</code> data. For more information about those values, see .</p> </note> <p>When using capabilities, be aware of these corner cases:</p> <ul> <li> <p>You can't set <code>content</code> capabilities to <code>SendReceive</code> or <code>Receive</code> unless you also set <code>video</code> capabilities to <code>SendReceive</code> or <code>Receive</code>. If you don't set the <code>video</code> capability to receive, the response will contain an HTTP 400 Bad Request status code. However, you can set your <code>video</code> capability to receive and you set your <code>content</code> capability to not receive.</p> </li> <li> <p>When you change an <code>audio</code> capability from <code>None</code> or <code>Receive</code> to <code>Send</code> or <code>SendReceive</code> , and if the attendee left their microphone unmuted, audio will flow from the attendee to the other meeting participants.</p> </li> <li> <p>When you change a <code>video</code> or <code>content</code> capability from <code>None</code> or <code>Receive</code> to <code>Send</code> or <code>SendReceive</code> , and if the attendee turned on their video or content streams, remote attendess can receive those streams, but only after media renegotiation between the client and the Amazon Chime back-end server.</p> </li> </ul>",
     "CreateAttendee": "<p> Creates a new attendee for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>. </p>",
     "CreateMeeting": "<p>Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i>. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>. </p>",
     "CreateMeetingWithAttendees": "<p> Creates a new Amazon Chime SDK meeting in the specified media Region, with attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i>. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>. </p>",
@@ -14,7 +14,7 @@
     "ListAttendees": "<p> Lists the attendees for the specified Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>. </p>",
     "StartMeetingTranscription": "<p>Starts transcription for the specified <code>meetingId</code>.</p>",
     "StopMeetingTranscription": "<p>Stops transcription for the specified <code>meetingId</code>.</p>",
-    "UpdateAttendeeCapabilities": "<p>The capabilties that you want to update.</p>"
+    "UpdateAttendeeCapabilities": "<p>The capabilties that you want to update.</p> <note> <p>You use the capabilities with a set of values that control what the capabilities can do, such as <code>SendReceive</code> data. For more information about those values, see .</p> </note> <p>When using capabilities, be aware of these corner cases:</p> <ul> <li> <p>You can't set <code>content</code> capabilities to <code>SendReceive</code> or <code>Receive</code> unless you also set <code>video</code> capabilities to <code>SendReceive</code> or <code>Receive</code>. If you don't set the <code>video</code> capability to receive, the response will contain an HTTP 400 Bad Request status code. However, you can set your <code>video</code> capability to receive and you set your <code>content</code> capability to not receive.</p> </li> <li> <p>When you change an <code>audio</code> capability from <code>None</code> or <code>Receive</code> to <code>Send</code> or <code>SendReceive</code> , and if the attendee left their microphone unmuted, audio will flow from the attendee to the other meeting participants.</p> </li> <li> <p>When you change a <code>video</code> or <code>content</code> capability from <code>None</code> or <code>Receive</code> to <code>Send</code> or <code>SendReceive</code> , and if the attendee turned on their video or content streams, remote attendess can receive those streams, but only after media renegotiation between the client and the Amazon Chime back-end server.</p> </li> </ul>"
   },
   "shapes": {
     "Arn": {
@@ -31,15 +31,15 @@
         "AttendeeList$member": null,
         "CreateAttendeeResponse$Attendee": "<p>The attendee information, including attendee ID and join token.</p>",
         "GetAttendeeResponse$Attendee": "<p>The Amazon Chime SDK attendee information.</p>",
-        "UpdateAttendeeCapabilitiesResponse$Attendee": null
+        "UpdateAttendeeCapabilitiesResponse$Attendee": "<p>The updated attendee data.</p>"
       }
     },
     "AttendeeCapabilities": {
-      "base": "<p>The media capabilities of an attendee, including audio, video and content. </p>",
+      "base": "<p>The media capabilities of an attendee: audio, video, or content. </p> <note> <p>You use the capabilities with a set of values that control what the capabilities can do, such as <code>SendReceive</code> data. For more information about those values, see .</p> </note> <p>When using capabilities, be aware of these corner cases:</p> <ul> <li> <p>You can't set <code>content</code> capabilities to <code>SendReceive</code> or <code>Receive</code> unless you also set <code>video</code> capabilities to <code>SendReceive</code> or <code>Receive</code>. If you don't set the <code>video</code> capability to receive, the response will contain an HTTP 400 Bad Request status code. However, you can set your <code>video</code> capability to receive and you set your <code>content</code> capability to not receive.</p> </li> <li> <p>When you change an <code>audio</code> capability from <code>None</code> or <code>Receive</code> to <code>Send</code> or <code>SendReceive</code> , and if the attendee left their microphone unmuted, audio will flow from the attendee to the other meeting participants.</p> </li> <li> <p>When you change a <code>video</code> or <code>content</code> capability from <code>None</code> or <code>Receive</code> to <code>Send</code> or <code>SendReceive</code> , and if the attendee turned on their video or content streams, remote attendess can receive those streams, but only after media renegotiation between the client and the Amazon Chime back-end server.</p> </li> </ul>",
       "refs": {
-        "Attendee$Capabilities": "<p>The capabilities (audio, video, or content) assigned to an attendee.</p>",
+        "Attendee$Capabilities": "<p>The capabilities assigned to an attendee: audio, video, or content.</p> <note> <p>You use the capabilities with a set of values that control what the capabilities can do, such as <code>SendReceive</code> data. For more information about those values, see .</p> </note> <p>When using capabilities, be aware of these corner cases:</p> <ul> <li> <p>You can't set <code>content</code> capabilities to <code>SendReceive</code> or <code>Receive</code> unless you also set <code>video</code> capabilities to <code>SendReceive</code> or <code>Receive</code>. If you don't set the <code>video</code> capability to receive, the response will contain an HTTP 400 Bad Request status code. However, you can set your <code>video</code> capability to receive and you set your <code>content</code> capability to not receive.</p> </li> <li> <p>When you change an <code>audio</code> capability from <code>None</code> or <code>Receive</code> to <code>Send</code> or <code>SendReceive</code> , and if the attendee left their microphone unmuted, audio will flow from the attendee to the other meeting participants.</p> </li> <li> <p>When you change a <code>video</code> or <code>content</code> capability from <code>None</code> or <code>Receive</code> to <code>Send</code> or <code>SendReceive</code> , and if the attendee turned on their video or content streams, remote attendess can receive those streams, but only after media renegotiation between the client and the Amazon Chime back-end server.</p> </li> </ul>",
         "BatchUpdateAttendeeCapabilitiesExceptRequest$Capabilities": "<p>The capabilities (<code>audio</code>, <code>video</code>, or <code>content</code>) that you want to update.</p>",
-        "CreateAttendeeRequest$Capabilities": "<p>The capabilities (<code>audio</code>, <code>video</code>, or <code>content</code>) that you want to grant an attendee. If you don't specify capabilities, all users have send and receive capabilities on all media channels by default.</p>",
+        "CreateAttendeeRequest$Capabilities": "<p>The capabilities (<code>audio</code>, <code>video</code>, or <code>content</code>) that you want to grant an attendee. If you don't specify capabilities, all users have send and receive capabilities on all media channels by default.</p> <note> <p>You use the capabilities with a set of values that control what the capabilities can do, such as <code>SendReceive</code> data. For more information about those values, see .</p> </note> <p>When using capabilities, be aware of these corner cases:</p> <ul> <li> <p>You can't set <code>content</code> capabilities to <code>SendReceive</code> or <code>Receive</code> unless you also set <code>video</code> capabilities to <code>SendReceive</code> or <code>Receive</code>. If you don't set the <code>video</code> capability to receive, the response will contain an HTTP 400 Bad Request status code. However, you can set your <code>video</code> capability to receive and you set your <code>content</code> capability to not receive.</p> </li> <li> <p>When you change an <code>audio</code> capability from <code>None</code> or <code>Receive</code> to <code>Send</code> or <code>SendReceive</code> , and if the attendee left their microphone unmuted, audio will flow from the attendee to the other meeting participants.</p> </li> <li> <p>When you change a <code>video</code> or <code>content</code> capability from <code>None</code> or <code>Receive</code> to <code>Send</code> or <code>SendReceive</code> , and if the attendee turned on their video or content streams, remote attendess can receive those streams, but only after media renegotiation between the client and the Amazon Chime back-end server.</p> </li> </ul>",
         "CreateAttendeeRequestItem$Capabilities": "<p>A list of one or more capabilities.</p>",
         "UpdateAttendeeCapabilitiesRequest$Capabilities": "<p>The capabilties that you want to update.</p>"
       }
@@ -358,7 +358,7 @@
       }
     },
     "ServiceFailureException": {
-      "base": "<p>The service is currently unavailable.</p>",
+      "base": "<p>The service encountered an unexpected error.</p>",
       "refs": {
       }
     },
@@ -427,8 +427,22 @@
         "UnprocessableEntityException$RequestId": "<p>The request id associated with the call responsible for the exception.</p>"
       }
     },
+    "TenantId": {
+      "base": null,
+      "refs": {
+        "TenantIdList$member": null
+      }
+    },
+    "TenantIdList": {
+      "base": null,
+      "refs": {
+        "CreateMeetingRequest$TenantIds": "<p>A consistent and opaque identifier, created and maintained by the builder to represent a segment of their users.</p>",
+        "CreateMeetingWithAttendeesRequest$TenantIds": "<p>A consistent and opaque identifier, created and maintained by the builder to represent a segment of their users.</p>",
+        "Meeting$TenantIds": "<p>Array of strings.</p>"
+      }
+    },
     "ThrottlingException": {
-      "base": "<p>The number of requests exceeds the limit.</p>",
+      "base": "<p>The number of customer requests exceeds the request rate limit.</p>",
       "refs": {
       }
     },
@@ -478,7 +492,7 @@
     "TranscribeMedicalRegion": {
       "base": null,
       "refs": {
-        "EngineTranscribeMedicalSettings$Region": "<p>The AWS Region passed to Amazon Transcribe Medical. If you don't specify a Region, Amazon Chime uses the meeting's Region.</p>"
+        "EngineTranscribeMedicalSettings$Region": "<p>The AWS Region passed to Amazon Transcribe Medical. If you don't specify a Region, Amazon Chime uses the meeting's Region. </p>"
       }
     },
     "TranscribeMedicalSpecialty": {

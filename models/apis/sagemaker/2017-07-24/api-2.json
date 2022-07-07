@@ -9731,6 +9731,35 @@
       "member":{"shape":"TrainingInputMode"},
       "min":1
     },
+    "InstanceGroup":{
+      "type":"structure",
+      "required":[
+        "InstanceType",
+        "InstanceCount",
+        "InstanceGroupName"
+      ],
+      "members":{
+        "InstanceType":{"shape":"TrainingInstanceType"},
+        "InstanceCount":{"shape":"TrainingInstanceCount"},
+        "InstanceGroupName":{"shape":"InstanceGroupName"}
+      }
+    },
+    "InstanceGroupName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":".+"
+    },
+    "InstanceGroupNames":{
+      "type":"list",
+      "member":{"shape":"InstanceGroupName"},
+      "max":5
+    },
+    "InstanceGroups":{
+      "type":"list",
+      "member":{"shape":"InstanceGroup"},
+      "max":5
+    },
     "InstanceMetadataServiceConfiguration":{
       "type":"structure",
       "required":["MinimumInstanceMetadataServiceVersion"],
@@ -14395,16 +14424,13 @@
     },
     "ResourceConfig":{
       "type":"structure",
-      "required":[
-        "InstanceType",
-        "InstanceCount",
-        "VolumeSizeInGB"
-      ],
+      "required":["VolumeSizeInGB"],
       "members":{
         "InstanceType":{"shape":"TrainingInstanceType"},
         "InstanceCount":{"shape":"TrainingInstanceCount"},
         "VolumeSizeInGB":{"shape":"VolumeSizeInGB"},
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "InstanceGroups":{"shape":"InstanceGroups"}
       }
     },
     "ResourceId":{
@@ -14584,7 +14610,8 @@
         "S3DataType":{"shape":"S3DataType"},
         "S3Uri":{"shape":"S3Uri"},
         "S3DataDistributionType":{"shape":"S3DataDistribution"},
-        "AttributeNames":{"shape":"AttributeNames"}
+        "AttributeNames":{"shape":"AttributeNames"},
+        "InstanceGroupNames":{"shape":"InstanceGroupNames"}
       }
     },
     "S3DataType":{
@@ -15571,7 +15598,7 @@
     },
     "TrainingInstanceCount":{
       "type":"integer",
-      "min":1
+      "min":0
     },
     "TrainingInstanceType":{
       "type":"string",

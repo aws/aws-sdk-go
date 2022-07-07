@@ -40,13 +40,15 @@
     "DisassociateWirelessGatewayFromThing": "<p>Disassociates a wireless gateway from its currently associated thing.</p>",
     "GetDestination": "<p>Gets information about a destination.</p>",
     "GetDeviceProfile": "<p>Gets information about a device profile.</p>",
-    "GetEventConfigurationByResourceTypes": "<p>Get the event configuration by resource types.</p>",
+    "GetEventConfigurationByResourceTypes": "<p>Get the event configuration based on resource types.</p>",
     "GetFuotaTask": "<p>Gets information about a FUOTA task.</p>",
     "GetLogLevelsByResourceTypes": "<p>Returns current default log levels or log levels by resource types. Based on resource types, log levels can be for wireless device log options or wireless gateway log options.</p>",
     "GetMulticastGroup": "<p>Gets information about a multicast group.</p>",
     "GetMulticastGroupSession": "<p>Gets information about a multicast group session.</p>",
     "GetNetworkAnalyzerConfiguration": "<p>Get network analyzer configuration.</p>",
     "GetPartnerAccount": "<p>Gets information about a partner account. If <code>PartnerAccountId</code> and <code>PartnerType</code> are <code>null</code>, returns all partner accounts.</p>",
+    "GetPosition": "<p>Get the position information for a given resource.</p>",
+    "GetPositionConfiguration": "<p>Get position configuration for a given resource.</p>",
     "GetResourceEventConfiguration": "<p>Get the event configuration for a particular resource identifier.</p>",
     "GetResourceLogLevel": "<p>Fetches the log-level override, if any, for a given resource-ID and resource-type. It can be used for a wireless device or a wireless gateway.</p>",
     "GetServiceEndpoint": "<p>Gets the account-specific endpoint for Configuration and Update Server (CUPS) protocol or LoRaWAN Network Server (LNS) connections.</p>",
@@ -67,12 +69,14 @@
     "ListMulticastGroupsByFuotaTask": "<p>List all multicast groups associated with a fuota task.</p>",
     "ListNetworkAnalyzerConfigurations": "<p>Lists the network analyzer configurations.</p>",
     "ListPartnerAccounts": "<p>Lists the partner accounts associated with your AWS account.</p>",
+    "ListPositionConfigurations": "<p>List position configurations for a given resource, such as positioning solvers.</p>",
     "ListQueuedMessages": "<p>List queued messages in the downlink queue.</p>",
     "ListServiceProfiles": "<p>Lists the service profiles registered to your AWS account.</p>",
     "ListTagsForResource": "<p>Lists the tags (metadata) you have assigned to the resource.</p>",
     "ListWirelessDevices": "<p>Lists the wireless devices registered to your AWS account.</p>",
     "ListWirelessGatewayTaskDefinitions": "<p>List the wireless gateway tasks definitions registered to your AWS account.</p>",
     "ListWirelessGateways": "<p>Lists the wireless gateways registered to your AWS account.</p>",
+    "PutPositionConfiguration": "<p>Put position configuration for a given resource.</p>",
     "PutResourceLogLevel": "<p>Sets the log-level override for a resource-ID and resource-type. This option can be specified for a wireless gateway or a wireless device. A limit of 200 log level override can be set per account.</p>",
     "ResetAllResourceLogLevels": "<p>Removes the log-level overrides for all resources; both wireless devices and wireless gateways.</p>",
     "ResetResourceLogLevel": "<p>Removes the log-level override, if any, for a specific resource-ID and resource-type. It can be used for a wireless device or a wireless gateway.</p>",
@@ -86,12 +90,13 @@
     "TestWirelessDevice": "<p>Simulates a provisioned device by sending an uplink data payload of <code>Hello</code>.</p>",
     "UntagResource": "<p>Removes one or more tags from a resource.</p>",
     "UpdateDestination": "<p>Updates properties of a destination.</p>",
-    "UpdateEventConfigurationByResourceTypes": "<p>Update the event configuration by resource types.</p>",
+    "UpdateEventConfigurationByResourceTypes": "<p>Update the event configuration based on resource types.</p>",
     "UpdateFuotaTask": "<p>Updates properties of a FUOTA task.</p>",
     "UpdateLogLevelsByResourceTypes": "<p>Set default log level, or log levels by resource types. This can be for wireless device log options or wireless gateways log options and is used to control the log messages that'll be displayed in CloudWatch.</p>",
     "UpdateMulticastGroup": "<p>Updates properties of a multicast group session.</p>",
     "UpdateNetworkAnalyzerConfiguration": "<p>Update network analyzer configuration.</p>",
     "UpdatePartnerAccount": "<p>Updates properties of a partner account.</p>",
+    "UpdatePosition": "<p>Update the position information of a resource.</p>",
     "UpdateResourceEventConfiguration": "<p>Update the event configuration for a particular resource identifier.</p>",
     "UpdateWirelessDevice": "<p>Updates properties of a wireless device.</p>",
     "UpdateWirelessGateway": "<p>Updates properties of a wireless gateway.</p>"
@@ -118,6 +123,12 @@
       "base": null,
       "refs": {
         "GetPartnerAccountResponse$AccountLinked": "<p>Whether the partner account is linked to the AWS account.</p>"
+      }
+    },
+    "Accuracy": {
+      "base": "<p>The accuracy of the estimated position in meters. An empty value indicates that no position data is available. A value of ‘0.0’ value indicates that position data is available. This data corresponds to the position information that you specified instead of the position computed by solver.</p>",
+      "refs": {
+        "GetPositionResponse$Accuracy": "<p>The accuracy of the estimated position in meters. An empty value indicates that no position data is available. A value of ‘0.0’ value indicates that position data is available. This data corresponds to the position information that you specified instead of the position computed by solver.</p>"
       }
     },
     "AddGwMetadata": {
@@ -332,13 +343,13 @@
       "refs": {
         "EventNotificationItemConfigurations$ConnectionStatus": "<p>Connection status event configuration for an event configuration item.</p>",
         "GetResourceEventConfigurationResponse$ConnectionStatus": "<p>Event configuration for the connection status event.</p>",
-        "UpdateResourceEventConfigurationRequest$ConnectionStatus": "<p>Event configuration for the connection status event</p>"
+        "UpdateResourceEventConfigurationRequest$ConnectionStatus": "<p>Event configuration for the connection status event.</p>"
       }
     },
     "ConnectionStatusResourceTypeEventConfiguration": {
       "base": "<p>Connection status resource type event configuration object for enabling or disabling topic.</p>",
       "refs": {
-        "GetEventConfigurationByResourceTypesResponse$ConnectionStatus": "<p>Resource type event configuration for the connection status event</p>",
+        "GetEventConfigurationByResourceTypesResponse$ConnectionStatus": "<p>Resource type event configuration for the connection status event.</p>",
         "UpdateEventConfigurationByResourceTypesRequest$ConnectionStatus": "<p>Connection status resource type event configuration object for enabling and disabling wireless gateway topic.</p>"
       }
     },
@@ -614,8 +625,11 @@
         "Destinations$Name": "<p>The name of the resource.</p>",
         "GetDestinationRequest$Name": "<p>The name of the resource to get.</p>",
         "GetDestinationResponse$Name": "<p>The name of the resource.</p>",
+        "GetPositionConfigurationResponse$Destination": "<p>The position data destination that describes the AWS IoT rule that processes the device's position data for use by AWS IoT Core for LoRaWAN.</p>",
         "GetWirelessDeviceResponse$DestinationName": "<p>The name of the destination to which the device is assigned.</p>",
         "ListWirelessDevicesRequest$DestinationName": "<p>A filter to list only the wireless devices that use this destination.</p>",
+        "PositionConfigurationItem$Destination": "<p>The position data destination that describes the AWS IoT rule that processes the device's position data for use by AWS IoT Core for LoRaWAN.</p>",
+        "PutPositionConfigurationRequest$Destination": "<p>The position data destination that describes the AWS IoT rule that processes the device's position data for use by AWS IoT Core for LoRaWAN.</p>",
         "UpdateDestinationRequest$Name": "<p>The new name of the resource.</p>",
         "UpdateWirelessDeviceRequest$DestinationName": "<p>The name of the new destination for the device.</p>",
         "WirelessDeviceStatistics$DestinationName": "<p>The name of the destination to which the device is assigned.</p>"
@@ -700,14 +714,14 @@
       "base": "<p>Device registration state event configuration object for enabling and disabling relevant topics.</p>",
       "refs": {
         "EventNotificationItemConfigurations$DeviceRegistrationState": "<p>Device registration state event configuration for an event configuration item.</p>",
-        "GetResourceEventConfigurationResponse$DeviceRegistrationState": "<p>Event configuration for the device registration state event</p>",
-        "UpdateResourceEventConfigurationRequest$DeviceRegistrationState": "<p>Event configuration for the device registration state event</p>"
+        "GetResourceEventConfigurationResponse$DeviceRegistrationState": "<p>Event configuration for the device registration state event.</p>",
+        "UpdateResourceEventConfigurationRequest$DeviceRegistrationState": "<p>Event configuration for the device registration state event.</p>"
       }
     },
     "DeviceRegistrationStateResourceTypeEventConfiguration": {
       "base": "<p>Device registration state resource type event configuration object for enabling or disabling topic.</p>",
       "refs": {
-        "GetEventConfigurationByResourceTypesResponse$DeviceRegistrationState": "<p>Resource type event configuration for the device registration state event</p>",
+        "GetEventConfigurationByResourceTypesResponse$DeviceRegistrationState": "<p>Resource type event configuration for the device registration state event.</p>",
         "UpdateEventConfigurationByResourceTypesRequest$DeviceRegistrationState": "<p>Device registration state resource type event configuration object for enabling and disabling wireless gateway topic.</p>"
       }
     },
@@ -889,8 +903,8 @@
       "base": null,
       "refs": {
         "EventConfigurationItem$PartnerType": "<p>Partner type of the resource if the identifier type is PartnerAccountId.</p>",
-        "GetResourceEventConfigurationRequest$PartnerType": "<p>Partner type of the resource if the identifier type is PartnerAccountId.</p>",
-        "UpdateResourceEventConfigurationRequest$PartnerType": "<p>Partner type of the resource if the identifier type is PartnerAccountId</p>"
+        "GetResourceEventConfigurationRequest$PartnerType": "<p>Partner type of the resource if the identifier type is <code>PartnerAccountId</code>.</p>",
+        "UpdateResourceEventConfigurationRequest$PartnerType": "<p>Partner type of the resource if the identifier type is <code>PartnerAccountId</code> </p>"
       }
     },
     "EventNotificationResourceType": {
@@ -902,12 +916,12 @@
     "EventNotificationTopicStatus": {
       "base": null,
       "refs": {
-        "ConnectionStatusEventConfiguration$WirelessGatewayIdEventTopic": "<p>Enum to denote whether the wireless gateway id connection status event topic is enabled or disabled .</p>",
+        "ConnectionStatusEventConfiguration$WirelessGatewayIdEventTopic": "<p>Enum to denote whether the wireless gateway ID connection status event topic is enabled or disabled.</p>",
         "DeviceRegistrationStateEventConfiguration$WirelessDeviceIdEventTopic": "<p>Enum to denote whether the wireless device id device registration state event topic is enabled or disabled.</p>",
         "JoinEventConfiguration$WirelessDeviceIdEventTopic": "<p>Enum to denote whether the wireless device id join event topic is enabled or disabled.</p>",
-        "LoRaWANConnectionStatusEventNotificationConfigurations$GatewayEuiEventTopic": "<p>Enum to denote whether the gateway eui connection status event topic is enabled or disabled.</p>",
+        "LoRaWANConnectionStatusEventNotificationConfigurations$GatewayEuiEventTopic": "<p>Enum to denote whether the gateway EUI connection status event topic is enabled or disabled.</p>",
         "LoRaWANConnectionStatusResourceTypeEventConfiguration$WirelessGatewayEventTopic": "<p>Enum to denote whether the wireless gateway connection status event topic is enabled or disabled.</p>",
-        "LoRaWANJoinEventNotificationConfigurations$DevEuiEventTopic": "<p>Enum to denote whether the dev eui join event topic is enabled or disabled.</p>",
+        "LoRaWANJoinEventNotificationConfigurations$DevEuiEventTopic": "<p>Enum to denote whether the Dev EUI join event topic is enabled or disabled.</p>",
         "LoRaWANJoinResourceTypeEventConfiguration$WirelessDeviceEventTopic": "<p>Enum to denote whether the wireless device join event topic is enabled or disabled.</p>",
         "ProximityEventConfiguration$WirelessDeviceIdEventTopic": "<p>Enum to denote whether the wireless device id proximity event topic is enabled or disabled.</p>",
         "SidewalkEventNotificationConfigurations$AmazonIdEventTopic": "<p>Enum to denote whether amazon id event topic is enabled or disabled.</p>",
@@ -954,7 +968,10 @@
         "FPorts$Multicast": null,
         "FPorts$ClockSync": null,
         "LoRaWANMulticastMetadata$FPort": null,
-        "LoRaWANSendDataToDevice$FPort": null
+        "LoRaWANSendDataToDevice$FPort": null,
+        "Positioning$ClockSync": null,
+        "Positioning$Stream": null,
+        "Positioning$Gnss": null
       }
     },
     "FPorts": {
@@ -1153,6 +1170,26 @@
       "refs": {
       }
     },
+    "GetPositionConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPositionConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPositionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPositionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetResourceEventConfigurationRequest": {
       "base": null,
       "refs": {
@@ -1273,6 +1310,12 @@
       "refs": {
       }
     },
+    "HorizontalAccuracy": {
+      "base": null,
+      "refs": {
+        "Accuracy$HorizontalAccuracy": "<p>The horizontal accuracy of the estimated position in meters.</p>"
+      }
+    },
     "HrAllowed": {
       "base": null,
       "refs": {
@@ -1283,6 +1326,7 @@
       "base": null,
       "refs": {
         "DownlinkQueueMessage$ReceivedAt": "<p>The time at which Iot Wireless received the downlink message.</p>",
+        "GetPositionResponse$Timestamp": "<p>The timestamp at which the device's position was determined.</p>",
         "GetWirelessDeviceStatisticsResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p>",
         "GetWirelessGatewayStatisticsResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p>",
         "GetWirelessGatewayTaskResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p>",
@@ -1358,13 +1402,13 @@
       "refs": {
         "EventNotificationItemConfigurations$Join": "<p>Join event configuration for an event configuration item.</p>",
         "GetResourceEventConfigurationResponse$Join": "<p>Event configuration for the join event.</p>",
-        "UpdateResourceEventConfigurationRequest$Join": "<p>Event configuration for the join event</p>"
+        "UpdateResourceEventConfigurationRequest$Join": "<p>Event configuration for the join event.</p>"
       }
     },
     "JoinResourceTypeEventConfiguration": {
       "base": "<p>Join resource type event configuration object for enabling or disabling topic.</p>",
       "refs": {
-        "GetEventConfigurationByResourceTypesResponse$Join": "<p>Resource type event configuration for the join event</p>",
+        "GetEventConfigurationByResourceTypesResponse$Join": "<p>Resource type event configuration for the join event.</p>",
         "UpdateEventConfigurationByResourceTypesRequest$Join": "<p>Join resource type event configuration object for enabling and disabling wireless device topic.</p>"
       }
     },
@@ -1444,6 +1488,16 @@
       }
     },
     "ListPartnerAccountsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPositionConfigurationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPositionConfigurationsResponse": {
       "base": null,
       "refs": {
       }
@@ -1719,6 +1773,7 @@
         "ListMulticastGroupsRequest$MaxResults": null,
         "ListNetworkAnalyzerConfigurationsRequest$MaxResults": null,
         "ListPartnerAccountsRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
+        "ListPositionConfigurationsRequest$MaxResults": null,
         "ListQueuedMessagesRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
         "ListServiceProfilesRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
         "ListWirelessDevicesRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
@@ -1922,6 +1977,8 @@
         "ListNetworkAnalyzerConfigurationsResponse$NextToken": "<p>The token to use to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListPartnerAccountsRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListPartnerAccountsResponse$NextToken": "<p>The token to use to get the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListPositionConfigurationsRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
+        "ListPositionConfigurationsResponse$NextToken": "<p>The token to use to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListQueuedMessagesRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListQueuedMessagesResponse$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListServiceProfilesRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
@@ -2036,6 +2093,106 @@
         "LoRaWANDeviceProfile$PingSlotPeriod": "<p>The PingSlotPeriod value.</p>"
       }
     },
+    "PositionConfigurationFec": {
+      "base": null,
+      "refs": {
+        "SemtechGnssConfiguration$Fec": "<p>Whether forward error correction is enabled.</p>",
+        "SemtechGnssDetail$Fec": "<p>Whether forward error correction is enabled.</p>"
+      }
+    },
+    "PositionConfigurationItem": {
+      "base": "<p>The wrapper for a position configuration.</p>",
+      "refs": {
+        "PositionConfigurationList$member": null
+      }
+    },
+    "PositionConfigurationList": {
+      "base": null,
+      "refs": {
+        "ListPositionConfigurationsResponse$PositionConfigurationList": "<p>A list of position configurations.</p>"
+      }
+    },
+    "PositionConfigurationStatus": {
+      "base": null,
+      "refs": {
+        "SemtechGnssConfiguration$Status": "<p>The status indicating whether the solver is enabled.</p>",
+        "SemtechGnssDetail$Status": "<p>The status indicating whether the solver is enabled.</p>"
+      }
+    },
+    "PositionCoordinate": {
+      "base": null,
+      "refs": {
+        "GetPositionResponse$Position": "<p>The position information of the resource.</p>",
+        "UpdatePositionRequest$Position": "<p>The position information of the resource.</p>"
+      }
+    },
+    "PositionCoordinateValue": {
+      "base": null,
+      "refs": {
+        "PositionCoordinate$member": null
+      }
+    },
+    "PositionResourceIdentifier": {
+      "base": null,
+      "refs": {
+        "GetPositionConfigurationRequest$ResourceIdentifier": "<p>Resource identifier used in a position configuration.</p>",
+        "GetPositionRequest$ResourceIdentifier": "<p>Resource identifier used to retrieve the position information.</p>",
+        "PositionConfigurationItem$ResourceIdentifier": "<p>Resource identifier for the position configuration.</p>",
+        "PutPositionConfigurationRequest$ResourceIdentifier": "<p>Resource identifier used to update the position configuration.</p>",
+        "UpdatePositionRequest$ResourceIdentifier": "<p>Resource identifier of the resource for which position is updated.</p>"
+      }
+    },
+    "PositionResourceType": {
+      "base": null,
+      "refs": {
+        "GetPositionConfigurationRequest$ResourceType": "<p>Resource type of the resource for which position configuration is retrieved.</p>",
+        "GetPositionRequest$ResourceType": "<p>Resource type of the resource for which position information is retrieved.</p>",
+        "ListPositionConfigurationsRequest$ResourceType": "<p>Resource type for which position configurations are listed.</p>",
+        "PositionConfigurationItem$ResourceType": "<p>Resource type of the resource for the position configuration.</p>",
+        "PutPositionConfigurationRequest$ResourceType": "<p>Resource type of the resource for which you want to update the position configuration.</p>",
+        "UpdatePositionRequest$ResourceType": "<p>Resource type of the resource for which position is updated.</p>"
+      }
+    },
+    "PositionSolverConfigurations": {
+      "base": "<p>The wrapper for position solver configurations.</p>",
+      "refs": {
+        "PutPositionConfigurationRequest$Solvers": "<p>The positioning solvers used to update the position configuration of the resource.</p>"
+      }
+    },
+    "PositionSolverDetails": {
+      "base": "<p>The wrapper for position solver details.</p>",
+      "refs": {
+        "GetPositionConfigurationResponse$Solvers": "<p>The wrapper for the solver configuration details object.</p>",
+        "PositionConfigurationItem$Solvers": "<p>The details of the positioning solver object used to compute the location.</p>"
+      }
+    },
+    "PositionSolverProvider": {
+      "base": null,
+      "refs": {
+        "GetPositionResponse$SolverProvider": "<p>The vendor of the positioning solver.</p>",
+        "SemtechGnssDetail$Provider": "<p>The vendor of the solver object.</p>"
+      }
+    },
+    "PositionSolverType": {
+      "base": null,
+      "refs": {
+        "GetPositionResponse$SolverType": "<p>The type of solver used to identify the position of the resource.</p>",
+        "SemtechGnssDetail$Type": "<p>The type of positioning solver used.</p>"
+      }
+    },
+    "PositionSolverVersion": {
+      "base": null,
+      "refs": {
+        "GetPositionResponse$SolverVersion": "<p>The version of the positioning solver.</p>"
+      }
+    },
+    "Positioning": {
+      "base": "<p>The FPorts for the position information.</p>",
+      "refs": {
+        "FPorts$Positioning": "<p>FPort values for the GNSS, stream, and ClockSync functions of the positioning information.</p>",
+        "UpdateFPorts$Positioning": "<p>Positioning FPorts for the ClockSync, Stream, and GNSS functions.</p>"
+      }
+    },
     "PrAllowed": {
       "base": null,
       "refs": {
@@ -2052,15 +2209,25 @@
       "base": "<p>Proximity event configuration object for enabling and disabling relevant topics.</p>",
       "refs": {
         "EventNotificationItemConfigurations$Proximity": "<p>Proximity event configuration for an event configuration item.</p>",
-        "GetResourceEventConfigurationResponse$Proximity": "<p>Event configuration for the Proximity event</p>",
-        "UpdateResourceEventConfigurationRequest$Proximity": "<p>Event configuration for the Proximity event</p>"
+        "GetResourceEventConfigurationResponse$Proximity": "<p>Event configuration for the proximity event.</p>",
+        "UpdateResourceEventConfigurationRequest$Proximity": "<p>Event configuration for the proximity event.</p>"
       }
     },
     "ProximityResourceTypeEventConfiguration": {
       "base": "<p>Proximity resource type event configuration object for enabling or disabling topic.</p>",
       "refs": {
-        "GetEventConfigurationByResourceTypesResponse$Proximity": "<p>Resource type event configuration for the proximity event</p>",
+        "GetEventConfigurationByResourceTypesResponse$Proximity": "<p>Resource type event configuration for the proximity event.</p>",
         "UpdateEventConfigurationByResourceTypesRequest$Proximity": "<p>Proximity resource type event configuration object for enabling and disabling wireless gateway topic.</p>"
+      }
+    },
+    "PutPositionConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutPositionConfigurationResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "PutResourceLogLevelRequest": {
@@ -2207,6 +2374,18 @@
         "SessionKeysAbpV1_1$SNwkSIntKey": "<p>The SNwkSIntKey value.</p>"
       }
     },
+    "SemtechGnssConfiguration": {
+      "base": "<p>Information about the Semtech GNSS solver configuration.</p>",
+      "refs": {
+        "PositionSolverConfigurations$SemtechGnss": "<p>The Semtech GNSS solver configuration object.</p>"
+      }
+    },
+    "SemtechGnssDetail": {
+      "base": "<p>Details of the Semtech GNSS solver object.</p>",
+      "refs": {
+        "PositionSolverDetails$SemtechGnss": "<p>The Semtech GNSS solver object details.</p>"
+      }
+    },
     "SendDataToMulticastGroupRequest": {
       "base": null,
       "refs": {
@@ -2331,7 +2510,7 @@
       }
     },
     "SidewalkEventNotificationConfigurations": {
-      "base": "<p> SidewalkEventNotificationConfigurations object Event configuration object for Sidewalk related event topics.</p>",
+      "base": "<p> <code>SidewalkEventNotificationConfigurations</code> object, which is the event configuration object for Sidewalk-related event topics.</p>",
       "refs": {
         "DeviceRegistrationStateEventConfiguration$Sidewalk": "<p>Device registration state event configuration object for enabling or disabling Sidewalk related event topics.</p>",
         "ProximityEventConfiguration$Sidewalk": "<p>Proximity event configuration object for enabling or disabling Sidewalk related event topics.</p>"
@@ -2657,6 +2836,12 @@
       "refs": {
       }
     },
+    "UpdateFPorts": {
+      "base": "<p>Object for updating the FPorts information.</p>",
+      "refs": {
+        "LoRaWANUpdateDevice$FPorts": "<p>FPorts object for the positioning information of the device.</p>"
+      }
+    },
     "UpdateFuotaTaskRequest": {
       "base": null,
       "refs": {
@@ -2703,6 +2888,16 @@
       }
     },
     "UpdatePartnerAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePositionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePositionResponse": {
       "base": null,
       "refs": {
       }
@@ -2761,6 +2956,12 @@
       "refs": {
       }
     },
+    "VerticalAccuracy": {
+      "base": null,
+      "refs": {
+        "Accuracy$VerticalAccuracy": "<p>The vertical accuracy of the estimated position in meters.</p>"
+      }
+    },
     "WirelessDeviceArn": {
       "base": null,
       "refs": {
@@ -2788,7 +2989,7 @@
       }
     },
     "WirelessDeviceFrameInfo": {
-      "base": "<p>FrameInfo of your wireless device resources for the trace content. Use FrameInfo to debug the communication between your LoRaWAN end devices and the network server.</p>",
+      "base": "<p> <code>FrameInfo</code> of your wireless device resources for the trace content. Use FrameInfo to debug the communication between your LoRaWAN end devices and the network server.</p>",
       "refs": {
         "TraceContent$WirelessDeviceFrameInfo": null
       }
