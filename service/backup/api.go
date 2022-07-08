@@ -6702,9 +6702,9 @@ func (c *Backup) UpdateRecoveryPointLifecycleRequest(input *UpdateRecoveryPointL
 // to cold after days” setting cannot be changed after a backup has been transitioned
 // to cold.
 //
-// Only resource types that support full Backup management can transition their
-// backups to cold storage. Those resource types are listed in the "Full Backup
-// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+// Resource types that are able to be transitioned to cold storage are listed
+// in the "Lifecycle to cold storage" section of the Feature availability by
+// resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
 // table. Backup ignores this expression for other resource types.
 //
 // This operation does not support continuous backups.
@@ -7091,9 +7091,9 @@ func (s *AlreadyExistsException) RequestID() string {
 // to cold after days” setting cannot be changed after a backup has been transitioned
 // to cold.
 //
-// Only resource types that support full Backup management can transition their
-// backups to cold storage. Those resource types are listed in the "Full Backup
-// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+// Resource types that are able to be transitioned to cold storage are listed
+// in the "Lifecycle to cold storage" section of the Feature availability by
+// resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
 // table. Backup ignores this expression for other resource types.
 type CalculatedLifecycle struct {
 	_ struct{} `type:"structure"`
@@ -7536,9 +7536,9 @@ type CopyAction struct {
 	// The “transition to cold after days” setting cannot be changed after a
 	// backup has been transitioned to cold.
 	//
-	// Only resource types that support full Backup management can transition their
-	// backups to cold storage. Those resource types are listed in the "Full Backup
-	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// Resource types that are able to be transitioned to cold storage are listed
+	// in the "Lifecycle to cold storage" section of the Feature availability by
+	// resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
 	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 }
@@ -10361,9 +10361,9 @@ type DescribeRecoveryPointOutput struct {
 	// “transition to cold after days” setting cannot be changed after a backup
 	// has been transitioned to cold.
 	//
-	// Only resource types that support full Backup management can transition their
-	// backups to cold storage. Those resource types are listed in the "Full Backup
-	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// Resource types that are able to be transitioned to cold storage are listed
+	// in the "Lifecycle to cold storage" section of the Feature availability by
+	// resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
 	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 
@@ -12667,9 +12667,9 @@ func (s *Job) SetStatusMessage(v string) *Job {
 // The “transition to cold after days” setting cannot be changed after a
 // backup has been transitioned to cold.
 //
-// Only resource types that support full Backup management can transition their
-// backups to cold storage. Those resource types are listed in the "Full Backup
-// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+// Resource types that are able to be transitioned to cold storage are listed
+// in the "Lifecycle to cold storage" section of the Feature availability by
+// resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
 // table. Backup ignores this expression for other resource types.
 type Lifecycle struct {
 	_ struct{} `type:"structure"`
@@ -15608,9 +15608,9 @@ type RecoveryPointByBackupVault struct {
 	// to cold after days” setting cannot be changed after a backup has been transitioned
 	// to cold.
 	//
-	// Only resource types that support full Backup management can transition their
-	// backups to cold storage. Those resource types are listed in the "Full Backup
-	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// Resource types that are able to be transitioned to cold storage are listed
+	// in the "Lifecycle to cold storage" section of the Feature availability by
+	// resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
 	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 
@@ -16597,9 +16597,9 @@ type Rule struct {
 	// to cold after days” setting cannot be changed after a backup has been transitioned
 	// to cold.
 	//
-	// Only resource types that support full Backup management can transition their
-	// backups to cold storage. Those resource types are listed in the "Full Backup
-	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// Resource types that are able to be transitioned to cold storage are listed
+	// in the "Lifecycle to cold storage" section of the Feature availability by
+	// resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
 	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 
@@ -16747,9 +16747,9 @@ type RuleInput struct {
 	// to cold after days” setting cannot be changed after a backup has been transitioned
 	// to cold.
 	//
-	// Only resource types that support full Backup management can transition their
-	// backups to cold storage. Those resource types are listed in the "Full Backup
-	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// Resource types that are able to be transitioned to cold storage are listed
+	// in the "Lifecycle to cold storage" section of the Feature availability by
+	// resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
 	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 
@@ -16882,12 +16882,17 @@ func (s *RuleInput) SetTargetBackupVaultName(v string) *RuleInput {
 }
 
 // Used to specify a set of resources to a backup plan.
+//
+// Specifying your desired Conditions, ListOfTags, NotResources, and/or Resources
+// is recommended. If none of these are specified, Backup will attempt to select
+// all supported and opted-in storage resources, which could have unintended
+// cost implications.
 type Selection struct {
 	_ struct{} `type:"structure"`
 
 	// A list of conditions that you define to assign resources to your backup plans
-	// using tags. For example, "StringEquals": {"Department": "accounting". Condition
-	// operators are case sensitive.
+	// using tags. For example, "StringEquals": { "ConditionKey": "aws:ResourceTag/CreatedByCryo",
+	// "ConditionValue": "true" },. Condition operators are case sensitive.
 	//
 	// Conditions differs from ListOfTags as follows:
 	//
@@ -16905,8 +16910,8 @@ type Selection struct {
 	IamRoleArn *string `type:"string" required:"true"`
 
 	// A list of conditions that you define to assign resources to your backup plans
-	// using tags. For example, "StringEquals": {"Department": "accounting". Condition
-	// operators are case sensitive.
+	// using tags. For example, "StringEquals": { "ConditionKey": "aws:ResourceTag/CreatedByCryo",
+	// "ConditionValue": "true" },. Condition operators are case sensitive.
 	//
 	// ListOfTags differs from Conditions as follows:
 	//
@@ -17221,9 +17226,9 @@ type StartBackupJobInput struct {
 	// to cold after days” setting cannot be changed after a backup has been transitioned
 	// to cold.
 	//
-	// Only resource types that support full Backup management can transition their
-	// backups to cold storage. Those resource types are listed in the "Full Backup
-	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// Resource types that are able to be transitioned to cold storage are listed
+	// in the "Lifecycle to cold storage" section of the Feature availability by
+	// resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
 	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 
@@ -17419,9 +17424,9 @@ type StartCopyJobInput struct {
 	// The “transition to cold after days” setting cannot be changed after a
 	// backup has been transitioned to cold.
 	//
-	// Only resource types that support full Backup management can transition their
-	// backups to cold storage. Those resource types are listed in the "Full Backup
-	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// Resource types that are able to be transitioned to cold storage are listed
+	// in the "Lifecycle to cold storage" section of the Feature availability by
+	// resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
 	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 
@@ -17657,9 +17662,7 @@ type StartRestoreJobInput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role that Backup uses to create
 	// the target recovery point; for example, arn:aws:iam::123456789012:role/S3Access.
-	//
-	// IamRoleArn is a required field
-	IamRoleArn *string `type:"string" required:"true"`
+	IamRoleArn *string `type:"string"`
 
 	// A customer-chosen string that you can use to distinguish between otherwise
 	// identical calls to StartRestoreJob. Retrying a successful request with the
@@ -17763,9 +17766,6 @@ func (s StartRestoreJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartRestoreJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartRestoreJobInput"}
-	if s.IamRoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("IamRoleArn"))
-	}
 	if s.Metadata == nil {
 		invalidParams.Add(request.NewErrParamRequired("Metadata"))
 	}
@@ -18541,9 +18541,9 @@ type UpdateRecoveryPointLifecycleOutput struct {
 	// to cold after days” setting cannot be changed after a backup has been transitioned
 	// to cold.
 	//
-	// Only resource types that support full Backup management can transition their
-	// backups to cold storage. Those resource types are listed in the "Full Backup
-	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// Resource types that are able to be transitioned to cold storage are listed
+	// in the "Lifecycle to cold storage" section of the Feature availability by
+	// resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
 	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 

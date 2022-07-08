@@ -1,3 +1,9 @@
+Release v1.44.51 (2022-07-08)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API and documentation
+
 Release v1.44.50 (2022-07-07)
 ===
 
