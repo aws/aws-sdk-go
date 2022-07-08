@@ -3149,8 +3149,7 @@
       "type":"structure",
       "required":[
         "RecoveryPointArn",
-        "Metadata",
-        "IamRoleArn"
+        "Metadata"
       ],
       "members":{
         "RecoveryPointArn":{"shape":"ARN"},
