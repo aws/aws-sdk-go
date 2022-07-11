@@ -27,6 +27,25 @@ func TestAssertJSON(t *testing.T) {
 	}
 }
 
+func TestAssertURL(t *testing.T) {
+	cases := []struct {
+		e, a    string
+		asserts bool
+	}{
+		{
+			e:       string([]byte{0}),
+			a:       string([]byte{0}),
+			asserts: true,
+		},
+	}
+
+	for i, c := range cases {
+		if awstesting.AssertURL(t, c.e, c.a, "check in url query") != c.asserts {
+			t.Error("Assert JSON result was not expected.", i)
+		}
+	}
+}
+
 func TestAssertXML(t *testing.T) {
 	cases := []struct {
 		e, a      string
