@@ -135,7 +135,8 @@
         {"shape":"AuthorizationQuotaExceededFault"},
         {"shape":"DependentServiceRequestThrottlingFault"},
         {"shape":"InvalidClusterSnapshotStateFault"},
-        {"shape":"LimitExceededFault"}
+        {"shape":"LimitExceededFault"},
+        {"shape":"UnsupportedOperationFault"}
       ]
     },
     "BatchDeleteClusterSnapshots":{
@@ -858,7 +859,8 @@
       "errors":[
         {"shape":"ClusterNotFoundFault"},
         {"shape":"ClusterSnapshotNotFoundFault"},
-        {"shape":"InvalidTagFault"}
+        {"shape":"InvalidTagFault"},
+        {"shape":"UnsupportedOperationFault"}
       ]
     },
     "DescribeClusterSubnetGroups":{
@@ -1113,7 +1115,8 @@
         {"shape":"ClusterSnapshotNotFoundFault"},
         {"shape":"InvalidClusterSnapshotStateFault"},
         {"shape":"ClusterNotFoundFault"},
-        {"shape":"AccessToSnapshotDeniedFault"}
+        {"shape":"AccessToSnapshotDeniedFault"},
+        {"shape":"UnsupportedOperationFault"}
       ]
     },
     "DescribeOrderableClusterOptions":{
@@ -2025,7 +2028,8 @@
       "errors":[
         {"shape":"AccessToSnapshotDeniedFault"},
         {"shape":"AuthorizationNotFoundFault"},
-        {"shape":"ClusterSnapshotNotFoundFault"}
+        {"shape":"ClusterSnapshotNotFoundFault"},
+        {"shape":"UnsupportedOperationFault"}
       ]
     },
     "RotateEncryptionKey":{
@@ -2332,12 +2336,10 @@
     },
     "AuthorizeSnapshotAccessMessage":{
       "type":"structure",
-      "required":[
-        "SnapshotIdentifier",
-        "AccountWithRestoreAccess"
-      ],
+      "required":["AccountWithRestoreAccess"],
       "members":{
         "SnapshotIdentifier":{"shape":"String"},
+        "SnapshotArn":{"shape":"String"},
         "SnapshotClusterIdentifier":{"shape":"String"},
         "AccountWithRestoreAccess":{"shape":"String"}
       }
@@ -3606,6 +3608,7 @@
       "members":{
         "ClusterIdentifier":{"shape":"String"},
         "SnapshotIdentifier":{"shape":"String"},
+        "SnapshotArn":{"shape":"String"},
         "SnapshotType":{"shape":"String"},
         "StartTime":{"shape":"TStamp"},
         "EndTime":{"shape":"TStamp"},
@@ -3800,6 +3803,7 @@
         "ActionType":{"shape":"ActionType"},
         "ClusterIdentifier":{"shape":"String"},
         "SnapshotIdentifier":{"shape":"String"},
+        "SnapshotArn":{"shape":"String"},
         "OwnerAccount":{"shape":"String"},
         "Filters":{
           "shape":"NodeConfigurationOptionsFilterList",
@@ -5790,13 +5794,11 @@
     },
     "RestoreFromClusterSnapshotMessage":{
       "type":"structure",
-      "required":[
-        "ClusterIdentifier",
-        "SnapshotIdentifier"
-      ],
+      "required":["ClusterIdentifier"],
       "members":{
         "ClusterIdentifier":{"shape":"String"},
         "SnapshotIdentifier":{"shape":"String"},
+        "SnapshotArn":{"shape":"String"},
         "SnapshotClusterIdentifier":{"shape":"String"},
         "Port":{"shape":"IntegerOptional"},
         "AvailabilityZone":{"shape":"String"},
@@ -5928,12 +5930,10 @@
     },
     "RevokeSnapshotAccessMessage":{
       "type":"structure",
-      "required":[
-        "SnapshotIdentifier",
-        "AccountWithRestoreAccess"
-      ],
+      "required":["AccountWithRestoreAccess"],
       "members":{
         "SnapshotIdentifier":{"shape":"String"},
+        "SnapshotArn":{"shape":"String"},
         "SnapshotClusterIdentifier":{"shape":"String"},
         "AccountWithRestoreAccess":{"shape":"String"}
       }

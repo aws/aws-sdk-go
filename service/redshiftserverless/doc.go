@@ -3,12 +3,6 @@
 // Package redshiftserverless provides the client and types for making API
 // requests to Redshift Serverless.
 //
-// This is prerelease documentation for Amazon Redshift Serverless, which is
-// in preview release. The documentation and the feature are both subject to
-// change. We recommend that you use this feature only in test environments,
-// and not in production environments. For preview terms and conditions, see
-// Beta Service Participation in Amazon Web Services Service Terms (https://docs.aws.amazon.com/https:/aws.amazon.com/service-terms).
-//
 // This is an interface reference for Amazon Redshift Serverless. It contains
 // documentation for one of the programming or command line interfaces you can
 // use to manage Amazon Redshift Serverless.

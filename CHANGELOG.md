@@ -1,3 +1,13 @@
+Release v1.44.52 (2022-07-11)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Build, manage, and monitor a unified global network that connects resources running across your cloud and on-premises environments using the AWS Cloud WAN APIs.
+* `service/redshift`: Updates service API and documentation
+  * This release adds a new --snapshot-arn field for describe-cluster-snapshots, describe-node-configuration-options, restore-from-cluster-snapshot, authorize-snapshot-acsess, and revoke-snapshot-acsess APIs. It allows customers to give a Redshift snapshot ARN or a Redshift Serverless ARN as input.
+* `service/redshift-serverless`: Updates service documentation
+
 Release v1.44.51 (2022-07-08)
 ===
 

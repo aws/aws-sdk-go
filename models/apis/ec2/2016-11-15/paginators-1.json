@@ -536,6 +536,18 @@
       "output_token": "NextToken",
       "result_key": "TransitGatewayPeeringAttachments"
     },
+    "DescribeTransitGatewayPolicyTables": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "TransitGatewayPolicyTables"
+    },
+    "DescribeTransitGatewayRouteTableAnnouncements": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "TransitGatewayRouteTableAnnouncements"
+    },
     "DescribeTransitGatewayRouteTables": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -703,6 +715,12 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "MulticastDomainAssociations"
+    },
+    "GetTransitGatewayPolicyTableAssociations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Associations"
     },
     "GetTransitGatewayPrefixListReferences": {
       "input_token": "NextToken",

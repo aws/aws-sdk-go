@@ -420,10 +420,15 @@
           "ap-southeast-2" : { },
           "ca-central-1" : { },
           "eu-central-1" : { },
+          "eu-north-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
+          "eu-west-3" : { },
+          "me-south-1" : { },
+          "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
+          "us-west-1" : { },
           "us-west-2" : { }
         }
       },
@@ -1459,6 +1464,7 @@
             "deprecated" : true,
             "hostname" : "appstream2-fips.us-east-1.amazonaws.com"
           },
+          "us-east-2" : { },
           "us-west-2" : {
             "variants" : [ {
               "hostname" : "appstream2-fips.us-west-2.amazonaws.com",
@@ -7128,6 +7134,7 @@
       },
       "kinesisvideo" : {
         "endpoints" : {
+          "af-south-1" : { },
           "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
@@ -8853,6 +8860,12 @@
       },
       "oidc" : {
         "endpoints" : {
+          "ap-east-1" : {
+            "credentialScope" : {
+              "region" : "ap-east-1"
+            },
+            "hostname" : "oidc.ap-east-1.amazonaws.com"
+          },
           "ap-northeast-1" : {
             "credentialScope" : {
               "region" : "ap-northeast-1"
@@ -8930,6 +8943,12 @@
               "region" : "eu-west-3"
             },
             "hostname" : "oidc.eu-west-3.amazonaws.com"
+          },
+          "me-south-1" : {
+            "credentialScope" : {
+              "region" : "me-south-1"
+            },
+            "hostname" : "oidc.me-south-1.amazonaws.com"
           },
           "sa-east-1" : {
             "credentialScope" : {
@@ -9262,6 +9281,12 @@
       },
       "portal.sso" : {
         "endpoints" : {
+          "ap-east-1" : {
+            "credentialScope" : {
+              "region" : "ap-east-1"
+            },
+            "hostname" : "portal.sso.ap-east-1.amazonaws.com"
+          },
           "ap-northeast-1" : {
             "credentialScope" : {
               "region" : "ap-northeast-1"
@@ -9339,6 +9364,12 @@
               "region" : "eu-west-3"
             },
             "hostname" : "portal.sso.eu-west-3.amazonaws.com"
+          },
+          "me-south-1" : {
+            "credentialScope" : {
+              "region" : "me-south-1"
+            },
+            "hostname" : "portal.sso.me-south-1.amazonaws.com"
           },
           "sa-east-1" : {
             "credentialScope" : {
@@ -19010,7 +19041,8 @@
       },
       "es" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "events" : {
