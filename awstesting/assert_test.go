@@ -35,11 +35,12 @@ func TestAssertURL(t *testing.T) {
 		{
 			e:       string([]byte{0}),
 			a:       string([]byte{0}),
-			asserts: true,
+			asserts: false,
 		},
 	}
 
 	for i, c := range cases {
+		mockT := &testing.T{}
 		if awstesting.AssertURL(t, c.e, c.a, "check in url query") != c.asserts {
 			t.Error("Assert JSON result was not expected.", i)
 		}

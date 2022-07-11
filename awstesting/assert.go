@@ -25,12 +25,12 @@ func Match(t *testing.T, regex, expected string) {
 func AssertURL(t *testing.T, expect, actual string, msgAndArgs ...interface{}) bool {
 	expectURL, err := url.Parse(expect)
 	if err != nil {
-		t.Errorf(errMsg("unable to parse expected URL", err, msgAndArgs))
+		t.Errorf(errMsg("unable to parse expected URL", err, msgAndArgs...))
 		return false
 	}
 	actualURL, err := url.Parse(actual)
 	if err != nil {
-		t.Errorf(errMsg("unable to parse actual URL", err, msgAndArgs))
+		t.Errorf(errMsg("unable to parse actual URL", err, msgAndArgs...))
 		return false
 	}
 
@@ -47,12 +47,12 @@ var queryMapKey = regexp.MustCompile("(.*?)\\.[0-9]+\\.key")
 func AssertQuery(t *testing.T, expect, actual string, msgAndArgs ...interface{}) bool {
 	expectQ, err := url.ParseQuery(expect)
 	if err != nil {
-		t.Errorf(errMsg("unable to parse expected Query", err, msgAndArgs))
+		t.Errorf(errMsg("unable to parse expected Query", err, msgAndArgs...))
 		return false
 	}
 	actualQ, err := url.ParseQuery(actual)
 	if err != nil {
-		t.Errorf(errMsg("unable to parse actual Query", err, msgAndArgs))
+		t.Errorf(errMsg("unable to parse actual Query", err, msgAndArgs...))
 		return false
 	}
 
