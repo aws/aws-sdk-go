@@ -649,6 +649,9 @@ func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccess
 //   * ErrCodeLimitExceededFault "LimitExceededFault"
 //   The encryption key has exceeded its grant limit in Amazon Web Services KMS.
 //
+//   * ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//   The requested operation isn't supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AuthorizeSnapshotAccess
 func (c *Redshift) AuthorizeSnapshotAccess(input *AuthorizeSnapshotAccessInput) (*AuthorizeSnapshotAccessOutput, error) {
 	req, out := c.AuthorizeSnapshotAccessRequest(input)
@@ -4957,6 +4960,9 @@ func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapsho
 //   * ErrCodeInvalidTagFault "InvalidTagFault"
 //   The tag is invalid.
 //
+//   * ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//   The requested operation isn't supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeClusterSnapshots
 func (c *Redshift) DescribeClusterSnapshots(input *DescribeClusterSnapshotsInput) (*DescribeClusterSnapshotsOutput, error) {
 	req, out := c.DescribeClusterSnapshotsRequest(input)
@@ -7271,6 +7277,9 @@ func (c *Redshift) DescribeNodeConfigurationOptionsRequest(input *DescribeNodeCo
 //   * ErrCodeAccessToSnapshotDeniedFault "AccessToSnapshotDenied"
 //   The owner of the specified snapshot has not authorized your account to access
 //   the snapshot.
+//
+//   * ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//   The requested operation isn't supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeNodeConfigurationOptions
 func (c *Redshift) DescribeNodeConfigurationOptions(input *DescribeNodeConfigurationOptionsInput) (*DescribeNodeConfigurationOptionsOutput, error) {
@@ -12775,6 +12784,9 @@ func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput)
 //   * ErrCodeClusterSnapshotNotFoundFault "ClusterSnapshotNotFound"
 //   The snapshot identifier does not refer to an existing cluster snapshot.
 //
+//   * ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//   The requested operation isn't supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RevokeSnapshotAccess
 func (c *Redshift) RevokeSnapshotAccess(input *RevokeSnapshotAccessInput) (*RevokeSnapshotAccessOutput, error) {
 	req, out := c.RevokeSnapshotAccessRequest(input)
@@ -13980,15 +13992,16 @@ type AuthorizeSnapshotAccessInput struct {
 	// AccountWithRestoreAccess is a required field
 	AccountWithRestoreAccess *string `type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) of the snapshot to authorize access to.
+	SnapshotArn *string `type:"string"`
+
 	// The identifier of the cluster the snapshot was created from. This parameter
 	// is required if your IAM user has a policy containing a snapshot resource
 	// element that specifies anything other than * for the cluster name.
 	SnapshotClusterIdentifier *string `type:"string"`
 
 	// The identifier of the snapshot the account is authorized to restore.
-	//
-	// SnapshotIdentifier is a required field
-	SnapshotIdentifier *string `type:"string" required:"true"`
+	SnapshotIdentifier *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -14015,9 +14028,6 @@ func (s *AuthorizeSnapshotAccessInput) Validate() error {
 	if s.AccountWithRestoreAccess == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountWithRestoreAccess"))
 	}
-	if s.SnapshotIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("SnapshotIdentifier"))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14028,6 +14038,12 @@ func (s *AuthorizeSnapshotAccessInput) Validate() error {
 // SetAccountWithRestoreAccess sets the AccountWithRestoreAccess field's value.
 func (s *AuthorizeSnapshotAccessInput) SetAccountWithRestoreAccess(v string) *AuthorizeSnapshotAccessInput {
 	s.AccountWithRestoreAccess = &v
+	return s
+}
+
+// SetSnapshotArn sets the SnapshotArn field's value.
+func (s *AuthorizeSnapshotAccessInput) SetSnapshotArn(v string) *AuthorizeSnapshotAccessInput {
+	s.SnapshotArn = &v
 	return s
 }
 
@@ -16282,7 +16298,9 @@ type CreateClusterInput struct {
 	// the cluster when the cluster was created.
 	DefaultIamRoleArn *string `type:"string"`
 
-	// The Elastic IP (EIP) address for the cluster.
+	// The Elastic IP (EIP) address for the cluster. You don't have to specify the
+	// EIP for a publicly accessible cluster with AvailabilityZoneRelocation turned
+	// on.
 	//
 	// Constraints: The cluster must be provisioned in EC2-VPC and publicly-accessible
 	// through an Internet gateway. For more information about provisioning clusters
@@ -21303,6 +21321,10 @@ type DescribeClusterSnapshotsInput struct {
 	// or do not specify the parameter.
 	OwnerAccount *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) of the snapshot associated with the message
+	// to describe cluster snapshots.
+	SnapshotArn *string `type:"string"`
+
 	// The snapshot identifier of the snapshot about which to return information.
 	SnapshotIdentifier *string `type:"string"`
 
@@ -21409,6 +21431,12 @@ func (s *DescribeClusterSnapshotsInput) SetMaxRecords(v int64) *DescribeClusterS
 // SetOwnerAccount sets the OwnerAccount field's value.
 func (s *DescribeClusterSnapshotsInput) SetOwnerAccount(v string) *DescribeClusterSnapshotsInput {
 	s.OwnerAccount = &v
+	return s
+}
+
+// SetSnapshotArn sets the SnapshotArn field's value.
+func (s *DescribeClusterSnapshotsInput) SetSnapshotArn(v string) *DescribeClusterSnapshotsInput {
+	s.SnapshotArn = &v
 	return s
 }
 
@@ -23406,6 +23434,10 @@ type DescribeNodeConfigurationOptionsInput struct {
 	// if you are restoring a snapshot you do not own, optional if you own the snapshot.
 	OwnerAccount *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) of the snapshot associated with the message
+	// to describe node configuration.
+	SnapshotArn *string `type:"string"`
+
 	// The identifier of the snapshot to evaluate for possible node configurations.
 	SnapshotIdentifier *string `type:"string"`
 }
@@ -23474,6 +23506,12 @@ func (s *DescribeNodeConfigurationOptionsInput) SetMaxRecords(v int64) *Describe
 // SetOwnerAccount sets the OwnerAccount field's value.
 func (s *DescribeNodeConfigurationOptionsInput) SetOwnerAccount(v string) *DescribeNodeConfigurationOptionsInput {
 	s.OwnerAccount = &v
+	return s
+}
+
+// SetSnapshotArn sets the SnapshotArn field's value.
+func (s *DescribeNodeConfigurationOptionsInput) SetSnapshotArn(v string) *DescribeNodeConfigurationOptionsInput {
+	s.SnapshotArn = &v
 	return s
 }
 
@@ -31669,7 +31707,9 @@ type RestoreFromClusterSnapshotInput struct {
 	// a snapshot.
 	DefaultIamRoleArn *string `type:"string"`
 
-	// The elastic IP (EIP) address for the cluster.
+	// The elastic IP (EIP) address for the cluster. You don't have to specify the
+	// EIP for a publicly accessible cluster with AvailabilityZoneRelocation turned
+	// on.
 	ElasticIp *string `type:"string"`
 
 	// Enables support for restoring an unencrypted snapshot to a cluster encrypted
@@ -31779,6 +31819,10 @@ type RestoreFromClusterSnapshotInput struct {
 	// The identifier of the target reserved node offering.
 	ReservedNodeId *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) of the snapshot associated with the message
+	// to restore from a cluster.
+	SnapshotArn *string `type:"string"`
+
 	// The name of the cluster the source snapshot was created from. This parameter
 	// is required if your IAM user has a policy containing a snapshot resource
 	// element that specifies anything other than * for the cluster name.
@@ -31788,9 +31832,7 @@ type RestoreFromClusterSnapshotInput struct {
 	// isn't case sensitive.
 	//
 	// Example: my-snapshot-id
-	//
-	// SnapshotIdentifier is a required field
-	SnapshotIdentifier *string `type:"string" required:"true"`
+	SnapshotIdentifier *string `type:"string"`
 
 	// A unique identifier for the snapshot schedule.
 	SnapshotScheduleIdentifier *string `type:"string"`
@@ -31830,9 +31872,6 @@ func (s *RestoreFromClusterSnapshotInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RestoreFromClusterSnapshotInput"}
 	if s.ClusterIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
-	}
-	if s.SnapshotIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("SnapshotIdentifier"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -32000,6 +32039,12 @@ func (s *RestoreFromClusterSnapshotInput) SetPubliclyAccessible(v bool) *Restore
 // SetReservedNodeId sets the ReservedNodeId field's value.
 func (s *RestoreFromClusterSnapshotInput) SetReservedNodeId(v string) *RestoreFromClusterSnapshotInput {
 	s.ReservedNodeId = &v
+	return s
+}
+
+// SetSnapshotArn sets the SnapshotArn field's value.
+func (s *RestoreFromClusterSnapshotInput) SetSnapshotArn(v string) *RestoreFromClusterSnapshotInput {
+	s.SnapshotArn = &v
 	return s
 }
 
@@ -32791,15 +32836,17 @@ type RevokeSnapshotAccessInput struct {
 	// AccountWithRestoreAccess is a required field
 	AccountWithRestoreAccess *string `type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) of the snapshot associated with the message
+	// to revoke access.
+	SnapshotArn *string `type:"string"`
+
 	// The identifier of the cluster the snapshot was created from. This parameter
 	// is required if your IAM user has a policy containing a snapshot resource
 	// element that specifies anything other than * for the cluster name.
 	SnapshotClusterIdentifier *string `type:"string"`
 
 	// The identifier of the snapshot that the account can no longer access.
-	//
-	// SnapshotIdentifier is a required field
-	SnapshotIdentifier *string `type:"string" required:"true"`
+	SnapshotIdentifier *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -32826,9 +32873,6 @@ func (s *RevokeSnapshotAccessInput) Validate() error {
 	if s.AccountWithRestoreAccess == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountWithRestoreAccess"))
 	}
-	if s.SnapshotIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("SnapshotIdentifier"))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -32839,6 +32883,12 @@ func (s *RevokeSnapshotAccessInput) Validate() error {
 // SetAccountWithRestoreAccess sets the AccountWithRestoreAccess field's value.
 func (s *RevokeSnapshotAccessInput) SetAccountWithRestoreAccess(v string) *RevokeSnapshotAccessInput {
 	s.AccountWithRestoreAccess = &v
+	return s
+}
+
+// SetSnapshotArn sets the SnapshotArn field's value.
+func (s *RevokeSnapshotAccessInput) SetSnapshotArn(v string) *RevokeSnapshotAccessInput {
+	s.SnapshotArn = &v
 	return s
 }
 
