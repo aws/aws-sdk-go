@@ -16,6 +16,8 @@
     "CreateLink": "<p>Creates a new link for a specified site.</p>",
     "CreateSite": "<p>Creates a new site in a global network.</p>",
     "CreateSiteToSiteVpnAttachment": "<p>Creates an Amazon Web Services site-to-site VPN attachment on an edge location of a core network.</p>",
+    "CreateTransitGatewayPeering": "<p>Creates a transit gateway peering connection.</p>",
+    "CreateTransitGatewayRouteTableAttachment": "<p>Creates a transit gateway route table attachment.</p>",
     "CreateVpcAttachment": "<p>Creates a VPC attachment on an edge location of a core network.</p>",
     "DeleteAttachment": "<p>Deletes an attachment. Supports all attachment types.</p>",
     "DeleteConnectPeer": "<p>Deletes a Connect peer.</p>",
@@ -25,6 +27,7 @@
     "DeleteDevice": "<p>Deletes an existing device. You must first disassociate the device from any links and customer gateways.</p>",
     "DeleteGlobalNetwork": "<p>Deletes an existing global network. You must first delete all global network objects (devices, links, and sites), deregister all transit gateways, and delete any core networks.</p>",
     "DeleteLink": "<p>Deletes an existing link. You must first disassociate the link from any devices and customer gateways.</p>",
+    "DeletePeering": "<p>Deletes an existing peering connection.</p>",
     "DeleteResourcePolicy": "<p>Deletes a resource policy for the specified resource. This revokes the access of the principals specified in the resource policy.</p>",
     "DeleteSite": "<p>Deletes an existing site. The site cannot be associated with any device or link.</p>",
     "DeregisterTransitGateway": "<p>Deregisters a transit gateway from your global network. This action does not delete your transit gateway, or modify any of its attachments. This action removes any customer gateway associations.</p>",
@@ -39,8 +42,9 @@
     "GetConnectPeerAssociations": "<p>Returns information about a core network Connect peer associations.</p>",
     "GetConnections": "<p>Gets information about one or more of your connections in a global network.</p>",
     "GetCoreNetwork": "<p>Returns information about the LIVE policy for a core network.</p>",
+    "GetCoreNetworkChangeEvents": "<p>Returns information about a core network change event.</p>",
     "GetCoreNetworkChangeSet": "<p>Returns a change set between the LIVE core network policy and a submitted policy.</p>",
-    "GetCoreNetworkPolicy": "<p>Gets details about a core network policy. You can get details about your current live policy or any previous policy version.</p>",
+    "GetCoreNetworkPolicy": "<p>Returns details about a core network policy. You can get details about your current live policy or any previous policy version.</p>",
     "GetCustomerGatewayAssociations": "<p>Gets the association information for customer gateways that are associated with devices and links in your global network.</p>",
     "GetDevices": "<p>Gets information about one or more of your devices in a global network.</p>",
     "GetLinkAssociations": "<p>Gets the link associations for a device or a link. Either the device ID or the link ID must be specified.</p>",
@@ -55,20 +59,23 @@
     "GetSiteToSiteVpnAttachment": "<p>Returns information about a site-to-site VPN attachment.</p>",
     "GetSites": "<p>Gets information about one or more of your sites in a global network.</p>",
     "GetTransitGatewayConnectPeerAssociations": "<p>Gets information about one or more of your transit gateway Connect peer associations in a global network.</p>",
+    "GetTransitGatewayPeering": "<p>Returns information about a transit gateway peer.</p>",
     "GetTransitGatewayRegistrations": "<p>Gets information about the transit gateway registrations in a specified global network.</p>",
+    "GetTransitGatewayRouteTableAttachment": "<p>Returns information about a transit gateway route table attachment.</p>",
     "GetVpcAttachment": "<p>Returns information about a VPC attachment.</p>",
     "ListAttachments": "<p>Returns a list of core network attachments.</p>",
     "ListConnectPeers": "<p>Returns a list of core network Connect peers.</p>",
     "ListCoreNetworkPolicyVersions": "<p>Returns a list of core network policy versions.</p>",
     "ListCoreNetworks": "<p>Returns a list of owned and shared core networks.</p>",
-    "ListOrganizationServiceAccessStatus": null,
+    "ListOrganizationServiceAccessStatus": "<p>Gets the status of the Service Linked Role (SLR) deployment for the accounts in a given Amazon Web Services Organization.</p>",
+    "ListPeerings": "<p>Lists the peerings for a core network.</p>",
     "ListTagsForResource": "<p>Lists the tags for a specified resource.</p>",
     "PutCoreNetworkPolicy": "<p>Creates a new, immutable version of a core network policy. A subsequent change set is created showing the differences between the LIVE policy and the submitted policy.</p>",
     "PutResourcePolicy": "<p>Creates or updates a resource policy.</p>",
     "RegisterTransitGateway": "<p>Registers a transit gateway in your global network. The transit gateway can be in any Amazon Web Services Region, but it must be owned by the same Amazon Web Services account that owns the global network. You cannot register a transit gateway in more than one global network.</p>",
     "RejectAttachment": "<p>Rejects a core network attachment request.</p>",
     "RestoreCoreNetworkPolicyVersion": "<p>Restores a previous policy version as a new, immutable version of a core network policy. A subsequent change set is created showing the differences between the LIVE policy and restored policy.</p>",
-    "StartOrganizationServiceAccessUpdate": null,
+    "StartOrganizationServiceAccessUpdate": "<p>Enables for the Network Manager service for an Amazon Web Services Organization. This can only be called by a management account within the organization. </p>",
     "StartRouteAnalysis": "<p>Starts analyzing the routing path between the specified source and destination. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/tgw/route-analyzer.html\">Route Analyzer</a>.</p>",
     "TagResource": "<p>Tags a specified resource.</p>",
     "UntagResource": "<p>Removes tags from a specified resource.</p>",
@@ -92,6 +99,7 @@
         "GetNetworkTelemetryRequest$AccountId": "<p>The Amazon Web Services account ID.</p>",
         "NetworkResource$AccountId": "<p>The Amazon Web Services account ID.</p>",
         "NetworkTelemetry$AccountId": "<p>The Amazon Web Services account ID.</p>",
+        "Peering$OwnerAccountId": "<p>The ID of the account owner.</p>",
         "RouteAnalysis$OwnerAccountId": "<p>The ID of the AWS account that created the route analysis.</p>"
       }
     },
@@ -121,11 +129,11 @@
     "AccountId": {
       "base": null,
       "refs": {
-        "AccountStatus$AccountId": null
+        "AccountStatus$AccountId": "<p>The ID of an account within the Amazon Web Services Organization.</p>"
       }
     },
     "AccountStatus": {
-      "base": null,
+      "base": "<p>Describes the current status of an account within an Amazon Web Services Organization, including service-linked roles (SLRs).</p>",
       "refs": {
         "AccountStatusList$member": null
       }
@@ -133,13 +141,13 @@
     "AccountStatusList": {
       "base": null,
       "refs": {
-        "OrganizationStatus$AccountStatusList": null
+        "OrganizationStatus$AccountStatusList": "<p>The current service-linked role (SLR) deployment status for an Amazon Web Services Organization's accounts. This will be either <code>SUCCEEDED</code> or <code>IN_PROGRESS</code>.</p>"
       }
     },
     "Action": {
       "base": null,
       "refs": {
-        "StartOrganizationServiceAccessUpdateRequest$Action": null
+        "StartOrganizationServiceAccessUpdateRequest$Action": "<p>The action to take for the update request. This can be either <code>ENABLE</code> or <code>DISABLE</code>.</p>"
       }
     },
     "AssociateConnectPeerRequest": {
@@ -191,6 +199,7 @@
         "DeleteAttachmentResponse$Attachment": "<p>Information about the deleted attachment.</p>",
         "RejectAttachmentResponse$Attachment": "<p>Describes the rejected attachment request.</p>",
         "SiteToSiteVpnAttachment$Attachment": "<p>Provides details about a site-to-site VPN attachment.</p>",
+        "TransitGatewayRouteTableAttachment$Attachment": null,
         "VpcAttachment$Attachment": "<p>Provides details about the VPC attachment.</p>"
       }
     },
@@ -202,11 +211,13 @@
         "ConnectAttachment$TransportAttachmentId": "<p>The ID of the transport attachment.</p>",
         "ConnectPeer$ConnectAttachmentId": "<p>The ID of the attachment to connect.</p>",
         "ConnectPeerSummary$ConnectAttachmentId": "<p>The ID of a Connect peer attachment.</p>",
+        "CoreNetworkChangeEventValues$AttachmentId": "<p>The ID of the attachment if the change event is associated with an attachment. </p>",
         "CreateConnectAttachmentRequest$TransportAttachmentId": "<p>The ID of the attachment between the two connections.</p>",
         "CreateConnectPeerRequest$ConnectAttachmentId": "<p>The ID of the connection attachment.</p>",
         "DeleteAttachmentRequest$AttachmentId": "<p>The ID of the attachment to delete.</p>",
         "GetConnectAttachmentRequest$AttachmentId": "<p>The ID of the attachment.</p>",
         "GetSiteToSiteVpnAttachmentRequest$AttachmentId": "<p>The ID of the attachment.</p>",
+        "GetTransitGatewayRouteTableAttachmentRequest$AttachmentId": "<p>The ID of the transit gateway route table attachment.</p>",
         "GetVpcAttachmentRequest$AttachmentId": "<p>The ID of the attachment.</p>",
         "ListConnectPeersRequest$ConnectAttachmentId": "<p>The ID of the attachment.</p>",
         "NetworkRouteDestination$CoreNetworkAttachmentId": "<p>The ID of a core network attachment.</p>",
@@ -262,7 +273,8 @@
     "ChangeAction": {
       "base": null,
       "refs": {
-        "CoreNetworkChange$Action": "<p>The action to take for a core network.</p>"
+        "CoreNetworkChange$Action": "<p>The action to take for a core network.</p>",
+        "CoreNetworkChangeEvent$Action": "<p>The action taken for the change event.</p>"
       }
     },
     "ChangeSetState": {
@@ -272,10 +284,17 @@
         "CoreNetworkPolicyVersion$ChangeSetState": "<p>The status of the policy version change set.</p>"
       }
     },
+    "ChangeStatus": {
+      "base": null,
+      "refs": {
+        "CoreNetworkChangeEvent$Status": "<p>The status of the core network change event.</p>"
+      }
+    },
     "ChangeType": {
       "base": null,
       "refs": {
-        "CoreNetworkChange$Type": "<p>The type of change.</p>"
+        "CoreNetworkChange$Type": "<p>The type of change.</p>",
+        "CoreNetworkChangeEvent$Type": "<p>Describes the type of change event. </p>"
       }
     },
     "ClientToken": {
@@ -285,6 +304,8 @@
         "CreateConnectPeerRequest$ClientToken": "<p>The client token associated with the request.</p>",
         "CreateCoreNetworkRequest$ClientToken": "<p>The client token associated with a core network request.</p>",
         "CreateSiteToSiteVpnAttachmentRequest$ClientToken": "<p>The client token associated with the request.</p>",
+        "CreateTransitGatewayPeeringRequest$ClientToken": "<p>The client token associated with the request.</p>",
+        "CreateTransitGatewayRouteTableAttachmentRequest$ClientToken": "<p>The client token associated with the request.</p>",
         "CreateVpcAttachmentRequest$ClientToken": "<p>The client token associated with the request.</p>",
         "PutCoreNetworkPolicyRequest$ClientToken": "<p>The client token associated with the request.</p>"
       }
@@ -461,6 +482,10 @@
         "ConstrainedStringList$member": null,
         "CoreNetwork$Description": "<p>The description of a core network.</p>",
         "CoreNetworkChange$Identifier": "<p>The resource identifier.</p>",
+        "CoreNetworkChange$IdentifierPath": "<p>Uniquely identifies the path for a change within the changeset. For example, the <code>IdentifierPath</code> for a core network segment change might be <code>\"CORE_NETWORK_SEGMENT/us-east-1/devsegment\"</code>.</p>",
+        "CoreNetworkChangeEvent$IdentifierPath": "<p>Uniquely identifies the path for a change within the changeset. For example, the <code>IdentifierPath</code> for a core network segment change might be <code>\"CORE_NETWORK_SEGMENT/us-east-1/devsegment\"</code>.</p>",
+        "CoreNetworkChangeEventValues$SegmentName": "<p>The segment name if the change event is associated with a segment.</p>",
+        "CoreNetworkChangeEventValues$Cidr": "<p>For a <code>STATIC_ROUTE</code> event, this is the IP address.</p>",
         "CoreNetworkChangeValues$SegmentName": "<p>The names of the segments in a core network.</p>",
         "CoreNetworkChangeValues$Cidr": "<p>The IP addresses used for a core network.</p>",
         "CoreNetworkChangeValues$DestinationIdentifier": "<p>The ID of the destination.</p>",
@@ -569,13 +594,32 @@
       "refs": {
         "Attachment$CoreNetworkArn": "<p>The ARN of a core network.</p>",
         "CoreNetwork$CoreNetworkArn": "<p>The ARN of a core network.</p>",
-        "CoreNetworkSummary$CoreNetworkArn": "<p>a core network ARN.</p>"
+        "CoreNetworkSummary$CoreNetworkArn": "<p>a core network ARN.</p>",
+        "Peering$CoreNetworkArn": "<p>The ARN of a core network.</p>"
       }
     },
     "CoreNetworkChange": {
       "base": "<p>Details describing a core network change.</p>",
       "refs": {
         "CoreNetworkChangeList$member": null
+      }
+    },
+    "CoreNetworkChangeEvent": {
+      "base": "<p>Describes a core network change event. This can be a change to a segment, attachment, route, etc.</p>",
+      "refs": {
+        "CoreNetworkChangeEventList$member": null
+      }
+    },
+    "CoreNetworkChangeEventList": {
+      "base": null,
+      "refs": {
+        "GetCoreNetworkChangeEventsResponse$CoreNetworkChangeEvents": "<p>The response to <code>GetCoreNetworkChangeEventsRequest</code>.</p>"
+      }
+    },
+    "CoreNetworkChangeEventValues": {
+      "base": "<p>Describes a core network change event.</p>",
+      "refs": {
+        "CoreNetworkChangeEvent$Values": "<p>Details of the change event.</p>"
       }
     },
     "CoreNetworkChangeList": {
@@ -606,7 +650,7 @@
     "CoreNetworkId": {
       "base": null,
       "refs": {
-        "Attachment$CoreNetworkId": "<p>A core network ID.</p>",
+        "Attachment$CoreNetworkId": "<p>The ID of a core network.</p>",
         "ConnectPeer$CoreNetworkId": "<p>The ID of a core network.</p>",
         "ConnectPeerSummary$CoreNetworkId": "<p>The ID of a core network.</p>",
         "CoreNetwork$CoreNetworkId": "<p>The ID of a core network.</p>",
@@ -616,10 +660,12 @@
         "CoreNetworkSummary$CoreNetworkId": "<p>The ID of a core network.</p>",
         "CreateConnectAttachmentRequest$CoreNetworkId": "<p>The ID of a core network where you want to create the attachment. </p>",
         "CreateSiteToSiteVpnAttachmentRequest$CoreNetworkId": "<p>The ID of a core network where you're creating a site-to-site VPN attachment.</p>",
+        "CreateTransitGatewayPeeringRequest$CoreNetworkId": "<p>The ID of a core network.</p>",
         "CreateVpcAttachmentRequest$CoreNetworkId": "<p>The ID of a core network for the VPC attachment.</p>",
         "DeleteCoreNetworkPolicyVersionRequest$CoreNetworkId": "<p>The ID of a core network for the deleted policy.</p>",
         "DeleteCoreNetworkRequest$CoreNetworkId": "<p>The network ID of the deleted core network.</p>",
         "ExecuteCoreNetworkChangeSetRequest$CoreNetworkId": "<p>The ID of a core network.</p>",
+        "GetCoreNetworkChangeEventsRequest$CoreNetworkId": "<p>The ID of a core network.</p>",
         "GetCoreNetworkChangeSetRequest$CoreNetworkId": "<p>The ID of a core network.</p>",
         "GetCoreNetworkPolicyRequest$CoreNetworkId": "<p>The ID of a core network.</p>",
         "GetCoreNetworkRequest$CoreNetworkId": "<p>The ID of a core network.</p>",
@@ -629,8 +675,10 @@
         "ListAttachmentsRequest$CoreNetworkId": "<p>The ID of a core network.</p>",
         "ListConnectPeersRequest$CoreNetworkId": "<p>The ID of a core network.</p>",
         "ListCoreNetworkPolicyVersionsRequest$CoreNetworkId": "<p>The ID of a core network.</p>",
-        "NetworkResource$CoreNetworkId": "<p>a core network ID.</p>",
+        "ListPeeringsRequest$CoreNetworkId": "<p>The ID of a core network.</p>",
+        "NetworkResource$CoreNetworkId": "<p>The ID of a core network.</p>",
         "NetworkTelemetry$CoreNetworkId": "<p>The ID of a core network.</p>",
+        "Peering$CoreNetworkId": "<p>The ID of the core network for the peering request.</p>",
         "PutCoreNetworkPolicyRequest$CoreNetworkId": "<p>The ID of a core network.</p>",
         "RestoreCoreNetworkPolicyVersionRequest$CoreNetworkId": "<p>The ID of a core network.</p>",
         "UpdateCoreNetworkRequest$CoreNetworkId": "<p>The ID of a core network.</p>"
@@ -819,6 +867,26 @@
       "refs": {
       }
     },
+    "CreateTransitGatewayPeeringRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTransitGatewayPeeringResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTransitGatewayRouteTableAttachmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTransitGatewayRouteTableAttachmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateVpcAttachmentRequest": {
       "base": null,
       "refs": {
@@ -874,6 +942,7 @@
         "Connection$CreatedAt": "<p>The date and time that the connection was created.</p>",
         "ConnectionHealth$Timestamp": "<p>The time the status was last updated.</p>",
         "CoreNetwork$CreatedAt": "<p>The timestamp when a core network was created.</p>",
+        "CoreNetworkChangeEvent$EventTime": "<p>The timestamp for an event change in status.</p>",
         "CoreNetworkPolicy$CreatedAt": "<p>The timestamp when a core network policy was created.</p>",
         "CoreNetworkPolicyVersion$CreatedAt": "<p>The timestamp when a core network policy version was created.</p>",
         "Device$CreatedAt": "<p>The date and time that the site was created.</p>",
@@ -881,6 +950,7 @@
         "GlobalNetwork$CreatedAt": "<p>The date and time that the global network was created.</p>",
         "Link$CreatedAt": "<p>The date and time that the link was created.</p>",
         "NetworkResource$DefinitionTimestamp": "<p>The time that the resource definition was retrieved.</p>",
+        "Peering$CreatedAt": "<p>The timestamp when the attachment peer was created.</p>",
         "RouteAnalysis$StartTimestamp": "<p>The time that the analysis started.</p>",
         "Site$CreatedAt": "<p>The date and time that the site was created.</p>"
       }
@@ -961,6 +1031,16 @@
       }
     },
     "DeleteLinkResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeletePeeringRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeletePeeringResponse": {
       "base": null,
       "refs": {
       }
@@ -1136,6 +1216,7 @@
         "Attachment$EdgeLocation": "<p>The Region where the edge is located.</p>",
         "ConnectPeer$EdgeLocation": "<p>The Connect peer Regions where edges are located.</p>",
         "ConnectPeerSummary$EdgeLocation": "<p>The Region where the edge is located.</p>",
+        "CoreNetworkChangeEventValues$EdgeLocation": "<p>The edge location for the core network change event.</p>",
         "CoreNetworkEdge$EdgeLocation": "<p>The Region where a core network edge is located.</p>",
         "CoreNetworkSegmentEdgeIdentifier$EdgeLocation": "<p>The Region where the segment edge is located.</p>",
         "CreateConnectAttachmentRequest$EdgeLocation": "<p>The Region where the edge is located.</p>",
@@ -1144,9 +1225,11 @@
         "GetNetworkResourcesRequest$AwsRegion": "<p>The Amazon Web Services Region.</p>",
         "GetNetworkTelemetryRequest$AwsRegion": "<p>The Amazon Web Services Region.</p>",
         "ListAttachmentsRequest$EdgeLocation": "<p>The Region where the edge is located.</p>",
+        "ListPeeringsRequest$EdgeLocation": "<p>Returns a list edge locations for the </p>",
         "NetworkResource$AwsRegion": "<p>The Amazon Web Services Region.</p>",
         "NetworkRouteDestination$EdgeLocation": "<p>The edge location for the network destination.</p>",
-        "NetworkTelemetry$AwsRegion": "<p>The Amazon Web Services Region.</p>"
+        "NetworkTelemetry$AwsRegion": "<p>The Amazon Web Services Region.</p>",
+        "Peering$EdgeLocation": "<p>The edge location for the peer.</p>"
       }
     },
     "ExternalRegionCodeList": {
@@ -1216,6 +1299,16 @@
       }
     },
     "GetConnectionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCoreNetworkChangeEventsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCoreNetworkChangeEventsResponse": {
       "base": null,
       "refs": {
       }
@@ -1390,12 +1483,32 @@
       "refs": {
       }
     },
+    "GetTransitGatewayPeeringRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTransitGatewayPeeringResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetTransitGatewayRegistrationsRequest": {
       "base": null,
       "refs": {
       }
     },
     "GetTransitGatewayRegistrationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTransitGatewayRouteTableAttachmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTransitGatewayRouteTableAttachmentResponse": {
       "base": null,
       "refs": {
       }
@@ -1527,6 +1640,7 @@
         "CoreNetworkPolicyVersion$PolicyVersionId": "<p>The ID of the policy version.</p>",
         "DeleteCoreNetworkPolicyVersionRequest$PolicyVersionId": "<p>The version ID of the deleted policy.</p>",
         "ExecuteCoreNetworkChangeSetRequest$PolicyVersionId": "<p>The ID of the policy version.</p>",
+        "GetCoreNetworkChangeEventsRequest$PolicyVersionId": "<p>The ID of the policy version.</p>",
         "GetCoreNetworkChangeSetRequest$PolicyVersionId": "<p>The ID of the policy version.</p>",
         "GetCoreNetworkPolicyRequest$PolicyVersionId": "<p>The ID of a core network policy version.</p>",
         "NetworkResourceCount$Count": "<p>The resource count.</p>",
@@ -1669,6 +1783,16 @@
       "refs": {
       }
     },
+    "ListPeeringsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPeeringsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -1706,6 +1830,7 @@
         "DescribeGlobalNetworksRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetConnectPeerAssociationsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetConnectionsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "GetCoreNetworkChangeEventsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetCoreNetworkChangeSetRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetCustomerGatewayAssociationsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetDevicesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
@@ -1722,7 +1847,8 @@
         "ListConnectPeersRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListCoreNetworkPolicyVersionsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListCoreNetworksRequest$MaxResults": "<p>The maximum number of results to return.</p>",
-        "ListOrganizationServiceAccessStatusRequest$MaxResults": null
+        "ListOrganizationServiceAccessStatusRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "ListPeeringsRequest$MaxResults": "<p>The maximum number of results to return.</p>"
       }
     },
     "NetworkResource": {
@@ -1808,6 +1934,8 @@
         "GetConnectPeerAssociationsResponse$NextToken": "<p>The token for the next page of results.</p>",
         "GetConnectionsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "GetConnectionsResponse$NextToken": "<p>The token to use for the next page of results.</p>",
+        "GetCoreNetworkChangeEventsRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "GetCoreNetworkChangeEventsResponse$NextToken": "<p>The token for the next page of results.</p>",
         "GetCoreNetworkChangeSetRequest$NextToken": "<p>The token for the next page of results.</p>",
         "GetCoreNetworkChangeSetResponse$NextToken": "<p>The token for the next page of results.</p>",
         "GetCustomerGatewayAssociationsRequest$NextToken": "<p>The token for the next page of results.</p>",
@@ -1840,27 +1968,29 @@
         "ListCoreNetworkPolicyVersionsResponse$NextToken": "<p>The token for the next page of results.</p>",
         "ListCoreNetworksRequest$NextToken": "<p>The token for the next page of results.</p>",
         "ListCoreNetworksResponse$NextToken": "<p>The token for the next page of results.</p>",
-        "ListOrganizationServiceAccessStatusRequest$NextToken": null,
-        "ListOrganizationServiceAccessStatusResponse$NextToken": null
+        "ListOrganizationServiceAccessStatusRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "ListOrganizationServiceAccessStatusResponse$NextToken": "<p>The token for the next page of results.</p>",
+        "ListPeeringsRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "ListPeeringsResponse$NextToken": "<p>The token for the next page of results.</p>"
       }
     },
     "OrganizationAwsServiceAccessStatus": {
       "base": null,
       "refs": {
-        "OrganizationStatus$OrganizationAwsServiceAccessStatus": null
+        "OrganizationStatus$OrganizationAwsServiceAccessStatus": "<p>The status of the organization's AWS service access. This will be <code>ENABLED</code> or <code>DISABLED</code>.</p>"
       }
     },
     "OrganizationId": {
       "base": null,
       "refs": {
-        "OrganizationStatus$OrganizationId": null
+        "OrganizationStatus$OrganizationId": "<p>The ID of an Amazon Web Services Organization.</p>"
       }
     },
     "OrganizationStatus": {
-      "base": null,
+      "base": "<p>The status of an Amazon Web Services Organization and the accounts within that organization.</p>",
       "refs": {
-        "ListOrganizationServiceAccessStatusResponse$OrganizationStatus": null,
-        "StartOrganizationServiceAccessUpdateResponse$OrganizationStatus": null
+        "ListOrganizationServiceAccessStatusResponse$OrganizationStatus": "<p>Displays the status of an Amazon Web Services Organization.</p>",
+        "StartOrganizationServiceAccessUpdateResponse$OrganizationStatus": "<p>The status of the service access update request for an Amazon Web Services Organization.</p>"
       }
     },
     "PathComponent": {
@@ -1873,6 +2003,44 @@
       "base": null,
       "refs": {
         "RouteAnalysisPath$Path": "<p>The route analysis path.</p>"
+      }
+    },
+    "Peering": {
+      "base": "<p>Describes a peering connection.</p>",
+      "refs": {
+        "DeletePeeringResponse$Peering": "<p>Information about a deleted peering connection.</p>",
+        "PeeringList$member": null,
+        "TransitGatewayPeering$Peering": "<p>Describes a transit gateway peer connection.</p>"
+      }
+    },
+    "PeeringId": {
+      "base": null,
+      "refs": {
+        "CreateTransitGatewayRouteTableAttachmentRequest$PeeringId": "<p>The ID of the peer for the </p>",
+        "DeletePeeringRequest$PeeringId": "<p>The ID of the peering connection to delete.</p>",
+        "GetTransitGatewayPeeringRequest$PeeringId": "<p>The ID of the peering request.</p>",
+        "Peering$PeeringId": "<p>The ID of the peering attachment. </p>",
+        "TransitGatewayRouteTableAttachment$PeeringId": "<p>The ID of the peering attachment.</p>"
+      }
+    },
+    "PeeringList": {
+      "base": null,
+      "refs": {
+        "ListPeeringsResponse$Peerings": "<p>Lists the transit gateway peerings for the <code>ListPeerings</code> request.</p>"
+      }
+    },
+    "PeeringState": {
+      "base": null,
+      "refs": {
+        "ListPeeringsRequest$State": "<p>Returns a list of the peering request states.</p>",
+        "Peering$State": "<p>The current state of the peering connection. </p>"
+      }
+    },
+    "PeeringType": {
+      "base": null,
+      "refs": {
+        "ListPeeringsRequest$PeeringType": "<p>Returns a list of a peering requests.</p>",
+        "Peering$PeeringType": "<p>The type of peering. This will be <code>TRANSIT_GATEWAY</code>.</p>"
       }
     },
     "ProposedSegmentChange": {
@@ -1971,6 +2139,7 @@
         "NetworkResourceSummary$ResourceArn": "<p>The ARN of the resource.</p>",
         "NetworkTelemetry$RegisteredGatewayArn": "<p>The ARN of the gateway.</p>",
         "NetworkTelemetry$ResourceArn": "<p>The ARN of the resource.</p>",
+        "Peering$ResourceArn": "<p>The resource ARN of the peer.</p>",
         "PutResourcePolicyRequest$ResourceArn": "<p>The ARN of the resource policy. </p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
@@ -2100,8 +2269,8 @@
     "SLRDeploymentStatus": {
       "base": null,
       "refs": {
-        "AccountStatus$SLRDeploymentStatus": null,
-        "OrganizationStatus$SLRDeploymentStatus": null
+        "AccountStatus$SLRDeploymentStatus": "<p>The status of SLR deployment for the account.</p>",
+        "OrganizationStatus$SLRDeploymentStatus": "<p>The status of the SLR deployment for the account. This will be either <code>SUCCEEDED</code> or <code>IN_PROGRESS</code>.</p>"
       }
     },
     "ServerSideString": {
@@ -2250,10 +2419,10 @@
       "base": null,
       "refs": {
         "Attachment$Tags": "<p>The tags associated with the attachment.</p>",
-        "ConnectPeer$Tags": "<p>The tags associated with the Connect peer.</p>",
-        "ConnectPeerSummary$Tags": "<p>The tags associated with a Connect peer summary.</p>",
+        "ConnectPeer$Tags": "<p>The list of key-value tags associated with the Connect peer.</p>",
+        "ConnectPeerSummary$Tags": "<p>The list of key-value tags associated with the Connect peer summary.</p>",
         "Connection$Tags": "<p>The tags for the connection.</p>",
-        "CoreNetwork$Tags": "<p>The tags associated with a core network.</p>",
+        "CoreNetwork$Tags": "<p>The list of key-value tags associated with a core network.</p>",
         "CoreNetworkSummary$Tags": "<p>The key-value tags associated with a core network summary.</p>",
         "CreateConnectAttachmentRequest$Tags": "<p>The list of key-value tags associated with the request.</p>",
         "CreateConnectPeerRequest$Tags": "<p>The tags associated with the peer request.</p>",
@@ -2264,13 +2433,16 @@
         "CreateLinkRequest$Tags": "<p>The tags to apply to the resource during creation.</p>",
         "CreateSiteRequest$Tags": "<p>The tags to apply to the resource during creation.</p>",
         "CreateSiteToSiteVpnAttachmentRequest$Tags": "<p>The tags associated with the request.</p>",
+        "CreateTransitGatewayPeeringRequest$Tags": "<p>The list of key-value tags associated with the request.</p>",
+        "CreateTransitGatewayRouteTableAttachmentRequest$Tags": "<p>The list of key-value tags associated with the request.</p>",
         "CreateVpcAttachmentRequest$Tags": "<p>The key-value tags associated with the request.</p>",
         "Device$Tags": "<p>The tags for the device.</p>",
         "GlobalNetwork$Tags": "<p>The tags for the global network.</p>",
         "Link$Tags": "<p>The tags for the link.</p>",
         "ListTagsForResourceResponse$TagList": "<p>The list of tags.</p>",
         "NetworkResource$Tags": "<p>The tags.</p>",
-        "ProposedSegmentChange$Tags": "<p>The key-value tags that changed for the segment.</p>",
+        "Peering$Tags": "<p>The list of key-value tags associated with the peering.</p>",
+        "ProposedSegmentChange$Tags": "<p>The list of key-value tags that changed for the segment.</p>",
         "Site$Tags": "<p>The tags for the site.</p>",
         "TagResourceRequest$Tags": "<p>The tags to apply to the specified resource.</p>"
       }
@@ -2299,10 +2471,12 @@
     "TransitGatewayArn": {
       "base": null,
       "refs": {
+        "CreateTransitGatewayPeeringRequest$TransitGatewayArn": "<p>The ARN of the transit gateway for the peering request.</p>",
         "DeregisterTransitGatewayRequest$TransitGatewayArn": "<p>The Amazon Resource Name (ARN) of the transit gateway.</p>",
         "RegisterTransitGatewayRequest$TransitGatewayArn": "<p>The Amazon Resource Name (ARN) of the transit gateway.</p>",
         "RouteAnalysisEndpointOptions$TransitGatewayArn": "<p>The ARN of the transit gateway.</p>",
         "TransitGatewayArnList$member": null,
+        "TransitGatewayPeering$TransitGatewayArn": "<p>The ARN of the transit gateway.</p>",
         "TransitGatewayRegistration$TransitGatewayArn": "<p>The Amazon Resource Name (ARN) of the transit gateway.</p>"
       }
     },
@@ -2360,6 +2534,13 @@
         "TransitGatewayConnectPeerAssociation$State": "<p>The state of the association.</p>"
       }
     },
+    "TransitGatewayPeering": {
+      "base": "<p>Describes a transit gateway peering attachment.</p>",
+      "refs": {
+        "CreateTransitGatewayPeeringResponse$TransitGatewayPeering": "<p>Returns information about the transit gateway peering connection request.</p>",
+        "GetTransitGatewayPeeringResponse$TransitGatewayPeering": "<p>Returns information about a transit gateway peering. </p>"
+      }
+    },
     "TransitGatewayRegistration": {
       "base": "<p>Describes the registration of a transit gateway to a global network.</p>",
       "refs": {
@@ -2389,7 +2570,16 @@
     "TransitGatewayRouteTableArn": {
       "base": null,
       "refs": {
-        "RouteTableIdentifier$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway route table.</p>"
+        "CreateTransitGatewayRouteTableAttachmentRequest$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway route table for the attachment request.</p>",
+        "RouteTableIdentifier$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway route table.</p>",
+        "TransitGatewayRouteTableAttachment$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway attachment route table.</p>"
+      }
+    },
+    "TransitGatewayRouteTableAttachment": {
+      "base": "<p>Describes a transit gateway route table attachment.</p>",
+      "refs": {
+        "CreateTransitGatewayRouteTableAttachmentResponse$TransitGatewayRouteTableAttachment": "<p>The route table associated with the create transit gateway route table attachment request.</p>",
+        "GetTransitGatewayRouteTableAttachmentResponse$TransitGatewayRouteTableAttachment": "<p>Returns information about the transit gateway route table attachment.</p>"
       }
     },
     "TunnelProtocol": {
