@@ -1,3 +1,9 @@
+Release v1.44.53 (2022-07-12)
+===
+
+### Service Client Updates
+* `service/networkmanager`: Updates service API, documentation, and paginators
+
 Release v1.44.52 (2022-07-11)
 ===
 
