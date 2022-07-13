@@ -2,28 +2,36 @@
   "version": "2.0",
   "service": "<p>Use AppConfig, a capability of Amazon Web Services Systems Manager, to create, manage, and quickly deploy application configurations. AppConfig supports controlled deployments to applications of any size and includes built-in validation checks and monitoring. You can use AppConfig with applications hosted on Amazon EC2 instances, Lambda, containers, mobile applications, or IoT devices.</p> <p>To prevent errors when deploying application configurations, especially for production systems where a simple typo could cause an unexpected outage, AppConfig includes validators. A validator provides a syntactic or semantic check to ensure that the configuration you want to deploy works as intended. To validate your application configuration data, you provide a schema or an Amazon Web Services Lambda function that runs against the configuration. The configuration deployment or update can only proceed when the configuration data is valid.</p> <p>During a configuration deployment, AppConfig monitors the application to ensure that the deployment is successful. If the system encounters an error, AppConfig rolls back the change to minimize impact for your application users. You can configure a deployment strategy for each application or environment that includes deployment criteria, including velocity, bake time, and alarms to monitor. Similar to error monitoring, if a deployment triggers an alarm, AppConfig automatically rolls back to the previous version. </p> <p>AppConfig supports multiple use cases. Here are some examples:</p> <ul> <li> <p> <b>Feature flags</b>: Use AppConfig to turn on new features that require a timely deployment, such as a product launch or announcement. </p> </li> <li> <p> <b>Application tuning</b>: Use AppConfig to carefully introduce changes to your application that can only be tested with production traffic.</p> </li> <li> <p> <b>Allow list</b>: Use AppConfig to allow premium subscribers to access paid content. </p> </li> <li> <p> <b>Operational issues</b>: Use AppConfig to reduce stress on your application when a dependency or other external factor impacts the system.</p> </li> </ul> <p>This reference is intended to be used with the <a href=\"http://docs.aws.amazon.com/appconfig/latest/userguide/what-is-appconfig.html\">AppConfig User Guide</a>.</p>",
   "operations": {
-    "CreateApplication": "<p>Creates an application. An application in AppConfig is a logical unit of code that provides capabilities for your customers. For example, an application can be a microservice that runs on Amazon EC2 instances, a mobile application installed by your users, a serverless application using Amazon API Gateway and Lambda, or any system you run on behalf of others.</p>",
+    "CreateApplication": "<p>Creates an application. In AppConfig, an application is simply an organizational construct like a folder. This organizational construct has a relationship with some unit of executable code. For example, you could create an application called MyMobileApp to organize and manage configuration data for a mobile application installed by your users.</p>",
     "CreateConfigurationProfile": "<p>Creates a configuration profile, which is information that enables AppConfig to access the configuration source. Valid configuration sources include the AppConfig hosted configuration store, Amazon Web Services Systems Manager (SSM) documents, SSM Parameter Store parameters, Amazon S3 objects, or any <a href=\"http://docs.aws.amazon.com/codepipeline/latest/userguide/integrations-action-type.html#integrations-source\">integration source action</a> supported by CodePipeline. A configuration profile includes the following information:</p> <ul> <li> <p>The URI location of the configuration data.</p> </li> <li> <p>The Identity and Access Management (IAM) role that provides access to the configuration data.</p> </li> <li> <p>A validator for the configuration data. Available validators include either a JSON Schema or an Amazon Web Services Lambda function.</p> </li> </ul> <p>For more information, see <a href=\"http://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-creating-configuration-and-profile.html\">Create a Configuration and a Configuration Profile</a> in the <i>AppConfig User Guide</i>.</p>",
     "CreateDeploymentStrategy": "<p>Creates a deployment strategy that defines important criteria for rolling out your configuration to the designated targets. A deployment strategy includes the overall duration required, a percentage of targets to receive the deployment during each interval, an algorithm that defines how percentage grows, and bake time.</p>",
-    "CreateEnvironment": "<p>Creates an environment. For each application, you define one or more environments. An environment is a logical deployment group of AppConfig targets, such as applications in a <code>Beta</code> or <code>Production</code> environment. You can also define environments for application subcomponents such as the <code>Web</code>, <code>Mobile</code> and <code>Back-end</code> components for your application. You can configure Amazon CloudWatch alarms for each environment. The system monitors alarms during a configuration deployment. If an alarm is triggered, the system rolls back the configuration.</p>",
+    "CreateEnvironment": "<p>Creates an environment. For each application, you define one or more environments. An environment is a deployment group of AppConfig targets, such as applications in a <code>Beta</code> or <code>Production</code> environment. You can also define environments for application subcomponents such as the <code>Web</code>, <code>Mobile</code> and <code>Back-end</code> components for your application. You can configure Amazon CloudWatch alarms for each environment. The system monitors alarms during a configuration deployment. If an alarm is triggered, the system rolls back the configuration.</p>",
+    "CreateExtension": "<p>Creates an AppConfig extension. An extension augments your ability to inject logic or behavior at different points during the AppConfig workflow of creating or deploying a configuration.</p> <p>You can create your own extensions or use the Amazon Web Services-authored extensions provided by AppConfig. For most use-cases, to create your own extension, you must create an Lambda function to perform any computation and processing defined in the extension. For more information about extensions, see <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html\">Working with AppConfig extensions</a> in the <i>AppConfig User Guide</i>.</p>",
+    "CreateExtensionAssociation": "<p>When you create an extension or configure an Amazon Web Services-authored extension, you associate the extension with an AppConfig application, environment, or configuration profile. For example, you can choose to run the <code>AppConfig deployment events to Amazon SNS</code> Amazon Web Services-authored extension and receive notifications on an Amazon SNS topic anytime a configuration deployment is started for a specific application. Defining which extension to associate with an AppConfig resource is called an <i>extension association</i>. An extension association is a specified relationship between an extension and an AppConfig resource, such as an application or a configuration profile. For more information about extensions and associations, see <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html\">Working with AppConfig extensions</a> in the <i>AppConfig User Guide</i>.</p>",
     "CreateHostedConfigurationVersion": "<p>Creates a new configuration in the AppConfig hosted configuration store.</p>",
     "DeleteApplication": "<p>Deletes an application. Deleting an application does not delete a configuration from a host.</p>",
     "DeleteConfigurationProfile": "<p>Deletes a configuration profile. Deleting a configuration profile does not delete a configuration from a host.</p>",
     "DeleteDeploymentStrategy": "<p>Deletes a deployment strategy. Deleting a deployment strategy does not delete a configuration from a host.</p>",
     "DeleteEnvironment": "<p>Deletes an environment. Deleting an environment does not delete a configuration from a host.</p>",
+    "DeleteExtension": "<p>Deletes an AppConfig extension. You must delete all associations to an extension before you delete the extension.</p>",
+    "DeleteExtensionAssociation": "<p>Deletes an extension association. This action doesn't delete extensions defined in the association.</p>",
     "DeleteHostedConfigurationVersion": "<p>Deletes a version of a configuration from the AppConfig hosted configuration store.</p>",
     "GetApplication": "<p>Retrieves information about an application.</p>",
     "GetConfiguration": "<p>Retrieves the latest deployed configuration.</p> <important> <p>Note the following important information.</p> <ul> <li> <p>This API action has been deprecated. Calls to receive configuration data should use the <a href=\"https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_appconfigdata_StartConfigurationSession.html\">StartConfigurationSession</a> and <a href=\"https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_appconfigdata_GetLatestConfiguration.html\">GetLatestConfiguration</a> APIs instead. </p> </li> <li> <p> <code>GetConfiguration</code> is a priced call. For more information, see <a href=\"https://aws.amazon.com/systems-manager/pricing/\">Pricing</a>.</p> </li> <li> <p>AppConfig uses the value of the <code>ClientConfigurationVersion</code> parameter to identify the configuration version on your clients. If you don’t send <code>ClientConfigurationVersion</code> with each call to <code>GetConfiguration</code>, your clients receive the current configuration. You are charged each time your clients receive a configuration.</p> <p>To avoid excess charges, we recommend you use the <a href=\"https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/StartConfigurationSession.html\">StartConfigurationSession</a> and <a href=\"https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/GetLatestConfiguration.html\">GetLatestConfiguration</a> APIs, which track the client configuration version on your behalf. If you choose to continue using <code>GetConfiguration</code>, we recommend that you include the <code>ClientConfigurationVersion</code> value with every call to <code>GetConfiguration</code>. The value to use for <code>ClientConfigurationVersion</code> comes from the <code>ConfigurationVersion</code> attribute returned by <code>GetConfiguration</code> when there is new or updated data, and should be saved for subsequent calls to <code>GetConfiguration</code>.</p> </li> </ul> </important>",
     "GetConfigurationProfile": "<p>Retrieves information about a configuration profile.</p>",
     "GetDeployment": "<p>Retrieves information about a configuration deployment.</p>",
     "GetDeploymentStrategy": "<p>Retrieves information about a deployment strategy. A deployment strategy defines important criteria for rolling out your configuration to the designated targets. A deployment strategy includes the overall duration required, a percentage of targets to receive the deployment during each interval, an algorithm that defines how percentage grows, and bake time.</p>",
-    "GetEnvironment": "<p>Retrieves information about an environment. An environment is a logical deployment group of AppConfig applications, such as applications in a <code>Production</code> environment or in an <code>EU_Region</code> environment. Each configuration deployment targets an environment. You can enable one or more Amazon CloudWatch alarms for an environment. If an alarm is triggered during a deployment, AppConfig roles back the configuration.</p>",
+    "GetEnvironment": "<p>Retrieves information about an environment. An environment is a deployment group of AppConfig applications, such as applications in a <code>Production</code> environment or in an <code>EU_Region</code> environment. Each configuration deployment targets an environment. You can enable one or more Amazon CloudWatch alarms for an environment. If an alarm is triggered during a deployment, AppConfig roles back the configuration.</p>",
+    "GetExtension": "<p>Returns information about an AppConfig extension.</p>",
+    "GetExtensionAssociation": "<p>Returns information about an AppConfig extension association. For more information about extensions and associations, see <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html\">Working with AppConfig extensions</a> in the <i>AppConfig User Guide</i>.</p>",
     "GetHostedConfigurationVersion": "<p>Retrieves information about a specific configuration version.</p>",
     "ListApplications": "<p>Lists all applications in your Amazon Web Services account.</p>",
     "ListConfigurationProfiles": "<p>Lists the configuration profiles for an application.</p>",
     "ListDeploymentStrategies": "<p>Lists deployment strategies.</p>",
     "ListDeployments": "<p>Lists the deployments for an environment in descending deployment number order.</p>",
     "ListEnvironments": "<p>Lists the environments for an application.</p>",
+    "ListExtensionAssociations": "<p>Lists all AppConfig extension associations in the account. For more information about extensions and associations, see <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html\">Working with AppConfig extensions</a> in the <i>AppConfig User Guide</i>.</p>",
+    "ListExtensions": "<p>Lists all custom and Amazon Web Services-authored AppConfig extensions in the account. For more information about extensions, see <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html\">Working with AppConfig extensions</a> in the <i>AppConfig User Guide</i>.</p>",
     "ListHostedConfigurationVersions": "<p>Lists configurations stored in the AppConfig hosted configuration store by version.</p>",
     "ListTagsForResource": "<p>Retrieves the list of key-value tags assigned to the resource.</p>",
     "StartDeployment": "<p>Starts a deployment.</p>",
@@ -34,9 +42,49 @@
     "UpdateConfigurationProfile": "<p>Updates a configuration profile.</p>",
     "UpdateDeploymentStrategy": "<p>Updates a deployment strategy.</p>",
     "UpdateEnvironment": "<p>Updates an environment.</p>",
+    "UpdateExtension": "<p>Updates an AppConfig extension. For more information about extensions, see <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html\">Working with AppConfig extensions</a> in the <i>AppConfig User Guide</i>.</p>",
+    "UpdateExtensionAssociation": "<p>Updates an association. For more information about extensions and associations, see <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html\">Working with AppConfig extensions</a> in the <i>AppConfig User Guide</i>.</p>",
     "ValidateConfiguration": "<p>Uses the validators in a configuration profile to validate a configuration.</p>"
   },
   "shapes": {
+    "Action": {
+      "base": "<p>An action defines the tasks the extension performs during the AppConfig workflow. Each action includes an action point such as <code>ON_CREATE_HOSTED_CONFIGURATION</code>, <code>PRE_DEPLOYMENT</code>, or <code>ON_DEPLOYMENT</code>. Each action also includes a name, a URI to an Lambda function, and an Amazon Resource Name (ARN) for an Identity and Access Management assume role. You specify the name, URI, and ARN for each <i>action point</i> defined in the extension. You can specify the following actions for an extension:</p> <ul> <li> <p> <code>PRE_CREATE_HOSTED_CONFIGURATION_VERSION</code> </p> </li> <li> <p> <code>PRE_START_DEPLOYMENT</code> </p> </li> <li> <p> <code>ON_DEPLOYMENT_START</code> </p> </li> <li> <p> <code>ON_DEPLOYMENT_STEP</code> </p> </li> <li> <p> <code>ON_DEPLOYMENT_BAKING</code> </p> </li> <li> <p> <code>ON_DEPLOYMENT_COMPLETE</code> </p> </li> <li> <p> <code>ON_DEPLOYMENT_ROLLED_BACK</code> </p> </li> </ul>",
+      "refs": {
+        "ActionList$member": null
+      }
+    },
+    "ActionInvocation": {
+      "base": "<p>An extension that was invoked as part of a deployment event.</p>",
+      "refs": {
+        "ActionInvocations$member": null
+      }
+    },
+    "ActionInvocations": {
+      "base": null,
+      "refs": {
+        "DeploymentEvent$ActionInvocations": "<p>The list of extensions that were invoked as part of the deployment.</p>"
+      }
+    },
+    "ActionList": {
+      "base": null,
+      "refs": {
+        "ActionsMap$value": null
+      }
+    },
+    "ActionPoint": {
+      "base": null,
+      "refs": {
+        "ActionsMap$key": null
+      }
+    },
+    "ActionsMap": {
+      "base": null,
+      "refs": {
+        "CreateExtensionRequest$Actions": "<p>The actions defined in the extension.</p>",
+        "Extension$Actions": "<p>The actions defined in the extension.</p>",
+        "UpdateExtensionRequest$Actions": "<p>The actions defined in the extension.</p>"
+      }
+    },
     "Application": {
       "base": null,
       "refs": {
@@ -54,9 +102,31 @@
       "refs": {
       }
     },
+    "AppliedExtension": {
+      "base": "<p>An extension that was invoked during a deployment.</p>",
+      "refs": {
+        "AppliedExtensions$member": null
+      }
+    },
+    "AppliedExtensions": {
+      "base": null,
+      "refs": {
+        "Deployment$AppliedExtensions": "<p>A list of extensions that were processed as part of the deployment. The extensions that were previously associated to the configuration profile, environment, or the application when <code>StartDeployment</code> was called.</p>"
+      }
+    },
     "Arn": {
       "base": null,
       "refs": {
+        "Action$RoleArn": "<p>An Amazon Resource Name (ARN) for an Identity and Access Management assume role.</p>",
+        "ActionInvocation$RoleArn": "<p>An Amazon Resource Name (ARN) for an Identity and Access Management assume role.</p>",
+        "Extension$Arn": "<p>The system-generated Amazon Resource Name (ARN) for the extension.</p>",
+        "ExtensionAssociation$ExtensionArn": "<p>The ARN of the extension defined in the association.</p>",
+        "ExtensionAssociation$ResourceArn": "<p>The ARNs of applications, configuration profiles, or environments defined in the association.</p>",
+        "ExtensionAssociation$Arn": "<p>The system-generated Amazon Resource Name (ARN) for the extension.</p>",
+        "ExtensionAssociationSummary$ExtensionArn": "<p>The system-generated Amazon Resource Name (ARN) for the extension.</p>",
+        "ExtensionAssociationSummary$ResourceArn": "<p>The ARNs of applications, configuration profiles, or environments defined in the association.</p>",
+        "ExtensionSummary$Arn": "<p>The system-generated Amazon Resource Name (ARN) for the extension.</p>",
+        "ListExtensionAssociationsRequest$ResourceIdentifier": "<p>The ARN of an application, configuration profile, or environment.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The resource ARN.</p>",
         "TagResourceRequest$ResourceArn": "<p>The ARN of the resource for which to retrieve tags.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The ARN of the resource for which to remove tags.</p>"
@@ -85,6 +155,12 @@
         "Configuration$Content": "<p>The content of the configuration or the configuration data.</p> <important> <p>The <code>Content</code> attribute only contains data if the system finds new or updated configuration data. If there is no new or updated data and <code>ClientConfigurationVersion</code> matches the version of the current configuration, AppConfig returns a <code>204 No Content</code> HTTP response code and the <code>Content</code> value will be empty.</p> </important>",
         "CreateHostedConfigurationVersionRequest$Content": "<p>The content of the configuration or the configuration data.</p>",
         "HostedConfigurationVersion$Content": "<p>The content of the configuration or the configuration data.</p>"
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "Parameter$Required": "<p>A parameter value must be specified in the extension association.</p>"
       }
     },
     "BytesMeasure": {
@@ -154,6 +230,16 @@
       "refs": {
       }
     },
+    "CreateExtensionAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateExtensionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateHostedConfigurationVersionRequest": {
       "base": null,
       "refs": {
@@ -175,6 +261,16 @@
       }
     },
     "DeleteEnvironmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteExtensionAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteExtensionRequest": {
       "base": null,
       "refs": {
       }
@@ -260,24 +356,30 @@
     "Description": {
       "base": null,
       "refs": {
+        "Action$Description": "<p>Information about the action.</p>",
         "Application$Description": "<p>The description of the application.</p>",
         "ConfigurationProfile$Description": "<p>The configuration profile description.</p>",
         "CreateApplicationRequest$Description": "<p>A description of the application.</p>",
         "CreateConfigurationProfileRequest$Description": "<p>A description of the configuration profile.</p>",
         "CreateDeploymentStrategyRequest$Description": "<p>A description of the deployment strategy.</p>",
         "CreateEnvironmentRequest$Description": "<p>A description of the environment.</p>",
+        "CreateExtensionRequest$Description": "<p>Information about the extension.</p>",
         "CreateHostedConfigurationVersionRequest$Description": "<p>A description of the configuration.</p>",
         "Deployment$Description": "<p>The description of the deployment.</p>",
         "DeploymentEvent$Description": "<p>A description of the deployment event. Descriptions include, but are not limited to, the user account or the Amazon CloudWatch alarm ARN that initiated a rollback, the percentage of hosts that received the deployment, or in the case of an internal error, a recommendation to attempt a new deployment.</p>",
         "DeploymentStrategy$Description": "<p>The description of the deployment strategy.</p>",
         "Environment$Description": "<p>The description of the environment.</p>",
+        "Extension$Description": "<p>Information about the extension.</p>",
+        "ExtensionSummary$Description": "<p>Information about the extension.</p>",
         "HostedConfigurationVersion$Description": "<p>A description of the configuration.</p>",
         "HostedConfigurationVersionSummary$Description": "<p>A description of the configuration.</p>",
+        "Parameter$Description": "<p>Information about the parameter.</p>",
         "StartDeploymentRequest$Description": "<p>A description of the deployment.</p>",
         "UpdateApplicationRequest$Description": "<p>A description of the application.</p>",
         "UpdateConfigurationProfileRequest$Description": "<p>A description of the configuration profile.</p>",
         "UpdateDeploymentStrategyRequest$Description": "<p>A description of the deployment strategy.</p>",
-        "UpdateEnvironmentRequest$Description": "<p>A description of the environment.</p>"
+        "UpdateEnvironmentRequest$Description": "<p>A description of the environment.</p>",
+        "UpdateExtensionRequest$Description": "<p>Information about the extension.</p>"
       }
     },
     "Environment": {
@@ -299,6 +401,50 @@
       }
     },
     "Environments": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Extension": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExtensionAssociation": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExtensionAssociationSummaries": {
+      "base": null,
+      "refs": {
+        "ExtensionAssociations$Items": "<p>The list of extension associations. Each item represents an extension association to an application, environment, or configuration profile. </p>"
+      }
+    },
+    "ExtensionAssociationSummary": {
+      "base": "<p>Information about an association between an extension and an AppConfig resource such as an application, environment, or configuration profile. Call <code>GetExtensionAssociation</code> to get more information about an association.</p>",
+      "refs": {
+        "ExtensionAssociationSummaries$member": null
+      }
+    },
+    "ExtensionAssociations": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExtensionSummaries": {
+      "base": null,
+      "refs": {
+        "Extensions$Items": "<p>The list of available extensions. The list includes Amazon Web Services-authored and user-created extensions.</p>"
+      }
+    },
+    "ExtensionSummary": {
+      "base": "<p>Information about an extension. Call <code>GetExtension</code> to get more information about an extension.</p>",
+      "refs": {
+        "ExtensionSummaries$member": null
+      }
+    },
+    "Extensions": {
       "base": null,
       "refs": {
       }
@@ -336,6 +482,16 @@
       }
     },
     "GetEnvironmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetExtensionAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetExtensionRequest": {
       "base": null,
       "refs": {
       }
@@ -387,7 +543,10 @@
     "Id": {
       "base": null,
       "refs": {
+        "ActionInvocation$InvocationId": "<p>A system-generated ID for this invocation.</p>",
         "Application$Id": "<p>The application ID.</p>",
+        "AppliedExtension$ExtensionId": "<p>The system-generated ID of the extension.</p>",
+        "AppliedExtension$ExtensionAssociationId": "<p>The system-generated ID for the association.</p>",
         "ConfigurationProfile$ApplicationId": "<p>The application ID.</p>",
         "ConfigurationProfile$Id": "<p>The configuration profile ID.</p>",
         "ConfigurationProfileSummary$ApplicationId": "<p>The application ID.</p>",
@@ -401,6 +560,7 @@
         "DeleteConfigurationProfileRequest$ConfigurationProfileId": "<p>The ID of the configuration profile you want to delete.</p>",
         "DeleteEnvironmentRequest$ApplicationId": "<p>The application ID that includes the environment that you want to delete.</p>",
         "DeleteEnvironmentRequest$EnvironmentId": "<p>The ID of the environment that you want to delete.</p>",
+        "DeleteExtensionAssociationRequest$ExtensionAssociationId": "<p>The ID of the extension association to delete.</p>",
         "DeleteHostedConfigurationVersionRequest$ApplicationId": "<p>The application ID.</p>",
         "DeleteHostedConfigurationVersionRequest$ConfigurationProfileId": "<p>The configuration profile ID.</p>",
         "Deployment$ApplicationId": "<p>The ID of the application that was deployed.</p>",
@@ -410,6 +570,8 @@
         "DeploymentStrategy$Id": "<p>The deployment strategy ID.</p>",
         "Environment$ApplicationId": "<p>The application ID.</p>",
         "Environment$Id": "<p>The environment ID.</p>",
+        "Extension$Id": "<p>The system-generated ID of the extension.</p>",
+        "ExtensionSummary$Id": "<p>The system-generated ID of the extension.</p>",
         "GetApplicationRequest$ApplicationId": "<p>The ID of the application you want to get.</p>",
         "GetConfigurationProfileRequest$ApplicationId": "<p>The ID of the application that includes the configuration profile you want to get.</p>",
         "GetConfigurationProfileRequest$ConfigurationProfileId": "<p>The ID of the configuration profile that you want to get.</p>",
@@ -417,6 +579,7 @@
         "GetDeploymentRequest$EnvironmentId": "<p>The ID of the environment that includes the deployment you want to get. </p>",
         "GetEnvironmentRequest$ApplicationId": "<p>The ID of the application that includes the environment you want to get.</p>",
         "GetEnvironmentRequest$EnvironmentId": "<p>The ID of the environment that you want to get.</p>",
+        "GetExtensionAssociationRequest$ExtensionAssociationId": "<p>The extension association ID to get.</p>",
         "GetHostedConfigurationVersionRequest$ApplicationId": "<p>The application ID.</p>",
         "GetHostedConfigurationVersionRequest$ConfigurationProfileId": "<p>The configuration profile ID.</p>",
         "HostedConfigurationVersion$ApplicationId": "<p>The application ID.</p>",
@@ -439,22 +602,47 @@
         "UpdateConfigurationProfileRequest$ConfigurationProfileId": "<p>The ID of the configuration profile.</p>",
         "UpdateEnvironmentRequest$ApplicationId": "<p>The application ID.</p>",
         "UpdateEnvironmentRequest$EnvironmentId": "<p>The environment ID.</p>",
+        "UpdateExtensionAssociationRequest$ExtensionAssociationId": "<p>The system-generated ID for the association.</p>",
         "ValidateConfigurationRequest$ApplicationId": "<p>The application ID.</p>",
         "ValidateConfigurationRequest$ConfigurationProfileId": "<p>The configuration profile ID.</p>"
+      }
+    },
+    "Identifier": {
+      "base": null,
+      "refs": {
+        "ActionInvocation$ExtensionIdentifier": "<p>The name, the ID, or the Amazon Resource Name (ARN) of the extension.</p>",
+        "CreateExtensionAssociationRequest$ExtensionIdentifier": "<p>The name, the ID, or the Amazon Resource Name (ARN) of the extension.</p>",
+        "CreateExtensionAssociationRequest$ResourceIdentifier": "<p>The ARN of an application, configuration profile, or environment.</p>",
+        "DeleteExtensionRequest$ExtensionIdentifier": "<p>The name, ID, or Amazon Resource Name (ARN) of the extension you want to delete.</p>",
+        "ExtensionAssociation$Id": "<p>The system-generated ID for the association.</p>",
+        "ExtensionAssociationSummary$Id": "<p>The extension association ID. This ID is used to call other <code>ExtensionAssociation</code> API actions such as <code>GetExtensionAssociation</code> or <code>DeleteExtensionAssociation</code>.</p>",
+        "GetExtensionRequest$ExtensionIdentifier": "<p>The name, the ID, or the Amazon Resource Name (ARN) of the extension.</p>",
+        "ListExtensionAssociationsRequest$ExtensionIdentifier": "<p>The name, the ID, or the Amazon Resource Name (ARN) of the extension.</p>",
+        "UpdateExtensionRequest$ExtensionIdentifier": "<p>The name, the ID, or the Amazon Resource Name (ARN) of the extension.</p>"
       }
     },
     "Integer": {
       "base": null,
       "refs": {
+        "AppliedExtension$VersionNumber": "<p>The extension version number.</p>",
+        "CreateExtensionAssociationRequest$ExtensionVersionNumber": "<p>The version number of the extension. If not specified, AppConfig uses the maximum version of the extension.</p>",
+        "CreateExtensionRequest$LatestVersionNumber": "<p>You can omit this field when you create an extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field.</p>",
         "CreateHostedConfigurationVersionRequest$LatestVersionNumber": "<p>An optional locking token used to prevent race conditions from overwriting configuration updates when creating a new version. To ensure your data is not overwritten when creating multiple hosted configuration versions in rapid succession, specify the version number of the latest hosted configuration version.</p>",
+        "DeleteExtensionRequest$VersionNumber": "<p>A specific version of an extension to delete. If omitted, the highest version is deleted.</p>",
         "DeleteHostedConfigurationVersionRequest$VersionNumber": "<p>The versions number to delete.</p>",
         "Deployment$DeploymentNumber": "<p>The sequence number of the deployment.</p>",
         "DeploymentSummary$DeploymentNumber": "<p>The sequence number of the deployment.</p>",
+        "Extension$VersionNumber": "<p>The extension version number.</p>",
+        "ExtensionAssociation$ExtensionVersionNumber": "<p>The version number for the extension defined in the association.</p>",
+        "ExtensionSummary$VersionNumber": "<p>The extension version number.</p>",
         "GetDeploymentRequest$DeploymentNumber": "<p>The sequence number of the deployment.</p>",
+        "GetExtensionRequest$VersionNumber": "<p>The extension version number. If no version number was defined, AppConfig uses the highest version.</p>",
         "GetHostedConfigurationVersionRequest$VersionNumber": "<p>The version.</p>",
         "HostedConfigurationVersion$VersionNumber": "<p>The configuration version.</p>",
         "HostedConfigurationVersionSummary$VersionNumber": "<p>The configuration version.</p>",
-        "StopDeploymentRequest$DeploymentNumber": "<p>The sequence number of the deployment.</p>"
+        "ListExtensionAssociationsRequest$ExtensionVersionNumber": "<p>The version number for the extension defined in the association.</p>",
+        "StopDeploymentRequest$DeploymentNumber": "<p>The sequence number of the deployment.</p>",
+        "UpdateExtensionRequest$VersionNumber": "<p>The extension version number.</p>"
       }
     },
     "InternalServerException": {
@@ -509,6 +697,16 @@
       "refs": {
       }
     },
+    "ListExtensionAssociationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListExtensionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListHostedConfigurationVersionsRequest": {
       "base": null,
       "refs": {
@@ -519,6 +717,14 @@
       "refs": {
       }
     },
+    "LongName": {
+      "base": null,
+      "refs": {
+        "ConfigurationProfile$Name": "<p>The name of the configuration profile.</p>",
+        "ConfigurationProfileSummary$Name": "<p>The name of the configuration profile.</p>",
+        "CreateConfigurationProfileRequest$Name": "<p>A name for the configuration profile.</p>"
+      }
+    },
     "MaxResults": {
       "base": null,
       "refs": {
@@ -527,6 +733,8 @@
         "ListDeploymentStrategiesRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
         "ListDeploymentsRequest$MaxResults": "<p>The maximum number of items that may be returned for this call. If there are items that have not yet been returned, the response will include a non-null <code>NextToken</code> that you can provide in a subsequent call to get the next set of results.</p>",
         "ListEnvironmentsRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
+        "ListExtensionAssociationsRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
+        "ListExtensionsRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
         "ListHostedConfigurationVersionsRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>"
       }
     },
@@ -534,7 +742,7 @@
       "base": null,
       "refs": {
         "CreateDeploymentStrategyRequest$DeploymentDurationInMinutes": "<p>Total amount of time for a deployment to last.</p>",
-        "CreateDeploymentStrategyRequest$FinalBakeTimeInMinutes": "<p>The amount of time AppConfig monitors for alarms before considering the deployment to be complete and no longer eligible for automatic roll back.</p>",
+        "CreateDeploymentStrategyRequest$FinalBakeTimeInMinutes": "<p>Specifies the amount of time AppConfig monitors for Amazon CloudWatch alarms after the configuration has been deployed to 100% of its targets, before considering the deployment to be complete. If an alarm is triggered during this time, AppConfig rolls back the deployment. You must configure permissions for AppConfig to roll back based on CloudWatch alarms. For more information, see <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/getting-started-with-appconfig-cloudwatch-alarms-permissions.html\">Configuring permissions for rollback based on Amazon CloudWatch alarms</a> in the <i>AppConfig User Guide</i>.</p>",
         "Deployment$DeploymentDurationInMinutes": "<p>Total amount of time the deployment lasted.</p>",
         "Deployment$FinalBakeTimeInMinutes": "<p>The amount of time that AppConfig monitored for alarms before considering the deployment to be complete and no longer eligible for automatic rollback.</p>",
         "DeploymentStrategy$DeploymentDurationInMinutes": "<p>Total amount of time the deployment lasted.</p>",
@@ -562,17 +770,21 @@
     "Name": {
       "base": null,
       "refs": {
+        "Action$Name": "<p>The action name.</p>",
+        "ActionInvocation$ActionName": "<p>The name of the action.</p>",
         "Application$Name": "<p>The application name.</p>",
-        "ConfigurationProfile$Name": "<p>The name of the configuration profile.</p>",
-        "ConfigurationProfileSummary$Name": "<p>The name of the configuration profile.</p>",
         "CreateApplicationRequest$Name": "<p>A name for the application.</p>",
-        "CreateConfigurationProfileRequest$Name": "<p>A name for the configuration profile.</p>",
         "CreateDeploymentStrategyRequest$Name": "<p>A name for the deployment strategy.</p>",
         "CreateEnvironmentRequest$Name": "<p>A name for the environment.</p>",
+        "CreateExtensionRequest$Name": "<p>A name for the extension. Each extension name in your account must be unique. Extension versions use the same name.</p>",
         "Deployment$ConfigurationName": "<p>The name of the configuration.</p>",
         "DeploymentStrategy$Name": "<p>The name of the deployment strategy.</p>",
         "DeploymentSummary$ConfigurationName": "<p>The name of the configuration.</p>",
         "Environment$Name": "<p>The name of the environment.</p>",
+        "Extension$Name": "<p>The extension name.</p>",
+        "ExtensionSummary$Name": "<p>The extension name.</p>",
+        "ParameterMap$key": null,
+        "ParameterValueMap$key": null,
         "UpdateApplicationRequest$Name": "<p>The name of the application.</p>",
         "UpdateConfigurationProfileRequest$Name": "<p>The name of the configuration profile.</p>",
         "UpdateEnvironmentRequest$Name": "<p>The name of the environment.</p>"
@@ -586,13 +798,40 @@
         "DeploymentStrategies$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>",
         "Deployments$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>",
         "Environments$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>",
+        "ExtensionAssociations$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>",
+        "Extensions$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>",
         "HostedConfigurationVersions$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>",
         "ListApplicationsRequest$NextToken": "<p>A token to start the list. Next token is a pagination token generated by AppConfig to describe what page the previous List call ended on. For the first List request, the nextToken should not be set. On subsequent calls, the nextToken parameter should be set to the previous responses nextToken value. Use this token to get the next set of results. </p>",
         "ListConfigurationProfilesRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results.</p>",
         "ListDeploymentStrategiesRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results.</p>",
         "ListDeploymentsRequest$NextToken": "<p>The token returned by a prior call to this operation indicating the next set of results to be returned. If not specified, the operation will return the first set of results.</p>",
         "ListEnvironmentsRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results.</p>",
+        "ListExtensionAssociationsRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results or pass null to get the first set of results. </p>",
+        "ListExtensionsRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results. </p>",
         "ListHostedConfigurationVersionsRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results. </p>"
+      }
+    },
+    "Parameter": {
+      "base": "<p>A value such as an Amazon Resource Name (ARN) or an Amazon Simple Notification Service topic entered in an extension when invoked. Parameter values are specified in an extension association. For more information about extensions, see <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html\">Working with AppConfig extensions</a> in the <i>AppConfig User Guide</i>.</p>",
+      "refs": {
+        "ParameterMap$value": null
+      }
+    },
+    "ParameterMap": {
+      "base": null,
+      "refs": {
+        "CreateExtensionRequest$Parameters": "<p>The parameters accepted by the extension. You specify parameter values when you associate the extension to an AppConfig resource by using the <code>CreateExtensionAssociation</code> API action. For Lambda extension actions, these parameters are included in the Lambda request object.</p>",
+        "Extension$Parameters": "<p>The parameters accepted by the extension. You specify parameter values when you associate the extension to an AppConfig resource by using the <code>CreateExtensionAssociation</code> API action. For Lambda extension actions, these parameters are included in the Lambda request object.</p>",
+        "UpdateExtensionRequest$Parameters": "<p>One or more parameters for the actions called by the extension.</p>"
+      }
+    },
+    "ParameterValueMap": {
+      "base": null,
+      "refs": {
+        "AppliedExtension$Parameters": "<p>One or more parameters for the actions called by the extension.</p>",
+        "CreateExtensionAssociationRequest$Parameters": "<p>The parameter names and values defined in the extensions. Extension parameters marked <code>Required</code> must be entered for this field.</p>",
+        "ExtensionAssociation$Parameters": "<p>The parameter names and values defined in the association.</p>",
+        "UpdateExtensionAssociationRequest$Parameters": "<p>The parameter names and values defined in the extension.</p>"
       }
     },
     "PayloadTooLargeException": {
@@ -608,6 +847,12 @@
         "DeploymentStrategy$GrowthFactor": "<p>The percentage of targets that received a deployed configuration during each interval.</p>",
         "DeploymentSummary$GrowthFactor": "<p>The percentage of targets to receive a deployed configuration during each interval.</p>",
         "DeploymentSummary$PercentageComplete": "<p>The percentage of targets for which the deployment is available.</p>"
+      }
+    },
+    "QueryName": {
+      "base": null,
+      "refs": {
+        "ListExtensionsRequest$Name": "<p>The extension name.</p>"
       }
     },
     "ReplicateTo": {
@@ -654,6 +899,8 @@
     "String": {
       "base": null,
       "refs": {
+        "ActionInvocation$ErrorMessage": "<p>The error message when an extension invocation fails.</p>",
+        "ActionInvocation$ErrorCode": "<p>The error code when an extension invocation fails.</p>",
         "BadRequestException$Message": null,
         "Configuration$ContentType": "<p>A standard MIME type describing the format of the configuration content. For more information, see <a href=\"http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17\">Content-Type</a>.</p>",
         "ConflictException$Message": null,
@@ -662,6 +909,7 @@
         "InvalidConfigurationDetail$Location": "<p>Location of the validation constraint in the configuration JSON schema that failed validation.</p>",
         "InvalidConfigurationDetail$Reason": "<p>The reason for an invalid configuration error.</p>",
         "InvalidConfigurationDetail$Type": "<p>The type of error for an invalid configuration.</p>",
+        "InvalidConfigurationDetail$Value": "<p>Details about an error with Lambda when a synchronous extension experiences an error during an invocation.</p>",
         "PayloadTooLargeException$Message": null,
         "ResourceNotFoundException$Message": null,
         "ResourceNotFoundException$ResourceName": null,
@@ -677,7 +925,8 @@
     "StringWithLengthBetween1And2048": {
       "base": null,
       "refs": {
-        "Monitor$AlarmArn": "<p>Amazon Resource Name (ARN) of the Amazon CloudWatch alarm.</p>"
+        "Monitor$AlarmArn": "<p>Amazon Resource Name (ARN) of the Amazon CloudWatch alarm.</p>",
+        "ParameterValueMap$value": null
       }
     },
     "StringWithLengthBetween1And255": {
@@ -717,6 +966,8 @@
         "CreateConfigurationProfileRequest$Tags": "<p>Metadata to assign to the configuration profile. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define.</p>",
         "CreateDeploymentStrategyRequest$Tags": "<p>Metadata to assign to the deployment strategy. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define.</p>",
         "CreateEnvironmentRequest$Tags": "<p>Metadata to assign to the environment. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define.</p>",
+        "CreateExtensionAssociationRequest$Tags": "<p>Adds one or more tags for the specified extension association. Tags are metadata that help you categorize resources in different ways, for example, by purpose, owner, or environment. Each tag consists of a key and an optional value, both of which you define. </p>",
+        "CreateExtensionRequest$Tags": "<p>Adds one or more tags for the specified extension. Tags are metadata that help you categorize resources in different ways, for example, by purpose, owner, or environment. Each tag consists of a key and an optional value, both of which you define. </p>",
         "ResourceTags$Tags": "<p>Metadata to assign to AppConfig resources. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define.</p>",
         "StartDeploymentRequest$Tags": "<p>Metadata to assign to the deployment. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define.</p>",
         "TagResourceRequest$Tags": "<p>The key-value string map. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with <code>aws:</code>. The tag value can be up to 256 characters.</p>"
@@ -764,9 +1015,21 @@
       "refs": {
       }
     },
+    "UpdateExtensionAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateExtensionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Uri": {
       "base": null,
       "refs": {
+        "Action$Uri": "<p>The extension URI associated to the action point in the extension definition. The URI can be an Amazon Resource Name (ARN) for one of the following: an Lambda function, an Amazon Simple Queue Service queue, an Amazon Simple Notification Service topic, or the Amazon EventBridge default event bus.</p>",
+        "ActionInvocation$Uri": "<p>The extension URI associated to the action point in the extension definition. The URI can be an Amazon Resource Name (ARN) for one of the following: an Lambda function, an Amazon Simple Queue Service queue, an Amazon Simple Notification Service topic, or the Amazon EventBridge default event bus.</p>",
         "ConfigurationProfile$LocationUri": "<p>The URI location of the configuration.</p>",
         "ConfigurationProfileSummary$LocationUri": "<p>The URI location of the configuration.</p>",
         "CreateConfigurationProfileRequest$LocationUri": "<p>A URI to locate the configuration. You can specify the AppConfig hosted configuration store, Systems Manager (SSM) document, an SSM Parameter Store parameter, or an Amazon S3 object. For the hosted configuration store and for feature flags, specify <code>hosted</code>. For an SSM document, specify either the document name in the format <code>ssm-document://&lt;Document_name&gt;</code> or the Amazon Resource Name (ARN). For a parameter, specify either the parameter name in the format <code>ssm-parameter://&lt;Parameter_name&gt;</code> or the ARN. For an Amazon S3 object, specify the URI in the following format: <code>s3://&lt;bucket&gt;/&lt;objectKey&gt; </code>. Here is an example: <code>s3://my-bucket/my-app/us-east-1/my-config.json</code> </p>",

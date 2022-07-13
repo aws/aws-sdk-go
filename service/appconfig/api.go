@@ -57,11 +57,11 @@ func (c *AppConfig) CreateApplicationRequest(input *CreateApplicationInput) (req
 
 // CreateApplication API operation for Amazon AppConfig.
 //
-// Creates an application. An application in AppConfig is a logical unit of
-// code that provides capabilities for your customers. For example, an application
-// can be a microservice that runs on Amazon EC2 instances, a mobile application
-// installed by your users, a serverless application using Amazon API Gateway
-// and Lambda, or any system you run on behalf of others.
+// Creates an application. In AppConfig, an application is simply an organizational
+// construct like a folder. This organizational construct has a relationship
+// with some unit of executable code. For example, you could create an application
+// called MyMobileApp to organize and manage configuration data for a mobile
+// application installed by your users.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -336,9 +336,9 @@ func (c *AppConfig) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req
 // CreateEnvironment API operation for Amazon AppConfig.
 //
 // Creates an environment. For each application, you define one or more environments.
-// An environment is a logical deployment group of AppConfig targets, such as
-// applications in a Beta or Production environment. You can also define environments
-// for application subcomponents such as the Web, Mobile and Back-end components
+// An environment is a deployment group of AppConfig targets, such as applications
+// in a Beta or Production environment. You can also define environments for
+// application subcomponents such as the Web, Mobile and Back-end components
 // for your application. You can configure Amazon CloudWatch alarms for each
 // environment. The system monitors alarms during a configuration deployment.
 // If an alarm is triggered, the system rolls back the configuration.
@@ -378,6 +378,207 @@ func (c *AppConfig) CreateEnvironment(input *CreateEnvironmentInput) (*CreateEnv
 // for more information on using Contexts.
 func (c *AppConfig) CreateEnvironmentWithContext(ctx aws.Context, input *CreateEnvironmentInput, opts ...request.Option) (*CreateEnvironmentOutput, error) {
 	req, out := c.CreateEnvironmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateExtension = "CreateExtension"
+
+// CreateExtensionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateExtension operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateExtension for more information on using the CreateExtension
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateExtensionRequest method.
+//    req, resp := client.CreateExtensionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateExtension
+func (c *AppConfig) CreateExtensionRequest(input *CreateExtensionInput) (req *request.Request, output *CreateExtensionOutput) {
+	op := &request.Operation{
+		Name:       opCreateExtension,
+		HTTPMethod: "POST",
+		HTTPPath:   "/extensions",
+	}
+
+	if input == nil {
+		input = &CreateExtensionInput{}
+	}
+
+	output = &CreateExtensionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateExtension API operation for Amazon AppConfig.
+//
+// Creates an AppConfig extension. An extension augments your ability to inject
+// logic or behavior at different points during the AppConfig workflow of creating
+// or deploying a configuration.
+//
+// You can create your own extensions or use the Amazon Web Services-authored
+// extensions provided by AppConfig. For most use-cases, to create your own
+// extension, you must create an Lambda function to perform any computation
+// and processing defined in the extension. For more information about extensions,
+// see Working with AppConfig extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation CreateExtension for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ServiceQuotaExceededException
+//   The number of hosted configuration versions exceeds the limit for the AppConfig
+//   hosted configuration store. Delete one or more versions and try again.
+//
+//   * InternalServerException
+//   There was an internal failure in the AppConfig service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateExtension
+func (c *AppConfig) CreateExtension(input *CreateExtensionInput) (*CreateExtensionOutput, error) {
+	req, out := c.CreateExtensionRequest(input)
+	return out, req.Send()
+}
+
+// CreateExtensionWithContext is the same as CreateExtension with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateExtension for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) CreateExtensionWithContext(ctx aws.Context, input *CreateExtensionInput, opts ...request.Option) (*CreateExtensionOutput, error) {
+	req, out := c.CreateExtensionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateExtensionAssociation = "CreateExtensionAssociation"
+
+// CreateExtensionAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateExtensionAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateExtensionAssociation for more information on using the CreateExtensionAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateExtensionAssociationRequest method.
+//    req, resp := client.CreateExtensionAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateExtensionAssociation
+func (c *AppConfig) CreateExtensionAssociationRequest(input *CreateExtensionAssociationInput) (req *request.Request, output *CreateExtensionAssociationOutput) {
+	op := &request.Operation{
+		Name:       opCreateExtensionAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/extensionassociations",
+	}
+
+	if input == nil {
+		input = &CreateExtensionAssociationInput{}
+	}
+
+	output = &CreateExtensionAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateExtensionAssociation API operation for Amazon AppConfig.
+//
+// When you create an extension or configure an Amazon Web Services-authored
+// extension, you associate the extension with an AppConfig application, environment,
+// or configuration profile. For example, you can choose to run the AppConfig
+// deployment events to Amazon SNS Amazon Web Services-authored extension and
+// receive notifications on an Amazon SNS topic anytime a configuration deployment
+// is started for a specific application. Defining which extension to associate
+// with an AppConfig resource is called an extension association. An extension
+// association is a specified relationship between an extension and an AppConfig
+// resource, such as an application or a configuration profile. For more information
+// about extensions and associations, see Working with AppConfig extensions
+// (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation CreateExtensionAssociation for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
+//
+//   * ResourceNotFoundException
+//   The requested resource could not be found.
+//
+//   * InternalServerException
+//   There was an internal failure in the AppConfig service.
+//
+//   * ServiceQuotaExceededException
+//   The number of hosted configuration versions exceeds the limit for the AppConfig
+//   hosted configuration store. Delete one or more versions and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateExtensionAssociation
+func (c *AppConfig) CreateExtensionAssociation(input *CreateExtensionAssociationInput) (*CreateExtensionAssociationOutput, error) {
+	req, out := c.CreateExtensionAssociationRequest(input)
+	return out, req.Send()
+}
+
+// CreateExtensionAssociationWithContext is the same as CreateExtensionAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateExtensionAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) CreateExtensionAssociationWithContext(ctx aws.Context, input *CreateExtensionAssociationInput, opts ...request.Option) (*CreateExtensionAssociationOutput, error) {
+	req, out := c.CreateExtensionAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -835,6 +1036,182 @@ func (c *AppConfig) DeleteEnvironment(input *DeleteEnvironmentInput) (*DeleteEnv
 // for more information on using Contexts.
 func (c *AppConfig) DeleteEnvironmentWithContext(ctx aws.Context, input *DeleteEnvironmentInput, opts ...request.Option) (*DeleteEnvironmentOutput, error) {
 	req, out := c.DeleteEnvironmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteExtension = "DeleteExtension"
+
+// DeleteExtensionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteExtension operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteExtension for more information on using the DeleteExtension
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteExtensionRequest method.
+//    req, resp := client.DeleteExtensionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteExtension
+func (c *AppConfig) DeleteExtensionRequest(input *DeleteExtensionInput) (req *request.Request, output *DeleteExtensionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteExtension,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/extensions/{ExtensionIdentifier}",
+	}
+
+	if input == nil {
+		input = &DeleteExtensionInput{}
+	}
+
+	output = &DeleteExtensionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteExtension API operation for Amazon AppConfig.
+//
+// Deletes an AppConfig extension. You must delete all associations to an extension
+// before you delete the extension.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation DeleteExtension for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The requested resource could not be found.
+//
+//   * InternalServerException
+//   There was an internal failure in the AppConfig service.
+//
+//   * BadRequestException
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteExtension
+func (c *AppConfig) DeleteExtension(input *DeleteExtensionInput) (*DeleteExtensionOutput, error) {
+	req, out := c.DeleteExtensionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteExtensionWithContext is the same as DeleteExtension with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteExtension for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) DeleteExtensionWithContext(ctx aws.Context, input *DeleteExtensionInput, opts ...request.Option) (*DeleteExtensionOutput, error) {
+	req, out := c.DeleteExtensionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteExtensionAssociation = "DeleteExtensionAssociation"
+
+// DeleteExtensionAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteExtensionAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteExtensionAssociation for more information on using the DeleteExtensionAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteExtensionAssociationRequest method.
+//    req, resp := client.DeleteExtensionAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteExtensionAssociation
+func (c *AppConfig) DeleteExtensionAssociationRequest(input *DeleteExtensionAssociationInput) (req *request.Request, output *DeleteExtensionAssociationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteExtensionAssociation,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/extensionassociations/{ExtensionAssociationId}",
+	}
+
+	if input == nil {
+		input = &DeleteExtensionAssociationInput{}
+	}
+
+	output = &DeleteExtensionAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteExtensionAssociation API operation for Amazon AppConfig.
+//
+// Deletes an extension association. This action doesn't delete extensions defined
+// in the association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation DeleteExtensionAssociation for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
+//
+//   * ResourceNotFoundException
+//   The requested resource could not be found.
+//
+//   * InternalServerException
+//   There was an internal failure in the AppConfig service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteExtensionAssociation
+func (c *AppConfig) DeleteExtensionAssociation(input *DeleteExtensionAssociationInput) (*DeleteExtensionAssociationOutput, error) {
+	req, out := c.DeleteExtensionAssociationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteExtensionAssociationWithContext is the same as DeleteExtensionAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteExtensionAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) DeleteExtensionAssociationWithContext(ctx aws.Context, input *DeleteExtensionAssociationInput, opts ...request.Option) (*DeleteExtensionAssociationOutput, error) {
+	req, out := c.DeleteExtensionAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1439,7 +1816,7 @@ func (c *AppConfig) GetEnvironmentRequest(input *GetEnvironmentInput) (req *requ
 
 // GetEnvironment API operation for Amazon AppConfig.
 //
-// Retrieves information about an environment. An environment is a logical deployment
+// Retrieves information about an environment. An environment is a deployment
 // group of AppConfig applications, such as applications in a Production environment
 // or in an EU_Region environment. Each configuration deployment targets an
 // environment. You can enable one or more Amazon CloudWatch alarms for an environment.
@@ -1480,6 +1857,181 @@ func (c *AppConfig) GetEnvironment(input *GetEnvironmentInput) (*GetEnvironmentO
 // for more information on using Contexts.
 func (c *AppConfig) GetEnvironmentWithContext(ctx aws.Context, input *GetEnvironmentInput, opts ...request.Option) (*GetEnvironmentOutput, error) {
 	req, out := c.GetEnvironmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetExtension = "GetExtension"
+
+// GetExtensionRequest generates a "aws/request.Request" representing the
+// client's request for the GetExtension operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetExtension for more information on using the GetExtension
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetExtensionRequest method.
+//    req, resp := client.GetExtensionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetExtension
+func (c *AppConfig) GetExtensionRequest(input *GetExtensionInput) (req *request.Request, output *GetExtensionOutput) {
+	op := &request.Operation{
+		Name:       opGetExtension,
+		HTTPMethod: "GET",
+		HTTPPath:   "/extensions/{ExtensionIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetExtensionInput{}
+	}
+
+	output = &GetExtensionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetExtension API operation for Amazon AppConfig.
+//
+// Returns information about an AppConfig extension.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation GetExtension for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The requested resource could not be found.
+//
+//   * InternalServerException
+//   There was an internal failure in the AppConfig service.
+//
+//   * BadRequestException
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetExtension
+func (c *AppConfig) GetExtension(input *GetExtensionInput) (*GetExtensionOutput, error) {
+	req, out := c.GetExtensionRequest(input)
+	return out, req.Send()
+}
+
+// GetExtensionWithContext is the same as GetExtension with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetExtension for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) GetExtensionWithContext(ctx aws.Context, input *GetExtensionInput, opts ...request.Option) (*GetExtensionOutput, error) {
+	req, out := c.GetExtensionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetExtensionAssociation = "GetExtensionAssociation"
+
+// GetExtensionAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the GetExtensionAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetExtensionAssociation for more information on using the GetExtensionAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetExtensionAssociationRequest method.
+//    req, resp := client.GetExtensionAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetExtensionAssociation
+func (c *AppConfig) GetExtensionAssociationRequest(input *GetExtensionAssociationInput) (req *request.Request, output *GetExtensionAssociationOutput) {
+	op := &request.Operation{
+		Name:       opGetExtensionAssociation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/extensionassociations/{ExtensionAssociationId}",
+	}
+
+	if input == nil {
+		input = &GetExtensionAssociationInput{}
+	}
+
+	output = &GetExtensionAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetExtensionAssociation API operation for Amazon AppConfig.
+//
+// Returns information about an AppConfig extension association. For more information
+// about extensions and associations, see Working with AppConfig extensions
+// (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation GetExtensionAssociation for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
+//
+//   * ResourceNotFoundException
+//   The requested resource could not be found.
+//
+//   * InternalServerException
+//   There was an internal failure in the AppConfig service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetExtensionAssociation
+func (c *AppConfig) GetExtensionAssociation(input *GetExtensionAssociationInput) (*GetExtensionAssociationOutput, error) {
+	req, out := c.GetExtensionAssociationRequest(input)
+	return out, req.Send()
+}
+
+// GetExtensionAssociationWithContext is the same as GetExtensionAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetExtensionAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) GetExtensionAssociationWithContext(ctx aws.Context, input *GetExtensionAssociationInput, opts ...request.Option) (*GetExtensionAssociationOutput, error) {
+	req, out := c.GetExtensionAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2279,6 +2831,294 @@ func (c *AppConfig) ListEnvironmentsPagesWithContext(ctx aws.Context, input *Lis
 
 	for p.Next() {
 		if !fn(p.Page().(*ListEnvironmentsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListExtensionAssociations = "ListExtensionAssociations"
+
+// ListExtensionAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListExtensionAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExtensionAssociations for more information on using the ListExtensionAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListExtensionAssociationsRequest method.
+//    req, resp := client.ListExtensionAssociationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListExtensionAssociations
+func (c *AppConfig) ListExtensionAssociationsRequest(input *ListExtensionAssociationsInput) (req *request.Request, output *ListExtensionAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListExtensionAssociations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/extensionassociations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListExtensionAssociationsInput{}
+	}
+
+	output = &ListExtensionAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExtensionAssociations API operation for Amazon AppConfig.
+//
+// Lists all AppConfig extension associations in the account. For more information
+// about extensions and associations, see Working with AppConfig extensions
+// (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation ListExtensionAssociations for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   There was an internal failure in the AppConfig service.
+//
+//   * BadRequestException
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListExtensionAssociations
+func (c *AppConfig) ListExtensionAssociations(input *ListExtensionAssociationsInput) (*ListExtensionAssociationsOutput, error) {
+	req, out := c.ListExtensionAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListExtensionAssociationsWithContext is the same as ListExtensionAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExtensionAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) ListExtensionAssociationsWithContext(ctx aws.Context, input *ListExtensionAssociationsInput, opts ...request.Option) (*ListExtensionAssociationsOutput, error) {
+	req, out := c.ListExtensionAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListExtensionAssociationsPages iterates over the pages of a ListExtensionAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExtensionAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListExtensionAssociations operation.
+//    pageNum := 0
+//    err := client.ListExtensionAssociationsPages(params,
+//        func(page *appconfig.ListExtensionAssociationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AppConfig) ListExtensionAssociationsPages(input *ListExtensionAssociationsInput, fn func(*ListExtensionAssociationsOutput, bool) bool) error {
+	return c.ListExtensionAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExtensionAssociationsPagesWithContext same as ListExtensionAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) ListExtensionAssociationsPagesWithContext(ctx aws.Context, input *ListExtensionAssociationsInput, fn func(*ListExtensionAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExtensionAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExtensionAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExtensionAssociationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListExtensions = "ListExtensions"
+
+// ListExtensionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListExtensions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExtensions for more information on using the ListExtensions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListExtensionsRequest method.
+//    req, resp := client.ListExtensionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListExtensions
+func (c *AppConfig) ListExtensionsRequest(input *ListExtensionsInput) (req *request.Request, output *ListExtensionsOutput) {
+	op := &request.Operation{
+		Name:       opListExtensions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/extensions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListExtensionsInput{}
+	}
+
+	output = &ListExtensionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExtensions API operation for Amazon AppConfig.
+//
+// Lists all custom and Amazon Web Services-authored AppConfig extensions in
+// the account. For more information about extensions, see Working with AppConfig
+// extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation ListExtensions for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   There was an internal failure in the AppConfig service.
+//
+//   * BadRequestException
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListExtensions
+func (c *AppConfig) ListExtensions(input *ListExtensionsInput) (*ListExtensionsOutput, error) {
+	req, out := c.ListExtensionsRequest(input)
+	return out, req.Send()
+}
+
+// ListExtensionsWithContext is the same as ListExtensions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExtensions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) ListExtensionsWithContext(ctx aws.Context, input *ListExtensionsInput, opts ...request.Option) (*ListExtensionsOutput, error) {
+	req, out := c.ListExtensionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListExtensionsPages iterates over the pages of a ListExtensions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExtensions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListExtensions operation.
+//    pageNum := 0
+//    err := client.ListExtensionsPages(params,
+//        func(page *appconfig.ListExtensionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AppConfig) ListExtensionsPages(input *ListExtensionsInput, fn func(*ListExtensionsOutput, bool) bool) error {
+	return c.ListExtensionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExtensionsPagesWithContext same as ListExtensionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) ListExtensionsPagesWithContext(ctx aws.Context, input *ListExtensionsInput, fn func(*ListExtensionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExtensionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExtensionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExtensionsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3214,6 +4054,186 @@ func (c *AppConfig) UpdateEnvironmentWithContext(ctx aws.Context, input *UpdateE
 	return out, req.Send()
 }
 
+const opUpdateExtension = "UpdateExtension"
+
+// UpdateExtensionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateExtension operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateExtension for more information on using the UpdateExtension
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateExtensionRequest method.
+//    req, resp := client.UpdateExtensionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateExtension
+func (c *AppConfig) UpdateExtensionRequest(input *UpdateExtensionInput) (req *request.Request, output *UpdateExtensionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateExtension,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/extensions/{ExtensionIdentifier}",
+	}
+
+	if input == nil {
+		input = &UpdateExtensionInput{}
+	}
+
+	output = &UpdateExtensionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateExtension API operation for Amazon AppConfig.
+//
+// Updates an AppConfig extension. For more information about extensions, see
+// Working with AppConfig extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation UpdateExtension for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
+//
+//   * ResourceNotFoundException
+//   The requested resource could not be found.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * InternalServerException
+//   There was an internal failure in the AppConfig service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateExtension
+func (c *AppConfig) UpdateExtension(input *UpdateExtensionInput) (*UpdateExtensionOutput, error) {
+	req, out := c.UpdateExtensionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateExtensionWithContext is the same as UpdateExtension with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateExtension for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) UpdateExtensionWithContext(ctx aws.Context, input *UpdateExtensionInput, opts ...request.Option) (*UpdateExtensionOutput, error) {
+	req, out := c.UpdateExtensionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateExtensionAssociation = "UpdateExtensionAssociation"
+
+// UpdateExtensionAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateExtensionAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateExtensionAssociation for more information on using the UpdateExtensionAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateExtensionAssociationRequest method.
+//    req, resp := client.UpdateExtensionAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateExtensionAssociation
+func (c *AppConfig) UpdateExtensionAssociationRequest(input *UpdateExtensionAssociationInput) (req *request.Request, output *UpdateExtensionAssociationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateExtensionAssociation,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/extensionassociations/{ExtensionAssociationId}",
+	}
+
+	if input == nil {
+		input = &UpdateExtensionAssociationInput{}
+	}
+
+	output = &UpdateExtensionAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateExtensionAssociation API operation for Amazon AppConfig.
+//
+// Updates an association. For more information about extensions and associations,
+// see Working with AppConfig extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation UpdateExtensionAssociation for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
+//
+//   * ResourceNotFoundException
+//   The requested resource could not be found.
+//
+//   * InternalServerException
+//   There was an internal failure in the AppConfig service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateExtensionAssociation
+func (c *AppConfig) UpdateExtensionAssociation(input *UpdateExtensionAssociationInput) (*UpdateExtensionAssociationOutput, error) {
+	req, out := c.UpdateExtensionAssociationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateExtensionAssociationWithContext is the same as UpdateExtensionAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateExtensionAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) UpdateExtensionAssociationWithContext(ctx aws.Context, input *UpdateExtensionAssociationInput, opts ...request.Option) (*UpdateExtensionAssociationOutput, error) {
+	req, out := c.UpdateExtensionAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opValidateConfiguration = "ValidateConfiguration"
 
 // ValidateConfigurationRequest generates a "aws/request.Request" representing the
@@ -3301,6 +4321,179 @@ func (c *AppConfig) ValidateConfigurationWithContext(ctx aws.Context, input *Val
 	return out, req.Send()
 }
 
+// An action defines the tasks the extension performs during the AppConfig workflow.
+// Each action includes an action point such as ON_CREATE_HOSTED_CONFIGURATION,
+// PRE_DEPLOYMENT, or ON_DEPLOYMENT. Each action also includes a name, a URI
+// to an Lambda function, and an Amazon Resource Name (ARN) for an Identity
+// and Access Management assume role. You specify the name, URI, and ARN for
+// each action point defined in the extension. You can specify the following
+// actions for an extension:
+//
+//    * PRE_CREATE_HOSTED_CONFIGURATION_VERSION
+//
+//    * PRE_START_DEPLOYMENT
+//
+//    * ON_DEPLOYMENT_START
+//
+//    * ON_DEPLOYMENT_STEP
+//
+//    * ON_DEPLOYMENT_BAKING
+//
+//    * ON_DEPLOYMENT_COMPLETE
+//
+//    * ON_DEPLOYMENT_ROLLED_BACK
+type Action struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the action.
+	Description *string `type:"string"`
+
+	// The action name.
+	Name *string `min:"1" type:"string"`
+
+	// An Amazon Resource Name (ARN) for an Identity and Access Management assume
+	// role.
+	RoleArn *string `min:"20" type:"string"`
+
+	// The extension URI associated to the action point in the extension definition.
+	// The URI can be an Amazon Resource Name (ARN) for one of the following: an
+	// Lambda function, an Amazon Simple Queue Service queue, an Amazon Simple Notification
+	// Service topic, or the Amazon EventBridge default event bus.
+	Uri *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Action) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Action) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *Action) SetDescription(v string) *Action {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Action) SetName(v string) *Action {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *Action) SetRoleArn(v string) *Action {
+	s.RoleArn = &v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *Action) SetUri(v string) *Action {
+	s.Uri = &v
+	return s
+}
+
+// An extension that was invoked as part of a deployment event.
+type ActionInvocation struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the action.
+	ActionName *string `min:"1" type:"string"`
+
+	// The error code when an extension invocation fails.
+	ErrorCode *string `type:"string"`
+
+	// The error message when an extension invocation fails.
+	ErrorMessage *string `type:"string"`
+
+	// The name, the ID, or the Amazon Resource Name (ARN) of the extension.
+	ExtensionIdentifier *string `min:"1" type:"string"`
+
+	// A system-generated ID for this invocation.
+	InvocationId *string `type:"string"`
+
+	// An Amazon Resource Name (ARN) for an Identity and Access Management assume
+	// role.
+	RoleArn *string `min:"20" type:"string"`
+
+	// The extension URI associated to the action point in the extension definition.
+	// The URI can be an Amazon Resource Name (ARN) for one of the following: an
+	// Lambda function, an Amazon Simple Queue Service queue, an Amazon Simple Notification
+	// Service topic, or the Amazon EventBridge default event bus.
+	Uri *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActionInvocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActionInvocation) GoString() string {
+	return s.String()
+}
+
+// SetActionName sets the ActionName field's value.
+func (s *ActionInvocation) SetActionName(v string) *ActionInvocation {
+	s.ActionName = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *ActionInvocation) SetErrorCode(v string) *ActionInvocation {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *ActionInvocation) SetErrorMessage(v string) *ActionInvocation {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetExtensionIdentifier sets the ExtensionIdentifier field's value.
+func (s *ActionInvocation) SetExtensionIdentifier(v string) *ActionInvocation {
+	s.ExtensionIdentifier = &v
+	return s
+}
+
+// SetInvocationId sets the InvocationId field's value.
+func (s *ActionInvocation) SetInvocationId(v string) *ActionInvocation {
+	s.InvocationId = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *ActionInvocation) SetRoleArn(v string) *ActionInvocation {
+	s.RoleArn = &v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *ActionInvocation) SetUri(v string) *ActionInvocation {
+	s.Uri = &v
+	return s
+}
+
 type Application struct {
 	_ struct{} `type:"structure"`
 
@@ -3347,6 +4540,65 @@ func (s *Application) SetId(v string) *Application {
 // SetName sets the Name field's value.
 func (s *Application) SetName(v string) *Application {
 	s.Name = &v
+	return s
+}
+
+// An extension that was invoked during a deployment.
+type AppliedExtension struct {
+	_ struct{} `type:"structure"`
+
+	// The system-generated ID for the association.
+	ExtensionAssociationId *string `type:"string"`
+
+	// The system-generated ID of the extension.
+	ExtensionId *string `type:"string"`
+
+	// One or more parameters for the actions called by the extension.
+	Parameters map[string]*string `type:"map"`
+
+	// The extension version number.
+	VersionNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppliedExtension) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppliedExtension) GoString() string {
+	return s.String()
+}
+
+// SetExtensionAssociationId sets the ExtensionAssociationId field's value.
+func (s *AppliedExtension) SetExtensionAssociationId(v string) *AppliedExtension {
+	s.ExtensionAssociationId = &v
+	return s
+}
+
+// SetExtensionId sets the ExtensionId field's value.
+func (s *AppliedExtension) SetExtensionId(v string) *AppliedExtension {
+	s.ExtensionId = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *AppliedExtension) SetParameters(v map[string]*string) *AppliedExtension {
+	s.Parameters = v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *AppliedExtension) SetVersionNumber(v int64) *AppliedExtension {
+	s.VersionNumber = &v
 	return s
 }
 
@@ -4000,8 +5252,14 @@ type CreateDeploymentStrategyInput struct {
 	// A description of the deployment strategy.
 	Description *string `type:"string"`
 
-	// The amount of time AppConfig monitors for alarms before considering the deployment
-	// to be complete and no longer eligible for automatic roll back.
+	// Specifies the amount of time AppConfig monitors for Amazon CloudWatch alarms
+	// after the configuration has been deployed to 100% of its targets, before
+	// considering the deployment to be complete. If an alarm is triggered during
+	// this time, AppConfig rolls back the deployment. You must configure permissions
+	// for AppConfig to roll back based on CloudWatch alarms. For more information,
+	// see Configuring permissions for rollback based on Amazon CloudWatch alarms
+	// (https://docs.aws.amazon.com/appconfig/latest/userguide/getting-started-with-appconfig-cloudwatch-alarms-permissions.html)
+	// in the AppConfig User Guide.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets to receive a deployed configuration during each
@@ -4043,9 +5301,7 @@ type CreateDeploymentStrategyInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// Save the deployment strategy to a Systems Manager (SSM) document.
-	//
-	// ReplicateTo is a required field
-	ReplicateTo *string `type:"string" required:"true" enum:"ReplicateTo"`
+	ReplicateTo *string `type:"string" enum:"ReplicateTo"`
 
 	// Metadata to assign to the deployment strategy. Tags help organize and categorize
 	// your AppConfig resources. Each tag consists of a key and an optional value,
@@ -4088,9 +5344,6 @@ func (s *CreateDeploymentStrategyInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.ReplicateTo == nil {
-		invalidParams.Add(request.NewErrParamRequired("ReplicateTo"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4422,6 +5675,383 @@ func (s *CreateEnvironmentOutput) SetName(v string) *CreateEnvironmentOutput {
 // SetState sets the State field's value.
 func (s *CreateEnvironmentOutput) SetState(v string) *CreateEnvironmentOutput {
 	s.State = &v
+	return s
+}
+
+type CreateExtensionAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name, the ID, or the Amazon Resource Name (ARN) of the extension.
+	//
+	// ExtensionIdentifier is a required field
+	ExtensionIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// The version number of the extension. If not specified, AppConfig uses the
+	// maximum version of the extension.
+	ExtensionVersionNumber *int64 `type:"integer"`
+
+	// The parameter names and values defined in the extensions. Extension parameters
+	// marked Required must be entered for this field.
+	Parameters map[string]*string `type:"map"`
+
+	// The ARN of an application, configuration profile, or environment.
+	//
+	// ResourceIdentifier is a required field
+	ResourceIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// Adds one or more tags for the specified extension association. Tags are metadata
+	// that help you categorize resources in different ways, for example, by purpose,
+	// owner, or environment. Each tag consists of a key and an optional value,
+	// both of which you define.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateExtensionAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateExtensionAssociationInput"}
+	if s.ExtensionIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExtensionIdentifier"))
+	}
+	if s.ExtensionIdentifier != nil && len(*s.ExtensionIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionIdentifier", 1))
+	}
+	if s.ResourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdentifier"))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensionIdentifier sets the ExtensionIdentifier field's value.
+func (s *CreateExtensionAssociationInput) SetExtensionIdentifier(v string) *CreateExtensionAssociationInput {
+	s.ExtensionIdentifier = &v
+	return s
+}
+
+// SetExtensionVersionNumber sets the ExtensionVersionNumber field's value.
+func (s *CreateExtensionAssociationInput) SetExtensionVersionNumber(v int64) *CreateExtensionAssociationInput {
+	s.ExtensionVersionNumber = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CreateExtensionAssociationInput) SetParameters(v map[string]*string) *CreateExtensionAssociationInput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *CreateExtensionAssociationInput) SetResourceIdentifier(v string) *CreateExtensionAssociationInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateExtensionAssociationInput) SetTags(v map[string]*string) *CreateExtensionAssociationInput {
+	s.Tags = v
+	return s
+}
+
+type CreateExtensionAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	Arn *string `min:"20" type:"string"`
+
+	// The ARN of the extension defined in the association.
+	ExtensionArn *string `min:"20" type:"string"`
+
+	// The version number for the extension defined in the association.
+	ExtensionVersionNumber *int64 `type:"integer"`
+
+	// The system-generated ID for the association.
+	Id *string `min:"1" type:"string"`
+
+	// The parameter names and values defined in the association.
+	Parameters map[string]*string `type:"map"`
+
+	// The ARNs of applications, configuration profiles, or environments defined
+	// in the association.
+	ResourceArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateExtensionAssociationOutput) SetArn(v string) *CreateExtensionAssociationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetExtensionArn sets the ExtensionArn field's value.
+func (s *CreateExtensionAssociationOutput) SetExtensionArn(v string) *CreateExtensionAssociationOutput {
+	s.ExtensionArn = &v
+	return s
+}
+
+// SetExtensionVersionNumber sets the ExtensionVersionNumber field's value.
+func (s *CreateExtensionAssociationOutput) SetExtensionVersionNumber(v int64) *CreateExtensionAssociationOutput {
+	s.ExtensionVersionNumber = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateExtensionAssociationOutput) SetId(v string) *CreateExtensionAssociationOutput {
+	s.Id = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CreateExtensionAssociationOutput) SetParameters(v map[string]*string) *CreateExtensionAssociationOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *CreateExtensionAssociationOutput) SetResourceArn(v string) *CreateExtensionAssociationOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+type CreateExtensionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The actions defined in the extension.
+	//
+	// Actions is a required field
+	Actions map[string][]*Action `min:"1" type:"map" required:"true"`
+
+	// Information about the extension.
+	Description *string `type:"string"`
+
+	// You can omit this field when you create an extension. When you create a new
+	// version, specify the most recent current version number. For example, you
+	// create version 3, enter 2 for this field.
+	LatestVersionNumber *int64 `location:"header" locationName:"Latest-Version-Number" type:"integer"`
+
+	// A name for the extension. Each extension name in your account must be unique.
+	// Extension versions use the same name.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The parameters accepted by the extension. You specify parameter values when
+	// you associate the extension to an AppConfig resource by using the CreateExtensionAssociation
+	// API action. For Lambda extension actions, these parameters are included in
+	// the Lambda request object.
+	Parameters map[string]*Parameter `min:"1" type:"map"`
+
+	// Adds one or more tags for the specified extension. Tags are metadata that
+	// help you categorize resources in different ways, for example, by purpose,
+	// owner, or environment. Each tag consists of a key and an optional value,
+	// both of which you define.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateExtensionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateExtensionInput"}
+	if s.Actions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Actions"))
+	}
+	if s.Actions != nil && len(s.Actions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Actions", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Parameters != nil && len(s.Parameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActions sets the Actions field's value.
+func (s *CreateExtensionInput) SetActions(v map[string][]*Action) *CreateExtensionInput {
+	s.Actions = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateExtensionInput) SetDescription(v string) *CreateExtensionInput {
+	s.Description = &v
+	return s
+}
+
+// SetLatestVersionNumber sets the LatestVersionNumber field's value.
+func (s *CreateExtensionInput) SetLatestVersionNumber(v int64) *CreateExtensionInput {
+	s.LatestVersionNumber = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateExtensionInput) SetName(v string) *CreateExtensionInput {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CreateExtensionInput) SetParameters(v map[string]*Parameter) *CreateExtensionInput {
+	s.Parameters = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateExtensionInput) SetTags(v map[string]*string) *CreateExtensionInput {
+	s.Tags = v
+	return s
+}
+
+type CreateExtensionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The actions defined in the extension.
+	Actions map[string][]*Action `min:"1" type:"map"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	Arn *string `min:"20" type:"string"`
+
+	// Information about the extension.
+	Description *string `type:"string"`
+
+	// The system-generated ID of the extension.
+	Id *string `type:"string"`
+
+	// The extension name.
+	Name *string `min:"1" type:"string"`
+
+	// The parameters accepted by the extension. You specify parameter values when
+	// you associate the extension to an AppConfig resource by using the CreateExtensionAssociation
+	// API action. For Lambda extension actions, these parameters are included in
+	// the Lambda request object.
+	Parameters map[string]*Parameter `min:"1" type:"map"`
+
+	// The extension version number.
+	VersionNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtensionOutput) GoString() string {
+	return s.String()
+}
+
+// SetActions sets the Actions field's value.
+func (s *CreateExtensionOutput) SetActions(v map[string][]*Action) *CreateExtensionOutput {
+	s.Actions = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateExtensionOutput) SetArn(v string) *CreateExtensionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateExtensionOutput) SetDescription(v string) *CreateExtensionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateExtensionOutput) SetId(v string) *CreateExtensionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateExtensionOutput) SetName(v string) *CreateExtensionOutput {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CreateExtensionOutput) SetParameters(v map[string]*Parameter) *CreateExtensionOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *CreateExtensionOutput) SetVersionNumber(v int64) *CreateExtensionOutput {
+	s.VersionNumber = &v
 	return s
 }
 
@@ -4948,6 +6578,159 @@ func (s DeleteEnvironmentOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteExtensionAssociationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the extension association to delete.
+	//
+	// ExtensionAssociationId is a required field
+	ExtensionAssociationId *string `location:"uri" locationName:"ExtensionAssociationId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteExtensionAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteExtensionAssociationInput"}
+	if s.ExtensionAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExtensionAssociationId"))
+	}
+	if s.ExtensionAssociationId != nil && len(*s.ExtensionAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionAssociationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensionAssociationId sets the ExtensionAssociationId field's value.
+func (s *DeleteExtensionAssociationInput) SetExtensionAssociationId(v string) *DeleteExtensionAssociationInput {
+	s.ExtensionAssociationId = &v
+	return s
+}
+
+type DeleteExtensionAssociationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionAssociationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteExtensionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name, ID, or Amazon Resource Name (ARN) of the extension you want to
+	// delete.
+	//
+	// ExtensionIdentifier is a required field
+	ExtensionIdentifier *string `location:"uri" locationName:"ExtensionIdentifier" min:"1" type:"string" required:"true"`
+
+	// A specific version of an extension to delete. If omitted, the highest version
+	// is deleted.
+	VersionNumber *int64 `location:"querystring" locationName:"version" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteExtensionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteExtensionInput"}
+	if s.ExtensionIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExtensionIdentifier"))
+	}
+	if s.ExtensionIdentifier != nil && len(*s.ExtensionIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensionIdentifier sets the ExtensionIdentifier field's value.
+func (s *DeleteExtensionInput) SetExtensionIdentifier(v string) *DeleteExtensionInput {
+	s.ExtensionIdentifier = &v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *DeleteExtensionInput) SetVersionNumber(v int64) *DeleteExtensionInput {
+	s.VersionNumber = &v
+	return s
+}
+
+type DeleteExtensionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExtensionOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteHostedConfigurationVersionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -5054,6 +6837,9 @@ func (s DeleteHostedConfigurationVersionOutput) GoString() string {
 type DeploymentEvent struct {
 	_ struct{} `type:"structure"`
 
+	// The list of extensions that were invoked as part of the deployment.
+	ActionInvocations []*ActionInvocation `type:"list"`
+
 	// A description of the deployment event. Descriptions include, but are not
 	// limited to, the user account or the Amazon CloudWatch alarm ARN that initiated
 	// a rollback, the percentage of hosts that received the deployment, or in the
@@ -5089,6 +6875,12 @@ func (s DeploymentEvent) String() string {
 // value will be replaced with "sensitive".
 func (s DeploymentEvent) GoString() string {
 	return s.String()
+}
+
+// SetActionInvocations sets the ActionInvocations field's value.
+func (s *DeploymentEvent) SetActionInvocations(v []*ActionInvocation) *DeploymentEvent {
+	s.ActionInvocations = v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -5409,6 +7201,129 @@ func (s *Environment) SetName(v string) *Environment {
 // SetState sets the State field's value.
 func (s *Environment) SetState(v string) *Environment {
 	s.State = &v
+	return s
+}
+
+// Information about an association between an extension and an AppConfig resource
+// such as an application, environment, or configuration profile. Call GetExtensionAssociation
+// to get more information about an association.
+type ExtensionAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	ExtensionArn *string `min:"20" type:"string"`
+
+	// The extension association ID. This ID is used to call other ExtensionAssociation
+	// API actions such as GetExtensionAssociation or DeleteExtensionAssociation.
+	Id *string `min:"1" type:"string"`
+
+	// The ARNs of applications, configuration profiles, or environments defined
+	// in the association.
+	ResourceArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExtensionAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExtensionAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetExtensionArn sets the ExtensionArn field's value.
+func (s *ExtensionAssociationSummary) SetExtensionArn(v string) *ExtensionAssociationSummary {
+	s.ExtensionArn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ExtensionAssociationSummary) SetId(v string) *ExtensionAssociationSummary {
+	s.Id = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ExtensionAssociationSummary) SetResourceArn(v string) *ExtensionAssociationSummary {
+	s.ResourceArn = &v
+	return s
+}
+
+// Information about an extension. Call GetExtension to get more information
+// about an extension.
+type ExtensionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	Arn *string `min:"20" type:"string"`
+
+	// Information about the extension.
+	Description *string `type:"string"`
+
+	// The system-generated ID of the extension.
+	Id *string `type:"string"`
+
+	// The extension name.
+	Name *string `min:"1" type:"string"`
+
+	// The extension version number.
+	VersionNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExtensionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExtensionSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ExtensionSummary) SetArn(v string) *ExtensionSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ExtensionSummary) SetDescription(v string) *ExtensionSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ExtensionSummary) SetId(v string) *ExtensionSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ExtensionSummary) SetName(v string) *ExtensionSummary {
+	s.Name = &v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *ExtensionSummary) SetVersionNumber(v int64) *ExtensionSummary {
+	s.VersionNumber = &v
 	return s
 }
 
@@ -5956,6 +7871,11 @@ type GetDeploymentOutput struct {
 	// The ID of the application that was deployed.
 	ApplicationId *string `type:"string"`
 
+	// A list of extensions that were processed as part of the deployment. The extensions
+	// that were previously associated to the configuration profile, environment,
+	// or the application when StartDeployment was called.
+	AppliedExtensions []*AppliedExtension `type:"list"`
+
 	// The time the deployment completed.
 	CompletedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -6032,6 +7952,12 @@ func (s GetDeploymentOutput) GoString() string {
 // SetApplicationId sets the ApplicationId field's value.
 func (s *GetDeploymentOutput) SetApplicationId(v string) *GetDeploymentOutput {
 	s.ApplicationId = &v
+	return s
+}
+
+// SetAppliedExtensions sets the AppliedExtensions field's value.
+func (s *GetDeploymentOutput) SetAppliedExtensions(v []*AppliedExtension) *GetDeploymentOutput {
+	s.AppliedExtensions = v
 	return s
 }
 
@@ -6425,6 +8351,279 @@ func (s *GetEnvironmentOutput) SetState(v string) *GetEnvironmentOutput {
 	return s
 }
 
+type GetExtensionAssociationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The extension association ID to get.
+	//
+	// ExtensionAssociationId is a required field
+	ExtensionAssociationId *string `location:"uri" locationName:"ExtensionAssociationId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetExtensionAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetExtensionAssociationInput"}
+	if s.ExtensionAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExtensionAssociationId"))
+	}
+	if s.ExtensionAssociationId != nil && len(*s.ExtensionAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionAssociationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensionAssociationId sets the ExtensionAssociationId field's value.
+func (s *GetExtensionAssociationInput) SetExtensionAssociationId(v string) *GetExtensionAssociationInput {
+	s.ExtensionAssociationId = &v
+	return s
+}
+
+type GetExtensionAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	Arn *string `min:"20" type:"string"`
+
+	// The ARN of the extension defined in the association.
+	ExtensionArn *string `min:"20" type:"string"`
+
+	// The version number for the extension defined in the association.
+	ExtensionVersionNumber *int64 `type:"integer"`
+
+	// The system-generated ID for the association.
+	Id *string `min:"1" type:"string"`
+
+	// The parameter names and values defined in the association.
+	Parameters map[string]*string `type:"map"`
+
+	// The ARNs of applications, configuration profiles, or environments defined
+	// in the association.
+	ResourceArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetExtensionAssociationOutput) SetArn(v string) *GetExtensionAssociationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetExtensionArn sets the ExtensionArn field's value.
+func (s *GetExtensionAssociationOutput) SetExtensionArn(v string) *GetExtensionAssociationOutput {
+	s.ExtensionArn = &v
+	return s
+}
+
+// SetExtensionVersionNumber sets the ExtensionVersionNumber field's value.
+func (s *GetExtensionAssociationOutput) SetExtensionVersionNumber(v int64) *GetExtensionAssociationOutput {
+	s.ExtensionVersionNumber = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetExtensionAssociationOutput) SetId(v string) *GetExtensionAssociationOutput {
+	s.Id = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *GetExtensionAssociationOutput) SetParameters(v map[string]*string) *GetExtensionAssociationOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetExtensionAssociationOutput) SetResourceArn(v string) *GetExtensionAssociationOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+type GetExtensionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name, the ID, or the Amazon Resource Name (ARN) of the extension.
+	//
+	// ExtensionIdentifier is a required field
+	ExtensionIdentifier *string `location:"uri" locationName:"ExtensionIdentifier" min:"1" type:"string" required:"true"`
+
+	// The extension version number. If no version number was defined, AppConfig
+	// uses the highest version.
+	VersionNumber *int64 `location:"querystring" locationName:"version_number" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetExtensionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetExtensionInput"}
+	if s.ExtensionIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExtensionIdentifier"))
+	}
+	if s.ExtensionIdentifier != nil && len(*s.ExtensionIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensionIdentifier sets the ExtensionIdentifier field's value.
+func (s *GetExtensionInput) SetExtensionIdentifier(v string) *GetExtensionInput {
+	s.ExtensionIdentifier = &v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *GetExtensionInput) SetVersionNumber(v int64) *GetExtensionInput {
+	s.VersionNumber = &v
+	return s
+}
+
+type GetExtensionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The actions defined in the extension.
+	Actions map[string][]*Action `min:"1" type:"map"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	Arn *string `min:"20" type:"string"`
+
+	// Information about the extension.
+	Description *string `type:"string"`
+
+	// The system-generated ID of the extension.
+	Id *string `type:"string"`
+
+	// The extension name.
+	Name *string `min:"1" type:"string"`
+
+	// The parameters accepted by the extension. You specify parameter values when
+	// you associate the extension to an AppConfig resource by using the CreateExtensionAssociation
+	// API action. For Lambda extension actions, these parameters are included in
+	// the Lambda request object.
+	Parameters map[string]*Parameter `min:"1" type:"map"`
+
+	// The extension version number.
+	VersionNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExtensionOutput) GoString() string {
+	return s.String()
+}
+
+// SetActions sets the Actions field's value.
+func (s *GetExtensionOutput) SetActions(v map[string][]*Action) *GetExtensionOutput {
+	s.Actions = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetExtensionOutput) SetArn(v string) *GetExtensionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetExtensionOutput) SetDescription(v string) *GetExtensionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetExtensionOutput) SetId(v string) *GetExtensionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetExtensionOutput) SetName(v string) *GetExtensionOutput {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *GetExtensionOutput) SetParameters(v map[string]*Parameter) *GetExtensionOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *GetExtensionOutput) SetVersionNumber(v int64) *GetExtensionOutput {
+	s.VersionNumber = &v
+	return s
+}
+
 type GetHostedConfigurationVersionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -6737,6 +8936,10 @@ type InvalidConfigurationDetail struct {
 
 	// The type of error for an invalid configuration.
 	Type *string `type:"string"`
+
+	// Details about an error with Lambda when a synchronous extension experiences
+	// an error during an invocation.
+	Value *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -6778,6 +8981,12 @@ func (s *InvalidConfigurationDetail) SetReason(v string) *InvalidConfigurationDe
 // SetType sets the Type field's value.
 func (s *InvalidConfigurationDetail) SetType(v string) *InvalidConfigurationDetail {
 	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *InvalidConfigurationDetail) SetValue(v string) *InvalidConfigurationDetail {
+	s.Value = &v
 	return s
 }
 
@@ -7361,6 +9570,252 @@ func (s *ListEnvironmentsOutput) SetNextToken(v string) *ListEnvironmentsOutput 
 	return s
 }
 
+type ListExtensionAssociationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name, the ID, or the Amazon Resource Name (ARN) of the extension.
+	ExtensionIdentifier *string `location:"querystring" locationName:"extension_identifier" min:"1" type:"string"`
+
+	// The version number for the extension defined in the association.
+	ExtensionVersionNumber *int64 `location:"querystring" locationName:"extension_version_number" type:"integer"`
+
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `location:"querystring" locationName:"max_results" min:"1" type:"integer"`
+
+	// A token to start the list. Use this token to get the next set of results
+	// or pass null to get the first set of results.
+	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
+
+	// The ARN of an application, configuration profile, or environment.
+	ResourceIdentifier *string `location:"querystring" locationName:"resource_identifier" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExtensionAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExtensionAssociationsInput"}
+	if s.ExtensionIdentifier != nil && len(*s.ExtensionIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionIdentifier", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensionIdentifier sets the ExtensionIdentifier field's value.
+func (s *ListExtensionAssociationsInput) SetExtensionIdentifier(v string) *ListExtensionAssociationsInput {
+	s.ExtensionIdentifier = &v
+	return s
+}
+
+// SetExtensionVersionNumber sets the ExtensionVersionNumber field's value.
+func (s *ListExtensionAssociationsInput) SetExtensionVersionNumber(v int64) *ListExtensionAssociationsInput {
+	s.ExtensionVersionNumber = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListExtensionAssociationsInput) SetMaxResults(v int64) *ListExtensionAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExtensionAssociationsInput) SetNextToken(v string) *ListExtensionAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *ListExtensionAssociationsInput) SetResourceIdentifier(v string) *ListExtensionAssociationsInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+type ListExtensionAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of extension associations. Each item represents an extension association
+	// to an application, environment, or configuration profile.
+	Items []*ExtensionAssociationSummary `type:"list"`
+
+	// The token for the next set of items to return. Use this token to get the
+	// next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListExtensionAssociationsOutput) SetItems(v []*ExtensionAssociationSummary) *ListExtensionAssociationsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExtensionAssociationsOutput) SetNextToken(v string) *ListExtensionAssociationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListExtensionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `location:"querystring" locationName:"max_results" min:"1" type:"integer"`
+
+	// The extension name.
+	Name *string `location:"querystring" locationName:"name" min:"1" type:"string"`
+
+	// A token to start the list. Use this token to get the next set of results.
+	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExtensionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExtensionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListExtensionsInput) SetMaxResults(v int64) *ListExtensionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ListExtensionsInput) SetName(v string) *ListExtensionsInput {
+	s.Name = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExtensionsInput) SetNextToken(v string) *ListExtensionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListExtensionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of available extensions. The list includes Amazon Web Services-authored
+	// and user-created extensions.
+	Items []*ExtensionSummary `type:"list"`
+
+	// The token for the next set of items to return. Use this token to get the
+	// next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListExtensionsOutput) SetItems(v []*ExtensionSummary) *ListExtensionsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExtensionsOutput) SetNextToken(v string) *ListExtensionsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListHostedConfigurationVersionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7636,6 +10091,51 @@ func (s *Monitor) SetAlarmArn(v string) *Monitor {
 // SetAlarmRoleArn sets the AlarmRoleArn field's value.
 func (s *Monitor) SetAlarmRoleArn(v string) *Monitor {
 	s.AlarmRoleArn = &v
+	return s
+}
+
+// A value such as an Amazon Resource Name (ARN) or an Amazon Simple Notification
+// Service topic entered in an extension when invoked. Parameter values are
+// specified in an extension association. For more information about extensions,
+// see Working with AppConfig extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// in the AppConfig User Guide.
+type Parameter struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the parameter.
+	Description *string `type:"string"`
+
+	// A parameter value must be specified in the extension association.
+	Required *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Parameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Parameter) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *Parameter) SetDescription(v string) *Parameter {
+	s.Description = &v
+	return s
+}
+
+// SetRequired sets the Required field's value.
+func (s *Parameter) SetRequired(v bool) *Parameter {
+	s.Required = &v
 	return s
 }
 
@@ -7977,6 +10477,11 @@ type StartDeploymentOutput struct {
 	// The ID of the application that was deployed.
 	ApplicationId *string `type:"string"`
 
+	// A list of extensions that were processed as part of the deployment. The extensions
+	// that were previously associated to the configuration profile, environment,
+	// or the application when StartDeployment was called.
+	AppliedExtensions []*AppliedExtension `type:"list"`
+
 	// The time the deployment completed.
 	CompletedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -8053,6 +10558,12 @@ func (s StartDeploymentOutput) GoString() string {
 // SetApplicationId sets the ApplicationId field's value.
 func (s *StartDeploymentOutput) SetApplicationId(v string) *StartDeploymentOutput {
 	s.ApplicationId = &v
+	return s
+}
+
+// SetAppliedExtensions sets the AppliedExtensions field's value.
+func (s *StartDeploymentOutput) SetAppliedExtensions(v []*AppliedExtension) *StartDeploymentOutput {
+	s.AppliedExtensions = v
 	return s
 }
 
@@ -8244,6 +10755,11 @@ type StopDeploymentOutput struct {
 	// The ID of the application that was deployed.
 	ApplicationId *string `type:"string"`
 
+	// A list of extensions that were processed as part of the deployment. The extensions
+	// that were previously associated to the configuration profile, environment,
+	// or the application when StartDeployment was called.
+	AppliedExtensions []*AppliedExtension `type:"list"`
+
 	// The time the deployment completed.
 	CompletedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -8320,6 +10836,12 @@ func (s StopDeploymentOutput) GoString() string {
 // SetApplicationId sets the ApplicationId field's value.
 func (s *StopDeploymentOutput) SetApplicationId(v string) *StopDeploymentOutput {
 	s.ApplicationId = &v
+	return s
+}
+
+// SetAppliedExtensions sets the AppliedExtensions field's value.
+func (s *StopDeploymentOutput) SetAppliedExtensions(v []*AppliedExtension) *StopDeploymentOutput {
+	s.AppliedExtensions = v
 	return s
 }
 
@@ -9340,6 +11862,320 @@ func (s *UpdateEnvironmentOutput) SetState(v string) *UpdateEnvironmentOutput {
 	return s
 }
 
+type UpdateExtensionAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The system-generated ID for the association.
+	//
+	// ExtensionAssociationId is a required field
+	ExtensionAssociationId *string `location:"uri" locationName:"ExtensionAssociationId" type:"string" required:"true"`
+
+	// The parameter names and values defined in the extension.
+	Parameters map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateExtensionAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateExtensionAssociationInput"}
+	if s.ExtensionAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExtensionAssociationId"))
+	}
+	if s.ExtensionAssociationId != nil && len(*s.ExtensionAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionAssociationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensionAssociationId sets the ExtensionAssociationId field's value.
+func (s *UpdateExtensionAssociationInput) SetExtensionAssociationId(v string) *UpdateExtensionAssociationInput {
+	s.ExtensionAssociationId = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *UpdateExtensionAssociationInput) SetParameters(v map[string]*string) *UpdateExtensionAssociationInput {
+	s.Parameters = v
+	return s
+}
+
+type UpdateExtensionAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	Arn *string `min:"20" type:"string"`
+
+	// The ARN of the extension defined in the association.
+	ExtensionArn *string `min:"20" type:"string"`
+
+	// The version number for the extension defined in the association.
+	ExtensionVersionNumber *int64 `type:"integer"`
+
+	// The system-generated ID for the association.
+	Id *string `min:"1" type:"string"`
+
+	// The parameter names and values defined in the association.
+	Parameters map[string]*string `type:"map"`
+
+	// The ARNs of applications, configuration profiles, or environments defined
+	// in the association.
+	ResourceArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateExtensionAssociationOutput) SetArn(v string) *UpdateExtensionAssociationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetExtensionArn sets the ExtensionArn field's value.
+func (s *UpdateExtensionAssociationOutput) SetExtensionArn(v string) *UpdateExtensionAssociationOutput {
+	s.ExtensionArn = &v
+	return s
+}
+
+// SetExtensionVersionNumber sets the ExtensionVersionNumber field's value.
+func (s *UpdateExtensionAssociationOutput) SetExtensionVersionNumber(v int64) *UpdateExtensionAssociationOutput {
+	s.ExtensionVersionNumber = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateExtensionAssociationOutput) SetId(v string) *UpdateExtensionAssociationOutput {
+	s.Id = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *UpdateExtensionAssociationOutput) SetParameters(v map[string]*string) *UpdateExtensionAssociationOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UpdateExtensionAssociationOutput) SetResourceArn(v string) *UpdateExtensionAssociationOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+type UpdateExtensionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The actions defined in the extension.
+	Actions map[string][]*Action `min:"1" type:"map"`
+
+	// Information about the extension.
+	Description *string `type:"string"`
+
+	// The name, the ID, or the Amazon Resource Name (ARN) of the extension.
+	//
+	// ExtensionIdentifier is a required field
+	ExtensionIdentifier *string `location:"uri" locationName:"ExtensionIdentifier" min:"1" type:"string" required:"true"`
+
+	// One or more parameters for the actions called by the extension.
+	Parameters map[string]*Parameter `min:"1" type:"map"`
+
+	// The extension version number.
+	VersionNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateExtensionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateExtensionInput"}
+	if s.Actions != nil && len(s.Actions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Actions", 1))
+	}
+	if s.ExtensionIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExtensionIdentifier"))
+	}
+	if s.ExtensionIdentifier != nil && len(*s.ExtensionIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtensionIdentifier", 1))
+	}
+	if s.Parameters != nil && len(s.Parameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActions sets the Actions field's value.
+func (s *UpdateExtensionInput) SetActions(v map[string][]*Action) *UpdateExtensionInput {
+	s.Actions = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateExtensionInput) SetDescription(v string) *UpdateExtensionInput {
+	s.Description = &v
+	return s
+}
+
+// SetExtensionIdentifier sets the ExtensionIdentifier field's value.
+func (s *UpdateExtensionInput) SetExtensionIdentifier(v string) *UpdateExtensionInput {
+	s.ExtensionIdentifier = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *UpdateExtensionInput) SetParameters(v map[string]*Parameter) *UpdateExtensionInput {
+	s.Parameters = v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *UpdateExtensionInput) SetVersionNumber(v int64) *UpdateExtensionInput {
+	s.VersionNumber = &v
+	return s
+}
+
+type UpdateExtensionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The actions defined in the extension.
+	Actions map[string][]*Action `min:"1" type:"map"`
+
+	// The system-generated Amazon Resource Name (ARN) for the extension.
+	Arn *string `min:"20" type:"string"`
+
+	// Information about the extension.
+	Description *string `type:"string"`
+
+	// The system-generated ID of the extension.
+	Id *string `type:"string"`
+
+	// The extension name.
+	Name *string `min:"1" type:"string"`
+
+	// The parameters accepted by the extension. You specify parameter values when
+	// you associate the extension to an AppConfig resource by using the CreateExtensionAssociation
+	// API action. For Lambda extension actions, these parameters are included in
+	// the Lambda request object.
+	Parameters map[string]*Parameter `min:"1" type:"map"`
+
+	// The extension version number.
+	VersionNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExtensionOutput) GoString() string {
+	return s.String()
+}
+
+// SetActions sets the Actions field's value.
+func (s *UpdateExtensionOutput) SetActions(v map[string][]*Action) *UpdateExtensionOutput {
+	s.Actions = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateExtensionOutput) SetArn(v string) *UpdateExtensionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateExtensionOutput) SetDescription(v string) *UpdateExtensionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateExtensionOutput) SetId(v string) *UpdateExtensionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateExtensionOutput) SetName(v string) *UpdateExtensionOutput {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *UpdateExtensionOutput) SetParameters(v map[string]*Parameter) *UpdateExtensionOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *UpdateExtensionOutput) SetVersionNumber(v int64) *UpdateExtensionOutput {
+	s.VersionNumber = &v
+	return s
+}
+
 type ValidateConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -9513,6 +12349,42 @@ func (s *Validator) SetContent(v string) *Validator {
 func (s *Validator) SetType(v string) *Validator {
 	s.Type = &v
 	return s
+}
+
+const (
+	// ActionPointPreCreateHostedConfigurationVersion is a ActionPoint enum value
+	ActionPointPreCreateHostedConfigurationVersion = "PRE_CREATE_HOSTED_CONFIGURATION_VERSION"
+
+	// ActionPointPreStartDeployment is a ActionPoint enum value
+	ActionPointPreStartDeployment = "PRE_START_DEPLOYMENT"
+
+	// ActionPointOnDeploymentStart is a ActionPoint enum value
+	ActionPointOnDeploymentStart = "ON_DEPLOYMENT_START"
+
+	// ActionPointOnDeploymentStep is a ActionPoint enum value
+	ActionPointOnDeploymentStep = "ON_DEPLOYMENT_STEP"
+
+	// ActionPointOnDeploymentBaking is a ActionPoint enum value
+	ActionPointOnDeploymentBaking = "ON_DEPLOYMENT_BAKING"
+
+	// ActionPointOnDeploymentComplete is a ActionPoint enum value
+	ActionPointOnDeploymentComplete = "ON_DEPLOYMENT_COMPLETE"
+
+	// ActionPointOnDeploymentRolledBack is a ActionPoint enum value
+	ActionPointOnDeploymentRolledBack = "ON_DEPLOYMENT_ROLLED_BACK"
+)
+
+// ActionPoint_Values returns all elements of the ActionPoint enum
+func ActionPoint_Values() []string {
+	return []string{
+		ActionPointPreCreateHostedConfigurationVersion,
+		ActionPointPreStartDeployment,
+		ActionPointOnDeploymentStart,
+		ActionPointOnDeploymentStep,
+		ActionPointOnDeploymentBaking,
+		ActionPointOnDeploymentComplete,
+		ActionPointOnDeploymentRolledBack,
+	}
 }
 
 const (

@@ -25,6 +25,16 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListExtensionAssociations": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListExtensions": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListHostedConfigurationVersions": {
       "input_token": "NextToken",
       "output_token": "NextToken",

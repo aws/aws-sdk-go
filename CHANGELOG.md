@@ -1,3 +1,9 @@
+Release v1.44.54 (2022-07-13)
+===
+
+### Service Client Updates
+* `service/appconfig`: Updates service API, documentation, and paginators
+
 Release v1.44.53 (2022-07-12)
 ===
 
