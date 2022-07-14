@@ -4509,7 +4509,22 @@
         "AWS::ECR::PublicRepository",
         "AWS::GuardDuty::Detector",
         "AWS::EMR::SecurityConfiguration",
-        "AWS::SageMaker::CodeRepository"
+        "AWS::SageMaker::CodeRepository",
+        "AWS::Route53Resolver::ResolverEndpoint",
+        "AWS::Route53Resolver::ResolverRule",
+        "AWS::Route53Resolver::ResolverRuleAssociation",
+        "AWS::DMS::ReplicationSubnetGroup",
+        "AWS::DMS::EventSubscription",
+        "AWS::MSK::Cluster",
+        "AWS::StepFunctions::Activity",
+        "AWS::WorkSpaces::Workspace",
+        "AWS::WorkSpaces::ConnectionAlias",
+        "AWS::SageMaker::Model",
+        "AWS::ElasticLoadBalancingV2::Listener",
+        "AWS::StepFunctions::StateMachine",
+        "AWS::Batch::JobQueue",
+        "AWS::Batch::ComputeEnvironment",
+        "AWS::AccessAnalyzer::Analyzer"
       ]
     },
     "ResourceTypeList":{

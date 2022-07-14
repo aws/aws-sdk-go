@@ -5,6 +5,11 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListAccessControlConfigurations": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListDataSourceSyncJobs": {
       "input_token": "NextToken",
       "output_token": "NextToken",

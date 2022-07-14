@@ -1010,6 +1010,100 @@ func (c *CodeArtifact) DescribeDomainWithContext(ctx aws.Context, input *Describ
 	return out, req.Send()
 }
 
+const opDescribePackage = "DescribePackage"
+
+// DescribePackageRequest generates a "aws/request.Request" representing the
+// client's request for the DescribePackage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribePackage for more information on using the DescribePackage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribePackageRequest method.
+//    req, resp := client.DescribePackageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeartifact-2018-09-22/DescribePackage
+func (c *CodeArtifact) DescribePackageRequest(input *DescribePackageInput) (req *request.Request, output *DescribePackageOutput) {
+	op := &request.Operation{
+		Name:       opDescribePackage,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/package",
+	}
+
+	if input == nil {
+		input = &DescribePackageInput{}
+	}
+
+	output = &DescribePackageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribePackage API operation for CodeArtifact.
+//
+// Returns a PackageDescription (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageDescription.html)
+// object that contains information about the requested package.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for CodeArtifact's
+// API operation DescribePackage for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   The operation did not succeed because of an unauthorized access attempt.
+//
+//   * InternalServerException
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
+//
+//   * ResourceNotFoundException
+//   The operation did not succeed because the resource requested is not found
+//   in the service.
+//
+//   * ThrottlingException
+//   The operation did not succeed because too many requests are sent to the service.
+//
+//   * ValidationException
+//   The operation did not succeed because a parameter in the request was sent
+//   with an invalid value.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeartifact-2018-09-22/DescribePackage
+func (c *CodeArtifact) DescribePackage(input *DescribePackageInput) (*DescribePackageOutput, error) {
+	req, out := c.DescribePackageRequest(input)
+	return out, req.Send()
+}
+
+// DescribePackageWithContext is the same as DescribePackage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribePackage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeArtifact) DescribePackageWithContext(ctx aws.Context, input *DescribePackageInput, opts ...request.Option) (*DescribePackageOutput, error) {
+	req, out := c.DescribePackageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribePackageVersion = "DescribePackageVersion"
 
 // DescribePackageVersionRequest generates a "aws/request.Request" representing the
@@ -1760,7 +1854,10 @@ func (c *CodeArtifact) GetPackageVersionReadmeRequest(input *GetPackageVersionRe
 
 // GetPackageVersionReadme API operation for CodeArtifact.
 //
-// Gets the readme file or descriptive text for a package version.
+// Gets the readme file or descriptive text for a package version. For packages
+// that do not contain a readme file, CodeArtifact extracts a description from
+// a metadata file. For example, from the <description> element in the pom.xml
+// file of a Maven package.
 //
 // The returned text might contain formatting. For example, it might contain
 // formatting for Markdown or reStructuredText.
@@ -3209,6 +3306,115 @@ func (c *CodeArtifact) PutDomainPermissionsPolicyWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opPutPackageOriginConfiguration = "PutPackageOriginConfiguration"
+
+// PutPackageOriginConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutPackageOriginConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutPackageOriginConfiguration for more information on using the PutPackageOriginConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutPackageOriginConfigurationRequest method.
+//    req, resp := client.PutPackageOriginConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeartifact-2018-09-22/PutPackageOriginConfiguration
+func (c *CodeArtifact) PutPackageOriginConfigurationRequest(input *PutPackageOriginConfigurationInput) (req *request.Request, output *PutPackageOriginConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutPackageOriginConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/package",
+	}
+
+	if input == nil {
+		input = &PutPackageOriginConfigurationInput{}
+	}
+
+	output = &PutPackageOriginConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutPackageOriginConfiguration API operation for CodeArtifact.
+//
+// Sets the package origin configuration for a package.
+//
+// The package origin configuration determines how new versions of a package
+// can be added to a repository. You can allow or block direct publishing of
+// new package versions, or ingestion and retaining of new package versions
+// from an external connection or upstream source. For more information about
+// package origin controls and configuration, see Editing package origin controls
+// (https://docs.aws.amazon.com/codeartifact/latest/ug/package-origin-controls.html)
+// in the CodeArtifact User Guide.
+//
+// PutPackageOriginConfiguration can be called on a package that doesn't yet
+// exist in the repository. When called on a package that does not exist, a
+// package is created in the repository with no versions and the requested restrictions
+// are set on the package. This can be used to preemptively block ingesting
+// or retaining any versions from external connections or upstream repositories,
+// or to block publishing any versions of the package into the repository before
+// connecting any package managers or publishers to the repository.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for CodeArtifact's
+// API operation PutPackageOriginConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   The operation did not succeed because of an unauthorized access attempt.
+//
+//   * InternalServerException
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
+//
+//   * ResourceNotFoundException
+//   The operation did not succeed because the resource requested is not found
+//   in the service.
+//
+//   * ThrottlingException
+//   The operation did not succeed because too many requests are sent to the service.
+//
+//   * ValidationException
+//   The operation did not succeed because a parameter in the request was sent
+//   with an invalid value.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeartifact-2018-09-22/PutPackageOriginConfiguration
+func (c *CodeArtifact) PutPackageOriginConfiguration(input *PutPackageOriginConfigurationInput) (*PutPackageOriginConfigurationOutput, error) {
+	req, out := c.PutPackageOriginConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutPackageOriginConfigurationWithContext is the same as PutPackageOriginConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutPackageOriginConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeArtifact) PutPackageOriginConfigurationWithContext(ctx aws.Context, input *PutPackageOriginConfigurationInput, opts ...request.Option) (*PutPackageOriginConfigurationOutput, error) {
+	req, out := c.PutPackageOriginConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutRepositoryPermissionsPolicy = "PutRepositoryPermissionsPolicy"
 
 // PutRepositoryPermissionsPolicyRequest generates a "aws/request.Request" representing the
@@ -3833,8 +4039,6 @@ type AssociateExternalConnectionInput struct {
 	//
 	//    * public:npmjs - for the npm public repository.
 	//
-	//    * public:nuget-org - for the NuGet Gallery.
-	//
 	//    * public:pypi - for the Python Package Index.
 	//
 	//    * public:maven-central - for Maven Central.
@@ -3846,7 +4050,7 @@ type AssociateExternalConnectionInput struct {
 	//    * public:maven-commonsware - for the CommonsWare Android repository.
 	//
 	// ExternalConnection is a required field
-	ExternalConnection *string `location:"querystring" locationName:"external-connection" type:"string" required:"true"`
+	ExternalConnection *string `location:"querystring" locationName:"external-connection" min:"2" type:"string" required:"true"`
 
 	// The name of the repository to which the external connection is added.
 	//
@@ -3886,6 +4090,9 @@ func (s *AssociateExternalConnectionInput) Validate() error {
 	}
 	if s.ExternalConnection == nil {
 		invalidParams.Add(request.NewErrParamRequired("ExternalConnection"))
+	}
+	if s.ExternalConnection != nil && len(*s.ExternalConnection) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalConnection", 2))
 	}
 	if s.Repository == nil {
 		invalidParams.Add(request.NewErrParamRequired("Repository"))
@@ -4048,7 +4255,7 @@ type CopyPackageVersionsInput struct {
 	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
-	// The format of the package that is copied.
+	// The format of the package versions to be copied.
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -4058,23 +4265,24 @@ type CopyPackageVersionsInput struct {
 	// For more information, see Working with upstream repositories (https://docs.aws.amazon.com/codeartifact/latest/ug/repos-upstream.html).
 	IncludeFromUpstream *bool `locationName:"includeFromUpstream" type:"boolean"`
 
-	// The namespace of the package. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace of the package versions to be copied. The package version component
+	// that specifies its namespace depends on its type. For example:
 	//
-	//    * The namespace of a Maven package is its groupId.
+	//    * The namespace of a Maven package version is its groupId. The namespace
+	//    is required when copying Maven package versions.
 	//
-	//    * The namespace of an npm package is its scope.
+	//    * The namespace of an npm package version is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet package versions do not contain a corresponding component,
+	//    package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
-	// The name of the package that is copied.
+	// The name of the package that contains the versions to be copied.
 	//
 	// Package is a required field
 	Package *string `location:"querystring" locationName:"package" min:"1" type:"string" required:"true"`
 
-	// The name of the repository that contains the package versions to copy.
+	// The name of the repository that contains the package versions to be copied.
 	//
 	// SourceRepository is a required field
 	SourceRepository *string `location:"querystring" locationName:"source-repository" min:"2" type:"string" required:"true"`
@@ -4087,7 +4295,7 @@ type CopyPackageVersionsInput struct {
 	// You must specify versions or versionRevisions. You cannot specify both.
 	VersionRevisions map[string]*string `locationName:"versionRevisions" type:"map"`
 
-	// The versions of the package to copy.
+	// The versions of the package to be copied.
 	//
 	// You must specify versions or versionRevisions. You cannot specify both.
 	Versions []*string `locationName:"versions" type:"list"`
@@ -4779,15 +4987,16 @@ type DeletePackageVersionsInput struct {
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
-	// The namespace of the package. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace of the package versions to be deleted. The package version
+	// component that specifies its namespace depends on its type. For example:
 	//
-	//    * The namespace of a Maven package is its groupId.
+	//    * The namespace of a Maven package version is its groupId. The namespace
+	//    is required when deleting Maven package versions.
 	//
-	//    * The namespace of an npm package is its scope.
+	//    * The namespace of an npm package version is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet package versions do not contain a corresponding component,
+	//    package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package with the versions to delete.
@@ -5296,6 +5505,171 @@ func (s *DescribeDomainOutput) SetDomain(v *DomainDescription) *DescribeDomainOu
 	return s
 }
 
+type DescribePackageInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the domain that contains the repository that contains the package.
+	//
+	// Domain is a required field
+	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
+
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
+	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
+
+	// A format that specifies the type of the requested package.
+	//
+	// Format is a required field
+	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
+
+	// The namespace of the requested package. The package component that specifies
+	// its namespace depends on its type. For example:
+	//
+	//    * The namespace of a Maven package is its groupId. The namespace is required
+	//    when requesting Maven packages.
+	//
+	//    * The namespace of an npm package is its scope.
+	//
+	//    * Python and NuGet packages do not contain a corresponding component,
+	//    packages of those formats do not have a namespace.
+	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
+
+	// The name of the requested package.
+	//
+	// Package is a required field
+	Package *string `location:"querystring" locationName:"package" min:"1" type:"string" required:"true"`
+
+	// The name of the repository that contains the requested package.
+	//
+	// Repository is a required field
+	Repository *string `location:"querystring" locationName:"repository" min:"2" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePackageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePackageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribePackageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribePackageInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 2))
+	}
+	if s.DomainOwner != nil && len(*s.DomainOwner) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainOwner", 12))
+	}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.Package == nil {
+		invalidParams.Add(request.NewErrParamRequired("Package"))
+	}
+	if s.Package != nil && len(*s.Package) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Package", 1))
+	}
+	if s.Repository == nil {
+		invalidParams.Add(request.NewErrParamRequired("Repository"))
+	}
+	if s.Repository != nil && len(*s.Repository) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Repository", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *DescribePackageInput) SetDomain(v string) *DescribePackageInput {
+	s.Domain = &v
+	return s
+}
+
+// SetDomainOwner sets the DomainOwner field's value.
+func (s *DescribePackageInput) SetDomainOwner(v string) *DescribePackageInput {
+	s.DomainOwner = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *DescribePackageInput) SetFormat(v string) *DescribePackageInput {
+	s.Format = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DescribePackageInput) SetNamespace(v string) *DescribePackageInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetPackage sets the Package field's value.
+func (s *DescribePackageInput) SetPackage(v string) *DescribePackageInput {
+	s.Package = &v
+	return s
+}
+
+// SetRepository sets the Repository field's value.
+func (s *DescribePackageInput) SetRepository(v string) *DescribePackageInput {
+	s.Repository = &v
+	return s
+}
+
+type DescribePackageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A PackageDescription (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageDescription.html)
+	// object that contains information about the requested package.
+	//
+	// Package is a required field
+	Package *PackageDescription `locationName:"package" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePackageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePackageOutput) GoString() string {
+	return s.String()
+}
+
+// SetPackage sets the Package field's value.
+func (s *DescribePackageOutput) SetPackage(v *PackageDescription) *DescribePackageOutput {
+	s.Package = v
+	return s
+}
+
 type DescribePackageVersionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -5314,15 +5688,15 @@ type DescribePackageVersionInput struct {
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
-	// The namespace of the package. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace of the requested package version. The package version component
+	// that specifies its namespace depends on its type. For example:
 	//
-	//    * The namespace of a Maven package is its groupId.
+	//    * The namespace of a Maven package version is its groupId.
 	//
-	//    * The namespace of an npm package is its scope.
+	//    * The namespace of an npm package version is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet package versions do not contain a corresponding component,
+	//    package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the requested package version.
@@ -5604,7 +5978,7 @@ type DisassociateExternalConnectionInput struct {
 	// The name of the external connection to be removed from the repository.
 	//
 	// ExternalConnection is a required field
-	ExternalConnection *string `location:"querystring" locationName:"external-connection" type:"string" required:"true"`
+	ExternalConnection *string `location:"querystring" locationName:"external-connection" min:"2" type:"string" required:"true"`
 
 	// The name of the repository from which the external connection will be removed.
 	//
@@ -5644,6 +6018,9 @@ func (s *DisassociateExternalConnectionInput) Validate() error {
 	}
 	if s.ExternalConnection == nil {
 		invalidParams.Add(request.NewErrParamRequired("ExternalConnection"))
+	}
+	if s.ExternalConnection != nil && len(*s.ExternalConnection) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalConnection", 2))
 	}
 	if s.Repository == nil {
 		invalidParams.Add(request.NewErrParamRequired("Repository"))
@@ -5733,15 +6110,15 @@ type DisposePackageVersionsInput struct {
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
-	// The namespace of the package. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace of the package versions to be disposed. The package version
+	// component that specifies its namespace depends on its type. For example:
 	//
-	//    * The namespace of a Maven package is its groupId.
+	//    * The namespace of a Maven package version is its groupId.
 	//
-	//    * The namespace of an npm package is its scope.
+	//    * The namespace of an npm package version is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet package versions do not contain a corresponding component,
+	//    package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package with the versions you want to dispose.
@@ -6032,6 +6409,52 @@ func (s *DomainDescription) SetS3BucketArn(v string) *DomainDescription {
 // SetStatus sets the Status field's value.
 func (s *DomainDescription) SetStatus(v string) *DomainDescription {
 	s.Status = &v
+	return s
+}
+
+// Information about how a package originally entered the CodeArtifact domain.
+// For packages published directly to CodeArtifact, the entry point is the repository
+// it was published to. For packages ingested from an external repository, the
+// entry point is the external connection that it was ingested from. An external
+// connection is a CodeArtifact repository that is connected to an external
+// repository such as the npm registry or NuGet gallery.
+type DomainEntryPoint struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the external connection that a package was ingested from.
+	ExternalConnectionName *string `locationName:"externalConnectionName" min:"2" type:"string"`
+
+	// The name of the repository that a package was originally published to.
+	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DomainEntryPoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DomainEntryPoint) GoString() string {
+	return s.String()
+}
+
+// SetExternalConnectionName sets the ExternalConnectionName field's value.
+func (s *DomainEntryPoint) SetExternalConnectionName(v string) *DomainEntryPoint {
+	s.ExternalConnectionName = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *DomainEntryPoint) SetRepositoryName(v string) *DomainEntryPoint {
+	s.RepositoryName = &v
 	return s
 }
 
@@ -6346,15 +6769,15 @@ type GetPackageVersionAssetInput struct {
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
-	// The namespace of the package. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace of the package version with the requested asset file. The package
+	// version component that specifies its namespace depends on its type. For example:
 	//
-	//    * The namespace of a Maven package is its groupId.
+	//    * The namespace of a Maven package version is its groupId.
 	//
-	//    * The namespace of an npm package is its scope.
+	//    * The namespace of an npm package version is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet package versions do not contain a corresponding component,
+	//    package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package that contains the requested asset.
@@ -6574,21 +6997,19 @@ type GetPackageVersionReadmeInput struct {
 	// A format that specifies the type of the package version with the requested
 	// readme file.
 	//
-	// Although maven is listed as a valid value, CodeArtifact does not support
-	// displaying readme files for Maven packages.
-	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
-	// The namespace of the package. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace of the package version with the requested readme file. The
+	// package version component that specifies its namespace depends on its type.
+	// For example:
 	//
-	//    * The namespace of a Maven package is its groupId.
+	//    * The namespace of a Maven package version is its groupId.
 	//
-	//    * The namespace of an npm package is its scope.
+	//    * The namespace of an npm package version is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet package versions do not contain a corresponding component,
+	//    package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package version that contains the requested readme file.
@@ -6716,15 +7137,16 @@ type GetPackageVersionReadmeOutput struct {
 	// The format of the package with the requested readme file.
 	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
 
-	// The namespace of the package. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace of the package version with the requested readme file. The
+	// package version component that specifies its namespace depends on its type.
+	// For example:
 	//
-	//    * The namespace of a Maven package is its groupId.
+	//    * The namespace of a Maven package version is its groupId.
 	//
-	//    * The namespace of an npm package is its scope.
+	//    * The namespace of an npm package version is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet package versions do not contain a corresponding component,
+	//    package versions of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package that contains the returned readme file.
@@ -7247,7 +7669,7 @@ type ListPackageVersionAssetsInput struct {
 	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
-	// The format of the package that contains the returned package version assets.
+	// The format of the package that contains the requested package version assets.
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -7255,22 +7677,23 @@ type ListPackageVersionAssetsInput struct {
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
-	// The namespace of the package. The package component that specifies its namespace
+	// The namespace of the package version that contains the requested package
+	// version assets. The package version component that specifies its namespace
 	// depends on its type. For example:
 	//
-	//    * The namespace of a Maven package is its groupId.
+	//    * The namespace of a Maven package version is its groupId.
 	//
-	//    * The namespace of an npm package is its scope.
+	//    * The namespace of an npm package version is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet package versions do not contain a corresponding component,
+	//    package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
 	// response in the next request to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"next-token" min:"1" type:"string"`
 
-	// The name of the package that contains the returned package version assets.
+	// The name of the package that contains the requested package version assets.
 	//
 	// Package is a required field
 	Package *string `location:"querystring" locationName:"package" min:"1" type:"string" required:"true"`
@@ -7280,7 +7703,7 @@ type ListPackageVersionAssetsInput struct {
 	// PackageVersion is a required field
 	PackageVersion *string `location:"querystring" locationName:"version" min:"1" type:"string" required:"true"`
 
-	// The name of the repository that contains the package that contains the returned
+	// The name of the repository that contains the package that contains the requested
 	// package version assets.
 	//
 	// Repository is a required field
@@ -7415,27 +7838,28 @@ type ListPackageVersionAssetsOutput struct {
 	// objects.
 	Assets []*AssetSummary `locationName:"assets" type:"list"`
 
-	// The format of the package that contains the returned package version assets.
+	// The format of the package that contains the requested package version assets.
 	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
 
-	// The namespace of the package. The package component that specifies its namespace
+	// The namespace of the package version that contains the requested package
+	// version assets. The package version component that specifies its namespace
 	// depends on its type. For example:
 	//
-	//    * The namespace of a Maven package is its groupId.
+	//    * The namespace of a Maven package version is its groupId.
 	//
-	//    * The namespace of an npm package is its scope.
+	//    * The namespace of an npm package version is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet package versions do not contain a corresponding component,
+	//    package versions of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// If there are additional results, this is the token for the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
-	// The name of the package that contains the returned package version assets.
+	// The name of the package that contains the requested package version assets.
 	Package *string `locationName:"package" min:"1" type:"string"`
 
-	// The version of the package associated with the returned assets.
+	// The version of the package associated with the requested assets.
 	Version *string `locationName:"version" min:"1" type:"string"`
 
 	// The current revision associated with the package version.
@@ -7520,15 +7944,16 @@ type ListPackageVersionDependenciesInput struct {
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
-	// The namespace of the package. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace of the package version with the requested dependencies. The
+	// package version component that specifies its namespace depends on its type.
+	// For example:
 	//
-	//    * The namespace of a Maven package is its groupId.
+	//    * The namespace of a Maven package version is its groupId.
 	//
-	//    * The namespace of an npm package is its scope.
+	//    * The namespace of an npm package version is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet package versions do not contain a corresponding component,
+	//    package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -7674,15 +8099,16 @@ type ListPackageVersionDependenciesOutput struct {
 	// dependencies.
 	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
 
-	// The namespace of the package. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace of the package version that contains the returned dependencies.
+	// The package version component that specifies its namespace depends on its
+	// type. For example:
 	//
-	//    * The namespace of a Maven package is its groupId.
+	//    * The namespace of a Maven package version is its groupId.
 	//
-	//    * The namespace of an npm package is its scope.
+	//    * The namespace of an npm package version is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet package versions do not contain a corresponding component,
+	//    package versions of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -7762,7 +8188,7 @@ func (s *ListPackageVersionDependenciesOutput) SetVersionRevision(v string) *Lis
 type ListPackageVersionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the domain that contains the repository that contains the returned
+	// The name of the domain that contains the repository that contains the requested
 	// package versions.
 	//
 	// Domain is a required field
@@ -7772,7 +8198,7 @@ type ListPackageVersionsInput struct {
 	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
-	// The format of the returned packages.
+	// The format of the returned package versions.
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -7780,36 +8206,40 @@ type ListPackageVersionsInput struct {
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
-	// The namespace of the package. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace of the package that contains the requested package versions.
+	// The package component that specifies its namespace depends on its type. For
+	// example:
 	//
 	//    * The namespace of a Maven package is its groupId.
 	//
 	//    * The namespace of an npm package is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet packages do not contain a corresponding component,
+	//    packages of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
 	// response in the next request to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"next-token" min:"1" type:"string"`
 
-	// The name of the package for which you want to return a list of package versions.
+	// The originType used to filter package versions. Only package versions with
+	// the provided originType will be returned.
+	OriginType *string `location:"querystring" locationName:"originType" type:"string" enum:"PackageVersionOriginType"`
+
+	// The name of the package for which you want to request package versions.
 	//
 	// Package is a required field
 	Package *string `location:"querystring" locationName:"package" min:"1" type:"string" required:"true"`
 
-	// The name of the repository that contains the package.
+	// The name of the repository that contains the requested package versions.
 	//
 	// Repository is a required field
 	Repository *string `location:"querystring" locationName:"repository" min:"2" type:"string" required:"true"`
 
-	// How to sort the returned list of package versions.
+	// How to sort the requested list of package versions.
 	SortBy *string `location:"querystring" locationName:"sortBy" type:"string" enum:"PackageVersionSortType"`
 
-	// A string that specifies the status of the package versions to include in
-	// the returned list.
+	// A string that filters the requested package versions by status.
 	Status *string `location:"querystring" locationName:"status" type:"string" enum:"PackageVersionStatus"`
 }
 
@@ -7910,6 +8340,12 @@ func (s *ListPackageVersionsInput) SetNextToken(v string) *ListPackageVersionsIn
 	return s
 }
 
+// SetOriginType sets the OriginType field's value.
+func (s *ListPackageVersionsInput) SetOriginType(v string) *ListPackageVersionsInput {
+	s.OriginType = &v
+	return s
+}
+
 // SetPackage sets the Package field's value.
 func (s *ListPackageVersionsInput) SetPackage(v string) *ListPackageVersionsInput {
 	s.Package = &v
@@ -7949,15 +8385,16 @@ type ListPackageVersionsOutput struct {
 	// A format of the package.
 	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
 
-	// The namespace of the package. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace of the package that contains the requested package versions.
+	// The package component that specifies its namespace depends on its type. For
+	// example:
 	//
 	//    * The namespace of a Maven package is its groupId.
 	//
 	//    * The namespace of an npm package is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet packages do not contain a corresponding component,
+	//    packages of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// If there are additional results, this is the token for the next set of results.
@@ -8029,7 +8466,7 @@ type ListPackagesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain that contains the repository that contains the requested
-	// list of packages.
+	// packages.
 	//
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
@@ -8038,35 +8475,47 @@ type ListPackagesInput struct {
 	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
-	// The format of the packages.
+	// The format used to filter requested packages. Only packages from the provided
+	// format will be returned.
 	Format *string `location:"querystring" locationName:"format" type:"string" enum:"PackageFormat"`
 
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
-	// The namespace of the package. The package component that specifies its namespace
+	// The namespace used to filter requested packages. Only packages with the provided
+	// namespace will be returned. The package component that specifies its namespace
 	// depends on its type. For example:
 	//
 	//    * The namespace of a Maven package is its groupId.
 	//
 	//    * The namespace of an npm package is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet packages do not contain a corresponding component,
+	//    packages of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
 	// response in the next request to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"next-token" min:"1" type:"string"`
 
-	// A prefix used to filter returned packages. Only packages with names that
+	// A prefix used to filter requested packages. Only packages with names that
 	// start with packagePrefix are returned.
 	PackagePrefix *string `location:"querystring" locationName:"package-prefix" min:"1" type:"string"`
 
-	// The name of the repository from which packages are to be listed.
+	// The value of the Publish package origin control restriction used to filter
+	// requested packages. Only packages with the provided restriction are returned.
+	// For more information, see PackageOriginRestrictions (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageOriginRestrictions.html).
+	Publish *string `location:"querystring" locationName:"publish" type:"string" enum:"AllowPublish"`
+
+	// The name of the repository that contains the requested packages.
 	//
 	// Repository is a required field
 	Repository *string `location:"querystring" locationName:"repository" min:"2" type:"string" required:"true"`
+
+	// The value of the Upstream package origin control restriction used to filter
+	// requested packages. Only packages with the provided restriction are returned.
+	// For more information, see PackageOriginRestrictions (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageOriginRestrictions.html).
+	Upstream *string `location:"querystring" locationName:"upstream" type:"string" enum:"AllowUpstream"`
 }
 
 // String returns the string representation.
@@ -8166,9 +8615,21 @@ func (s *ListPackagesInput) SetPackagePrefix(v string) *ListPackagesInput {
 	return s
 }
 
+// SetPublish sets the Publish field's value.
+func (s *ListPackagesInput) SetPublish(v string) *ListPackagesInput {
+	s.Publish = &v
+	return s
+}
+
 // SetRepository sets the Repository field's value.
 func (s *ListPackagesInput) SetRepository(v string) *ListPackagesInput {
 	s.Repository = &v
+	return s
+}
+
+// SetUpstream sets the Upstream field's value.
+func (s *ListPackagesInput) SetUpstream(v string) *ListPackagesInput {
+	s.Upstream = &v
 	return s
 }
 
@@ -8566,15 +9027,15 @@ type PackageDependency struct {
 	// dev, prod, and optional for npm packages.
 	DependencyType *string `locationName:"dependencyType" type:"string"`
 
-	// The namespace of the package. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace of the package that this package depends on. The package component
+	// that specifies its namespace depends on its type. For example:
 	//
 	//    * The namespace of a Maven package is its groupId.
 	//
 	//    * The namespace of an npm package is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet packages do not contain a corresponding component,
+	//    packages of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package that this package depends on.
@@ -8628,6 +9089,171 @@ func (s *PackageDependency) SetVersionRequirement(v string) *PackageDependency {
 	return s
 }
 
+// Details about a package.
+type PackageDescription struct {
+	_ struct{} `type:"structure"`
+
+	// A format that specifies the type of the package.
+	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
+
+	// The name of the package.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The namespace of the package. The package component that specifies its namespace
+	// depends on its type. For example:
+	//
+	//    * The namespace of a Maven package is its groupId.
+	//
+	//    * The namespace of an npm package is its scope.
+	//
+	//    * Python and NuGet packages do not contain a corresponding component,
+	//    packages of those formats do not have a namespace.
+	Namespace *string `locationName:"namespace" min:"1" type:"string"`
+
+	// The package origin configuration for the package.
+	OriginConfiguration *PackageOriginConfiguration `locationName:"originConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PackageDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PackageDescription) GoString() string {
+	return s.String()
+}
+
+// SetFormat sets the Format field's value.
+func (s *PackageDescription) SetFormat(v string) *PackageDescription {
+	s.Format = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PackageDescription) SetName(v string) *PackageDescription {
+	s.Name = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *PackageDescription) SetNamespace(v string) *PackageDescription {
+	s.Namespace = &v
+	return s
+}
+
+// SetOriginConfiguration sets the OriginConfiguration field's value.
+func (s *PackageDescription) SetOriginConfiguration(v *PackageOriginConfiguration) *PackageDescription {
+	s.OriginConfiguration = v
+	return s
+}
+
+// Details about the package origin configuration of a package.
+type PackageOriginConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A PackageOriginRestrictions object that contains information about the upstream
+	// and publish package origin configuration for the package.
+	Restrictions *PackageOriginRestrictions `locationName:"restrictions" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PackageOriginConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PackageOriginConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetRestrictions sets the Restrictions field's value.
+func (s *PackageOriginConfiguration) SetRestrictions(v *PackageOriginRestrictions) *PackageOriginConfiguration {
+	s.Restrictions = v
+	return s
+}
+
+// Details about the origin restrictions set on the package. The package origin
+// restrictions determine how new versions of a package can be added to a specific
+// repository.
+type PackageOriginRestrictions struct {
+	_ struct{} `type:"structure"`
+
+	// The package origin configuration that determines if new versions of the package
+	// can be published directly to the repository.
+	//
+	// Publish is a required field
+	Publish *string `locationName:"publish" type:"string" required:"true" enum:"AllowPublish"`
+
+	// The package origin configuration that determines if new versions of the package
+	// can be added to the repository from an external connection or upstream source.
+	//
+	// Upstream is a required field
+	Upstream *string `locationName:"upstream" type:"string" required:"true" enum:"AllowUpstream"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PackageOriginRestrictions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PackageOriginRestrictions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PackageOriginRestrictions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PackageOriginRestrictions"}
+	if s.Publish == nil {
+		invalidParams.Add(request.NewErrParamRequired("Publish"))
+	}
+	if s.Upstream == nil {
+		invalidParams.Add(request.NewErrParamRequired("Upstream"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPublish sets the Publish field's value.
+func (s *PackageOriginRestrictions) SetPublish(v string) *PackageOriginRestrictions {
+	s.Publish = &v
+	return s
+}
+
+// SetUpstream sets the Upstream field's value.
+func (s *PackageOriginRestrictions) SetUpstream(v string) *PackageOriginRestrictions {
+	s.Upstream = &v
+	return s
+}
+
 // Details about a package, including its format, namespace, and name. The ListPackages
 // (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackages.html)
 // operation returns a list of PackageSummary objects.
@@ -8644,9 +9270,15 @@ type PackageSummary struct {
 	//
 	//    * The namespace of an npm package is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet packages do not contain a corresponding component,
+	//    packages of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
+
+	// A PackageOriginConfiguration (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageOriginConfiguration.html)
+	// object that contains a PackageOriginRestrictions (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageOriginRestrictions.html)
+	// object that contains information about the upstream and publish package origin
+	// restrictions.
+	OriginConfiguration *PackageOriginConfiguration `locationName:"originConfiguration" type:"structure"`
 
 	// The name of the package.
 	Package *string `locationName:"package" min:"1" type:"string"`
@@ -8682,6 +9314,12 @@ func (s *PackageSummary) SetNamespace(v string) *PackageSummary {
 	return s
 }
 
+// SetOriginConfiguration sets the OriginConfiguration field's value.
+func (s *PackageSummary) SetOriginConfiguration(v *PackageOriginConfiguration) *PackageSummary {
+	s.OriginConfiguration = v
+	return s
+}
+
 // SetPackage sets the Package field's value.
 func (s *PackageSummary) SetPackage(v string) *PackageSummary {
 	s.Package = &v
@@ -8707,16 +9345,21 @@ type PackageVersionDescription struct {
 	// Information about licenses associated with the package version.
 	Licenses []*LicenseInfo `locationName:"licenses" type:"list"`
 
-	// The namespace of the package. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace of the package version. The package version component that
+	// specifies its namespace depends on its type. For example:
 	//
-	//    * The namespace of a Maven package is its groupId.
+	//    * The namespace of a Maven package version is its groupId.
 	//
-	//    * The namespace of an npm package is its scope.
+	//    * The namespace of an npm package version is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet package versions do not contain a corresponding component,
+	//    package versions of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
+
+	// A PackageVersionOrigin (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionOrigin.html)
+	// object that contains information about how the package version was added
+	// to the repository.
+	Origin *PackageVersionOrigin `locationName:"origin" type:"structure"`
 
 	// The name of the requested package.
 	PackageName *string `locationName:"packageName" min:"1" type:"string"`
@@ -8791,6 +9434,12 @@ func (s *PackageVersionDescription) SetNamespace(v string) *PackageVersionDescri
 	return s
 }
 
+// SetOrigin sets the Origin field's value.
+func (s *PackageVersionDescription) SetOrigin(v *PackageVersionOrigin) *PackageVersionDescription {
+	s.Origin = v
+	return s
+}
+
 // SetPackageName sets the PackageName field's value.
 func (s *PackageVersionDescription) SetPackageName(v string) *PackageVersionDescription {
 	s.PackageName = &v
@@ -8833,7 +9482,7 @@ func (s *PackageVersionDescription) SetVersion(v string) *PackageVersionDescript
 	return s
 }
 
-// An error associated with package.
+// l An error associated with package.
 type PackageVersionError struct {
 	_ struct{} `type:"structure"`
 
@@ -8886,11 +9535,62 @@ func (s *PackageVersionError) SetErrorMessage(v string) *PackageVersionError {
 	return s
 }
 
+// Information about how a package version was added to a repository.
+type PackageVersionOrigin struct {
+	_ struct{} `type:"structure"`
+
+	// A DomainEntryPoint (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DomainEntryPoint.html)
+	// object that contains information about from which repository or external
+	// connection the package version was added to the domain.
+	DomainEntryPoint *DomainEntryPoint `locationName:"domainEntryPoint" type:"structure"`
+
+	// Describes how the package version was originally added to the domain. An
+	// INTERNAL origin type means the package version was published directly to
+	// a repository in the domain. An EXTERNAL origin type means the package version
+	// was ingested from an external connection.
+	OriginType *string `locationName:"originType" type:"string" enum:"PackageVersionOriginType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PackageVersionOrigin) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PackageVersionOrigin) GoString() string {
+	return s.String()
+}
+
+// SetDomainEntryPoint sets the DomainEntryPoint field's value.
+func (s *PackageVersionOrigin) SetDomainEntryPoint(v *DomainEntryPoint) *PackageVersionOrigin {
+	s.DomainEntryPoint = v
+	return s
+}
+
+// SetOriginType sets the OriginType field's value.
+func (s *PackageVersionOrigin) SetOriginType(v string) *PackageVersionOrigin {
+	s.OriginType = &v
+	return s
+}
+
 // Details about a package version, including its status, version, and revision.
 // The ListPackageVersions (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html)
 // operation returns a list of PackageVersionSummary objects.
 type PackageVersionSummary struct {
 	_ struct{} `type:"structure"`
+
+	// A PackageVersionOrigin (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionOrigin.html)
+	// object that contains information about how the package version was added
+	// to the repository.
+	Origin *PackageVersionOrigin `locationName:"origin" type:"structure"`
 
 	// The revision associated with a package version.
 	Revision *string `locationName:"revision" min:"1" type:"string"`
@@ -8923,6 +9623,12 @@ func (s PackageVersionSummary) String() string {
 // value will be replaced with "sensitive".
 func (s PackageVersionSummary) GoString() string {
 	return s.String()
+}
+
+// SetOrigin sets the Origin field's value.
+func (s *PackageVersionSummary) SetOrigin(v *PackageVersionOrigin) *PackageVersionSummary {
+	s.Origin = v
+	return s
 }
 
 // SetRevision sets the Revision field's value.
@@ -9065,6 +9771,197 @@ func (s PutDomainPermissionsPolicyOutput) GoString() string {
 // SetPolicy sets the Policy field's value.
 func (s *PutDomainPermissionsPolicyOutput) SetPolicy(v *ResourcePolicy) *PutDomainPermissionsPolicyOutput {
 	s.Policy = v
+	return s
+}
+
+type PutPackageOriginConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the domain that contains the repository that contains the package.
+	//
+	// Domain is a required field
+	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
+
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
+	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
+
+	// A format that specifies the type of the package to be updated.
+	//
+	// Format is a required field
+	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
+
+	// The namespace of the package to be updated. The package component that specifies
+	// its namespace depends on its type. For example:
+	//
+	//    * The namespace of a Maven package is its groupId.
+	//
+	//    * The namespace of an npm package is its scope.
+	//
+	//    * Python and NuGet packages do not contain a corresponding component,
+	//    packages of those formats do not have a namespace.
+	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
+
+	// The name of the package to be updated.
+	//
+	// Package is a required field
+	Package *string `location:"querystring" locationName:"package" min:"1" type:"string" required:"true"`
+
+	// The name of the repository that contains the package.
+	//
+	// Repository is a required field
+	Repository *string `location:"querystring" locationName:"repository" min:"2" type:"string" required:"true"`
+
+	// A PackageOriginRestrictions (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageOriginRestrictions.html)
+	// object that contains information about the upstream and publish package origin
+	// restrictions. The upstream restriction determines if new package versions
+	// can be ingested or retained from external connections or upstream repositories.
+	// The publish restriction determines if new package versions can be published
+	// directly to the repository.
+	//
+	// You must include both the desired upstream and publish restrictions.
+	//
+	// Restrictions is a required field
+	Restrictions *PackageOriginRestrictions `locationName:"restrictions" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPackageOriginConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPackageOriginConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutPackageOriginConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutPackageOriginConfigurationInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 2))
+	}
+	if s.DomainOwner != nil && len(*s.DomainOwner) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainOwner", 12))
+	}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.Package == nil {
+		invalidParams.Add(request.NewErrParamRequired("Package"))
+	}
+	if s.Package != nil && len(*s.Package) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Package", 1))
+	}
+	if s.Repository == nil {
+		invalidParams.Add(request.NewErrParamRequired("Repository"))
+	}
+	if s.Repository != nil && len(*s.Repository) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Repository", 2))
+	}
+	if s.Restrictions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Restrictions"))
+	}
+	if s.Restrictions != nil {
+		if err := s.Restrictions.Validate(); err != nil {
+			invalidParams.AddNested("Restrictions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *PutPackageOriginConfigurationInput) SetDomain(v string) *PutPackageOriginConfigurationInput {
+	s.Domain = &v
+	return s
+}
+
+// SetDomainOwner sets the DomainOwner field's value.
+func (s *PutPackageOriginConfigurationInput) SetDomainOwner(v string) *PutPackageOriginConfigurationInput {
+	s.DomainOwner = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *PutPackageOriginConfigurationInput) SetFormat(v string) *PutPackageOriginConfigurationInput {
+	s.Format = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *PutPackageOriginConfigurationInput) SetNamespace(v string) *PutPackageOriginConfigurationInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetPackage sets the Package field's value.
+func (s *PutPackageOriginConfigurationInput) SetPackage(v string) *PutPackageOriginConfigurationInput {
+	s.Package = &v
+	return s
+}
+
+// SetRepository sets the Repository field's value.
+func (s *PutPackageOriginConfigurationInput) SetRepository(v string) *PutPackageOriginConfigurationInput {
+	s.Repository = &v
+	return s
+}
+
+// SetRestrictions sets the Restrictions field's value.
+func (s *PutPackageOriginConfigurationInput) SetRestrictions(v *PackageOriginRestrictions) *PutPackageOriginConfigurationInput {
+	s.Restrictions = v
+	return s
+}
+
+type PutPackageOriginConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A PackageOriginConfiguration (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageOriginConfiguration.html)
+	// object that describes the origin configuration set for the package. It contains
+	// a PackageOriginRestrictions (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageOriginRestrictions.html)
+	// object that describes how new versions of the package can be introduced to
+	// the repository.
+	OriginConfiguration *PackageOriginConfiguration `locationName:"originConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPackageOriginConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPackageOriginConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetOriginConfiguration sets the OriginConfiguration field's value.
+func (s *PutPackageOriginConfigurationOutput) SetOriginConfiguration(v *PackageOriginConfiguration) *PutPackageOriginConfigurationOutput {
+	s.OriginConfiguration = v
 	return s
 }
 
@@ -9321,7 +10218,7 @@ type RepositoryExternalConnectionInfo struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the external connection associated with a repository.
-	ExternalConnectionName *string `locationName:"externalConnectionName" type:"string"`
+	ExternalConnectionName *string `locationName:"externalConnectionName" min:"2" type:"string"`
 
 	// The package format associated with a repository's external connection. The
 	// valid package formats are:
@@ -10028,15 +10925,15 @@ type UpdatePackageVersionsStatusInput struct {
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
-	// The namespace of the package. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace of the package version to be updated. The package version component
+	// that specifies its namespace depends on its type. For example:
 	//
-	//    * The namespace of a Maven package is its groupId.
+	//    * The namespace of a Maven package version is its groupId.
 	//
-	//    * The namespace of an npm package is its scope.
+	//    * The namespace of an npm package version is its scope.
 	//
-	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
+	//    * Python and NuGet package versions do not contain a corresponding component,
+	//    package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package with the version statuses to update.
@@ -10523,6 +11420,38 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// AllowPublishAllow is a AllowPublish enum value
+	AllowPublishAllow = "ALLOW"
+
+	// AllowPublishBlock is a AllowPublish enum value
+	AllowPublishBlock = "BLOCK"
+)
+
+// AllowPublish_Values returns all elements of the AllowPublish enum
+func AllowPublish_Values() []string {
+	return []string{
+		AllowPublishAllow,
+		AllowPublishBlock,
+	}
+}
+
+const (
+	// AllowUpstreamAllow is a AllowUpstream enum value
+	AllowUpstreamAllow = "ALLOW"
+
+	// AllowUpstreamBlock is a AllowUpstream enum value
+	AllowUpstreamBlock = "BLOCK"
+)
+
+// AllowUpstream_Values returns all elements of the AllowUpstream enum
+func AllowUpstream_Values() []string {
+	return []string{
+		AllowUpstreamAllow,
+		AllowUpstreamBlock,
+	}
+}
+
+const (
 	// DomainStatusActive is a DomainStatus enum value
 	DomainStatusActive = "Active"
 
@@ -10627,6 +11556,26 @@ func PackageVersionErrorCode_Values() []string {
 		PackageVersionErrorCodeNotAllowed,
 		PackageVersionErrorCodeNotFound,
 		PackageVersionErrorCodeSkipped,
+	}
+}
+
+const (
+	// PackageVersionOriginTypeInternal is a PackageVersionOriginType enum value
+	PackageVersionOriginTypeInternal = "INTERNAL"
+
+	// PackageVersionOriginTypeExternal is a PackageVersionOriginType enum value
+	PackageVersionOriginTypeExternal = "EXTERNAL"
+
+	// PackageVersionOriginTypeUnknown is a PackageVersionOriginType enum value
+	PackageVersionOriginTypeUnknown = "UNKNOWN"
+)
+
+// PackageVersionOriginType_Values returns all elements of the PackageVersionOriginType enum
+func PackageVersionOriginType_Values() []string {
+	return []string{
+		PackageVersionOriginTypeInternal,
+		PackageVersionOriginTypeExternal,
+		PackageVersionOriginTypeUnknown,
 	}
 }
 

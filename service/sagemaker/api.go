@@ -59609,9 +59609,10 @@ type HyperParameterTrainingJobDefinition struct {
 	// performance as measured by the objective metric of the hyperparameter tuning
 	// job.
 	//
-	// You can specify a maximum of 20 hyperparameters that a hyperparameter tuning
-	// job can search over. Every possible value of a categorical parameter range
-	// counts against this limit.
+	// The maximum number of items specified for Array Members refers to the maximum
+	// number of hyperparameters for each range and also the maximum for the hyperparameter
+	// tuning job itself. That is, the sum of the number of hyperparameters for
+	// all the ranges can't exceed the maximum number specified.
 	HyperParameterRanges *ParameterRanges `type:"structure"`
 
 	// An array of Channel objects that specify the input for the training jobs
@@ -61321,7 +61322,7 @@ func (s *InputConfig) SetS3Uri(v string) *InputConfig {
 
 // Defines an instance group for heterogeneous cluster training. When requesting
 // a training job using the CreateTrainingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html)
-// API, you can configure up to 5 different ML training instance groups.
+// API, you can configure multiple instance groups .
 type InstanceGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -77767,9 +77768,10 @@ func (s *ParameterRange) SetIntegerParameterRangeSpecification(v *IntegerParamet
 // performance as measured by the objective metric of the hyperparameter tuning
 // job.
 //
-// You can specify a maximum of 20 hyperparameters that a hyperparameter tuning
-// job can search over. Every possible value of a categorical parameter range
-// counts against this limit.
+// The maximum number of items specified for Array Members refers to the maximum
+// number of hyperparameters for each range and also the maximum for the hyperparameter
+// tuning job itself. That is, the sum of the number of hyperparameters for
+// all the ranges can't exceed the maximum number specified.
 type ParameterRanges struct {
 	_ struct{} `type:"structure"`
 
@@ -98643,6 +98645,60 @@ const (
 
 	// ProductionVariantInstanceTypeMlInf124xlarge is a ProductionVariantInstanceType enum value
 	ProductionVariantInstanceTypeMlInf124xlarge = "ml.inf1.24xlarge"
+
+	// ProductionVariantInstanceTypeMlC6iLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6iLarge = "ml.c6i.large"
+
+	// ProductionVariantInstanceTypeMlC6iXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6iXlarge = "ml.c6i.xlarge"
+
+	// ProductionVariantInstanceTypeMlC6i2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6i2xlarge = "ml.c6i.2xlarge"
+
+	// ProductionVariantInstanceTypeMlC6i4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6i4xlarge = "ml.c6i.4xlarge"
+
+	// ProductionVariantInstanceTypeMlC6i8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6i8xlarge = "ml.c6i.8xlarge"
+
+	// ProductionVariantInstanceTypeMlC6i12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6i12xlarge = "ml.c6i.12xlarge"
+
+	// ProductionVariantInstanceTypeMlC6i16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6i16xlarge = "ml.c6i.16xlarge"
+
+	// ProductionVariantInstanceTypeMlC6i24xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6i24xlarge = "ml.c6i.24xlarge"
+
+	// ProductionVariantInstanceTypeMlC6i32xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6i32xlarge = "ml.c6i.32xlarge"
+
+	// ProductionVariantInstanceTypeMlG5Xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlG5Xlarge = "ml.g5.xlarge"
+
+	// ProductionVariantInstanceTypeMlG52xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlG52xlarge = "ml.g5.2xlarge"
+
+	// ProductionVariantInstanceTypeMlG54xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlG54xlarge = "ml.g5.4xlarge"
+
+	// ProductionVariantInstanceTypeMlG58xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlG58xlarge = "ml.g5.8xlarge"
+
+	// ProductionVariantInstanceTypeMlG512xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlG512xlarge = "ml.g5.12xlarge"
+
+	// ProductionVariantInstanceTypeMlG516xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlG516xlarge = "ml.g5.16xlarge"
+
+	// ProductionVariantInstanceTypeMlG524xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlG524xlarge = "ml.g5.24xlarge"
+
+	// ProductionVariantInstanceTypeMlG548xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlG548xlarge = "ml.g5.48xlarge"
+
+	// ProductionVariantInstanceTypeMlP4d24xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlP4d24xlarge = "ml.p4d.24xlarge"
 )
 
 // ProductionVariantInstanceType_Values returns all elements of the ProductionVariantInstanceType enum
@@ -98714,6 +98770,24 @@ func ProductionVariantInstanceType_Values() []string {
 		ProductionVariantInstanceTypeMlInf12xlarge,
 		ProductionVariantInstanceTypeMlInf16xlarge,
 		ProductionVariantInstanceTypeMlInf124xlarge,
+		ProductionVariantInstanceTypeMlC6iLarge,
+		ProductionVariantInstanceTypeMlC6iXlarge,
+		ProductionVariantInstanceTypeMlC6i2xlarge,
+		ProductionVariantInstanceTypeMlC6i4xlarge,
+		ProductionVariantInstanceTypeMlC6i8xlarge,
+		ProductionVariantInstanceTypeMlC6i12xlarge,
+		ProductionVariantInstanceTypeMlC6i16xlarge,
+		ProductionVariantInstanceTypeMlC6i24xlarge,
+		ProductionVariantInstanceTypeMlC6i32xlarge,
+		ProductionVariantInstanceTypeMlG5Xlarge,
+		ProductionVariantInstanceTypeMlG52xlarge,
+		ProductionVariantInstanceTypeMlG54xlarge,
+		ProductionVariantInstanceTypeMlG58xlarge,
+		ProductionVariantInstanceTypeMlG512xlarge,
+		ProductionVariantInstanceTypeMlG516xlarge,
+		ProductionVariantInstanceTypeMlG524xlarge,
+		ProductionVariantInstanceTypeMlG548xlarge,
+		ProductionVariantInstanceTypeMlP4d24xlarge,
 	}
 }
 

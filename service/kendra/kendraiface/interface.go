@@ -84,6 +84,10 @@ type KendraAPI interface {
 	ClearQuerySuggestionsWithContext(aws.Context, *kendra.ClearQuerySuggestionsInput, ...request.Option) (*kendra.ClearQuerySuggestionsOutput, error)
 	ClearQuerySuggestionsRequest(*kendra.ClearQuerySuggestionsInput) (*request.Request, *kendra.ClearQuerySuggestionsOutput)
 
+	CreateAccessControlConfiguration(*kendra.CreateAccessControlConfigurationInput) (*kendra.CreateAccessControlConfigurationOutput, error)
+	CreateAccessControlConfigurationWithContext(aws.Context, *kendra.CreateAccessControlConfigurationInput, ...request.Option) (*kendra.CreateAccessControlConfigurationOutput, error)
+	CreateAccessControlConfigurationRequest(*kendra.CreateAccessControlConfigurationInput) (*request.Request, *kendra.CreateAccessControlConfigurationOutput)
+
 	CreateDataSource(*kendra.CreateDataSourceInput) (*kendra.CreateDataSourceOutput, error)
 	CreateDataSourceWithContext(aws.Context, *kendra.CreateDataSourceInput, ...request.Option) (*kendra.CreateDataSourceOutput, error)
 	CreateDataSourceRequest(*kendra.CreateDataSourceInput) (*request.Request, *kendra.CreateDataSourceOutput)
@@ -107,6 +111,10 @@ type KendraAPI interface {
 	CreateThesaurus(*kendra.CreateThesaurusInput) (*kendra.CreateThesaurusOutput, error)
 	CreateThesaurusWithContext(aws.Context, *kendra.CreateThesaurusInput, ...request.Option) (*kendra.CreateThesaurusOutput, error)
 	CreateThesaurusRequest(*kendra.CreateThesaurusInput) (*request.Request, *kendra.CreateThesaurusOutput)
+
+	DeleteAccessControlConfiguration(*kendra.DeleteAccessControlConfigurationInput) (*kendra.DeleteAccessControlConfigurationOutput, error)
+	DeleteAccessControlConfigurationWithContext(aws.Context, *kendra.DeleteAccessControlConfigurationInput, ...request.Option) (*kendra.DeleteAccessControlConfigurationOutput, error)
+	DeleteAccessControlConfigurationRequest(*kendra.DeleteAccessControlConfigurationInput) (*request.Request, *kendra.DeleteAccessControlConfigurationOutput)
 
 	DeleteDataSource(*kendra.DeleteDataSourceInput) (*kendra.DeleteDataSourceOutput, error)
 	DeleteDataSourceWithContext(aws.Context, *kendra.DeleteDataSourceInput, ...request.Option) (*kendra.DeleteDataSourceOutput, error)
@@ -135,6 +143,10 @@ type KendraAPI interface {
 	DeleteThesaurus(*kendra.DeleteThesaurusInput) (*kendra.DeleteThesaurusOutput, error)
 	DeleteThesaurusWithContext(aws.Context, *kendra.DeleteThesaurusInput, ...request.Option) (*kendra.DeleteThesaurusOutput, error)
 	DeleteThesaurusRequest(*kendra.DeleteThesaurusInput) (*request.Request, *kendra.DeleteThesaurusOutput)
+
+	DescribeAccessControlConfiguration(*kendra.DescribeAccessControlConfigurationInput) (*kendra.DescribeAccessControlConfigurationOutput, error)
+	DescribeAccessControlConfigurationWithContext(aws.Context, *kendra.DescribeAccessControlConfigurationInput, ...request.Option) (*kendra.DescribeAccessControlConfigurationOutput, error)
+	DescribeAccessControlConfigurationRequest(*kendra.DescribeAccessControlConfigurationInput) (*request.Request, *kendra.DescribeAccessControlConfigurationOutput)
 
 	DescribeDataSource(*kendra.DescribeDataSourceInput) (*kendra.DescribeDataSourceOutput, error)
 	DescribeDataSourceWithContext(aws.Context, *kendra.DescribeDataSourceInput, ...request.Option) (*kendra.DescribeDataSourceOutput, error)
@@ -186,6 +198,13 @@ type KendraAPI interface {
 
 	GetSnapshotsPages(*kendra.GetSnapshotsInput, func(*kendra.GetSnapshotsOutput, bool) bool) error
 	GetSnapshotsPagesWithContext(aws.Context, *kendra.GetSnapshotsInput, func(*kendra.GetSnapshotsOutput, bool) bool, ...request.Option) error
+
+	ListAccessControlConfigurations(*kendra.ListAccessControlConfigurationsInput) (*kendra.ListAccessControlConfigurationsOutput, error)
+	ListAccessControlConfigurationsWithContext(aws.Context, *kendra.ListAccessControlConfigurationsInput, ...request.Option) (*kendra.ListAccessControlConfigurationsOutput, error)
+	ListAccessControlConfigurationsRequest(*kendra.ListAccessControlConfigurationsInput) (*request.Request, *kendra.ListAccessControlConfigurationsOutput)
+
+	ListAccessControlConfigurationsPages(*kendra.ListAccessControlConfigurationsInput, func(*kendra.ListAccessControlConfigurationsOutput, bool) bool) error
+	ListAccessControlConfigurationsPagesWithContext(aws.Context, *kendra.ListAccessControlConfigurationsInput, func(*kendra.ListAccessControlConfigurationsOutput, bool) bool, ...request.Option) error
 
 	ListDataSourceSyncJobs(*kendra.ListDataSourceSyncJobsInput) (*kendra.ListDataSourceSyncJobsOutput, error)
 	ListDataSourceSyncJobsWithContext(aws.Context, *kendra.ListDataSourceSyncJobsInput, ...request.Option) (*kendra.ListDataSourceSyncJobsOutput, error)
@@ -288,6 +307,10 @@ type KendraAPI interface {
 	UntagResource(*kendra.UntagResourceInput) (*kendra.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *kendra.UntagResourceInput, ...request.Option) (*kendra.UntagResourceOutput, error)
 	UntagResourceRequest(*kendra.UntagResourceInput) (*request.Request, *kendra.UntagResourceOutput)
+
+	UpdateAccessControlConfiguration(*kendra.UpdateAccessControlConfigurationInput) (*kendra.UpdateAccessControlConfigurationOutput, error)
+	UpdateAccessControlConfigurationWithContext(aws.Context, *kendra.UpdateAccessControlConfigurationInput, ...request.Option) (*kendra.UpdateAccessControlConfigurationOutput, error)
+	UpdateAccessControlConfigurationRequest(*kendra.UpdateAccessControlConfigurationInput) (*request.Request, *kendra.UpdateAccessControlConfigurationOutput)
 
 	UpdateDataSource(*kendra.UpdateDataSourceInput) (*kendra.UpdateDataSourceOutput, error)
 	UpdateDataSourceWithContext(aws.Context, *kendra.UpdateDataSourceInput, ...request.Option) (*kendra.UpdateDataSourceOutput, error)

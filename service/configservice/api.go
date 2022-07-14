@@ -8659,11 +8659,9 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 // rule by ConfigRuleName, ConfigRuleId, or ConfigRuleArn in the ConfigRule
 // data type that you use in this request.
 //
-// The maximum number of rules that Config supports is 150.
-//
-// For information about requesting a rule limit increase, see Config Limits
-// (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_config)
-// in the Amazon Web Services General Reference Guide.
+// For information on how many Config rules you can have per account, see Service
+// Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+// in the Config Developer Guide.
 //
 // For more information about developing and using Config rules, see Evaluating
 // Amazon Web Services resource Configurations with Config (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
@@ -9044,7 +9042,9 @@ func (c *ConfigService) PutConformancePackRequest(input *PutConformancePackInput
 //
 // Creates or updates a conformance pack. A conformance pack is a collection
 // of Config rules that can be easily deployed in an account and a region and
-// across Amazon Web Services Organization.
+// across Amazon Web Services Organization. For information on how many conformance
+// packs you can have per account, see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+// in the Config Developer Guide.
 //
 // This API creates a service linked role AWSServiceRoleForConfigConforms in
 // your account. The service linked role is created only when the role does
@@ -9476,11 +9476,14 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 //
 // Adds or updates organization Config rule for your entire organization evaluating
 // whether your Amazon Web Services resources comply with your desired configurations.
+// For information on how many organization Config rules you can have per account,
+// see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+// in the Config Developer Guide.
 //
 // Only a master account and a delegated administrator can create or update
 // an organization Config rule. When calling this API with a delegated administrator,
 // you must ensure Organizations ListDelegatedAdministrator permissions are
-// added.
+// added. An organization can have up to 3 delegated administrators.
 //
 // This API enables organization service access through the EnableAWSServiceAccess
 // action and creates a service linked role AWSServiceRoleForConfigMultiAccountSetup
@@ -9501,9 +9504,6 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 // specify the Amazon Resource Name (ARN) that Lambda assigns to the function.
 // If you are adding an Config managed rule, specify the rule's identifier for
 // the RuleIdentifier key.
-//
-// The maximum number of organization Config rules that Config supports is 150
-// and 3 delegated administrator per organization.
 //
 // Prerequisite: Ensure you call EnableAllFeatures API to enable all features
 // in an organization.
@@ -32034,6 +32034,51 @@ const (
 
 	// ResourceTypeAwsSageMakerCodeRepository is a ResourceType enum value
 	ResourceTypeAwsSageMakerCodeRepository = "AWS::SageMaker::CodeRepository"
+
+	// ResourceTypeAwsRoute53resolverResolverEndpoint is a ResourceType enum value
+	ResourceTypeAwsRoute53resolverResolverEndpoint = "AWS::Route53Resolver::ResolverEndpoint"
+
+	// ResourceTypeAwsRoute53resolverResolverRule is a ResourceType enum value
+	ResourceTypeAwsRoute53resolverResolverRule = "AWS::Route53Resolver::ResolverRule"
+
+	// ResourceTypeAwsRoute53resolverResolverRuleAssociation is a ResourceType enum value
+	ResourceTypeAwsRoute53resolverResolverRuleAssociation = "AWS::Route53Resolver::ResolverRuleAssociation"
+
+	// ResourceTypeAwsDmsReplicationSubnetGroup is a ResourceType enum value
+	ResourceTypeAwsDmsReplicationSubnetGroup = "AWS::DMS::ReplicationSubnetGroup"
+
+	// ResourceTypeAwsDmsEventSubscription is a ResourceType enum value
+	ResourceTypeAwsDmsEventSubscription = "AWS::DMS::EventSubscription"
+
+	// ResourceTypeAwsMskCluster is a ResourceType enum value
+	ResourceTypeAwsMskCluster = "AWS::MSK::Cluster"
+
+	// ResourceTypeAwsStepFunctionsActivity is a ResourceType enum value
+	ResourceTypeAwsStepFunctionsActivity = "AWS::StepFunctions::Activity"
+
+	// ResourceTypeAwsWorkSpacesWorkspace is a ResourceType enum value
+	ResourceTypeAwsWorkSpacesWorkspace = "AWS::WorkSpaces::Workspace"
+
+	// ResourceTypeAwsWorkSpacesConnectionAlias is a ResourceType enum value
+	ResourceTypeAwsWorkSpacesConnectionAlias = "AWS::WorkSpaces::ConnectionAlias"
+
+	// ResourceTypeAwsSageMakerModel is a ResourceType enum value
+	ResourceTypeAwsSageMakerModel = "AWS::SageMaker::Model"
+
+	// ResourceTypeAwsElasticLoadBalancingV2Listener is a ResourceType enum value
+	ResourceTypeAwsElasticLoadBalancingV2Listener = "AWS::ElasticLoadBalancingV2::Listener"
+
+	// ResourceTypeAwsStepFunctionsStateMachine is a ResourceType enum value
+	ResourceTypeAwsStepFunctionsStateMachine = "AWS::StepFunctions::StateMachine"
+
+	// ResourceTypeAwsBatchJobQueue is a ResourceType enum value
+	ResourceTypeAwsBatchJobQueue = "AWS::Batch::JobQueue"
+
+	// ResourceTypeAwsBatchComputeEnvironment is a ResourceType enum value
+	ResourceTypeAwsBatchComputeEnvironment = "AWS::Batch::ComputeEnvironment"
+
+	// ResourceTypeAwsAccessAnalyzerAnalyzer is a ResourceType enum value
+	ResourceTypeAwsAccessAnalyzerAnalyzer = "AWS::AccessAnalyzer::Analyzer"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -32159,6 +32204,21 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsGuardDutyDetector,
 		ResourceTypeAwsEmrSecurityConfiguration,
 		ResourceTypeAwsSageMakerCodeRepository,
+		ResourceTypeAwsRoute53resolverResolverEndpoint,
+		ResourceTypeAwsRoute53resolverResolverRule,
+		ResourceTypeAwsRoute53resolverResolverRuleAssociation,
+		ResourceTypeAwsDmsReplicationSubnetGroup,
+		ResourceTypeAwsDmsEventSubscription,
+		ResourceTypeAwsMskCluster,
+		ResourceTypeAwsStepFunctionsActivity,
+		ResourceTypeAwsWorkSpacesWorkspace,
+		ResourceTypeAwsWorkSpacesConnectionAlias,
+		ResourceTypeAwsSageMakerModel,
+		ResourceTypeAwsElasticLoadBalancingV2Listener,
+		ResourceTypeAwsStepFunctionsStateMachine,
+		ResourceTypeAwsBatchJobQueue,
+		ResourceTypeAwsBatchComputeEnvironment,
+		ResourceTypeAwsAccessAnalyzerAnalyzer,
 	}
 }
 

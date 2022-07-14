@@ -637,9 +637,9 @@
     },
     "ConnectionId":{
       "type":"string",
-      "max":255,
+      "max":1024,
       "min":1,
-      "pattern":"^([\\w-]+)$"
+      "pattern":"^[a-zA-Z0-9+/=]{1,1024}$"
     },
     "ContactName":{
       "type":"string",
@@ -994,8 +994,21 @@
         "CatalogItemId":{"shape":"SkuCode"},
         "LineItemId":{"shape":"LineItemId"},
         "Quantity":{"shape":"LineItemQuantity"},
-        "Status":{"shape":"LineItemStatus"}
+        "Status":{"shape":"LineItemStatus"},
+        "ShipmentInformation":{"shape":"ShipmentInformation"},
+        "AssetInformationList":{"shape":"LineItemAssetInformationList"}
       }
+    },
+    "LineItemAssetInformation":{
+      "type":"structure",
+      "members":{
+        "AssetId":{"shape":"AssetId"},
+        "MacAddressList":{"shape":"MacAddressList"}
+      }
+    },
+    "LineItemAssetInformationList":{
+      "type":"list",
+      "member":{"shape":"LineItemAssetInformation"}
     },
     "LineItemId":{
       "type":"string",
@@ -1228,6 +1241,16 @@
       "members":{
         "Tags":{"shape":"TagMap"}
       }
+    },
+    "MacAddress":{
+      "type":"string",
+      "max":17,
+      "min":17,
+      "pattern":"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
+    },
+    "MacAddressList":{
+      "type":"list",
+      "member":{"shape":"MacAddress"}
     },
     "MaxResults1000":{
       "type":"integer",
@@ -1495,6 +1518,22 @@
       "error":{"httpStatusCode":402},
       "exception":true
     },
+    "ShipmentCarrier":{
+      "type":"string",
+      "enum":[
+        "DHL",
+        "DBS",
+        "FEDEX",
+        "UPS"
+      ]
+    },
+    "ShipmentInformation":{
+      "type":"structure",
+      "members":{
+        "ShipmentTrackingNumber":{"shape":"TrackingId"},
+        "ShipmentCarrier":{"shape":"ShipmentCarrier"}
+      }
+    },
     "Site":{
       "type":"structure",
       "members":{
@@ -1657,6 +1696,12 @@
       "max":1005,
       "min":1,
       "pattern":"^(\\d+)##(\\S+)$"
+    },
+    "TrackingId":{
+      "type":"string",
+      "max":42,
+      "min":6,
+      "pattern":"^[a-zA-Z0-9]+$"
     },
     "UnderlayIpAddress":{
       "type":"string",

@@ -32,7 +32,7 @@
     "ListLaunchProfileMembers": "<p>Get all users in a given launch profile membership.</p>",
     "ListLaunchProfiles": "<p>List all the launch profiles a studio.</p>",
     "ListStreamingImages": "<p>List the streaming image resources available to this studio.</p> <p>This list will contain both images provided by Amazon Web Services, as well as streaming images that you have created in your studio.</p>",
-    "ListStreamingSessions": "<p>Lists the streaming image resources in a studio.</p>",
+    "ListStreamingSessions": "<p>Lists the streaming sessions in a studio.</p>",
     "ListStudioComponents": "<p>Lists the StudioComponents in a studio.</p>",
     "ListStudioMembers": "<p>Get all users in a given studio membership.</p> <note> <p> <code>ListStudioMembers</code> only returns admin members.</p> </note>",
     "ListStudios": "<p>List studios in your Amazon Web Services account in the requested Amazon Web Services Region.</p>",
@@ -842,6 +842,25 @@
       "refs": {
       }
     },
+    "RoleArn": {
+      "base": null,
+      "refs": {
+        "CreateStudioComponentRequest$runtimeRoleArn": "<p>An IAM role attached to a Studio Component that gives the studio component access to AWS resources at anytime while the instance is running. </p>",
+        "CreateStudioComponentRequest$secureInitializationRoleArn": "<p>An IAM role attached to Studio Component when the system initialization script runs which give the studio component access to AWS resources when the system initialization script runs.</p>",
+        "CreateStudioRequest$adminRoleArn": "<p>The IAM role that Studio Admins will assume when logging in to the Nimble Studio portal.</p>",
+        "CreateStudioRequest$userRoleArn": "<p>The IAM role that Studio Users will assume when logging in to the Nimble Studio portal.</p>",
+        "LaunchProfileInitializationScript$runtimeRoleArn": "<p>An IAM role attached to a Studio Component that gives the studio component access to AWS resources at anytime while the instance is running. </p>",
+        "LaunchProfileInitializationScript$secureInitializationRoleArn": "<p>An IAM role attached to Studio Component when the system initialization script runs which give the studio component access to AWS resources when the system initialization script runs.</p>",
+        "Studio$adminRoleArn": "<p>The IAM role that studio admins assume when logging in to the Nimble Studio portal.</p>",
+        "Studio$userRoleArn": "<p>The IAM role that studio users assume when logging in to the Nimble Studio portal.</p>",
+        "StudioComponent$runtimeRoleArn": "<p>An IAM role attached to a Studio Component that gives the studio component access to AWS resources at anytime while the instance is running. </p>",
+        "StudioComponent$secureInitializationRoleArn": "<p>An IAM role attached to Studio Component when the system initialization script runs which give the studio component access to AWS resources when the system initialization script runs.</p>",
+        "UpdateStudioComponentRequest$runtimeRoleArn": "<p>An IAM role attached to a Studio Component that gives the studio component access to AWS resources at anytime while the instance is running. </p>",
+        "UpdateStudioComponentRequest$secureInitializationRoleArn": "<p>An IAM role attached to Studio Component when the system initialization script runs which give the studio component access to AWS resources when the system initialization script runs.</p>",
+        "UpdateStudioRequest$adminRoleArn": "<p>The IAM role that Studio Admins will assume when logging in to the Nimble Studio portal.</p>",
+        "UpdateStudioRequest$userRoleArn": "<p>The IAM role that Studio Users will assume when logging in to the Nimble Studio portal.</p>"
+      }
+    },
     "ScriptParameterKey": {
       "base": "<p>A script parameter key.</p>",
       "refs": {
@@ -865,6 +884,16 @@
       "refs": {
         "LaunchProfileSecurityGroupIdList$member": null,
         "StudioComponentSecurityGroupIdList$member": null
+      }
+    },
+    "SensitiveString": {
+      "base": null,
+      "refs": {
+        "ComputeFarmConfiguration$endpoint": "<p>The endpoint of the ComputeFarm that is accessed by the studio component resource.</p>",
+        "LicenseServiceConfiguration$endpoint": "<p>The endpoint of the license service that is accessed by the studio component resource.</p>",
+        "SharedFileSystemConfiguration$endpoint": "<p>The endpoint of the shared file system that is accessed by the studio component resource.</p>",
+        "SharedFileSystemConfiguration$shareName": "<p>The name of the file share.</p>",
+        "StreamingSessionStream$url": "<p>The URL to connect to this stream using the DCV client.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -931,8 +960,8 @@
     "StreamConfigurationMaxStoppedSessionLengthInMinutes": {
       "base": null,
       "refs": {
-        "StreamConfiguration$maxStoppedSessionLengthInMinutes": "<p>Integer that determines if you can start and stop your sessions and how long a session can stay in the STOPPED state. The default value is 0. The maximum value is 5760.</p> <p>If the value is missing or set to 0, your sessions can’t be stopped. If you then call <code>StopStreamingSession</code>, the session fails. If the time that a session stays in the READY state exceeds the <code>maxSessionLengthInMinutes</code> value, the session will automatically be terminated by AWS (instead of stopped).</p> <p>If the value is set to a positive number, the session can be stopped. You can call <code>StopStreamingSession</code> to stop sessions in the READY state. If the time that a session stays in the READY state exceeds the <code>maxSessionLengthInMinutes</code> value, the session will automatically be stopped by AWS (instead of terminated).</p>",
-        "StreamConfigurationCreate$maxStoppedSessionLengthInMinutes": "<p>Integer that determines if you can start and stop your sessions and how long a session can stay in the STOPPED state. The default value is 0. The maximum value is 5760.</p> <p>If the value is missing or set to 0, your sessions can’t be stopped. If you then call <code>StopStreamingSession</code>, the session fails. If the time that a session stays in the READY state exceeds the <code>maxSessionLengthInMinutes</code> value, the session will automatically be terminated by AWS (instead of stopped).</p> <p>If the value is set to a positive number, the session can be stopped. You can call <code>StopStreamingSession</code> to stop sessions in the READY state. If the time that a session stays in the READY state exceeds the <code>maxSessionLengthInMinutes</code> value, the session will automatically be stopped by AWS (instead of terminated).</p>"
+        "StreamConfiguration$maxStoppedSessionLengthInMinutes": "<p>Integer that determines if you can start and stop your sessions and how long a session can stay in the STOPPED state. The default value is 0. The maximum value is 5760.</p> <p>If the value is missing or set to 0, your sessions can’t be stopped. If you then call <code>StopStreamingSession</code>, the session fails. If the time that a session stays in the READY state exceeds the <code>maxSessionLengthInMinutes</code> value, the session will automatically be terminated (instead of stopped).</p> <p>If the value is set to a positive number, the session can be stopped. You can call <code>StopStreamingSession</code> to stop sessions in the READY state. If the time that a session stays in the READY state exceeds the <code>maxSessionLengthInMinutes</code> value, the session will automatically be stopped (instead of terminated).</p>",
+        "StreamConfigurationCreate$maxStoppedSessionLengthInMinutes": "<p>Integer that determines if you can start and stop your sessions and how long a session can stay in the STOPPED state. The default value is 0. The maximum value is 5760.</p> <p>If the value is missing or set to 0, your sessions can’t be stopped. If you then call <code>StopStreamingSession</code>, the session fails. If the time that a session stays in the READY state exceeds the <code>maxSessionLengthInMinutes</code> value, the session will automatically be terminated (instead of stopped).</p> <p>If the value is set to a positive number, the session can be stopped. You can call <code>StopStreamingSession</code> to stop sessions in the READY state. If the time that a session stays in the READY state exceeds the <code>maxSessionLengthInMinutes</code> value, the session will automatically be stopped (instead of terminated).</p>"
       }
     },
     "StreamConfigurationSessionStorage": {
@@ -957,6 +986,14 @@
         "GetStreamingImageResponse$streamingImage": "<p>The streaming image.</p>",
         "StreamingImageList$member": null,
         "UpdateStreamingImageResponse$streamingImage": null
+      }
+    },
+    "StreamingImageDescription": {
+      "base": "<p>The description.</p>",
+      "refs": {
+        "CreateStreamingImageRequest$description": "<p>A human-readable description of the streaming image.</p>",
+        "StreamingImage$description": "<p>A human-readable description of the streaming image.</p>",
+        "UpdateStreamingImageRequest$description": "<p>The description.</p>"
       }
     },
     "StreamingImageEncryptionConfiguration": {
@@ -998,6 +1035,14 @@
       "refs": {
         "GetLaunchProfileDetailsResponse$streamingImages": "<p>A collection of streaming images.</p>",
         "ListStreamingImagesResponse$streamingImages": "<p>A collection of streaming images.</p>"
+      }
+    },
+    "StreamingImageName": {
+      "base": "<p>A friendly name for a streaming image resource.</p>",
+      "refs": {
+        "CreateStreamingImageRequest$name": "<p>A friendly name for a streaming image resource.</p>",
+        "StreamingImage$name": "<p>A friendly name for a streaming image resource.</p>",
+        "UpdateStreamingImageRequest$name": "<p>The name for the streaming image.</p>"
       }
     },
     "StreamingImageOwner": {
@@ -1145,8 +1190,6 @@
         "CreateStreamingSessionStreamRequest$sessionId": "<p>The streaming session ID.</p>",
         "CreateStreamingSessionStreamRequest$studioId": "<p>The studio ID. </p>",
         "CreateStudioComponentRequest$studioId": "<p>The studio ID. </p>",
-        "CreateStudioRequest$adminRoleArn": "<p>The IAM role that Studio Admins will assume when logging in to the Nimble Studio portal.</p>",
-        "CreateStudioRequest$userRoleArn": "<p>The IAM role that Studio Users will assume when logging in to the Nimble Studio portal.</p>",
         "DeleteLaunchProfileMemberRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
         "DeleteLaunchProfileMemberRequest$principalId": "<p>The principal ID. This currently supports a Amazon Web Services SSO UserId. </p>",
         "DeleteLaunchProfileMemberRequest$studioId": "<p>The studio ID. </p>",
@@ -1266,13 +1309,11 @@
         "StreamingSessionStream$ownedBy": "<p>The user ID of the user that owns the streaming session. The user that owns the session will be logging into the session and interacting with the virtual workstation.</p>",
         "StreamingSessionStream$streamId": "<p>The stream ID.</p>",
         "StringList$member": null,
-        "Studio$adminRoleArn": "<p>The IAM role that studio admins assume when logging in to the Nimble Studio portal.</p>",
         "Studio$arn": "<p>The Amazon Resource Name (ARN) that is assigned to a studio resource and uniquely identifies it. ARNs are unique across all Regions.</p>",
         "Studio$ssoClientId": "<p>The Amazon Web Services SSO application client ID used to integrate with Amazon Web Services SSO to enable Amazon Web Services SSO users to log in to Nimble Studio portal.</p>",
         "Studio$statusMessage": "<p>Additional detail on the studio state.</p>",
         "Studio$studioId": "<p>The unique identifier for a studio resource. In Nimble Studio, all other resources are contained in a studio resource.</p>",
         "Studio$studioUrl": "<p>The address of the web page for the studio.</p>",
-        "Studio$userRoleArn": "<p>The IAM role that studio users assume when logging in to the Nimble Studio portal.</p>",
         "StudioComponent$arn": "<p>The ARN of the resource.</p>",
         "StudioComponent$createdBy": "<p>The user ID of the user that created the studio component.</p>",
         "StudioComponent$statusMessage": "<p>The status message for the studio component.</p>",
@@ -1297,9 +1338,7 @@
         "UpdateStreamingImageRequest$studioId": "<p>The studio ID. </p>",
         "UpdateStudioComponentRequest$studioComponentId": "<p>The studio component ID.</p>",
         "UpdateStudioComponentRequest$studioId": "<p>The studio ID. </p>",
-        "UpdateStudioRequest$adminRoleArn": "<p>The IAM role that Studio Admins will assume when logging in to the Nimble Studio portal.</p>",
         "UpdateStudioRequest$studioId": "<p>The studio ID. </p>",
-        "UpdateStudioRequest$userRoleArn": "<p>The IAM role that Studio Users will assume when logging in to the Nimble Studio portal.</p>",
         "ValidationException$code": "<p>A more specific error code.</p>",
         "ValidationException$message": "<p>A human-readable description of the error.</p>"
       }
@@ -1476,6 +1515,14 @@
         "ListStudioComponentsRequest$types": "<p>Filters the request to studio components that are of one of the given types.</p>"
       }
     },
+    "StudioDisplayName": {
+      "base": null,
+      "refs": {
+        "CreateStudioRequest$displayName": "<p>A friendly name for the studio.</p>",
+        "Studio$displayName": "<p>A friendly name for the studio.</p>",
+        "UpdateStudioRequest$displayName": "<p>A friendly name for the studio.</p>"
+      }
+    },
     "StudioEncryptionConfiguration": {
       "base": "<p>Configuration of the encryption method that is used for the studio.</p>",
       "refs": {
@@ -1538,85 +1585,6 @@
       "base": "<p>The status code.</p>",
       "refs": {
         "Studio$statusCode": "<p>Status codes that provide additional detail on the studio state.</p>"
-      }
-    },
-    "SyntheticComputeFarmConfigurationString": {
-      "base": null,
-      "refs": {
-        "ComputeFarmConfiguration$endpoint": "<p>The endpoint of the ComputeFarm that is accessed by the studio component resource.</p>"
-      }
-    },
-    "SyntheticCreateStreamingImageRequestStreamingImageDescription": {
-      "base": "<p>The description.</p>",
-      "refs": {
-        "CreateStreamingImageRequest$description": "<p>A human-readable description of the streaming image.</p>"
-      }
-    },
-    "SyntheticCreateStreamingImageRequestStreamingImageName": {
-      "base": "<p>A friendly name for a streaming image resource.</p>",
-      "refs": {
-        "CreateStreamingImageRequest$name": "<p>A friendly name for a streaming image resource.</p>"
-      }
-    },
-    "SyntheticCreateStudioRequestStudioDisplayName": {
-      "base": null,
-      "refs": {
-        "CreateStudioRequest$displayName": "<p>A friendly name for the studio.</p>"
-      }
-    },
-    "SyntheticLicenseServiceConfigurationString": {
-      "base": null,
-      "refs": {
-        "LicenseServiceConfiguration$endpoint": "<p>The endpoint of the license service that is accessed by the studio component resource.</p>"
-      }
-    },
-    "SyntheticSharedFileSystemConfigurationString": {
-      "base": null,
-      "refs": {
-        "SharedFileSystemConfiguration$endpoint": "<p>The endpoint of the shared file system that is accessed by the studio component resource.</p>",
-        "SharedFileSystemConfiguration$shareName": "<p>The name of the file share.</p>"
-      }
-    },
-    "SyntheticStreamingImageStreamingImageDescription": {
-      "base": "<p>The description.</p>",
-      "refs": {
-        "StreamingImage$description": "<p>A human-readable description of the streaming image.</p>"
-      }
-    },
-    "SyntheticStreamingImageStreamingImageName": {
-      "base": "<p>A friendly name for a streaming image resource.</p>",
-      "refs": {
-        "StreamingImage$name": "<p>A friendly name for a streaming image resource.</p>"
-      }
-    },
-    "SyntheticStreamingSessionStreamString": {
-      "base": null,
-      "refs": {
-        "StreamingSessionStream$url": "<p>The URL to connect to this stream using the DCV client.</p>"
-      }
-    },
-    "SyntheticStudioStudioDisplayName": {
-      "base": null,
-      "refs": {
-        "Studio$displayName": "<p>A friendly name for the studio.</p>"
-      }
-    },
-    "SyntheticUpdateStreamingImageRequestStreamingImageDescription": {
-      "base": "<p>The description.</p>",
-      "refs": {
-        "UpdateStreamingImageRequest$description": "<p>The description.</p>"
-      }
-    },
-    "SyntheticUpdateStreamingImageRequestStreamingImageName": {
-      "base": "<p>A friendly name for a streaming image resource.</p>",
-      "refs": {
-        "UpdateStreamingImageRequest$name": "<p>The name for the streaming image.</p>"
-      }
-    },
-    "SyntheticUpdateStudioRequestStudioDisplayName": {
-      "base": null,
-      "refs": {
-        "UpdateStudioRequest$displayName": "<p>A friendly name for the studio.</p>"
       }
     },
     "TagResourceRequest": {

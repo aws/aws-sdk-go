@@ -3439,7 +3439,7 @@ func (c *NimbleStudio) ListStreamingSessionsRequest(input *ListStreamingSessions
 
 // ListStreamingSessions API operation for AmazonNimbleStudio.
 //
-// Lists the streaming image resources in a studio.
+// Lists the streaming sessions in a studio.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6447,12 +6447,21 @@ type CreateStudioComponentInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true" sensitive:"true"`
 
+	// An IAM role attached to a Studio Component that gives the studio component
+	// access to AWS resources at anytime while the instance is running.
+	RuntimeRoleArn *string `locationName:"runtimeRoleArn" type:"string"`
+
 	// Parameters for the studio component scripts.
 	//
 	// ScriptParameters is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateStudioComponentInput's
 	// String and GoString methods.
 	ScriptParameters []*ScriptParameterKeyValue `locationName:"scriptParameters" type:"list" sensitive:"true"`
+
+	// An IAM role attached to Studio Component when the system initialization script
+	// runs which give the studio component access to AWS resources when the system
+	// initialization script runs.
+	SecureInitializationRoleArn *string `locationName:"secureInitializationRoleArn" type:"string"`
 
 	// The studio ID.
 	//
@@ -6576,9 +6585,21 @@ func (s *CreateStudioComponentInput) SetName(v string) *CreateStudioComponentInp
 	return s
 }
 
+// SetRuntimeRoleArn sets the RuntimeRoleArn field's value.
+func (s *CreateStudioComponentInput) SetRuntimeRoleArn(v string) *CreateStudioComponentInput {
+	s.RuntimeRoleArn = &v
+	return s
+}
+
 // SetScriptParameters sets the ScriptParameters field's value.
 func (s *CreateStudioComponentInput) SetScriptParameters(v []*ScriptParameterKeyValue) *CreateStudioComponentInput {
 	s.ScriptParameters = v
+	return s
+}
+
+// SetSecureInitializationRoleArn sets the SecureInitializationRoleArn field's value.
+func (s *CreateStudioComponentInput) SetSecureInitializationRoleArn(v string) *CreateStudioComponentInput {
+	s.SecureInitializationRoleArn = &v
 	return s
 }
 
@@ -9309,12 +9330,21 @@ func (s *LaunchProfileInitializationActiveDirectory) SetStudioComponentName(v st
 type LaunchProfileInitializationScript struct {
 	_ struct{} `type:"structure"`
 
+	// An IAM role attached to a Studio Component that gives the studio component
+	// access to AWS resources at anytime while the instance is running.
+	RuntimeRoleArn *string `locationName:"runtimeRoleArn" type:"string"`
+
 	// The initialization script.
 	//
 	// Script is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by LaunchProfileInitializationScript's
 	// String and GoString methods.
 	Script *string `locationName:"script" min:"1" type:"string" sensitive:"true"`
+
+	// An IAM role attached to Studio Component when the system initialization script
+	// runs which give the studio component access to AWS resources when the system
+	// initialization script runs.
+	SecureInitializationRoleArn *string `locationName:"secureInitializationRoleArn" type:"string"`
 
 	// The unique identifier for a studio component resource.
 	StudioComponentId *string `locationName:"studioComponentId" type:"string"`
@@ -9345,9 +9375,21 @@ func (s LaunchProfileInitializationScript) GoString() string {
 	return s.String()
 }
 
+// SetRuntimeRoleArn sets the RuntimeRoleArn field's value.
+func (s *LaunchProfileInitializationScript) SetRuntimeRoleArn(v string) *LaunchProfileInitializationScript {
+	s.RuntimeRoleArn = &v
+	return s
+}
+
 // SetScript sets the Script field's value.
 func (s *LaunchProfileInitializationScript) SetScript(v string) *LaunchProfileInitializationScript {
 	s.Script = &v
+	return s
+}
+
+// SetSecureInitializationRoleArn sets the SecureInitializationRoleArn field's value.
+func (s *LaunchProfileInitializationScript) SetSecureInitializationRoleArn(v string) *LaunchProfileInitializationScript {
+	s.SecureInitializationRoleArn = &v
 	return s
 }
 
@@ -11570,12 +11612,12 @@ type StreamConfiguration struct {
 	// If the value is missing or set to 0, your sessions can’t be stopped. If
 	// you then call StopStreamingSession, the session fails. If the time that a
 	// session stays in the READY state exceeds the maxSessionLengthInMinutes value,
-	// the session will automatically be terminated by AWS (instead of stopped).
+	// the session will automatically be terminated (instead of stopped).
 	//
 	// If the value is set to a positive number, the session can be stopped. You
 	// can call StopStreamingSession to stop sessions in the READY state. If the
 	// time that a session stays in the READY state exceeds the maxSessionLengthInMinutes
-	// value, the session will automatically be stopped by AWS (instead of terminated).
+	// value, the session will automatically be stopped (instead of terminated).
 	MaxStoppedSessionLengthInMinutes *int64 `locationName:"maxStoppedSessionLengthInMinutes" type:"integer"`
 
 	// (Optional) The upload storage for a streaming session.
@@ -11671,12 +11713,12 @@ type StreamConfigurationCreate struct {
 	// If the value is missing or set to 0, your sessions can’t be stopped. If
 	// you then call StopStreamingSession, the session fails. If the time that a
 	// session stays in the READY state exceeds the maxSessionLengthInMinutes value,
-	// the session will automatically be terminated by AWS (instead of stopped).
+	// the session will automatically be terminated (instead of stopped).
 	//
 	// If the value is set to a positive number, the session can be stopped. You
 	// can call StopStreamingSession to stop sessions in the READY state. If the
 	// time that a session stays in the READY state exceeds the maxSessionLengthInMinutes
-	// value, the session will automatically be stopped by AWS (instead of terminated).
+	// value, the session will automatically be stopped (instead of terminated).
 	MaxStoppedSessionLengthInMinutes *int64 `locationName:"maxStoppedSessionLengthInMinutes" type:"integer"`
 
 	// (Optional) The upload storage for a streaming workstation that is created
@@ -12668,12 +12710,21 @@ type StudioComponent struct {
 	// String and GoString methods.
 	Name *string `locationName:"name" type:"string" sensitive:"true"`
 
+	// An IAM role attached to a Studio Component that gives the studio component
+	// access to AWS resources at anytime while the instance is running.
+	RuntimeRoleArn *string `locationName:"runtimeRoleArn" type:"string"`
+
 	// Parameters for the studio component scripts.
 	//
 	// ScriptParameters is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by StudioComponent's
 	// String and GoString methods.
 	ScriptParameters []*ScriptParameterKeyValue `locationName:"scriptParameters" type:"list" sensitive:"true"`
+
+	// An IAM role attached to Studio Component when the system initialization script
+	// runs which give the studio component access to AWS resources when the system
+	// initialization script runs.
+	SecureInitializationRoleArn *string `locationName:"secureInitializationRoleArn" type:"string"`
 
 	// The current state.
 	State *string `locationName:"state" type:"string" enum:"StudioComponentState"`
@@ -12770,9 +12821,21 @@ func (s *StudioComponent) SetName(v string) *StudioComponent {
 	return s
 }
 
+// SetRuntimeRoleArn sets the RuntimeRoleArn field's value.
+func (s *StudioComponent) SetRuntimeRoleArn(v string) *StudioComponent {
+	s.RuntimeRoleArn = &v
+	return s
+}
+
 // SetScriptParameters sets the ScriptParameters field's value.
 func (s *StudioComponent) SetScriptParameters(v []*ScriptParameterKeyValue) *StudioComponent {
 	s.ScriptParameters = v
+	return s
+}
+
+// SetSecureInitializationRoleArn sets the SecureInitializationRoleArn field's value.
+func (s *StudioComponent) SetSecureInitializationRoleArn(v string) *StudioComponent {
+	s.SecureInitializationRoleArn = &v
 	return s
 }
 
@@ -13960,12 +14023,21 @@ type UpdateStudioComponentInput struct {
 	// String and GoString methods.
 	Name *string `locationName:"name" type:"string" sensitive:"true"`
 
+	// An IAM role attached to a Studio Component that gives the studio component
+	// access to AWS resources at anytime while the instance is running.
+	RuntimeRoleArn *string `locationName:"runtimeRoleArn" type:"string"`
+
 	// Parameters for the studio component scripts.
 	//
 	// ScriptParameters is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateStudioComponentInput's
 	// String and GoString methods.
 	ScriptParameters []*ScriptParameterKeyValue `locationName:"scriptParameters" type:"list" sensitive:"true"`
+
+	// An IAM role attached to Studio Component when the system initialization script
+	// runs which give the studio component access to AWS resources when the system
+	// initialization script runs.
+	SecureInitializationRoleArn *string `locationName:"secureInitializationRoleArn" type:"string"`
 
 	// The studio component ID.
 	//
@@ -14088,9 +14160,21 @@ func (s *UpdateStudioComponentInput) SetName(v string) *UpdateStudioComponentInp
 	return s
 }
 
+// SetRuntimeRoleArn sets the RuntimeRoleArn field's value.
+func (s *UpdateStudioComponentInput) SetRuntimeRoleArn(v string) *UpdateStudioComponentInput {
+	s.RuntimeRoleArn = &v
+	return s
+}
+
 // SetScriptParameters sets the ScriptParameters field's value.
 func (s *UpdateStudioComponentInput) SetScriptParameters(v []*ScriptParameterKeyValue) *UpdateStudioComponentInput {
 	s.ScriptParameters = v
+	return s
+}
+
+// SetSecureInitializationRoleArn sets the SecureInitializationRoleArn field's value.
+func (s *UpdateStudioComponentInput) SetSecureInitializationRoleArn(v string) *UpdateStudioComponentInput {
+	s.SecureInitializationRoleArn = &v
 	return s
 }
 
