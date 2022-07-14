@@ -100,6 +100,10 @@ type CodeArtifactAPI interface {
 	DescribeDomainWithContext(aws.Context, *codeartifact.DescribeDomainInput, ...request.Option) (*codeartifact.DescribeDomainOutput, error)
 	DescribeDomainRequest(*codeartifact.DescribeDomainInput) (*request.Request, *codeartifact.DescribeDomainOutput)
 
+	DescribePackage(*codeartifact.DescribePackageInput) (*codeartifact.DescribePackageOutput, error)
+	DescribePackageWithContext(aws.Context, *codeartifact.DescribePackageInput, ...request.Option) (*codeartifact.DescribePackageOutput, error)
+	DescribePackageRequest(*codeartifact.DescribePackageInput) (*request.Request, *codeartifact.DescribePackageOutput)
+
 	DescribePackageVersion(*codeartifact.DescribePackageVersionInput) (*codeartifact.DescribePackageVersionOutput, error)
 	DescribePackageVersionWithContext(aws.Context, *codeartifact.DescribePackageVersionInput, ...request.Option) (*codeartifact.DescribePackageVersionOutput, error)
 	DescribePackageVersionRequest(*codeartifact.DescribePackageVersionInput) (*request.Request, *codeartifact.DescribePackageVersionOutput)
@@ -193,6 +197,10 @@ type CodeArtifactAPI interface {
 	PutDomainPermissionsPolicy(*codeartifact.PutDomainPermissionsPolicyInput) (*codeartifact.PutDomainPermissionsPolicyOutput, error)
 	PutDomainPermissionsPolicyWithContext(aws.Context, *codeartifact.PutDomainPermissionsPolicyInput, ...request.Option) (*codeartifact.PutDomainPermissionsPolicyOutput, error)
 	PutDomainPermissionsPolicyRequest(*codeartifact.PutDomainPermissionsPolicyInput) (*request.Request, *codeartifact.PutDomainPermissionsPolicyOutput)
+
+	PutPackageOriginConfiguration(*codeartifact.PutPackageOriginConfigurationInput) (*codeartifact.PutPackageOriginConfigurationOutput, error)
+	PutPackageOriginConfigurationWithContext(aws.Context, *codeartifact.PutPackageOriginConfigurationInput, ...request.Option) (*codeartifact.PutPackageOriginConfigurationOutput, error)
+	PutPackageOriginConfigurationRequest(*codeartifact.PutPackageOriginConfigurationInput) (*request.Request, *codeartifact.PutPackageOriginConfigurationOutput)
 
 	PutRepositoryPermissionsPolicy(*codeartifact.PutRepositoryPermissionsPolicyInput) (*codeartifact.PutRepositoryPermissionsPolicyOutput, error)
 	PutRepositoryPermissionsPolicyWithContext(aws.Context, *codeartifact.PutRepositoryPermissionsPolicyInput, ...request.Option) (*codeartifact.PutRepositoryPermissionsPolicyOutput, error)

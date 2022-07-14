@@ -5324,7 +5324,7 @@
       }
     },
     "InstanceGroup": {
-      "base": "<p>Defines an instance group for heterogeneous cluster training. When requesting a training job using the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html\">CreateTrainingJob</a> API, you can configure up to 5 different ML training instance groups.</p>",
+      "base": "<p>Defines an instance group for heterogeneous cluster training. When requesting a training job using the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html\">CreateTrainingJob</a> API, you can configure multiple instance groups .</p>",
       "refs": {
         "InstanceGroups$member": null
       }
@@ -8194,7 +8194,7 @@
       }
     },
     "ParameterRanges": {
-      "base": "<p>Specifies ranges of integer, continuous, and categorical hyperparameters that a hyperparameter tuning job searches. The hyperparameter tuning job launches training jobs with hyperparameter values within these ranges to find the combination of values that result in the training job with the best performance as measured by the objective metric of the hyperparameter tuning job.</p> <note> <p>You can specify a maximum of 20 hyperparameters that a hyperparameter tuning job can search over. Every possible value of a categorical parameter range counts against this limit.</p> </note>",
+      "base": "<p>Specifies ranges of integer, continuous, and categorical hyperparameters that a hyperparameter tuning job searches. The hyperparameter tuning job launches training jobs with hyperparameter values within these ranges to find the combination of values that result in the training job with the best performance as measured by the objective metric of the hyperparameter tuning job.</p> <note> <p>The maximum number of items specified for <code>Array Members</code> refers to the maximum number of hyperparameters for each range and also the maximum for the hyperparameter tuning job itself. That is, the sum of the number of hyperparameters for all the ranges can't exceed the maximum number specified.</p> </note>",
       "refs": {
         "HyperParameterTrainingJobDefinition$HyperParameterRanges": null,
         "HyperParameterTuningJobConfig$ParameterRanges": "<p>The <a>ParameterRanges</a> object that specifies the ranges of hyperparameters that this tuning job searches.</p>"

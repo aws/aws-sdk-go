@@ -9161,8 +9161,7 @@
       "type":"structure",
       "required":[
         "ResourceIds",
-        "ResourceType",
-        "TrafficType"
+        "ResourceType"
       ],
       "members":{
         "DryRun":{"shape":"Boolean"},
@@ -19860,7 +19859,9 @@
       "enum":[
         "VPC",
         "Subnet",
-        "NetworkInterface"
+        "NetworkInterface",
+        "TransitGateway",
+        "TransitGatewayAttachment"
       ]
     },
     "FpgaDeviceCount":{"type":"integer"},

@@ -520,6 +520,12 @@
         "ErrorMessage":{"shape":"String"}
       }
     },
+    "AwsAccountId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"^[0-9]+$"
+    },
     "BatchGetNamedQueryInput":{
       "type":"structure",
       "required":["NamedQueryIds"],
@@ -1270,7 +1276,12 @@
       "max":1024,
       "min":0
     },
-    "NamedQueryId":{"type":"string"},
+    "NamedQueryId":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"\\S+"
+    },
     "NamedQueryIdList":{
       "type":"list",
       "member":{"shape":"NamedQueryId"},
@@ -1343,7 +1354,12 @@
         "Catalog":{"shape":"CatalogNameString"}
       }
     },
-    "QueryExecutionId":{"type":"string"},
+    "QueryExecutionId":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"\\S+"
+    },
     "QueryExecutionIdList":{
       "type":"list",
       "member":{"shape":"QueryExecutionId"},
@@ -1402,25 +1418,26 @@
     "ResultConfiguration":{
       "type":"structure",
       "members":{
-        "OutputLocation":{"shape":"String"},
+        "OutputLocation":{"shape":"ResultOutputLocation"},
         "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
-        "ExpectedBucketOwner":{"shape":"String"},
+        "ExpectedBucketOwner":{"shape":"AwsAccountId"},
         "AclConfiguration":{"shape":"AclConfiguration"}
       }
     },
     "ResultConfigurationUpdates":{
       "type":"structure",
       "members":{
-        "OutputLocation":{"shape":"String"},
+        "OutputLocation":{"shape":"ResultOutputLocation"},
         "RemoveOutputLocation":{"shape":"BoxedBoolean"},
         "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
         "RemoveEncryptionConfiguration":{"shape":"BoxedBoolean"},
-        "ExpectedBucketOwner":{"shape":"String"},
+        "ExpectedBucketOwner":{"shape":"AwsAccountId"},
         "RemoveExpectedBucketOwner":{"shape":"BoxedBoolean"},
         "AclConfiguration":{"shape":"AclConfiguration"},
         "RemoveAclConfiguration":{"shape":"BoxedBoolean"}
       }
     },
+    "ResultOutputLocation":{"type":"string"},
     "ResultSet":{
       "type":"structure",
       "members":{

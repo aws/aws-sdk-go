@@ -1009,7 +1009,7 @@
       "type":"structure",
       "members":{
         "activeDirectoryUser":{"shape":"String"},
-        "endpoint":{"shape":"SyntheticComputeFarmConfigurationString"}
+        "endpoint":{"shape":"SensitiveString"}
       }
     },
     "ConflictException":{
@@ -1076,9 +1076,9 @@
           "location":"header",
           "locationName":"X-Amz-Client-Token"
         },
-        "description":{"shape":"SyntheticCreateStreamingImageRequestStreamingImageDescription"},
+        "description":{"shape":"StreamingImageDescription"},
         "ec2ImageId":{"shape":"EC2ImageId"},
-        "name":{"shape":"SyntheticCreateStreamingImageRequestStreamingImageName"},
+        "name":{"shape":"StreamingImageName"},
         "studioId":{
           "shape":"String",
           "location":"uri",
@@ -1172,7 +1172,9 @@
         "ec2SecurityGroupIds":{"shape":"StudioComponentSecurityGroupIdList"},
         "initializationScripts":{"shape":"StudioComponentInitializationScriptList"},
         "name":{"shape":"StudioComponentName"},
+        "runtimeRoleArn":{"shape":"RoleArn"},
         "scriptParameters":{"shape":"StudioComponentScriptParameterKeyValueList"},
+        "secureInitializationRoleArn":{"shape":"RoleArn"},
         "studioId":{
           "shape":"String",
           "location":"uri",
@@ -1198,18 +1200,18 @@
         "userRoleArn"
       ],
       "members":{
-        "adminRoleArn":{"shape":"String"},
+        "adminRoleArn":{"shape":"RoleArn"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true,
           "location":"header",
           "locationName":"X-Amz-Client-Token"
         },
-        "displayName":{"shape":"SyntheticCreateStudioRequestStudioDisplayName"},
+        "displayName":{"shape":"StudioDisplayName"},
         "studioEncryptionConfiguration":{"shape":"StudioEncryptionConfiguration"},
         "studioName":{"shape":"StudioName"},
         "tags":{"shape":"Tags"},
-        "userRoleArn":{"shape":"String"}
+        "userRoleArn":{"shape":"RoleArn"}
       }
     },
     "CreateStudioResponse":{
@@ -1865,7 +1867,9 @@
     "LaunchProfileInitializationScript":{
       "type":"structure",
       "members":{
+        "runtimeRoleArn":{"shape":"RoleArn"},
         "script":{"shape":"StudioComponentInitializationScriptContent"},
+        "secureInitializationRoleArn":{"shape":"RoleArn"},
         "studioComponentId":{"shape":"StudioComponentId"},
         "studioComponentName":{"shape":"StudioComponentName"}
       }
@@ -2009,7 +2013,7 @@
     "LicenseServiceConfiguration":{
       "type":"structure",
       "members":{
-        "endpoint":{"shape":"SyntheticLicenseServiceConfigurationString"}
+        "endpoint":{"shape":"SensitiveString"}
       }
     },
     "LinuxMountPoint":{
@@ -2430,6 +2434,11 @@
       },
       "exception":true
     },
+    "RoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":0
+    },
     "ScriptParameterKey":{
       "type":"string",
       "max":64,
@@ -2449,6 +2458,10 @@
       "min":1
     },
     "SecurityGroupId":{"type":"string"},
+    "SensitiveString":{
+      "type":"string",
+      "sensitive":true
+    },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "members":{
@@ -2465,10 +2478,10 @@
     "SharedFileSystemConfiguration":{
       "type":"structure",
       "members":{
-        "endpoint":{"shape":"SyntheticSharedFileSystemConfigurationString"},
+        "endpoint":{"shape":"SensitiveString"},
         "fileSystemId":{"shape":"String"},
         "linuxMountPoint":{"shape":"LinuxMountPoint"},
-        "shareName":{"shape":"SyntheticSharedFileSystemConfigurationString"},
+        "shareName":{"shape":"SensitiveString"},
         "windowsMountDrive":{"shape":"WindowsMountDrive"}
       }
     },
@@ -2619,11 +2632,11 @@
       "type":"structure",
       "members":{
         "arn":{"shape":"String"},
-        "description":{"shape":"SyntheticStreamingImageStreamingImageDescription"},
+        "description":{"shape":"StreamingImageDescription"},
         "ec2ImageId":{"shape":"EC2ImageId"},
         "encryptionConfiguration":{"shape":"StreamingImageEncryptionConfiguration"},
         "eulaIds":{"shape":"EulaIdList"},
-        "name":{"shape":"SyntheticStreamingImageStreamingImageName"},
+        "name":{"shape":"StreamingImageName"},
         "owner":{"shape":"StreamingImageOwner"},
         "platform":{"shape":"StreamingImagePlatform"},
         "state":{"shape":"StreamingImageState"},
@@ -2632,6 +2645,12 @@
         "streamingImageId":{"shape":"StreamingImageId"},
         "tags":{"shape":"Tags"}
       }
+    },
+    "StreamingImageDescription":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "sensitive":true
     },
     "StreamingImageEncryptionConfiguration":{
       "type":"structure",
@@ -2665,6 +2684,12 @@
     "StreamingImageList":{
       "type":"list",
       "member":{"shape":"StreamingImage"}
+    },
+    "StreamingImageName":{
+      "type":"string",
+      "max":64,
+      "min":0,
+      "sensitive":true
     },
     "StreamingImageOwner":{"type":"string"},
     "StreamingImagePlatform":{
@@ -2820,7 +2845,7 @@
         "state":{"shape":"StreamingSessionStreamState"},
         "statusCode":{"shape":"StreamingSessionStreamStatusCode"},
         "streamId":{"shape":"String"},
-        "url":{"shape":"SyntheticStreamingSessionStreamString"}
+        "url":{"shape":"SensitiveString"}
       }
     },
     "StreamingSessionStreamExpirationInSeconds":{
@@ -2858,10 +2883,10 @@
     "Studio":{
       "type":"structure",
       "members":{
-        "adminRoleArn":{"shape":"String"},
+        "adminRoleArn":{"shape":"RoleArn"},
         "arn":{"shape":"String"},
         "createdAt":{"shape":"Timestamp"},
-        "displayName":{"shape":"SyntheticStudioStudioDisplayName"},
+        "displayName":{"shape":"StudioDisplayName"},
         "homeRegion":{"shape":"Region"},
         "ssoClientId":{"shape":"String"},
         "state":{"shape":"StudioState"},
@@ -2873,7 +2898,7 @@
         "studioUrl":{"shape":"String"},
         "tags":{"shape":"Tags"},
         "updatedAt":{"shape":"Timestamp"},
-        "userRoleArn":{"shape":"String"}
+        "userRoleArn":{"shape":"RoleArn"}
       }
     },
     "StudioComponent":{
@@ -2887,7 +2912,9 @@
         "ec2SecurityGroupIds":{"shape":"StudioComponentSecurityGroupIdList"},
         "initializationScripts":{"shape":"StudioComponentInitializationScriptList"},
         "name":{"shape":"StudioComponentName"},
+        "runtimeRoleArn":{"shape":"RoleArn"},
         "scriptParameters":{"shape":"StudioComponentScriptParameterKeyValueList"},
+        "secureInitializationRoleArn":{"shape":"RoleArn"},
         "state":{"shape":"StudioComponentState"},
         "statusCode":{"shape":"StudioComponentStatusCode"},
         "statusMessage":{"shape":"String"},
@@ -3045,6 +3072,12 @@
       "type":"list",
       "member":{"shape":"StudioComponentType"}
     },
+    "StudioDisplayName":{
+      "type":"string",
+      "max":64,
+      "min":0,
+      "sensitive":true
+    },
     "StudioEncryptionConfiguration":{
       "type":"structure",
       "required":["keyType"],
@@ -3129,76 +3162,6 @@
         "AWS_SSO_CONFIGURATION_REPAIRED",
         "AWS_SSO_CONFIGURATION_REPAIR_IN_PROGRESS"
       ]
-    },
-    "SyntheticComputeFarmConfigurationString":{
-      "type":"string",
-      "sensitive":true
-    },
-    "SyntheticCreateStreamingImageRequestStreamingImageDescription":{
-      "type":"string",
-      "max":256,
-      "min":0,
-      "sensitive":true
-    },
-    "SyntheticCreateStreamingImageRequestStreamingImageName":{
-      "type":"string",
-      "max":64,
-      "min":0,
-      "sensitive":true
-    },
-    "SyntheticCreateStudioRequestStudioDisplayName":{
-      "type":"string",
-      "max":64,
-      "min":0,
-      "sensitive":true
-    },
-    "SyntheticLicenseServiceConfigurationString":{
-      "type":"string",
-      "sensitive":true
-    },
-    "SyntheticSharedFileSystemConfigurationString":{
-      "type":"string",
-      "sensitive":true
-    },
-    "SyntheticStreamingImageStreamingImageDescription":{
-      "type":"string",
-      "max":256,
-      "min":0,
-      "sensitive":true
-    },
-    "SyntheticStreamingImageStreamingImageName":{
-      "type":"string",
-      "max":64,
-      "min":0,
-      "sensitive":true
-    },
-    "SyntheticStreamingSessionStreamString":{
-      "type":"string",
-      "sensitive":true
-    },
-    "SyntheticStudioStudioDisplayName":{
-      "type":"string",
-      "max":64,
-      "min":0,
-      "sensitive":true
-    },
-    "SyntheticUpdateStreamingImageRequestStreamingImageDescription":{
-      "type":"string",
-      "max":256,
-      "min":0,
-      "sensitive":true
-    },
-    "SyntheticUpdateStreamingImageRequestStreamingImageName":{
-      "type":"string",
-      "max":64,
-      "min":0,
-      "sensitive":true
-    },
-    "SyntheticUpdateStudioRequestStudioDisplayName":{
-      "type":"string",
-      "max":64,
-      "min":0,
-      "sensitive":true
     },
     "TagResourceRequest":{
       "type":"structure",
@@ -3352,8 +3315,8 @@
           "location":"header",
           "locationName":"X-Amz-Client-Token"
         },
-        "description":{"shape":"SyntheticUpdateStreamingImageRequestStreamingImageDescription"},
-        "name":{"shape":"SyntheticUpdateStreamingImageRequestStreamingImageName"},
+        "description":{"shape":"StreamingImageDescription"},
+        "name":{"shape":"StreamingImageName"},
         "streamingImageId":{
           "shape":"String",
           "location":"uri",
@@ -3390,7 +3353,9 @@
         "ec2SecurityGroupIds":{"shape":"StudioComponentSecurityGroupIdList"},
         "initializationScripts":{"shape":"StudioComponentInitializationScriptList"},
         "name":{"shape":"StudioComponentName"},
+        "runtimeRoleArn":{"shape":"RoleArn"},
         "scriptParameters":{"shape":"StudioComponentScriptParameterKeyValueList"},
+        "secureInitializationRoleArn":{"shape":"RoleArn"},
         "studioComponentId":{
           "shape":"String",
           "location":"uri",
@@ -3415,20 +3380,20 @@
       "type":"structure",
       "required":["studioId"],
       "members":{
-        "adminRoleArn":{"shape":"String"},
+        "adminRoleArn":{"shape":"RoleArn"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true,
           "location":"header",
           "locationName":"X-Amz-Client-Token"
         },
-        "displayName":{"shape":"SyntheticUpdateStudioRequestStudioDisplayName"},
+        "displayName":{"shape":"StudioDisplayName"},
         "studioId":{
           "shape":"String",
           "location":"uri",
           "locationName":"studioId"
         },
-        "userRoleArn":{"shape":"String"}
+        "userRoleArn":{"shape":"RoleArn"}
       }
     },
     "UpdateStudioResponse":{

@@ -15,6 +15,7 @@
     "DisassociateMember": "<p>Disassociates a member account from an Amazon Inspector delegated administrator.</p>",
     "Enable": "<p>Enables Amazon Inspector scans for one or more Amazon Web Services accounts.</p>",
     "EnableDelegatedAdminAccount": "<p>Enables the Amazon Inspector delegated administrator for your Organizations organization.</p>",
+    "GetConfiguration": "<p>Retrieves setting configurations for Inspector scans.</p>",
     "GetDelegatedAdminAccount": "<p>Retrieves information about the Amazon Inspector delegated administrator for your organization.</p>",
     "GetFindingsReportStatus": "<p>Gets the status of a findings report.</p>",
     "GetMember": "<p>Gets member information for your organization.</p>",
@@ -30,6 +31,7 @@
     "ListUsageTotals": "<p>Lists the Amazon Inspector usage totals over the last 30 days.</p>",
     "TagResource": "<p>Adds tags to a resource.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
+    "UpdateConfiguration": "<p>Updates setting configurations for your Amazon Inspector account. When you use this API as an Amazon Inspector delegated administrator this updates the setting for all accounts you manage. Member accounts in an organization cannot update this setting.</p>",
     "UpdateFilter": "<p>Specifies the action that is to be applied to the findings that match the filter.</p>",
     "UpdateOrganizationConfiguration": "<p>Updates the configurations for your Amazon Inspector organization.</p>"
   },
@@ -386,7 +388,7 @@
         "CoverageFilterCriteria$ecrImageTags": "<p>The Amazon ECR image tags to filter on.</p>",
         "CoverageFilterCriteria$ecrRepositoryName": "<p>The Amazon ECR repository name to filter on.</p>",
         "CoverageFilterCriteria$resourceId": "<p>An array of Amazon Web Services resource IDs to return coverage statistics for.</p>",
-        "CoverageFilterCriteria$resourceType": "<p>An array of Amazon Web Services resource types to return coverage statistics for.</p>",
+        "CoverageFilterCriteria$resourceType": "<p>An array of Amazon Web Services resource types to return coverage statistics for. The values can be <code>AWS_EC2_INSTANCE</code> or <code>AWS_ECR_REPOSITORY</code>.</p>",
         "CoverageFilterCriteria$scanStatusCode": "<p>The scan status code to filter on.</p>",
         "CoverageFilterCriteria$scanStatusReason": "<p>The scan status reason to filter on.</p>",
         "CoverageFilterCriteria$scanType": "<p>An array of Amazon Inspector scan types to return coverage statistics for.</p>"
@@ -486,6 +488,7 @@
       "refs": {
         "AwsEc2InstanceDetails$launchedAt": "<p>The date and time the Amazon EC2 instance was launched at.</p>",
         "AwsEcrContainerImageDetails$pushedAt": "<p>The date and time the Amazon ECR container image was pushed.</p>",
+        "EcrRescanDurationState$updatedAt": "<p>A timestamp representing when the last time the ECR scan duration setting was changed.</p>",
         "Filter$createdAt": "<p>The date and time this filter was created at.</p>",
         "Filter$updatedAt": "<p>The date and time the filter was last updated at.</p>",
         "Finding$firstObservedAt": "<p>The date and time that the finding was first observed.</p>",
@@ -623,6 +626,18 @@
         "Ec2Metadata$platform": "<p>The platform of the instance.</p>"
       }
     },
+    "EcrConfiguration": {
+      "base": "<p>Details about the ECR automated re-scan duration setting for your environment</p>",
+      "refs": {
+        "UpdateConfigurationRequest$ecrConfiguration": "<p>Specifies how the ECR automated re-scan will be updated for your environment.</p>"
+      }
+    },
+    "EcrConfigurationState": {
+      "base": "<p>Details about the state of the ECR scans for your environment.</p>",
+      "refs": {
+        "GetConfigurationResponse$ecrConfiguration": "<p>Specifies how the ECR automated re-scan duration is currently configured for your environment.</p>"
+      }
+    },
     "EcrContainerImageMetadata": {
       "base": "<p>Information on the Amazon ECR image metadata associated with a finding.</p>",
       "refs": {
@@ -633,6 +648,25 @@
       "base": "<p>Information on the Amazon ECR repository metadata associated with a finding.</p>",
       "refs": {
         "ResourceScanMetadata$ecrRepository": "<p>An object that contains details about the repository an Amazon ECR image resides in.</p>"
+      }
+    },
+    "EcrRescanDuration": {
+      "base": null,
+      "refs": {
+        "EcrConfiguration$rescanDuration": "<p>The ECR automated re-scan duration defines how long an ECR image will be actively scanned by Amazon Inspector. When the number of days since an image was last pushed exceeds the automated re-scan duration the monitoring state of that image becomes <code>inactive</code> and all associated findings are scheduled for closure.</p>",
+        "EcrRescanDurationState$rescanDuration": "<p>The ECR automated re-scan duration defines how long an ECR image will be actively scanned by Amazon Inspector. When the number of days since an image was last pushed exceeds the automated re-scan duration the monitoring state of that image becomes <code>inactive</code> and all associated findings are scheduled for closure.</p>"
+      }
+    },
+    "EcrRescanDurationState": {
+      "base": "<p>Details about the state of any changes to the ECR automated re-scan duration setting.</p>",
+      "refs": {
+        "EcrConfigurationState$rescanDurationState": "<p>An object that contains details about the state of the ECR automated re-scan setting.</p>"
+      }
+    },
+    "EcrRescanDurationStatus": {
+      "base": null,
+      "refs": {
+        "EcrRescanDurationState$status": "<p>The status of changes to the ECR automated re-scan duration.</p>"
       }
     },
     "EcrScanFrequency": {
@@ -775,7 +809,9 @@
     "FilterReason": {
       "base": null,
       "refs": {
-        "Filter$reason": "<p>The reason for the filter.</p>"
+        "CreateFilterRequest$reason": "<p>The reason for creating the filter.</p>",
+        "Filter$reason": "<p>The reason for the filter.</p>",
+        "UpdateFilterRequest$reason": "<p>The reason the filter was updated.</p>"
       }
     },
     "Finding": {
@@ -890,6 +926,16 @@
       "base": null,
       "refs": {
         "FreeTrialInfo$type": "<p>The type of scan covered by the Amazon Inspector free trail.</p>"
+      }
+    },
+    "GetConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConfigurationResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "GetDelegatedAdminAccountRequest": {
@@ -1886,6 +1932,16 @@
       }
     },
     "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConfigurationResponse": {
       "base": null,
       "refs": {
       }

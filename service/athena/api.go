@@ -3836,6 +3836,7 @@ func (s *AthenaError) SetRetryable(v bool) *AthenaError {
 	return s
 }
 
+// Contains an array of named query IDs.
 type BatchGetNamedQueryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4026,6 +4027,7 @@ func (s *BatchGetPreparedStatementOutput) SetUnprocessedPreparedStatementNames(v
 	return s
 }
 
+// Contains an array of query execution IDs.
 type BatchGetQueryExecutionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4565,7 +4567,7 @@ type CreateNamedQueryOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique ID of the query.
-	NamedQueryId *string `type:"string"`
+	NamedQueryId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -5113,7 +5115,7 @@ type DeleteNamedQueryInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique ID of the query to delete.
-	NamedQueryId *string `type:"string" idempotencyToken:"true"`
+	NamedQueryId *string `min:"1" type:"string" idempotencyToken:"true"`
 }
 
 // String returns the string representation.
@@ -5132,6 +5134,19 @@ func (s DeleteNamedQueryInput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteNamedQueryInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteNamedQueryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteNamedQueryInput"}
+	if s.NamedQueryId != nil && len(*s.NamedQueryId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NamedQueryId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetNamedQueryId sets the NamedQueryId field's value.
@@ -5634,7 +5649,7 @@ type GetNamedQueryInput struct {
 	// The unique ID of the query. Use ListNamedQueries to get query IDs.
 	//
 	// NamedQueryId is a required field
-	NamedQueryId *string `type:"string" required:"true"`
+	NamedQueryId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5660,6 +5675,9 @@ func (s *GetNamedQueryInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetNamedQueryInput"}
 	if s.NamedQueryId == nil {
 		invalidParams.Add(request.NewErrParamRequired("NamedQueryId"))
+	}
+	if s.NamedQueryId != nil && len(*s.NamedQueryId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NamedQueryId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5805,7 +5823,7 @@ type GetQueryExecutionInput struct {
 	// The unique ID of the query execution.
 	//
 	// QueryExecutionId is a required field
-	QueryExecutionId *string `type:"string" required:"true"`
+	QueryExecutionId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5831,6 +5849,9 @@ func (s *GetQueryExecutionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetQueryExecutionInput"}
 	if s.QueryExecutionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("QueryExecutionId"))
+	}
+	if s.QueryExecutionId != nil && len(*s.QueryExecutionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryExecutionId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5891,7 +5912,7 @@ type GetQueryResultsInput struct {
 	// The unique ID of the query execution.
 	//
 	// QueryExecutionId is a required field
-	QueryExecutionId *string `type:"string" required:"true"`
+	QueryExecutionId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5923,6 +5944,9 @@ func (s *GetQueryResultsInput) Validate() error {
 	}
 	if s.QueryExecutionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("QueryExecutionId"))
+	}
+	if s.QueryExecutionId != nil && len(*s.QueryExecutionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryExecutionId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7434,7 +7458,7 @@ type NamedQuery struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The unique identifier of the query.
-	NamedQueryId *string `type:"string"`
+	NamedQueryId *string `min:"1" type:"string"`
 
 	// The SQL statements that make up the query.
 	//
@@ -7626,7 +7650,7 @@ type QueryExecution struct {
 	QueryExecutionContext *QueryExecutionContext `type:"structure"`
 
 	// The unique identifier for each query execution.
-	QueryExecutionId *string `type:"string"`
+	QueryExecutionId *string `min:"1" type:"string"`
 
 	// The location in Amazon S3 where query results were stored and the encryption
 	// option, if any, used for query results. These are known as "client-side settings".
@@ -8072,7 +8096,7 @@ type ResultConfiguration struct {
 	// for the workgroup, and also uses the location for storing query results specified
 	// in the workgroup. See WorkGroupConfiguration$EnforceWorkGroupConfiguration
 	// and Workgroup Settings Override Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
-	ExpectedBucketOwner *string `type:"string"`
+	ExpectedBucketOwner *string `min:"12" type:"string"`
 
 	// The location in Amazon S3 where your query results are stored, such as s3://path/to/query/bucket/.
 	// To run the query, you must specify the query results location using one of
@@ -8106,6 +8130,9 @@ func (s ResultConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ResultConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ResultConfiguration"}
+	if s.ExpectedBucketOwner != nil && len(*s.ExpectedBucketOwner) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("ExpectedBucketOwner", 12))
+	}
 	if s.AclConfiguration != nil {
 		if err := s.AclConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("AclConfiguration", err.(request.ErrInvalidParams))
@@ -8170,7 +8197,7 @@ type ResultConfigurationUpdates struct {
 	// also uses the location for storing query results specified in the workgroup.
 	// See WorkGroupConfiguration$EnforceWorkGroupConfiguration and Workgroup Settings
 	// Override Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
-	ExpectedBucketOwner *string `type:"string"`
+	ExpectedBucketOwner *string `min:"12" type:"string"`
 
 	// The location in Amazon S3 where your query results are stored, such as s3://path/to/query/bucket/.
 	// For more information, see Query Results (https://docs.aws.amazon.com/athena/latest/ug/querying.html)
@@ -8237,6 +8264,9 @@ func (s ResultConfigurationUpdates) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ResultConfigurationUpdates) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ResultConfigurationUpdates"}
+	if s.ExpectedBucketOwner != nil && len(*s.ExpectedBucketOwner) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("ExpectedBucketOwner", 12))
+	}
 	if s.AclConfiguration != nil {
 		if err := s.AclConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("AclConfiguration", err.(request.ErrInvalidParams))
@@ -8537,7 +8567,7 @@ type StartQueryExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique ID of the query that ran as a result of this request.
-	QueryExecutionId *string `type:"string"`
+	QueryExecutionId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -8568,7 +8598,7 @@ type StopQueryExecutionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique ID of the query execution to stop.
-	QueryExecutionId *string `type:"string" idempotencyToken:"true"`
+	QueryExecutionId *string `min:"1" type:"string" idempotencyToken:"true"`
 }
 
 // String returns the string representation.
@@ -8587,6 +8617,19 @@ func (s StopQueryExecutionInput) String() string {
 // value will be replaced with "sensitive".
 func (s StopQueryExecutionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopQueryExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopQueryExecutionInput"}
+	if s.QueryExecutionId != nil && len(*s.QueryExecutionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryExecutionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetQueryExecutionId sets the QueryExecutionId field's value.
@@ -8952,7 +8995,7 @@ type UnprocessedNamedQueryId struct {
 	ErrorMessage *string `type:"string"`
 
 	// The unique identifier of the named query.
-	NamedQueryId *string `type:"string"`
+	NamedQueryId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -9063,7 +9106,7 @@ type UnprocessedQueryExecutionId struct {
 	ErrorMessage *string `type:"string"`
 
 	// The unique identifier of the query execution.
-	QueryExecutionId *string `type:"string"`
+	QueryExecutionId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -9324,7 +9367,7 @@ type UpdateNamedQueryInput struct {
 	// The unique identifier (UUID) of the query.
 	//
 	// NamedQueryId is a required field
-	NamedQueryId *string `type:"string" required:"true"`
+	NamedQueryId *string `min:"1" type:"string" required:"true"`
 
 	// The contents of the query with all query statements.
 	//
@@ -9361,6 +9404,9 @@ func (s *UpdateNamedQueryInput) Validate() error {
 	}
 	if s.NamedQueryId == nil {
 		invalidParams.Add(request.NewErrParamRequired("NamedQueryId"))
+	}
+	if s.NamedQueryId != nil && len(*s.NamedQueryId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NamedQueryId", 1))
 	}
 	if s.QueryString == nil {
 		invalidParams.Add(request.NewErrParamRequired("QueryString"))

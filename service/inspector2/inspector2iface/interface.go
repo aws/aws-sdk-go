@@ -112,6 +112,10 @@ type Inspector2API interface {
 	EnableDelegatedAdminAccountWithContext(aws.Context, *inspector2.EnableDelegatedAdminAccountInput, ...request.Option) (*inspector2.EnableDelegatedAdminAccountOutput, error)
 	EnableDelegatedAdminAccountRequest(*inspector2.EnableDelegatedAdminAccountInput) (*request.Request, *inspector2.EnableDelegatedAdminAccountOutput)
 
+	GetConfiguration(*inspector2.GetConfigurationInput) (*inspector2.GetConfigurationOutput, error)
+	GetConfigurationWithContext(aws.Context, *inspector2.GetConfigurationInput, ...request.Option) (*inspector2.GetConfigurationOutput, error)
+	GetConfigurationRequest(*inspector2.GetConfigurationInput) (*request.Request, *inspector2.GetConfigurationOutput)
+
 	GetDelegatedAdminAccount(*inspector2.GetDelegatedAdminAccountInput) (*inspector2.GetDelegatedAdminAccountOutput, error)
 	GetDelegatedAdminAccountWithContext(aws.Context, *inspector2.GetDelegatedAdminAccountInput, ...request.Option) (*inspector2.GetDelegatedAdminAccountOutput, error)
 	GetDelegatedAdminAccountRequest(*inspector2.GetDelegatedAdminAccountInput) (*request.Request, *inspector2.GetDelegatedAdminAccountOutput)
@@ -198,6 +202,10 @@ type Inspector2API interface {
 	UntagResource(*inspector2.UntagResourceInput) (*inspector2.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *inspector2.UntagResourceInput, ...request.Option) (*inspector2.UntagResourceOutput, error)
 	UntagResourceRequest(*inspector2.UntagResourceInput) (*request.Request, *inspector2.UntagResourceOutput)
+
+	UpdateConfiguration(*inspector2.UpdateConfigurationInput) (*inspector2.UpdateConfigurationOutput, error)
+	UpdateConfigurationWithContext(aws.Context, *inspector2.UpdateConfigurationInput, ...request.Option) (*inspector2.UpdateConfigurationOutput, error)
+	UpdateConfigurationRequest(*inspector2.UpdateConfigurationInput) (*request.Request, *inspector2.UpdateConfigurationOutput)
 
 	UpdateFilter(*inspector2.UpdateFilterInput) (*inspector2.UpdateFilterOutput, error)
 	UpdateFilterWithContext(aws.Context, *inspector2.UpdateFilterInput, ...request.Option) (*inspector2.UpdateFilterOutput, error)

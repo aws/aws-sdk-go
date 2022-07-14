@@ -4833,6 +4833,9 @@ func (s *InternalServerException) RequestID() string {
 type LineItem struct {
 	_ struct{} `type:"structure"`
 
+	// Information about assets.
+	AssetInformationList []*LineItemAssetInformation `type:"list"`
+
 	// The ID of the catalog item.
 	CatalogItemId *string `min:"1" type:"string"`
 
@@ -4841,6 +4844,9 @@ type LineItem struct {
 
 	// The quantity of the line item.
 	Quantity *int64 `min:"1" type:"integer"`
+
+	// Information about a line item shipment.
+	ShipmentInformation *ShipmentInformation `type:"structure"`
 
 	// The status of the line item.
 	Status *string `type:"string" enum:"LineItemStatus"`
@@ -4864,6 +4870,12 @@ func (s LineItem) GoString() string {
 	return s.String()
 }
 
+// SetAssetInformationList sets the AssetInformationList field's value.
+func (s *LineItem) SetAssetInformationList(v []*LineItemAssetInformation) *LineItem {
+	s.AssetInformationList = v
+	return s
+}
+
 // SetCatalogItemId sets the CatalogItemId field's value.
 func (s *LineItem) SetCatalogItemId(v string) *LineItem {
 	s.CatalogItemId = &v
@@ -4882,9 +4894,56 @@ func (s *LineItem) SetQuantity(v int64) *LineItem {
 	return s
 }
 
+// SetShipmentInformation sets the ShipmentInformation field's value.
+func (s *LineItem) SetShipmentInformation(v *ShipmentInformation) *LineItem {
+	s.ShipmentInformation = v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *LineItem) SetStatus(v string) *LineItem {
 	s.Status = &v
+	return s
+}
+
+// Information about a line item asset.
+type LineItemAssetInformation struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the asset.
+	AssetId *string `min:"1" type:"string"`
+
+	// MAC addresses of the asset.
+	MacAddressList []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LineItemAssetInformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LineItemAssetInformation) GoString() string {
+	return s.String()
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *LineItemAssetInformation) SetAssetId(v string) *LineItemAssetInformation {
+	s.AssetId = &v
+	return s
+}
+
+// SetMacAddressList sets the MacAddressList field's value.
+func (s *LineItemAssetInformation) SetMacAddressList(v []*string) *LineItemAssetInformation {
+	s.MacAddressList = v
 	return s
 }
 
@@ -6242,6 +6301,47 @@ func (s *ServiceQuotaExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Information about a line item shipment.
+type ShipmentInformation struct {
+	_ struct{} `type:"structure"`
+
+	// The carrier of the shipment.
+	ShipmentCarrier *string `type:"string" enum:"ShipmentCarrier"`
+
+	// The tracking number of the shipment.
+	ShipmentTrackingNumber *string `min:"6" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ShipmentInformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ShipmentInformation) GoString() string {
+	return s.String()
+}
+
+// SetShipmentCarrier sets the ShipmentCarrier field's value.
+func (s *ShipmentInformation) SetShipmentCarrier(v string) *ShipmentInformation {
+	s.ShipmentCarrier = &v
+	return s
+}
+
+// SetShipmentTrackingNumber sets the ShipmentTrackingNumber field's value.
+func (s *ShipmentInformation) SetShipmentTrackingNumber(v string) *ShipmentInformation {
+	s.ShipmentTrackingNumber = &v
+	return s
 }
 
 // Information about a site.
@@ -7722,6 +7822,30 @@ func ResourceType_Values() []string {
 	return []string{
 		ResourceTypeOutpost,
 		ResourceTypeOrder,
+	}
+}
+
+const (
+	// ShipmentCarrierDhl is a ShipmentCarrier enum value
+	ShipmentCarrierDhl = "DHL"
+
+	// ShipmentCarrierDbs is a ShipmentCarrier enum value
+	ShipmentCarrierDbs = "DBS"
+
+	// ShipmentCarrierFedex is a ShipmentCarrier enum value
+	ShipmentCarrierFedex = "FEDEX"
+
+	// ShipmentCarrierUps is a ShipmentCarrier enum value
+	ShipmentCarrierUps = "UPS"
+)
+
+// ShipmentCarrier_Values returns all elements of the ShipmentCarrier enum
+func ShipmentCarrier_Values() []string {
+	return []string{
+		ShipmentCarrierDhl,
+		ShipmentCarrierDbs,
+		ShipmentCarrierFedex,
+		ShipmentCarrierUps,
 	}
 }
 

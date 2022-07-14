@@ -82,6 +82,8 @@ const (
 
 	// ErrCodeIllegalBlueprintStateException for service response error code
 	// "IllegalBlueprintStateException".
+	//
+	// The blueprint is in an invalid state to perform a requested operation.
 	ErrCodeIllegalBlueprintStateException = "IllegalBlueprintStateException"
 
 	// ErrCodeIllegalSessionStateException for service response error code

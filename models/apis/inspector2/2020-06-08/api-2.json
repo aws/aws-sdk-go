@@ -233,6 +233,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetConfiguration":{
+      "name":"GetConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/configuration/get",
+        "responseCode":200
+      },
+      "input":{"shape":"GetConfigurationRequest"},
+      "output":{"shape":"GetConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetDelegatedAdminAccount":{
       "name":"GetDelegatedAdminAccount",
       "http":{
@@ -470,6 +485,22 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateConfiguration":{
+      "name":"UpdateConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/configuration/update",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateConfigurationRequest"},
+      "output":{"shape":"UpdateConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ]
@@ -995,6 +1026,7 @@
         "description":{"shape":"FilterDescription"},
         "filterCriteria":{"shape":"FilterCriteria"},
         "name":{"shape":"FilterName"},
+        "reason":{"shape":"FilterReason"},
         "tags":{"shape":"TagMap"}
       }
     },
@@ -1259,6 +1291,19 @@
         "UNKNOWN"
       ]
     },
+    "EcrConfiguration":{
+      "type":"structure",
+      "required":["rescanDuration"],
+      "members":{
+        "rescanDuration":{"shape":"EcrRescanDuration"}
+      }
+    },
+    "EcrConfigurationState":{
+      "type":"structure",
+      "members":{
+        "rescanDurationState":{"shape":"EcrRescanDurationState"}
+      }
+    },
     "EcrContainerImageMetadata":{
       "type":"structure",
       "members":{
@@ -1271,6 +1316,30 @@
         "name":{"shape":"String"},
         "scanFrequency":{"shape":"EcrScanFrequency"}
       }
+    },
+    "EcrRescanDuration":{
+      "type":"string",
+      "enum":[
+        "LIFETIME",
+        "DAYS_30",
+        "DAYS_180"
+      ]
+    },
+    "EcrRescanDurationState":{
+      "type":"structure",
+      "members":{
+        "rescanDuration":{"shape":"EcrRescanDuration"},
+        "status":{"shape":"EcrRescanDurationStatus"},
+        "updatedAt":{"shape":"DateTimeTimestamp"}
+      }
+    },
+    "EcrRescanDurationStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCESS",
+        "PENDING",
+        "FAILED"
+      ]
     },
     "EcrScanFrequency":{
       "type":"string",
@@ -1339,7 +1408,8 @@
         "EVENTBRIDGE_UNAVAILABLE",
         "EVENTBRIDGE_THROTTLED",
         "RESOURCE_SCAN_NOT_DISABLED",
-        "DISASSOCIATE_ALL_MEMBERS"
+        "DISASSOCIATE_ALL_MEMBERS",
+        "ACCOUNT_IS_ISOLATED"
       ]
     },
     "ErrorMessage":{"type":"string"},
@@ -1637,6 +1707,17 @@
         "EC2",
         "ECR"
       ]
+    },
+    "GetConfigurationRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "ecrConfiguration":{"shape":"EcrConfigurationState"}
+      }
     },
     "GetDelegatedAdminAccountRequest":{
       "type":"structure",
@@ -2172,7 +2253,11 @@
         "GOBINARY",
         "GOMOD",
         "JAR",
-        "OS"
+        "OS",
+        "PIP",
+        "PYTHONPKG",
+        "NODEPKG",
+        "POM"
       ]
     },
     "PackageName":{
@@ -2315,7 +2400,11 @@
       "type":"string",
       "enum":[
         "INTERNAL_ERROR",
-        "INVALID_PERMISSIONS"
+        "INVALID_PERMISSIONS",
+        "NO_FINDINGS_FOUND",
+        "BUCKET_NOT_FOUND",
+        "INCOMPATIBLE_BUCKET_REGION",
+        "MALFORMED_KMS_KEY"
       ]
     },
     "RepositoryAggregation":{
@@ -2469,7 +2558,8 @@
         "IMAGE_SIZE_EXCEEDED",
         "SCAN_FREQUENCY_MANUAL",
         "SCAN_FREQUENCY_SCAN_ON_PUSH",
-        "EC2_INSTANCE_STOPPED"
+        "EC2_INSTANCE_STOPPED",
+        "PENDING_DISABLE"
       ]
     },
     "ScanType":{
@@ -2749,6 +2839,18 @@
       "members":{
       }
     },
+    "UpdateConfigurationRequest":{
+      "type":"structure",
+      "required":["ecrConfiguration"],
+      "members":{
+        "ecrConfiguration":{"shape":"EcrConfiguration"}
+      }
+    },
+    "UpdateConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateFilterRequest":{
       "type":"structure",
       "required":["filterArn"],
@@ -2757,7 +2859,8 @@
         "description":{"shape":"FilterDescription"},
         "filterArn":{"shape":"FilterArn"},
         "filterCriteria":{"shape":"FilterCriteria"},
-        "name":{"shape":"FilterName"}
+        "name":{"shape":"FilterName"},
+        "reason":{"shape":"FilterReason"}
       }
     },
     "UpdateFilterResponse":{
@@ -2869,7 +2972,7 @@
     },
     "VulnerabilityId":{
       "type":"string",
-      "max":64,
+      "max":128,
       "min":1
     },
     "VulnerabilityIdList":{

@@ -1,3 +1,24 @@
+Release v1.44.55 (2022-07-14)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * This release updates data types that contain either QueryExecutionId, NamedQueryId or ExpectedBucketOwner. Ids must be between 1 and 128 characters and contain only non-whitespace characters. ExpectedBucketOwner must be 12-digit string.
+* `service/codeartifact`: Updates service API and documentation
+* `service/config`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * This release adds flow logs for Transit Gateway to  allow customers to gain deeper visibility and insights into network traffic through their Transit Gateways.
+* `service/fms`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * This release adds an additional worker type for Glue Streaming jobs.
+* `service/inspector2`: Updates service API and documentation
+* `service/kendra`: Updates service API, documentation, and paginators
+  * This release adds AccessControlConfigurations which allow you to redefine your document level access control without the need for content re-indexing.
+* `service/nimble`: Updates service API and documentation
+* `service/outposts`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds support for G5, P4d, and C6i instance types in Amazon SageMaker Inference and increases the number of hyperparameters that can be searched from 20 to 30 in Amazon SageMaker Automatic Model Tuning
+
 Release v1.44.54 (2022-07-13)
 ===
 

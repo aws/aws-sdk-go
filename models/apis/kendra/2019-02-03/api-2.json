@@ -116,6 +116,24 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CreateAccessControlConfiguration":{
+      "name":"CreateAccessControlConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateAccessControlConfigurationRequest"},
+      "output":{"shape":"CreateAccessControlConfigurationResponse"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateDataSource":{
       "name":"CreateDataSource",
       "http":{
@@ -221,6 +239,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteAccessControlConfiguration":{
+      "name":"DeleteAccessControlConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAccessControlConfigurationRequest"},
+      "output":{"shape":"DeleteAccessControlConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ]
@@ -334,6 +369,22 @@
         {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeAccessControlConfiguration":{
+      "name":"DescribeAccessControlConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAccessControlConfigurationRequest"},
+      "output":{"shape":"DescribeAccessControlConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ]
@@ -526,6 +577,22 @@
       "output":{"shape":"GetSnapshotsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListAccessControlConfigurations":{
+      "name":"ListAccessControlConfigurations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAccessControlConfigurationsRequest"},
+      "output":{"shape":"ListAccessControlConfigurationsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
@@ -824,6 +891,24 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "UpdateAccessControlConfiguration":{
+      "name":"UpdateAccessControlConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateAccessControlConfigurationRequest"},
+      "output":{"shape":"UpdateAccessControlConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "UpdateDataSource":{
       "name":"UpdateDataSource",
       "http":{
@@ -923,6 +1008,29 @@
     }
   },
   "shapes":{
+    "AccessControlConfigurationId":{
+      "type":"string",
+      "max":36,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-]+"
+    },
+    "AccessControlConfigurationName":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"[\\S\\s]*"
+    },
+    "AccessControlConfigurationSummary":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"AccessControlConfigurationId"}
+      }
+    },
+    "AccessControlConfigurationSummaryList":{
+      "type":"list",
+      "member":{"shape":"AccessControlConfigurationSummary"}
+    },
     "AccessControlListConfiguration":{
       "type":"structure",
       "members":{
@@ -1542,6 +1650,31 @@
       "max":10,
       "min":0
     },
+    "CreateAccessControlConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "Name"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "Name":{"shape":"AccessControlConfigurationName"},
+        "Description":{"shape":"Description"},
+        "AccessControlList":{"shape":"PrincipalList"},
+        "HierarchicalAccessControlList":{"shape":"HierarchicalPrincipalList"},
+        "ClientToken":{
+          "shape":"ClientTokenName",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateAccessControlConfigurationResponse":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"AccessControlConfigurationId"}
+      }
+    },
     "CreateDataSourceRequest":{
       "type":"structure",
       "required":[
@@ -1970,6 +2103,22 @@
       "max":65535,
       "min":1
     },
+    "DeleteAccessControlConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "Id"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "Id":{"shape":"AccessControlConfigurationId"}
+      }
+    },
+    "DeleteAccessControlConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteDataSourceRequest":{
       "type":"structure",
       "required":[
@@ -2048,6 +2197,28 @@
       "members":{
         "Id":{"shape":"ThesaurusId"},
         "IndexId":{"shape":"IndexId"}
+      }
+    },
+    "DescribeAccessControlConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "Id"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "Id":{"shape":"AccessControlConfigurationId"}
+      }
+    },
+    "DescribeAccessControlConfigurationResponse":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"AccessControlConfigurationName"},
+        "Description":{"shape":"Description"},
+        "ErrorMessage":{"shape":"ErrorMessage"},
+        "AccessControlList":{"shape":"PrincipalList"},
+        "HierarchicalAccessControlList":{"shape":"HierarchicalPrincipalList"}
       }
     },
     "DescribeDataSourceRequest":{
@@ -2323,7 +2494,8 @@
         "Attributes":{"shape":"DocumentAttributeList"},
         "AccessControlList":{"shape":"PrincipalList"},
         "HierarchicalAccessControlList":{"shape":"HierarchicalPrincipalList"},
-        "ContentType":{"shape":"ContentType"}
+        "ContentType":{"shape":"ContentType"},
+        "AccessControlConfigurationId":{"shape":"AccessControlConfigurationId"}
       }
     },
     "DocumentAttribute":{
@@ -3276,6 +3448,23 @@
       "min":2,
       "pattern":"[a-zA-Z-]*"
     },
+    "ListAccessControlConfigurationsRequest":{
+      "type":"structure",
+      "required":["IndexId"],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResultsIntegerForListAccessControlConfigurationsRequest"}
+      }
+    },
+    "ListAccessControlConfigurationsResponse":{
+      "type":"structure",
+      "required":["AccessControlConfigurations"],
+      "members":{
+        "NextToken":{"shape":"String"},
+        "AccessControlConfigurations":{"shape":"AccessControlConfigurationSummaryList"}
+      }
+    },
     "ListDataSourceSyncJobsRequest":{
       "type":"structure",
       "required":[
@@ -3483,6 +3672,11 @@
     "MaxLinksPerPage":{
       "type":"integer",
       "max":1000,
+      "min":1
+    },
+    "MaxResultsIntegerForListAccessControlConfigurationsRequest":{
+      "type":"integer",
+      "max":100,
       "min":1
     },
     "MaxResultsIntegerForListDataSourceSyncJobsRequest":{
@@ -4819,6 +5013,26 @@
       }
     },
     "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateAccessControlConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "Id"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "Id":{"shape":"AccessControlConfigurationId"},
+        "Name":{"shape":"AccessControlConfigurationName"},
+        "Description":{"shape":"Description"},
+        "AccessControlList":{"shape":"PrincipalList"},
+        "HierarchicalAccessControlList":{"shape":"HierarchicalPrincipalList"}
+      }
+    },
+    "UpdateAccessControlConfigurationResponse":{
       "type":"structure",
       "members":{
       }

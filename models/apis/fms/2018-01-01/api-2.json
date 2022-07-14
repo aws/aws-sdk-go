@@ -1306,7 +1306,9 @@
         "StatelessDefaultActions":{"shape":"NetworkFirewallActionList"},
         "StatelessFragmentDefaultActions":{"shape":"NetworkFirewallActionList"},
         "StatelessCustomActions":{"shape":"NetworkFirewallActionList"},
-        "StatefulRuleGroups":{"shape":"StatefulRuleGroupList"}
+        "StatefulRuleGroups":{"shape":"StatefulRuleGroupList"},
+        "StatefulDefaultActions":{"shape":"NetworkFirewallActionList"},
+        "StatefulEngineOptions":{"shape":"StatefulEngineOptions"}
       }
     },
     "NetworkFirewallPolicyModifiedViolation":{
@@ -1498,6 +1500,7 @@
       "key":{"shape":"PreviousListVersion"},
       "value":{"shape":"ProtocolsList"}
     },
+    "PriorityNumber":{"type":"integer"},
     "ProtectionData":{"type":"string"},
     "Protocol":{
       "type":"string",
@@ -1759,6 +1762,13 @@
       "type":"list",
       "member":{"shape":"Route"}
     },
+    "RuleOrder":{
+      "type":"string",
+      "enum":[
+        "STRICT_ORDER",
+        "DEFAULT_ACTION_ORDER"
+      ]
+    },
     "SecurityGroupRemediationAction":{
       "type":"structure",
       "members":{
@@ -1806,11 +1816,18 @@
         "THIRD_PARTY_FIREWALL"
       ]
     },
+    "StatefulEngineOptions":{
+      "type":"structure",
+      "members":{
+        "RuleOrder":{"shape":"RuleOrder"}
+      }
+    },
     "StatefulRuleGroup":{
       "type":"structure",
       "members":{
         "RuleGroupName":{"shape":"NetworkFirewallResourceName"},
-        "ResourceId":{"shape":"ResourceId"}
+        "ResourceId":{"shape":"ResourceId"},
+        "Priority":{"shape":"PriorityNumber"}
       }
     },
     "StatefulRuleGroupList":{

@@ -90,6 +90,7 @@
       "base": null,
       "refs": {
         "AssetInfo$AssetId": "<p> The ID of the asset. </p>",
+        "LineItemAssetInformation$AssetId": "<p> The ID of the asset. </p>",
         "StartConnectionRequest$AssetId": "<p> The ID of the Outpost server. </p>"
       }
     },
@@ -516,6 +517,18 @@
         "LineItemListDefinition$member": null
       }
     },
+    "LineItemAssetInformation": {
+      "base": "<p> Information about a line item asset. </p>",
+      "refs": {
+        "LineItemAssetInformationList$member": null
+      }
+    },
+    "LineItemAssetInformationList": {
+      "base": null,
+      "refs": {
+        "LineItem$AssetInformationList": "<p> Information about assets. </p>"
+      }
+    },
     "LineItemId": {
       "base": null,
       "refs": {
@@ -619,6 +632,18 @@
     "ListTagsForResourceResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "MacAddress": {
+      "base": null,
+      "refs": {
+        "MacAddressList$member": null
+      }
+    },
+    "MacAddressList": {
+      "base": null,
+      "refs": {
+        "LineItemAssetInformation$MacAddressList": "<p> MAC addresses of the asset. </p>"
       }
     },
     "MaxResults1000": {
@@ -863,6 +888,18 @@
       "refs": {
       }
     },
+    "ShipmentCarrier": {
+      "base": null,
+      "refs": {
+        "ShipmentInformation$ShipmentCarrier": "<p> The carrier of the shipment. </p>"
+      }
+    },
+    "ShipmentInformation": {
+      "base": "<p> Information about a line item shipment. </p>",
+      "refs": {
+        "LineItem$ShipmentInformation": "<p> Information about a line item shipment. </p>"
+      }
+    },
     "Site": {
       "base": "<p>Information about a site.</p>",
       "refs": {
@@ -1046,6 +1083,12 @@
         "ListOutpostsOutput$NextToken": null,
         "ListSitesInput$NextToken": null,
         "ListSitesOutput$NextToken": null
+      }
+    },
+    "TrackingId": {
+      "base": null,
+      "refs": {
+        "ShipmentInformation$ShipmentTrackingNumber": "<p> The tracking number of the shipment. </p>"
       }
     },
     "UnderlayIpAddress": {

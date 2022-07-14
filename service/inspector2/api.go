@@ -1234,6 +1234,93 @@ func (c *Inspector2) EnableDelegatedAdminAccountWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opGetConfiguration = "GetConfiguration"
+
+// GetConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetConfiguration for more information on using the GetConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetConfigurationRequest method.
+//    req, resp := client.GetConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/GetConfiguration
+func (c *Inspector2) GetConfigurationRequest(input *GetConfigurationInput) (req *request.Request, output *GetConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/configuration/get",
+	}
+
+	if input == nil {
+		input = &GetConfigurationInput{}
+	}
+
+	output = &GetConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetConfiguration API operation for Inspector2.
+//
+// Retrieves setting configurations for Inspector scans.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation GetConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The operation tried to access an invalid resource. Make sure the resource
+//   is specified correctly.
+//
+//   * ThrottlingException
+//   The limit on the number of requests per second was exceeded.
+//
+//   * InternalServerException
+//   The request has failed due to an internal failure of the Amazon Inspector
+//   service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/GetConfiguration
+func (c *Inspector2) GetConfiguration(input *GetConfigurationInput) (*GetConfigurationOutput, error) {
+	req, out := c.GetConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetConfigurationWithContext is the same as GetConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) GetConfigurationWithContext(ctx aws.Context, input *GetConfigurationInput, opts ...request.Option) (*GetConfigurationOutput, error) {
+	req, out := c.GetConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetDelegatedAdminAccount = "GetDelegatedAdminAccount"
 
 // GetDelegatedAdminAccountRequest generates a "aws/request.Request" representing the
@@ -3112,6 +3199,100 @@ func (c *Inspector2) UntagResource(input *UntagResourceInput) (*UntagResourceOut
 // for more information on using Contexts.
 func (c *Inspector2) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateConfiguration = "UpdateConfiguration"
+
+// UpdateConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateConfiguration for more information on using the UpdateConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateConfigurationRequest method.
+//    req, resp := client.UpdateConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/UpdateConfiguration
+func (c *Inspector2) UpdateConfigurationRequest(input *UpdateConfigurationInput) (req *request.Request, output *UpdateConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/configuration/update",
+	}
+
+	if input == nil {
+		input = &UpdateConfigurationInput{}
+	}
+
+	output = &UpdateConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateConfiguration API operation for Inspector2.
+//
+// Updates setting configurations for your Amazon Inspector account. When you
+// use this API as an Amazon Inspector delegated administrator this updates
+// the setting for all accounts you manage. Member accounts in an organization
+// cannot update this setting.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation UpdateConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The request has failed validation due to missing required fields or having
+//   invalid inputs.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The limit on the number of requests per second was exceeded.
+//
+//   * InternalServerException
+//   The request has failed due to an internal failure of the Amazon Inspector
+//   service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/UpdateConfiguration
+func (c *Inspector2) UpdateConfiguration(input *UpdateConfigurationInput) (*UpdateConfigurationOutput, error) {
+	req, out := c.UpdateConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateConfigurationWithContext is the same as UpdateConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) UpdateConfigurationWithContext(ctx aws.Context, input *UpdateConfigurationInput, opts ...request.Option) (*UpdateConfigurationOutput, error) {
+	req, out := c.UpdateConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5049,7 +5230,7 @@ type CoverageFilterCriteria struct {
 	ResourceId []*CoverageStringFilter `locationName:"resourceId" min:"1" type:"list"`
 
 	// An array of Amazon Web Services resource types to return coverage statistics
-	// for.
+	// for. The values can be AWS_EC2_INSTANCE or AWS_ECR_REPOSITORY.
 	ResourceType []*CoverageStringFilter `locationName:"resourceType" min:"1" type:"list"`
 
 	// The scan status code to filter on.
@@ -5509,6 +5690,9 @@ type CreateFilterInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// The reason for creating the filter.
+	Reason *string `locationName:"reason" min:"1" type:"string"`
+
 	// A list of tags for the filter.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
@@ -5549,6 +5733,9 @@ func (s *CreateFilterInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Reason != nil && len(*s.Reason) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Reason", 1))
+	}
 	if s.FilterCriteria != nil {
 		if err := s.FilterCriteria.Validate(); err != nil {
 			invalidParams.AddNested("FilterCriteria", err.(request.ErrInvalidParams))
@@ -5582,6 +5769,12 @@ func (s *CreateFilterInput) SetFilterCriteria(v *FilterCriteria) *CreateFilterIn
 // SetName sets the Name field's value.
 func (s *CreateFilterInput) SetName(v string) *CreateFilterInput {
 	s.Name = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *CreateFilterInput) SetReason(v string) *CreateFilterInput {
+	s.Reason = &v
 	return s
 }
 
@@ -6802,6 +6995,90 @@ func (s *Ec2Metadata) SetTags(v map[string]*string) *Ec2Metadata {
 	return s
 }
 
+// Details about the ECR automated re-scan duration setting for your environment
+type EcrConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The ECR automated re-scan duration defines how long an ECR image will be
+	// actively scanned by Amazon Inspector. When the number of days since an image
+	// was last pushed exceeds the automated re-scan duration the monitoring state
+	// of that image becomes inactive and all associated findings are scheduled
+	// for closure.
+	//
+	// RescanDuration is a required field
+	RescanDuration *string `locationName:"rescanDuration" type:"string" required:"true" enum:"EcrRescanDuration"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EcrConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EcrConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EcrConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EcrConfiguration"}
+	if s.RescanDuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("RescanDuration"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRescanDuration sets the RescanDuration field's value.
+func (s *EcrConfiguration) SetRescanDuration(v string) *EcrConfiguration {
+	s.RescanDuration = &v
+	return s
+}
+
+// Details about the state of the ECR scans for your environment.
+type EcrConfigurationState struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains details about the state of the ECR automated re-scan
+	// setting.
+	RescanDurationState *EcrRescanDurationState `locationName:"rescanDurationState" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EcrConfigurationState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EcrConfigurationState) GoString() string {
+	return s.String()
+}
+
+// SetRescanDurationState sets the RescanDurationState field's value.
+func (s *EcrConfigurationState) SetRescanDurationState(v *EcrRescanDurationState) *EcrConfigurationState {
+	s.RescanDurationState = v
+	return s
+}
+
 // Information on the Amazon ECR image metadata associated with a finding.
 type EcrContainerImageMetadata struct {
 	_ struct{} `type:"structure"`
@@ -6872,6 +7149,62 @@ func (s *EcrRepositoryMetadata) SetName(v string) *EcrRepositoryMetadata {
 // SetScanFrequency sets the ScanFrequency field's value.
 func (s *EcrRepositoryMetadata) SetScanFrequency(v string) *EcrRepositoryMetadata {
 	s.ScanFrequency = &v
+	return s
+}
+
+// Details about the state of any changes to the ECR automated re-scan duration
+// setting.
+type EcrRescanDurationState struct {
+	_ struct{} `type:"structure"`
+
+	// The ECR automated re-scan duration defines how long an ECR image will be
+	// actively scanned by Amazon Inspector. When the number of days since an image
+	// was last pushed exceeds the automated re-scan duration the monitoring state
+	// of that image becomes inactive and all associated findings are scheduled
+	// for closure.
+	RescanDuration *string `locationName:"rescanDuration" type:"string" enum:"EcrRescanDuration"`
+
+	// The status of changes to the ECR automated re-scan duration.
+	Status *string `locationName:"status" type:"string" enum:"EcrRescanDurationStatus"`
+
+	// A timestamp representing when the last time the ECR scan duration setting
+	// was changed.
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EcrRescanDurationState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EcrRescanDurationState) GoString() string {
+	return s.String()
+}
+
+// SetRescanDuration sets the RescanDuration field's value.
+func (s *EcrRescanDurationState) SetRescanDuration(v string) *EcrRescanDurationState {
+	s.RescanDuration = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EcrRescanDurationState) SetStatus(v string) *EcrRescanDurationState {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *EcrRescanDurationState) SetUpdatedAt(v time.Time) *EcrRescanDurationState {
+	s.UpdatedAt = &v
 	return s
 }
 
@@ -8397,6 +8730,60 @@ func (s *FreeTrialInfoError) SetCode(v string) *FreeTrialInfoError {
 // SetMessage sets the Message field's value.
 func (s *FreeTrialInfoError) SetMessage(v string) *FreeTrialInfoError {
 	s.Message = &v
+	return s
+}
+
+type GetConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type GetConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies how the ECR automated re-scan duration is currently configured
+	// for your environment.
+	EcrConfiguration *EcrConfigurationState `locationName:"ecrConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEcrConfiguration sets the EcrConfiguration field's value.
+func (s *GetConfigurationOutput) SetEcrConfiguration(v *EcrConfigurationState) *GetConfigurationOutput {
+	s.EcrConfiguration = v
 	return s
 }
 
@@ -12186,6 +12573,79 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies how the ECR automated re-scan will be updated for your environment.
+	//
+	// EcrConfiguration is a required field
+	EcrConfiguration *EcrConfiguration `locationName:"ecrConfiguration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConfigurationInput"}
+	if s.EcrConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("EcrConfiguration"))
+	}
+	if s.EcrConfiguration != nil {
+		if err := s.EcrConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EcrConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEcrConfiguration sets the EcrConfiguration field's value.
+func (s *UpdateConfigurationInput) SetEcrConfiguration(v *EcrConfiguration) *UpdateConfigurationInput {
+	s.EcrConfiguration = v
+	return s
+}
+
+type UpdateConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateFilterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12206,6 +12666,9 @@ type UpdateFilterInput struct {
 
 	// The name of the filter.
 	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The reason the filter was updated.
+	Reason *string `locationName:"reason" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -12240,6 +12703,9 @@ func (s *UpdateFilterInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Reason != nil && len(*s.Reason) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Reason", 1))
 	}
 	if s.FilterCriteria != nil {
 		if err := s.FilterCriteria.Validate(); err != nil {
@@ -12280,6 +12746,12 @@ func (s *UpdateFilterInput) SetFilterCriteria(v *FilterCriteria) *UpdateFilterIn
 // SetName sets the Name field's value.
 func (s *UpdateFilterInput) SetName(v string) *UpdateFilterInput {
 	s.Name = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *UpdateFilterInput) SetReason(v string) *UpdateFilterInput {
+	s.Reason = &v
 	return s
 }
 
@@ -12989,6 +13461,46 @@ func Ec2Platform_Values() []string {
 }
 
 const (
+	// EcrRescanDurationLifetime is a EcrRescanDuration enum value
+	EcrRescanDurationLifetime = "LIFETIME"
+
+	// EcrRescanDurationDays30 is a EcrRescanDuration enum value
+	EcrRescanDurationDays30 = "DAYS_30"
+
+	// EcrRescanDurationDays180 is a EcrRescanDuration enum value
+	EcrRescanDurationDays180 = "DAYS_180"
+)
+
+// EcrRescanDuration_Values returns all elements of the EcrRescanDuration enum
+func EcrRescanDuration_Values() []string {
+	return []string{
+		EcrRescanDurationLifetime,
+		EcrRescanDurationDays30,
+		EcrRescanDurationDays180,
+	}
+}
+
+const (
+	// EcrRescanDurationStatusSuccess is a EcrRescanDurationStatus enum value
+	EcrRescanDurationStatusSuccess = "SUCCESS"
+
+	// EcrRescanDurationStatusPending is a EcrRescanDurationStatus enum value
+	EcrRescanDurationStatusPending = "PENDING"
+
+	// EcrRescanDurationStatusFailed is a EcrRescanDurationStatus enum value
+	EcrRescanDurationStatusFailed = "FAILED"
+)
+
+// EcrRescanDurationStatus_Values returns all elements of the EcrRescanDurationStatus enum
+func EcrRescanDurationStatus_Values() []string {
+	return []string{
+		EcrRescanDurationStatusSuccess,
+		EcrRescanDurationStatusPending,
+		EcrRescanDurationStatusFailed,
+	}
+}
+
+const (
 	// EcrScanFrequencyManual is a EcrScanFrequency enum value
 	EcrScanFrequencyManual = "MANUAL"
 
@@ -13047,6 +13559,9 @@ const (
 
 	// ErrorCodeDisassociateAllMembers is a ErrorCode enum value
 	ErrorCodeDisassociateAllMembers = "DISASSOCIATE_ALL_MEMBERS"
+
+	// ErrorCodeAccountIsIsolated is a ErrorCode enum value
+	ErrorCodeAccountIsIsolated = "ACCOUNT_IS_ISOLATED"
 )
 
 // ErrorCode_Values returns all elements of the ErrorCode enum
@@ -13065,6 +13580,7 @@ func ErrorCode_Values() []string {
 		ErrorCodeEventbridgeThrottled,
 		ErrorCodeResourceScanNotDisabled,
 		ErrorCodeDisassociateAllMembers,
+		ErrorCodeAccountIsIsolated,
 	}
 }
 
@@ -13348,6 +13864,18 @@ const (
 
 	// PackageManagerOs is a PackageManager enum value
 	PackageManagerOs = "OS"
+
+	// PackageManagerPip is a PackageManager enum value
+	PackageManagerPip = "PIP"
+
+	// PackageManagerPythonpkg is a PackageManager enum value
+	PackageManagerPythonpkg = "PYTHONPKG"
+
+	// PackageManagerNodepkg is a PackageManager enum value
+	PackageManagerNodepkg = "NODEPKG"
+
+	// PackageManagerPom is a PackageManager enum value
+	PackageManagerPom = "POM"
 )
 
 // PackageManager_Values returns all elements of the PackageManager enum
@@ -13365,6 +13893,10 @@ func PackageManager_Values() []string {
 		PackageManagerGomod,
 		PackageManagerJar,
 		PackageManagerOs,
+		PackageManagerPip,
+		PackageManagerPythonpkg,
+		PackageManagerNodepkg,
+		PackageManagerPom,
 	}
 }
 
@@ -13466,6 +13998,18 @@ const (
 
 	// ReportingErrorCodeInvalidPermissions is a ReportingErrorCode enum value
 	ReportingErrorCodeInvalidPermissions = "INVALID_PERMISSIONS"
+
+	// ReportingErrorCodeNoFindingsFound is a ReportingErrorCode enum value
+	ReportingErrorCodeNoFindingsFound = "NO_FINDINGS_FOUND"
+
+	// ReportingErrorCodeBucketNotFound is a ReportingErrorCode enum value
+	ReportingErrorCodeBucketNotFound = "BUCKET_NOT_FOUND"
+
+	// ReportingErrorCodeIncompatibleBucketRegion is a ReportingErrorCode enum value
+	ReportingErrorCodeIncompatibleBucketRegion = "INCOMPATIBLE_BUCKET_REGION"
+
+	// ReportingErrorCodeMalformedKmsKey is a ReportingErrorCode enum value
+	ReportingErrorCodeMalformedKmsKey = "MALFORMED_KMS_KEY"
 )
 
 // ReportingErrorCode_Values returns all elements of the ReportingErrorCode enum
@@ -13473,6 +14017,10 @@ func ReportingErrorCode_Values() []string {
 	return []string{
 		ReportingErrorCodeInternalError,
 		ReportingErrorCodeInvalidPermissions,
+		ReportingErrorCodeNoFindingsFound,
+		ReportingErrorCodeBucketNotFound,
+		ReportingErrorCodeIncompatibleBucketRegion,
+		ReportingErrorCodeMalformedKmsKey,
 	}
 }
 
@@ -13591,6 +14139,9 @@ const (
 
 	// ScanStatusReasonEc2InstanceStopped is a ScanStatusReason enum value
 	ScanStatusReasonEc2InstanceStopped = "EC2_INSTANCE_STOPPED"
+
+	// ScanStatusReasonPendingDisable is a ScanStatusReason enum value
+	ScanStatusReasonPendingDisable = "PENDING_DISABLE"
 )
 
 // ScanStatusReason_Values returns all elements of the ScanStatusReason enum
@@ -13609,6 +14160,7 @@ func ScanStatusReason_Values() []string {
 		ScanStatusReasonScanFrequencyManual,
 		ScanStatusReasonScanFrequencyScanOnPush,
 		ScanStatusReasonEc2InstanceStopped,
+		ScanStatusReasonPendingDisable,
 	}
 }
 
