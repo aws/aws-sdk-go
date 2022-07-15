@@ -4647,7 +4647,7 @@ func (s DeleteJobOutput) GoString() string {
 type DeleteRecoveryInstanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// RThe ID of the Recovery Instance to be deleted.
+	// The ID of the Recovery Instance to be deleted.
 	//
 	// RecoveryInstanceID is a required field
 	RecoveryInstanceID *string `locationName:"recoveryInstanceID" min:"10" type:"string" required:"true"`
@@ -8321,6 +8321,10 @@ type ReplicationConfigurationReplicatedDisk struct {
 	// Whether to boot from this disk or not.
 	IsBootDisk *bool `locationName:"isBootDisk" type:"boolean"`
 
+	// The Staging Disk EBS volume type to be used during replication when stagingDiskType
+	// is set to Auto. This is a read-only field.
+	OptimizedStagingDiskType *string `locationName:"optimizedStagingDiskType" type:"string" enum:"ReplicationConfigurationReplicatedDiskStagingDiskType"`
+
 	// The Staging Disk EBS volume type to be used during replication.
 	StagingDiskType *string `locationName:"stagingDiskType" type:"string" enum:"ReplicationConfigurationReplicatedDiskStagingDiskType"`
 
@@ -8362,6 +8366,12 @@ func (s *ReplicationConfigurationReplicatedDisk) SetIops(v int64) *ReplicationCo
 // SetIsBootDisk sets the IsBootDisk field's value.
 func (s *ReplicationConfigurationReplicatedDisk) SetIsBootDisk(v bool) *ReplicationConfigurationReplicatedDisk {
 	s.IsBootDisk = &v
+	return s
+}
+
+// SetOptimizedStagingDiskType sets the OptimizedStagingDiskType field's value.
+func (s *ReplicationConfigurationReplicatedDisk) SetOptimizedStagingDiskType(v string) *ReplicationConfigurationReplicatedDisk {
+	s.OptimizedStagingDiskType = &v
 	return s
 }
 
@@ -11830,6 +11840,9 @@ const (
 
 	// ReplicationConfigurationDefaultLargeStagingDiskTypeSt1 is a ReplicationConfigurationDefaultLargeStagingDiskType enum value
 	ReplicationConfigurationDefaultLargeStagingDiskTypeSt1 = "ST1"
+
+	// ReplicationConfigurationDefaultLargeStagingDiskTypeAuto is a ReplicationConfigurationDefaultLargeStagingDiskType enum value
+	ReplicationConfigurationDefaultLargeStagingDiskTypeAuto = "AUTO"
 )
 
 // ReplicationConfigurationDefaultLargeStagingDiskType_Values returns all elements of the ReplicationConfigurationDefaultLargeStagingDiskType enum
@@ -11838,6 +11851,7 @@ func ReplicationConfigurationDefaultLargeStagingDiskType_Values() []string {
 		ReplicationConfigurationDefaultLargeStagingDiskTypeGp2,
 		ReplicationConfigurationDefaultLargeStagingDiskTypeGp3,
 		ReplicationConfigurationDefaultLargeStagingDiskTypeSt1,
+		ReplicationConfigurationDefaultLargeStagingDiskTypeAuto,
 	}
 }
 

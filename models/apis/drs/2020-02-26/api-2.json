@@ -1706,7 +1706,8 @@
       "enum":[
         "GP2",
         "GP3",
-        "ST1"
+        "ST1",
+        "AUTO"
       ]
     },
     "ReplicationConfigurationEbsEncryption":{
@@ -1722,6 +1723,7 @@
         "deviceName":{"shape":"BoundedString"},
         "iops":{"shape":"PositiveInteger"},
         "isBootDisk":{"shape":"Boolean"},
+        "optimizedStagingDiskType":{"shape":"ReplicationConfigurationReplicatedDiskStagingDiskType"},
         "stagingDiskType":{"shape":"ReplicationConfigurationReplicatedDiskStagingDiskType"},
         "throughput":{"shape":"PositiveInteger"}
       }

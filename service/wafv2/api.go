@@ -368,7 +368,7 @@ func (c *WAFV2) CreateIPSetRequest(input *CreateIPSetInput) (req *request.Reques
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry ybjectNoteWebRequestComponentour request.
+//   Retry your request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -489,7 +489,7 @@ func (c *WAFV2) CreateRegexPatternSetRequest(input *CreateRegexPatternSetInput) 
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry ybjectNoteWebRequestComponentour request.
+//   Retry your request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -620,7 +620,7 @@ func (c *WAFV2) CreateRuleGroupRequest(input *CreateRuleGroupInput) (req *reques
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry ybjectNoteWebRequestComponentour request.
+//   Retry your request.
 //
 //   * WAFSubscriptionNotFoundException
 //   You tried to use a managed rule group that's available by subscription, but
@@ -769,7 +769,7 @@ func (c *WAFV2) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Requ
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry ybjectNoteWebRequestComponentour request.
+//   Retry your request.
 //
 //   * WAFSubscriptionNotFoundException
 //   You tried to use a managed rule group that's available by subscription, but
@@ -1019,7 +1019,7 @@ func (c *WAFV2) DeleteIPSetRequest(input *DeleteIPSetInput) (req *request.Reques
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry ybjectNoteWebRequestComponentour request.
+//   Retry your request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -1349,7 +1349,7 @@ func (c *WAFV2) DeleteRegexPatternSetRequest(input *DeleteRegexPatternSetInput) 
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry ybjectNoteWebRequestComponentour request.
+//   Retry your request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -1471,7 +1471,7 @@ func (c *WAFV2) DeleteRuleGroupRequest(input *DeleteRuleGroupInput) (req *reques
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry ybjectNoteWebRequestComponentour request.
+//   Retry your request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -1608,7 +1608,7 @@ func (c *WAFV2) DeleteWebACLRequest(input *DeleteWebACLInput) (req *request.Requ
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry ybjectNoteWebRequestComponentour request.
+//   Retry your request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -4115,7 +4115,7 @@ func (c *WAFV2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry ybjectNoteWebRequestComponentour request.
+//   Retry your request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -4752,7 +4752,7 @@ func (c *WAFV2) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry ybjectNoteWebRequestComponentour request.
+//   Retry your request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -4865,7 +4865,7 @@ func (c *WAFV2) UntagResourceRequest(input *UntagResourceInput) (req *request.Re
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry ybjectNoteWebRequestComponentour request.
+//   Retry your request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -5072,7 +5072,7 @@ func (c *WAFV2) UpdateManagedRuleSetVersionExpiryDateRequest(input *UpdateManage
 //
 // Updates the expiration information for your managed rule set. Use this to
 // initiate the expiration of a managed rule group version. After you initiate
-// expiration for a version, WAF excludes it from the reponse to ListAvailableManagedRuleGroupVersions
+// expiration for a version, WAF excludes it from the response to ListAvailableManagedRuleGroupVersions
 // for the managed rule group.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
@@ -5486,7 +5486,7 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 
 // UpdateWebACL API operation for AWS WAFV2.
 //
-// Updates the specified WebACL. While updating a web ACL, WAF provides continous
+// Updates the specified WebACL. While updating a web ACL, WAF provides continuous
 // coverage to the resources that you have associated with the web ACL.
 //
 // When you make changes to web ACLs or web ACL components, like rules and rule
@@ -5983,8 +5983,8 @@ func (s *BlockAction) SetCustomResponse(v *CustomResponse) *BlockAction {
 // Inspect the body of the web request. The body immediately follows the request
 // headers.
 //
-// This is used to indicate the web request component for WAF to inspect, in
-// the FieldToMatch specification.
+// This is used to indicate the web request component to inspect, in the FieldToMatch
+// specification.
 type Body struct {
 	_ struct{} `type:"structure"`
 
@@ -6039,13 +6039,12 @@ func (s *Body) SetOversizeHandling(v string) *Body {
 // requests. The byte match statement provides the bytes to search for, the
 // location in requests that you want WAF to search, and other settings. The
 // bytes to search for are typically a string that corresponds with ASCII characters.
-// In the WAF console and the developer guide, this is refered to as a string
-// match statement.
+// In the WAF console and the developer guide, this is called a string match
+// statement.
 type ByteMatchStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The part of the web request that you want WAF to inspect. For more information,
-	// see FieldToMatch.
+	// The part of the web request that you want WAF to inspect.
 	//
 	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
@@ -6236,9 +6235,6 @@ func (s *ByteMatchStatement) SetTextTransformations(v []*TextTransformation) *By
 //
 // This action option is available for rules. It isn't available for web ACL
 // default actions.
-//
-// This is used in the context of other settings, for example to specify values
-// for RuleAction and web ACL DefaultAction.
 type CaptchaAction struct {
 	_ struct{} `type:"structure"`
 
@@ -6505,10 +6501,14 @@ func (s *CheckCapacityOutput) SetCapacity(v int64) *CheckCapacityOutput {
 type Condition struct {
 	_ struct{} `type:"structure"`
 
-	// A single action condition.
+	// A single action condition. This is the action setting that a log record must
+	// contain in order to meet the condition.
 	ActionCondition *ActionCondition `type:"structure"`
 
-	// A single label name condition.
+	// A single label name condition. This is the fully qualified label name that
+	// a log record must contain in order to meet the condition. Fully qualified
+	// labels have a prefix, optional namespaces, and label name. The prefix identifies
+	// the rule group or web ACL context of the rule that added the label.
 	LabelNameCondition *LabelNameCondition `type:"structure"`
 }
 
@@ -6566,8 +6566,8 @@ func (s *Condition) SetLabelNameCondition(v *LabelNameCondition) *Condition {
 //
 // You must specify exactly one setting: either All, IncludedCookies, or ExcludedCookies.
 //
-// Example JSON: "CookieMatchPattern": { "IncludedCookies": {"KeyToInclude1",
-// "KeyToInclude2", "KeyToInclude3"} }
+// Example JSON: "MatchPattern": { "IncludedCookies": {"KeyToInclude1", "KeyToInclude2",
+// "KeyToInclude3"} }
 type CookieMatchPattern struct {
 	_ struct{} `type:"structure"`
 
@@ -6639,8 +6639,8 @@ func (s *CookieMatchPattern) SetIncludedCookies(v []*string) *CookieMatchPattern
 // cookies to inspect and you can narrow the set of cookies to inspect by including
 // or excluding specific keys.
 //
-// This is used to indicate the web request component for WAF to inspect, in
-// the FieldToMatch specification.
+// This is used to indicate the web request component to inspect, in the FieldToMatch
+// specification.
 //
 // Example JSON: "Cookies": { "MatchPattern": { "All": {} }, "MatchScope": "KEY",
 // "OversizeHandling": "MATCH" }
@@ -6651,8 +6651,8 @@ type Cookies struct {
 	//
 	// You must specify exactly one setting: either All, IncludedCookies, or ExcludedCookies.
 	//
-	// Example JSON: "CookieMatchPattern": { "IncludedCookies": {"KeyToInclude1",
-	// "KeyToInclude2", "KeyToInclude3"} }
+	// Example JSON: "MatchPattern": { "IncludedCookies": {"KeyToInclude1", "KeyToInclude2",
+	// "KeyToInclude3"} }
 	//
 	// MatchPattern is a required field
 	MatchPattern *CookieMatchPattern `type:"structure" required:"true"`
@@ -7822,7 +7822,7 @@ type CustomResponse struct {
 
 	// The HTTP status code to return to the client.
 	//
-	// For a list of status codes that you can use in your custom reqponses, see
+	// For a list of status codes that you can use in your custom responses, see
 	// Supported status codes for custom response (https://docs.aws.amazon.com/waf/latest/developerguide/customizing-the-response-status-codes.html)
 	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 	//
@@ -11445,8 +11445,8 @@ func (s *HTTPRequest) SetURI(v string) *HTTPRequest {
 //
 // You must specify exactly one setting: either All, IncludedHeaders, or ExcludedHeaders.
 //
-// Example JSON: "HeaderMatchPattern": { "ExcludedHeaders": {"KeyToExclude1",
-// "KeyToExclude2"} }
+// Example JSON: "MatchPattern": { "ExcludedHeaders": {"KeyToExclude1", "KeyToExclude2"}
+// }
 type HeaderMatchPattern struct {
 	_ struct{} `type:"structure"`
 
@@ -11514,15 +11514,15 @@ func (s *HeaderMatchPattern) SetIncludedHeaders(v []*string) *HeaderMatchPattern
 	return s
 }
 
-// Inspect the headers in the web request. You can specify the parts of the
+// Inspect all headers in the web request. You can specify the parts of the
 // headers to inspect and you can narrow the set of headers to inspect by including
 // or excluding specific keys.
 //
-// This is used to indicate the web request component for WAF to inspect, in
-// the FieldToMatch specification.
+// This is used to indicate the web request component to inspect, in the FieldToMatch
+// specification.
 //
-// Alternately, you can use the SingleHeader FieldToMatch setting to inspect
-// the value of a single header, identified by its key.
+// If you want to inspect just the value of a single header, use the SingleHeader
+// FieldToMatch setting instead.
 //
 // Example JSON: "Headers": { "MatchPattern": { "All": {} }, "MatchScope": "KEY",
 // "OversizeHandling": "MATCH" }
@@ -11533,8 +11533,8 @@ type Headers struct {
 	//
 	// You must specify exactly one setting: either All, IncludedHeaders, or ExcludedHeaders.
 	//
-	// Example JSON: "HeaderMatchPattern": { "ExcludedHeaders": {"KeyToExclude1",
-	// "KeyToExclude2"} }
+	// Example JSON: "MatchPattern": { "ExcludedHeaders": {"KeyToExclude1", "KeyToExclude2"}
+	// }
 	//
 	// MatchPattern is a required field
 	MatchPattern *HeaderMatchPattern `type:"structure" required:"true"`
@@ -12081,8 +12081,8 @@ func (s *ImmunityTimeProperty) SetImmunityTime(v int64) *ImmunityTimeProperty {
 // Inspect the body of the web request as JSON. The body immediately follows
 // the request headers.
 //
-// This is used to indicate the web request component for WAF to inspect, in
-// the FieldToMatch specification.
+// This is used to indicate the web request component to inspect, in the FieldToMatch
+// specification.
 //
 // Use the specifications in this object to indicate which parts of the JSON
 // body to inspect using the rule's inspection criteria. WAF inspects only the
@@ -15692,10 +15692,11 @@ func (s QueryString) GoString() string {
 //    the string BadBot.
 //
 // In this rate-based rule, you also define a rate limit. For this example,
-// the rate limit is 1,000. Requests that meet both of the conditions in the
+// the rate limit is 1,000. Requests that meet the criteria of both of the nested
 // statements are counted. If the count exceeds 1,000 requests per five minutes,
-// the rule action triggers. Requests that do not meet both conditions are not
-// counted towards the rate limit and are not affected by this rule.
+// the rule action triggers. Requests that do not meet the criteria of both
+// of the nested statements are not counted towards the rate limit and are not
+// affected by this rule.
 //
 // You cannot nest a RateBasedStatement inside another statement, for example
 // inside a NotStatement or OrStatement. You can define a RateBasedStatement
@@ -15904,8 +15905,7 @@ func (s *Regex) SetRegexString(v string) *Regex {
 type RegexMatchStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The part of the web request that you want WAF to inspect. For more information,
-	// see FieldToMatch.
+	// The part of the web request that you want WAF to inspect.
 	//
 	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
@@ -16093,8 +16093,7 @@ type RegexPatternSetReferenceStatement struct {
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
-	// The part of the web request that you want WAF to inspect. For more information,
-	// see FieldToMatch.
+	// The part of the web request that you want WAF to inspect.
 	//
 	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
@@ -17125,8 +17124,8 @@ func (s *SampledHTTPRequest) SetWeight(v int64) *SampledHTTPRequest {
 //
 // You can filter and inspect all headers with the FieldToMatch setting Headers.
 //
-// This is used to indicate the web request component for WAF to inspect, in
-// the FieldToMatch specification.
+// This is used to indicate the web request component to inspect, in the FieldToMatch
+// specification.
 //
 // Example JSON: "SingleHeader": { "Name": "haystack" }
 type SingleHeader struct {
@@ -17181,8 +17180,8 @@ func (s *SingleHeader) SetName(v string) *SingleHeader {
 // Inspect one query argument in the web request, identified by name, for example
 // UserName or SalesRegion. The name isn't case sensitive.
 //
-// This is used to indicate the web request component for WAF to inspect, in
-// the FieldToMatch specification.
+// This is used to indicate the web request component to inspect, in the FieldToMatch
+// specification.
 //
 // Example JSON: "SingleQueryArgument": { "Name": "myArgument" }
 type SingleQueryArgument struct {
@@ -17241,8 +17240,8 @@ func (s *SingleQueryArgument) SetName(v string) *SingleQueryArgument {
 //
 // If you configure WAF to inspect the request body, WAF inspects only the first
 // 8192 bytes (8 KB). If the request body for your web requests never exceeds
-// 8192 bytes, you can create a size constraint condition and block requests
-// that have a request body greater than 8192 bytes.
+// 8192 bytes, you could use a size constraint statement to block requests that
+// have a request body greater than 8192 bytes.
 //
 // If you choose URI for the value of Part of the request to filter on, the
 // slash (/) in the URI counts as one character. For example, the URI /logo.jpg
@@ -17255,8 +17254,7 @@ type SizeConstraintStatement struct {
 	// ComparisonOperator is a required field
 	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperator"`
 
-	// The part of the web request that you want WAF to inspect. For more information,
-	// see FieldToMatch.
+	// The part of the web request that you want WAF to inspect.
 	//
 	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
@@ -17358,21 +17356,30 @@ func (s *SizeConstraintStatement) SetTextTransformations(v []*TextTransformation
 	return s
 }
 
-// Attackers sometimes insert malicious SQL code into web requests in an effort
-// to extract data from your database. To allow or block web requests that appear
-// to contain malicious SQL code, create one or more SQL injection match conditions.
-// An SQL injection match condition identifies the part of web requests, such
-// as the URI or the query string, that you want WAF to inspect. Later in the
-// process, when you create a web ACL, you specify whether to allow or block
-// requests that appear to contain malicious SQL code.
+// A rule statement that inspects for malicious SQL code. Attackers insert malicious
+// SQL code into web requests to do things like modify your database or extract
+// data from it.
 type SqliMatchStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The part of the web request that you want WAF to inspect. For more information,
-	// see FieldToMatch.
+	// The part of the web request that you want WAF to inspect.
 	//
 	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
+
+	// The sensitivity that you want WAF to use to inspect for SQL injection attacks.
+	//
+	// HIGH detects more attacks, but might generate more false positives, especially
+	// if your web requests frequently contain unusual strings. For information
+	// about identifying and mitigating false positives, see Testing and tuning
+	// (https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-testing.html)
+	// in the WAF Developer Guide.
+	//
+	// LOW is generally a better choice for resources that already have other protections
+	// against SQL injection attacks or that have a low tolerance for false positives.
+	//
+	// Default: LOW
+	SensitivityLevel *string `type:"string" enum:"SensitivityLevel"`
 
 	// Text transformations eliminate some of the unusual formatting that attackers
 	// use in web requests in an effort to bypass detection. If you specify one
@@ -17442,6 +17449,12 @@ func (s *SqliMatchStatement) SetFieldToMatch(v *FieldToMatch) *SqliMatchStatemen
 	return s
 }
 
+// SetSensitivityLevel sets the SensitivityLevel field's value.
+func (s *SqliMatchStatement) SetSensitivityLevel(v string) *SqliMatchStatement {
+	s.SensitivityLevel = &v
+	return s
+}
+
 // SetTextTransformations sets the TextTransformations field's value.
 func (s *SqliMatchStatement) SetTextTransformations(v []*TextTransformation) *SqliMatchStatement {
 	s.TextTransformations = v
@@ -17461,8 +17474,8 @@ type Statement struct {
 	// requests. The byte match statement provides the bytes to search for, the
 	// location in requests that you want WAF to search, and other settings. The
 	// bytes to search for are typically a string that corresponds with ASCII characters.
-	// In the WAF console and the developer guide, this is refered to as a string
-	// match statement.
+	// In the WAF console and the developer guide, this is called a string match
+	// statement.
 	ByteMatchStatement *ByteMatchStatement `type:"structure"`
 
 	// A rule statement used to identify web requests based on country of origin.
@@ -17538,10 +17551,11 @@ type Statement struct {
 	//    the string BadBot.
 	//
 	// In this rate-based rule, you also define a rate limit. For this example,
-	// the rate limit is 1,000. Requests that meet both of the conditions in the
+	// the rate limit is 1,000. Requests that meet the criteria of both of the nested
 	// statements are counted. If the count exceeds 1,000 requests per five minutes,
-	// the rule action triggers. Requests that do not meet both conditions are not
-	// counted towards the rate limit and are not affected by this rule.
+	// the rule action triggers. Requests that do not meet the criteria of both
+	// of the nested statements are not counted towards the rate limit and are not
+	// affected by this rule.
 	//
 	// You cannot nest a RateBasedStatement inside another statement, for example
 	// inside a NotStatement or OrStatement. You can define a RateBasedStatement
@@ -17581,30 +17595,22 @@ type Statement struct {
 	//
 	// If you configure WAF to inspect the request body, WAF inspects only the first
 	// 8192 bytes (8 KB). If the request body for your web requests never exceeds
-	// 8192 bytes, you can create a size constraint condition and block requests
-	// that have a request body greater than 8192 bytes.
+	// 8192 bytes, you could use a size constraint statement to block requests that
+	// have a request body greater than 8192 bytes.
 	//
 	// If you choose URI for the value of Part of the request to filter on, the
 	// slash (/) in the URI counts as one character. For example, the URI /logo.jpg
 	// is nine characters long.
 	SizeConstraintStatement *SizeConstraintStatement `type:"structure"`
 
-	// Attackers sometimes insert malicious SQL code into web requests in an effort
-	// to extract data from your database. To allow or block web requests that appear
-	// to contain malicious SQL code, create one or more SQL injection match conditions.
-	// An SQL injection match condition identifies the part of web requests, such
-	// as the URI or the query string, that you want WAF to inspect. Later in the
-	// process, when you create a web ACL, you specify whether to allow or block
-	// requests that appear to contain malicious SQL code.
+	// A rule statement that inspects for malicious SQL code. Attackers insert malicious
+	// SQL code into web requests to do things like modify your database or extract
+	// data from it.
 	SqliMatchStatement *SqliMatchStatement `type:"structure"`
 
-	// A rule statement that defines a cross-site scripting (XSS) match search for
-	// WAF to apply to web requests. XSS attacks are those where the attacker uses
-	// vulnerabilities in a benign website as a vehicle to inject malicious client-site
-	// scripts into other legitimate web browsers. The XSS match statement provides
-	// the location in requests that you want WAF to search and text transformations
-	// to use on the search area before WAF searches for character sequences that
-	// are likely to be malicious strings.
+	// A rule statement that inspects for cross-site scripting (XSS) attacks. In
+	// XSS attacks, the attacker uses vulnerabilities in a benign website as a vehicle
+	// to inject malicious client-site scripts into other legitimate web browsers.
 	XssMatchStatement *XssMatchStatement `type:"structure"`
 }
 
@@ -19637,7 +19643,7 @@ type VisibilityConfig struct {
 	// A name of the Amazon CloudWatch metric. The name can contain only the characters:
 	// A-Z, a-z, 0-9, - (hyphen), and _ (underscore). The name can be from one to
 	// 128 characters long. It can't contain whitespace or metric names reserved
-	// for WAF, for example "All" and "Default_Action."
+	// for WAF, for example All and Default_Action.
 	//
 	// MetricName is a required field
 	MetricName *string `min:"1" type:"string" required:"true"`
@@ -20807,7 +20813,7 @@ func (s *WAFTagOperationException) RequestID() string {
 }
 
 // WAF couldn’t perform your tagging operation because of an internal error.
-// Retry ybjectNoteWebRequestComponentour request.
+// Retry your request.
 type WAFTagOperationInternalErrorException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -21240,18 +21246,13 @@ func (s *WebACLSummary) SetName(v string) *WebACLSummary {
 	return s
 }
 
-// A rule statement that defines a cross-site scripting (XSS) match search for
-// WAF to apply to web requests. XSS attacks are those where the attacker uses
-// vulnerabilities in a benign website as a vehicle to inject malicious client-site
-// scripts into other legitimate web browsers. The XSS match statement provides
-// the location in requests that you want WAF to search and text transformations
-// to use on the search area before WAF searches for character sequences that
-// are likely to be malicious strings.
+// A rule statement that inspects for cross-site scripting (XSS) attacks. In
+// XSS attacks, the attacker uses vulnerabilities in a benign website as a vehicle
+// to inject malicious client-site scripts into other legitimate web browsers.
 type XssMatchStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The part of the web request that you want WAF to inspect. For more information,
-	// see FieldToMatch.
+	// The part of the web request that you want WAF to inspect.
 	//
 	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
@@ -22983,6 +22984,22 @@ func Scope_Values() []string {
 	return []string{
 		ScopeCloudfront,
 		ScopeRegional,
+	}
+}
+
+const (
+	// SensitivityLevelLow is a SensitivityLevel enum value
+	SensitivityLevelLow = "LOW"
+
+	// SensitivityLevelHigh is a SensitivityLevel enum value
+	SensitivityLevelHigh = "HIGH"
+)
+
+// SensitivityLevel_Values returns all elements of the SensitivityLevel enum
+func SensitivityLevel_Values() []string {
+	return []string{
+		SensitivityLevelLow,
+		SensitivityLevelHigh,
 	}
 }
 

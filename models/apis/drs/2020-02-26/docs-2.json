@@ -950,7 +950,7 @@
     "RecoveryInstanceID": {
       "base": null,
       "refs": {
-        "DeleteRecoveryInstanceRequest$recoveryInstanceID": "<p>RThe ID of the Recovery Instance to be deleted.</p>",
+        "DeleteRecoveryInstanceRequest$recoveryInstanceID": "<p>The ID of the Recovery Instance to be deleted.</p>",
         "DisconnectRecoveryInstanceRequest$recoveryInstanceID": "<p>The ID of the Recovery Instance to disconnect.</p>",
         "GetFailbackReplicationConfigurationRequest$recoveryInstanceID": "<p>The ID of the Recovery Instance whose failback replication configuration should be returned.</p>",
         "GetFailbackReplicationConfigurationResponse$recoveryInstanceID": "<p>The ID of the Recovery Instance.</p>",
@@ -1051,6 +1051,7 @@
     "ReplicationConfigurationReplicatedDiskStagingDiskType": {
       "base": null,
       "refs": {
+        "ReplicationConfigurationReplicatedDisk$optimizedStagingDiskType": "<p>The Staging Disk EBS volume type to be used during replication when <code>stagingDiskType</code> is set to Auto. This is a read-only field.</p>",
         "ReplicationConfigurationReplicatedDisk$stagingDiskType": "<p>The Staging Disk EBS volume type to be used during replication.</p>"
       }
     },
