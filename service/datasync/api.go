@@ -1079,26 +1079,21 @@ func (c *DataSync) CreateTaskRequest(input *CreateTaskInput) (req *request.Reque
 
 // CreateTask API operation for AWS DataSync.
 //
-// Creates a task.
+// Configures a task, which defines where and how DataSync transfers your data.
 //
-// A task includes a source location and a destination location, and a configuration
-// that specifies how data is transferred. A task always transfers data from
-// the source location to the destination location. The configuration specifies
-// options such as task scheduling, bandwidth limits, etc. A task is the complete
-// definition of a data transfer.
+// A task includes a source location, a destination location, and the preferences
+// for how and when you want to transfer your data (such as bandwidth limits,
+// scheduling, among other options).
 //
 // When you create a task that transfers data between Amazon Web Services services
-// in different Amazon Web Services Regions, one of the two locations that you
-// specify must reside in the Region where DataSync is being used. The other
-// location must be specified in a different Region.
+// in different Amazon Web Services Regions, one of your locations must reside
+// in the Region where you're using DataSync.
 //
-// You can transfer data between commercial Amazon Web Services Regions except
-// for China, or between Amazon Web Services GovCloud (US) Regions.
+// For more information, see the following topics:
 //
-// When you use DataSync to copy files or objects between Amazon Web Services
-// Regions, you pay for data transfer between Regions. This is billed as data
-// transfer OUT from your source Region to your destination Region. For more
-// information, see Data Transfer pricing (http://aws.amazon.com/ec2/pricing/on-demand/#Data_Transfer).
+//    * Working with DataSync locations (https://docs.aws.amazon.com/datasync/latest/userguide/working-with-locations.html)
+//
+//    * Configure DataSync task settings (https://docs.aws.amazon.com/datasync/latest/userguide/create-task.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3087,7 +3082,7 @@ func (c *DataSync) ListTasksRequest(input *ListTasksInput) (req *request.Request
 
 // ListTasks API operation for AWS DataSync.
 //
-// Returns a list of all the tasks.
+// Returns a list of the DataSync tasks you created.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4628,16 +4623,18 @@ type CreateLocationFsxOntapInput struct {
 	// Protocol is a required field
 	Protocol *FsxProtocol `type:"structure" required:"true"`
 
-	// Specifies the security groups that DataSync can use to access your FSx for
-	// ONTAP file system. You must configure the security groups to allow outbound
-	// traffic on the following ports (depending on the protocol that you're using):
+	// Specifies the Amazon EC2 security groups that provide access to your file
+	// system's preferred subnet.
 	//
-	//    * Network File System (NFS): TCP port 2049
+	// The security groups must allow outbound traffic on the following ports (depending
+	// on the protocol you use):
+	//
+	//    * Network File System (NFS): TCP ports 111, 635, and 2049
 	//
 	//    * Server Message Block (SMB): TCP port 445
 	//
 	// Your file system's security groups must also allow inbound traffic on the
-	// same port.
+	// same ports.
 	//
 	// SecurityGroupArns is a required field
 	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
@@ -4928,17 +4925,18 @@ func (s *CreateLocationFsxOpenZfsOutput) SetLocationArn(v string) *CreateLocatio
 type CreateLocationFsxWindowsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Windows domain that the FSx for Windows File Server belongs
-	// to.
+	// Specifies the name of the Windows domain that the FSx for Windows File Server
+	// belongs to.
 	Domain *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) for the FSx for Windows File Server file system.
+	// Specifies the Amazon Resource Name (ARN) for the FSx for Windows File Server
+	// file system.
 	//
 	// FsxFilesystemArn is a required field
 	FsxFilesystemArn *string `type:"string" required:"true"`
 
-	// The password of the user who has the permissions to access files and folders
-	// in the FSx for Windows File Server file system.
+	// Specifies the password of the user who has the permissions to access files
+	// and folders in the file system.
 	//
 	// Password is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateLocationFsxWindowsInput's
@@ -4947,26 +4945,32 @@ type CreateLocationFsxWindowsInput struct {
 	// Password is a required field
 	Password *string `type:"string" required:"true" sensitive:"true"`
 
-	// The ARNs of the security groups that are used to configure the FSx for Windows
-	// File Server file system.
+	// Specifies the ARNs of the security groups that provide access to your file
+	// system's preferred subnet.
+	//
+	// If you choose a security group that doesn't allow connections from within
+	// itself, do one of the following:
+	//
+	//    * Configure the security group to allow it to communicate within itself.
+	//
+	//    * Choose a different security group that can communicate with the mount
+	//    target's security group.
 	//
 	// SecurityGroupArns is a required field
 	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
 
-	// A subdirectory in the location's path. This subdirectory in the Amazon FSx
-	// for Windows File Server file system is used to read data from the Amazon
-	// FSx for Windows File Server source location or write data to the FSx for
-	// Windows File Server destination.
+	// Specifies a mount path for your file system using forward slashes. This is
+	// where DataSync reads or writes data (depending on if this is a source or
+	// destination location).
 	Subdirectory *string `type:"string"`
 
-	// The key-value pair that represents a tag that you want to add to the resource.
-	// The value can be an empty string. This value helps you manage, filter, and
-	// search for your resources. We recommend that you create a name tag for your
+	// Specifies labels that help you categorize, filter, and search for your Amazon
+	// Web Services resources. We recommend creating at least a name tag for your
 	// location.
 	Tags []*TagListEntry `type:"list"`
 
-	// The user who has the permissions to access files and folders in the FSx for
-	// Windows File Server file system.
+	// Specifies the user who has the permissions to access files and folders in
+	// the file system.
 	//
 	// For information about choosing a user name that ensures sufficient permissions
 	// to files, folders, and metadata, see user (create-fsx-location.html#FSxWuser).
@@ -5073,8 +5077,7 @@ func (s *CreateLocationFsxWindowsInput) SetUser(v string) *CreateLocationFsxWind
 type CreateLocationFsxWindowsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the FSx for Windows File Server file system
-	// location you created.
+	// The ARN of the FSx for Windows File Server file system location you created.
 	LocationArn *string `type:"string"`
 }
 
@@ -8686,7 +8689,31 @@ type FsxProtocolSmb struct {
 	// Password is a required field
 	Password *string `type:"string" required:"true" sensitive:"true"`
 
-	// Specifies a user who has permission to access your SVM.
+	// Specifies a user name that can mount the location and access the files, folders,
+	// and metadata that you need in the SVM.
+	//
+	// If you provide a user in your Active Directory, note the following:
+	//
+	//    * If you're using Directory Service for Microsoft Active Directory, the
+	//    user must be a member of the Amazon Web Services Delegated FSx Administrators
+	//    group.
+	//
+	//    * If you're using a self-managed Active Directory, the user must be a
+	//    member of either the Domain Admins group or a custom group that you specified
+	//    for file system administration when you created your file system.
+	//
+	// Make sure that the user has the permissions it needs to copy the data you
+	// want:
+	//
+	//    * SE_TCB_NAME: Required to set object ownership and file metadata. With
+	//    this privilege, you also can copy NTFS discretionary access lists (DACLs).
+	//
+	//    * SE_SECURITY_NAME: May be needed to copy NTFS system access control lists
+	//    (SACLs). This operation specifically requires the Windows privilege, which
+	//    is granted to members of the Domain Admins group. If you configure your
+	//    task to copy SACLs, make sure that the user has the required privileges.
+	//    For information about copying SACLs, see Ownership and permissions-related
+	//    options (https://docs.aws.amazon.com/datasync/latest/userguide/create-task.html#configure-ownership-and-permissions).
 	//
 	// User is a required field
 	User *string `type:"string" required:"true"`
@@ -9472,9 +9499,11 @@ func (s *ListTasksOutput) SetTasks(v []*TaskListEntry) *ListTasksOutput {
 	return s
 }
 
-// You can use API filters to narrow down the list of resources returned by
-// ListLocations. For example, to retrieve all your Amazon S3 locations, you
-// can use ListLocations with filter name LocationType S3 and Operator Equals.
+// Narrow down the list of resources returned by ListLocations. For example,
+// to see all your Amazon S3 locations, create a filter using "Name": "LocationType",
+// "Operator": "Equals", and "Values": "S3".
+//
+// For more information, see filtering resources (https://docs.aws.amazon.com/datasync/latest/userguide/query-resources.html).
 type LocationFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -9485,8 +9514,7 @@ type LocationFilter struct {
 	Name *string `type:"string" required:"true" enum:"LocationFilterName"`
 
 	// The operator that is used to compare filter values (for example, Equals or
-	// Contains). For more about API filtering operators, see API filters for ListTasks
-	// and ListLocations (https://docs.aws.amazon.com/datasync/latest/userguide/query-resources.html).
+	// Contains).
 	//
 	// Operator is a required field
 	Operator *string `type:"string" required:"true" enum:"Operator"`
@@ -10702,6 +10730,8 @@ func (s *TaskExecutionResultDetail) SetVerifyStatus(v string) *TaskExecutionResu
 // ListTasks. For example, to retrieve all tasks on a source location, you can
 // use ListTasks with filter name LocationId and Operator Equals with the ARN
 // for the location.
+//
+// For more information, see filtering DataSync resources (https://docs.aws.amazon.com/datasync/latest/userguide/query-resources.html).
 type TaskFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -10712,8 +10742,7 @@ type TaskFilter struct {
 	Name *string `type:"string" required:"true" enum:"TaskFilterName"`
 
 	// The operator that is used to compare filter values (for example, Equals or
-	// Contains). For more about API filtering operators, see API filters for ListTasks
-	// and ListLocations (https://docs.aws.amazon.com/datasync/latest/userguide/query-resources.html).
+	// Contains).
 	//
 	// Operator is a required field
 	Operator *string `type:"string" required:"true" enum:"Operator"`

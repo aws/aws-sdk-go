@@ -97,6 +97,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "CreateSegment":{
+      "name":"CreateSegment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/segments",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateSegmentRequest"},
+      "output":{"shape":"CreateSegmentResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "DeleteExperiment":{
       "name":"DeleteExperiment",
       "http":{
@@ -161,6 +177,24 @@
       },
       "input":{"shape":"DeleteProjectRequest"},
       "output":{"shape":"DeleteProjectResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteSegment":{
+      "name":"DeleteSegment",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/segments/{segment}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteSegmentRequest"},
+      "output":{"shape":"DeleteSegmentResponse"},
       "errors":[
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
@@ -268,6 +302,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "GetSegment":{
+      "name":"GetSegment",
+      "http":{
+        "method":"GET",
+        "requestUri":"/segments/{segment}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetSegmentRequest"},
+      "output":{"shape":"GetSegmentResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "ListExperiments":{
       "name":"ListExperiments",
       "http":{
@@ -323,6 +373,37 @@
       },
       "input":{"shape":"ListProjectsRequest"},
       "output":{"shape":"ListProjectsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListSegmentReferences":{
+      "name":"ListSegmentReferences",
+      "http":{
+        "method":"GET",
+        "requestUri":"/segments/{segment}/references",
+        "responseCode":200
+      },
+      "input":{"shape":"ListSegmentReferencesRequest"},
+      "output":{"shape":"ListSegmentReferencesResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListSegments":{
+      "name":"ListSegments",
+      "http":{
+        "method":"GET",
+        "requestUri":"/segments",
+        "responseCode":200
+      },
+      "input":{"shape":"ListSegmentsRequest"},
+      "output":{"shape":"ListSegmentsResponse"},
       "errors":[
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
@@ -447,6 +528,21 @@
       ],
       "idempotent":true
     },
+    "TestSegmentPattern":{
+      "name":"TestSegmentPattern",
+      "http":{
+        "method":"POST",
+        "requestUri":"/test-segment-pattern",
+        "responseCode":200
+      },
+      "input":{"shape":"TestSegmentPatternRequest"},
+      "output":{"shape":"TestSegmentPatternResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "UntagResource":{
       "name":"UntagResource",
       "http":{
@@ -523,6 +619,7 @@
       "output":{"shape":"UpdateProjectResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"}
@@ -644,6 +741,7 @@
           "shape":"SplitWeight",
           "box":true
         },
+        "segment":{"shape":"SegmentRef"},
         "tags":{"shape":"TagMap"},
         "treatments":{"shape":"TreatmentConfigList"}
       }
@@ -727,6 +825,29 @@
       "required":["project"],
       "members":{
         "project":{"shape":"Project"}
+      }
+    },
+    "CreateSegmentRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "pattern"
+      ],
+      "members":{
+        "description":{"shape":"Description"},
+        "name":{"shape":"SegmentName"},
+        "pattern":{
+          "shape":"SegmentPattern",
+          "jsonvalue":true
+        },
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateSegmentResponse":{
+      "type":"structure",
+      "required":["segment"],
+      "members":{
+        "segment":{"shape":"Segment"}
       }
     },
     "CwDimensionSafeName":{
@@ -825,6 +946,22 @@
       }
     },
     "DeleteProjectResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteSegmentRequest":{
+      "type":"structure",
+      "required":["segment"],
+      "members":{
+        "segment":{
+          "shape":"SegmentRef",
+          "location":"uri",
+          "locationName":"segment"
+        }
+      }
+    },
+    "DeleteSegmentResponse":{
       "type":"structure",
       "members":{
       }
@@ -1014,6 +1151,7 @@
         "randomizationSalt":{"shape":"RandomizationSalt"},
         "samplingRate":{"shape":"SplitWeight"},
         "schedule":{"shape":"ExperimentSchedule"},
+        "segment":{"shape":"SegmentArn"},
         "status":{"shape":"ExperimentStatus"},
         "statusReason":{"shape":"Description"},
         "tags":{"shape":"TagMap"},
@@ -1362,6 +1500,24 @@
         "project":{"shape":"Project"}
       }
     },
+    "GetSegmentRequest":{
+      "type":"structure",
+      "required":["segment"],
+      "members":{
+        "segment":{
+          "shape":"SegmentRef",
+          "location":"uri",
+          "locationName":"segment"
+        }
+      }
+    },
+    "GetSegmentResponse":{
+      "type":"structure",
+      "required":["segment"],
+      "members":{
+        "segment":{"shape":"Segment"}
+      }
+    },
     "GroupName":{
       "type":"string",
       "max":127,
@@ -1619,6 +1775,64 @@
         "projects":{"shape":"ProjectSummariesList"}
       }
     },
+    "ListSegmentReferencesRequest":{
+      "type":"structure",
+      "required":[
+        "segment",
+        "type"
+      ],
+      "members":{
+        "maxResults":{
+          "shape":"MaxReferences",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "segment":{
+          "shape":"SegmentRef",
+          "location":"uri",
+          "locationName":"segment"
+        },
+        "type":{
+          "shape":"SegmentReferenceResourceType",
+          "location":"querystring",
+          "locationName":"type"
+        }
+      }
+    },
+    "ListSegmentReferencesResponse":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"NextToken"},
+        "referencedBy":{"shape":"RefResourceList"}
+      }
+    },
+    "ListSegmentsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"MaxSegments",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListSegmentsResponse":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"NextToken"},
+        "segments":{"shape":"SegmentList"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["resourceArn"],
@@ -1659,6 +1873,18 @@
       "min":1
     },
     "MaxProjects":{
+      "type":"integer",
+      "box":true,
+      "max":50,
+      "min":1
+    },
+    "MaxReferences":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "MaxSegments":{
       "type":"integer",
       "box":true,
       "max":50,
@@ -1786,6 +2012,7 @@
         "treatmentWeights":{"shape":"TreatmentToWeightMap"}
       }
     },
+    "PrimitiveBoolean":{"type":"boolean"},
     "Project":{
       "type":"structure",
       "required":[
@@ -1841,7 +2068,7 @@
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":"([-a-zA-Z0-9._]*)|(arn:[^:]*:[^:]*:[^:]*:[^:]*:project/[-a-zA-Z0-9._]*)"
+      "pattern":"(^[a-zA-Z0-9._-]*$)|(arn:[^:]*:[^:]*:[^:]*:[^:]*:project/[a-zA-Z0-9._-]*)"
     },
     "ProjectStatus":{
       "type":"string",
@@ -1918,6 +2145,26 @@
       "min":0,
       "pattern":".*"
     },
+    "RefResource":{
+      "type":"structure",
+      "required":[
+        "name",
+        "type"
+      ],
+      "members":{
+        "arn":{"shape":"String"},
+        "endTime":{"shape":"String"},
+        "lastUpdatedOn":{"shape":"String"},
+        "name":{"shape":"String"},
+        "startTime":{"shape":"String"},
+        "status":{"shape":"String"},
+        "type":{"shape":"String"}
+      }
+    },
+    "RefResourceList":{
+      "type":"list",
+      "member":{"shape":"RefResource"}
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
@@ -1977,6 +2224,7 @@
       "required":["startTime"],
       "members":{
         "groupWeights":{"shape":"GroupToWeightMap"},
+        "segmentOverrides":{"shape":"SegmentOverridesList"},
         "startTime":{"shape":"Timestamp"}
       }
     },
@@ -1988,6 +2236,7 @@
       ],
       "members":{
         "groupWeights":{"shape":"GroupToWeightMap"},
+        "segmentOverrides":{"shape":"SegmentOverridesList"},
         "startTime":{"shape":"Timestamp"}
       }
     },
@@ -2015,6 +2264,83 @@
       "member":{"shape":"ScheduledSplit"},
       "max":6,
       "min":1
+    },
+    "Segment":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "createdTime",
+        "lastUpdatedTime",
+        "name",
+        "pattern"
+      ],
+      "members":{
+        "arn":{"shape":"SegmentArn"},
+        "createdTime":{"shape":"Timestamp"},
+        "description":{"shape":"Description"},
+        "experimentCount":{"shape":"Long"},
+        "lastUpdatedTime":{"shape":"Timestamp"},
+        "launchCount":{"shape":"Long"},
+        "name":{"shape":"SegmentName"},
+        "pattern":{
+          "shape":"SegmentPattern",
+          "jsonvalue":true
+        },
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "SegmentArn":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"arn:[^:]*:[^:]*:[^:]*:[^:]*:segment/[-a-zA-Z0-9._]*"
+    },
+    "SegmentList":{
+      "type":"list",
+      "member":{"shape":"Segment"}
+    },
+    "SegmentName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[-a-zA-Z0-9._]*$"
+    },
+    "SegmentOverride":{
+      "type":"structure",
+      "required":[
+        "evaluationOrder",
+        "segment",
+        "weights"
+      ],
+      "members":{
+        "evaluationOrder":{"shape":"Long"},
+        "segment":{"shape":"SegmentRef"},
+        "weights":{"shape":"GroupToWeightMap"}
+      }
+    },
+    "SegmentOverridesList":{
+      "type":"list",
+      "member":{"shape":"SegmentOverride"},
+      "max":6,
+      "min":0
+    },
+    "SegmentPattern":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "SegmentRef":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"(^[-a-zA-Z0-9._]*$)|(arn:[^:]*:[^:]*:[^:]*:[^:]*:segment/[-a-zA-Z0-9._]*)"
+    },
+    "SegmentReferenceResourceType":{
+      "type":"string",
+      "enum":[
+        "EXPERIMENT",
+        "LAUNCH"
+      ]
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -2195,6 +2521,30 @@
       "max":256,
       "min":0
     },
+    "TestSegmentPatternRequest":{
+      "type":"structure",
+      "required":[
+        "pattern",
+        "payload"
+      ],
+      "members":{
+        "pattern":{
+          "shape":"SegmentPattern",
+          "jsonvalue":true
+        },
+        "payload":{
+          "shape":"JsonValue",
+          "jsonvalue":true
+        }
+      }
+    },
+    "TestSegmentPatternResponse":{
+      "type":"structure",
+      "required":["match"],
+      "members":{
+        "match":{"shape":"Boolean"}
+      }
+    },
     "ThrottlingException":{
       "type":"structure",
       "members":{
@@ -2312,10 +2662,12 @@
           "locationName":"project"
         },
         "randomizationSalt":{"shape":"RandomizationSalt"},
+        "removeSegment":{"shape":"PrimitiveBoolean"},
         "samplingRate":{
           "shape":"SplitWeight",
           "box":true
         },
+        "segment":{"shape":"SegmentRef"},
         "treatments":{"shape":"TreatmentConfigList"}
       }
     },

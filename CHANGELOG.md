@@ -1,3 +1,12 @@
+Release v1.44.56 (2022-07-15)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service documentation
+* `service/drs`: Updates service API and documentation
+* `service/evidently`: Updates service API, documentation, and paginators
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.44.55 (2022-07-14)
 ===
 

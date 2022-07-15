@@ -174,7 +174,7 @@ const (
 	// "WAFTagOperationInternalErrorException".
 	//
 	// WAF couldn’t perform your tagging operation because of an internal error.
-	// Retry ybjectNoteWebRequestComponentour request.
+	// Retry your request.
 	ErrCodeWAFTagOperationInternalErrorException = "WAFTagOperationInternalErrorException"
 
 	// ErrCodeWAFUnavailableEntityException for service response error code
