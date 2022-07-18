@@ -999,7 +999,8 @@
         "USER_LOCKED_OUT",
         "USER_NOT_FOUND",
         "USER_LOGGED_IN",
-        "SUBNET_NOT_FOUND"
+        "SUBNET_NOT_FOUND",
+        "INSUFFICIENT_FREE_ADDRESSES_IN_SUBNET"
       ]
     },
     "ConnectionStateType":{
@@ -1025,12 +1026,7 @@
     },
     "CreateCustomKeyStoreRequest":{
       "type":"structure",
-      "required":[
-        "CustomKeyStoreName",
-        "CloudHsmClusterId",
-        "TrustAnchorCertificate",
-        "KeyStorePassword"
-      ],
+      "required":["CustomKeyStoreName"],
       "members":{
         "CustomKeyStoreName":{"shape":"CustomKeyStoreNameType"},
         "CloudHsmClusterId":{"shape":"CloudHsmClusterIdType"},
@@ -1163,7 +1159,8 @@
         "HMAC_224",
         "HMAC_256",
         "HMAC_384",
-        "HMAC_512"
+        "HMAC_512",
+        "SM2"
       ]
     },
     "DataKeyPairSpec":{
@@ -1175,7 +1172,8 @@
         "ECC_NIST_P256",
         "ECC_NIST_P384",
         "ECC_NIST_P521",
-        "ECC_SECG_P256K1"
+        "ECC_SECG_P256K1",
+        "SM2"
       ]
     },
     "DataKeySpec":{
@@ -1349,7 +1347,8 @@
       "enum":[
         "SYMMETRIC_DEFAULT",
         "RSAES_OAEP_SHA_1",
-        "RSAES_OAEP_SHA_256"
+        "RSAES_OAEP_SHA_256",
+        "SM2PKE"
       ]
     },
     "EncryptionAlgorithmSpecList":{
@@ -1839,7 +1838,8 @@
         "HMAC_224",
         "HMAC_256",
         "HMAC_384",
-        "HMAC_512"
+        "HMAC_512",
+        "SM2"
       ]
     },
     "KeyState":{
@@ -2240,7 +2240,8 @@
         "RSASSA_PKCS1_V1_5_SHA_512",
         "ECDSA_SHA_256",
         "ECDSA_SHA_384",
-        "ECDSA_SHA_512"
+        "ECDSA_SHA_512",
+        "SM2DSA"
       ]
     },
     "SigningAlgorithmSpecList":{

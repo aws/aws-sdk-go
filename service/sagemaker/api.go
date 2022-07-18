@@ -1419,6 +1419,168 @@ func (c *SageMaker) CreateDomainWithContext(ctx aws.Context, input *CreateDomain
 	return out, req.Send()
 }
 
+const opCreateEdgeDeploymentPlan = "CreateEdgeDeploymentPlan"
+
+// CreateEdgeDeploymentPlanRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEdgeDeploymentPlan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEdgeDeploymentPlan for more information on using the CreateEdgeDeploymentPlan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateEdgeDeploymentPlanRequest method.
+//    req, resp := client.CreateEdgeDeploymentPlanRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEdgeDeploymentPlan
+func (c *SageMaker) CreateEdgeDeploymentPlanRequest(input *CreateEdgeDeploymentPlanInput) (req *request.Request, output *CreateEdgeDeploymentPlanOutput) {
+	op := &request.Operation{
+		Name:       opCreateEdgeDeploymentPlan,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateEdgeDeploymentPlanInput{}
+	}
+
+	output = &CreateEdgeDeploymentPlanOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEdgeDeploymentPlan API operation for Amazon SageMaker Service.
+//
+// Creates an edge deployment plan, consisting of multiple stages. Each stage
+// may have a different deployment configuration and devices.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation CreateEdgeDeploymentPlan for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceLimitExceeded
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEdgeDeploymentPlan
+func (c *SageMaker) CreateEdgeDeploymentPlan(input *CreateEdgeDeploymentPlanInput) (*CreateEdgeDeploymentPlanOutput, error) {
+	req, out := c.CreateEdgeDeploymentPlanRequest(input)
+	return out, req.Send()
+}
+
+// CreateEdgeDeploymentPlanWithContext is the same as CreateEdgeDeploymentPlan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEdgeDeploymentPlan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) CreateEdgeDeploymentPlanWithContext(ctx aws.Context, input *CreateEdgeDeploymentPlanInput, opts ...request.Option) (*CreateEdgeDeploymentPlanOutput, error) {
+	req, out := c.CreateEdgeDeploymentPlanRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateEdgeDeploymentStage = "CreateEdgeDeploymentStage"
+
+// CreateEdgeDeploymentStageRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEdgeDeploymentStage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEdgeDeploymentStage for more information on using the CreateEdgeDeploymentStage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateEdgeDeploymentStageRequest method.
+//    req, resp := client.CreateEdgeDeploymentStageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEdgeDeploymentStage
+func (c *SageMaker) CreateEdgeDeploymentStageRequest(input *CreateEdgeDeploymentStageInput) (req *request.Request, output *CreateEdgeDeploymentStageOutput) {
+	op := &request.Operation{
+		Name:       opCreateEdgeDeploymentStage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateEdgeDeploymentStageInput{}
+	}
+
+	output = &CreateEdgeDeploymentStageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateEdgeDeploymentStage API operation for Amazon SageMaker Service.
+//
+// Creates a new stage in an existing edge deployment plan.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation CreateEdgeDeploymentStage for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceLimitExceeded
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEdgeDeploymentStage
+func (c *SageMaker) CreateEdgeDeploymentStage(input *CreateEdgeDeploymentStageInput) (*CreateEdgeDeploymentStageOutput, error) {
+	req, out := c.CreateEdgeDeploymentStageRequest(input)
+	return out, req.Send()
+}
+
+// CreateEdgeDeploymentStageWithContext is the same as CreateEdgeDeploymentStage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEdgeDeploymentStage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) CreateEdgeDeploymentStageWithContext(ctx aws.Context, input *CreateEdgeDeploymentStageInput, opts ...request.Option) (*CreateEdgeDeploymentStageOutput, error) {
+	req, out := c.CreateEdgeDeploymentStageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateEdgePackagingJob = "CreateEdgePackagingJob"
 
 // CreateEdgePackagingJobRequest generates a "aws/request.Request" representing the
@@ -5511,6 +5673,167 @@ func (c *SageMaker) DeleteDomainWithContext(ctx aws.Context, input *DeleteDomain
 	return out, req.Send()
 }
 
+const opDeleteEdgeDeploymentPlan = "DeleteEdgeDeploymentPlan"
+
+// DeleteEdgeDeploymentPlanRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEdgeDeploymentPlan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEdgeDeploymentPlan for more information on using the DeleteEdgeDeploymentPlan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteEdgeDeploymentPlanRequest method.
+//    req, resp := client.DeleteEdgeDeploymentPlanRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteEdgeDeploymentPlan
+func (c *SageMaker) DeleteEdgeDeploymentPlanRequest(input *DeleteEdgeDeploymentPlanInput) (req *request.Request, output *DeleteEdgeDeploymentPlanOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEdgeDeploymentPlan,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteEdgeDeploymentPlanInput{}
+	}
+
+	output = &DeleteEdgeDeploymentPlanOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEdgeDeploymentPlan API operation for Amazon SageMaker Service.
+//
+// Deletes an edge deployment plan if (and only if) all the stages in the plan
+// are inactive or there are no stages in the plan.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DeleteEdgeDeploymentPlan for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteEdgeDeploymentPlan
+func (c *SageMaker) DeleteEdgeDeploymentPlan(input *DeleteEdgeDeploymentPlanInput) (*DeleteEdgeDeploymentPlanOutput, error) {
+	req, out := c.DeleteEdgeDeploymentPlanRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEdgeDeploymentPlanWithContext is the same as DeleteEdgeDeploymentPlan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEdgeDeploymentPlan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DeleteEdgeDeploymentPlanWithContext(ctx aws.Context, input *DeleteEdgeDeploymentPlanInput, opts ...request.Option) (*DeleteEdgeDeploymentPlanOutput, error) {
+	req, out := c.DeleteEdgeDeploymentPlanRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteEdgeDeploymentStage = "DeleteEdgeDeploymentStage"
+
+// DeleteEdgeDeploymentStageRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEdgeDeploymentStage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEdgeDeploymentStage for more information on using the DeleteEdgeDeploymentStage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteEdgeDeploymentStageRequest method.
+//    req, resp := client.DeleteEdgeDeploymentStageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteEdgeDeploymentStage
+func (c *SageMaker) DeleteEdgeDeploymentStageRequest(input *DeleteEdgeDeploymentStageInput) (req *request.Request, output *DeleteEdgeDeploymentStageOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEdgeDeploymentStage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteEdgeDeploymentStageInput{}
+	}
+
+	output = &DeleteEdgeDeploymentStageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEdgeDeploymentStage API operation for Amazon SageMaker Service.
+//
+// Delete a stage in an edge deployment plan if (and only if) the stage is inactive.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DeleteEdgeDeploymentStage for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteEdgeDeploymentStage
+func (c *SageMaker) DeleteEdgeDeploymentStage(input *DeleteEdgeDeploymentStageInput) (*DeleteEdgeDeploymentStageOutput, error) {
+	req, out := c.DeleteEdgeDeploymentStageRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEdgeDeploymentStageWithContext is the same as DeleteEdgeDeploymentStage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEdgeDeploymentStage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DeleteEdgeDeploymentStageWithContext(ctx aws.Context, input *DeleteEdgeDeploymentStageInput, opts ...request.Option) (*DeleteEdgeDeploymentStageOutput, error) {
+	req, out := c.DeleteEdgeDeploymentStageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteEndpoint = "DeleteEndpoint"
 
 // DeleteEndpointRequest generates a "aws/request.Request" representing the
@@ -8814,6 +9137,85 @@ func (c *SageMaker) DescribeDomain(input *DescribeDomainInput) (*DescribeDomainO
 // for more information on using Contexts.
 func (c *SageMaker) DescribeDomainWithContext(ctx aws.Context, input *DescribeDomainInput, opts ...request.Option) (*DescribeDomainOutput, error) {
 	req, out := c.DescribeDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeEdgeDeploymentPlan = "DescribeEdgeDeploymentPlan"
+
+// DescribeEdgeDeploymentPlanRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEdgeDeploymentPlan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEdgeDeploymentPlan for more information on using the DescribeEdgeDeploymentPlan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeEdgeDeploymentPlanRequest method.
+//    req, resp := client.DescribeEdgeDeploymentPlanRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeEdgeDeploymentPlan
+func (c *SageMaker) DescribeEdgeDeploymentPlanRequest(input *DescribeEdgeDeploymentPlanInput) (req *request.Request, output *DescribeEdgeDeploymentPlanOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEdgeDeploymentPlan,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEdgeDeploymentPlanInput{}
+	}
+
+	output = &DescribeEdgeDeploymentPlanOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEdgeDeploymentPlan API operation for Amazon SageMaker Service.
+//
+// Describes an edge deployment plan with deployment status per stage.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeEdgeDeploymentPlan for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeEdgeDeploymentPlan
+func (c *SageMaker) DescribeEdgeDeploymentPlan(input *DescribeEdgeDeploymentPlanInput) (*DescribeEdgeDeploymentPlanOutput, error) {
+	req, out := c.DescribeEdgeDeploymentPlanRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEdgeDeploymentPlanWithContext is the same as DescribeEdgeDeploymentPlan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEdgeDeploymentPlan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeEdgeDeploymentPlanWithContext(ctx aws.Context, input *DescribeEdgeDeploymentPlanInput, opts ...request.Option) (*DescribeEdgeDeploymentPlanOutput, error) {
+	req, out := c.DescribeEdgeDeploymentPlanRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -14345,6 +14747,138 @@ func (c *SageMaker) ListDomainsPagesWithContext(ctx aws.Context, input *ListDoma
 	return p.Err()
 }
 
+const opListEdgeDeploymentPlans = "ListEdgeDeploymentPlans"
+
+// ListEdgeDeploymentPlansRequest generates a "aws/request.Request" representing the
+// client's request for the ListEdgeDeploymentPlans operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEdgeDeploymentPlans for more information on using the ListEdgeDeploymentPlans
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListEdgeDeploymentPlansRequest method.
+//    req, resp := client.ListEdgeDeploymentPlansRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListEdgeDeploymentPlans
+func (c *SageMaker) ListEdgeDeploymentPlansRequest(input *ListEdgeDeploymentPlansInput) (req *request.Request, output *ListEdgeDeploymentPlansOutput) {
+	op := &request.Operation{
+		Name:       opListEdgeDeploymentPlans,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEdgeDeploymentPlansInput{}
+	}
+
+	output = &ListEdgeDeploymentPlansOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEdgeDeploymentPlans API operation for Amazon SageMaker Service.
+//
+// Lists all edge deployment plans.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListEdgeDeploymentPlans for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListEdgeDeploymentPlans
+func (c *SageMaker) ListEdgeDeploymentPlans(input *ListEdgeDeploymentPlansInput) (*ListEdgeDeploymentPlansOutput, error) {
+	req, out := c.ListEdgeDeploymentPlansRequest(input)
+	return out, req.Send()
+}
+
+// ListEdgeDeploymentPlansWithContext is the same as ListEdgeDeploymentPlans with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEdgeDeploymentPlans for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListEdgeDeploymentPlansWithContext(ctx aws.Context, input *ListEdgeDeploymentPlansInput, opts ...request.Option) (*ListEdgeDeploymentPlansOutput, error) {
+	req, out := c.ListEdgeDeploymentPlansRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEdgeDeploymentPlansPages iterates over the pages of a ListEdgeDeploymentPlans operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEdgeDeploymentPlans method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListEdgeDeploymentPlans operation.
+//    pageNum := 0
+//    err := client.ListEdgeDeploymentPlansPages(params,
+//        func(page *sagemaker.ListEdgeDeploymentPlansOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListEdgeDeploymentPlansPages(input *ListEdgeDeploymentPlansInput, fn func(*ListEdgeDeploymentPlansOutput, bool) bool) error {
+	return c.ListEdgeDeploymentPlansPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEdgeDeploymentPlansPagesWithContext same as ListEdgeDeploymentPlansPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListEdgeDeploymentPlansPagesWithContext(ctx aws.Context, input *ListEdgeDeploymentPlansInput, fn func(*ListEdgeDeploymentPlansOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEdgeDeploymentPlansInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEdgeDeploymentPlansRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEdgeDeploymentPlansOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListEdgePackagingJobs = "ListEdgePackagingJobs"
 
 // ListEdgePackagingJobsRequest generates a "aws/request.Request" representing the
@@ -18473,6 +19007,139 @@ func (c *SageMaker) ListProjectsPagesWithContext(ctx aws.Context, input *ListPro
 	return p.Err()
 }
 
+const opListStageDevices = "ListStageDevices"
+
+// ListStageDevicesRequest generates a "aws/request.Request" representing the
+// client's request for the ListStageDevices operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStageDevices for more information on using the ListStageDevices
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListStageDevicesRequest method.
+//    req, resp := client.ListStageDevicesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListStageDevices
+func (c *SageMaker) ListStageDevicesRequest(input *ListStageDevicesInput) (req *request.Request, output *ListStageDevicesOutput) {
+	op := &request.Operation{
+		Name:       opListStageDevices,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListStageDevicesInput{}
+	}
+
+	output = &ListStageDevicesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListStageDevices API operation for Amazon SageMaker Service.
+//
+// Lists devices allocated to the stage, containing detailed device information
+// and deployment status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListStageDevices for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListStageDevices
+func (c *SageMaker) ListStageDevices(input *ListStageDevicesInput) (*ListStageDevicesOutput, error) {
+	req, out := c.ListStageDevicesRequest(input)
+	return out, req.Send()
+}
+
+// ListStageDevicesWithContext is the same as ListStageDevices with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStageDevices for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListStageDevicesWithContext(ctx aws.Context, input *ListStageDevicesInput, opts ...request.Option) (*ListStageDevicesOutput, error) {
+	req, out := c.ListStageDevicesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListStageDevicesPages iterates over the pages of a ListStageDevices operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStageDevices method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListStageDevices operation.
+//    pageNum := 0
+//    err := client.ListStageDevicesPages(params,
+//        func(page *sagemaker.ListStageDevicesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListStageDevicesPages(input *ListStageDevicesInput, fn func(*ListStageDevicesOutput, bool) bool) error {
+	return c.ListStageDevicesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListStageDevicesPagesWithContext same as ListStageDevicesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListStageDevicesPagesWithContext(ctx aws.Context, input *ListStageDevicesInput, fn func(*ListStageDevicesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListStageDevicesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListStageDevicesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListStageDevicesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListStudioLifecycleConfigs = "ListStudioLifecycleConfigs"
 
 // ListStudioLifecycleConfigsRequest generates a "aws/request.Request" representing the
@@ -20756,6 +21423,81 @@ func (c *SageMaker) SendPipelineExecutionStepSuccessWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+const opStartEdgeDeploymentStage = "StartEdgeDeploymentStage"
+
+// StartEdgeDeploymentStageRequest generates a "aws/request.Request" representing the
+// client's request for the StartEdgeDeploymentStage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartEdgeDeploymentStage for more information on using the StartEdgeDeploymentStage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartEdgeDeploymentStageRequest method.
+//    req, resp := client.StartEdgeDeploymentStageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StartEdgeDeploymentStage
+func (c *SageMaker) StartEdgeDeploymentStageRequest(input *StartEdgeDeploymentStageInput) (req *request.Request, output *StartEdgeDeploymentStageOutput) {
+	op := &request.Operation{
+		Name:       opStartEdgeDeploymentStage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartEdgeDeploymentStageInput{}
+	}
+
+	output = &StartEdgeDeploymentStageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartEdgeDeploymentStage API operation for Amazon SageMaker Service.
+//
+// Starts a stage in an edge deployment plan.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation StartEdgeDeploymentStage for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StartEdgeDeploymentStage
+func (c *SageMaker) StartEdgeDeploymentStage(input *StartEdgeDeploymentStageInput) (*StartEdgeDeploymentStageOutput, error) {
+	req, out := c.StartEdgeDeploymentStageRequest(input)
+	return out, req.Send()
+}
+
+// StartEdgeDeploymentStageWithContext is the same as StartEdgeDeploymentStage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartEdgeDeploymentStage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) StartEdgeDeploymentStageWithContext(ctx aws.Context, input *StartEdgeDeploymentStageInput, opts ...request.Option) (*StartEdgeDeploymentStageOutput, error) {
+	req, out := c.StartEdgeDeploymentStageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartMonitoringSchedule = "StartMonitoringSchedule"
 
 // StartMonitoringScheduleRequest generates a "aws/request.Request" representing the
@@ -21170,6 +21912,81 @@ func (c *SageMaker) StopCompilationJob(input *StopCompilationJobInput) (*StopCom
 // for more information on using Contexts.
 func (c *SageMaker) StopCompilationJobWithContext(ctx aws.Context, input *StopCompilationJobInput, opts ...request.Option) (*StopCompilationJobOutput, error) {
 	req, out := c.StopCompilationJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopEdgeDeploymentStage = "StopEdgeDeploymentStage"
+
+// StopEdgeDeploymentStageRequest generates a "aws/request.Request" representing the
+// client's request for the StopEdgeDeploymentStage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopEdgeDeploymentStage for more information on using the StopEdgeDeploymentStage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopEdgeDeploymentStageRequest method.
+//    req, resp := client.StopEdgeDeploymentStageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopEdgeDeploymentStage
+func (c *SageMaker) StopEdgeDeploymentStageRequest(input *StopEdgeDeploymentStageInput) (req *request.Request, output *StopEdgeDeploymentStageOutput) {
+	op := &request.Operation{
+		Name:       opStopEdgeDeploymentStage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopEdgeDeploymentStageInput{}
+	}
+
+	output = &StopEdgeDeploymentStageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopEdgeDeploymentStage API operation for Amazon SageMaker Service.
+//
+// Stops a stage in an edge deployment plan.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation StopEdgeDeploymentStage for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopEdgeDeploymentStage
+func (c *SageMaker) StopEdgeDeploymentStage(input *StopEdgeDeploymentStageInput) (*StopEdgeDeploymentStageOutput, error) {
+	req, out := c.StopEdgeDeploymentStageRequest(input)
+	return out, req.Send()
+}
+
+// StopEdgeDeploymentStageWithContext is the same as StopEdgeDeploymentStage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopEdgeDeploymentStage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) StopEdgeDeploymentStageWithContext(ctx aws.Context, input *StopEdgeDeploymentStageInput, opts ...request.Option) (*StopEdgeDeploymentStageOutput, error) {
+	req, out := c.StopEdgeDeploymentStageRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -32742,6 +33559,263 @@ func (s *CreateDomainOutput) SetUrl(v string) *CreateDomainOutput {
 	return s
 }
 
+type CreateEdgeDeploymentPlanInput struct {
+	_ struct{} `type:"structure"`
+
+	// The device fleet used for this edge deployment plan.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the edge deployment plan.
+	//
+	// EdgeDeploymentPlanName is a required field
+	EdgeDeploymentPlanName *string `min:"1" type:"string" required:"true"`
+
+	// List of models associated with the edge deployment plan.
+	//
+	// ModelConfigs is a required field
+	ModelConfigs []*EdgeDeploymentModelConfig `type:"list" required:"true"`
+
+	// List of stages of the edge deployment plan. The number of stages is limited
+	// to 10 per deployment.
+	Stages []*DeploymentStage `type:"list"`
+
+	// List of tags with which to tag the edge deployment plan.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEdgeDeploymentPlanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEdgeDeploymentPlanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEdgeDeploymentPlanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEdgeDeploymentPlanInput"}
+	if s.DeviceFleetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceFleetName"))
+	}
+	if s.DeviceFleetName != nil && len(*s.DeviceFleetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceFleetName", 1))
+	}
+	if s.EdgeDeploymentPlanName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EdgeDeploymentPlanName"))
+	}
+	if s.EdgeDeploymentPlanName != nil && len(*s.EdgeDeploymentPlanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EdgeDeploymentPlanName", 1))
+	}
+	if s.ModelConfigs == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelConfigs"))
+	}
+	if s.ModelConfigs != nil {
+		for i, v := range s.ModelConfigs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ModelConfigs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Stages != nil {
+		for i, v := range s.Stages {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Stages", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *CreateEdgeDeploymentPlanInput) SetDeviceFleetName(v string) *CreateEdgeDeploymentPlanInput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetEdgeDeploymentPlanName sets the EdgeDeploymentPlanName field's value.
+func (s *CreateEdgeDeploymentPlanInput) SetEdgeDeploymentPlanName(v string) *CreateEdgeDeploymentPlanInput {
+	s.EdgeDeploymentPlanName = &v
+	return s
+}
+
+// SetModelConfigs sets the ModelConfigs field's value.
+func (s *CreateEdgeDeploymentPlanInput) SetModelConfigs(v []*EdgeDeploymentModelConfig) *CreateEdgeDeploymentPlanInput {
+	s.ModelConfigs = v
+	return s
+}
+
+// SetStages sets the Stages field's value.
+func (s *CreateEdgeDeploymentPlanInput) SetStages(v []*DeploymentStage) *CreateEdgeDeploymentPlanInput {
+	s.Stages = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEdgeDeploymentPlanInput) SetTags(v []*Tag) *CreateEdgeDeploymentPlanInput {
+	s.Tags = v
+	return s
+}
+
+type CreateEdgeDeploymentPlanOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the edge deployment plan.
+	//
+	// EdgeDeploymentPlanArn is a required field
+	EdgeDeploymentPlanArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEdgeDeploymentPlanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEdgeDeploymentPlanOutput) GoString() string {
+	return s.String()
+}
+
+// SetEdgeDeploymentPlanArn sets the EdgeDeploymentPlanArn field's value.
+func (s *CreateEdgeDeploymentPlanOutput) SetEdgeDeploymentPlanArn(v string) *CreateEdgeDeploymentPlanOutput {
+	s.EdgeDeploymentPlanArn = &v
+	return s
+}
+
+type CreateEdgeDeploymentStageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the edge deployment plan.
+	//
+	// EdgeDeploymentPlanName is a required field
+	EdgeDeploymentPlanName *string `min:"1" type:"string" required:"true"`
+
+	// List of stages to be added to the edge deployment plan.
+	//
+	// Stages is a required field
+	Stages []*DeploymentStage `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEdgeDeploymentStageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEdgeDeploymentStageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEdgeDeploymentStageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEdgeDeploymentStageInput"}
+	if s.EdgeDeploymentPlanName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EdgeDeploymentPlanName"))
+	}
+	if s.EdgeDeploymentPlanName != nil && len(*s.EdgeDeploymentPlanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EdgeDeploymentPlanName", 1))
+	}
+	if s.Stages == nil {
+		invalidParams.Add(request.NewErrParamRequired("Stages"))
+	}
+	if s.Stages != nil {
+		for i, v := range s.Stages {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Stages", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEdgeDeploymentPlanName sets the EdgeDeploymentPlanName field's value.
+func (s *CreateEdgeDeploymentStageInput) SetEdgeDeploymentPlanName(v string) *CreateEdgeDeploymentStageInput {
+	s.EdgeDeploymentPlanName = &v
+	return s
+}
+
+// SetStages sets the Stages field's value.
+func (s *CreateEdgeDeploymentStageInput) SetStages(v []*DeploymentStage) *CreateEdgeDeploymentStageInput {
+	s.Stages = v
+	return s
+}
+
+type CreateEdgeDeploymentStageOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEdgeDeploymentStageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEdgeDeploymentStageOutput) GoString() string {
+	return s.String()
+}
+
 type CreateEdgePackagingJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -41411,6 +42485,165 @@ func (s DeleteDomainOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteEdgeDeploymentPlanInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the edge deployment plan to delete.
+	//
+	// EdgeDeploymentPlanName is a required field
+	EdgeDeploymentPlanName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeDeploymentPlanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeDeploymentPlanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEdgeDeploymentPlanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEdgeDeploymentPlanInput"}
+	if s.EdgeDeploymentPlanName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EdgeDeploymentPlanName"))
+	}
+	if s.EdgeDeploymentPlanName != nil && len(*s.EdgeDeploymentPlanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EdgeDeploymentPlanName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEdgeDeploymentPlanName sets the EdgeDeploymentPlanName field's value.
+func (s *DeleteEdgeDeploymentPlanInput) SetEdgeDeploymentPlanName(v string) *DeleteEdgeDeploymentPlanInput {
+	s.EdgeDeploymentPlanName = &v
+	return s
+}
+
+type DeleteEdgeDeploymentPlanOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeDeploymentPlanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeDeploymentPlanOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteEdgeDeploymentStageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the edge deployment plan from which the stage will be deleted.
+	//
+	// EdgeDeploymentPlanName is a required field
+	EdgeDeploymentPlanName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the stage.
+	//
+	// StageName is a required field
+	StageName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeDeploymentStageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeDeploymentStageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEdgeDeploymentStageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEdgeDeploymentStageInput"}
+	if s.EdgeDeploymentPlanName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EdgeDeploymentPlanName"))
+	}
+	if s.EdgeDeploymentPlanName != nil && len(*s.EdgeDeploymentPlanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EdgeDeploymentPlanName", 1))
+	}
+	if s.StageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageName"))
+	}
+	if s.StageName != nil && len(*s.StageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEdgeDeploymentPlanName sets the EdgeDeploymentPlanName field's value.
+func (s *DeleteEdgeDeploymentStageInput) SetEdgeDeploymentPlanName(v string) *DeleteEdgeDeploymentStageInput {
+	s.EdgeDeploymentPlanName = &v
+	return s
+}
+
+// SetStageName sets the StageName field's value.
+func (s *DeleteEdgeDeploymentStageInput) SetStageName(v string) *DeleteEdgeDeploymentStageInput {
+	s.StageName = &v
+	return s
+}
+
+type DeleteEdgeDeploymentStageOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeDeploymentStageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEdgeDeploymentStageOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteEndpointConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -43543,6 +44776,156 @@ func (s *DeploymentConfig) SetAutoRollbackConfiguration(v *AutoRollbackConfig) *
 // SetBlueGreenUpdatePolicy sets the BlueGreenUpdatePolicy field's value.
 func (s *DeploymentConfig) SetBlueGreenUpdatePolicy(v *BlueGreenUpdatePolicy) *DeploymentConfig {
 	s.BlueGreenUpdatePolicy = v
+	return s
+}
+
+// Contains information about a stage in an edge deployment plan.
+type DeploymentStage struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration of the deployment details.
+	DeploymentConfig *EdgeDeploymentConfig `type:"structure"`
+
+	// Configuration of the devices in the stage.
+	//
+	// DeviceSelectionConfig is a required field
+	DeviceSelectionConfig *DeviceSelectionConfig `type:"structure" required:"true"`
+
+	// The name of the stage.
+	//
+	// StageName is a required field
+	StageName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentStage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentStage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeploymentStage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeploymentStage"}
+	if s.DeviceSelectionConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceSelectionConfig"))
+	}
+	if s.StageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageName"))
+	}
+	if s.StageName != nil && len(*s.StageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+	if s.DeploymentConfig != nil {
+		if err := s.DeploymentConfig.Validate(); err != nil {
+			invalidParams.AddNested("DeploymentConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DeviceSelectionConfig != nil {
+		if err := s.DeviceSelectionConfig.Validate(); err != nil {
+			invalidParams.AddNested("DeviceSelectionConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeploymentConfig sets the DeploymentConfig field's value.
+func (s *DeploymentStage) SetDeploymentConfig(v *EdgeDeploymentConfig) *DeploymentStage {
+	s.DeploymentConfig = v
+	return s
+}
+
+// SetDeviceSelectionConfig sets the DeviceSelectionConfig field's value.
+func (s *DeploymentStage) SetDeviceSelectionConfig(v *DeviceSelectionConfig) *DeploymentStage {
+	s.DeviceSelectionConfig = v
+	return s
+}
+
+// SetStageName sets the StageName field's value.
+func (s *DeploymentStage) SetStageName(v string) *DeploymentStage {
+	s.StageName = &v
+	return s
+}
+
+// Contains information summarizing the deployment stage results.
+type DeploymentStageStatusSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration of the deployment details.
+	//
+	// DeploymentConfig is a required field
+	DeploymentConfig *EdgeDeploymentConfig `type:"structure" required:"true"`
+
+	// General status of the current state.
+	//
+	// DeploymentStatus is a required field
+	DeploymentStatus *EdgeDeploymentStatus `type:"structure" required:"true"`
+
+	// Configuration of the devices in the stage.
+	//
+	// DeviceSelectionConfig is a required field
+	DeviceSelectionConfig *DeviceSelectionConfig `type:"structure" required:"true"`
+
+	// The name of the stage.
+	//
+	// StageName is a required field
+	StageName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentStageStatusSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentStageStatusSummary) GoString() string {
+	return s.String()
+}
+
+// SetDeploymentConfig sets the DeploymentConfig field's value.
+func (s *DeploymentStageStatusSummary) SetDeploymentConfig(v *EdgeDeploymentConfig) *DeploymentStageStatusSummary {
+	s.DeploymentConfig = v
+	return s
+}
+
+// SetDeploymentStatus sets the DeploymentStatus field's value.
+func (s *DeploymentStageStatusSummary) SetDeploymentStatus(v *EdgeDeploymentStatus) *DeploymentStageStatusSummary {
+	s.DeploymentStatus = v
+	return s
+}
+
+// SetDeviceSelectionConfig sets the DeviceSelectionConfig field's value.
+func (s *DeploymentStageStatusSummary) SetDeviceSelectionConfig(v *DeviceSelectionConfig) *DeploymentStageStatusSummary {
+	s.DeviceSelectionConfig = v
+	return s
+}
+
+// SetStageName sets the StageName field's value.
+func (s *DeploymentStageStatusSummary) SetStageName(v string) *DeploymentStageStatusSummary {
+	s.StageName = &v
 	return s
 }
 
@@ -46154,6 +47537,205 @@ func (s *DescribeDomainOutput) SetUrl(v string) *DescribeDomainOutput {
 // SetVpcId sets the VpcId field's value.
 func (s *DescribeDomainOutput) SetVpcId(v string) *DescribeDomainOutput {
 	s.VpcId = &v
+	return s
+}
+
+type DescribeEdgeDeploymentPlanInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the deployment plan to describe.
+	//
+	// EdgeDeploymentPlanName is a required field
+	EdgeDeploymentPlanName *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to select (50 by default).
+	MaxResults *int64 `type:"integer"`
+
+	// If the edge deployment plan has enough stages to require tokening, then this
+	// is the response from the last list of stages returned.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEdgeDeploymentPlanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEdgeDeploymentPlanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEdgeDeploymentPlanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEdgeDeploymentPlanInput"}
+	if s.EdgeDeploymentPlanName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EdgeDeploymentPlanName"))
+	}
+	if s.EdgeDeploymentPlanName != nil && len(*s.EdgeDeploymentPlanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EdgeDeploymentPlanName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEdgeDeploymentPlanName sets the EdgeDeploymentPlanName field's value.
+func (s *DescribeEdgeDeploymentPlanInput) SetEdgeDeploymentPlanName(v string) *DescribeEdgeDeploymentPlanInput {
+	s.EdgeDeploymentPlanName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeEdgeDeploymentPlanInput) SetMaxResults(v int64) *DescribeEdgeDeploymentPlanInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeEdgeDeploymentPlanInput) SetNextToken(v string) *DescribeEdgeDeploymentPlanInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeEdgeDeploymentPlanOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the edge deployment plan was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The device fleet used for this edge deployment plan.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+
+	// The number of edge devices that failed the deployment.
+	EdgeDeploymentFailed *int64 `type:"integer"`
+
+	// The number of edge devices yet to pick up deployment, or in progress.
+	EdgeDeploymentPending *int64 `type:"integer"`
+
+	// The ARN of edge deployment plan.
+	//
+	// EdgeDeploymentPlanArn is a required field
+	EdgeDeploymentPlanArn *string `min:"20" type:"string" required:"true"`
+
+	// The name of the edge deployment plan.
+	//
+	// EdgeDeploymentPlanName is a required field
+	EdgeDeploymentPlanName *string `min:"1" type:"string" required:"true"`
+
+	// The number of edge devices with the successful deployment.
+	EdgeDeploymentSuccess *int64 `type:"integer"`
+
+	// The time when the edge deployment plan was last updated.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// List of models associated with the edge deployment plan.
+	//
+	// ModelConfigs is a required field
+	ModelConfigs []*EdgeDeploymentModelConfig `type:"list" required:"true"`
+
+	// Token to use when calling the next set of stages in the edge deployment plan.
+	NextToken *string `type:"string"`
+
+	// List of stages in the edge deployment plan.
+	//
+	// Stages is a required field
+	Stages []*DeploymentStageStatusSummary `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEdgeDeploymentPlanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEdgeDeploymentPlanOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeEdgeDeploymentPlanOutput) SetCreationTime(v time.Time) *DescribeEdgeDeploymentPlanOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *DescribeEdgeDeploymentPlanOutput) SetDeviceFleetName(v string) *DescribeEdgeDeploymentPlanOutput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetEdgeDeploymentFailed sets the EdgeDeploymentFailed field's value.
+func (s *DescribeEdgeDeploymentPlanOutput) SetEdgeDeploymentFailed(v int64) *DescribeEdgeDeploymentPlanOutput {
+	s.EdgeDeploymentFailed = &v
+	return s
+}
+
+// SetEdgeDeploymentPending sets the EdgeDeploymentPending field's value.
+func (s *DescribeEdgeDeploymentPlanOutput) SetEdgeDeploymentPending(v int64) *DescribeEdgeDeploymentPlanOutput {
+	s.EdgeDeploymentPending = &v
+	return s
+}
+
+// SetEdgeDeploymentPlanArn sets the EdgeDeploymentPlanArn field's value.
+func (s *DescribeEdgeDeploymentPlanOutput) SetEdgeDeploymentPlanArn(v string) *DescribeEdgeDeploymentPlanOutput {
+	s.EdgeDeploymentPlanArn = &v
+	return s
+}
+
+// SetEdgeDeploymentPlanName sets the EdgeDeploymentPlanName field's value.
+func (s *DescribeEdgeDeploymentPlanOutput) SetEdgeDeploymentPlanName(v string) *DescribeEdgeDeploymentPlanOutput {
+	s.EdgeDeploymentPlanName = &v
+	return s
+}
+
+// SetEdgeDeploymentSuccess sets the EdgeDeploymentSuccess field's value.
+func (s *DescribeEdgeDeploymentPlanOutput) SetEdgeDeploymentSuccess(v int64) *DescribeEdgeDeploymentPlanOutput {
+	s.EdgeDeploymentSuccess = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeEdgeDeploymentPlanOutput) SetLastModifiedTime(v time.Time) *DescribeEdgeDeploymentPlanOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetModelConfigs sets the ModelConfigs field's value.
+func (s *DescribeEdgeDeploymentPlanOutput) SetModelConfigs(v []*EdgeDeploymentModelConfig) *DescribeEdgeDeploymentPlanOutput {
+	s.ModelConfigs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeEdgeDeploymentPlanOutput) SetNextToken(v string) *DescribeEdgeDeploymentPlanOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStages sets the Stages field's value.
+func (s *DescribeEdgeDeploymentPlanOutput) SetStages(v []*DeploymentStageStatusSummary) *DescribeEdgeDeploymentPlanOutput {
+	s.Stages = v
 	return s
 }
 
@@ -53510,6 +55092,138 @@ func (s *Device) SetIotThingName(v string) *Device {
 	return s
 }
 
+// Contains information summarizing device details and deployment status.
+type DeviceDeploymentSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the deployed stage.
+	DeployedStageName *string `min:"1" type:"string"`
+
+	// The time when the deployment on the device started.
+	DeploymentStartTime *time.Time `type:"timestamp"`
+
+	// The description of the device.
+	Description *string `min:"1" type:"string"`
+
+	// The ARN of the device.
+	//
+	// DeviceArn is a required field
+	DeviceArn *string `min:"20" type:"string" required:"true"`
+
+	// The deployment status of the device.
+	DeviceDeploymentStatus *string `type:"string" enum:"DeviceDeploymentStatus"`
+
+	// The detailed error message for the deployoment status result.
+	DeviceDeploymentStatusMessage *string `type:"string"`
+
+	// The name of the fleet to which the device belongs to.
+	DeviceFleetName *string `min:"1" type:"string"`
+
+	// The name of the device.
+	//
+	// DeviceName is a required field
+	DeviceName *string `min:"1" type:"string" required:"true"`
+
+	// The ARN of the edge deployment plan.
+	//
+	// EdgeDeploymentPlanArn is a required field
+	EdgeDeploymentPlanArn *string `min:"20" type:"string" required:"true"`
+
+	// The name of the edge deployment plan.
+	//
+	// EdgeDeploymentPlanName is a required field
+	EdgeDeploymentPlanName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the stage in the edge deployment plan.
+	//
+	// StageName is a required field
+	StageName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeviceDeploymentSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeviceDeploymentSummary) GoString() string {
+	return s.String()
+}
+
+// SetDeployedStageName sets the DeployedStageName field's value.
+func (s *DeviceDeploymentSummary) SetDeployedStageName(v string) *DeviceDeploymentSummary {
+	s.DeployedStageName = &v
+	return s
+}
+
+// SetDeploymentStartTime sets the DeploymentStartTime field's value.
+func (s *DeviceDeploymentSummary) SetDeploymentStartTime(v time.Time) *DeviceDeploymentSummary {
+	s.DeploymentStartTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DeviceDeploymentSummary) SetDescription(v string) *DeviceDeploymentSummary {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceArn sets the DeviceArn field's value.
+func (s *DeviceDeploymentSummary) SetDeviceArn(v string) *DeviceDeploymentSummary {
+	s.DeviceArn = &v
+	return s
+}
+
+// SetDeviceDeploymentStatus sets the DeviceDeploymentStatus field's value.
+func (s *DeviceDeploymentSummary) SetDeviceDeploymentStatus(v string) *DeviceDeploymentSummary {
+	s.DeviceDeploymentStatus = &v
+	return s
+}
+
+// SetDeviceDeploymentStatusMessage sets the DeviceDeploymentStatusMessage field's value.
+func (s *DeviceDeploymentSummary) SetDeviceDeploymentStatusMessage(v string) *DeviceDeploymentSummary {
+	s.DeviceDeploymentStatusMessage = &v
+	return s
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *DeviceDeploymentSummary) SetDeviceFleetName(v string) *DeviceDeploymentSummary {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetDeviceName sets the DeviceName field's value.
+func (s *DeviceDeploymentSummary) SetDeviceName(v string) *DeviceDeploymentSummary {
+	s.DeviceName = &v
+	return s
+}
+
+// SetEdgeDeploymentPlanArn sets the EdgeDeploymentPlanArn field's value.
+func (s *DeviceDeploymentSummary) SetEdgeDeploymentPlanArn(v string) *DeviceDeploymentSummary {
+	s.EdgeDeploymentPlanArn = &v
+	return s
+}
+
+// SetEdgeDeploymentPlanName sets the EdgeDeploymentPlanName field's value.
+func (s *DeviceDeploymentSummary) SetEdgeDeploymentPlanName(v string) *DeviceDeploymentSummary {
+	s.EdgeDeploymentPlanName = &v
+	return s
+}
+
+// SetStageName sets the StageName field's value.
+func (s *DeviceDeploymentSummary) SetStageName(v string) *DeviceDeploymentSummary {
+	s.StageName = &v
+	return s
+}
+
 // Summary of the device fleet.
 type DeviceFleetSummary struct {
 	_ struct{} `type:"structure"`
@@ -53570,6 +55284,83 @@ func (s *DeviceFleetSummary) SetDeviceFleetName(v string) *DeviceFleetSummary {
 // SetLastModifiedTime sets the LastModifiedTime field's value.
 func (s *DeviceFleetSummary) SetLastModifiedTime(v time.Time) *DeviceFleetSummary {
 	s.LastModifiedTime = &v
+	return s
+}
+
+// Contains information about the configurations of selected devices.
+type DeviceSelectionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A filter to select devices with names containing this name.
+	DeviceNameContains *string `min:"1" type:"string"`
+
+	// List of devices chosen to deploy.
+	DeviceNames []*string `type:"list"`
+
+	// Type of device subsets to deploy to the current stage.
+	//
+	// DeviceSubsetType is a required field
+	DeviceSubsetType *string `type:"string" required:"true" enum:"DeviceSubsetType"`
+
+	// Percentage of devices in the fleet to deploy to the current stage.
+	Percentage *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeviceSelectionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeviceSelectionConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeviceSelectionConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeviceSelectionConfig"}
+	if s.DeviceNameContains != nil && len(*s.DeviceNameContains) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceNameContains", 1))
+	}
+	if s.DeviceSubsetType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceSubsetType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceNameContains sets the DeviceNameContains field's value.
+func (s *DeviceSelectionConfig) SetDeviceNameContains(v string) *DeviceSelectionConfig {
+	s.DeviceNameContains = &v
+	return s
+}
+
+// SetDeviceNames sets the DeviceNames field's value.
+func (s *DeviceSelectionConfig) SetDeviceNames(v []*string) *DeviceSelectionConfig {
+	s.DeviceNames = v
+	return s
+}
+
+// SetDeviceSubsetType sets the DeviceSubsetType field's value.
+func (s *DeviceSelectionConfig) SetDeviceSubsetType(v string) *DeviceSelectionConfig {
+	s.DeviceSubsetType = &v
+	return s
+}
+
+// SetPercentage sets the Percentage field's value.
+func (s *DeviceSelectionConfig) SetPercentage(v int64) *DeviceSelectionConfig {
+	s.Percentage = &v
 	return s
 }
 
@@ -54534,6 +56325,316 @@ func (s *Edge) SetDestinationArn(v string) *Edge {
 // SetSourceArn sets the SourceArn field's value.
 func (s *Edge) SetSourceArn(v string) *Edge {
 	s.SourceArn = &v
+	return s
+}
+
+// Contains information about the configuration of a deployment.
+type EdgeDeploymentConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Toggle that determines whether to rollback to previous configuration if the
+	// current deployment fails. By default this is turned on. You may turn this
+	// off if you want to investigate the errors yourself.
+	//
+	// FailureHandlingPolicy is a required field
+	FailureHandlingPolicy *string `type:"string" required:"true" enum:"FailureHandlingPolicy"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EdgeDeploymentConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EdgeDeploymentConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EdgeDeploymentConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EdgeDeploymentConfig"}
+	if s.FailureHandlingPolicy == nil {
+		invalidParams.Add(request.NewErrParamRequired("FailureHandlingPolicy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFailureHandlingPolicy sets the FailureHandlingPolicy field's value.
+func (s *EdgeDeploymentConfig) SetFailureHandlingPolicy(v string) *EdgeDeploymentConfig {
+	s.FailureHandlingPolicy = &v
+	return s
+}
+
+// Contains information about the configuration of a model in a deployment.
+type EdgeDeploymentModelConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The edge packaging job associated with this deployment.
+	//
+	// EdgePackagingJobName is a required field
+	EdgePackagingJobName *string `min:"1" type:"string" required:"true"`
+
+	// The name the device application uses to reference this model.
+	//
+	// ModelHandle is a required field
+	ModelHandle *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EdgeDeploymentModelConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EdgeDeploymentModelConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EdgeDeploymentModelConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EdgeDeploymentModelConfig"}
+	if s.EdgePackagingJobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EdgePackagingJobName"))
+	}
+	if s.EdgePackagingJobName != nil && len(*s.EdgePackagingJobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EdgePackagingJobName", 1))
+	}
+	if s.ModelHandle == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelHandle"))
+	}
+	if s.ModelHandle != nil && len(*s.ModelHandle) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelHandle", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEdgePackagingJobName sets the EdgePackagingJobName field's value.
+func (s *EdgeDeploymentModelConfig) SetEdgePackagingJobName(v string) *EdgeDeploymentModelConfig {
+	s.EdgePackagingJobName = &v
+	return s
+}
+
+// SetModelHandle sets the ModelHandle field's value.
+func (s *EdgeDeploymentModelConfig) SetModelHandle(v string) *EdgeDeploymentModelConfig {
+	s.ModelHandle = &v
+	return s
+}
+
+// Contains information summarizing an edge deployment plan.
+type EdgeDeploymentPlanSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the edge deployment plan was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The name of the device fleet used for the deployment.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+
+	// The number of edge devices that failed the deployment.
+	//
+	// EdgeDeploymentFailed is a required field
+	EdgeDeploymentFailed *int64 `type:"integer" required:"true"`
+
+	// The number of edge devices yet to pick up the deployment, or in progress.
+	//
+	// EdgeDeploymentPending is a required field
+	EdgeDeploymentPending *int64 `type:"integer" required:"true"`
+
+	// The ARN of the edge deployment plan.
+	//
+	// EdgeDeploymentPlanArn is a required field
+	EdgeDeploymentPlanArn *string `min:"20" type:"string" required:"true"`
+
+	// The name of the edge deployment plan.
+	//
+	// EdgeDeploymentPlanName is a required field
+	EdgeDeploymentPlanName *string `min:"1" type:"string" required:"true"`
+
+	// The number of edge devices with the successful deployment.
+	//
+	// EdgeDeploymentSuccess is a required field
+	EdgeDeploymentSuccess *int64 `type:"integer" required:"true"`
+
+	// The time when the edge deployment plan was last updated.
+	LastModifiedTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EdgeDeploymentPlanSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EdgeDeploymentPlanSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *EdgeDeploymentPlanSummary) SetCreationTime(v time.Time) *EdgeDeploymentPlanSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *EdgeDeploymentPlanSummary) SetDeviceFleetName(v string) *EdgeDeploymentPlanSummary {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetEdgeDeploymentFailed sets the EdgeDeploymentFailed field's value.
+func (s *EdgeDeploymentPlanSummary) SetEdgeDeploymentFailed(v int64) *EdgeDeploymentPlanSummary {
+	s.EdgeDeploymentFailed = &v
+	return s
+}
+
+// SetEdgeDeploymentPending sets the EdgeDeploymentPending field's value.
+func (s *EdgeDeploymentPlanSummary) SetEdgeDeploymentPending(v int64) *EdgeDeploymentPlanSummary {
+	s.EdgeDeploymentPending = &v
+	return s
+}
+
+// SetEdgeDeploymentPlanArn sets the EdgeDeploymentPlanArn field's value.
+func (s *EdgeDeploymentPlanSummary) SetEdgeDeploymentPlanArn(v string) *EdgeDeploymentPlanSummary {
+	s.EdgeDeploymentPlanArn = &v
+	return s
+}
+
+// SetEdgeDeploymentPlanName sets the EdgeDeploymentPlanName field's value.
+func (s *EdgeDeploymentPlanSummary) SetEdgeDeploymentPlanName(v string) *EdgeDeploymentPlanSummary {
+	s.EdgeDeploymentPlanName = &v
+	return s
+}
+
+// SetEdgeDeploymentSuccess sets the EdgeDeploymentSuccess field's value.
+func (s *EdgeDeploymentPlanSummary) SetEdgeDeploymentSuccess(v int64) *EdgeDeploymentPlanSummary {
+	s.EdgeDeploymentSuccess = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *EdgeDeploymentPlanSummary) SetLastModifiedTime(v time.Time) *EdgeDeploymentPlanSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// Contains information summarizing the deployment stage results.
+type EdgeDeploymentStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The number of edge devices that failed the deployment in current stage.
+	//
+	// EdgeDeploymentFailedInStage is a required field
+	EdgeDeploymentFailedInStage *int64 `type:"integer" required:"true"`
+
+	// The number of edge devices yet to pick up the deployment in current stage,
+	// or in progress.
+	//
+	// EdgeDeploymentPendingInStage is a required field
+	EdgeDeploymentPendingInStage *int64 `type:"integer" required:"true"`
+
+	// The time when the deployment API started.
+	EdgeDeploymentStageStartTime *time.Time `type:"timestamp"`
+
+	// A detailed message about deployment status in current stage.
+	EdgeDeploymentStatusMessage *string `type:"string"`
+
+	// The number of edge devices with the successful deployment in the current
+	// stage.
+	//
+	// EdgeDeploymentSuccessInStage is a required field
+	EdgeDeploymentSuccessInStage *int64 `type:"integer" required:"true"`
+
+	// The general status of the current stage.
+	//
+	// StageStatus is a required field
+	StageStatus *string `type:"string" required:"true" enum:"StageStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EdgeDeploymentStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EdgeDeploymentStatus) GoString() string {
+	return s.String()
+}
+
+// SetEdgeDeploymentFailedInStage sets the EdgeDeploymentFailedInStage field's value.
+func (s *EdgeDeploymentStatus) SetEdgeDeploymentFailedInStage(v int64) *EdgeDeploymentStatus {
+	s.EdgeDeploymentFailedInStage = &v
+	return s
+}
+
+// SetEdgeDeploymentPendingInStage sets the EdgeDeploymentPendingInStage field's value.
+func (s *EdgeDeploymentStatus) SetEdgeDeploymentPendingInStage(v int64) *EdgeDeploymentStatus {
+	s.EdgeDeploymentPendingInStage = &v
+	return s
+}
+
+// SetEdgeDeploymentStageStartTime sets the EdgeDeploymentStageStartTime field's value.
+func (s *EdgeDeploymentStatus) SetEdgeDeploymentStageStartTime(v time.Time) *EdgeDeploymentStatus {
+	s.EdgeDeploymentStageStartTime = &v
+	return s
+}
+
+// SetEdgeDeploymentStatusMessage sets the EdgeDeploymentStatusMessage field's value.
+func (s *EdgeDeploymentStatus) SetEdgeDeploymentStatusMessage(v string) *EdgeDeploymentStatus {
+	s.EdgeDeploymentStatusMessage = &v
+	return s
+}
+
+// SetEdgeDeploymentSuccessInStage sets the EdgeDeploymentSuccessInStage field's value.
+func (s *EdgeDeploymentStatus) SetEdgeDeploymentSuccessInStage(v int64) *EdgeDeploymentStatus {
+	s.EdgeDeploymentSuccessInStage = &v
+	return s
+}
+
+// SetStageStatus sets the StageStatus field's value.
+func (s *EdgeDeploymentStatus) SetStageStatus(v string) *EdgeDeploymentStatus {
+	s.StageStatus = &v
 	return s
 }
 
@@ -65289,6 +67390,162 @@ func (s *ListDomainsOutput) SetNextToken(v string) *ListDomainsOutput {
 	return s
 }
 
+type ListEdgeDeploymentPlansInput struct {
+	_ struct{} `type:"structure"`
+
+	// Selects edge deployment plans created after this time.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// Selects edge deployment plans created before this time.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// Selects edge deployment plans with a device fleet name containing this name.
+	DeviceFleetNameContains *string `type:"string"`
+
+	// Selects edge deployment plans that were last updated after this time.
+	LastModifiedTimeAfter *time.Time `type:"timestamp"`
+
+	// Selects edge deployment plans that were last updated before this time.
+	LastModifiedTimeBefore *time.Time `type:"timestamp"`
+
+	// The maximum number of results to select (50 by default).
+	MaxResults *int64 `type:"integer"`
+
+	// Selects edge deployment plans with names containing this name.
+	NameContains *string `type:"string"`
+
+	// The response from the last list when returning a list large enough to need
+	// tokening.
+	NextToken *string `type:"string"`
+
+	// The column by which to sort the edge deployment plans. Can be one of NAME,
+	// DEVICEFLEETNAME, CREATIONTIME, LASTMODIFIEDTIME.
+	SortBy *string `type:"string" enum:"ListEdgeDeploymentPlansSortBy"`
+
+	// The direction of the sorting (ascending or descending).
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeDeploymentPlansInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeDeploymentPlansInput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *ListEdgeDeploymentPlansInput) SetCreationTimeAfter(v time.Time) *ListEdgeDeploymentPlansInput {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *ListEdgeDeploymentPlansInput) SetCreationTimeBefore(v time.Time) *ListEdgeDeploymentPlansInput {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetDeviceFleetNameContains sets the DeviceFleetNameContains field's value.
+func (s *ListEdgeDeploymentPlansInput) SetDeviceFleetNameContains(v string) *ListEdgeDeploymentPlansInput {
+	s.DeviceFleetNameContains = &v
+	return s
+}
+
+// SetLastModifiedTimeAfter sets the LastModifiedTimeAfter field's value.
+func (s *ListEdgeDeploymentPlansInput) SetLastModifiedTimeAfter(v time.Time) *ListEdgeDeploymentPlansInput {
+	s.LastModifiedTimeAfter = &v
+	return s
+}
+
+// SetLastModifiedTimeBefore sets the LastModifiedTimeBefore field's value.
+func (s *ListEdgeDeploymentPlansInput) SetLastModifiedTimeBefore(v time.Time) *ListEdgeDeploymentPlansInput {
+	s.LastModifiedTimeBefore = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEdgeDeploymentPlansInput) SetMaxResults(v int64) *ListEdgeDeploymentPlansInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListEdgeDeploymentPlansInput) SetNameContains(v string) *ListEdgeDeploymentPlansInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEdgeDeploymentPlansInput) SetNextToken(v string) *ListEdgeDeploymentPlansInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListEdgeDeploymentPlansInput) SetSortBy(v string) *ListEdgeDeploymentPlansInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListEdgeDeploymentPlansInput) SetSortOrder(v string) *ListEdgeDeploymentPlansInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListEdgeDeploymentPlansOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of summaries of edge deployment plans.
+	//
+	// EdgeDeploymentPlanSummaries is a required field
+	EdgeDeploymentPlanSummaries []*EdgeDeploymentPlanSummary `type:"list" required:"true"`
+
+	// The token to use when calling the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeDeploymentPlansOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEdgeDeploymentPlansOutput) GoString() string {
+	return s.String()
+}
+
+// SetEdgeDeploymentPlanSummaries sets the EdgeDeploymentPlanSummaries field's value.
+func (s *ListEdgeDeploymentPlansOutput) SetEdgeDeploymentPlanSummaries(v []*EdgeDeploymentPlanSummary) *ListEdgeDeploymentPlansOutput {
+	s.EdgeDeploymentPlanSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEdgeDeploymentPlansOutput) SetNextToken(v string) *ListEdgeDeploymentPlansOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListEdgePackagingJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -70190,6 +72447,142 @@ func (s *ListProjectsOutput) SetNextToken(v string) *ListProjectsOutput {
 // SetProjectSummaryList sets the ProjectSummaryList field's value.
 func (s *ListProjectsOutput) SetProjectSummaryList(v []*ProjectSummary) *ListProjectsOutput {
 	s.ProjectSummaryList = v
+	return s
+}
+
+type ListStageDevicesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the edge deployment plan.
+	//
+	// EdgeDeploymentPlanName is a required field
+	EdgeDeploymentPlanName *string `min:"1" type:"string" required:"true"`
+
+	// Toggle for excluding devices deployed in other stages.
+	ExcludeDevicesDeployedInOtherStage *bool `type:"boolean"`
+
+	// The maximum number of requests to select.
+	MaxResults *int64 `type:"integer"`
+
+	// The response from the last list when returning a list large enough to neeed
+	// tokening.
+	NextToken *string `type:"string"`
+
+	// The name of the stage in the deployment.
+	//
+	// StageName is a required field
+	StageName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStageDevicesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStageDevicesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStageDevicesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStageDevicesInput"}
+	if s.EdgeDeploymentPlanName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EdgeDeploymentPlanName"))
+	}
+	if s.EdgeDeploymentPlanName != nil && len(*s.EdgeDeploymentPlanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EdgeDeploymentPlanName", 1))
+	}
+	if s.StageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageName"))
+	}
+	if s.StageName != nil && len(*s.StageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEdgeDeploymentPlanName sets the EdgeDeploymentPlanName field's value.
+func (s *ListStageDevicesInput) SetEdgeDeploymentPlanName(v string) *ListStageDevicesInput {
+	s.EdgeDeploymentPlanName = &v
+	return s
+}
+
+// SetExcludeDevicesDeployedInOtherStage sets the ExcludeDevicesDeployedInOtherStage field's value.
+func (s *ListStageDevicesInput) SetExcludeDevicesDeployedInOtherStage(v bool) *ListStageDevicesInput {
+	s.ExcludeDevicesDeployedInOtherStage = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListStageDevicesInput) SetMaxResults(v int64) *ListStageDevicesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStageDevicesInput) SetNextToken(v string) *ListStageDevicesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStageName sets the StageName field's value.
+func (s *ListStageDevicesInput) SetStageName(v string) *ListStageDevicesInput {
+	s.StageName = &v
+	return s
+}
+
+type ListStageDevicesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of summaries of devices allocated to the stage.
+	//
+	// DeviceDeploymentSummaries is a required field
+	DeviceDeploymentSummaries []*DeviceDeploymentSummary `type:"list" required:"true"`
+
+	// The token to use when calling the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStageDevicesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStageDevicesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeviceDeploymentSummaries sets the DeviceDeploymentSummaries field's value.
+func (s *ListStageDevicesOutput) SetDeviceDeploymentSummaries(v []*DeviceDeploymentSummary) *ListStageDevicesOutput {
+	s.DeviceDeploymentSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStageDevicesOutput) SetNextToken(v string) *ListStageDevicesOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -85628,6 +88021,94 @@ func (s *SourceIpConfig) SetCidrs(v []*string) *SourceIpConfig {
 	return s
 }
 
+type StartEdgeDeploymentStageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the edge deployment plan to start.
+	//
+	// EdgeDeploymentPlanName is a required field
+	EdgeDeploymentPlanName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the stage to start.
+	//
+	// StageName is a required field
+	StageName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartEdgeDeploymentStageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartEdgeDeploymentStageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartEdgeDeploymentStageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartEdgeDeploymentStageInput"}
+	if s.EdgeDeploymentPlanName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EdgeDeploymentPlanName"))
+	}
+	if s.EdgeDeploymentPlanName != nil && len(*s.EdgeDeploymentPlanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EdgeDeploymentPlanName", 1))
+	}
+	if s.StageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageName"))
+	}
+	if s.StageName != nil && len(*s.StageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEdgeDeploymentPlanName sets the EdgeDeploymentPlanName field's value.
+func (s *StartEdgeDeploymentStageInput) SetEdgeDeploymentPlanName(v string) *StartEdgeDeploymentStageInput {
+	s.EdgeDeploymentPlanName = &v
+	return s
+}
+
+// SetStageName sets the StageName field's value.
+func (s *StartEdgeDeploymentStageInput) SetStageName(v string) *StartEdgeDeploymentStageInput {
+	s.StageName = &v
+	return s
+}
+
+type StartEdgeDeploymentStageOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartEdgeDeploymentStageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartEdgeDeploymentStageOutput) GoString() string {
+	return s.String()
+}
+
 type StartMonitoringScheduleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -86054,6 +88535,94 @@ func (s StopCompilationJobOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s StopCompilationJobOutput) GoString() string {
+	return s.String()
+}
+
+type StopEdgeDeploymentStageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the edge deployment plan to stop.
+	//
+	// EdgeDeploymentPlanName is a required field
+	EdgeDeploymentPlanName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the stage to stop.
+	//
+	// StageName is a required field
+	StageName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopEdgeDeploymentStageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopEdgeDeploymentStageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopEdgeDeploymentStageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopEdgeDeploymentStageInput"}
+	if s.EdgeDeploymentPlanName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EdgeDeploymentPlanName"))
+	}
+	if s.EdgeDeploymentPlanName != nil && len(*s.EdgeDeploymentPlanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EdgeDeploymentPlanName", 1))
+	}
+	if s.StageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageName"))
+	}
+	if s.StageName != nil && len(*s.StageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEdgeDeploymentPlanName sets the EdgeDeploymentPlanName field's value.
+func (s *StopEdgeDeploymentStageInput) SetEdgeDeploymentPlanName(v string) *StopEdgeDeploymentStageInput {
+	s.EdgeDeploymentPlanName = &v
+	return s
+}
+
+// SetStageName sets the StageName field's value.
+func (s *StopEdgeDeploymentStageInput) SetStageName(v string) *StopEdgeDeploymentStageInput {
+	s.StageName = &v
+	return s
+}
+
+type StopEdgeDeploymentStageOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopEdgeDeploymentStageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopEdgeDeploymentStageOutput) GoString() string {
 	return s.String()
 }
 
@@ -96226,6 +98795,58 @@ func DetailedModelPackageStatus_Values() []string {
 }
 
 const (
+	// DeviceDeploymentStatusReadytodeploy is a DeviceDeploymentStatus enum value
+	DeviceDeploymentStatusReadytodeploy = "READYTODEPLOY"
+
+	// DeviceDeploymentStatusInprogress is a DeviceDeploymentStatus enum value
+	DeviceDeploymentStatusInprogress = "INPROGRESS"
+
+	// DeviceDeploymentStatusDeployed is a DeviceDeploymentStatus enum value
+	DeviceDeploymentStatusDeployed = "DEPLOYED"
+
+	// DeviceDeploymentStatusFailed is a DeviceDeploymentStatus enum value
+	DeviceDeploymentStatusFailed = "FAILED"
+
+	// DeviceDeploymentStatusStopping is a DeviceDeploymentStatus enum value
+	DeviceDeploymentStatusStopping = "STOPPING"
+
+	// DeviceDeploymentStatusStopped is a DeviceDeploymentStatus enum value
+	DeviceDeploymentStatusStopped = "STOPPED"
+)
+
+// DeviceDeploymentStatus_Values returns all elements of the DeviceDeploymentStatus enum
+func DeviceDeploymentStatus_Values() []string {
+	return []string{
+		DeviceDeploymentStatusReadytodeploy,
+		DeviceDeploymentStatusInprogress,
+		DeviceDeploymentStatusDeployed,
+		DeviceDeploymentStatusFailed,
+		DeviceDeploymentStatusStopping,
+		DeviceDeploymentStatusStopped,
+	}
+}
+
+const (
+	// DeviceSubsetTypePercentage is a DeviceSubsetType enum value
+	DeviceSubsetTypePercentage = "PERCENTAGE"
+
+	// DeviceSubsetTypeSelection is a DeviceSubsetType enum value
+	DeviceSubsetTypeSelection = "SELECTION"
+
+	// DeviceSubsetTypeNamecontains is a DeviceSubsetType enum value
+	DeviceSubsetTypeNamecontains = "NAMECONTAINS"
+)
+
+// DeviceSubsetType_Values returns all elements of the DeviceSubsetType enum
+func DeviceSubsetType_Values() []string {
+	return []string{
+		DeviceSubsetTypePercentage,
+		DeviceSubsetTypeSelection,
+		DeviceSubsetTypeNamecontains,
+	}
+}
+
+const (
 	// DirectInternetAccessEnabled is a DirectInternetAccess enum value
 	DirectInternetAccessEnabled = "Enabled"
 
@@ -96466,6 +99087,22 @@ func ExecutionStatus_Values() []string {
 		ExecutionStatusFailed,
 		ExecutionStatusStopping,
 		ExecutionStatusStopped,
+	}
+}
+
+const (
+	// FailureHandlingPolicyRollbackOnFailure is a FailureHandlingPolicy enum value
+	FailureHandlingPolicyRollbackOnFailure = "ROLLBACK_ON_FAILURE"
+
+	// FailureHandlingPolicyDoNothing is a FailureHandlingPolicy enum value
+	FailureHandlingPolicyDoNothing = "DO_NOTHING"
+)
+
+// FailureHandlingPolicy_Values returns all elements of the FailureHandlingPolicy enum
+func FailureHandlingPolicy_Values() []string {
+	return []string{
+		FailureHandlingPolicyRollbackOnFailure,
+		FailureHandlingPolicyDoNothing,
 	}
 }
 
@@ -97376,6 +100013,30 @@ func ListDeviceFleetsSortBy_Values() []string {
 		ListDeviceFleetsSortByName,
 		ListDeviceFleetsSortByCreationTime,
 		ListDeviceFleetsSortByLastModifiedTime,
+	}
+}
+
+const (
+	// ListEdgeDeploymentPlansSortByName is a ListEdgeDeploymentPlansSortBy enum value
+	ListEdgeDeploymentPlansSortByName = "NAME"
+
+	// ListEdgeDeploymentPlansSortByDeviceFleetName is a ListEdgeDeploymentPlansSortBy enum value
+	ListEdgeDeploymentPlansSortByDeviceFleetName = "DEVICE_FLEET_NAME"
+
+	// ListEdgeDeploymentPlansSortByCreationTime is a ListEdgeDeploymentPlansSortBy enum value
+	ListEdgeDeploymentPlansSortByCreationTime = "CREATION_TIME"
+
+	// ListEdgeDeploymentPlansSortByLastModifiedTime is a ListEdgeDeploymentPlansSortBy enum value
+	ListEdgeDeploymentPlansSortByLastModifiedTime = "LAST_MODIFIED_TIME"
+)
+
+// ListEdgeDeploymentPlansSortBy_Values returns all elements of the ListEdgeDeploymentPlansSortBy enum
+func ListEdgeDeploymentPlansSortBy_Values() []string {
+	return []string{
+		ListEdgeDeploymentPlansSortByName,
+		ListEdgeDeploymentPlansSortByDeviceFleetName,
+		ListEdgeDeploymentPlansSortByCreationTime,
+		ListEdgeDeploymentPlansSortByLastModifiedTime,
 	}
 }
 
@@ -99554,6 +102215,46 @@ func SplitType_Values() []string {
 		SplitTypeLine,
 		SplitTypeRecordIo,
 		SplitTypeTfrecord,
+	}
+}
+
+const (
+	// StageStatusCreating is a StageStatus enum value
+	StageStatusCreating = "CREATING"
+
+	// StageStatusReadytodeploy is a StageStatus enum value
+	StageStatusReadytodeploy = "READYTODEPLOY"
+
+	// StageStatusStarting is a StageStatus enum value
+	StageStatusStarting = "STARTING"
+
+	// StageStatusInprogress is a StageStatus enum value
+	StageStatusInprogress = "INPROGRESS"
+
+	// StageStatusDeployed is a StageStatus enum value
+	StageStatusDeployed = "DEPLOYED"
+
+	// StageStatusFailed is a StageStatus enum value
+	StageStatusFailed = "FAILED"
+
+	// StageStatusStopping is a StageStatus enum value
+	StageStatusStopping = "STOPPING"
+
+	// StageStatusStopped is a StageStatus enum value
+	StageStatusStopped = "STOPPED"
+)
+
+// StageStatus_Values returns all elements of the StageStatus enum
+func StageStatus_Values() []string {
+	return []string{
+		StageStatusCreating,
+		StageStatusReadytodeploy,
+		StageStatusStarting,
+		StageStatusInprogress,
+		StageStatusDeployed,
+		StageStatusFailed,
+		StageStatusStopping,
+		StageStatusStopped,
 	}
 }
 

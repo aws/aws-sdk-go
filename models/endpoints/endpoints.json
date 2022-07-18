@@ -4317,6 +4317,16 @@
           }
         }
       },
+      "edge.sagemaker" : {
+        "endpoints" : {
+          "ap-northeast-1" : { },
+          "eu-central-1" : { },
+          "eu-west-1" : { },
+          "us-east-1" : { },
+          "us-east-2" : { },
+          "us-west-2" : { }
+        }
+      },
       "eks" : {
         "defaults" : {
           "protocols" : [ "http", "https" ],
@@ -6415,7 +6425,17 @@
         "isRegionalized" : true
       },
       "health" : {
+        "defaults" : {
+          "protocols" : [ "https" ],
+          "sslCommonName" : "health.us-east-1.amazonaws.com"
+        },
         "endpoints" : {
+          "aws-global" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "global.health.amazonaws.com"
+          },
           "fips-us-east-2" : {
             "credentialScope" : {
               "region" : "us-east-2"
@@ -6433,7 +6453,9 @@
               "tags" : [ "fips" ]
             } ]
           }
-        }
+        },
+        "isRegionalized" : false,
+        "partitionEndpoint" : "aws-global"
       },
       "healthlake" : {
         "defaults" : {
@@ -14733,10 +14755,20 @@
         "isRegionalized" : true
       },
       "health" : {
+        "defaults" : {
+          "protocols" : [ "https" ],
+          "sslCommonName" : "health.cn-northwest-1.amazonaws.com.cn"
+        },
         "endpoints" : {
-          "cn-north-1" : { },
-          "cn-northwest-1" : { }
-        }
+          "aws-cn-global" : {
+            "credentialScope" : {
+              "region" : "cn-northwest-1"
+            },
+            "hostname" : "global.health.amazonaws.com.cn"
+          }
+        },
+        "isRegionalized" : false,
+        "partitionEndpoint" : "aws-cn-global"
       },
       "iam" : {
         "endpoints" : {

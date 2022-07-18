@@ -1,8 +1,9 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon Web Services Single Sign On (SSO) is a cloud SSO service that makes it easy to centrally manage SSO access to multiple Amazon Web Services accounts and business applications. This guide provides information on SSO operations which could be used for access management of Amazon Web Services accounts. For information about Amazon Web Services SSO features, see the <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html\">Amazon Web Services Single Sign-On User Guide</a>.</p> <p>Many operations in the SSO APIs rely on identifiers for users and groups, known as principals. For more information about how to work with principals and principal IDs in Amazon Web Services SSO, see the <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/welcome.html\">Amazon Web Services SSO Identity Store API Reference</a>.</p>",
+  "service": "<p/>",
   "operations": {
-    "AttachManagedPolicyToPermissionSet": "<p>Attaches an IAM managed policy ARN to a permission set.</p> <note> <p>If the permission set is already referenced by one or more account assignments, you will need to call <code> <a>ProvisionPermissionSet</a> </code> after this operation. Calling <code>ProvisionPermissionSet</code> applies the corresponding IAM policy updates to all assigned accounts.</p> </note>",
+    "AttachCustomerManagedPolicyReferenceToPermissionSet": "<p>Attaches the specified IAM customer managed policy to the specified <a>PermissionSet</a>.</p>",
+    "AttachManagedPolicyToPermissionSet": "<p>Attaches an Amazon Web Services managed IAM policy ARN to a permission set.</p> <note> <p>If the permission set is already referenced by one or more account assignments, you will need to call <code> <a>ProvisionPermissionSet</a> </code> after this operation. Calling <code>ProvisionPermissionSet</code> applies the corresponding IAM policy updates to all assigned accounts.</p> </note>",
     "CreateAccountAssignment": "<p>Assigns access to a principal for a specified Amazon Web Services account using a specified permission set.</p> <note> <p>The term <i>principal</i> here refers to a user or group that is defined in Amazon Web Services SSO.</p> </note> <note> <p>As part of a successful <code>CreateAccountAssignment</code> call, the specified permission set will automatically be provisioned to the account in the form of an IAM policy. That policy is attached to the SSO-created IAM role. If the permission set is subsequently updated, the corresponding IAM policies attached to roles in your accounts will not be updated automatically. In this case, you must call <code> <a>ProvisionPermissionSet</a> </code> to make these updates.</p> </note>",
     "CreateInstanceAccessControlAttributeConfiguration": "<p>Enables the attributes-based access control (ABAC) feature for the specified Amazon Web Services SSO instance. You can also specify new attributes to add to your ABAC configuration during the enabling process. For more information about ABAC, see <a href=\"/singlesignon/latest/userguide/abac.html\">Attribute-Based Access Control</a> in the <i>Amazon Web Services SSO User Guide</i>.</p>",
     "CreatePermissionSet": "<p>Creates a permission set within a specified SSO instance.</p> <note> <p>To grant users and groups access to Amazon Web Services account resources, use <code> <a>CreateAccountAssignment</a> </code>.</p> </note>",
@@ -10,25 +11,30 @@
     "DeleteInlinePolicyFromPermissionSet": "<p>Deletes the inline policy from a specified permission set.</p>",
     "DeleteInstanceAccessControlAttributeConfiguration": "<p>Disables the attributes-based access control (ABAC) feature for the specified Amazon Web Services SSO instance and deletes all of the attribute mappings that have been configured. Once deleted, any attributes that are received from an identity source and any custom attributes you have previously configured will not be passed. For more information about ABAC, see <a href=\"/singlesignon/latest/userguide/abac.html\">Attribute-Based Access Control</a> in the <i>Amazon Web Services SSO User Guide</i>.</p>",
     "DeletePermissionSet": "<p>Deletes the specified permission set.</p>",
+    "DeletePermissionsBoundaryFromPermissionSet": "<p>Deletes the permissions boundary from a specified <a>PermissionSet</a>.</p>",
     "DescribeAccountAssignmentCreationStatus": "<p>Describes the status of the assignment creation request.</p>",
     "DescribeAccountAssignmentDeletionStatus": "<p>Describes the status of the assignment deletion request.</p>",
     "DescribeInstanceAccessControlAttributeConfiguration": "<p>Returns the list of Amazon Web Services SSO identity store attributes that have been configured to work with attributes-based access control (ABAC) for the specified Amazon Web Services SSO instance. This will not return attributes configured and sent by an external identity provider. For more information about ABAC, see <a href=\"/singlesignon/latest/userguide/abac.html\">Attribute-Based Access Control</a> in the <i>Amazon Web Services SSO User Guide</i>.</p>",
     "DescribePermissionSet": "<p>Gets the details of the permission set.</p>",
     "DescribePermissionSetProvisioningStatus": "<p>Describes the status for the given permission set provisioning request.</p>",
-    "DetachManagedPolicyFromPermissionSet": "<p>Detaches the attached IAM managed policy ARN from the specified permission set.</p>",
+    "DetachCustomerManagedPolicyReferenceFromPermissionSet": "<p>Detaches the specified IAM customer managed policy from the specified <a>PermissionSet</a>.</p>",
+    "DetachManagedPolicyFromPermissionSet": "<p>Detaches the attached Amazon Web Services managed IAM policy ARN from the specified permission set.</p>",
     "GetInlinePolicyForPermissionSet": "<p>Obtains the inline policy assigned to the permission set.</p>",
+    "GetPermissionsBoundaryForPermissionSet": "<p>Obtains the permissions boundary for a specified <a>PermissionSet</a>.</p>",
     "ListAccountAssignmentCreationStatus": "<p>Lists the status of the Amazon Web Services account assignment creation requests for a specified SSO instance.</p>",
     "ListAccountAssignmentDeletionStatus": "<p>Lists the status of the Amazon Web Services account assignment deletion requests for a specified SSO instance.</p>",
     "ListAccountAssignments": "<p>Lists the assignee of the specified Amazon Web Services account with the specified permission set.</p>",
     "ListAccountsForProvisionedPermissionSet": "<p>Lists all the Amazon Web Services accounts where the specified permission set is provisioned.</p>",
+    "ListCustomerManagedPolicyReferencesInPermissionSet": "<p>Lists all IAM customer managed policies attached to a specified <a>PermissionSet</a>.</p>",
     "ListInstances": "<p>Lists the SSO instances that the caller has access to.</p>",
-    "ListManagedPoliciesInPermissionSet": "<p>Lists the IAM managed policy that is attached to a specified permission set.</p>",
+    "ListManagedPoliciesInPermissionSet": "<p>Lists the Amazon Web Services managed IAM policy that is attached to a specified permission set.</p>",
     "ListPermissionSetProvisioningStatus": "<p>Lists the status of the permission set provisioning requests for a specified SSO instance.</p>",
     "ListPermissionSets": "<p>Lists the <a>PermissionSet</a>s in an SSO instance.</p>",
     "ListPermissionSetsProvisionedToAccount": "<p>Lists all the permission sets that are provisioned to a specified Amazon Web Services account.</p>",
     "ListTagsForResource": "<p>Lists the tags that are attached to a specified resource.</p>",
     "ProvisionPermissionSet": "<p>The process by which a specified permission set is provisioned to the specified target.</p>",
     "PutInlinePolicyToPermissionSet": "<p>Attaches an IAM inline policy to a permission set.</p> <note> <p>If the permission set is already referenced by one or more account assignments, you will need to call <code> <a>ProvisionPermissionSet</a> </code> after this action to apply the corresponding IAM policy updates to all assigned accounts.</p> </note>",
+    "PutPermissionsBoundaryToPermissionSet": "<p>Attaches an Amazon Web Services managed or customer managed IAM policy to the specified <a>PermissionSet</a> as a permissions boundary.</p>",
     "TagResource": "<p>Associates a set of tags with a specified resource.</p>",
     "UntagResource": "<p>Disassociates a set of tags from a specified resource.</p>",
     "UpdateInstanceAccessControlAttributeConfiguration": "<p>Updates the Amazon Web Services SSO identity store attributes that you can use with the Amazon Web Services SSO instance for attributes-based access control (ABAC). When using an external identity provider as an identity source, you can pass attributes through the SAML assertion as an alternative to configuring attributes from the Amazon Web Services SSO identity store. If a SAML assertion passes any of these attributes, Amazon Web Services SSO replaces the attribute value with the value from the Amazon Web Services SSO identity store. For more information about ABAC, see <a href=\"/singlesignon/latest/userguide/abac.html\">Attribute-Based Access Control</a> in the <i>Amazon Web Services SSO User Guide</i>.</p>",
@@ -54,7 +60,7 @@
       }
     },
     "AccessControlAttributeValue": {
-      "base": "<p>The value used for mapping a specified attribute to an identity source.</p>",
+      "base": "<p>The value used for mapping a specified attribute to an identity source. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/attributemappingsconcept.html\">Attribute mappings</a> in the Amazon Web Services Single Sign-On User Guide.</p>",
       "refs": {
         "AccessControlAttribute$Value": "<p>The value used for mapping a specified attribute to an identity source.</p>"
       }
@@ -131,6 +137,16 @@
         "ListAccountsForProvisionedPermissionSetResponse$AccountIds": "<p>The list of Amazon Web Services <code>AccountIds</code>.</p>"
       }
     },
+    "AttachCustomerManagedPolicyReferenceToPermissionSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AttachCustomerManagedPolicyReferenceToPermissionSetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AttachManagedPolicyToPermissionSetRequest": {
       "base": null,
       "refs": {
@@ -142,7 +158,7 @@
       }
     },
     "AttachedManagedPolicy": {
-      "base": "<p>A structure that stores the details of the IAM managed policy.</p>",
+      "base": "<p>A structure that stores the details of the Amazon Web Services managed IAM policy.</p>",
       "refs": {
         "AttachedManagedPolicyList$member": null
       }
@@ -194,6 +210,21 @@
       "refs": {
       }
     },
+    "CustomerManagedPolicyReference": {
+      "base": "<p>Specifies the name and path of the IAM customer managed policy. You must have an IAM policy that matches the name and path in each Amazon Web Services account where you want to deploy your permission set.</p>",
+      "refs": {
+        "AttachCustomerManagedPolicyReferenceToPermissionSetRequest$CustomerManagedPolicyReference": "<p>Specifies the name and path of the IAM customer managed policy. You must have an IAM policy that matches the name and path in each Amazon Web Services account where you want to deploy your permission set.</p>",
+        "CustomerManagedPolicyReferenceList$member": null,
+        "DetachCustomerManagedPolicyReferenceFromPermissionSetRequest$CustomerManagedPolicyReference": "<p>Specifies the name and path of the IAM customer managed policy. You must have an IAM policy that matches the name and path in each Amazon Web Services account where you want to deploy your permission set.</p>",
+        "PermissionsBoundary$CustomerManagedPolicyReference": "<p>Specifies the name and path of the IAM customer managed policy. You must have an IAM policy that matches the name and path in each Amazon Web Services account where you want to deploy your permission set.</p>"
+      }
+    },
+    "CustomerManagedPolicyReferenceList": {
+      "base": null,
+      "refs": {
+        "ListCustomerManagedPolicyReferencesInPermissionSetResponse$CustomerManagedPolicyReferences": "<p>Specifies the names and paths of the IAM customer managed policies that you have attached to your permission set.</p>"
+      }
+    },
     "Date": {
       "base": null,
       "refs": {
@@ -240,6 +271,16 @@
       }
     },
     "DeletePermissionSetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeletePermissionsBoundaryFromPermissionSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeletePermissionsBoundaryFromPermissionSetResponse": {
       "base": null,
       "refs": {
       }
@@ -294,6 +335,16 @@
       "refs": {
       }
     },
+    "DetachCustomerManagedPolicyReferenceFromPermissionSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DetachCustomerManagedPolicyReferenceFromPermissionSetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DetachManagedPolicyFromPermissionSetRequest": {
       "base": null,
       "refs": {
@@ -312,20 +363,22 @@
         "UpdatePermissionSetRequest$SessionDuration": "<p>The length of time that the application user sessions are valid for in the ISO-8601 standard.</p>"
       }
     },
-    "GeneralArn": {
-      "base": null,
-      "refs": {
-        "ListTagsForResourceRequest$ResourceArn": "<p>The ARN of the resource with the tags to be listed.</p>",
-        "TagResourceRequest$ResourceArn": "<p>The ARN of the resource with the tags to be listed.</p>",
-        "UntagResourceRequest$ResourceArn": "<p>The ARN of the resource with the tags to be listed.</p>"
-      }
-    },
     "GetInlinePolicyForPermissionSetRequest": {
       "base": null,
       "refs": {
       }
     },
     "GetInlinePolicyForPermissionSetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPermissionsBoundaryForPermissionSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPermissionsBoundaryForPermissionSetResponse": {
       "base": null,
       "refs": {
       }
@@ -359,6 +412,7 @@
     "InstanceArn": {
       "base": null,
       "refs": {
+        "AttachCustomerManagedPolicyReferenceToPermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. </p>",
         "AttachManagedPolicyToPermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "CreateAccountAssignmentRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "CreateInstanceAccessControlAttributeConfigurationRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed.</p>",
@@ -367,18 +421,22 @@
         "DeleteInlinePolicyFromPermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "DeleteInstanceAccessControlAttributeConfigurationRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed.</p>",
         "DeletePermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
+        "DeletePermissionsBoundaryFromPermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. </p>",
         "DescribeAccountAssignmentCreationStatusRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "DescribeAccountAssignmentDeletionStatusRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "DescribeInstanceAccessControlAttributeConfigurationRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed.</p>",
         "DescribePermissionSetProvisioningStatusRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "DescribePermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
+        "DetachCustomerManagedPolicyReferenceFromPermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. </p>",
         "DetachManagedPolicyFromPermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "GetInlinePolicyForPermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
+        "GetPermissionsBoundaryForPermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. </p>",
         "InstanceMetadata$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "ListAccountAssignmentCreationStatusRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "ListAccountAssignmentDeletionStatusRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "ListAccountAssignmentsRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "ListAccountsForProvisionedPermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
+        "ListCustomerManagedPolicyReferencesInPermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. </p>",
         "ListManagedPoliciesInPermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "ListPermissionSetProvisioningStatusRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "ListPermissionSetsProvisionedToAccountRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
@@ -386,6 +444,7 @@
         "ListTagsForResourceRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "ProvisionPermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "PutInlinePolicyToPermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
+        "PutPermissionsBoundaryToPermissionSetRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. </p>",
         "TagResourceRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "UntagResourceRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "UpdateInstanceAccessControlAttributeConfigurationRequest$InstanceArn": "<p>The ARN of the SSO instance under which the operation will be executed.</p>",
@@ -455,6 +514,16 @@
       "refs": {
       }
     },
+    "ListCustomerManagedPolicyReferencesInPermissionSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCustomerManagedPolicyReferencesInPermissionSetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListInstancesRequest": {
       "base": null,
       "refs": {
@@ -518,9 +587,22 @@
     "ManagedPolicyArn": {
       "base": null,
       "refs": {
-        "AttachManagedPolicyToPermissionSetRequest$ManagedPolicyArn": "<p>The IAM managed policy ARN to be attached to a permission set.</p>",
-        "AttachedManagedPolicy$Arn": "<p>The ARN of the IAM managed policy. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
-        "DetachManagedPolicyFromPermissionSetRequest$ManagedPolicyArn": "<p>The IAM managed policy ARN to be attached to a permission set.</p>"
+        "AttachManagedPolicyToPermissionSetRequest$ManagedPolicyArn": "<p>The Amazon Web Services managed policy ARN to be attached to a permission set.</p>",
+        "AttachedManagedPolicy$Arn": "<p>The ARN of the Amazon Web Services managed IAM policy. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
+        "DetachManagedPolicyFromPermissionSetRequest$ManagedPolicyArn": "<p>The Amazon Web Services managed policy ARN to be detached from a permission set.</p>",
+        "PermissionsBoundary$ManagedPolicyArn": "<p>The Amazon Web Services managed policy ARN that you want to attach to a permission set as a permissions boundary.</p>"
+      }
+    },
+    "ManagedPolicyName": {
+      "base": null,
+      "refs": {
+        "CustomerManagedPolicyReference$Name": "<p>The name of the policy document.</p>"
+      }
+    },
+    "ManagedPolicyPath": {
+      "base": null,
+      "refs": {
+        "CustomerManagedPolicyReference$Path": "<p>The path for the policy. The default is <code>/</code>. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-friendly-names\">Friendly names and paths</a> in the Identity and Access Management user guide.</p>"
       }
     },
     "MaxResults": {
@@ -530,6 +612,7 @@
         "ListAccountAssignmentDeletionStatusRequest$MaxResults": "<p>The maximum number of results to display for the assignment.</p>",
         "ListAccountAssignmentsRequest$MaxResults": "<p>The maximum number of results to display for the assignment.</p>",
         "ListAccountsForProvisionedPermissionSetRequest$MaxResults": "<p>The maximum number of results to display for the <a>PermissionSet</a>.</p>",
+        "ListCustomerManagedPolicyReferencesInPermissionSetRequest$MaxResults": "<p>The maximum number of results to display for the list call.</p>",
         "ListInstancesRequest$MaxResults": "<p>The maximum number of results to display for the instance.</p>",
         "ListManagedPoliciesInPermissionSetRequest$MaxResults": "<p>The maximum number of results to display for the <a>PermissionSet</a>.</p>",
         "ListPermissionSetProvisioningStatusRequest$MaxResults": "<p>The maximum number of results to display for the assignment.</p>",
@@ -540,7 +623,7 @@
     "Name": {
       "base": null,
       "refs": {
-        "AttachedManagedPolicy$Name": "<p>The name of the IAM managed policy.</p>"
+        "AttachedManagedPolicy$Name": "<p>The name of the Amazon Web Services managed IAM policy.</p>"
       }
     },
     "OperationStatusFilter": {
@@ -563,22 +646,28 @@
       "refs": {
         "AccountAssignment$PermissionSetArn": "<p>The ARN of the permission set. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "AccountAssignmentOperationStatus$PermissionSetArn": "<p>The ARN of the permission set. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
+        "AttachCustomerManagedPolicyReferenceToPermissionSetRequest$PermissionSetArn": "<p>The ARN of the <code>PermissionSet</code>.</p>",
         "AttachManagedPolicyToPermissionSetRequest$PermissionSetArn": "<p>The ARN of the <a>PermissionSet</a> that the managed policy should be attached to.</p>",
         "CreateAccountAssignmentRequest$PermissionSetArn": "<p>The ARN of the permission set that the admin wants to grant the principal access to.</p>",
         "DeleteAccountAssignmentRequest$PermissionSetArn": "<p>The ARN of the permission set that will be used to remove access.</p>",
         "DeleteInlinePolicyFromPermissionSetRequest$PermissionSetArn": "<p>The ARN of the permission set that will be used to remove access.</p>",
         "DeletePermissionSetRequest$PermissionSetArn": "<p>The ARN of the permission set that should be deleted.</p>",
+        "DeletePermissionsBoundaryFromPermissionSetRequest$PermissionSetArn": "<p>The ARN of the <code>PermissionSet</code>.</p>",
         "DescribePermissionSetRequest$PermissionSetArn": "<p>The ARN of the permission set.</p>",
+        "DetachCustomerManagedPolicyReferenceFromPermissionSetRequest$PermissionSetArn": "<p>The ARN of the <code>PermissionSet</code>.</p>",
         "DetachManagedPolicyFromPermissionSetRequest$PermissionSetArn": "<p>The ARN of the <a>PermissionSet</a> from which the policy should be detached.</p>",
         "GetInlinePolicyForPermissionSetRequest$PermissionSetArn": "<p>The ARN of the permission set.</p>",
+        "GetPermissionsBoundaryForPermissionSetRequest$PermissionSetArn": "<p>The ARN of the <code>PermissionSet</code>.</p>",
         "ListAccountAssignmentsRequest$PermissionSetArn": "<p>The ARN of the permission set from which to list assignments.</p>",
         "ListAccountsForProvisionedPermissionSetRequest$PermissionSetArn": "<p>The ARN of the <a>PermissionSet</a> from which the associated Amazon Web Services accounts will be listed.</p>",
+        "ListCustomerManagedPolicyReferencesInPermissionSetRequest$PermissionSetArn": "<p>The ARN of the <code>PermissionSet</code>.</p>",
         "ListManagedPoliciesInPermissionSetRequest$PermissionSetArn": "<p>The ARN of the <a>PermissionSet</a> whose managed policies will be listed.</p>",
         "PermissionSet$PermissionSetArn": "<p>The ARN of the permission set. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "PermissionSetList$member": null,
         "PermissionSetProvisioningStatus$PermissionSetArn": "<p>The ARN of the permission set that is being provisioned. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>",
         "ProvisionPermissionSetRequest$PermissionSetArn": "<p>The ARN of the permission set.</p>",
         "PutInlinePolicyToPermissionSetRequest$PermissionSetArn": "<p>The ARN of the permission set.</p>",
+        "PutPermissionsBoundaryToPermissionSetRequest$PermissionSetArn": "<p>The ARN of the <code>PermissionSet</code>.</p>",
         "UpdatePermissionSetRequest$PermissionSetArn": "<p>The ARN of the permission set.</p>"
       }
     },
@@ -630,6 +719,13 @@
         "PermissionSetProvisioningStatusList$member": null
       }
     },
+    "PermissionsBoundary": {
+      "base": "<p>Specifies the configuration of the Amazon Web Services managed or customer managed policy that you want to set as a permissions boundary. Specify either <code>CustomerManagedPolicyReference</code> to use the name and path of a customer managed policy, or <code>ManagedPolicyArn</code> to use the ARN of an Amazon Web Services managed IAM policy. A permissions boundary represents the maximum permissions that any policy can grant your role. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html\">Permissions boundaries for IAM entities</a> in the <i>Identity and Access Management User Guide</i>.</p> <important> <p>Policies used as permissions boundaries do not provide permissions. You must also attach an IAM policy to the role. To learn how the effective permissions for a role are evaluated, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html\">IAM JSON policy evaluation logic</a> in the <i>Identity and Access Management User Guide</i>.</p> </important>",
+      "refs": {
+        "GetPermissionsBoundaryForPermissionSetResponse$PermissionsBoundary": "<p>The permissions boundary attached to the specified permission set.</p>",
+        "PutPermissionsBoundaryToPermissionSetRequest$PermissionsBoundary": "<p>The permissions boundary that you want to attach to a <code>PermissionSet</code>.</p>"
+      }
+    },
     "PrincipalId": {
       "base": null,
       "refs": {
@@ -677,6 +773,16 @@
       }
     },
     "PutInlinePolicyToPermissionSetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutPermissionsBoundaryToPermissionSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutPermissionsBoundaryToPermissionSetResponse": {
       "base": null,
       "refs": {
       }
@@ -771,6 +877,14 @@
         "Tag$Value": "<p>The value of the tag.</p>"
       }
     },
+    "TaggableResourceArn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceArn": "<p>The ARN of the resource with the tags to be listed.</p>",
+        "TagResourceRequest$ResourceArn": "<p>The ARN of the resource with the tags to be listed.</p>",
+        "UntagResourceRequest$ResourceArn": "<p>The ARN of the resource with the tags to be listed.</p>"
+      }
+    },
     "TargetId": {
       "base": null,
       "refs": {
@@ -811,6 +925,8 @@
         "ListAccountAssignmentsResponse$NextToken": "<p>The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.</p>",
         "ListAccountsForProvisionedPermissionSetRequest$NextToken": "<p>The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.</p>",
         "ListAccountsForProvisionedPermissionSetResponse$NextToken": "<p>The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.</p>",
+        "ListCustomerManagedPolicyReferencesInPermissionSetRequest$NextToken": "<p>The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.</p>",
+        "ListCustomerManagedPolicyReferencesInPermissionSetResponse$NextToken": "<p>The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.</p>",
         "ListInstancesRequest$NextToken": "<p>The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.</p>",
         "ListInstancesResponse$NextToken": "<p>The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.</p>",
         "ListManagedPoliciesInPermissionSetRequest$NextToken": "<p>The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.</p>",

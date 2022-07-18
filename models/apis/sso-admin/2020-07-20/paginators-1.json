@@ -24,6 +24,12 @@
       "output_token": "NextToken",
       "result_key": "AccountIds"
     },
+    "ListCustomerManagedPolicyReferencesInPermissionSet": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "CustomerManagedPolicyReferences"
+    },
     "ListInstances": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

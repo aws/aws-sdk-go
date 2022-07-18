@@ -3729,6 +3729,91 @@ func (s *CustomerAgentInfo) SetUnknownAgents(v int64) *CustomerAgentInfo {
 	return s
 }
 
+type CustomerAgentlessCollectorInfo struct {
+	_ struct{} `type:"structure"`
+
+	// ActiveAgentlessCollectors is a required field
+	ActiveAgentlessCollectors *int64 `locationName:"activeAgentlessCollectors" type:"integer" required:"true"`
+
+	// DenyListedAgentlessCollectors is a required field
+	DenyListedAgentlessCollectors *int64 `locationName:"denyListedAgentlessCollectors" type:"integer" required:"true"`
+
+	// HealthyAgentlessCollectors is a required field
+	HealthyAgentlessCollectors *int64 `locationName:"healthyAgentlessCollectors" type:"integer" required:"true"`
+
+	// ShutdownAgentlessCollectors is a required field
+	ShutdownAgentlessCollectors *int64 `locationName:"shutdownAgentlessCollectors" type:"integer" required:"true"`
+
+	// TotalAgentlessCollectors is a required field
+	TotalAgentlessCollectors *int64 `locationName:"totalAgentlessCollectors" type:"integer" required:"true"`
+
+	// UnhealthyAgentlessCollectors is a required field
+	UnhealthyAgentlessCollectors *int64 `locationName:"unhealthyAgentlessCollectors" type:"integer" required:"true"`
+
+	// UnknownAgentlessCollectors is a required field
+	UnknownAgentlessCollectors *int64 `locationName:"unknownAgentlessCollectors" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomerAgentlessCollectorInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomerAgentlessCollectorInfo) GoString() string {
+	return s.String()
+}
+
+// SetActiveAgentlessCollectors sets the ActiveAgentlessCollectors field's value.
+func (s *CustomerAgentlessCollectorInfo) SetActiveAgentlessCollectors(v int64) *CustomerAgentlessCollectorInfo {
+	s.ActiveAgentlessCollectors = &v
+	return s
+}
+
+// SetDenyListedAgentlessCollectors sets the DenyListedAgentlessCollectors field's value.
+func (s *CustomerAgentlessCollectorInfo) SetDenyListedAgentlessCollectors(v int64) *CustomerAgentlessCollectorInfo {
+	s.DenyListedAgentlessCollectors = &v
+	return s
+}
+
+// SetHealthyAgentlessCollectors sets the HealthyAgentlessCollectors field's value.
+func (s *CustomerAgentlessCollectorInfo) SetHealthyAgentlessCollectors(v int64) *CustomerAgentlessCollectorInfo {
+	s.HealthyAgentlessCollectors = &v
+	return s
+}
+
+// SetShutdownAgentlessCollectors sets the ShutdownAgentlessCollectors field's value.
+func (s *CustomerAgentlessCollectorInfo) SetShutdownAgentlessCollectors(v int64) *CustomerAgentlessCollectorInfo {
+	s.ShutdownAgentlessCollectors = &v
+	return s
+}
+
+// SetTotalAgentlessCollectors sets the TotalAgentlessCollectors field's value.
+func (s *CustomerAgentlessCollectorInfo) SetTotalAgentlessCollectors(v int64) *CustomerAgentlessCollectorInfo {
+	s.TotalAgentlessCollectors = &v
+	return s
+}
+
+// SetUnhealthyAgentlessCollectors sets the UnhealthyAgentlessCollectors field's value.
+func (s *CustomerAgentlessCollectorInfo) SetUnhealthyAgentlessCollectors(v int64) *CustomerAgentlessCollectorInfo {
+	s.UnhealthyAgentlessCollectors = &v
+	return s
+}
+
+// SetUnknownAgentlessCollectors sets the UnknownAgentlessCollectors field's value.
+func (s *CustomerAgentlessCollectorInfo) SetUnknownAgentlessCollectors(v int64) *CustomerAgentlessCollectorInfo {
+	s.UnknownAgentlessCollectors = &v
+	return s
+}
+
 // Inventory data for installed discovery connectors.
 type CustomerConnectorInfo struct {
 	_ struct{} `type:"structure"`
@@ -5287,6 +5372,8 @@ type GetDiscoverySummaryOutput struct {
 	// Details about discovered agents, including agent status and health.
 	AgentSummary *CustomerAgentInfo `locationName:"agentSummary" type:"structure"`
 
+	AgentlessCollectorSummary *CustomerAgentlessCollectorInfo `locationName:"agentlessCollectorSummary" type:"structure"`
+
 	// The number of applications discovered.
 	Applications *int64 `locationName:"applications" type:"long"`
 
@@ -5328,6 +5415,12 @@ func (s GetDiscoverySummaryOutput) GoString() string {
 // SetAgentSummary sets the AgentSummary field's value.
 func (s *GetDiscoverySummaryOutput) SetAgentSummary(v *CustomerAgentInfo) *GetDiscoverySummaryOutput {
 	s.AgentSummary = v
+	return s
+}
+
+// SetAgentlessCollectorSummary sets the AgentlessCollectorSummary field's value.
+func (s *GetDiscoverySummaryOutput) SetAgentlessCollectorSummary(v *CustomerAgentlessCollectorInfo) *GetDiscoverySummaryOutput {
+	s.AgentlessCollectorSummary = v
 	return s
 }
 

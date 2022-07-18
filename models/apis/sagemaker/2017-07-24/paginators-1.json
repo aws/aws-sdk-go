@@ -90,6 +90,12 @@
       "limit_key": "MaxResults",
       "result_key": "Domains"
     },
+    "ListEdgeDeploymentPlans": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "EdgeDeploymentPlanSummaries"
+    },
     "ListEdgePackagingJobs": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -274,6 +280,12 @@
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "MaxResults"
+    },
+    "ListStageDevices": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "DeviceDeploymentSummaries"
     },
     "ListStudioLifecycleConfigs": {
       "input_token": "NextToken",

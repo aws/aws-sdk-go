@@ -18,6 +18,8 @@
     "CreateDataQualityJobDefinition": "<p>Creates a definition for a job that monitors data quality and drift. For information about model monitor, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html\">Amazon SageMaker Model Monitor</a>.</p>",
     "CreateDeviceFleet": "<p>Creates a device fleet.</p>",
     "CreateDomain": "<p>Creates a <code>Domain</code> used by Amazon SageMaker Studio. A domain consists of an associated Amazon Elastic File System (EFS) volume, a list of authorized users, and a variety of security, application, policy, and Amazon Virtual Private Cloud (VPC) configurations. An Amazon Web Services account is limited to one domain per region. Users within a domain can share notebook files and other artifacts with each other.</p> <p> <b>EFS storage</b> </p> <p>When a domain is created, an EFS volume is created for use by all of the users within the domain. Each user receives a private home directory within the EFS volume for notebooks, Git repositories, and data files.</p> <p>SageMaker uses the Amazon Web Services Key Management Service (Amazon Web Services KMS) to encrypt the EFS volume attached to the domain with an Amazon Web Services managed key by default. For more control, you can specify a customer managed key. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/encryption-at-rest.html\">Protect Data at Rest Using Encryption</a>.</p> <p> <b>VPC configuration</b> </p> <p>All SageMaker Studio traffic between the domain and the EFS volume is through the specified VPC and subnets. For other Studio traffic, you can specify the <code>AppNetworkAccessType</code> parameter. <code>AppNetworkAccessType</code> corresponds to the network access type that you choose when you onboard to Studio. The following options are available:</p> <ul> <li> <p> <code>PublicInternetOnly</code> - Non-EFS traffic goes through a VPC managed by Amazon SageMaker, which allows internet access. This is the default value.</p> </li> <li> <p> <code>VpcOnly</code> - All Studio traffic is through the specified VPC and subnets. Internet access is disabled by default. To allow internet access, you must specify a NAT gateway.</p> <p>When internet access is disabled, you won't be able to run a Studio notebook or to train or host models unless your VPC has an interface endpoint to the SageMaker API and runtime or a NAT gateway and your security groups allow outbound connections.</p> </li> </ul> <important> <p>NFS traffic over TCP on port 2049 needs to be allowed in both inbound and outbound rules in order to launch a SageMaker Studio app successfully.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-and-internet-access.html\">Connect SageMaker Studio Notebooks to Resources in a VPC</a>.</p>",
+    "CreateEdgeDeploymentPlan": "<p>Creates an edge deployment plan, consisting of multiple stages. Each stage may have a different deployment configuration and devices.</p>",
+    "CreateEdgeDeploymentStage": "<p>Creates a new stage in an existing edge deployment plan.</p>",
     "CreateEdgePackagingJob": "<p>Starts a SageMaker Edge Manager model packaging job. Edge Manager will use the model artifacts from the Amazon Simple Storage Service bucket that you specify. After the model has been packaged, Amazon SageMaker saves the resulting artifacts to an S3 bucket that you specify.</p>",
     "CreateEndpoint": "<p>Creates an endpoint using the endpoint configuration specified in the request. SageMaker uses the endpoint to provision resources and deploy models. You create the endpoint configuration with the <a>CreateEndpointConfig</a> API. </p> <p> Use this API to deploy models using SageMaker hosting services. </p> <p>For an example that calls this method when deploying a model to SageMaker hosting services, see the <a href=\"https://github.com/aws/amazon-sagemaker-examples/blob/master/sagemaker-fundamentals/create-endpoint/create_endpoint.ipynb\">Create Endpoint example notebook.</a> </p> <note> <p> You must not delete an <code>EndpointConfig</code> that is in use by an endpoint that is live or while the <code>UpdateEndpoint</code> or <code>CreateEndpoint</code> operations are being performed on the endpoint. To update an endpoint, you must create a new <code>EndpointConfig</code>.</p> </note> <p>The endpoint name must be unique within an Amazon Web Services Region in your Amazon Web Services account. </p> <p>When it receives the request, SageMaker creates the endpoint, launches the resources (ML compute instances), and deploys the model(s) on them. </p> <note> <p>When you call <a>CreateEndpoint</a>, a load call is made to DynamoDB to verify that your endpoint configuration exists. When you read data from a DynamoDB table supporting <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html\"> <code>Eventually Consistent Reads</code> </a>, the response might not reflect the results of a recently completed write operation. The response might include some stale data. If the dependent entities are not yet in DynamoDB, this causes a validation error. If you repeat your read request after a short time, the response should return the latest data. So retry logic is recommended to handle these possible issues. We also recommend that customers call <a>DescribeEndpointConfig</a> before calling <a>CreateEndpoint</a> to minimize the potential impact of a DynamoDB eventually consistent read.</p> </note> <p>When SageMaker receives the request, it sets the endpoint status to <code>Creating</code>. After it creates the endpoint, it sets the status to <code>InService</code>. SageMaker can then process incoming requests for inferences. To check the status of an endpoint, use the <a>DescribeEndpoint</a> API.</p> <p>If any of the models hosted at this endpoint get model data from an Amazon S3 location, SageMaker uses Amazon Web Services Security Token Service to download model artifacts from the S3 path you provided. Amazon Web Services STS is activated in your IAM user account by default. If you previously deactivated Amazon Web Services STS for a region, you need to reactivate Amazon Web Services STS for that region. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html\">Activating and Deactivating Amazon Web Services STS in an Amazon Web Services Region</a> in the <i>Amazon Web Services Identity and Access Management User Guide</i>.</p> <note> <p> To add the IAM role policies for using this API operation, go to the <a href=\"https://console.aws.amazon.com/iam/\">IAM console</a>, and choose Roles in the left navigation pane. Search the IAM role that you want to grant access to use the <a>CreateEndpoint</a> and <a>CreateEndpointConfig</a> API operations, add the following policies to the role. </p> <ul> <li> <p>Option 1: For a full SageMaker access, search and attach the <code>AmazonSageMakerFullAccess</code> policy.</p> </li> <li> <p>Option 2: For granting a limited access to an IAM role, paste the following Action elements manually into the JSON file of the IAM role: </p> <p> <code>\"Action\": [\"sagemaker:CreateEndpoint\", \"sagemaker:CreateEndpointConfig\"]</code> </p> <p> <code>\"Resource\": [</code> </p> <p> <code>\"arn:aws:sagemaker:region:account-id:endpoint/endpointName\"</code> </p> <p> <code>\"arn:aws:sagemaker:region:account-id:endpoint-config/endpointConfigName\"</code> </p> <p> <code>]</code> </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/api-permissions-reference.html\">SageMaker API Permissions: Actions, Permissions, and Resources Reference</a>.</p> </li> </ul> </note>",
     "CreateEndpointConfig": "<p>Creates an endpoint configuration that SageMaker hosting services uses to deploy models. In the configuration, you identify one or more models, created using the <code>CreateModel</code> API, to deploy and the resources that you want SageMaker to provision. Then you call the <a>CreateEndpoint</a> API.</p> <note> <p> Use this API if you want to use SageMaker hosting services to deploy models into production. </p> </note> <p>In the request, you define a <code>ProductionVariant</code>, for each model that you want to deploy. Each <code>ProductionVariant</code> parameter also describes the resources that you want SageMaker to provision. This includes the number and type of ML compute instances to deploy. </p> <p>If you are hosting multiple models, you also assign a <code>VariantWeight</code> to specify how much traffic you want to allocate to each model. For example, suppose that you want to host two models, A and B, and you assign traffic weight 2 for model A and 1 for model B. SageMaker distributes two-thirds of the traffic to Model A, and one-third to model B. </p> <note> <p>When you call <a>CreateEndpoint</a>, a load call is made to DynamoDB to verify that your endpoint configuration exists. When you read data from a DynamoDB table supporting <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html\"> <code>Eventually Consistent Reads</code> </a>, the response might not reflect the results of a recently completed write operation. The response might include some stale data. If the dependent entities are not yet in DynamoDB, this causes a validation error. If you repeat your read request after a short time, the response should return the latest data. So retry logic is recommended to handle these possible issues. We also recommend that customers call <a>DescribeEndpointConfig</a> before calling <a>CreateEndpoint</a> to minimize the potential impact of a DynamoDB eventually consistent read.</p> </note>",
@@ -63,6 +65,8 @@
     "DeleteDataQualityJobDefinition": "<p>Deletes a data quality monitoring job definition.</p>",
     "DeleteDeviceFleet": "<p>Deletes a fleet.</p>",
     "DeleteDomain": "<p>Used to delete a domain. If you onboarded with IAM mode, you will need to delete your domain to onboard again using SSO. Use with caution. All of the members of the domain will lose access to their EFS volume, including data, notebooks, and other artifacts. </p>",
+    "DeleteEdgeDeploymentPlan": "<p>Deletes an edge deployment plan if (and only if) all the stages in the plan are inactive or there are no stages in the plan.</p>",
+    "DeleteEdgeDeploymentStage": "<p>Delete a stage in an edge deployment plan if (and only if) the stage is inactive.</p>",
     "DeleteEndpoint": "<p>Deletes an endpoint. SageMaker frees up all of the resources that were deployed when the endpoint was created. </p> <p>SageMaker retires any custom KMS key grants associated with the endpoint, meaning you don't need to use the <a href=\"http://docs.aws.amazon.com/kms/latest/APIReference/API_RevokeGrant.html\">RevokeGrant</a> API call.</p> <p>When you delete your endpoint, SageMaker asynchronously deletes associated endpoint resources such as KMS key grants. You might still see these resources in your account for a few minutes after deleting your endpoint. Do not delete or revoke the permissions for your <code> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html#sagemaker-CreateModel-request-ExecutionRoleArn\">ExecutionRoleArn</a> </code>, otherwise SageMaker cannot delete these resources.</p>",
     "DeleteEndpointConfig": "<p>Deletes an endpoint configuration. The <code>DeleteEndpointConfig</code> API deletes only the specified configuration. It does not delete endpoints created using the configuration. </p> <p>You must not delete an <code>EndpointConfig</code> in use by an endpoint that is live or while the <code>UpdateEndpoint</code> or <code>CreateEndpoint</code> operations are being performed on the endpoint. If you delete the <code>EndpointConfig</code> of an endpoint that is active or being created or updated you may lose visibility into the instance type the endpoint is using. The endpoint must be deleted in order to stop incurring charges.</p>",
     "DeleteExperiment": "<p>Deletes an SageMaker experiment. All trials associated with the experiment must be deleted first. Use the <a>ListTrials</a> API to get a list of the trials associated with the experiment.</p>",
@@ -104,6 +108,7 @@
     "DescribeDevice": "<p>Describes the device.</p>",
     "DescribeDeviceFleet": "<p>A description of the fleet the device belongs to.</p>",
     "DescribeDomain": "<p>The description of the domain.</p>",
+    "DescribeEdgeDeploymentPlan": "<p>Describes an edge deployment plan with deployment status per stage.</p>",
     "DescribeEdgePackagingJob": "<p>A description of edge packaging jobs.</p>",
     "DescribeEndpoint": "<p>Returns the description of an endpoint.</p>",
     "DescribeEndpointConfig": "<p>Returns the description of an endpoint configuration created using the <code>CreateEndpointConfig</code> API.</p>",
@@ -164,6 +169,7 @@
     "ListDeviceFleets": "<p>Returns a list of devices in the fleet.</p>",
     "ListDevices": "<p>A list of devices.</p>",
     "ListDomains": "<p>Lists the domains.</p>",
+    "ListEdgeDeploymentPlans": "<p>Lists all edge deployment plans.</p>",
     "ListEdgePackagingJobs": "<p>Returns a list of edge packaging jobs.</p>",
     "ListEndpointConfigs": "<p>Lists endpoint configurations.</p>",
     "ListEndpoints": "<p>Lists endpoints.</p>",
@@ -195,6 +201,7 @@
     "ListPipelines": "<p>Gets a list of pipelines.</p>",
     "ListProcessingJobs": "<p>Lists processing jobs that satisfy various filters.</p>",
     "ListProjects": "<p>Gets a list of the projects in an Amazon Web Services account.</p>",
+    "ListStageDevices": "<p>Lists devices allocated to the stage, containing detailed device information and deployment status.</p>",
     "ListStudioLifecycleConfigs": "<p>Lists the Studio Lifecycle Configurations in your Amazon Web Services Account.</p>",
     "ListSubscribedWorkteams": "<p>Gets a list of the work teams that you are subscribed to in the Amazon Web Services Marketplace. The list may be empty if no work team satisfies the filter specified in the <code>NameContains</code> parameter.</p>",
     "ListTags": "<p>Returns the tags for the specified SageMaker resource.</p>",
@@ -214,11 +221,13 @@
     "Search": "<p>Finds Amazon SageMaker resources that match a search query. Matching resources are returned as a list of <code>SearchRecord</code> objects in the response. You can sort the search results by any resource property in a ascending or descending order.</p> <p>You can query against the following value types: numeric, text, Boolean, and timestamp.</p>",
     "SendPipelineExecutionStepFailure": "<p>Notifies the pipeline that the execution of a callback step failed, along with a message describing why. When a callback step is run, the pipeline generates a callback token and includes the token in a message sent to Amazon Simple Queue Service (Amazon SQS).</p>",
     "SendPipelineExecutionStepSuccess": "<p>Notifies the pipeline that the execution of a callback step succeeded and provides a list of the step's output parameters. When a callback step is run, the pipeline generates a callback token and includes the token in a message sent to Amazon Simple Queue Service (Amazon SQS).</p>",
+    "StartEdgeDeploymentStage": "<p>Starts a stage in an edge deployment plan.</p>",
     "StartMonitoringSchedule": "<p>Starts a previously stopped monitoring schedule.</p> <note> <p>By default, when you successfully create a new schedule, the status of a monitoring schedule is <code>scheduled</code>.</p> </note>",
     "StartNotebookInstance": "<p>Launches an ML compute instance with the latest version of the libraries and attaches your ML storage volume. After configuring the notebook instance, SageMaker sets the notebook instance status to <code>InService</code>. A notebook instance's status must be <code>InService</code> before you can connect to your Jupyter notebook. </p>",
     "StartPipelineExecution": "<p>Starts a pipeline execution.</p>",
     "StopAutoMLJob": "<p>A method for forcing the termination of a running job.</p>",
     "StopCompilationJob": "<p>Stops a model compilation job.</p> <p> To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal. This gracefully shuts the job down. If the job hasn't stopped, it sends the SIGKILL signal.</p> <p>When it receives a <code>StopCompilationJob</code> request, Amazon SageMaker changes the <a>CompilationJobSummary$CompilationJobStatus</a> of the job to <code>Stopping</code>. After Amazon SageMaker stops the job, it sets the <a>CompilationJobSummary$CompilationJobStatus</a> to <code>Stopped</code>. </p>",
+    "StopEdgeDeploymentStage": "<p>Stops a stage in an edge deployment plan.</p>",
     "StopEdgePackagingJob": "<p>Request to stop an edge packaging job.</p>",
     "StopHyperParameterTuningJob": "<p>Stops a running hyperparameter tuning job and all running training jobs that the tuning job launched.</p> <p>All model artifacts output from the training jobs are stored in Amazon Simple Storage Service (Amazon S3). All data that the training jobs write to Amazon CloudWatch Logs are still available in CloudWatch. After the tuning job moves to the <code>Stopped</code> state, it releases all reserved resources for the tuning job.</p>",
     "StopInferenceRecommendationsJob": "<p>Stops an Inference Recommender job.</p>",
@@ -1170,6 +1179,7 @@
         "HyperParameterTrainingJobDefinition$EnableNetworkIsolation": "<p>Isolates the training container. No inbound or outbound network calls can be made, except for calls between peers within a training cluster for distributed training. If network isolation is used for training jobs that are configured to use a VPC, SageMaker downloads and uploads customer data and model artifacts through the specified VPC, but the training container does not have network access.</p>",
         "HyperParameterTrainingJobDefinition$EnableInterContainerTrafficEncryption": "<p>To encrypt all communications between ML compute instances in distributed training, choose <code>True</code>. Encryption provides greater security for distributed training, but training might take longer. How long it takes depends on the amount of communication between compute instances, especially if you use a deep learning algorithm in distributed training.</p>",
         "HyperParameterTrainingJobDefinition$EnableManagedSpotTraining": "<p>A Boolean indicating whether managed spot training is enabled (<code>True</code>) or not (<code>False</code>).</p>",
+        "ListStageDevicesRequest$ExcludeDevicesDeployedInOtherStage": "<p>Toggle for excluding devices deployed in other stages.</p>",
         "MonitoringNetworkConfig$EnableInterContainerTrafficEncryption": "<p>Whether to encrypt all communications between the instances used for the monitoring jobs. Choose <code>True</code> to encrypt communications. Encryption provides greater security for distributed jobs, but the processing might take longer.</p>",
         "MonitoringNetworkConfig$EnableNetworkIsolation": "<p>Whether to allow inbound and outbound network calls to and from the containers used for the monitoring job.</p>",
         "NetworkConfig$EnableInterContainerTrafficEncryption": "<p>Whether to encrypt all communications between distributed processing jobs. Choose <code>True</code> to encrypt communications. Encryption provides greater security for distributed processing jobs, but the processing might take longer.</p>",
@@ -1926,6 +1936,21 @@
       "refs": {
       }
     },
+    "CreateEdgeDeploymentPlanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateEdgeDeploymentPlanResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateEdgeDeploymentStageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateEdgePackagingJobRequest": {
       "base": null,
       "refs": {
@@ -2574,6 +2599,16 @@
       "refs": {
       }
     },
+    "DeleteEdgeDeploymentPlanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteEdgeDeploymentStageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteEndpointConfigInput": {
       "base": null,
       "refs": {
@@ -2785,6 +2820,37 @@
         "UpdateEndpointInput$DeploymentConfig": "<p>The deployment configuration for an endpoint, which contains the desired deployment strategy and rollback configurations.</p>"
       }
     },
+    "DeploymentStage": {
+      "base": "<p>Contains information about a stage in an edge deployment plan.</p>",
+      "refs": {
+        "DeploymentStages$member": null
+      }
+    },
+    "DeploymentStageMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeEdgeDeploymentPlanRequest$MaxResults": "<p>The maximum number of results to select (50 by default).</p>"
+      }
+    },
+    "DeploymentStageStatusSummaries": {
+      "base": null,
+      "refs": {
+        "DescribeEdgeDeploymentPlanResponse$Stages": "<p>List of stages in the edge deployment plan.</p>"
+      }
+    },
+    "DeploymentStageStatusSummary": {
+      "base": "<p>Contains information summarizing the deployment stage results.</p>",
+      "refs": {
+        "DeploymentStageStatusSummaries$member": null
+      }
+    },
+    "DeploymentStages": {
+      "base": null,
+      "refs": {
+        "CreateEdgeDeploymentPlanRequest$Stages": "<p>List of stages of the edge deployment plan. The number of stages is limited to 10 per deployment.</p>",
+        "CreateEdgeDeploymentStageRequest$Stages": "<p>List of stages to be added to the edge deployment plan.</p>"
+      }
+    },
     "DeregisterDevicesRequest": {
       "base": null,
       "refs": {
@@ -2916,6 +2982,16 @@
       }
     },
     "DescribeDomainResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEdgeDeploymentPlanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEdgeDeploymentPlanResponse": {
       "base": null,
       "refs": {
       }
@@ -3341,7 +3417,26 @@
       "base": null,
       "refs": {
         "DescribeDeviceResponse$DeviceArn": "<p>The Amazon Resource Name (ARN) of the device.</p>",
+        "DeviceDeploymentSummary$DeviceArn": "<p>The ARN of the device.</p>",
         "DeviceSummary$DeviceArn": "<p>Amazon Resource Name (ARN) of the device.</p>"
+      }
+    },
+    "DeviceDeploymentStatus": {
+      "base": null,
+      "refs": {
+        "DeviceDeploymentSummary$DeviceDeploymentStatus": "<p>The deployment status of the device.</p>"
+      }
+    },
+    "DeviceDeploymentSummaries": {
+      "base": null,
+      "refs": {
+        "ListStageDevicesResponse$DeviceDeploymentSummaries": "<p>List of summaries of devices allocated to the stage.</p>"
+      }
+    },
+    "DeviceDeploymentSummary": {
+      "base": "<p>Contains information summarizing device details and deployment status.</p>",
+      "refs": {
+        "DeviceDeploymentSummaries$member": null
       }
     },
     "DeviceDescription": {
@@ -3349,6 +3444,7 @@
       "refs": {
         "DescribeDeviceResponse$Description": "<p>A description of the device.</p>",
         "Device$Description": "<p>Description of the device.</p>",
+        "DeviceDeploymentSummary$Description": "<p>The description of the device.</p>",
         "DeviceSummary$Description": "<p>A description of the device.</p>"
       }
     },
@@ -3385,19 +3481,35 @@
       "base": null,
       "refs": {
         "Device$DeviceName": "<p>The name of the device.</p>",
-        "DeviceNames$member": null
+        "DeviceDeploymentSummary$DeviceName": "<p>The name of the device.</p>",
+        "DeviceNames$member": null,
+        "DeviceSelectionConfig$DeviceNameContains": "<p>A filter to select devices with names containing this name.</p>"
       }
     },
     "DeviceNames": {
       "base": null,
       "refs": {
-        "DeregisterDevicesRequest$DeviceNames": "<p>The unique IDs of the devices.</p>"
+        "DeregisterDevicesRequest$DeviceNames": "<p>The unique IDs of the devices.</p>",
+        "DeviceSelectionConfig$DeviceNames": "<p>List of devices chosen to deploy.</p>"
+      }
+    },
+    "DeviceSelectionConfig": {
+      "base": "<p>Contains information about the configurations of selected devices.</p>",
+      "refs": {
+        "DeploymentStage$DeviceSelectionConfig": "<p>Configuration of the devices in the stage.</p>",
+        "DeploymentStageStatusSummary$DeviceSelectionConfig": "<p>Configuration of the devices in the stage.</p>"
       }
     },
     "DeviceStats": {
       "base": "<p>Status of devices.</p>",
       "refs": {
         "GetDeviceFleetReportResponse$DeviceStats": "<p>Status of devices.</p>"
+      }
+    },
+    "DeviceSubsetType": {
+      "base": null,
+      "refs": {
+        "DeviceSelectionConfig$DeviceSubsetType": "<p>Type of device subsets to deploy to the current stage.</p>"
       }
     },
     "DeviceSummaries": {
@@ -3626,6 +3738,53 @@
       "base": "<p>A directed edge connecting two lineage entities.</p>",
       "refs": {
         "Edges$member": null
+      }
+    },
+    "EdgeDeploymentConfig": {
+      "base": "<p>Contains information about the configuration of a deployment.</p>",
+      "refs": {
+        "DeploymentStage$DeploymentConfig": "<p>Configuration of the deployment details.</p>",
+        "DeploymentStageStatusSummary$DeploymentConfig": "<p>Configuration of the deployment details.</p>"
+      }
+    },
+    "EdgeDeploymentModelConfig": {
+      "base": "<p>Contains information about the configuration of a model in a deployment.</p>",
+      "refs": {
+        "EdgeDeploymentModelConfigs$member": null
+      }
+    },
+    "EdgeDeploymentModelConfigs": {
+      "base": null,
+      "refs": {
+        "CreateEdgeDeploymentPlanRequest$ModelConfigs": "<p>List of models associated with the edge deployment plan.</p>",
+        "DescribeEdgeDeploymentPlanResponse$ModelConfigs": "<p>List of models associated with the edge deployment plan.</p>"
+      }
+    },
+    "EdgeDeploymentPlanArn": {
+      "base": null,
+      "refs": {
+        "CreateEdgeDeploymentPlanResponse$EdgeDeploymentPlanArn": "<p>The ARN of the edge deployment plan.</p>",
+        "DescribeEdgeDeploymentPlanResponse$EdgeDeploymentPlanArn": "<p>The ARN of edge deployment plan.</p>",
+        "DeviceDeploymentSummary$EdgeDeploymentPlanArn": "<p>The ARN of the edge deployment plan.</p>",
+        "EdgeDeploymentPlanSummary$EdgeDeploymentPlanArn": "<p>The ARN of the edge deployment plan.</p>"
+      }
+    },
+    "EdgeDeploymentPlanSummaries": {
+      "base": null,
+      "refs": {
+        "ListEdgeDeploymentPlansResponse$EdgeDeploymentPlanSummaries": "<p>List of summaries of edge deployment plans.</p>"
+      }
+    },
+    "EdgeDeploymentPlanSummary": {
+      "base": "<p>Contains information summarizing an edge deployment plan.</p>",
+      "refs": {
+        "EdgeDeploymentPlanSummaries$member": null
+      }
+    },
+    "EdgeDeploymentStatus": {
+      "base": "<p>Contains information summarizing the deployment stage results.</p>",
+      "refs": {
+        "DeploymentStageStatusSummary$DeploymentStatus": "<p>General status of the current state.</p>"
       }
     },
     "EdgeModel": {
@@ -3968,6 +4127,9 @@
         "CreateCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p>",
         "CreateCompilationJobRequest$CompilationJobName": "<p>A name for the model compilation job. The name must be unique within the Amazon Web Services Region and within your Amazon Web Services account. </p>",
         "CreateDeviceFleetRequest$DeviceFleetName": "<p>The name of the fleet that the device belongs to.</p>",
+        "CreateEdgeDeploymentPlanRequest$EdgeDeploymentPlanName": "<p>The name of the edge deployment plan.</p>",
+        "CreateEdgeDeploymentPlanRequest$DeviceFleetName": "<p>The device fleet used for this edge deployment plan.</p>",
+        "CreateEdgeDeploymentStageRequest$EdgeDeploymentPlanName": "<p>The name of the edge deployment plan.</p>",
         "CreateEdgePackagingJobRequest$EdgePackagingJobName": "<p>The name of the edge packaging job.</p>",
         "CreateEdgePackagingJobRequest$CompilationJobName": "<p>The name of the SageMaker Neo compilation job that will be used to locate model artifacts for packaging.</p>",
         "CreateEdgePackagingJobRequest$ModelName": "<p>The name of the model.</p>",
@@ -3976,7 +4138,12 @@
         "DeleteAlgorithmInput$AlgorithmName": "<p>The name of the algorithm to delete.</p>",
         "DeleteCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository to delete.</p>",
         "DeleteDeviceFleetRequest$DeviceFleetName": "<p>The name of the fleet to delete.</p>",
+        "DeleteEdgeDeploymentPlanRequest$EdgeDeploymentPlanName": "<p>The name of the edge deployment plan to delete.</p>",
+        "DeleteEdgeDeploymentStageRequest$EdgeDeploymentPlanName": "<p>The name of the edge deployment plan from which the stage will be deleted.</p>",
+        "DeleteEdgeDeploymentStageRequest$StageName": "<p>The name of the stage.</p>",
         "DeleteModelPackageGroupPolicyInput$ModelPackageGroupName": "<p>The name of the model group for which to delete the policy.</p>",
+        "DeploymentStage$StageName": "<p>The name of the stage.</p>",
+        "DeploymentStageStatusSummary$StageName": "<p>The name of the stage.</p>",
         "DeregisterDevicesRequest$DeviceFleetName": "<p>The name of the fleet the devices belong to.</p>",
         "DescribeAlgorithmOutput$AlgorithmName": "<p>The name of the algorithm being described.</p>",
         "DescribeCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository to describe.</p>",
@@ -3989,6 +4156,9 @@
         "DescribeDeviceRequest$DeviceFleetName": "<p>The name of the fleet the devices belong to.</p>",
         "DescribeDeviceResponse$DeviceName": "<p>The unique identifier of the device.</p>",
         "DescribeDeviceResponse$DeviceFleetName": "<p>The name of the fleet the device belongs to.</p>",
+        "DescribeEdgeDeploymentPlanRequest$EdgeDeploymentPlanName": "<p>The name of the deployment plan to describe.</p>",
+        "DescribeEdgeDeploymentPlanResponse$EdgeDeploymentPlanName": "<p>The name of the edge deployment plan.</p>",
+        "DescribeEdgeDeploymentPlanResponse$DeviceFleetName": "<p>The device fleet used for this edge deployment plan.</p>",
         "DescribeEdgePackagingJobRequest$EdgePackagingJobName": "<p>The name of the edge packaging job.</p>",
         "DescribeEdgePackagingJobResponse$EdgePackagingJobName": "<p>The name of the edge packaging job.</p>",
         "DescribeEdgePackagingJobResponse$CompilationJobName": "<p>The name of the SageMaker Neo compilation job that is used to locate model artifacts that are being packaged.</p>",
@@ -3996,9 +4166,17 @@
         "DescribeModelPackageGroupOutput$ModelPackageGroupName": "<p>The name of the model group.</p>",
         "DescribeModelPackageOutput$ModelPackageName": "<p>The name of the model package being described.</p>",
         "DescribeModelPackageOutput$ModelPackageGroupName": "<p>If the model is a versioned model, the name of the model group that the versioned model belongs to.</p>",
+        "DeviceDeploymentSummary$EdgeDeploymentPlanName": "<p>The name of the edge deployment plan.</p>",
+        "DeviceDeploymentSummary$StageName": "<p>The name of the stage in the edge deployment plan.</p>",
+        "DeviceDeploymentSummary$DeployedStageName": "<p>The name of the deployed stage.</p>",
+        "DeviceDeploymentSummary$DeviceFleetName": "<p>The name of the fleet to which the device belongs to.</p>",
         "DeviceFleetSummary$DeviceFleetName": "<p>Name of the device fleet.</p>",
         "DeviceSummary$DeviceName": "<p>The unique identifier of the device.</p>",
         "DeviceSummary$DeviceFleetName": "<p>The name of the fleet the device belongs to.</p>",
+        "EdgeDeploymentModelConfig$ModelHandle": "<p>The name the device application uses to reference this model.</p>",
+        "EdgeDeploymentModelConfig$EdgePackagingJobName": "<p>The edge packaging job associated with this deployment.</p>",
+        "EdgeDeploymentPlanSummary$EdgeDeploymentPlanName": "<p>The name of the edge deployment plan.</p>",
+        "EdgeDeploymentPlanSummary$DeviceFleetName": "<p>The name of the device fleet used for the deployment. </p>",
         "EdgeModel$ModelName": "<p>The name of the model.</p>",
         "EdgeModelStat$ModelName": "<p>The name of the model.</p>",
         "EdgeModelSummary$ModelName": "<p>The name of the model.</p>",
@@ -4010,6 +4188,8 @@
         "GetModelPackageGroupPolicyInput$ModelPackageGroupName": "<p>The name of the model group for which to get the resource policy.</p>",
         "ListDevicesRequest$ModelName": "<p>A filter that searches devices that contains this name in any of their models.</p>",
         "ListDevicesRequest$DeviceFleetName": "<p>Filter for fleets containing this name in their device fleet name.</p>",
+        "ListStageDevicesRequest$EdgeDeploymentPlanName": "<p>The name of the edge deployment plan.</p>",
+        "ListStageDevicesRequest$StageName": "<p>The name of the stage in the deployment.</p>",
         "ModelPackage$ModelPackageName": "<p>The name of the model.</p>",
         "ModelPackage$ModelPackageGroupName": "<p>The model group to which the model belongs.</p>",
         "ModelPackageGroup$ModelPackageGroupName": "<p>The name of the model group.</p>",
@@ -4020,7 +4200,11 @@
         "ModelPackageValidationProfile$ProfileName": "<p>The name of the profile for the model package.</p>",
         "PutModelPackageGroupPolicyInput$ModelPackageGroupName": "<p>The name of the model group to add a resource policy to.</p>",
         "RegisterDevicesRequest$DeviceFleetName": "<p>The name of the fleet.</p>",
+        "StartEdgeDeploymentStageRequest$EdgeDeploymentPlanName": "<p>The name of the edge deployment plan to start.</p>",
+        "StartEdgeDeploymentStageRequest$StageName": "<p>The name of the stage to start.</p>",
         "StopCompilationJobRequest$CompilationJobName": "<p>The name of the model compilation job to stop.</p>",
+        "StopEdgeDeploymentStageRequest$EdgeDeploymentPlanName": "<p>The name of the edge deployment plan to stop.</p>",
+        "StopEdgeDeploymentStageRequest$StageName": "<p>The name of the stage to stop.</p>",
         "StopEdgePackagingJobRequest$EdgePackagingJobName": "<p>The name of the edge packaging job.</p>",
         "UpdateCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository to update.</p>",
         "UpdateDeviceFleetRequest$DeviceFleetName": "<p>The name of the fleet.</p>",
@@ -4263,6 +4447,12 @@
       "base": "<p>The container for the metadata for Fail step.</p>",
       "refs": {
         "PipelineExecutionStepMetadata$Fail": "<p>The configurations and outcomes of a Fail step execution.</p>"
+      }
+    },
+    "FailureHandlingPolicy": {
+      "base": null,
+      "refs": {
+        "EdgeDeploymentConfig$FailureHandlingPolicy": "<p>Toggle that determines whether to rollback to previous configuration if the current deployment fails. By default this is turned on. You may turn this off if you want to investigate the errors yourself.</p>"
       }
     },
     "FailureReason": {
@@ -5369,6 +5559,15 @@
       "base": null,
       "refs": {
         "DescribeDeviceResponse$MaxModels": "<p>The maximum number of models.</p>",
+        "DescribeEdgeDeploymentPlanResponse$EdgeDeploymentSuccess": "<p>The number of edge devices with the successful deployment.</p>",
+        "DescribeEdgeDeploymentPlanResponse$EdgeDeploymentPending": "<p>The number of edge devices yet to pick up deployment, or in progress.</p>",
+        "DescribeEdgeDeploymentPlanResponse$EdgeDeploymentFailed": "<p>The number of edge devices that failed the deployment.</p>",
+        "EdgeDeploymentPlanSummary$EdgeDeploymentSuccess": "<p>The number of edge devices with the successful deployment.</p>",
+        "EdgeDeploymentPlanSummary$EdgeDeploymentPending": "<p>The number of edge devices yet to pick up the deployment, or in progress.</p>",
+        "EdgeDeploymentPlanSummary$EdgeDeploymentFailed": "<p>The number of edge devices that failed the deployment.</p>",
+        "EdgeDeploymentStatus$EdgeDeploymentSuccessInStage": "<p>The number of edge devices with the successful deployment in the current stage.</p>",
+        "EdgeDeploymentStatus$EdgeDeploymentPendingInStage": "<p>The number of edge devices yet to pick up the deployment in current stage, or in progress.</p>",
+        "EdgeDeploymentStatus$EdgeDeploymentFailedInStage": "<p>The number of edge devices that failed the deployment in current stage.</p>",
         "EndpointOutputConfiguration$InitialInstanceCount": "<p>The number of instances recommended to launch initially.</p>",
         "ModelLatencyThreshold$ValueInMilliseconds": "<p>The model latency percentile value in milliseconds.</p>",
         "RecommendationJobStoppingConditions$MaxInvocations": "<p>The maximum number of requests per minute expected for the endpoint.</p>",
@@ -5994,6 +6193,22 @@
       "refs": {
       }
     },
+    "ListEdgeDeploymentPlansRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEdgeDeploymentPlansResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEdgeDeploymentPlansSortBy": {
+      "base": null,
+      "refs": {
+        "ListEdgeDeploymentPlansRequest$SortBy": "<p>The column by which to sort the edge deployment plans. Can be one of <code>NAME</code>, <code>DEVICEFLEETNAME</code>, <code>CREATIONTIME</code>, <code>LASTMODIFIEDTIME</code>.</p>"
+      }
+    },
     "ListEdgePackagingJobsRequest": {
       "base": null,
       "refs": {
@@ -6165,7 +6380,9 @@
       "refs": {
         "ListDeviceFleetsRequest$MaxResults": "<p>The maximum number of results to select.</p>",
         "ListDevicesRequest$MaxResults": "<p>Maximum number of results to select.</p>",
-        "ListEdgePackagingJobsRequest$MaxResults": "<p>Maximum number of results to select.</p>"
+        "ListEdgeDeploymentPlansRequest$MaxResults": "<p>The maximum number of results to select (50 by default).</p>",
+        "ListEdgePackagingJobsRequest$MaxResults": "<p>Maximum number of results to select.</p>",
+        "ListStageDevicesRequest$MaxResults": "<p>The maximum number of requests to select.</p>"
       }
     },
     "ListModelBiasJobDefinitionsRequest": {
@@ -6334,6 +6551,16 @@
       }
     },
     "ListProjectsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListStageDevicesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListStageDevicesResponse": {
       "base": null,
       "refs": {
       }
@@ -7579,6 +7806,8 @@
         "ListCompilationJobsRequest$NameContains": "<p>A filter that returns the model compilation jobs whose name contains a specified string.</p>",
         "ListDataQualityJobDefinitionsRequest$NameContains": "<p>A string in the data quality monitoring job definition name. This filter returns only data quality monitoring job definitions whose name contains the specified string.</p>",
         "ListDeviceFleetsRequest$NameContains": "<p>Filter for fleets containing this name in their fleet device name.</p>",
+        "ListEdgeDeploymentPlansRequest$NameContains": "<p>Selects edge deployment plans with names containing this name.</p>",
+        "ListEdgeDeploymentPlansRequest$DeviceFleetNameContains": "<p>Selects edge deployment plans with a device fleet name containing this name.</p>",
         "ListEdgePackagingJobsRequest$NameContains": "<p>Filter for jobs containing this name in their packaging job name.</p>",
         "ListEdgePackagingJobsRequest$ModelNameContains": "<p>Filter for jobs where the model name contains this string.</p>",
         "ListHyperParameterTuningJobsRequest$NameContains": "<p>A string in the tuning job name. This filter returns only tuning jobs whose name contains the specified string.</p>",
@@ -7657,6 +7886,8 @@
       "refs": {
         "DescribeDeviceRequest$NextToken": "<p>Next token of device description.</p>",
         "DescribeDeviceResponse$NextToken": "<p>The response from the last list when returning a list large enough to need tokening.</p>",
+        "DescribeEdgeDeploymentPlanRequest$NextToken": "<p>If the edge deployment plan has enough stages to require tokening, then this is the response from the last list of stages returned.</p>",
+        "DescribeEdgeDeploymentPlanResponse$NextToken": "<p>Token to use when calling the next set of stages in the edge deployment plan.</p>",
         "DescribeFeatureGroupRequest$NextToken": "<p>A token to resume pagination of the list of <code>Features</code> (<code>FeatureDefinitions</code>). 2,500 <code>Features</code> are returned by default.</p>",
         "DescribeFeatureGroupResponse$NextToken": "<p>A token to resume pagination of the list of <code>Features</code> (<code>FeatureDefinitions</code>).</p>",
         "ListActionsRequest$NextToken": "<p>If the previous call to <code>ListActions</code> didn't return the full set of actions, the call returns a token for getting the next set of actions.</p>",
@@ -7689,6 +7920,8 @@
         "ListDevicesResponse$NextToken": "<p>The response from the last list when returning a list large enough to need tokening.</p>",
         "ListDomainsRequest$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
         "ListDomainsResponse$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
+        "ListEdgeDeploymentPlansRequest$NextToken": "<p>The response from the last list when returning a list large enough to need tokening.</p>",
+        "ListEdgeDeploymentPlansResponse$NextToken": "<p>The token to use when calling the next page of results.</p>",
         "ListEdgePackagingJobsRequest$NextToken": "<p>The response from the last list when returning a list large enough to need tokening.</p>",
         "ListEdgePackagingJobsResponse$NextToken": "<p>Token to use when calling the next page of results.</p>",
         "ListExperimentsRequest$NextToken": "<p>If the previous call to <code>ListExperiments</code> didn't return the full set of experiments, the call returns a token for getting the next set of experiments.</p>",
@@ -7745,6 +7978,8 @@
         "ListProcessingJobsResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of processing jobs, use it in the subsequent request.</p>",
         "ListProjectsInput$NextToken": "<p>If the result of the previous <code>ListProjects</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of projects, use the token in the next request.</p>",
         "ListProjectsOutput$NextToken": "<p>If the result of the previous <code>ListCompilationJobs</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of model compilation jobs, use the token in the next request.</p>",
+        "ListStageDevicesRequest$NextToken": "<p>The response from the last list when returning a list large enough to neeed tokening.</p>",
+        "ListStageDevicesResponse$NextToken": "<p>The token to use when calling the next page of results.</p>",
         "ListStudioLifecycleConfigsRequest$NextToken": "<p>If the previous call to ListStudioLifecycleConfigs didn't return the full set of Lifecycle Configurations, the call returns a token for getting the next set of Lifecycle Configurations.</p>",
         "ListStudioLifecycleConfigsResponse$NextToken": "<p>A token for getting the next set of actions, if there are any.</p>",
         "ListSubscribedWorkteamsRequest$NextToken": "<p>If the result of the previous <code>ListSubscribedWorkteams</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of labeling jobs, use the token in the next request.</p>",
@@ -8267,6 +8502,12 @@
       "base": null,
       "refs": {
         "PendingDeploymentSummary$ProductionVariants": "<p>List of <code>PendingProductionVariantSummary</code> objects.</p>"
+      }
+    },
+    "Percentage": {
+      "base": null,
+      "refs": {
+        "DeviceSelectionConfig$Percentage": "<p>Percentage of devices in the fleet to deploy to the current stage.</p>"
       }
     },
     "Phase": {
@@ -9888,6 +10129,7 @@
         "ListContextsRequest$SortOrder": "<p>The sort order. The default value is <code>Descending</code>.</p>",
         "ListDataQualityJobDefinitionsRequest$SortOrder": "<p>The sort order for results. The default is <code>Descending</code>.</p>",
         "ListDeviceFleetsRequest$SortOrder": "<p>What direction to sort in.</p>",
+        "ListEdgeDeploymentPlansRequest$SortOrder": "<p>The direction of the sorting (ascending or descending).</p>",
         "ListEdgePackagingJobsRequest$SortOrder": "<p>What direction to sort by.</p>",
         "ListExperimentsRequest$SortOrder": "<p>The sort order. The default value is <code>Descending</code>.</p>",
         "ListFlowDefinitionsRequest$SortOrder": "<p>An optional value that specifies whether you want the results sorted in <code>Ascending</code> or <code>Descending</code> order.</p>",
@@ -9999,6 +10241,17 @@
         "TransformInput$SplitType": "<p>The method to use to split the transform job's data files into smaller batches. Splitting is necessary when the total size of each object is too large to fit in a single request. You can also use data splitting to improve performance by processing multiple concurrent mini-batches. The default value for <code>SplitType</code> is <code>None</code>, which indicates that input data files are not split, and request payloads contain the entire contents of an input object. Set the value of this parameter to <code>Line</code> to split records on a newline character boundary. <code>SplitType</code> also supports a number of record-oriented binary data formats. Currently, the supported record formats are:</p> <ul> <li> <p>RecordIO</p> </li> <li> <p>TFRecord</p> </li> </ul> <p>When splitting is enabled, the size of a mini-batch depends on the values of the <code>BatchStrategy</code> and <code>MaxPayloadInMB</code> parameters. When the value of <code>BatchStrategy</code> is <code>MultiRecord</code>, Amazon SageMaker sends the maximum number of records in each request, up to the <code>MaxPayloadInMB</code> limit. If the value of <code>BatchStrategy</code> is <code>SingleRecord</code>, Amazon SageMaker sends individual records in each request.</p> <note> <p>Some data formats represent a record as a binary payload wrapped with extra padding bytes. When splitting is applied to a binary data format, padding is removed if the value of <code>BatchStrategy</code> is set to <code>SingleRecord</code>. Padding is not removed if the value of <code>BatchStrategy</code> is set to <code>MultiRecord</code>.</p> <p>For more information about <code>RecordIO</code>, see <a href=\"https://mxnet.apache.org/api/faq/recordio\">Create a Dataset Using RecordIO</a> in the MXNet documentation. For more information about <code>TFRecord</code>, see <a href=\"https://www.tensorflow.org/guide/data#consuming_tfrecord_data\">Consuming TFRecord data</a> in the TensorFlow documentation.</p> </note>"
       }
     },
+    "StageStatus": {
+      "base": null,
+      "refs": {
+        "EdgeDeploymentStatus$StageStatus": "<p>The general status of the current stage.</p>"
+      }
+    },
+    "StartEdgeDeploymentStageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartMonitoringScheduleRequest": {
       "base": null,
       "refs": {
@@ -10062,6 +10315,11 @@
       }
     },
     "StopCompilationJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopEdgeDeploymentStageRequest": {
       "base": null,
       "refs": {
       }
@@ -10146,6 +10404,8 @@
         "DescribeModelPackageOutput$Domain": "<p>The machine learning domain of the model package you specified. Common machine learning domains include computer vision and natural language processing.</p>",
         "DescribeModelPackageOutput$Task": "<p>The machine learning task you specified that your model package accomplishes. Common machine learning tasks include object detection and image classification.</p>",
         "DescribeModelPackageOutput$SamplePayloadUrl": "<p>The Amazon Simple Storage Service (Amazon S3) path where the sample payload are stored. This path points to a single gzip compressed tar archive (.tar.gz suffix).</p>",
+        "DeviceDeploymentSummary$DeviceDeploymentStatusMessage": "<p>The detailed error message for the deployoment status result.</p>",
+        "EdgeDeploymentStatus$EdgeDeploymentStatusMessage": "<p>A detailed message about deployment status in current stage.</p>",
         "EdgeOutputConfig$PresetDeploymentConfig": "<p>The configuration used to create deployment artifacts. Specify configuration options with a JSON string. The available configuration options for each type are:</p> <ul> <li> <p> <code>ComponentName</code> (optional) - Name of the GreenGrass V2 component. If not specified, the default name generated consists of \"SagemakerEdgeManager\" and the name of your SageMaker Edge Manager packaging job.</p> </li> <li> <p> <code>ComponentDescription</code> (optional) - Description of the component.</p> </li> <li> <p> <code>ComponentVersion</code> (optional) - The version of the component.</p> <note> <p>Amazon Web Services IoT Greengrass uses semantic versions for components. Semantic versions follow a<i> major.minor.patch</i> number system. For example, version 1.0.0 represents the first major release for a component. For more information, see the <a href=\"https://semver.org/\">semantic version specification</a>.</p> </note> </li> <li> <p> <code>PlatformOS</code> (optional) - The name of the operating system for the platform. Supported platforms include Windows and Linux.</p> </li> <li> <p> <code>PlatformArchitecture</code> (optional) - The processor architecture for the platform. </p> <p>Supported architectures Windows include: Windows32_x86, Windows64_x64.</p> <p>Supported architectures for Linux include: Linux x86_64, Linux ARMV8.</p> </li> </ul>",
         "EdgePresetDeploymentOutput$StatusMessage": "<p>Returns a message describing the status of the deployed resource.</p>",
         "EndpointInput$FeaturesAttribute": "<p>The attributes of the input data that are the input features.</p>",
@@ -10451,6 +10711,7 @@
         "CreateDataQualityJobDefinitionRequest$Tags": "<p>(Optional) An array of key-value pairs. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL\">Using Cost Allocation Tags</a> in the <i>Amazon Web Services Billing and Cost Management User Guide</i>.</p>",
         "CreateDeviceFleetRequest$Tags": "<p>Creates tags for the specified fleet.</p>",
         "CreateDomainRequest$Tags": "<p>Tags to associated with the Domain. Each tag consists of a key and an optional value. Tag keys must be unique per resource. Tags are searchable using the <code>Search</code> API.</p> <p>Tags that you specify for the Domain are also added to all Apps that the Domain launches.</p>",
+        "CreateEdgeDeploymentPlanRequest$Tags": "<p>List of tags with which to tag the edge deployment plan.</p>",
         "CreateEdgePackagingJobRequest$Tags": "<p>Creates tags for the packaging job.</p>",
         "CreateEndpointConfigInput$Tags": "<p>An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging Amazon Web Services Resources</a>.</p>",
         "CreateEndpointInput$Tags": "<p>An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging Amazon Web Services Resources</a>.</p>",
@@ -10700,6 +10961,8 @@
         "DescribeDeviceFleetResponse$LastModifiedTime": "<p>Timestamp of when the device fleet was last updated.</p>",
         "DescribeDeviceResponse$RegistrationTime": "<p>The timestamp of the last registration or de-reregistration.</p>",
         "DescribeDeviceResponse$LatestHeartbeat": "<p>The last heartbeat received from the device.</p>",
+        "DescribeEdgeDeploymentPlanResponse$CreationTime": "<p>The time when the edge deployment plan was created.</p>",
+        "DescribeEdgeDeploymentPlanResponse$LastModifiedTime": "<p>The time when the edge deployment plan was last updated.</p>",
         "DescribeEdgePackagingJobResponse$CreationTime": "<p>The timestamp of when the packaging job was created.</p>",
         "DescribeEdgePackagingJobResponse$LastModifiedTime": "<p>The timestamp of when the job was last updated.</p>",
         "DescribeEndpointConfigOutput$CreationTime": "<p>A timestamp that shows when the endpoint configuration was created.</p>",
@@ -10755,10 +11018,14 @@
         "DescribeTrialComponentResponse$LastModifiedTime": "<p>When the component was last modified.</p>",
         "DescribeTrialResponse$CreationTime": "<p>When the trial was created.</p>",
         "DescribeTrialResponse$LastModifiedTime": "<p>When the trial was last modified.</p>",
+        "DeviceDeploymentSummary$DeploymentStartTime": "<p>The time when the deployment on the device started.</p>",
         "DeviceFleetSummary$CreationTime": "<p>Timestamp of when the device fleet was created.</p>",
         "DeviceFleetSummary$LastModifiedTime": "<p>Timestamp of when the device fleet was last updated.</p>",
         "DeviceSummary$RegistrationTime": "<p>The timestamp of the last registration or de-reregistration.</p>",
         "DeviceSummary$LatestHeartbeat": "<p>The last heartbeat received from the device.</p>",
+        "EdgeDeploymentPlanSummary$CreationTime": "<p>The time when the edge deployment plan was created.</p>",
+        "EdgeDeploymentPlanSummary$LastModifiedTime": "<p>The time when the edge deployment plan was last updated.</p>",
+        "EdgeDeploymentStatus$EdgeDeploymentStageStartTime": "<p>The time when the deployment API started.</p>",
         "EdgeModel$LatestSampleTime": "<p>The timestamp of the last data sample taken.</p>",
         "EdgeModel$LatestInference": "<p>The timestamp of the last inference that was made.</p>",
         "EdgePackagingJobSummary$CreationTime": "<p>The timestamp of when the job was created.</p>",
@@ -10817,6 +11084,10 @@
         "ListDeviceFleetsRequest$LastModifiedTimeAfter": "<p>Select fleets where the job was updated after X</p>",
         "ListDeviceFleetsRequest$LastModifiedTimeBefore": "<p>Select fleets where the job was updated before X</p>",
         "ListDevicesRequest$LatestHeartbeatAfter": "<p>Select fleets where the job was updated after X</p>",
+        "ListEdgeDeploymentPlansRequest$CreationTimeAfter": "<p>Selects edge deployment plans created after this time.</p>",
+        "ListEdgeDeploymentPlansRequest$CreationTimeBefore": "<p>Selects edge deployment plans created before this time.</p>",
+        "ListEdgeDeploymentPlansRequest$LastModifiedTimeAfter": "<p>Selects edge deployment plans that were last updated after this time.</p>",
+        "ListEdgeDeploymentPlansRequest$LastModifiedTimeBefore": "<p>Selects edge deployment plans that were last updated before this time.</p>",
         "ListEdgePackagingJobsRequest$CreationTimeAfter": "<p>Select jobs where the job was created after specified time.</p>",
         "ListEdgePackagingJobsRequest$CreationTimeBefore": "<p>Select jobs where the job was created before specified time.</p>",
         "ListEdgePackagingJobsRequest$LastModifiedTimeAfter": "<p>Select jobs where the job was updated after specified time.</p>",

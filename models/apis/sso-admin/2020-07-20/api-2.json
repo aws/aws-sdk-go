@@ -14,6 +14,24 @@
     "uid":"sso-admin-2020-07-20"
   },
   "operations":{
+    "AttachCustomerManagedPolicyReferenceToPermissionSet":{
+      "name":"AttachCustomerManagedPolicyReferenceToPermissionSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AttachCustomerManagedPolicyReferenceToPermissionSetRequest"},
+      "output":{"shape":"AttachCustomerManagedPolicyReferenceToPermissionSetResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "AttachManagedPolicyToPermissionSet":{
       "name":"AttachManagedPolicyToPermissionSet",
       "http":{
@@ -153,6 +171,22 @@
         {"shape":"ConflictException"}
       ]
     },
+    "DeletePermissionsBoundaryFromPermissionSet":{
+      "name":"DeletePermissionsBoundaryFromPermissionSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeletePermissionsBoundaryFromPermissionSetRequest"},
+      "output":{"shape":"DeletePermissionsBoundaryFromPermissionSetResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "DescribeAccountAssignmentCreationStatus":{
       "name":"DescribeAccountAssignmentCreationStatus",
       "http":{
@@ -233,6 +267,23 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "DetachCustomerManagedPolicyReferenceFromPermissionSet":{
+      "name":"DetachCustomerManagedPolicyReferenceFromPermissionSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DetachCustomerManagedPolicyReferenceFromPermissionSetRequest"},
+      "output":{"shape":"DetachCustomerManagedPolicyReferenceFromPermissionSetResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "DetachManagedPolicyFromPermissionSet":{
       "name":"DetachManagedPolicyFromPermissionSet",
       "http":{
@@ -258,6 +309,22 @@
       },
       "input":{"shape":"GetInlinePolicyForPermissionSetRequest"},
       "output":{"shape":"GetInlinePolicyForPermissionSetResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetPermissionsBoundaryForPermissionSet":{
+      "name":"GetPermissionsBoundaryForPermissionSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetPermissionsBoundaryForPermissionSetRequest"},
+      "output":{"shape":"GetPermissionsBoundaryForPermissionSetResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
@@ -322,6 +389,22 @@
       },
       "input":{"shape":"ListAccountsForProvisionedPermissionSetRequest"},
       "output":{"shape":"ListAccountsForProvisionedPermissionSetResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListCustomerManagedPolicyReferencesInPermissionSet":{
+      "name":"ListCustomerManagedPolicyReferencesInPermissionSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListCustomerManagedPolicyReferencesInPermissionSetRequest"},
+      "output":{"shape":"ListCustomerManagedPolicyReferencesInPermissionSetResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
@@ -454,6 +537,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "PutPermissionsBoundaryToPermissionSet":{
+      "name":"PutPermissionsBoundaryToPermissionSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutPermissionsBoundaryToPermissionSetRequest"},
+      "output":{"shape":"PutPermissionsBoundaryToPermissionSetResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
@@ -622,11 +722,31 @@
     },
     "AccountId":{
       "type":"string",
+      "max":12,
+      "min":12,
       "pattern":"\\d{12}"
     },
     "AccountList":{
       "type":"list",
       "member":{"shape":"AccountId"}
+    },
+    "AttachCustomerManagedPolicyReferenceToPermissionSetRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceArn",
+        "PermissionSetArn",
+        "CustomerManagedPolicyReference"
+      ],
+      "members":{
+        "InstanceArn":{"shape":"InstanceArn"},
+        "PermissionSetArn":{"shape":"PermissionSetArn"},
+        "CustomerManagedPolicyReference":{"shape":"CustomerManagedPolicyReference"}
+      }
+    },
+    "AttachCustomerManagedPolicyReferenceToPermissionSetResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "AttachManagedPolicyToPermissionSetRequest":{
       "type":"structure",
@@ -727,6 +847,18 @@
         "PermissionSet":{"shape":"PermissionSet"}
       }
     },
+    "CustomerManagedPolicyReference":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"ManagedPolicyName"},
+        "Path":{"shape":"ManagedPolicyPath"}
+      }
+    },
+    "CustomerManagedPolicyReferenceList":{
+      "type":"list",
+      "member":{"shape":"CustomerManagedPolicyReference"}
+    },
     "Date":{"type":"timestamp"},
     "DeleteAccountAssignmentRequest":{
       "type":"structure",
@@ -793,6 +925,22 @@
       }
     },
     "DeletePermissionSetResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeletePermissionsBoundaryFromPermissionSetRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceArn",
+        "PermissionSetArn"
+      ],
+      "members":{
+        "InstanceArn":{"shape":"InstanceArn"},
+        "PermissionSetArn":{"shape":"PermissionSetArn"}
+      }
+    },
+    "DeletePermissionsBoundaryFromPermissionSetResponse":{
       "type":"structure",
       "members":{
       }
@@ -880,6 +1028,24 @@
         "PermissionSet":{"shape":"PermissionSet"}
       }
     },
+    "DetachCustomerManagedPolicyReferenceFromPermissionSetRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceArn",
+        "PermissionSetArn",
+        "CustomerManagedPolicyReference"
+      ],
+      "members":{
+        "InstanceArn":{"shape":"InstanceArn"},
+        "PermissionSetArn":{"shape":"PermissionSetArn"},
+        "CustomerManagedPolicyReference":{"shape":"CustomerManagedPolicyReference"}
+      }
+    },
+    "DetachCustomerManagedPolicyReferenceFromPermissionSetResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DetachManagedPolicyFromPermissionSetRequest":{
       "type":"structure",
       "required":[
@@ -904,12 +1070,6 @@
       "min":1,
       "pattern":"^(-?)P(?=\\d|T\\d)(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)([DW]))?(?:T(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+(?:\\.\\d+)?)S)?)?$"
     },
-    "GeneralArn":{
-      "type":"string",
-      "max":2048,
-      "min":10,
-      "pattern":"arn:aws:sso:([a-zA-Z0-9-]+)?:(\\d{12})?:[a-zA-Z0-9-]+/[a-zA-Z0-9-/.]+"
-    },
     "GetInlinePolicyForPermissionSetRequest":{
       "type":"structure",
       "required":[
@@ -925,6 +1085,23 @@
       "type":"structure",
       "members":{
         "InlinePolicy":{"shape":"PermissionSetPolicyDocument"}
+      }
+    },
+    "GetPermissionsBoundaryForPermissionSetRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceArn",
+        "PermissionSetArn"
+      ],
+      "members":{
+        "InstanceArn":{"shape":"InstanceArn"},
+        "PermissionSetArn":{"shape":"PermissionSetArn"}
+      }
+    },
+    "GetPermissionsBoundaryForPermissionSetResponse":{
+      "type":"structure",
+      "members":{
+        "PermissionsBoundary":{"shape":"PermissionsBoundary"}
       }
     },
     "Id":{
@@ -953,7 +1130,7 @@
       "type":"string",
       "max":1224,
       "min":10,
-      "pattern":"arn:aws:sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}"
+      "pattern":"arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}"
     },
     "InstanceList":{
       "type":"list",
@@ -1048,6 +1225,26 @@
       "type":"structure",
       "members":{
         "AccountIds":{"shape":"AccountList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListCustomerManagedPolicyReferencesInPermissionSetRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceArn",
+        "PermissionSetArn"
+      ],
+      "members":{
+        "InstanceArn":{"shape":"InstanceArn"},
+        "PermissionSetArn":{"shape":"PermissionSetArn"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListCustomerManagedPolicyReferencesInPermissionSetResponse":{
+      "type":"structure",
+      "members":{
+        "CustomerManagedPolicyReferences":{"shape":"CustomerManagedPolicyReferenceList"},
         "NextToken":{"shape":"Token"}
       }
     },
@@ -1147,7 +1344,7 @@
       ],
       "members":{
         "InstanceArn":{"shape":"InstanceArn"},
-        "ResourceArn":{"shape":"GeneralArn"},
+        "ResourceArn":{"shape":"TaggableResourceArn"},
         "NextToken":{"shape":"Token"}
       }
     },
@@ -1161,7 +1358,20 @@
     "ManagedPolicyArn":{
       "type":"string",
       "max":2048,
-      "min":20
+      "min":20,
+      "pattern":"arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):iam::aws:policy/[\\p{L}\\p{M}\\p{Z}\\p{S}\\p{N}\\p{P}]+"
+    },
+    "ManagedPolicyName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\w+=,.@-]+"
+    },
+    "ManagedPolicyPath":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"((/[A-Za-z0-9\\.,\\+@=_-]+)*)/"
     },
     "MaxResults":{
       "type":"integer",
@@ -1194,13 +1404,13 @@
       "type":"string",
       "max":1224,
       "min":10,
-      "pattern":"arn:aws:sso:::permissionSet/(sso)?ins-[a-zA-Z0-9-.]{16}/ps-[a-zA-Z0-9-./]{16}"
+      "pattern":"arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::permissionSet/(sso)?ins-[a-zA-Z0-9-.]{16}/ps-[a-zA-Z0-9-./]{16}"
     },
     "PermissionSetDescription":{
       "type":"string",
       "max":700,
       "min":1,
-      "pattern":"[\\p{L}\\p{M}\\p{Z}\\p{S}\\p{N}\\p{P}]*"
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u00A0-\\u00FF]*"
     },
     "PermissionSetList":{
       "type":"list",
@@ -1216,8 +1426,7 @@
       "type":"string",
       "max":10240,
       "min":1,
-      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+",
-      "sensitive":true
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
     },
     "PermissionSetProvisioningStatus":{
       "type":"structure",
@@ -1240,6 +1449,13 @@
         "Status":{"shape":"StatusValues"},
         "RequestId":{"shape":"UUId"},
         "CreatedDate":{"shape":"Date"}
+      }
+    },
+    "PermissionsBoundary":{
+      "type":"structure",
+      "members":{
+        "CustomerManagedPolicyReference":{"shape":"CustomerManagedPolicyReference"},
+        "ManagedPolicyArn":{"shape":"ManagedPolicyArn"}
       }
     },
     "PrincipalId":{
@@ -1307,6 +1523,24 @@
       "members":{
       }
     },
+    "PutPermissionsBoundaryToPermissionSetRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceArn",
+        "PermissionSetArn",
+        "PermissionsBoundary"
+      ],
+      "members":{
+        "InstanceArn":{"shape":"InstanceArn"},
+        "PermissionSetArn":{"shape":"PermissionSetArn"},
+        "PermissionsBoundary":{"shape":"PermissionsBoundary"}
+      }
+    },
+    "PutPermissionsBoundaryToPermissionSetResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Reason":{
       "type":"string",
       "pattern":"[\\p{L}\\p{M}\\p{Z}\\p{S}\\p{N}\\p{P}]*"
@@ -1343,6 +1577,10 @@
     },
     "Tag":{
       "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
       "members":{
         "Key":{"shape":"TagKey"},
         "Value":{"shape":"TagValue"}
@@ -1375,7 +1613,7 @@
       ],
       "members":{
         "InstanceArn":{"shape":"InstanceArn"},
-        "ResourceArn":{"shape":"GeneralArn"},
+        "ResourceArn":{"shape":"TaggableResourceArn"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -1390,8 +1628,16 @@
       "min":0,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
+    "TaggableResourceArn":{
+      "type":"string",
+      "max":2048,
+      "min":10,
+      "pattern":"arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::permissionSet/(sso)?ins-[a-zA-Z0-9-.]{16}/ps-[a-zA-Z0-9-./]{16}"
+    },
     "TargetId":{
       "type":"string",
+      "max":12,
+      "min":12,
       "pattern":"\\d{12}"
     },
     "TargetType":{
@@ -1413,6 +1659,8 @@
     },
     "UUId":{
       "type":"string",
+      "max":36,
+      "min":36,
       "pattern":"\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b"
     },
     "UntagResourceRequest":{
@@ -1424,7 +1672,7 @@
       ],
       "members":{
         "InstanceArn":{"shape":"InstanceArn"},
-        "ResourceArn":{"shape":"GeneralArn"},
+        "ResourceArn":{"shape":"TaggableResourceArn"},
         "TagKeys":{"shape":"TagKeyList"}
       }
     },

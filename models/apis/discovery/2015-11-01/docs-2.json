@@ -319,6 +319,12 @@
         "GetDiscoverySummaryResponse$agentSummary": "<p>Details about discovered agents, including agent status and health.</p>"
       }
     },
+    "CustomerAgentlessCollectorInfo": {
+      "base": null,
+      "refs": {
+        "GetDiscoverySummaryResponse$agentlessCollectorSummary": null
+      }
+    },
     "CustomerConnectorInfo": {
       "base": "<p>Inventory data for installed discovery connectors.</p>",
       "refs": {
@@ -666,6 +672,13 @@
         "CustomerAgentInfo$unhealthyAgents": "<p>Number of unhealthy discovery agents.</p>",
         "CustomerAgentInfo$totalAgents": "<p>Total number of discovery agents.</p>",
         "CustomerAgentInfo$unknownAgents": "<p>Number of unknown discovery agents.</p>",
+        "CustomerAgentlessCollectorInfo$activeAgentlessCollectors": null,
+        "CustomerAgentlessCollectorInfo$healthyAgentlessCollectors": null,
+        "CustomerAgentlessCollectorInfo$denyListedAgentlessCollectors": null,
+        "CustomerAgentlessCollectorInfo$shutdownAgentlessCollectors": null,
+        "CustomerAgentlessCollectorInfo$unhealthyAgentlessCollectors": null,
+        "CustomerAgentlessCollectorInfo$totalAgentlessCollectors": null,
+        "CustomerAgentlessCollectorInfo$unknownAgentlessCollectors": null,
         "CustomerConnectorInfo$activeConnectors": "<p>Number of active discovery connectors.</p>",
         "CustomerConnectorInfo$healthyConnectors": "<p>Number of healthy discovery connectors.</p>",
         "CustomerConnectorInfo$blackListedConnectors": "<p>Number of blacklisted discovery connectors.</p>",
