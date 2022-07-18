@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Single Sign-On Admin.
 //    func myFunc(svc ssoadminiface.SSOAdminAPI) bool {
-//        // Make svc.AttachManagedPolicyToPermissionSet request
+//        // Make svc.AttachCustomerManagedPolicyReferenceToPermissionSet request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockSSOAdminClient struct {
 //        ssoadminiface.SSOAdminAPI
 //    }
-//    func (m *mockSSOAdminClient) AttachManagedPolicyToPermissionSet(input *ssoadmin.AttachManagedPolicyToPermissionSetInput) (*ssoadmin.AttachManagedPolicyToPermissionSetOutput, error) {
+//    func (m *mockSSOAdminClient) AttachCustomerManagedPolicyReferenceToPermissionSet(input *ssoadmin.AttachCustomerManagedPolicyReferenceToPermissionSetInput) (*ssoadmin.AttachCustomerManagedPolicyReferenceToPermissionSetOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type SSOAdminAPI interface {
+	AttachCustomerManagedPolicyReferenceToPermissionSet(*ssoadmin.AttachCustomerManagedPolicyReferenceToPermissionSetInput) (*ssoadmin.AttachCustomerManagedPolicyReferenceToPermissionSetOutput, error)
+	AttachCustomerManagedPolicyReferenceToPermissionSetWithContext(aws.Context, *ssoadmin.AttachCustomerManagedPolicyReferenceToPermissionSetInput, ...request.Option) (*ssoadmin.AttachCustomerManagedPolicyReferenceToPermissionSetOutput, error)
+	AttachCustomerManagedPolicyReferenceToPermissionSetRequest(*ssoadmin.AttachCustomerManagedPolicyReferenceToPermissionSetInput) (*request.Request, *ssoadmin.AttachCustomerManagedPolicyReferenceToPermissionSetOutput)
+
 	AttachManagedPolicyToPermissionSet(*ssoadmin.AttachManagedPolicyToPermissionSetInput) (*ssoadmin.AttachManagedPolicyToPermissionSetOutput, error)
 	AttachManagedPolicyToPermissionSetWithContext(aws.Context, *ssoadmin.AttachManagedPolicyToPermissionSetInput, ...request.Option) (*ssoadmin.AttachManagedPolicyToPermissionSetOutput, error)
 	AttachManagedPolicyToPermissionSetRequest(*ssoadmin.AttachManagedPolicyToPermissionSetInput) (*request.Request, *ssoadmin.AttachManagedPolicyToPermissionSetOutput)
@@ -92,6 +96,10 @@ type SSOAdminAPI interface {
 	DeletePermissionSetWithContext(aws.Context, *ssoadmin.DeletePermissionSetInput, ...request.Option) (*ssoadmin.DeletePermissionSetOutput, error)
 	DeletePermissionSetRequest(*ssoadmin.DeletePermissionSetInput) (*request.Request, *ssoadmin.DeletePermissionSetOutput)
 
+	DeletePermissionsBoundaryFromPermissionSet(*ssoadmin.DeletePermissionsBoundaryFromPermissionSetInput) (*ssoadmin.DeletePermissionsBoundaryFromPermissionSetOutput, error)
+	DeletePermissionsBoundaryFromPermissionSetWithContext(aws.Context, *ssoadmin.DeletePermissionsBoundaryFromPermissionSetInput, ...request.Option) (*ssoadmin.DeletePermissionsBoundaryFromPermissionSetOutput, error)
+	DeletePermissionsBoundaryFromPermissionSetRequest(*ssoadmin.DeletePermissionsBoundaryFromPermissionSetInput) (*request.Request, *ssoadmin.DeletePermissionsBoundaryFromPermissionSetOutput)
+
 	DescribeAccountAssignmentCreationStatus(*ssoadmin.DescribeAccountAssignmentCreationStatusInput) (*ssoadmin.DescribeAccountAssignmentCreationStatusOutput, error)
 	DescribeAccountAssignmentCreationStatusWithContext(aws.Context, *ssoadmin.DescribeAccountAssignmentCreationStatusInput, ...request.Option) (*ssoadmin.DescribeAccountAssignmentCreationStatusOutput, error)
 	DescribeAccountAssignmentCreationStatusRequest(*ssoadmin.DescribeAccountAssignmentCreationStatusInput) (*request.Request, *ssoadmin.DescribeAccountAssignmentCreationStatusOutput)
@@ -112,6 +120,10 @@ type SSOAdminAPI interface {
 	DescribePermissionSetProvisioningStatusWithContext(aws.Context, *ssoadmin.DescribePermissionSetProvisioningStatusInput, ...request.Option) (*ssoadmin.DescribePermissionSetProvisioningStatusOutput, error)
 	DescribePermissionSetProvisioningStatusRequest(*ssoadmin.DescribePermissionSetProvisioningStatusInput) (*request.Request, *ssoadmin.DescribePermissionSetProvisioningStatusOutput)
 
+	DetachCustomerManagedPolicyReferenceFromPermissionSet(*ssoadmin.DetachCustomerManagedPolicyReferenceFromPermissionSetInput) (*ssoadmin.DetachCustomerManagedPolicyReferenceFromPermissionSetOutput, error)
+	DetachCustomerManagedPolicyReferenceFromPermissionSetWithContext(aws.Context, *ssoadmin.DetachCustomerManagedPolicyReferenceFromPermissionSetInput, ...request.Option) (*ssoadmin.DetachCustomerManagedPolicyReferenceFromPermissionSetOutput, error)
+	DetachCustomerManagedPolicyReferenceFromPermissionSetRequest(*ssoadmin.DetachCustomerManagedPolicyReferenceFromPermissionSetInput) (*request.Request, *ssoadmin.DetachCustomerManagedPolicyReferenceFromPermissionSetOutput)
+
 	DetachManagedPolicyFromPermissionSet(*ssoadmin.DetachManagedPolicyFromPermissionSetInput) (*ssoadmin.DetachManagedPolicyFromPermissionSetOutput, error)
 	DetachManagedPolicyFromPermissionSetWithContext(aws.Context, *ssoadmin.DetachManagedPolicyFromPermissionSetInput, ...request.Option) (*ssoadmin.DetachManagedPolicyFromPermissionSetOutput, error)
 	DetachManagedPolicyFromPermissionSetRequest(*ssoadmin.DetachManagedPolicyFromPermissionSetInput) (*request.Request, *ssoadmin.DetachManagedPolicyFromPermissionSetOutput)
@@ -119,6 +131,10 @@ type SSOAdminAPI interface {
 	GetInlinePolicyForPermissionSet(*ssoadmin.GetInlinePolicyForPermissionSetInput) (*ssoadmin.GetInlinePolicyForPermissionSetOutput, error)
 	GetInlinePolicyForPermissionSetWithContext(aws.Context, *ssoadmin.GetInlinePolicyForPermissionSetInput, ...request.Option) (*ssoadmin.GetInlinePolicyForPermissionSetOutput, error)
 	GetInlinePolicyForPermissionSetRequest(*ssoadmin.GetInlinePolicyForPermissionSetInput) (*request.Request, *ssoadmin.GetInlinePolicyForPermissionSetOutput)
+
+	GetPermissionsBoundaryForPermissionSet(*ssoadmin.GetPermissionsBoundaryForPermissionSetInput) (*ssoadmin.GetPermissionsBoundaryForPermissionSetOutput, error)
+	GetPermissionsBoundaryForPermissionSetWithContext(aws.Context, *ssoadmin.GetPermissionsBoundaryForPermissionSetInput, ...request.Option) (*ssoadmin.GetPermissionsBoundaryForPermissionSetOutput, error)
+	GetPermissionsBoundaryForPermissionSetRequest(*ssoadmin.GetPermissionsBoundaryForPermissionSetInput) (*request.Request, *ssoadmin.GetPermissionsBoundaryForPermissionSetOutput)
 
 	ListAccountAssignmentCreationStatus(*ssoadmin.ListAccountAssignmentCreationStatusInput) (*ssoadmin.ListAccountAssignmentCreationStatusOutput, error)
 	ListAccountAssignmentCreationStatusWithContext(aws.Context, *ssoadmin.ListAccountAssignmentCreationStatusInput, ...request.Option) (*ssoadmin.ListAccountAssignmentCreationStatusOutput, error)
@@ -147,6 +163,13 @@ type SSOAdminAPI interface {
 
 	ListAccountsForProvisionedPermissionSetPages(*ssoadmin.ListAccountsForProvisionedPermissionSetInput, func(*ssoadmin.ListAccountsForProvisionedPermissionSetOutput, bool) bool) error
 	ListAccountsForProvisionedPermissionSetPagesWithContext(aws.Context, *ssoadmin.ListAccountsForProvisionedPermissionSetInput, func(*ssoadmin.ListAccountsForProvisionedPermissionSetOutput, bool) bool, ...request.Option) error
+
+	ListCustomerManagedPolicyReferencesInPermissionSet(*ssoadmin.ListCustomerManagedPolicyReferencesInPermissionSetInput) (*ssoadmin.ListCustomerManagedPolicyReferencesInPermissionSetOutput, error)
+	ListCustomerManagedPolicyReferencesInPermissionSetWithContext(aws.Context, *ssoadmin.ListCustomerManagedPolicyReferencesInPermissionSetInput, ...request.Option) (*ssoadmin.ListCustomerManagedPolicyReferencesInPermissionSetOutput, error)
+	ListCustomerManagedPolicyReferencesInPermissionSetRequest(*ssoadmin.ListCustomerManagedPolicyReferencesInPermissionSetInput) (*request.Request, *ssoadmin.ListCustomerManagedPolicyReferencesInPermissionSetOutput)
+
+	ListCustomerManagedPolicyReferencesInPermissionSetPages(*ssoadmin.ListCustomerManagedPolicyReferencesInPermissionSetInput, func(*ssoadmin.ListCustomerManagedPolicyReferencesInPermissionSetOutput, bool) bool) error
+	ListCustomerManagedPolicyReferencesInPermissionSetPagesWithContext(aws.Context, *ssoadmin.ListCustomerManagedPolicyReferencesInPermissionSetInput, func(*ssoadmin.ListCustomerManagedPolicyReferencesInPermissionSetOutput, bool) bool, ...request.Option) error
 
 	ListInstances(*ssoadmin.ListInstancesInput) (*ssoadmin.ListInstancesOutput, error)
 	ListInstancesWithContext(aws.Context, *ssoadmin.ListInstancesInput, ...request.Option) (*ssoadmin.ListInstancesOutput, error)
@@ -197,6 +220,10 @@ type SSOAdminAPI interface {
 	PutInlinePolicyToPermissionSet(*ssoadmin.PutInlinePolicyToPermissionSetInput) (*ssoadmin.PutInlinePolicyToPermissionSetOutput, error)
 	PutInlinePolicyToPermissionSetWithContext(aws.Context, *ssoadmin.PutInlinePolicyToPermissionSetInput, ...request.Option) (*ssoadmin.PutInlinePolicyToPermissionSetOutput, error)
 	PutInlinePolicyToPermissionSetRequest(*ssoadmin.PutInlinePolicyToPermissionSetInput) (*request.Request, *ssoadmin.PutInlinePolicyToPermissionSetOutput)
+
+	PutPermissionsBoundaryToPermissionSet(*ssoadmin.PutPermissionsBoundaryToPermissionSetInput) (*ssoadmin.PutPermissionsBoundaryToPermissionSetOutput, error)
+	PutPermissionsBoundaryToPermissionSetWithContext(aws.Context, *ssoadmin.PutPermissionsBoundaryToPermissionSetInput, ...request.Option) (*ssoadmin.PutPermissionsBoundaryToPermissionSetOutput, error)
+	PutPermissionsBoundaryToPermissionSetRequest(*ssoadmin.PutPermissionsBoundaryToPermissionSetInput) (*request.Request, *ssoadmin.PutPermissionsBoundaryToPermissionSetOutput)
 
 	TagResource(*ssoadmin.TagResourceInput) (*ssoadmin.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *ssoadmin.TagResourceInput, ...request.Option) (*ssoadmin.TagResourceOutput, error)

@@ -3687,7 +3687,8 @@
         "UserGroupIds":{"shape":"UserGroupIdList"},
         "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationList"},
         "ReplicationGroupCreateTime":{"shape":"TStamp"},
-        "DataTiering":{"shape":"DataTieringStatus"}
+        "DataTiering":{"shape":"DataTieringStatus"},
+        "AutoMinorVersionUpgrade":{"shape":"Boolean"}
       },
       "wrapper":true
     },

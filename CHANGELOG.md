@@ -1,3 +1,21 @@
+Release v1.44.57 (2022-07-18)
+===
+
+### Service Client Updates
+* `service/discovery`: Updates service API and documentation
+  * Add AWS Agentless Collector details to the GetDiscoverySummary API response
+* `service/ec2`: Updates service documentation
+  * Documentation updates for Amazon EC2.
+* `service/elasticache`: Updates service API and documentation
+  * Adding AutoMinorVersionUpgrade in the DescribeReplicationGroups API
+* `service/kms`: Updates service API, documentation, and paginators
+  * Added support for the SM2 KeySpec in China Partition Regions
+* `service/mediapackage`: Updates service API and documentation
+  * This release adds "IncludeIframeOnlyStream" for Dash endpoints and increases the number of supported video and audio encryption presets for Speke v2
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * Amazon SageMaker Edge Manager provides lightweight model deployment feature to deploy machine learning models on requested devices.
+* `service/sso-admin`: Updates service API, documentation, and paginators
+
 Release v1.44.56 (2022-07-15)
 ===
 

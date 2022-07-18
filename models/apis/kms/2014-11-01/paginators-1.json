@@ -1,5 +1,12 @@
 {
   "pagination": {
+    "DescribeCustomKeyStores": {
+      "input_token": "Marker",
+      "limit_key": "Limit",
+      "more_results": "Truncated",
+      "output_token": "NextMarker",
+      "result_key": "CustomKeyStores"
+    },
     "ListAliases": {
       "input_token": "Marker",
       "limit_key": "Limit",
@@ -27,6 +34,20 @@
       "more_results": "Truncated",
       "output_token": "NextMarker",
       "result_key": "Keys"
+    },
+    "ListResourceTags": {
+      "input_token": "Marker",
+      "limit_key": "Limit",
+      "more_results": "Truncated",
+      "output_token": "NextMarker",
+      "result_key": "Tags"
+    },
+    "ListRetirableGrants": {
+      "input_token": "Marker",
+      "limit_key": "Limit",
+      "more_results": "Truncated",
+      "output_token": "NextMarker",
+      "result_key": "Grants"
     }
   }
 }
