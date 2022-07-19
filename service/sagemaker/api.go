@@ -84315,9 +84315,7 @@ type QueryLineageInput struct {
 
 	// A list of resource Amazon Resource Name (ARN) that represent the starting
 	// point for your lineage query.
-	//
-	// StartArns is a required field
-	StartArns []*string `min:"1" type:"list" required:"true"`
+	StartArns []*string `type:"list"`
 }
 
 // String returns the string representation.
@@ -84336,22 +84334,6 @@ func (s QueryLineageInput) String() string {
 // value will be replaced with "sensitive".
 func (s QueryLineageInput) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *QueryLineageInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "QueryLineageInput"}
-	if s.StartArns == nil {
-		invalidParams.Add(request.NewErrParamRequired("StartArns"))
-	}
-	if s.StartArns != nil && len(s.StartArns) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("StartArns", 1))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetDirection sets the Direction field's value.

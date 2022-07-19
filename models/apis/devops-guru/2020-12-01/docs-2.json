@@ -18,8 +18,10 @@
     "GetCostEstimation": "<p>Returns an estimate of the monthly cost for DevOps Guru to analyze your Amazon Web Services resources. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html\">Estimate your Amazon DevOps Guru costs</a> and <a href=\"http://aws.amazon.com/devops-guru/pricing/\">Amazon DevOps Guru pricing</a>.</p>",
     "GetResourceCollection": "<p> Returns lists Amazon Web Services resources that are of the specified resource collection type. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>",
     "ListAnomaliesForInsight": "<p> Returns a list of the anomalies that belong to an insight that you specify using its ID. </p>",
+    "ListAnomalousLogGroups": "<p> Returns the list of log groups that contain log anomalies. </p>",
     "ListEvents": "<p> Returns a list of the events emitted by the resources that are evaluated by DevOps Guru. You can use filters to specify which events are returned. </p>",
     "ListInsights": "<p> Returns a list of insights in your Amazon Web Services account. You can specify which insights are returned by their start time and status (<code>ONGOING</code>, <code>CLOSED</code>, or <code>ANY</code>). </p>",
+    "ListMonitoredResources": "<p> Returns the list of all log groups that are being monitored and tagged by DevOps Guru. </p>",
     "ListNotificationChannels": "<p> Returns a list of notification channels configured for DevOps Guru. Each notification channel is used to notify you when DevOps Guru generates an insight that contains information about how to improve your operations. The one supported notification channel is Amazon Simple Notification Service (Amazon SNS). </p>",
     "ListOrganizationInsights": "<p>Returns a list of insights associated with the account or OU Id.</p>",
     "ListRecommendations": "<p> Returns a list of a specified insight's recommendations. Each recommendation includes a list of related metrics and a list of related events. </p>",
@@ -78,6 +80,18 @@
       "base": "<p>Information about your account's integration with Amazon CodeGuru Profiler. This returns whether DevOps Guru is configured to consume recommendations generated from Amazon CodeGuru Profiler.</p>",
       "refs": {
         "EventSourcesConfig$AmazonCodeGuruProfiler": "<p>Information about whether DevOps Guru is configured to consume recommendations which are generated from AWS CodeGuru Profiler.</p>"
+      }
+    },
+    "AnomalousLogGroup": {
+      "base": "<p> An Amazon CloudWatch log group that contains log anomalies and is used to generate an insight. </p>",
+      "refs": {
+        "AnomalousLogGroups$member": null
+      }
+    },
+    "AnomalousLogGroups": {
+      "base": null,
+      "refs": {
+        "ListAnomalousLogGroupsResponse$AnomalousLogGroups": "<p> The list of Amazon CloudWatch log groups that are related to an insight. </p>"
       }
     },
     "AnomalyDescription": {
@@ -295,7 +309,7 @@
       }
     },
     "CloudWatchMetricsDimension": {
-      "base": "<p> The dimension of am Amazon CloudWatch metric that is used when DevOps Guru analyzes the resources in your account for operational problems and anomalous behavior. A dimension is a name/value pair that is part of the identity of a metric. A metric can have up to 10 dimensions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension\">Dimensions</a> in the <i>Amazon CloudWatch User Guide</i>. </p>",
+      "base": "<p> The dimension of an Amazon CloudWatch metric that is used when DevOps Guru analyzes the resources in your account for operational problems and anomalous behavior. A dimension is a name/value pair that is part of the identity of a metric. A metric can have up to 10 dimensions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension\">Dimensions</a> in the <i>Amazon CloudWatch User Guide</i>. </p>",
       "refs": {
         "CloudWatchMetricsDimensions$member": null
       }
@@ -655,6 +669,12 @@
         "ListEventsResponse$Events": "<p> A list of the requested events. </p>"
       }
     },
+    "Explanation": {
+      "base": null,
+      "refs": {
+        "LogAnomalyClass$Explanation": "<p> The explanation for why the log event is considered an anomaly. </p>"
+      }
+    },
     "GetCostEstimationRequest": {
       "base": null,
       "refs": {
@@ -710,6 +730,8 @@
         "DescribeInsightRequest$Id": "<p> The ID of the insight. </p>",
         "InsightFeedback$Id": "<p> The insight feedback ID. </p>",
         "ListAnomaliesForInsightRequest$InsightId": "<p> The ID of the insight. The returned anomalies belong to this insight. </p>",
+        "ListAnomalousLogGroupsRequest$InsightId": "<p> The ID of the insight containing the log groups. </p>",
+        "ListAnomalousLogGroupsResponse$InsightId": "<p> The ID of the insight containing the log groups. </p>",
         "ListEventsFilters$InsightId": "<p> An ID of an insight that is related to the events you want to filter for. </p>",
         "ListRecommendationsRequest$InsightId": "<p> The ID of the requested insight. </p>",
         "ProactiveAnomaly$AssociatedInsightId": "<p> The ID of the insight that contains this anomaly. An insight is composed of related anomalies. </p>",
@@ -815,6 +837,22 @@
       "refs": {
       }
     },
+    "ListAnomalousLogGroupsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListAnomalousLogGroupsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
+    },
+    "ListAnomalousLogGroupsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAnomalousLogGroupsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListEventsFilters": {
       "base": "<p> Filters you can use to specify which events are returned when <code>ListEvents</code> is called. </p>",
       "refs": {
@@ -891,6 +929,28 @@
         "ListOrganizationInsightsRequest$StatusFilter": null
       }
     },
+    "ListMonitoredResourcesFilters": {
+      "base": "<p> Filters to determine which monitored resources you want to retrieve. You can filter by resource type or resource permission status. </p>",
+      "refs": {
+        "ListMonitoredResourcesRequest$Filters": "<p> Filters to determine which monitored resources you want to retrieve. You can filter by resource type or resource permission status. </p>"
+      }
+    },
+    "ListMonitoredResourcesMaxResults": {
+      "base": null,
+      "refs": {
+        "ListMonitoredResourcesRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
+    },
+    "ListMonitoredResourcesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMonitoredResourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListNotificationChannelsRequest": {
       "base": null,
       "refs": {
@@ -927,6 +987,72 @@
         "ListRecommendationsRequest$Locale": "<p>A locale that specifies the language to use for recommendations.</p>"
       }
     },
+    "LogAnomalyClass": {
+      "base": "<p> Information about an anomalous log event found within a log group. </p>",
+      "refs": {
+        "LogAnomalyClasses$member": null
+      }
+    },
+    "LogAnomalyClasses": {
+      "base": null,
+      "refs": {
+        "LogAnomalyShowcase$LogAnomalyClasses": "<p> A list of anomalous log events that may be related. </p>"
+      }
+    },
+    "LogAnomalyShowcase": {
+      "base": "<p> A cluster of similar anomalous log events found within a log group. </p>",
+      "refs": {
+        "LogAnomalyShowcases$member": null
+      }
+    },
+    "LogAnomalyShowcases": {
+      "base": null,
+      "refs": {
+        "AnomalousLogGroup$LogAnomalyShowcases": "<p> The log anomalies in the log group. Each log anomaly displayed represents a cluster of similar anomalous log events. </p>"
+      }
+    },
+    "LogAnomalyToken": {
+      "base": null,
+      "refs": {
+        "LogAnomalyClass$LogAnomalyToken": "<p> The token where the anomaly was detected. This may refer to an exception or another location, or it may be blank for log anomalies such as format anomalies. </p>"
+      }
+    },
+    "LogAnomalyType": {
+      "base": null,
+      "refs": {
+        "LogAnomalyClass$LogAnomalyType": "<p> The type of log anomaly that has been detected. </p>"
+      }
+    },
+    "LogEventId": {
+      "base": null,
+      "refs": {
+        "LogAnomalyClass$LogEventId": "<p> The ID of the log event. </p>"
+      }
+    },
+    "LogGroupName": {
+      "base": null,
+      "refs": {
+        "AnomalousLogGroup$LogGroupName": "<p> The name of the CloudWatch log group. </p>"
+      }
+    },
+    "LogStreamName": {
+      "base": null,
+      "refs": {
+        "LogAnomalyClass$LogStreamName": "<p> The name of the Amazon CloudWatch log stream that the anomalous log event belongs to. A log stream is a sequence of log events that share the same source. </p>"
+      }
+    },
+    "LogsAnomalyDetectionIntegration": {
+      "base": "<p> Information about the integration of DevOps Guru with CloudWatch log groups for log anomaly detection. </p>",
+      "refs": {
+        "ServiceIntegrationConfig$LogsAnomalyDetection": "<p> Information about whether DevOps Guru is configured to perform log anomaly detection on Amazon CloudWatch log groups. </p>"
+      }
+    },
+    "LogsAnomalyDetectionIntegrationConfig": {
+      "base": "<p> Information about the integration of DevOps Guru with CloudWatch log groups for log anomaly detection. You can use this to update the configuration. </p>",
+      "refs": {
+        "UpdateServiceIntegrationConfig$LogsAnomalyDetection": "<p> Information about whether DevOps Guru is configured to perform log anomaly detection on Amazon CloudWatch log groups. </p>"
+      }
+    },
     "MeanTimeToRecoverInMilliseconds": {
       "base": null,
       "refs": {
@@ -938,6 +1064,24 @@
       "base": null,
       "refs": {
         "TimestampMetricValuePair$MetricValue": "<p>Value of the anomalous metric data point at respective Timestamp.</p>"
+      }
+    },
+    "MonitoredResourceIdentifier": {
+      "base": "<p> Information about the resource that is being monitored, including the name of the resource, the type of resource, and whether or not permission is given to DevOps Guru to access that resource. </p>",
+      "refs": {
+        "MonitoredResourceIdentifiers$member": null
+      }
+    },
+    "MonitoredResourceIdentifiers": {
+      "base": null,
+      "refs": {
+        "ListMonitoredResourcesResponse$MonitoredResourceIdentifiers": "<p> Information about the resource that is being monitored, including the name of the resource, the type of resource, and whether or not permission is given to DevOps Guru to access that resource. </p>"
+      }
+    },
+    "MonitoredResourceName": {
+      "base": null,
+      "refs": {
+        "MonitoredResourceIdentifier$MonitoredResourceName": "<p> The name of the resource being monitored. </p>"
       }
     },
     "NotificationChannel": {
@@ -1002,6 +1146,18 @@
         "DescribeOrganizationOverviewResponse$ReactiveInsights": "<p>An integer that specifies the number of open reactive insights in your Amazon Web Services account.</p>"
       }
     },
+    "NumberOfLogLinesOccurrences": {
+      "base": null,
+      "refs": {
+        "LogAnomalyClass$NumberOfLogLinesOccurrences": "<p> The number of log lines where this anomalous log event occurs. </p>"
+      }
+    },
+    "NumberOfLogLinesScanned": {
+      "base": null,
+      "refs": {
+        "AnomalousLogGroup$NumberOfLogLinesScanned": "<p> The number of log lines that were scanned for anomalous log events. </p>"
+      }
+    },
     "OpsCenterIntegration": {
       "base": "<p> Information about whether DevOps Guru is configured to create an OpsItem in Amazon Web Services Systems Manager OpsCenter for each created insight. </p>",
       "refs": {
@@ -1009,7 +1165,7 @@
       }
     },
     "OpsCenterIntegrationConfig": {
-      "base": "<p> Information about whether DevOps Guru is configured to create an OpsItem in Amazon Web Services Systems Manager OpsCenter for each created insight. </p>",
+      "base": "<p> Information about whether DevOps Guru is configured to create an OpsItem in Amazon Web Services Systems Manager OpsCenter for each created insight. You can use this to update the configuration.</p>",
       "refs": {
         "UpdateServiceIntegrationConfig$OpsCenter": null
       }
@@ -1017,6 +1173,8 @@
     "OptInStatus": {
       "base": "<p> Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems Manager OpsItem for each created insight. </p>",
       "refs": {
+        "LogsAnomalyDetectionIntegration$OptInStatus": "<p>Specifies if DevOps Guru is configured to perform log anomaly detection on CloudWatch log groups.</p>",
+        "LogsAnomalyDetectionIntegrationConfig$OptInStatus": "<p>Specifies if DevOps Guru is configured to perform log anomaly detection on CloudWatch log groups.</p>",
         "OpsCenterIntegration$OptInStatus": "<p> Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems Manager OpsItem for each created insight. </p>",
         "OpsCenterIntegrationConfig$OptInStatus": "<p> Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems Manager OpsItem for each created insight. </p>"
       }
@@ -1554,12 +1712,32 @@
       "refs": {
       }
     },
+    "ResourcePermission": {
+      "base": null,
+      "refs": {
+        "ListMonitoredResourcesFilters$ResourcePermission": "<p> The permission status of a resource. </p>",
+        "MonitoredResourceIdentifier$ResourcePermission": "<p> The permission status of a resource. </p>"
+      }
+    },
     "ResourceType": {
       "base": null,
       "refs": {
         "AnomalyResource$Type": "<p>The type of the Amazon Web Services resource.</p>",
         "AnomalySourceMetadata$SourceResourceType": "<p>The anomaly's resource type.</p>",
+        "MonitoredResourceIdentifier$Type": "<p> The type of resource being monitored. </p>",
         "ServiceResourceCost$Type": "<p>The type of the Amazon Web Services resource.</p>"
+      }
+    },
+    "ResourceTypeFilter": {
+      "base": null,
+      "refs": {
+        "ResourceTypeFilters$member": null
+      }
+    },
+    "ResourceTypeFilters": {
+      "base": null,
+      "refs": {
+        "ListMonitoredResourcesFilters$ResourceTypeFilters": "<p> The type of resource that you wish to retrieve, such as log groups. </p>"
       }
     },
     "RetryAfterSeconds": {
@@ -1806,6 +1984,8 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "AnomalousLogGroup$ImpactStartTime": "<p> The time the anomalous log events began. The impact start time indicates the time of the first log anomaly event that occurs. </p>",
+        "AnomalousLogGroup$ImpactEndTime": "<p> The time the anomalous log events stopped. </p>",
         "AnomalyReportedTimeRange$OpenTime": "<p> The time when an anomaly is opened. </p>",
         "AnomalyReportedTimeRange$CloseTime": "<p> The time when an anomaly is closed. </p>",
         "AnomalyTimeRange$StartTime": "<p> The time when the anomalous behavior started. </p>",
@@ -1823,6 +2003,7 @@
         "EventTimeRange$ToTime": "<p> The time when the event ended. </p>",
         "InsightTimeRange$StartTime": "<p> The time when the behavior described in an insight started. </p>",
         "InsightTimeRange$EndTime": "<p> The time when the behavior described in an insight ended. </p>",
+        "LogAnomalyClass$LogEventTimestamp": "<p> The time of the first occurrence of the anomalous log event. </p>",
         "PredictionTimeRange$StartTime": "<p> The time range during which a metric limit is expected to be exceeded. This applies to proactive insights only. </p>",
         "PredictionTimeRange$EndTime": "<p> The time when the behavior in a proactive insight is expected to end. </p>",
         "ProactiveAnomaly$UpdateTime": "<p> The time of the anomaly's most recent update. </p>",
@@ -1941,10 +2122,14 @@
         "GetResourceCollectionResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
         "ListAnomaliesForInsightRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
         "ListAnomaliesForInsightResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+        "ListAnomalousLogGroupsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+        "ListAnomalousLogGroupsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
         "ListEventsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
         "ListEventsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
         "ListInsightsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
         "ListInsightsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+        "ListMonitoredResourcesRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+        "ListMonitoredResourcesResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
         "ListNotificationChannelsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
         "ListNotificationChannelsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
         "ListOrganizationInsightsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
