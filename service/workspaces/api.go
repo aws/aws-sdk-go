@@ -3599,6 +3599,9 @@ func (c *WorkSpaces) ImportClientBrandingRequest(input *ImportClientBrandingInpu
 //   * ResourceLimitExceededException
 //   Your resource limits have been exceeded.
 //
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
 //   * AccessDeniedException
 //   The user is not authorized to access a resource.
 //

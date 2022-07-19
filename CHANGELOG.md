@@ -1,3 +1,16 @@
+Release v1.44.58 (2022-07-19)
+===
+
+### Service Client Updates
+* `service/devops-guru`: Updates service API, documentation, and paginators
+* `service/glue`: Updates service documentation
+  * Documentation updates for AWS Glue Job Timeout and Autoscaling
+* `service/sagemaker`: Updates service API
+  * Fixed an issue with cross account QueryLineage
+* `service/sagemaker-edge`: Updates service API and documentation
+* `service/workspaces`: Updates service API
+  * Increased the character limit of the login message from 850 to 2000 characters.
+
 Release v1.44.57 (2022-07-18)
 ===
 

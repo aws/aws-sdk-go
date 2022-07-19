@@ -560,6 +560,7 @@
       "errors":[
         {"shape":"InvalidParameterValuesException"},
         {"shape":"ResourceLimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"}
       ]
     },
@@ -1063,7 +1064,7 @@
     },
     "ClientLoginMessage":{
       "type":"string",
-      "max":850,
+      "max":2000,
       "min":0,
       "pattern":"^.*$"
     },

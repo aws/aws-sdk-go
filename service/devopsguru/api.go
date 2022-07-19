@@ -1377,6 +1377,9 @@ func (c *DevOpsGuru) DescribeServiceIntegrationRequest(input *DescribeServiceInt
 //   * InternalServerException
 //   An internal failure in an Amazon service occurred.
 //
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
 //   * ThrottlingException
 //   The request was denied due to a request throttling.
 //
@@ -1878,6 +1881,160 @@ func (c *DevOpsGuru) ListAnomaliesForInsightPagesWithContext(ctx aws.Context, in
 	return p.Err()
 }
 
+const opListAnomalousLogGroups = "ListAnomalousLogGroups"
+
+// ListAnomalousLogGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAnomalousLogGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAnomalousLogGroups for more information on using the ListAnomalousLogGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAnomalousLogGroupsRequest method.
+//    req, resp := client.ListAnomalousLogGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListAnomalousLogGroups
+func (c *DevOpsGuru) ListAnomalousLogGroupsRequest(input *ListAnomalousLogGroupsInput) (req *request.Request, output *ListAnomalousLogGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListAnomalousLogGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/list-log-anomalies",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAnomalousLogGroupsInput{}
+	}
+
+	output = &ListAnomalousLogGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAnomalousLogGroups API operation for Amazon DevOps Guru.
+//
+// Returns the list of log groups that contain log anomalies.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation ListAnomalousLogGroups for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListAnomalousLogGroups
+func (c *DevOpsGuru) ListAnomalousLogGroups(input *ListAnomalousLogGroupsInput) (*ListAnomalousLogGroupsOutput, error) {
+	req, out := c.ListAnomalousLogGroupsRequest(input)
+	return out, req.Send()
+}
+
+// ListAnomalousLogGroupsWithContext is the same as ListAnomalousLogGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAnomalousLogGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) ListAnomalousLogGroupsWithContext(ctx aws.Context, input *ListAnomalousLogGroupsInput, opts ...request.Option) (*ListAnomalousLogGroupsOutput, error) {
+	req, out := c.ListAnomalousLogGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAnomalousLogGroupsPages iterates over the pages of a ListAnomalousLogGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAnomalousLogGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAnomalousLogGroups operation.
+//    pageNum := 0
+//    err := client.ListAnomalousLogGroupsPages(params,
+//        func(page *devopsguru.ListAnomalousLogGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DevOpsGuru) ListAnomalousLogGroupsPages(input *ListAnomalousLogGroupsInput, fn func(*ListAnomalousLogGroupsOutput, bool) bool) error {
+	return c.ListAnomalousLogGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAnomalousLogGroupsPagesWithContext same as ListAnomalousLogGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) ListAnomalousLogGroupsPagesWithContext(ctx aws.Context, input *ListAnomalousLogGroupsInput, fn func(*ListAnomalousLogGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAnomalousLogGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAnomalousLogGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAnomalousLogGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListEvents = "ListEvents"
 
 // ListEventsRequest generates a "aws/request.Request" representing the
@@ -2179,6 +2336,154 @@ func (c *DevOpsGuru) ListInsightsPagesWithContext(ctx aws.Context, input *ListIn
 
 	for p.Next() {
 		if !fn(p.Page().(*ListInsightsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMonitoredResources = "ListMonitoredResources"
+
+// ListMonitoredResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the ListMonitoredResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMonitoredResources for more information on using the ListMonitoredResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMonitoredResourcesRequest method.
+//    req, resp := client.ListMonitoredResourcesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListMonitoredResources
+func (c *DevOpsGuru) ListMonitoredResourcesRequest(input *ListMonitoredResourcesInput) (req *request.Request, output *ListMonitoredResourcesOutput) {
+	op := &request.Operation{
+		Name:       opListMonitoredResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/monitoredResources",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMonitoredResourcesInput{}
+	}
+
+	output = &ListMonitoredResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMonitoredResources API operation for Amazon DevOps Guru.
+//
+// Returns the list of all log groups that are being monitored and tagged by
+// DevOps Guru.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation ListMonitoredResources for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListMonitoredResources
+func (c *DevOpsGuru) ListMonitoredResources(input *ListMonitoredResourcesInput) (*ListMonitoredResourcesOutput, error) {
+	req, out := c.ListMonitoredResourcesRequest(input)
+	return out, req.Send()
+}
+
+// ListMonitoredResourcesWithContext is the same as ListMonitoredResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMonitoredResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) ListMonitoredResourcesWithContext(ctx aws.Context, input *ListMonitoredResourcesInput, opts ...request.Option) (*ListMonitoredResourcesOutput, error) {
+	req, out := c.ListMonitoredResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMonitoredResourcesPages iterates over the pages of a ListMonitoredResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMonitoredResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMonitoredResources operation.
+//    pageNum := 0
+//    err := client.ListMonitoredResourcesPages(params,
+//        func(page *devopsguru.ListMonitoredResourcesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DevOpsGuru) ListMonitoredResourcesPages(input *ListMonitoredResourcesInput, fn func(*ListMonitoredResourcesOutput, bool) bool) error {
+	return c.ListMonitoredResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMonitoredResourcesPagesWithContext same as ListMonitoredResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) ListMonitoredResourcesPagesWithContext(ctx aws.Context, input *ListMonitoredResourcesInput, fn func(*ListMonitoredResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMonitoredResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMonitoredResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMonitoredResourcesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3845,6 +4150,77 @@ func (s *AmazonCodeGuruProfilerIntegration) SetStatus(v string) *AmazonCodeGuruP
 	return s
 }
 
+// An Amazon CloudWatch log group that contains log anomalies and is used to
+// generate an insight.
+type AnomalousLogGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The time the anomalous log events stopped.
+	ImpactEndTime *time.Time `type:"timestamp"`
+
+	// The time the anomalous log events began. The impact start time indicates
+	// the time of the first log anomaly event that occurs.
+	ImpactStartTime *time.Time `type:"timestamp"`
+
+	// The log anomalies in the log group. Each log anomaly displayed represents
+	// a cluster of similar anomalous log events.
+	LogAnomalyShowcases []*LogAnomalyShowcase `type:"list"`
+
+	// The name of the CloudWatch log group.
+	LogGroupName *string `min:"1" type:"string"`
+
+	// The number of log lines that were scanned for anomalous log events.
+	NumberOfLogLinesScanned *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalousLogGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalousLogGroup) GoString() string {
+	return s.String()
+}
+
+// SetImpactEndTime sets the ImpactEndTime field's value.
+func (s *AnomalousLogGroup) SetImpactEndTime(v time.Time) *AnomalousLogGroup {
+	s.ImpactEndTime = &v
+	return s
+}
+
+// SetImpactStartTime sets the ImpactStartTime field's value.
+func (s *AnomalousLogGroup) SetImpactStartTime(v time.Time) *AnomalousLogGroup {
+	s.ImpactStartTime = &v
+	return s
+}
+
+// SetLogAnomalyShowcases sets the LogAnomalyShowcases field's value.
+func (s *AnomalousLogGroup) SetLogAnomalyShowcases(v []*LogAnomalyShowcase) *AnomalousLogGroup {
+	s.LogAnomalyShowcases = v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *AnomalousLogGroup) SetLogGroupName(v string) *AnomalousLogGroup {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetNumberOfLogLinesScanned sets the NumberOfLogLinesScanned field's value.
+func (s *AnomalousLogGroup) SetNumberOfLogLinesScanned(v int64) *AnomalousLogGroup {
+	s.NumberOfLogLinesScanned = &v
+	return s
+}
+
 // A time range that specifies when DevOps Guru opens and then closes an anomaly.
 // This is different from AnomalyTimeRange, which specifies the time range when
 // DevOps Guru actually observes the anomalous behavior.
@@ -4372,7 +4748,7 @@ func (s *CloudWatchMetricsDetail) SetUnit(v string) *CloudWatchMetricsDetail {
 	return s
 }
 
-// The dimension of am Amazon CloudWatch metric that is used when DevOps Guru
+// The dimension of an Amazon CloudWatch metric that is used when DevOps Guru
 // analyzes the resources in your account for operational problems and anomalous
 // behavior. A dimension is a name/value pair that is part of the identity of
 // a metric. A metric can have up to 10 dimensions. For more information, see
@@ -6775,6 +7151,135 @@ func (s *ListAnomaliesForInsightOutput) SetReactiveAnomalies(v []*ReactiveAnomal
 	return s
 }
 
+type ListAnomalousLogGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the insight containing the log groups.
+	//
+	// InsightId is a required field
+	InsightId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
+	NextToken *string `min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomalousLogGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomalousLogGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAnomalousLogGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAnomalousLogGroupsInput"}
+	if s.InsightId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InsightId"))
+	}
+	if s.InsightId != nil && len(*s.InsightId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InsightId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInsightId sets the InsightId field's value.
+func (s *ListAnomalousLogGroupsInput) SetInsightId(v string) *ListAnomalousLogGroupsInput {
+	s.InsightId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAnomalousLogGroupsInput) SetMaxResults(v int64) *ListAnomalousLogGroupsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAnomalousLogGroupsInput) SetNextToken(v string) *ListAnomalousLogGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAnomalousLogGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of Amazon CloudWatch log groups that are related to an insight.
+	//
+	// AnomalousLogGroups is a required field
+	AnomalousLogGroups []*AnomalousLogGroup `type:"list" required:"true"`
+
+	// The ID of the insight containing the log groups.
+	//
+	// InsightId is a required field
+	InsightId *string `min:"1" type:"string" required:"true"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
+	NextToken *string `min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomalousLogGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomalousLogGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnomalousLogGroups sets the AnomalousLogGroups field's value.
+func (s *ListAnomalousLogGroupsOutput) SetAnomalousLogGroups(v []*AnomalousLogGroup) *ListAnomalousLogGroupsOutput {
+	s.AnomalousLogGroups = v
+	return s
+}
+
+// SetInsightId sets the InsightId field's value.
+func (s *ListAnomalousLogGroupsOutput) SetInsightId(v string) *ListAnomalousLogGroupsOutput {
+	s.InsightId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAnomalousLogGroupsOutput) SetNextToken(v string) *ListAnomalousLogGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
 // Filters you can use to specify which events are returned when ListEvents
 // is called.
 type ListEventsFilters struct {
@@ -7394,6 +7899,191 @@ func (s *ListInsightsStatusFilter) SetOngoing(v *ListInsightsOngoingStatusFilter
 	return s
 }
 
+// Filters to determine which monitored resources you want to retrieve. You
+// can filter by resource type or resource permission status.
+type ListMonitoredResourcesFilters struct {
+	_ struct{} `type:"structure"`
+
+	// The permission status of a resource.
+	//
+	// ResourcePermission is a required field
+	ResourcePermission *string `type:"string" required:"true" enum:"ResourcePermission"`
+
+	// The type of resource that you wish to retrieve, such as log groups.
+	//
+	// ResourceTypeFilters is a required field
+	ResourceTypeFilters []*string `type:"list" required:"true" enum:"ResourceTypeFilter"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitoredResourcesFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitoredResourcesFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMonitoredResourcesFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMonitoredResourcesFilters"}
+	if s.ResourcePermission == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourcePermission"))
+	}
+	if s.ResourceTypeFilters == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceTypeFilters"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourcePermission sets the ResourcePermission field's value.
+func (s *ListMonitoredResourcesFilters) SetResourcePermission(v string) *ListMonitoredResourcesFilters {
+	s.ResourcePermission = &v
+	return s
+}
+
+// SetResourceTypeFilters sets the ResourceTypeFilters field's value.
+func (s *ListMonitoredResourcesFilters) SetResourceTypeFilters(v []*string) *ListMonitoredResourcesFilters {
+	s.ResourceTypeFilters = v
+	return s
+}
+
+type ListMonitoredResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters to determine which monitored resources you want to retrieve. You
+	// can filter by resource type or resource permission status.
+	//
+	// Filters is a required field
+	Filters *ListMonitoredResourcesFilters `type:"structure" required:"true"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
+	NextToken *string `min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitoredResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitoredResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMonitoredResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMonitoredResourcesInput"}
+	if s.Filters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 36))
+	}
+	if s.Filters != nil {
+		if err := s.Filters.Validate(); err != nil {
+			invalidParams.AddNested("Filters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListMonitoredResourcesInput) SetFilters(v *ListMonitoredResourcesFilters) *ListMonitoredResourcesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMonitoredResourcesInput) SetMaxResults(v int64) *ListMonitoredResourcesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMonitoredResourcesInput) SetNextToken(v string) *ListMonitoredResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMonitoredResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the resource that is being monitored, including the name
+	// of the resource, the type of resource, and whether or not permission is given
+	// to DevOps Guru to access that resource.
+	//
+	// MonitoredResourceIdentifiers is a required field
+	MonitoredResourceIdentifiers []*MonitoredResourceIdentifier `type:"list" required:"true"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
+	NextToken *string `min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitoredResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitoredResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetMonitoredResourceIdentifiers sets the MonitoredResourceIdentifiers field's value.
+func (s *ListMonitoredResourcesOutput) SetMonitoredResourceIdentifiers(v []*MonitoredResourceIdentifier) *ListMonitoredResourcesOutput {
+	s.MonitoredResourceIdentifiers = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMonitoredResourcesOutput) SetNextToken(v string) *ListMonitoredResourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListNotificationChannelsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7751,6 +8441,248 @@ func (s *ListRecommendationsOutput) SetRecommendations(v []*Recommendation) *Lis
 	return s
 }
 
+// Information about an anomalous log event found within a log group.
+type LogAnomalyClass struct {
+	_ struct{} `type:"structure"`
+
+	// The explanation for why the log event is considered an anomaly.
+	Explanation *string `min:"1" type:"string"`
+
+	// The token where the anomaly was detected. This may refer to an exception
+	// or another location, or it may be blank for log anomalies such as format
+	// anomalies.
+	LogAnomalyToken *string `min:"1" type:"string"`
+
+	// The type of log anomaly that has been detected.
+	LogAnomalyType *string `type:"string" enum:"LogAnomalyType"`
+
+	// The ID of the log event.
+	LogEventId *string `min:"1" type:"string"`
+
+	// The time of the first occurrence of the anomalous log event.
+	LogEventTimestamp *time.Time `type:"timestamp"`
+
+	// The name of the Amazon CloudWatch log stream that the anomalous log event
+	// belongs to. A log stream is a sequence of log events that share the same
+	// source.
+	LogStreamName *string `min:"1" type:"string"`
+
+	// The number of log lines where this anomalous log event occurs.
+	NumberOfLogLinesOccurrences *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogAnomalyClass) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogAnomalyClass) GoString() string {
+	return s.String()
+}
+
+// SetExplanation sets the Explanation field's value.
+func (s *LogAnomalyClass) SetExplanation(v string) *LogAnomalyClass {
+	s.Explanation = &v
+	return s
+}
+
+// SetLogAnomalyToken sets the LogAnomalyToken field's value.
+func (s *LogAnomalyClass) SetLogAnomalyToken(v string) *LogAnomalyClass {
+	s.LogAnomalyToken = &v
+	return s
+}
+
+// SetLogAnomalyType sets the LogAnomalyType field's value.
+func (s *LogAnomalyClass) SetLogAnomalyType(v string) *LogAnomalyClass {
+	s.LogAnomalyType = &v
+	return s
+}
+
+// SetLogEventId sets the LogEventId field's value.
+func (s *LogAnomalyClass) SetLogEventId(v string) *LogAnomalyClass {
+	s.LogEventId = &v
+	return s
+}
+
+// SetLogEventTimestamp sets the LogEventTimestamp field's value.
+func (s *LogAnomalyClass) SetLogEventTimestamp(v time.Time) *LogAnomalyClass {
+	s.LogEventTimestamp = &v
+	return s
+}
+
+// SetLogStreamName sets the LogStreamName field's value.
+func (s *LogAnomalyClass) SetLogStreamName(v string) *LogAnomalyClass {
+	s.LogStreamName = &v
+	return s
+}
+
+// SetNumberOfLogLinesOccurrences sets the NumberOfLogLinesOccurrences field's value.
+func (s *LogAnomalyClass) SetNumberOfLogLinesOccurrences(v int64) *LogAnomalyClass {
+	s.NumberOfLogLinesOccurrences = &v
+	return s
+}
+
+// A cluster of similar anomalous log events found within a log group.
+type LogAnomalyShowcase struct {
+	_ struct{} `type:"structure"`
+
+	// A list of anomalous log events that may be related.
+	LogAnomalyClasses []*LogAnomalyClass `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogAnomalyShowcase) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogAnomalyShowcase) GoString() string {
+	return s.String()
+}
+
+// SetLogAnomalyClasses sets the LogAnomalyClasses field's value.
+func (s *LogAnomalyShowcase) SetLogAnomalyClasses(v []*LogAnomalyClass) *LogAnomalyShowcase {
+	s.LogAnomalyClasses = v
+	return s
+}
+
+// Information about the integration of DevOps Guru with CloudWatch log groups
+// for log anomaly detection.
+type LogsAnomalyDetectionIntegration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies if DevOps Guru is configured to perform log anomaly detection on
+	// CloudWatch log groups.
+	OptInStatus *string `type:"string" enum:"OptInStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogsAnomalyDetectionIntegration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogsAnomalyDetectionIntegration) GoString() string {
+	return s.String()
+}
+
+// SetOptInStatus sets the OptInStatus field's value.
+func (s *LogsAnomalyDetectionIntegration) SetOptInStatus(v string) *LogsAnomalyDetectionIntegration {
+	s.OptInStatus = &v
+	return s
+}
+
+// Information about the integration of DevOps Guru with CloudWatch log groups
+// for log anomaly detection. You can use this to update the configuration.
+type LogsAnomalyDetectionIntegrationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies if DevOps Guru is configured to perform log anomaly detection on
+	// CloudWatch log groups.
+	OptInStatus *string `type:"string" enum:"OptInStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogsAnomalyDetectionIntegrationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogsAnomalyDetectionIntegrationConfig) GoString() string {
+	return s.String()
+}
+
+// SetOptInStatus sets the OptInStatus field's value.
+func (s *LogsAnomalyDetectionIntegrationConfig) SetOptInStatus(v string) *LogsAnomalyDetectionIntegrationConfig {
+	s.OptInStatus = &v
+	return s
+}
+
+// Information about the resource that is being monitored, including the name
+// of the resource, the type of resource, and whether or not permission is given
+// to DevOps Guru to access that resource.
+type MonitoredResourceIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the resource being monitored.
+	MonitoredResourceName *string `min:"1" type:"string"`
+
+	// The permission status of a resource.
+	ResourcePermission *string `type:"string" enum:"ResourcePermission"`
+
+	// The type of resource being monitored.
+	Type *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoredResourceIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoredResourceIdentifier) GoString() string {
+	return s.String()
+}
+
+// SetMonitoredResourceName sets the MonitoredResourceName field's value.
+func (s *MonitoredResourceIdentifier) SetMonitoredResourceName(v string) *MonitoredResourceIdentifier {
+	s.MonitoredResourceName = &v
+	return s
+}
+
+// SetResourcePermission sets the ResourcePermission field's value.
+func (s *MonitoredResourceIdentifier) SetResourcePermission(v string) *MonitoredResourceIdentifier {
+	s.ResourcePermission = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *MonitoredResourceIdentifier) SetType(v string) *MonitoredResourceIdentifier {
+	s.Type = &v
+	return s
+}
+
 // Information about a notification channel. A notification channel is used
 // to notify you when DevOps Guru creates an insight. The one supported notification
 // channel is Amazon Simple Notification Service (Amazon SNS).
@@ -7920,6 +8852,7 @@ func (s *OpsCenterIntegration) SetOptInStatus(v string) *OpsCenterIntegration {
 
 // Information about whether DevOps Guru is configured to create an OpsItem
 // in Amazon Web Services Systems Manager OpsCenter for each created insight.
+// You can use this to update the configuration.
 type OpsCenterIntegrationConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -11174,6 +12107,10 @@ func (s *ServiceInsightHealth) SetOpenReactiveInsights(v int64) *ServiceInsightH
 type ServiceIntegrationConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Information about whether DevOps Guru is configured to perform log anomaly
+	// detection on Amazon CloudWatch log groups.
+	LogsAnomalyDetection *LogsAnomalyDetectionIntegration `type:"structure"`
+
 	// Information about whether DevOps Guru is configured to create an OpsItem
 	// in Amazon Web Services Systems Manager OpsCenter for each created insight.
 	OpsCenter *OpsCenterIntegration `type:"structure"`
@@ -11195,6 +12132,12 @@ func (s ServiceIntegrationConfig) String() string {
 // value will be replaced with "sensitive".
 func (s ServiceIntegrationConfig) GoString() string {
 	return s.String()
+}
+
+// SetLogsAnomalyDetection sets the LogsAnomalyDetection field's value.
+func (s *ServiceIntegrationConfig) SetLogsAnomalyDetection(v *LogsAnomalyDetectionIntegration) *ServiceIntegrationConfig {
+	s.LogsAnomalyDetection = v
+	return s
 }
 
 // SetOpsCenter sets the OpsCenter field's value.
@@ -12256,8 +13199,13 @@ func (s UpdateResourceCollectionOutput) GoString() string {
 type UpdateServiceIntegrationConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Information about whether DevOps Guru is configured to perform log anomaly
+	// detection on Amazon CloudWatch log groups.
+	LogsAnomalyDetection *LogsAnomalyDetectionIntegrationConfig `type:"structure"`
+
 	// Information about whether DevOps Guru is configured to create an OpsItem
 	// in Amazon Web Services Systems Manager OpsCenter for each created insight.
+	// You can use this to update the configuration.
 	OpsCenter *OpsCenterIntegrationConfig `type:"structure"`
 }
 
@@ -12277,6 +13225,12 @@ func (s UpdateServiceIntegrationConfig) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateServiceIntegrationConfig) GoString() string {
 	return s.String()
+}
+
+// SetLogsAnomalyDetection sets the LogsAnomalyDetection field's value.
+func (s *UpdateServiceIntegrationConfig) SetLogsAnomalyDetection(v *LogsAnomalyDetectionIntegrationConfig) *UpdateServiceIntegrationConfig {
+	s.LogsAnomalyDetection = v
+	return s
 }
 
 // SetOpsCenter sets the OpsCenter field's value.
@@ -12890,6 +13844,46 @@ func Locale_Values() []string {
 	}
 }
 
+const (
+	// LogAnomalyTypeKeyword is a LogAnomalyType enum value
+	LogAnomalyTypeKeyword = "KEYWORD"
+
+	// LogAnomalyTypeKeywordToken is a LogAnomalyType enum value
+	LogAnomalyTypeKeywordToken = "KEYWORD_TOKEN"
+
+	// LogAnomalyTypeFormat is a LogAnomalyType enum value
+	LogAnomalyTypeFormat = "FORMAT"
+
+	// LogAnomalyTypeHttpCode is a LogAnomalyType enum value
+	LogAnomalyTypeHttpCode = "HTTP_CODE"
+
+	// LogAnomalyTypeBlockFormat is a LogAnomalyType enum value
+	LogAnomalyTypeBlockFormat = "BLOCK_FORMAT"
+
+	// LogAnomalyTypeNumericalPoint is a LogAnomalyType enum value
+	LogAnomalyTypeNumericalPoint = "NUMERICAL_POINT"
+
+	// LogAnomalyTypeNumericalNan is a LogAnomalyType enum value
+	LogAnomalyTypeNumericalNan = "NUMERICAL_NAN"
+
+	// LogAnomalyTypeNewFieldName is a LogAnomalyType enum value
+	LogAnomalyTypeNewFieldName = "NEW_FIELD_NAME"
+)
+
+// LogAnomalyType_Values returns all elements of the LogAnomalyType enum
+func LogAnomalyType_Values() []string {
+	return []string{
+		LogAnomalyTypeKeyword,
+		LogAnomalyTypeKeywordToken,
+		LogAnomalyTypeFormat,
+		LogAnomalyTypeHttpCode,
+		LogAnomalyTypeBlockFormat,
+		LogAnomalyTypeNumericalPoint,
+		LogAnomalyTypeNumericalNan,
+		LogAnomalyTypeNewFieldName,
+	}
+}
+
 // Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems
 // Manager OpsItem for each created insight.
 const (
@@ -12949,6 +13943,34 @@ func ResourceCollectionType_Values() []string {
 		ResourceCollectionTypeAwsCloudFormation,
 		ResourceCollectionTypeAwsService,
 		ResourceCollectionTypeAwsTags,
+	}
+}
+
+const (
+	// ResourcePermissionFullPermission is a ResourcePermission enum value
+	ResourcePermissionFullPermission = "FULL_PERMISSION"
+
+	// ResourcePermissionMissingPermission is a ResourcePermission enum value
+	ResourcePermissionMissingPermission = "MISSING_PERMISSION"
+)
+
+// ResourcePermission_Values returns all elements of the ResourcePermission enum
+func ResourcePermission_Values() []string {
+	return []string{
+		ResourcePermissionFullPermission,
+		ResourcePermissionMissingPermission,
+	}
+}
+
+const (
+	// ResourceTypeFilterLogGroups is a ResourceTypeFilter enum value
+	ResourceTypeFilterLogGroups = "LOG_GROUPS"
+)
+
+// ResourceTypeFilter_Values returns all elements of the ResourceTypeFilter enum
+func ResourceTypeFilter_Values() []string {
+	return []string{
+		ResourceTypeFilterLogGroups,
 	}
 }
 
