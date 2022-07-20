@@ -543,7 +543,8 @@ func (c *IoT) AttachPrincipalPolicyRequest(input *AttachPrincipalPolicyInput) (r
 // Attaches the specified policy to the specified principal (certificate or
 // other credential).
 //
-// Note: This action is deprecated. Please use AttachPolicy instead.
+// Note: This action is deprecated and works as expected for backward compatibility,
+// but we won't add enhancements. Use AttachPolicy instead.
 //
 // Requires permission to access the AttachPrincipalPolicy (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -46124,6 +46125,44 @@ func (s *IndexNotReadyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Provides additional filters for specific data sources. Named shadow is the
+// only data source that currently supports and requires a filter. To add named
+// shadows to your fleet indexing configuration, set namedShadowIndexingMode
+// to be ON and specify your shadow names in filter.
+type IndexingFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The shadow names that you select to index. The default maximum number of
+	// shadow names for indexing is 10. To increase the limit, see Amazon Web Services
+	// IoT Device Management Quotas (https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html#fleet-indexing-limits)
+	// in the Amazon Web Services General Reference.
+	NamedShadowNames []*string `locationName:"namedShadowNames" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IndexingFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IndexingFilter) GoString() string {
+	return s.String()
+}
+
+// SetNamedShadowNames sets the NamedShadowNames field's value.
+func (s *IndexingFilter) SetNamedShadowNames(v []*string) *IndexingFilter {
+	s.NamedShadowNames = v
+	return s
+}
+
 // An unexpected error has occurred.
 type InternalException struct {
 	_            struct{}                  `type:"structure"`
@@ -62516,6 +62555,12 @@ type ThingIndexingConfiguration struct {
 	// Detect. (https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-detect.html)
 	DeviceDefenderIndexingMode *string `locationName:"deviceDefenderIndexingMode" type:"string" enum:"DeviceDefenderIndexingMode"`
 
+	// Provides additional filters for specific data sources. Named shadow is the
+	// only data source that currently supports and requires a filter. To add named
+	// shadows to your fleet indexing configuration, set namedShadowIndexingMode
+	// to be ON and specify your shadow names in filter.
+	Filter *IndexingFilter `locationName:"filter" type:"structure"`
+
 	// Contains fields that are indexed and whose types are already known by the
 	// Fleet Indexing service.
 	ManagedFields []*Field `locationName:"managedFields" type:"list"`
@@ -62591,6 +62636,12 @@ func (s *ThingIndexingConfiguration) SetCustomFields(v []*Field) *ThingIndexingC
 // SetDeviceDefenderIndexingMode sets the DeviceDefenderIndexingMode field's value.
 func (s *ThingIndexingConfiguration) SetDeviceDefenderIndexingMode(v string) *ThingIndexingConfiguration {
 	s.DeviceDefenderIndexingMode = &v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ThingIndexingConfiguration) SetFilter(v *IndexingFilter) *ThingIndexingConfiguration {
+	s.Filter = v
 	return s
 }
 

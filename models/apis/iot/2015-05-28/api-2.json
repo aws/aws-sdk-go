@@ -8374,6 +8374,12 @@
         "REBUILDING"
       ]
     },
+    "IndexingFilter":{
+      "type":"structure",
+      "members":{
+        "namedShadowNames":{"shape":"NamedShadowNamesFilter"}
+      }
+    },
     "InlineDocument":{"type":"string"},
     "InputName":{
       "type":"string",
@@ -10804,6 +10810,10 @@
         "ON"
       ]
     },
+    "NamedShadowNamesFilter":{
+      "type":"list",
+      "member":{"shape":"ShadowName"}
+    },
     "NamespaceId":{
       "type":"string",
       "max":64,
@@ -11916,6 +11926,12 @@
         "disableAllLogs":{"shape":"DisableAllLogs"}
       }
     },
+    "ShadowName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9:_-]+"
+    },
     "SigV4Authorization":{
       "type":"structure",
       "required":[
@@ -12574,7 +12590,8 @@
         "deviceDefenderIndexingMode":{"shape":"DeviceDefenderIndexingMode"},
         "namedShadowIndexingMode":{"shape":"NamedShadowIndexingMode"},
         "managedFields":{"shape":"Fields"},
-        "customFields":{"shape":"Fields"}
+        "customFields":{"shape":"Fields"},
+        "filter":{"shape":"IndexingFilter"}
       }
     },
     "ThingIndexingMode":{

@@ -7,7 +7,7 @@
     "AddThingToThingGroup": "<p>Adds a thing to a thing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AddThingToThingGroup</a> action.</p>",
     "AssociateTargetsWithJob": "<p>Associates a group with a continuous job. The following criteria must be met: </p> <ul> <li> <p>The job must have been created with the <code>targetSelection</code> field set to \"CONTINUOUS\".</p> </li> <li> <p>The job status must currently be \"IN_PROGRESS\".</p> </li> <li> <p>The total number of targets associated with a job must not exceed 100.</p> </li> </ul> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AssociateTargetsWithJob</a> action.</p>",
     "AttachPolicy": "<p>Attaches the specified policy to the specified principal (certificate or other credential).</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AttachPolicy</a> action.</p>",
-    "AttachPrincipalPolicy": "<p>Attaches the specified policy to the specified principal (certificate or other credential).</p> <p> <b>Note:</b> This action is deprecated. Please use <a>AttachPolicy</a> instead.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AttachPrincipalPolicy</a> action.</p>",
+    "AttachPrincipalPolicy": "<p>Attaches the specified policy to the specified principal (certificate or other credential).</p> <p> <b>Note:</b> This action is deprecated and works as expected for backward compatibility, but we won't add enhancements. Use <a>AttachPolicy</a> instead.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AttachPrincipalPolicy</a> action.</p>",
     "AttachSecurityProfile": "<p>Associates a Device Defender security profile with a thing group or this account. Each thing group or account can have up to five security profiles associated with it.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AttachSecurityProfile</a> action.</p>",
     "AttachThingPrincipal": "<p>Attaches the specified principal to the specified thing. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AttachThingPrincipal</a> action.</p>",
     "CancelAuditMitigationActionsTask": "<p>Cancels a mitigation action task that is in progress. If the task is not in progress, an InvalidRequestException occurs.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CancelAuditMitigationActionsTask</a> action.</p>",
@@ -3941,6 +3941,12 @@
         "DescribeIndexResponse$indexStatus": "<p>The index status.</p>"
       }
     },
+    "IndexingFilter": {
+      "base": "<p>Provides additional filters for specific data sources. Named shadow is the only data source that currently supports and requires a filter. To add named shadows to your fleet indexing configuration, set <code>namedShadowIndexingMode</code> to be <code>ON</code> and specify your shadow names in <code>filter</code>.</p>",
+      "refs": {
+        "ThingIndexingConfiguration$filter": "<p>Provides additional filters for specific data sources. Named shadow is the only data source that currently supports and requires a filter. To add named shadows to your fleet indexing configuration, set <code>namedShadowIndexingMode</code> to be <code>ON</code> and specify your shadow names in <code>filter</code>.</p>"
+      }
+    },
     "InlineDocument": {
       "base": null,
       "refs": {
@@ -5333,6 +5339,12 @@
       "base": null,
       "refs": {
         "ThingIndexingConfiguration$namedShadowIndexingMode": "<p>Named shadow indexing mode. Valid values are:</p> <ul> <li> <p>ON – Your thing index contains named shadow. To enable thing named shadow indexing, <i>namedShadowIndexingMode</i> must not be set to OFF.</p> </li> <li> <p>OFF - Named shadow indexing is disabled.</p> </li> </ul> <p>For more information about Shadows, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html\">IoT Device Shadow service.</a> </p>"
+      }
+    },
+    "NamedShadowNamesFilter": {
+      "base": null,
+      "refs": {
+        "IndexingFilter$namedShadowNames": "<p>The shadow names that you select to index. The default maximum number of shadow names for indexing is 10. To increase the limit, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html#fleet-indexing-limits\">Amazon Web Services IoT Device Management Quotas</a> in the <i>Amazon Web Services General Reference</i>. </p>"
       }
     },
     "NamespaceId": {
@@ -6887,6 +6899,12 @@
     "SetV2LoggingOptionsRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "ShadowName": {
+      "base": null,
+      "refs": {
+        "NamedShadowNamesFilter$member": null
       }
     },
     "SigV4Authorization": {
