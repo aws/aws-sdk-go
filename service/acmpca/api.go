@@ -3690,8 +3690,13 @@ type CreateCertificateAuthorityInput struct {
 	//
 	// Default: FIPS_140_2_LEVEL_3_OR_HIGHER
 	//
-	// Note: FIPS_140_2_LEVEL_3_OR_HIGHER is not supported in Region ap-northeast-3.
-	// When creating a CA in the ap-northeast-3, you must provide FIPS_140_2_LEVEL_2_OR_HIGHER
+	// Note: FIPS_140_2_LEVEL_3_OR_HIGHER is not supported in the following Regions:
+	//
+	//    * ap-northeast-3
+	//
+	//    * ap-southeast-3
+	//
+	// When creating a CA in these Regions, you must provide FIPS_140_2_LEVEL_2_OR_HIGHER
 	// as the argument for KeyStorageSecurityStandard. Failure to do this results
 	// in an InvalidArgsException with the message, "A certificate authority cannot
 	// be created in this region with the specified security standard."
@@ -4936,9 +4941,6 @@ type Extensions struct {
 	// Contains a sequence of one or more X.509 extensions, each of which consists
 	// of an object identifier (OID), a base64-encoded value, and the critical flag.
 	// For more information, see the Global OID reference database. (https://oidref.com/2.5.29)
-	//
-	// The OID value of a CustomExtension (https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CustomExtension.html)
-	// must not match the OID of a predefined extension.
 	CustomExtensions []*CustomExtension `min:"1" type:"list"`
 
 	// Specifies additional purposes for which the certified public key may be used
