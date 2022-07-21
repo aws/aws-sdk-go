@@ -606,12 +606,32 @@
       "member":{"shape":"AzSubnet"}
     },
     "Boolean":{"type":"boolean"},
+    "CIDRCount":{
+      "type":"integer",
+      "max":1000000,
+      "min":0
+    },
+    "CIDRSummary":{
+      "type":"structure",
+      "members":{
+        "AvailableCIDRCount":{"shape":"CIDRCount"},
+        "UtilizedCIDRCount":{"shape":"CIDRCount"},
+        "IPSetReferences":{"shape":"IPSetMetadataMap"}
+      }
+    },
+    "CapacityUsageSummary":{
+      "type":"structure",
+      "members":{
+        "CIDRs":{"shape":"CIDRSummary"}
+      }
+    },
     "CollectionMember_String":{"type":"string"},
     "ConfigurationSyncState":{
       "type":"string",
       "enum":[
         "PENDING",
-        "IN_SYNC"
+        "IN_SYNC",
+        "CAPACITY_CONSTRAINED"
       ]
     },
     "CreateFirewallPolicyRequest":{
@@ -1027,7 +1047,8 @@
       "members":{
         "Status":{"shape":"FirewallStatusValue"},
         "ConfigurationSyncStateSummary":{"shape":"ConfigurationSyncState"},
-        "SyncStates":{"shape":"SyncStates"}
+        "SyncStates":{"shape":"SyncStates"},
+        "CapacityUsageSummary":{"shape":"CapacityUsageSummary"}
       }
     },
     "FirewallStatusValue":{
@@ -1090,6 +1111,35 @@
       "members":{
         "Definition":{"shape":"VariableDefinitionList"}
       }
+    },
+    "IPSetArn":{"type":"string"},
+    "IPSetMetadata":{
+      "type":"structure",
+      "members":{
+        "ResolvedCIDRCount":{"shape":"CIDRCount"}
+      }
+    },
+    "IPSetMetadataMap":{
+      "type":"map",
+      "key":{"shape":"IPSetArn"},
+      "value":{"shape":"IPSetMetadata"}
+    },
+    "IPSetReference":{
+      "type":"structure",
+      "members":{
+        "ReferenceArn":{"shape":"ResourceArn"}
+      }
+    },
+    "IPSetReferenceMap":{
+      "type":"map",
+      "key":{"shape":"IPSetReferenceName"},
+      "value":{"shape":"IPSetReference"}
+    },
+    "IPSetReferenceName":{
+      "type":"string",
+      "max":32,
+      "min":1,
+      "pattern":"^[A-Za-z][A-Za-z0-9_]*$"
     },
     "IPSets":{
       "type":"map",
@@ -1314,7 +1364,8 @@
       "type":"string",
       "enum":[
         "PENDING",
-        "IN_SYNC"
+        "IN_SYNC",
+        "CAPACITY_CONSTRAINED"
       ]
     },
     "PolicyString":{
@@ -1397,6 +1448,12 @@
       "members":{
       }
     },
+    "ReferenceSets":{
+      "type":"structure",
+      "members":{
+        "IPSetReferences":{"shape":"IPSetReferenceMap"}
+      }
+    },
     "ResourceArn":{
       "type":"string",
       "max":256,
@@ -1467,6 +1524,7 @@
       "required":["RulesSource"],
       "members":{
         "RuleVariables":{"shape":"RuleVariables"},
+        "ReferenceSets":{"shape":"ReferenceSets"},
         "RulesSource":{"shape":"RulesSource"},
         "StatefulRuleOptions":{"shape":"StatefulRuleOptions"}
       }

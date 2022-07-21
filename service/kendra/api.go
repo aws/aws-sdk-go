@@ -642,13 +642,13 @@ func (c *Kendra) CreateAccessControlConfigurationRequest(input *CreateAccessCont
 // without indexing all of your documents again. For example, your index contains
 // top-secret company documents that only certain employees or users should
 // access. One of these users leaves the company or switches to a team that
-// should be blocked from access to top-secret documents. Your documents in
-// your index still give this user access to top-secret documents due to the
-// user having access at the time your documents were indexed. You can create
-// a specific access control configuration for this user with deny access. You
-// can later update the access control configuration to allow access in the
-// case the user returns to the company and re-joins the 'top-secret' team.
-// You can re-configure access control for your documents circumstances change.
+// should be blocked from accessing top-secret documents. The user still has
+// access to top-secret documents because the user had access when your documents
+// were previously indexed. You can create a specific access control configuration
+// for the user with deny access. You can later update the access control configuration
+// to allow access if the user returns to the company and re-joins the 'top-secret'
+// team. You can re-configure access control for your documents as circumstances
+// change.
 //
 // To apply your access control configuration to certain documents, you call
 // the BatchPutDocument (https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html)
@@ -5677,9 +5677,9 @@ func (c *Kendra) UpdateAccessControlConfigurationRequest(input *UpdateAccessCont
 // API to apply the updated access control configuration, with the AccessControlConfigurationId
 // included in the Document (https://docs.aws.amazon.com/kendra/latest/dg/API_Document.html)
 // object. If you use an S3 bucket as a data source, you synchronize your data
-// source to apply the the AccessControlConfigurationId in the .metadata.json
-// file. Amazon Kendra currently only supports access control configuration
-// for S3 data sources and documents indexed using the BatchPutDocument API.
+// source to apply the AccessControlConfigurationId in the .metadata.json file.
+// Amazon Kendra currently only supports access control configuration for S3
+// data sources and documents indexed using the BatchPutDocument API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18925,7 +18925,7 @@ type ListAccessControlConfigurationsInput struct {
 	// The maximum number of access control configurations to return.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// If the previous response was incomplete (because there is more data to retrieve),
+	// If the previous response was incomplete (because there's more data to retrieve),
 	// Amazon Kendra returns a pagination token in the response. You can use this
 	// pagination token to retrieve the next set of access control configurations.
 	NextToken *string `min:"1" type:"string"`
@@ -18997,8 +18997,8 @@ type ListAccessControlConfigurationsOutput struct {
 	// AccessControlConfigurations is a required field
 	AccessControlConfigurations []*AccessControlConfigurationSummary `type:"list" required:"true"`
 
-	// If the response is truncated, Amazon Kendra returns this token that you can
-	// use in the subsequent request to retrieve the next set of access control
+	// If the response is truncated, Amazon Kendra returns this token, which you
+	// can use in the subsequent request to retrieve the next set of access control
 	// configurations.
 	NextToken *string `min:"1" type:"string"`
 }
@@ -24141,6 +24141,11 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type SharePointConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Whether you want to connect to SharePoint using basic authentication of user
+	// name and password, or OAuth authentication of user name, password, client
+	// ID, and client secret. You can use OAuth authentication for SharePoint Online.
+	AuthenticationType *string `type:"string" enum:"SharePointOnlineAuthenticationType"`
+
 	// TRUE to index document attachments.
 	CrawlAttachments *bool `type:"boolean"`
 
@@ -24181,6 +24186,10 @@ type SharePointConfiguration struct {
 	// If you use SharePoint Server, you also need to provide the sever domain name
 	// as part of the credentials. For more information, see Using a Microsoft SharePoint
 	// Data Source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html).
+	//
+	// You can also provide OAuth authentication credentials of user name, password,
+	// client ID, and client secret. For more information, see Authentication for
+	// a SharePoint data source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html#sharepoint-authentication).
 	//
 	// SecretArn is a required field
 	SecretArn *string `min:"1" type:"string" required:"true"`
@@ -24278,6 +24287,12 @@ func (s *SharePointConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *SharePointConfiguration) SetAuthenticationType(v string) *SharePointConfiguration {
+	s.AuthenticationType = &v
+	return s
 }
 
 // SetCrawlAttachments sets the CrawlAttachments field's value.
@@ -29036,6 +29051,22 @@ func ServiceNowBuildVersionType_Values() []string {
 	return []string{
 		ServiceNowBuildVersionTypeLondon,
 		ServiceNowBuildVersionTypeOthers,
+	}
+}
+
+const (
+	// SharePointOnlineAuthenticationTypeHttpBasic is a SharePointOnlineAuthenticationType enum value
+	SharePointOnlineAuthenticationTypeHttpBasic = "HTTP_BASIC"
+
+	// SharePointOnlineAuthenticationTypeOauth2 is a SharePointOnlineAuthenticationType enum value
+	SharePointOnlineAuthenticationTypeOauth2 = "OAUTH2"
+)
+
+// SharePointOnlineAuthenticationType_Values returns all elements of the SharePointOnlineAuthenticationType enum
+func SharePointOnlineAuthenticationType_Values() []string {
+	return []string{
+		SharePointOnlineAuthenticationTypeHttpBasic,
+		SharePointOnlineAuthenticationTypeOauth2,
 	}
 }
 

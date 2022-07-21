@@ -4163,6 +4163,40 @@ type CompositeAlarm struct {
 	// state.
 	ActionsEnabled *bool `type:"boolean"`
 
+	// When the value is ALARM, it means that the actions are suppressed because
+	// the suppressor alarm is in ALARM When the value is WaitPeriod, it means that
+	// the actions are suppressed because the composite alarm is waiting for the
+	// suppressor alarm to go into into the ALARM state. The maximum waiting time
+	// is as specified in ActionsSuppressorWaitPeriod. After this time, the composite
+	// alarm performs its actions. When the value is ExtensionPeriod, it means that
+	// the actions are suppressed because the composite alarm is waiting after the
+	// suppressor alarm went out of the ALARM state. The maximum waiting time is
+	// as specified in ActionsSuppressorExtensionPeriod. After this time, the composite
+	// alarm performs its actions.
+	ActionsSuppressedBy *string `type:"string" enum:"ActionsSuppressedBy"`
+
+	// Captures the reason for action suppression.
+	ActionsSuppressedReason *string `type:"string"`
+
+	// Actions will be suppressed if the suppressor alarm is in the ALARM state.
+	// ActionsSuppressor can be an AlarmName or an Amazon Resource Name (ARN) from
+	// an existing alarm.
+	ActionsSuppressor *string `min:"1" type:"string"`
+
+	// The maximum time in seconds that the composite alarm waits after suppressor
+	// alarm goes out of the ALARM state. After this time, the composite alarm performs
+	// its actions.
+	//
+	// ExtensionPeriod is required only when ActionsSuppressor is specified.
+	ActionsSuppressorExtensionPeriod *int64 `type:"integer"`
+
+	// The maximum time in seconds that the composite alarm waits for the suppressor
+	// alarm to go into the ALARM state. After this time, the composite alarm performs
+	// its actions.
+	//
+	// WaitPeriod is required only when ActionsSuppressor is specified.
+	ActionsSuppressorWaitPeriod *int64 `type:"integer"`
+
 	// The actions to execute when this alarm transitions to the ALARM state from
 	// any other state. Each action is specified as an Amazon Resource Name (ARN).
 	AlarmActions []*string `type:"list"`
@@ -4197,7 +4231,10 @@ type CompositeAlarm struct {
 	// An explanation for the alarm state, in JSON format.
 	StateReasonData *string `type:"string"`
 
-	// The time stamp of the last update to the alarm state.
+	// The timestamp of the last change to the alarm's StateValue.
+	StateTransitionedTimestamp *time.Time `type:"timestamp"`
+
+	// Tracks the timestamp of any state update, even if StateValue doesn't change.
 	StateUpdatedTimestamp *time.Time `type:"timestamp"`
 
 	// The state value for the alarm.
@@ -4225,6 +4262,36 @@ func (s CompositeAlarm) GoString() string {
 // SetActionsEnabled sets the ActionsEnabled field's value.
 func (s *CompositeAlarm) SetActionsEnabled(v bool) *CompositeAlarm {
 	s.ActionsEnabled = &v
+	return s
+}
+
+// SetActionsSuppressedBy sets the ActionsSuppressedBy field's value.
+func (s *CompositeAlarm) SetActionsSuppressedBy(v string) *CompositeAlarm {
+	s.ActionsSuppressedBy = &v
+	return s
+}
+
+// SetActionsSuppressedReason sets the ActionsSuppressedReason field's value.
+func (s *CompositeAlarm) SetActionsSuppressedReason(v string) *CompositeAlarm {
+	s.ActionsSuppressedReason = &v
+	return s
+}
+
+// SetActionsSuppressor sets the ActionsSuppressor field's value.
+func (s *CompositeAlarm) SetActionsSuppressor(v string) *CompositeAlarm {
+	s.ActionsSuppressor = &v
+	return s
+}
+
+// SetActionsSuppressorExtensionPeriod sets the ActionsSuppressorExtensionPeriod field's value.
+func (s *CompositeAlarm) SetActionsSuppressorExtensionPeriod(v int64) *CompositeAlarm {
+	s.ActionsSuppressorExtensionPeriod = &v
+	return s
+}
+
+// SetActionsSuppressorWaitPeriod sets the ActionsSuppressorWaitPeriod field's value.
+func (s *CompositeAlarm) SetActionsSuppressorWaitPeriod(v int64) *CompositeAlarm {
+	s.ActionsSuppressorWaitPeriod = &v
 	return s
 }
 
@@ -4285,6 +4352,12 @@ func (s *CompositeAlarm) SetStateReason(v string) *CompositeAlarm {
 // SetStateReasonData sets the StateReasonData field's value.
 func (s *CompositeAlarm) SetStateReasonData(v string) *CompositeAlarm {
 	s.StateReasonData = &v
+	return s
+}
+
+// SetStateTransitionedTimestamp sets the StateTransitionedTimestamp field's value.
+func (s *CompositeAlarm) SetStateTransitionedTimestamp(v time.Time) *CompositeAlarm {
+	s.StateTransitionedTimestamp = &v
 	return s
 }
 
@@ -9654,6 +9727,25 @@ type PutCompositeAlarmInput struct {
 	// state of the composite alarm. The default is TRUE.
 	ActionsEnabled *bool `type:"boolean"`
 
+	// Actions will be suppressed if the suppressor alarm is in the ALARM state.
+	// ActionsSuppressor can be an AlarmName or an Amazon Resource Name (ARN) from
+	// an existing alarm.
+	ActionsSuppressor *string `min:"1" type:"string"`
+
+	// The maximum time in seconds that the composite alarm waits after suppressor
+	// alarm goes out of the ALARM state. After this time, the composite alarm performs
+	// its actions.
+	//
+	// ExtensionPeriod is required only when ActionsSuppressor is specified.
+	ActionsSuppressorExtensionPeriod *int64 `type:"integer"`
+
+	// The maximum time in seconds that the composite alarm waits for the suppressor
+	// alarm to go into the ALARM state. After this time, the composite alarm performs
+	// its actions.
+	//
+	// WaitPeriod is required only when ActionsSuppressor is specified.
+	ActionsSuppressorWaitPeriod *int64 `type:"integer"`
+
 	// The actions to execute when this alarm transitions to the ALARM state from
 	// any other state. Each action is specified as an Amazon Resource Name (ARN).
 	//
@@ -9766,6 +9858,9 @@ func (s PutCompositeAlarmInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PutCompositeAlarmInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutCompositeAlarmInput"}
+	if s.ActionsSuppressor != nil && len(*s.ActionsSuppressor) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActionsSuppressor", 1))
+	}
 	if s.AlarmName == nil {
 		invalidParams.Add(request.NewErrParamRequired("AlarmName"))
 	}
@@ -9798,6 +9893,24 @@ func (s *PutCompositeAlarmInput) Validate() error {
 // SetActionsEnabled sets the ActionsEnabled field's value.
 func (s *PutCompositeAlarmInput) SetActionsEnabled(v bool) *PutCompositeAlarmInput {
 	s.ActionsEnabled = &v
+	return s
+}
+
+// SetActionsSuppressor sets the ActionsSuppressor field's value.
+func (s *PutCompositeAlarmInput) SetActionsSuppressor(v string) *PutCompositeAlarmInput {
+	s.ActionsSuppressor = &v
+	return s
+}
+
+// SetActionsSuppressorExtensionPeriod sets the ActionsSuppressorExtensionPeriod field's value.
+func (s *PutCompositeAlarmInput) SetActionsSuppressorExtensionPeriod(v int64) *PutCompositeAlarmInput {
+	s.ActionsSuppressorExtensionPeriod = &v
+	return s
+}
+
+// SetActionsSuppressorWaitPeriod sets the ActionsSuppressorWaitPeriod field's value.
+func (s *PutCompositeAlarmInput) SetActionsSuppressorWaitPeriod(v int64) *PutCompositeAlarmInput {
+	s.ActionsSuppressorWaitPeriod = &v
 	return s
 }
 
@@ -11675,6 +11788,26 @@ func (s UntagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
+}
+
+const (
+	// ActionsSuppressedByWaitPeriod is a ActionsSuppressedBy enum value
+	ActionsSuppressedByWaitPeriod = "WaitPeriod"
+
+	// ActionsSuppressedByExtensionPeriod is a ActionsSuppressedBy enum value
+	ActionsSuppressedByExtensionPeriod = "ExtensionPeriod"
+
+	// ActionsSuppressedByAlarm is a ActionsSuppressedBy enum value
+	ActionsSuppressedByAlarm = "Alarm"
+)
+
+// ActionsSuppressedBy_Values returns all elements of the ActionsSuppressedBy enum
+func ActionsSuppressedBy_Values() []string {
+	return []string{
+		ActionsSuppressedByWaitPeriod,
+		ActionsSuppressedByExtensionPeriod,
+		ActionsSuppressedByAlarm,
+	}
 }
 
 const (

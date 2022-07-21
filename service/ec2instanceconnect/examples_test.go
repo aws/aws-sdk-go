@@ -54,6 +54,8 @@ func ExampleEC2InstanceConnect_SendSSHPublicKey_shared00() {
 				fmt.Println(ec2instanceconnect.ErrCodeEC2InstanceNotFoundException, aerr.Error())
 			case ec2instanceconnect.ErrCodeEC2InstanceStateInvalidException:
 				fmt.Println(ec2instanceconnect.ErrCodeEC2InstanceStateInvalidException, aerr.Error())
+			case ec2instanceconnect.ErrCodeEC2InstanceUnavailableException:
+				fmt.Println(ec2instanceconnect.ErrCodeEC2InstanceUnavailableException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

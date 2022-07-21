@@ -131,6 +131,10 @@ type AthenaAPI interface {
 	GetQueryResultsPages(*athena.GetQueryResultsInput, func(*athena.GetQueryResultsOutput, bool) bool) error
 	GetQueryResultsPagesWithContext(aws.Context, *athena.GetQueryResultsInput, func(*athena.GetQueryResultsOutput, bool) bool, ...request.Option) error
 
+	GetQueryRuntimeStatistics(*athena.GetQueryRuntimeStatisticsInput) (*athena.GetQueryRuntimeStatisticsOutput, error)
+	GetQueryRuntimeStatisticsWithContext(aws.Context, *athena.GetQueryRuntimeStatisticsInput, ...request.Option) (*athena.GetQueryRuntimeStatisticsOutput, error)
+	GetQueryRuntimeStatisticsRequest(*athena.GetQueryRuntimeStatisticsInput) (*request.Request, *athena.GetQueryRuntimeStatisticsOutput)
+
 	GetTableMetadata(*athena.GetTableMetadataInput) (*athena.GetTableMetadataOutput, error)
 	GetTableMetadataWithContext(aws.Context, *athena.GetTableMetadataInput, ...request.Option) (*athena.GetTableMetadataOutput, error)
 	GetTableMetadataRequest(*athena.GetTableMetadataInput) (*request.Request, *athena.GetTableMetadataOutput)
@@ -156,6 +160,9 @@ type AthenaAPI interface {
 	ListEngineVersions(*athena.ListEngineVersionsInput) (*athena.ListEngineVersionsOutput, error)
 	ListEngineVersionsWithContext(aws.Context, *athena.ListEngineVersionsInput, ...request.Option) (*athena.ListEngineVersionsOutput, error)
 	ListEngineVersionsRequest(*athena.ListEngineVersionsInput) (*request.Request, *athena.ListEngineVersionsOutput)
+
+	ListEngineVersionsPages(*athena.ListEngineVersionsInput, func(*athena.ListEngineVersionsOutput, bool) bool) error
+	ListEngineVersionsPagesWithContext(aws.Context, *athena.ListEngineVersionsInput, func(*athena.ListEngineVersionsOutput, bool) bool, ...request.Option) error
 
 	ListNamedQueries(*athena.ListNamedQueriesInput) (*athena.ListNamedQueriesOutput, error)
 	ListNamedQueriesWithContext(aws.Context, *athena.ListNamedQueriesInput, ...request.Option) (*athena.ListNamedQueriesOutput, error)

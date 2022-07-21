@@ -113,6 +113,10 @@ type IoTSiteWiseAPI interface {
 	CreateAssetModelWithContext(aws.Context, *iotsitewise.CreateAssetModelInput, ...request.Option) (*iotsitewise.CreateAssetModelOutput, error)
 	CreateAssetModelRequest(*iotsitewise.CreateAssetModelInput) (*request.Request, *iotsitewise.CreateAssetModelOutput)
 
+	CreateBulkImportJob(*iotsitewise.CreateBulkImportJobInput) (*iotsitewise.CreateBulkImportJobOutput, error)
+	CreateBulkImportJobWithContext(aws.Context, *iotsitewise.CreateBulkImportJobInput, ...request.Option) (*iotsitewise.CreateBulkImportJobOutput, error)
+	CreateBulkImportJobRequest(*iotsitewise.CreateBulkImportJobInput) (*request.Request, *iotsitewise.CreateBulkImportJobOutput)
+
 	CreateDashboard(*iotsitewise.CreateDashboardInput) (*iotsitewise.CreateDashboardOutput, error)
 	CreateDashboardWithContext(aws.Context, *iotsitewise.CreateDashboardInput, ...request.Option) (*iotsitewise.CreateDashboardOutput, error)
 	CreateDashboardRequest(*iotsitewise.CreateDashboardInput) (*request.Request, *iotsitewise.CreateDashboardOutput)
@@ -176,6 +180,10 @@ type IoTSiteWiseAPI interface {
 	DescribeAssetProperty(*iotsitewise.DescribeAssetPropertyInput) (*iotsitewise.DescribeAssetPropertyOutput, error)
 	DescribeAssetPropertyWithContext(aws.Context, *iotsitewise.DescribeAssetPropertyInput, ...request.Option) (*iotsitewise.DescribeAssetPropertyOutput, error)
 	DescribeAssetPropertyRequest(*iotsitewise.DescribeAssetPropertyInput) (*request.Request, *iotsitewise.DescribeAssetPropertyOutput)
+
+	DescribeBulkImportJob(*iotsitewise.DescribeBulkImportJobInput) (*iotsitewise.DescribeBulkImportJobOutput, error)
+	DescribeBulkImportJobWithContext(aws.Context, *iotsitewise.DescribeBulkImportJobInput, ...request.Option) (*iotsitewise.DescribeBulkImportJobOutput, error)
+	DescribeBulkImportJobRequest(*iotsitewise.DescribeBulkImportJobInput) (*request.Request, *iotsitewise.DescribeBulkImportJobOutput)
 
 	DescribeDashboard(*iotsitewise.DescribeDashboardInput) (*iotsitewise.DescribeDashboardOutput, error)
 	DescribeDashboardWithContext(aws.Context, *iotsitewise.DescribeDashboardInput, ...request.Option) (*iotsitewise.DescribeDashboardOutput, error)
@@ -280,6 +288,13 @@ type IoTSiteWiseAPI interface {
 
 	ListAssociatedAssetsPages(*iotsitewise.ListAssociatedAssetsInput, func(*iotsitewise.ListAssociatedAssetsOutput, bool) bool) error
 	ListAssociatedAssetsPagesWithContext(aws.Context, *iotsitewise.ListAssociatedAssetsInput, func(*iotsitewise.ListAssociatedAssetsOutput, bool) bool, ...request.Option) error
+
+	ListBulkImportJobs(*iotsitewise.ListBulkImportJobsInput) (*iotsitewise.ListBulkImportJobsOutput, error)
+	ListBulkImportJobsWithContext(aws.Context, *iotsitewise.ListBulkImportJobsInput, ...request.Option) (*iotsitewise.ListBulkImportJobsOutput, error)
+	ListBulkImportJobsRequest(*iotsitewise.ListBulkImportJobsInput) (*request.Request, *iotsitewise.ListBulkImportJobsOutput)
+
+	ListBulkImportJobsPages(*iotsitewise.ListBulkImportJobsInput, func(*iotsitewise.ListBulkImportJobsOutput, bool) bool) error
+	ListBulkImportJobsPagesWithContext(aws.Context, *iotsitewise.ListBulkImportJobsInput, func(*iotsitewise.ListBulkImportJobsOutput, bool) bool, ...request.Option) error
 
 	ListDashboards(*iotsitewise.ListDashboardsInput) (*iotsitewise.ListDashboardsOutput, error)
 	ListDashboardsWithContext(aws.Context, *iotsitewise.ListDashboardsInput, ...request.Option) (*iotsitewise.ListDashboardsOutput, error)

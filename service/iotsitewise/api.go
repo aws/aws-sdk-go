@@ -1363,6 +1363,128 @@ func (c *IoTSiteWise) CreateAssetModelWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateBulkImportJob = "CreateBulkImportJob"
+
+// CreateBulkImportJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateBulkImportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateBulkImportJob for more information on using the CreateBulkImportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateBulkImportJobRequest method.
+//    req, resp := client.CreateBulkImportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/CreateBulkImportJob
+func (c *IoTSiteWise) CreateBulkImportJobRequest(input *CreateBulkImportJobInput) (req *request.Request, output *CreateBulkImportJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateBulkImportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/jobs",
+	}
+
+	if input == nil {
+		input = &CreateBulkImportJobInput{}
+	}
+
+	output = &CreateBulkImportJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("data.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreateBulkImportJob API operation for AWS IoT SiteWise.
+//
+//
+// This API operation is in preview release for IoT SiteWise and is subject
+// to change. We recommend that you use this operation only with test data,
+// and not in production environments.
+//
+// Defines a job to ingest data to IoT SiteWise from Amazon S3. For more information,
+// see Create a bulk import job (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/CreateBulkImportJob.html)
+// in the Amazon Simple Storage Service User Guide.
+//
+// You must enable IoT SiteWise to export data to Amazon S3 before you create
+// a bulk import job. For more information about how to configure storage settings,
+// see PutStorageConfiguration (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_PutStorageConfiguration.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation CreateBulkImportJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * ResourceAlreadyExistsException
+//   The resource already exists.
+//
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * InternalFailureException
+//   IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+//   * LimitExceededException
+//   You've reached the limit for a resource. For example, this can occur if you're
+//   trying to associate more than the allowed number of child assets or attempting
+//   to create more than the allowed number of properties for an asset model.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+//   * ConflictingOperationException
+//   Your request has conflicting operations. This can occur if you're trying
+//   to perform more than one operation on the same resource at the same time.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/CreateBulkImportJob
+func (c *IoTSiteWise) CreateBulkImportJob(input *CreateBulkImportJobInput) (*CreateBulkImportJobOutput, error) {
+	req, out := c.CreateBulkImportJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateBulkImportJobWithContext is the same as CreateBulkImportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateBulkImportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) CreateBulkImportJobWithContext(ctx aws.Context, input *CreateBulkImportJobInput, opts ...request.Option) (*CreateBulkImportJobOutput, error) {
+	req, out := c.CreateBulkImportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDashboard = "CreateDashboard"
 
 // CreateDashboardRequest generates a "aws/request.Request" representing the
@@ -2993,6 +3115,109 @@ func (c *IoTSiteWise) DescribeAssetProperty(input *DescribeAssetPropertyInput) (
 // for more information on using Contexts.
 func (c *IoTSiteWise) DescribeAssetPropertyWithContext(ctx aws.Context, input *DescribeAssetPropertyInput, opts ...request.Option) (*DescribeAssetPropertyOutput, error) {
 	req, out := c.DescribeAssetPropertyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeBulkImportJob = "DescribeBulkImportJob"
+
+// DescribeBulkImportJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeBulkImportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeBulkImportJob for more information on using the DescribeBulkImportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeBulkImportJobRequest method.
+//    req, resp := client.DescribeBulkImportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeBulkImportJob
+func (c *IoTSiteWise) DescribeBulkImportJobRequest(input *DescribeBulkImportJobInput) (req *request.Request, output *DescribeBulkImportJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeBulkImportJob,
+		HTTPMethod: "GET",
+		HTTPPath:   "/jobs/{jobId}",
+	}
+
+	if input == nil {
+		input = &DescribeBulkImportJobInput{}
+	}
+
+	output = &DescribeBulkImportJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("data.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeBulkImportJob API operation for AWS IoT SiteWise.
+//
+//
+// This API operation is in preview release for IoT SiteWise and is subject
+// to change. We recommend that you use this operation only with test data,
+// and not in production environments.
+//
+// Retrieves information about a bulk import job request. For more information,
+// see Describe a bulk import job (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/DescribeBulkImportJob.html)
+// in the Amazon Simple Storage Service User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation DescribeBulkImportJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * InternalFailureException
+//   IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeBulkImportJob
+func (c *IoTSiteWise) DescribeBulkImportJob(input *DescribeBulkImportJobInput) (*DescribeBulkImportJobOutput, error) {
+	req, out := c.DescribeBulkImportJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeBulkImportJobWithContext is the same as DescribeBulkImportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeBulkImportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) DescribeBulkImportJobWithContext(ctx aws.Context, input *DescribeBulkImportJobInput, opts ...request.Option) (*DescribeBulkImportJobOutput, error) {
+	req, out := c.DescribeBulkImportJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5480,6 +5705,167 @@ func (c *IoTSiteWise) ListAssociatedAssetsPagesWithContext(ctx aws.Context, inpu
 
 	for p.Next() {
 		if !fn(p.Page().(*ListAssociatedAssetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListBulkImportJobs = "ListBulkImportJobs"
+
+// ListBulkImportJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListBulkImportJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListBulkImportJobs for more information on using the ListBulkImportJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListBulkImportJobsRequest method.
+//    req, resp := client.ListBulkImportJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListBulkImportJobs
+func (c *IoTSiteWise) ListBulkImportJobsRequest(input *ListBulkImportJobsInput) (req *request.Request, output *ListBulkImportJobsOutput) {
+	op := &request.Operation{
+		Name:       opListBulkImportJobs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/jobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListBulkImportJobsInput{}
+	}
+
+	output = &ListBulkImportJobsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("data.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListBulkImportJobs API operation for AWS IoT SiteWise.
+//
+//
+// This API operation is in preview release for IoT SiteWise and is subject
+// to change. We recommend that you use this operation only with test data,
+// and not in production environments.
+//
+// Retrieves a paginated list of bulk import job requests. For more information,
+// see List bulk import jobs (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/ListBulkImportJobs.html)
+// in the Amazon Simple Storage Service User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation ListBulkImportJobs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * InternalFailureException
+//   IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListBulkImportJobs
+func (c *IoTSiteWise) ListBulkImportJobs(input *ListBulkImportJobsInput) (*ListBulkImportJobsOutput, error) {
+	req, out := c.ListBulkImportJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListBulkImportJobsWithContext is the same as ListBulkImportJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListBulkImportJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) ListBulkImportJobsWithContext(ctx aws.Context, input *ListBulkImportJobsInput, opts ...request.Option) (*ListBulkImportJobsOutput, error) {
+	req, out := c.ListBulkImportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListBulkImportJobsPages iterates over the pages of a ListBulkImportJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListBulkImportJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListBulkImportJobs operation.
+//    pageNum := 0
+//    err := client.ListBulkImportJobsPages(params,
+//        func(page *iotsitewise.ListBulkImportJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoTSiteWise) ListBulkImportJobsPages(input *ListBulkImportJobsInput, fn func(*ListBulkImportJobsOutput, bool) bool) error {
+	return c.ListBulkImportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListBulkImportJobsPagesWithContext same as ListBulkImportJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) ListBulkImportJobsPagesWithContext(ctx aws.Context, input *ListBulkImportJobsInput, fn func(*ListBulkImportJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListBulkImportJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListBulkImportJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListBulkImportJobsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -12735,6 +13121,211 @@ func (s *CreateAssetOutput) SetAssetStatus(v *AssetStatus) *CreateAssetOutput {
 	return s
 }
 
+type CreateBulkImportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 destination where errors associated with the job creation request
+	// are saved.
+	//
+	// ErrorReportLocation is a required field
+	ErrorReportLocation *ErrorReportLocation `locationName:"errorReportLocation" type:"structure" required:"true"`
+
+	// The files in the specified Amazon S3 bucket that contain your data.
+	//
+	// Files is a required field
+	Files []*File `locationName:"files" type:"list" required:"true"`
+
+	// Contains the configuration information of a job, such as the file format
+	// used to save data in Amazon S3.
+	//
+	// JobConfiguration is a required field
+	JobConfiguration *JobConfiguration `locationName:"jobConfiguration" type:"structure" required:"true"`
+
+	// The unique name that helps identify the job request.
+	//
+	// JobName is a required field
+	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the IAM role that allows IoT SiteWise to read Amazon S3 data.
+	//
+	// JobRoleArn is a required field
+	JobRoleArn *string `locationName:"jobRoleArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBulkImportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBulkImportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBulkImportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBulkImportJobInput"}
+	if s.ErrorReportLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("ErrorReportLocation"))
+	}
+	if s.Files == nil {
+		invalidParams.Add(request.NewErrParamRequired("Files"))
+	}
+	if s.JobConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobConfiguration"))
+	}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.JobRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobRoleArn"))
+	}
+	if s.JobRoleArn != nil && len(*s.JobRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobRoleArn", 1))
+	}
+	if s.ErrorReportLocation != nil {
+		if err := s.ErrorReportLocation.Validate(); err != nil {
+			invalidParams.AddNested("ErrorReportLocation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Files != nil {
+		for i, v := range s.Files {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Files", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.JobConfiguration != nil {
+		if err := s.JobConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("JobConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetErrorReportLocation sets the ErrorReportLocation field's value.
+func (s *CreateBulkImportJobInput) SetErrorReportLocation(v *ErrorReportLocation) *CreateBulkImportJobInput {
+	s.ErrorReportLocation = v
+	return s
+}
+
+// SetFiles sets the Files field's value.
+func (s *CreateBulkImportJobInput) SetFiles(v []*File) *CreateBulkImportJobInput {
+	s.Files = v
+	return s
+}
+
+// SetJobConfiguration sets the JobConfiguration field's value.
+func (s *CreateBulkImportJobInput) SetJobConfiguration(v *JobConfiguration) *CreateBulkImportJobInput {
+	s.JobConfiguration = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *CreateBulkImportJobInput) SetJobName(v string) *CreateBulkImportJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetJobRoleArn sets the JobRoleArn field's value.
+func (s *CreateBulkImportJobInput) SetJobRoleArn(v string) *CreateBulkImportJobInput {
+	s.JobRoleArn = &v
+	return s
+}
+
+type CreateBulkImportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the job.
+	//
+	// JobId is a required field
+	JobId *string `locationName:"jobId" min:"36" type:"string" required:"true"`
+
+	// The unique name that helps identify the job request.
+	//
+	// JobName is a required field
+	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// The status of the bulk import job can be one of following values.
+	//
+	//    * PENDING – IoT SiteWise is waiting for the current bulk import job
+	//    to finish.
+	//
+	//    * CANCELLED – The bulk import job has been canceled.
+	//
+	//    * RUNNING – IoT SiteWise is processing your request to import your data
+	//    from Amazon S3.
+	//
+	//    * COMPLETED – IoT SiteWise successfully completed your request to import
+	//    data from Amazon S3.
+	//
+	//    * FAILED – IoT SiteWise couldn't process your request to import data
+	//    from Amazon S3. You can use logs saved in the specified error report location
+	//    in Amazon S3 to troubleshoot issues.
+	//
+	//    * COMPLETED_WITH_FAILURES – IoT SiteWise completed your request to import
+	//    data from Amazon S3 with errors. You can use logs saved in the specified
+	//    error report location in Amazon S3 to troubleshoot issues.
+	//
+	// JobStatus is a required field
+	JobStatus *string `locationName:"jobStatus" type:"string" required:"true" enum:"JobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBulkImportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBulkImportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *CreateBulkImportJobOutput) SetJobId(v string) *CreateBulkImportJobOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *CreateBulkImportJobOutput) SetJobName(v string) *CreateBulkImportJobOutput {
+	s.JobName = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *CreateBulkImportJobOutput) SetJobStatus(v string) *CreateBulkImportJobOutput {
+	s.JobStatus = &v
+	return s
+}
+
 type CreateDashboardInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13469,6 +14060,38 @@ func (s *CreateProjectOutput) SetProjectArn(v string) *CreateProjectOutput {
 // SetProjectId sets the ProjectId field's value.
 func (s *CreateProjectOutput) SetProjectId(v string) *CreateProjectOutput {
 	s.ProjectId = &v
+	return s
+}
+
+// A .csv file.
+type Csv struct {
+	_ struct{} `type:"structure"`
+
+	// The column names specified in the .csv file.
+	ColumnNames []*string `locationName:"columnNames" type:"list" enum:"ColumnName"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Csv) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Csv) GoString() string {
+	return s.String()
+}
+
+// SetColumnNames sets the ColumnNames field's value.
+func (s *Csv) SetColumnNames(v []*string) *Csv {
+	s.ColumnNames = v
 	return s
 }
 
@@ -15016,6 +15639,198 @@ func (s *DescribeAssetPropertyOutput) SetAssetProperty(v *Property) *DescribeAss
 // SetCompositeModel sets the CompositeModel field's value.
 func (s *DescribeAssetPropertyOutput) SetCompositeModel(v *CompositeModelProperty) *DescribeAssetPropertyOutput {
 	s.CompositeModel = v
+	return s
+}
+
+type DescribeBulkImportJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the job.
+	//
+	// JobId is a required field
+	JobId *string `location:"uri" locationName:"jobId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBulkImportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBulkImportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeBulkImportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeBulkImportJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *DescribeBulkImportJobInput) SetJobId(v string) *DescribeBulkImportJobInput {
+	s.JobId = &v
+	return s
+}
+
+type DescribeBulkImportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 destination where errors associated with the job creation request
+	// are saved.
+	//
+	// ErrorReportLocation is a required field
+	ErrorReportLocation *ErrorReportLocation `locationName:"errorReportLocation" type:"structure" required:"true"`
+
+	// The files in the specified Amazon S3 bucket that contain your data.
+	//
+	// Files is a required field
+	Files []*File `locationName:"files" type:"list" required:"true"`
+
+	// Contains the configuration information of a job, such as the file format
+	// used to save data in Amazon S3.
+	//
+	// JobConfiguration is a required field
+	JobConfiguration *JobConfiguration `locationName:"jobConfiguration" type:"structure" required:"true"`
+
+	// The date the job was created, in Unix epoch TIME.
+	//
+	// JobCreationDate is a required field
+	JobCreationDate *time.Time `locationName:"jobCreationDate" type:"timestamp" required:"true"`
+
+	// The ID of the job.
+	//
+	// JobId is a required field
+	JobId *string `locationName:"jobId" min:"36" type:"string" required:"true"`
+
+	// The date the job was last updated, in Unix epoch time.
+	//
+	// JobLastUpdateDate is a required field
+	JobLastUpdateDate *time.Time `locationName:"jobLastUpdateDate" type:"timestamp" required:"true"`
+
+	// The unique name that helps identify the job request.
+	//
+	// JobName is a required field
+	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the IAM role that allows IoT SiteWise to read Amazon S3 data.
+	//
+	// JobRoleArn is a required field
+	JobRoleArn *string `locationName:"jobRoleArn" min:"1" type:"string" required:"true"`
+
+	// The status of the bulk import job can be one of following values.
+	//
+	//    * PENDING – IoT SiteWise is waiting for the current bulk import job
+	//    to finish.
+	//
+	//    * CANCELLED – The bulk import job has been canceled.
+	//
+	//    * RUNNING – IoT SiteWise is processing your request to import your data
+	//    from Amazon S3.
+	//
+	//    * COMPLETED – IoT SiteWise successfully completed your request to import
+	//    data from Amazon S3.
+	//
+	//    * FAILED – IoT SiteWise couldn't process your request to import data
+	//    from Amazon S3. You can use logs saved in the specified error report location
+	//    in Amazon S3 to troubleshoot issues.
+	//
+	//    * COMPLETED_WITH_FAILURES – IoT SiteWise completed your request to import
+	//    data from Amazon S3 with errors. You can use logs saved in the specified
+	//    error report location in Amazon S3 to troubleshoot issues.
+	//
+	// JobStatus is a required field
+	JobStatus *string `locationName:"jobStatus" type:"string" required:"true" enum:"JobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBulkImportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBulkImportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrorReportLocation sets the ErrorReportLocation field's value.
+func (s *DescribeBulkImportJobOutput) SetErrorReportLocation(v *ErrorReportLocation) *DescribeBulkImportJobOutput {
+	s.ErrorReportLocation = v
+	return s
+}
+
+// SetFiles sets the Files field's value.
+func (s *DescribeBulkImportJobOutput) SetFiles(v []*File) *DescribeBulkImportJobOutput {
+	s.Files = v
+	return s
+}
+
+// SetJobConfiguration sets the JobConfiguration field's value.
+func (s *DescribeBulkImportJobOutput) SetJobConfiguration(v *JobConfiguration) *DescribeBulkImportJobOutput {
+	s.JobConfiguration = v
+	return s
+}
+
+// SetJobCreationDate sets the JobCreationDate field's value.
+func (s *DescribeBulkImportJobOutput) SetJobCreationDate(v time.Time) *DescribeBulkImportJobOutput {
+	s.JobCreationDate = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *DescribeBulkImportJobOutput) SetJobId(v string) *DescribeBulkImportJobOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobLastUpdateDate sets the JobLastUpdateDate field's value.
+func (s *DescribeBulkImportJobOutput) SetJobLastUpdateDate(v time.Time) *DescribeBulkImportJobOutput {
+	s.JobLastUpdateDate = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *DescribeBulkImportJobOutput) SetJobName(v string) *DescribeBulkImportJobOutput {
+	s.JobName = &v
+	return s
+}
+
+// SetJobRoleArn sets the JobRoleArn field's value.
+func (s *DescribeBulkImportJobOutput) SetJobRoleArn(v string) *DescribeBulkImportJobOutput {
+	s.JobRoleArn = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *DescribeBulkImportJobOutput) SetJobStatus(v string) *DescribeBulkImportJobOutput {
+	s.JobStatus = &v
 	return s
 }
 
@@ -16636,6 +17451,76 @@ func (s *ErrorDetails) SetMessage(v string) *ErrorDetails {
 	return s
 }
 
+// The Amazon S3 destination where errors associated with the job creation request
+// are saved.
+type ErrorReportLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket to which errors associated with the bulk
+	// import job are sent.
+	//
+	// Bucket is a required field
+	Bucket *string `locationName:"bucket" min:"3" type:"string" required:"true"`
+
+	// Amazon S3 uses the prefix as a folder name to organize data in the bucket.
+	// Each Amazon S3 object has a key that is its unique identifier in the bucket.
+	// Each object in a bucket has exactly one key. The prefix must end with a forward
+	// slash (/). For more information, see Organizing objects using prefixes (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html)
+	// in the Amazon Simple Storage Service User Guide.
+	//
+	// Prefix is a required field
+	Prefix *string `locationName:"prefix" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorReportLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorReportLocation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ErrorReportLocation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ErrorReportLocation"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.Prefix == nil {
+		invalidParams.Add(request.NewErrParamRequired("Prefix"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *ErrorReportLocation) SetBucket(v string) *ErrorReportLocation {
+	s.Bucket = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *ErrorReportLocation) SetPrefix(v string) *ErrorReportLocation {
+	s.Prefix = &v
+	return s
+}
+
 // Contains expression variable information.
 type ExpressionVariable struct {
 	_ struct{} `type:"structure"`
@@ -16702,6 +17587,113 @@ func (s *ExpressionVariable) SetName(v string) *ExpressionVariable {
 // SetValue sets the Value field's value.
 func (s *ExpressionVariable) SetValue(v *VariableValue) *ExpressionVariable {
 	s.Value = v
+	return s
+}
+
+// The file in Amazon S3 where your data is saved.
+type File struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket from which data is imported.
+	//
+	// Bucket is a required field
+	Bucket *string `locationName:"bucket" min:"3" type:"string" required:"true"`
+
+	// The key of the Amazon S3 object that contains your data. Each object has
+	// a key that is a unique identifier. Each object has exactly one key.
+	//
+	// Key is a required field
+	Key *string `locationName:"key" type:"string" required:"true"`
+
+	// The version ID to identify a specific version of the Amazon S3 object that
+	// contains your data.
+	VersionId *string `locationName:"versionId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s File) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s File) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *File) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "File"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *File) SetBucket(v string) *File {
+	s.Bucket = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *File) SetKey(v string) *File {
+	s.Key = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *File) SetVersionId(v string) *File {
+	s.VersionId = &v
+	return s
+}
+
+// The file format of the data.
+type FileFormat struct {
+	_ struct{} `type:"structure"`
+
+	// The .csv file format.
+	Csv *Csv `locationName:"csv" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileFormat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileFormat) GoString() string {
+	return s.String()
+}
+
+// SetCsv sets the Csv field's value.
+func (s *FileFormat) SetCsv(v *Csv) *FileFormat {
+	s.Csv = v
 	return s
 }
 
@@ -18479,6 +19471,129 @@ func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Contains the configuration information of a job, such as the file format
+// used to save data in Amazon S3.
+type JobConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The file format of the data in Amazon S3.
+	//
+	// FileFormat is a required field
+	FileFormat *FileFormat `locationName:"fileFormat" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JobConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JobConfiguration"}
+	if s.FileFormat == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileFormat"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *JobConfiguration) SetFileFormat(v *FileFormat) *JobConfiguration {
+	s.FileFormat = v
+	return s
+}
+
+// Contains a job summary information.
+type JobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the job.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The unique name that helps identify the job request.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The status of the bulk import job can be one of following values.
+	//
+	//    * PENDING – IoT SiteWise is waiting for the current bulk import job
+	//    to finish.
+	//
+	//    * CANCELLED – The bulk import job has been canceled.
+	//
+	//    * RUNNING – IoT SiteWise is processing your request to import your data
+	//    from Amazon S3.
+	//
+	//    * COMPLETED – IoT SiteWise successfully completed your request to import
+	//    data from Amazon S3.
+	//
+	//    * FAILED – IoT SiteWise couldn't process your request to import data
+	//    from Amazon S3. You can use logs saved in the specified error report location
+	//    in Amazon S3 to troubleshoot issues.
+	//
+	//    * COMPLETED_WITH_FAILURES – IoT SiteWise completed your request to import
+	//    data from Amazon S3 with errors. You can use logs saved in the specified
+	//    error report location in Amazon S3 to troubleshoot issues.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"JobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobSummary) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *JobSummary) SetId(v string) *JobSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *JobSummary) SetName(v string) *JobSummary {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *JobSummary) SetStatus(v string) *JobSummary {
+	s.Status = &v
+	return s
+}
+
 // You've reached the limit for a resource. For example, this can occur if you're
 // trying to associate more than the allowed number of child assets or attempting
 // to create more than the allowed number of properties for an asset model.
@@ -19224,6 +20339,114 @@ func (s *ListAssociatedAssetsOutput) SetAssetSummaries(v []*AssociatedAssetsSumm
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListAssociatedAssetsOutput) SetNextToken(v string) *ListAssociatedAssetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListBulkImportJobsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// You can use a filter to select the bulk import jobs that you want to retrieve.
+	Filter *string `location:"querystring" locationName:"filter" type:"string" enum:"ListBulkImportJobsFilter"`
+
+	// The maximum number of results to return for each paginated request.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to be used for the next set of paginated results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBulkImportJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBulkImportJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListBulkImportJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListBulkImportJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListBulkImportJobsInput) SetFilter(v string) *ListBulkImportJobsInput {
+	s.Filter = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListBulkImportJobsInput) SetMaxResults(v int64) *ListBulkImportJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBulkImportJobsInput) SetNextToken(v string) *ListBulkImportJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListBulkImportJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// One or more job summaries to list.
+	//
+	// JobSummaries is a required field
+	JobSummaries []*JobSummary `locationName:"jobSummaries" type:"list" required:"true"`
+
+	// The token for the next set of results, or null if there are no additional
+	// results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBulkImportJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBulkImportJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobSummaries sets the JobSummaries field's value.
+func (s *ListBulkImportJobsOutput) SetJobSummaries(v []*JobSummary) *ListBulkImportJobsOutput {
+	s.JobSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBulkImportJobsOutput) SetNextToken(v string) *ListBulkImportJobsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -24428,6 +25651,46 @@ func CapabilitySyncStatus_Values() []string {
 }
 
 const (
+	// ColumnNameAlias is a ColumnName enum value
+	ColumnNameAlias = "ALIAS"
+
+	// ColumnNameAssetId is a ColumnName enum value
+	ColumnNameAssetId = "ASSET_ID"
+
+	// ColumnNamePropertyId is a ColumnName enum value
+	ColumnNamePropertyId = "PROPERTY_ID"
+
+	// ColumnNameDataType is a ColumnName enum value
+	ColumnNameDataType = "DATA_TYPE"
+
+	// ColumnNameTimestampSeconds is a ColumnName enum value
+	ColumnNameTimestampSeconds = "TIMESTAMP_SECONDS"
+
+	// ColumnNameTimestampNanoOffset is a ColumnName enum value
+	ColumnNameTimestampNanoOffset = "TIMESTAMP_NANO_OFFSET"
+
+	// ColumnNameQuality is a ColumnName enum value
+	ColumnNameQuality = "QUALITY"
+
+	// ColumnNameValue is a ColumnName enum value
+	ColumnNameValue = "VALUE"
+)
+
+// ColumnName_Values returns all elements of the ColumnName enum
+func ColumnName_Values() []string {
+	return []string{
+		ColumnNameAlias,
+		ColumnNameAssetId,
+		ColumnNamePropertyId,
+		ColumnNameDataType,
+		ColumnNameTimestampSeconds,
+		ColumnNameTimestampNanoOffset,
+		ColumnNameQuality,
+		ColumnNameValue,
+	}
+}
+
+const (
 	// ComputeLocationEdge is a ComputeLocation enum value
 	ComputeLocationEdge = "EDGE"
 
@@ -24576,6 +25839,38 @@ func ImageFileType_Values() []string {
 }
 
 const (
+	// JobStatusPending is a JobStatus enum value
+	JobStatusPending = "PENDING"
+
+	// JobStatusCancelled is a JobStatus enum value
+	JobStatusCancelled = "CANCELLED"
+
+	// JobStatusRunning is a JobStatus enum value
+	JobStatusRunning = "RUNNING"
+
+	// JobStatusCompleted is a JobStatus enum value
+	JobStatusCompleted = "COMPLETED"
+
+	// JobStatusFailed is a JobStatus enum value
+	JobStatusFailed = "FAILED"
+
+	// JobStatusCompletedWithFailures is a JobStatus enum value
+	JobStatusCompletedWithFailures = "COMPLETED_WITH_FAILURES"
+)
+
+// JobStatus_Values returns all elements of the JobStatus enum
+func JobStatus_Values() []string {
+	return []string{
+		JobStatusPending,
+		JobStatusCancelled,
+		JobStatusRunning,
+		JobStatusCompleted,
+		JobStatusFailed,
+		JobStatusCompletedWithFailures,
+	}
+}
+
+const (
 	// ListAssetsFilterAll is a ListAssetsFilter enum value
 	ListAssetsFilterAll = "ALL"
 
@@ -24588,6 +25883,42 @@ func ListAssetsFilter_Values() []string {
 	return []string{
 		ListAssetsFilterAll,
 		ListAssetsFilterTopLevel,
+	}
+}
+
+const (
+	// ListBulkImportJobsFilterAll is a ListBulkImportJobsFilter enum value
+	ListBulkImportJobsFilterAll = "ALL"
+
+	// ListBulkImportJobsFilterPending is a ListBulkImportJobsFilter enum value
+	ListBulkImportJobsFilterPending = "PENDING"
+
+	// ListBulkImportJobsFilterRunning is a ListBulkImportJobsFilter enum value
+	ListBulkImportJobsFilterRunning = "RUNNING"
+
+	// ListBulkImportJobsFilterCancelled is a ListBulkImportJobsFilter enum value
+	ListBulkImportJobsFilterCancelled = "CANCELLED"
+
+	// ListBulkImportJobsFilterFailed is a ListBulkImportJobsFilter enum value
+	ListBulkImportJobsFilterFailed = "FAILED"
+
+	// ListBulkImportJobsFilterCompletedWithFailures is a ListBulkImportJobsFilter enum value
+	ListBulkImportJobsFilterCompletedWithFailures = "COMPLETED_WITH_FAILURES"
+
+	// ListBulkImportJobsFilterCompleted is a ListBulkImportJobsFilter enum value
+	ListBulkImportJobsFilterCompleted = "COMPLETED"
+)
+
+// ListBulkImportJobsFilter_Values returns all elements of the ListBulkImportJobsFilter enum
+func ListBulkImportJobsFilter_Values() []string {
+	return []string{
+		ListBulkImportJobsFilterAll,
+		ListBulkImportJobsFilterPending,
+		ListBulkImportJobsFilterRunning,
+		ListBulkImportJobsFilterCancelled,
+		ListBulkImportJobsFilterFailed,
+		ListBulkImportJobsFilterCompletedWithFailures,
+		ListBulkImportJobsFilterCompleted,
 	}
 }
 

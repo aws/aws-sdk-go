@@ -239,6 +239,19 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "GetQueryRuntimeStatistics":{
+      "name":"GetQueryRuntimeStatistics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetQueryRuntimeStatisticsInput"},
+      "output":{"shape":"GetQueryRuntimeStatisticsOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "GetTableMetadata":{
       "name":"GetTableMetadata",
       "http":{
@@ -982,6 +995,19 @@
         "NextToken":{"shape":"Token"}
       }
     },
+    "GetQueryRuntimeStatisticsInput":{
+      "type":"structure",
+      "required":["QueryExecutionId"],
+      "members":{
+        "QueryExecutionId":{"shape":"QueryExecutionId"}
+      }
+    },
+    "GetQueryRuntimeStatisticsOutput":{
+      "type":"structure",
+      "members":{
+        "QueryRuntimeStatistics":{"shape":"QueryRuntimeStatistics"}
+      }
+    },
     "GetTableMetadataInput":{
       "type":"structure",
       "required":[
@@ -1402,6 +1428,64 @@
         "AthenaError":{"shape":"AthenaError"}
       }
     },
+    "QueryRuntimeStatistics":{
+      "type":"structure",
+      "members":{
+        "Timeline":{"shape":"QueryRuntimeStatisticsTimeline"},
+        "Rows":{"shape":"QueryRuntimeStatisticsRows"},
+        "OutputStage":{"shape":"QueryStage"}
+      }
+    },
+    "QueryRuntimeStatisticsRows":{
+      "type":"structure",
+      "members":{
+        "InputRows":{"shape":"Long"},
+        "InputBytes":{"shape":"Long"},
+        "OutputBytes":{"shape":"Long"},
+        "OutputRows":{"shape":"Long"}
+      }
+    },
+    "QueryRuntimeStatisticsTimeline":{
+      "type":"structure",
+      "members":{
+        "QueryQueueTimeInMillis":{"shape":"Long"},
+        "QueryPlanningTimeInMillis":{"shape":"Long"},
+        "EngineExecutionTimeInMillis":{"shape":"Long"},
+        "ServiceProcessingTimeInMillis":{"shape":"Long"},
+        "TotalExecutionTimeInMillis":{"shape":"Long"}
+      }
+    },
+    "QueryStage":{
+      "type":"structure",
+      "members":{
+        "StageId":{"shape":"Long"},
+        "State":{"shape":"String"},
+        "OutputBytes":{"shape":"Long"},
+        "OutputRows":{"shape":"Long"},
+        "InputBytes":{"shape":"Long"},
+        "InputRows":{"shape":"Long"},
+        "ExecutionTime":{"shape":"Long"},
+        "QueryStagePlan":{"shape":"QueryStagePlanNode"},
+        "SubStages":{"shape":"QueryStages"}
+      }
+    },
+    "QueryStagePlanNode":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "Identifier":{"shape":"String"},
+        "Children":{"shape":"QueryStagePlanNodes"},
+        "RemoteSources":{"shape":"StringList"}
+      }
+    },
+    "QueryStagePlanNodes":{
+      "type":"list",
+      "member":{"shape":"QueryStagePlanNode"}
+    },
+    "QueryStages":{
+      "type":"list",
+      "member":{"shape":"QueryStage"}
+    },
     "QueryString":{
       "type":"string",
       "max":262144,
@@ -1516,6 +1600,10 @@
       }
     },
     "String":{"type":"string"},
+    "StringList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "TableMetadata":{
       "type":"structure",
       "required":["Name"],

@@ -4026,6 +4026,93 @@ func (s *Attachment) SetSubnetId(v string) *Attachment {
 	return s
 }
 
+// Summarizes the CIDR blocks used by the IP set references in a firewall. Network
+// Firewall calculates the number of CIDRs by taking an aggregated count of
+// all CIDRs used by the IP sets you are referencing.
+type CIDRSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The number of CIDR blocks available for use by the IP set references in a
+	// firewall.
+	AvailableCIDRCount *int64 `type:"integer"`
+
+	// The list of the IP set references used by a firewall.
+	IPSetReferences map[string]*IPSetMetadata `type:"map"`
+
+	// The number of CIDR blocks used by the IP set references in a firewall.
+	UtilizedCIDRCount *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CIDRSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CIDRSummary) GoString() string {
+	return s.String()
+}
+
+// SetAvailableCIDRCount sets the AvailableCIDRCount field's value.
+func (s *CIDRSummary) SetAvailableCIDRCount(v int64) *CIDRSummary {
+	s.AvailableCIDRCount = &v
+	return s
+}
+
+// SetIPSetReferences sets the IPSetReferences field's value.
+func (s *CIDRSummary) SetIPSetReferences(v map[string]*IPSetMetadata) *CIDRSummary {
+	s.IPSetReferences = v
+	return s
+}
+
+// SetUtilizedCIDRCount sets the UtilizedCIDRCount field's value.
+func (s *CIDRSummary) SetUtilizedCIDRCount(v int64) *CIDRSummary {
+	s.UtilizedCIDRCount = &v
+	return s
+}
+
+// The capacity usage summary of the resources used by the ReferenceSets in
+// a firewall.
+type CapacityUsageSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the capacity usage of the CIDR blocks used by the IP set references
+	// in a firewall.
+	CIDRs *CIDRSummary `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityUsageSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityUsageSummary) GoString() string {
+	return s.String()
+}
+
+// SetCIDRs sets the CIDRs field's value.
+func (s *CapacityUsageSummary) SetCIDRs(v *CIDRSummary) *CapacityUsageSummary {
+	s.CIDRs = v
+	return s
+}
+
 type CreateFirewallInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6861,6 +6948,11 @@ func (s *FirewallPolicyResponse) SetTags(v []*Tag) *FirewallPolicyResponse {
 type FirewallStatus struct {
 	_ struct{} `type:"structure"`
 
+	// Describes the capacity usage of the resources contained in a firewall's reference
+	// sets. Network Firewall calclulates the capacity usage by taking an aggregated
+	// count of all of the resources used by all of the reference sets in a firewall.
+	CapacityUsageSummary *CapacityUsageSummary `type:"structure"`
+
 	// The configuration sync state for the firewall. This summarizes the sync states
 	// reported in the Config settings for all of the Availability Zones where you
 	// have configured the firewall.
@@ -6909,6 +7001,12 @@ func (s FirewallStatus) String() string {
 // value will be replaced with "sensitive".
 func (s FirewallStatus) GoString() string {
 	return s.String()
+}
+
+// SetCapacityUsageSummary sets the CapacityUsageSummary field's value.
+func (s *FirewallStatus) SetCapacityUsageSummary(v *CapacityUsageSummary) *FirewallStatus {
+	s.CapacityUsageSummary = v
+	return s
 }
 
 // SetConfigurationSyncStateSummary sets the ConfigurationSyncStateSummary field's value.
@@ -7145,6 +7243,98 @@ func (s *IPSet) Validate() error {
 // SetDefinition sets the Definition field's value.
 func (s *IPSet) SetDefinition(v []*string) *IPSet {
 	s.Definition = v
+	return s
+}
+
+// General information about the IP set.
+type IPSetMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the total number of CIDR blocks currently in use by the IP set
+	// references in a firewall. To determine how many CIDR blocks are available
+	// for you to use in a firewall, you can call AvailableCIDRCount.
+	ResolvedCIDRCount *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IPSetMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IPSetMetadata) GoString() string {
+	return s.String()
+}
+
+// SetResolvedCIDRCount sets the ResolvedCIDRCount field's value.
+func (s *IPSetMetadata) SetResolvedCIDRCount(v int64) *IPSetMetadata {
+	s.ResolvedCIDRCount = &v
+	return s
+}
+
+// Configures one or more IP set references for a Suricata-compatible rule group.
+// This is used in CreateRuleGroup or UpdateRuleGroup. An IP set reference is
+// a rule variable that references a resource that you create and manage in
+// another Amazon Web Services service, such as an Amazon VPC prefix list. Network
+// Firewall IP set references enable you to dynamically update the contents
+// of your rules. When you create, update, or delete the IP set you are referencing
+// in your rule, Network Firewall automatically updates the rule's content with
+// the changes. For more information about IP set references in Network Firewall,
+// see Using IP set references (https://docs.aws.amazon.com/network-firewall/latest/developerguide/rule-groups-ip-set-references)
+// in the Network Firewall Developer Guide.
+//
+// Network Firewall currently supports only Amazon VPC prefix lists (https://docs.aws.amazon.com/vpc/latest/userguide/managed-prefix-lists.html)
+// as IP set references.
+type IPSetReference struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource that you are referencing in
+	// your rule group.
+	ReferenceArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IPSetReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IPSetReference) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IPSetReference) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IPSetReference"}
+	if s.ReferenceArn != nil && len(*s.ReferenceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReferenceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReferenceArn sets the ReferenceArn field's value.
+func (s *IPSetReference) SetReferenceArn(v string) *IPSetReference {
+	s.ReferenceArn = &v
 	return s
 }
 
@@ -8796,6 +8986,58 @@ func (s PutResourcePolicyOutput) GoString() string {
 	return s.String()
 }
 
+// Contains a set of IP set references.
+type ReferenceSets struct {
+	_ struct{} `type:"structure"`
+
+	// The list of IP set references.
+	IPSetReferences map[string]*IPSetReference `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReferenceSets) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReferenceSets) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReferenceSets) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReferenceSets"}
+	if s.IPSetReferences != nil {
+		for i, v := range s.IPSetReferences {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "IPSetReferences", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIPSetReferences sets the IPSetReferences field's value.
+func (s *ReferenceSets) SetIPSetReferences(v map[string]*IPSetReference) *ReferenceSets {
+	s.IPSetReferences = v
+	return s
+}
+
 // Unable to locate a resource using the parameters that you provided.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -9036,6 +9278,9 @@ func (s *RuleDefinition) SetMatchAttributes(v *MatchAttributes) *RuleDefinition 
 type RuleGroup struct {
 	_ struct{} `type:"structure"`
 
+	// The list of a rule group's reference sets.
+	ReferenceSets *ReferenceSets `type:"structure"`
+
 	// Settings that are available for use in the rules in the rule group. You can
 	// only use these for stateful rule groups.
 	RuleVariables *RuleVariables `type:"structure"`
@@ -9075,6 +9320,11 @@ func (s *RuleGroup) Validate() error {
 	if s.RulesSource == nil {
 		invalidParams.Add(request.NewErrParamRequired("RulesSource"))
 	}
+	if s.ReferenceSets != nil {
+		if err := s.ReferenceSets.Validate(); err != nil {
+			invalidParams.AddNested("ReferenceSets", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RuleVariables != nil {
 		if err := s.RuleVariables.Validate(); err != nil {
 			invalidParams.AddNested("RuleVariables", err.(request.ErrInvalidParams))
@@ -9090,6 +9340,12 @@ func (s *RuleGroup) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetReferenceSets sets the ReferenceSets field's value.
+func (s *RuleGroup) SetReferenceSets(v *ReferenceSets) *RuleGroup {
+	s.ReferenceSets = v
+	return s
 }
 
 // SetRuleVariables sets the RuleVariables field's value.
@@ -12300,6 +12556,9 @@ const (
 
 	// ConfigurationSyncStateInSync is a ConfigurationSyncState enum value
 	ConfigurationSyncStateInSync = "IN_SYNC"
+
+	// ConfigurationSyncStateCapacityConstrained is a ConfigurationSyncState enum value
+	ConfigurationSyncStateCapacityConstrained = "CAPACITY_CONSTRAINED"
 )
 
 // ConfigurationSyncState_Values returns all elements of the ConfigurationSyncState enum
@@ -12307,6 +12566,7 @@ func ConfigurationSyncState_Values() []string {
 	return []string{
 		ConfigurationSyncStatePending,
 		ConfigurationSyncStateInSync,
+		ConfigurationSyncStateCapacityConstrained,
 	}
 }
 
@@ -12416,6 +12676,9 @@ const (
 
 	// PerObjectSyncStatusInSync is a PerObjectSyncStatus enum value
 	PerObjectSyncStatusInSync = "IN_SYNC"
+
+	// PerObjectSyncStatusCapacityConstrained is a PerObjectSyncStatus enum value
+	PerObjectSyncStatusCapacityConstrained = "CAPACITY_CONSTRAINED"
 )
 
 // PerObjectSyncStatus_Values returns all elements of the PerObjectSyncStatus enum
@@ -12423,6 +12686,7 @@ func PerObjectSyncStatus_Values() []string {
 	return []string{
 		PerObjectSyncStatusPending,
 		PerObjectSyncStatusInSync,
+		PerObjectSyncStatusCapacityConstrained,
 	}
 }
 

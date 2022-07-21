@@ -32,6 +32,11 @@
       "refs": {
       }
     },
+    "EC2InstanceUnavailableException": {
+      "base": "<p>The instance is currently unavailable. Wait a few minutes and try again.</p>",
+      "refs": {
+      }
+    },
     "InstanceId": {
       "base": null,
       "refs": {
@@ -117,6 +122,7 @@
         "EC2InstanceNotFoundException$Message": null,
         "EC2InstanceStateInvalidException$Message": null,
         "EC2InstanceTypeInvalidException$Message": null,
+        "EC2InstanceUnavailableException$Message": null,
         "InvalidArgsException$Message": null,
         "SerialConsoleAccessDisabledException$Message": null,
         "SerialConsoleSessionLimitExceededException$Message": null,

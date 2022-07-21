@@ -72,9 +72,51 @@
     "UpdateVariable": "<p>Updates a variable.</p>"
   },
   "shapes": {
+    "ATIMetricDataPoint": {
+      "base": "<p> The Account Takeover Insights (ATI) model performance metrics data points. </p>",
+      "refs": {
+        "ATIMetricDataPointsList$member": null
+      }
+    },
+    "ATIMetricDataPointsList": {
+      "base": null,
+      "refs": {
+        "ATITrainingMetricsValue$metricDataPoints": "<p> The model's performance metrics data points. </p>"
+      }
+    },
+    "ATIModelPerformance": {
+      "base": "<p> The Account Takeover Insights (ATI) model performance score. </p>",
+      "refs": {
+        "ATITrainingMetricsValue$modelPerformance": "<p> The model's overall performance scores. </p>"
+      }
+    },
+    "ATITrainingMetricsValue": {
+      "base": "<p> The Account Takeover Insights (ATI) model training metric details. </p>",
+      "refs": {
+        "TrainingMetricsV2$ati": "<p> The Account Takeover Insights (ATI) model training metric details. </p>"
+      }
+    },
     "AccessDeniedException": {
       "base": "<p>An exception indicating Amazon Fraud Detector does not have the needed permissions. This can occur if you submit a request, such as <code>PutExternalModel</code>, that specifies a role that is not in your account.</p>",
       "refs": {
+      }
+    },
+    "AggregatedLogOddsMetric": {
+      "base": "<p>The log odds metric details.</p> <p>Account Takeover Insights (ATI) model uses event variables from the login data you provide to continuously calculate a set of variables (aggregated variables) based on historical events. For example, your ATI model might calculate the number of times an user has logged in using the same IP address. In this case, event variables used to derive the aggregated variables are <code>IP address</code> and <code>user</code>.</p>",
+      "refs": {
+        "ListOfAggregatedLogOddsMetrics$member": null
+      }
+    },
+    "AggregatedVariablesImpactExplanation": {
+      "base": "<p> The details of the impact of aggregated variables on the prediction score. </p> <p>Account Takeover Insights (ATI) model uses the login data you provide to continuously calculate a set of variables (aggregated variables) based on historical events. For example, the model might calculate the number of times an user has logged in using the same IP address. In this case, event variables used to derive the aggregated variables are <code>IP address</code> and <code>user</code>.</p>",
+      "refs": {
+        "ListOfAggregatedVariablesImpactExplanations$member": null
+      }
+    },
+    "AggregatedVariablesImportanceMetrics": {
+      "base": "<p>The details of the relative importance of the aggregated variables.</p> <p>Account Takeover Insights (ATI) model uses event variables from the login data you provide to continuously calculate a set of variables (aggregated variables) based on historical events. For example, your ATI model might calculate the number of times an user has logged in using the same IP address. In this case, event variables used to derive the aggregated variables are <code>IP address</code> and <code>user</code>.</p>",
+      "refs": {
+        "TrainingResultV2$aggregatedVariablesImportanceMetrics": "<p> The variable importance metrics of the aggregated variables. </p> <p>Account Takeover Insights (ATI) model uses event variables from the login data you provide to continuously calculate a set of variables (aggregated variables) based on historical events. For example, your ATI model might calculate the number of times an user has logged in using the same IP address. In this case, event variables used to derive the aggregated variables are <code>IP address</code> and <code>user</code>.</p>"
       }
     },
     "AsyncJobStatus": {
@@ -277,9 +319,10 @@
       }
     },
     "DataValidationMetrics": {
-      "base": "<p>The model training validation messages.</p>",
+      "base": "<p>The model training data validation metrics.</p>",
       "refs": {
-        "TrainingResult$dataValidationMetrics": "<p>The validation metrics.</p>"
+        "TrainingResult$dataValidationMetrics": "<p>The validation metrics.</p>",
+        "TrainingResultV2$dataValidationMetrics": null
       }
     },
     "DeleteAuditHistory": {
@@ -921,6 +964,18 @@
       "refs": {
       }
     },
+    "ListOfAggregatedLogOddsMetrics": {
+      "base": null,
+      "refs": {
+        "AggregatedVariablesImportanceMetrics$logOddsMetrics": "<p> List of variables' metrics. </p>"
+      }
+    },
+    "ListOfAggregatedVariablesImpactExplanations": {
+      "base": null,
+      "refs": {
+        "PredictionExplanations$aggregatedVariablesImpactExplanations": "<p> The details of the aggregated variables impact on the prediction score. </p> <p>Account Takeover Insights (ATI) model uses event variables from the login data you provide to continuously calculate a set of variables (aggregated variables) based on historical events. For example, your ATI model might calculate the number of times an user has logged in using the same IP address. In this case, event variables used to derive the aggregated variables are <code>IP address</code> and <code>user</code>.</p>"
+      }
+    },
     "ListOfEvaluatedExternalModels": {
       "base": null,
       "refs": {
@@ -986,6 +1041,8 @@
     "ListOfStrings": {
       "base": null,
       "refs": {
+        "AggregatedLogOddsMetric$variableNames": "<p> The names of all the variables. </p>",
+        "AggregatedVariablesImpactExplanation$eventVariableNames": "<p> The names of all the event variables that were used to derive the aggregated variables. </p>",
         "CreateDetectorVersionRequest$externalModelEndpoints": "<p>The Amazon Sagemaker model endpoints to include in the detector version.</p>",
         "EvaluatedRule$outcomes": "<p> The rule outcome. </p>",
         "EventType$eventVariables": "<p>The event type event variables.</p>",
@@ -995,7 +1052,8 @@
         "PutEventTypeRequest$labels": "<p>The event type labels.</p>",
         "RuleResult$outcomes": "<p>The outcomes of the matched rule, based on the rule execution mode.</p>",
         "TrainingDataSchema$modelVariables": "<p>The training data schema variables.</p>",
-        "UpdateDetectorVersionRequest$externalModelEndpoints": "<p>The Amazon SageMaker model endpoints to include in the detector version.</p>"
+        "UpdateDetectorVersionRequest$externalModelEndpoints": "<p>The Amazon SageMaker model endpoints to include in the detector version.</p>",
+        "labelMapper$value": null
       }
     },
     "ListTagsForResourceRequest": {
@@ -1159,8 +1217,31 @@
         "PutEventTypeRequest$eventVariables": "<p>The event type variables.</p>",
         "PutEventTypeRequest$entityTypes": "<p>The entity type for the event type. Example entity types: customer, merchant, account.</p>",
         "RuleDetail$outcomes": "<p>The rule outcomes.</p>",
-        "UpdateRuleVersionRequest$outcomes": "<p>The outcomes.</p>",
-        "labelMapper$value": null
+        "UpdateRuleVersionRequest$outcomes": "<p>The outcomes.</p>"
+      }
+    },
+    "OFIMetricDataPoint": {
+      "base": "<p> The Online Fraud Insights (OFI) model performance metrics data points. </p>",
+      "refs": {
+        "OFIMetricDataPointsList$member": null
+      }
+    },
+    "OFIMetricDataPointsList": {
+      "base": null,
+      "refs": {
+        "OFITrainingMetricsValue$metricDataPoints": "<p> The model's performance metrics data points. </p>"
+      }
+    },
+    "OFIModelPerformance": {
+      "base": "<p> The Online Fraud Insights (OFI) model performance score. </p>",
+      "refs": {
+        "OFITrainingMetricsValue$modelPerformance": "<p> The model's overall performance score. </p>"
+      }
+    },
+    "OFITrainingMetricsValue": {
+      "base": "<p> The Online Fraud Insights (OFI) model training metric details. </p>",
+      "refs": {
+        "TrainingMetricsV2$ofi": "<p> The Online Fraud Insights (OFI) model training metric details. </p>"
       }
     },
     "Outcome": {
@@ -1335,6 +1416,30 @@
       "refs": {
       }
     },
+    "TFIMetricDataPoint": {
+      "base": "<p> The performance metrics data points for Transaction Fraud Insights (TFI) model. </p>",
+      "refs": {
+        "TFIMetricDataPointsList$member": null
+      }
+    },
+    "TFIMetricDataPointsList": {
+      "base": null,
+      "refs": {
+        "TFITrainingMetricsValue$metricDataPoints": "<p> The model's performance metrics data points. </p>"
+      }
+    },
+    "TFIModelPerformance": {
+      "base": "<p> The Transaction Fraud Insights (TFI) model performance score. </p>",
+      "refs": {
+        "TFITrainingMetricsValue$modelPerformance": "<p> The model performance score. </p>"
+      }
+    },
+    "TFITrainingMetricsValue": {
+      "base": "<p> The Transaction Fraud Insights (TFI) model training metric details. </p>",
+      "refs": {
+        "TrainingMetricsV2$tfi": "<p> The Transaction Fraud Insights (TFI) model training metric details. </p>"
+      }
+    },
     "Tag": {
       "base": "<p>A key and value pair. </p>",
       "refs": {
@@ -1384,10 +1489,22 @@
         "TrainingResult$trainingMetrics": "<p>The training metric details.</p>"
       }
     },
+    "TrainingMetricsV2": {
+      "base": "<p> The training metrics details. </p>",
+      "refs": {
+        "TrainingResultV2$trainingMetricsV2": "<p> The training metric details. </p>"
+      }
+    },
     "TrainingResult": {
       "base": "<p>The training result details.</p>",
       "refs": {
         "ModelVersionDetail$trainingResult": "<p>The training results.</p>"
+      }
+    },
+    "TrainingResultV2": {
+      "base": "<p> The training result details. </p>",
+      "refs": {
+        "ModelVersionDetail$trainingResultV2": "<p> The training result details. The details include the relative importance of the variables. </p>"
       }
     },
     "UnlabeledEventsTreatment": {
@@ -1544,7 +1661,8 @@
     "VariableImportanceMetrics": {
       "base": "<p>The variable importance metrics details.</p>",
       "refs": {
-        "TrainingResult$variableImportanceMetrics": "<p>The variable importance metrics.</p>"
+        "TrainingResult$variableImportanceMetrics": "<p>The variable importance metrics.</p>",
+        "TrainingResultV2$variableImportanceMetrics": null
       }
     },
     "VariableList": {
@@ -1662,7 +1780,7 @@
     "fileValidationMessageList": {
       "base": null,
       "refs": {
-        "DataValidationMetrics$fileLevelMessages": "<p>The file-specific model training validation messages.</p>"
+        "DataValidationMetrics$fileLevelMessages": "<p>The file-specific model training data validation messages.</p>"
       }
     },
     "filterString": {
@@ -1674,12 +1792,29 @@
     "float": {
       "base": null,
       "refs": {
+        "ATIMetricDataPoint$cr": "<p> The challenge rate. This indicates the percentage of login events that the model recommends to challenge such as one-time password, multi-factor authentication, and investigations. </p>",
+        "ATIMetricDataPoint$adr": "<p> The anomaly discovery rate. This metric quantifies the percentage of anomalies that can be detected by the model at the selected score threshold. A lower score threshold increases the percentage of anomalies captured by the model, but would also require challenging a larger percentage of login events, leading to a higher customer friction. </p>",
+        "ATIMetricDataPoint$threshold": "<p> The model's threshold that specifies an acceptable fraud capture rate. For example, a threshold of 500 means any model score 500 or above is labeled as fraud. </p>",
+        "ATIMetricDataPoint$atodr": "<p> The account takeover discovery rate. This metric quantifies the percentage of account compromise events that can be detected by the model at the selected score threshold. This metric is only available if 50 or more entities with at-least one labeled account takeover event is present in the ingested dataset. </p>",
+        "ATIModelPerformance$asi": "<p> The anomaly separation index (ASI) score. This metric summarizes the overall ability of the model to separate anomalous activities from the normal behavior. Depending on the business, a large fraction of these anomalous activities can be malicious and correspond to the account takeover attacks. A model with no separability power will have the lowest possible ASI score of 0.5, whereas the a model with a high separability power will have the highest possible ASI score of 1.0 </p>",
+        "AggregatedLogOddsMetric$aggregatedVariablesImportance": "<p> The relative importance of the variables in the list to the other event variable. </p>",
+        "AggregatedVariablesImpactExplanation$logOddsImpact": "<p> The raw, uninterpreted value represented as log-odds of the fraud. These values are usually between -10 to +10, but range from -infinity to +infinity.</p> <ul> <li> <p>A positive value indicates that the variables drove the risk score up.</p> </li> <li> <p>A negative value indicates that the variables drove the risk score down.</p> </li> </ul>",
         "LogOddsMetric$variableImportance": "<p>The relative importance of the variable. For more information, see <a href=\"https://docs.aws.amazon.com/frauddetector/latest/ug/model-variable-importance.html\">Model variable importance</a>.</p>",
         "MetricDataPoint$fpr": "<p>The false positive rate. This is the percentage of total legitimate events that are incorrectly predicted as fraud.</p>",
         "MetricDataPoint$precision": "<p>The percentage of fraud events correctly predicted as fraudulent as compared to all events predicted as fraudulent.</p>",
         "MetricDataPoint$tpr": "<p>The true positive rate. This is the percentage of total fraud the model detects. Also known as capture rate.</p>",
         "MetricDataPoint$threshold": "<p>The model threshold that specifies an acceptable fraud capture rate. For example, a threshold of 500 means any model score 500 or above is labeled as fraud.</p>",
         "ModelPredictionMap$value": null,
+        "OFIMetricDataPoint$fpr": "<p> The false positive rate. This is the percentage of total legitimate events that are incorrectly predicted as fraud. </p>",
+        "OFIMetricDataPoint$precision": "<p> The percentage of fraud events correctly predicted as fraudulent as compared to all events predicted as fraudulent. </p>",
+        "OFIMetricDataPoint$tpr": "<p> The true positive rate. This is the percentage of total fraud the model detects. Also known as capture rate. </p>",
+        "OFIMetricDataPoint$threshold": "<p> The model threshold that specifies an acceptable fraud capture rate. For example, a threshold of 500 means any model score 500 or above is labeled as fraud. </p>",
+        "OFIModelPerformance$auc": "<p> The area under the curve (auc). This summarizes the total positive rate (tpr) and false positive rate (FPR) across all possible model score thresholds. </p>",
+        "TFIMetricDataPoint$fpr": "<p> The false positive rate. This is the percentage of total legitimate events that are incorrectly predicted as fraud. </p>",
+        "TFIMetricDataPoint$precision": "<p> The percentage of fraud events correctly predicted as fraudulent as compared to all events predicted as fraudulent. </p>",
+        "TFIMetricDataPoint$tpr": "<p> The true positive rate. This is the percentage of total fraud the model detects. Also known as capture rate. </p>",
+        "TFIMetricDataPoint$threshold": "<p> The model threshold that specifies an acceptable fraud capture rate. For example, a threshold of 500 means any model score 500 or above is labeled as fraud. </p>",
+        "TFIModelPerformance$auc": "<p> The area under the curve (auc). This summarizes the total positive rate (tpr) and false positive rate (FPR) across all possible model score thresholds. </p>",
         "TrainingMetrics$auc": "<p>The area under the curve. This summarizes true positive rate (TPR) and false positive rate (FPR) across all possible model score thresholds. A model with no predictive power has an AUC of 0.5, whereas a perfect model has a score of 1.0.</p>",
         "VariableImpactExplanation$logOddsImpact": "<p> The raw, uninterpreted value represented as log-odds of the fraud. These values are usually between -10 to +10, but range from - infinity to + infinity.</p> <ul> <li> <p>A positive value indicates that the variable drove the risk score up.</p> </li> <li> <p>A negative value indicates that the variable drove the risk score down.</p> </li> </ul>"
       }
@@ -1950,6 +2085,7 @@
       "base": null,
       "refs": {
         "AccessDeniedException$message": null,
+        "AggregatedVariablesImpactExplanation$relativeImpact": "<p> The relative impact of the aggregated variables in terms of magnitude on the prediction scores. </p>",
         "BatchCreateVariableError$name": "<p>The name.</p>",
         "BatchCreateVariableError$message": "<p>The error message.</p>",
         "BatchGetVariableError$name": "<p>The error name. </p>",

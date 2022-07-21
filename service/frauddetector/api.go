@@ -7371,6 +7371,155 @@ func (c *FraudDetector) UpdateVariableWithContext(ctx aws.Context, input *Update
 	return out, req.Send()
 }
 
+// The Account Takeover Insights (ATI) model performance metrics data points.
+type ATIMetricDataPoint struct {
+	_ struct{} `type:"structure"`
+
+	// The anomaly discovery rate. This metric quantifies the percentage of anomalies
+	// that can be detected by the model at the selected score threshold. A lower
+	// score threshold increases the percentage of anomalies captured by the model,
+	// but would also require challenging a larger percentage of login events, leading
+	// to a higher customer friction.
+	Adr *float64 `locationName:"adr" type:"float"`
+
+	// The account takeover discovery rate. This metric quantifies the percentage
+	// of account compromise events that can be detected by the model at the selected
+	// score threshold. This metric is only available if 50 or more entities with
+	// at-least one labeled account takeover event is present in the ingested dataset.
+	Atodr *float64 `locationName:"atodr" type:"float"`
+
+	// The challenge rate. This indicates the percentage of login events that the
+	// model recommends to challenge such as one-time password, multi-factor authentication,
+	// and investigations.
+	Cr *float64 `locationName:"cr" type:"float"`
+
+	// The model's threshold that specifies an acceptable fraud capture rate. For
+	// example, a threshold of 500 means any model score 500 or above is labeled
+	// as fraud.
+	Threshold *float64 `locationName:"threshold" type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ATIMetricDataPoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ATIMetricDataPoint) GoString() string {
+	return s.String()
+}
+
+// SetAdr sets the Adr field's value.
+func (s *ATIMetricDataPoint) SetAdr(v float64) *ATIMetricDataPoint {
+	s.Adr = &v
+	return s
+}
+
+// SetAtodr sets the Atodr field's value.
+func (s *ATIMetricDataPoint) SetAtodr(v float64) *ATIMetricDataPoint {
+	s.Atodr = &v
+	return s
+}
+
+// SetCr sets the Cr field's value.
+func (s *ATIMetricDataPoint) SetCr(v float64) *ATIMetricDataPoint {
+	s.Cr = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *ATIMetricDataPoint) SetThreshold(v float64) *ATIMetricDataPoint {
+	s.Threshold = &v
+	return s
+}
+
+// The Account Takeover Insights (ATI) model performance score.
+type ATIModelPerformance struct {
+	_ struct{} `type:"structure"`
+
+	// The anomaly separation index (ASI) score. This metric summarizes the overall
+	// ability of the model to separate anomalous activities from the normal behavior.
+	// Depending on the business, a large fraction of these anomalous activities
+	// can be malicious and correspond to the account takeover attacks. A model
+	// with no separability power will have the lowest possible ASI score of 0.5,
+	// whereas the a model with a high separability power will have the highest
+	// possible ASI score of 1.0
+	Asi *float64 `locationName:"asi" type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ATIModelPerformance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ATIModelPerformance) GoString() string {
+	return s.String()
+}
+
+// SetAsi sets the Asi field's value.
+func (s *ATIModelPerformance) SetAsi(v float64) *ATIModelPerformance {
+	s.Asi = &v
+	return s
+}
+
+// The Account Takeover Insights (ATI) model training metric details.
+type ATITrainingMetricsValue struct {
+	_ struct{} `type:"structure"`
+
+	// The model's performance metrics data points.
+	MetricDataPoints []*ATIMetricDataPoint `locationName:"metricDataPoints" type:"list"`
+
+	// The model's overall performance scores.
+	ModelPerformance *ATIModelPerformance `locationName:"modelPerformance" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ATITrainingMetricsValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ATITrainingMetricsValue) GoString() string {
+	return s.String()
+}
+
+// SetMetricDataPoints sets the MetricDataPoints field's value.
+func (s *ATITrainingMetricsValue) SetMetricDataPoints(v []*ATIMetricDataPoint) *ATITrainingMetricsValue {
+	s.MetricDataPoints = v
+	return s
+}
+
+// SetModelPerformance sets the ModelPerformance field's value.
+func (s *ATITrainingMetricsValue) SetModelPerformance(v *ATIModelPerformance) *ATITrainingMetricsValue {
+	s.ModelPerformance = v
+	return s
+}
+
 // An exception indicating Amazon Fraud Detector does not have the needed permissions.
 // This can occur if you submit a request, such as PutExternalModel, that specifies
 // a role that is not in your account.
@@ -7435,6 +7584,160 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The log odds metric details.
+//
+// Account Takeover Insights (ATI) model uses event variables from the login
+// data you provide to continuously calculate a set of variables (aggregated
+// variables) based on historical events. For example, your ATI model might
+// calculate the number of times an user has logged in using the same IP address.
+// In this case, event variables used to derive the aggregated variables are
+// IP address and user.
+type AggregatedLogOddsMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The relative importance of the variables in the list to the other event variable.
+	//
+	// AggregatedVariablesImportance is a required field
+	AggregatedVariablesImportance *float64 `locationName:"aggregatedVariablesImportance" type:"float" required:"true"`
+
+	// The names of all the variables.
+	//
+	// VariableNames is a required field
+	VariableNames []*string `locationName:"variableNames" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregatedLogOddsMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregatedLogOddsMetric) GoString() string {
+	return s.String()
+}
+
+// SetAggregatedVariablesImportance sets the AggregatedVariablesImportance field's value.
+func (s *AggregatedLogOddsMetric) SetAggregatedVariablesImportance(v float64) *AggregatedLogOddsMetric {
+	s.AggregatedVariablesImportance = &v
+	return s
+}
+
+// SetVariableNames sets the VariableNames field's value.
+func (s *AggregatedLogOddsMetric) SetVariableNames(v []*string) *AggregatedLogOddsMetric {
+	s.VariableNames = v
+	return s
+}
+
+// The details of the impact of aggregated variables on the prediction score.
+//
+// Account Takeover Insights (ATI) model uses the login data you provide to
+// continuously calculate a set of variables (aggregated variables) based on
+// historical events. For example, the model might calculate the number of times
+// an user has logged in using the same IP address. In this case, event variables
+// used to derive the aggregated variables are IP address and user.
+type AggregatedVariablesImpactExplanation struct {
+	_ struct{} `type:"structure"`
+
+	// The names of all the event variables that were used to derive the aggregated
+	// variables.
+	EventVariableNames []*string `locationName:"eventVariableNames" type:"list"`
+
+	// The raw, uninterpreted value represented as log-odds of the fraud. These
+	// values are usually between -10 to +10, but range from -infinity to +infinity.
+	//
+	//    * A positive value indicates that the variables drove the risk score up.
+	//
+	//    * A negative value indicates that the variables drove the risk score down.
+	LogOddsImpact *float64 `locationName:"logOddsImpact" type:"float"`
+
+	// The relative impact of the aggregated variables in terms of magnitude on
+	// the prediction scores.
+	RelativeImpact *string `locationName:"relativeImpact" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregatedVariablesImpactExplanation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregatedVariablesImpactExplanation) GoString() string {
+	return s.String()
+}
+
+// SetEventVariableNames sets the EventVariableNames field's value.
+func (s *AggregatedVariablesImpactExplanation) SetEventVariableNames(v []*string) *AggregatedVariablesImpactExplanation {
+	s.EventVariableNames = v
+	return s
+}
+
+// SetLogOddsImpact sets the LogOddsImpact field's value.
+func (s *AggregatedVariablesImpactExplanation) SetLogOddsImpact(v float64) *AggregatedVariablesImpactExplanation {
+	s.LogOddsImpact = &v
+	return s
+}
+
+// SetRelativeImpact sets the RelativeImpact field's value.
+func (s *AggregatedVariablesImpactExplanation) SetRelativeImpact(v string) *AggregatedVariablesImpactExplanation {
+	s.RelativeImpact = &v
+	return s
+}
+
+// The details of the relative importance of the aggregated variables.
+//
+// Account Takeover Insights (ATI) model uses event variables from the login
+// data you provide to continuously calculate a set of variables (aggregated
+// variables) based on historical events. For example, your ATI model might
+// calculate the number of times an user has logged in using the same IP address.
+// In this case, event variables used to derive the aggregated variables are
+// IP address and user.
+type AggregatedVariablesImportanceMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// List of variables' metrics.
+	LogOddsMetrics []*AggregatedLogOddsMetric `locationName:"logOddsMetrics" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregatedVariablesImportanceMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregatedVariablesImportanceMetrics) GoString() string {
+	return s.String()
+}
+
+// SetLogOddsMetrics sets the LogOddsMetrics field's value.
+func (s *AggregatedVariablesImportanceMetrics) SetLogOddsMetrics(v []*AggregatedLogOddsMetric) *AggregatedVariablesImportanceMetrics {
+	s.LogOddsMetrics = v
+	return s
 }
 
 // Provides the error of the batch create variable API.
@@ -9451,14 +9754,14 @@ func (s CreateVariableOutput) GoString() string {
 	return s.String()
 }
 
-// The model training validation messages.
+// The model training data validation metrics.
 type DataValidationMetrics struct {
 	_ struct{} `type:"structure"`
 
 	// The field-specific model training validation messages.
 	FieldLevelMessages []*FieldValidationMessage `locationName:"fieldLevelMessages" type:"list"`
 
-	// The file-specific model training validation messages.
+	// The file-specific model training data validation messages.
 	FileLevelMessages []*FileValidationMessage `locationName:"fileLevelMessages" type:"list"`
 }
 
@@ -14879,9 +15182,7 @@ type LabelSchema struct {
 	// "LEGIT" => ["true"]} or {"FRAUD" => ["fraud", "abuse"], "LEGIT" => ["legit",
 	// "safe"]}. The value part of the mapper is a list, because you may have multiple
 	// label variants from your event type for a single Amazon Fraud Detector label.
-	//
-	// LabelMapper is a required field
-	LabelMapper map[string][]*string `locationName:"labelMapper" type:"map" required:"true"`
+	LabelMapper map[string][]*string `locationName:"labelMapper" type:"map"`
 
 	// The action to take for unlabeled events.
 	UnlabeledEventsTreatment *string `locationName:"unlabeledEventsTreatment" type:"string" enum:"UnlabeledEventsTreatment"`
@@ -14903,19 +15204,6 @@ func (s LabelSchema) String() string {
 // value will be replaced with "sensitive".
 func (s LabelSchema) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *LabelSchema) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "LabelSchema"}
-	if s.LabelMapper == nil {
-		invalidParams.Add(request.NewErrParamRequired("LabelMapper"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetLabelMapper sets the LabelMapper field's value.
@@ -15810,6 +16098,10 @@ type ModelVersionDetail struct {
 
 	// The training results.
 	TrainingResult *TrainingResult `locationName:"trainingResult" type:"structure"`
+
+	// The training result details. The details include the relative importance
+	// of the variables.
+	TrainingResultV2 *TrainingResultV2 `locationName:"trainingResultV2" type:"structure"`
 }
 
 // String returns the string representation.
@@ -15902,6 +16194,12 @@ func (s *ModelVersionDetail) SetTrainingResult(v *TrainingResult) *ModelVersionD
 	return s
 }
 
+// SetTrainingResultV2 sets the TrainingResultV2 field's value.
+func (s *ModelVersionDetail) SetTrainingResultV2(v *TrainingResultV2) *ModelVersionDetail {
+	s.TrainingResultV2 = v
+	return s
+}
+
 // The model version evalutions.
 type ModelVersionEvaluation struct {
 	_ struct{} `type:"structure"`
@@ -15949,6 +16247,144 @@ func (s *ModelVersionEvaluation) SetOutputVariableName(v string) *ModelVersionEv
 // SetPredictionExplanations sets the PredictionExplanations field's value.
 func (s *ModelVersionEvaluation) SetPredictionExplanations(v *PredictionExplanations) *ModelVersionEvaluation {
 	s.PredictionExplanations = v
+	return s
+}
+
+// The Online Fraud Insights (OFI) model performance metrics data points.
+type OFIMetricDataPoint struct {
+	_ struct{} `type:"structure"`
+
+	// The false positive rate. This is the percentage of total legitimate events
+	// that are incorrectly predicted as fraud.
+	Fpr *float64 `locationName:"fpr" type:"float"`
+
+	// The percentage of fraud events correctly predicted as fraudulent as compared
+	// to all events predicted as fraudulent.
+	Precision *float64 `locationName:"precision" type:"float"`
+
+	// The model threshold that specifies an acceptable fraud capture rate. For
+	// example, a threshold of 500 means any model score 500 or above is labeled
+	// as fraud.
+	Threshold *float64 `locationName:"threshold" type:"float"`
+
+	// The true positive rate. This is the percentage of total fraud the model detects.
+	// Also known as capture rate.
+	Tpr *float64 `locationName:"tpr" type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OFIMetricDataPoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OFIMetricDataPoint) GoString() string {
+	return s.String()
+}
+
+// SetFpr sets the Fpr field's value.
+func (s *OFIMetricDataPoint) SetFpr(v float64) *OFIMetricDataPoint {
+	s.Fpr = &v
+	return s
+}
+
+// SetPrecision sets the Precision field's value.
+func (s *OFIMetricDataPoint) SetPrecision(v float64) *OFIMetricDataPoint {
+	s.Precision = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *OFIMetricDataPoint) SetThreshold(v float64) *OFIMetricDataPoint {
+	s.Threshold = &v
+	return s
+}
+
+// SetTpr sets the Tpr field's value.
+func (s *OFIMetricDataPoint) SetTpr(v float64) *OFIMetricDataPoint {
+	s.Tpr = &v
+	return s
+}
+
+// The Online Fraud Insights (OFI) model performance score.
+type OFIModelPerformance struct {
+	_ struct{} `type:"structure"`
+
+	// The area under the curve (auc). This summarizes the total positive rate (tpr)
+	// and false positive rate (FPR) across all possible model score thresholds.
+	Auc *float64 `locationName:"auc" type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OFIModelPerformance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OFIModelPerformance) GoString() string {
+	return s.String()
+}
+
+// SetAuc sets the Auc field's value.
+func (s *OFIModelPerformance) SetAuc(v float64) *OFIModelPerformance {
+	s.Auc = &v
+	return s
+}
+
+// The Online Fraud Insights (OFI) model training metric details.
+type OFITrainingMetricsValue struct {
+	_ struct{} `type:"structure"`
+
+	// The model's performance metrics data points.
+	MetricDataPoints []*OFIMetricDataPoint `locationName:"metricDataPoints" type:"list"`
+
+	// The model's overall performance score.
+	ModelPerformance *OFIModelPerformance `locationName:"modelPerformance" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OFITrainingMetricsValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OFITrainingMetricsValue) GoString() string {
+	return s.String()
+}
+
+// SetMetricDataPoints sets the MetricDataPoints field's value.
+func (s *OFITrainingMetricsValue) SetMetricDataPoints(v []*OFIMetricDataPoint) *OFITrainingMetricsValue {
+	s.MetricDataPoints = v
+	return s
+}
+
+// SetModelPerformance sets the ModelPerformance field's value.
+func (s *OFITrainingMetricsValue) SetModelPerformance(v *OFIModelPerformance) *OFITrainingMetricsValue {
+	s.ModelPerformance = v
 	return s
 }
 
@@ -16025,6 +16461,16 @@ func (s *Outcome) SetName(v string) *Outcome {
 type PredictionExplanations struct {
 	_ struct{} `type:"structure"`
 
+	// The details of the aggregated variables impact on the prediction score.
+	//
+	// Account Takeover Insights (ATI) model uses event variables from the login
+	// data you provide to continuously calculate a set of variables (aggregated
+	// variables) based on historical events. For example, your ATI model might
+	// calculate the number of times an user has logged in using the same IP address.
+	// In this case, event variables used to derive the aggregated variables are
+	// IP address and user.
+	AggregatedVariablesImpactExplanations []*AggregatedVariablesImpactExplanation `locationName:"aggregatedVariablesImpactExplanations" type:"list"`
+
 	// The details of the event variable's impact on the prediction score.
 	VariableImpactExplanations []*VariableImpactExplanation `locationName:"variableImpactExplanations" type:"list"`
 }
@@ -16045,6 +16491,12 @@ func (s PredictionExplanations) String() string {
 // value will be replaced with "sensitive".
 func (s PredictionExplanations) GoString() string {
 	return s.String()
+}
+
+// SetAggregatedVariablesImpactExplanations sets the AggregatedVariablesImpactExplanations field's value.
+func (s *PredictionExplanations) SetAggregatedVariablesImpactExplanations(v []*AggregatedVariablesImpactExplanation) *PredictionExplanations {
+	s.AggregatedVariablesImpactExplanations = v
+	return s
 }
 
 // SetVariableImpactExplanations sets the VariableImpactExplanations field's value.
@@ -17484,6 +17936,145 @@ func (s SendEventOutput) GoString() string {
 	return s.String()
 }
 
+// The performance metrics data points for Transaction Fraud Insights (TFI)
+// model.
+type TFIMetricDataPoint struct {
+	_ struct{} `type:"structure"`
+
+	// The false positive rate. This is the percentage of total legitimate events
+	// that are incorrectly predicted as fraud.
+	Fpr *float64 `locationName:"fpr" type:"float"`
+
+	// The percentage of fraud events correctly predicted as fraudulent as compared
+	// to all events predicted as fraudulent.
+	Precision *float64 `locationName:"precision" type:"float"`
+
+	// The model threshold that specifies an acceptable fraud capture rate. For
+	// example, a threshold of 500 means any model score 500 or above is labeled
+	// as fraud.
+	Threshold *float64 `locationName:"threshold" type:"float"`
+
+	// The true positive rate. This is the percentage of total fraud the model detects.
+	// Also known as capture rate.
+	Tpr *float64 `locationName:"tpr" type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TFIMetricDataPoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TFIMetricDataPoint) GoString() string {
+	return s.String()
+}
+
+// SetFpr sets the Fpr field's value.
+func (s *TFIMetricDataPoint) SetFpr(v float64) *TFIMetricDataPoint {
+	s.Fpr = &v
+	return s
+}
+
+// SetPrecision sets the Precision field's value.
+func (s *TFIMetricDataPoint) SetPrecision(v float64) *TFIMetricDataPoint {
+	s.Precision = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *TFIMetricDataPoint) SetThreshold(v float64) *TFIMetricDataPoint {
+	s.Threshold = &v
+	return s
+}
+
+// SetTpr sets the Tpr field's value.
+func (s *TFIMetricDataPoint) SetTpr(v float64) *TFIMetricDataPoint {
+	s.Tpr = &v
+	return s
+}
+
+// The Transaction Fraud Insights (TFI) model performance score.
+type TFIModelPerformance struct {
+	_ struct{} `type:"structure"`
+
+	// The area under the curve (auc). This summarizes the total positive rate (tpr)
+	// and false positive rate (FPR) across all possible model score thresholds.
+	Auc *float64 `locationName:"auc" type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TFIModelPerformance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TFIModelPerformance) GoString() string {
+	return s.String()
+}
+
+// SetAuc sets the Auc field's value.
+func (s *TFIModelPerformance) SetAuc(v float64) *TFIModelPerformance {
+	s.Auc = &v
+	return s
+}
+
+// The Transaction Fraud Insights (TFI) model training metric details.
+type TFITrainingMetricsValue struct {
+	_ struct{} `type:"structure"`
+
+	// The model's performance metrics data points.
+	MetricDataPoints []*TFIMetricDataPoint `locationName:"metricDataPoints" type:"list"`
+
+	// The model performance score.
+	ModelPerformance *TFIModelPerformance `locationName:"modelPerformance" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TFITrainingMetricsValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TFITrainingMetricsValue) GoString() string {
+	return s.String()
+}
+
+// SetMetricDataPoints sets the MetricDataPoints field's value.
+func (s *TFITrainingMetricsValue) SetMetricDataPoints(v []*TFIMetricDataPoint) *TFITrainingMetricsValue {
+	s.MetricDataPoints = v
+	return s
+}
+
+// SetModelPerformance sets the ModelPerformance field's value.
+func (s *TFITrainingMetricsValue) SetModelPerformance(v *TFIModelPerformance) *TFITrainingMetricsValue {
+	s.ModelPerformance = v
+	return s
+}
+
 // A key and value pair.
 type Tag struct {
 	_ struct{} `type:"structure"`
@@ -17712,9 +18303,7 @@ type TrainingDataSchema struct {
 	_ struct{} `type:"structure"`
 
 	// The label schema.
-	//
-	// LabelSchema is a required field
-	LabelSchema *LabelSchema `locationName:"labelSchema" type:"structure" required:"true"`
+	LabelSchema *LabelSchema `locationName:"labelSchema" type:"structure"`
 
 	// The training data schema variables.
 	//
@@ -17743,16 +18332,8 @@ func (s TrainingDataSchema) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *TrainingDataSchema) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "TrainingDataSchema"}
-	if s.LabelSchema == nil {
-		invalidParams.Add(request.NewErrParamRequired("LabelSchema"))
-	}
 	if s.ModelVariables == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelVariables"))
-	}
-	if s.LabelSchema != nil {
-		if err := s.LabelSchema.Validate(); err != nil {
-			invalidParams.AddNested("LabelSchema", err.(request.ErrInvalidParams))
-		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -17817,6 +18398,56 @@ func (s *TrainingMetrics) SetMetricDataPoints(v []*MetricDataPoint) *TrainingMet
 	return s
 }
 
+// The training metrics details.
+type TrainingMetricsV2 struct {
+	_ struct{} `type:"structure"`
+
+	// The Account Takeover Insights (ATI) model training metric details.
+	Ati *ATITrainingMetricsValue `locationName:"ati" type:"structure"`
+
+	// The Online Fraud Insights (OFI) model training metric details.
+	Ofi *OFITrainingMetricsValue `locationName:"ofi" type:"structure"`
+
+	// The Transaction Fraud Insights (TFI) model training metric details.
+	Tfi *TFITrainingMetricsValue `locationName:"tfi" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TrainingMetricsV2) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TrainingMetricsV2) GoString() string {
+	return s.String()
+}
+
+// SetAti sets the Ati field's value.
+func (s *TrainingMetricsV2) SetAti(v *ATITrainingMetricsValue) *TrainingMetricsV2 {
+	s.Ati = v
+	return s
+}
+
+// SetOfi sets the Ofi field's value.
+func (s *TrainingMetricsV2) SetOfi(v *OFITrainingMetricsValue) *TrainingMetricsV2 {
+	s.Ofi = v
+	return s
+}
+
+// SetTfi sets the Tfi field's value.
+func (s *TrainingMetricsV2) SetTfi(v *TFITrainingMetricsValue) *TrainingMetricsV2 {
+	s.Tfi = v
+	return s
+}
+
 // The training result details.
 type TrainingResult struct {
 	_ struct{} `type:"structure"`
@@ -17863,6 +18494,72 @@ func (s *TrainingResult) SetTrainingMetrics(v *TrainingMetrics) *TrainingResult 
 
 // SetVariableImportanceMetrics sets the VariableImportanceMetrics field's value.
 func (s *TrainingResult) SetVariableImportanceMetrics(v *VariableImportanceMetrics) *TrainingResult {
+	s.VariableImportanceMetrics = v
+	return s
+}
+
+// The training result details.
+type TrainingResultV2 struct {
+	_ struct{} `type:"structure"`
+
+	// The variable importance metrics of the aggregated variables.
+	//
+	// Account Takeover Insights (ATI) model uses event variables from the login
+	// data you provide to continuously calculate a set of variables (aggregated
+	// variables) based on historical events. For example, your ATI model might
+	// calculate the number of times an user has logged in using the same IP address.
+	// In this case, event variables used to derive the aggregated variables are
+	// IP address and user.
+	AggregatedVariablesImportanceMetrics *AggregatedVariablesImportanceMetrics `locationName:"aggregatedVariablesImportanceMetrics" type:"structure"`
+
+	// The model training data validation metrics.
+	DataValidationMetrics *DataValidationMetrics `locationName:"dataValidationMetrics" type:"structure"`
+
+	// The training metric details.
+	TrainingMetricsV2 *TrainingMetricsV2 `locationName:"trainingMetricsV2" type:"structure"`
+
+	// The variable importance metrics details.
+	VariableImportanceMetrics *VariableImportanceMetrics `locationName:"variableImportanceMetrics" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TrainingResultV2) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TrainingResultV2) GoString() string {
+	return s.String()
+}
+
+// SetAggregatedVariablesImportanceMetrics sets the AggregatedVariablesImportanceMetrics field's value.
+func (s *TrainingResultV2) SetAggregatedVariablesImportanceMetrics(v *AggregatedVariablesImportanceMetrics) *TrainingResultV2 {
+	s.AggregatedVariablesImportanceMetrics = v
+	return s
+}
+
+// SetDataValidationMetrics sets the DataValidationMetrics field's value.
+func (s *TrainingResultV2) SetDataValidationMetrics(v *DataValidationMetrics) *TrainingResultV2 {
+	s.DataValidationMetrics = v
+	return s
+}
+
+// SetTrainingMetricsV2 sets the TrainingMetricsV2 field's value.
+func (s *TrainingResultV2) SetTrainingMetricsV2(v *TrainingMetricsV2) *TrainingResultV2 {
+	s.TrainingMetricsV2 = v
+	return s
+}
+
+// SetVariableImportanceMetrics sets the VariableImportanceMetrics field's value.
+func (s *TrainingResultV2) SetVariableImportanceMetrics(v *VariableImportanceMetrics) *TrainingResultV2 {
 	s.VariableImportanceMetrics = v
 	return s
 }
@@ -19749,6 +20446,9 @@ const (
 
 	// ModelTypeEnumTransactionFraudInsights is a ModelTypeEnum enum value
 	ModelTypeEnumTransactionFraudInsights = "TRANSACTION_FRAUD_INSIGHTS"
+
+	// ModelTypeEnumAccountTakeoverInsights is a ModelTypeEnum enum value
+	ModelTypeEnumAccountTakeoverInsights = "ACCOUNT_TAKEOVER_INSIGHTS"
 )
 
 // ModelTypeEnum_Values returns all elements of the ModelTypeEnum enum
@@ -19756,6 +20456,7 @@ func ModelTypeEnum_Values() []string {
 	return []string{
 		ModelTypeEnumOnlineFraudInsights,
 		ModelTypeEnumTransactionFraudInsights,
+		ModelTypeEnumAccountTakeoverInsights,
 	}
 }
 

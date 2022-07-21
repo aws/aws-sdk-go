@@ -7083,6 +7083,10 @@ type CreateDBInstanceInput struct {
 	// Example: us-east-1d
 	AvailabilityZone *string `type:"string"`
 
+	// A value that indicates whether to copy tags from the DB instance to snapshots
+	// of the DB instance. By default, tags are not copied.
+	CopyTagsToSnapshot *bool `type:"boolean"`
+
 	// The identifier of the cluster that the instance will belong to.
 	//
 	// DBClusterIdentifier is a required field
@@ -7207,6 +7211,12 @@ func (s *CreateDBInstanceInput) SetAutoMinorVersionUpgrade(v bool) *CreateDBInst
 // SetAvailabilityZone sets the AvailabilityZone field's value.
 func (s *CreateDBInstanceInput) SetAvailabilityZone(v string) *CreateDBInstanceInput {
 	s.AvailabilityZone = &v
+	return s
+}
+
+// SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
+func (s *CreateDBInstanceInput) SetCopyTagsToSnapshot(v bool) *CreateDBInstanceInput {
+	s.CopyTagsToSnapshot = &v
 	return s
 }
 
@@ -7734,6 +7744,9 @@ type DBCluster struct {
 	// Specifies the number of days for which automatic snapshots are retained.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
+	// Identifies the clone group to which the DB cluster is associated.
+	CloneGroupId *string `type:"string"`
+
 	// Specifies the time when the cluster was created, in Universal Coordinated
 	// Time (UTC).
 	ClusterCreateTime *time.Time `type:"timestamp"`
@@ -7878,6 +7891,12 @@ func (s *DBCluster) SetAvailabilityZones(v []*string) *DBCluster {
 // SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
 func (s *DBCluster) SetBackupRetentionPeriod(v int64) *DBCluster {
 	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetCloneGroupId sets the CloneGroupId field's value.
+func (s *DBCluster) SetCloneGroupId(v string) *DBCluster {
+	s.CloneGroupId = &v
 	return s
 }
 
@@ -8619,6 +8638,10 @@ type DBInstance struct {
 	// The identifier of the CA certificate for this DB instance.
 	CACertificateIdentifier *string `type:"string"`
 
+	// A value that indicates whether to copy tags from the DB instance to snapshots
+	// of the DB instance. By default, tags are not copied.
+	CopyTagsToSnapshot *bool `type:"boolean"`
+
 	// Contains the name of the cluster that the instance is a member of if the
 	// instance is a member of a cluster.
 	DBClusterIdentifier *string `type:"string"`
@@ -8740,6 +8763,12 @@ func (s *DBInstance) SetBackupRetentionPeriod(v int64) *DBInstance {
 // SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
 func (s *DBInstance) SetCACertificateIdentifier(v string) *DBInstance {
 	s.CACertificateIdentifier = &v
+	return s
+}
+
+// SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
+func (s *DBInstance) SetCopyTagsToSnapshot(v bool) *DBInstance {
+	s.CopyTagsToSnapshot = &v
 	return s
 }
 
@@ -13204,6 +13233,10 @@ type ModifyDBInstanceInput struct {
 	// Indicates the certificate that needs to be associated with the instance.
 	CACertificateIdentifier *string `type:"string"`
 
+	// A value that indicates whether to copy all tags from the DB instance to snapshots
+	// of the DB instance. By default, tags are not copied.
+	CopyTagsToSnapshot *bool `type:"boolean"`
+
 	// The new compute and memory capacity of the instance; for example, db.r5.large.
 	// Not all instance classes are available in all Amazon Web Services Regions.
 	//
@@ -13329,6 +13362,12 @@ func (s *ModifyDBInstanceInput) SetAutoMinorVersionUpgrade(v bool) *ModifyDBInst
 // SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
 func (s *ModifyDBInstanceInput) SetCACertificateIdentifier(v string) *ModifyDBInstanceInput {
 	s.CACertificateIdentifier = &v
+	return s
+}
+
+// SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
+func (s *ModifyDBInstanceInput) SetCopyTagsToSnapshot(v bool) *ModifyDBInstanceInput {
+	s.CopyTagsToSnapshot = &v
 	return s
 }
 
@@ -15069,6 +15108,22 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// Example: 2015-03-07T23:45:00Z
 	RestoreToTime *time.Time `type:"timestamp"`
 
+	// The type of restore to be performed. You can specify one of the following
+	// values:
+	//
+	//    * full-copy - The new DB cluster is restored as a full copy of the source
+	//    DB cluster.
+	//
+	//    * copy-on-write - The new DB cluster is restored as a clone of the source
+	//    DB cluster.
+	//
+	// Constraints: You can't specify copy-on-write if the engine version of the
+	// source DB cluster is earlier than 1.11.
+	//
+	// If you don't specify a RestoreType value, then the new DB cluster is restored
+	// as a full copy of the source DB cluster.
+	RestoreType *string `type:"string"`
+
 	// The identifier of the source cluster from which to restore.
 	//
 	// Constraints:
@@ -15166,6 +15221,12 @@ func (s *RestoreDBClusterToPointInTimeInput) SetPort(v int64) *RestoreDBClusterT
 // SetRestoreToTime sets the RestoreToTime field's value.
 func (s *RestoreDBClusterToPointInTimeInput) SetRestoreToTime(v time.Time) *RestoreDBClusterToPointInTimeInput {
 	s.RestoreToTime = &v
+	return s
+}
+
+// SetRestoreType sets the RestoreType field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetRestoreType(v string) *RestoreDBClusterToPointInTimeInput {
+	s.RestoreType = &v
 	return s
 }
 

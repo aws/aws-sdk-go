@@ -27,7 +27,8 @@
         {"shape":"ServiceException"},
         {"shape":"ThrottlingException"},
         {"shape":"EC2InstanceNotFoundException"},
-        {"shape":"EC2InstanceStateInvalidException"}
+        {"shape":"EC2InstanceStateInvalidException"},
+        {"shape":"EC2InstanceUnavailableException"}
       ]
     },
     "SendSerialConsoleSSHPublicKey":{
@@ -48,7 +49,8 @@
         {"shape":"EC2InstanceTypeInvalidException"},
         {"shape":"SerialConsoleSessionLimitExceededException"},
         {"shape":"SerialConsoleSessionUnavailableException"},
-        {"shape":"EC2InstanceStateInvalidException"}
+        {"shape":"EC2InstanceStateInvalidException"},
+        {"shape":"EC2InstanceUnavailableException"}
       ]
     }
   },
@@ -81,6 +83,13 @@
       "exception":true
     },
     "EC2InstanceTypeInvalidException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "EC2InstanceUnavailableException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"}

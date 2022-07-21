@@ -205,6 +205,26 @@
       ],
       "endpoint":{"hostPrefix":"api."}
     },
+    "CreateBulkImportJob":{
+      "name":"CreateBulkImportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/jobs",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateBulkImportJobRequest"},
+      "output":{"shape":"CreateBulkImportJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictingOperationException"}
+      ],
+      "endpoint":{"hostPrefix":"data."}
+    },
     "CreateDashboard":{
       "name":"CreateDashboard",
       "http":{
@@ -477,6 +497,22 @@
         {"shape":"ThrottlingException"}
       ],
       "endpoint":{"hostPrefix":"api."}
+    },
+    "DescribeBulkImportJob":{
+      "name":"DescribeBulkImportJob",
+      "http":{
+        "method":"GET",
+        "requestUri":"/jobs/{jobId}"
+      },
+      "input":{"shape":"DescribeBulkImportJobRequest"},
+      "output":{"shape":"DescribeBulkImportJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"data."}
     },
     "DescribeDashboard":{
       "name":"DescribeDashboard",
@@ -804,6 +840,22 @@
         {"shape":"ThrottlingException"}
       ],
       "endpoint":{"hostPrefix":"api."}
+    },
+    "ListBulkImportJobs":{
+      "name":"ListBulkImportJobs",
+      "http":{
+        "method":"GET",
+        "requestUri":"/jobs"
+      },
+      "input":{"shape":"ListBulkImportJobsRequest"},
+      "output":{"shape":"ListBulkImportJobsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"data."}
     },
     "ListDashboards":{
       "name":"ListDashboards",
@@ -2120,6 +2172,11 @@
         "errorEntries":{"shape":"BatchPutAssetPropertyErrorEntries"}
       }
     },
+    "Bucket":{
+      "type":"string",
+      "max":63,
+      "min":3
+    },
     "CapabilityConfiguration":{
       "type":"string",
       "max":104857600,
@@ -2145,6 +2202,23 @@
       "max":64,
       "min":36,
       "pattern":"\\S{36,64}"
+    },
+    "ColumnName":{
+      "type":"string",
+      "enum":[
+        "ALIAS",
+        "ASSET_ID",
+        "PROPERTY_ID",
+        "DATA_TYPE",
+        "TIMESTAMP_SECONDS",
+        "TIMESTAMP_NANO_OFFSET",
+        "QUALITY",
+        "VALUE"
+      ]
+    },
+    "ColumnNames":{
+      "type":"list",
+      "member":{"shape":"ColumnName"}
     },
     "CompositeModelProperty":{
       "type":"structure",
@@ -2301,6 +2375,36 @@
         "assetStatus":{"shape":"AssetStatus"}
       }
     },
+    "CreateBulkImportJobRequest":{
+      "type":"structure",
+      "required":[
+        "jobName",
+        "jobRoleArn",
+        "files",
+        "errorReportLocation",
+        "jobConfiguration"
+      ],
+      "members":{
+        "jobName":{"shape":"Name"},
+        "jobRoleArn":{"shape":"ARN"},
+        "files":{"shape":"Files"},
+        "errorReportLocation":{"shape":"ErrorReportLocation"},
+        "jobConfiguration":{"shape":"JobConfiguration"}
+      }
+    },
+    "CreateBulkImportJobResponse":{
+      "type":"structure",
+      "required":[
+        "jobId",
+        "jobName",
+        "jobStatus"
+      ],
+      "members":{
+        "jobId":{"shape":"ID"},
+        "jobName":{"shape":"Name"},
+        "jobStatus":{"shape":"JobStatus"}
+      }
+    },
     "CreateDashboardRequest":{
       "type":"structure",
       "required":[
@@ -2420,6 +2524,12 @@
       "members":{
         "projectId":{"shape":"ID"},
         "projectArn":{"shape":"ARN"}
+      }
+    },
+    "Csv":{
+      "type":"structure",
+      "members":{
+        "columnNames":{"shape":"ColumnNames"}
       }
     },
     "CustomerManagedS3Storage":{
@@ -2775,6 +2885,42 @@
         "assetLastUpdateDate":{"shape":"Timestamp"},
         "assetStatus":{"shape":"AssetStatus"},
         "assetDescription":{"shape":"Description"}
+      }
+    },
+    "DescribeBulkImportJobRequest":{
+      "type":"structure",
+      "required":["jobId"],
+      "members":{
+        "jobId":{
+          "shape":"ID",
+          "location":"uri",
+          "locationName":"jobId"
+        }
+      }
+    },
+    "DescribeBulkImportJobResponse":{
+      "type":"structure",
+      "required":[
+        "jobId",
+        "jobName",
+        "jobStatus",
+        "jobRoleArn",
+        "files",
+        "errorReportLocation",
+        "jobConfiguration",
+        "jobCreationDate",
+        "jobLastUpdateDate"
+      ],
+      "members":{
+        "jobId":{"shape":"ID"},
+        "jobName":{"shape":"Name"},
+        "jobStatus":{"shape":"JobStatus"},
+        "jobRoleArn":{"shape":"ARN"},
+        "files":{"shape":"Files"},
+        "errorReportLocation":{"shape":"ErrorReportLocation"},
+        "jobConfiguration":{"shape":"JobConfiguration"},
+        "jobCreationDate":{"shape":"Timestamp"},
+        "jobLastUpdateDate":{"shape":"Timestamp"}
       }
     },
     "DescribeDashboardRequest":{
@@ -3161,6 +3307,17 @@
       }
     },
     "ErrorMessage":{"type":"string"},
+    "ErrorReportLocation":{
+      "type":"structure",
+      "required":[
+        "bucket",
+        "prefix"
+      ],
+      "members":{
+        "bucket":{"shape":"Bucket"},
+        "prefix":{"shape":"String"}
+      }
+    },
     "ExceptionMessage":{"type":"string"},
     "Expression":{
       "type":"string",
@@ -3181,6 +3338,28 @@
     "ExpressionVariables":{
       "type":"list",
       "member":{"shape":"ExpressionVariable"}
+    },
+    "File":{
+      "type":"structure",
+      "required":[
+        "bucket",
+        "key"
+      ],
+      "members":{
+        "bucket":{"shape":"Bucket"},
+        "key":{"shape":"String"},
+        "versionId":{"shape":"String"}
+      }
+    },
+    "FileFormat":{
+      "type":"structure",
+      "members":{
+        "csv":{"shape":"Csv"}
+      }
+    },
+    "Files":{
+      "type":"list",
+      "member":{"shape":"File"}
     },
     "ForwardingConfig":{
       "type":"structure",
@@ -3644,6 +3823,41 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "JobConfiguration":{
+      "type":"structure",
+      "required":["fileFormat"],
+      "members":{
+        "fileFormat":{"shape":"FileFormat"}
+      }
+    },
+    "JobStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "CANCELLED",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED",
+        "COMPLETED_WITH_FAILURES"
+      ]
+    },
+    "JobSummaries":{
+      "type":"list",
+      "member":{"shape":"JobSummary"}
+    },
+    "JobSummary":{
+      "type":"structure",
+      "required":[
+        "id",
+        "name",
+        "status"
+      ],
+      "members":{
+        "id":{"shape":"ID"},
+        "name":{"shape":"Name"},
+        "status":{"shape":"JobStatus"}
+      }
+    },
     "KmsKeyId":{
       "type":"string",
       "max":2048,
@@ -3842,6 +4056,46 @@
       "required":["assetSummaries"],
       "members":{
         "assetSummaries":{"shape":"AssociatedAssetsSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListBulkImportJobsFilter":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "PENDING",
+        "RUNNING",
+        "CANCELLED",
+        "FAILED",
+        "COMPLETED_WITH_FAILURES",
+        "COMPLETED"
+      ]
+    },
+    "ListBulkImportJobsRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "filter":{
+          "shape":"ListBulkImportJobsFilter",
+          "location":"querystring",
+          "locationName":"filter"
+        }
+      }
+    },
+    "ListBulkImportJobsResponse":{
+      "type":"structure",
+      "required":["jobSummaries"],
+      "members":{
+        "jobSummaries":{"shape":"JobSummaries"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -4478,6 +4732,7 @@
         "MULTI_LAYER_STORAGE"
       ]
     },
+    "String":{"type":"string"},
     "TagKey":{
       "type":"string",
       "max":128,
