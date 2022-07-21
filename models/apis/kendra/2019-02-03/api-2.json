@@ -4572,8 +4572,16 @@
         "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
         "DocumentTitleFieldName":{"shape":"DataSourceFieldName"},
         "DisableLocalGroups":{"shape":"Boolean"},
-        "SslCertificateS3Path":{"shape":"S3Path"}
+        "SslCertificateS3Path":{"shape":"S3Path"},
+        "AuthenticationType":{"shape":"SharePointOnlineAuthenticationType"}
       }
+    },
+    "SharePointOnlineAuthenticationType":{
+      "type":"string",
+      "enum":[
+        "HTTP_BASIC",
+        "OAUTH2"
+      ]
     },
     "SharePointUrlList":{
       "type":"list",

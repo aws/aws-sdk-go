@@ -19,6 +19,7 @@
     "GetPreparedStatement": "<p>Retrieves the prepared statement with the specified name from the specified workgroup.</p>",
     "GetQueryExecution": "<p>Returns information about a single execution of a query if you have access to the workgroup in which the query ran. Each time a query executes, information about the query execution is saved with a unique ID.</p>",
     "GetQueryResults": "<p>Streams the results of a single query execution specified by <code>QueryExecutionId</code> from the Athena query results location in Amazon S3. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Query Results</a> in the <i>Amazon Athena User Guide</i>. This request does not execute the query but returns results. Use <a>StartQueryExecution</a> to run a query.</p> <p>To stream query results successfully, the IAM principal with permission to call <code>GetQueryResults</code> also must have permissions to the Amazon S3 <code>GetObject</code> action for the Athena query results location.</p> <important> <p>IAM principals with permission to the Amazon S3 <code>GetObject</code> action for the query results location are able to retrieve query results from Amazon S3 even if permission to the <code>GetQueryResults</code> action is denied. To restrict user or role access, ensure that Amazon S3 permissions to the Athena query location are denied.</p> </important>",
+    "GetQueryRuntimeStatistics": "<p>Returns query execution runtime statistics related to a single execution of a query if you have access to the workgroup in which the query ran. The query execution runtime statistics is returned only when <a>QueryExecutionStatus$State</a> is in a SUCCEEDED or FAILED state.</p>",
     "GetTableMetadata": "<p>Returns table metadata for the specified catalog, database, and table.</p>",
     "GetWorkGroup": "<p>Returns information about the workgroup with the specified name.</p>",
     "ListDataCatalogs": "<p>Lists the data catalogs in the current Amazon Web Services account.</p>",
@@ -484,6 +485,16 @@
       "refs": {
       }
     },
+    "GetQueryRuntimeStatisticsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetQueryRuntimeStatisticsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetTableMetadataInput": {
       "base": null,
       "refs": {
@@ -633,7 +644,22 @@
         "QueryExecutionStatistics$TotalExecutionTimeInMillis": "<p>The number of milliseconds that Athena took to run the query.</p>",
         "QueryExecutionStatistics$QueryQueueTimeInMillis": "<p>The number of milliseconds that the query was in your query queue waiting for resources. Note that if transient errors occur, Athena might automatically add the query back to the queue.</p>",
         "QueryExecutionStatistics$QueryPlanningTimeInMillis": "<p>The number of milliseconds that Athena took to plan the query processing flow. This includes the time spent retrieving table partitions from the data source. Note that because the query engine performs the query planning, query planning time is a subset of engine processing time.</p>",
-        "QueryExecutionStatistics$ServiceProcessingTimeInMillis": "<p>The number of milliseconds that Athena took to finalize and publish the query results after the query engine finished running the query.</p>"
+        "QueryExecutionStatistics$ServiceProcessingTimeInMillis": "<p>The number of milliseconds that Athena took to finalize and publish the query results after the query engine finished running the query.</p>",
+        "QueryRuntimeStatisticsRows$InputRows": "<p>The number of rows read to execute the query.</p>",
+        "QueryRuntimeStatisticsRows$InputBytes": "<p>The number of bytes read to execute the query.</p>",
+        "QueryRuntimeStatisticsRows$OutputBytes": "<p>The number of bytes returned by the query.</p>",
+        "QueryRuntimeStatisticsRows$OutputRows": "<p>The number of rows returned by the query.</p>",
+        "QueryRuntimeStatisticsTimeline$QueryQueueTimeInMillis": "<p>The number of milliseconds that the query was in your query queue waiting for resources. Note that if transient errors occur, Athena might automatically add the query back to the queue.</p>",
+        "QueryRuntimeStatisticsTimeline$QueryPlanningTimeInMillis": "<p>The number of milliseconds that Athena took to plan the query processing flow. This includes the time spent retrieving table partitions from the data source. Note that because the query engine performs the query planning, query planning time is a subset of engine processing time.</p>",
+        "QueryRuntimeStatisticsTimeline$EngineExecutionTimeInMillis": "<p>The number of milliseconds that the query took to execute.</p>",
+        "QueryRuntimeStatisticsTimeline$ServiceProcessingTimeInMillis": "<p>The number of milliseconds that Athena took to finalize and publish the query results after the query engine finished running the query.</p>",
+        "QueryRuntimeStatisticsTimeline$TotalExecutionTimeInMillis": "<p>The number of milliseconds that Athena took to run the query.</p>",
+        "QueryStage$StageId": "<p>The identifier for a stage.</p>",
+        "QueryStage$OutputBytes": "<p>The number of bytes output from the stage after execution.</p>",
+        "QueryStage$OutputRows": "<p>The number of rows output from the stage after execution.</p>",
+        "QueryStage$InputBytes": "<p>The number of bytes input into the stage for execution.</p>",
+        "QueryStage$InputRows": "<p>The number of rows input into the stage for execution.</p>",
+        "QueryStage$ExecutionTime": "<p>Time taken to execute this stage.</p>"
       }
     },
     "MaxDataCatalogsCount": {
@@ -822,6 +848,7 @@
       "refs": {
         "GetQueryExecutionInput$QueryExecutionId": "<p>The unique ID of the query execution.</p>",
         "GetQueryResultsInput$QueryExecutionId": "<p>The unique ID of the query execution.</p>",
+        "GetQueryRuntimeStatisticsInput$QueryExecutionId": "<p>The unique ID of the query execution.</p>",
         "QueryExecution$QueryExecutionId": "<p>The unique identifier for each query execution.</p>",
         "QueryExecutionIdList$member": null,
         "StartQueryExecutionOutput$QueryExecutionId": "<p>The unique ID of the query that ran as a result of this request.</p>",
@@ -858,6 +885,50 @@
       "base": "<p>The completion date, current state, submission time, and state change reason (if applicable) for the query execution.</p>",
       "refs": {
         "QueryExecution$Status": "<p>The completion date, current state, submission time, and state change reason (if applicable) for the query execution.</p>"
+      }
+    },
+    "QueryRuntimeStatistics": {
+      "base": "<p>The query execution timeline, statistics on input and output rows and bytes, and the different query stages that form the query execution plan.</p>",
+      "refs": {
+        "GetQueryRuntimeStatisticsOutput$QueryRuntimeStatistics": "<p>Runtime statistics about the query execution.</p>"
+      }
+    },
+    "QueryRuntimeStatisticsRows": {
+      "base": "<p>Statistics such as input rows and bytes read by the query, rows and bytes output by the query, and the number of rows written by the query.</p>",
+      "refs": {
+        "QueryRuntimeStatistics$Rows": null
+      }
+    },
+    "QueryRuntimeStatisticsTimeline": {
+      "base": "<p>Timeline statistics such as query queue time, planning time, execution time, service processing time, and total execution time.</p>",
+      "refs": {
+        "QueryRuntimeStatistics$Timeline": null
+      }
+    },
+    "QueryStage": {
+      "base": "<p>Stage statistics such as input and output rows and bytes, execution time and stage state. This information also includes substages and the query stage plan.</p>",
+      "refs": {
+        "QueryRuntimeStatistics$OutputStage": "<p>Stage statistics such as input and output rows and bytes, execution time, and stage state. This information also includes substages and the query stage plan.</p>",
+        "QueryStages$member": null
+      }
+    },
+    "QueryStagePlanNode": {
+      "base": "<p>Stage plan information such as name, identifier, sub plans, and remote sources.</p>",
+      "refs": {
+        "QueryStage$QueryStagePlan": "<p>Stage plan information such as name, identifier, sub plans, and source stages.</p>",
+        "QueryStagePlanNodes$member": null
+      }
+    },
+    "QueryStagePlanNodes": {
+      "base": null,
+      "refs": {
+        "QueryStagePlanNode$Children": "<p>Stage plan information such as name, identifier, sub plans, and remote sources of child plan nodes/</p>"
+      }
+    },
+    "QueryStages": {
+      "base": null,
+      "refs": {
+        "QueryStage$SubStages": "<p>List of sub query stages that form this stage execution plan.</p>"
       }
     },
     "QueryString": {
@@ -980,7 +1051,17 @@
         "ColumnInfo$Type": "<p>The data type of the column.</p>",
         "EncryptionConfiguration$KmsKey": "<p>For <code>SSE_KMS</code> and <code>CSE_KMS</code>, this is the KMS key ARN or ID.</p>",
         "QueryExecutionStatistics$DataManifestLocation": "<p>The location and file name of a data manifest file. The manifest file is saved to the Athena query results location in Amazon S3. The manifest file tracks files that the query wrote to Amazon S3. If the query fails, the manifest file also tracks files that the query intended to write. The manifest is useful for identifying orphaned files resulting from a failed query. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Working with Query Results, Output Files, and Query History</a> in the <i>Amazon Athena User Guide</i>.</p>",
-        "QueryExecutionStatus$StateChangeReason": "<p>Further detail about the status of the query.</p>"
+        "QueryExecutionStatus$StateChangeReason": "<p>Further detail about the status of the query.</p>",
+        "QueryStage$State": "<p>State of the stage after query execution.</p>",
+        "QueryStagePlanNode$Name": "<p>Name of the query stage plan that describes the operation this stage is performing as part of query execution.</p>",
+        "QueryStagePlanNode$Identifier": "<p>Information about the operation this query stage plan node is performing.</p>",
+        "StringList$member": null
+      }
+    },
+    "StringList": {
+      "base": null,
+      "refs": {
+        "QueryStagePlanNode$RemoteSources": "<p>Source plan node IDs.</p>"
       }
     },
     "TableMetadata": {

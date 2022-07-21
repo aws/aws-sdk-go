@@ -1568,6 +1568,93 @@ func (c *Athena) GetQueryResultsPagesWithContext(ctx aws.Context, input *GetQuer
 	return p.Err()
 }
 
+const opGetQueryRuntimeStatistics = "GetQueryRuntimeStatistics"
+
+// GetQueryRuntimeStatisticsRequest generates a "aws/request.Request" representing the
+// client's request for the GetQueryRuntimeStatistics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetQueryRuntimeStatistics for more information on using the GetQueryRuntimeStatistics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetQueryRuntimeStatisticsRequest method.
+//    req, resp := client.GetQueryRuntimeStatisticsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetQueryRuntimeStatistics
+func (c *Athena) GetQueryRuntimeStatisticsRequest(input *GetQueryRuntimeStatisticsInput) (req *request.Request, output *GetQueryRuntimeStatisticsOutput) {
+	op := &request.Operation{
+		Name:       opGetQueryRuntimeStatistics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetQueryRuntimeStatisticsInput{}
+	}
+
+	output = &GetQueryRuntimeStatisticsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetQueryRuntimeStatistics API operation for Amazon Athena.
+//
+// Returns query execution runtime statistics related to a single execution
+// of a query if you have access to the workgroup in which the query ran. The
+// query execution runtime statistics is returned only when QueryExecutionStatus$State
+// is in a SUCCEEDED or FAILED state.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation GetQueryRuntimeStatistics for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   Indicates a platform issue, which may be due to a transient condition or
+//   outage.
+//
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a required parameter may be missing or out of range.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetQueryRuntimeStatistics
+func (c *Athena) GetQueryRuntimeStatistics(input *GetQueryRuntimeStatisticsInput) (*GetQueryRuntimeStatisticsOutput, error) {
+	req, out := c.GetQueryRuntimeStatisticsRequest(input)
+	return out, req.Send()
+}
+
+// GetQueryRuntimeStatisticsWithContext is the same as GetQueryRuntimeStatistics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetQueryRuntimeStatistics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) GetQueryRuntimeStatisticsWithContext(ctx aws.Context, input *GetQueryRuntimeStatisticsInput, opts ...request.Option) (*GetQueryRuntimeStatisticsOutput, error) {
+	req, out := c.GetQueryRuntimeStatisticsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetTableMetadata = "GetTableMetadata"
 
 // GetTableMetadataRequest generates a "aws/request.Request" representing the
@@ -2065,6 +2152,12 @@ func (c *Athena) ListEngineVersionsRequest(input *ListEngineVersionsInput) (req 
 		Name:       opListEngineVersions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2117,6 +2210,58 @@ func (c *Athena) ListEngineVersionsWithContext(ctx aws.Context, input *ListEngin
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListEngineVersionsPages iterates over the pages of a ListEngineVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEngineVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListEngineVersions operation.
+//    pageNum := 0
+//    err := client.ListEngineVersionsPages(params,
+//        func(page *athena.ListEngineVersionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Athena) ListEngineVersionsPages(input *ListEngineVersionsInput, fn func(*ListEngineVersionsOutput, bool) bool) error {
+	return c.ListEngineVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEngineVersionsPagesWithContext same as ListEngineVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListEngineVersionsPagesWithContext(ctx aws.Context, input *ListEngineVersionsInput, fn func(*ListEngineVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEngineVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEngineVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEngineVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListNamedQueries = "ListNamedQueries"
@@ -6025,6 +6170,86 @@ func (s *GetQueryResultsOutput) SetUpdateCount(v int64) *GetQueryResultsOutput {
 	return s
 }
 
+type GetQueryRuntimeStatisticsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique ID of the query execution.
+	//
+	// QueryExecutionId is a required field
+	QueryExecutionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryRuntimeStatisticsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryRuntimeStatisticsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetQueryRuntimeStatisticsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetQueryRuntimeStatisticsInput"}
+	if s.QueryExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryExecutionId"))
+	}
+	if s.QueryExecutionId != nil && len(*s.QueryExecutionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryExecutionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQueryExecutionId sets the QueryExecutionId field's value.
+func (s *GetQueryRuntimeStatisticsInput) SetQueryExecutionId(v string) *GetQueryRuntimeStatisticsInput {
+	s.QueryExecutionId = &v
+	return s
+}
+
+type GetQueryRuntimeStatisticsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Runtime statistics about the query execution.
+	QueryRuntimeStatistics *QueryRuntimeStatistics `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryRuntimeStatisticsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryRuntimeStatisticsOutput) GoString() string {
+	return s.String()
+}
+
+// SetQueryRuntimeStatistics sets the QueryRuntimeStatistics field's value.
+func (s *GetQueryRuntimeStatisticsOutput) SetQueryRuntimeStatistics(v *QueryRuntimeStatistics) *GetQueryRuntimeStatisticsOutput {
+	s.QueryRuntimeStatistics = v
+	return s
+}
+
 type GetTableMetadataInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7989,6 +8214,363 @@ func (s *QueryExecutionStatus) SetStateChangeReason(v string) *QueryExecutionSta
 // SetSubmissionDateTime sets the SubmissionDateTime field's value.
 func (s *QueryExecutionStatus) SetSubmissionDateTime(v time.Time) *QueryExecutionStatus {
 	s.SubmissionDateTime = &v
+	return s
+}
+
+// The query execution timeline, statistics on input and output rows and bytes,
+// and the different query stages that form the query execution plan.
+type QueryRuntimeStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// Stage statistics such as input and output rows and bytes, execution time,
+	// and stage state. This information also includes substages and the query stage
+	// plan.
+	OutputStage *QueryStage `type:"structure"`
+
+	// Statistics such as input rows and bytes read by the query, rows and bytes
+	// output by the query, and the number of rows written by the query.
+	Rows *QueryRuntimeStatisticsRows `type:"structure"`
+
+	// Timeline statistics such as query queue time, planning time, execution time,
+	// service processing time, and total execution time.
+	Timeline *QueryRuntimeStatisticsTimeline `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryRuntimeStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryRuntimeStatistics) GoString() string {
+	return s.String()
+}
+
+// SetOutputStage sets the OutputStage field's value.
+func (s *QueryRuntimeStatistics) SetOutputStage(v *QueryStage) *QueryRuntimeStatistics {
+	s.OutputStage = v
+	return s
+}
+
+// SetRows sets the Rows field's value.
+func (s *QueryRuntimeStatistics) SetRows(v *QueryRuntimeStatisticsRows) *QueryRuntimeStatistics {
+	s.Rows = v
+	return s
+}
+
+// SetTimeline sets the Timeline field's value.
+func (s *QueryRuntimeStatistics) SetTimeline(v *QueryRuntimeStatisticsTimeline) *QueryRuntimeStatistics {
+	s.Timeline = v
+	return s
+}
+
+// Statistics such as input rows and bytes read by the query, rows and bytes
+// output by the query, and the number of rows written by the query.
+type QueryRuntimeStatisticsRows struct {
+	_ struct{} `type:"structure"`
+
+	// The number of bytes read to execute the query.
+	InputBytes *int64 `type:"long"`
+
+	// The number of rows read to execute the query.
+	InputRows *int64 `type:"long"`
+
+	// The number of bytes returned by the query.
+	OutputBytes *int64 `type:"long"`
+
+	// The number of rows returned by the query.
+	OutputRows *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryRuntimeStatisticsRows) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryRuntimeStatisticsRows) GoString() string {
+	return s.String()
+}
+
+// SetInputBytes sets the InputBytes field's value.
+func (s *QueryRuntimeStatisticsRows) SetInputBytes(v int64) *QueryRuntimeStatisticsRows {
+	s.InputBytes = &v
+	return s
+}
+
+// SetInputRows sets the InputRows field's value.
+func (s *QueryRuntimeStatisticsRows) SetInputRows(v int64) *QueryRuntimeStatisticsRows {
+	s.InputRows = &v
+	return s
+}
+
+// SetOutputBytes sets the OutputBytes field's value.
+func (s *QueryRuntimeStatisticsRows) SetOutputBytes(v int64) *QueryRuntimeStatisticsRows {
+	s.OutputBytes = &v
+	return s
+}
+
+// SetOutputRows sets the OutputRows field's value.
+func (s *QueryRuntimeStatisticsRows) SetOutputRows(v int64) *QueryRuntimeStatisticsRows {
+	s.OutputRows = &v
+	return s
+}
+
+// Timeline statistics such as query queue time, planning time, execution time,
+// service processing time, and total execution time.
+type QueryRuntimeStatisticsTimeline struct {
+	_ struct{} `type:"structure"`
+
+	// The number of milliseconds that the query took to execute.
+	EngineExecutionTimeInMillis *int64 `type:"long"`
+
+	// The number of milliseconds that Athena took to plan the query processing
+	// flow. This includes the time spent retrieving table partitions from the data
+	// source. Note that because the query engine performs the query planning, query
+	// planning time is a subset of engine processing time.
+	QueryPlanningTimeInMillis *int64 `type:"long"`
+
+	// The number of milliseconds that the query was in your query queue waiting
+	// for resources. Note that if transient errors occur, Athena might automatically
+	// add the query back to the queue.
+	QueryQueueTimeInMillis *int64 `type:"long"`
+
+	// The number of milliseconds that Athena took to finalize and publish the query
+	// results after the query engine finished running the query.
+	ServiceProcessingTimeInMillis *int64 `type:"long"`
+
+	// The number of milliseconds that Athena took to run the query.
+	TotalExecutionTimeInMillis *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryRuntimeStatisticsTimeline) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryRuntimeStatisticsTimeline) GoString() string {
+	return s.String()
+}
+
+// SetEngineExecutionTimeInMillis sets the EngineExecutionTimeInMillis field's value.
+func (s *QueryRuntimeStatisticsTimeline) SetEngineExecutionTimeInMillis(v int64) *QueryRuntimeStatisticsTimeline {
+	s.EngineExecutionTimeInMillis = &v
+	return s
+}
+
+// SetQueryPlanningTimeInMillis sets the QueryPlanningTimeInMillis field's value.
+func (s *QueryRuntimeStatisticsTimeline) SetQueryPlanningTimeInMillis(v int64) *QueryRuntimeStatisticsTimeline {
+	s.QueryPlanningTimeInMillis = &v
+	return s
+}
+
+// SetQueryQueueTimeInMillis sets the QueryQueueTimeInMillis field's value.
+func (s *QueryRuntimeStatisticsTimeline) SetQueryQueueTimeInMillis(v int64) *QueryRuntimeStatisticsTimeline {
+	s.QueryQueueTimeInMillis = &v
+	return s
+}
+
+// SetServiceProcessingTimeInMillis sets the ServiceProcessingTimeInMillis field's value.
+func (s *QueryRuntimeStatisticsTimeline) SetServiceProcessingTimeInMillis(v int64) *QueryRuntimeStatisticsTimeline {
+	s.ServiceProcessingTimeInMillis = &v
+	return s
+}
+
+// SetTotalExecutionTimeInMillis sets the TotalExecutionTimeInMillis field's value.
+func (s *QueryRuntimeStatisticsTimeline) SetTotalExecutionTimeInMillis(v int64) *QueryRuntimeStatisticsTimeline {
+	s.TotalExecutionTimeInMillis = &v
+	return s
+}
+
+// Stage statistics such as input and output rows and bytes, execution time
+// and stage state. This information also includes substages and the query stage
+// plan.
+type QueryStage struct {
+	_ struct{} `type:"structure"`
+
+	// Time taken to execute this stage.
+	ExecutionTime *int64 `type:"long"`
+
+	// The number of bytes input into the stage for execution.
+	InputBytes *int64 `type:"long"`
+
+	// The number of rows input into the stage for execution.
+	InputRows *int64 `type:"long"`
+
+	// The number of bytes output from the stage after execution.
+	OutputBytes *int64 `type:"long"`
+
+	// The number of rows output from the stage after execution.
+	OutputRows *int64 `type:"long"`
+
+	// Stage plan information such as name, identifier, sub plans, and source stages.
+	QueryStagePlan *QueryStagePlanNode `type:"structure"`
+
+	// The identifier for a stage.
+	StageId *int64 `type:"long"`
+
+	// State of the stage after query execution.
+	State *string `type:"string"`
+
+	// List of sub query stages that form this stage execution plan.
+	SubStages []*QueryStage `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryStage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryStage) GoString() string {
+	return s.String()
+}
+
+// SetExecutionTime sets the ExecutionTime field's value.
+func (s *QueryStage) SetExecutionTime(v int64) *QueryStage {
+	s.ExecutionTime = &v
+	return s
+}
+
+// SetInputBytes sets the InputBytes field's value.
+func (s *QueryStage) SetInputBytes(v int64) *QueryStage {
+	s.InputBytes = &v
+	return s
+}
+
+// SetInputRows sets the InputRows field's value.
+func (s *QueryStage) SetInputRows(v int64) *QueryStage {
+	s.InputRows = &v
+	return s
+}
+
+// SetOutputBytes sets the OutputBytes field's value.
+func (s *QueryStage) SetOutputBytes(v int64) *QueryStage {
+	s.OutputBytes = &v
+	return s
+}
+
+// SetOutputRows sets the OutputRows field's value.
+func (s *QueryStage) SetOutputRows(v int64) *QueryStage {
+	s.OutputRows = &v
+	return s
+}
+
+// SetQueryStagePlan sets the QueryStagePlan field's value.
+func (s *QueryStage) SetQueryStagePlan(v *QueryStagePlanNode) *QueryStage {
+	s.QueryStagePlan = v
+	return s
+}
+
+// SetStageId sets the StageId field's value.
+func (s *QueryStage) SetStageId(v int64) *QueryStage {
+	s.StageId = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *QueryStage) SetState(v string) *QueryStage {
+	s.State = &v
+	return s
+}
+
+// SetSubStages sets the SubStages field's value.
+func (s *QueryStage) SetSubStages(v []*QueryStage) *QueryStage {
+	s.SubStages = v
+	return s
+}
+
+// Stage plan information such as name, identifier, sub plans, and remote sources.
+type QueryStagePlanNode struct {
+	_ struct{} `type:"structure"`
+
+	// Stage plan information such as name, identifier, sub plans, and remote sources
+	// of child plan nodes/
+	Children []*QueryStagePlanNode `type:"list"`
+
+	// Information about the operation this query stage plan node is performing.
+	Identifier *string `type:"string"`
+
+	// Name of the query stage plan that describes the operation this stage is performing
+	// as part of query execution.
+	Name *string `type:"string"`
+
+	// Source plan node IDs.
+	RemoteSources []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryStagePlanNode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryStagePlanNode) GoString() string {
+	return s.String()
+}
+
+// SetChildren sets the Children field's value.
+func (s *QueryStagePlanNode) SetChildren(v []*QueryStagePlanNode) *QueryStagePlanNode {
+	s.Children = v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *QueryStagePlanNode) SetIdentifier(v string) *QueryStagePlanNode {
+	s.Identifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *QueryStagePlanNode) SetName(v string) *QueryStagePlanNode {
+	s.Name = &v
+	return s
+}
+
+// SetRemoteSources sets the RemoteSources field's value.
+func (s *QueryStagePlanNode) SetRemoteSources(v []*string) *QueryStagePlanNode {
+	s.RemoteSources = v
 	return s
 }
 

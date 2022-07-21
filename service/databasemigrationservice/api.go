@@ -8102,8 +8102,9 @@ type CreateEndpointInput struct {
 
 	// The type of engine for the endpoint. Valid values, depending on the EndpointType
 	// value, include "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql",
-	// "opensearch", "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb",
-	// "kinesis", "kafka", "elasticsearch", "docdb", "sqlserver", and "neptune".
+	// "opensearch", "redshift", "s3", "db2", db2-zos, "azuredb", "sybase", "dynamodb",
+	// "mongodb", "kinesis", "kafka", "elasticsearch", "docdb", "sqlserver", "neptune",
+	// and babelfish.
 	//
 	// EngineName is a required field
 	EngineName *string `type:"string" required:"true"`
@@ -24317,8 +24318,7 @@ type TableStatistics struct {
 	// The state of the tables described.
 	//
 	// Valid states: Table does not exist | Before load | Full load | Table completed
-	// | Table cancelled | Table error | Table all | Table updates | Table is being
-	// reloaded
+	// | Table cancelled | Table error | Table is being reloaded
 	TableState *string `type:"string"`
 
 	// The number of update actions performed on a table.

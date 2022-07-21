@@ -1102,6 +1102,32 @@
     }
   },
   "shapes":{
+    "ATIMetricDataPoint":{
+      "type":"structure",
+      "members":{
+        "cr":{"shape":"float"},
+        "adr":{"shape":"float"},
+        "threshold":{"shape":"float"},
+        "atodr":{"shape":"float"}
+      }
+    },
+    "ATIMetricDataPointsList":{
+      "type":"list",
+      "member":{"shape":"ATIMetricDataPoint"}
+    },
+    "ATIModelPerformance":{
+      "type":"structure",
+      "members":{
+        "asi":{"shape":"float"}
+      }
+    },
+    "ATITrainingMetricsValue":{
+      "type":"structure",
+      "members":{
+        "metricDataPoints":{"shape":"ATIMetricDataPointsList"},
+        "modelPerformance":{"shape":"ATIModelPerformance"}
+      }
+    },
     "AccessDeniedException":{
       "type":"structure",
       "required":["message"],
@@ -1109,6 +1135,31 @@
         "message":{"shape":"string"}
       },
       "exception":true
+    },
+    "AggregatedLogOddsMetric":{
+      "type":"structure",
+      "required":[
+        "variableNames",
+        "aggregatedVariablesImportance"
+      ],
+      "members":{
+        "variableNames":{"shape":"ListOfStrings"},
+        "aggregatedVariablesImportance":{"shape":"float"}
+      }
+    },
+    "AggregatedVariablesImpactExplanation":{
+      "type":"structure",
+      "members":{
+        "eventVariableNames":{"shape":"ListOfStrings"},
+        "relativeImpact":{"shape":"string"},
+        "logOddsImpact":{"shape":"float"}
+      }
+    },
+    "AggregatedVariablesImportanceMetrics":{
+      "type":"structure",
+      "members":{
+        "logOddsMetrics":{"shape":"ListOfAggregatedLogOddsMetrics"}
+      }
     },
     "AsyncJobStatus":{
       "type":"string",
@@ -2338,7 +2389,6 @@
     },
     "LabelSchema":{
       "type":"structure",
-      "required":["labelMapper"],
       "members":{
         "labelMapper":{"shape":"labelMapper"},
         "unlabeledEventsTreatment":{"shape":"UnlabeledEventsTreatment"}
@@ -2366,6 +2416,14 @@
         "eventPredictionSummaries":{"shape":"ListOfEventPredictionSummaries"},
         "nextToken":{"shape":"string"}
       }
+    },
+    "ListOfAggregatedLogOddsMetrics":{
+      "type":"list",
+      "member":{"shape":"AggregatedLogOddsMetric"}
+    },
+    "ListOfAggregatedVariablesImpactExplanations":{
+      "type":"list",
+      "member":{"shape":"AggregatedVariablesImpactExplanation"}
     },
     "ListOfEvaluatedExternalModels":{
       "type":"list",
@@ -2536,7 +2594,8 @@
       "type":"string",
       "enum":[
         "ONLINE_FRAUD_INSIGHTS",
-        "TRANSACTION_FRAUD_INSIGHTS"
+        "TRANSACTION_FRAUD_INSIGHTS",
+        "ACCOUNT_TAKEOVER_INSIGHTS"
       ]
     },
     "ModelVersion":{
@@ -2567,7 +2626,8 @@
         "trainingResult":{"shape":"TrainingResult"},
         "lastUpdatedTime":{"shape":"time"},
         "createdTime":{"shape":"time"},
-        "arn":{"shape":"fraudDetectorArn"}
+        "arn":{"shape":"fraudDetectorArn"},
+        "trainingResultV2":{"shape":"TrainingResultV2"}
       }
     },
     "ModelVersionEvaluation":{
@@ -2597,6 +2657,32 @@
       "member":{"shape":"string"},
       "min":1
     },
+    "OFIMetricDataPoint":{
+      "type":"structure",
+      "members":{
+        "fpr":{"shape":"float"},
+        "precision":{"shape":"float"},
+        "tpr":{"shape":"float"},
+        "threshold":{"shape":"float"}
+      }
+    },
+    "OFIMetricDataPointsList":{
+      "type":"list",
+      "member":{"shape":"OFIMetricDataPoint"}
+    },
+    "OFIModelPerformance":{
+      "type":"structure",
+      "members":{
+        "auc":{"shape":"float"}
+      }
+    },
+    "OFITrainingMetricsValue":{
+      "type":"structure",
+      "members":{
+        "metricDataPoints":{"shape":"OFIMetricDataPointsList"},
+        "modelPerformance":{"shape":"OFIModelPerformance"}
+      }
+    },
     "Outcome":{
       "type":"structure",
       "members":{
@@ -2620,7 +2706,8 @@
     "PredictionExplanations":{
       "type":"structure",
       "members":{
-        "variableImpactExplanations":{"shape":"listOfVariableImpactExplanations"}
+        "variableImpactExplanations":{"shape":"listOfVariableImpactExplanations"},
+        "aggregatedVariablesImpactExplanations":{"shape":"ListOfAggregatedVariablesImpactExplanations"}
       }
     },
     "PredictionTimeRange":{
@@ -2848,6 +2935,32 @@
       "members":{
       }
     },
+    "TFIMetricDataPoint":{
+      "type":"structure",
+      "members":{
+        "fpr":{"shape":"float"},
+        "precision":{"shape":"float"},
+        "tpr":{"shape":"float"},
+        "threshold":{"shape":"float"}
+      }
+    },
+    "TFIMetricDataPointsList":{
+      "type":"list",
+      "member":{"shape":"TFIMetricDataPoint"}
+    },
+    "TFIModelPerformance":{
+      "type":"structure",
+      "members":{
+        "auc":{"shape":"float"}
+      }
+    },
+    "TFITrainingMetricsValue":{
+      "type":"structure",
+      "members":{
+        "metricDataPoints":{"shape":"TFIMetricDataPointsList"},
+        "modelPerformance":{"shape":"TFIModelPerformance"}
+      }
+    },
     "Tag":{
       "type":"structure",
       "required":[
@@ -2891,10 +3004,7 @@
     },
     "TrainingDataSchema":{
       "type":"structure",
-      "required":[
-        "modelVariables",
-        "labelSchema"
-      ],
+      "required":["modelVariables"],
       "members":{
         "modelVariables":{"shape":"ListOfStrings"},
         "labelSchema":{"shape":"LabelSchema"}
@@ -2914,12 +3024,29 @@
         "metricDataPoints":{"shape":"metricDataPointsList"}
       }
     },
+    "TrainingMetricsV2":{
+      "type":"structure",
+      "members":{
+        "ofi":{"shape":"OFITrainingMetricsValue"},
+        "tfi":{"shape":"TFITrainingMetricsValue"},
+        "ati":{"shape":"ATITrainingMetricsValue"}
+      }
+    },
     "TrainingResult":{
       "type":"structure",
       "members":{
         "dataValidationMetrics":{"shape":"DataValidationMetrics"},
         "trainingMetrics":{"shape":"TrainingMetrics"},
         "variableImportanceMetrics":{"shape":"VariableImportanceMetrics"}
+      }
+    },
+    "TrainingResultV2":{
+      "type":"structure",
+      "members":{
+        "dataValidationMetrics":{"shape":"DataValidationMetrics"},
+        "trainingMetricsV2":{"shape":"TrainingMetricsV2"},
+        "variableImportanceMetrics":{"shape":"VariableImportanceMetrics"},
+        "aggregatedVariablesImportanceMetrics":{"shape":"AggregatedVariablesImportanceMetrics"}
       }
     },
     "UnlabeledEventsTreatment":{
@@ -3312,7 +3439,7 @@
     "labelMapper":{
       "type":"map",
       "key":{"shape":"string"},
-      "value":{"shape":"NonEmptyListOfStrings"}
+      "value":{"shape":"ListOfStrings"}
     },
     "labelsMaxResults":{
       "type":"integer",
@@ -3420,7 +3547,7 @@
     },
     "variableValue":{
       "type":"string",
-      "max":1024,
+      "max":8192,
       "min":1,
       "sensitive":true
     },

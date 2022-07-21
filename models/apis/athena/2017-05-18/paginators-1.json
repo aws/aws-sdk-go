@@ -17,6 +17,11 @@
       "output_token": "NextToken",
       "result_key": "DatabaseList"
     },
+    "ListEngineVersions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "ListNamedQueries": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

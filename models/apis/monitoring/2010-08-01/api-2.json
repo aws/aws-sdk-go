@@ -583,6 +583,19 @@
       "min":1
     },
     "ActionsEnabled":{"type":"boolean"},
+    "ActionsSuppressedBy":{
+      "type":"string",
+      "enum":[
+        "WaitPeriod",
+        "ExtensionPeriod",
+        "Alarm"
+      ]
+    },
+    "ActionsSuppressedReason":{
+      "type":"string",
+      "max":1024,
+      "min":0
+    },
     "AlarmArn":{
       "type":"string",
       "max":1600,
@@ -750,7 +763,13 @@
         "StateReason":{"shape":"StateReason"},
         "StateReasonData":{"shape":"StateReasonData"},
         "StateUpdatedTimestamp":{"shape":"Timestamp"},
-        "StateValue":{"shape":"StateValue"}
+        "StateValue":{"shape":"StateValue"},
+        "StateTransitionedTimestamp":{"shape":"Timestamp"},
+        "ActionsSuppressedBy":{"shape":"ActionsSuppressedBy"},
+        "ActionsSuppressedReason":{"shape":"ActionsSuppressedReason"},
+        "ActionsSuppressor":{"shape":"AlarmArn"},
+        "ActionsSuppressorWaitPeriod":{"shape":"SuppressorPeriod"},
+        "ActionsSuppressorExtensionPeriod":{"shape":"SuppressorPeriod"}
       },
       "xmlOrder":[
         "ActionsEnabled",
@@ -765,7 +784,13 @@
         "StateReason",
         "StateReasonData",
         "StateUpdatedTimestamp",
-        "StateValue"
+        "StateValue",
+        "StateTransitionedTimestamp",
+        "ActionsSuppressedBy",
+        "ActionsSuppressedReason",
+        "ActionsSuppressor",
+        "ActionsSuppressorWaitPeriod",
+        "ActionsSuppressorExtensionPeriod"
       ]
     },
     "CompositeAlarms":{
@@ -1966,7 +1991,10 @@
         "AlarmRule":{"shape":"AlarmRule"},
         "InsufficientDataActions":{"shape":"ResourceList"},
         "OKActions":{"shape":"ResourceList"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "ActionsSuppressor":{"shape":"AlarmArn"},
+        "ActionsSuppressorWaitPeriod":{"shape":"SuppressorPeriod"},
+        "ActionsSuppressorExtensionPeriod":{"shape":"SuppressorPeriod"}
       }
     },
     "PutDashboardInput":{
@@ -2278,6 +2306,7 @@
       "type":"integer",
       "min":1
     },
+    "SuppressorPeriod":{"type":"integer"},
     "Tag":{
       "type":"structure",
       "required":[

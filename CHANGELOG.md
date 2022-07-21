@@ -1,3 +1,24 @@
+Release v1.44.60 (2022-07-21)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API, documentation, and paginators
+  * This feature allows customers to retrieve runtime statistics for completed queries
+* `service/dms`: Updates service documentation
+  * Documentation updates for Database Migration Service (DMS).
+* `service/docdb`: Updates service API and documentation
+  * Enable copy-on-write restore type
+* `service/ec2-instance-connect`: Updates service API and documentation
+* `service/frauddetector`: Updates service API and documentation
+* `service/iotsitewise`: Updates service API, documentation, and paginators
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now provides Oauth2 support for SharePoint Online. For more information, see https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html
+* `service/monitoring`: Updates service API and documentation
+  * Adding support for the suppression of Composite Alarm actions
+* `service/network-firewall`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds support for creating an RDS Proxy for an RDS for MariaDB database.
+
 Release v1.44.59 (2022-07-20)
 ===
 

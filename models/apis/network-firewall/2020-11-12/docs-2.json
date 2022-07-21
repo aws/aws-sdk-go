@@ -138,6 +138,26 @@
         "UpdateSubnetChangeProtectionResponse$SubnetChangeProtection": "<p>A setting indicating whether the firewall is protected against changes to the subnet associations. Use this setting to protect against accidentally modifying the subnet associations for a firewall that is in use. When you create a firewall, the operation initializes this setting to <code>TRUE</code>.</p>"
       }
     },
+    "CIDRCount": {
+      "base": null,
+      "refs": {
+        "CIDRSummary$AvailableCIDRCount": "<p>The number of CIDR blocks available for use by the IP set references in a firewall.</p>",
+        "CIDRSummary$UtilizedCIDRCount": "<p>The number of CIDR blocks used by the IP set references in a firewall.</p>",
+        "IPSetMetadata$ResolvedCIDRCount": "<p>Describes the total number of CIDR blocks currently in use by the IP set references in a firewall. To determine how many CIDR blocks are available for you to use in a firewall, you can call <code>AvailableCIDRCount</code>.</p>"
+      }
+    },
+    "CIDRSummary": {
+      "base": "<p>Summarizes the CIDR blocks used by the IP set references in a firewall. Network Firewall calculates the number of CIDRs by taking an aggregated count of all CIDRs used by the IP sets you are referencing.</p>",
+      "refs": {
+        "CapacityUsageSummary$CIDRs": "<p>Describes the capacity usage of the CIDR blocks used by the IP set references in a firewall.</p>"
+      }
+    },
+    "CapacityUsageSummary": {
+      "base": "<p>The capacity usage summary of the resources used by the <a>ReferenceSets</a> in a firewall.</p>",
+      "refs": {
+        "FirewallStatus$CapacityUsageSummary": "<p>Describes the capacity usage of the resources contained in a firewall's reference sets. Network Firewall calclulates the capacity usage by taking an aggregated count of all of the resources used by all of the reference sets in a firewall.</p>"
+      }
+    },
     "CollectionMember_String": {
       "base": null,
       "refs": {
@@ -490,6 +510,42 @@
         "IPSets$value": null
       }
     },
+    "IPSetArn": {
+      "base": null,
+      "refs": {
+        "IPSetMetadataMap$key": null
+      }
+    },
+    "IPSetMetadata": {
+      "base": "<p>General information about the IP set.</p>",
+      "refs": {
+        "IPSetMetadataMap$value": null
+      }
+    },
+    "IPSetMetadataMap": {
+      "base": null,
+      "refs": {
+        "CIDRSummary$IPSetReferences": "<p>The list of the IP set references used by a firewall.</p>"
+      }
+    },
+    "IPSetReference": {
+      "base": "<p>Configures one or more IP set references for a Suricata-compatible rule group. This is used in <a>CreateRuleGroup</a> or <a>UpdateRuleGroup</a>. An IP set reference is a rule variable that references a resource that you create and manage in another Amazon Web Services service, such as an Amazon VPC prefix list. Network Firewall IP set references enable you to dynamically update the contents of your rules. When you create, update, or delete the IP set you are referencing in your rule, Network Firewall automatically updates the rule's content with the changes. For more information about IP set references in Network Firewall, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/rule-groups-ip-set-references\">Using IP set references</a> in the <i>Network Firewall Developer Guide</i>.</p> <p> Network Firewall currently supports only <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/managed-prefix-lists.html\">Amazon VPC prefix lists</a> as IP set references. </p>",
+      "refs": {
+        "IPSetReferenceMap$value": null
+      }
+    },
+    "IPSetReferenceMap": {
+      "base": null,
+      "refs": {
+        "ReferenceSets$IPSetReferences": "<p>The list of IP set references.</p>"
+      }
+    },
+    "IPSetReferenceName": {
+      "base": null,
+      "refs": {
+        "IPSetReferenceMap$key": null
+      }
+    },
     "IPSets": {
       "base": null,
       "refs": {
@@ -768,6 +824,12 @@
       "refs": {
       }
     },
+    "ReferenceSets": {
+      "base": "<p>Contains a set of IP set references.</p>",
+      "refs": {
+        "RuleGroup$ReferenceSets": "<p>The list of a rule group's reference sets.</p>"
+      }
+    },
     "ResourceArn": {
       "base": null,
       "refs": {
@@ -797,6 +859,7 @@
         "FirewallMetadata$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p>",
         "FirewallPolicyMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the firewall policy.</p>",
         "FirewallPolicyResponse$FirewallPolicyArn": "<p>The Amazon Resource Name (ARN) of the firewall policy.</p> <note> <p>If this response is for a create request that had <code>DryRun</code> set to <code>TRUE</code>, then this ARN is a placeholder that isn't attached to a valid resource.</p> </note>",
+        "IPSetReference$ReferenceArn": "<p>The Amazon Resource Name (ARN) of the resource that you are referencing in your rule group.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "PutResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the account that you want to share rule groups and firewall policies with.</p>",
         "RuleGroupMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the rule group.</p>",

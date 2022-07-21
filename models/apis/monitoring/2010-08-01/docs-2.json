@@ -61,11 +61,25 @@
         "PutMetricAlarmInput$ActionsEnabled": "<p>Indicates whether actions should be executed during any changes to the alarm state. The default is <code>TRUE</code>.</p>"
       }
     },
+    "ActionsSuppressedBy": {
+      "base": null,
+      "refs": {
+        "CompositeAlarm$ActionsSuppressedBy": "<p> When the value is <code>ALARM</code>, it means that the actions are suppressed because the suppressor alarm is in <code>ALARM</code> When the value is <code>WaitPeriod</code>, it means that the actions are suppressed because the composite alarm is waiting for the suppressor alarm to go into into the <code>ALARM</code> state. The maximum waiting time is as specified in <code>ActionsSuppressorWaitPeriod</code>. After this time, the composite alarm performs its actions. When the value is <code>ExtensionPeriod</code>, it means that the actions are suppressed because the composite alarm is waiting after the suppressor alarm went out of the <code>ALARM</code> state. The maximum waiting time is as specified in <code>ActionsSuppressorExtensionPeriod</code>. After this time, the composite alarm performs its actions. </p>"
+      }
+    },
+    "ActionsSuppressedReason": {
+      "base": null,
+      "refs": {
+        "CompositeAlarm$ActionsSuppressedReason": "<p> Captures the reason for action suppression. </p>"
+      }
+    },
     "AlarmArn": {
       "base": null,
       "refs": {
         "CompositeAlarm$AlarmArn": "<p>The Amazon Resource Name (ARN) of the alarm.</p>",
-        "MetricAlarm$AlarmArn": "<p>The Amazon Resource Name (ARN) of the alarm.</p>"
+        "CompositeAlarm$ActionsSuppressor": "<p> Actions will be suppressed if the suppressor alarm is in the <code>ALARM</code> state. <code>ActionsSuppressor</code> can be an AlarmName or an Amazon Resource Name (ARN) from an existing alarm. </p>",
+        "MetricAlarm$AlarmArn": "<p>The Amazon Resource Name (ARN) of the alarm.</p>",
+        "PutCompositeAlarmInput$ActionsSuppressor": "<p> Actions will be suppressed if the suppressor alarm is in the <code>ALARM</code> state. <code>ActionsSuppressor</code> can be an AlarmName or an Amazon Resource Name (ARN) from an existing alarm. </p>"
       }
     },
     "AlarmDescription": {
@@ -1568,6 +1582,15 @@
         "MetricDatum$StorageResolution": "<p>Valid values are 1 and 60. Setting this to 1 specifies this metric as a high-resolution metric, so that CloudWatch stores the metric with sub-minute resolution down to one second. Setting this to 60 specifies this metric as a regular-resolution metric, which CloudWatch stores at 1-minute resolution. Currently, high resolution is available only for custom metrics. For more information about high-resolution metrics, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html#high-resolution-metrics\">High-Resolution Metrics</a> in the <i>Amazon CloudWatch User Guide</i>. </p> <p>This field is optional, if you do not specify it the default of 60 is used.</p>"
       }
     },
+    "SuppressorPeriod": {
+      "base": null,
+      "refs": {
+        "CompositeAlarm$ActionsSuppressorWaitPeriod": "<p> The maximum time in seconds that the composite alarm waits for the suppressor alarm to go into the <code>ALARM</code> state. After this time, the composite alarm performs its actions. </p> <important> <p> <code>WaitPeriod</code> is required only when <code>ActionsSuppressor</code> is specified. </p> </important>",
+        "CompositeAlarm$ActionsSuppressorExtensionPeriod": "<p> The maximum time in seconds that the composite alarm waits after suppressor alarm goes out of the <code>ALARM</code> state. After this time, the composite alarm performs its actions. </p> <important> <p> <code>ExtensionPeriod</code> is required only when <code>ActionsSuppressor</code> is specified. </p> </important>",
+        "PutCompositeAlarmInput$ActionsSuppressorWaitPeriod": "<p> The maximum time in seconds that the composite alarm waits for the suppressor alarm to go into the <code>ALARM</code> state. After this time, the composite alarm performs its actions. </p> <important> <p> <code>WaitPeriod</code> is required only when <code>ActionsSuppressor</code> is specified. </p> </important>",
+        "PutCompositeAlarmInput$ActionsSuppressorExtensionPeriod": "<p> The maximum time in seconds that the composite alarm waits after suppressor alarm goes out of the <code>ALARM</code> state. After this time, the composite alarm performs its actions. </p> <important> <p> <code>ExtensionPeriod</code> is required only when <code>ActionsSuppressor</code> is specified. </p> </important>"
+      }
+    },
     "Tag": {
       "base": "<p>A key-value pair associated with a CloudWatch resource.</p>",
       "refs": {
@@ -1626,7 +1649,8 @@
       "refs": {
         "AlarmHistoryItem$Timestamp": "<p>The time stamp for the alarm history item.</p>",
         "CompositeAlarm$AlarmConfigurationUpdatedTimestamp": "<p>The time stamp of the last update to the alarm configuration.</p>",
-        "CompositeAlarm$StateUpdatedTimestamp": "<p>The time stamp of the last update to the alarm state.</p>",
+        "CompositeAlarm$StateUpdatedTimestamp": "<p>Tracks the timestamp of any state update, even if <code>StateValue</code> doesn't change.</p>",
+        "CompositeAlarm$StateTransitionedTimestamp": "<p> The timestamp of the last change to the alarm's <code>StateValue</code>. </p>",
         "Datapoint$Timestamp": "<p>The time stamp used for the data point.</p>",
         "DescribeAlarmHistoryInput$StartDate": "<p>The starting date to retrieve alarm history.</p>",
         "DescribeAlarmHistoryInput$EndDate": "<p>The ending date to retrieve alarm history.</p>",

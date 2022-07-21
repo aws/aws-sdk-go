@@ -62,6 +62,12 @@
       "limit_key": "maxResults",
       "result_key": "assetSummaries"
     },
+    "ListBulkImportJobs": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "jobSummaries"
+    },
     "ListDashboards": {
       "input_token": "nextToken",
       "output_token": "nextToken",
