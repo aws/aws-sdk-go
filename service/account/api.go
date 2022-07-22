@@ -62,6 +62,12 @@ func (c *Account) DeleteAlternateContactRequest(input *DeleteAlternateContactInp
 // For complete details about how to use the alternate contact operations, see
 // Access or updating the alternate contacts (https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact.html).
 //
+// Before you can update the alternate contact information for an Amazon Web
+// Services account that is managed by Organizations, you must first enable
+// integration between Amazon Web Services Account Management and Organizations.
+// For more information, see Enabling trusted access for Amazon Web Services
+// Account Management (https://docs.aws.amazon.com/accounts/latest/reference/using-orgs-trusted-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -160,6 +166,12 @@ func (c *Account) GetAlternateContactRequest(input *GetAlternateContactInput) (r
 // For complete details about how to use the alternate contact operations, see
 // Access or updating the alternate contacts (https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact.html).
 //
+// Before you can update the alternate contact information for an Amazon Web
+// Services account that is managed by Organizations, you must first enable
+// integration between Amazon Web Services Account Management and Organizations.
+// For more information, see Enabling trusted access for Amazon Web Services
+// Account Management (https://docs.aws.amazon.com/accounts/latest/reference/using-orgs-trusted-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -203,6 +215,103 @@ func (c *Account) GetAlternateContact(input *GetAlternateContactInput) (*GetAlte
 // for more information on using Contexts.
 func (c *Account) GetAlternateContactWithContext(ctx aws.Context, input *GetAlternateContactInput, opts ...request.Option) (*GetAlternateContactOutput, error) {
 	req, out := c.GetAlternateContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContactInformation = "GetContactInformation"
+
+// GetContactInformationRequest generates a "aws/request.Request" representing the
+// client's request for the GetContactInformation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContactInformation for more information on using the GetContactInformation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetContactInformationRequest method.
+//    req, resp := client.GetContactInformationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/GetContactInformation
+func (c *Account) GetContactInformationRequest(input *GetContactInformationInput) (req *request.Request, output *GetContactInformationOutput) {
+	op := &request.Operation{
+		Name:       opGetContactInformation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/getContactInformation",
+	}
+
+	if input == nil {
+		input = &GetContactInformationInput{}
+	}
+
+	output = &GetContactInformationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContactInformation API operation for AWS Account.
+//
+// Retrieves the primary contact information of an Amazon Web Services account.
+//
+// For complete details about how to use the primary contact operations, see
+// Update the primary and alternate contact information (https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Account's
+// API operation GetContactInformation for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The operation failed because it specified a resource that can't be found.
+//
+//   * ValidationException
+//   The operation failed because one of the input parameters was invalid.
+//
+//   * AccessDeniedException
+//   The operation failed because the calling identity doesn't have the minimum
+//   required permissions.
+//
+//   * TooManyRequestsException
+//   The operation failed because it was called too frequently and exceeded a
+//   throttle limit.
+//
+//   * InternalServerException
+//   The operation failed because of an error internal to Amazon Web Services.
+//   Try your operation again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/GetContactInformation
+func (c *Account) GetContactInformation(input *GetContactInformationInput) (*GetContactInformationOutput, error) {
+	req, out := c.GetContactInformationRequest(input)
+	return out, req.Send()
+}
+
+// GetContactInformationWithContext is the same as GetContactInformation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContactInformation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Account) GetContactInformationWithContext(ctx aws.Context, input *GetContactInformationInput, opts ...request.Option) (*GetContactInformationOutput, error) {
+	req, out := c.GetContactInformationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -259,6 +368,12 @@ func (c *Account) PutAlternateContactRequest(input *PutAlternateContactInput) (r
 // For complete details about how to use the alternate contact operations, see
 // Access or updating the alternate contacts (https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact.html).
 //
+// Before you can update the alternate contact information for an Amazon Web
+// Services account that is managed by Organizations, you must first enable
+// integration between Amazon Web Services Account Management and Organizations.
+// For more information, see Enabling trusted access for Amazon Web Services
+// Account Management (https://docs.aws.amazon.com/accounts/latest/reference/using-orgs-trusted-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -299,6 +414,101 @@ func (c *Account) PutAlternateContact(input *PutAlternateContactInput) (*PutAlte
 // for more information on using Contexts.
 func (c *Account) PutAlternateContactWithContext(ctx aws.Context, input *PutAlternateContactInput, opts ...request.Option) (*PutAlternateContactOutput, error) {
 	req, out := c.PutAlternateContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutContactInformation = "PutContactInformation"
+
+// PutContactInformationRequest generates a "aws/request.Request" representing the
+// client's request for the PutContactInformation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutContactInformation for more information on using the PutContactInformation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutContactInformationRequest method.
+//    req, resp := client.PutContactInformationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/PutContactInformation
+func (c *Account) PutContactInformationRequest(input *PutContactInformationInput) (req *request.Request, output *PutContactInformationOutput) {
+	op := &request.Operation{
+		Name:       opPutContactInformation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/putContactInformation",
+	}
+
+	if input == nil {
+		input = &PutContactInformationInput{}
+	}
+
+	output = &PutContactInformationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutContactInformation API operation for AWS Account.
+//
+// Updates the primary contact information of an Amazon Web Services account.
+//
+// For complete details about how to use the primary contact operations, see
+// Update the primary and alternate contact information (https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Account's
+// API operation PutContactInformation for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The operation failed because one of the input parameters was invalid.
+//
+//   * AccessDeniedException
+//   The operation failed because the calling identity doesn't have the minimum
+//   required permissions.
+//
+//   * TooManyRequestsException
+//   The operation failed because it was called too frequently and exceeded a
+//   throttle limit.
+//
+//   * InternalServerException
+//   The operation failed because of an error internal to Amazon Web Services.
+//   Try your operation again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/PutContactInformation
+func (c *Account) PutContactInformation(input *PutContactInformationInput) (*PutContactInformationOutput, error) {
+	req, out := c.PutContactInformationRequest(input)
+	return out, req.Send()
+}
+
+// PutContactInformationWithContext is the same as PutContactInformation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutContactInformation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Account) PutContactInformationWithContext(ctx aws.Context, input *PutContactInformationInput, opts ...request.Option) (*PutContactInformationOutput, error) {
+	req, out := c.PutContactInformationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -451,6 +661,266 @@ func (s *AlternateContact) SetPhoneNumber(v string) *AlternateContact {
 // SetTitle sets the Title field's value.
 func (s *AlternateContact) SetTitle(v string) *AlternateContact {
 	s.Title = &v
+	return s
+}
+
+// Contains the details of the primary contact information associated with an
+// Amazon Web Services account.
+type ContactInformation struct {
+	_ struct{} `type:"structure"`
+
+	// The first line of the primary contact address.
+	//
+	// AddressLine1 is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactInformation's
+	// String and GoString methods.
+	//
+	// AddressLine1 is a required field
+	AddressLine1 *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The second line of the primary contact address, if any.
+	//
+	// AddressLine2 is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactInformation's
+	// String and GoString methods.
+	AddressLine2 *string `min:"1" type:"string" sensitive:"true"`
+
+	// The third line of the primary contact address, if any.
+	//
+	// AddressLine3 is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactInformation's
+	// String and GoString methods.
+	AddressLine3 *string `min:"1" type:"string" sensitive:"true"`
+
+	// The city of the primary contact address.
+	//
+	// City is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactInformation's
+	// String and GoString methods.
+	//
+	// City is a required field
+	City *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The name of the company associated with the primary contact information,
+	// if any.
+	//
+	// CompanyName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactInformation's
+	// String and GoString methods.
+	CompanyName *string `min:"1" type:"string" sensitive:"true"`
+
+	// The ISO-3166 two-letter country code for the primary contact address.
+	//
+	// CountryCode is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactInformation's
+	// String and GoString methods.
+	//
+	// CountryCode is a required field
+	CountryCode *string `min:"2" type:"string" required:"true" sensitive:"true"`
+
+	// The district or county of the primary contact address, if any.
+	//
+	// DistrictOrCounty is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactInformation's
+	// String and GoString methods.
+	DistrictOrCounty *string `min:"1" type:"string" sensitive:"true"`
+
+	// The full name of the primary contact address.
+	//
+	// FullName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactInformation's
+	// String and GoString methods.
+	//
+	// FullName is a required field
+	FullName *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The phone number of the primary contact information. The number will be validated
+	// and, in some countries, checked for activation.
+	//
+	// PhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactInformation's
+	// String and GoString methods.
+	//
+	// PhoneNumber is a required field
+	PhoneNumber *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The postal code of the primary contact address.
+	//
+	// PostalCode is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactInformation's
+	// String and GoString methods.
+	//
+	// PostalCode is a required field
+	PostalCode *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The state or region of the primary contact address. This field is required
+	// in selected countries.
+	//
+	// StateOrRegion is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactInformation's
+	// String and GoString methods.
+	StateOrRegion *string `min:"1" type:"string" sensitive:"true"`
+
+	// The URL of the website associated with the primary contact information, if
+	// any.
+	//
+	// WebsiteUrl is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContactInformation's
+	// String and GoString methods.
+	WebsiteUrl *string `min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactInformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactInformation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContactInformation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContactInformation"}
+	if s.AddressLine1 == nil {
+		invalidParams.Add(request.NewErrParamRequired("AddressLine1"))
+	}
+	if s.AddressLine1 != nil && len(*s.AddressLine1) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AddressLine1", 1))
+	}
+	if s.AddressLine2 != nil && len(*s.AddressLine2) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AddressLine2", 1))
+	}
+	if s.AddressLine3 != nil && len(*s.AddressLine3) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AddressLine3", 1))
+	}
+	if s.City == nil {
+		invalidParams.Add(request.NewErrParamRequired("City"))
+	}
+	if s.City != nil && len(*s.City) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("City", 1))
+	}
+	if s.CompanyName != nil && len(*s.CompanyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CompanyName", 1))
+	}
+	if s.CountryCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("CountryCode"))
+	}
+	if s.CountryCode != nil && len(*s.CountryCode) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("CountryCode", 2))
+	}
+	if s.DistrictOrCounty != nil && len(*s.DistrictOrCounty) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DistrictOrCounty", 1))
+	}
+	if s.FullName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FullName"))
+	}
+	if s.FullName != nil && len(*s.FullName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FullName", 1))
+	}
+	if s.PhoneNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumber"))
+	}
+	if s.PhoneNumber != nil && len(*s.PhoneNumber) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PhoneNumber", 1))
+	}
+	if s.PostalCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("PostalCode"))
+	}
+	if s.PostalCode != nil && len(*s.PostalCode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PostalCode", 1))
+	}
+	if s.StateOrRegion != nil && len(*s.StateOrRegion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StateOrRegion", 1))
+	}
+	if s.WebsiteUrl != nil && len(*s.WebsiteUrl) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WebsiteUrl", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddressLine1 sets the AddressLine1 field's value.
+func (s *ContactInformation) SetAddressLine1(v string) *ContactInformation {
+	s.AddressLine1 = &v
+	return s
+}
+
+// SetAddressLine2 sets the AddressLine2 field's value.
+func (s *ContactInformation) SetAddressLine2(v string) *ContactInformation {
+	s.AddressLine2 = &v
+	return s
+}
+
+// SetAddressLine3 sets the AddressLine3 field's value.
+func (s *ContactInformation) SetAddressLine3(v string) *ContactInformation {
+	s.AddressLine3 = &v
+	return s
+}
+
+// SetCity sets the City field's value.
+func (s *ContactInformation) SetCity(v string) *ContactInformation {
+	s.City = &v
+	return s
+}
+
+// SetCompanyName sets the CompanyName field's value.
+func (s *ContactInformation) SetCompanyName(v string) *ContactInformation {
+	s.CompanyName = &v
+	return s
+}
+
+// SetCountryCode sets the CountryCode field's value.
+func (s *ContactInformation) SetCountryCode(v string) *ContactInformation {
+	s.CountryCode = &v
+	return s
+}
+
+// SetDistrictOrCounty sets the DistrictOrCounty field's value.
+func (s *ContactInformation) SetDistrictOrCounty(v string) *ContactInformation {
+	s.DistrictOrCounty = &v
+	return s
+}
+
+// SetFullName sets the FullName field's value.
+func (s *ContactInformation) SetFullName(v string) *ContactInformation {
+	s.FullName = &v
+	return s
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *ContactInformation) SetPhoneNumber(v string) *ContactInformation {
+	s.PhoneNumber = &v
+	return s
+}
+
+// SetPostalCode sets the PostalCode field's value.
+func (s *ContactInformation) SetPostalCode(v string) *ContactInformation {
+	s.PostalCode = &v
+	return s
+}
+
+// SetStateOrRegion sets the StateOrRegion field's value.
+func (s *ContactInformation) SetStateOrRegion(v string) *ContactInformation {
+	s.StateOrRegion = &v
+	return s
+}
+
+// SetWebsiteUrl sets the WebsiteUrl field's value.
+func (s *ContactInformation) SetWebsiteUrl(v string) *ContactInformation {
+	s.WebsiteUrl = &v
 	return s
 }
 
@@ -656,6 +1126,87 @@ func (s GetAlternateContactOutput) GoString() string {
 // SetAlternateContact sets the AlternateContact field's value.
 func (s *GetAlternateContactOutput) SetAlternateContact(v *AlternateContact) *GetAlternateContactOutput {
 	s.AlternateContact = v
+	return s
+}
+
+type GetContactInformationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the 12-digit account ID number of the Amazon Web Services account
+	// that you want to access or modify with this operation. If you don't specify
+	// this parameter, it defaults to the Amazon Web Services account of the identity
+	// used to call the operation. To use this parameter, the caller must be an
+	// identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
+	// or a delegated administrator account. The specified account ID must also
+	// be a member account in the same organization. The organization must have
+	// all features enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
+	// enabled for the Account Management service, and optionally a delegated admin
+	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
+	// account assigned.
+	//
+	// The management account can't specify its own AccountId. It must call the
+	// operation in standalone context by not including the AccountId parameter.
+	//
+	// To call this operation on an account that is not a member of an organization,
+	// don't specify this parameter. Instead, call the operation using an identity
+	// belonging to the account whose contacts you wish to retrieve or modify.
+	AccountId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContactInformationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContactInformationInput) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetContactInformationInput) SetAccountId(v string) *GetContactInformationInput {
+	s.AccountId = &v
+	return s
+}
+
+type GetContactInformationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the details of the primary contact information associated with an
+	// Amazon Web Services account.
+	ContactInformation *ContactInformation `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContactInformationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContactInformationOutput) GoString() string {
+	return s.String()
+}
+
+// SetContactInformation sets the ContactInformation field's value.
+func (s *GetContactInformationOutput) SetContactInformation(v *ContactInformation) *GetContactInformationOutput {
+	s.ContactInformation = v
 	return s
 }
 
@@ -903,6 +1454,107 @@ func (s PutAlternateContactOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s PutAlternateContactOutput) GoString() string {
+	return s.String()
+}
+
+type PutContactInformationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the 12-digit account ID number of the Amazon Web Services account
+	// that you want to access or modify with this operation. If you don't specify
+	// this parameter, it defaults to the Amazon Web Services account of the identity
+	// used to call the operation. To use this parameter, the caller must be an
+	// identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
+	// or a delegated administrator account. The specified account ID must also
+	// be a member account in the same organization. The organization must have
+	// all features enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
+	// enabled for the Account Management service, and optionally a delegated admin
+	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
+	// account assigned.
+	//
+	// The management account can't specify its own AccountId. It must call the
+	// operation in standalone context by not including the AccountId parameter.
+	//
+	// To call this operation on an account that is not a member of an organization,
+	// don't specify this parameter. Instead, call the operation using an identity
+	// belonging to the account whose contacts you wish to retrieve or modify.
+	AccountId *string `type:"string"`
+
+	// Contains the details of the primary contact information associated with an
+	// Amazon Web Services account.
+	//
+	// ContactInformation is a required field
+	ContactInformation *ContactInformation `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutContactInformationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutContactInformationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutContactInformationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutContactInformationInput"}
+	if s.ContactInformation == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactInformation"))
+	}
+	if s.ContactInformation != nil {
+		if err := s.ContactInformation.Validate(); err != nil {
+			invalidParams.AddNested("ContactInformation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutContactInformationInput) SetAccountId(v string) *PutContactInformationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetContactInformation sets the ContactInformation field's value.
+func (s *PutContactInformationInput) SetContactInformation(v *ContactInformation) *PutContactInformationInput {
+	s.ContactInformation = v
+	return s
+}
+
+type PutContactInformationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutContactInformationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutContactInformationOutput) GoString() string {
 	return s.String()
 }
 

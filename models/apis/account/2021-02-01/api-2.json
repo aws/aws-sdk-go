@@ -46,6 +46,23 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetContactInformation":{
+      "name":"GetContactInformation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/getContactInformation",
+        "responseCode":200
+      },
+      "input":{"shape":"GetContactInformationRequest"},
+      "output":{"shape":"GetContactInformationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "PutAlternateContact":{
       "name":"PutAlternateContact",
       "http":{
@@ -54,6 +71,22 @@
         "responseCode":200
       },
       "input":{"shape":"PutAlternateContactRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "PutContactInformation":{
+      "name":"PutContactInformation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/putContactInformation",
+        "responseCode":200
+      },
+      "input":{"shape":"PutContactInformationRequest"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
@@ -80,6 +113,12 @@
       "type":"string",
       "pattern":"^\\d{12}$"
     },
+    "AddressLine":{
+      "type":"string",
+      "max":60,
+      "min":1,
+      "sensitive":true
+    },
     "AlternateContact":{
       "type":"structure",
       "members":{
@@ -98,6 +137,56 @@
         "SECURITY"
       ]
     },
+    "City":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "sensitive":true
+    },
+    "CompanyName":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "sensitive":true
+    },
+    "ContactInformation":{
+      "type":"structure",
+      "required":[
+        "AddressLine1",
+        "City",
+        "CountryCode",
+        "FullName",
+        "PhoneNumber",
+        "PostalCode"
+      ],
+      "members":{
+        "AddressLine1":{"shape":"AddressLine"},
+        "AddressLine2":{"shape":"AddressLine"},
+        "AddressLine3":{"shape":"AddressLine"},
+        "City":{"shape":"City"},
+        "CompanyName":{"shape":"CompanyName"},
+        "CountryCode":{"shape":"CountryCode"},
+        "DistrictOrCounty":{"shape":"DistrictOrCounty"},
+        "FullName":{"shape":"FullName"},
+        "PhoneNumber":{"shape":"ContactInformationPhoneNumber"},
+        "PostalCode":{"shape":"PostalCode"},
+        "StateOrRegion":{"shape":"StateOrRegion"},
+        "WebsiteUrl":{"shape":"WebsiteUrl"}
+      }
+    },
+    "ContactInformationPhoneNumber":{
+      "type":"string",
+      "max":20,
+      "min":1,
+      "pattern":"^[+][\\s0-9()-]+$",
+      "sensitive":true
+    },
+    "CountryCode":{
+      "type":"string",
+      "max":2,
+      "min":2,
+      "sensitive":true
+    },
     "DeleteAlternateContactRequest":{
       "type":"structure",
       "required":["AlternateContactType"],
@@ -106,11 +195,23 @@
         "AlternateContactType":{"shape":"AlternateContactType"}
       }
     },
+    "DistrictOrCounty":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "sensitive":true
+    },
     "EmailAddress":{
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"[\\w+=,.-]+@[\\w.-]+\\.[\\w]+",
+      "pattern":"^[\\s]*[\\w+=.#!&-]+@[\\w.-]+\\.[\\w]+[\\s]*$",
+      "sensitive":true
+    },
+    "FullName":{
+      "type":"string",
+      "max":50,
+      "min":1,
       "sensitive":true
     },
     "GetAlternateContactRequest":{
@@ -125,6 +226,18 @@
       "type":"structure",
       "members":{
         "AlternateContact":{"shape":"AlternateContact"}
+      }
+    },
+    "GetContactInformationRequest":{
+      "type":"structure",
+      "members":{
+        "AccountId":{"shape":"AccountId"}
+      }
+    },
+    "GetContactInformationResponse":{
+      "type":"structure",
+      "members":{
+        "ContactInformation":{"shape":"ContactInformation"}
       }
     },
     "InternalServerException":{
@@ -151,6 +264,12 @@
       "pattern":"^[\\s0-9()+-]+$",
       "sensitive":true
     },
+    "PostalCode":{
+      "type":"string",
+      "max":20,
+      "min":1,
+      "sensitive":true
+    },
     "PutAlternateContactRequest":{
       "type":"structure",
       "required":[
@@ -169,6 +288,14 @@
         "Title":{"shape":"Title"}
       }
     },
+    "PutContactInformationRequest":{
+      "type":"structure",
+      "required":["ContactInformation"],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "ContactInformation":{"shape":"ContactInformation"}
+      }
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "required":["message"],
@@ -180,6 +307,12 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "StateOrRegion":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "sensitive":true
     },
     "String":{"type":"string"},
     "Title":{
@@ -212,6 +345,12 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "WebsiteUrl":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "sensitive":true
     }
   }
 }

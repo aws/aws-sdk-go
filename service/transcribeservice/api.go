@@ -13151,7 +13151,9 @@ type UpdateMedicalVocabularyInput struct {
 	// as the resource you're calling.
 	//
 	// Here's an example URI path: s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt
-	VocabularyFileUri *string `min:"1" type:"string"`
+	//
+	// VocabularyFileUri is a required field
+	VocabularyFileUri *string `min:"1" type:"string" required:"true"`
 
 	// The name of the custom medical vocabulary you want to update. Vocabulary
 	// names are case sensitive.
@@ -13183,6 +13185,9 @@ func (s *UpdateMedicalVocabularyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateMedicalVocabularyInput"}
 	if s.LanguageCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.VocabularyFileUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("VocabularyFileUri"))
 	}
 	if s.VocabularyFileUri != nil && len(*s.VocabularyFileUri) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VocabularyFileUri", 1))
@@ -13818,9 +13823,6 @@ const (
 	// LanguageCodeArSa is a LanguageCode enum value
 	LanguageCodeArSa = "ar-SA"
 
-	// LanguageCodeCyGb is a LanguageCode enum value
-	LanguageCodeCyGb = "cy-GB"
-
 	// LanguageCodeDaDk is a LanguageCode enum value
 	LanguageCodeDaDk = "da-DK"
 
@@ -13865,12 +13867,6 @@ const (
 
 	// LanguageCodeFrFr is a LanguageCode enum value
 	LanguageCodeFrFr = "fr-FR"
-
-	// LanguageCodeGaIe is a LanguageCode enum value
-	LanguageCodeGaIe = "ga-IE"
-
-	// LanguageCodeGdGb is a LanguageCode enum value
-	LanguageCodeGdGb = "gd-GB"
 
 	// LanguageCodeHeIl is a LanguageCode enum value
 	LanguageCodeHeIl = "he-IL"
@@ -13936,7 +13932,6 @@ func LanguageCode_Values() []string {
 		LanguageCodeAfZa,
 		LanguageCodeArAe,
 		LanguageCodeArSa,
-		LanguageCodeCyGb,
 		LanguageCodeDaDk,
 		LanguageCodeDeCh,
 		LanguageCodeDeDe,
@@ -13952,8 +13947,6 @@ func LanguageCode_Values() []string {
 		LanguageCodeFaIr,
 		LanguageCodeFrCa,
 		LanguageCodeFrFr,
-		LanguageCodeGaIe,
-		LanguageCodeGdGb,
 		LanguageCodeHeIl,
 		LanguageCodeHiIn,
 		LanguageCodeIdId,

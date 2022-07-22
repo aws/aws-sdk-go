@@ -1446,6 +1446,23 @@
         {"shape":"DBProxyTargetGroupNotFoundFault"}
       ]
     },
+    "ModifyActivityStream":{
+      "name":"ModifyActivityStream",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyActivityStreamRequest"},
+      "output":{
+        "shape":"ModifyActivityStreamResponse",
+        "resultWrapper":"ModifyActivityStreamResult"
+      },
+      "errors":[
+        {"shape":"InvalidDBInstanceStateFault"},
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"DBInstanceNotFoundFault"}
+      ]
+    },
     "ModifyCertificates":{
       "name":"ModifyCertificates",
       "http":{
@@ -2414,6 +2431,15 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "ActivityStreamPolicyStatus":{
+      "type":"string",
+      "enum":[
+        "locked",
+        "unlocked",
+        "locking-policy",
+        "unlocking-policy"
+      ]
+    },
     "ActivityStreamStatus":{
       "type":"string",
       "enum":[
@@ -2508,6 +2534,13 @@
         "shape":"String",
         "locationName":"AttributeValue"
       }
+    },
+    "AuditPolicyState":{
+      "type":"string",
+      "enum":[
+        "locked",
+        "unlocked"
+      ]
     },
     "AuthScheme":{
       "type":"string",
@@ -3918,7 +3951,8 @@
         "ResumeFullAutomationModeTime":{"shape":"TStamp"},
         "CustomIamInstanceProfile":{"shape":"String"},
         "BackupTarget":{"shape":"String"},
-        "NetworkType":{"shape":"String"}
+        "NetworkType":{"shape":"String"},
+        "ActivityStreamPolicyStatus":{"shape":"ActivityStreamPolicyStatus"}
       },
       "wrapper":true
     },
@@ -6223,6 +6257,24 @@
       "member":{
         "shape":"MinimumEngineVersionPerAllowedValue",
         "locationName":"MinimumEngineVersionPerAllowedValue"
+      }
+    },
+    "ModifyActivityStreamRequest":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"String"},
+        "AuditPolicyState":{"shape":"AuditPolicyState"}
+      }
+    },
+    "ModifyActivityStreamResponse":{
+      "type":"structure",
+      "members":{
+        "KmsKeyId":{"shape":"String"},
+        "KinesisStreamName":{"shape":"String"},
+        "Status":{"shape":"ActivityStreamStatus"},
+        "Mode":{"shape":"ActivityStreamMode"},
+        "EngineNativeAuditFieldsIncluded":{"shape":"BooleanOptional"},
+        "PolicyStatus":{"shape":"ActivityStreamPolicyStatus"}
       }
     },
     "ModifyCertificatesMessage":{
