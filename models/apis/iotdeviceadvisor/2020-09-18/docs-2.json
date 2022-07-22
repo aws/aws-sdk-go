@@ -90,7 +90,8 @@
     "Failure": {
       "base": null,
       "refs": {
-        "TestCaseRun$failure": "<p>Provides test case run failure result.</p>"
+        "TestCaseRun$failure": "<p>Provides test case run failure result.</p>",
+        "TestCaseScenario$failure": "<p>Provides test case scenario failure result.</p>"
       }
     },
     "GetEndpointRequest": {
@@ -163,6 +164,13 @@
       "refs": {
       }
     },
+    "IsLongDurationTestBoolean": {
+      "base": null,
+      "refs": {
+        "SuiteDefinitionConfiguration$isLongDurationTest": "<p> Verifies if the test suite is a long duration test. </p>",
+        "SuiteDefinitionInformation$isLongDurationTest": "<p> Verifies if the test suite is a long duration test. </p>"
+      }
+    },
     "ListSuiteDefinitionsRequest": {
       "base": null,
       "refs": {
@@ -219,6 +227,13 @@
       "base": null,
       "refs": {
         "SuiteRunConfiguration$parallelRun": "<p>TRUE if multiple test suites run in parallel.</p>"
+      }
+    },
+    "Protocol": {
+      "base": null,
+      "refs": {
+        "SuiteDefinitionConfiguration$protocol": "<p> Gets the MQTT protocol that is configured in the suite definition.</p>",
+        "SuiteDefinitionInformation$protocol": "<p> Gets the MQTT protocol that is configured in the suite definition.</p>"
       }
     },
     "QualificationReportDownloadUrl": {
@@ -359,6 +374,12 @@
         "ListSuiteRunsResponse$suiteRunsList": "<p>An array of objects that provide summaries of information about the suite runs in the list.</p>"
       }
     },
+    "SystemMessage": {
+      "base": null,
+      "refs": {
+        "TestCaseScenario$systemMessage": "<p> </p>"
+      }
+    },
     "TagKeyList": {
       "base": null,
       "refs": {
@@ -402,6 +423,36 @@
       "base": "<p>Tests under each group result.</p>",
       "refs": {
         "GroupResult$tests": "<p>Tests under Group Result.</p>"
+      }
+    },
+    "TestCaseScenario": {
+      "base": "<p>Provides test case scenario.</p>",
+      "refs": {
+        "TestCaseScenariosList$member": null
+      }
+    },
+    "TestCaseScenarioId": {
+      "base": null,
+      "refs": {
+        "TestCaseScenario$testCaseScenarioId": "<p>Provides test case scenario ID.</p>"
+      }
+    },
+    "TestCaseScenarioStatus": {
+      "base": null,
+      "refs": {
+        "TestCaseScenario$status": "<p>Provides the test case scenario status. Status is one of the following:</p> <ul> <li> <p> <code>PASS</code>: Test passed.</p> </li> <li> <p> <code>FAIL</code>: Test failed.</p> </li> <li> <p> <code>PENDING</code>: Test has not started running but is scheduled.</p> </li> <li> <p> <code>RUNNING</code>: Test is running.</p> </li> <li> <p> <code>STOPPING</code>: Test is performing cleanup steps. You will see this status only if you stop a suite run.</p> </li> <li> <p> <code>STOPPED</code> Test is stopped. You will see this status only if you stop a suite run.</p> </li> <li> <p> <code>PASS_WITH_WARNINGS</code>: Test passed with warnings.</p> </li> <li> <p> <code>ERORR</code>: Test faced an error when running due to an internal issue.</p> </li> </ul>"
+      }
+    },
+    "TestCaseScenarioType": {
+      "base": null,
+      "refs": {
+        "TestCaseScenario$testCaseScenarioType": "<p>Provides test case scenario type. Type is one of the following:</p> <ul> <li> <p>Advanced</p> </li> <li> <p>Basic</p> </li> </ul>"
+      }
+    },
+    "TestCaseScenariosList": {
+      "base": null,
+      "refs": {
+        "TestCaseRun$testScenarios": "<p> Provides the test scenarios for the test case run. </p>"
       }
     },
     "TestResult": {

@@ -45,8 +45,10 @@
     "ListReservations": "List purchased reservations.",
     "ListTagsForResource": "Produces list of tags that have been created for a resource",
     "PurchaseOffering": "Purchase an offering and create a reservation.",
+    "RebootInputDevice": "Send a reboot command to the specified input device. The device will begin rebooting within a few seconds of sending the command. When the reboot is complete, the device\u2019s connection status will change to connected.",
     "RejectInputDeviceTransfer": "Reject the transfer of the specified input device to your AWS account.",
     "StartChannel": "Starts an existing channel",
+    "StartInputDeviceMaintenanceWindow": "Start a maintenance window for the specified input device. Starting a maintenance window will give the device up to two hours to install software. If the device was streaming prior to the maintenance, it will resume streaming when the software is fully installed. Devices automatically install updates while they are powered on and their MediaLive channels are stopped. A maintenance window allows you to update a device without having to stop MediaLive channels that use the device. The device must remain powered on and connected to the internet for the duration of the maintenance.",
     "StartMultiplex": "Start (run) the multiplex. Starting the multiplex does not start the channels. You must explicitly start each channel.",
     "StopChannel": "Stops a running channel",
     "StopMultiplex": "Stops a running multiplex. If the multiplex isn't running, this action has no effect.",
@@ -2692,6 +2694,17 @@
       "base": "Raw Settings",
       "refs": {
         "ArchiveContainerSettings$RawSettings": null
+      }
+    },
+    "RebootInputDevice": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RebootInputDeviceForce": {
+      "base": "Whether or not to force reboot the input device.",
+      "refs": {
+        "RebootInputDevice$Force": "Force a reboot of an input device. If the device is streaming, it will stop streaming and begin rebooting within a few seconds of sending the command. If the device was streaming prior to the reboot, the device will resume streaming when the reboot completes."
       }
     },
     "Rec601Settings": {

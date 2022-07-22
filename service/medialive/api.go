@@ -4474,6 +4474,101 @@ func (c *MediaLive) PurchaseOfferingWithContext(ctx aws.Context, input *Purchase
 	return out, req.Send()
 }
 
+const opRebootInputDevice = "RebootInputDevice"
+
+// RebootInputDeviceRequest generates a "aws/request.Request" representing the
+// client's request for the RebootInputDevice operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RebootInputDevice for more information on using the RebootInputDevice
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RebootInputDeviceRequest method.
+//    req, resp := client.RebootInputDeviceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/RebootInputDevice
+func (c *MediaLive) RebootInputDeviceRequest(input *RebootInputDeviceInput) (req *request.Request, output *RebootInputDeviceOutput) {
+	op := &request.Operation{
+		Name:       opRebootInputDevice,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/inputDevices/{inputDeviceId}/reboot",
+	}
+
+	if input == nil {
+		input = &RebootInputDeviceInput{}
+	}
+
+	output = &RebootInputDeviceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RebootInputDevice API operation for AWS Elemental MediaLive.
+//
+// Send a reboot command to the specified input device. The device will begin
+// rebooting within a few seconds of sending the command. When the reboot is
+// complete, the device’s connection status will change to connected.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation RebootInputDevice for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//
+//   * UnprocessableEntityException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * BadGatewayException
+//
+//   * NotFoundException
+//
+//   * GatewayTimeoutException
+//
+//   * TooManyRequestsException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/RebootInputDevice
+func (c *MediaLive) RebootInputDevice(input *RebootInputDeviceInput) (*RebootInputDeviceOutput, error) {
+	req, out := c.RebootInputDeviceRequest(input)
+	return out, req.Send()
+}
+
+// RebootInputDeviceWithContext is the same as RebootInputDevice with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RebootInputDevice for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) RebootInputDeviceWithContext(ctx aws.Context, input *RebootInputDeviceInput, opts ...request.Option) (*RebootInputDeviceOutput, error) {
+	req, out := c.RebootInputDeviceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRejectInputDeviceTransfer = "RejectInputDeviceTransfer"
 
 // RejectInputDeviceTransferRequest generates a "aws/request.Request" representing the
@@ -4656,6 +4751,106 @@ func (c *MediaLive) StartChannel(input *StartChannelInput) (*StartChannelOutput,
 // for more information on using Contexts.
 func (c *MediaLive) StartChannelWithContext(ctx aws.Context, input *StartChannelInput, opts ...request.Option) (*StartChannelOutput, error) {
 	req, out := c.StartChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartInputDeviceMaintenanceWindow = "StartInputDeviceMaintenanceWindow"
+
+// StartInputDeviceMaintenanceWindowRequest generates a "aws/request.Request" representing the
+// client's request for the StartInputDeviceMaintenanceWindow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartInputDeviceMaintenanceWindow for more information on using the StartInputDeviceMaintenanceWindow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartInputDeviceMaintenanceWindowRequest method.
+//    req, resp := client.StartInputDeviceMaintenanceWindowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartInputDeviceMaintenanceWindow
+func (c *MediaLive) StartInputDeviceMaintenanceWindowRequest(input *StartInputDeviceMaintenanceWindowInput) (req *request.Request, output *StartInputDeviceMaintenanceWindowOutput) {
+	op := &request.Operation{
+		Name:       opStartInputDeviceMaintenanceWindow,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/inputDevices/{inputDeviceId}/startInputDeviceMaintenanceWindow",
+	}
+
+	if input == nil {
+		input = &StartInputDeviceMaintenanceWindowInput{}
+	}
+
+	output = &StartInputDeviceMaintenanceWindowOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartInputDeviceMaintenanceWindow API operation for AWS Elemental MediaLive.
+//
+// Start a maintenance window for the specified input device. Starting a maintenance
+// window will give the device up to two hours to install software. If the device
+// was streaming prior to the maintenance, it will resume streaming when the
+// software is fully installed. Devices automatically install updates while
+// they are powered on and their MediaLive channels are stopped. A maintenance
+// window allows you to update a device without having to stop MediaLive channels
+// that use the device. The device must remain powered on and connected to the
+// internet for the duration of the maintenance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation StartInputDeviceMaintenanceWindow for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//
+//   * UnprocessableEntityException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * BadGatewayException
+//
+//   * NotFoundException
+//
+//   * GatewayTimeoutException
+//
+//   * TooManyRequestsException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartInputDeviceMaintenanceWindow
+func (c *MediaLive) StartInputDeviceMaintenanceWindow(input *StartInputDeviceMaintenanceWindowInput) (*StartInputDeviceMaintenanceWindowOutput, error) {
+	req, out := c.StartInputDeviceMaintenanceWindowRequest(input)
+	return out, req.Send()
+}
+
+// StartInputDeviceMaintenanceWindowWithContext is the same as StartInputDeviceMaintenanceWindow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartInputDeviceMaintenanceWindow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) StartInputDeviceMaintenanceWindowWithContext(ctx aws.Context, input *StartInputDeviceMaintenanceWindowInput, opts ...request.Option) (*StartInputDeviceMaintenanceWindowOutput, error) {
+	req, out := c.StartInputDeviceMaintenanceWindowRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -25542,6 +25737,84 @@ func (s RawSettings) GoString() string {
 	return s.String()
 }
 
+type RebootInputDeviceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Whether or not to force reboot the input device.
+	Force *string `locationName:"force" type:"string" enum:"RebootInputDeviceForce"`
+
+	// InputDeviceId is a required field
+	InputDeviceId *string `location:"uri" locationName:"inputDeviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RebootInputDeviceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RebootInputDeviceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RebootInputDeviceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RebootInputDeviceInput"}
+	if s.InputDeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDeviceId"))
+	}
+	if s.InputDeviceId != nil && len(*s.InputDeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputDeviceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetForce sets the Force field's value.
+func (s *RebootInputDeviceInput) SetForce(v string) *RebootInputDeviceInput {
+	s.Force = &v
+	return s
+}
+
+// SetInputDeviceId sets the InputDeviceId field's value.
+func (s *RebootInputDeviceInput) SetInputDeviceId(v string) *RebootInputDeviceInput {
+	s.InputDeviceId = &v
+	return s
+}
+
+type RebootInputDeviceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RebootInputDeviceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RebootInputDeviceOutput) GoString() string {
+	return s.String()
+}
+
 // Rec601 Settings
 type Rec601Settings struct {
 	_ struct{} `type:"structure"`
@@ -27768,6 +28041,75 @@ func (s *StartChannelOutput) SetTags(v map[string]*string) *StartChannelOutput {
 func (s *StartChannelOutput) SetVpc(v *VpcOutputSettingsDescription) *StartChannelOutput {
 	s.Vpc = v
 	return s
+}
+
+type StartInputDeviceMaintenanceWindowInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// InputDeviceId is a required field
+	InputDeviceId *string `location:"uri" locationName:"inputDeviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartInputDeviceMaintenanceWindowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartInputDeviceMaintenanceWindowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartInputDeviceMaintenanceWindowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartInputDeviceMaintenanceWindowInput"}
+	if s.InputDeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDeviceId"))
+	}
+	if s.InputDeviceId != nil && len(*s.InputDeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputDeviceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputDeviceId sets the InputDeviceId field's value.
+func (s *StartInputDeviceMaintenanceWindowInput) SetInputDeviceId(v string) *StartInputDeviceMaintenanceWindowInput {
+	s.InputDeviceId = &v
+	return s
+}
+
+type StartInputDeviceMaintenanceWindowOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartInputDeviceMaintenanceWindowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartInputDeviceMaintenanceWindowOutput) GoString() string {
+	return s.String()
 }
 
 type StartMultiplexInput struct {
@@ -35398,6 +35740,23 @@ func PreferredChannelPipeline_Values() []string {
 		PreferredChannelPipelineCurrentlyActive,
 		PreferredChannelPipelinePipeline0,
 		PreferredChannelPipelinePipeline1,
+	}
+}
+
+// Whether or not to force reboot the input device.
+const (
+	// RebootInputDeviceForceNo is a RebootInputDeviceForce enum value
+	RebootInputDeviceForceNo = "NO"
+
+	// RebootInputDeviceForceYes is a RebootInputDeviceForce enum value
+	RebootInputDeviceForceYes = "YES"
+)
+
+// RebootInputDeviceForce_Values returns all elements of the RebootInputDeviceForce enum
+func RebootInputDeviceForce_Values() []string {
+	return []string{
+		RebootInputDeviceForceNo,
+		RebootInputDeviceForceYes,
 	}
 }
 

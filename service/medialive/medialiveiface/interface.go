@@ -262,6 +262,10 @@ type MediaLiveAPI interface {
 	PurchaseOfferingWithContext(aws.Context, *medialive.PurchaseOfferingInput, ...request.Option) (*medialive.PurchaseOfferingOutput, error)
 	PurchaseOfferingRequest(*medialive.PurchaseOfferingInput) (*request.Request, *medialive.PurchaseOfferingOutput)
 
+	RebootInputDevice(*medialive.RebootInputDeviceInput) (*medialive.RebootInputDeviceOutput, error)
+	RebootInputDeviceWithContext(aws.Context, *medialive.RebootInputDeviceInput, ...request.Option) (*medialive.RebootInputDeviceOutput, error)
+	RebootInputDeviceRequest(*medialive.RebootInputDeviceInput) (*request.Request, *medialive.RebootInputDeviceOutput)
+
 	RejectInputDeviceTransfer(*medialive.RejectInputDeviceTransferInput) (*medialive.RejectInputDeviceTransferOutput, error)
 	RejectInputDeviceTransferWithContext(aws.Context, *medialive.RejectInputDeviceTransferInput, ...request.Option) (*medialive.RejectInputDeviceTransferOutput, error)
 	RejectInputDeviceTransferRequest(*medialive.RejectInputDeviceTransferInput) (*request.Request, *medialive.RejectInputDeviceTransferOutput)
@@ -269,6 +273,10 @@ type MediaLiveAPI interface {
 	StartChannel(*medialive.StartChannelInput) (*medialive.StartChannelOutput, error)
 	StartChannelWithContext(aws.Context, *medialive.StartChannelInput, ...request.Option) (*medialive.StartChannelOutput, error)
 	StartChannelRequest(*medialive.StartChannelInput) (*request.Request, *medialive.StartChannelOutput)
+
+	StartInputDeviceMaintenanceWindow(*medialive.StartInputDeviceMaintenanceWindowInput) (*medialive.StartInputDeviceMaintenanceWindowOutput, error)
+	StartInputDeviceMaintenanceWindowWithContext(aws.Context, *medialive.StartInputDeviceMaintenanceWindowInput, ...request.Option) (*medialive.StartInputDeviceMaintenanceWindowOutput, error)
+	StartInputDeviceMaintenanceWindowRequest(*medialive.StartInputDeviceMaintenanceWindowInput) (*request.Request, *medialive.StartInputDeviceMaintenanceWindowOutput)
 
 	StartMultiplex(*medialive.StartMultiplexInput) (*medialive.StartMultiplexOutput, error)
 	StartMultiplexWithContext(aws.Context, *medialive.StartMultiplexInput, ...request.Option) (*medialive.StartMultiplexOutput, error)

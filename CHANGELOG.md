@@ -1,3 +1,17 @@
+Release v1.44.61 (2022-07-22)
+===
+
+### Service Client Updates
+* `service/account`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * Added support for EC2 M1 Mac instances. For more information, please visit aws.amazon.com/mac.
+* `service/iotdeviceadvisor`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * Link devices now support remote rebooting. Link devices now support maintenance windows. Maintenance windows allow a Link device to install software updates without stopping the MediaLive channel. The channel will experience a brief loss of input from the device while updates are installed.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds the "ModifyActivityStream" API with support for audit policy state locking and unlocking.
+* `service/transcribe`: Updates service API
+
 Release v1.44.60 (2022-07-21)
 ===
 

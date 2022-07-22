@@ -9983,6 +9983,99 @@ func (c *RDS) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsFor
 	return out, req.Send()
 }
 
+const opModifyActivityStream = "ModifyActivityStream"
+
+// ModifyActivityStreamRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyActivityStream operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyActivityStream for more information on using the ModifyActivityStream
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ModifyActivityStreamRequest method.
+//    req, resp := client.ModifyActivityStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyActivityStream
+func (c *RDS) ModifyActivityStreamRequest(input *ModifyActivityStreamInput) (req *request.Request, output *ModifyActivityStreamOutput) {
+	op := &request.Operation{
+		Name:       opModifyActivityStream,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyActivityStreamInput{}
+	}
+
+	output = &ModifyActivityStreamOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyActivityStream API operation for Amazon Relational Database Service.
+//
+// Changes the audit policy state of a database activity stream to either locked
+// (default) or unlocked. A locked policy is read-only, whereas an unlocked
+// policy is read/write. If your activity stream is started and locked, you
+// can unlock it, customize your audit policy, and then lock your activity stream.
+// Restarting the activity stream isn't required. For more information, see
+// Modifying a database activity stream (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/DBActivityStreams.Modifying.html)
+// in the Amazon RDS User Guide.
+//
+// This operation is supported for RDS for Oracle only.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation ModifyActivityStream for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
+//   The DB instance isn't in a valid state.
+//
+//   * ErrCodeResourceNotFoundFault "ResourceNotFoundFault"
+//   The specified resource ID was not found.
+//
+//   * ErrCodeDBInstanceNotFoundFault "DBInstanceNotFound"
+//   DBInstanceIdentifier doesn't refer to an existing DB instance.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyActivityStream
+func (c *RDS) ModifyActivityStream(input *ModifyActivityStreamInput) (*ModifyActivityStreamOutput, error) {
+	req, out := c.ModifyActivityStreamRequest(input)
+	return out, req.Send()
+}
+
+// ModifyActivityStreamWithContext is the same as ModifyActivityStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyActivityStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) ModifyActivityStreamWithContext(ctx aws.Context, input *ModifyActivityStreamInput, opts ...request.Option) (*ModifyActivityStreamOutput, error) {
+	req, out := c.ModifyActivityStreamRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opModifyCertificates = "ModifyCertificates"
 
 // ModifyCertificatesRequest generates a "aws/request.Request" representing the
@@ -22081,9 +22174,9 @@ type CreateDBProxyInput struct {
 
 	// The kinds of databases that the proxy can connect to. This value determines
 	// which database network protocol the proxy recognizes when it interprets network
-	// traffic to and from the database. For Aurora MySQL, RDS for MariaDB, and
-	// RDS for MySQL databases, specify MYSQL. For Aurora PostgreSQL and RDS for
-	// PostgreSQL databases, specify POSTGRESQL.
+	// traffic to and from the database. For Aurora MySQL and RDS for MySQL databases,
+	// specify MYSQL. For Aurora PostgreSQL and RDS for PostgreSQL databases, specify
+	// POSTGRESQL.
 	//
 	// EngineFamily is a required field
 	EngineFamily *string `type:"string" required:"true" enum:"EngineFamily"`
@@ -24936,6 +25029,9 @@ type DBInstance struct {
 	// these events asynchronously.
 	ActivityStreamMode *string `type:"string" enum:"ActivityStreamMode"`
 
+	// The status of the policy state of the activity stream.
+	ActivityStreamPolicyStatus *string `type:"string" enum:"ActivityStreamPolicyStatus"`
+
 	// The status of the database activity stream.
 	ActivityStreamStatus *string `type:"string" enum:"ActivityStreamStatus"`
 
@@ -25362,6 +25458,12 @@ func (s *DBInstance) SetActivityStreamKmsKeyId(v string) *DBInstance {
 // SetActivityStreamMode sets the ActivityStreamMode field's value.
 func (s *DBInstance) SetActivityStreamMode(v string) *DBInstance {
 	s.ActivityStreamMode = &v
+	return s
+}
+
+// SetActivityStreamPolicyStatus sets the ActivityStreamPolicyStatus field's value.
+func (s *DBInstance) SetActivityStreamPolicyStatus(v string) *DBInstance {
+	s.ActivityStreamPolicyStatus = &v
 	return s
 }
 
@@ -26432,9 +26534,9 @@ type DBProxy struct {
 
 	// The kinds of databases that the proxy can connect to. This value determines
 	// which database network protocol the proxy recognizes when it interprets network
-	// traffic to and from the database. MYSQL supports Aurora MySQL, RDS for MariaDB,
-	// and RDS for MySQL databases. POSTGRESQL supports Aurora PostgreSQL and RDS
-	// for PostgreSQL databases.
+	// traffic to and from the database. MYSQL supports Aurora MySQL and RDS for
+	// MySQL databases. POSTGRESQL supports Aurora PostgreSQL and RDS for PostgreSQL
+	// databases.
 	EngineFamily *string `type:"string"`
 
 	// The number of seconds a connection to the proxy can have no activity before
@@ -36928,6 +37030,129 @@ func (s *MinimumEngineVersionPerAllowedValue) SetAllowedValue(v string) *Minimum
 // SetMinimumEngineVersion sets the MinimumEngineVersion field's value.
 func (s *MinimumEngineVersionPerAllowedValue) SetMinimumEngineVersion(v string) *MinimumEngineVersionPerAllowedValue {
 	s.MinimumEngineVersion = &v
+	return s
+}
+
+type ModifyActivityStreamInput struct {
+	_ struct{} `type:"structure"`
+
+	// The audit policy state. When a policy is unlocked, it is read/write. When
+	// it is locked, it is read-only. You can edit your audit policy only when the
+	// activity stream is unlocked or stopped.
+	AuditPolicyState *string `type:"string" enum:"AuditPolicyState"`
+
+	// The Amazon Resource Name (ARN) of the RDS for Oracle DB instance, for example,
+	// arn:aws:rds:us-east-1:12345667890:instance:my-orcl-db.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyActivityStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyActivityStreamInput) GoString() string {
+	return s.String()
+}
+
+// SetAuditPolicyState sets the AuditPolicyState field's value.
+func (s *ModifyActivityStreamInput) SetAuditPolicyState(v string) *ModifyActivityStreamInput {
+	s.AuditPolicyState = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ModifyActivityStreamInput) SetResourceArn(v string) *ModifyActivityStreamInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ModifyActivityStreamOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether engine-native audit fields are included in the database
+	// activity stream.
+	EngineNativeAuditFieldsIncluded *bool `type:"boolean"`
+
+	// The name of the Amazon Kinesis data stream to be used for the database activity
+	// stream.
+	KinesisStreamName *string `type:"string"`
+
+	// The Amazon Web Services KMS key identifier for encryption of messages in
+	// the database activity stream.
+	KmsKeyId *string `type:"string"`
+
+	// The mode of the database activity stream.
+	Mode *string `type:"string" enum:"ActivityStreamMode"`
+
+	// The status of the modification to the policy state of the database activity
+	// stream.
+	PolicyStatus *string `type:"string" enum:"ActivityStreamPolicyStatus"`
+
+	// The status of the modification to the database activity stream.
+	Status *string `type:"string" enum:"ActivityStreamStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyActivityStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyActivityStreamOutput) GoString() string {
+	return s.String()
+}
+
+// SetEngineNativeAuditFieldsIncluded sets the EngineNativeAuditFieldsIncluded field's value.
+func (s *ModifyActivityStreamOutput) SetEngineNativeAuditFieldsIncluded(v bool) *ModifyActivityStreamOutput {
+	s.EngineNativeAuditFieldsIncluded = &v
+	return s
+}
+
+// SetKinesisStreamName sets the KinesisStreamName field's value.
+func (s *ModifyActivityStreamOutput) SetKinesisStreamName(v string) *ModifyActivityStreamOutput {
+	s.KinesisStreamName = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *ModifyActivityStreamOutput) SetKmsKeyId(v string) *ModifyActivityStreamOutput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *ModifyActivityStreamOutput) SetMode(v string) *ModifyActivityStreamOutput {
+	s.Mode = &v
+	return s
+}
+
+// SetPolicyStatus sets the PolicyStatus field's value.
+func (s *ModifyActivityStreamOutput) SetPolicyStatus(v string) *ModifyActivityStreamOutput {
+	s.PolicyStatus = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ModifyActivityStreamOutput) SetStatus(v string) *ModifyActivityStreamOutput {
+	s.Status = &v
 	return s
 }
 
@@ -50454,6 +50679,30 @@ func ActivityStreamMode_Values() []string {
 }
 
 const (
+	// ActivityStreamPolicyStatusLocked is a ActivityStreamPolicyStatus enum value
+	ActivityStreamPolicyStatusLocked = "locked"
+
+	// ActivityStreamPolicyStatusUnlocked is a ActivityStreamPolicyStatus enum value
+	ActivityStreamPolicyStatusUnlocked = "unlocked"
+
+	// ActivityStreamPolicyStatusLockingPolicy is a ActivityStreamPolicyStatus enum value
+	ActivityStreamPolicyStatusLockingPolicy = "locking-policy"
+
+	// ActivityStreamPolicyStatusUnlockingPolicy is a ActivityStreamPolicyStatus enum value
+	ActivityStreamPolicyStatusUnlockingPolicy = "unlocking-policy"
+)
+
+// ActivityStreamPolicyStatus_Values returns all elements of the ActivityStreamPolicyStatus enum
+func ActivityStreamPolicyStatus_Values() []string {
+	return []string{
+		ActivityStreamPolicyStatusLocked,
+		ActivityStreamPolicyStatusUnlocked,
+		ActivityStreamPolicyStatusLockingPolicy,
+		ActivityStreamPolicyStatusUnlockingPolicy,
+	}
+}
+
+const (
 	// ActivityStreamStatusStopped is a ActivityStreamStatus enum value
 	ActivityStreamStatusStopped = "stopped"
 
@@ -50490,6 +50739,22 @@ func ApplyMethod_Values() []string {
 	return []string{
 		ApplyMethodImmediate,
 		ApplyMethodPendingReboot,
+	}
+}
+
+const (
+	// AuditPolicyStateLocked is a AuditPolicyState enum value
+	AuditPolicyStateLocked = "locked"
+
+	// AuditPolicyStateUnlocked is a AuditPolicyState enum value
+	AuditPolicyStateUnlocked = "unlocked"
+)
+
+// AuditPolicyState_Values returns all elements of the AuditPolicyState enum
+func AuditPolicyState_Values() []string {
+	return []string{
+		AuditPolicyStateLocked,
+		AuditPolicyStateUnlocked,
 	}
 }
 

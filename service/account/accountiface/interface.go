@@ -68,9 +68,17 @@ type AccountAPI interface {
 	GetAlternateContactWithContext(aws.Context, *account.GetAlternateContactInput, ...request.Option) (*account.GetAlternateContactOutput, error)
 	GetAlternateContactRequest(*account.GetAlternateContactInput) (*request.Request, *account.GetAlternateContactOutput)
 
+	GetContactInformation(*account.GetContactInformationInput) (*account.GetContactInformationOutput, error)
+	GetContactInformationWithContext(aws.Context, *account.GetContactInformationInput, ...request.Option) (*account.GetContactInformationOutput, error)
+	GetContactInformationRequest(*account.GetContactInformationInput) (*request.Request, *account.GetContactInformationOutput)
+
 	PutAlternateContact(*account.PutAlternateContactInput) (*account.PutAlternateContactOutput, error)
 	PutAlternateContactWithContext(aws.Context, *account.PutAlternateContactInput, ...request.Option) (*account.PutAlternateContactOutput, error)
 	PutAlternateContactRequest(*account.PutAlternateContactInput) (*request.Request, *account.PutAlternateContactOutput)
+
+	PutContactInformation(*account.PutContactInformationInput) (*account.PutContactInformationOutput, error)
+	PutContactInformationWithContext(aws.Context, *account.PutContactInformationInput, ...request.Option) (*account.PutContactInformationOutput, error)
+	PutContactInformationRequest(*account.PutContactInformationInput) (*request.Request, *account.PutContactInformationOutput)
 }
 
 var _ AccountAPI = (*account.Account)(nil)

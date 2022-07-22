@@ -2889,6 +2889,12 @@ type SuiteDefinitionConfiguration struct {
 	// Gets the tests intended for qualification in a suite.
 	IntendedForQualification *bool `locationName:"intendedForQualification" type:"boolean"`
 
+	// Verifies if the test suite is a long duration test.
+	IsLongDurationTest *bool `locationName:"isLongDurationTest" type:"boolean"`
+
+	// Gets the MQTT protocol that is configured in the suite definition.
+	Protocol *string `locationName:"protocol" type:"string" enum:"Protocol"`
+
 	// Gets test suite root group.
 	RootGroup *string `locationName:"rootGroup" min:"1" type:"string"`
 
@@ -2961,6 +2967,18 @@ func (s *SuiteDefinitionConfiguration) SetIntendedForQualification(v bool) *Suit
 	return s
 }
 
+// SetIsLongDurationTest sets the IsLongDurationTest field's value.
+func (s *SuiteDefinitionConfiguration) SetIsLongDurationTest(v bool) *SuiteDefinitionConfiguration {
+	s.IsLongDurationTest = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *SuiteDefinitionConfiguration) SetProtocol(v string) *SuiteDefinitionConfiguration {
+	s.Protocol = &v
+	return s
+}
+
 // SetRootGroup sets the RootGroup field's value.
 func (s *SuiteDefinitionConfiguration) SetRootGroup(v string) *SuiteDefinitionConfiguration {
 	s.RootGroup = &v
@@ -2985,6 +3003,12 @@ type SuiteDefinitionInformation struct {
 
 	// Specifies if the test suite is intended for qualification.
 	IntendedForQualification *bool `locationName:"intendedForQualification" type:"boolean"`
+
+	// Verifies if the test suite is a long duration test.
+	IsLongDurationTest *bool `locationName:"isLongDurationTest" type:"boolean"`
+
+	// Gets the MQTT protocol that is configured in the suite definition.
+	Protocol *string `locationName:"protocol" type:"string" enum:"Protocol"`
 
 	// Suite definition ID of the test suite.
 	SuiteDefinitionId *string `locationName:"suiteDefinitionId" min:"12" type:"string"`
@@ -3026,6 +3050,18 @@ func (s *SuiteDefinitionInformation) SetDefaultDevices(v []*DeviceUnderTest) *Su
 // SetIntendedForQualification sets the IntendedForQualification field's value.
 func (s *SuiteDefinitionInformation) SetIntendedForQualification(v bool) *SuiteDefinitionInformation {
 	s.IntendedForQualification = &v
+	return s
+}
+
+// SetIsLongDurationTest sets the IsLongDurationTest field's value.
+func (s *SuiteDefinitionInformation) SetIsLongDurationTest(v bool) *SuiteDefinitionInformation {
+	s.IsLongDurationTest = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *SuiteDefinitionInformation) SetProtocol(v string) *SuiteDefinitionInformation {
+	s.Protocol = &v
 	return s
 }
 
@@ -3353,6 +3389,9 @@ type TestCaseRun struct {
 	// Provides the test case run ID.
 	TestCaseRunId *string `locationName:"testCaseRunId" min:"12" type:"string"`
 
+	// Provides the test scenarios for the test case run.
+	TestScenarios []*TestCaseScenario `locationName:"testScenarios" type:"list"`
+
 	// Provides test case run warnings.
 	Warnings *string `locationName:"warnings" type:"string"`
 }
@@ -3423,9 +3462,104 @@ func (s *TestCaseRun) SetTestCaseRunId(v string) *TestCaseRun {
 	return s
 }
 
+// SetTestScenarios sets the TestScenarios field's value.
+func (s *TestCaseRun) SetTestScenarios(v []*TestCaseScenario) *TestCaseRun {
+	s.TestScenarios = v
+	return s
+}
+
 // SetWarnings sets the Warnings field's value.
 func (s *TestCaseRun) SetWarnings(v string) *TestCaseRun {
 	s.Warnings = &v
+	return s
+}
+
+// Provides test case scenario.
+type TestCaseScenario struct {
+	_ struct{} `type:"structure"`
+
+	// Provides test case scenario failure result.
+	Failure *string `locationName:"failure" type:"string"`
+
+	// Provides the test case scenario status. Status is one of the following:
+	//
+	//    * PASS: Test passed.
+	//
+	//    * FAIL: Test failed.
+	//
+	//    * PENDING: Test has not started running but is scheduled.
+	//
+	//    * RUNNING: Test is running.
+	//
+	//    * STOPPING: Test is performing cleanup steps. You will see this status
+	//    only if you stop a suite run.
+	//
+	//    * STOPPED Test is stopped. You will see this status only if you stop a
+	//    suite run.
+	//
+	//    * PASS_WITH_WARNINGS: Test passed with warnings.
+	//
+	//    * ERORR: Test faced an error when running due to an internal issue.
+	Status *string `locationName:"status" type:"string" enum:"TestCaseScenarioStatus"`
+
+	SystemMessage *string `locationName:"systemMessage" type:"string"`
+
+	// Provides test case scenario ID.
+	TestCaseScenarioId *string `locationName:"testCaseScenarioId" type:"string"`
+
+	// Provides test case scenario type. Type is one of the following:
+	//
+	//    * Advanced
+	//
+	//    * Basic
+	TestCaseScenarioType *string `locationName:"testCaseScenarioType" type:"string" enum:"TestCaseScenarioType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestCaseScenario) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestCaseScenario) GoString() string {
+	return s.String()
+}
+
+// SetFailure sets the Failure field's value.
+func (s *TestCaseScenario) SetFailure(v string) *TestCaseScenario {
+	s.Failure = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TestCaseScenario) SetStatus(v string) *TestCaseScenario {
+	s.Status = &v
+	return s
+}
+
+// SetSystemMessage sets the SystemMessage field's value.
+func (s *TestCaseScenario) SetSystemMessage(v string) *TestCaseScenario {
+	s.SystemMessage = &v
+	return s
+}
+
+// SetTestCaseScenarioId sets the TestCaseScenarioId field's value.
+func (s *TestCaseScenario) SetTestCaseScenarioId(v string) *TestCaseScenario {
+	s.TestCaseScenarioId = &v
+	return s
+}
+
+// SetTestCaseScenarioType sets the TestCaseScenarioType field's value.
+func (s *TestCaseScenario) SetTestCaseScenarioType(v string) *TestCaseScenario {
+	s.TestCaseScenarioType = &v
 	return s
 }
 
@@ -3751,6 +3885,22 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// ProtocolMqttV311 is a Protocol enum value
+	ProtocolMqttV311 = "MqttV3_1_1"
+
+	// ProtocolMqttV5 is a Protocol enum value
+	ProtocolMqttV5 = "MqttV5"
+)
+
+// Protocol_Values returns all elements of the Protocol enum
+func Protocol_Values() []string {
+	return []string{
+		ProtocolMqttV311,
+		ProtocolMqttV5,
+	}
+}
+
+const (
 	// StatusPass is a Status enum value
 	StatusPass = "PASS"
 
@@ -3835,5 +3985,65 @@ func SuiteRunStatus_Values() []string {
 		SuiteRunStatusStopped,
 		SuiteRunStatusPassWithWarnings,
 		SuiteRunStatusError,
+	}
+}
+
+const (
+	// TestCaseScenarioStatusPass is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusPass = "PASS"
+
+	// TestCaseScenarioStatusFail is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusFail = "FAIL"
+
+	// TestCaseScenarioStatusCanceled is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusCanceled = "CANCELED"
+
+	// TestCaseScenarioStatusPending is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusPending = "PENDING"
+
+	// TestCaseScenarioStatusRunning is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusRunning = "RUNNING"
+
+	// TestCaseScenarioStatusStopping is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusStopping = "STOPPING"
+
+	// TestCaseScenarioStatusStopped is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusStopped = "STOPPED"
+
+	// TestCaseScenarioStatusPassWithWarnings is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusPassWithWarnings = "PASS_WITH_WARNINGS"
+
+	// TestCaseScenarioStatusError is a TestCaseScenarioStatus enum value
+	TestCaseScenarioStatusError = "ERROR"
+)
+
+// TestCaseScenarioStatus_Values returns all elements of the TestCaseScenarioStatus enum
+func TestCaseScenarioStatus_Values() []string {
+	return []string{
+		TestCaseScenarioStatusPass,
+		TestCaseScenarioStatusFail,
+		TestCaseScenarioStatusCanceled,
+		TestCaseScenarioStatusPending,
+		TestCaseScenarioStatusRunning,
+		TestCaseScenarioStatusStopping,
+		TestCaseScenarioStatusStopped,
+		TestCaseScenarioStatusPassWithWarnings,
+		TestCaseScenarioStatusError,
+	}
+}
+
+const (
+	// TestCaseScenarioTypeAdvanced is a TestCaseScenarioType enum value
+	TestCaseScenarioTypeAdvanced = "Advanced"
+
+	// TestCaseScenarioTypeBasic is a TestCaseScenarioType enum value
+	TestCaseScenarioTypeBasic = "Basic"
+)
+
+// TestCaseScenarioType_Values returns all elements of the TestCaseScenarioType enum
+func TestCaseScenarioType_Values() []string {
+	return []string{
+		TestCaseScenarioTypeAdvanced,
+		TestCaseScenarioTypeBasic,
 	}
 }
