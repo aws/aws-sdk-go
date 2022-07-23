@@ -166,9 +166,9 @@ package under the service folder at the root of the SDK.
       * awserr - Provides the error interface that the SDK will use for all
         errors that occur in the SDK's processing. This includes service API
         response errors as well. The Error type is made up of a code and message.
-        Cast the SDK's returned error type to awserr.Error and call the Code
+        Cast the SDK's returned error type to awserr. Error and call the Code
         method to compare returned error to specific error codes. See the package's
-        documentation for additional values that can be extracted such as RequestID.
+        documentation for additional values that can be extracted, such as RequestID.
 
       * credentials - Provides the types and built in credentials providers
         the SDK will use to retrieve AWS credentials to make API requests with.
@@ -195,16 +195,16 @@ package under the service folder at the root of the SDK.
 
 The SDK includes the Go types and utilities you can use to make requests to
 AWS service APIs. Within the service folder at the root of the SDK you'll find
-a package for each AWS service the SDK supports. All service clients follow common pattern of creation and usage.
+a package for each AWS service the SDK supports. All service clients follow a common pattern of creation and usage.
 
-When creating a client for an AWS service you'll first need to have a Session
+When creating a client for an AWS service, you'll first need to have a Session
 value constructed. The Session provides shared configuration that can be shared
-between your service clients. When service clients are created you can pass
+between your service clients. When service clients are created, you can pass
 in additional configuration via the aws.Config type to override configuration
 provided by in the Session to create service client instances with custom
 configuration.
 
-Once the service's client is created you can use it to make API requests the
+Once the service's client is created, you can use it to make API requests the
 AWS service. These clients are safe to use concurrently.
 
 ### Configuring the SDK
@@ -233,7 +233,7 @@ options.
 
 When using the SDK you'll generally need your AWS credentials to authenticate
 with AWS services. The SDK supports multiple methods of supporting these
-credentials. By default the SDK will source credentials automatically from
+credentials. By default, the SDK will source credentials automatically from
 its default credential chain. See the session package for more information
 on this chain, and how to configure it. The common items in the credential
 chain are the following:
@@ -245,7 +245,7 @@ chain are the following:
     credentials based on a profile name and is useful for local development.
 
   * EC2 Instance Role Credentials - Use EC2 Instance Role to assign credentials
-    to application running on an EC2 instance. This removes the need to manage
+    to an application running on an EC2 instance. This removes the need to manage
     credential files in production.
 
 Credentials can be configured in code as well by setting the Config's Credentials
@@ -291,14 +291,14 @@ Option's SharedConfigState parameter.
 
 ### Configuring AWS Region
 
-In addition to the credentials you'll need to specify the region the SDK
+In addition to the credentials, you'll need to specify the region the SDK
 will use to make AWS API requests to. In the SDK you can specify the region
 either with an environment variable, or directly in code when a Session or
 service client is created. The last value specified in code wins if the region
 is specified multiple ways.
 
 To set the region via the environment variable set the "AWS_REGION" to the
-region you want to the SDK to use. Using this method to set the region will
+region you want to the SDK to use. Using this method to set the region, will
 allow you to run your application in multiple regions without needing additional
 code in the application to select the region.
 
@@ -311,7 +311,7 @@ reduce the need to type the region string manually.
 To set the region on a Session use the aws package's Config struct parameter
 Region to the AWS region you want the service clients created from the session to
 use. This is helpful when you want to create multiple service clients, and
-all of the clients make API requests to the same region.
+all the clients make API requests to the same region.
 
 ```go
   sess := session.Must(session.NewSession(&aws.Config{
@@ -339,11 +339,11 @@ options such as setting the Endpoint, and other service client configuration opt
 
 ### Making API Requests
 
-Once the client is created you can make an API request to the service.
-Each API method takes a input parameter, and returns the service response
+Once the client is created, you can make an API request to the service.
+Each API method takes an input parameter, and returns the service response
 and an error. The SDK provides methods for making the API call in multiple ways.
 
-In this list we'll use the S3 ListObjects API as an example for the different
+In this list, we'll use the S3 ListObjects API as an example for the different
 ways of making API requests.
 
   * ListObjects - Base API operation that will make the API request to the service.
@@ -368,23 +368,23 @@ ways of making API requests.
     takes the request package's Option function option types as the variadic
     argument.
 
-In addition to the API operations the SDK also includes several higher level
+In addition to the API operations, the SDK also includes several higher level
 methods that abstract checking for and waiting for an AWS resource to be in
-a desired state. In this list we'll use WaitUntilBucketExists to demonstrate
+a desired state. In this list, we'll use WaitUntilBucketExists to demonstrate
 the different forms of waiters.
 
   * WaitUntilBucketExists. - Method to make API request to query an AWS service for
     a resource's state. Will return successfully when that state is accomplished.
 
   * WaitUntilBucketExistsWithContext - Same as WaitUntilBucketExists, but adds
-    support for the Context pattern. In addition these methods take request
+    support for the Context pattern. In addition, these methods take request
     package's WaiterOptions to configure the waiter, and how underlying request
     will be made by the SDK.
 
 The API method will document which error codes the service might return for
 the operation. These errors will also be available as const strings prefixed
 with "ErrCode" in the service client's package. If there are no errors listed
-in the API's SDK documentation you'll need to consult the AWS service's API
+in the API's SDK documentation, you'll need to consult the AWS service's API
 documentation for the errors that could be returned.
 
 ```go
@@ -472,7 +472,7 @@ If you encounter a bug with the AWS SDK for Go we would like to hear about it.
 Search the [existing issues](https://github.com/aws/aws-sdk-go/issues) and see
 if others are also experiencing the issue before opening a new issue. Please
 include the version of AWS SDK for Go, Go language, and OS you’re using. Please
-also include reproduction case when appropriate.
+also include a reproduction case when appropriate.
 
 The GitHub issues are intended for bug reports and feature requests. For help
 and questions with using AWS SDK for Go please make use of the resources listed
@@ -502,7 +502,7 @@ will help you get started using specific AWS services.
 [SDK API Reference Documentation](https://docs.aws.amazon.com/sdk-for-go/api/) - Use this
 document to look up all API operation input and output parameters for AWS
 services supported by the SDK. The API reference also includes documentation of
-the SDK, and examples how to using the SDK, service client API operations, and
+the SDK, and examples on how to use the SDK, service client API operations, and
 API operation require parameters.
 
 [Service Documentation](https://aws.amazon.com/documentation/) - Use this
@@ -512,7 +512,7 @@ information about a service. While this document is not required for coding,
 services may supply helpful samples to look out for.
 
 [SDK Examples](https://github.com/aws/aws-sdk-go/tree/main/example) -
-Included in the SDK's repo are several hand crafted examples using the SDK
+Included in the SDK's repo are several handcrafted examples using the SDK
 features and AWS services.
 
 [Forum](https://forums.aws.amazon.com/forum.jspa?forumID=293) - Ask questions, get help, and give feedback
