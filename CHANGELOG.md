@@ -1,3 +1,10 @@
+Release v1.44.62 (2022-07-25)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation
+  * Documentation update for Amazon EC2 Auto Scaling.
+
 Release v1.44.61 (2022-07-22)
 ===
 
