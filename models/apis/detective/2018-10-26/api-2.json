@@ -26,6 +26,34 @@
         {"shape":"ValidationException"}
       ]
     },
+    "BatchGetGraphMemberDatasources":{
+      "name":"BatchGetGraphMemberDatasources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/graph/datasources/get"
+      },
+      "input":{"shape":"BatchGetGraphMemberDatasourcesRequest"},
+      "output":{"shape":"BatchGetGraphMemberDatasourcesResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "BatchGetMembershipDatasources":{
+      "name":"BatchGetMembershipDatasources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/membership/datasources/get"
+      },
+      "input":{"shape":"BatchGetMembershipDatasourcesRequest"},
+      "output":{"shape":"BatchGetMembershipDatasourcesResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "CreateGraph":{
       "name":"CreateGraph",
       "http":{
@@ -144,6 +172,20 @@
       },
       "input":{"shape":"GetMembersRequest"},
       "output":{"shape":"GetMembersResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "ListDatasourcePackages":{
+      "name":"ListDatasourcePackages",
+      "http":{
+        "method":"POST",
+        "requestUri":"/graph/datasources/list"
+      },
+      "input":{"shape":"ListDatasourcePackagesRequest"},
+      "output":{"shape":"ListDatasourcePackagesResponse"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
@@ -278,6 +320,20 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "UpdateDatasourcePackages":{
+      "name":"UpdateDatasourcePackages",
+      "http":{
+        "method":"POST",
+        "requestUri":"/graph/datasources/update"
+      },
+      "input":{"shape":"UpdateDatasourcePackagesRequest"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "UpdateOrganizationConfiguration":{
       "name":"UpdateOrganizationConfiguration",
       "http":{
@@ -317,6 +373,12 @@
       "min":12,
       "pattern":"^[0-9]+$"
     },
+    "AccountIdExtendedList":{
+      "type":"list",
+      "member":{"shape":"AccountId"},
+      "max":200,
+      "min":1
+    },
     "AccountIdList":{
       "type":"list",
       "member":{"shape":"AccountId"},
@@ -340,6 +402,38 @@
     "AdministratorList":{
       "type":"list",
       "member":{"shape":"Administrator"}
+    },
+    "BatchGetGraphMemberDatasourcesRequest":{
+      "type":"structure",
+      "required":[
+        "GraphArn",
+        "AccountIds"
+      ],
+      "members":{
+        "GraphArn":{"shape":"GraphArn"},
+        "AccountIds":{"shape":"AccountIdExtendedList"}
+      }
+    },
+    "BatchGetGraphMemberDatasourcesResponse":{
+      "type":"structure",
+      "members":{
+        "MemberDatasources":{"shape":"MembershipDatasourcesList"},
+        "UnprocessedAccounts":{"shape":"UnprocessedAccountList"}
+      }
+    },
+    "BatchGetMembershipDatasourcesRequest":{
+      "type":"structure",
+      "required":["GraphArns"],
+      "members":{
+        "GraphArns":{"shape":"GraphArnList"}
+      }
+    },
+    "BatchGetMembershipDatasourcesResponse":{
+      "type":"structure",
+      "members":{
+        "MembershipDatasources":{"shape":"MembershipDatasourcesList"},
+        "UnprocessedGraphs":{"shape":"UnprocessedGraphList"}
+      }
     },
     "Boolean":{"type":"boolean"},
     "ByteValue":{"type":"long"},
@@ -381,6 +475,56 @@
       "members":{
         "Members":{"shape":"MemberDetailList"},
         "UnprocessedAccounts":{"shape":"UnprocessedAccountList"}
+      }
+    },
+    "DatasourcePackage":{
+      "type":"string",
+      "enum":[
+        "DETECTIVE_CORE",
+        "EKS_AUDIT"
+      ]
+    },
+    "DatasourcePackageIngestDetail":{
+      "type":"structure",
+      "members":{
+        "DatasourcePackageIngestState":{"shape":"DatasourcePackageIngestState"},
+        "LastIngestStateChange":{"shape":"LastIngestStateChangeDates"}
+      }
+    },
+    "DatasourcePackageIngestDetails":{
+      "type":"map",
+      "key":{"shape":"DatasourcePackage"},
+      "value":{"shape":"DatasourcePackageIngestDetail"}
+    },
+    "DatasourcePackageIngestHistory":{
+      "type":"map",
+      "key":{"shape":"DatasourcePackage"},
+      "value":{"shape":"LastIngestStateChangeDates"}
+    },
+    "DatasourcePackageIngestState":{
+      "type":"string",
+      "enum":[
+        "STARTED",
+        "STOPPED",
+        "DISABLED"
+      ]
+    },
+    "DatasourcePackageIngestStates":{
+      "type":"map",
+      "key":{"shape":"DatasourcePackage"},
+      "value":{"shape":"DatasourcePackageIngestState"}
+    },
+    "DatasourcePackageList":{
+      "type":"list",
+      "member":{"shape":"DatasourcePackage"},
+      "max":25,
+      "min":1
+    },
+    "DatasourcePackageUsageInfo":{
+      "type":"structure",
+      "members":{
+        "VolumeUsageInBytes":{"shape":"ByteValue"},
+        "VolumeUsageUpdateTime":{"shape":"Timestamp"}
       }
     },
     "DeleteGraphRequest":{
@@ -446,6 +590,15 @@
         "AccountId":{"shape":"AccountId"}
       }
     },
+    "ErrorCode":{
+      "type":"string",
+      "enum":[
+        "INVALID_GRAPH_ARN",
+        "INVALID_REQUEST_BODY",
+        "INTERNAL_ERROR"
+      ]
+    },
+    "ErrorCodeReason":{"type":"string"},
     "ErrorMessage":{"type":"string"},
     "GetMembersRequest":{
       "type":"structure",
@@ -476,6 +629,12 @@
       "type":"string",
       "pattern":"^arn:aws[-\\w]{0,10}?:detective:[-\\w]{2,20}?:\\d{12}?:graph:[abcdef\\d]{32}?$"
     },
+    "GraphArnList":{
+      "type":"list",
+      "member":{"shape":"GraphArn"},
+      "max":50,
+      "min":1
+    },
     "GraphList":{
       "type":"list",
       "member":{"shape":"Graph"}
@@ -494,6 +653,27 @@
         "INVITATION",
         "ORGANIZATION"
       ]
+    },
+    "LastIngestStateChangeDates":{
+      "type":"map",
+      "key":{"shape":"DatasourcePackageIngestState"},
+      "value":{"shape":"TimestampForCollection"}
+    },
+    "ListDatasourcePackagesRequest":{
+      "type":"structure",
+      "required":["GraphArn"],
+      "members":{
+        "GraphArn":{"shape":"GraphArn"},
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"MemberResultsLimit"}
+      }
+    },
+    "ListDatasourcePackagesResponse":{
+      "type":"structure",
+      "members":{
+        "DatasourcePackages":{"shape":"DatasourcePackageIngestDetails"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
     },
     "ListGraphsRequest":{
       "type":"structure",
@@ -586,19 +766,29 @@
         "DisabledReason":{"shape":"MemberDisabledReason"},
         "InvitedTime":{"shape":"Timestamp"},
         "UpdatedTime":{"shape":"Timestamp"},
-        "VolumeUsageInBytes":{"shape":"ByteValue"},
-        "VolumeUsageUpdatedTime":{"shape":"Timestamp"},
+        "VolumeUsageInBytes":{
+          "shape":"ByteValue",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated. Use VolumeUsageByDatasourcePackage instead."
+        },
+        "VolumeUsageUpdatedTime":{
+          "shape":"Timestamp",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated. Use VolumeUsageByDatasourcePackage instead."
+        },
         "PercentOfGraphUtilization":{
           "shape":"Percentage",
           "deprecated":true,
-          "deprecatedMessage":"This property is deprecated. Use VolumeUsageInBytes instead."
+          "deprecatedMessage":"This property is deprecated. Use VolumeUsageByDatasourcePackage instead."
         },
         "PercentOfGraphUtilizationUpdatedTime":{
           "shape":"Timestamp",
           "deprecated":true,
-          "deprecatedMessage":"This property is deprecated. Use VolumeUsageUpdatedTime instead."
+          "deprecatedMessage":"This property is deprecated. Use VolumeUsageByDatasourcePackage instead."
         },
-        "InvitationType":{"shape":"InvitationType"}
+        "InvitationType":{"shape":"InvitationType"},
+        "VolumeUsageByDatasourcePackage":{"shape":"VolumeUsageByDatasourcePackage"},
+        "DatasourcePackageIngestStates":{"shape":"DatasourcePackageIngestStates"}
       }
     },
     "MemberDetailList":{
@@ -628,6 +818,18 @@
         "ACCEPTED_BUT_DISABLED"
       ]
     },
+    "MembershipDatasources":{
+      "type":"structure",
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "GraphArn":{"shape":"GraphArn"},
+        "DatasourcePackageIngestHistory":{"shape":"DatasourcePackageIngestHistory"}
+      }
+    },
+    "MembershipDatasourcesList":{
+      "type":"list",
+      "member":{"shape":"MembershipDatasources"}
+    },
     "PaginationToken":{
       "type":"string",
       "max":1024,
@@ -641,6 +843,17 @@
         "GraphArn":{"shape":"GraphArn"}
       }
     },
+    "Resource":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "ResourceList":{
+      "type":"list",
+      "member":{"shape":"Resource"},
+      "max":50,
+      "min":1
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
@@ -652,7 +865,8 @@
     "ServiceQuotaExceededException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"ErrorMessage"}
+        "Message":{"shape":"ErrorMessage"},
+        "Resources":{"shape":"ResourceList"}
       },
       "error":{"httpStatusCode":402},
       "exception":true
@@ -715,6 +929,12 @@
       "type":"timestamp",
       "timestampFormat":"iso8601"
     },
+    "TimestampForCollection":{
+      "type":"structure",
+      "members":{
+        "Timestamp":{"shape":"Timestamp"}
+      }
+    },
     "TooManyRequestsException":{
       "type":"structure",
       "members":{
@@ -733,6 +953,17 @@
     "UnprocessedAccountList":{
       "type":"list",
       "member":{"shape":"UnprocessedAccount"}
+    },
+    "UnprocessedGraph":{
+      "type":"structure",
+      "members":{
+        "GraphArn":{"shape":"GraphArn"},
+        "Reason":{"shape":"UnprocessedReason"}
+      }
+    },
+    "UnprocessedGraphList":{
+      "type":"list",
+      "member":{"shape":"UnprocessedGraph"}
     },
     "UnprocessedReason":{"type":"string"},
     "UntagResourceRequest":{
@@ -759,6 +990,17 @@
       "members":{
       }
     },
+    "UpdateDatasourcePackagesRequest":{
+      "type":"structure",
+      "required":[
+        "GraphArn",
+        "DatasourcePackages"
+      ],
+      "members":{
+        "GraphArn":{"shape":"GraphArn"},
+        "DatasourcePackages":{"shape":"DatasourcePackageList"}
+      }
+    },
     "UpdateOrganizationConfigurationRequest":{
       "type":"structure",
       "required":["GraphArn"],
@@ -770,10 +1012,17 @@
     "ValidationException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"ErrorMessage"}
+        "Message":{"shape":"ErrorMessage"},
+        "ErrorCode":{"shape":"ErrorCode"},
+        "ErrorCodeReason":{"shape":"ErrorCodeReason"}
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "VolumeUsageByDatasourcePackage":{
+      "type":"map",
+      "key":{"shape":"DatasourcePackage"},
+      "value":{"shape":"DatasourcePackageUsageInfo"}
     }
   }
 }

@@ -132,6 +132,13 @@ type GuardDutyAPI interface {
 	DeleteThreatIntelSetWithContext(aws.Context, *guardduty.DeleteThreatIntelSetInput, ...request.Option) (*guardduty.DeleteThreatIntelSetOutput, error)
 	DeleteThreatIntelSetRequest(*guardduty.DeleteThreatIntelSetInput) (*request.Request, *guardduty.DeleteThreatIntelSetOutput)
 
+	DescribeMalwareScans(*guardduty.DescribeMalwareScansInput) (*guardduty.DescribeMalwareScansOutput, error)
+	DescribeMalwareScansWithContext(aws.Context, *guardduty.DescribeMalwareScansInput, ...request.Option) (*guardduty.DescribeMalwareScansOutput, error)
+	DescribeMalwareScansRequest(*guardduty.DescribeMalwareScansInput) (*request.Request, *guardduty.DescribeMalwareScansOutput)
+
+	DescribeMalwareScansPages(*guardduty.DescribeMalwareScansInput, func(*guardduty.DescribeMalwareScansOutput, bool) bool) error
+	DescribeMalwareScansPagesWithContext(aws.Context, *guardduty.DescribeMalwareScansInput, func(*guardduty.DescribeMalwareScansOutput, bool) bool, ...request.Option) error
+
 	DescribeOrganizationConfiguration(*guardduty.DescribeOrganizationConfigurationInput) (*guardduty.DescribeOrganizationConfigurationOutput, error)
 	DescribeOrganizationConfigurationWithContext(aws.Context, *guardduty.DescribeOrganizationConfigurationInput, ...request.Option) (*guardduty.DescribeOrganizationConfigurationOutput, error)
 	DescribeOrganizationConfigurationRequest(*guardduty.DescribeOrganizationConfigurationInput) (*request.Request, *guardduty.DescribeOrganizationConfigurationOutput)
@@ -187,6 +194,10 @@ type GuardDutyAPI interface {
 	GetInvitationsCount(*guardduty.GetInvitationsCountInput) (*guardduty.GetInvitationsCountOutput, error)
 	GetInvitationsCountWithContext(aws.Context, *guardduty.GetInvitationsCountInput, ...request.Option) (*guardduty.GetInvitationsCountOutput, error)
 	GetInvitationsCountRequest(*guardduty.GetInvitationsCountInput) (*request.Request, *guardduty.GetInvitationsCountOutput)
+
+	GetMalwareScanSettings(*guardduty.GetMalwareScanSettingsInput) (*guardduty.GetMalwareScanSettingsOutput, error)
+	GetMalwareScanSettingsWithContext(aws.Context, *guardduty.GetMalwareScanSettingsInput, ...request.Option) (*guardduty.GetMalwareScanSettingsOutput, error)
+	GetMalwareScanSettingsRequest(*guardduty.GetMalwareScanSettingsInput) (*request.Request, *guardduty.GetMalwareScanSettingsOutput)
 
 	GetMasterAccount(*guardduty.GetMasterAccountInput) (*guardduty.GetMasterAccountOutput, error)
 	GetMasterAccountWithContext(aws.Context, *guardduty.GetMasterAccountInput, ...request.Option) (*guardduty.GetMasterAccountOutput, error)
@@ -321,6 +332,10 @@ type GuardDutyAPI interface {
 	UpdateIPSet(*guardduty.UpdateIPSetInput) (*guardduty.UpdateIPSetOutput, error)
 	UpdateIPSetWithContext(aws.Context, *guardduty.UpdateIPSetInput, ...request.Option) (*guardduty.UpdateIPSetOutput, error)
 	UpdateIPSetRequest(*guardduty.UpdateIPSetInput) (*request.Request, *guardduty.UpdateIPSetOutput)
+
+	UpdateMalwareScanSettings(*guardduty.UpdateMalwareScanSettingsInput) (*guardduty.UpdateMalwareScanSettingsOutput, error)
+	UpdateMalwareScanSettingsWithContext(aws.Context, *guardduty.UpdateMalwareScanSettingsInput, ...request.Option) (*guardduty.UpdateMalwareScanSettingsOutput, error)
+	UpdateMalwareScanSettingsRequest(*guardduty.UpdateMalwareScanSettingsInput) (*request.Request, *guardduty.UpdateMalwareScanSettingsOutput)
 
 	UpdateMemberDetectors(*guardduty.UpdateMemberDetectorsInput) (*guardduty.UpdateMemberDetectorsOutput, error)
 	UpdateMemberDetectorsWithContext(aws.Context, *guardduty.UpdateMemberDetectorsInput, ...request.Option) (*guardduty.UpdateMemberDetectorsOutput, error)

@@ -9,6 +9,24 @@
       "output_token": "NextToken",
       "result_key": "Accesses"
     },
+    "ListAgreements": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Agreements"
+    },
+    "ListCertificates": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Certificates"
+    },
+    "ListConnectors": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Connectors"
+    },
     "ListExecutions": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -17,6 +35,12 @@
       ],
       "output_token": "NextToken",
       "result_key": "Executions"
+    },
+    "ListProfiles": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Profiles"
     },
     "ListSecurityPolicies": {
       "input_token": "NextToken",

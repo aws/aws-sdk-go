@@ -203,6 +203,18 @@ type Macie2API interface {
 	GetMemberWithContext(aws.Context, *macie2.GetMemberInput, ...request.Option) (*macie2.GetMemberOutput, error)
 	GetMemberRequest(*macie2.GetMemberInput) (*request.Request, *macie2.GetMemberOutput)
 
+	GetRevealConfiguration(*macie2.GetRevealConfigurationInput) (*macie2.GetRevealConfigurationOutput, error)
+	GetRevealConfigurationWithContext(aws.Context, *macie2.GetRevealConfigurationInput, ...request.Option) (*macie2.GetRevealConfigurationOutput, error)
+	GetRevealConfigurationRequest(*macie2.GetRevealConfigurationInput) (*request.Request, *macie2.GetRevealConfigurationOutput)
+
+	GetSensitiveDataOccurrences(*macie2.GetSensitiveDataOccurrencesInput) (*macie2.GetSensitiveDataOccurrencesOutput, error)
+	GetSensitiveDataOccurrencesWithContext(aws.Context, *macie2.GetSensitiveDataOccurrencesInput, ...request.Option) (*macie2.GetSensitiveDataOccurrencesOutput, error)
+	GetSensitiveDataOccurrencesRequest(*macie2.GetSensitiveDataOccurrencesInput) (*request.Request, *macie2.GetSensitiveDataOccurrencesOutput)
+
+	GetSensitiveDataOccurrencesAvailability(*macie2.GetSensitiveDataOccurrencesAvailabilityInput) (*macie2.GetSensitiveDataOccurrencesAvailabilityOutput, error)
+	GetSensitiveDataOccurrencesAvailabilityWithContext(aws.Context, *macie2.GetSensitiveDataOccurrencesAvailabilityInput, ...request.Option) (*macie2.GetSensitiveDataOccurrencesAvailabilityOutput, error)
+	GetSensitiveDataOccurrencesAvailabilityRequest(*macie2.GetSensitiveDataOccurrencesAvailabilityInput) (*request.Request, *macie2.GetSensitiveDataOccurrencesAvailabilityOutput)
+
 	GetUsageStatistics(*macie2.GetUsageStatisticsInput) (*macie2.GetUsageStatisticsOutput, error)
 	GetUsageStatisticsWithContext(aws.Context, *macie2.GetUsageStatisticsInput, ...request.Option) (*macie2.GetUsageStatisticsOutput, error)
 	GetUsageStatisticsRequest(*macie2.GetUsageStatisticsInput) (*request.Request, *macie2.GetUsageStatisticsOutput)
@@ -317,6 +329,13 @@ type Macie2API interface {
 	UpdateOrganizationConfiguration(*macie2.UpdateOrganizationConfigurationInput) (*macie2.UpdateOrganizationConfigurationOutput, error)
 	UpdateOrganizationConfigurationWithContext(aws.Context, *macie2.UpdateOrganizationConfigurationInput, ...request.Option) (*macie2.UpdateOrganizationConfigurationOutput, error)
 	UpdateOrganizationConfigurationRequest(*macie2.UpdateOrganizationConfigurationInput) (*request.Request, *macie2.UpdateOrganizationConfigurationOutput)
+
+	UpdateRevealConfiguration(*macie2.UpdateRevealConfigurationInput) (*macie2.UpdateRevealConfigurationOutput, error)
+	UpdateRevealConfigurationWithContext(aws.Context, *macie2.UpdateRevealConfigurationInput, ...request.Option) (*macie2.UpdateRevealConfigurationOutput, error)
+	UpdateRevealConfigurationRequest(*macie2.UpdateRevealConfigurationInput) (*request.Request, *macie2.UpdateRevealConfigurationOutput)
+
+	WaitUntilFindingRevealed(*macie2.GetSensitiveDataOccurrencesInput) error
+	WaitUntilFindingRevealedWithContext(aws.Context, *macie2.GetSensitiveDataOccurrencesInput, ...request.WaiterOption) error
 }
 
 var _ Macie2API = (*macie2.Macie2)(nil)

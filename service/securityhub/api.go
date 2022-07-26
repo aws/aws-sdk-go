@@ -32886,7 +32886,7 @@ func (s *AwsWafRegionalRuleGroupDetails) SetRules(v []*AwsWafRegionalRuleGroupRu
 	return s
 }
 
-// Describes the action that AWS WAF should take on a web request when it matches
+// Describes the action that WAF should take on a web request when it matches
 // the criteria defined in the rule.
 type AwsWafRegionalRuleGroupRulesActionDetails struct {
 	_ struct{} `type:"structure"`
@@ -33148,8 +33148,8 @@ func (s *AwsWafRegionalWebAclRulesListActionDetails) SetType(v string) *AwsWafRe
 type AwsWafRegionalWebAclRulesListDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The action that AWS WAF takes when a web request matches all conditions in
-	// the rule, such as allow, block, or count the request.
+	// The action that WAF takes when a web request matches all conditions in the
+	// rule, such as allow, block, or count the request.
 	Action *AwsWafRegionalWebAclRulesListActionDetails `type:"structure"`
 
 	// Overrides the rule evaluation result in the rule group.
@@ -34261,12 +34261,43 @@ func (s *BatchUpdateFindingsOutput) SetUnprocessedFindings(v []*BatchUpdateFindi
 type BatchUpdateFindingsUnprocessedFinding struct {
 	_ struct{} `type:"structure"`
 
-	// The code associated with the error.
+	// The code associated with the error. Possible values are:
+	//
+	//    * ConcurrentUpdateError - Another process or request attempted to update
+	//    the finding while this request was being processed
+	//
+	//    * DuplicatedFindingIdentifier - The request included two or more findings
+	//    with the same FindingIdentifier
+	//
+	//    * FindingNotFound - The FindingIdentifier included in the request did
+	//    not match an existing finding
+	//
+	//    * FindingSizeExceeded - The finding size was greater than the permissible
+	//    value of 240 KB
+	//
+	//    * InternalFailure - An internal service failure occurred when updating
+	//    the finding
+	//
+	//    * InvalidInput - The finding update contained an invalid value that did
+	//    not satisfy the Amazon Web Services Security Finding Format (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html)
+	//    syntax
 	//
 	// ErrorCode is a required field
 	ErrorCode *string `type:"string" required:"true"`
 
-	// The message associated with the error.
+	// The message associated with the error. Possible values are:
+	//
+	//    * Concurrent finding updates detected
+	//
+	//    * Finding Identifier is duplicated
+	//
+	//    * Finding Not Found
+	//
+	//    * Finding size exceeded 240 KB
+	//
+	//    * Internal service failure
+	//
+	//    * Invalid Input
 	//
 	// ErrorMessage is a required field
 	ErrorMessage *string `type:"string" required:"true"`

@@ -1096,7 +1096,9 @@
         "EvaluationManifest":{"shape":"OutputS3Object"},
         "EvaluationResult":{"shape":"OutputS3Object"},
         "EvaluationEndTimestamp":{"shape":"DateTime"},
-        "KmsKeyId":{"shape":"KmsKeyId"}
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "MinInferenceUnits":{"shape":"InferenceUnits"},
+        "MaxInferenceUnits":{"shape":"InferenceUnits"}
       }
     },
     "ModelDescriptionMessage":{
@@ -1432,7 +1434,8 @@
           "idempotencyToken":true,
           "location":"header",
           "locationName":"X-Amzn-Client-Token"
-        }
+        },
+        "MaxInferenceUnits":{"shape":"InferenceUnits"}
       }
     },
     "StartModelResponse":{

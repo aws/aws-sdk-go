@@ -20,6 +20,7 @@
     "DeleteMembers": "<p>Deletes GuardDuty member accounts (to the current GuardDuty administrator account) specified by the account IDs.</p>",
     "DeletePublishingDestination": "<p>Deletes the publishing definition with the specified <code>destinationId</code>.</p>",
     "DeleteThreatIntelSet": "<p>Deletes the ThreatIntelSet specified by the ThreatIntelSet ID.</p>",
+    "DescribeMalwareScans": "<p>Returns a list of malware scans.</p>",
     "DescribeOrganizationConfiguration": "<p>Returns information about the account selected as the delegated administrator for GuardDuty.</p>",
     "DescribePublishingDestination": "<p>Returns information about the publishing destination specified by the provided <code>destinationId</code>.</p>",
     "DisableOrganizationAdminAccount": "<p>Disables an Amazon Web Services account within the Organization as the GuardDuty delegated administrator.</p>",
@@ -34,6 +35,7 @@
     "GetFindingsStatistics": "<p>Lists Amazon GuardDuty findings statistics for the specified detector ID.</p>",
     "GetIPSet": "<p>Retrieves the IPSet specified by the <code>ipSetId</code>.</p>",
     "GetInvitationsCount": "<p>Returns the count of all GuardDuty membership invitations that were sent to the current member account except the currently accepted invitation.</p>",
+    "GetMalwareScanSettings": "<p>Returns the details of the malware scan settings.</p>",
     "GetMasterAccount": "<p>Provides the details for the GuardDuty administrator account associated with the current GuardDuty member account.</p>",
     "GetMemberDetectors": "<p>Describes which data sources are enabled for the member account's detector.</p>",
     "GetMembers": "<p>Retrieves GuardDuty member accounts (of the current GuardDuty administrator account) specified by the account IDs.</p>",
@@ -60,6 +62,7 @@
     "UpdateFilter": "<p>Updates the filter specified by the filter name.</p>",
     "UpdateFindingsFeedback": "<p>Marks the specified GuardDuty findings as useful or not useful.</p>",
     "UpdateIPSet": "<p>Updates the IPSet specified by the IPSet ID.</p>",
+    "UpdateMalwareScanSettings": "<p>Updates the malware scan settings.</p>",
     "UpdateMemberDetectors": "<p>Contains information on member accounts to be updated.</p>",
     "UpdateOrganizationConfiguration": "<p>Updates the delegated administrator account with the values provided.</p>",
     "UpdatePublishingDestination": "<p>Updates information about the publishing destination specified by the <code>destinationId</code>.</p>",
@@ -132,6 +135,7 @@
         "Master$AccountId": "<p>The ID of the account used as the administrator account.</p>",
         "Member$AccountId": "<p>The ID of the member account.</p>",
         "MemberDataSourceConfiguration$AccountId": "<p>The account ID for the member account.</p>",
+        "Scan$AccountId": "<p>The ID for the account that belongs to the scan.</p>",
         "UnprocessedAccount$AccountId": "<p>The Amazon Web Services account ID.</p>",
         "UsageAccountResult$AccountId": "<p>The Account ID that generated usage.</p>"
       }
@@ -244,6 +248,8 @@
         "KubernetesAuditLogsConfiguration$Enable": "<p>The status of Kubernetes audit logs as a data source.</p>",
         "KubernetesWorkloadDetails$HostNetwork": "<p>Whether the hostNetwork flag is enabled for the pods included in the workload.</p>",
         "NetworkConnectionAction$Blocked": "<p>Indicates whether EC2 blocked the network connection to your instance.</p>",
+        "OrganizationEbsVolumes$AutoEnable": "<p>Whether scanning EBS volumes should be auto-enabled for new members joining the organization.</p>",
+        "OrganizationEbsVolumesResult$AutoEnable": "<p>An object that contains the status of whether scanning EBS volumes should be auto-enabled for new members joining the organization.</p>",
         "OrganizationKubernetesAuditLogsConfiguration$AutoEnable": "<p>A value that contains information on whether Kubernetes audit logs should be enabled automatically as a data source for the organization.</p>",
         "OrganizationKubernetesAuditLogsConfigurationResult$AutoEnable": "<p>Whether Kubernetes audit logs data source should be auto-enabled for new members joining the organization.</p>",
         "OrganizationS3LogsConfiguration$AutoEnable": "<p>A value that contains information on whether S3 data event logs will be enabled automatically as a data source for the organization.</p>",
@@ -251,8 +257,10 @@
         "PortProbeAction$Blocked": "<p>Indicates whether EC2 blocked the port probe to the instance, such as with an ACL.</p>",
         "RemoteAccountDetails$Affiliated": "<p>Details on whether the Amazon Web Services account of the remote API caller is related to your GuardDuty environment. If this value is <code>True</code> the API caller is affiliated to your account in some way. If it is <code>False</code> the API caller is from outside your environment.</p>",
         "S3LogsConfiguration$Enable": "<p> The status of S3 data event logs as a data source.</p>",
+        "ScanEc2InstanceWithFindings$EbsVolumes": "<p>Describes the configuration for scanning EBS volumes as data source.</p>",
         "SecurityContext$Privileged": "<p>Whether the container is privileged.</p>",
         "Service$Archived": "<p>Indicates whether this finding is archived.</p>",
+        "ThreatDetectedByName$Shortened": "<p>Flag to determine if the finding contains every single infected file-path and/or every threat.</p>",
         "UpdateDetectorRequest$Enable": "<p>Specifies whether the detector is enabled or not enabled.</p>",
         "UpdateIPSetRequest$Activate": "<p>The updated Boolean value that specifies whether the IPSet is active or not.</p>",
         "UpdateOrganizationConfigurationRequest$AutoEnable": "<p>Indicates whether to automatically enable member accounts in the organization.</p>",
@@ -302,12 +310,14 @@
     "Container": {
       "base": "<p>Details of a container.</p>",
       "refs": {
-        "Containers$member": null
+        "Containers$member": null,
+        "Resource$ContainerDetails": null
       }
     },
     "Containers": {
       "base": null,
       "refs": {
+        "EcsTaskDetails$Containers": "<p>The containers that's associated with the task.</p>",
         "KubernetesWorkloadDetails$Containers": "<p>Containers running as part of the Kubernetes workload.</p>"
       }
     },
@@ -399,6 +409,12 @@
         "FindingCriteria$Criterion": "<p>Represents a map of finding properties that match specified conditions and values when querying findings.</p>"
       }
     },
+    "CriterionKey": {
+      "base": null,
+      "refs": {
+        "FilterCriterion$CriterionKey": "<p>An enum value representing possible scan properties to match with given scan entries.</p>"
+      }
+    },
     "DNSLogsConfigurationResult": {
       "base": "<p>Contains information on the status of DNS logs as a data source.</p>",
       "refs": {
@@ -434,7 +450,8 @@
         "DataSourcesFreeTrial$DnsLogs": "<p>Describes whether any DNS logs are enabled as data sources.</p>",
         "DataSourcesFreeTrial$FlowLogs": "<p>Describes whether any VPC Flow logs are enabled as data sources.</p>",
         "DataSourcesFreeTrial$S3Logs": "<p>Describes whether any S3 data event logs are enabled as data sources.</p>",
-        "KubernetesDataSourceFreeTrial$AuditLogs": "<p>Describes whether Kubernetes audit logs are enabled as a data source.</p>"
+        "KubernetesDataSourceFreeTrial$AuditLogs": "<p>Describes whether Kubernetes audit logs are enabled as a data source.</p>",
+        "MalwareProtectionDataSourceFreeTrial$ScanEc2InstanceWithFindings": "<p>Describes whether Malware Protection for EC2 instances with findings is enabled as a data source.</p>"
       }
     },
     "DataSourceList": {
@@ -448,6 +465,7 @@
       "refs": {
         "CloudTrailConfigurationResult$Status": "<p>Describes whether CloudTrail is enabled as a data source for the detector.</p>",
         "DNSLogsConfigurationResult$Status": "<p>Denotes whether DNS logs is enabled as a data source.</p>",
+        "EbsVolumesResult$Status": "<p>Describes whether scanning EBS volumes is enabled as a data source.</p>",
         "FlowLogsConfigurationResult$Status": "<p>Denotes whether VPC flow logs is enabled as a data source.</p>",
         "KubernetesAuditLogsConfigurationResult$Status": "<p>A value that describes whether Kubernetes audit logs are enabled as a data source.</p>",
         "S3LogsConfigurationResult$Status": "<p>A value that describes whether S3 data event logs are automatically enabled for new members of the organization.</p>"
@@ -545,6 +563,16 @@
       "refs": {
       }
     },
+    "DescribeMalwareScansRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeMalwareScansResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeOrganizationConfigurationRequest": {
       "base": null,
       "refs": {
@@ -612,6 +640,7 @@
         "DeleteMembersRequest$DetectorId": "<p>The unique ID of the detector of the GuardDuty account whose members you want to delete.</p>",
         "DeletePublishingDestinationRequest$DetectorId": "<p>The unique ID of the detector associated with the publishing destination to delete.</p>",
         "DeleteThreatIntelSetRequest$DetectorId": "<p>The unique ID of the detector that the threatIntelSet is associated with.</p>",
+        "DescribeMalwareScansRequest$DetectorId": "<p>The unique ID of the detector that the request is associated with.</p>",
         "DescribeOrganizationConfigurationRequest$DetectorId": "<p>The ID of the detector to retrieve information about the delegated administrator from.</p>",
         "DescribePublishingDestinationRequest$DetectorId": "<p>The unique ID of the detector associated with the publishing destination to retrieve.</p>",
         "DetectorIds$member": null,
@@ -624,6 +653,7 @@
         "GetFindingsRequest$DetectorId": "<p>The ID of the detector that specifies the GuardDuty service whose findings you want to retrieve.</p>",
         "GetFindingsStatisticsRequest$DetectorId": "<p>The ID of the detector that specifies the GuardDuty service whose findings' statistics you want to retrieve.</p>",
         "GetIPSetRequest$DetectorId": "<p>The unique ID of the detector that the IPSet is associated with.</p>",
+        "GetMalwareScanSettingsRequest$DetectorId": "<p>The unique ID of the detector that the scan setting is associated with.</p>",
         "GetMasterAccountRequest$DetectorId": "<p>The unique ID of the detector of the GuardDuty member account.</p>",
         "GetMemberDetectorsRequest$DetectorId": "<p>The detector ID for the administrator account.</p>",
         "GetMembersRequest$DetectorId": "<p>The unique ID of the detector of the GuardDuty account whose members you want to retrieve.</p>",
@@ -638,6 +668,8 @@
         "ListPublishingDestinationsRequest$DetectorId": "<p>The ID of the detector to retrieve publishing destinations for.</p>",
         "ListThreatIntelSetsRequest$DetectorId": "<p>The unique ID of the detector that the threatIntelSet is associated with.</p>",
         "Member$DetectorId": "<p>The detector ID of the member account.</p>",
+        "Scan$DetectorId": "<p>The unique ID of the detector that the request is associated with.</p>",
+        "Scan$AdminDetectorId": "<p>The unique detector ID of the administrator account that the request is associated with. Note that this value will be the same as the one used for <code>DetectorId</code> if the account is an administrator.</p>",
         "Service$DetectorId": "<p>The detector ID for the GuardDuty service.</p>",
         "StartMonitoringMembersRequest$DetectorId": "<p>The unique ID of the detector of the GuardDuty administrator account associated with the member accounts to monitor.</p>",
         "StopMonitoringMembersRequest$DetectorId": "<p>The unique ID of the detector associated with the GuardDuty administrator account that is monitoring member accounts.</p>",
@@ -646,6 +678,7 @@
         "UpdateFilterRequest$DetectorId": "<p>The unique ID of the detector that specifies the GuardDuty service where you want to update a filter.</p>",
         "UpdateFindingsFeedbackRequest$DetectorId": "<p>The ID of the detector associated with the findings to update feedback for.</p>",
         "UpdateIPSetRequest$DetectorId": "<p>The detectorID that specifies the GuardDuty service whose IPSet you want to update.</p>",
+        "UpdateMalwareScanSettingsRequest$DetectorId": "<p>The unique ID of the detector that specifies the GuardDuty service where you want to update scan settings.</p>",
         "UpdateMemberDetectorsRequest$DetectorId": "<p>The detector ID of the administrator account.</p>",
         "UpdateOrganizationConfigurationRequest$DetectorId": "<p>The ID of the detector to update the delegated administrator for.</p>",
         "UpdatePublishingDestinationRequest$DetectorId": "<p>The ID of the detector associated with the publishing destinations to update.</p>",
@@ -725,6 +758,43 @@
         "GeoLocation$Lon": "<p>The longitude information of the remote IP address.</p>"
       }
     },
+    "EbsSnapshotPreservation": {
+      "base": null,
+      "refs": {
+        "GetMalwareScanSettingsResponse$EbsSnapshotPreservation": "<p>An enum value representing possible snapshot preservations.</p>",
+        "UpdateMalwareScanSettingsRequest$EbsSnapshotPreservation": "<p>An enum value representing possible snapshot preservations.</p>"
+      }
+    },
+    "EbsVolumeDetails": {
+      "base": "<p>Contains list of scanned and skipped EBS volumes with details.</p>",
+      "refs": {
+        "Resource$EbsVolumeDetails": "<p>Contains list of scanned and skipped EBS volumes with details.</p>"
+      }
+    },
+    "EbsVolumeScanDetails": {
+      "base": "<p>Contains details from the malware scan that created a finding.</p>",
+      "refs": {
+        "Service$EbsVolumeScanDetails": "<p>Returns details from the malware scan that created a finding.</p>"
+      }
+    },
+    "EbsVolumesResult": {
+      "base": "<p>Describes the configuration of scanning EBS volumes as a data source.</p>",
+      "refs": {
+        "ScanEc2InstanceWithFindingsResult$EbsVolumes": "<p>Describes the configuration of scanning EBS volumes as a data source.</p>"
+      }
+    },
+    "EcsClusterDetails": {
+      "base": "<p>Contains information about the details of the ECS Cluster.</p>",
+      "refs": {
+        "Resource$EcsClusterDetails": "<p>Contains information about the details of the ECS Cluster.</p>"
+      }
+    },
+    "EcsTaskDetails": {
+      "base": "<p>Contains information about the task in an ECS cluster.</p>",
+      "refs": {
+        "EcsClusterDetails$TaskDetails": "<p>Contains information about the details of the ECS Task.</p>"
+      }
+    },
     "EksClusterDetails": {
       "base": "<p>Details about the EKS cluster involved in a Kubernetes finding.</p>",
       "refs": {
@@ -772,12 +842,42 @@
         "UpdateFindingsFeedbackRequest$Feedback": "<p>The feedback for the finding.</p>"
       }
     },
+    "FilePaths": {
+      "base": null,
+      "refs": {
+        "ScanThreatName$FilePaths": "<p>List of infected files in EBS volume with details.</p>"
+      }
+    },
     "FilterAction": {
       "base": null,
       "refs": {
         "CreateFilterRequest$Action": "<p>Specifies the action that is to be applied to the findings that match the filter.</p>",
         "GetFilterResponse$Action": "<p>Specifies the action that is to be applied to the findings that match the filter.</p>",
         "UpdateFilterRequest$Action": "<p>Specifies the action that is to be applied to the findings that match the filter.</p>"
+      }
+    },
+    "FilterCondition": {
+      "base": "<p>Contains information about the condition.</p>",
+      "refs": {
+        "FilterCriterion$FilterCondition": "<p>Contains information about the condition.</p>"
+      }
+    },
+    "FilterCriteria": {
+      "base": "<p>Represents the criteria to be used in the filter for describing scan entries.</p>",
+      "refs": {
+        "DescribeMalwareScansRequest$FilterCriteria": "<p>Represents the criteria to be used in the filter for describing scan entries.</p>"
+      }
+    },
+    "FilterCriterion": {
+      "base": "<p>Represents a condition that when matched will be added to the response of the operation.</p>",
+      "refs": {
+        "FilterCriterionList$member": null
+      }
+    },
+    "FilterCriterionList": {
+      "base": null,
+      "refs": {
+        "FilterCriteria$FilterCriterion": "<p>Represents a condition that when matched will be added to the response of the operation.</p>"
       }
     },
     "FilterDescription": {
@@ -971,6 +1071,16 @@
       "refs": {
       }
     },
+    "GetMalwareScanSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMalwareScanSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetMasterAccountRequest": {
       "base": null,
       "refs": {
@@ -1045,6 +1155,12 @@
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) for the resource to remove tags from.</p>"
       }
     },
+    "HighestSeverityThreatDetails": {
+      "base": "<p>Contains details of the highest severity threat detected during scan and number of infected files.</p>",
+      "refs": {
+        "ScanDetections$HighestSeverityThreatDetails": "<p>Details of the highest severity threat detected during malware scan and number of infected files.</p>"
+      }
+    },
     "HostPath": {
       "base": "<p>Represents a pre-existing file or directory on the host machine that the volume maps to.</p>",
       "refs": {
@@ -1055,6 +1171,12 @@
       "base": "<p>Contains information about the EC2 instance profile.</p>",
       "refs": {
         "InstanceDetails$IamInstanceProfile": "<p>The profile information of the EC2 instance.</p>"
+      }
+    },
+    "InstanceArn": {
+      "base": null,
+      "refs": {
+        "ResourceDetails$InstanceArn": "<p>InstanceArn that was scanned in the scan entry.</p>"
       }
     },
     "InstanceDetails": {
@@ -1072,11 +1194,29 @@
         "Condition$Lte": "<p>Represents a <i>less than or equal</i> condition to be applied to a single field when querying for findings.</p>",
         "CountBySeverity$value": null,
         "DataSourceFreeTrial$FreeTrialDaysRemaining": "<p>A value that specifies the number of days left to use each enabled data source.</p>",
+        "EcsClusterDetails$ActiveServicesCount": "<p>The number of services that are running on the cluster in an ACTIVE state.</p>",
+        "EcsClusterDetails$RegisteredContainerInstancesCount": "<p>The number of container instances registered into the cluster.</p>",
+        "EcsClusterDetails$RunningTasksCount": "<p>The number of tasks in the cluster that are in the RUNNING state.</p>",
         "GetInvitationsCountResponse$InvitationsCount": "<p>The number of received invitations.</p>",
+        "HighestSeverityThreatDetails$Count": "<p>Total number of infected files with the highest severity threat detected.</p>",
         "KubernetesApiCallAction$StatusCode": "<p>The resulting HTTP response code of the Kubernetes API call action.</p>",
         "LocalPortDetails$Port": "<p>The port number of the local connection.</p>",
         "RemotePortDetails$Port": "<p>The port number of the remote connection.</p>",
-        "Service$Count": "<p>The total count of the occurrences of this finding type.</p>"
+        "ScanThreatName$ItemCount": "<p>Total number of files infected with given threat.</p>",
+        "ScannedItemCount$TotalGb": "<p>Total GB of files scanned for malware.</p>",
+        "ScannedItemCount$Files": "<p>Number of files scanned.</p>",
+        "ScannedItemCount$Volumes": "<p>Total number of scanned volumes.</p>",
+        "Service$Count": "<p>The total count of the occurrences of this finding type.</p>",
+        "ThreatDetectedByName$ItemCount": "<p>Total number of infected files identified.</p>",
+        "ThreatDetectedByName$UniqueThreatNameCount": "<p>Total number of unique threats by name identified, as part of the malware scan.</p>",
+        "ThreatsDetectedItemCount$Files": "<p>Total number of infected files.</p>",
+        "VolumeDetail$VolumeSizeInGB": "<p>EBS volume size in GB.</p>"
+      }
+    },
+    "IntegerValueWithMax": {
+      "base": null,
+      "refs": {
+        "DescribeMalwareScansRequest$MaxResults": "<p>You can use this parameter to indicate the maximum number of items that you want in the response. The default value is 50. The maximum value is 50.</p>"
       }
     },
     "InternalServerErrorException": {
@@ -1320,6 +1460,37 @@
         "DescribePublishingDestinationResponse$PublishingFailureStartTimestamp": "<p>The time, in epoch millisecond format, at which GuardDuty was first unable to publish findings to the destination.</p>"
       }
     },
+    "LongValue": {
+      "base": null,
+      "refs": {
+        "FilterCondition$GreaterThan": "<p>Represents a <i>greater than</i> condition to be applied to a single field when querying for scan entries.</p>",
+        "FilterCondition$LessThan": "<p>Represents a <i>less than</i> condition to be applied to a single field when querying for scan entries.</p>"
+      }
+    },
+    "MalwareProtectionConfiguration": {
+      "base": "<p>Describes whether Malware Protection will be enabled as a data source.</p>",
+      "refs": {
+        "DataSourceConfigurations$MalwareProtection": "<p>Describes whether Malware Protection is enabled as a data source.</p>"
+      }
+    },
+    "MalwareProtectionConfigurationResult": {
+      "base": "<p>An object that contains information on the status of all Malware Protection data sources.</p>",
+      "refs": {
+        "DataSourceConfigurationsResult$MalwareProtection": "<p>Describes the configuration of Malware Protection data sources.</p>"
+      }
+    },
+    "MalwareProtectionDataSourceFreeTrial": {
+      "base": "<p>Provides details about Malware Protection when it is enabled as a data source.</p>",
+      "refs": {
+        "DataSourcesFreeTrial$MalwareProtection": "<p>Describes whether Malware Protection is enabled as a data source.</p>"
+      }
+    },
+    "MapEquals": {
+      "base": null,
+      "refs": {
+        "ScanCondition$MapEquals": "<p>Represents an <i>mapEqual</i> <b/> condition to be applied to a single field when triggering for malware scan.</p>"
+      }
+    },
     "Master": {
       "base": "<p>Contains information about the administrator account and invitation.</p>",
       "refs": {
@@ -1401,6 +1572,16 @@
         "InstanceDetails$NetworkInterfaces": "<p>The elastic network interface information of the EC2 instance.</p>"
       }
     },
+    "NonEmptyString": {
+      "base": null,
+      "refs": {
+        "FilterCondition$EqualsValue": "<p>Represents an <i>equal</i> <b/> condition to be applied to a single field when querying for scan entries.</p>",
+        "Scan$ScanId": "<p>The unique scan ID associated with a scan entry.</p>",
+        "Scan$FailureReason": "<p>Represents the reason for FAILED scan status.</p>",
+        "TriggerDetails$GuardDutyFindingId": "<p>The ID of the GuardDuty finding that triggered the BirdDog scan.</p>",
+        "TriggerDetails$Description": "<p>The description of the scan trigger.</p>"
+      }
+    },
     "NotEquals": {
       "base": null,
       "refs": {
@@ -1431,6 +1612,18 @@
         "DescribeOrganizationConfigurationResponse$DataSources": "<p>Describes which data sources are enabled automatically for member accounts.</p>"
       }
     },
+    "OrganizationEbsVolumes": {
+      "base": "<p>Organization-wide EBS volumes scan configuration.</p>",
+      "refs": {
+        "OrganizationScanEc2InstanceWithFindings$EbsVolumes": "<p>Whether scanning EBS volumes should be auto-enabled for new members joining the organization.</p>"
+      }
+    },
+    "OrganizationEbsVolumesResult": {
+      "base": "<p>An object that contains information on the status of whether EBS volumes scanning will be enabled as a data source for an organization.</p>",
+      "refs": {
+        "OrganizationScanEc2InstanceWithFindingsResult$EbsVolumes": "<p>Describes the configuration for scanning EBS volumes for an organization.</p>"
+      }
+    },
     "OrganizationKubernetesAuditLogsConfiguration": {
       "base": "<p>Organization-wide Kubernetes audit logs configuration.</p>",
       "refs": {
@@ -1455,6 +1648,18 @@
         "OrganizationDataSourceConfigurationsResult$Kubernetes": "<p>Describes the configuration of Kubernetes data sources.</p>"
       }
     },
+    "OrganizationMalwareProtectionConfiguration": {
+      "base": "<p>Organization-wide Malware Protection configurations.</p>",
+      "refs": {
+        "OrganizationDataSourceConfigurations$MalwareProtection": "<p>Describes the configuration of Malware Protection for new members of the organization.</p>"
+      }
+    },
+    "OrganizationMalwareProtectionConfigurationResult": {
+      "base": "<p>An object that contains information on the status of all Malware Protection data source for an organization.</p>",
+      "refs": {
+        "OrganizationDataSourceConfigurationsResult$MalwareProtection": "<p>Describes the configuration of Malware Protection data source for an organization.</p>"
+      }
+    },
     "OrganizationS3LogsConfiguration": {
       "base": "<p>Describes whether S3 data event logs will be automatically enabled for new members of the organization.</p>",
       "refs": {
@@ -1465,6 +1670,18 @@
       "base": "<p>The current configuration of S3 data event logs as a data source for the organization.</p>",
       "refs": {
         "OrganizationDataSourceConfigurationsResult$S3Logs": "<p>Describes whether S3 data event logs are enabled as a data source.</p>"
+      }
+    },
+    "OrganizationScanEc2InstanceWithFindings": {
+      "base": "<p>Organization-wide EC2 instances with findings scan configuration.</p>",
+      "refs": {
+        "OrganizationMalwareProtectionConfiguration$ScanEc2InstanceWithFindings": "<p>Whether Malware Protection for EC2 instances with findings should be auto-enabled for new members joining the organization.</p>"
+      }
+    },
+    "OrganizationScanEc2InstanceWithFindingsResult": {
+      "base": "<p>An object that contains information on the status of scanning EC2 instances with findings for an organization.</p>",
+      "refs": {
+        "OrganizationMalwareProtectionConfigurationResult$ScanEc2InstanceWithFindings": "<p>Describes the configuration for scanning EC2 instances with findings for an organization.</p>"
       }
     },
     "Owner": {
@@ -1495,6 +1712,13 @@
       "base": null,
       "refs": {
         "PortProbeAction$PortProbeDetails": "<p>A list of objects related to port probe details.</p>"
+      }
+    },
+    "PositiveLong": {
+      "base": null,
+      "refs": {
+        "Scan$TotalBytes": "<p>Represents total bytes that were scanned.</p>",
+        "Scan$FileCount": "<p>Represents the number of files that were scanned.</p>"
       }
     },
     "PrivateIpAddressDetails": {
@@ -1561,6 +1785,12 @@
         "Finding$Resource": null
       }
     },
+    "ResourceDetails": {
+      "base": "<p>Represents the resources that were scanned in the scan entry.</p>",
+      "refs": {
+        "Scan$ResourceDetails": "<p>Represents the resources that were scanned in the scan entry.</p>"
+      }
+    },
     "ResourceList": {
       "base": null,
       "refs": {
@@ -1589,6 +1819,110 @@
       "base": "<p>Describes whether S3 data event logs will be enabled as a data source.</p>",
       "refs": {
         "DataSourceConfigurationsResult$S3Logs": "<p>An object that contains information on the status of S3 Data event logs as a data source.</p>"
+      }
+    },
+    "Scan": {
+      "base": "<p>Contains information about a malware scan.</p>",
+      "refs": {
+        "Scans$member": null
+      }
+    },
+    "ScanCondition": {
+      "base": "<p>Contains information about the condition.</p>",
+      "refs": {
+        "ScanCriterion$value": null
+      }
+    },
+    "ScanConditionPair": {
+      "base": "<p>Represents key, value pair to be matched against given resource property.</p>",
+      "refs": {
+        "MapEquals$member": null
+      }
+    },
+    "ScanCriterion": {
+      "base": "<p>Represents a map of resource properties that match specified conditions and values when triggering malware scans.</p>",
+      "refs": {
+        "ScanResourceCriteria$Include": "<p>Represents condition that when matched will allow a malware scan for a certain resource.</p>",
+        "ScanResourceCriteria$Exclude": "<p>Represents condition that when matched will prevent a malware scan for a certain resource.</p>"
+      }
+    },
+    "ScanCriterionKey": {
+      "base": "<p>An enum value representing possible resource properties to match with given scan condition.</p>",
+      "refs": {
+        "ScanCriterion$key": null
+      }
+    },
+    "ScanDetections": {
+      "base": "<p>Contains a complete view providing malware scan result details.</p>",
+      "refs": {
+        "EbsVolumeScanDetails$ScanDetections": "<p>Contains a complete view providing malware scan result details.</p>"
+      }
+    },
+    "ScanEc2InstanceWithFindings": {
+      "base": "<p>Describes whether Malware Protection for EC2 instances with findings will be enabled as a data source.</p>",
+      "refs": {
+        "MalwareProtectionConfiguration$ScanEc2InstanceWithFindings": "<p>Describes the configuration of Malware Protection for EC2 instances with findings.</p>"
+      }
+    },
+    "ScanEc2InstanceWithFindingsResult": {
+      "base": "<p>An object that contains information on the status of whether Malware Protection for EC2 instances with findings will be enabled as a data source.</p>",
+      "refs": {
+        "MalwareProtectionConfigurationResult$ScanEc2InstanceWithFindings": "<p>Describes the configuration of Malware Protection for EC2 instances with findings.</p>"
+      }
+    },
+    "ScanFilePath": {
+      "base": "<p>Contains details of infected file including name, file path and hash.</p>",
+      "refs": {
+        "FilePaths$member": null
+      }
+    },
+    "ScanResourceCriteria": {
+      "base": "<p>Contains information about criteria used to filter resources before triggering malware scan.</p>",
+      "refs": {
+        "GetMalwareScanSettingsResponse$ScanResourceCriteria": "<p>Represents the criteria to be used in the filter for scanning resources.</p>",
+        "UpdateMalwareScanSettingsRequest$ScanResourceCriteria": "<p>Represents the criteria to be used in the filter for selecting resources to scan.</p>"
+      }
+    },
+    "ScanResult": {
+      "base": null,
+      "refs": {
+        "ScanResultDetails$ScanResult": "<p>An enum value representing possible scan results.</p>"
+      }
+    },
+    "ScanResultDetails": {
+      "base": "<p>Represents the result of the scan.</p>",
+      "refs": {
+        "Scan$ScanResultDetails": "<p>Represents the result of the scan.</p>"
+      }
+    },
+    "ScanStatus": {
+      "base": null,
+      "refs": {
+        "Scan$ScanStatus": "<p>An enum value representing possible scan statuses.</p>"
+      }
+    },
+    "ScanThreatName": {
+      "base": "<p>Contains files infected with the given threat providing details of malware name and severity.</p>",
+      "refs": {
+        "ScanThreatNames$member": null
+      }
+    },
+    "ScanThreatNames": {
+      "base": null,
+      "refs": {
+        "ThreatDetectedByName$ThreatNames": "<p>List of identified threats with details, organized by threat name.</p>"
+      }
+    },
+    "ScannedItemCount": {
+      "base": "<p>Total number of scanned files.</p>",
+      "refs": {
+        "ScanDetections$ScannedItemCount": "<p>Total number of scanned files.</p>"
+      }
+    },
+    "Scans": {
+      "base": null,
+      "refs": {
+        "DescribeMalwareScansResponse$Scans": "<p>Contains information about malware scans.</p>"
       }
     },
     "SecurityContext": {
@@ -1624,6 +1958,7 @@
     "SortCriteria": {
       "base": "<p>Contains information about the criteria used for sorting findings.</p>",
       "refs": {
+        "DescribeMalwareScansRequest$SortCriteria": "<p>Represents the criteria used for sorting scan entries.</p>",
         "GetFindingsRequest$SortCriteria": "<p>Represents the criteria used for sorting findings.</p>",
         "ListFindingsRequest$SortCriteria": "<p>Represents the criteria used for sorting findings.</p>"
       }
@@ -1632,6 +1967,12 @@
       "base": null,
       "refs": {
         "KubernetesApiCallAction$SourceIps": "<p>The IP of the Kubernetes API caller and the IPs of any proxies or load balancers between the caller and the API endpoint.</p>"
+      }
+    },
+    "Sources": {
+      "base": null,
+      "refs": {
+        "EbsVolumeScanDetails$Sources": "<p>Contains list of threat intelligence sources used to detect threats.</p>"
       }
     },
     "StartMonitoringMembersRequest": {
@@ -1699,6 +2040,8 @@
         "DeleteIPSetRequest$IpSetId": "<p>The unique ID of the IPSet to delete.</p>",
         "DeletePublishingDestinationRequest$DestinationId": "<p>The ID of the publishing destination to delete.</p>",
         "DeleteThreatIntelSetRequest$ThreatIntelSetId": "<p>The unique ID of the threatIntelSet that you want to delete.</p>",
+        "DescribeMalwareScansRequest$NextToken": "<p>You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.</p>",
+        "DescribeMalwareScansResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
         "DescribePublishingDestinationRequest$DestinationId": "<p>The ID of the publishing destination to retrieve.</p>",
         "DescribePublishingDestinationResponse$DestinationId": "<p>The ID of the publishing destination.</p>",
         "Destination$DestinationId": "<p>The unique ID of the publishing destination.</p>",
@@ -1708,6 +2051,16 @@
         "DnsRequestAction$Domain": "<p>The domain information for the API request.</p>",
         "DnsRequestAction$Protocol": "<p>The network connection protocol observed in the activity that prompted GuardDuty to generate the finding.</p>",
         "DomainDetails$Domain": "<p>The domain information for the Amazon Web Services API call.</p>",
+        "EbsVolumeScanDetails$ScanId": "<p>Unique Id of the malware scan that generated the finding.</p>",
+        "EbsVolumeScanDetails$TriggerFindingId": "<p>GuardDuty finding ID that triggered a malware scan.</p>",
+        "EcsClusterDetails$Name": "<p>The name of the ECS Cluster.</p>",
+        "EcsClusterDetails$Arn": "<p>The Amazon Resource Name (ARN) that identifies the cluster.</p>",
+        "EcsClusterDetails$Status": "<p>The status of the ECS cluster.</p>",
+        "EcsTaskDetails$Arn": "<p>The Amazon Resource Name (ARN) of the task.</p>",
+        "EcsTaskDetails$DefinitionArn": "<p>The ARN of the task definition that creates the task.</p>",
+        "EcsTaskDetails$Version": "<p>The version counter for the task.</p>",
+        "EcsTaskDetails$StartedBy": "<p>Contains the tag specified when a task is started.</p>",
+        "EcsTaskDetails$Group": "<p>The name of the task group that's associated with the task.</p>",
         "EksClusterDetails$Name": "<p>EKS cluster name.</p>",
         "EksClusterDetails$Arn": "<p>EKS cluster ARN.</p>",
         "EksClusterDetails$VpcId": "<p>The VPC ID to which the EKS cluster is attached.</p>",
@@ -1735,6 +2088,8 @@
         "GetUsageStatisticsRequest$NextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.</p>",
         "GetUsageStatisticsResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
         "Groups$member": null,
+        "HighestSeverityThreatDetails$Severity": "<p>Severity level of the highest severity threat detected.</p>",
+        "HighestSeverityThreatDetails$ThreatName": "<p>Threat name of the highest severity threat detected as part of the malware scan.</p>",
         "HostPath$Path": "<p>Path of the file or directory on the host that the volume maps to.</p>",
         "IamInstanceProfile$Arn": "<p>The profile ARN of the EC2 instance.</p>",
         "IamInstanceProfile$Id": "<p>The profile ID of the EC2 instance.</p>",
@@ -1786,6 +2141,7 @@
         "ListThreatIntelSetsResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
         "LocalIpDetails$IpAddressV4": "<p>The IPv4 local address of the connection.</p>",
         "LocalPortDetails$PortName": "<p>The port name of the local connection.</p>",
+        "MalwareProtectionConfigurationResult$ServiceRole": "<p>The GuardDuty Malware Protection service role.</p>",
         "Master$InvitationId": "<p>The value used to validate the administrator account to the member account.</p>",
         "Master$RelationshipStatus": "<p>The status of the relationship between the administrator and member accounts.</p>",
         "Master$InvitedAt": "<p>The timestamp when the invitation was sent.</p>",
@@ -1823,6 +2179,12 @@
         "S3BucketDetail$Arn": "<p>The Amazon Resource Name (ARN) of the S3 bucket.</p>",
         "S3BucketDetail$Name": "<p>The name of the S3 bucket.</p>",
         "S3BucketDetail$Type": "<p>Describes whether the bucket is a source or destination bucket.</p>",
+        "ScanFilePath$FilePath": "<p>The file path of the infected file.</p>",
+        "ScanFilePath$VolumeArn": "<p>EBS volume Arn details of the infected file.</p>",
+        "ScanFilePath$Hash": "<p>The hash value of the infected file.</p>",
+        "ScanFilePath$FileName": "<p>File name of the infected file.</p>",
+        "ScanThreatName$Name": "<p>The name of the identified threat.</p>",
+        "ScanThreatName$Severity": "<p>Severity of threat identified as part of the malware scan.</p>",
         "SecurityGroup$GroupId": "<p>The security group ID of the EC2 instance.</p>",
         "SecurityGroup$GroupName": "<p>The security group name of the EC2 instance.</p>",
         "Service$EventFirstSeen": "<p>The first-seen timestamp of the activity that prompted GuardDuty to generate this finding.</p>",
@@ -1830,10 +2192,12 @@
         "Service$ResourceRole": "<p>The resource role information for this finding.</p>",
         "Service$ServiceName": "<p>The name of the Amazon Web Services service (GuardDuty) that generated a finding.</p>",
         "Service$UserFeedback": "<p>Feedback that was submitted about the finding.</p>",
+        "Service$FeatureName": "<p>The name of the feature that generated a finding.</p>",
         "ServiceAdditionalInfo$Value": "<p>This field specifies the value of the additional information.</p>",
         "ServiceAdditionalInfo$Type": "<p>Describes the type of the additional information.</p>",
         "SortCriteria$AttributeName": "<p>Represents the finding attribute (for example, accountId) to sort findings by.</p>",
         "SourceIps$member": null,
+        "Sources$member": null,
         "Tag$Key": "<p>The EC2 instance tag key.</p>",
         "Tag$Value": "<p>The EC2 instance tag value.</p>",
         "ThreatIntelSetIds$member": null,
@@ -1849,6 +2213,12 @@
         "UpdateThreatIntelSetRequest$ThreatIntelSetId": "<p>The unique ID that specifies the ThreatIntelSet that you want to update.</p>",
         "UsageResourceResult$Resource": "<p>The Amazon Web Services resource that generated usage.</p>",
         "Volume$Name": "<p>Volume name.</p>",
+        "VolumeDetail$VolumeArn": "<p>EBS volume Arn information.</p>",
+        "VolumeDetail$VolumeType": "<p>The EBS volume type.</p>",
+        "VolumeDetail$DeviceName": "<p>The device name for the EBS volume.</p>",
+        "VolumeDetail$EncryptionType": "<p>EBS volume encryption type.</p>",
+        "VolumeDetail$SnapshotArn": "<p>Snapshot Arn of the EBS volume.</p>",
+        "VolumeDetail$KmsKeyArn": "<p>KMS key Arn used to encrypt the EBS volume.</p>",
         "VolumeMount$Name": "<p>Volume mount name.</p>",
         "VolumeMount$MountPath": "<p>Volume mount path.</p>"
       }
@@ -1862,6 +2232,7 @@
     "TagKey": {
       "base": null,
       "refs": {
+        "ScanConditionPair$Key": "<p>Represents <i>key</i> <b/> in the map condition.</p>",
         "TagKeyList$member": null,
         "TagMap$key": null
       }
@@ -1900,15 +2271,24 @@
     "TagValue": {
       "base": null,
       "refs": {
+        "ScanConditionPair$Value": "<p>Represents optional <i>value</i> <b/> in the map condition. If not specified, only <i>key</i> <b/> will be matched.</p>",
         "TagMap$value": null
       }
     },
     "Tags": {
       "base": null,
       "refs": {
+        "EcsClusterDetails$Tags": "<p>The tags of the ECS Cluster.</p>",
+        "EcsTaskDetails$Tags": "<p>The tags of the ECS Task.</p>",
         "EksClusterDetails$Tags": "<p>The EKS cluster tags.</p>",
         "InstanceDetails$Tags": "<p>The tags of the EC2 instance.</p>",
         "S3BucketDetail$Tags": "<p>All tags attached to the S3 bucket</p>"
+      }
+    },
+    "ThreatDetectedByName": {
+      "base": "<p>Contains details about identified threats organized by threat name.</p>",
+      "refs": {
+        "ScanDetections$ThreatDetectedByName": "<p>Contains details about identified threats organized by threat name.</p>"
       }
     },
     "ThreatIntelSetFormat": {
@@ -1948,11 +2328,23 @@
         "ThreatIntelligenceDetail$ThreatNames": "<p>A list of names of the threats in the threat intelligence list that triggered the finding.</p>"
       }
     },
+    "ThreatsDetectedItemCount": {
+      "base": "<p>Contains total number of infected files.</p>",
+      "refs": {
+        "ScanDetections$ThreatsDetectedItemCount": "<p>Total number of infected files.</p>"
+      }
+    },
     "Timestamp": {
       "base": null,
       "refs": {
+        "EbsVolumeScanDetails$ScanStartedAt": "<p>Returns the start date and time of the malware scan.</p>",
+        "EbsVolumeScanDetails$ScanCompletedAt": "<p>Returns the completion date and time of the malware scan.</p>",
+        "EcsTaskDetails$TaskCreatedAt": "<p>The Unix timestamp for the time when the task was created.</p>",
+        "EcsTaskDetails$StartedAt": "<p>The Unix timestamp for the time when the task started.</p>",
         "EksClusterDetails$CreatedAt": "<p>The timestamp when the EKS cluster was created.</p>",
-        "S3BucketDetail$CreatedAt": "<p>The date and time the bucket was created at.</p>"
+        "S3BucketDetail$CreatedAt": "<p>The date and time the bucket was created at.</p>",
+        "Scan$ScanStartTime": "<p>The timestamp of when the scan was triggered.</p>",
+        "Scan$ScanEndTime": "<p>The timestamp of when the scan was finished.</p>"
       }
     },
     "Total": {
@@ -1961,6 +2353,12 @@
         "UsageAccountResult$Total": "<p>Represents the total of usage for the Account ID.</p>",
         "UsageDataSourceResult$Total": "<p>Represents the total of usage for the specified data source.</p>",
         "UsageResourceResult$Total": "<p>Represents the sum total of usage for the specified resource type.</p>"
+      }
+    },
+    "TriggerDetails": {
+      "base": "<p>Represents the reason the scan was triggered.</p>",
+      "refs": {
+        "Scan$TriggerDetails": "<p>Represents the reason the scan was triggered.</p>"
       }
     },
     "UnarchiveFindingsRequest": {
@@ -2042,6 +2440,16 @@
       }
     },
     "UpdateIPSetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMalwareScanSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMalwareScanSettingsResponse": {
       "base": null,
       "refs": {
       }
@@ -2147,6 +2555,20 @@
         "Volumes$member": null
       }
     },
+    "VolumeDetail": {
+      "base": "<p>Contains EBS volume details.</p>",
+      "refs": {
+        "VolumeDetails$member": null
+      }
+    },
+    "VolumeDetails": {
+      "base": null,
+      "refs": {
+        "EbsVolumeDetails$ScannedVolumeDetails": "<p>List of EBS volumes that were scanned.</p>",
+        "EbsVolumeDetails$SkippedVolumeDetails": "<p>List of EBS volumes that were skipped from the malware scan.</p>",
+        "Scan$AttachedVolumes": "<p>List of volumes that were attached to the original instance to be scanned.</p>"
+      }
+    },
     "VolumeMount": {
       "base": "<p>Container volume mount.</p>",
       "refs": {
@@ -2162,6 +2584,7 @@
     "Volumes": {
       "base": null,
       "refs": {
+        "EcsTaskDetails$Volumes": "<p>The list of data volume definitions for the task.</p>",
         "KubernetesWorkloadDetails$Volumes": "<p>Volumes used by the Kubernetes workload.</p>"
       }
     }

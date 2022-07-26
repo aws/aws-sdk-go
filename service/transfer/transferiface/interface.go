@@ -64,6 +64,18 @@ type TransferAPI interface {
 	CreateAccessWithContext(aws.Context, *transfer.CreateAccessInput, ...request.Option) (*transfer.CreateAccessOutput, error)
 	CreateAccessRequest(*transfer.CreateAccessInput) (*request.Request, *transfer.CreateAccessOutput)
 
+	CreateAgreement(*transfer.CreateAgreementInput) (*transfer.CreateAgreementOutput, error)
+	CreateAgreementWithContext(aws.Context, *transfer.CreateAgreementInput, ...request.Option) (*transfer.CreateAgreementOutput, error)
+	CreateAgreementRequest(*transfer.CreateAgreementInput) (*request.Request, *transfer.CreateAgreementOutput)
+
+	CreateConnector(*transfer.CreateConnectorInput) (*transfer.CreateConnectorOutput, error)
+	CreateConnectorWithContext(aws.Context, *transfer.CreateConnectorInput, ...request.Option) (*transfer.CreateConnectorOutput, error)
+	CreateConnectorRequest(*transfer.CreateConnectorInput) (*request.Request, *transfer.CreateConnectorOutput)
+
+	CreateProfile(*transfer.CreateProfileInput) (*transfer.CreateProfileOutput, error)
+	CreateProfileWithContext(aws.Context, *transfer.CreateProfileInput, ...request.Option) (*transfer.CreateProfileOutput, error)
+	CreateProfileRequest(*transfer.CreateProfileInput) (*request.Request, *transfer.CreateProfileOutput)
+
 	CreateServer(*transfer.CreateServerInput) (*transfer.CreateServerOutput, error)
 	CreateServerWithContext(aws.Context, *transfer.CreateServerInput, ...request.Option) (*transfer.CreateServerOutput, error)
 	CreateServerRequest(*transfer.CreateServerInput) (*request.Request, *transfer.CreateServerOutput)
@@ -79,6 +91,22 @@ type TransferAPI interface {
 	DeleteAccess(*transfer.DeleteAccessInput) (*transfer.DeleteAccessOutput, error)
 	DeleteAccessWithContext(aws.Context, *transfer.DeleteAccessInput, ...request.Option) (*transfer.DeleteAccessOutput, error)
 	DeleteAccessRequest(*transfer.DeleteAccessInput) (*request.Request, *transfer.DeleteAccessOutput)
+
+	DeleteAgreement(*transfer.DeleteAgreementInput) (*transfer.DeleteAgreementOutput, error)
+	DeleteAgreementWithContext(aws.Context, *transfer.DeleteAgreementInput, ...request.Option) (*transfer.DeleteAgreementOutput, error)
+	DeleteAgreementRequest(*transfer.DeleteAgreementInput) (*request.Request, *transfer.DeleteAgreementOutput)
+
+	DeleteCertificate(*transfer.DeleteCertificateInput) (*transfer.DeleteCertificateOutput, error)
+	DeleteCertificateWithContext(aws.Context, *transfer.DeleteCertificateInput, ...request.Option) (*transfer.DeleteCertificateOutput, error)
+	DeleteCertificateRequest(*transfer.DeleteCertificateInput) (*request.Request, *transfer.DeleteCertificateOutput)
+
+	DeleteConnector(*transfer.DeleteConnectorInput) (*transfer.DeleteConnectorOutput, error)
+	DeleteConnectorWithContext(aws.Context, *transfer.DeleteConnectorInput, ...request.Option) (*transfer.DeleteConnectorOutput, error)
+	DeleteConnectorRequest(*transfer.DeleteConnectorInput) (*request.Request, *transfer.DeleteConnectorOutput)
+
+	DeleteProfile(*transfer.DeleteProfileInput) (*transfer.DeleteProfileOutput, error)
+	DeleteProfileWithContext(aws.Context, *transfer.DeleteProfileInput, ...request.Option) (*transfer.DeleteProfileOutput, error)
+	DeleteProfileRequest(*transfer.DeleteProfileInput) (*request.Request, *transfer.DeleteProfileOutput)
 
 	DeleteServer(*transfer.DeleteServerInput) (*transfer.DeleteServerOutput, error)
 	DeleteServerWithContext(aws.Context, *transfer.DeleteServerInput, ...request.Option) (*transfer.DeleteServerOutput, error)
@@ -100,9 +128,25 @@ type TransferAPI interface {
 	DescribeAccessWithContext(aws.Context, *transfer.DescribeAccessInput, ...request.Option) (*transfer.DescribeAccessOutput, error)
 	DescribeAccessRequest(*transfer.DescribeAccessInput) (*request.Request, *transfer.DescribeAccessOutput)
 
+	DescribeAgreement(*transfer.DescribeAgreementInput) (*transfer.DescribeAgreementOutput, error)
+	DescribeAgreementWithContext(aws.Context, *transfer.DescribeAgreementInput, ...request.Option) (*transfer.DescribeAgreementOutput, error)
+	DescribeAgreementRequest(*transfer.DescribeAgreementInput) (*request.Request, *transfer.DescribeAgreementOutput)
+
+	DescribeCertificate(*transfer.DescribeCertificateInput) (*transfer.DescribeCertificateOutput, error)
+	DescribeCertificateWithContext(aws.Context, *transfer.DescribeCertificateInput, ...request.Option) (*transfer.DescribeCertificateOutput, error)
+	DescribeCertificateRequest(*transfer.DescribeCertificateInput) (*request.Request, *transfer.DescribeCertificateOutput)
+
+	DescribeConnector(*transfer.DescribeConnectorInput) (*transfer.DescribeConnectorOutput, error)
+	DescribeConnectorWithContext(aws.Context, *transfer.DescribeConnectorInput, ...request.Option) (*transfer.DescribeConnectorOutput, error)
+	DescribeConnectorRequest(*transfer.DescribeConnectorInput) (*request.Request, *transfer.DescribeConnectorOutput)
+
 	DescribeExecution(*transfer.DescribeExecutionInput) (*transfer.DescribeExecutionOutput, error)
 	DescribeExecutionWithContext(aws.Context, *transfer.DescribeExecutionInput, ...request.Option) (*transfer.DescribeExecutionOutput, error)
 	DescribeExecutionRequest(*transfer.DescribeExecutionInput) (*request.Request, *transfer.DescribeExecutionOutput)
+
+	DescribeProfile(*transfer.DescribeProfileInput) (*transfer.DescribeProfileOutput, error)
+	DescribeProfileWithContext(aws.Context, *transfer.DescribeProfileInput, ...request.Option) (*transfer.DescribeProfileOutput, error)
+	DescribeProfileRequest(*transfer.DescribeProfileInput) (*request.Request, *transfer.DescribeProfileOutput)
 
 	DescribeSecurityPolicy(*transfer.DescribeSecurityPolicyInput) (*transfer.DescribeSecurityPolicyOutput, error)
 	DescribeSecurityPolicyWithContext(aws.Context, *transfer.DescribeSecurityPolicyInput, ...request.Option) (*transfer.DescribeSecurityPolicyOutput, error)
@@ -120,6 +164,10 @@ type TransferAPI interface {
 	DescribeWorkflowWithContext(aws.Context, *transfer.DescribeWorkflowInput, ...request.Option) (*transfer.DescribeWorkflowOutput, error)
 	DescribeWorkflowRequest(*transfer.DescribeWorkflowInput) (*request.Request, *transfer.DescribeWorkflowOutput)
 
+	ImportCertificate(*transfer.ImportCertificateInput) (*transfer.ImportCertificateOutput, error)
+	ImportCertificateWithContext(aws.Context, *transfer.ImportCertificateInput, ...request.Option) (*transfer.ImportCertificateOutput, error)
+	ImportCertificateRequest(*transfer.ImportCertificateInput) (*request.Request, *transfer.ImportCertificateOutput)
+
 	ImportSshPublicKey(*transfer.ImportSshPublicKeyInput) (*transfer.ImportSshPublicKeyOutput, error)
 	ImportSshPublicKeyWithContext(aws.Context, *transfer.ImportSshPublicKeyInput, ...request.Option) (*transfer.ImportSshPublicKeyOutput, error)
 	ImportSshPublicKeyRequest(*transfer.ImportSshPublicKeyInput) (*request.Request, *transfer.ImportSshPublicKeyOutput)
@@ -131,12 +179,40 @@ type TransferAPI interface {
 	ListAccessesPages(*transfer.ListAccessesInput, func(*transfer.ListAccessesOutput, bool) bool) error
 	ListAccessesPagesWithContext(aws.Context, *transfer.ListAccessesInput, func(*transfer.ListAccessesOutput, bool) bool, ...request.Option) error
 
+	ListAgreements(*transfer.ListAgreementsInput) (*transfer.ListAgreementsOutput, error)
+	ListAgreementsWithContext(aws.Context, *transfer.ListAgreementsInput, ...request.Option) (*transfer.ListAgreementsOutput, error)
+	ListAgreementsRequest(*transfer.ListAgreementsInput) (*request.Request, *transfer.ListAgreementsOutput)
+
+	ListAgreementsPages(*transfer.ListAgreementsInput, func(*transfer.ListAgreementsOutput, bool) bool) error
+	ListAgreementsPagesWithContext(aws.Context, *transfer.ListAgreementsInput, func(*transfer.ListAgreementsOutput, bool) bool, ...request.Option) error
+
+	ListCertificates(*transfer.ListCertificatesInput) (*transfer.ListCertificatesOutput, error)
+	ListCertificatesWithContext(aws.Context, *transfer.ListCertificatesInput, ...request.Option) (*transfer.ListCertificatesOutput, error)
+	ListCertificatesRequest(*transfer.ListCertificatesInput) (*request.Request, *transfer.ListCertificatesOutput)
+
+	ListCertificatesPages(*transfer.ListCertificatesInput, func(*transfer.ListCertificatesOutput, bool) bool) error
+	ListCertificatesPagesWithContext(aws.Context, *transfer.ListCertificatesInput, func(*transfer.ListCertificatesOutput, bool) bool, ...request.Option) error
+
+	ListConnectors(*transfer.ListConnectorsInput) (*transfer.ListConnectorsOutput, error)
+	ListConnectorsWithContext(aws.Context, *transfer.ListConnectorsInput, ...request.Option) (*transfer.ListConnectorsOutput, error)
+	ListConnectorsRequest(*transfer.ListConnectorsInput) (*request.Request, *transfer.ListConnectorsOutput)
+
+	ListConnectorsPages(*transfer.ListConnectorsInput, func(*transfer.ListConnectorsOutput, bool) bool) error
+	ListConnectorsPagesWithContext(aws.Context, *transfer.ListConnectorsInput, func(*transfer.ListConnectorsOutput, bool) bool, ...request.Option) error
+
 	ListExecutions(*transfer.ListExecutionsInput) (*transfer.ListExecutionsOutput, error)
 	ListExecutionsWithContext(aws.Context, *transfer.ListExecutionsInput, ...request.Option) (*transfer.ListExecutionsOutput, error)
 	ListExecutionsRequest(*transfer.ListExecutionsInput) (*request.Request, *transfer.ListExecutionsOutput)
 
 	ListExecutionsPages(*transfer.ListExecutionsInput, func(*transfer.ListExecutionsOutput, bool) bool) error
 	ListExecutionsPagesWithContext(aws.Context, *transfer.ListExecutionsInput, func(*transfer.ListExecutionsOutput, bool) bool, ...request.Option) error
+
+	ListProfiles(*transfer.ListProfilesInput) (*transfer.ListProfilesOutput, error)
+	ListProfilesWithContext(aws.Context, *transfer.ListProfilesInput, ...request.Option) (*transfer.ListProfilesOutput, error)
+	ListProfilesRequest(*transfer.ListProfilesInput) (*request.Request, *transfer.ListProfilesOutput)
+
+	ListProfilesPages(*transfer.ListProfilesInput, func(*transfer.ListProfilesOutput, bool) bool) error
+	ListProfilesPagesWithContext(aws.Context, *transfer.ListProfilesInput, func(*transfer.ListProfilesOutput, bool) bool, ...request.Option) error
 
 	ListSecurityPolicies(*transfer.ListSecurityPoliciesInput) (*transfer.ListSecurityPoliciesOutput, error)
 	ListSecurityPoliciesWithContext(aws.Context, *transfer.ListSecurityPoliciesInput, ...request.Option) (*transfer.ListSecurityPoliciesOutput, error)
@@ -177,6 +253,10 @@ type TransferAPI interface {
 	SendWorkflowStepStateWithContext(aws.Context, *transfer.SendWorkflowStepStateInput, ...request.Option) (*transfer.SendWorkflowStepStateOutput, error)
 	SendWorkflowStepStateRequest(*transfer.SendWorkflowStepStateInput) (*request.Request, *transfer.SendWorkflowStepStateOutput)
 
+	StartFileTransfer(*transfer.StartFileTransferInput) (*transfer.StartFileTransferOutput, error)
+	StartFileTransferWithContext(aws.Context, *transfer.StartFileTransferInput, ...request.Option) (*transfer.StartFileTransferOutput, error)
+	StartFileTransferRequest(*transfer.StartFileTransferInput) (*request.Request, *transfer.StartFileTransferOutput)
+
 	StartServer(*transfer.StartServerInput) (*transfer.StartServerOutput, error)
 	StartServerWithContext(aws.Context, *transfer.StartServerInput, ...request.Option) (*transfer.StartServerOutput, error)
 	StartServerRequest(*transfer.StartServerInput) (*request.Request, *transfer.StartServerOutput)
@@ -200,6 +280,22 @@ type TransferAPI interface {
 	UpdateAccess(*transfer.UpdateAccessInput) (*transfer.UpdateAccessOutput, error)
 	UpdateAccessWithContext(aws.Context, *transfer.UpdateAccessInput, ...request.Option) (*transfer.UpdateAccessOutput, error)
 	UpdateAccessRequest(*transfer.UpdateAccessInput) (*request.Request, *transfer.UpdateAccessOutput)
+
+	UpdateAgreement(*transfer.UpdateAgreementInput) (*transfer.UpdateAgreementOutput, error)
+	UpdateAgreementWithContext(aws.Context, *transfer.UpdateAgreementInput, ...request.Option) (*transfer.UpdateAgreementOutput, error)
+	UpdateAgreementRequest(*transfer.UpdateAgreementInput) (*request.Request, *transfer.UpdateAgreementOutput)
+
+	UpdateCertificate(*transfer.UpdateCertificateInput) (*transfer.UpdateCertificateOutput, error)
+	UpdateCertificateWithContext(aws.Context, *transfer.UpdateCertificateInput, ...request.Option) (*transfer.UpdateCertificateOutput, error)
+	UpdateCertificateRequest(*transfer.UpdateCertificateInput) (*request.Request, *transfer.UpdateCertificateOutput)
+
+	UpdateConnector(*transfer.UpdateConnectorInput) (*transfer.UpdateConnectorOutput, error)
+	UpdateConnectorWithContext(aws.Context, *transfer.UpdateConnectorInput, ...request.Option) (*transfer.UpdateConnectorOutput, error)
+	UpdateConnectorRequest(*transfer.UpdateConnectorInput) (*request.Request, *transfer.UpdateConnectorOutput)
+
+	UpdateProfile(*transfer.UpdateProfileInput) (*transfer.UpdateProfileOutput, error)
+	UpdateProfileWithContext(aws.Context, *transfer.UpdateProfileInput, ...request.Option) (*transfer.UpdateProfileOutput, error)
+	UpdateProfileRequest(*transfer.UpdateProfileInput) (*request.Request, *transfer.UpdateProfileOutput)
 
 	UpdateServer(*transfer.UpdateServerInput) (*transfer.UpdateServerOutput, error)
 	UpdateServerWithContext(aws.Context, *transfer.UpdateServerInput, ...request.Option) (*transfer.UpdateServerOutput, error)

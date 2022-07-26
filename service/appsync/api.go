@@ -1701,6 +1701,100 @@ func (c *AppSync) DisassociateApiWithContext(ctx aws.Context, input *Disassociat
 	return out, req.Send()
 }
 
+const opEvaluateMappingTemplate = "EvaluateMappingTemplate"
+
+// EvaluateMappingTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the EvaluateMappingTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See EvaluateMappingTemplate for more information on using the EvaluateMappingTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the EvaluateMappingTemplateRequest method.
+//    req, resp := client.EvaluateMappingTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/EvaluateMappingTemplate
+func (c *AppSync) EvaluateMappingTemplateRequest(input *EvaluateMappingTemplateInput) (req *request.Request, output *EvaluateMappingTemplateOutput) {
+	op := &request.Operation{
+		Name:       opEvaluateMappingTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/dataplane-evaluatetemplate",
+	}
+
+	if input == nil {
+		input = &EvaluateMappingTemplateInput{}
+	}
+
+	output = &EvaluateMappingTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// EvaluateMappingTemplate API operation for AWS AppSync.
+//
+// Evaluates a given template and returns the response. The mapping template
+// can be a request or response template.
+//
+// Request templates take the incoming request after a GraphQL operation is
+// parsed and convert it into a request configuration for the selected data
+// source operation. Response templates interpret responses from the data source
+// and map it to the shape of the GraphQL field output type.
+//
+// Mapping templates are written in the Apache Velocity Template Language (VTL).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation EvaluateMappingTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to perform this operation on this resource.
+//
+//   * InternalFailureException
+//   An internal AppSync error occurred. Try your request again.
+//
+//   * BadRequestException
+//   The request is not well formed. For example, a value is invalid or a required
+//   field is missing. Check the field values, and then try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/EvaluateMappingTemplate
+func (c *AppSync) EvaluateMappingTemplate(input *EvaluateMappingTemplateInput) (*EvaluateMappingTemplateOutput, error) {
+	req, out := c.EvaluateMappingTemplateRequest(input)
+	return out, req.Send()
+}
+
+// EvaluateMappingTemplateWithContext is the same as EvaluateMappingTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See EvaluateMappingTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) EvaluateMappingTemplateWithContext(ctx aws.Context, input *EvaluateMappingTemplateInput, opts ...request.Option) (*EvaluateMappingTemplateOutput, error) {
+	req, out := c.EvaluateMappingTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opFlushApiCache = "FlushApiCache"
 
 // FlushApiCacheRequest generates a "aws/request.Request" representing the
@@ -5476,7 +5570,9 @@ type CachingConfig struct {
 	// The TTL in seconds for a resolver that has caching activated.
 	//
 	// Valid values are 1–3,600 seconds.
-	Ttl *int64 `locationName:"ttl" type:"long"`
+	//
+	// Ttl is a required field
+	Ttl *int64 `locationName:"ttl" type:"long" required:"true"`
 }
 
 // String returns the string representation.
@@ -5497,6 +5593,19 @@ func (s CachingConfig) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CachingConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CachingConfig"}
+	if s.Ttl == nil {
+		invalidParams.Add(request.NewErrParamRequired("Ttl"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetCachingKeys sets the CachingKeys field's value.
 func (s *CachingConfig) SetCachingKeys(v []*string) *CachingConfig {
 	s.CachingKeys = v
@@ -5514,7 +5623,7 @@ type CognitoUserPoolConfig struct {
 	_ struct{} `type:"structure"`
 
 	// A regular expression for validating the incoming Amazon Cognito user pool
-	// app client ID.
+	// app client ID. If this value isn't set, no filtering is applied.
 	AppIdClientRegex *string `locationName:"appIdClientRegex" type:"string"`
 
 	// The Amazon Web Services Region in which the user pool was created.
@@ -6731,6 +6840,11 @@ func (s *CreateResolverInput) Validate() error {
 	}
 	if s.TypeName != nil && len(*s.TypeName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TypeName", 1))
+	}
+	if s.CachingConfig != nil {
+		if err := s.CachingConfig.Validate(); err != nil {
+			invalidParams.AddNested("CachingConfig", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8103,6 +8217,147 @@ func (s *ElasticsearchDataSourceConfig) SetAwsRegion(v string) *ElasticsearchDat
 // SetEndpoint sets the Endpoint field's value.
 func (s *ElasticsearchDataSourceConfig) SetEndpoint(v string) *ElasticsearchDataSourceConfig {
 	s.Endpoint = &v
+	return s
+}
+
+// Contains the list of errors generated when attempting to evaluate a mapping
+// template.
+type ErrorDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The error payload.
+	Message *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorDetail) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *ErrorDetail) SetMessage(v string) *ErrorDetail {
+	s.Message = &v
+	return s
+}
+
+type EvaluateMappingTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The map that holds all of the contextual information for your resolver invocation.
+	// A context is required for this action.
+	//
+	// Context is a required field
+	Context *string `locationName:"context" min:"2" type:"string" required:"true"`
+
+	// The mapping template; this can be a request or response template. A template
+	// is required for this action.
+	//
+	// Template is a required field
+	Template *string `locationName:"template" min:"2" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluateMappingTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluateMappingTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluateMappingTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluateMappingTemplateInput"}
+	if s.Context == nil {
+		invalidParams.Add(request.NewErrParamRequired("Context"))
+	}
+	if s.Context != nil && len(*s.Context) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Context", 2))
+	}
+	if s.Template == nil {
+		invalidParams.Add(request.NewErrParamRequired("Template"))
+	}
+	if s.Template != nil && len(*s.Template) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Template", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContext sets the Context field's value.
+func (s *EvaluateMappingTemplateInput) SetContext(v string) *EvaluateMappingTemplateInput {
+	s.Context = &v
+	return s
+}
+
+// SetTemplate sets the Template field's value.
+func (s *EvaluateMappingTemplateInput) SetTemplate(v string) *EvaluateMappingTemplateInput {
+	s.Template = &v
+	return s
+}
+
+type EvaluateMappingTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ErrorDetail object.
+	Error *ErrorDetail `locationName:"error" type:"structure"`
+
+	// The mapping template; this can be a request or response template.
+	EvaluationResult *string `locationName:"evaluationResult" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluateMappingTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluateMappingTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetError sets the Error field's value.
+func (s *EvaluateMappingTemplateOutput) SetError(v *ErrorDetail) *EvaluateMappingTemplateOutput {
+	s.Error = v
+	return s
+}
+
+// SetEvaluationResult sets the EvaluationResult field's value.
+func (s *EvaluateMappingTemplateOutput) SetEvaluationResult(v string) *EvaluateMappingTemplateOutput {
+	s.EvaluationResult = &v
 	return s
 }
 
@@ -12880,6 +13135,11 @@ func (s *UpdateResolverInput) Validate() error {
 	if s.TypeName != nil && len(*s.TypeName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TypeName", 1))
 	}
+	if s.CachingConfig != nil {
+		if err := s.CachingConfig.Validate(); err != nil {
+			invalidParams.AddNested("CachingConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -13109,7 +13369,7 @@ type UserPoolConfig struct {
 	_ struct{} `type:"structure"`
 
 	// A regular expression for validating the incoming Amazon Cognito user pool
-	// app client ID.
+	// app client ID. If this value isn't set, no filtering is applied.
 	AppIdClientRegex *string `locationName:"appIdClientRegex" type:"string"`
 
 	// The Amazon Web Services Region in which the user pool was created.

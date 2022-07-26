@@ -3012,7 +3012,7 @@
       }
     },
     "AwsWafRegionalRuleGroupRulesActionDetails": {
-      "base": "<p>Describes the action that AWS WAF should take on a web request when it matches the criteria defined in the rule. </p>",
+      "base": "<p>Describes the action that WAF should take on a web request when it matches the criteria defined in the rule. </p>",
       "refs": {
         "AwsWafRegionalRuleGroupRulesDetails$Action": "<p>The action that WAF should take on a web request when it matches the criteria defined in the rule. </p>"
       }
@@ -3056,7 +3056,7 @@
     "AwsWafRegionalWebAclRulesListActionDetails": {
       "base": "<p>The action that WAF takes when a web request matches all conditions in the rule, such as allow, block, or count the request. </p>",
       "refs": {
-        "AwsWafRegionalWebAclRulesListDetails$Action": "<p>The action that AWS WAF takes when a web request matches all conditions in the rule, such as allow, block, or count the request. </p>"
+        "AwsWafRegionalWebAclRulesListDetails$Action": "<p>The action that WAF takes when a web request matches all conditions in the rule, such as allow, block, or count the request. </p>"
       }
     },
     "AwsWafRegionalWebAclRulesListDetails": {
@@ -5621,8 +5621,8 @@
         "AwsXrayEncryptionConfigDetails$KeyId": "<p>The identifier of the KMS key that is used for encryption. Provided if <code>Type</code> is <code>KMS</code>.</p>",
         "AwsXrayEncryptionConfigDetails$Status": "<p>The current status of the encryption configuration. When <code>Status</code> is <code>UPDATING</code>, X-Ray might use both the old and new encryption.</p>",
         "AwsXrayEncryptionConfigDetails$Type": "<p>The type of encryption. <code>KMS</code> indicates that the encryption uses KMS keys. <code>NONE</code> indicates to use the default encryption.</p>",
-        "BatchUpdateFindingsUnprocessedFinding$ErrorCode": "<p>The code associated with the error.</p>",
-        "BatchUpdateFindingsUnprocessedFinding$ErrorMessage": "<p>The message associated with the error.</p>",
+        "BatchUpdateFindingsUnprocessedFinding$ErrorCode": "<p>The code associated with the error. Possible values are:</p> <ul> <li> <p> <code>ConcurrentUpdateError</code> - Another process or request attempted to update the finding while this request was being processed</p> </li> <li> <p> <code>DuplicatedFindingIdentifier</code> - The request included two or more findings with the same <code>FindingIdentifier</code> </p> </li> <li> <p> <code>FindingNotFound</code> - The <code>FindingIdentifier</code> included in the request did not match an existing finding</p> </li> <li> <p> <code>FindingSizeExceeded</code> - The finding size was greater than the permissible value of 240 KB</p> </li> <li> <p> <code>InternalFailure</code> - An internal service failure occurred when updating the finding</p> </li> <li> <p> <code>InvalidInput</code> - The finding update contained an invalid value that did not satisfy the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html\">Amazon Web Services Security Finding Format</a> syntax</p> </li> </ul>",
+        "BatchUpdateFindingsUnprocessedFinding$ErrorMessage": "<p>The message associated with the error. Possible values are:</p> <ul> <li> <p> <code>Concurrent finding updates detected</code> </p> </li> <li> <p> <code>Finding Identifier is duplicated</code> </p> </li> <li> <p> <code>Finding Not Found</code> </p> </li> <li> <p> <code>Finding size exceeded 240 KB</code> </p> </li> <li> <p> <code>Internal service failure</code> </p> </li> <li> <p> <code>Invalid Input</code> </p> </li> </ul>",
         "CategoryList$member": null,
         "Cell$ColumnName": "<p>The name of the column that contains the data.</p>",
         "Cell$CellReference": "<p>For a Microsoft Excel workbook, provides the location of the cell, as an absolute cell reference, that contains the data. For example, Sheet2!C5 for cell C5 on Sheet2.</p>",
