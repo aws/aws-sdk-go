@@ -20,6 +20,7 @@
     "DeleteResolver": "<p>Deletes a <code>Resolver</code> object.</p>",
     "DeleteType": "<p>Deletes a <code>Type</code> object.</p>",
     "DisassociateApi": "<p>Removes an <code>ApiAssociation</code> object from a custom domain.</p>",
+    "EvaluateMappingTemplate": "<p>Evaluates a given template and returns the response. The mapping template can be a request or response template.</p> <p>Request templates take the incoming request after a GraphQL operation is parsed and convert it into a request configuration for the selected data source operation. Response templates interpret responses from the data source and map it to the shape of the GraphQL field output type.</p> <p>Mapping templates are written in the Apache Velocity Template Language (VTL).</p>",
     "FlushApiCache": "<p>Flushes an <code>ApiCache</code> object.</p>",
     "GetApiAssociation": "<p>Retrieves an <code>ApiAssociation</code> object.</p>",
     "GetApiCache": "<p>Retrieves an <code>ApiCache</code> object.</p>",
@@ -256,6 +257,12 @@
       "base": null,
       "refs": {
         "SyncConfig$conflictHandler": "<p>The Conflict Resolution strategy to perform in the event of a conflict.</p> <ul> <li> <p> <b>OPTIMISTIC_CONCURRENCY</b>: Resolve conflicts by rejecting mutations when versions don't match the latest version at the server.</p> </li> <li> <p> <b>AUTOMERGE</b>: Resolve conflicts with the Automerge conflict resolution strategy.</p> </li> <li> <p> <b>LAMBDA</b>: Resolve conflicts with an Lambda function supplied in the <code>LambdaConflictHandlerConfig</code>.</p> </li> </ul>"
+      }
+    },
+    "Context": {
+      "base": null,
+      "refs": {
+        "EvaluateMappingTemplateRequest$context": "<p>The map that holds all of the contextual information for your resolver invocation. A <code>context</code> is required for this action.</p>"
       }
     },
     "CreateApiCacheRequest": {
@@ -516,12 +523,35 @@
         "UpdateDataSourceRequest$elasticsearchConfig": "<p>The new OpenSearch configuration.</p> <p>As of September 2021, Amazon Elasticsearch service is Amazon OpenSearch Service. This configuration is deprecated. Instead, use <a>UpdateDataSourceRequest$openSearchServiceConfig</a> to update an OpenSearch data source.</p>"
       }
     },
+    "ErrorDetail": {
+      "base": "<p>Contains the list of errors generated when attempting to evaluate a mapping template.</p>",
+      "refs": {
+        "EvaluateMappingTemplateResponse$error": "<p>The <code>ErrorDetail</code> object.</p>"
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
         "BadRequestException$message": null,
         "ConcurrentModificationException$message": null,
+        "ErrorDetail$message": "<p>The error payload.</p>",
         "GraphQLSchemaException$message": null
+      }
+    },
+    "EvaluateMappingTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EvaluateMappingTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EvaluationResult": {
+      "base": null,
+      "refs": {
+        "EvaluateMappingTemplateResponse$evaluationResult": "<p>The mapping template; this can be a request or response template.</p>"
       }
     },
     "FieldLogLevel": {
@@ -1064,7 +1094,7 @@
         "CachingKeys$member": null,
         "CognitoUserPoolConfig$userPoolId": "<p>The user pool ID.</p>",
         "CognitoUserPoolConfig$awsRegion": "<p>The Amazon Web Services Region in which the user pool was created.</p>",
-        "CognitoUserPoolConfig$appIdClientRegex": "<p>A regular expression for validating the incoming Amazon Cognito user pool app client ID.</p>",
+        "CognitoUserPoolConfig$appIdClientRegex": "<p>A regular expression for validating the incoming Amazon Cognito user pool app client ID. If this value isn't set, no filtering is applied.</p>",
         "CreateApiCacheRequest$apiId": "<p>The GraphQL API ID.</p>",
         "CreateApiKeyRequest$apiId": "<p>The ID for your GraphQL API.</p>",
         "CreateApiKeyRequest$description": "<p>A description of the purpose of the API key.</p>",
@@ -1165,7 +1195,7 @@
         "UpdateTypeRequest$definition": "<p>The new definition.</p>",
         "UserPoolConfig$userPoolId": "<p>The user pool ID.</p>",
         "UserPoolConfig$awsRegion": "<p>The Amazon Web Services Region in which the user pool was created.</p>",
-        "UserPoolConfig$appIdClientRegex": "<p>A regular expression for validating the incoming Amazon Cognito user pool app client ID.</p>"
+        "UserPoolConfig$appIdClientRegex": "<p>A regular expression for validating the incoming Amazon Cognito user pool app client ID. If this value isn't set, no filtering is applied.</p>"
       }
     },
     "SyncConfig": {
@@ -1221,6 +1251,12 @@
       "base": "<p>The value for the tag.</p>",
       "refs": {
         "TagMap$value": null
+      }
+    },
+    "Template": {
+      "base": null,
+      "refs": {
+        "EvaluateMappingTemplateRequest$template": "<p>The mapping template; this can be a request or response template. A <code>template</code> is required for this action.</p>"
       }
     },
     "Type": {

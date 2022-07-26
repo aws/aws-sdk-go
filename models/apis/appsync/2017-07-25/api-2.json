@@ -298,6 +298,20 @@
         {"shape":"NotFoundException"}
       ]
     },
+    "EvaluateMappingTemplate":{
+      "name":"EvaluateMappingTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/dataplane-evaluatetemplate"
+      },
+      "input":{"shape":"EvaluateMappingTemplateRequest"},
+      "output":{"shape":"EvaluateMappingTemplateResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "FlushApiCache":{
       "name":"FlushApiCache",
       "http":{
@@ -968,6 +982,7 @@
     "BooleanValue":{"type":"boolean"},
     "CachingConfig":{
       "type":"structure",
+      "required":["ttl"],
       "members":{
         "ttl":{"shape":"Long"},
         "cachingKeys":{"shape":"CachingKeys"}
@@ -1018,6 +1033,12 @@
         "AUTOMERGE",
         "NONE"
       ]
+    },
+    "Context":{
+      "type":"string",
+      "max":28000,
+      "min":2,
+      "pattern":"^[\\s\\S]*$"
     },
     "CreateApiCacheRequest":{
       "type":"structure",
@@ -1514,7 +1535,37 @@
         "awsRegion":{"shape":"String"}
       }
     },
+    "ErrorDetail":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      }
+    },
     "ErrorMessage":{"type":"string"},
+    "EvaluateMappingTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "template",
+        "context"
+      ],
+      "members":{
+        "template":{"shape":"Template"},
+        "context":{"shape":"Context"}
+      }
+    },
+    "EvaluateMappingTemplateResponse":{
+      "type":"structure",
+      "members":{
+        "evaluationResult":{"shape":"EvaluationResult"},
+        "error":{"shape":"ErrorDetail"}
+      }
+    },
+    "EvaluationResult":{
+      "type":"string",
+      "max":65536,
+      "min":0,
+      "pattern":"^[\\s\\S]*$"
+    },
     "FieldLogLevel":{
       "type":"string",
       "enum":[
@@ -2351,6 +2402,12 @@
       "type":"string",
       "max":256,
       "pattern":"^[\\s\\w+-=\\.:/@]*$"
+    },
+    "Template":{
+      "type":"string",
+      "max":65536,
+      "min":2,
+      "pattern":"^[\\s\\S]*$"
     },
     "Type":{
       "type":"structure",

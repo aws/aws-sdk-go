@@ -1700,7 +1700,8 @@ func (c *LookoutForVision) ListProjectsRequest(input *ListProjectsInput) (req *r
 
 // ListProjects API operation for Amazon Lookout for Vision.
 //
-// Lists the Amazon Lookout for Vision projects in your AWS account.
+// Lists the Amazon Lookout for Vision projects in your AWS account that are
+// in the AWS Region in which you call ListProjects.
 //
 // The ListProjects operation is eventually consistent. Recent calls to CreateProject
 // and DeleteProject might take a while to appear in the response from ListProjects.
@@ -5354,6 +5355,14 @@ type ModelDescription struct {
 	// to encrypt the model during training.
 	KmsKeyId *string `min:"1" type:"string"`
 
+	// The maximum number of inference units Amazon Lookout for Vision uses to auto-scale
+	// the model. For more information, see StartModel.
+	MaxInferenceUnits *int64 `min:"1" type:"integer"`
+
+	// The minimum number of inference units used by the model. For more information,
+	// see StartModel
+	MinInferenceUnits *int64 `min:"1" type:"integer"`
+
 	// The Amazon Resource Name (ARN) of the model.
 	ModelArn *string `type:"string"`
 
@@ -5424,6 +5433,18 @@ func (s *ModelDescription) SetEvaluationResult(v *OutputS3Object) *ModelDescript
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *ModelDescription) SetKmsKeyId(v string) *ModelDescription {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetMaxInferenceUnits sets the MaxInferenceUnits field's value.
+func (s *ModelDescription) SetMaxInferenceUnits(v int64) *ModelDescription {
+	s.MaxInferenceUnits = &v
+	return s
+}
+
+// SetMinInferenceUnits sets the MinInferenceUnits field's value.
+func (s *ModelDescription) SetMinInferenceUnits(v int64) *ModelDescription {
+	s.MinInferenceUnits = &v
 	return s
 }
 
@@ -6364,6 +6385,11 @@ type StartModelInput struct {
 	// call to StartModel. An idempotency token is active for 8 hours.
 	ClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The maximum number of inference units to use for auto-scaling the model.
+	// If you don't specify a value, Amazon Lookout for Vision doesn't auto-scale
+	// the model.
+	MaxInferenceUnits *int64 `min:"1" type:"integer"`
+
 	// The minimum number of inference units to use. A single inference unit represents
 	// 1 hour of processing. Use a higher number to increase the TPS throughput
 	// of your model. You are charged for the number of inference units that you
@@ -6407,6 +6433,9 @@ func (s *StartModelInput) Validate() error {
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
 	}
+	if s.MaxInferenceUnits != nil && *s.MaxInferenceUnits < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxInferenceUnits", 1))
+	}
 	if s.MinInferenceUnits == nil {
 		invalidParams.Add(request.NewErrParamRequired("MinInferenceUnits"))
 	}
@@ -6435,6 +6464,12 @@ func (s *StartModelInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *StartModelInput) SetClientToken(v string) *StartModelInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetMaxInferenceUnits sets the MaxInferenceUnits field's value.
+func (s *StartModelInput) SetMaxInferenceUnits(v int64) *StartModelInput {
+	s.MaxInferenceUnits = &v
 	return s
 }
 

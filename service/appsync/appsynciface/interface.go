@@ -132,6 +132,10 @@ type AppSyncAPI interface {
 	DisassociateApiWithContext(aws.Context, *appsync.DisassociateApiInput, ...request.Option) (*appsync.DisassociateApiOutput, error)
 	DisassociateApiRequest(*appsync.DisassociateApiInput) (*request.Request, *appsync.DisassociateApiOutput)
 
+	EvaluateMappingTemplate(*appsync.EvaluateMappingTemplateInput) (*appsync.EvaluateMappingTemplateOutput, error)
+	EvaluateMappingTemplateWithContext(aws.Context, *appsync.EvaluateMappingTemplateInput, ...request.Option) (*appsync.EvaluateMappingTemplateOutput, error)
+	EvaluateMappingTemplateRequest(*appsync.EvaluateMappingTemplateInput) (*request.Request, *appsync.EvaluateMappingTemplateOutput)
+
 	FlushApiCache(*appsync.FlushApiCacheInput) (*appsync.FlushApiCacheOutput, error)
 	FlushApiCacheWithContext(aws.Context, *appsync.FlushApiCacheInput, ...request.Option) (*appsync.FlushApiCacheOutput, error)
 	FlushApiCacheRequest(*appsync.FlushApiCacheInput) (*request.Request, *appsync.FlushApiCacheOutput)

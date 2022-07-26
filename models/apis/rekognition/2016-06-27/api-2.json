@@ -2975,7 +2975,8 @@
         "TestingDataResult":{"shape":"TestingDataResult"},
         "EvaluationResult":{"shape":"EvaluationResult"},
         "ManifestSummary":{"shape":"GroundTruthManifest"},
-        "KmsKeyId":{"shape":"KmsKeyId"}
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "MaxInferenceUnits":{"shape":"InferenceUnits"}
       }
     },
     "ProjectVersionDescriptions":{
@@ -3429,7 +3430,8 @@
       ],
       "members":{
         "ProjectVersionArn":{"shape":"ProjectVersionArn"},
-        "MinInferenceUnits":{"shape":"InferenceUnits"}
+        "MinInferenceUnits":{"shape":"InferenceUnits"},
+        "MaxInferenceUnits":{"shape":"InferenceUnits"}
       }
     },
     "StartProjectVersionResponse":{

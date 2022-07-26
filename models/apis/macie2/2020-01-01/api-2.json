@@ -1306,6 +1306,96 @@
         }
       ]
     },
+    "GetRevealConfiguration": {
+      "name": "GetRevealConfiguration",
+      "http": {
+        "method": "GET",
+        "requestUri": "/reveal-configuration",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetRevealConfigurationRequest"
+      },
+      "output": {
+        "shape": "GetRevealConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ]
+    },
+    "GetSensitiveDataOccurrences": {
+      "name": "GetSensitiveDataOccurrences",
+      "http": {
+        "method": "GET",
+        "requestUri": "/findings/{findingId}/reveal",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetSensitiveDataOccurrencesRequest"
+      },
+      "output": {
+        "shape": "GetSensitiveDataOccurrencesResponse"
+      },
+      "errors": [
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        }
+      ]
+    },
+    "GetSensitiveDataOccurrencesAvailability": {
+      "name": "GetSensitiveDataOccurrencesAvailability",
+      "http": {
+        "method": "GET",
+        "requestUri": "/findings/{findingId}/reveal/availability",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetSensitiveDataOccurrencesAvailabilityRequest"
+      },
+      "output": {
+        "shape": "GetSensitiveDataOccurrencesAvailabilityResponse"
+      },
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ]
+    },
     "GetUsageStatistics": {
       "name": "GetUsageStatistics",
       "http": {
@@ -2031,6 +2121,34 @@
           "shape": "ConflictException"
         }
       ]
+    },
+    "UpdateRevealConfiguration": {
+      "name": "UpdateRevealConfiguration",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/reveal-configuration",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateRevealConfigurationRequest"
+      },
+      "output": {
+        "shape": "UpdateRevealConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ]
     }
   },
   "shapes": {
@@ -2183,6 +2301,13 @@
           "locationName": "sessionContext"
         }
       }
+    },
+    "AvailabilityCode": {
+      "type": "string",
+      "enum": [
+        "AVAILABLE",
+        "UNAVAILABLE"
+      ]
     },
     "AwsAccount": {
       "type": "structure",
@@ -3377,6 +3502,18 @@
         }
       }
     },
+    "DetectedDataDetails": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "shape": "__stringMin1Max128",
+          "locationName": "value"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
     "DisableMacieRequest": {
       "type": "structure",
       "members": {}
@@ -4129,6 +4266,75 @@
         "updatedAt": {
           "shape": "__timestampIso8601",
           "locationName": "updatedAt"
+        }
+      }
+    },
+    "GetRevealConfigurationRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "GetRevealConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "configuration": {
+          "shape": "RevealConfiguration",
+          "locationName": "configuration"
+        }
+      }
+    },
+    "GetSensitiveDataOccurrencesAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "findingId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "findingId"
+        }
+      },
+      "required": [
+        "findingId"
+      ]
+    },
+    "GetSensitiveDataOccurrencesAvailabilityResponse": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "shape": "AvailabilityCode",
+          "locationName": "code"
+        },
+        "reasons": {
+          "shape": "__listOfUnavailabilityReasonCode",
+          "locationName": "reasons"
+        }
+      }
+    },
+    "GetSensitiveDataOccurrencesRequest": {
+      "type": "structure",
+      "members": {
+        "findingId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "findingId"
+        }
+      },
+      "required": [
+        "findingId"
+      ]
+    },
+    "GetSensitiveDataOccurrencesResponse": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "shape": "__string",
+          "locationName": "error"
+        },
+        "sensitiveDataOccurrences": {
+          "shape": "SensitiveDataOccurrences",
+          "locationName": "sensitiveDataOccurrences"
+        },
+        "status": {
+          "shape": "RevealRequestStatus",
+          "locationName": "status"
         }
       }
     },
@@ -5259,6 +5465,37 @@
         }
       }
     },
+    "RevealConfiguration": {
+      "type": "structure",
+      "members": {
+        "kmsKeyId": {
+          "shape": "__stringMin1Max2048",
+          "locationName": "kmsKeyId"
+        },
+        "status": {
+          "shape": "RevealStatus",
+          "locationName": "status"
+        }
+      },
+      "required": [
+        "status"
+      ]
+    },
+    "RevealRequestStatus": {
+      "type": "string",
+      "enum": [
+        "SUCCESS",
+        "PROCESSING",
+        "ERROR"
+      ]
+    },
+    "RevealStatus": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "S3Bucket": {
       "type": "structure",
       "members": {
@@ -5651,6 +5888,15 @@
         "CUSTOM_IDENTIFIER"
       ]
     },
+    "SensitiveDataOccurrences": {
+      "type": "map",
+      "key": {
+        "shape": "__string"
+      },
+      "value": {
+        "shape": "__listOfDetectedDataDetails"
+      }
+    },
     "ServerSideEncryption": {
       "type": "structure",
       "members": {
@@ -6042,11 +6288,37 @@
         "aws:kms"
       ]
     },
+    "UnavailabilityReasonCode": {
+      "type": "string",
+      "enum": [
+        "OBJECT_EXCEEDS_SIZE_QUOTA",
+        "UNSUPPORTED_OBJECT_TYPE",
+        "UNSUPPORTED_FINDING_TYPE",
+        "INVALID_CLASSIFICATION_RESULT",
+        "OBJECT_UNAVAILABLE"
+      ]
+    },
     "Unit": {
       "type": "string",
       "enum": [
         "TERABYTES"
       ]
+    },
+    "UnprocessableEntityException": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      },
+      "required": [
+        "message"
+      ],
+      "exception": true,
+      "error": {
+        "httpStatusCode": 422
+      }
     },
     "UnprocessedAccount": {
       "type": "structure",
@@ -6215,6 +6487,27 @@
     "UpdateOrganizationConfigurationResponse": {
       "type": "structure",
       "members": {}
+    },
+    "UpdateRevealConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "configuration": {
+          "shape": "RevealConfiguration",
+          "locationName": "configuration"
+        }
+      },
+      "required": [
+        "configuration"
+      ]
+    },
+    "UpdateRevealConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "configuration": {
+          "shape": "RevealConfiguration",
+          "locationName": "configuration"
+        }
+      }
     },
     "UsageByAccount": {
       "type": "structure",
@@ -6477,6 +6770,12 @@
         "shape": "CustomDataIdentifierSummary"
       }
     },
+    "__listOfDetectedDataDetails": {
+      "type": "list",
+      "member": {
+        "shape": "DetectedDataDetails"
+      }
+    },
     "__listOfFinding": {
       "type": "list",
       "member": {
@@ -6579,6 +6878,13 @@
         "shape": "TagValuePair"
       }
     },
+    "__listOfUnavailabilityReasonCode": {
+      "type": "list",
+      "min": 0,
+      "member": {
+        "shape": "UnavailabilityReasonCode"
+      }
+    },
     "__listOfUnprocessedAccount": {
       "type": "list",
       "member": {
@@ -6620,6 +6926,16 @@
     },
     "__string": {
       "type": "string"
+    },
+    "__stringMin1Max128": {
+      "type": "string",
+      "min": 1,
+      "max": 128
+    },
+    "__stringMin1Max2048": {
+      "type": "string",
+      "min": 1,
+      "max": 2048
     },
     "__timestampIso8601": {
       "type": "timestamp",

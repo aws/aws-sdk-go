@@ -6907,6 +6907,9 @@ func (c *Rekognition) StartProjectVersionRequest(input *StartProjectVersionInput
 // You are charged for the amount of time that the model is running. To stop
 // a running model, call StopProjectVersion.
 //
+// For more information, see Running a trained Amazon Rekognition Custom Labels
+// model in the Amazon Rekognition Custom Labels Guide.
+//
 // This operation requires permissions to perform the rekognition:StartProjectVersion
 // action.
 //
@@ -9718,9 +9721,10 @@ type CreateStreamProcessorInput struct {
 	Output *StreamProcessorOutput `type:"structure" required:"true"`
 
 	// Specifies locations in the frames where Amazon Rekognition checks for objects
-	// or people. You can specify up to 10 regions of interest. This is an optional
-	// parameter for label detection stream processors and should not be used to
-	// create a face search stream processor.
+	// or people. You can specify up to 10 regions of interest, and each region
+	// has either a polygon or a bounding box. This is an optional parameter for
+	// label detection stream processors and should not be used to create a face
+	// search stream processor.
 	RegionsOfInterest []*RegionOfInterest `type:"list"`
 
 	// The Amazon Resource Number (ARN) of the IAM role that allows access to the
@@ -17578,6 +17582,10 @@ type ProjectVersionDescription struct {
 	// data validation results for the training and test datasets.
 	ManifestSummary *GroundTruthManifest `type:"structure"`
 
+	// The maximum number of inference units Amazon Rekognition Custom Labels uses
+	// to auto-scale the model. For more information, see StartProjectVersion.
+	MaxInferenceUnits *int64 `min:"1" type:"integer"`
+
 	// The minimum number of inference units used by the model. For more information,
 	// see StartProjectVersion.
 	MinInferenceUnits *int64 `min:"1" type:"integer"`
@@ -17649,6 +17657,12 @@ func (s *ProjectVersionDescription) SetKmsKeyId(v string) *ProjectVersionDescrip
 // SetManifestSummary sets the ManifestSummary field's value.
 func (s *ProjectVersionDescription) SetManifestSummary(v *GroundTruthManifest) *ProjectVersionDescription {
 	s.ManifestSummary = v
+	return s
+}
+
+// SetMaxInferenceUnits sets the MaxInferenceUnits field's value.
+func (s *ProjectVersionDescription) SetMaxInferenceUnits(v int64) *ProjectVersionDescription {
+	s.MaxInferenceUnits = &v
 	return s
 }
 
@@ -18154,8 +18168,8 @@ func (s *RecognizeCelebritiesOutput) SetUnrecognizedFaces(v []*ComparedFace) *Re
 }
 
 // Specifies a location within the frame that Rekognition checks for objects
-// of interest such as text, labels, or faces. It uses a BoundingBox or object
-// or Polygon to set a region of the screen.
+// of interest such as text, labels, or faces. It uses a BoundingBox or Polygon
+// to set a region of the screen.
 //
 // A word, face, or label is included in the region if it is more than half
 // in that region. If there is more than one region, the word, face, or label
@@ -20109,8 +20123,18 @@ func (s *StartPersonTrackingOutput) SetJobId(v string) *StartPersonTrackingOutpu
 type StartProjectVersionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum number of inference units to use for auto-scaling the model.
+	// If you don't specify a value, Amazon Rekognition Custom Labels doesn't auto-scale
+	// the model.
+	MaxInferenceUnits *int64 `min:"1" type:"integer"`
+
 	// The minimum number of inference units to use. A single inference unit represents
-	// 1 hour of processing and can support up to 5 Transaction Pers Second (TPS).
+	// 1 hour of processing.
+	//
+	// For information about the number of transactions per second (TPS) that an
+	// inference unit can support, see Running a trained Amazon Rekognition Custom
+	// Labels model in the Amazon Rekognition Custom Labels Guide.
+	//
 	// Use a higher number to increase the TPS throughput of your model. You are
 	// charged for the number of inference units that you use.
 	//
@@ -20144,6 +20168,9 @@ func (s StartProjectVersionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartProjectVersionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartProjectVersionInput"}
+	if s.MaxInferenceUnits != nil && *s.MaxInferenceUnits < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxInferenceUnits", 1))
+	}
 	if s.MinInferenceUnits == nil {
 		invalidParams.Add(request.NewErrParamRequired("MinInferenceUnits"))
 	}
@@ -20161,6 +20188,12 @@ func (s *StartProjectVersionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetMaxInferenceUnits sets the MaxInferenceUnits field's value.
+func (s *StartProjectVersionInput) SetMaxInferenceUnits(v int64) *StartProjectVersionInput {
+	s.MaxInferenceUnits = &v
+	return s
 }
 
 // SetMinInferenceUnits sets the MinInferenceUnits field's value.

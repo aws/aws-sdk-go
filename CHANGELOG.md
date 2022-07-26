@@ -1,3 +1,21 @@
+Release v1.44.63 (2022-07-26)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/detective`: Updates service API, documentation, and paginators
+* `service/guardduty`: Updates service API, documentation, and paginators
+  * Amazon GuardDuty introduces a new Malware Protection feature that triggers malware scan on selected EC2 instance resources, after the service detects a potentially malicious activity.
+* `service/lookoutvision`: Updates service API and documentation
+* `service/macie2`: Updates service API, documentation, and waiters
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds support for using RDS Proxies with RDS for MariaDB databases.
+* `service/rekognition`: Updates service API and documentation
+  * This release introduces support for the automatic scaling of inference units used by Amazon Rekognition Custom Labels models.
+* `service/securityhub`: Updates service documentation
+* `service/transfer`: Updates service API, documentation, and paginators
+  * AWS Transfer Family now supports Applicability Statement 2 (AS2), a network protocol used for the secure and reliable transfer of critical Business-to-Business (B2B) data over the public internet using HTTP/HTTPS as the transport mechanism.
+
 Release v1.44.62 (2022-07-25)
 ===
 

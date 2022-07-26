@@ -58,11 +58,11 @@ func (c *Transfer) CreateAccessRequest(input *CreateAccessInput) (req *request.R
 // CreateAccess API operation for AWS Transfer Family.
 //
 // Used by administrators to choose which groups in the directory should have
-// access to upload and download files over the enabled protocols using Amazon
-// Web Services Transfer Family. For example, a Microsoft Active Directory might
-// contain 50,000 users, but only a small fraction might need the ability to
-// transfer files to the server. An administrator can use CreateAccess to limit
-// the access to the correct set of users who need this ability.
+// access to upload and download files over the enabled protocols using Transfer
+// Family. For example, a Microsoft Active Directory might contain 50,000 users,
+// but only a small fraction might need the ability to transfer files to the
+// server. An administrator can use CreateAccess to limit the access to the
+// correct set of users who need this ability.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -107,6 +107,295 @@ func (c *Transfer) CreateAccess(input *CreateAccessInput) (*CreateAccessOutput, 
 // for more information on using Contexts.
 func (c *Transfer) CreateAccessWithContext(ctx aws.Context, input *CreateAccessInput, opts ...request.Option) (*CreateAccessOutput, error) {
 	req, out := c.CreateAccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateAgreement = "CreateAgreement"
+
+// CreateAgreementRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAgreement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAgreement for more information on using the CreateAgreement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAgreementRequest method.
+//    req, resp := client.CreateAgreementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateAgreement
+func (c *Transfer) CreateAgreementRequest(input *CreateAgreementInput) (req *request.Request, output *CreateAgreementOutput) {
+	op := &request.Operation{
+		Name:       opCreateAgreement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateAgreementInput{}
+	}
+
+	output = &CreateAgreementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAgreement API operation for AWS Transfer Family.
+//
+// Creates an agreement. An agreement is a bilateral trading partner agreement,
+// or partnership, between an Transfer Family server and an AS2 process. The
+// agreement defines the file and message transfer relationship between the
+// server and the AS2 process. To define an agreement, Transfer Family combines
+// a server, local profile, partner profile, certificate, and other attributes.
+//
+// The partner is identified with the PartnerProfileId, and the AS2 process
+// is identified with the LocalProfileId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation CreateAgreement for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceExistsException
+//   The requested resource does not exist.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateAgreement
+func (c *Transfer) CreateAgreement(input *CreateAgreementInput) (*CreateAgreementOutput, error) {
+	req, out := c.CreateAgreementRequest(input)
+	return out, req.Send()
+}
+
+// CreateAgreementWithContext is the same as CreateAgreement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAgreement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) CreateAgreementWithContext(ctx aws.Context, input *CreateAgreementInput, opts ...request.Option) (*CreateAgreementOutput, error) {
+	req, out := c.CreateAgreementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateConnector = "CreateConnector"
+
+// CreateConnectorRequest generates a "aws/request.Request" representing the
+// client's request for the CreateConnector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateConnector for more information on using the CreateConnector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateConnectorRequest method.
+//    req, resp := client.CreateConnectorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateConnector
+func (c *Transfer) CreateConnectorRequest(input *CreateConnectorInput) (req *request.Request, output *CreateConnectorOutput) {
+	op := &request.Operation{
+		Name:       opCreateConnector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateConnectorInput{}
+	}
+
+	output = &CreateConnectorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateConnector API operation for AWS Transfer Family.
+//
+// Creates the connector, which captures the parameters for an outbound connection
+// for the AS2 protocol. The connector is required for sending files from a
+// customer's non Amazon Web Services server.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation CreateConnector for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceExistsException
+//   The requested resource does not exist.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateConnector
+func (c *Transfer) CreateConnector(input *CreateConnectorInput) (*CreateConnectorOutput, error) {
+	req, out := c.CreateConnectorRequest(input)
+	return out, req.Send()
+}
+
+// CreateConnectorWithContext is the same as CreateConnector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateConnector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) CreateConnectorWithContext(ctx aws.Context, input *CreateConnectorInput, opts ...request.Option) (*CreateConnectorOutput, error) {
+	req, out := c.CreateConnectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateProfile = "CreateProfile"
+
+// CreateProfileRequest generates a "aws/request.Request" representing the
+// client's request for the CreateProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateProfile for more information on using the CreateProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateProfileRequest method.
+//    req, resp := client.CreateProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateProfile
+func (c *Transfer) CreateProfileRequest(input *CreateProfileInput) (req *request.Request, output *CreateProfileOutput) {
+	op := &request.Operation{
+		Name:       opCreateProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateProfileInput{}
+	}
+
+	output = &CreateProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateProfile API operation for AWS Transfer Family.
+//
+// Creates the profile for the AS2 process. The agreement is between the partner
+// and the AS2 process.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation CreateProfile for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateProfile
+func (c *Transfer) CreateProfile(input *CreateProfileInput) (*CreateProfileOutput, error) {
+	req, out := c.CreateProfileRequest(input)
+	return out, req.Send()
+}
+
+// CreateProfileWithContext is the same as CreateProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) CreateProfileWithContext(ctx aws.Context, input *CreateProfileInput, opts ...request.Option) (*CreateProfileOutput, error) {
+	req, out := c.CreateProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -263,9 +552,9 @@ func (c *Transfer) CreateUserRequest(input *CreateUserInput) (req *request.Reque
 // server. You can only create and associate users with servers that have the
 // IdentityProviderType set to SERVICE_MANAGED. Using parameters for CreateUser,
 // you can specify the user name, set the home directory, store the user's public
-// key, and assign the user's Amazon Web Services Identity and Access Management
-// (IAM) role. You can also optionally add a session policy, and assign metadata
-// with tags that can be used to group and search for users.
+// key, and assign the user's Identity and Access Management (IAM) role. You
+// can also optionally add a session policy, and assign metadata with tags that
+// can be used to group and search for users.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -502,6 +791,374 @@ func (c *Transfer) DeleteAccess(input *DeleteAccessInput) (*DeleteAccessOutput, 
 // for more information on using Contexts.
 func (c *Transfer) DeleteAccessWithContext(ctx aws.Context, input *DeleteAccessInput, opts ...request.Option) (*DeleteAccessOutput, error) {
 	req, out := c.DeleteAccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAgreement = "DeleteAgreement"
+
+// DeleteAgreementRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAgreement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAgreement for more information on using the DeleteAgreement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAgreementRequest method.
+//    req, resp := client.DeleteAgreementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteAgreement
+func (c *Transfer) DeleteAgreementRequest(input *DeleteAgreementInput) (req *request.Request, output *DeleteAgreementOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAgreement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteAgreementInput{}
+	}
+
+	output = &DeleteAgreementOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAgreement API operation for AWS Transfer Family.
+//
+// Delete the agreement that's specified in the provided AgreementId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DeleteAgreement for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteAgreement
+func (c *Transfer) DeleteAgreement(input *DeleteAgreementInput) (*DeleteAgreementOutput, error) {
+	req, out := c.DeleteAgreementRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAgreementWithContext is the same as DeleteAgreement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAgreement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DeleteAgreementWithContext(ctx aws.Context, input *DeleteAgreementInput, opts ...request.Option) (*DeleteAgreementOutput, error) {
+	req, out := c.DeleteAgreementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCertificate = "DeleteCertificate"
+
+// DeleteCertificateRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCertificate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCertificate for more information on using the DeleteCertificate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteCertificateRequest method.
+//    req, resp := client.DeleteCertificateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteCertificate
+func (c *Transfer) DeleteCertificateRequest(input *DeleteCertificateInput) (req *request.Request, output *DeleteCertificateOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteCertificateInput{}
+	}
+
+	output = &DeleteCertificateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCertificate API operation for AWS Transfer Family.
+//
+// Deletes the certificate that's specified in the CertificateId parameter.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DeleteCertificate for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteCertificate
+func (c *Transfer) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertificateOutput, error) {
+	req, out := c.DeleteCertificateRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCertificateWithContext is the same as DeleteCertificate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCertificate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DeleteCertificateWithContext(ctx aws.Context, input *DeleteCertificateInput, opts ...request.Option) (*DeleteCertificateOutput, error) {
+	req, out := c.DeleteCertificateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteConnector = "DeleteConnector"
+
+// DeleteConnectorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteConnector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteConnector for more information on using the DeleteConnector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteConnectorRequest method.
+//    req, resp := client.DeleteConnectorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteConnector
+func (c *Transfer) DeleteConnectorRequest(input *DeleteConnectorInput) (req *request.Request, output *DeleteConnectorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteConnector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteConnectorInput{}
+	}
+
+	output = &DeleteConnectorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteConnector API operation for AWS Transfer Family.
+//
+// Deletes the agreement that's specified in the provided ConnectorId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DeleteConnector for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteConnector
+func (c *Transfer) DeleteConnector(input *DeleteConnectorInput) (*DeleteConnectorOutput, error) {
+	req, out := c.DeleteConnectorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteConnectorWithContext is the same as DeleteConnector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteConnector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DeleteConnectorWithContext(ctx aws.Context, input *DeleteConnectorInput, opts ...request.Option) (*DeleteConnectorOutput, error) {
+	req, out := c.DeleteConnectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteProfile = "DeleteProfile"
+
+// DeleteProfileRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteProfile for more information on using the DeleteProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteProfileRequest method.
+//    req, resp := client.DeleteProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteProfile
+func (c *Transfer) DeleteProfileRequest(input *DeleteProfileInput) (req *request.Request, output *DeleteProfileOutput) {
+	op := &request.Operation{
+		Name:       opDeleteProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteProfileInput{}
+	}
+
+	output = &DeleteProfileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteProfile API operation for AWS Transfer Family.
+//
+// Deletes the profile that's specified in the ProfileId parameter.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DeleteProfile for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteProfile
+func (c *Transfer) DeleteProfile(input *DeleteProfileInput) (*DeleteProfileOutput, error) {
+	req, out := c.DeleteProfileRequest(input)
+	return out, req.Send()
+}
+
+// DeleteProfileWithContext is the same as DeleteProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DeleteProfileWithContext(ctx aws.Context, input *DeleteProfileInput, opts ...request.Option) (*DeleteProfileOutput, error) {
+	req, out := c.DeleteProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -936,7 +1593,7 @@ func (c *Transfer) DescribeAccessRequest(input *DescribeAccessInput) (req *reque
 // DescribeAccess API operation for AWS Transfer Family.
 //
 // Describes the access that is assigned to the specific file transfer protocol-enabled
-// server, as identified by its ServerId property and its ExternalID.
+// server, as identified by its ServerId property and its ExternalId.
 //
 // The response from this call returns the properties of the access that is
 // associated with the ServerId value that was specified.
@@ -981,6 +1638,279 @@ func (c *Transfer) DescribeAccess(input *DescribeAccessInput) (*DescribeAccessOu
 // for more information on using Contexts.
 func (c *Transfer) DescribeAccessWithContext(ctx aws.Context, input *DescribeAccessInput, opts ...request.Option) (*DescribeAccessOutput, error) {
 	req, out := c.DescribeAccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeAgreement = "DescribeAgreement"
+
+// DescribeAgreementRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAgreement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAgreement for more information on using the DescribeAgreement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAgreementRequest method.
+//    req, resp := client.DescribeAgreementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeAgreement
+func (c *Transfer) DescribeAgreementRequest(input *DescribeAgreementInput) (req *request.Request, output *DescribeAgreementOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAgreement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeAgreementInput{}
+	}
+
+	output = &DescribeAgreementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAgreement API operation for AWS Transfer Family.
+//
+// Describes the agreement that's identified by the AgreementId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DescribeAgreement for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeAgreement
+func (c *Transfer) DescribeAgreement(input *DescribeAgreementInput) (*DescribeAgreementOutput, error) {
+	req, out := c.DescribeAgreementRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAgreementWithContext is the same as DescribeAgreement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAgreement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DescribeAgreementWithContext(ctx aws.Context, input *DescribeAgreementInput, opts ...request.Option) (*DescribeAgreementOutput, error) {
+	req, out := c.DescribeAgreementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeCertificate = "DescribeCertificate"
+
+// DescribeCertificateRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCertificate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeCertificate for more information on using the DescribeCertificate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeCertificateRequest method.
+//    req, resp := client.DescribeCertificateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeCertificate
+func (c *Transfer) DescribeCertificateRequest(input *DescribeCertificateInput) (req *request.Request, output *DescribeCertificateOutput) {
+	op := &request.Operation{
+		Name:       opDescribeCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeCertificateInput{}
+	}
+
+	output = &DescribeCertificateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeCertificate API operation for AWS Transfer Family.
+//
+// Describes the certificate that's identified by the CertificateId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DescribeCertificate for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeCertificate
+func (c *Transfer) DescribeCertificate(input *DescribeCertificateInput) (*DescribeCertificateOutput, error) {
+	req, out := c.DescribeCertificateRequest(input)
+	return out, req.Send()
+}
+
+// DescribeCertificateWithContext is the same as DescribeCertificate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCertificate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DescribeCertificateWithContext(ctx aws.Context, input *DescribeCertificateInput, opts ...request.Option) (*DescribeCertificateOutput, error) {
+	req, out := c.DescribeCertificateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeConnector = "DescribeConnector"
+
+// DescribeConnectorRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeConnector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeConnector for more information on using the DescribeConnector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeConnectorRequest method.
+//    req, resp := client.DescribeConnectorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeConnector
+func (c *Transfer) DescribeConnectorRequest(input *DescribeConnectorInput) (req *request.Request, output *DescribeConnectorOutput) {
+	op := &request.Operation{
+		Name:       opDescribeConnector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeConnectorInput{}
+	}
+
+	output = &DescribeConnectorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeConnector API operation for AWS Transfer Family.
+//
+// Describes the connector that's identified by the ConnectorId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DescribeConnector for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeConnector
+func (c *Transfer) DescribeConnector(input *DescribeConnectorInput) (*DescribeConnectorOutput, error) {
+	req, out := c.DescribeConnectorRequest(input)
+	return out, req.Send()
+}
+
+// DescribeConnectorWithContext is the same as DescribeConnector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeConnector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DescribeConnectorWithContext(ctx aws.Context, input *DescribeConnectorInput, opts ...request.Option) (*DescribeConnectorOutput, error) {
+	req, out := c.DescribeConnectorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1073,6 +2003,97 @@ func (c *Transfer) DescribeExecution(input *DescribeExecutionInput) (*DescribeEx
 // for more information on using Contexts.
 func (c *Transfer) DescribeExecutionWithContext(ctx aws.Context, input *DescribeExecutionInput, opts ...request.Option) (*DescribeExecutionOutput, error) {
 	req, out := c.DescribeExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeProfile = "DescribeProfile"
+
+// DescribeProfileRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeProfile for more information on using the DescribeProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeProfileRequest method.
+//    req, resp := client.DescribeProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeProfile
+func (c *Transfer) DescribeProfileRequest(input *DescribeProfileInput) (req *request.Request, output *DescribeProfileOutput) {
+	op := &request.Operation{
+		Name:       opDescribeProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeProfileInput{}
+	}
+
+	output = &DescribeProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeProfile API operation for AWS Transfer Family.
+//
+// Returns the details of the profile that's specified by the ProfileId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DescribeProfile for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeProfile
+func (c *Transfer) DescribeProfile(input *DescribeProfileInput) (*DescribeProfileOutput, error) {
+	req, out := c.DescribeProfileRequest(input)
+	return out, req.Send()
+}
+
+// DescribeProfileWithContext is the same as DescribeProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DescribeProfileWithContext(ctx aws.Context, input *DescribeProfileInput, opts ...request.Option) (*DescribeProfileOutput, error) {
+	req, out := c.DescribeProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1453,6 +2474,98 @@ func (c *Transfer) DescribeWorkflowWithContext(ctx aws.Context, input *DescribeW
 	return out, req.Send()
 }
 
+const opImportCertificate = "ImportCertificate"
+
+// ImportCertificateRequest generates a "aws/request.Request" representing the
+// client's request for the ImportCertificate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ImportCertificate for more information on using the ImportCertificate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ImportCertificateRequest method.
+//    req, resp := client.ImportCertificateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ImportCertificate
+func (c *Transfer) ImportCertificateRequest(input *ImportCertificateInput) (req *request.Request, output *ImportCertificateOutput) {
+	op := &request.Operation{
+		Name:       opImportCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ImportCertificateInput{}
+	}
+
+	output = &ImportCertificateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ImportCertificate API operation for AWS Transfer Family.
+//
+// Imports the signing and encryption certificates that you need to create local
+// (AS2) profiles and partner profiles.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation ImportCertificate for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ImportCertificate
+func (c *Transfer) ImportCertificate(input *ImportCertificateInput) (*ImportCertificateOutput, error) {
+	req, out := c.ImportCertificateRequest(input)
+	return out, req.Send()
+}
+
+// ImportCertificateWithContext is the same as ImportCertificate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ImportCertificate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ImportCertificateWithContext(ctx aws.Context, input *ImportCertificateInput, opts ...request.Option) (*ImportCertificateOutput, error) {
+	req, out := c.ImportCertificateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opImportSshPublicKey = "ImportSshPublicKey"
 
 // ImportSshPublicKeyRequest generates a "aws/request.Request" representing the
@@ -1707,6 +2820,470 @@ func (c *Transfer) ListAccessesPagesWithContext(ctx aws.Context, input *ListAcce
 	return p.Err()
 }
 
+const opListAgreements = "ListAgreements"
+
+// ListAgreementsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAgreements operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAgreements for more information on using the ListAgreements
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAgreementsRequest method.
+//    req, resp := client.ListAgreementsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListAgreements
+func (c *Transfer) ListAgreementsRequest(input *ListAgreementsInput) (req *request.Request, output *ListAgreementsOutput) {
+	op := &request.Operation{
+		Name:       opListAgreements,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAgreementsInput{}
+	}
+
+	output = &ListAgreementsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAgreements API operation for AWS Transfer Family.
+//
+// Returns a list of the agreements for the server that's identified by the
+// ServerId that you supply. If you want to limit the results to a certain number,
+// supply a value for the MaxResults parameter. If you ran the command previously
+// and received a value for NextToken, you can supply that value to continue
+// listing agreements from where you left off.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation ListAgreements for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidNextTokenException
+//   The NextToken parameter that was passed is invalid.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListAgreements
+func (c *Transfer) ListAgreements(input *ListAgreementsInput) (*ListAgreementsOutput, error) {
+	req, out := c.ListAgreementsRequest(input)
+	return out, req.Send()
+}
+
+// ListAgreementsWithContext is the same as ListAgreements with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAgreements for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListAgreementsWithContext(ctx aws.Context, input *ListAgreementsInput, opts ...request.Option) (*ListAgreementsOutput, error) {
+	req, out := c.ListAgreementsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAgreementsPages iterates over the pages of a ListAgreements operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAgreements method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAgreements operation.
+//    pageNum := 0
+//    err := client.ListAgreementsPages(params,
+//        func(page *transfer.ListAgreementsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Transfer) ListAgreementsPages(input *ListAgreementsInput, fn func(*ListAgreementsOutput, bool) bool) error {
+	return c.ListAgreementsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAgreementsPagesWithContext same as ListAgreementsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListAgreementsPagesWithContext(ctx aws.Context, input *ListAgreementsInput, fn func(*ListAgreementsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAgreementsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAgreementsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAgreementsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCertificates = "ListCertificates"
+
+// ListCertificatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListCertificates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCertificates for more information on using the ListCertificates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCertificatesRequest method.
+//    req, resp := client.ListCertificatesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListCertificates
+func (c *Transfer) ListCertificatesRequest(input *ListCertificatesInput) (req *request.Request, output *ListCertificatesOutput) {
+	op := &request.Operation{
+		Name:       opListCertificates,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCertificatesInput{}
+	}
+
+	output = &ListCertificatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCertificates API operation for AWS Transfer Family.
+//
+// Returns a list of the current certificates that have been imported into Transfer
+// Family. If you want to limit the results to a certain number, supply a value
+// for the MaxResults parameter. If you ran the command previously and received
+// a value for the NextToken parameter, you can supply that value to continue
+// listing certificates from where you left off.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation ListCertificates for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidNextTokenException
+//   The NextToken parameter that was passed is invalid.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListCertificates
+func (c *Transfer) ListCertificates(input *ListCertificatesInput) (*ListCertificatesOutput, error) {
+	req, out := c.ListCertificatesRequest(input)
+	return out, req.Send()
+}
+
+// ListCertificatesWithContext is the same as ListCertificates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCertificates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListCertificatesWithContext(ctx aws.Context, input *ListCertificatesInput, opts ...request.Option) (*ListCertificatesOutput, error) {
+	req, out := c.ListCertificatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCertificatesPages iterates over the pages of a ListCertificates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCertificates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCertificates operation.
+//    pageNum := 0
+//    err := client.ListCertificatesPages(params,
+//        func(page *transfer.ListCertificatesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Transfer) ListCertificatesPages(input *ListCertificatesInput, fn func(*ListCertificatesOutput, bool) bool) error {
+	return c.ListCertificatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCertificatesPagesWithContext same as ListCertificatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListCertificatesPagesWithContext(ctx aws.Context, input *ListCertificatesInput, fn func(*ListCertificatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCertificatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCertificatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCertificatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListConnectors = "ListConnectors"
+
+// ListConnectorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListConnectors operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListConnectors for more information on using the ListConnectors
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListConnectorsRequest method.
+//    req, resp := client.ListConnectorsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListConnectors
+func (c *Transfer) ListConnectorsRequest(input *ListConnectorsInput) (req *request.Request, output *ListConnectorsOutput) {
+	op := &request.Operation{
+		Name:       opListConnectors,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListConnectorsInput{}
+	}
+
+	output = &ListConnectorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListConnectors API operation for AWS Transfer Family.
+//
+// Lists the connectors for the specified Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation ListConnectors for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidNextTokenException
+//   The NextToken parameter that was passed is invalid.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListConnectors
+func (c *Transfer) ListConnectors(input *ListConnectorsInput) (*ListConnectorsOutput, error) {
+	req, out := c.ListConnectorsRequest(input)
+	return out, req.Send()
+}
+
+// ListConnectorsWithContext is the same as ListConnectors with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListConnectors for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListConnectorsWithContext(ctx aws.Context, input *ListConnectorsInput, opts ...request.Option) (*ListConnectorsOutput, error) {
+	req, out := c.ListConnectorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListConnectorsPages iterates over the pages of a ListConnectors operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListConnectors method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListConnectors operation.
+//    pageNum := 0
+//    err := client.ListConnectorsPages(params,
+//        func(page *transfer.ListConnectorsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Transfer) ListConnectorsPages(input *ListConnectorsInput, fn func(*ListConnectorsOutput, bool) bool) error {
+	return c.ListConnectorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListConnectorsPagesWithContext same as ListConnectorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListConnectorsPagesWithContext(ctx aws.Context, input *ListConnectorsInput, fn func(*ListConnectorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListConnectorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListConnectorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListConnectorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListExecutions = "ListExecutions"
 
 // ListExecutionsRequest generates a "aws/request.Request" representing the
@@ -1852,6 +3429,161 @@ func (c *Transfer) ListExecutionsPagesWithContext(ctx aws.Context, input *ListEx
 
 	for p.Next() {
 		if !fn(p.Page().(*ListExecutionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListProfiles = "ListProfiles"
+
+// ListProfilesRequest generates a "aws/request.Request" representing the
+// client's request for the ListProfiles operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListProfiles for more information on using the ListProfiles
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListProfilesRequest method.
+//    req, resp := client.ListProfilesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListProfiles
+func (c *Transfer) ListProfilesRequest(input *ListProfilesInput) (req *request.Request, output *ListProfilesOutput) {
+	op := &request.Operation{
+		Name:       opListProfiles,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListProfilesInput{}
+	}
+
+	output = &ListProfilesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListProfiles API operation for AWS Transfer Family.
+//
+// Returns a list of the profiles for your system. If you want to limit the
+// results to a certain number, supply a value for the MaxResults parameter.
+// If you ran the command previously and received a value for NextToken, you
+// can supply that value to continue listing profiles from where you left off.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation ListProfiles for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidNextTokenException
+//   The NextToken parameter that was passed is invalid.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListProfiles
+func (c *Transfer) ListProfiles(input *ListProfilesInput) (*ListProfilesOutput, error) {
+	req, out := c.ListProfilesRequest(input)
+	return out, req.Send()
+}
+
+// ListProfilesWithContext is the same as ListProfiles with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListProfiles for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListProfilesWithContext(ctx aws.Context, input *ListProfilesInput, opts ...request.Option) (*ListProfilesOutput, error) {
+	req, out := c.ListProfilesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListProfilesPages iterates over the pages of a ListProfiles operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListProfiles method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListProfiles operation.
+//    pageNum := 0
+//    err := client.ListProfilesPages(params,
+//        func(page *transfer.ListProfilesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Transfer) ListProfilesPages(input *ListProfilesInput, fn func(*ListProfilesOutput, bool) bool) error {
+	return c.ListProfilesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListProfilesPagesWithContext same as ListProfilesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListProfilesPagesWithContext(ctx aws.Context, input *ListProfilesInput, fn func(*ListProfilesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListProfilesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListProfilesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListProfilesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2709,6 +4441,101 @@ func (c *Transfer) SendWorkflowStepStateWithContext(ctx aws.Context, input *Send
 	return out, req.Send()
 }
 
+const opStartFileTransfer = "StartFileTransfer"
+
+// StartFileTransferRequest generates a "aws/request.Request" representing the
+// client's request for the StartFileTransfer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartFileTransfer for more information on using the StartFileTransfer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartFileTransferRequest method.
+//    req, resp := client.StartFileTransferRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/StartFileTransfer
+func (c *Transfer) StartFileTransferRequest(input *StartFileTransferInput) (req *request.Request, output *StartFileTransferOutput) {
+	op := &request.Operation{
+		Name:       opStartFileTransfer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartFileTransferInput{}
+	}
+
+	output = &StartFileTransferOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartFileTransfer API operation for AWS Transfer Family.
+//
+// Begins an outbound file transfer. You specify the ConnectorId and the file
+// paths for where to send the files.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation StartFileTransfer for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/StartFileTransfer
+func (c *Transfer) StartFileTransfer(input *StartFileTransferInput) (*StartFileTransferOutput, error) {
+	req, out := c.StartFileTransferRequest(input)
+	return out, req.Send()
+}
+
+// StartFileTransferWithContext is the same as StartFileTransfer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartFileTransfer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) StartFileTransferWithContext(ctx aws.Context, input *StartFileTransferInput, opts ...request.Option) (*StartFileTransferOutput, error) {
+	req, out := c.StartFileTransferRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartServer = "StartServer"
 
 // StartServerRequest generates a "aws/request.Request" representing the
@@ -2862,7 +4689,7 @@ func (c *Transfer) StopServerRequest(input *StopServerInput) (req *request.Reque
 // Information tied to your server, such as server and user properties, are
 // not affected by stopping your server.
 //
-// Stopping the server will not reduce or impact your file transfer protocol
+// Stopping the server does not reduce or impact your file transfer protocol
 // endpoint billing; you must delete the server to stop being billed.
 //
 // The state of STOPPING indicates that the server is in an intermediate state,
@@ -3319,6 +5146,382 @@ func (c *Transfer) UpdateAccessWithContext(ctx aws.Context, input *UpdateAccessI
 	return out, req.Send()
 }
 
+const opUpdateAgreement = "UpdateAgreement"
+
+// UpdateAgreementRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAgreement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAgreement for more information on using the UpdateAgreement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateAgreementRequest method.
+//    req, resp := client.UpdateAgreementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateAgreement
+func (c *Transfer) UpdateAgreementRequest(input *UpdateAgreementInput) (req *request.Request, output *UpdateAgreementOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAgreement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateAgreementInput{}
+	}
+
+	output = &UpdateAgreementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAgreement API operation for AWS Transfer Family.
+//
+// Updates some of the parameters for an existing agreement. Provide the AgreementId
+// and the ServerId for the agreement that you want to update, along with the
+// new values for the parameters to update.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation UpdateAgreement for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceExistsException
+//   The requested resource does not exist.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateAgreement
+func (c *Transfer) UpdateAgreement(input *UpdateAgreementInput) (*UpdateAgreementOutput, error) {
+	req, out := c.UpdateAgreementRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAgreementWithContext is the same as UpdateAgreement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAgreement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) UpdateAgreementWithContext(ctx aws.Context, input *UpdateAgreementInput, opts ...request.Option) (*UpdateAgreementOutput, error) {
+	req, out := c.UpdateAgreementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateCertificate = "UpdateCertificate"
+
+// UpdateCertificateRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCertificate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCertificate for more information on using the UpdateCertificate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateCertificateRequest method.
+//    req, resp := client.UpdateCertificateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateCertificate
+func (c *Transfer) UpdateCertificateRequest(input *UpdateCertificateInput) (req *request.Request, output *UpdateCertificateOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateCertificateInput{}
+	}
+
+	output = &UpdateCertificateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCertificate API operation for AWS Transfer Family.
+//
+// Updates the active and inactive dates for a certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation UpdateCertificate for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateCertificate
+func (c *Transfer) UpdateCertificate(input *UpdateCertificateInput) (*UpdateCertificateOutput, error) {
+	req, out := c.UpdateCertificateRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCertificateWithContext is the same as UpdateCertificate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCertificate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) UpdateCertificateWithContext(ctx aws.Context, input *UpdateCertificateInput, opts ...request.Option) (*UpdateCertificateOutput, error) {
+	req, out := c.UpdateCertificateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateConnector = "UpdateConnector"
+
+// UpdateConnectorRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateConnector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateConnector for more information on using the UpdateConnector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateConnectorRequest method.
+//    req, resp := client.UpdateConnectorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateConnector
+func (c *Transfer) UpdateConnectorRequest(input *UpdateConnectorInput) (req *request.Request, output *UpdateConnectorOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConnector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateConnectorInput{}
+	}
+
+	output = &UpdateConnectorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateConnector API operation for AWS Transfer Family.
+//
+// Updates some of the parameters for an existing connector. Provide the ConnectorId
+// for the connector that you want to update, along with the new values for
+// the parameters to update.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation UpdateConnector for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceExistsException
+//   The requested resource does not exist.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateConnector
+func (c *Transfer) UpdateConnector(input *UpdateConnectorInput) (*UpdateConnectorOutput, error) {
+	req, out := c.UpdateConnectorRequest(input)
+	return out, req.Send()
+}
+
+// UpdateConnectorWithContext is the same as UpdateConnector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateConnector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) UpdateConnectorWithContext(ctx aws.Context, input *UpdateConnectorInput, opts ...request.Option) (*UpdateConnectorOutput, error) {
+	req, out := c.UpdateConnectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateProfile = "UpdateProfile"
+
+// UpdateProfileRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateProfile for more information on using the UpdateProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateProfileRequest method.
+//    req, resp := client.UpdateProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateProfile
+func (c *Transfer) UpdateProfileRequest(input *UpdateProfileInput) (req *request.Request, output *UpdateProfileOutput) {
+	op := &request.Operation{
+		Name:       opUpdateProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateProfileInput{}
+	}
+
+	output = &UpdateProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateProfile API operation for AWS Transfer Family.
+//
+// Updates some of the parameters for an existing profile. Provide the ProfileId
+// for the profile that you want to update, along with the new values for the
+// parameters to update.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation UpdateProfile for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateProfile
+func (c *Transfer) UpdateProfile(input *UpdateProfileInput) (*UpdateProfileOutput, error) {
+	req, out := c.UpdateProfileRequest(input)
+	return out, req.Send()
+}
+
+// UpdateProfileWithContext is the same as UpdateProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) UpdateProfileWithContext(ctx aws.Context, input *UpdateProfileInput, opts ...request.Option) (*UpdateProfileOutput, error) {
+	req, out := c.UpdateProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateServer = "UpdateServer"
 
 // UpdateServerRequest generates a "aws/request.Request" representing the
@@ -3589,6 +5792,129 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Contains the details for a connector object. The connector object is used
+// for AS2 outbound processes, to connect the Transfer Family customer with
+// the trading partner.
+type As2ConnectorConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the AS2 file is compressed.
+	Compression *string `type:"string" enum:"CompressionEnum"`
+
+	// The algorithm that is used to encrypt the file.
+	EncryptionAlgorithm *string `type:"string" enum:"EncryptionAlg"`
+
+	// A unique identifier for the AS2 process.
+	LocalProfileId *string `min:"19" type:"string"`
+
+	// Used for outbound requests (from an Transfer Family server to a partner AS2
+	// server) to determine whether the partner response for transfers is synchronous
+	// or asynchronous. Specify either of the following values:
+	//
+	//    * SYNC: The system expects a synchronous MDN response, confirming that
+	//    the file was transferred successfully (or not).
+	//
+	//    * NONE: Specifies that no MDN response is required.
+	MdnResponse *string `type:"string" enum:"MdnResponse"`
+
+	// The signing algorithm for the MDN response.
+	MdnSigningAlgorithm *string `type:"string" enum:"MdnSigningAlg"`
+
+	// A short description to help identify the connector.
+	MessageSubject *string `min:"1" type:"string"`
+
+	// A unique identifier for the partner for the connector.
+	PartnerProfileId *string `min:"19" type:"string"`
+
+	// The algorithm that is used to sign the AS2 transfers for this partner profile.
+	SigningAlgorithm *string `type:"string" enum:"SigningAlg"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s As2ConnectorConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s As2ConnectorConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *As2ConnectorConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "As2ConnectorConfig"}
+	if s.LocalProfileId != nil && len(*s.LocalProfileId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("LocalProfileId", 19))
+	}
+	if s.MessageSubject != nil && len(*s.MessageSubject) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MessageSubject", 1))
+	}
+	if s.PartnerProfileId != nil && len(*s.PartnerProfileId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("PartnerProfileId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCompression sets the Compression field's value.
+func (s *As2ConnectorConfig) SetCompression(v string) *As2ConnectorConfig {
+	s.Compression = &v
+	return s
+}
+
+// SetEncryptionAlgorithm sets the EncryptionAlgorithm field's value.
+func (s *As2ConnectorConfig) SetEncryptionAlgorithm(v string) *As2ConnectorConfig {
+	s.EncryptionAlgorithm = &v
+	return s
+}
+
+// SetLocalProfileId sets the LocalProfileId field's value.
+func (s *As2ConnectorConfig) SetLocalProfileId(v string) *As2ConnectorConfig {
+	s.LocalProfileId = &v
+	return s
+}
+
+// SetMdnResponse sets the MdnResponse field's value.
+func (s *As2ConnectorConfig) SetMdnResponse(v string) *As2ConnectorConfig {
+	s.MdnResponse = &v
+	return s
+}
+
+// SetMdnSigningAlgorithm sets the MdnSigningAlgorithm field's value.
+func (s *As2ConnectorConfig) SetMdnSigningAlgorithm(v string) *As2ConnectorConfig {
+	s.MdnSigningAlgorithm = &v
+	return s
+}
+
+// SetMessageSubject sets the MessageSubject field's value.
+func (s *As2ConnectorConfig) SetMessageSubject(v string) *As2ConnectorConfig {
+	s.MessageSubject = &v
+	return s
+}
+
+// SetPartnerProfileId sets the PartnerProfileId field's value.
+func (s *As2ConnectorConfig) SetPartnerProfileId(v string) *As2ConnectorConfig {
+	s.PartnerProfileId = &v
+	return s
+}
+
+// SetSigningAlgorithm sets the SigningAlgorithm field's value.
+func (s *As2ConnectorConfig) SetSigningAlgorithm(v string) *As2ConnectorConfig {
+	s.SigningAlgorithm = &v
+	return s
+}
+
 // This exception is thrown when the UpdateServer is called for a file transfer
 // protocol-enabled server that has VPC as the endpoint type and the server's
 // VpcEndpointID is not in the available state.
@@ -3745,9 +6071,9 @@ type CreateAccessInput struct {
 
 	// A unique identifier that is required to identify specific groups within your
 	// directory. The users of the group that you associate have access to your
-	// Amazon S3 or Amazon EFS resources over the enabled protocols using Amazon
-	// Web Services Transfer Family. If you know the group name, you can view the
-	// SID values by running the following command using Windows PowerShell.
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer
+	// Family. If you know the group name, you can view the SID values by running
+	// the following command using Windows PowerShell.
 	//
 	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
 	// | Select SamAccountName,ObjectSid
@@ -3755,9 +6081,9 @@ type CreateAccessInput struct {
 	// In that command, replace YourGroupName with the name of your Active Directory
 	// group.
 	//
-	// The regex used to validate this parameter is a string of characters consisting
-	// of uppercase and lowercase alphanumeric characters with no spaces. You can
-	// also include underscores or any of the following characters: =,.@:/-
+	// The regular expression used to validate this parameter is a string of characters
+	// consisting of uppercase and lowercase alphanumeric characters with no spaces.
+	// You can also include underscores or any of the following characters: =,.@:/-
 	//
 	// ExternalId is a required field
 	ExternalId *string `min:"1" type:"string" required:"true"`
@@ -3773,9 +6099,8 @@ type CreateAccessInput struct {
 	// You must specify the Entry and Target pair, where Entry shows how the path
 	// is made visible and Target is the actual Amazon S3 or Amazon EFS path. If
 	// you only specify a target, it is displayed as is. You also must ensure that
-	// your Amazon Web Services Identity and Access Management (IAM) role provides
-	// access to paths in Target. This value can only be set when HomeDirectoryType
-	// is set to LOGICAL.
+	// your Identity and Access Management (IAM) role provides access to paths in
+	// Target. This value can be set only when HomeDirectoryType is set to LOGICAL.
 	//
 	// The following is an Entry and Target pair example.
 	//
@@ -3790,30 +6115,31 @@ type CreateAccessInput struct {
 	// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
-	// The type of landing directory (folder) you want your users' home directory
-	// to be when they log into the server. If you set it to PATH, the user will
+	// The type of landing directory (folder) that you want your users' home directory
+	// to be when they log in to the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
 	// protocol clients. If you set it LOGICAL, you need to provide mappings in
-	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
-	// visible to your users.
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or Amazon EFS
+	// paths visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
-	// A session policy for your user so that you can use the same IAM role across
-	// multiple users. This policy scopes down user access to portions of their
-	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
-	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
+	// A session policy for your user so that you can use the same Identity and
+	// Access Management (IAM) role across multiple users. This policy scopes down
+	// a user's access to portions of their Amazon S3 bucket. Variables that you
+	// can use inside this policy include ${Transfer:UserName}, ${Transfer:HomeDirectory},
+	// and ${Transfer:HomeBucket}.
 	//
-	// This only applies when the domain of ServerId is S3. EFS does not use session
-	// policies.
+	// This policy applies only when the domain of ServerId is Amazon S3. Amazon
+	// EFS does not use session policies.
 	//
-	// For session policies, Amazon Web Services Transfer Family stores the policy
-	// as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy.
-	// You save the policy as a JSON blob and pass it in the Policy argument.
+	// For session policies, Transfer Family stores the policy as a JSON blob, instead
+	// of the Amazon Resource Name (ARN) of the policy. You save the policy as a
+	// JSON blob and pass it in the Policy argument.
 	//
 	// For an example of a session policy, see Example session policy (https://docs.aws.amazon.com/transfer/latest/userguide/session-policy.html).
 	//
 	// For more information, see AssumeRole (https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
-	// in the Amazon Web Services Security Token Service API Reference.
+	// in the Security Token Service API Reference.
 	Policy *string `type:"string"`
 
 	// The full POSIX identity, including user ID (Uid), group ID (Gid), and any
@@ -3823,12 +6149,13 @@ type CreateAccessInput struct {
 	// get when transferring files into and out of your Amazon EFS file systems.
 	PosixProfile *PosixProfile `type:"structure"`
 
-	// Specifies the Amazon Resource Name (ARN) of the IAM role that controls your
-	// users' access to your Amazon S3 bucket or EFS file system. The policies attached
-	// to this role determine the level of access that you want to provide your
-	// users when transferring files into and out of your Amazon S3 bucket or EFS
-	// file system. The IAM role should also contain a trust relationship that allows
-	// the server to access your resources when servicing your users' transfer requests.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that controls your users' access to your Amazon S3 bucket or Amazon
+	// EFS file system. The policies attached to this role determine the level of
+	// access that you want to provide your users when transferring files into and
+	// out of your Amazon S3 bucket or Amazon EFS file system. The IAM role should
+	// also contain a trust relationship that allows the server to access your resources
+	// when servicing your users' transfer requests.
 	//
 	// Role is a required field
 	Role *string `min:"20" type:"string" required:"true"`
@@ -3956,8 +6283,7 @@ type CreateAccessOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The external ID of the group whose users have access to your Amazon S3 or
-	// Amazon EFS resources over the enabled protocols using Amazon Web Services
-	// Transfer Family.
+	// Amazon EFS resources over the enabled protocols using Transfer Family.
 	//
 	// ExternalId is a required field
 	ExternalId *string `min:"1" type:"string" required:"true"`
@@ -3998,22 +6324,513 @@ func (s *CreateAccessOutput) SetServerId(v string) *CreateAccessOutput {
 	return s
 }
 
+type CreateAgreementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that grants access to at least the HomeDirectory of your users' Amazon
+	// S3 buckets.
+	//
+	// AccessRole is a required field
+	AccessRole *string `min:"20" type:"string" required:"true"`
+
+	// The landing directory (folder) for files transferred by using the AS2 protocol.
+	//
+	// A BaseDirectory example is /DOC-EXAMPLE-BUCKET/home/mydirectory .
+	//
+	// BaseDirectory is a required field
+	BaseDirectory *string `type:"string" required:"true"`
+
+	// A name or short description to identify the agreement.
+	Description *string `min:"1" type:"string"`
+
+	// A unique identifier for the AS2 local profile.
+	//
+	// LocalProfileId is a required field
+	LocalProfileId *string `min:"19" type:"string" required:"true"`
+
+	// A unique identifier for the partner profile used in the agreement.
+	//
+	// PartnerProfileId is a required field
+	PartnerProfileId *string `min:"19" type:"string" required:"true"`
+
+	// A system-assigned unique identifier for a server instance. This is the specific
+	// server that the agreement uses.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+
+	// The status of the agreement. The agreement can be either ACTIVE or INACTIVE.
+	Status *string `type:"string" enum:"AgreementStatusType"`
+
+	// Key-value pairs that can be used to group and search for agreements.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAgreementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAgreementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAgreementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAgreementInput"}
+	if s.AccessRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessRole"))
+	}
+	if s.AccessRole != nil && len(*s.AccessRole) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessRole", 20))
+	}
+	if s.BaseDirectory == nil {
+		invalidParams.Add(request.NewErrParamRequired("BaseDirectory"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.LocalProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocalProfileId"))
+	}
+	if s.LocalProfileId != nil && len(*s.LocalProfileId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("LocalProfileId", 19))
+	}
+	if s.PartnerProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PartnerProfileId"))
+	}
+	if s.PartnerProfileId != nil && len(*s.PartnerProfileId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("PartnerProfileId", 19))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessRole sets the AccessRole field's value.
+func (s *CreateAgreementInput) SetAccessRole(v string) *CreateAgreementInput {
+	s.AccessRole = &v
+	return s
+}
+
+// SetBaseDirectory sets the BaseDirectory field's value.
+func (s *CreateAgreementInput) SetBaseDirectory(v string) *CreateAgreementInput {
+	s.BaseDirectory = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateAgreementInput) SetDescription(v string) *CreateAgreementInput {
+	s.Description = &v
+	return s
+}
+
+// SetLocalProfileId sets the LocalProfileId field's value.
+func (s *CreateAgreementInput) SetLocalProfileId(v string) *CreateAgreementInput {
+	s.LocalProfileId = &v
+	return s
+}
+
+// SetPartnerProfileId sets the PartnerProfileId field's value.
+func (s *CreateAgreementInput) SetPartnerProfileId(v string) *CreateAgreementInput {
+	s.PartnerProfileId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *CreateAgreementInput) SetServerId(v string) *CreateAgreementInput {
+	s.ServerId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateAgreementInput) SetStatus(v string) *CreateAgreementInput {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAgreementInput) SetTags(v []*Tag) *CreateAgreementInput {
+	s.Tags = v
+	return s
+}
+
+type CreateAgreementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the agreement. Use this ID for deleting, or updating
+	// an agreement, as well as in any other API calls that require that you specify
+	// the agreement ID.
+	//
+	// AgreementId is a required field
+	AgreementId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAgreementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAgreementOutput) GoString() string {
+	return s.String()
+}
+
+// SetAgreementId sets the AgreementId field's value.
+func (s *CreateAgreementOutput) SetAgreementId(v string) *CreateAgreementOutput {
+	s.AgreementId = &v
+	return s
+}
+
+type CreateConnectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// With AS2, you can send files by calling StartFileTransfer and specifying
+	// the file paths in the request parameter, SendFilePaths. We use the file’s
+	// parent directory (for example, for --send-file-paths /bucket/dir/file.txt,
+	// parent directory is /bucket/dir/) to temporarily store a processed AS2 message
+	// file, store the MDN when we receive them from the partner, and write a final
+	// JSON file containing relevant metadata of the transmission. So, the AccessRole
+	// needs to provide read and write access to the parent directory of the file
+	// location used in the StartFileTransfer request. Additionally, you need to
+	// provide read and write access to the parent directory of the files that you
+	// intend to send with StartFileTransfer.
+	//
+	// AccessRole is a required field
+	AccessRole *string `min:"20" type:"string" required:"true"`
+
+	// A structure that contains the parameters for a connector object.
+	//
+	// As2Config is a required field
+	As2Config *As2ConnectorConfig `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that allows a connector to turn on CloudWatch logging for Amazon S3
+	// events. When set, you can view connector activity in your CloudWatch logs.
+	LoggingRole *string `min:"20" type:"string"`
+
+	// Key-value pairs that can be used to group and search for connectors. Tags
+	// are metadata attached to connectors for any purpose.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The URL of the partner's AS2 endpoint.
+	//
+	// Url is a required field
+	Url *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConnectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConnectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateConnectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateConnectorInput"}
+	if s.AccessRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessRole"))
+	}
+	if s.AccessRole != nil && len(*s.AccessRole) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessRole", 20))
+	}
+	if s.As2Config == nil {
+		invalidParams.Add(request.NewErrParamRequired("As2Config"))
+	}
+	if s.LoggingRole != nil && len(*s.LoggingRole) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("LoggingRole", 20))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Url == nil {
+		invalidParams.Add(request.NewErrParamRequired("Url"))
+	}
+	if s.As2Config != nil {
+		if err := s.As2Config.Validate(); err != nil {
+			invalidParams.AddNested("As2Config", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessRole sets the AccessRole field's value.
+func (s *CreateConnectorInput) SetAccessRole(v string) *CreateConnectorInput {
+	s.AccessRole = &v
+	return s
+}
+
+// SetAs2Config sets the As2Config field's value.
+func (s *CreateConnectorInput) SetAs2Config(v *As2ConnectorConfig) *CreateConnectorInput {
+	s.As2Config = v
+	return s
+}
+
+// SetLoggingRole sets the LoggingRole field's value.
+func (s *CreateConnectorInput) SetLoggingRole(v string) *CreateConnectorInput {
+	s.LoggingRole = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateConnectorInput) SetTags(v []*Tag) *CreateConnectorInput {
+	s.Tags = v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *CreateConnectorInput) SetUrl(v string) *CreateConnectorInput {
+	s.Url = &v
+	return s
+}
+
+type CreateConnectorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the connector, returned after the API call succeeds.
+	//
+	// ConnectorId is a required field
+	ConnectorId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConnectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConnectorOutput) GoString() string {
+	return s.String()
+}
+
+// SetConnectorId sets the ConnectorId field's value.
+func (s *CreateConnectorOutput) SetConnectorId(v string) *CreateConnectorOutput {
+	s.ConnectorId = &v
+	return s
+}
+
+type CreateProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// The As2Id is the AS2-name, as defined in the defined in the RFC 4130 (https://datatracker.ietf.org/doc/html/rfc4130).
+	// For inbound transfers, this is the AS2-From header for the AS2 messages sent
+	// from the partner. For outbound connectors, this is the AS2-To header for
+	// the AS2 messages sent to the partner using the StartFileTransfer API operation.
+	// This ID cannot include spaces.
+	//
+	// As2Id is a required field
+	As2Id *string `min:"1" type:"string" required:"true"`
+
+	// An array of identifiers for the imported certificates. You use this identifier
+	// for working with profiles and partner profiles.
+	CertificateIds []*string `type:"list"`
+
+	// Indicates whether to list only LOCAL type profiles or only PARTNER type profiles.
+	// If not supplied in the request, the command lists all types of profiles.
+	//
+	// ProfileType is a required field
+	ProfileType *string `type:"string" required:"true" enum:"ProfileType"`
+
+	// Key-value pairs that can be used to group and search for AS2 profiles.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateProfileInput"}
+	if s.As2Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("As2Id"))
+	}
+	if s.As2Id != nil && len(*s.As2Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("As2Id", 1))
+	}
+	if s.ProfileType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileType"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAs2Id sets the As2Id field's value.
+func (s *CreateProfileInput) SetAs2Id(v string) *CreateProfileInput {
+	s.As2Id = &v
+	return s
+}
+
+// SetCertificateIds sets the CertificateIds field's value.
+func (s *CreateProfileInput) SetCertificateIds(v []*string) *CreateProfileInput {
+	s.CertificateIds = v
+	return s
+}
+
+// SetProfileType sets the ProfileType field's value.
+func (s *CreateProfileInput) SetProfileType(v string) *CreateProfileInput {
+	s.ProfileType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateProfileInput) SetTags(v []*Tag) *CreateProfileInput {
+	s.Tags = v
+	return s
+}
+
+type CreateProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the AS2 profile, returned after the API call succeeds.
+	//
+	// ProfileId is a required field
+	ProfileId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetProfileId sets the ProfileId field's value.
+func (s *CreateProfileOutput) SetProfileId(v string) *CreateProfileOutput {
+	s.ProfileId = &v
+	return s
+}
+
 type CreateServerInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Amazon Web Services Certificate Manager
-	// (ACM) certificate. Required when Protocols is set to FTPS.
+	// The Amazon Resource Name (ARN) of the Certificate Manager (ACM) certificate.
+	// Required when Protocols is set to FTPS.
 	//
 	// To request a new public certificate, see Request a public certificate (https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html)
-	// in the Amazon Web Services Certificate Manager User Guide.
+	// in the Certificate Manager User Guide.
 	//
 	// To import an existing certificate into ACM, see Importing certificates into
 	// ACM (https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html)
-	// in the Amazon Web Services Certificate Manager User Guide.
+	// in the Certificate Manager User Guide.
 	//
 	// To request a private certificate to use FTPS through private IP addresses,
 	// see Request a private certificate (https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-private.html)
-	// in the Amazon Web Services Certificate Manager User Guide.
+	// in the Certificate Manager User Guide.
 	//
 	// Certificates with the following cryptographic algorithms and key sizes are
 	// supported:
@@ -4040,10 +6857,11 @@ type CreateServerInput struct {
 	Domain *string `type:"string" enum:"Domain"`
 
 	// The virtual private cloud (VPC) endpoint settings that are configured for
-	// your server. When you host your endpoint within your VPC, you can make it
-	// accessible only to resources within your VPC, or you can attach Elastic IP
-	// addresses and make it accessible to clients over the internet. Your VPC's
-	// default security groups are automatically assigned to your endpoint.
+	// your server. When you host your endpoint within your VPC, you can make your
+	// endpoint accessible only to resources within your VPC, or you can attach
+	// Elastic IP addresses and make your endpoint accessible to clients over the
+	// internet. Your VPC's default security groups are automatically assigned to
+	// your endpoint.
 	EndpointDetails *EndpointDetails `type:"structure"`
 
 	// The type of endpoint that you want your server to use. You can choose to
@@ -4073,8 +6891,8 @@ type CreateServerInput struct {
 	//
 	// ssh-keygen -t rsa -b 2048 -N "" -m PEM -f my-new-server-key.
 	//
-	// Use a minimum value of 2048 for the -b option: you can create a stronger
-	// key using 3072 or 4096.
+	// Use a minimum value of 2048 for the -b option. You can create a stronger
+	// key by using 3072 or 4096.
 	//
 	// Use the following command to generate an ECDSA 256 bit key with no passphrase:
 	//
@@ -4095,7 +6913,7 @@ type CreateServerInput struct {
 	//
 	// For more information, see Change the host key for your SFTP-enabled server
 	// (https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key)
-	// in the Amazon Web Services Transfer Family User Guide.
+	// in the Transfer Family User Guide.
 	//
 	// HostKey is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateServerInput's
@@ -4109,41 +6927,41 @@ type CreateServerInput struct {
 	// set to SERVICE_MANAGED.
 	IdentityProviderDetails *IdentityProviderDetails `type:"structure"`
 
-	// Specifies the mode of authentication for a server. The default value is SERVICE_MANAGED,
-	// which allows you to store and access user credentials within the Amazon Web
-	// Services Transfer Family service.
+	// The mode of authentication for a server. The default value is SERVICE_MANAGED,
+	// which allows you to store and access user credentials within the Transfer
+	// Family service.
 	//
 	// Use AWS_DIRECTORY_SERVICE to provide access to Active Directory groups in
-	// Amazon Web Services Managed Active Directory or Microsoft Active Directory
-	// in your on-premises environment or in Amazon Web Services using AD Connectors.
-	// This option also requires you to provide a Directory ID using the IdentityProviderDetails
+	// Directory Service for Microsoft Active Directory or Microsoft Active Directory
+	// in your on-premises environment or in Amazon Web Services using AD Connector.
+	// This option also requires you to provide a Directory ID by using the IdentityProviderDetails
 	// parameter.
 	//
 	// Use the API_GATEWAY value to integrate with an identity provider of your
-	// choosing. The API_GATEWAY setting requires you to provide an API Gateway
-	// endpoint URL to call for authentication using the IdentityProviderDetails
+	// choosing. The API_GATEWAY setting requires you to provide an Amazon API Gateway
+	// endpoint URL to call for authentication by using the IdentityProviderDetails
 	// parameter.
 	//
-	// Use the AWS_LAMBDA value to directly use a Lambda function as your identity
-	// provider. If you choose this value, you must specify the ARN for the lambda
-	// function in the Function parameter for the IdentityProviderDetails data type.
+	// Use the AWS_LAMBDA value to directly use an Lambda function as your identity
+	// provider. If you choose this value, you must specify the ARN for the Lambda
+	// function in the Function parameter or the IdentityProviderDetails data type.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
-	// Specifies the Amazon Resource Name (ARN) of the Amazon Web Services Identity
-	// and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch
-	// logging for Amazon S3 or Amazon EFS events. When set, user activity can be
-	// viewed in your CloudWatch logs.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that allows a server to turn on Amazon CloudWatch logging for Amazon
+	// S3 or Amazon EFSevents. When set, you can view user activity in your CloudWatch
+	// logs.
 	LoggingRole *string `min:"20" type:"string"`
 
-	// Specify a string to display when users connect to a server. This string is
-	// displayed after the user authenticates.
+	// Specifies a string to display when users connect to a server. This string
+	// is displayed after the user authenticates.
 	//
 	// The SFTP protocol does not support post-authentication display banners.
 	PostAuthenticationLoginBanner *string `type:"string"`
 
-	// Specify a string to display when users connect to a server. This string is
-	// displayed before the user authenticates. For example, the following banner
-	// displays details about using the system.
+	// Specifies a string to display when users connect to a server. This string
+	// is displayed before the user authenticates. For example, the following banner
+	// displays details about using the system:
 	//
 	// This system is for the use of authorized users only. Individuals using this
 	// computer system without authority, or in excess of their authority, are subject
@@ -4153,21 +6971,25 @@ type CreateServerInput struct {
 
 	// The protocol settings that are configured for your server.
 	//
-	//    * Use the PassiveIp parameter to indicate passive mode (for FTP and FTPS
-	//    protocols). Enter a single dotted-quad IPv4 address, such as the external
+	//    * To indicate passive mode (for FTP and FTPS protocols), use the PassiveIp
+	//    parameter. Enter a single dotted-quad IPv4 address, such as the external
 	//    IP address of a firewall, router, or load balancer.
 	//
-	//    * Use the SetStatOption to ignore the error that is generated when the
-	//    client attempts to use SETSTAT on a file you are uploading to an S3 bucket.
-	//    Set the value to ENABLE_NO_OP to have the Transfer Family server ignore
-	//    the SETSTAT command, and upload files without needing to make any changes
-	//    to your SFTP client. Note that with SetStatOption set to ENABLE_NO_OP,
-	//    Transfer generates a log entry to CloudWatch Logs, so you can determine
-	//    when the client is making a SETSTAT call.
+	//    * To ignore the error that is generated when the client attempts to use
+	//    the SETSTAT command on a file that you are uploading to an Amazon S3 bucket,
+	//    use the SetStatOption parameter. To have the Transfer Family server ignore
+	//    the SETSTAT command and upload files without needing to make any changes
+	//    to your SFTP client, set the value to ENABLE_NO_OP. If you set the SetStatOption
+	//    parameter to ENABLE_NO_OP, Transfer Family generates a log entry to Amazon
+	//    CloudWatch Logs, so that you can determine when the client is making a
+	//    SETSTAT call.
 	//
-	//    * Use the TlsSessionResumptionMode parameter to determine whether or not
-	//    your Transfer server resumes recent, negotiated sessions through a unique
-	//    session ID.
+	//    * To determine whether your Transfer Family server resumes recent, negotiated
+	//    sessions through a unique session ID, use the TlsSessionResumptionMode
+	//    parameter.
+	//
+	//    * As2Transports indicates the transport method for the AS2 messages. Currently,
+	//    only HTTP is supported.
 	ProtocolDetails *ProtocolDetails `type:"structure"`
 
 	// Specifies the file transfer protocol or protocols over which your file transfer
@@ -4181,17 +7003,23 @@ type CreateServerInput struct {
 	//
 	//    * FTP (File Transfer Protocol): Unencrypted file transfer
 	//
-	// If you select FTPS, you must choose a certificate stored in Amazon Web Services
-	// Certificate Manager (ACM) which is used to identify your server when clients
-	// connect to it over FTPS.
+	//    * AS2 (Applicability Statement 2): used for transporting structured business-to-business
+	//    data
 	//
-	// If Protocol includes either FTP or FTPS, then the EndpointType must be VPC
-	// and the IdentityProviderType must be AWS_DIRECTORY_SERVICE or API_GATEWAY.
+	//    * If you select FTPS, you must choose a certificate stored in Certificate
+	//    Manager (ACM) which is used to identify your server when clients connect
+	//    to it over FTPS.
 	//
-	// If Protocol includes FTP, then AddressAllocationIds cannot be associated.
+	//    * If Protocol includes either FTP or FTPS, then the EndpointType must
+	//    be VPC and the IdentityProviderType must be AWS_DIRECTORY_SERVICE or API_GATEWAY.
 	//
-	// If Protocol is set only to SFTP, the EndpointType can be set to PUBLIC and
-	// the IdentityProviderType can be set to SERVICE_MANAGED.
+	//    * If Protocol includes FTP, then AddressAllocationIds cannot be associated.
+	//
+	//    * If Protocol is set only to SFTP, the EndpointType can be set to PUBLIC
+	//    and the IdentityProviderType can be set to SERVICE_MANAGED.
+	//
+	//    * If Protocol includes AS2, then the EndpointType must be VPC, and domain
+	//    must be Amazon S3.
 	Protocols []*string `min:"1" type:"list" enum:"Protocol"`
 
 	// Specifies the name of the security policy that is attached to the server.
@@ -4201,7 +7029,7 @@ type CreateServerInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 
 	// Specifies the workflow ID for the workflow to assign and the execution role
-	// used for executing the workflow.
+	// that's used for executing the workflow.
 	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
@@ -4243,6 +7071,11 @@ func (s *CreateServerInput) Validate() error {
 	if s.IdentityProviderDetails != nil {
 		if err := s.IdentityProviderDetails.Validate(); err != nil {
 			invalidParams.AddNested("IdentityProviderDetails", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProtocolDetails != nil {
+		if err := s.ProtocolDetails.Validate(); err != nil {
+			invalidParams.AddNested("ProtocolDetails", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -4404,9 +7237,8 @@ type CreateUserInput struct {
 	// You must specify the Entry and Target pair, where Entry shows how the path
 	// is made visible and Target is the actual Amazon S3 or Amazon EFS path. If
 	// you only specify a target, it is displayed as is. You also must ensure that
-	// your Amazon Web Services Identity and Access Management (IAM) role provides
-	// access to paths in Target. This value can only be set when HomeDirectoryType
-	// is set to LOGICAL.
+	// your Identity and Access Management (IAM) role provides access to paths in
+	// Target. This value can be set only when HomeDirectoryType is set to LOGICAL.
 	//
 	// The following is an Entry and Target pair example.
 	//
@@ -4421,25 +7253,26 @@ type CreateUserInput struct {
 	// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
-	// The type of landing directory (folder) you want your users' home directory
-	// to be when they log into the server. If you set it to PATH, the user will
+	// The type of landing directory (folder) that you want your users' home directory
+	// to be when they log in to the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
 	// protocol clients. If you set it LOGICAL, you need to provide mappings in
-	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
-	// visible to your users.
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or Amazon EFS
+	// paths visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
-	// A session policy for your user so that you can use the same IAM role across
-	// multiple users. This policy scopes down user access to portions of their
-	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
-	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
+	// A session policy for your user so that you can use the same Identity and
+	// Access Management (IAM) role across multiple users. This policy scopes down
+	// a user's access to portions of their Amazon S3 bucket. Variables that you
+	// can use inside this policy include ${Transfer:UserName}, ${Transfer:HomeDirectory},
+	// and ${Transfer:HomeBucket}.
 	//
-	// This only applies when the domain of ServerId is S3. EFS does not use session
-	// policies.
+	// This policy applies only when the domain of ServerId is Amazon S3. Amazon
+	// EFS does not use session policies.
 	//
-	// For session policies, Amazon Web Services Transfer Family stores the policy
-	// as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy.
-	// You save the policy as a JSON blob and pass it in the Policy argument.
+	// For session policies, Transfer Family stores the policy as a JSON blob, instead
+	// of the Amazon Resource Name (ARN) of the policy. You save the policy as a
+	// JSON blob and pass it in the Policy argument.
 	//
 	// For an example of a session policy, see Example session policy (https://docs.aws.amazon.com/transfer/latest/userguide/session-policy.html).
 	//
@@ -4454,12 +7287,13 @@ type CreateUserInput struct {
 	// when transferring files into and out of your Amazon EFS file systems.
 	PosixProfile *PosixProfile `type:"structure"`
 
-	// Specifies the Amazon Resource Name (ARN) of the IAM role that controls your
-	// users' access to your Amazon S3 bucket or EFS file system. The policies attached
-	// to this role determine the level of access that you want to provide your
-	// users when transferring files into and out of your Amazon S3 bucket or EFS
-	// file system. The IAM role should also contain a trust relationship that allows
-	// the server to access your resources when servicing your users' transfer requests.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that controls your users' access to your Amazon S3 bucket or Amazon
+	// EFS file system. The policies attached to this role determine the level of
+	// access that you want to provide your users when transferring files into and
+	// out of your Amazon S3 bucket or Amazon EFS file system. The IAM role should
+	// also contain a trust relationship that allows the server to access your resources
+	// when servicing your users' transfer requests.
 	//
 	// Role is a required field
 	Role *string `min:"20" type:"string" required:"true"`
@@ -4690,18 +7524,18 @@ type CreateWorkflowInput struct {
 	// The TYPE specifies which of the following actions is being taken for this
 	// step.
 	//
-	//    * COPY: copy the file to another location
+	//    * COPY: Copy the file to another location.
 	//
-	//    * CUSTOM: custom step with a lambda target
+	//    * CUSTOM: Perform a custom step with an Lambda function target.
 	//
-	//    * DELETE: delete the file
+	//    * DELETE: Delete the file.
 	//
-	//    * TAG: add a tag to the file
+	//    * TAG: Add a tag to the file.
 	//
 	// Currently, copying and tagging are supported only on S3.
 	//
-	// For file location, you specify either the S3 bucket and key, or the EFS filesystem
-	// ID and path.
+	// For file location, you specify either the S3 bucket and key, or the EFS file
+	// system ID and path.
 	//
 	// Steps is a required field
 	Steps []*WorkflowStep `type:"list" required:"true"`
@@ -4917,9 +7751,9 @@ type DeleteAccessInput struct {
 
 	// A unique identifier that is required to identify specific groups within your
 	// directory. The users of the group that you associate have access to your
-	// Amazon S3 or Amazon EFS resources over the enabled protocols using Amazon
-	// Web Services Transfer Family. If you know the group name, you can view the
-	// SID values by running the following command using Windows PowerShell.
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer
+	// Family. If you know the group name, you can view the SID values by running
+	// the following command using Windows PowerShell.
 	//
 	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
 	// | Select SamAccountName,ObjectSid
@@ -4927,9 +7761,9 @@ type DeleteAccessInput struct {
 	// In that command, replace YourGroupName with the name of your Active Directory
 	// group.
 	//
-	// The regex used to validate this parameter is a string of characters consisting
-	// of uppercase and lowercase alphanumeric characters with no spaces. You can
-	// also include underscores or any of the following characters: =,.@:/-
+	// The regular expression used to validate this parameter is a string of characters
+	// consisting of uppercase and lowercase alphanumeric characters with no spaces.
+	// You can also include underscores or any of the following characters: =,.@:/-
 	//
 	// ExternalId is a required field
 	ExternalId *string `min:"1" type:"string" required:"true"`
@@ -5011,6 +7845,308 @@ func (s DeleteAccessOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteAccessOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteAgreementInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the agreement. This identifier is returned when you
+	// create an agreement.
+	//
+	// AgreementId is a required field
+	AgreementId *string `min:"19" type:"string" required:"true"`
+
+	// The server ID associated with the agreement that you are deleting.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAgreementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAgreementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAgreementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAgreementInput"}
+	if s.AgreementId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgreementId"))
+	}
+	if s.AgreementId != nil && len(*s.AgreementId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("AgreementId", 19))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgreementId sets the AgreementId field's value.
+func (s *DeleteAgreementInput) SetAgreementId(v string) *DeleteAgreementInput {
+	s.AgreementId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *DeleteAgreementInput) SetServerId(v string) *DeleteAgreementInput {
+	s.ServerId = &v
+	return s
+}
+
+type DeleteAgreementOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAgreementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAgreementOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteCertificateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the certificate object that you are deleting.
+	//
+	// CertificateId is a required field
+	CertificateId *string `min:"22" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCertificateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCertificateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCertificateInput"}
+	if s.CertificateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateId"))
+	}
+	if s.CertificateId != nil && len(*s.CertificateId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 22))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateId sets the CertificateId field's value.
+func (s *DeleteCertificateInput) SetCertificateId(v string) *DeleteCertificateInput {
+	s.CertificateId = &v
+	return s
+}
+
+type DeleteCertificateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCertificateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCertificateOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteConnectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the connector.
+	//
+	// ConnectorId is a required field
+	ConnectorId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConnectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConnectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteConnectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteConnectorInput"}
+	if s.ConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorId"))
+	}
+	if s.ConnectorId != nil && len(*s.ConnectorId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorId sets the ConnectorId field's value.
+func (s *DeleteConnectorInput) SetConnectorId(v string) *DeleteConnectorInput {
+	s.ConnectorId = &v
+	return s
+}
+
+type DeleteConnectorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConnectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConnectorOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the profile that you are deleting.
+	//
+	// ProfileId is a required field
+	ProfileId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteProfileInput"}
+	if s.ProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileId"))
+	}
+	if s.ProfileId != nil && len(*s.ProfileId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProfileId sets the ProfileId field's value.
+func (s *DeleteProfileInput) SetProfileId(v string) *DeleteProfileInput {
+	s.ProfileId = &v
+	return s
+}
+
+type DeleteProfileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProfileOutput) GoString() string {
 	return s.String()
 }
 
@@ -5405,9 +8541,9 @@ type DescribeAccessInput struct {
 
 	// A unique identifier that is required to identify specific groups within your
 	// directory. The users of the group that you associate have access to your
-	// Amazon S3 or Amazon EFS resources over the enabled protocols using Amazon
-	// Web Services Transfer Family. If you know the group name, you can view the
-	// SID values by running the following command using Windows PowerShell.
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer
+	// Family. If you know the group name, you can view the SID values by running
+	// the following command using Windows PowerShell.
 	//
 	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
 	// | Select SamAccountName,ObjectSid
@@ -5415,9 +8551,9 @@ type DescribeAccessInput struct {
 	// In that command, replace YourGroupName with the name of your Active Directory
 	// group.
 	//
-	// The regex used to validate this parameter is a string of characters consisting
-	// of uppercase and lowercase alphanumeric characters with no spaces. You can
-	// also include underscores or any of the following characters: =,.@:/-
+	// The regular expression used to validate this parameter is a string of characters
+	// consisting of uppercase and lowercase alphanumeric characters with no spaces.
+	// You can also include underscores or any of the following characters: =,.@:/-
 	//
 	// ExternalId is a required field
 	ExternalId *string `min:"1" type:"string" required:"true"`
@@ -5521,6 +8657,272 @@ func (s *DescribeAccessOutput) SetAccess(v *DescribedAccess) *DescribeAccessOutp
 // SetServerId sets the ServerId field's value.
 func (s *DescribeAccessOutput) SetServerId(v string) *DescribeAccessOutput {
 	s.ServerId = &v
+	return s
+}
+
+type DescribeAgreementInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the agreement. This identifier is returned when you
+	// create an agreement.
+	//
+	// AgreementId is a required field
+	AgreementId *string `min:"19" type:"string" required:"true"`
+
+	// The server ID that's associated with the agreement.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAgreementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAgreementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAgreementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAgreementInput"}
+	if s.AgreementId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgreementId"))
+	}
+	if s.AgreementId != nil && len(*s.AgreementId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("AgreementId", 19))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgreementId sets the AgreementId field's value.
+func (s *DescribeAgreementInput) SetAgreementId(v string) *DescribeAgreementInput {
+	s.AgreementId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *DescribeAgreementInput) SetServerId(v string) *DescribeAgreementInput {
+	s.ServerId = &v
+	return s
+}
+
+type DescribeAgreementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details for the specified agreement, returned as a DescribedAgreement
+	// object.
+	//
+	// Agreement is a required field
+	Agreement *DescribedAgreement `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAgreementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAgreementOutput) GoString() string {
+	return s.String()
+}
+
+// SetAgreement sets the Agreement field's value.
+func (s *DescribeAgreementOutput) SetAgreement(v *DescribedAgreement) *DescribeAgreementOutput {
+	s.Agreement = v
+	return s
+}
+
+type DescribeCertificateInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of identifiers for the imported certificates. You use this identifier
+	// for working with profiles and partner profiles.
+	//
+	// CertificateId is a required field
+	CertificateId *string `min:"22" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCertificateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCertificateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCertificateInput"}
+	if s.CertificateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateId"))
+	}
+	if s.CertificateId != nil && len(*s.CertificateId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 22))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateId sets the CertificateId field's value.
+func (s *DescribeCertificateInput) SetCertificateId(v string) *DescribeCertificateInput {
+	s.CertificateId = &v
+	return s
+}
+
+type DescribeCertificateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details for the specified certificate, returned as an object.
+	//
+	// Certificate is a required field
+	Certificate *DescribedCertificate `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCertificateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCertificateOutput) GoString() string {
+	return s.String()
+}
+
+// SetCertificate sets the Certificate field's value.
+func (s *DescribeCertificateOutput) SetCertificate(v *DescribedCertificate) *DescribeCertificateOutput {
+	s.Certificate = v
+	return s
+}
+
+type DescribeConnectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the connector.
+	//
+	// ConnectorId is a required field
+	ConnectorId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeConnectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeConnectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeConnectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeConnectorInput"}
+	if s.ConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorId"))
+	}
+	if s.ConnectorId != nil && len(*s.ConnectorId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorId sets the ConnectorId field's value.
+func (s *DescribeConnectorInput) SetConnectorId(v string) *DescribeConnectorInput {
+	s.ConnectorId = &v
+	return s
+}
+
+type DescribeConnectorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The structure that contains the details of the connector.
+	//
+	// Connector is a required field
+	Connector *DescribedConnector `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeConnectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeConnectorOutput) GoString() string {
+	return s.String()
+}
+
+// SetConnector sets the Connector field's value.
+func (s *DescribeConnectorOutput) SetConnector(v *DescribedConnector) *DescribeConnectorOutput {
+	s.Connector = v
 	return s
 }
 
@@ -5631,6 +9033,88 @@ func (s *DescribeExecutionOutput) SetExecution(v *DescribedExecution) *DescribeE
 // SetWorkflowId sets the WorkflowId field's value.
 func (s *DescribeExecutionOutput) SetWorkflowId(v string) *DescribeExecutionOutput {
 	s.WorkflowId = &v
+	return s
+}
+
+type DescribeProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the profile that you want described.
+	//
+	// ProfileId is a required field
+	ProfileId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeProfileInput"}
+	if s.ProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileId"))
+	}
+	if s.ProfileId != nil && len(*s.ProfileId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProfileId sets the ProfileId field's value.
+func (s *DescribeProfileInput) SetProfileId(v string) *DescribeProfileInput {
+	s.ProfileId = &v
+	return s
+}
+
+type DescribeProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the specified profile, returned as an object.
+	//
+	// Profile is a required field
+	Profile *DescribedProfile `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetProfile sets the Profile field's value.
+func (s *DescribeProfileOutput) SetProfile(v *DescribedProfile) *DescribeProfileOutput {
+	s.Profile = v
 	return s
 }
 
@@ -5804,8 +9288,8 @@ type DescribeUserInput struct {
 	ServerId *string `min:"19" type:"string" required:"true"`
 
 	// The name of the user assigned to one or more servers. User names are part
-	// of the sign-in credentials to use the Amazon Web Services Transfer Family
-	// service and perform file transfer tasks.
+	// of the sign-in credentials to use the Transfer Family service and perform
+	// file transfer tasks.
 	//
 	// UserName is a required field
 	UserName *string `min:"3" type:"string" required:"true"`
@@ -5996,9 +9480,9 @@ type DescribedAccess struct {
 
 	// A unique identifier that is required to identify specific groups within your
 	// directory. The users of the group that you associate have access to your
-	// Amazon S3 or Amazon EFS resources over the enabled protocols using Amazon
-	// Web Services Transfer Family. If you know the group name, you can view the
-	// SID values by running the following command using Windows PowerShell.
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer
+	// Family. If you know the group name, you can view the SID values by running
+	// the following command using Windows PowerShell.
 	//
 	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
 	// | Select SamAccountName,ObjectSid
@@ -6006,9 +9490,9 @@ type DescribedAccess struct {
 	// In that command, replace YourGroupName with the name of your Active Directory
 	// group.
 	//
-	// The regex used to validate this parameter is a string of characters consisting
-	// of uppercase and lowercase alphanumeric characters with no spaces. You can
-	// also include underscores or any of the following characters: =,.@:/-
+	// The regular expression used to validate this parameter is a string of characters
+	// consisting of uppercase and lowercase alphanumeric characters with no spaces.
+	// You can also include underscores or any of the following characters: =,.@:/-
 	ExternalId *string `min:"1" type:"string"`
 
 	// The landing directory (folder) for a user when they log in to the server
@@ -6022,9 +9506,8 @@ type DescribedAccess struct {
 	// You must specify the Entry and Target pair, where Entry shows how the path
 	// is made visible and Target is the actual Amazon S3 or Amazon EFS path. If
 	// you only specify a target, it is displayed as is. You also must ensure that
-	// your Amazon Web Services Identity and Access Management (IAM) role provides
-	// access to paths in Target. This value can only be set when HomeDirectoryType
-	// is set to LOGICAL.
+	// your Identity and Access Management (IAM) role provides access to paths in
+	// Target. This value can be set only when HomeDirectoryType is set to LOGICAL.
 	//
 	// In most cases, you can use this value instead of the session policy to lock
 	// down the associated access to the designated home directory ("chroot"). To
@@ -6032,18 +9515,19 @@ type DescribedAccess struct {
 	// value.
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
-	// The type of landing directory (folder) you want your users' home directory
-	// to be when they log into the server. If you set it to PATH, the user will
+	// The type of landing directory (folder) that you want your users' home directory
+	// to be when they log in to the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
 	// protocol clients. If you set it LOGICAL, you need to provide mappings in
-	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
-	// visible to your users.
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or Amazon EFS
+	// paths visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
-	// A session policy for your user so that you can use the same IAM role across
-	// multiple users. This policy scopes down user access to portions of their
-	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
-	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
+	// A session policy for your user so that you can use the same Identity and
+	// Access Management (IAM) role across multiple users. This policy scopes down
+	// a user's access to portions of their Amazon S3 bucket. Variables that you
+	// can use inside this policy include ${Transfer:UserName}, ${Transfer:HomeDirectory},
+	// and ${Transfer:HomeBucket}.
 	Policy *string `type:"string"`
 
 	// The full POSIX identity, including user ID (Uid), group ID (Gid), and any
@@ -6053,12 +9537,13 @@ type DescribedAccess struct {
 	// get when transferring files into and out of your Amazon EFS file systems.
 	PosixProfile *PosixProfile `type:"structure"`
 
-	// Specifies the Amazon Resource Name (ARN) of the IAM role that controls your
-	// users' access to your Amazon S3 bucket or EFS file system. The policies attached
-	// to this role determine the level of access that you want to provide your
-	// users when transferring files into and out of your Amazon S3 bucket or EFS
-	// file system. The IAM role should also contain a trust relationship that allows
-	// the server to access your resources when servicing your users' transfer requests.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that controls your users' access to your Amazon S3 bucket or Amazon
+	// EFS file system. The policies attached to this role determine the level of
+	// access that you want to provide your users when transferring files into and
+	// out of your Amazon S3 bucket or Amazon EFS file system. The IAM role should
+	// also contain a trust relationship that allows the server to access your resources
+	// when servicing your users' transfer requests.
 	Role *string `min:"20" type:"string"`
 }
 
@@ -6122,6 +9607,388 @@ func (s *DescribedAccess) SetRole(v string) *DescribedAccess {
 	return s
 }
 
+// Describes the properties of an agreement.
+type DescribedAgreement struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that grants access to at least the HomeDirectory of your users' Amazon
+	// S3 buckets.
+	AccessRole *string `min:"20" type:"string"`
+
+	// A unique identifier for the agreement. This identifier is returned when you
+	// create an agreement.
+	AgreementId *string `min:"19" type:"string"`
+
+	// The unique Amazon Resource Name (ARN) for the agreement.
+	//
+	// Arn is a required field
+	Arn *string `min:"20" type:"string" required:"true"`
+
+	// The landing directory (folder) for files that are transferred by using the
+	// AS2 protocol.
+	BaseDirectory *string `type:"string"`
+
+	// The name or short description that's used to identify the agreement.
+	Description *string `min:"1" type:"string"`
+
+	// A unique identifier for the AS2 process.
+	LocalProfileId *string `min:"19" type:"string"`
+
+	// A unique identifier for the partner in the agreement.
+	PartnerProfileId *string `min:"19" type:"string"`
+
+	// A system-assigned unique identifier for a server instance. This identifier
+	// indicates the specific server that the agreement uses.
+	ServerId *string `min:"19" type:"string"`
+
+	// The current status of the agreement, either ACTIVE or INACTIVE.
+	Status *string `type:"string" enum:"AgreementStatusType"`
+
+	// Key-value pairs that can be used to group and search for agreements.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribedAgreement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribedAgreement) GoString() string {
+	return s.String()
+}
+
+// SetAccessRole sets the AccessRole field's value.
+func (s *DescribedAgreement) SetAccessRole(v string) *DescribedAgreement {
+	s.AccessRole = &v
+	return s
+}
+
+// SetAgreementId sets the AgreementId field's value.
+func (s *DescribedAgreement) SetAgreementId(v string) *DescribedAgreement {
+	s.AgreementId = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribedAgreement) SetArn(v string) *DescribedAgreement {
+	s.Arn = &v
+	return s
+}
+
+// SetBaseDirectory sets the BaseDirectory field's value.
+func (s *DescribedAgreement) SetBaseDirectory(v string) *DescribedAgreement {
+	s.BaseDirectory = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribedAgreement) SetDescription(v string) *DescribedAgreement {
+	s.Description = &v
+	return s
+}
+
+// SetLocalProfileId sets the LocalProfileId field's value.
+func (s *DescribedAgreement) SetLocalProfileId(v string) *DescribedAgreement {
+	s.LocalProfileId = &v
+	return s
+}
+
+// SetPartnerProfileId sets the PartnerProfileId field's value.
+func (s *DescribedAgreement) SetPartnerProfileId(v string) *DescribedAgreement {
+	s.PartnerProfileId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *DescribedAgreement) SetServerId(v string) *DescribedAgreement {
+	s.ServerId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribedAgreement) SetStatus(v string) *DescribedAgreement {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribedAgreement) SetTags(v []*Tag) *DescribedAgreement {
+	s.Tags = v
+	return s
+}
+
+// Describes the properties of a certificate.
+type DescribedCertificate struct {
+	_ struct{} `type:"structure"`
+
+	// An optional date that specifies when the certificate becomes active.
+	ActiveDate *time.Time `type:"timestamp"`
+
+	// The unique Amazon Resource Name (ARN) for the certificate.
+	//
+	// Arn is a required field
+	Arn *string `min:"20" type:"string" required:"true"`
+
+	// The file name for the certificate.
+	//
+	// Certificate is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribedCertificate's
+	// String and GoString methods.
+	Certificate *string `min:"1" type:"string" sensitive:"true"`
+
+	// The list of certificates that make up the chain for the certificate.
+	//
+	// CertificateChain is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribedCertificate's
+	// String and GoString methods.
+	CertificateChain *string `min:"1" type:"string" sensitive:"true"`
+
+	// An array of identifiers for the imported certificates. You use this identifier
+	// for working with profiles and partner profiles.
+	CertificateId *string `min:"22" type:"string"`
+
+	// The name or description that's used to identity the certificate.
+	Description *string `min:"1" type:"string"`
+
+	// An optional date that specifies when the certificate becomes inactive.
+	InactiveDate *time.Time `type:"timestamp"`
+
+	// The final date that the certificate is valid.
+	NotAfterDate *time.Time `type:"timestamp"`
+
+	// The earliest date that the certificate is valid.
+	NotBeforeDate *time.Time `type:"timestamp"`
+
+	// The serial number for the certificate.
+	Serial *string `type:"string"`
+
+	// The certificate can be either ACTIVE, PENDING_ROTATION, or INACTIVE. PENDING_ROTATION
+	// means that this certificate will replace the current certificate when it
+	// expires.
+	Status *string `type:"string" enum:"CertificateStatusType"`
+
+	// Key-value pairs that can be used to group and search for certificates.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// If a private key has been specified for the certificate, its type is CERTIFICATE_WITH_PRIVATE_KEY.
+	// If there is no private key, the type is CERTIFICATE.
+	Type *string `type:"string" enum:"CertificateType"`
+
+	// Specifies whether this certificate is used for signing or encryption.
+	Usage *string `type:"string" enum:"CertificateUsageType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribedCertificate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribedCertificate) GoString() string {
+	return s.String()
+}
+
+// SetActiveDate sets the ActiveDate field's value.
+func (s *DescribedCertificate) SetActiveDate(v time.Time) *DescribedCertificate {
+	s.ActiveDate = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribedCertificate) SetArn(v string) *DescribedCertificate {
+	s.Arn = &v
+	return s
+}
+
+// SetCertificate sets the Certificate field's value.
+func (s *DescribedCertificate) SetCertificate(v string) *DescribedCertificate {
+	s.Certificate = &v
+	return s
+}
+
+// SetCertificateChain sets the CertificateChain field's value.
+func (s *DescribedCertificate) SetCertificateChain(v string) *DescribedCertificate {
+	s.CertificateChain = &v
+	return s
+}
+
+// SetCertificateId sets the CertificateId field's value.
+func (s *DescribedCertificate) SetCertificateId(v string) *DescribedCertificate {
+	s.CertificateId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribedCertificate) SetDescription(v string) *DescribedCertificate {
+	s.Description = &v
+	return s
+}
+
+// SetInactiveDate sets the InactiveDate field's value.
+func (s *DescribedCertificate) SetInactiveDate(v time.Time) *DescribedCertificate {
+	s.InactiveDate = &v
+	return s
+}
+
+// SetNotAfterDate sets the NotAfterDate field's value.
+func (s *DescribedCertificate) SetNotAfterDate(v time.Time) *DescribedCertificate {
+	s.NotAfterDate = &v
+	return s
+}
+
+// SetNotBeforeDate sets the NotBeforeDate field's value.
+func (s *DescribedCertificate) SetNotBeforeDate(v time.Time) *DescribedCertificate {
+	s.NotBeforeDate = &v
+	return s
+}
+
+// SetSerial sets the Serial field's value.
+func (s *DescribedCertificate) SetSerial(v string) *DescribedCertificate {
+	s.Serial = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribedCertificate) SetStatus(v string) *DescribedCertificate {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribedCertificate) SetTags(v []*Tag) *DescribedCertificate {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DescribedCertificate) SetType(v string) *DescribedCertificate {
+	s.Type = &v
+	return s
+}
+
+// SetUsage sets the Usage field's value.
+func (s *DescribedCertificate) SetUsage(v string) *DescribedCertificate {
+	s.Usage = &v
+	return s
+}
+
+// Describes the parameters for the connector, as identified by the ConnectorId.
+type DescribedConnector struct {
+	_ struct{} `type:"structure"`
+
+	// With AS2, you can send files by calling StartFileTransfer and specifying
+	// the file paths in the request parameter, SendFilePaths. We use the file’s
+	// parent directory (for example, for --send-file-paths /bucket/dir/file.txt,
+	// parent directory is /bucket/dir/) to temporarily store a processed AS2 message
+	// file, store the MDN when we receive them from the partner, and write a final
+	// JSON file containing relevant metadata of the transmission. So, the AccessRole
+	// needs to provide read and write access to the parent directory of the file
+	// location used in the StartFileTransfer request. Additionally, you need to
+	// provide read and write access to the parent directory of the files that you
+	// intend to send with StartFileTransfer.
+	AccessRole *string `min:"20" type:"string"`
+
+	// The unique Amazon Resource Name (ARN) for the connector.
+	//
+	// Arn is a required field
+	Arn *string `min:"20" type:"string" required:"true"`
+
+	// A structure that contains the parameters for a connector object.
+	As2Config *As2ConnectorConfig `type:"structure"`
+
+	// The unique identifier for the connector.
+	ConnectorId *string `min:"19" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that allows a connector to turn on CloudWatch logging for Amazon S3
+	// events. When set, you can view connector activity in your CloudWatch logs.
+	LoggingRole *string `min:"20" type:"string"`
+
+	// Key-value pairs that can be used to group and search for connectors.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The URL of the partner's AS2 endpoint.
+	Url *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribedConnector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribedConnector) GoString() string {
+	return s.String()
+}
+
+// SetAccessRole sets the AccessRole field's value.
+func (s *DescribedConnector) SetAccessRole(v string) *DescribedConnector {
+	s.AccessRole = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribedConnector) SetArn(v string) *DescribedConnector {
+	s.Arn = &v
+	return s
+}
+
+// SetAs2Config sets the As2Config field's value.
+func (s *DescribedConnector) SetAs2Config(v *As2ConnectorConfig) *DescribedConnector {
+	s.As2Config = v
+	return s
+}
+
+// SetConnectorId sets the ConnectorId field's value.
+func (s *DescribedConnector) SetConnectorId(v string) *DescribedConnector {
+	s.ConnectorId = &v
+	return s
+}
+
+// SetLoggingRole sets the LoggingRole field's value.
+func (s *DescribedConnector) SetLoggingRole(v string) *DescribedConnector {
+	s.LoggingRole = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribedConnector) SetTags(v []*Tag) *DescribedConnector {
+	s.Tags = v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *DescribedConnector) SetUrl(v string) *DescribedConnector {
+	s.Url = &v
+	return s
+}
+
 // The details for an execution object.
 type DescribedExecution struct {
 	_ struct{} `type:"structure"`
@@ -6152,7 +10019,7 @@ type DescribedExecution struct {
 	// any), and the OnExceptionSteps structure.
 	Results *ExecutionResults `type:"structure"`
 
-	// A container object for the session details associated with a workflow.
+	// A container object for the session details that are associated with a workflow.
 	ServiceMetadata *ServiceMetadata `type:"structure"`
 
 	// The status is one of the execution. Can be in progress, completed, exception
@@ -6223,6 +10090,87 @@ func (s *DescribedExecution) SetServiceMetadata(v *ServiceMetadata) *DescribedEx
 // SetStatus sets the Status field's value.
 func (s *DescribedExecution) SetStatus(v string) *DescribedExecution {
 	s.Status = &v
+	return s
+}
+
+// The details for a local or partner AS2 profile. profile.
+type DescribedProfile struct {
+	_ struct{} `type:"structure"`
+
+	// The unique Amazon Resource Name (ARN) for the profile.
+	//
+	// Arn is a required field
+	Arn *string `min:"20" type:"string" required:"true"`
+
+	// The unique identifier for the AS2 process.
+	As2Id *string `min:"1" type:"string"`
+
+	// An array of identifiers for the imported certificates. You use this identifier
+	// for working with profiles and partner profiles.
+	CertificateIds []*string `type:"list"`
+
+	// A unique identifier for the local or partner AS2 profile.
+	ProfileId *string `min:"19" type:"string"`
+
+	// Indicates whether to list only LOCAL type profiles or only PARTNER type profiles.
+	// If not supplied in the request, the command lists all types of profiles.
+	ProfileType *string `type:"string" enum:"ProfileType"`
+
+	// Key-value pairs that can be used to group and search for profiles.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribedProfile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribedProfile) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribedProfile) SetArn(v string) *DescribedProfile {
+	s.Arn = &v
+	return s
+}
+
+// SetAs2Id sets the As2Id field's value.
+func (s *DescribedProfile) SetAs2Id(v string) *DescribedProfile {
+	s.As2Id = &v
+	return s
+}
+
+// SetCertificateIds sets the CertificateIds field's value.
+func (s *DescribedProfile) SetCertificateIds(v []*string) *DescribedProfile {
+	s.CertificateIds = v
+	return s
+}
+
+// SetProfileId sets the ProfileId field's value.
+func (s *DescribedProfile) SetProfileId(v string) *DescribedProfile {
+	s.ProfileId = &v
+	return s
+}
+
+// SetProfileType sets the ProfileType field's value.
+func (s *DescribedProfile) SetProfileType(v string) *DescribedProfile {
+	s.ProfileType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribedProfile) SetTags(v []*Tag) *DescribedProfile {
+	s.Tags = v
 	return s
 }
 
@@ -6329,10 +10277,11 @@ type DescribedServer struct {
 	Domain *string `type:"string" enum:"Domain"`
 
 	// The virtual private cloud (VPC) endpoint settings that are configured for
-	// your server. When you host your endpoint within your VPC, you can make it
-	// accessible only to resources within your VPC, or you can attach Elastic IP
-	// addresses and make it accessible to clients over the internet. Your VPC's
-	// default security groups are automatically assigned to your endpoint.
+	// your server. When you host your endpoint within your VPC, you can make your
+	// endpoint accessible only to resources within your VPC, or you can attach
+	// Elastic IP addresses and make your endpoint accessible to clients over the
+	// internet. Your VPC's default security groups are automatically assigned to
+	// your endpoint.
 	EndpointDetails *EndpointDetails `type:"structure"`
 
 	// Defines the type of endpoint that your server is connected to. If your server
@@ -6350,41 +10299,41 @@ type DescribedServer struct {
 	// or SERVICE_MANAGED.
 	IdentityProviderDetails *IdentityProviderDetails `type:"structure"`
 
-	// Specifies the mode of authentication for a server. The default value is SERVICE_MANAGED,
-	// which allows you to store and access user credentials within the Amazon Web
-	// Services Transfer Family service.
+	// The mode of authentication for a server. The default value is SERVICE_MANAGED,
+	// which allows you to store and access user credentials within the Transfer
+	// Family service.
 	//
 	// Use AWS_DIRECTORY_SERVICE to provide access to Active Directory groups in
-	// Amazon Web Services Managed Active Directory or Microsoft Active Directory
-	// in your on-premises environment or in Amazon Web Services using AD Connectors.
-	// This option also requires you to provide a Directory ID using the IdentityProviderDetails
+	// Directory Service for Microsoft Active Directory or Microsoft Active Directory
+	// in your on-premises environment or in Amazon Web Services using AD Connector.
+	// This option also requires you to provide a Directory ID by using the IdentityProviderDetails
 	// parameter.
 	//
 	// Use the API_GATEWAY value to integrate with an identity provider of your
-	// choosing. The API_GATEWAY setting requires you to provide an API Gateway
-	// endpoint URL to call for authentication using the IdentityProviderDetails
+	// choosing. The API_GATEWAY setting requires you to provide an Amazon API Gateway
+	// endpoint URL to call for authentication by using the IdentityProviderDetails
 	// parameter.
 	//
-	// Use the AWS_LAMBDA value to directly use a Lambda function as your identity
-	// provider. If you choose this value, you must specify the ARN for the lambda
-	// function in the Function parameter for the IdentityProviderDetails data type.
+	// Use the AWS_LAMBDA value to directly use an Lambda function as your identity
+	// provider. If you choose this value, you must specify the ARN for the Lambda
+	// function in the Function parameter or the IdentityProviderDetails data type.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
-	// Specifies the Amazon Resource Name (ARN) of the Amazon Web Services Identity
-	// and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch
-	// logging for Amazon S3 or Amazon EFS events. When set, user activity can be
-	// viewed in your CloudWatch logs.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that allows a server to turn on Amazon CloudWatch logging for Amazon
+	// S3 or Amazon EFSevents. When set, you can view user activity in your CloudWatch
+	// logs.
 	LoggingRole *string `min:"20" type:"string"`
 
-	// Specify a string to display when users connect to a server. This string is
-	// displayed after the user authenticates.
+	// Specifies a string to display when users connect to a server. This string
+	// is displayed after the user authenticates.
 	//
 	// The SFTP protocol does not support post-authentication display banners.
 	PostAuthenticationLoginBanner *string `type:"string"`
 
-	// Specify a string to display when users connect to a server. This string is
-	// displayed before the user authenticates. For example, the following banner
-	// displays details about using the system.
+	// Specifies a string to display when users connect to a server. This string
+	// is displayed before the user authenticates. For example, the following banner
+	// displays details about using the system:
 	//
 	// This system is for the use of authorized users only. Individuals using this
 	// computer system without authority, or in excess of their authority, are subject
@@ -6416,10 +10365,9 @@ type DescribedServer struct {
 	// Specifies the unique system-assigned identifier for a server that you instantiate.
 	ServerId *string `min:"19" type:"string"`
 
-	// Specifies the condition of a server for the server that was described. A
-	// value of ONLINE indicates that the server can accept jobs and transfer files.
-	// A State value of OFFLINE means that the server cannot perform file transfer
-	// operations.
+	// The condition of the server that was described. A value of ONLINE indicates
+	// that the server can accept jobs and transfer files. A State value of OFFLINE
+	// means that the server cannot perform file transfer operations.
 	//
 	// The states of STARTING and STOPPING indicate that the server is in an intermediate
 	// state, either not fully able to respond, or not fully offline. The values
@@ -6435,7 +10383,7 @@ type DescribedServer struct {
 	UserCount *int64 `type:"integer"`
 
 	// Specifies the workflow ID for the workflow to assign and the execution role
-	// used for executing the workflow.
+	// that's used for executing the workflow.
 	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
@@ -6592,27 +10540,27 @@ type DescribedUser struct {
 	// You must specify the Entry and Target pair, where Entry shows how the path
 	// is made visible and Target is the actual Amazon S3 or Amazon EFS path. If
 	// you only specify a target, it is displayed as is. You also must ensure that
-	// your Amazon Web Services Identity and Access Management (IAM) role provides
-	// access to paths in Target. This value can only be set when HomeDirectoryType
-	// is set to LOGICAL.
+	// your Identity and Access Management (IAM) role provides access to paths in
+	// Target. This value can be set only when HomeDirectoryType is set to LOGICAL.
 	//
 	// In most cases, you can use this value instead of the session policy to lock
 	// your user down to the designated home directory ("chroot"). To do this, you
 	// can set Entry to '/' and set Target to the HomeDirectory parameter value.
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
-	// The type of landing directory (folder) you want your users' home directory
-	// to be when they log into the server. If you set it to PATH, the user will
+	// The type of landing directory (folder) that you want your users' home directory
+	// to be when they log in to the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
 	// protocol clients. If you set it LOGICAL, you need to provide mappings in
-	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
-	// visible to your users.
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or Amazon EFS
+	// paths visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
-	// A session policy for your user so that you can use the same IAM role across
-	// multiple users. This policy scopes down user access to portions of their
-	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
-	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
+	// A session policy for your user so that you can use the same Identity and
+	// Access Management (IAM) role across multiple users. This policy scopes down
+	// a user's access to portions of their Amazon S3 bucket. Variables that you
+	// can use inside this policy include ${Transfer:UserName}, ${Transfer:HomeDirectory},
+	// and ${Transfer:HomeBucket}.
 	Policy *string `type:"string"`
 
 	// Specifies the full POSIX identity, including user ID (Uid), group ID (Gid),
@@ -6623,12 +10571,13 @@ type DescribedUser struct {
 	// EFS file systems.
 	PosixProfile *PosixProfile `type:"structure"`
 
-	// Specifies the Amazon Resource Name (ARN) of the IAM role that controls your
-	// users' access to your Amazon S3 bucket or EFS file system. The policies attached
-	// to this role determine the level of access that you want to provide your
-	// users when transferring files into and out of your Amazon S3 bucket or EFS
-	// file system. The IAM role should also contain a trust relationship that allows
-	// the server to access your resources when servicing your users' transfer requests.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that controls your users' access to your Amazon S3 bucket or Amazon
+	// EFS file system. The policies attached to this role determine the level of
+	// access that you want to provide your users when transferring files into and
+	// out of your Amazon S3 bucket or Amazon EFS file system. The IAM role should
+	// also contain a trust relationship that allows the server to access your resources
+	// when servicing your users' transfer requests.
 	Role *string `min:"20" type:"string"`
 
 	// Specifies the public key portion of the Secure Shell (SSH) keys stored for
@@ -7092,7 +11041,7 @@ type ExecutionStepResult struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the details for an error, if it occurred during execution of the
-	// specified workfow step.
+	// specified workflow step.
 	Error *ExecutionError `type:"structure"`
 
 	// The values for the key/value pair applied as a tag to the file. Only applicable
@@ -7101,13 +11050,13 @@ type ExecutionStepResult struct {
 
 	// One of the available step types.
 	//
-	//    * COPY: copy the file to another location
+	//    * COPY: Copy the file to another location.
 	//
-	//    * CUSTOM: custom step with a lambda target
+	//    * CUSTOM: Perform a custom step with an Lambda function target.
 	//
-	//    * DELETE: delete the file
+	//    * DELETE: Delete the file.
 	//
-	//    * TAG: add a tag to the file
+	//    * TAG: Add a tag to the file.
 	StepType *string `type:"string" enum:"WorkflowStepType"`
 }
 
@@ -7154,7 +11103,7 @@ type FileLocation struct {
 	// Specifies the Amazon EFS ID and the path for the file being used.
 	EfsFileLocation *EfsFileLocation `type:"structure"`
 
-	// Specifies the S3 details for the file being used, such as bucket, Etag, and
+	// Specifies the S3 details for the file being used, such as bucket, ETag, and
 	// so forth.
 	S3FileLocation *S3FileLocation `type:"structure"`
 }
@@ -7260,8 +11209,7 @@ func (s *HomeDirectoryMapEntry) SetTarget(v string) *HomeDirectoryMapEntry {
 type IdentityProviderDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Web Services Directory Service directory that
-	// you want to stop sharing.
+	// The identifier of the Directory Service directory that you want to stop sharing.
 	DirectoryId *string `min:"12" type:"string"`
 
 	// The ARN for a lambda function to use for the Identity provider.
@@ -7332,6 +11280,192 @@ func (s *IdentityProviderDetails) SetInvocationRole(v string) *IdentityProviderD
 // SetUrl sets the Url field's value.
 func (s *IdentityProviderDetails) SetUrl(v string) *IdentityProviderDetails {
 	s.Url = &v
+	return s
+}
+
+type ImportCertificateInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional date that specifies when the certificate becomes active.
+	ActiveDate *time.Time `type:"timestamp"`
+
+	// The file that contains the certificate to import.
+	//
+	// Certificate is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ImportCertificateInput's
+	// String and GoString methods.
+	//
+	// Certificate is a required field
+	Certificate *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// An optional list of certificates that make up the chain for the certificate
+	// that's being imported.
+	//
+	// CertificateChain is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ImportCertificateInput's
+	// String and GoString methods.
+	CertificateChain *string `min:"1" type:"string" sensitive:"true"`
+
+	// A short description that helps identify the certificate.
+	Description *string `min:"1" type:"string"`
+
+	// An optional date that specifies when the certificate becomes inactive.
+	InactiveDate *time.Time `type:"timestamp"`
+
+	// The file that contains the private key for the certificate that's being imported.
+	//
+	// PrivateKey is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ImportCertificateInput's
+	// String and GoString methods.
+	PrivateKey *string `min:"1" type:"string" sensitive:"true"`
+
+	// Key-value pairs that can be used to group and search for certificates.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// Specifies whether this certificate is used for signing or encryption.
+	//
+	// Usage is a required field
+	Usage *string `type:"string" required:"true" enum:"CertificateUsageType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportCertificateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportCertificateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportCertificateInput"}
+	if s.Certificate == nil {
+		invalidParams.Add(request.NewErrParamRequired("Certificate"))
+	}
+	if s.Certificate != nil && len(*s.Certificate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Certificate", 1))
+	}
+	if s.CertificateChain != nil && len(*s.CertificateChain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateChain", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.PrivateKey != nil && len(*s.PrivateKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PrivateKey", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Usage == nil {
+		invalidParams.Add(request.NewErrParamRequired("Usage"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActiveDate sets the ActiveDate field's value.
+func (s *ImportCertificateInput) SetActiveDate(v time.Time) *ImportCertificateInput {
+	s.ActiveDate = &v
+	return s
+}
+
+// SetCertificate sets the Certificate field's value.
+func (s *ImportCertificateInput) SetCertificate(v string) *ImportCertificateInput {
+	s.Certificate = &v
+	return s
+}
+
+// SetCertificateChain sets the CertificateChain field's value.
+func (s *ImportCertificateInput) SetCertificateChain(v string) *ImportCertificateInput {
+	s.CertificateChain = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ImportCertificateInput) SetDescription(v string) *ImportCertificateInput {
+	s.Description = &v
+	return s
+}
+
+// SetInactiveDate sets the InactiveDate field's value.
+func (s *ImportCertificateInput) SetInactiveDate(v time.Time) *ImportCertificateInput {
+	s.InactiveDate = &v
+	return s
+}
+
+// SetPrivateKey sets the PrivateKey field's value.
+func (s *ImportCertificateInput) SetPrivateKey(v string) *ImportCertificateInput {
+	s.PrivateKey = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ImportCertificateInput) SetTags(v []*Tag) *ImportCertificateInput {
+	s.Tags = v
+	return s
+}
+
+// SetUsage sets the Usage field's value.
+func (s *ImportCertificateInput) SetUsage(v string) *ImportCertificateInput {
+	s.Usage = &v
+	return s
+}
+
+type ImportCertificateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of identifiers for the imported certificates. You use this identifier
+	// for working with profiles and partner profiles.
+	//
+	// CertificateId is a required field
+	CertificateId *string `min:"22" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportCertificateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportCertificateOutput) GoString() string {
+	return s.String()
+}
+
+// SetCertificateId sets the CertificateId field's value.
+func (s *ImportCertificateOutput) SetCertificateId(v string) *ImportCertificateOutput {
+	s.CertificateId = &v
 	return s
 }
 
@@ -7863,10 +11997,330 @@ func (s *ListAccessesOutput) SetServerId(v string) *ListAccessesOutput {
 	return s
 }
 
+type ListAgreementsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of agreements to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// When you can get additional results from the ListAgreements call, a NextToken
+	// parameter is returned in the output. You can then pass in a subsequent command
+	// to the NextToken parameter to continue listing additional agreements.
+	NextToken *string `min:"1" type:"string"`
+
+	// The identifier of the server for which you want a list of agreements.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAgreementsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAgreementsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAgreementsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAgreementsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAgreementsInput) SetMaxResults(v int64) *ListAgreementsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAgreementsInput) SetNextToken(v string) *ListAgreementsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *ListAgreementsInput) SetServerId(v string) *ListAgreementsInput {
+	s.ServerId = &v
+	return s
+}
+
+type ListAgreementsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns an array, where each item contains the details of an agreement.
+	//
+	// Agreements is a required field
+	Agreements []*ListedAgreement `type:"list" required:"true"`
+
+	// Returns a token that you can use to call ListAgreements again and receive
+	// additional results, if there are any.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAgreementsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAgreementsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAgreements sets the Agreements field's value.
+func (s *ListAgreementsOutput) SetAgreements(v []*ListedAgreement) *ListAgreementsOutput {
+	s.Agreements = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAgreementsOutput) SetNextToken(v string) *ListAgreementsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCertificatesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of certificates to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// When you can get additional results from the ListCertificates call, a NextToken
+	// parameter is returned in the output. You can then pass in a subsequent command
+	// to the NextToken parameter to continue listing additional certificates.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCertificatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCertificatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCertificatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCertificatesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCertificatesInput) SetMaxResults(v int64) *ListCertificatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCertificatesInput) SetNextToken(v string) *ListCertificatesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCertificatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns an array of the certificates that are specified in the ListCertificates
+	// call.
+	//
+	// Certificates is a required field
+	Certificates []*ListedCertificate `type:"list" required:"true"`
+
+	// Returns the next token, which you can use to list the next certificate.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCertificatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCertificatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetCertificates sets the Certificates field's value.
+func (s *ListCertificatesOutput) SetCertificates(v []*ListedCertificate) *ListCertificatesOutput {
+	s.Certificates = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCertificatesOutput) SetNextToken(v string) *ListCertificatesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListConnectorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of connectors to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// When you can get additional results from the ListConnectors call, a NextToken
+	// parameter is returned in the output. You can then pass in a subsequent command
+	// to the NextToken parameter to continue listing additional connectors.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConnectorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConnectorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListConnectorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListConnectorsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListConnectorsInput) SetMaxResults(v int64) *ListConnectorsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConnectorsInput) SetNextToken(v string) *ListConnectorsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListConnectorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns an array, where each item contains the details of a connector.
+	//
+	// Connectors is a required field
+	Connectors []*ListedConnector `type:"list" required:"true"`
+
+	// Returns a token that you can use to call ListConnectors again and receive
+	// additional results, if there are any.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConnectorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConnectorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetConnectors sets the Connectors field's value.
+func (s *ListConnectorsOutput) SetConnectors(v []*ListedConnector) *ListConnectorsOutput {
+	s.Connectors = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConnectorsOutput) SetNextToken(v string) *ListConnectorsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListExecutionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the aximum number of executions to return.
+	// Specifies the maximum number of executions to return.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// ListExecutions returns the NextToken parameter in the output. You can then
@@ -7874,13 +12328,13 @@ type ListExecutionsInput struct {
 	// additional executions.
 	//
 	// This is useful for pagination, for instance. If you have 100 executions for
-	// a workflow, you might only want to list first 10. If so, callthe API by specifing
-	// the max-results:
+	// a workflow, you might only want to list first 10. If so, call the API by
+	// specifying the max-results:
 	//
 	// aws transfer list-executions --max-results 10
 	//
 	// This returns details for the first 10 executions, as well as the pointer
-	// (NextToken) to the eleventh execution. You can now call the API again, suppling
+	// (NextToken) to the eleventh execution. You can now call the API again, supplying
 	// the NextToken value you received:
 	//
 	// aws transfer list-executions --max-results 10 --next-token $somePointerReturnedFromPreviousListResult
@@ -8017,6 +12471,117 @@ func (s *ListExecutionsOutput) SetNextToken(v string) *ListExecutionsOutput {
 // SetWorkflowId sets the WorkflowId field's value.
 func (s *ListExecutionsOutput) SetWorkflowId(v string) *ListExecutionsOutput {
 	s.WorkflowId = &v
+	return s
+}
+
+type ListProfilesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of profiles to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// When there are additional results that were not returned, a NextToken parameter
+	// is returned. You can use that value for a subsequent call to ListProfiles
+	// to continue listing results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Indicates whether to list only LOCAL type profiles or only PARTNER type profiles.
+	// If not supplied in the request, the command lists all types of profiles.
+	ProfileType *string `type:"string" enum:"ProfileType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProfilesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProfilesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListProfilesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListProfilesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListProfilesInput) SetMaxResults(v int64) *ListProfilesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProfilesInput) SetNextToken(v string) *ListProfilesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProfileType sets the ProfileType field's value.
+func (s *ListProfilesInput) SetProfileType(v string) *ListProfilesInput {
+	s.ProfileType = &v
+	return s
+}
+
+type ListProfilesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns a token that you can use to call ListProfiles again and receive additional
+	// results, if there are any.
+	NextToken *string `min:"1" type:"string"`
+
+	// Returns an array, where each item contains the details of a profile.
+	//
+	// Profiles is a required field
+	Profiles []*ListedProfile `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProfilesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProfilesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProfilesOutput) SetNextToken(v string) *ListProfilesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProfiles sets the Profiles field's value.
+func (s *ListProfilesOutput) SetProfiles(v []*ListedProfile) *ListProfilesOutput {
+	s.Profiles = v
 	return s
 }
 
@@ -8598,9 +13163,9 @@ type ListedAccess struct {
 
 	// A unique identifier that is required to identify specific groups within your
 	// directory. The users of the group that you associate have access to your
-	// Amazon S3 or Amazon EFS resources over the enabled protocols using Amazon
-	// Web Services Transfer Family. If you know the group name, you can view the
-	// SID values by running the following command using Windows PowerShell.
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer
+	// Family. If you know the group name, you can view the SID values by running
+	// the following command using Windows PowerShell.
 	//
 	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
 	// | Select SamAccountName,ObjectSid
@@ -8608,9 +13173,9 @@ type ListedAccess struct {
 	// In that command, replace YourGroupName with the name of your Active Directory
 	// group.
 	//
-	// The regex used to validate this parameter is a string of characters consisting
-	// of uppercase and lowercase alphanumeric characters with no spaces. You can
-	// also include underscores or any of the following characters: =,.@:/-
+	// The regular expression used to validate this parameter is a string of characters
+	// consisting of uppercase and lowercase alphanumeric characters with no spaces.
+	// You can also include underscores or any of the following characters: =,.@:/-
 	ExternalId *string `min:"1" type:"string"`
 
 	// The landing directory (folder) for a user when they log in to the server
@@ -8619,20 +13184,21 @@ type ListedAccess struct {
 	// A HomeDirectory example is /bucket_name/home/mydirectory.
 	HomeDirectory *string `type:"string"`
 
-	// The type of landing directory (folder) you want your users' home directory
-	// to be when they log into the server. If you set it to PATH, the user will
+	// The type of landing directory (folder) that you want your users' home directory
+	// to be when they log in to the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
 	// protocol clients. If you set it LOGICAL, you need to provide mappings in
-	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
-	// visible to your users.
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or Amazon EFS
+	// paths visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
-	// Specifies the Amazon Resource Name (ARN) of the IAM role that controls your
-	// users' access to your Amazon S3 bucket or EFS file system. The policies attached
-	// to this role determine the level of access that you want to provide your
-	// users when transferring files into and out of your Amazon S3 bucket or EFS
-	// file system. The IAM role should also contain a trust relationship that allows
-	// the server to access your resources when servicing your users' transfer requests.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that controls your users' access to your Amazon S3 bucket or Amazon
+	// EFS file system. The policies attached to this role determine the level of
+	// access that you want to provide your users when transferring files into and
+	// out of your Amazon S3 bucket or Amazon EFS file system. The IAM role should
+	// also contain a trust relationship that allows the server to access your resources
+	// when servicing your users' transfer requests.
 	Role *string `min:"20" type:"string"`
 }
 
@@ -8678,6 +13244,244 @@ func (s *ListedAccess) SetRole(v string) *ListedAccess {
 	return s
 }
 
+// Describes the properties of an agreement.
+type ListedAgreement struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the agreement. This identifier is returned when you
+	// create an agreement.
+	AgreementId *string `min:"19" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the specified agreement.
+	Arn *string `min:"20" type:"string"`
+
+	// The current description for the agreement. You can change it by calling the
+	// UpdateAgreement operation and providing a new description.
+	Description *string `min:"1" type:"string"`
+
+	// A unique identifier for the AS2 process.
+	LocalProfileId *string `min:"19" type:"string"`
+
+	// A unique identifier for the partner process.
+	PartnerProfileId *string `min:"19" type:"string"`
+
+	// The unique identifier for the agreement.
+	ServerId *string `min:"19" type:"string"`
+
+	// The agreement can be either ACTIVE or INACTIVE.
+	Status *string `type:"string" enum:"AgreementStatusType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListedAgreement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListedAgreement) GoString() string {
+	return s.String()
+}
+
+// SetAgreementId sets the AgreementId field's value.
+func (s *ListedAgreement) SetAgreementId(v string) *ListedAgreement {
+	s.AgreementId = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *ListedAgreement) SetArn(v string) *ListedAgreement {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ListedAgreement) SetDescription(v string) *ListedAgreement {
+	s.Description = &v
+	return s
+}
+
+// SetLocalProfileId sets the LocalProfileId field's value.
+func (s *ListedAgreement) SetLocalProfileId(v string) *ListedAgreement {
+	s.LocalProfileId = &v
+	return s
+}
+
+// SetPartnerProfileId sets the PartnerProfileId field's value.
+func (s *ListedAgreement) SetPartnerProfileId(v string) *ListedAgreement {
+	s.PartnerProfileId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *ListedAgreement) SetServerId(v string) *ListedAgreement {
+	s.ServerId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListedAgreement) SetStatus(v string) *ListedAgreement {
+	s.Status = &v
+	return s
+}
+
+// Describes the properties of a certificate.
+type ListedCertificate struct {
+	_ struct{} `type:"structure"`
+
+	// An optional date that specifies when the certificate becomes active.
+	ActiveDate *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the specified certificate.
+	Arn *string `min:"20" type:"string"`
+
+	// An array of identifiers for the imported certificates. You use this identifier
+	// for working with profiles and partner profiles.
+	CertificateId *string `min:"22" type:"string"`
+
+	// The name or short description that's used to identify the certificate.
+	Description *string `min:"1" type:"string"`
+
+	// An optional date that specifies when the certificate becomes inactive.
+	InactiveDate *time.Time `type:"timestamp"`
+
+	// The certificate can be either ACTIVE, PENDING_ROTATION, or INACTIVE. PENDING_ROTATION
+	// means that this certificate will replace the current certificate when it
+	// expires.
+	Status *string `type:"string" enum:"CertificateStatusType"`
+
+	// The type for the certificate. If a private key has been specified for the
+	// certificate, its type is CERTIFICATE_WITH_PRIVATE_KEY. If there is no private
+	// key, the type is CERTIFICATE.
+	Type *string `type:"string" enum:"CertificateType"`
+
+	// Specifies whether this certificate is used for signing or encryption.
+	Usage *string `type:"string" enum:"CertificateUsageType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListedCertificate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListedCertificate) GoString() string {
+	return s.String()
+}
+
+// SetActiveDate sets the ActiveDate field's value.
+func (s *ListedCertificate) SetActiveDate(v time.Time) *ListedCertificate {
+	s.ActiveDate = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *ListedCertificate) SetArn(v string) *ListedCertificate {
+	s.Arn = &v
+	return s
+}
+
+// SetCertificateId sets the CertificateId field's value.
+func (s *ListedCertificate) SetCertificateId(v string) *ListedCertificate {
+	s.CertificateId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ListedCertificate) SetDescription(v string) *ListedCertificate {
+	s.Description = &v
+	return s
+}
+
+// SetInactiveDate sets the InactiveDate field's value.
+func (s *ListedCertificate) SetInactiveDate(v time.Time) *ListedCertificate {
+	s.InactiveDate = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListedCertificate) SetStatus(v string) *ListedCertificate {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListedCertificate) SetType(v string) *ListedCertificate {
+	s.Type = &v
+	return s
+}
+
+// SetUsage sets the Usage field's value.
+func (s *ListedCertificate) SetUsage(v string) *ListedCertificate {
+	s.Usage = &v
+	return s
+}
+
+// Returns details of the connector that is specified.
+type ListedConnector struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the specified connector.
+	Arn *string `min:"20" type:"string"`
+
+	// The unique identifier for the connector.
+	ConnectorId *string `min:"19" type:"string"`
+
+	// The URL of the partner's AS2 endpoint.
+	Url *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListedConnector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListedConnector) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ListedConnector) SetArn(v string) *ListedConnector {
+	s.Arn = &v
+	return s
+}
+
+// SetConnectorId sets the ConnectorId field's value.
+func (s *ListedConnector) SetConnectorId(v string) *ListedConnector {
+	s.ConnectorId = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *ListedConnector) SetUrl(v string) *ListedConnector {
+	s.Url = &v
+	return s
+}
+
 // Returns properties of the execution that is specified.
 type ListedExecution struct {
 	_ struct{} `type:"structure"`
@@ -8690,7 +13494,7 @@ type ListedExecution struct {
 	// is the initial (as opposed to destination) file location.
 	InitialFileLocation *FileLocation `type:"structure"`
 
-	// A container object for the session details associated with a workflow.
+	// A container object for the session details that are associated with a workflow.
 	ServiceMetadata *ServiceMetadata `type:"structure"`
 
 	// The status is one of the execution. Can be in progress, completed, exception
@@ -8740,6 +13544,66 @@ func (s *ListedExecution) SetStatus(v string) *ListedExecution {
 	return s
 }
 
+// Returns the properties of the profile that was specified.
+type ListedProfile struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the specified profile.
+	Arn *string `min:"20" type:"string"`
+
+	// The unique identifier for the AS2 process.
+	As2Id *string `min:"1" type:"string"`
+
+	// A unique identifier for the local or partner AS2 profile.
+	ProfileId *string `min:"19" type:"string"`
+
+	// Indicates whether to list only LOCAL type profiles or only PARTNER type profiles.
+	// If not supplied in the request, the command lists all types of profiles.
+	ProfileType *string `type:"string" enum:"ProfileType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListedProfile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListedProfile) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ListedProfile) SetArn(v string) *ListedProfile {
+	s.Arn = &v
+	return s
+}
+
+// SetAs2Id sets the As2Id field's value.
+func (s *ListedProfile) SetAs2Id(v string) *ListedProfile {
+	s.As2Id = &v
+	return s
+}
+
+// SetProfileId sets the ProfileId field's value.
+func (s *ListedProfile) SetProfileId(v string) *ListedProfile {
+	s.ProfileId = &v
+	return s
+}
+
+// SetProfileType sets the ProfileType field's value.
+func (s *ListedProfile) SetProfileType(v string) *ListedProfile {
+	s.ProfileType = &v
+	return s
+}
+
 // Returns properties of a file transfer protocol-enabled server that was specified.
 type ListedServer struct {
 	_ struct{} `type:"structure"`
@@ -8757,40 +13621,39 @@ type ListedServer struct {
 	// the public internet.
 	EndpointType *string `type:"string" enum:"EndpointType"`
 
-	// Specifies the mode of authentication for a server. The default value is SERVICE_MANAGED,
-	// which allows you to store and access user credentials within the Amazon Web
-	// Services Transfer Family service.
+	// The mode of authentication for a server. The default value is SERVICE_MANAGED,
+	// which allows you to store and access user credentials within the Transfer
+	// Family service.
 	//
 	// Use AWS_DIRECTORY_SERVICE to provide access to Active Directory groups in
-	// Amazon Web Services Managed Active Directory or Microsoft Active Directory
-	// in your on-premises environment or in Amazon Web Services using AD Connectors.
-	// This option also requires you to provide a Directory ID using the IdentityProviderDetails
+	// Directory Service for Microsoft Active Directory or Microsoft Active Directory
+	// in your on-premises environment or in Amazon Web Services using AD Connector.
+	// This option also requires you to provide a Directory ID by using the IdentityProviderDetails
 	// parameter.
 	//
 	// Use the API_GATEWAY value to integrate with an identity provider of your
-	// choosing. The API_GATEWAY setting requires you to provide an API Gateway
-	// endpoint URL to call for authentication using the IdentityProviderDetails
+	// choosing. The API_GATEWAY setting requires you to provide an Amazon API Gateway
+	// endpoint URL to call for authentication by using the IdentityProviderDetails
 	// parameter.
 	//
-	// Use the AWS_LAMBDA value to directly use a Lambda function as your identity
-	// provider. If you choose this value, you must specify the ARN for the lambda
-	// function in the Function parameter for the IdentityProviderDetails data type.
+	// Use the AWS_LAMBDA value to directly use an Lambda function as your identity
+	// provider. If you choose this value, you must specify the ARN for the Lambda
+	// function in the Function parameter or the IdentityProviderDetails data type.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
-	// Specifies the Amazon Resource Name (ARN) of the Amazon Web Services Identity
-	// and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch
-	// logging for Amazon S3 or Amazon EFS events. When set, user activity can be
-	// viewed in your CloudWatch logs.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that allows a server to turn on Amazon CloudWatch logging for Amazon
+	// S3 or Amazon EFSevents. When set, you can view user activity in your CloudWatch
+	// logs.
 	LoggingRole *string `min:"20" type:"string"`
 
 	// Specifies the unique system assigned identifier for the servers that were
 	// listed.
 	ServerId *string `min:"19" type:"string"`
 
-	// Specifies the condition of a server for the server that was described. A
-	// value of ONLINE indicates that the server can accept jobs and transfer files.
-	// A State value of OFFLINE means that the server cannot perform file transfer
-	// operations.
+	// The condition of the server that was described. A value of ONLINE indicates
+	// that the server can accept jobs and transfer files. A State value of OFFLINE
+	// means that the server cannot perform file transfer operations.
 	//
 	// The states of STARTING and STOPPING indicate that the server is in an intermediate
 	// state, either not fully able to respond, or not fully offline. The values
@@ -8884,20 +13747,21 @@ type ListedUser struct {
 	// A HomeDirectory example is /bucket_name/home/mydirectory.
 	HomeDirectory *string `type:"string"`
 
-	// The type of landing directory (folder) you want your users' home directory
-	// to be when they log into the server. If you set it to PATH, the user will
+	// The type of landing directory (folder) that you want your users' home directory
+	// to be when they log in to the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
 	// protocol clients. If you set it LOGICAL, you need to provide mappings in
-	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
-	// visible to your users.
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or Amazon EFS
+	// paths visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
-	// Specifies the Amazon Resource Name (ARN) of the IAM role that controls your
-	// users' access to your Amazon S3 bucket or EFS file system. The policies attached
-	// to this role determine the level of access that you want to provide your
-	// users when transferring files into and out of your Amazon S3 bucket or EFS
-	// file system. The IAM role should also contain a trust relationship that allows
-	// the server to access your resources when servicing your users' transfer requests.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that controls your users' access to your Amazon S3 bucket or Amazon
+	// EFS file system. The policies attached to this role determine the level of
+	// access that you want to provide your users when transferring files into and
+	// out of your Amazon S3 bucket or Amazon EFS file system. The IAM role should
+	// also contain a trust relationship that allows the server to access your resources
+	// when servicing your users' transfer requests.
 	//
 	// The IAM role that controls your users' access to your Amazon S3 bucket for
 	// servers with Domain=S3, or your EFS file system for servers with Domain=EFS.
@@ -9024,14 +13888,14 @@ func (s *ListedWorkflow) SetWorkflowId(v string) *ListedWorkflow {
 type LoggingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the CloudWatch logging group for the Amazon Web Services Transfer
-	// server to which this workflow belongs.
+	// The name of the CloudWatch logging group for the Transfer Family server to
+	// which this workflow belongs.
 	LogGroupName *string `min:"1" type:"string"`
 
-	// Specifies the Amazon Resource Name (ARN) of the Amazon Web Services Identity
-	// and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch
-	// logging for Amazon S3 or Amazon EFS events. When set, user activity can be
-	// viewed in your CloudWatch logs.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that allows a server to turn on Amazon CloudWatch logging for Amazon
+	// S3 or Amazon EFSevents. When set, you can view user activity in your CloudWatch
+	// logs.
 	LoggingRole *string `min:"20" type:"string"`
 }
 
@@ -9143,6 +14007,10 @@ func (s *PosixProfile) SetUid(v int64) *PosixProfile {
 type ProtocolDetails struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates the transport method for the AS2 messages. Currently, only HTTP
+	// is supported.
+	As2Transports []*string `min:"1" type:"list" enum:"As2Transport"`
+
 	// Indicates passive mode, for FTP and FTPS protocols. Enter a single IPv4 address,
 	// such as the public IP address of a firewall, router, or load balancer. For
 	// example:
@@ -9221,6 +14089,25 @@ func (s ProtocolDetails) String() string {
 // value will be replaced with "sensitive".
 func (s ProtocolDetails) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ProtocolDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ProtocolDetails"}
+	if s.As2Transports != nil && len(s.As2Transports) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("As2Transports", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAs2Transports sets the As2Transports field's value.
+func (s *ProtocolDetails) SetAs2Transports(v []*string) *ProtocolDetails {
+	s.As2Transports = v
+	return s
 }
 
 // SetPassiveIp sets the PassiveIp field's value.
@@ -9382,8 +14269,8 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies the details for the file location for the file being used in the
-// workflow. Only applicable if you are using S3 storage.
+// Specifies the details for the file location for the file that's being used
+// in the workflow. Only applicable if you are using S3 storage.
 type S3FileLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -9394,8 +14281,8 @@ type S3FileLocation struct {
 	// the contents of an object, not its metadata.
 	Etag *string `min:"1" type:"string"`
 
-	// The name assigned to the file when it was created in S3. You use the object
-	// key to retrieve the object.
+	// The name assigned to the file when it was created in Amazon S3. You use the
+	// object key to retrieve the object.
 	Key *string `type:"string"`
 
 	// Specifies the file version.
@@ -9464,8 +14351,8 @@ type S3InputFileLocation struct {
 	// Specifies the S3 bucket for the customer input file.
 	Bucket *string `min:"3" type:"string"`
 
-	// The name assigned to the file when it was created in S3. You use the object
-	// key to retrieve the object.
+	// The name assigned to the file when it was created in Amazon S3. You use the
+	// object key to retrieve the object.
 	Key *string `type:"string"`
 }
 
@@ -9697,7 +14584,7 @@ func (s SendWorkflowStepStateOutput) GoString() string {
 	return s.String()
 }
 
-// A container object for the session details associated with a workflow.
+// A container object for the session details that are associated with a workflow.
 type ServiceMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -9858,6 +14745,106 @@ func (s *SshPublicKey) SetSshPublicKeyBody(v string) *SshPublicKey {
 // SetSshPublicKeyId sets the SshPublicKeyId field's value.
 func (s *SshPublicKey) SetSshPublicKeyId(v string) *SshPublicKey {
 	s.SshPublicKeyId = &v
+	return s
+}
+
+type StartFileTransferInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the connector.
+	//
+	// ConnectorId is a required field
+	ConnectorId *string `min:"19" type:"string" required:"true"`
+
+	// An array of strings. Each string represents the absolute path for one outbound
+	// file transfer. For example, DOC-EXAMPLE-BUCKET/myfile.txt .
+	//
+	// SendFilePaths is a required field
+	SendFilePaths []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartFileTransferInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartFileTransferInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartFileTransferInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartFileTransferInput"}
+	if s.ConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorId"))
+	}
+	if s.ConnectorId != nil && len(*s.ConnectorId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorId", 19))
+	}
+	if s.SendFilePaths == nil {
+		invalidParams.Add(request.NewErrParamRequired("SendFilePaths"))
+	}
+	if s.SendFilePaths != nil && len(s.SendFilePaths) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SendFilePaths", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorId sets the ConnectorId field's value.
+func (s *StartFileTransferInput) SetConnectorId(v string) *StartFileTransferInput {
+	s.ConnectorId = &v
+	return s
+}
+
+// SetSendFilePaths sets the SendFilePaths field's value.
+func (s *StartFileTransferInput) SetSendFilePaths(v []*string) *StartFileTransferInput {
+	s.SendFilePaths = v
+	return s
+}
+
+type StartFileTransferOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the unique identifier for this file transfer.
+	//
+	// TransferId is a required field
+	TransferId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartFileTransferOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartFileTransferOutput) GoString() string {
+	return s.String()
+}
+
+// SetTransferId sets the TransferId field's value.
+func (s *StartFileTransferOutput) SetTransferId(v string) *StartFileTransferOutput {
+	s.TransferId = &v
 	return s
 }
 
@@ -10588,9 +15575,9 @@ type UpdateAccessInput struct {
 
 	// A unique identifier that is required to identify specific groups within your
 	// directory. The users of the group that you associate have access to your
-	// Amazon S3 or Amazon EFS resources over the enabled protocols using Amazon
-	// Web Services Transfer Family. If you know the group name, you can view the
-	// SID values by running the following command using Windows PowerShell.
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer
+	// Family. If you know the group name, you can view the SID values by running
+	// the following command using Windows PowerShell.
 	//
 	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
 	// | Select SamAccountName,ObjectSid
@@ -10598,9 +15585,9 @@ type UpdateAccessInput struct {
 	// In that command, replace YourGroupName with the name of your Active Directory
 	// group.
 	//
-	// The regex used to validate this parameter is a string of characters consisting
-	// of uppercase and lowercase alphanumeric characters with no spaces. You can
-	// also include underscores or any of the following characters: =,.@:/-
+	// The regular expression used to validate this parameter is a string of characters
+	// consisting of uppercase and lowercase alphanumeric characters with no spaces.
+	// You can also include underscores or any of the following characters: =,.@:/-
 	//
 	// ExternalId is a required field
 	ExternalId *string `min:"1" type:"string" required:"true"`
@@ -10616,9 +15603,8 @@ type UpdateAccessInput struct {
 	// You must specify the Entry and Target pair, where Entry shows how the path
 	// is made visible and Target is the actual Amazon S3 or Amazon EFS path. If
 	// you only specify a target, it is displayed as is. You also must ensure that
-	// your Amazon Web Services Identity and Access Management (IAM) role provides
-	// access to paths in Target. This value can only be set when HomeDirectoryType
-	// is set to LOGICAL.
+	// your Identity and Access Management (IAM) role provides access to paths in
+	// Target. This value can be set only when HomeDirectoryType is set to LOGICAL.
 	//
 	// The following is an Entry and Target pair example.
 	//
@@ -10633,25 +15619,26 @@ type UpdateAccessInput struct {
 	// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
-	// The type of landing directory (folder) you want your users' home directory
-	// to be when they log into the server. If you set it to PATH, the user will
+	// The type of landing directory (folder) that you want your users' home directory
+	// to be when they log in to the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
 	// protocol clients. If you set it LOGICAL, you need to provide mappings in
-	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
-	// visible to your users.
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or Amazon EFS
+	// paths visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
-	// A session policy for your user so that you can use the same IAM role across
-	// multiple users. This policy scopes down user access to portions of their
-	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
-	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
+	// A session policy for your user so that you can use the same Identity and
+	// Access Management (IAM) role across multiple users. This policy scopes down
+	// a user's access to portions of their Amazon S3 bucket. Variables that you
+	// can use inside this policy include ${Transfer:UserName}, ${Transfer:HomeDirectory},
+	// and ${Transfer:HomeBucket}.
 	//
-	// This only applies when the domain of ServerId is S3. EFS does not use session
-	// policies.
+	// This policy applies only when the domain of ServerId is Amazon S3. Amazon
+	// EFS does not use session policies.
 	//
-	// For session policies, Amazon Web Services Transfer Family stores the policy
-	// as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy.
-	// You save the policy as a JSON blob and pass it in the Policy argument.
+	// For session policies, Transfer Family stores the policy as a JSON blob, instead
+	// of the Amazon Resource Name (ARN) of the policy. You save the policy as a
+	// JSON blob and pass it in the Policy argument.
 	//
 	// For an example of a session policy, see Example session policy (https://docs.aws.amazon.com/transfer/latest/userguide/session-policy.html).
 	//
@@ -10666,12 +15653,13 @@ type UpdateAccessInput struct {
 	// get when transferring files into and out of your Amazon EFS file systems.
 	PosixProfile *PosixProfile `type:"structure"`
 
-	// Specifies the Amazon Resource Name (ARN) of the IAM role that controls your
-	// users' access to your Amazon S3 bucket or EFS file system. The policies attached
-	// to this role determine the level of access that you want to provide your
-	// users when transferring files into and out of your Amazon S3 bucket or EFS
-	// file system. The IAM role should also contain a trust relationship that allows
-	// the server to access your resources when servicing your users' transfer requests.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that controls your users' access to your Amazon S3 bucket or Amazon
+	// EFS file system. The policies attached to this role determine the level of
+	// access that you want to provide your users when transferring files into and
+	// out of your Amazon S3 bucket or Amazon EFS file system. The IAM role should
+	// also contain a trust relationship that allows the server to access your resources
+	// when servicing your users' transfer requests.
 	Role *string `min:"20" type:"string"`
 
 	// A system-assigned unique identifier for a server instance. This is the specific
@@ -10836,6 +15824,523 @@ func (s *UpdateAccessOutput) SetServerId(v string) *UpdateAccessOutput {
 	return s
 }
 
+type UpdateAgreementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that grants access to at least the HomeDirectory of your users' Amazon
+	// S3 buckets.
+	AccessRole *string `min:"20" type:"string"`
+
+	// A unique identifier for the agreement. This identifier is returned when you
+	// create an agreement.
+	//
+	// AgreementId is a required field
+	AgreementId *string `min:"19" type:"string" required:"true"`
+
+	// To change the landing directory (folder) for files that are transferred,
+	// provide the bucket folder that you want to use; for example, /DOC-EXAMPLE-BUCKET/home/mydirectory .
+	BaseDirectory *string `type:"string"`
+
+	// To replace the existing description, provide a short description for the
+	// agreement.
+	Description *string `min:"1" type:"string"`
+
+	// To change the local profile identifier, provide a new value here.
+	LocalProfileId *string `min:"19" type:"string"`
+
+	// To change the partner profile identifier, provide a new value here.
+	PartnerProfileId *string `min:"19" type:"string"`
+
+	// A system-assigned unique identifier for a server instance. This is the specific
+	// server that the agreement uses.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+
+	// You can update the status for the agreement, either activating an inactive
+	// agreement or the reverse.
+	Status *string `type:"string" enum:"AgreementStatusType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAgreementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAgreementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAgreementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAgreementInput"}
+	if s.AccessRole != nil && len(*s.AccessRole) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessRole", 20))
+	}
+	if s.AgreementId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgreementId"))
+	}
+	if s.AgreementId != nil && len(*s.AgreementId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("AgreementId", 19))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.LocalProfileId != nil && len(*s.LocalProfileId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("LocalProfileId", 19))
+	}
+	if s.PartnerProfileId != nil && len(*s.PartnerProfileId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("PartnerProfileId", 19))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessRole sets the AccessRole field's value.
+func (s *UpdateAgreementInput) SetAccessRole(v string) *UpdateAgreementInput {
+	s.AccessRole = &v
+	return s
+}
+
+// SetAgreementId sets the AgreementId field's value.
+func (s *UpdateAgreementInput) SetAgreementId(v string) *UpdateAgreementInput {
+	s.AgreementId = &v
+	return s
+}
+
+// SetBaseDirectory sets the BaseDirectory field's value.
+func (s *UpdateAgreementInput) SetBaseDirectory(v string) *UpdateAgreementInput {
+	s.BaseDirectory = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateAgreementInput) SetDescription(v string) *UpdateAgreementInput {
+	s.Description = &v
+	return s
+}
+
+// SetLocalProfileId sets the LocalProfileId field's value.
+func (s *UpdateAgreementInput) SetLocalProfileId(v string) *UpdateAgreementInput {
+	s.LocalProfileId = &v
+	return s
+}
+
+// SetPartnerProfileId sets the PartnerProfileId field's value.
+func (s *UpdateAgreementInput) SetPartnerProfileId(v string) *UpdateAgreementInput {
+	s.PartnerProfileId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *UpdateAgreementInput) SetServerId(v string) *UpdateAgreementInput {
+	s.ServerId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateAgreementInput) SetStatus(v string) *UpdateAgreementInput {
+	s.Status = &v
+	return s
+}
+
+type UpdateAgreementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the agreement. This identifier is returned when you
+	// create an agreement.
+	//
+	// AgreementId is a required field
+	AgreementId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAgreementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAgreementOutput) GoString() string {
+	return s.String()
+}
+
+// SetAgreementId sets the AgreementId field's value.
+func (s *UpdateAgreementOutput) SetAgreementId(v string) *UpdateAgreementOutput {
+	s.AgreementId = &v
+	return s
+}
+
+type UpdateCertificateInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional date that specifies when the certificate becomes active.
+	ActiveDate *time.Time `type:"timestamp"`
+
+	// The identifier of the certificate object that you are updating.
+	//
+	// CertificateId is a required field
+	CertificateId *string `min:"22" type:"string" required:"true"`
+
+	// A short description to help identify the certificate.
+	Description *string `min:"1" type:"string"`
+
+	// An optional date that specifies when the certificate becomes inactive.
+	InactiveDate *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCertificateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCertificateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCertificateInput"}
+	if s.CertificateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateId"))
+	}
+	if s.CertificateId != nil && len(*s.CertificateId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 22))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActiveDate sets the ActiveDate field's value.
+func (s *UpdateCertificateInput) SetActiveDate(v time.Time) *UpdateCertificateInput {
+	s.ActiveDate = &v
+	return s
+}
+
+// SetCertificateId sets the CertificateId field's value.
+func (s *UpdateCertificateInput) SetCertificateId(v string) *UpdateCertificateInput {
+	s.CertificateId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateCertificateInput) SetDescription(v string) *UpdateCertificateInput {
+	s.Description = &v
+	return s
+}
+
+// SetInactiveDate sets the InactiveDate field's value.
+func (s *UpdateCertificateInput) SetInactiveDate(v time.Time) *UpdateCertificateInput {
+	s.InactiveDate = &v
+	return s
+}
+
+type UpdateCertificateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the identifier of the certificate object that you are updating.
+	//
+	// CertificateId is a required field
+	CertificateId *string `min:"22" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCertificateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCertificateOutput) GoString() string {
+	return s.String()
+}
+
+// SetCertificateId sets the CertificateId field's value.
+func (s *UpdateCertificateOutput) SetCertificateId(v string) *UpdateCertificateOutput {
+	s.CertificateId = &v
+	return s
+}
+
+type UpdateConnectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// With AS2, you can send files by calling StartFileTransfer and specifying
+	// the file paths in the request parameter, SendFilePaths. We use the file’s
+	// parent directory (for example, for --send-file-paths /bucket/dir/file.txt,
+	// parent directory is /bucket/dir/) to temporarily store a processed AS2 message
+	// file, store the MDN when we receive them from the partner, and write a final
+	// JSON file containing relevant metadata of the transmission. So, the AccessRole
+	// needs to provide read and write access to the parent directory of the file
+	// location used in the StartFileTransfer request. Additionally, you need to
+	// provide read and write access to the parent directory of the files that you
+	// intend to send with StartFileTransfer.
+	AccessRole *string `min:"20" type:"string"`
+
+	// A structure that contains the parameters for a connector object.
+	As2Config *As2ConnectorConfig `type:"structure"`
+
+	// The unique identifier for the connector.
+	//
+	// ConnectorId is a required field
+	ConnectorId *string `min:"19" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that allows a connector to turn on CloudWatch logging for Amazon S3
+	// events. When set, you can view connector activity in your CloudWatch logs.
+	LoggingRole *string `min:"20" type:"string"`
+
+	// The URL of the partner's AS2 endpoint.
+	Url *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConnectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConnectorInput"}
+	if s.AccessRole != nil && len(*s.AccessRole) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessRole", 20))
+	}
+	if s.ConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorId"))
+	}
+	if s.ConnectorId != nil && len(*s.ConnectorId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorId", 19))
+	}
+	if s.LoggingRole != nil && len(*s.LoggingRole) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("LoggingRole", 20))
+	}
+	if s.As2Config != nil {
+		if err := s.As2Config.Validate(); err != nil {
+			invalidParams.AddNested("As2Config", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessRole sets the AccessRole field's value.
+func (s *UpdateConnectorInput) SetAccessRole(v string) *UpdateConnectorInput {
+	s.AccessRole = &v
+	return s
+}
+
+// SetAs2Config sets the As2Config field's value.
+func (s *UpdateConnectorInput) SetAs2Config(v *As2ConnectorConfig) *UpdateConnectorInput {
+	s.As2Config = v
+	return s
+}
+
+// SetConnectorId sets the ConnectorId field's value.
+func (s *UpdateConnectorInput) SetConnectorId(v string) *UpdateConnectorInput {
+	s.ConnectorId = &v
+	return s
+}
+
+// SetLoggingRole sets the LoggingRole field's value.
+func (s *UpdateConnectorInput) SetLoggingRole(v string) *UpdateConnectorInput {
+	s.LoggingRole = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *UpdateConnectorInput) SetUrl(v string) *UpdateConnectorInput {
+	s.Url = &v
+	return s
+}
+
+type UpdateConnectorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the identifier of the connector object that you are updating.
+	//
+	// ConnectorId is a required field
+	ConnectorId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorOutput) GoString() string {
+	return s.String()
+}
+
+// SetConnectorId sets the ConnectorId field's value.
+func (s *UpdateConnectorOutput) SetConnectorId(v string) *UpdateConnectorOutput {
+	s.ConnectorId = &v
+	return s
+}
+
+type UpdateProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of identifiers for the imported certificates. You use this identifier
+	// for working with profiles and partner profiles.
+	CertificateIds []*string `type:"list"`
+
+	// The identifier of the profile object that you are updating.
+	//
+	// ProfileId is a required field
+	ProfileId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateProfileInput"}
+	if s.ProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileId"))
+	}
+	if s.ProfileId != nil && len(*s.ProfileId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateIds sets the CertificateIds field's value.
+func (s *UpdateProfileInput) SetCertificateIds(v []*string) *UpdateProfileInput {
+	s.CertificateIds = v
+	return s
+}
+
+// SetProfileId sets the ProfileId field's value.
+func (s *UpdateProfileInput) SetProfileId(v string) *UpdateProfileInput {
+	s.ProfileId = &v
+	return s
+}
+
+type UpdateProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the identifier for the profile that's being updated.
+	//
+	// ProfileId is a required field
+	ProfileId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetProfileId sets the ProfileId field's value.
+func (s *UpdateProfileOutput) SetProfileId(v string) *UpdateProfileOutput {
+	s.ProfileId = &v
+	return s
+}
+
 type UpdateServerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10871,10 +16376,11 @@ type UpdateServerInput struct {
 	Certificate *string `type:"string"`
 
 	// The virtual private cloud (VPC) endpoint settings that are configured for
-	// your server. When you host your endpoint within your VPC, you can make it
-	// accessible only to resources within your VPC, or you can attach Elastic IP
-	// addresses and make it accessible to clients over the internet. Your VPC's
-	// default security groups are automatically assigned to your endpoint.
+	// your server. When you host your endpoint within your VPC, you can make your
+	// endpoint accessible only to resources within your VPC, or you can attach
+	// Elastic IP addresses and make your endpoint accessible to clients over the
+	// internet. Your VPC's default security groups are automatically assigned to
+	// your endpoint.
 	EndpointDetails *EndpointDetails `type:"structure"`
 
 	// The type of endpoint that you want your server to use. You can choose to
@@ -10904,8 +16410,8 @@ type UpdateServerInput struct {
 	//
 	// ssh-keygen -t rsa -b 2048 -N "" -m PEM -f my-new-server-key.
 	//
-	// Use a minimum value of 2048 for the -b option: you can create a stronger
-	// key using 3072 or 4096.
+	// Use a minimum value of 2048 for the -b option. You can create a stronger
+	// key by using 3072 or 4096.
 	//
 	// Use the following command to generate an ECDSA 256 bit key with no passphrase:
 	//
@@ -10926,7 +16432,7 @@ type UpdateServerInput struct {
 	//
 	// For more information, see Change the host key for your SFTP-enabled server
 	// (https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key)
-	// in the Amazon Web Services Transfer Family User Guide.
+	// in the Transfer Family User Guide.
 	//
 	// HostKey is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateServerInput's
@@ -10937,21 +16443,21 @@ type UpdateServerInput struct {
 	// authentication API method.
 	IdentityProviderDetails *IdentityProviderDetails `type:"structure"`
 
-	// Specifies the Amazon Resource Name (ARN) of the Amazon Web Services Identity
-	// and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch
-	// logging for Amazon S3 or Amazon EFS events. When set, user activity can be
-	// viewed in your CloudWatch logs.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that allows a server to turn on Amazon CloudWatch logging for Amazon
+	// S3 or Amazon EFSevents. When set, you can view user activity in your CloudWatch
+	// logs.
 	LoggingRole *string `type:"string"`
 
-	// Specify a string to display when users connect to a server. This string is
-	// displayed after the user authenticates.
+	// Specifies a string to display when users connect to a server. This string
+	// is displayed after the user authenticates.
 	//
 	// The SFTP protocol does not support post-authentication display banners.
 	PostAuthenticationLoginBanner *string `type:"string"`
 
-	// Specify a string to display when users connect to a server. This string is
-	// displayed before the user authenticates. For example, the following banner
-	// displays details about using the system.
+	// Specifies a string to display when users connect to a server. This string
+	// is displayed before the user authenticates. For example, the following banner
+	// displays details about using the system:
 	//
 	// This system is for the use of authorized users only. Individuals using this
 	// computer system without authority, or in excess of their authority, are subject
@@ -10961,21 +16467,25 @@ type UpdateServerInput struct {
 
 	// The protocol settings that are configured for your server.
 	//
-	//    * Use the PassiveIp parameter to indicate passive mode (for FTP and FTPS
-	//    protocols). Enter a single dotted-quad IPv4 address, such as the external
+	//    * To indicate passive mode (for FTP and FTPS protocols), use the PassiveIp
+	//    parameter. Enter a single dotted-quad IPv4 address, such as the external
 	//    IP address of a firewall, router, or load balancer.
 	//
-	//    * Use the SetStatOption to ignore the error that is generated when the
-	//    client attempts to use SETSTAT on a file you are uploading to an S3 bucket.
-	//    Set the value to ENABLE_NO_OP to have the Transfer Family server ignore
-	//    the SETSTAT command, and upload files without needing to make any changes
-	//    to your SFTP client. Note that with SetStatOption set to ENABLE_NO_OP,
-	//    Transfer generates a log entry to CloudWatch Logs, so you can determine
-	//    when the client is making a SETSTAT call.
+	//    * To ignore the error that is generated when the client attempts to use
+	//    the SETSTAT command on a file that you are uploading to an Amazon S3 bucket,
+	//    use the SetStatOption parameter. To have the Transfer Family server ignore
+	//    the SETSTAT command and upload files without needing to make any changes
+	//    to your SFTP client, set the value to ENABLE_NO_OP. If you set the SetStatOption
+	//    parameter to ENABLE_NO_OP, Transfer Family generates a log entry to Amazon
+	//    CloudWatch Logs, so that you can determine when the client is making a
+	//    SETSTAT call.
 	//
-	//    * Use the TlsSessionResumptionMode parameter to determine whether or not
-	//    your Transfer server resumes recent, negotiated sessions through a unique
-	//    session ID.
+	//    * To determine whether your Transfer Family server resumes recent, negotiated
+	//    sessions through a unique session ID, use the TlsSessionResumptionMode
+	//    parameter.
+	//
+	//    * As2Transports indicates the transport method for the AS2 messages. Currently,
+	//    only HTTP is supported.
 	ProtocolDetails *ProtocolDetails `type:"structure"`
 
 	// Specifies the file transfer protocol or protocols over which your file transfer
@@ -11012,7 +16522,7 @@ type UpdateServerInput struct {
 	ServerId *string `min:"19" type:"string" required:"true"`
 
 	// Specifies the workflow ID for the workflow to assign and the execution role
-	// used for executing the workflow.
+	// that's used for executing the workflow.
 	//
 	// To remove an associated workflow from a server, you can provide an empty
 	// OnUpload object, as in the following example.
@@ -11060,6 +16570,11 @@ func (s *UpdateServerInput) Validate() error {
 	if s.IdentityProviderDetails != nil {
 		if err := s.IdentityProviderDetails.Validate(); err != nil {
 			invalidParams.AddNested("IdentityProviderDetails", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProtocolDetails != nil {
+		if err := s.ProtocolDetails.Validate(); err != nil {
+			invalidParams.AddNested("ProtocolDetails", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.WorkflowDetails != nil {
@@ -11200,9 +16715,8 @@ type UpdateUserInput struct {
 	// You must specify the Entry and Target pair, where Entry shows how the path
 	// is made visible and Target is the actual Amazon S3 or Amazon EFS path. If
 	// you only specify a target, it is displayed as is. You also must ensure that
-	// your Amazon Web Services Identity and Access Management (IAM) role provides
-	// access to paths in Target. This value can only be set when HomeDirectoryType
-	// is set to LOGICAL.
+	// your Identity and Access Management (IAM) role provides access to paths in
+	// Target. This value can be set only when HomeDirectoryType is set to LOGICAL.
 	//
 	// The following is an Entry and Target pair example.
 	//
@@ -11217,25 +16731,26 @@ type UpdateUserInput struct {
 	// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
-	// The type of landing directory (folder) you want your users' home directory
-	// to be when they log into the server. If you set it to PATH, the user will
+	// The type of landing directory (folder) that you want your users' home directory
+	// to be when they log in to the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
 	// protocol clients. If you set it LOGICAL, you need to provide mappings in
-	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
-	// visible to your users.
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or Amazon EFS
+	// paths visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
-	// A session policy for your user so that you can use the same IAM role across
-	// multiple users. This policy scopes down user access to portions of their
-	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
-	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
+	// A session policy for your user so that you can use the same Identity and
+	// Access Management (IAM) role across multiple users. This policy scopes down
+	// a user's access to portions of their Amazon S3 bucket. Variables that you
+	// can use inside this policy include ${Transfer:UserName}, ${Transfer:HomeDirectory},
+	// and ${Transfer:HomeBucket}.
 	//
-	// This only applies when the domain of ServerId is S3. EFS does not use session
-	// policies.
+	// This policy applies only when the domain of ServerId is Amazon S3. Amazon
+	// EFS does not use session policies.
 	//
-	// For session policies, Amazon Web Services Transfer Family stores the policy
-	// as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy.
-	// You save the policy as a JSON blob and pass it in the Policy argument.
+	// For session policies, Transfer Family stores the policy as a JSON blob, instead
+	// of the Amazon Resource Name (ARN) of the policy. You save the policy as a
+	// JSON blob and pass it in the Policy argument.
 	//
 	// For an example of a session policy, see Creating a session policy (https://docs.aws.amazon.com/transfer/latest/userguide/session-policy).
 	//
@@ -11251,12 +16766,13 @@ type UpdateUserInput struct {
 	// EFS file systems.
 	PosixProfile *PosixProfile `type:"structure"`
 
-	// Specifies the Amazon Resource Name (ARN) of the IAM role that controls your
-	// users' access to your Amazon S3 bucket or EFS file system. The policies attached
-	// to this role determine the level of access that you want to provide your
-	// users when transferring files into and out of your Amazon S3 bucket or EFS
-	// file system. The IAM role should also contain a trust relationship that allows
-	// the server to access your resources when servicing your users' transfer requests.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that controls your users' access to your Amazon S3 bucket or Amazon
+	// EFS file system. The policies attached to this role determine the level of
+	// access that you want to provide your users when transferring files into and
+	// out of your Amazon S3 bucket or Amazon EFS file system. The IAM role should
+	// also contain a trust relationship that allows the server to access your resources
+	// when servicing your users' transfer requests.
 	Role *string `min:"20" type:"string"`
 
 	// A system-assigned unique identifier for a server instance that the user account
@@ -11488,7 +17004,7 @@ func (s *UserDetails) SetUserName(v string) *UserDetails {
 }
 
 // Specifies the workflow ID for the workflow to assign and the execution role
-// used for executing the workflow.
+// that's used for executing the workflow.
 type WorkflowDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -11653,13 +17169,13 @@ type WorkflowStep struct {
 
 	// Currently, the following step types are supported.
 	//
-	//    * COPY: copy the file to another location
+	//    * COPY: Copy the file to another location.
 	//
-	//    * CUSTOM: custom step with a lambda target
+	//    * CUSTOM: Perform a custom step with an Lambda function target.
 	//
-	//    * DELETE: delete the file
+	//    * DELETE: Delete the file.
 	//
-	//    * TAG: add a tag to the file
+	//    * TAG: Add a tag to the file.
 	Type *string `type:"string" enum:"WorkflowStepType"`
 }
 
@@ -11737,6 +17253,102 @@ func (s *WorkflowStep) SetType(v string) *WorkflowStep {
 }
 
 const (
+	// AgreementStatusTypeActive is a AgreementStatusType enum value
+	AgreementStatusTypeActive = "ACTIVE"
+
+	// AgreementStatusTypeInactive is a AgreementStatusType enum value
+	AgreementStatusTypeInactive = "INACTIVE"
+)
+
+// AgreementStatusType_Values returns all elements of the AgreementStatusType enum
+func AgreementStatusType_Values() []string {
+	return []string{
+		AgreementStatusTypeActive,
+		AgreementStatusTypeInactive,
+	}
+}
+
+const (
+	// As2TransportHttp is a As2Transport enum value
+	As2TransportHttp = "HTTP"
+)
+
+// As2Transport_Values returns all elements of the As2Transport enum
+func As2Transport_Values() []string {
+	return []string{
+		As2TransportHttp,
+	}
+}
+
+const (
+	// CertificateStatusTypeActive is a CertificateStatusType enum value
+	CertificateStatusTypeActive = "ACTIVE"
+
+	// CertificateStatusTypePendingRotation is a CertificateStatusType enum value
+	CertificateStatusTypePendingRotation = "PENDING_ROTATION"
+
+	// CertificateStatusTypeInactive is a CertificateStatusType enum value
+	CertificateStatusTypeInactive = "INACTIVE"
+)
+
+// CertificateStatusType_Values returns all elements of the CertificateStatusType enum
+func CertificateStatusType_Values() []string {
+	return []string{
+		CertificateStatusTypeActive,
+		CertificateStatusTypePendingRotation,
+		CertificateStatusTypeInactive,
+	}
+}
+
+const (
+	// CertificateTypeCertificate is a CertificateType enum value
+	CertificateTypeCertificate = "CERTIFICATE"
+
+	// CertificateTypeCertificateWithPrivateKey is a CertificateType enum value
+	CertificateTypeCertificateWithPrivateKey = "CERTIFICATE_WITH_PRIVATE_KEY"
+)
+
+// CertificateType_Values returns all elements of the CertificateType enum
+func CertificateType_Values() []string {
+	return []string{
+		CertificateTypeCertificate,
+		CertificateTypeCertificateWithPrivateKey,
+	}
+}
+
+const (
+	// CertificateUsageTypeSigning is a CertificateUsageType enum value
+	CertificateUsageTypeSigning = "SIGNING"
+
+	// CertificateUsageTypeEncryption is a CertificateUsageType enum value
+	CertificateUsageTypeEncryption = "ENCRYPTION"
+)
+
+// CertificateUsageType_Values returns all elements of the CertificateUsageType enum
+func CertificateUsageType_Values() []string {
+	return []string{
+		CertificateUsageTypeSigning,
+		CertificateUsageTypeEncryption,
+	}
+}
+
+const (
+	// CompressionEnumZlib is a CompressionEnum enum value
+	CompressionEnumZlib = "ZLIB"
+
+	// CompressionEnumDisabled is a CompressionEnum enum value
+	CompressionEnumDisabled = "DISABLED"
+)
+
+// CompressionEnum_Values returns all elements of the CompressionEnum enum
+func CompressionEnum_Values() []string {
+	return []string{
+		CompressionEnumZlib,
+		CompressionEnumDisabled,
+	}
+}
+
+const (
 	// CustomStepStatusSuccess is a CustomStepStatus enum value
 	CustomStepStatusSuccess = "SUCCESS"
 
@@ -11765,6 +17377,26 @@ func Domain_Values() []string {
 	return []string{
 		DomainS3,
 		DomainEfs,
+	}
+}
+
+const (
+	// EncryptionAlgAes128Cbc is a EncryptionAlg enum value
+	EncryptionAlgAes128Cbc = "AES128_CBC"
+
+	// EncryptionAlgAes192Cbc is a EncryptionAlg enum value
+	EncryptionAlgAes192Cbc = "AES192_CBC"
+
+	// EncryptionAlgAes256Cbc is a EncryptionAlg enum value
+	EncryptionAlgAes256Cbc = "AES256_CBC"
+)
+
+// EncryptionAlg_Values returns all elements of the EncryptionAlg enum
+func EncryptionAlg_Values() []string {
+	return []string{
+		EncryptionAlgAes128Cbc,
+		EncryptionAlgAes192Cbc,
+		EncryptionAlgAes256Cbc,
 	}
 }
 
@@ -11899,6 +17531,54 @@ func IdentityProviderType_Values() []string {
 }
 
 const (
+	// MdnResponseSync is a MdnResponse enum value
+	MdnResponseSync = "SYNC"
+
+	// MdnResponseNone is a MdnResponse enum value
+	MdnResponseNone = "NONE"
+)
+
+// MdnResponse_Values returns all elements of the MdnResponse enum
+func MdnResponse_Values() []string {
+	return []string{
+		MdnResponseSync,
+		MdnResponseNone,
+	}
+}
+
+const (
+	// MdnSigningAlgSha256 is a MdnSigningAlg enum value
+	MdnSigningAlgSha256 = "SHA256"
+
+	// MdnSigningAlgSha384 is a MdnSigningAlg enum value
+	MdnSigningAlgSha384 = "SHA384"
+
+	// MdnSigningAlgSha512 is a MdnSigningAlg enum value
+	MdnSigningAlgSha512 = "SHA512"
+
+	// MdnSigningAlgSha1 is a MdnSigningAlg enum value
+	MdnSigningAlgSha1 = "SHA1"
+
+	// MdnSigningAlgNone is a MdnSigningAlg enum value
+	MdnSigningAlgNone = "NONE"
+
+	// MdnSigningAlgDefault is a MdnSigningAlg enum value
+	MdnSigningAlgDefault = "DEFAULT"
+)
+
+// MdnSigningAlg_Values returns all elements of the MdnSigningAlg enum
+func MdnSigningAlg_Values() []string {
+	return []string{
+		MdnSigningAlgSha256,
+		MdnSigningAlgSha384,
+		MdnSigningAlgSha512,
+		MdnSigningAlgSha1,
+		MdnSigningAlgNone,
+		MdnSigningAlgDefault,
+	}
+}
+
+const (
 	// OverwriteExistingTrue is a OverwriteExisting enum value
 	OverwriteExistingTrue = "TRUE"
 
@@ -11915,6 +17595,22 @@ func OverwriteExisting_Values() []string {
 }
 
 const (
+	// ProfileTypeLocal is a ProfileType enum value
+	ProfileTypeLocal = "LOCAL"
+
+	// ProfileTypePartner is a ProfileType enum value
+	ProfileTypePartner = "PARTNER"
+)
+
+// ProfileType_Values returns all elements of the ProfileType enum
+func ProfileType_Values() []string {
+	return []string{
+		ProfileTypeLocal,
+		ProfileTypePartner,
+	}
+}
+
+const (
 	// ProtocolSftp is a Protocol enum value
 	ProtocolSftp = "SFTP"
 
@@ -11923,6 +17619,9 @@ const (
 
 	// ProtocolFtps is a Protocol enum value
 	ProtocolFtps = "FTPS"
+
+	// ProtocolAs2 is a Protocol enum value
+	ProtocolAs2 = "AS2"
 )
 
 // Protocol_Values returns all elements of the Protocol enum
@@ -11931,6 +17630,7 @@ func Protocol_Values() []string {
 		ProtocolSftp,
 		ProtocolFtp,
 		ProtocolFtps,
+		ProtocolAs2,
 	}
 }
 
@@ -11947,6 +17647,34 @@ func SetStatOption_Values() []string {
 	return []string{
 		SetStatOptionDefault,
 		SetStatOptionEnableNoOp,
+	}
+}
+
+const (
+	// SigningAlgSha256 is a SigningAlg enum value
+	SigningAlgSha256 = "SHA256"
+
+	// SigningAlgSha384 is a SigningAlg enum value
+	SigningAlgSha384 = "SHA384"
+
+	// SigningAlgSha512 is a SigningAlg enum value
+	SigningAlgSha512 = "SHA512"
+
+	// SigningAlgSha1 is a SigningAlg enum value
+	SigningAlgSha1 = "SHA1"
+
+	// SigningAlgNone is a SigningAlg enum value
+	SigningAlgNone = "NONE"
+)
+
+// SigningAlg_Values returns all elements of the SigningAlg enum
+func SigningAlg_Values() []string {
+	return []string{
+		SigningAlgSha256,
+		SigningAlgSha384,
+		SigningAlgSha512,
+		SigningAlgSha1,
+		SigningAlgNone,
 	}
 }
 

@@ -37,6 +37,9 @@
     "GetMacieSession" : "<p>Retrieves the current status and configuration settings for an Amazon Macie account.</p>",
     "GetMasterAccount" : "<p>(Deprecated) Retrieves information about the Amazon Macie administrator account for an account. This operation has been replaced by the <link  linkend=\"GetAdministratorAccount\">GetAdministratorAccount</link> operation.</p>",
     "GetMember" : "<p>Retrieves information about an account that's associated with an Amazon Macie administrator account.</p>",
+    "GetRevealConfiguration" : "<p>Retrieves the status and configuration settings for retrieving (revealing) occurrences of sensitive data reported by findings.</p>",
+    "GetSensitiveDataOccurrences" : "<p>Retrieves (reveals) occurrences of sensitive data reported by a finding.</p>",
+    "GetSensitiveDataOccurrencesAvailability" : "<p>Checks whether occurrences of sensitive data can be retrieved (revealed) for a finding.</p>",
     "GetUsageStatistics" : "<p>Retrieves (queries) quotas and aggregated usage data for one or more accounts.</p>",
     "GetUsageTotals" : "<p>Retrieves (queries) aggregated usage data for an account.</p>",
     "ListClassificationJobs" : "<p>Retrieves a subset of information about one or more classification jobs.</p>",
@@ -58,7 +61,8 @@
     "UpdateFindingsFilter" : "<p>Updates the criteria and other settings for a findings filter.</p>",
     "UpdateMacieSession" : "<p>Suspends or re-enables Amazon Macie, or updates the configuration settings for a Macie account.</p>",
     "UpdateMemberSession" : "<p>Enables an Amazon Macie administrator to suspend or re-enable Macie for a member account.</p>",
-    "UpdateOrganizationConfiguration" : "<p>Updates the Amazon Macie configuration settings for an organization in Organizations.</p>"
+    "UpdateOrganizationConfiguration" : "<p>Updates the Amazon Macie configuration settings for an organization in Organizations.</p>",
+    "UpdateRevealConfiguration" : "<p>Updates the status and configuration settings for retrieving (revealing) occurrences of sensitive data reported by findings.</p>"
   },
   "shapes" : {
     "AcceptInvitationRequest" : {
@@ -116,6 +120,12 @@
       "base" : "<p>Provides information about an identity that performed an action on an affected resource by using temporary security credentials. The credentials were obtained using the AssumeRole operation of the Security Token Service (STS) API.</p>",
       "refs" : {
         "UserIdentity$AssumedRole" : "<p>If the action was performed with temporary security credentials that were obtained using the AssumeRole operation of the Security Token Service (STS) API, the identifiers, session context, and other details about the identity.</p>"
+      }
+    },
+    "AvailabilityCode" : {
+      "base" : "<p>Specifies whether occurrences of sensitive data can be retrieved for a finding. Possible values are:</p>",
+      "refs" : {
+        "GetSensitiveDataOccurrencesAvailabilityResponse$Code" : "<p>Specifies whether occurrences of sensitive data can be retrieved for the finding. Possible values are: AVAILABLE, the sensitive data can be retrieved; and, UNAVAILABLE, the sensitive data can't be retrieved. If this value is UNAVAILABLE, the reasons array indicates why the data can't be retrieved.</p>"
       }
     },
     "AwsAccount" : {
@@ -441,6 +451,12 @@
       "base" : "<p>Provides information about the Amazon Macie configuration settings for an organization in Organizations.</p>",
       "refs" : { }
     },
+    "DetectedDataDetails" : {
+      "base" : "<p>Specifies 1-10 occurrences of a specific type of sensitive data reported by a finding.</p>",
+      "refs" : {
+        "__listOfDetectedDataDetails$member" : null
+      }
+    },
     "DomainDetails" : {
       "base" : "<p>Provides information about the domain name of the device that an entity used to perform an action on an affected resource.</p>",
       "refs" : {
@@ -625,6 +641,18 @@
       "base" : "<p>Provides information about an account that's associated with an Amazon Macie administrator account.</p>",
       "refs" : { }
     },
+    "GetRevealConfigurationResponse" : {
+      "base" : "<p>Provides information about the configuration settings for retrieving occurrences of sensitive data reported by findings, and the status of the configuration for an Amazon Macie account.</p>",
+      "refs" : { }
+    },
+    "GetSensitiveDataOccurrencesAvailabilityResponse" : {
+      "base" : "<p>Provides information about whether occurrences of sensitive data can be retrieved for a finding and, if not, why the data can't be retrieved.</p>",
+      "refs" : { }
+    },
+    "GetSensitiveDataOccurrencesResponse" : {
+      "base" : "<p>Provides the results of a request to retrieve occurrences of sensitive data reported by a finding.</p>",
+      "refs" : { }
+    },
     "GetUsageStatisticsRequest" : {
       "base" : "<p>Specifies criteria for filtering, sorting, and paginating the results of a query for quotas and aggregated usage data for one or more Amazon Macie accounts.</p>",
       "refs" : { }
@@ -700,7 +728,7 @@
     "IsDefinedInJob" : {
       "base" : null,
       "refs" : {
-        "JobDetails$IsDefinedInJob" : "<p>Specifies whether any one-time or recurring jobs are configured to analyze data in the bucket. Possible values are:</p> <ul><li><p>TRUE - The bucket is explicitly included in the bucket definition (S3BucketDefinitionForJob) for one or more jobs and at least one of those jobs has a status other than CANCELLED. Or the bucket matched the bucket criteria (S3BucketCriteriaForJob) for at least one job that previously ran.</p></li> <li><p>FALSE - The bucket isn't explicitly included in the bucket definition (S3BucketDefinitionForJob) for any jobs, all the jobs that explicitly include the bucket in their bucket definitions have a status of CANCELLED, or the bucket didn't match the bucket criteria (S3BucketCriteriaForJob) for any jobs that previously ran.</p></li> <li><p>UNKNOWN - An exception occurred when Amazon Macie attempted to retrieve job data for the bucket.</p></li></ul> <p></p>"
+        "JobDetails$IsDefinedInJob" : "<p>Specifies whether any one-time or recurring jobs are configured to analyze data in the bucket. Possible values are:</p> <ul><li><p>TRUE - The bucket is explicitly included in the bucket definition (S3BucketDefinitionForJob) for one or more jobs and at least one of those jobs has a status other than CANCELLED. Or the bucket matched the bucket criteria (S3BucketCriteriaForJob) for at least one job that previously ran.</p></li> <li><p>FALSE - The bucket isn't explicitly included in the bucket definition (S3BucketDefinitionForJob) for any jobs, all the jobs that explicitly include the bucket in their bucket definitions have a status of CANCELLED, or the bucket didn't match the bucket criteria (S3BucketCriteriaForJob) for any jobs that previously ran.</p></li> <li><p>UNKNOWN - An exception occurred when Amazon Macie attempted to retrieve job data for the bucket.</p></li></ul>"
       }
     },
     "IsMonitoredByJob" : {
@@ -942,7 +970,7 @@
       }
     },
     "Occurrences" : {
-      "base" : "<p>Specifies the location of 1-15 occurrences of sensitive data that was detected by a managed data identifier or a custom data identifier and produced a sensitive data finding.</p>",
+      "base" : "<p>Specifies the location of 1-15 occurrences of sensitive data that was detected by a managed data identifier or a custom data identifier and produced a sensitive data finding. Depending on the file or storage format of the affected S3 object, you can optionally retrieve (reveal) sample occurrences of the sensitive data that was detected.</p>",
       "refs" : {
         "CustomDetection$Occurrences" : "<p>The location of 1-15 occurrences of the sensitive data that the custom data identifier detected. A finding includes location data for a maximum of 15 occurrences of sensitive data.</p>",
         "DefaultDetection$Occurrences" : "<p>The location of 1-15 occurrences of the sensitive data that was detected. A finding includes location data for a maximum of 15 occurrences of sensitive data.</p>"
@@ -1044,6 +1072,26 @@
       "base" : "<p>Provides information about the resources that a finding applies to.</p>",
       "refs" : {
         "Finding$ResourcesAffected" : "<p>The resources that the finding applies to.</p>"
+      }
+    },
+    "RevealConfiguration" : {
+      "base" : "<p>Specifies the configuration settings for retrieving occurrences of sensitive data reported by findings, and the status of the configuration for an Amazon Macie account. When you enable the configuration for the first time, your request must specify an AWS Key Management Service (AWS KMS) key. Otherwise, an error occurs. Macie uses the specified key to encrypt the sensitive data that you retrieve.</p>",
+      "refs" : {
+        "GetRevealConfigurationResponse$Configuration" : "<p>The current configuration settings and the status of the configuration for the account.</p>",
+        "UpdateRevealConfigurationRequest$Configuration" : "<p>The new configuration settings and the status of the configuration for the account.</p>",
+        "UpdateRevealConfigurationResponse$Configuration" : "<p>The new configuration settings and the status of the configuration for the account.</p>"
+      }
+    },
+    "RevealRequestStatus" : {
+      "base" : "<p>The status of a request to retrieve occurrences of sensitive data reported by a finding. Possible values are:</p>",
+      "refs" : {
+        "GetSensitiveDataOccurrencesResponse$Status" : "<p>The status of the request to retrieve occurrences of sensitive data reported by the finding. Possible values are:</p> <ul><li><p>ERROR - An error occurred when Amazon Macie attempted to locate, retrieve, or encrypt the sensitive data. The error value indicates the nature of the error that occurred.</p></li> <li><p>PROCESSING - Macie is processing the request.</p></li> <li><p>SUCCESS - Macie successfully located, retrieved, and encrypted the sensitive data.</p></li></ul>"
+      }
+    },
+    "RevealStatus" : {
+      "base" : "<p>The status of the configuration for the Amazon Macie account. In a request, valid values are:</p>",
+      "refs" : {
+        "RevealConfiguration$Status" : "<p>The status of the configuration for the Macie account. In a request, valid values are: ENABLED, enable the configuration for the account; and, DISABLED, disable the configuration for the account. In a response, possible values are: ENABLED, the configuration is currently enabled for the account; and, DISABLED, the configuration is currently disabled for the account.</p>"
       }
     },
     "S3Bucket" : {
@@ -1196,6 +1244,12 @@
       "refs" : {
         "ManagedDataIdentifierSummary$Category" : "<p>The category of sensitive data that the managed data identifier detects: CREDENTIALS, for credentials data such as private keys or Amazon Web Services secret access keys; FINANCIAL_INFORMATION, for financial data such as credit card numbers; or, PERSONAL_INFORMATION, for personal health information, such as health insurance identification numbers, or personally identifiable information, such as passport numbers.</p>",
         "SensitiveDataItem$Category" : "<p>The category of sensitive data that was detected. For example: CREDENTIALS, for credentials data such as private keys or Amazon Web Services secret access keys; FINANCIAL_INFORMATION, for financial data such as credit card numbers; or, PERSONAL_INFORMATION, for personal health information, such as health insurance identification numbers, or personally identifiable information, such as passport numbers.</p>"
+      }
+    },
+    "SensitiveDataOccurrences" : {
+      "base" : "<p>Specifies a type of sensitive data reported by a finding and provides occurrences of the specified type of sensitive data.</p>",
+      "refs" : {
+        "GetSensitiveDataOccurrencesResponse$SensitiveDataOccurrences" : "<p>A map that specifies 1-100 types of sensitive data reported by the finding and, for each type, 1-10 occurrences of sensitive data.</p>"
       }
     },
     "ServerSideEncryption" : {
@@ -1383,11 +1437,21 @@
         "BucketServerSideEncryption$Type" : "<p>The type of server-side encryption that's used by default when storing new objects in the bucket. Possible values are:</p> <ul><li><p>AES256 - New objects are encrypted with an Amazon S3 managed key. They use SSE-S3 encryption.</p></li> <li><p>aws:kms - New objects are encrypted with an KMS key (kmsMasterKeyId), either an Amazon Web Services managed key or a customer managed key. They use SSE-KMS encryption.</p></li> <li><p>NONE - New objects aren't encrypted by default. Default encryption is disabled for the bucket.</p></li></ul>"
       }
     },
+    "UnavailabilityReasonCode" : {
+      "base" : "<p>Specifies why occurrences of sensitive data can't be retrieved for a finding. Possible values are:</p>",
+      "refs" : {
+        "__listOfUnavailabilityReasonCode$member" : null
+      }
+    },
     "Unit" : {
       "base" : null,
       "refs" : {
         "ServiceLimit$Unit" : "<p>The unit of measurement for the value specified by the value field.</p>"
       }
+    },
+    "UnprocessableEntityException" : {
+      "base" : "<p>Provides information about an error that occurred due to an unprocessable entity.</p>",
+      "refs" : { }
     },
     "UnprocessedAccount" : {
       "base" : " <p>Provides information about an account-related request that hasn't been processed.</p>",
@@ -1421,6 +1485,14 @@
     },
     "UpdateOrganizationConfigurationRequest" : {
       "base" : "<p>Specifies whether to enable Amazon Macie automatically for accounts that are added to an organization in Organizations.</p>",
+      "refs" : { }
+    },
+    "UpdateRevealConfigurationRequest" : {
+      "base" : "<p>Specifies the configuration settings for retrieving occurrences of sensitive data reported by findings, and the status of the configuration for an Amazon Macie account.</p>",
+      "refs" : { }
+    },
+    "UpdateRevealConfigurationResponse" : {
+      "base" : "<p>Provides information about updated configuration settings for retrieving occurrences of sensitive data reported by findings, and the status of the configuration for an Amazon Macie account.</p>",
       "refs" : { }
     },
     "UsageByAccount" : {
@@ -1558,11 +1630,11 @@
       "base" : null,
       "refs" : {
         "CreateClassificationJobRequest$SamplingPercentage" : "<p>The sampling depth, as a percentage, for the job to apply when processing objects. This value determines the percentage of eligible objects that the job analyzes. If this value is less than 100, Amazon Macie selects the objects to analyze at random, up to the specified percentage, and analyzes all the data in those objects.</p>",
-        "CreateCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regular expression and the character sequences specified by the keywords array. Amazon Macie includes or excludes a result based on the proximity of a keyword to text that matches the regular expression. The distance can be 1-300 characters. The default value is 50.</p>",
+        "CreateCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between the end of at least one complete character sequence specified by the keywords array and the end of the text that matches the regex pattern. If a complete keyword precedes all the text that matches the pattern and the keyword is within the specified distance, Amazon Macie includes the result. The distance can be 1-300 characters. The default value is 50.</p>",
         "CreateFindingsFilterRequest$Position" : "<p>The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.</p>",
         "DescribeBucketsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response. The default value is 50.</p>",
         "DescribeClassificationJobResponse$SamplingPercentage" : "<p>The sampling depth, as a percentage, that determines the percentage of eligible objects that the job analyzes.</p>",
-        "GetCustomDataIdentifierResponse$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regular expression and the character sequences specified by the keywords array. Amazon Macie includes or excludes a result based on the proximity of a keyword to text that matches the regular expression.</p>",
+        "GetCustomDataIdentifierResponse$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between the end of at least one complete character sequence specified by the keywords array and the end of the text that matches the regex pattern. If a complete keyword precedes all the text that matches the pattern and the keyword is within the specified distance, Amazon Macie includes the result. Otherwise, Macie excludes the result.</p>",
         "GetFindingStatisticsRequest$Size" : "<p>The maximum number of items to include in each page of the response.</p>",
         "GetFindingsFilterResponse$Position" : "<p>The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.</p>",
         "GetUsageStatisticsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
@@ -1571,7 +1643,7 @@
         "ListFindingsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
         "MonthlySchedule$DayOfMonth" : "<p>The numeric day of the month when Amazon Macie runs the job. This value can be an integer from 1 through 31.</p> <p>If this value exceeds the number of days in a certain month, Macie doesn't run the job that month. Macie runs the job only during months that have the specified day. For example, if this value is 31 and a month has only 30 days, Macie doesn't run the job that month. To run the job every month, specify a value that's less than 29.</p>",
         "SearchResourcesRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response. The default value is 50.</p>",
-        "TestCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regular expression and the character sequences specified by the keywords array. Amazon Macie includes or excludes a result based on the proximity of a keyword to text that matches the regular expression. The distance can be 1-300 characters. The default value is 50.</p>",
+        "TestCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between the end of at least one complete character sequence specified by the keywords array and the end of the text that matches the regex pattern. If a complete keyword precedes all the text that matches the pattern and the keyword is within the specified distance, Amazon Macie includes the result. The distance can be 1-300 characters. The default value is 50.</p>",
         "TestCustomDataIdentifierResponse$MatchCount" : "<p>The number of occurrences of sample text that matched the criteria specified by the custom data identifier.</p>",
         "UpdateFindingsFilterRequest$Position" : "<p>The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.</p>"
       }
@@ -1604,6 +1676,12 @@
       "base" : null,
       "refs" : {
         "ListCustomDataIdentifiersResponse$Items" : "<p>An array of objects, one for each custom data identifier.</p>"
+      }
+    },
+    "__listOfDetectedDataDetails" : {
+      "base" : null,
+      "refs" : {
+        "SensitiveDataOccurrences$member" : null
       }
     },
     "__listOfFinding" : {
@@ -1710,6 +1788,12 @@
         "TagScopeTerm$TagValues" : "<p>The tag keys or tag key and value pairs to use in the condition. To specify only tag keys in a condition, specify the keys in this array and set the value for each associated tag value to an empty string.</p>"
       }
     },
+    "__listOfUnavailabilityReasonCode" : {
+      "base" : null,
+      "refs" : {
+        "GetSensitiveDataOccurrencesAvailabilityResponse$Reasons" : "<p>Specifies why occurrences of sensitive data can't be retrieved for the finding. Possible values are:</p> <ul><li><p>INVALID_CLASSIFICATION_RESULT - Amazon Macie can't verify the location of the sensitive data to retrieve. There isn't a corresponding sensitive data discovery result for the finding. Or the sensitive data discovery result specified by the ClassificationDetails.detailedResultsLocation field of the finding isn't available, is malformed or corrupted, or uses an unsupported storage format.</p></li> <li><p>OBJECT_EXCEEDS_SIZE_QUOTA - The storage size of the affected S3 object exceeds the size quota for retrieving occurrences of sensitive data.</p></li> <li><p>OBJECT_UNAVAILABLE - The affected S3 object isn't available. The object might have been renamed, moved, or deleted. Or the object was changed after Amazon Macie created the finding.</p></li> <li><p>UNSUPPORTED_FINDING_TYPE - The specified finding isn't a sensitive data finding.</p></li> <li><p>UNSUPPORTED_OBJECT_TYPE - The affected S3 object uses a file or storage format that Macie doesn't support for retrieving occurrences of sensitive data.</p></li></ul> <p>This value is null if sensitive data can be retrieved for the finding.</p>"
+      }
+    },
     "__listOfUnprocessedAccount" : {
       "base" : null,
       "refs" : {
@@ -1752,7 +1836,7 @@
         "CreateClassificationJobRequest$CustomDataIdentifierIds" : "<p>An array of unique identifiers, one for each custom data identifier for the job to use when it analyzes data. To use only managed data identifiers, don't specify a value for this property and specify a value other than NONE for the managedDataIdentifierSelector property.</p>",
         "CreateClassificationJobRequest$ManagedDataIdentifierIds" : "<p>An array of unique identifiers, one for each managed data identifier for the job to include (use) or exclude (not use) when it analyzes data. Inclusion or exclusion depends on the managed data identifier selection type that you specify for the job (managedDataIdentifierSelector).</p><p>To retrieve a list of valid values for this property, use the ListManagedDataIdentifiers operation.</p>",
         "CreateCustomDataIdentifierRequest$IgnoreWords" : "<p>An array that lists specific character sequences (<i>ignore words</i>) to exclude from the results. If the text matched by the regular expression contains any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4-90 UTF-8 characters. Ignore words are case sensitive.</p>",
-        "CreateCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (<i>keywords</i>), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 3-90 UTF-8 characters. Keywords aren't case sensitive.</p>",
+        "CreateCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (<i>keywords</i>), one of which must precede and be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 3-90 UTF-8 characters. Keywords aren't case sensitive.</p>",
         "CreateInvitationsRequest$AccountIds" : "<p>An array that lists Amazon Web Services account IDs, one for each account to send the invitation to.</p>",
         "CriterionAdditionalProperties$Eq" : "<p>The value for the property matches (equals) the specified value. If you specify multiple values, Macie uses OR logic to join the values.</p>",
         "CriterionAdditionalProperties$EqExactMatch" : "<p>The value for the property exclusively matches (equals an exact match for) all the specified values. If you specify multiple values, Amazon Macie uses AND logic to join the values.</p> <p>You can use this operator with the following properties: customDataIdentifiers.detections.arn, customDataIdentifiers.detections.name, resourcesAffected.s3Bucket.tags.key, resourcesAffected.s3Bucket.tags.value, resourcesAffected.s3Object.tags.key, resourcesAffected.s3Object.tags.value, sensitiveData.category, and sensitiveData.detections.type.</p>",
@@ -1762,7 +1846,7 @@
         "DescribeClassificationJobResponse$CustomDataIdentifierIds" : "<p>An array of unique identifiers, one for each custom data identifier that the job uses to analyze data. This value is null if the job uses only managed data identifiers to analyze data.</p>",
         "DescribeClassificationJobResponse$ManagedDataIdentifierIds" : "<p>An array of unique identifiers, one for each managed data identifier that the job is explicitly configured to include (use) or exclude (not use) when it analyzes data. Inclusion or exclusion depends on the managed data identifier selection type specified for the job (managedDataIdentifierSelector). This value is null if the job's managed data identifier selection type is ALL or the job uses only custom data identifiers (customDataIdentifierIds) to analyze data.</p>",
         "GetCustomDataIdentifierResponse$IgnoreWords" : "<p>An array that lists specific character sequences (<i>ignore words</i>) to exclude from the results. If the text matched by the regular expression contains any string in this array, Amazon Macie ignores it. Ignore words are case sensitive.</p>",
-        "GetCustomDataIdentifierResponse$Keywords" : "<p>An array that lists specific character sequences (<i>keywords</i>), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. Keywords aren't case sensitive.</p>",
+        "GetCustomDataIdentifierResponse$Keywords" : "<p>An array that lists specific character sequences (<i>keywords</i>), one of which must precede and be within proximity (maximumMatchDistance) of the regular expression to match. Keywords aren't case sensitive.</p>",
         "GetFindingsRequest$FindingIds" : "<p>An array of strings that lists the unique identifiers for the findings to retrieve. You can specify as many as 50 unique identifiers in this array.</p>",
         "ListFindingsResponse$FindingIds" : "<p>An array of strings, where each string is the unique identifier for a finding that meets the filter criteria specified in the request.</p>",
         "ListJobsFilterTerm$Values" : "<p>An array that lists one or more values to use to filter the results.</p>",
@@ -1772,7 +1856,7 @@
         "SimpleCriterionForJob$Values" : "<p>An array that lists one or more values to use in the condition. If you specify multiple values, Amazon Macie uses OR logic to join the values. Valid values for each supported property (key) are:</p> <ul><li><p>ACCOUNT_ID - A string that represents the unique identifier for the Amazon Web Services account that owns the bucket.</p></li> <li><p>S3_BUCKET_EFFECTIVE_PERMISSION - A string that represents an enumerated value that Macie defines for the <a href=\"https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketpublicaccess-effectivepermission\">BucketPublicAccess.effectivePermission</a> property of a bucket.</p></li> <li><p>S3_BUCKET_NAME - A string that represents the name of a bucket.</p></li> <li><p>S3_BUCKET_SHARED_ACCESS - A string that represents an enumerated value that Macie defines for the <a href=\"https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketmetadata-sharedaccess\">BucketMetadata.sharedAccess</a> property of a bucket.</p></li></ul> <p>Values are case sensitive. Also, Macie doesn't support use of partial values or wildcard characters in these values.</p>",
         "SimpleScopeTerm$Values" : "<p>An array that lists the values to use in the condition. If the value for the key property is OBJECT_EXTENSION or OBJECT_KEY, this array can specify multiple values and Amazon Macie uses OR logic to join the values. Otherwise, this array can specify only one value.</p> <p>Valid values for each supported property (key) are:</p> <ul><li><p>OBJECT_EXTENSION - A string that represents the file name extension of an object. For example: docx or pdf</p></li> <li><p>OBJECT_KEY - A string that represents the key prefix (folder name or path) of an object. For example: logs or awslogs/eventlogs. This value applies a condition to objects whose keys (names) begin with the specified value.</p></li> <li><p>OBJECT_LAST_MODIFIED_DATE - The date and time (in UTC and extended ISO 8601 format) when an object was created or last changed, whichever is latest. For example: 2020-09-28T14:31:13Z</p></li> <li><p>OBJECT_SIZE - An integer that represents the storage size (in bytes) of an object.</p></li></ul> <p>Macie doesn't support use of wildcard characters in these values. Also, string values are case sensitive.</p>",
         "TestCustomDataIdentifierRequest$IgnoreWords" : "<p>An array that lists specific character sequences (<i>ignore words</i>) to exclude from the results. If the text matched by the regular expression contains any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4-90 UTF-8 characters. Ignore words are case sensitive.</p>",
-        "TestCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (<i>keywords</i>), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 3-90 UTF-8 characters. Keywords aren't case sensitive.</p>",
+        "TestCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (<i>keywords</i>), one of which must precede and be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 3-90 UTF-8 characters. Keywords aren't case sensitive.</p>",
         "UsageStatisticsFilter$Values" : "<p>An array that lists values to use in the condition, based on the value for the field specified by the key property. If the value for the key property is accountId, this array can specify multiple values. Otherwise, this array can specify only one value.</p> <p>Valid values for each supported field are:</p> <ul><li><p>accountId - The unique identifier for an Amazon Web Services account.</p></li> <li><p>freeTrialStartDate - The date and time, in UTC and extended ISO 8601 format, when the free trial started for an account.</p></li> <li><p>serviceLimit - A Boolean (true or false) value that indicates whether an account has reached its monthly quota.</p></li> <li><p>total - A string that represents the current estimated cost for an account.</p></li></ul>"
       }
     },
@@ -1952,6 +2036,7 @@
         "GetMemberResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the account.</p>",
         "GetMemberResponse$Email" : "<p>The email address for the account.</p>",
         "GetMemberResponse$MasterAccountId" : "<p>(Deprecated) The Amazon Web Services account ID for the administrator account. This property has been replaced by the administratorAccountId property and is retained only for backward compatibility.</p>",
+        "GetSensitiveDataOccurrencesResponse$Error" : "<p>If an error occurred when Amazon Macie attempted to retrieve occurrences of sensitive data reported by the finding, a description of the error that occurred. This value is null if the status (status) of the request is PROCESSING or SUCCESS.</p>",
         "GetUsageStatisticsRequest$NextToken" : "<p>The nextToken string that specifies which page of results to return in a paginated response.</p>",
         "GetUsageStatisticsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "GroupCount$GroupKey" : "<p>The name of the property that defines the group in the query results, as specified by the groupBy property in the query request.</p>",
@@ -2006,7 +2091,7 @@
         "S3BucketOwner$Id" : "<p>The canonical user ID for the account that owns the bucket.</p>",
         "S3Destination$BucketName" : "<p>The name of the bucket.</p>",
         "S3Destination$KeyPrefix" : "<p>The path prefix to use in the path to the location in the bucket. This prefix specifies where to store classification results in the bucket.</p>",
-        "S3Destination$KmsKeyArn" : "<p>The Amazon Resource Name (ARN) of the KMS key to use for encryption of the results. This must be the ARN of an existing, symmetric, customer managed KMS key that's in the same Amazon Web Services Region as the bucket.</p>",
+        "S3Destination$KmsKeyArn" : "<p>The Amazon Resource Name (ARN) of the customer managed KMS key to use for encryption of the results. This must be the ARN of an existing, symmetric encryption KMS key that's in the same Amazon Web Services Region as the bucket.</p>",
         "S3Object$BucketArn" : "<p>The Amazon Resource Name (ARN) of the bucket that contains the object.</p>",
         "S3Object$ETag" : "<p>The entity tag (ETag) that identifies the affected version of the object. If the object was overwritten or changed after Amazon Macie produced the finding, this value might be different from the current ETag for the object.</p>",
         "S3Object$Extension" : "<p>The file name extension of the object. If the object doesn't have a file name extension, this value is \"\".</p>",
@@ -2034,6 +2119,7 @@
         "TestCustomDataIdentifierRequest$Regex" : "<p>The regular expression (<i>regex</i>) that defines the pattern to match. The expression can contain as many as 512 characters.</p>",
         "TestCustomDataIdentifierRequest$SampleText" : "<p>The sample text to inspect by using the custom data identifier. The text can contain as many as 1,000 characters.</p>",
         "ThrottlingException$Message" : "<p>The explanation of the error that occurred.</p>",
+        "UnprocessableEntityException$Message" : "<p>The type of error that occurred and prevented Amazon Macie from retrieving occurrences of sensitive data reported by the finding. Possible values are:</p> <ul><li><p>INVALID_CLASSIFICATION_RESULT</code> - Amazon Macie can't verify the location of the sensitive data to retrieve. There isn't a corresponding sensitive data discovery result for the finding. Or the sensitive data discovery result specified by the ClassificationDetails.detailedResultsLocation field of the finding isn't available, is malformed or corrupted, or uses an unsupported storage format.</p></li> <li><p>OBJECT_EXCEEDS_SIZE_QUOTA - The storage size of the affected S3 object exceeds the size quota for retrieving occurrences of sensitive data.</p></li> <li><p>OBJECT_UNAVAILABLE - The affected S3 object isn't available. The object might have been renamed, moved, or deleted. Or the object was changed after Amazon Macie created the finding.</p></li> <li><p>UNSUPPORTED_FINDING_TYPE - The specified finding isn't a sensitive data finding..</p></li> <li><p>UNSUPPORTED_OBJECT_TYPE - The affected S3 object uses a file or storage format that Amazon Macie doesn't support for retrieving occurrences of sensitive data.</p></li></ul>",
         "UnprocessedAccount$AccountId" : "<p>The Amazon Web Services account ID for the account that the request applies to.</p>",
         "UnprocessedAccount$ErrorMessage" : "<p>The reason why the request hasn't been processed.</p>",
         "UpdateFindingsFilterRequest$ClientToken" : "<p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>",
@@ -2052,6 +2138,18 @@
         "__listOf__string$member" : null
       }
     },
+    "__stringMin1Max128" : {
+      "base" : null,
+      "refs" : {
+        "DetectedDataDetails$Value" : "<p>An occurrence of the specified type of sensitive data. Each occurrence can contain 1-128 characters.</p>"
+      }
+    },
+    "__stringMin1Max2048" : {
+      "base" : null,
+      "refs" : {
+        "RevealConfiguration$KmsKeyId" : "<p>The Amazon Resource Name (ARN), ID, or alias of the KMS key to use to encrypt sensitive data that's retrieved. The key must be an existing, customer managed, symmetric encryption key that's in the same Amazon Web Services Region as the Amazon Macie account.</p> <p>If this value specifies an alias, it must include the following prefix: alias/. If this value specifies a key that's owned by another Amazon Web Services account, it must specify the ARN of the key or the ARN of the key's alias.</p>"
+      }
+    },
     "__timestampIso8601" : {
       "base" : null,
       "refs" : {
@@ -2062,7 +2160,7 @@
         "BucketMetadata$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie most recently retrieved both bucket and object metadata from Amazon S3 for the bucket.</p>",
         "CustomDataIdentifierSummary$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the custom data identifier was created.</p>",
         "DescribeClassificationJobResponse$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job was created.</p>",
-        "DescribeClassificationJobResponse$LastRunTime" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job started. If the job is a recurring job, this value indicates when the most recent run started.</p>",
+        "DescribeClassificationJobResponse$LastRunTime" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job started. If the job is a recurring job, this value indicates when the most recent run started or, if the job hasn't run yet, when the job was created.</p>",
         "Finding$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the finding was created.</p>",
         "Finding$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the finding was last updated. For sensitive data findings, this value is the same as the value for the createdAt property. All sensitive data findings are considered new (unique) because they derive from individual classification jobs.</p>",
         "GetBucketStatisticsResponse$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie most recently retrieved both bucket and object metadata from Amazon S3 for the buckets.</p>",
