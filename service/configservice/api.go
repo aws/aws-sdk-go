@@ -8033,6 +8033,157 @@ func (c *ConfigService) ListAggregateDiscoveredResourcesPagesWithContext(ctx aws
 	return p.Err()
 }
 
+const opListConformancePackComplianceScores = "ListConformancePackComplianceScores"
+
+// ListConformancePackComplianceScoresRequest generates a "aws/request.Request" representing the
+// client's request for the ListConformancePackComplianceScores operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListConformancePackComplianceScores for more information on using the ListConformancePackComplianceScores
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListConformancePackComplianceScoresRequest method.
+//    req, resp := client.ListConformancePackComplianceScoresRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListConformancePackComplianceScores
+func (c *ConfigService) ListConformancePackComplianceScoresRequest(input *ListConformancePackComplianceScoresInput) (req *request.Request, output *ListConformancePackComplianceScoresOutput) {
+	op := &request.Operation{
+		Name:       opListConformancePackComplianceScores,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListConformancePackComplianceScoresInput{}
+	}
+
+	output = &ListConformancePackComplianceScoresOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListConformancePackComplianceScores API operation for AWS Config.
+//
+// Returns a list of conformance pack compliance scores. A compliance score
+// is the percentage of the number of compliant rule-resource combinations in
+// a conformance pack compared to the number of total possible rule-resource
+// combinations in the conformance pack. This metric provides you with a high-level
+// view of the compliance state of your conformance packs, and can be used to
+// identify, investigate, and understand compliance deviations in your conformance
+// packs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation ListConformancePackComplianceScores for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more of the specified parameters are invalid. Verify that your parameters
+//   are valid and try again.
+//
+//   * InvalidLimitException
+//   The specified limit is outside the allowable range.
+//
+//   * InvalidNextTokenException
+//   The specified next token is invalid. Specify the nextToken string that was
+//   returned in the previous response to get the next page of results.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListConformancePackComplianceScores
+func (c *ConfigService) ListConformancePackComplianceScores(input *ListConformancePackComplianceScoresInput) (*ListConformancePackComplianceScoresOutput, error) {
+	req, out := c.ListConformancePackComplianceScoresRequest(input)
+	return out, req.Send()
+}
+
+// ListConformancePackComplianceScoresWithContext is the same as ListConformancePackComplianceScores with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListConformancePackComplianceScores for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) ListConformancePackComplianceScoresWithContext(ctx aws.Context, input *ListConformancePackComplianceScoresInput, opts ...request.Option) (*ListConformancePackComplianceScoresOutput, error) {
+	req, out := c.ListConformancePackComplianceScoresRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListConformancePackComplianceScoresPages iterates over the pages of a ListConformancePackComplianceScores operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListConformancePackComplianceScores method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListConformancePackComplianceScores operation.
+//    pageNum := 0
+//    err := client.ListConformancePackComplianceScoresPages(params,
+//        func(page *configservice.ListConformancePackComplianceScoresOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) ListConformancePackComplianceScoresPages(input *ListConformancePackComplianceScoresInput, fn func(*ListConformancePackComplianceScoresOutput, bool) bool) error {
+	return c.ListConformancePackComplianceScoresPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListConformancePackComplianceScoresPagesWithContext same as ListConformancePackComplianceScoresPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) ListConformancePackComplianceScoresPagesWithContext(ctx aws.Context, input *ListConformancePackComplianceScoresInput, fn func(*ListConformancePackComplianceScoresOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListConformancePackComplianceScoresInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListConformancePackComplianceScoresRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListConformancePackComplianceScoresOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListDiscoveredResources = "ListDiscoveredResources"
 
 // ListDiscoveredResourcesRequest generates a "aws/request.Request" representing the
@@ -14084,6 +14235,113 @@ func (s *ConformancePackComplianceFilters) SetComplianceType(v string) *Conforma
 // SetConfigRuleNames sets the ConfigRuleNames field's value.
 func (s *ConformancePackComplianceFilters) SetConfigRuleNames(v []*string) *ConformancePackComplianceFilters {
 	s.ConfigRuleNames = v
+	return s
+}
+
+// A compliance score is the percentage of the number of compliant rule-resource
+// combinations in a conformance pack compared to the number of total possible
+// rule-resource combinations in the conformance pack. This metric provides
+// you with a high-level view of the compliance state of your conformance packs,
+// and can be used to identify, investigate, and understand compliance deviations
+// in your conformance packs.
+type ConformancePackComplianceScore struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the conformance pack.
+	ConformancePackName *string `min:"1" type:"string"`
+
+	// The time that the conformance pack compliance score was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// Compliance score for the conformance pack.
+	Score *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConformancePackComplianceScore) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConformancePackComplianceScore) GoString() string {
+	return s.String()
+}
+
+// SetConformancePackName sets the ConformancePackName field's value.
+func (s *ConformancePackComplianceScore) SetConformancePackName(v string) *ConformancePackComplianceScore {
+	s.ConformancePackName = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *ConformancePackComplianceScore) SetLastUpdatedTime(v time.Time) *ConformancePackComplianceScore {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *ConformancePackComplianceScore) SetScore(v string) *ConformancePackComplianceScore {
+	s.Score = &v
+	return s
+}
+
+// A list of filters to apply to the conformance pack compliance score result
+// set.
+type ConformancePackComplianceScoresFilters struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a conformance pack whose score should be included in the compliance
+	// score result.
+	//
+	// ConformancePackNames is a required field
+	ConformancePackNames []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConformancePackComplianceScoresFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConformancePackComplianceScoresFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConformancePackComplianceScoresFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConformancePackComplianceScoresFilters"}
+	if s.ConformancePackNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConformancePackNames"))
+	}
+	if s.ConformancePackNames != nil && len(s.ConformancePackNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConformancePackNames", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConformancePackNames sets the ConformancePackNames field's value.
+func (s *ConformancePackComplianceScoresFilters) SetConformancePackNames(v []*string) *ConformancePackComplianceScoresFilters {
+	s.ConformancePackNames = v
 	return s
 }
 
@@ -22638,6 +22896,135 @@ func (s *ListAggregateDiscoveredResourcesOutput) SetNextToken(v string) *ListAgg
 // SetResourceIdentifiers sets the ResourceIdentifiers field's value.
 func (s *ListAggregateDiscoveredResourcesOutput) SetResourceIdentifiers(v []*AggregateResourceIdentifier) *ListAggregateDiscoveredResourcesOutput {
 	s.ResourceIdentifiers = v
+	return s
+}
+
+type ListConformancePackComplianceScoresInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters the results based on the ConformancePackComplianceScoresFilters.
+	Filters *ConformancePackComplianceScoresFilters `type:"structure"`
+
+	// The maximum number of conformance pack compliance scores returned on each
+	// page.
+	Limit *int64 `type:"integer"`
+
+	// The nextToken string in a prior request that you can use to get the paginated
+	// response for next set of conformance pack compliance scores.
+	NextToken *string `type:"string"`
+
+	// Sorts your conformance pack compliance scores in either ascending or descending
+	// order, depending on SortOrder.
+	SortBy *string `type:"string" enum:"SortBy"`
+
+	// Determines the order in which conformance pack compliance scores are sorted.
+	// Either in ascending or descending order.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConformancePackComplianceScoresInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConformancePackComplianceScoresInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListConformancePackComplianceScoresInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListConformancePackComplianceScoresInput"}
+	if s.Filters != nil {
+		if err := s.Filters.Validate(); err != nil {
+			invalidParams.AddNested("Filters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListConformancePackComplianceScoresInput) SetFilters(v *ConformancePackComplianceScoresFilters) *ListConformancePackComplianceScoresInput {
+	s.Filters = v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListConformancePackComplianceScoresInput) SetLimit(v int64) *ListConformancePackComplianceScoresInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConformancePackComplianceScoresInput) SetNextToken(v string) *ListConformancePackComplianceScoresInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListConformancePackComplianceScoresInput) SetSortBy(v string) *ListConformancePackComplianceScoresInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListConformancePackComplianceScoresInput) SetSortOrder(v string) *ListConformancePackComplianceScoresInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListConformancePackComplianceScoresOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of ConformancePackComplianceScore objects
+	//
+	// ConformancePackComplianceScores is a required field
+	ConformancePackComplianceScores []*ConformancePackComplianceScore `type:"list" required:"true"`
+
+	// The nextToken string that you can use to get the next page of results in
+	// a paginated response.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConformancePackComplianceScoresOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConformancePackComplianceScoresOutput) GoString() string {
+	return s.String()
+}
+
+// SetConformancePackComplianceScores sets the ConformancePackComplianceScores field's value.
+func (s *ListConformancePackComplianceScoresOutput) SetConformancePackComplianceScores(v []*ConformancePackComplianceScore) *ListConformancePackComplianceScoresOutput {
+	s.ConformancePackComplianceScores = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConformancePackComplianceScoresOutput) SetNextToken(v string) *ListConformancePackComplianceScoresOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -32231,5 +32618,33 @@ const (
 func ResourceValueType_Values() []string {
 	return []string{
 		ResourceValueTypeResourceId,
+	}
+}
+
+const (
+	// SortByScore is a SortBy enum value
+	SortByScore = "SCORE"
+)
+
+// SortBy_Values returns all elements of the SortBy enum
+func SortBy_Values() []string {
+	return []string{
+		SortByScore,
+	}
+}
+
+const (
+	// SortOrderAscending is a SortOrder enum value
+	SortOrderAscending = "ASCENDING"
+
+	// SortOrderDescending is a SortOrder enum value
+	SortOrderDescending = "DESCENDING"
+)
+
+// SortOrder_Values returns all elements of the SortOrder enum
+func SortOrder_Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
 	}
 }

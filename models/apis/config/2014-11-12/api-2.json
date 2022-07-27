@@ -846,6 +846,20 @@
         {"shape":"NoSuchConfigurationAggregatorException"}
       ]
     },
+    "ListConformancePackComplianceScores":{
+      "name":"ListConformancePackComplianceScores",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListConformancePackComplianceScoresRequest"},
+      "output":{"shape":"ListConformancePackComplianceScoresResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidLimitException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "ListDiscoveredResources":{
       "name":"ListDiscoveredResources",
       "http":{
@@ -1564,6 +1578,7 @@
       "max":100,
       "min":0
     },
+    "ComplianceScore":{"type":"string"},
     "ComplianceSummariesByResourceType":{
       "type":"list",
       "member":{"shape":"ComplianceSummaryByResourceType"}
@@ -1836,6 +1851,25 @@
       "max":5,
       "min":0
     },
+    "ConformancePackComplianceScore":{
+      "type":"structure",
+      "members":{
+        "Score":{"shape":"ComplianceScore"},
+        "ConformancePackName":{"shape":"ConformancePackName"},
+        "LastUpdatedTime":{"shape":"LastUpdatedTime"}
+      }
+    },
+    "ConformancePackComplianceScores":{
+      "type":"list",
+      "member":{"shape":"ConformancePackComplianceScore"}
+    },
+    "ConformancePackComplianceScoresFilters":{
+      "type":"structure",
+      "required":["ConformancePackNames"],
+      "members":{
+        "ConformancePackNames":{"shape":"ConformancePackNameFilter"}
+      }
+    },
     "ConformancePackComplianceSummary":{
       "type":"structure",
       "required":[
@@ -1943,6 +1977,12 @@
       "max":256,
       "min":1,
       "pattern":"[a-zA-Z][-a-zA-Z0-9]*"
+    },
+    "ConformancePackNameFilter":{
+      "type":"list",
+      "member":{"shape":"ConformancePackName"},
+      "max":25,
+      "min":1
     },
     "ConformancePackNamesList":{
       "type":"list",
@@ -3215,6 +3255,7 @@
       },
       "exception":true
     },
+    "LastUpdatedTime":{"type":"timestamp"},
     "LaterTime":{"type":"timestamp"},
     "Limit":{
       "type":"integer",
@@ -3246,6 +3287,24 @@
       "members":{
         "ResourceIdentifiers":{"shape":"DiscoveredResourceIdentifierList"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListConformancePackComplianceScoresRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"ConformancePackComplianceScoresFilters"},
+        "SortOrder":{"shape":"SortOrder"},
+        "SortBy":{"shape":"SortBy"},
+        "Limit":{"shape":"PageSizeLimit"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListConformancePackComplianceScoresResponse":{
+      "type":"structure",
+      "required":["ConformancePackComplianceScores"],
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "ConformancePackComplianceScores":{"shape":"ConformancePackComplianceScores"}
       }
     },
     "ListDiscoveredResourcesRequest":{
@@ -4653,6 +4712,17 @@
         "QueryInfo":{"shape":"QueryInfo"},
         "NextToken":{"shape":"NextToken"}
       }
+    },
+    "SortBy":{
+      "type":"string",
+      "enum":["SCORE"]
+    },
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASCENDING",
+        "DESCENDING"
+      ]
     },
     "Source":{
       "type":"structure",

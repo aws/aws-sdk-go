@@ -3624,6 +3624,25 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
+    },
+    "ValidateE911Address":{
+      "name":"ValidateE911Address",
+      "http":{
+        "method":"POST",
+        "requestUri":"/emergency-calling/address",
+        "responseCode":202
+      },
+      "input":{"shape":"ValidateE911AddressRequest"},
+      "output":{"shape":"ValidateE911AddressResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
     }
   },
   "shapes":{
@@ -3687,6 +3706,21 @@
         "EnterpriseLWA",
         "EnterpriseOIDC"
       ]
+    },
+    "Address":{
+      "type":"structure",
+      "members":{
+        "streetName":{"shape":"SensitiveNonEmptyString"},
+        "streetSuffix":{"shape":"SensitiveNonEmptyString"},
+        "postDirectional":{"shape":"SensitiveNonEmptyString"},
+        "preDirectional":{"shape":"SensitiveNonEmptyString"},
+        "streetNumber":{"shape":"SensitiveNonEmptyString"},
+        "city":{"shape":"SensitiveNonEmptyString"},
+        "state":{"shape":"SensitiveNonEmptyString"},
+        "postalCode":{"shape":"SensitiveNonEmptyString"},
+        "postalCodePlus4":{"shape":"SensitiveNonEmptyString"},
+        "country":{"shape":"SensitiveNonEmptyString"}
+      }
     },
     "AlexaForBusinessMetadata":{
       "type":"structure",
@@ -4212,6 +4246,22 @@
     "CallingRegionList":{
       "type":"list",
       "member":{"shape":"CallingRegion"}
+    },
+    "CandidateAddress":{
+      "type":"structure",
+      "members":{
+        "streetInfo":{"shape":"SensitiveNonEmptyString"},
+        "streetNumber":{"shape":"SensitiveNonEmptyString"},
+        "city":{"shape":"SensitiveNonEmptyString"},
+        "state":{"shape":"SensitiveNonEmptyString"},
+        "postalCode":{"shape":"SensitiveNonEmptyString"},
+        "postalCodePlus4":{"shape":"SensitiveNonEmptyString"},
+        "country":{"shape":"SensitiveNonEmptyString"}
+      }
+    },
+    "CandidateAddressList":{
+      "type":"list",
+      "member":{"shape":"CandidateAddress"}
     },
     "Capability":{
       "type":"string",
@@ -8617,6 +8667,11 @@
         "MessageId":{"shape":"MessageId"}
       }
     },
+    "SensitiveNonEmptyString":{
+      "type":"string",
+      "pattern":".*\\S.*",
+      "sensitive":true
+    },
     "SensitiveString":{
       "type":"string",
       "sensitive":true
@@ -9725,6 +9780,41 @@
         "PrivateUser",
         "SharedDevice"
       ]
+    },
+    "ValidateE911AddressRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "StreetNumber",
+        "StreetInfo",
+        "City",
+        "State",
+        "Country",
+        "PostalCode"
+      ],
+      "members":{
+        "AwsAccountId":{"shape":"NonEmptyString"},
+        "StreetNumber":{"shape":"SensitiveNonEmptyString"},
+        "StreetInfo":{"shape":"SensitiveNonEmptyString"},
+        "City":{"shape":"SensitiveNonEmptyString"},
+        "State":{"shape":"SensitiveNonEmptyString"},
+        "Country":{"shape":"SensitiveNonEmptyString"},
+        "PostalCode":{"shape":"SensitiveNonEmptyString"}
+      }
+    },
+    "ValidateE911AddressResponse":{
+      "type":"structure",
+      "members":{
+        "ValidationResult":{"shape":"ValidationResult"},
+        "AddressExternalId":{"shape":"String"},
+        "Address":{"shape":"Address"},
+        "CandidateAddressList":{"shape":"CandidateAddressList"}
+      }
+    },
+    "ValidationResult":{
+      "type":"integer",
+      "max":2,
+      "min":0
     },
     "VideoArtifactsConfiguration":{
       "type":"structure",

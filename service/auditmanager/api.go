@@ -624,6 +624,13 @@ func (c *AuditManager) CreateAssessmentRequest(input *CreateAssessmentInput) (re
 //   An internal service error occurred during the processing of your request.
 //   Try again later.
 //
+//   * ServiceQuotaExceededException
+//   You've reached your account quota for this resource type. To perform the
+//   requested action, delete some existing resources or request a quota increase
+//   (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) from
+//   the Service Quotas console. For a list of Audit Manager service quotas, see
+//   Quotas and restrictions for Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/service-quotas.html).
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/CreateAssessment
 func (c *AuditManager) CreateAssessment(input *CreateAssessmentInput) (*CreateAssessmentOutput, error) {
 	req, out := c.CreateAssessmentRequest(input)
@@ -713,6 +720,13 @@ func (c *AuditManager) CreateAssessmentFrameworkRequest(input *CreateAssessmentF
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
 //   Try again later.
+//
+//   * ServiceQuotaExceededException
+//   You've reached your account quota for this resource type. To perform the
+//   requested action, delete some existing resources or request a quota increase
+//   (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) from
+//   the Service Quotas console. For a list of Audit Manager service quotas, see
+//   Quotas and restrictions for Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/service-quotas.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/CreateAssessmentFramework
 func (c *AuditManager) CreateAssessmentFramework(input *CreateAssessmentFrameworkInput) (*CreateAssessmentFrameworkOutput, error) {
@@ -893,6 +907,13 @@ func (c *AuditManager) CreateControlRequest(input *CreateControlInput) (req *req
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
 //   Try again later.
+//
+//   * ServiceQuotaExceededException
+//   You've reached your account quota for this resource type. To perform the
+//   requested action, delete some existing resources or request a quota increase
+//   (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) from
+//   the Service Quotas console. For a list of Audit Manager service quotas, see
+//   Quotas and restrictions for Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/service-quotas.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/CreateControl
 func (c *AuditManager) CreateControl(input *CreateControlInput) (*CreateControlOutput, error) {
@@ -6251,6 +6272,13 @@ func (c *AuditManager) UpdateAssessmentStatusRequest(input *UpdateAssessmentStat
 //   An internal service error occurred during the processing of your request.
 //   Try again later.
 //
+//   * ServiceQuotaExceededException
+//   You've reached your account quota for this resource type. To perform the
+//   requested action, delete some existing resources or request a quota increase
+//   (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) from
+//   the Service Quotas console. For a list of Audit Manager service quotas, see
+//   Quotas and restrictions for Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/service-quotas.html).
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/UpdateAssessmentStatus
 func (c *AuditManager) UpdateAssessmentStatus(input *UpdateAssessmentStatusInput) (*UpdateAssessmentStatusOutput, error) {
 	req, out := c.UpdateAssessmentStatusRequest(input)
@@ -9403,6 +9431,18 @@ type ControlMappingSource struct {
 
 	// The keyword to search for in CloudTrail logs, Config rules, Security Hub
 	// checks, and Amazon Web Services API names.
+	//
+	// To learn more about the supported keywords that you can use when mapping
+	// a control data source, see the following pages in the Audit Manager User
+	// Guide:
+	//
+	//    * Config rules supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-ash.html)
+	//
+	//    * Security Hub controls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-config.html)
+	//
+	//    * API calls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-api.html)
+	//
+	//    * CloudTrail event names supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-cloudtrail.html)
 	SourceKeyword *SourceKeyword `locationName:"sourceKeyword" type:"structure"`
 
 	// The name of the source.
@@ -10319,6 +10359,18 @@ type CreateControlMappingSource struct {
 
 	// The keyword to search for in CloudTrail logs, Config rules, Security Hub
 	// checks, and Amazon Web Services API names.
+	//
+	// To learn more about the supported keywords that you can use when mapping
+	// a control data source, see the following pages in the Audit Manager User
+	// Guide:
+	//
+	//    * Config rules supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-ash.html)
+	//
+	//    * Security Hub controls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-config.html)
+	//
+	//    * API calls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-api.html)
+	//
+	//    * CloudTrail event names supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-cloudtrail.html)
 	SourceKeyword *SourceKeyword `locationName:"sourceKeyword" type:"structure"`
 
 	// The name of the control mapping data source.
@@ -15612,6 +15664,74 @@ func (s *ServiceMetadata) SetName(v string) *ServiceMetadata {
 	return s
 }
 
+// You've reached your account quota for this resource type. To perform the
+// requested action, delete some existing resources or request a quota increase
+// (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) from
+// the Service Quotas console. For a list of Audit Manager service quotas, see
+// Quotas and restrictions for Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/service-quotas.html).
+type ServiceQuotaExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceQuotaExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceQuotaExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The settings object that holds all supported Audit Manager settings.
 type Settings struct {
 	_ struct{} `type:"structure"`
@@ -15682,6 +15802,18 @@ func (s *Settings) SetSnsTopic(v string) *Settings {
 
 // The keyword to search for in CloudTrail logs, Config rules, Security Hub
 // checks, and Amazon Web Services API names.
+//
+// To learn more about the supported keywords that you can use when mapping
+// a control data source, see the following pages in the Audit Manager User
+// Guide:
+//
+//    * Config rules supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-ash.html)
+//
+//    * Security Hub controls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-config.html)
+//
+//    * API calls supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-api.html)
+//
+//    * CloudTrail event names supported by Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-cloudtrail.html)
 type SourceKeyword struct {
 	_ struct{} `type:"structure"`
 

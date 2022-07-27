@@ -64,6 +64,7 @@
     "GetResourceConfigHistory": "<p>Returns a list of <code>ConfigurationItems</code> for the specified resource. The list contains details about each state of the resource during the specified time interval. If you specified a retention period to retain your <code>ConfigurationItems</code> between a minimum of 30 days and a maximum of 7 years (2557 days), Config returns the <code>ConfigurationItems</code> for the specified retention period. </p> <p>The response is paginated. By default, Config returns a limit of 10 configuration items per page. You can customize this number with the <code>limit</code> parameter. The response includes a <code>nextToken</code> string. To get the next page of results, run the request again and specify the string for the <code>nextToken</code> parameter.</p> <note> <p>Each call to the API is limited to span a duration of seven days. It is likely that the number of records returned is smaller than the specified <code>limit</code>. In such cases, you can make another call, using the <code>nextToken</code>.</p> </note>",
     "GetStoredQuery": "<p>Returns the details of a specific stored query.</p>",
     "ListAggregateDiscoveredResources": "<p>Accepts a resource type and returns a list of resource identifiers that are aggregated for a specific resource type across accounts and regions. A resource identifier includes the resource type, ID, (if available) the custom resource name, source account, and source region. You can narrow the results to include only resources that have specific resource IDs, or a resource name, or source account ID, or source region.</p> <p>For example, if the input consists of accountID 12345678910 and the region is us-east-1 for resource type <code>AWS::EC2::Instance</code> then the API returns all the EC2 instance identifiers of accountID 12345678910 and region us-east-1.</p>",
+    "ListConformancePackComplianceScores": "<p>Returns a list of conformance pack compliance scores. A compliance score is the percentage of the number of compliant rule-resource combinations in a conformance pack compared to the number of total possible rule-resource combinations in the conformance pack. This metric provides you with a high-level view of the compliance state of your conformance packs, and can be used to identify, investigate, and understand compliance deviations in your conformance packs.</p>",
     "ListDiscoveredResources": "<p>Accepts a resource type and returns a list of resource identifiers for the resources of that type. A resource identifier includes the resource type, ID, and (if available) the custom resource name. The results consist of resources that Config has discovered, including those that Config is not currently recording. You can narrow the results to include only resources that have specific resource IDs or a resource name.</p> <note> <p>You can specify either resource IDs or a resource name, but not both, in the same request.</p> </note> <p>The response is paginated. By default, Config lists 100 resource identifiers on each page. You can customize this number with the <code>limit</code> parameter. The response includes a <code>nextToken</code> string. To get the next page of results, run the request again and specify the string for the <code>nextToken</code> parameter.</p>",
     "ListStoredQueries": "<p>Lists the stored queries for a single Amazon Web Services account and a single Amazon Web Services Region. The default is 100. </p>",
     "ListTagsForResource": "<p>List the tags for Config resource.</p>",
@@ -481,6 +482,12 @@
         "Scope$ComplianceResourceTypes": "<p>The resource types of only those Amazon Web Services resources that you want to trigger an evaluation for the rule. You can only specify one type if you also specify a resource ID for <code>ComplianceResourceId</code>.</p>"
       }
     },
+    "ComplianceScore": {
+      "base": null,
+      "refs": {
+        "ConformancePackComplianceScore$Score": "<p>Compliance score for the conformance pack.</p>"
+      }
+    },
     "ComplianceSummariesByResourceType": {
       "base": null,
       "refs": {
@@ -770,6 +777,24 @@
         "ConformancePackEvaluationFilters$ResourceIds": "<p>Filters the results by resource IDs.</p> <note> <p>This is valid only when you provide resource type. If there is no resource type, you will see an error.</p> </note>"
       }
     },
+    "ConformancePackComplianceScore": {
+      "base": "<p>A compliance score is the percentage of the number of compliant rule-resource combinations in a conformance pack compared to the number of total possible rule-resource combinations in the conformance pack. This metric provides you with a high-level view of the compliance state of your conformance packs, and can be used to identify, investigate, and understand compliance deviations in your conformance packs.</p>",
+      "refs": {
+        "ConformancePackComplianceScores$member": null
+      }
+    },
+    "ConformancePackComplianceScores": {
+      "base": null,
+      "refs": {
+        "ListConformancePackComplianceScoresResponse$ConformancePackComplianceScores": "<p>A list of <code>ConformancePackComplianceScore</code> objects</p>"
+      }
+    },
+    "ConformancePackComplianceScoresFilters": {
+      "base": "<p>A list of filters to apply to the conformance pack compliance score result set.</p>",
+      "refs": {
+        "ListConformancePackComplianceScoresRequest$Filters": "<p>Filters the results based on the <code>ConformancePackComplianceScoresFilters</code>.</p>"
+      }
+    },
     "ConformancePackComplianceSummary": {
       "base": "<p>Summary includes the name and status of the conformance pack.</p>",
       "refs": {
@@ -852,8 +877,10 @@
       "refs": {
         "AggregateComplianceByConformancePack$ConformancePackName": "<p>The name of the conformance pack.</p>",
         "AggregateConformancePackComplianceFilters$ConformancePackName": "<p>The name of the conformance pack.</p>",
+        "ConformancePackComplianceScore$ConformancePackName": "<p>The name of the conformance pack.</p>",
         "ConformancePackComplianceSummary$ConformancePackName": "<p>The name of the conformance pack name.</p>",
         "ConformancePackDetail$ConformancePackName": "<p>Name of the conformance pack.</p>",
+        "ConformancePackNameFilter$member": null,
         "ConformancePackNamesList$member": null,
         "ConformancePackNamesToSummarizeList$member": null,
         "ConformancePackStatusDetail$ConformancePackName": "<p>Name of the conformance pack.</p>",
@@ -863,6 +890,12 @@
         "GetConformancePackComplianceDetailsRequest$ConformancePackName": "<p>Name of the conformance pack.</p>",
         "GetConformancePackComplianceDetailsResponse$ConformancePackName": "<p>Name of the conformance pack.</p>",
         "PutConformancePackRequest$ConformancePackName": "<p>Name of the conformance pack you want to create.</p>"
+      }
+    },
+    "ConformancePackNameFilter": {
+      "base": null,
+      "refs": {
+        "ConformancePackComplianceScoresFilters$ConformancePackNames": "<p>The name of a conformance pack whose score should be included in the compliance score result.</p>"
       }
     },
     "ConformancePackNamesList": {
@@ -1875,6 +1908,12 @@
       "refs": {
       }
     },
+    "LastUpdatedTime": {
+      "base": null,
+      "refs": {
+        "ConformancePackComplianceScore$LastUpdatedTime": "<p>The time that the conformance pack compliance score was last updated.</p>"
+      }
+    },
     "LaterTime": {
       "base": null,
       "refs": {
@@ -1916,6 +1955,16 @@
       }
     },
     "ListAggregateDiscoveredResourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConformancePackComplianceScoresRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConformancePackComplianceScoresResponse": {
       "base": null,
       "refs": {
       }
@@ -2073,6 +2122,8 @@
         "GetResourceConfigHistoryResponse$nextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
         "ListAggregateDiscoveredResourcesRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "ListAggregateDiscoveredResourcesResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "ListConformancePackComplianceScoresRequest$NextToken": "<p>The <code>nextToken</code> string in a prior request that you can use to get the paginated response for next set of conformance pack compliance scores.</p>",
+        "ListConformancePackComplianceScoresResponse$NextToken": "<p>The <code>nextToken</code> string that you can use to get the next page of results in a paginated response.</p>",
         "ListDiscoveredResourcesRequest$nextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "ListDiscoveredResourcesResponse$nextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
         "ListTagsForResourceRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
@@ -2386,7 +2437,8 @@
       "refs": {
         "DescribeConformancePackStatusRequest$Limit": "<p>The maximum number of conformance packs status returned on each page.</p>",
         "DescribeConformancePacksRequest$Limit": "<p>The maximum number of conformance packs returned on each page.</p>",
-        "GetConformancePackComplianceSummaryRequest$Limit": "<p>The maximum number of conformance packs returned on each page.</p>"
+        "GetConformancePackComplianceSummaryRequest$Limit": "<p>The maximum number of conformance packs returned on each page.</p>",
+        "ListConformancePackComplianceScoresRequest$Limit": "<p>The maximum number of conformance pack compliance scores returned on each page.</p>"
       }
     },
     "ParameterName": {
@@ -3038,6 +3090,18 @@
     "SelectResourceConfigResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "SortBy": {
+      "base": null,
+      "refs": {
+        "ListConformancePackComplianceScoresRequest$SortBy": "<p>Sorts your conformance pack compliance scores in either ascending or descending order, depending on <code>SortOrder</code>.</p>"
+      }
+    },
+    "SortOrder": {
+      "base": null,
+      "refs": {
+        "ListConformancePackComplianceScoresRequest$SortOrder": "<p>Determines the order in which conformance pack compliance scores are sorted. Either in ascending or descending order.</p>"
       }
     },
     "Source": {

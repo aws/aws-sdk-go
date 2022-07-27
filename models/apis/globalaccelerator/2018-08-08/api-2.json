@@ -55,6 +55,7 @@
       },
       "input":{"shape":"AllowCustomRoutingTrafficRequest"},
       "errors":[
+        {"shape":"EndpointGroupNotFoundException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"InternalServiceErrorException"}
       ]
@@ -249,6 +250,7 @@
       },
       "input":{"shape":"DenyCustomRoutingTrafficRequest"},
       "errors":[
+        {"shape":"EndpointGroupNotFoundException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"InternalServiceErrorException"}
       ]
@@ -599,6 +601,7 @@
       "output":{"shape":"UpdateAcceleratorResponse"},
       "errors":[
         {"shape":"AcceleratorNotFoundException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"InvalidArgumentException"}
       ]
@@ -724,7 +727,9 @@
         "DnsName":{"shape":"GenericString"},
         "Status":{"shape":"AcceleratorStatus"},
         "CreatedTime":{"shape":"Timestamp"},
-        "LastModifiedTime":{"shape":"Timestamp"}
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "DualStackDnsName":{"shape":"GenericString"},
+        "Events":{"shape":"AcceleratorEvents"}
       }
     },
     "AcceleratorAttributes":{
@@ -734,6 +739,17 @@
         "FlowLogsS3Bucket":{"shape":"GenericString"},
         "FlowLogsS3Prefix":{"shape":"GenericString"}
       }
+    },
+    "AcceleratorEvent":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"GenericString"},
+        "Timestamp":{"shape":"Timestamp"}
+      }
+    },
+    "AcceleratorEvents":{
+      "type":"list",
+      "member":{"shape":"AcceleratorEvent"}
     },
     "AcceleratorNotDisabledException":{
       "type":"structure",
@@ -1540,9 +1556,19 @@
       "type":"string",
       "max":45
     },
+    "IpAddressFamily":{
+      "type":"string",
+      "enum":[
+        "IPv4",
+        "IPv6"
+      ]
+    },
     "IpAddressType":{
       "type":"string",
-      "enum":["IPV4"]
+      "enum":[
+        "IPV4",
+        "DUAL_STACK"
+      ]
     },
     "IpAddresses":{
       "type":"list",
@@ -1553,8 +1579,13 @@
     "IpSet":{
       "type":"structure",
       "members":{
-        "IpFamily":{"shape":"GenericString"},
-        "IpAddresses":{"shape":"IpAddresses"}
+        "IpFamily":{
+          "shape":"GenericString",
+          "deprecated":true,
+          "deprecatedMessage":"IpFamily has been replaced by IpAddressFamily"
+        },
+        "IpAddresses":{"shape":"IpAddresses"},
+        "IpAddressFamily":{"shape":"IpAddressFamily"}
       }
     },
     "IpSets":{

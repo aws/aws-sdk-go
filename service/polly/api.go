@@ -4326,6 +4326,9 @@ const (
 
 	// VoiceIdPedro is a VoiceId enum value
 	VoiceIdPedro = "Pedro"
+
+	// VoiceIdKajal is a VoiceId enum value
+	VoiceIdKajal = "Kajal"
 )
 
 // VoiceId_Values returns all elements of the VoiceId enum
@@ -4402,5 +4405,6 @@ func VoiceId_Values() []string {
 		VoiceIdDaniel,
 		VoiceIdLiam,
 		VoiceIdPedro,
+		VoiceIdKajal,
 	}
 }

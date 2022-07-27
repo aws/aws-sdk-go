@@ -178,6 +178,24 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "CreateWorkspaceImage":{
+      "name":"CreateWorkspaceImage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateWorkspaceImageRequest"},
+      "output":{"shape":"CreateWorkspaceImageResult"},
+      "errors":[
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"InvalidResourceStateException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"}
+      ]
+    },
     "CreateWorkspaces":{
       "name":"CreateWorkspaces",
       "http":{
@@ -1342,6 +1360,33 @@
       "type":"structure",
       "members":{
         "WorkspaceBundle":{"shape":"WorkspaceBundle"}
+      }
+    },
+    "CreateWorkspaceImageRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Description",
+        "WorkspaceId"
+      ],
+      "members":{
+        "Name":{"shape":"WorkspaceImageName"},
+        "Description":{"shape":"WorkspaceImageDescription"},
+        "WorkspaceId":{"shape":"WorkspaceId"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateWorkspaceImageResult":{
+      "type":"structure",
+      "members":{
+        "ImageId":{"shape":"WorkspaceImageId"},
+        "Name":{"shape":"WorkspaceImageName"},
+        "Description":{"shape":"WorkspaceImageDescription"},
+        "OperatingSystem":{"shape":"OperatingSystem"},
+        "State":{"shape":"WorkspaceImageState"},
+        "RequiredTenancy":{"shape":"WorkspaceImageRequiredTenancy"},
+        "Created":{"shape":"Timestamp"},
+        "OwnerAccountId":{"shape":"AwsAccount"}
       }
     },
     "CreateWorkspacesRequest":{

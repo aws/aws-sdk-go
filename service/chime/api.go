@@ -16526,8 +16526,8 @@ func (c *Chime) PutVoiceConnectorStreamingConfigurationRequest(input *PutVoiceCo
 //
 // Adds a streaming configuration for the specified Amazon Chime Voice Connector.
 // The streaming configuration specifies whether media streaming is enabled
-// for sending to Indonesians. It also sets the retention period, in hours,
-// for the Amazon Kinesis data.
+// for sending to Kinesis. It also sets the retention period, in hours, for
+// the Amazon Kinesis data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20546,6 +20546,107 @@ func (c *Chime) UpdateVoiceConnectorGroupWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
+const opValidateE911Address = "ValidateE911Address"
+
+// ValidateE911AddressRequest generates a "aws/request.Request" representing the
+// client's request for the ValidateE911Address operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ValidateE911Address for more information on using the ValidateE911Address
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ValidateE911AddressRequest method.
+//    req, resp := client.ValidateE911AddressRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ValidateE911Address
+func (c *Chime) ValidateE911AddressRequest(input *ValidateE911AddressInput) (req *request.Request, output *ValidateE911AddressOutput) {
+	op := &request.Operation{
+		Name:       opValidateE911Address,
+		HTTPMethod: "POST",
+		HTTPPath:   "/emergency-calling/address",
+	}
+
+	if input == nil {
+		input = &ValidateE911AddressInput{}
+	}
+
+	output = &ValidateE911AddressOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ValidateE911Address API operation for Amazon Chime.
+//
+// Validates an address to be used for 911 calls made with Amazon Chime Voice
+// Connectors. You can use validated addresses in a Presence Information Data
+// Format Location Object file that you include in SIP requests. That helps
+// ensure that addresses are routed to the appropriate Public Safety Answering
+// Point.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ValidateE911Address for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ValidateE911Address
+func (c *Chime) ValidateE911Address(input *ValidateE911AddressInput) (*ValidateE911AddressOutput, error) {
+	req, out := c.ValidateE911AddressRequest(input)
+	return out, req.Send()
+}
+
+// ValidateE911AddressWithContext is the same as ValidateE911Address with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ValidateE911Address for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ValidateE911AddressWithContext(ctx aws.Context, input *ValidateE911AddressInput, opts ...request.Option) (*ValidateE911AddressOutput, error) {
+	req, out := c.ValidateE911AddressRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // You don't have permissions to perform the requested operation.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -20769,6 +20870,160 @@ func (s *AccountSettings) SetDisableRemoteControl(v bool) *AccountSettings {
 // SetEnableDialOut sets the EnableDialOut field's value.
 func (s *AccountSettings) SetEnableDialOut(v bool) *AccountSettings {
 	s.EnableDialOut = &v
+	return s
+}
+
+// A validated address.
+type Address struct {
+	_ struct{} `type:"structure"`
+
+	// The city of an address.
+	//
+	// City is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Address's
+	// String and GoString methods.
+	City *string `locationName:"city" type:"string" sensitive:"true"`
+
+	// The country of an address.
+	//
+	// Country is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Address's
+	// String and GoString methods.
+	Country *string `locationName:"country" type:"string" sensitive:"true"`
+
+	// An address suffix location, such as the S. Unit A in Central Park S. Unit
+	// A.
+	//
+	// PostDirectional is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Address's
+	// String and GoString methods.
+	PostDirectional *string `locationName:"postDirectional" type:"string" sensitive:"true"`
+
+	// The postal code of an address.
+	//
+	// PostalCode is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Address's
+	// String and GoString methods.
+	PostalCode *string `locationName:"postalCode" type:"string" sensitive:"true"`
+
+	// The Zip + 4 or postal code + 4 of an address.
+	//
+	// PostalCodePlus4 is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Address's
+	// String and GoString methods.
+	PostalCodePlus4 *string `locationName:"postalCodePlus4" type:"string" sensitive:"true"`
+
+	// An address prefix location, such as the N in N. Third St..
+	//
+	// PreDirectional is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Address's
+	// String and GoString methods.
+	PreDirectional *string `locationName:"preDirectional" type:"string" sensitive:"true"`
+
+	// The state of an address.
+	//
+	// State is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Address's
+	// String and GoString methods.
+	State *string `locationName:"state" type:"string" sensitive:"true"`
+
+	// The address street, such as 8th Avenue.
+	//
+	// StreetName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Address's
+	// String and GoString methods.
+	StreetName *string `locationName:"streetName" type:"string" sensitive:"true"`
+
+	// The numeric portion of an address.
+	//
+	// StreetNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Address's
+	// String and GoString methods.
+	StreetNumber *string `locationName:"streetNumber" type:"string" sensitive:"true"`
+
+	// The address suffix, such as the N in 8th Avenue N.
+	//
+	// StreetSuffix is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Address's
+	// String and GoString methods.
+	StreetSuffix *string `locationName:"streetSuffix" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Address) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Address) GoString() string {
+	return s.String()
+}
+
+// SetCity sets the City field's value.
+func (s *Address) SetCity(v string) *Address {
+	s.City = &v
+	return s
+}
+
+// SetCountry sets the Country field's value.
+func (s *Address) SetCountry(v string) *Address {
+	s.Country = &v
+	return s
+}
+
+// SetPostDirectional sets the PostDirectional field's value.
+func (s *Address) SetPostDirectional(v string) *Address {
+	s.PostDirectional = &v
+	return s
+}
+
+// SetPostalCode sets the PostalCode field's value.
+func (s *Address) SetPostalCode(v string) *Address {
+	s.PostalCode = &v
+	return s
+}
+
+// SetPostalCodePlus4 sets the PostalCodePlus4 field's value.
+func (s *Address) SetPostalCodePlus4(v string) *Address {
+	s.PostalCodePlus4 = &v
+	return s
+}
+
+// SetPreDirectional sets the PreDirectional field's value.
+func (s *Address) SetPreDirectional(v string) *Address {
+	s.PreDirectional = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Address) SetState(v string) *Address {
+	s.State = &v
+	return s
+}
+
+// SetStreetName sets the StreetName field's value.
+func (s *Address) SetStreetName(v string) *Address {
+	s.StreetName = &v
+	return s
+}
+
+// SetStreetNumber sets the StreetNumber field's value.
+func (s *Address) SetStreetNumber(v string) *Address {
+	s.StreetNumber = &v
+	return s
+}
+
+// SetStreetSuffix sets the StreetSuffix field's value.
+func (s *Address) SetStreetSuffix(v string) *Address {
+	s.StreetSuffix = &v
 	return s
 }
 
@@ -23085,6 +23340,120 @@ func (s BusinessCallingSettings) GoString() string {
 // SetCdrBucket sets the CdrBucket field's value.
 func (s *BusinessCallingSettings) SetCdrBucket(v string) *BusinessCallingSettings {
 	s.CdrBucket = &v
+	return s
+}
+
+// A suggested address.
+type CandidateAddress struct {
+	_ struct{} `type:"structure"`
+
+	// The city of a candidate address.
+	//
+	// City is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CandidateAddress's
+	// String and GoString methods.
+	City *string `locationName:"city" type:"string" sensitive:"true"`
+
+	// The country of a candidate address.
+	//
+	// Country is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CandidateAddress's
+	// String and GoString methods.
+	Country *string `locationName:"country" type:"string" sensitive:"true"`
+
+	// The postal code of a candidate address.
+	//
+	// PostalCode is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CandidateAddress's
+	// String and GoString methods.
+	PostalCode *string `locationName:"postalCode" type:"string" sensitive:"true"`
+
+	// The Zip + 4 or postal code + 4 of a candidate address.
+	//
+	// PostalCodePlus4 is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CandidateAddress's
+	// String and GoString methods.
+	PostalCodePlus4 *string `locationName:"postalCodePlus4" type:"string" sensitive:"true"`
+
+	// The state of a candidate address.
+	//
+	// State is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CandidateAddress's
+	// String and GoString methods.
+	State *string `locationName:"state" type:"string" sensitive:"true"`
+
+	// The street information of a candidate address
+	//
+	// StreetInfo is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CandidateAddress's
+	// String and GoString methods.
+	StreetInfo *string `locationName:"streetInfo" type:"string" sensitive:"true"`
+
+	// The numeric portion of a candidate address.
+	//
+	// StreetNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CandidateAddress's
+	// String and GoString methods.
+	StreetNumber *string `locationName:"streetNumber" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CandidateAddress) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CandidateAddress) GoString() string {
+	return s.String()
+}
+
+// SetCity sets the City field's value.
+func (s *CandidateAddress) SetCity(v string) *CandidateAddress {
+	s.City = &v
+	return s
+}
+
+// SetCountry sets the Country field's value.
+func (s *CandidateAddress) SetCountry(v string) *CandidateAddress {
+	s.Country = &v
+	return s
+}
+
+// SetPostalCode sets the PostalCode field's value.
+func (s *CandidateAddress) SetPostalCode(v string) *CandidateAddress {
+	s.PostalCode = &v
+	return s
+}
+
+// SetPostalCodePlus4 sets the PostalCodePlus4 field's value.
+func (s *CandidateAddress) SetPostalCodePlus4(v string) *CandidateAddress {
+	s.PostalCodePlus4 = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CandidateAddress) SetState(v string) *CandidateAddress {
+	s.State = &v
+	return s
+}
+
+// SetStreetInfo sets the StreetInfo field's value.
+func (s *CandidateAddress) SetStreetInfo(v string) *CandidateAddress {
+	s.StreetInfo = &v
+	return s
+}
+
+// SetStreetNumber sets the StreetNumber field's value.
+func (s *CandidateAddress) SetStreetNumber(v string) *CandidateAddress {
+	s.StreetNumber = &v
 	return s
 }
 
@@ -37891,11 +38260,10 @@ func (s *ListVoiceConnectorsOutput) SetVoiceConnectors(v []*VoiceConnector) *Lis
 type LoggingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Boolean that enables logging of detailed media metrics for Voice Connectors
-	// to CloudWatch logs.
+	// Boolean that enables the logging of Voice Connector metrics to Cloudwatch.
 	EnableMediaMetricLogs *bool `type:"boolean"`
 
-	// Boolean that enables SIP message logs to CloudWatch logs.
+	// When true, enables SIP message logs for sending to Amazon CloudWatch Logs.
 	EnableSIPLogs *bool `type:"boolean"`
 }
 
@@ -46784,6 +47152,220 @@ func (s *UserSettings) Validate() error {
 // SetTelephony sets the Telephony field's value.
 func (s *UserSettings) SetTelephony(v *TelephonySettings) *UserSettings {
 	s.Telephony = v
+	return s
+}
+
+type ValidateE911AddressInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `type:"string" required:"true"`
+
+	// The address city, such as Portland.
+	//
+	// City is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ValidateE911AddressInput's
+	// String and GoString methods.
+	//
+	// City is a required field
+	City *string `type:"string" required:"true" sensitive:"true"`
+
+	// The address country, such as US.
+	//
+	// Country is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ValidateE911AddressInput's
+	// String and GoString methods.
+	//
+	// Country is a required field
+	Country *string `type:"string" required:"true" sensitive:"true"`
+
+	// The address postal code, such as 04352.
+	//
+	// PostalCode is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ValidateE911AddressInput's
+	// String and GoString methods.
+	//
+	// PostalCode is a required field
+	PostalCode *string `type:"string" required:"true" sensitive:"true"`
+
+	// The address state, such as ME.
+	//
+	// State is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ValidateE911AddressInput's
+	// String and GoString methods.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" sensitive:"true"`
+
+	// The address street information, such as 8th Avenue.
+	//
+	// StreetInfo is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ValidateE911AddressInput's
+	// String and GoString methods.
+	//
+	// StreetInfo is a required field
+	StreetInfo *string `type:"string" required:"true" sensitive:"true"`
+
+	// The address street number, such as 200 or 2121.
+	//
+	// StreetNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ValidateE911AddressInput's
+	// String and GoString methods.
+	//
+	// StreetNumber is a required field
+	StreetNumber *string `type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidateE911AddressInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidateE911AddressInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ValidateE911AddressInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ValidateE911AddressInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.City == nil {
+		invalidParams.Add(request.NewErrParamRequired("City"))
+	}
+	if s.Country == nil {
+		invalidParams.Add(request.NewErrParamRequired("Country"))
+	}
+	if s.PostalCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("PostalCode"))
+	}
+	if s.State == nil {
+		invalidParams.Add(request.NewErrParamRequired("State"))
+	}
+	if s.StreetInfo == nil {
+		invalidParams.Add(request.NewErrParamRequired("StreetInfo"))
+	}
+	if s.StreetNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("StreetNumber"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ValidateE911AddressInput) SetAwsAccountId(v string) *ValidateE911AddressInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetCity sets the City field's value.
+func (s *ValidateE911AddressInput) SetCity(v string) *ValidateE911AddressInput {
+	s.City = &v
+	return s
+}
+
+// SetCountry sets the Country field's value.
+func (s *ValidateE911AddressInput) SetCountry(v string) *ValidateE911AddressInput {
+	s.Country = &v
+	return s
+}
+
+// SetPostalCode sets the PostalCode field's value.
+func (s *ValidateE911AddressInput) SetPostalCode(v string) *ValidateE911AddressInput {
+	s.PostalCode = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ValidateE911AddressInput) SetState(v string) *ValidateE911AddressInput {
+	s.State = &v
+	return s
+}
+
+// SetStreetInfo sets the StreetInfo field's value.
+func (s *ValidateE911AddressInput) SetStreetInfo(v string) *ValidateE911AddressInput {
+	s.StreetInfo = &v
+	return s
+}
+
+// SetStreetNumber sets the StreetNumber field's value.
+func (s *ValidateE911AddressInput) SetStreetNumber(v string) *ValidateE911AddressInput {
+	s.StreetNumber = &v
+	return s
+}
+
+type ValidateE911AddressOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The validated address.
+	Address *Address `type:"structure"`
+
+	// The ID that represents the address.
+	AddressExternalId *string `type:"string"`
+
+	// The list of address suggestions.
+	CandidateAddressList []*CandidateAddress `type:"list"`
+
+	// Number indicating the result of address validation. 0 means the address was
+	// perfect as is and successfully validated. 1 means the address was corrected.
+	// 2 means the address sent was not close enough and was not validated.
+	ValidationResult *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidateE911AddressOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidateE911AddressOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddress sets the Address field's value.
+func (s *ValidateE911AddressOutput) SetAddress(v *Address) *ValidateE911AddressOutput {
+	s.Address = v
+	return s
+}
+
+// SetAddressExternalId sets the AddressExternalId field's value.
+func (s *ValidateE911AddressOutput) SetAddressExternalId(v string) *ValidateE911AddressOutput {
+	s.AddressExternalId = &v
+	return s
+}
+
+// SetCandidateAddressList sets the CandidateAddressList field's value.
+func (s *ValidateE911AddressOutput) SetCandidateAddressList(v []*CandidateAddress) *ValidateE911AddressOutput {
+	s.CandidateAddressList = v
+	return s
+}
+
+// SetValidationResult sets the ValidationResult field's value.
+func (s *ValidateE911AddressOutput) SetValidationResult(v int64) *ValidateE911AddressOutput {
+	s.ValidationResult = &v
 	return s
 }
 

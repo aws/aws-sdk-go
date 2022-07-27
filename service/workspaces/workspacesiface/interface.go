@@ -100,6 +100,10 @@ type WorkSpacesAPI interface {
 	CreateWorkspaceBundleWithContext(aws.Context, *workspaces.CreateWorkspaceBundleInput, ...request.Option) (*workspaces.CreateWorkspaceBundleOutput, error)
 	CreateWorkspaceBundleRequest(*workspaces.CreateWorkspaceBundleInput) (*request.Request, *workspaces.CreateWorkspaceBundleOutput)
 
+	CreateWorkspaceImage(*workspaces.CreateWorkspaceImageInput) (*workspaces.CreateWorkspaceImageOutput, error)
+	CreateWorkspaceImageWithContext(aws.Context, *workspaces.CreateWorkspaceImageInput, ...request.Option) (*workspaces.CreateWorkspaceImageOutput, error)
+	CreateWorkspaceImageRequest(*workspaces.CreateWorkspaceImageInput) (*request.Request, *workspaces.CreateWorkspaceImageOutput)
+
 	CreateWorkspaces(*workspaces.CreateWorkspacesInput) (*workspaces.CreateWorkspacesOutput, error)
 	CreateWorkspacesWithContext(aws.Context, *workspaces.CreateWorkspacesInput, ...request.Option) (*workspaces.CreateWorkspacesOutput, error)
 	CreateWorkspacesRequest(*workspaces.CreateWorkspacesInput) (*request.Request, *workspaces.CreateWorkspacesOutput)
