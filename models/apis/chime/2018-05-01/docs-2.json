@@ -152,7 +152,7 @@
     "PutVoiceConnectorLoggingConfiguration": "<p>Adds a logging configuration for the specified Amazon Chime Voice Connector. The logging configuration specifies whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
     "PutVoiceConnectorOrigination": "<p>Adds origination settings for the specified Amazon Chime Voice Connector.</p> <note> <p>If emergency calling is configured for the Amazon Chime Voice Connector, it must be deleted prior to turning off origination settings.</p> </note>",
     "PutVoiceConnectorProxy": "<p>Puts the specified proxy configuration to the specified Amazon Chime Voice Connector.</p>",
-    "PutVoiceConnectorStreamingConfiguration": "<p>Adds a streaming configuration for the specified Amazon Chime Voice Connector. The streaming configuration specifies whether media streaming is enabled for sending to Indonesians. It also sets the retention period, in hours, for the Amazon Kinesis data.</p>",
+    "PutVoiceConnectorStreamingConfiguration": "<p>Adds a streaming configuration for the specified Amazon Chime Voice Connector. The streaming configuration specifies whether media streaming is enabled for sending to Kinesis. It also sets the retention period, in hours, for the Amazon Kinesis data.</p>",
     "PutVoiceConnectorTermination": "<p>Adds termination settings for the specified Amazon Chime Voice Connector.</p> <note> <p>If emergency calling is configured for the Amazon Chime Voice Connector, it must be deleted prior to turning off termination settings.</p> </note>",
     "PutVoiceConnectorTerminationCredentials": "<p>Adds termination SIP credentials for the specified Amazon Chime Voice Connector.</p>",
     "RedactChannelMessage": "<p>Redacts message content, but not metadata. The message exists in the back end, but the action returns null content, and the state shows as redacted.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
@@ -191,7 +191,8 @@
     "UpdateUser": "<p>Updates user details for a specified user ID. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
     "UpdateUserSettings": "<p>Updates the settings for the specified user, such as phone number settings.</p>",
     "UpdateVoiceConnector": "<p>Updates details for the specified Amazon Chime Voice Connector.</p>",
-    "UpdateVoiceConnectorGroup": "<p>Updates details of the specified Amazon Chime Voice Connector group, such as the name and Amazon Chime Voice Connector priority ranking.</p>"
+    "UpdateVoiceConnectorGroup": "<p>Updates details of the specified Amazon Chime Voice Connector group, such as the name and Amazon Chime Voice Connector priority ranking.</p>",
+    "ValidateE911Address": "<p>Validates an address to be used for 911 calls made with Amazon Chime Voice Connectors. You can use validated addresses in a Presence Information Data Format Location Object file that you include in SIP requests. That helps ensure that addresses are routed to the appropriate Public Safety Answering Point.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -239,6 +240,12 @@
       "base": null,
       "refs": {
         "Account$AccountType": "<p>The Amazon Chime account type. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p>"
+      }
+    },
+    "Address": {
+      "base": "<p>A validated address.</p>",
+      "refs": {
+        "ValidateE911AddressResponse$Address": "<p>The validated address.</p>"
       }
     },
     "AlexaForBusinessMetadata": {
@@ -586,8 +593,8 @@
         "AlexaForBusinessMetadata$IsAlexaForBusinessEnabled": "<p>Starts or stops Alexa for Business.</p>",
         "CreateVoiceConnectorRequest$RequireEncryption": "<p>When enabled, requires encryption for the Amazon Chime Voice Connector.</p>",
         "EngineTranscribeSettings$EnablePartialResultsStabilization": "<p>Generates partial transcription results that are less likely to change as meeting attendees speak. It does so by only allowing the last few words from the partial results to change.</p>",
-        "LoggingConfiguration$EnableSIPLogs": "<p>Boolean that enables SIP message logs to CloudWatch logs.</p>",
-        "LoggingConfiguration$EnableMediaMetricLogs": "<p>Boolean that enables logging of detailed media metrics for Voice Connectors to CloudWatch logs.</p>",
+        "LoggingConfiguration$EnableSIPLogs": "<p>When true, enables SIP message logs for sending to Amazon CloudWatch Logs.</p>",
+        "LoggingConfiguration$EnableMediaMetricLogs": "<p>Boolean that enables the logging of Voice Connector metrics to Cloudwatch.</p>",
         "Origination$Disabled": "<p>When origination settings are disabled, inbound calls are not enabled for your Amazon Chime Voice Connector. This parameter is not required, but you must specify this parameter or <code>Routes</code>.</p>",
         "Proxy$Disabled": "<p>When true, stops proxy sessions from being created on the specified Amazon Chime Voice Connector.</p>",
         "PutVoiceConnectorProxyRequest$Disabled": "<p>When true, stops proxy sessions from being created on the specified Amazon Chime Voice Connector.</p>",
@@ -657,6 +664,18 @@
       "base": null,
       "refs": {
         "Termination$CallingRegions": "<p>The countries to which calls are allowed, in ISO 3166-1 alpha-2 format. Required.</p>"
+      }
+    },
+    "CandidateAddress": {
+      "base": "<p>A suggested address.</p>",
+      "refs": {
+        "CandidateAddressList$member": null
+      }
+    },
+    "CandidateAddressList": {
+      "base": null,
+      "refs": {
+        "ValidateE911AddressResponse$CandidateAddressList": "<p>The list of address suggestions.</p>"
       }
     },
     "Capability": {
@@ -2906,6 +2925,7 @@
         "UpdateVoiceConnectorRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "UserError$UserId": "<p>The user ID for which the action failed.</p>",
         "UserIdList$member": null,
+        "ValidateE911AddressRequest$AwsAccountId": "<p>The AWS account ID.</p>",
         "VoiceConnector$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "VoiceConnector$VoiceConnectorArn": "<p>The ARN of the specified Amazon Chime Voice Connector.</p>",
         "VoiceConnectorGroup$VoiceConnectorGroupId": "<p>The Amazon Chime Voice Connector group ID.</p>",
@@ -3540,6 +3560,34 @@
       "refs": {
       }
     },
+    "SensitiveNonEmptyString": {
+      "base": null,
+      "refs": {
+        "Address$streetName": "<p>The address street, such as <code>8th Avenue</code>.</p>",
+        "Address$streetSuffix": "<p>The address suffix, such as the <code>N</code> in <code>8th Avenue N</code>.</p>",
+        "Address$postDirectional": "<p>An address suffix location, such as the <code>S. Unit A</code> in <code>Central Park S. Unit A</code>.</p>",
+        "Address$preDirectional": "<p>An address prefix location, such as the <code>N</code> in <code>N. Third St.</code>.</p>",
+        "Address$streetNumber": "<p>The numeric portion of an address.</p>",
+        "Address$city": "<p>The city of an address.</p>",
+        "Address$state": "<p>The state of an address.</p>",
+        "Address$postalCode": "<p>The postal code of an address.</p>",
+        "Address$postalCodePlus4": "<p>The Zip + 4 or postal code + 4 of an address.</p>",
+        "Address$country": "<p>The country of an address. </p>",
+        "CandidateAddress$streetInfo": "<p>The street information of a candidate address</p>",
+        "CandidateAddress$streetNumber": "<p>The numeric portion of a candidate address.</p>",
+        "CandidateAddress$city": "<p>The city of a candidate address.</p>",
+        "CandidateAddress$state": "<p>The state of a candidate address.</p>",
+        "CandidateAddress$postalCode": "<p>The postal code of a candidate address.</p>",
+        "CandidateAddress$postalCodePlus4": "<p>The Zip + 4 or postal code + 4 of a candidate address.</p>",
+        "CandidateAddress$country": "<p>The country of a candidate address.</p>",
+        "ValidateE911AddressRequest$StreetNumber": "<p>The address street number, such as <code>200</code> or <code>2121</code>.</p>",
+        "ValidateE911AddressRequest$StreetInfo": "<p>The address street information, such as <code>8th Avenue</code>.</p>",
+        "ValidateE911AddressRequest$City": "<p>The address city, such as <code>Portland</code>.</p>",
+        "ValidateE911AddressRequest$State": "<p>The address state, such as <code>ME</code>.</p>",
+        "ValidateE911AddressRequest$Country": "<p>The address country, such as <code>US</code>. </p>",
+        "ValidateE911AddressRequest$PostalCode": "<p>The address postal code, such as <code>04352</code>.</p>"
+      }
+    },
     "SensitiveString": {
       "base": null,
       "refs": {
@@ -3847,6 +3895,7 @@
         "User$AccountId": "<p>The Amazon Chime account ID.</p>",
         "User$PersonalPIN": "<p>The user's personal meeting PIN.</p>",
         "UserError$ErrorMessage": "<p>The error message.</p>",
+        "ValidateE911AddressResponse$AddressExternalId": "<p>The ID that represents the address.</p>",
         "VoiceConnector$OutboundHostName": "<p>The outbound host name for the Amazon Chime Voice Connector.</p>",
         "VoiceConnectorSettings$CdrBucket": "<p>The Amazon S3 bucket designated for call detail record storage.</p>"
       }
@@ -4401,6 +4450,22 @@
         "UpdateUserRequest$UserType": "<p>The user type.</p>",
         "UpdateUserRequestItem$UserType": "<p>The user type.</p>",
         "User$UserType": "<p>The user type.</p>"
+      }
+    },
+    "ValidateE911AddressRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidateE911AddressResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidationResult": {
+      "base": null,
+      "refs": {
+        "ValidateE911AddressResponse$ValidationResult": "<p>Number indicating the result of address validation. <code>0</code> means the address was perfect as is and successfully validated. <code>1</code> means the address was corrected. <code>2</code> means the address sent was not close enough and was not validated.</p>"
       }
     },
     "VideoArtifactsConfiguration": {

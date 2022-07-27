@@ -999,6 +999,103 @@ func (c *WorkSpaces) CreateWorkspaceBundleWithContext(ctx aws.Context, input *Cr
 	return out, req.Send()
 }
 
+const opCreateWorkspaceImage = "CreateWorkspaceImage"
+
+// CreateWorkspaceImageRequest generates a "aws/request.Request" representing the
+// client's request for the CreateWorkspaceImage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateWorkspaceImage for more information on using the CreateWorkspaceImage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateWorkspaceImageRequest method.
+//    req, resp := client.CreateWorkspaceImageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateWorkspaceImage
+func (c *WorkSpaces) CreateWorkspaceImageRequest(input *CreateWorkspaceImageInput) (req *request.Request, output *CreateWorkspaceImageOutput) {
+	op := &request.Operation{
+		Name:       opCreateWorkspaceImage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateWorkspaceImageInput{}
+	}
+
+	output = &CreateWorkspaceImageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateWorkspaceImage API operation for Amazon WorkSpaces.
+//
+// Creates a new WorkSpace image from an existing WorkSpace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation CreateWorkspaceImage for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceLimitExceededException
+//   Your resource limits have been exceeded.
+//
+//   * ResourceAlreadyExistsException
+//   The specified resource already exists.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * OperationNotSupportedException
+//   This operation is not supported.
+//
+//   * InvalidResourceStateException
+//   The state of the resource is not valid for this operation.
+//
+//   * AccessDeniedException
+//   The user is not authorized to access a resource.
+//
+//   * InvalidParameterValuesException
+//   One or more parameter values are not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateWorkspaceImage
+func (c *WorkSpaces) CreateWorkspaceImage(input *CreateWorkspaceImageInput) (*CreateWorkspaceImageOutput, error) {
+	req, out := c.CreateWorkspaceImageRequest(input)
+	return out, req.Send()
+}
+
+// CreateWorkspaceImageWithContext is the same as CreateWorkspaceImage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateWorkspaceImage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) CreateWorkspaceImageWithContext(ctx aws.Context, input *CreateWorkspaceImageInput, opts ...request.Option) (*CreateWorkspaceImageOutput, error) {
+	req, out := c.CreateWorkspaceImageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateWorkspaces = "CreateWorkspaces"
 
 // CreateWorkspacesRequest generates a "aws/request.Request" representing the
@@ -7433,6 +7530,203 @@ func (s *CreateWorkspaceBundleOutput) SetWorkspaceBundle(v *WorkspaceBundle) *Cr
 	return s
 }
 
+type CreateWorkspaceImageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the new WorkSpace image.
+	//
+	// Description is a required field
+	Description *string `min:"1" type:"string" required:"true"`
+
+	// The name of the new WorkSpace image.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The tags that you want to add to the new WorkSpace image. To add tags when
+	// you're creating the image, you must create an IAM policy that grants your
+	// IAM user permission to use workspaces:CreateTags.
+	Tags []*Tag `type:"list"`
+
+	// The identifier of the source WorkSpace
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkspaceImageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkspaceImageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateWorkspaceImageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateWorkspaceImageInput"}
+	if s.Description == nil {
+		invalidParams.Add(request.NewErrParamRequired("Description"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateWorkspaceImageInput) SetDescription(v string) *CreateWorkspaceImageInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateWorkspaceImageInput) SetName(v string) *CreateWorkspaceImageInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateWorkspaceImageInput) SetTags(v []*Tag) *CreateWorkspaceImageInput {
+	s.Tags = v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *CreateWorkspaceImageInput) SetWorkspaceId(v string) *CreateWorkspaceImageInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type CreateWorkspaceImageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date when the image was created.
+	Created *time.Time `type:"timestamp"`
+
+	// The description of the image.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the new WorkSpace image.
+	ImageId *string `type:"string"`
+
+	// The name of the image.
+	Name *string `min:"1" type:"string"`
+
+	// The operating system that the image is running.
+	OperatingSystem *OperatingSystem `type:"structure"`
+
+	// The identifier of the AWS account that owns the image.
+	OwnerAccountId *string `type:"string"`
+
+	// Specifies whether the image is running on dedicated hardware. When Bring
+	// Your Own License (BYOL) is enabled, this value is set to DEDICATED. For more
+	// information, see Bring Your Own Windows Desktop Images. (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.htm)
+	RequiredTenancy *string `type:"string" enum:"WorkspaceImageRequiredTenancy"`
+
+	// The availability status of the image.
+	State *string `type:"string" enum:"WorkspaceImageState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkspaceImageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkspaceImageOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreated sets the Created field's value.
+func (s *CreateWorkspaceImageOutput) SetCreated(v time.Time) *CreateWorkspaceImageOutput {
+	s.Created = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateWorkspaceImageOutput) SetDescription(v string) *CreateWorkspaceImageOutput {
+	s.Description = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *CreateWorkspaceImageOutput) SetImageId(v string) *CreateWorkspaceImageOutput {
+	s.ImageId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateWorkspaceImageOutput) SetName(v string) *CreateWorkspaceImageOutput {
+	s.Name = &v
+	return s
+}
+
+// SetOperatingSystem sets the OperatingSystem field's value.
+func (s *CreateWorkspaceImageOutput) SetOperatingSystem(v *OperatingSystem) *CreateWorkspaceImageOutput {
+	s.OperatingSystem = v
+	return s
+}
+
+// SetOwnerAccountId sets the OwnerAccountId field's value.
+func (s *CreateWorkspaceImageOutput) SetOwnerAccountId(v string) *CreateWorkspaceImageOutput {
+	s.OwnerAccountId = &v
+	return s
+}
+
+// SetRequiredTenancy sets the RequiredTenancy field's value.
+func (s *CreateWorkspaceImageOutput) SetRequiredTenancy(v string) *CreateWorkspaceImageOutput {
+	s.RequiredTenancy = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CreateWorkspaceImageOutput) SetState(v string) *CreateWorkspaceImageOutput {
+	s.State = &v
+	return s
+}
+
 type CreateWorkspacesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7550,11 +7844,13 @@ type DefaultClientBrandingAttributes struct {
 
 	// The login message. Specified as a key value pair, in which the key is a locale
 	// and the value is the localized message for that locale. The only key supported
-	// is en_US.
+	// is en_US. The HTML tags supported include the following: a, b, blockquote,
+	// br, cite, code, dd, dl, dt, div, em, i, li, ol, p, pre, q, small, span, strike,
+	// strong, sub, sup, u, ul.
 	LoginMessage map[string]*string `type:"map"`
 
-	// The logo URL. The only image format accepted is a binary data object that
-	// is converted from a .png file.
+	// The logo. The only image format accepted is a binary data object that is
+	// converted from a .png file.
 	LogoUrl *string `min:"1" type:"string"`
 
 	// The support email. The company's customer support email address.
@@ -7639,7 +7935,9 @@ type DefaultImportClientBrandingAttributes struct {
 
 	// The login message. Specified as a key value pair, in which the key is a locale
 	// and the value is the localized message for that locale. The only key supported
-	// is en_US.
+	// is en_US. The HTML tags supported include the following: a, b, blockquote,
+	// br, cite, code, dd, dl, dt, div, em, i, li, ol, p, pre, q, small, span, strike,
+	// strong, sub, sup, u, ul.
 	LoginMessage map[string]*string `type:"map"`
 
 	// The logo. The only image format accepted is a binary data object that is
@@ -10953,7 +11251,9 @@ type IosClientBrandingAttributes struct {
 
 	// The login message. Specified as a key value pair, in which the key is a locale
 	// and the value is the localized message for that locale. The only key supported
-	// is en_US.
+	// is en_US. The HTML tags supported include the following: a, b, blockquote,
+	// br, cite, code, dd, dl, dt, div, em, i, li, ol, p, pre, q, small, span, strike,
+	// strong, sub, sup, u, ul.
 	LoginMessage map[string]*string `type:"map"`
 
 	// The @2x version of the logo. This is the higher resolution display that offers
@@ -11073,7 +11373,9 @@ type IosImportClientBrandingAttributes struct {
 
 	// The login message. Specified as a key value pair, in which the key is a locale
 	// and the value is the localized message for that locale. The only key supported
-	// is en_US.
+	// is en_US. The HTML tags supported include the following: a, b, blockquote,
+	// br, cite, code, dd, dl, dt, div, em, i, li, ol, p, pre, q, small, span, strike,
+	// strong, sub, sup, u, ul.
 	LoginMessage map[string]*string `type:"map"`
 
 	// The logo. This is the standard-resolution display that has a 1:1 pixel density

@@ -114,7 +114,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateAssessmentFramework":{
@@ -129,7 +130,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateAssessmentReport":{
@@ -159,7 +161,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "DeleteAssessment":{
@@ -861,7 +864,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "UpdateControl":{
@@ -3076,6 +3080,15 @@
     "ServiceMetadataList":{
       "type":"list",
       "member":{"shape":"ServiceMetadata"}
+    },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":402},
+      "exception":true
     },
     "SettingAttribute":{
       "type":"string",

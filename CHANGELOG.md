@@ -1,3 +1,20 @@
+Release v1.44.64 (2022-07-27)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service API and documentation
+* `service/chime`: Updates service API and documentation
+  * Chime VoiceConnector will now support ValidateE911Address which will allow customers to prevalidate their addresses included in their SIP invites for emergency calling
+* `service/config`: Updates service API, documentation, and paginators
+* `service/globalaccelerator`: Updates service API and documentation
+* `service/marketplace-catalog`: Updates service API and documentation
+* `service/polly`: Updates service API
+  * Amazon Polly adds new English and Hindi voice - Kajal. Kajal is available as Neural voice only.
+* `service/ssm`: Updates service documentation
+  * Adding doc updates for OpsCenter support in Service Setting actions.
+* `service/workspaces`: Updates service API and documentation
+  * Added CreateWorkspaceImage API to create a new WorkSpace image from an existing WorkSpace.
+
 Release v1.44.63 (2022-07-26)
 ===
 

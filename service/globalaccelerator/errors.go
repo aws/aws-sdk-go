@@ -88,7 +88,7 @@ const (
 	// ErrCodeInternalServiceErrorException for service response error code
 	// "InternalServiceErrorException".
 	//
-	// There was an internal error for AWS Global Accelerator.
+	// There was an internal error for Global Accelerator.
 	ErrCodeInternalServiceErrorException = "InternalServiceErrorException"
 
 	// ErrCodeInvalidArgumentException for service response error code
@@ -113,8 +113,7 @@ const (
 	// ErrCodeLimitExceededException for service response error code
 	// "LimitExceededException".
 	//
-	// Processing your request would cause you to exceed an AWS Global Accelerator
-	// limit.
+	// Processing your request would cause you to exceed an Global Accelerator limit.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeListenerNotFoundException for service response error code

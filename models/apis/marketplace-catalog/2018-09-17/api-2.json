@@ -553,7 +553,10 @@
         "Catalog":{"shape":"Catalog"},
         "ChangeSet":{"shape":"RequestedChangeList"},
         "ChangeSetName":{"shape":"ChangeSetName"},
-        "ClientRequestToken":{"shape":"ClientRequestToken"}
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
       }
     },
     "StartChangeSetResponse":{

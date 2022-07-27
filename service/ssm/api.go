@@ -12251,7 +12251,7 @@ func (c *SSM) PutComplianceItemsRequest(input *PutComplianceItemsInput) (req *re
 //    * Status: The status of the compliance item. For example, approved for
 //    patches, or Failed for associations.
 //
-//    * Severity: A patch severity. For example, critical.
+//    * Severity: A patch severity. For example, Critical.
 //
 //    * DocumentName: An SSM document name. For example, AWS-RunPatchBaseline.
 //
@@ -19368,9 +19368,11 @@ type Command struct {
 	// The number of targets for which the status is Failed or Execution Timed Out.
 	ErrorCount *int64 `type:"integer"`
 
-	// If this time is reached and the command hasn't already started running, it
-	// won't run. Calculated based on the ExpiresAfter user input provided as part
-	// of the SendCommand API operation.
+	// If a command expires, it changes status to DeliveryTimedOut for all invocations
+	// that have the status InProgress, Pending, or Delayed. ExpiresAfter is calculated
+	// based on the total timeout for the overall command. For more information,
+	// see Understanding command timeout values (https://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-commands.html?icmpid=docs_ec2_console#monitor-about-status-timeouts)
+	// in the Amazon Web Services Systems Manager User Guide.
 	ExpiresAfter *time.Time `type:"timestamp"`
 
 	// The managed node IDs against which this command was requested.
@@ -19461,6 +19463,9 @@ type Command struct {
 	//    * Rate Exceeded: The number of managed nodes targeted by the command exceeded
 	//    the account limit for pending invocations. The system has canceled the
 	//    command before running it on any managed node. This is a terminal state.
+	//
+	//    * Delayed: The system attempted to send the command to the managed node
+	//    but wasn't successful. The system retries again.
 	StatusDetails *string `type:"string"`
 
 	// The number of targets for the command.
@@ -19844,6 +19849,9 @@ type CommandInvocation struct {
 	//
 	//    * Terminated: The parent command exceeded its MaxErrors limit and subsequent
 	//    command invocations were canceled by the system. This is a terminal state.
+	//
+	//    * Delayed: The system attempted to send the command to the managed node
+	//    but wasn't successful. The system retries again.
 	StatusDetails *string `type:"string"`
 
 	// Gets the trace output sent by the agent.
@@ -21738,8 +21746,8 @@ type CreateDocumentInput struct {
 	TargetType *string `type:"string"`
 
 	// An optional field specifying the version of the artifact you are creating
-	// with the document. For example, "Release 12, Update 6". This value is unique
-	// across all versions of a document, and can't be changed.
+	// with the document. For example, Release12.1. This value is unique across
+	// all versions of a document, and can't be changed.
 	VersionName *string `type:"string"`
 }
 
@@ -34209,11 +34217,13 @@ type GetServiceSettingInput struct {
 	//
 	//    * /ssm/documents/console/public-sharing-permission
 	//
+	//    * /ssm/managed-instance/activation-tier
+	//
+	//    * /ssm/opsinsights/opscenter
+	//
 	//    * /ssm/parameter-store/default-parameter-tier
 	//
 	//    * /ssm/parameter-store/high-throughput-enabled
-	//
-	//    * /ssm/managed-instance/activation-tier
 	//
 	// SettingId is a required field
 	SettingId *string `min:"1" type:"string" required:"true"`
@@ -49970,11 +49980,13 @@ type ResetServiceSettingInput struct {
 	//
 	//    * /ssm/documents/console/public-sharing-permission
 	//
+	//    * /ssm/managed-instance/activation-tier
+	//
+	//    * /ssm/opsinsights/opscenter
+	//
 	//    * /ssm/parameter-store/default-parameter-tier
 	//
 	//    * /ssm/parameter-store/high-throughput-enabled
-	//
-	//    * /ssm/managed-instance/activation-tier
 	//
 	// SettingId is a required field
 	SettingId *string `min:"1" type:"string" required:"true"`
@@ -52660,7 +52672,7 @@ type SeveritySummary struct {
 	_ struct{} `type:"structure"`
 
 	// The total number of resources or compliance items that have a severity level
-	// of critical. Critical severity is determined by the organization that published
+	// of Critical. Critical severity is determined by the organization that published
 	// the compliance items.
 	CriticalCount *int64 `type:"integer"`
 
@@ -53323,11 +53335,12 @@ func (s *StartChangeRequestExecutionOutput) SetAutomationExecutionId(v string) *
 type StartSessionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the SSM document to define the parameters and plugin settings
-	// for the session. For example, SSM-SessionManagerRunShell. You can call the
-	// GetDocument API to verify the document exists before attempting to start
-	// a session. If no document name is provided, a shell to the managed node is
-	// launched by default.
+	// The name of the SSM document you want to use to define the type of session,
+	// input parameters, or preferences for the session. For example, SSM-SessionManagerRunShell.
+	// You can call the GetDocument API to verify the document exists before attempting
+	// to start a session. If no document name is provided, a shell to the managed
+	// node is launched by default. For more information, see Start a session (https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-sessions-start.html)
+	// in the Amazon Web Services Systems Manager User Guide.
 	DocumentName *string `type:"string"`
 
 	// The values you want to specify for the parameters defined in the Session
@@ -58060,23 +58073,19 @@ type UpdateServiceSettingInput struct {
 	//
 	//    * /ssm/documents/console/public-sharing-permission
 	//
+	//    * /ssm/managed-instance/activation-tier
+	//
+	//    * /ssm/opsinsights/opscenter
+	//
 	//    * /ssm/parameter-store/default-parameter-tier
 	//
 	//    * /ssm/parameter-store/high-throughput-enabled
-	//
-	//    * /ssm/managed-instance/activation-tier
 	//
 	// SettingId is a required field
 	SettingId *string `min:"1" type:"string" required:"true"`
 
 	// The new value to specify for the service setting. The following list specifies
 	// the available values for each setting.
-	//
-	//    * /ssm/parameter-store/default-parameter-tier: Standard, Advanced, Intelligent-Tiering
-	//
-	//    * /ssm/parameter-store/high-throughput-enabled: true or false
-	//
-	//    * /ssm/managed-instance/activation-tier: true or false
 	//
 	//    * /ssm/automation/customer-script-log-destination: CloudWatch
 	//
@@ -58086,6 +58095,12 @@ type UpdateServiceSettingInput struct {
 	//    * /ssm/documents/console/public-sharing-permission: Enable or Disable
 	//
 	//    * /ssm/managed-instance/activation-tier: standard or advanced
+	//
+	//    * /ssm/opsinsights/opscenter: Enabled or Disabled
+	//
+	//    * /ssm/parameter-store/default-parameter-tier: Standard, Advanced, Intelligent-Tiering
+	//
+	//    * /ssm/parameter-store/high-throughput-enabled: true or false
 	//
 	// SettingValue is a required field
 	SettingValue *string `min:"1" type:"string" required:"true"`

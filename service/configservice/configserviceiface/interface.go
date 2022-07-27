@@ -407,6 +407,13 @@ type ConfigServiceAPI interface {
 	ListAggregateDiscoveredResourcesPages(*configservice.ListAggregateDiscoveredResourcesInput, func(*configservice.ListAggregateDiscoveredResourcesOutput, bool) bool) error
 	ListAggregateDiscoveredResourcesPagesWithContext(aws.Context, *configservice.ListAggregateDiscoveredResourcesInput, func(*configservice.ListAggregateDiscoveredResourcesOutput, bool) bool, ...request.Option) error
 
+	ListConformancePackComplianceScores(*configservice.ListConformancePackComplianceScoresInput) (*configservice.ListConformancePackComplianceScoresOutput, error)
+	ListConformancePackComplianceScoresWithContext(aws.Context, *configservice.ListConformancePackComplianceScoresInput, ...request.Option) (*configservice.ListConformancePackComplianceScoresOutput, error)
+	ListConformancePackComplianceScoresRequest(*configservice.ListConformancePackComplianceScoresInput) (*request.Request, *configservice.ListConformancePackComplianceScoresOutput)
+
+	ListConformancePackComplianceScoresPages(*configservice.ListConformancePackComplianceScoresInput, func(*configservice.ListConformancePackComplianceScoresOutput, bool) bool) error
+	ListConformancePackComplianceScoresPagesWithContext(aws.Context, *configservice.ListConformancePackComplianceScoresInput, func(*configservice.ListConformancePackComplianceScoresOutput, bool) bool, ...request.Option) error
+
 	ListDiscoveredResources(*configservice.ListDiscoveredResourcesInput) (*configservice.ListDiscoveredResourcesOutput, error)
 	ListDiscoveredResourcesWithContext(aws.Context, *configservice.ListDiscoveredResourcesInput, ...request.Option) (*configservice.ListDiscoveredResourcesOutput, error)
 	ListDiscoveredResourcesRequest(*configservice.ListDiscoveredResourcesInput) (*request.Request, *configservice.ListDiscoveredResourcesOutput)

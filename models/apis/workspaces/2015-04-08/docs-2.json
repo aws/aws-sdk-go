@@ -12,6 +12,7 @@
     "CreateTags": "<p>Creates the specified tags for the specified WorkSpaces resource.</p>",
     "CreateUpdatedWorkspaceImage": "<p>Creates a new updated WorkSpace image based on the specified source image. The new updated WorkSpace image has the latest drivers and other updates required by the Amazon WorkSpaces components.</p> <p>To determine which WorkSpace images need to be updated with the latest Amazon WorkSpaces requirements, use <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImages.html\"> DescribeWorkspaceImages</a>.</p> <note> <ul> <li> <p>Only Windows 10, Windows Sever 2016, and Windows Server 2019 WorkSpace images can be programmatically updated at this time.</p> </li> <li> <p>Microsoft Windows updates and other application updates are not included in the update process.</p> </li> <li> <p>The source WorkSpace image is not deleted. You can delete the source image after you've verified your new updated image and created a new bundle. </p> </li> </ul> </note>",
     "CreateWorkspaceBundle": "<p>Creates the specified WorkSpace bundle. For more information about creating WorkSpace bundles, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/create-custom-bundle.html\"> Create a Custom WorkSpaces Image and Bundle</a>.</p>",
+    "CreateWorkspaceImage": "<p>Creates a new WorkSpace image from an existing WorkSpace.</p>",
     "CreateWorkspaces": "<p>Creates one or more WorkSpaces.</p> <p>This operation is asynchronous and returns before the WorkSpaces are created.</p>",
     "DeleteClientBranding": "<p>Deletes customized client branding. Client branding allows you to customize your WorkSpace's client login portal. You can tailor your login portal company logo, the support email address, support link, link to reset password, and a custom message for users trying to sign in.</p> <p>After you delete your customized client branding, your login portal reverts to the default client branding.</p>",
     "DeleteConnectClientAddIn": "<p>Deletes a client-add-in for Amazon Connect that is configured within a directory.</p>",
@@ -186,6 +187,7 @@
         "ConnectionAlias$OwnerAccountId": "<p>The identifier of the Amazon Web Services account that owns the connection alias.</p>",
         "ConnectionAliasAssociation$AssociatedAccountId": "<p>The identifier of the Amazon Web Services account that associated the connection alias with a directory.</p>",
         "ConnectionAliasPermission$SharedAccountId": "<p>The identifier of the Amazon Web Services account that the connection alias is shared with.</p>",
+        "CreateWorkspaceImageResult$OwnerAccountId": "<p>The identifier of the AWS account that owns the image.</p>",
         "ImagePermission$SharedAccountId": "<p>The identifier of the Amazon Web Services account that an image has been shared with.</p>",
         "UpdateWorkspaceImagePermissionRequest$SharedAccountId": "<p>The identifier of the Amazon Web Services account to share or unshare the image with.</p> <important> <p>Before sharing the image, confirm that you are sharing to the correct Amazon Web Services account ID.</p> </important>",
         "WorkspaceImage$OwnerAccountId": "<p>The identifier of the Amazon Web Services account that owns the image.</p>"
@@ -300,7 +302,7 @@
     "ClientUrl": {
       "base": null,
       "refs": {
-        "DefaultClientBrandingAttributes$LogoUrl": "<p>The logo URL. The only image format accepted is a binary data object that is converted from a <code>.png</code> file.</p>",
+        "DefaultClientBrandingAttributes$LogoUrl": "<p>The logo. The only image format accepted is a binary data object that is converted from a <code>.png</code> file.</p>",
         "DefaultClientBrandingAttributes$SupportLink": "<p>The support link. The link for the company's customer support page for their WorkSpace.</p> <note> <ul> <li> <p>In each platform type, the <code>SupportEmail</code> and <code>SupportLink</code> parameters are mutually exclusive.You can specify one parameter for each platform type, but not both.</p> </li> <li> <p>The default support link is <code>workspaces-feedback@amazon.com</code>.</p> </li> </ul> </note>",
         "DefaultClientBrandingAttributes$ForgotPasswordLink": "<p>The forgotten password link. This is the web address that users can go to if they forget the password for their WorkSpace.</p>",
         "DefaultImportClientBrandingAttributes$SupportLink": "<p>The support link. The link for the company's customer support page for their WorkSpace.</p> <note> <ul> <li> <p>In each platform type, the <code>SupportEmail</code> and <code>SupportLink</code> parameters are mutually exclusive. You can specify one parameter for each platform type, but not both.</p> </li> <li> <p>The default support link is <code>workspaces-feedback@amazon.com</code>.</p> </li> </ul> </note>",
@@ -495,6 +497,16 @@
       }
     },
     "CreateWorkspaceBundleResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorkspaceImageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorkspaceImageResult": {
       "base": null,
       "refs": {
       }
@@ -1178,10 +1190,10 @@
     "LoginMessage": {
       "base": null,
       "refs": {
-        "DefaultClientBrandingAttributes$LoginMessage": "<p>The login message. Specified as a key value pair, in which the key is a locale and the value is the localized message for that locale. The only key supported is <code>en_US</code>. </p>",
-        "DefaultImportClientBrandingAttributes$LoginMessage": "<p>The login message. Specified as a key value pair, in which the key is a locale and the value is the localized message for that locale. The only key supported is <code>en_US</code>. </p>",
-        "IosClientBrandingAttributes$LoginMessage": "<p>The login message. Specified as a key value pair, in which the key is a locale and the value is the localized message for that locale. The only key supported is <code>en_US</code>. </p>",
-        "IosImportClientBrandingAttributes$LoginMessage": "<p>The login message. Specified as a key value pair, in which the key is a locale and the value is the localized message for that locale. The only key supported is <code>en_US</code>. </p>"
+        "DefaultClientBrandingAttributes$LoginMessage": "<p>The login message. Specified as a key value pair, in which the key is a locale and the value is the localized message for that locale. The only key supported is <code>en_US</code>. The HTML tags supported include the following: <code>a, b, blockquote, br, cite, code, dd, dl, dt, div, em, i, li, ol, p, pre, q, small, span, strike, strong, sub, sup, u, ul</code>.</p>",
+        "DefaultImportClientBrandingAttributes$LoginMessage": "<p>The login message. Specified as a key value pair, in which the key is a locale and the value is the localized message for that locale. The only key supported is <code>en_US</code>. The HTML tags supported include the following: <code>a, b, blockquote, br, cite, code, dd, dl, dt, div, em, i, li, ol, p, pre, q, small, span, strike, strong, sub, sup, u, ul</code>.</p>",
+        "IosClientBrandingAttributes$LoginMessage": "<p>The login message. Specified as a key value pair, in which the key is a locale and the value is the localized message for that locale. The only key supported is <code>en_US</code>. The HTML tags supported include the following: <code>a, b, blockquote, br, cite, code, dd, dl, dt, div, em, i, li, ol, p, pre, q, small, span, strike, strong, sub, sup, u, ul</code>.</p>",
+        "IosImportClientBrandingAttributes$LoginMessage": "<p>The login message. Specified as a key value pair, in which the key is a locale and the value is the localized message for that locale. The only key supported is <code>en_US</code>. The HTML tags supported include the following: <code>a, b, blockquote, br, cite, code, dd, dl, dt, div, em, i, li, ol, p, pre, q, small, span, strike, strong, sub, sup, u, ul</code>.</p>"
       }
     },
     "ManagementCidrRangeConstraint": {
@@ -1323,6 +1335,7 @@
     "OperatingSystem": {
       "base": "<p>The operating system that the image is running.</p>",
       "refs": {
+        "CreateWorkspaceImageResult$OperatingSystem": "<p>The operating system that the image is running.</p>",
         "WorkspaceImage$OperatingSystem": "<p>The operating system that the image is running. </p>"
       }
     },
@@ -1642,6 +1655,7 @@
         "CreateTagsRequest$Tags": "<p>The tags. Each WorkSpaces resource can have a maximum of 50 tags.</p>",
         "CreateUpdatedWorkspaceImageRequest$Tags": "<p>The tags that you want to add to the new updated WorkSpace image.</p> <note> <p>To add tags at the same time when you're creating the updated image, you must create an IAM policy that grants your IAM user permissions to use <code>workspaces:CreateTags</code>. </p> </note>",
         "CreateWorkspaceBundleRequest$Tags": "<p>The tags associated with the bundle.</p> <note> <p>To add tags at the same time when you're creating the bundle, you must create an IAM policy that grants your IAM user permissions to use <code>workspaces:CreateTags</code>. </p> </note>",
+        "CreateWorkspaceImageRequest$Tags": "<p>The tags that you want to add to the new WorkSpace image. To add tags when you're creating the image, you must create an IAM policy that grants your IAM user permission to use <code>workspaces:CreateTags</code>.</p>",
         "DescribeTagsResult$TagList": "<p>The tags.</p>",
         "ImportWorkspaceImageRequest$Tags": "<p>The tags. Each WorkSpaces resource can have a maximum of 50 tags.</p>",
         "RegisterWorkspaceDirectoryRequest$Tags": "<p>The tags associated with the directory.</p>",
@@ -1693,6 +1707,7 @@
       "base": null,
       "refs": {
         "AccountModification$StartTime": "<p>The timestamp when the modification of the BYOL configuration was started.</p>",
+        "CreateWorkspaceImageResult$Created": "<p>The date when the image was created.</p>",
         "Snapshot$SnapshotTime": "<p>The time when the snapshot was created.</p>",
         "WorkspaceBundle$LastUpdatedTime": "<p>The last time that the bundle was updated.</p>",
         "WorkspaceBundle$CreationTime": "<p>The time when the bundle was created.</p>",
@@ -1880,6 +1895,7 @@
     "WorkspaceId": {
       "base": null,
       "refs": {
+        "CreateWorkspaceImageRequest$WorkspaceId": "<p>The identifier of the source WorkSpace</p>",
         "DescribeWorkspaceSnapshotsRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "FailedWorkspaceChangeRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "MigrateWorkspaceRequest$SourceWorkspaceId": "<p>The identifier of the WorkSpace to migrate from.</p>",
@@ -1916,6 +1932,8 @@
       "refs": {
         "CopyWorkspaceImageRequest$Description": "<p>A description of the image.</p>",
         "CreateUpdatedWorkspaceImageRequest$Description": "<p>A description of whether updates for the WorkSpace image are available.</p>",
+        "CreateWorkspaceImageRequest$Description": "<p>The description of the new WorkSpace image.</p>",
+        "CreateWorkspaceImageResult$Description": "<p>The description of the image.</p>",
         "ImportWorkspaceImageRequest$ImageDescription": "<p>The description of the WorkSpace image.</p>",
         "WorkspaceImage$Description": "<p>The description of the image.</p>"
       }
@@ -1934,6 +1952,7 @@
         "CreateUpdatedWorkspaceImageRequest$SourceImageId": "<p>The identifier of the source WorkSpace image.</p>",
         "CreateUpdatedWorkspaceImageResult$ImageId": "<p>The identifier of the new updated WorkSpace image.</p>",
         "CreateWorkspaceBundleRequest$ImageId": "<p>The identifier of the image that is used to create the bundle.</p>",
+        "CreateWorkspaceImageResult$ImageId": "<p>The identifier of the new WorkSpace image.</p>",
         "DeleteWorkspaceImageRequest$ImageId": "<p>The identifier of the image.</p>",
         "DescribeWorkspaceImagePermissionsRequest$ImageId": "<p>The identifier of the image.</p>",
         "DescribeWorkspaceImagePermissionsResult$ImageId": "<p>The identifier of the image.</p>",
@@ -1968,6 +1987,8 @@
       "refs": {
         "CopyWorkspaceImageRequest$Name": "<p>The name of the image.</p>",
         "CreateUpdatedWorkspaceImageRequest$Name": "<p>The name of the new updated WorkSpace image.</p>",
+        "CreateWorkspaceImageRequest$Name": "<p>The name of the new WorkSpace image.</p>",
+        "CreateWorkspaceImageResult$Name": "<p>The name of the image.</p>",
         "ImportWorkspaceImageRequest$ImageName": "<p>The name of the WorkSpace image.</p>",
         "WorkspaceImage$Name": "<p>The name of the image.</p>"
       }
@@ -1975,12 +1996,14 @@
     "WorkspaceImageRequiredTenancy": {
       "base": null,
       "refs": {
+        "CreateWorkspaceImageResult$RequiredTenancy": "<p>Specifies whether the image is running on dedicated hardware. When Bring Your Own License (BYOL) is enabled, this value is set to DEDICATED. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.htm\"> Bring Your Own Windows Desktop Images.</a> </p>",
         "WorkspaceImage$RequiredTenancy": "<p>Specifies whether the image is running on dedicated hardware. When Bring Your Own License (BYOL) is enabled, this value is set to <code>DEDICATED</code>. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html\">Bring Your Own Windows Desktop Images</a>.</p>"
       }
     },
     "WorkspaceImageState": {
       "base": null,
       "refs": {
+        "CreateWorkspaceImageResult$State": "<p>The availability status of the image.</p>",
         "WorkspaceImage$State": "<p>The status of the image.</p>"
       }
     },

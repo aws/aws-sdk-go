@@ -1401,8 +1401,8 @@ type DescribeEntityOutput struct {
 	// This stringified JSON object includes the details of the entity.
 	Details *string `min:"2" type:"string"`
 
-	// The ARN associated to the unique identifier for the change set referenced
-	// in this request.
+	// The ARN associated to the unique identifier for the entity referenced in
+	// this request.
 	EntityArn *string `min:"1" type:"string"`
 
 	// The identifier of the entity, in the format of EntityId@RevisionId.
@@ -2447,7 +2447,7 @@ type StartChangeSetInput struct {
 	ChangeSetName *string `min:"1" type:"string"`
 
 	// A unique token to identify the request to ensure idempotency.
-	ClientRequestToken *string `min:"1" type:"string"`
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 }
 
 // String returns the string representation.

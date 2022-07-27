@@ -16,7 +16,7 @@
         "CancelChangeSetResponse$ChangeSetArn": "<p>The ARN associated with the change set referenced in this request.</p>",
         "ChangeSetSummaryListItem$ChangeSetArn": "<p>The ARN associated with the unique identifier for the change set referenced in this request.</p>",
         "DescribeChangeSetResponse$ChangeSetArn": "<p>The ARN associated with the unique identifier for the change set referenced in this request.</p>",
-        "DescribeEntityResponse$EntityArn": "<p>The ARN associated to the unique identifier for the change set referenced in this request.</p>",
+        "DescribeEntityResponse$EntityArn": "<p>The ARN associated to the unique identifier for the entity referenced in this request.</p>",
         "EntitySummary$EntityArn": "<p>The ARN associated with the unique identifier for the entity.</p>",
         "StartChangeSetResponse$ChangeSetArn": "<p>The ARN associated to the unique identifier generated for the request.</p>"
       }

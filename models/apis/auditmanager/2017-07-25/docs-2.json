@@ -1654,6 +1654,11 @@
         "GetServicesInScopeResponse$serviceMetadata": "<p> The metadata that's associated with the Amazon Web Service. </p>"
       }
     },
+    "ServiceQuotaExceededException": {
+      "base": "<p>You've reached your account quota for this resource type. To perform the requested action, delete some existing resources or <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html\">request a quota increase</a> from the Service Quotas console. For a list of Audit Manager service quotas, see <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/service-quotas.html\">Quotas and restrictions for Audit Manager</a>.</p>",
+      "refs": {
+      }
+    },
     "SettingAttribute": {
       "base": null,
       "refs": {
@@ -1715,7 +1720,7 @@
       }
     },
     "SourceKeyword": {
-      "base": "<p> The keyword to search for in CloudTrail logs, Config rules, Security Hub checks, and Amazon Web Services API names. </p>",
+      "base": "<p> The keyword to search for in CloudTrail logs, Config rules, Security Hub checks, and Amazon Web Services API names. </p> <p> To learn more about the supported keywords that you can use when mapping a control data source, see the following pages in the <i>Audit Manager User Guide</i>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-ash.html\">Config rules supported by Audit Manager</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-config.html\">Security Hub controls supported by Audit Manager</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-api.html\">API calls supported by Audit Manager</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/control-data-sources-cloudtrail.html\">CloudTrail event names supported by Audit Manager</a> </p> </li> </ul>",
       "refs": {
         "ControlMappingSource$sourceKeyword": null,
         "CreateControlMappingSource$sourceKeyword": null
@@ -1769,6 +1774,7 @@
         "ResourceNotFoundException$message": null,
         "ResourceNotFoundException$resourceId": "<p> The unique identifier for the resource. </p>",
         "ResourceNotFoundException$resourceType": "<p> The type of resource that's affected by the error. </p>",
+        "ServiceQuotaExceededException$message": null,
         "ThrottlingException$message": null,
         "UpdateAssessmentControlSetStatusRequest$controlSetId": "<p> The unique identifier for the control set. </p>",
         "ValidateAssessmentReportIntegrityResponse$signatureAlgorithm": "<p> The signature algorithm that's used to code sign the assessment report file. </p>",
