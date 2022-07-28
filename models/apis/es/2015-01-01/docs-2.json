@@ -1090,7 +1090,8 @@
       "base": null,
       "refs": {
         "EBSOptions$VolumeSize": "<p> Integer to specify the size of an EBS volume.</p>",
-        "EBSOptions$Iops": "<p>Specifies the IOPD for a Provisioned IOPS EBS volume (SSD).</p>",
+        "EBSOptions$Iops": "<p>Specifies the IOPS for Provisioned IOPS And GP3 EBS volume (SSD).</p>",
+        "EBSOptions$Throughput": "<p>Specifies the Throughput for GP3 EBS volume (SSD).</p>",
         "ElasticsearchClusterConfig$InstanceCount": "<p>The number of instances in the specified domain cluster.</p>",
         "ElasticsearchClusterConfig$DedicatedMasterCount": "<p>Total number of dedicated master nodes, active and on standby, for the cluster.</p>",
         "ElasticsearchClusterConfig$WarmCount": "<p>The number of warm nodes in the cluster.</p>",
@@ -1150,7 +1151,7 @@
       "base": null,
       "refs": {
         "AdditionalLimit$LimitName": "<p> Name of Additional Limit is specific to a given InstanceType and for each of it's <code> <a>InstanceRole</a> </code> etc. <br/> Attributes and their details: <br/> <ul> <li>MaximumNumberOfDataNodesSupported</li> This attribute will be present in Master node only to specify how much data nodes upto which given <code> <a>ESPartitionInstanceType</a> </code> can support as master node. <li>MaximumNumberOfDataNodesWithoutMasterNode</li> This attribute will be present in Data node only to specify how much data nodes of given <code> <a>ESPartitionInstanceType</a> </code> upto which you don't need any master nodes to govern them. </ul> </p>",
-        "StorageTypeLimit$LimitName": "<p> Name of storage limits that are applicable for given storage type. If <code> <a>StorageType</a> </code> is ebs, following storage options are applicable <ol> <li>MinimumVolumeSize</li> Minimum amount of volume size that is applicable for given storage type.It can be empty if it is not applicable. <li>MaximumVolumeSize</li> Maximum amount of volume size that is applicable for given storage type.It can be empty if it is not applicable. <li>MaximumIops</li> Maximum amount of Iops that is applicable for given storage type.It can be empty if it is not applicable. <li>MinimumIops</li> Minimum amount of Iops that is applicable for given storage type.It can be empty if it is not applicable. </ol> </p>"
+        "StorageTypeLimit$LimitName": "<p> Name of storage limits that are applicable for given storage type. If <code> <a>StorageType</a> </code> is ebs, following storage options are applicable <ol> <li>MinimumVolumeSize</li> Minimum amount of volume size that is applicable for given storage type.It can be empty if it is not applicable. <li>MaximumVolumeSize</li> Maximum amount of volume size that is applicable for given storage type.It can be empty if it is not applicable. <li>MaximumIops</li> Maximum amount of Iops that is applicable for given storage type.It can be empty if it is not applicable. <li>MinimumIops</li> Minimum amount of Iops that is applicable for given storage type.It can be empty if it is not applicable. <li>MaximumThroughput</li> Maximum amount of Throughput that is applicable for given storage type.It can be empty if it is not applicable. <li>MinimumThroughput</li> Minimum amount of Throughput that is applicable for given storage type.It can be empty if it is not applicable. </ol> </p>"
       }
     },
     "LimitValue": {
@@ -1746,7 +1747,7 @@
       }
     },
     "StorageSubTypeName": {
-      "base": "<p> SubType of the given storage type. List of available sub-storage options: For \"instance\" storageType we wont have any storageSubType, in case of \"ebs\" storageType we will have following valid storageSubTypes <ol> <li>standard</li> <li>gp2</li> <li>io1</li> </ol> Refer <code><a>VolumeType</a></code> for more information regarding above EBS storage options. </p>",
+      "base": "<p> SubType of the given storage type. List of available sub-storage options: For \"instance\" storageType we wont have any storageSubType, in case of \"ebs\" storageType we will have following valid storageSubTypes <ol> <li>standard</li> <li>gp2</li> <li>gp3</li> <li>io1</li> </ol> Refer <code><a>VolumeType</a></code> for more information regarding above EBS storage options. </p>",
       "refs": {
         "StorageType$StorageSubTypeName": null
       }
@@ -2008,7 +2009,7 @@
       }
     },
     "VolumeType": {
-      "base": "<p> The type of EBS volume, standard, gp2, or io1. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs\" target=\"_blank\">Configuring EBS-based Storage</a>for more information.</p>",
+      "base": "<p> The type of EBS volume, standard, gp2, gp3 or io1. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs\" target=\"_blank\">Configuring EBS-based Storage</a>for more information.</p>",
       "refs": {
         "EBSOptions$VolumeType": "<p> Specifies the volume type for EBS-based storage.</p>"
       }

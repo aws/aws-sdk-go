@@ -8951,8 +8951,11 @@ type EBSOptions struct {
 	// Specifies whether EBS-based storage is enabled.
 	EBSEnabled *bool `type:"boolean"`
 
-	// Specifies the IOPD for a Provisioned IOPS EBS volume (SSD).
+	// Specifies the IOPS for Provisioned IOPS And GP3 EBS volume (SSD).
 	Iops *int64 `type:"integer"`
+
+	// Specifies the Throughput for GP3 EBS volume (SSD).
+	Throughput *int64 `type:"integer"`
 
 	// Integer to specify the size of an EBS volume.
 	VolumeSize *int64 `type:"integer"`
@@ -8988,6 +8991,12 @@ func (s *EBSOptions) SetEBSEnabled(v bool) *EBSOptions {
 // SetIops sets the Iops field's value.
 func (s *EBSOptions) SetIops(v int64) *EBSOptions {
 	s.Iops = &v
+	return s
+}
+
+// SetThroughput sets the Throughput field's value.
+func (s *EBSOptions) SetThroughput(v int64) *EBSOptions {
+	s.Throughput = &v
 	return s
 }
 
@@ -13386,8 +13395,8 @@ type StorageType struct {
 
 	// SubType of the given storage type. List of available sub-storage options:
 	// For "instance" storageType we wont have any storageSubType, in case of "ebs"
-	// storageType we will have following valid storageSubTypes standard gp2 io1
-	// Refer VolumeType for more information regarding above EBS storage options.
+	// storageType we will have following valid storageSubTypes standard gp2 gp3
+	// io1 Refer VolumeType for more information regarding above EBS storage options.
 	StorageSubTypeName *string `type:"string"`
 
 	// List of limits that are applicable for given storage type.
@@ -13447,7 +13456,10 @@ type StorageTypeLimit struct {
 	// applicable. MaximumIops Maximum amount of Iops that is applicable for given
 	// storage type.It can be empty if it is not applicable. MinimumIops Minimum
 	// amount of Iops that is applicable for given storage type.It can be empty
-	// if it is not applicable.
+	// if it is not applicable. MaximumThroughput Maximum amount of Throughput that
+	// is applicable for given storage type.It can be empty if it is not applicable.
+	// MinimumThroughput Minimum amount of Throughput that is applicable for given
+	// storage type.It can be empty if it is not applicable.
 	LimitName *string `type:"string"`
 
 	// Values for the StorageTypeLimit$LimitName .
@@ -15254,7 +15266,7 @@ func UpgradeStep_Values() []string {
 	}
 }
 
-// The type of EBS volume, standard, gp2, or io1. See Configuring EBS-based
+// The type of EBS volume, standard, gp2, gp3 or io1. See Configuring EBS-based
 // Storage (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs)for
 // more information.
 const (
@@ -15266,6 +15278,9 @@ const (
 
 	// VolumeTypeIo1 is a VolumeType enum value
 	VolumeTypeIo1 = "io1"
+
+	// VolumeTypeGp3 is a VolumeType enum value
+	VolumeTypeGp3 = "gp3"
 )
 
 // VolumeType_Values returns all elements of the VolumeType enum
@@ -15274,5 +15289,6 @@ func VolumeType_Values() []string {
 		VolumeTypeStandard,
 		VolumeTypeGp2,
 		VolumeTypeIo1,
+		VolumeTypeGp3,
 	}
 }

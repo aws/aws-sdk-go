@@ -1,3 +1,14 @@
+Release v1.44.65 (2022-07-28)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service documentation
+  * Documentation updates for VM Import/Export.
+* `service/es`: Updates service API and documentation
+  * This release adds support for gp3 EBS (Elastic Block Store) storage.
+* `service/lookoutvision`: Updates service API and documentation
+* `service/opensearch`: Updates service API and documentation
+
 Release v1.44.64 (2022-07-27)
 ===
 
