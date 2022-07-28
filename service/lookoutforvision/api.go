@@ -1114,12 +1114,17 @@ func (c *LookoutForVision) DetectAnomaliesRequest(input *DetectAnomaliesInput) (
 //
 // The response from DetectAnomalies includes a boolean prediction that the
 // image contains one or more anomalies and a confidence value for the prediction.
+// If the model is an image segmentation model, the response also includes segmentation
+// information for each type of anomaly found in the image.
 //
 // Before calling DetectAnomalies, you must first start your model with the
 // StartModel operation. You are charged for the amount of time, in minutes,
 // that a model runs and for the number of anomaly detection units that your
 // model uses. If you are not using a model, use the StopModel operation to
 // stop your model.
+//
+// For more information, see Detecting anomalies in an image in the Amazon Lookout
+// for Vision developer guide.
 //
 // This operation requires permissions to perform the lookoutvision:DetectAnomalies
 // operation.
@@ -2642,6 +2647,51 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Information about an anomaly type found on an image by an image segmentation
+// model. For more information, see DetectAnomalies.
+type Anomaly struct {
+	_ struct{} `type:"structure"`
+
+	// The name of an anomaly type found in an image. Name maps to an anomaly type
+	// in the training dataset, apart from the anomaly type background. The service
+	// automatically inserts the background anomaly type into the response from
+	// DetectAnomalies.
+	Name *string `min:"1" type:"string"`
+
+	// Information about the pixel mask that covers an anomaly type.
+	PixelAnomaly *PixelAnomaly `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Anomaly) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Anomaly) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *Anomaly) SetName(v string) *Anomaly {
+	s.Name = &v
+	return s
+}
+
+// SetPixelAnomaly sets the PixelAnomaly field's value.
+func (s *Anomaly) SetPixelAnomaly(v *PixelAnomaly) *Anomaly {
+	s.PixelAnomaly = v
+	return s
 }
 
 // The update or deletion of a resource caused an inconsistent state.
@@ -4285,15 +4335,44 @@ func (s *DetectAnomaliesOutput) SetDetectAnomalyResult(v *DetectAnomalyResult) *
 	return s
 }
 
-// The prediction results from a call to DetectAnomalies.
+// The prediction results from a call to DetectAnomalies. DetectAnomalyResult
+// includes classification information for the prediction (IsAnomalous and Confidence).
+// If the model you use is an image segementation model, DetectAnomalyResult
+// also includes segmentation information (Anomalies and AnomalyMask). Classification
+// information is calculated separately from segmentation information and you
+// shouldn't assume a relationship between them.
 type DetectAnomalyResult struct {
 	_ struct{} `type:"structure"`
 
-	// The confidence that Amazon Lookout for Vision has in the accuracy of the
-	// prediction.
+	// If the model is an image segmentation model, Anomalies contains a list of
+	// anomaly types found in the image. There is one entry for each type of anomaly
+	// found (even if multiple instances of an anomaly type exist on the image).
+	// The first element in the list is always an anomaly type representing the
+	// image background ('background') and shouldn't be considered an anomaly. Amazon
+	// Lookout for Vision automatically add the background anomaly type to the response,
+	// and you don't need to declare a background anomaly type in your dataset.
+	//
+	// If the list has one entry ('background'), no anomalies were found on the
+	// image.
+	//
+	// An image classification model doesn't return an Anomalies list.
+	Anomalies []*Anomaly `type:"list"`
+
+	// If the model is an image segmentation model, AnomalyMask contains pixel masks
+	// that covers all anomaly types found on the image. Each anomaly type has a
+	// different mask color. To map a color to an anomaly type, see the color field
+	// of the PixelAnomaly object.
+	//
+	// An image classification model doesn't return an Anomalies list.
+	// AnomalyMask is automatically base64 encoded/decoded by the SDK.
+	AnomalyMask []byte `min:"1" type:"blob"`
+
+	// The confidence that Lookout for Vision has in the accuracy of the classification
+	// in IsAnomalous.
 	Confidence *float64 `type:"float"`
 
-	// True if the image contains an anomaly, otherwise false.
+	// True if Amazon Lookout for Vision classifies the image as containing an anomaly,
+	// otherwise false.
 	IsAnomalous *bool `type:"boolean"`
 
 	// The source of the image that was analyzed. direct means that the images was
@@ -4317,6 +4396,18 @@ func (s DetectAnomalyResult) String() string {
 // value will be replaced with "sensitive".
 func (s DetectAnomalyResult) GoString() string {
 	return s.String()
+}
+
+// SetAnomalies sets the Anomalies field's value.
+func (s *DetectAnomalyResult) SetAnomalies(v []*Anomaly) *DetectAnomalyResult {
+	s.Anomalies = v
+	return s
+}
+
+// SetAnomalyMask sets the AnomalyMask field's value.
+func (s *DetectAnomalyResult) SetAnomalyMask(v []byte) *DetectAnomalyResult {
+	s.AnomalyMask = v
+	return s
 }
 
 // SetConfidence sets the Confidence field's value.
@@ -4346,9 +4437,8 @@ type GreengrassConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Additional compiler options for the Greengrass component. Currently, only
-	// NVIDIA Graphics Processing Units (GPU) are supported. If you specify TargetPlatform,
-	// you must specify CompilerOptions. If you specify TargetDevice, don't specify
-	// CompilerOptions.
+	// NVIDIA Graphics Processing Units (GPU) and CPU accelerators are supported.
+	// If you specify TargetDevice, don't specify CompilerOptions.
 	//
 	// For more information, see Compiler options in the Amazon Lookout for Vision
 	// Developer Guide.
@@ -6038,6 +6128,50 @@ func (s *OutputS3Object) SetKey(v string) *OutputS3Object {
 	return s
 }
 
+// Information about the pixels in an anomaly mask. For more information, see
+// Anomaly. PixelAnomaly is only returned by image segmentation models.
+type PixelAnomaly struct {
+	_ struct{} `type:"structure"`
+
+	// A hex color value for the mask that covers an anomaly type. Each anomaly
+	// type has a different mask color. The color maps to the color of the anomaly
+	// type used in the training dataset.
+	Color *string `min:"7" type:"string"`
+
+	// The percentage area of the image that the anomaly type covers.
+	TotalPercentageArea *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PixelAnomaly) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PixelAnomaly) GoString() string {
+	return s.String()
+}
+
+// SetColor sets the Color field's value.
+func (s *PixelAnomaly) SetColor(v string) *PixelAnomaly {
+	s.Color = &v
+	return s
+}
+
+// SetTotalPercentageArea sets the TotalPercentageArea field's value.
+func (s *PixelAnomaly) SetTotalPercentageArea(v float64) *PixelAnomaly {
+	s.TotalPercentageArea = &v
+	return s
+}
+
 // Describe an Amazon Lookout for Vision project. For more information, see
 // DescribeProject.
 type ProjectDescription struct {
@@ -6975,12 +7109,18 @@ func (s TagResourceOutput) GoString() string {
 type TargetPlatform struct {
 	_ struct{} `type:"structure"`
 
-	// The target accelerator for the model. NVIDIA (Nvidia graphics processing
-	// unit) is the only accelerator that is currently supported. You must also
-	// specify the gpu-code, trt-ver, and cuda-ver compiler options.
+	// The target accelerator for the model. Currently, Amazon Lookout for Vision
+	// only supports NVIDIA (Nvidia graphics processing unit) and CPU accelerators.
+	// If you specify NVIDIA as an accelerator, you must also specify the gpu-code,
+	// trt-ver, and cuda-ver compiler options. If you don't specify an accelerator,
+	// Lookout for Vision uses the CPU for compilation and we highly recommend that
+	// you use the GreengrassConfiguration$CompilerOptions field. For example, you
+	// can use the following compiler options for CPU:
 	//
-	// Accelerator is a required field
-	Accelerator *string `type:"string" required:"true" enum:"TargetPlatformAccelerator"`
+	//    * mcpu: CPU micro-architecture. For example, {'mcpu': 'skylake-avx512'}
+	//
+	//    * mattr: CPU flags. For example, {'mattr': ['+neon', '+vfpv4']}
+	Accelerator *string `type:"string" enum:"TargetPlatformAccelerator"`
 
 	// The target architecture for the model. The currently supported architectures
 	// are X86_64 (64-bit version of the x86 instruction set) and ARM_64 (ARMv8
@@ -7017,9 +7157,6 @@ func (s TargetPlatform) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *TargetPlatform) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "TargetPlatform"}
-	if s.Accelerator == nil {
-		invalidParams.Add(request.NewErrParamRequired("Accelerator"))
-	}
 	if s.Arch == nil {
 		invalidParams.Add(request.NewErrParamRequired("Arch"))
 	}
