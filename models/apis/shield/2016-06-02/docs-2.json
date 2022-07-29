@@ -2,13 +2,13 @@
   "version": "2.0",
   "service": "<fullname>Shield Advanced</fullname> <p>This is the <i>Shield Advanced API Reference</i>. This guide is for developers who need detailed information about the Shield Advanced API actions, data types, and errors. For detailed information about WAF and Shield Advanced features and an overview of how to use the WAF and Shield Advanced APIs, see the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/\">WAF and Shield Developer Guide</a>.</p>",
   "operations": {
-    "AssociateDRTLogBucket": "<p>Authorizes the Shield Response Team (SRT) to access the specified Amazon S3 bucket containing log data such as Application Load Balancer access logs, CloudFront logs, or logs from third party sources. You can associate up to 10 Amazon S3 buckets with your subscription.</p> <p>To use the services of the SRT and make an <code>AssociateDRTLogBucket</code> request, you must be subscribed to the <a href=\"https://docs.aws.amazon.com/premiumsupport/business-support/\">Business Support plan</a> or the <a href=\"https://docs.aws.amazon.com/premiumsupport/enterprise-support/\">Enterprise Support plan</a>.</p>",
-    "AssociateDRTRole": "<p>Authorizes the Shield Response Team (SRT) using the specified role, to access your Amazon Web Services account to assist with DDoS attack mitigation during potential attacks. This enables the SRT to inspect your WAF configuration and create or update WAF rules and web ACLs.</p> <p>You can associate only one <code>RoleArn</code> with your subscription. If you submit an <code>AssociateDRTRole</code> request for an account that already has an associated role, the new <code>RoleArn</code> will replace the existing <code>RoleArn</code>. </p> <p>Prior to making the <code>AssociateDRTRole</code> request, you must attach the <code>AWSShieldDRTAccessPolicy</code> managed policy to the role that you'll specify in the request. You can access this policy in the IAM console at <a href=\"https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::aws:policy/service-role/AWSShieldDRTAccessPolicy\">AWSShieldDRTAccessPolicy</a>. For more information see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html\">Adding and removing IAM identity permissions</a>. The role must also trust the service principal <code>drt.shield.amazonaws.com</code>. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html\">IAM JSON policy elements: Principal</a>.</p> <p>The SRT will have access only to your WAF and Shield resources. By submitting this request, you authorize the SRT to inspect your WAF and Shield configuration and create and update WAF rules and web ACLs on your behalf. The SRT takes these actions only if explicitly authorized by you.</p> <p>You must have the <code>iam:PassRole</code> permission to make an <code>AssociateDRTRole</code> request. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html\">Granting a user permissions to pass a role to an Amazon Web Services service</a>. </p> <p>To use the services of the SRT and make an <code>AssociateDRTRole</code> request, you must be subscribed to the <a href=\"https://docs.aws.amazon.com/premiumsupport/business-support/\">Business Support plan</a> or the <a href=\"https://docs.aws.amazon.com/premiumsupport/enterprise-support/\">Enterprise Support plan</a>.</p>",
+    "AssociateDRTLogBucket": "<p>Authorizes the Shield Response Team (SRT) to access the specified Amazon S3 bucket containing log data such as Application Load Balancer access logs, CloudFront logs, or logs from third party sources. You can associate up to 10 Amazon S3 buckets with your subscription.</p> <p>To use the services of the SRT and make an <code>AssociateDRTLogBucket</code> request, you must be subscribed to the <a href=\"http://aws.amazon.com/premiumsupport/business-support/\">Business Support plan</a> or the <a href=\"http://aws.amazon.com/premiumsupport/enterprise-support/\">Enterprise Support plan</a>.</p>",
+    "AssociateDRTRole": "<p>Authorizes the Shield Response Team (SRT) using the specified role, to access your Amazon Web Services account to assist with DDoS attack mitigation during potential attacks. This enables the SRT to inspect your WAF configuration and create or update WAF rules and web ACLs.</p> <p>You can associate only one <code>RoleArn</code> with your subscription. If you submit an <code>AssociateDRTRole</code> request for an account that already has an associated role, the new <code>RoleArn</code> will replace the existing <code>RoleArn</code>. </p> <p>Prior to making the <code>AssociateDRTRole</code> request, you must attach the <code>AWSShieldDRTAccessPolicy</code> managed policy to the role that you'll specify in the request. You can access this policy in the IAM console at <a href=\"https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::aws:policy/service-role/AWSShieldDRTAccessPolicy\">AWSShieldDRTAccessPolicy</a>. For more information see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html\">Adding and removing IAM identity permissions</a>. The role must also trust the service principal <code>drt.shield.amazonaws.com</code>. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html\">IAM JSON policy elements: Principal</a>.</p> <p>The SRT will have access only to your WAF and Shield resources. By submitting this request, you authorize the SRT to inspect your WAF and Shield configuration and create and update WAF rules and web ACLs on your behalf. The SRT takes these actions only if explicitly authorized by you.</p> <p>You must have the <code>iam:PassRole</code> permission to make an <code>AssociateDRTRole</code> request. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html\">Granting a user permissions to pass a role to an Amazon Web Services service</a>. </p> <p>To use the services of the SRT and make an <code>AssociateDRTRole</code> request, you must be subscribed to the <a href=\"http://aws.amazon.com/premiumsupport/business-support/\">Business Support plan</a> or the <a href=\"http://aws.amazon.com/premiumsupport/enterprise-support/\">Enterprise Support plan</a>.</p>",
     "AssociateHealthCheck": "<p>Adds health-based detection to the Shield Advanced protection for a resource. Shield Advanced health-based detection uses the health of your Amazon Web Services resource to improve responsiveness and accuracy in attack detection and response. </p> <p>You define the health check in Route 53 and then associate it with your Shield Advanced protection. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html#ddos-advanced-health-check-option\">Shield Advanced Health-Based Detection</a> in the <i>WAF Developer Guide</i>. </p>",
     "AssociateProactiveEngagementDetails": "<p>Initializes proactive engagement and sets the list of contacts for the Shield Response Team (SRT) to use. You must provide at least one phone number in the emergency contact list. </p> <p>After you have initialized proactive engagement using this call, to disable or enable proactive engagement, use the calls <code>DisableProactiveEngagement</code> and <code>EnableProactiveEngagement</code>. </p> <note> <p>This call defines the list of email addresses and phone numbers that the SRT can use to contact you for escalations to the SRT and to initiate proactive customer support.</p> <p>The contacts that you provide in the request replace any contacts that were already defined. If you already have contacts defined and want to use them, retrieve the list using <code>DescribeEmergencyContactSettings</code> and then provide it to this call. </p> </note>",
-    "CreateProtection": "<p>Enables Shield Advanced for a specific Amazon Web Services resource. The resource can be an Amazon CloudFront distribution, Elastic Load Balancing load balancer, Global Accelerator accelerator, Elastic IP Address, or an Amazon Route 53 hosted zone.</p> <p>You can add protection to only a single resource with each <code>CreateProtection</code> request. You can add protection to multiple resources at once through the Shield Advanced console at <a href=\"https://console.aws.amazon.com/wafv2/shieldv2#/\">https://console.aws.amazon.com/wafv2/shieldv2#/</a>. For more information see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/getting-started-ddos.html\">Getting Started with Shield Advanced</a> and <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/configure-new-protection.html\">Adding Shield Advanced protection to Amazon Web Services resources</a>.</p>",
+    "CreateProtection": "<p>Enables Shield Advanced for a specific Amazon Web Services resource. The resource can be an Amazon CloudFront distribution, Amazon Route 53 hosted zone, Global Accelerator standard accelerator, Elastic IP Address, Application Load Balancer, or a Classic Load Balancer. You can protect Amazon EC2 instances and Network Load Balancers by association with protected Amazon EC2 Elastic IP addresses.</p> <p>You can add protection to only a single resource with each <code>CreateProtection</code> request. You can add protection to multiple resources at once through the Shield Advanced console at <a href=\"https://console.aws.amazon.com/wafv2/shieldv2#/\">https://console.aws.amazon.com/wafv2/shieldv2#/</a>. For more information see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/getting-started-ddos.html\">Getting Started with Shield Advanced</a> and <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/configure-new-protection.html\">Adding Shield Advanced protection to Amazon Web Services resources</a>.</p>",
     "CreateProtectionGroup": "<p>Creates a grouping of protected resources so they can be handled as a collective. This resource grouping improves the accuracy of detection and reduces false positives. </p>",
-    "CreateSubscription": "<p>Activates Shield Advanced for an account.</p> <p>When you initally create a subscription, your subscription is set to be automatically renewed at the end of the existing subscription period. You can change this by submitting an <code>UpdateSubscription</code> request. </p>",
+    "CreateSubscription": "<p>Activates Shield Advanced for an account.</p> <note> <p>For accounts that are members of an Organizations organization, Shield Advanced subscriptions are billed against the organization's payer account, regardless of whether the payer account itself is subscribed. </p> </note> <p>When you initially create a subscription, your subscription is set to be automatically renewed at the end of the existing subscription period. You can change this by submitting an <code>UpdateSubscription</code> request. </p>",
     "DeleteProtection": "<p>Deletes an Shield Advanced <a>Protection</a>.</p>",
     "DeleteProtectionGroup": "<p>Removes the specified protection group.</p>",
     "DeleteSubscription": "<p>Removes Shield Advanced from an account. Shield Advanced requires a 1-year subscription commitment. You cannot delete a subscription prior to the completion of that commitment. </p>",
@@ -19,17 +19,17 @@
     "DescribeProtection": "<p>Lists the details of a <a>Protection</a> object.</p>",
     "DescribeProtectionGroup": "<p>Returns the specification for the specified protection group.</p>",
     "DescribeSubscription": "<p>Provides details about the Shield Advanced subscription for an account.</p>",
-    "DisableApplicationLayerAutomaticResponse": "<p>Disable the Shield Advanced automatic application layer DDoS mitigation feature for the resource. This stops Shield Advanced from creating, verifying, and applying WAF rules for attacks that it detects for the resource. </p>",
+    "DisableApplicationLayerAutomaticResponse": "<p>Disable the Shield Advanced automatic application layer DDoS mitigation feature for the protected resource. This stops Shield Advanced from creating, verifying, and applying WAF rules for attacks that it detects for the resource. </p>",
     "DisableProactiveEngagement": "<p>Removes authorization from the Shield Response Team (SRT) to notify contacts about escalations to the SRT and to initiate proactive customer support.</p>",
     "DisassociateDRTLogBucket": "<p>Removes the Shield Response Team's (SRT) access to the specified Amazon S3 bucket containing the logs that you shared previously.</p>",
     "DisassociateDRTRole": "<p>Removes the Shield Response Team's (SRT) access to your Amazon Web Services account.</p>",
     "DisassociateHealthCheck": "<p>Removes health-based detection from the Shield Advanced protection for a resource. Shield Advanced health-based detection uses the health of your Amazon Web Services resource to improve responsiveness and accuracy in attack detection and response. </p> <p>You define the health check in Route 53 and then associate or disassociate it with your Shield Advanced protection. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html#ddos-advanced-health-check-option\">Shield Advanced Health-Based Detection</a> in the <i>WAF Developer Guide</i>. </p>",
-    "EnableApplicationLayerAutomaticResponse": "<p>Enable the Shield Advanced automatic application layer DDoS mitigation for the resource. </p> <note> <p>This feature is available for Amazon CloudFront distributions only.</p> </note> <p>This causes Shield Advanced to create, verify, and apply WAF rules for DDoS attacks that it detects for the resource. Shield Advanced applies the rules in a Shield rule group inside the web ACL that you've associated with the resource. For information about how automatic mitigation works and the requirements for using it, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/ddos-advanced-automatic-app-layer-response.html\">Shield Advanced automatic application layer DDoS mitigation</a>.</p> <p>Don't use this action to make changes to automatic mitigation settings when it's already enabled for a resource. Instead, use <a>UpdateApplicationLayerAutomaticResponse</a>.</p> <p>To use this feature, you must associate a web ACL with the protected resource. The web ACL must be created using the latest version of WAF (v2). You can associate the web ACL through the Shield Advanced console at <a href=\"https://console.aws.amazon.com/wafv2/shieldv2#/\">https://console.aws.amazon.com/wafv2/shieldv2#/</a>. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/getting-started-ddos.html\">Getting Started with Shield Advanced</a>.</p> <p>You can also do this through the WAF console or the WAF API, but you must manage Shield Advanced automatic mitigation through Shield Advanced. For information about WAF, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/\">WAF Developer Guide</a>.</p>",
+    "EnableApplicationLayerAutomaticResponse": "<p>Enable the Shield Advanced automatic application layer DDoS mitigation for the protected resource. </p> <note> <p>This feature is available for Amazon CloudFront distributions and Application Load Balancers only.</p> </note> <p>This causes Shield Advanced to create, verify, and apply WAF rules for DDoS attacks that it detects for the resource. Shield Advanced applies the rules in a Shield rule group inside the web ACL that you've associated with the resource. For information about how automatic mitigation works and the requirements for using it, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/ddos-advanced-automatic-app-layer-response.html\">Shield Advanced automatic application layer DDoS mitigation</a>.</p> <note> <p>Don't use this action to make changes to automatic mitigation settings when it's already enabled for a resource. Instead, use <a>UpdateApplicationLayerAutomaticResponse</a>.</p> </note> <p>To use this feature, you must associate a web ACL with the protected resource. The web ACL must be created using the latest version of WAF (v2). You can associate the web ACL through the Shield Advanced console at <a href=\"https://console.aws.amazon.com/wafv2/shieldv2#/\">https://console.aws.amazon.com/wafv2/shieldv2#/</a>. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/getting-started-ddos.html\">Getting Started with Shield Advanced</a>. You can also associate the web ACL to the resource through the WAF console or the WAF API, but you must manage Shield Advanced automatic mitigation through Shield Advanced. For information about WAF, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/\">WAF Developer Guide</a>.</p>",
     "EnableProactiveEngagement": "<p>Authorizes the Shield Response Team (SRT) to use email and phone to notify contacts about escalations to the SRT and to initiate proactive customer support.</p>",
     "GetSubscriptionState": "<p>Returns the <code>SubscriptionState</code>, either <code>Active</code> or <code>Inactive</code>.</p>",
     "ListAttacks": "<p>Returns all ongoing DDoS attacks or all DDoS attacks during a specified time period.</p>",
-    "ListProtectionGroups": "<p>Retrieves the <a>ProtectionGroup</a> objects for the account.</p>",
-    "ListProtections": "<p>Lists all <a>Protection</a> objects for the account.</p>",
+    "ListProtectionGroups": "<p>Retrieves <a>ProtectionGroup</a> objects for the account. You can retrieve all protection groups or you can provide filtering criteria and retrieve just the subset of protection groups that match the criteria. </p>",
+    "ListProtections": "<p>Retrieves <a>Protection</a> objects for the account. You can retrieve all protections or you can provide filtering criteria and retrieve just the subset of protections that match the criteria. </p>",
     "ListResourcesInProtectionGroup": "<p>Retrieves the resources that are included in the protection group. </p>",
     "ListTagsForResource": "<p>Gets information about Amazon Web Services tags for a specified Amazon Resource Name (ARN) in Shield.</p>",
     "TagResource": "<p>Adds or updates tags for a resource in Shield.</p>",
@@ -37,7 +37,7 @@
     "UpdateApplicationLayerAutomaticResponse": "<p>Updates an existing Shield Advanced automatic application layer DDoS mitigation configuration for the specified resource.</p>",
     "UpdateEmergencyContactSettings": "<p>Updates the details of the list of email addresses and phone numbers that the Shield Response Team (SRT) can use to contact you if you have proactive engagement enabled, for escalations to the SRT and to initiate proactive customer support.</p>",
     "UpdateProtectionGroup": "<p>Updates an existing protection group. A protection group is a grouping of protected resources so they can be handled as a collective. This resource grouping improves the accuracy of detection and reduces false positives. </p>",
-    "UpdateSubscription": "<p>Updates the details of an existing subscription. Only enter values for parameters you want to change. Empty parameters are not updated.</p>"
+    "UpdateSubscription": "<p>Updates the details of an existing subscription. Only enter values for parameters you want to change. Empty parameters are not updated.</p> <note> <p>For accounts that are members of an Organizations organization, Shield Advanced subscriptions are billed against the organization's payer account, regardless of whether the payer account itself is subscribed. </p> </note>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -105,7 +105,7 @@
     "AttackDetail": {
       "base": "<p>The details of a DDoS attack.</p>",
       "refs": {
-        "DescribeAttackResponse$Attack": "<p>The attack that is described.</p>"
+        "DescribeAttackResponse$Attack": "<p>The attack that you requested. </p>"
       }
     },
     "AttackId": {
@@ -493,6 +493,18 @@
         "Protection$HealthCheckIds": "<p>The unique identifier (ID) for the Route 53 health check that's associated with the protection. </p>"
       }
     },
+    "InclusionProtectionFilters": {
+      "base": "<p>Narrows the set of protections that the call retrieves. You can retrieve a single protection by providing its name or the ARN (Amazon Resource Name) of its protected resource. You can also retrieve all protections for a specific resource type. You can provide up to one criteria per filter type. Shield Advanced returns protections that exactly match all of the filter criteria that you provide.</p>",
+      "refs": {
+        "ListProtectionsRequest$InclusionFilters": "<p>Narrows the set of protections that the call retrieves. You can retrieve a single protection by providing its name or the ARN (Amazon Resource Name) of its protected resource. You can also retrieve all protections for a specific resource type. You can provide up to one criteria per filter type. Shield Advanced returns protections that exactly match all of the filter criteria that you provide.</p>"
+      }
+    },
+    "InclusionProtectionGroupFilters": {
+      "base": "<p>Narrows the set of protection groups that the call retrieves. You can retrieve a single protection group by its name and you can retrieve all protection groups that are configured with a specific pattern, aggregation, or resource type. You can provide up to one criteria per filter type. Shield Advanced returns the protection groups that exactly match all of the search criteria that you provide.</p>",
+      "refs": {
+        "ListProtectionGroupsRequest$InclusionFilters": "<p>Narrows the set of protection groups that the call retrieves. You can retrieve a single protection group by its name and you can retrieve all protection groups that are configured with specific pattern or aggregation settings. You can provide up to one criteria per filter type. Shield Advanced returns the protection groups that exactly match all of the search criteria that you provide.</p>"
+      }
+    },
     "Integer": {
       "base": null,
       "refs": {
@@ -656,7 +668,7 @@
       }
     },
     "NoAssociatedRoleException": {
-      "base": "<p>The ARN of the role that you specifed does not exist.</p>",
+      "base": "<p>The ARN of the role that you specified does not exist.</p>",
       "refs": {
       }
     },
@@ -681,14 +693,22 @@
       "base": null,
       "refs": {
         "CreateProtectionGroupRequest$ResourceType": "<p>The resource type to include in the protection group. All protected resources of this type are included in the protection group. Newly protected resources of this type are automatically added to the group. You must set this when you set <code>Pattern</code> to <code>BY_RESOURCE_TYPE</code> and you must not set it for any other <code>Pattern</code> setting. </p>",
+        "ProtectedResourceTypeFilters$member": null,
         "ProtectionGroup$ResourceType": "<p>The resource type to include in the protection group. All protected resources of this type are included in the protection group. You must set this when you set <code>Pattern</code> to <code>BY_RESOURCE_TYPE</code> and you must not set it for any other <code>Pattern</code> setting. </p>",
         "UpdateProtectionGroupRequest$ResourceType": "<p>The resource type to include in the protection group. All protected resources of this type are included in the protection group. You must set this when you set <code>Pattern</code> to <code>BY_RESOURCE_TYPE</code> and you must not set it for any other <code>Pattern</code> setting. </p>"
+      }
+    },
+    "ProtectedResourceTypeFilters": {
+      "base": null,
+      "refs": {
+        "InclusionProtectionFilters$ResourceTypes": "<p>The type of protected resource whose protections you want to retrieve. </p>",
+        "InclusionProtectionGroupFilters$ResourceTypes": "<p>The resource type configuration of the protection groups that you want to retrieve. In the protection group configuration, you specify the resource type when you set the group's <code>Pattern</code> to <code>BY_RESOURCE_TYPE</code>. </p>"
       }
     },
     "Protection": {
       "base": "<p>An object that represents a resource that is under DDoS protection.</p>",
       "refs": {
-        "DescribeProtectionResponse$Protection": "<p>The <a>Protection</a> object that is described.</p>",
+        "DescribeProtectionResponse$Protection": "<p>The <a>Protection</a> that you requested. </p>",
         "Protections$member": null
       }
     },
@@ -704,7 +724,14 @@
       "refs": {
         "CreateProtectionGroupRequest$Aggregation": "<p>Defines how Shield combines resource data for the group in order to detect, mitigate, and report events.</p> <ul> <li> <p>Sum - Use the total traffic across the group. This is a good choice for most cases. Examples include Elastic IP addresses for EC2 instances that scale manually or automatically.</p> </li> <li> <p>Mean - Use the average of the traffic across the group. This is a good choice for resources that share traffic uniformly. Examples include accelerators and load balancers.</p> </li> <li> <p>Max - Use the highest traffic from each resource. This is useful for resources that don't share traffic and for resources that share that traffic in a non-uniform way. Examples include Amazon CloudFront and origin resources for CloudFront distributions.</p> </li> </ul>",
         "ProtectionGroup$Aggregation": "<p>Defines how Shield combines resource data for the group in order to detect, mitigate, and report events.</p> <ul> <li> <p>Sum - Use the total traffic across the group. This is a good choice for most cases. Examples include Elastic IP addresses for EC2 instances that scale manually or automatically.</p> </li> <li> <p>Mean - Use the average of the traffic across the group. This is a good choice for resources that share traffic uniformly. Examples include accelerators and load balancers.</p> </li> <li> <p>Max - Use the highest traffic from each resource. This is useful for resources that don't share traffic and for resources that share that traffic in a non-uniform way. Examples include Amazon CloudFront distributions and origin resources for CloudFront distributions.</p> </li> </ul>",
+        "ProtectionGroupAggregationFilters$member": null,
         "UpdateProtectionGroupRequest$Aggregation": "<p>Defines how Shield combines resource data for the group in order to detect, mitigate, and report events.</p> <ul> <li> <p>Sum - Use the total traffic across the group. This is a good choice for most cases. Examples include Elastic IP addresses for EC2 instances that scale manually or automatically.</p> </li> <li> <p>Mean - Use the average of the traffic across the group. This is a good choice for resources that share traffic uniformly. Examples include accelerators and load balancers.</p> </li> <li> <p>Max - Use the highest traffic from each resource. This is useful for resources that don't share traffic and for resources that share that traffic in a non-uniform way. Examples include Amazon CloudFront distributions and origin resources for CloudFront distributions.</p> </li> </ul>"
+      }
+    },
+    "ProtectionGroupAggregationFilters": {
+      "base": null,
+      "refs": {
+        "InclusionProtectionGroupFilters$Aggregations": "<p>The aggregation setting of the protection groups that you want to retrieve. </p>"
       }
     },
     "ProtectionGroupArbitraryPatternLimits": {
@@ -721,7 +748,14 @@
         "DescribeProtectionGroupRequest$ProtectionGroupId": "<p>The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it. </p>",
         "ListResourcesInProtectionGroupRequest$ProtectionGroupId": "<p>The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it. </p>",
         "ProtectionGroup$ProtectionGroupId": "<p>The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it. </p>",
+        "ProtectionGroupIdFilters$member": null,
         "UpdateProtectionGroupRequest$ProtectionGroupId": "<p>The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it. </p>"
+      }
+    },
+    "ProtectionGroupIdFilters": {
+      "base": null,
+      "refs": {
+        "InclusionProtectionGroupFilters$ProtectionGroupIds": "<p>The ID of the protection group that you want to retrieve. </p>"
       }
     },
     "ProtectionGroupLimits": {
@@ -734,7 +768,7 @@
       "base": null,
       "refs": {
         "CreateProtectionGroupRequest$Members": "<p>The Amazon Resource Names (ARNs) of the resources to include in the protection group. You must set this when you set <code>Pattern</code> to <code>ARBITRARY</code> and you must not set it for any other <code>Pattern</code> setting. </p>",
-        "ProtectionGroup$Members": "<p>The Amazon Resource Names (ARNs) of the resources to include in the protection group. You must set this when you set <code>Pattern</code> to <code>ARBITRARY</code> and you must not set it for any other <code>Pattern</code> setting. </p>",
+        "ProtectionGroup$Members": "<p>The ARNs (Amazon Resource Names) of the resources to include in the protection group. You must set this when you set <code>Pattern</code> to <code>ARBITRARY</code> and you must not set it for any other <code>Pattern</code> setting. </p>",
         "UpdateProtectionGroupRequest$Members": "<p>The Amazon Resource Names (ARNs) of the resources to include in the protection group. You must set this when you set <code>Pattern</code> to <code>ARBITRARY</code> and you must not set it for any other <code>Pattern</code> setting. </p>"
       }
     },
@@ -742,8 +776,15 @@
       "base": null,
       "refs": {
         "CreateProtectionGroupRequest$Pattern": "<p>The criteria to use to choose the protected resources for inclusion in the group. You can include all resources that have protections, provide a list of resource Amazon Resource Names (ARNs), or include all resources of a specified resource type. </p>",
-        "ProtectionGroup$Pattern": "<p>The criteria to use to choose the protected resources for inclusion in the group. You can include all resources that have protections, provide a list of resource Amazon Resource Names (ARNs), or include all resources of a specified resource type.</p>",
+        "ProtectionGroup$Pattern": "<p>The criteria to use to choose the protected resources for inclusion in the group. You can include all resources that have protections, provide a list of resource ARNs (Amazon Resource Names), or include all resources of a specified resource type.</p>",
+        "ProtectionGroupPatternFilters$member": null,
         "UpdateProtectionGroupRequest$Pattern": "<p>The criteria to use to choose the protected resources for inclusion in the group. You can include all resources that have protections, provide a list of resource Amazon Resource Names (ARNs), or include all resources of a specified resource type.</p>"
+      }
+    },
+    "ProtectionGroupPatternFilters": {
+      "base": null,
+      "refs": {
+        "InclusionProtectionGroupFilters$Patterns": "<p>The pattern specification of the protection groups that you want to retrieve. </p>"
       }
     },
     "ProtectionGroupPatternTypeLimits": {
@@ -764,7 +805,7 @@
         "AssociateHealthCheckRequest$ProtectionId": "<p>The unique identifier (ID) for the <a>Protection</a> object to add the health check association to. </p>",
         "CreateProtectionResponse$ProtectionId": "<p>The unique identifier (ID) for the <a>Protection</a> object that is created.</p>",
         "DeleteProtectionRequest$ProtectionId": "<p>The unique identifier (ID) for the <a>Protection</a> object to be deleted.</p>",
-        "DescribeProtectionRequest$ProtectionId": "<p>The unique identifier (ID) for the <a>Protection</a> object that is described. When submitting the <code>DescribeProtection</code> request you must provide either the <code>ResourceArn</code> or the <code>ProtectionID</code>, but not both.</p>",
+        "DescribeProtectionRequest$ProtectionId": "<p>The unique identifier (ID) for the <a>Protection</a> object to describe. You must provide either the <code>ResourceArn</code> of the protected resource or the <code>ProtectionID</code> of the protection, but not both.</p>",
         "DisassociateHealthCheckRequest$ProtectionId": "<p>The unique identifier (ID) for the <a>Protection</a> object to remove the health check association from. </p>",
         "Protection$Id": "<p>The unique identifier (ID) of the protection.</p>"
       }
@@ -779,7 +820,14 @@
       "base": null,
       "refs": {
         "CreateProtectionRequest$Name": "<p>Friendly name for the <code>Protection</code> you are creating.</p>",
-        "Protection$Name": "<p>The name of the protection. For example, <code>My CloudFront distributions</code>.</p>"
+        "Protection$Name": "<p>The name of the protection. For example, <code>My CloudFront distributions</code>.</p>",
+        "ProtectionNameFilters$member": null
+      }
+    },
+    "ProtectionNameFilters": {
+      "base": null,
+      "refs": {
+        "InclusionProtectionFilters$ProtectionNames": "<p>The name of the protection that you want to retrieve. </p>"
       }
     },
     "Protections": {
@@ -797,16 +845,17 @@
       "base": null,
       "refs": {
         "AttackDetail$ResourceArn": "<p>The ARN (Amazon Resource Name) of the resource that was attacked.</p>",
-        "CreateProtectionRequest$ResourceArn": "<p>The ARN (Amazon Resource Name) of the resource to be protected.</p> <p>The ARN should be in one of the following formats:</p> <ul> <li> <p>For an Application Load Balancer: <code>arn:aws:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i> </code> </p> </li> <li> <p>For an Elastic Load Balancer (Classic Load Balancer): <code>arn:aws:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/<i>load-balancer-name</i> </code> </p> </li> <li> <p>For an Amazon CloudFront distribution: <code>arn:aws:cloudfront::<i>account-id</i>:distribution/<i>distribution-id</i> </code> </p> </li> <li> <p>For an Global Accelerator accelerator: <code>arn:aws:globalaccelerator::<i>account-id</i>:accelerator/<i>accelerator-id</i> </code> </p> </li> <li> <p>For Amazon Route 53: <code>arn:aws:route53:::hostedzone/<i>hosted-zone-id</i> </code> </p> </li> <li> <p>For an Elastic IP address: <code>arn:aws:ec2:<i>region</i>:<i>account-id</i>:eip-allocation/<i>allocation-id</i> </code> </p> </li> </ul>",
-        "DescribeProtectionRequest$ResourceArn": "<p>The ARN (Amazon Resource Name) of the Amazon Web Services resource for the <a>Protection</a> object that is described. When submitting the <code>DescribeProtection</code> request you must provide either the <code>ResourceArn</code> or the <code>ProtectionID</code>, but not both.</p>",
-        "DisableApplicationLayerAutomaticResponseRequest$ResourceArn": "<p>The ARN (Amazon Resource Name) of the resource.</p>",
-        "EnableApplicationLayerAutomaticResponseRequest$ResourceArn": "<p>The ARN (Amazon Resource Name) of the resource.</p>",
+        "CreateProtectionRequest$ResourceArn": "<p>The ARN (Amazon Resource Name) of the resource to be protected.</p> <p>The ARN should be in one of the following formats:</p> <ul> <li> <p>For an Application Load Balancer: <code>arn:aws:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i> </code> </p> </li> <li> <p>For an Elastic Load Balancer (Classic Load Balancer): <code>arn:aws:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/<i>load-balancer-name</i> </code> </p> </li> <li> <p>For an Amazon CloudFront distribution: <code>arn:aws:cloudfront::<i>account-id</i>:distribution/<i>distribution-id</i> </code> </p> </li> <li> <p>For an Global Accelerator standard accelerator: <code>arn:aws:globalaccelerator::<i>account-id</i>:accelerator/<i>accelerator-id</i> </code> </p> </li> <li> <p>For Amazon Route 53: <code>arn:aws:route53:::hostedzone/<i>hosted-zone-id</i> </code> </p> </li> <li> <p>For an Elastic IP address: <code>arn:aws:ec2:<i>region</i>:<i>account-id</i>:eip-allocation/<i>allocation-id</i> </code> </p> </li> </ul>",
+        "DescribeProtectionRequest$ResourceArn": "<p>The ARN (Amazon Resource Name) of the protected Amazon Web Services resource. You must provide either the <code>ResourceArn</code> of the protected resource or the <code>ProtectionID</code> of the protection, but not both.</p>",
+        "DisableApplicationLayerAutomaticResponseRequest$ResourceArn": "<p>The ARN (Amazon Resource Name) of the protected resource.</p>",
+        "EnableApplicationLayerAutomaticResponseRequest$ResourceArn": "<p>The ARN (Amazon Resource Name) of the protected resource.</p>",
         "ListTagsForResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource to get tags for.</p>",
         "Protection$ResourceArn": "<p>The ARN (Amazon Resource Name) of the Amazon Web Services resource that is protected.</p>",
         "Protection$ProtectionArn": "<p>The ARN (Amazon Resource Name) of the protection.</p>",
         "ProtectionGroup$ProtectionGroupArn": "<p>The ARN (Amazon Resource Name) of the protection group.</p>",
         "ProtectionGroupMembers$member": null,
         "ResourceArnFilterList$member": null,
+        "ResourceArnFilters$member": null,
         "ResourceArnList$member": null,
         "Subscription$SubscriptionArn": "<p>The ARN (Amazon Resource Name) of the subscription.</p>",
         "TagResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource that you want to add or update tags for.</p>",
@@ -818,6 +867,12 @@
       "base": null,
       "refs": {
         "ListAttacksRequest$ResourceArns": "<p>The ARNs (Amazon Resource Names) of the resources that were attacked. If you leave this blank, all applicable resources for this account will be included.</p>"
+      }
+    },
+    "ResourceArnFilters": {
+      "base": null,
+      "refs": {
+        "InclusionProtectionFilters$ResourceArns": "<p>The ARN (Amazon Resource Name) of the resource whose protection you want to retrieve. </p>"
       }
     },
     "ResourceArnList": {
@@ -834,7 +889,7 @@
     "ResponseAction": {
       "base": "<p>Specifies the action setting that Shield Advanced should use in the WAF rules that it creates on behalf of the protected resource in response to DDoS attacks. You specify this as part of the configuration for the automatic application layer DDoS mitigation feature, when you enable or update automatic mitigation. Shield Advanced creates the WAF rules in a Shield Advanced-managed rule group, inside the web ACL that you have associated with the resource. </p>",
       "refs": {
-        "ApplicationLayerAutomaticResponseConfiguration$Action": null,
+        "ApplicationLayerAutomaticResponseConfiguration$Action": "<p>Specifies the action setting that Shield Advanced should use in the WAF rules that it creates on behalf of the protected resource in response to DDoS attacks. You specify this as part of the configuration for the automatic application layer DDoS mitigation feature, when you enable or update automatic mitigation. Shield Advanced creates the WAF rules in a Shield Advanced-managed rule group, inside the web ACL that you have associated with the resource. </p>",
         "EnableApplicationLayerAutomaticResponseRequest$Action": "<p>Specifies the action setting that Shield Advanced should use in the WAF rules that it creates on behalf of the protected resource in response to DDoS attacks. You specify this as part of the configuration for the automatic application layer DDoS mitigation feature, when you enable or update automatic mitigation. Shield Advanced creates the WAF rules in a Shield Advanced-managed rule group, inside the web ACL that you have associated with the resource. </p>",
         "UpdateApplicationLayerAutomaticResponseRequest$Action": "<p>Specifies the action setting that Shield Advanced should use in the WAF rules that it creates on behalf of the protected resource in response to DDoS attacks. You specify this as part of the configuration for the automatic application layer DDoS mitigation feature, when you enable or update automatic mitigation. Shield Advanced creates the WAF rules in a Shield Advanced-managed rule group, inside the web ACL that you have associated with the resource. </p>"
       }
@@ -974,7 +1029,7 @@
     "TimeRange": {
       "base": "<p>The time range. </p>",
       "refs": {
-        "DescribeAttackStatisticsResponse$TimeRange": null,
+        "DescribeAttackStatisticsResponse$TimeRange": "<p>The time range of the attack.</p>",
         "ListAttacksRequest$StartTime": "<p>The start of the time period for the attacks. This is a <code>timestamp</code> type. The request syntax listing for this call indicates a <code>number</code> type, but you can provide the time in any valid <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-types.html#parameter-type-timestamp\">timestamp format</a> setting. </p>",
         "ListAttacksRequest$EndTime": "<p>The end of the time period for the attacks. This is a <code>timestamp</code> type. The request syntax listing for this call indicates a <code>number</code> type, but you can provide the time in any valid <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-types.html#parameter-type-timestamp\">timestamp format</a> setting. </p>"
       }

@@ -3444,8 +3444,7 @@ func (c *FSx) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 
 // ListTagsForResource API operation for Amazon FSx.
 //
-// Lists tags for an Amazon FSx file systems and backups in the case of Amazon
-// FSx for Windows File Server.
+// Lists tags for Amazon FSx resources.
 //
 // When retrieving all tags, you can optionally specify the MaxResults parameter
 // to limit the number of tags in a response. If more tags remain, Amazon FSx
@@ -6371,12 +6370,20 @@ type CreateDataRepositoryTaskInput struct {
 	// FileSystemId is a required field
 	FileSystemId *string `min:"11" type:"string" required:"true"`
 
-	// (Optional) The path or paths on the Amazon FSx file system to use when the
-	// data repository task is processed. The default path is the file system root
-	// directory. The paths you provide need to be relative to the mount point of
-	// the file system. If the mount point is /mnt/fsx and /mnt/fsx/path1 is a directory
-	// or file on the file system you want to export, then the path to provide is
-	// path1. If a path that you provide isn't valid, the task fails.
+	// A list of paths for the data repository task to use when the task is processed.
+	// If a path that you provide isn't valid, the task fails.
+	//
+	//    * For export tasks, the list contains paths on the Amazon FSx file system
+	//    from which the files are exported to the Amazon S3 bucket. The default
+	//    path is the file system root directory. The paths you provide need to
+	//    be relative to the mount point of the file system. If the mount point
+	//    is /mnt/fsx and /mnt/fsx/path1 is a directory or file on the file system
+	//    you want to export, then the path to provide is path1.
+	//
+	//    * For import tasks, the list contains paths in the Amazon S3 bucket from
+	//    which POSIX metadata changes are imported to the Amazon FSx file system.
+	//    The path can be an S3 bucket or prefix in the format s3://myBucket/myPrefix
+	//    (where myPrefix is optional).
 	Paths []*string `type:"list"`
 
 	// Defines whether or not Amazon FSx provides a CompletionReport once the task
@@ -7668,12 +7675,12 @@ type CreateFileSystemOpenZFSConfiguration struct {
 	// from the file system, regardless of this value.
 	CopyTagsToBackups *bool `type:"boolean"`
 
-	// A Boolean value indicating whether tags for the volume should be copied to
-	// snapshots. This value defaults to false. If it's set to true, all tags for
-	// the volume are copied to snapshots where the user doesn't specify tags. If
-	// this value is true, and you specify one or more tags, only the specified
-	// tags are copied to snapshots. If you specify one or more tags when creating
-	// the snapshot, no tags are copied from the volume, regardless of this value.
+	// A Boolean value indicating whether tags for the file system should be copied
+	// to volumes. This value defaults to false. If it's set to true, all tags for
+	// the file system are copied to volumes where the user doesn't specify tags.
+	// If this value is true, and you specify one or more tags, only the specified
+	// tags are copied to volumes. If you specify one or more tags when creating
+	// the volume, no tags are copied from the file system, regardless of this value.
 	CopyTagsToVolumes *bool `type:"boolean"`
 
 	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of

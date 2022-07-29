@@ -1084,6 +1084,23 @@
       "type":"list",
       "member":{"shape":"HealthCheckId"}
     },
+    "InclusionProtectionFilters":{
+      "type":"structure",
+      "members":{
+        "ResourceArns":{"shape":"ResourceArnFilters"},
+        "ProtectionNames":{"shape":"ProtectionNameFilters"},
+        "ResourceTypes":{"shape":"ProtectedResourceTypeFilters"}
+      }
+    },
+    "InclusionProtectionGroupFilters":{
+      "type":"structure",
+      "members":{
+        "ProtectionGroupIds":{"shape":"ProtectionGroupIdFilters"},
+        "Patterns":{"shape":"ProtectionGroupPatternFilters"},
+        "ResourceTypes":{"shape":"ProtectedResourceTypeFilters"},
+        "Aggregations":{"shape":"ProtectionGroupAggregationFilters"}
+      }
+    },
     "Integer":{"type":"integer"},
     "InternalErrorException":{
       "type":"structure",
@@ -1166,7 +1183,8 @@
       "type":"structure",
       "members":{
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"MaxResults"}
+        "MaxResults":{"shape":"MaxResults"},
+        "InclusionFilters":{"shape":"InclusionProtectionGroupFilters"}
       }
     },
     "ListProtectionGroupsResponse":{
@@ -1181,7 +1199,8 @@
       "type":"structure",
       "members":{
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"MaxResults"}
+        "MaxResults":{"shape":"MaxResults"},
+        "InclusionFilters":{"shape":"InclusionProtectionFilters"}
       }
     },
     "ListProtectionsResponse":{
@@ -1296,6 +1315,12 @@
         "GLOBAL_ACCELERATOR"
       ]
     },
+    "ProtectedResourceTypeFilters":{
+      "type":"list",
+      "member":{"shape":"ProtectedResourceType"},
+      "max":1,
+      "min":1
+    },
     "Protection":{
       "type":"structure",
       "members":{
@@ -1332,6 +1357,12 @@
         "MAX"
       ]
     },
+    "ProtectionGroupAggregationFilters":{
+      "type":"list",
+      "member":{"shape":"ProtectionGroupAggregation"},
+      "max":1,
+      "min":1
+    },
     "ProtectionGroupArbitraryPatternLimits":{
       "type":"structure",
       "required":["MaxMembers"],
@@ -1344,6 +1375,12 @@
       "max":36,
       "min":1,
       "pattern":"[a-zA-Z0-9\\\\-]*"
+    },
+    "ProtectionGroupIdFilters":{
+      "type":"list",
+      "member":{"shape":"ProtectionGroupId"},
+      "max":1,
+      "min":1
     },
     "ProtectionGroupLimits":{
       "type":"structure",
@@ -1369,6 +1406,12 @@
         "ARBITRARY",
         "BY_RESOURCE_TYPE"
       ]
+    },
+    "ProtectionGroupPatternFilters":{
+      "type":"list",
+      "member":{"shape":"ProtectionGroupPattern"},
+      "max":1,
+      "min":1
     },
     "ProtectionGroupPatternTypeLimits":{
       "type":"structure",
@@ -1400,6 +1443,12 @@
       "min":1,
       "pattern":"[ a-zA-Z0-9_\\\\.\\\\-]*"
     },
+    "ProtectionNameFilters":{
+      "type":"list",
+      "member":{"shape":"ProtectionName"},
+      "max":1,
+      "min":1
+    },
     "Protections":{
       "type":"list",
       "member":{"shape":"Protection"}
@@ -1421,6 +1470,12 @@
     "ResourceArnFilterList":{
       "type":"list",
       "member":{"shape":"ResourceArn"}
+    },
+    "ResourceArnFilters":{
+      "type":"list",
+      "member":{"shape":"ResourceArn"},
+      "max":1,
+      "min":1
     },
     "ResourceArnList":{
       "type":"list",
