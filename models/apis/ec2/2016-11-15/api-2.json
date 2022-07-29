@@ -33320,7 +33320,10 @@
         "vpc-peering-connection",
         "vpn-connection",
         "vpn-gateway",
-        "vpc-flow-log"
+        "vpc-flow-log",
+        "capacity-reservation-fleet",
+        "traffic-mirror-filter-rule",
+        "vpc-endpoint-connection-device-type"
       ]
     },
     "ResponseError":{

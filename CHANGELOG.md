@@ -1,3 +1,13 @@
+Release v1.44.66 (2022-07-29)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Documentation updates for Amazon EC2.
+* `service/fsx`: Updates service documentation
+* `service/shield`: Updates service API and documentation
+  * AWS Shield Advanced now supports filtering for ListProtections and ListProtectionGroups.
+
 Release v1.44.65 (2022-07-28)
 ===
 
