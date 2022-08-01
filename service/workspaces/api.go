@@ -4200,6 +4200,97 @@ func (c *WorkSpaces) ModifyClientPropertiesWithContext(ctx aws.Context, input *M
 	return out, req.Send()
 }
 
+const opModifySamlProperties = "ModifySamlProperties"
+
+// ModifySamlPropertiesRequest generates a "aws/request.Request" representing the
+// client's request for the ModifySamlProperties operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifySamlProperties for more information on using the ModifySamlProperties
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ModifySamlPropertiesRequest method.
+//    req, resp := client.ModifySamlPropertiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifySamlProperties
+func (c *WorkSpaces) ModifySamlPropertiesRequest(input *ModifySamlPropertiesInput) (req *request.Request, output *ModifySamlPropertiesOutput) {
+	op := &request.Operation{
+		Name:       opModifySamlProperties,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifySamlPropertiesInput{}
+	}
+
+	output = &ModifySamlPropertiesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// ModifySamlProperties API operation for Amazon WorkSpaces.
+//
+// Modifies multiple properties related to SAML 2.0 authentication, including
+// the enablement status, user access URL, and relay state parameter name that
+// are used for configuring federation with an SAML 2.0 identity provider.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation ModifySamlProperties for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   The user is not authorized to access a resource.
+//
+//   * InvalidParameterValuesException
+//   One or more parameter values are not valid.
+//
+//   * OperationNotSupportedException
+//   This operation is not supported.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifySamlProperties
+func (c *WorkSpaces) ModifySamlProperties(input *ModifySamlPropertiesInput) (*ModifySamlPropertiesOutput, error) {
+	req, out := c.ModifySamlPropertiesRequest(input)
+	return out, req.Send()
+}
+
+// ModifySamlPropertiesWithContext is the same as ModifySamlProperties with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifySamlProperties for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) ModifySamlPropertiesWithContext(ctx aws.Context, input *ModifySamlPropertiesInput, opts ...request.Option) (*ModifySamlPropertiesOutput, error) {
+	req, out := c.ModifySamlPropertiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opModifySelfservicePermissions = "ModifySelfservicePermissions"
 
 // ModifySelfservicePermissionsRequest generates a "aws/request.Request" representing the
@@ -12021,6 +12112,107 @@ func (s ModifyClientPropertiesOutput) GoString() string {
 	return s.String()
 }
 
+type ModifySamlPropertiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The SAML properties to delete as part of your request.
+	//
+	// Specify one of the following options:
+	//
+	//    * SAML_PROPERTIES_USER_ACCESS_URL to delete the user access URL.
+	//
+	//    * SAML_PROPERTIES_RELAY_STATE_PARAMETER_NAME to delete the relay state
+	//    parameter name.
+	PropertiesToDelete []*string `type:"list" enum:"DeletableSamlProperty"`
+
+	// The directory identifier for which you want to configure SAML properties.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"10" type:"string" required:"true"`
+
+	// The properties for configuring SAML 2.0 authentication.
+	SamlProperties *SamlProperties `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifySamlPropertiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifySamlPropertiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifySamlPropertiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifySamlPropertiesInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 10))
+	}
+	if s.SamlProperties != nil {
+		if err := s.SamlProperties.Validate(); err != nil {
+			invalidParams.AddNested("SamlProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPropertiesToDelete sets the PropertiesToDelete field's value.
+func (s *ModifySamlPropertiesInput) SetPropertiesToDelete(v []*string) *ModifySamlPropertiesInput {
+	s.PropertiesToDelete = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ModifySamlPropertiesInput) SetResourceId(v string) *ModifySamlPropertiesInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetSamlProperties sets the SamlProperties field's value.
+func (s *ModifySamlPropertiesInput) SetSamlProperties(v *SamlProperties) *ModifySamlPropertiesInput {
+	s.SamlProperties = v
+	return s
+}
+
+type ModifySamlPropertiesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifySamlPropertiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifySamlPropertiesOutput) GoString() string {
+	return s.String()
+}
+
 type ModifySelfservicePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13616,6 +13808,97 @@ func (s *RootStorage) Validate() error {
 // SetCapacity sets the Capacity field's value.
 func (s *RootStorage) SetCapacity(v string) *RootStorage {
 	s.Capacity = &v
+	return s
+}
+
+// Describes the enablement status, user access URL, and relay state parameter
+// name that are used for configuring federation with an SAML 2.0 identity provider.
+type SamlProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The relay state parameter name supported by the SAML 2.0 identity provider
+	// (IdP). When the end user is redirected to the user access URL from the WorkSpaces
+	// client application, this relay state parameter name is appended as a query
+	// parameter to the URL along with the relay state endpoint to return the user
+	// to the client application session.
+	//
+	// To use SAML 2.0 authentication with WorkSpaces, the IdP must support IdP-initiated
+	// deep linking for the relay state URL. Consult your IdP documentation for
+	// more information.
+	RelayStateParameterName *string `min:"1" type:"string"`
+
+	// Indicates the status of SAML 2.0 authentication. These statuses include the
+	// following.
+	//
+	//    * If the setting is DISABLED, end users will be directed to login with
+	//    their directory credentials.
+	//
+	//    * If the setting is ENABLED, end users will be directed to login via the
+	//    user access URL. Users attempting to connect to WorkSpaces from a client
+	//    application that does not support SAML 2.0 authentication will not be
+	//    able to connect.
+	//
+	//    * If the setting is ENABLED_WITH_DIRECTORY_LOGIN_FALLBACK, end users will
+	//    be directed to login via the user access URL on supported client applications,
+	//    but will not prevent clients that do not support SAML 2.0 authentication
+	//    from connecting as if SAML 2.0 authentication was disabled.
+	Status *string `type:"string" enum:"SamlStatusEnum"`
+
+	// The SAML 2.0 identity provider (IdP) user access URL is the URL a user would
+	// navigate to in their web browser in order to federate from the IdP and directly
+	// access the application, without any SAML 2.0 service provider (SP) bindings.
+	UserAccessUrl *string `min:"8" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SamlProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SamlProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SamlProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SamlProperties"}
+	if s.RelayStateParameterName != nil && len(*s.RelayStateParameterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RelayStateParameterName", 1))
+	}
+	if s.UserAccessUrl != nil && len(*s.UserAccessUrl) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("UserAccessUrl", 8))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRelayStateParameterName sets the RelayStateParameterName field's value.
+func (s *SamlProperties) SetRelayStateParameterName(v string) *SamlProperties {
+	s.RelayStateParameterName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SamlProperties) SetStatus(v string) *SamlProperties {
+	s.Status = &v
+	return s
+}
+
+// SetUserAccessUrl sets the UserAccessUrl field's value.
+func (s *SamlProperties) SetUserAccessUrl(v string) *SamlProperties {
+	s.UserAccessUrl = &v
 	return s
 }
 
@@ -15404,6 +15687,10 @@ type WorkspaceDirectory struct {
 	// in their Amazon WorkSpaces client application to connect to the directory.
 	RegistrationCode *string `min:"1" type:"string"`
 
+	// Describes the enablement status, user access URL, and relay state parameter
+	// name that are used for configuring federation with an SAML 2.0 identity provider.
+	SamlProperties *SamlProperties `type:"structure"`
+
 	// The default self-service permissions for WorkSpaces in the directory.
 	SelfservicePermissions *SelfservicePermissions `type:"structure"`
 
@@ -15503,6 +15790,12 @@ func (s *WorkspaceDirectory) SetIpGroupIds(v []*string) *WorkspaceDirectory {
 // SetRegistrationCode sets the RegistrationCode field's value.
 func (s *WorkspaceDirectory) SetRegistrationCode(v string) *WorkspaceDirectory {
 	s.RegistrationCode = &v
+	return s
+}
+
+// SetSamlProperties sets the SamlProperties field's value.
+func (s *WorkspaceDirectory) SetSamlProperties(v *SamlProperties) *WorkspaceDirectory {
+	s.SamlProperties = v
 	return s
 }
 
@@ -16178,6 +16471,22 @@ func DedicatedTenancySupportResultEnum_Values() []string {
 }
 
 const (
+	// DeletableSamlPropertySamlPropertiesUserAccessUrl is a DeletableSamlProperty enum value
+	DeletableSamlPropertySamlPropertiesUserAccessUrl = "SAML_PROPERTIES_USER_ACCESS_URL"
+
+	// DeletableSamlPropertySamlPropertiesRelayStateParameterName is a DeletableSamlProperty enum value
+	DeletableSamlPropertySamlPropertiesRelayStateParameterName = "SAML_PROPERTIES_RELAY_STATE_PARAMETER_NAME"
+)
+
+// DeletableSamlProperty_Values returns all elements of the DeletableSamlProperty enum
+func DeletableSamlProperty_Values() []string {
+	return []string{
+		DeletableSamlPropertySamlPropertiesUserAccessUrl,
+		DeletableSamlPropertySamlPropertiesRelayStateParameterName,
+	}
+}
+
+const (
 	// ImageTypeOwned is a ImageType enum value
 	ImageTypeOwned = "OWNED"
 
@@ -16274,6 +16583,26 @@ func RunningMode_Values() []string {
 	return []string{
 		RunningModeAutoStop,
 		RunningModeAlwaysOn,
+	}
+}
+
+const (
+	// SamlStatusEnumDisabled is a SamlStatusEnum enum value
+	SamlStatusEnumDisabled = "DISABLED"
+
+	// SamlStatusEnumEnabled is a SamlStatusEnum enum value
+	SamlStatusEnumEnabled = "ENABLED"
+
+	// SamlStatusEnumEnabledWithDirectoryLoginFallback is a SamlStatusEnum enum value
+	SamlStatusEnumEnabledWithDirectoryLoginFallback = "ENABLED_WITH_DIRECTORY_LOGIN_FALLBACK"
+)
+
+// SamlStatusEnum_Values returns all elements of the SamlStatusEnum enum
+func SamlStatusEnum_Values() []string {
+	return []string{
+		SamlStatusEnumDisabled,
+		SamlStatusEnumEnabled,
+		SamlStatusEnumEnabledWithDirectoryLoginFallback,
 	}
 }
 

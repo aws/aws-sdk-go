@@ -659,6 +659,21 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "ModifySamlProperties":{
+      "name":"ModifySamlProperties",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifySamlPropertiesRequest"},
+      "output":{"shape":"ModifySamlPropertiesResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ModifySelfservicePermissions":{
       "name":"ModifySelfservicePermissions",
       "http":{
@@ -1467,6 +1482,17 @@
         "EnableMaintenanceMode":{"shape":"BooleanObject"}
       }
     },
+    "DeletableSamlPropertiesList":{
+      "type":"list",
+      "member":{"shape":"DeletableSamlProperty"}
+    },
+    "DeletableSamlProperty":{
+      "type":"string",
+      "enum":[
+        "SAML_PROPERTIES_USER_ACCESS_URL",
+        "SAML_PROPERTIES_RELAY_STATE_PARAMETER_NAME"
+      ]
+    },
     "DeleteClientBrandingRequest":{
       "type":"structure",
       "required":[
@@ -2165,6 +2191,20 @@
       "members":{
       }
     },
+    "ModifySamlPropertiesRequest":{
+      "type":"structure",
+      "required":["ResourceId"],
+      "members":{
+        "ResourceId":{"shape":"DirectoryId"},
+        "SamlProperties":{"shape":"SamlProperties"},
+        "PropertiesToDelete":{"shape":"DeletableSamlPropertiesList"}
+      }
+    },
+    "ModifySamlPropertiesResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "ModifySelfservicePermissionsRequest":{
       "type":"structure",
       "required":[
@@ -2465,6 +2505,28 @@
       ]
     },
     "RunningModeAutoStopTimeoutInMinutes":{"type":"integer"},
+    "SamlProperties":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"SamlStatusEnum"},
+        "UserAccessUrl":{"shape":"SamlUserAccessUrl"},
+        "RelayStateParameterName":{"shape":"NonEmptyString"}
+      }
+    },
+    "SamlStatusEnum":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "ENABLED",
+        "ENABLED_WITH_DIRECTORY_LOGIN_FALLBACK"
+      ]
+    },
+    "SamlUserAccessUrl":{
+      "type":"string",
+      "max":200,
+      "min":8,
+      "pattern":"^(http|https)\\://\\S+$"
+    },
     "SecurityGroupId":{
       "type":"string",
       "max":20,
@@ -2840,7 +2902,8 @@
         "ipGroupIds":{"shape":"IpGroupIdList"},
         "WorkspaceAccessProperties":{"shape":"WorkspaceAccessProperties"},
         "Tenancy":{"shape":"Tenancy"},
-        "SelfservicePermissions":{"shape":"SelfservicePermissions"}
+        "SelfservicePermissions":{"shape":"SelfservicePermissions"},
+        "SamlProperties":{"shape":"SamlProperties"}
       }
     },
     "WorkspaceDirectoryState":{

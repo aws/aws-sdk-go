@@ -1325,11 +1325,11 @@ func (c *ConfigService) DeleteRemediationConfigurationRequest(input *DeleteRemed
 //
 //      * For PutOrganizationConfigRule, organization Config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
-//      a service linked role.
+//      a service-linked role.
 //
 //      * For PutConformancePack and PutOrganizationConformancePack, a conformance
 //      pack cannot be created because you do not have permissions: To call IAM
-//      GetRole action or create a service linked role. To read Amazon S3 bucket.
+//      GetRole action or create a service-linked role. To read Amazon S3 bucket.
 //
 //   * InvalidParameterValueException
 //   One or more of the specified parameters are invalid. Verify that your parameters
@@ -8088,8 +8088,11 @@ func (c *ConfigService) ListConformancePackComplianceScoresRequest(input *ListCo
 // a conformance pack compared to the number of total possible rule-resource
 // combinations in the conformance pack. This metric provides you with a high-level
 // view of the compliance state of your conformance packs, and can be used to
-// identify, investigate, and understand compliance deviations in your conformance
+// identify, investigate, and understand the level of compliance in your conformance
 // packs.
+//
+// Conformance packs with no evaluation results will have a compliance score
+// of INSUFFICIENT_DATA.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8784,23 +8787,30 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 
 // PutConfigRule API operation for AWS Config.
 //
-// Adds or updates an Config rule for evaluating whether your Amazon Web Services
-// resources comply with your desired configurations.
+// Adds or updates an Config rule to evaluate if your Amazon Web Services resources
+// comply with your desired configurations. For information on how many Config
+// rules you can have per account, see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+// in the Config Developer Guide.
 //
-// You can use this action for Config custom rules and Config managed rules.
-// A Config custom rule is a rule that you develop and maintain. An Config managed
-// rule is a customizable, predefined rule that Config provides.
+// There are two types of rules: Config Custom Rules and Config Managed Rules.
+// You can use PutConfigRule to create both Config custom rules and Config managed
+// rules.
 //
-// If you are adding a new Config custom rule, you must first create the Lambda
-// function that the rule invokes to evaluate your resources. When you use the
-// PutConfigRule action to add the rule to Config, you must specify the Amazon
-// Resource Name (ARN) that Lambda assigns to the function. Specify the ARN
-// for the SourceIdentifier key. This key is part of the Source object, which
-// is part of the ConfigRule object.
+// Custom rules are rules that you can create using either Guard or Lambda functions.
+// Guard (Guard GitHub Repository (https://github.com/aws-cloudformation/cloudformation-guard))
+// is a policy-as-code language that allows you to write policies that are enforced
+// by Config Custom Policy rules. Lambda uses custom code that you upload to
+// evaluate a custom rule. If you are adding a new Custom Lambda rule, you first
+// need to create an Lambda function that the rule invokes to evaluate your
+// resources. When you use PutConfigRule to add a Custom Lambda rule to Config,
+// you must specify the Amazon Resource Name (ARN) that Lambda assigns to the
+// function. You specify the ARN in the SourceIdentifier key. This key is part
+// of the Source object, which is part of the ConfigRule object.
 //
-// If you are adding an Config managed rule, specify the rule's identifier for
-// the SourceIdentifier key. To reference Config managed rule identifiers, see
-// About Config managed rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
+// Managed rules are predefined, customizable rules created by Config. For a
+// list of managed rules, see List of Config Managed Rules (https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html).
+// If you are adding an Config managed rule, you must specify the rule's identifier
+// for the SourceIdentifier key.
 //
 // For any new rule that you add, specify the ConfigRuleName in the ConfigRule
 // object. Do not specify the ConfigRuleArn or the ConfigRuleId. These values
@@ -8809,10 +8819,6 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 // If you are updating a rule that you added previously, you can specify the
 // rule by ConfigRuleName, ConfigRuleId, or ConfigRuleArn in the ConfigRule
 // data type that you use in this request.
-//
-// For information on how many Config rules you can have per account, see Service
-// Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
-// in the Config Developer Guide.
 //
 // For more information about developing and using Config rules, see Evaluating
 // Amazon Web Services resource Configurations with Config (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
@@ -8872,11 +8878,11 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 //
 //      * For PutOrganizationConfigRule, organization Config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
-//      a service linked role.
+//      a service-linked role.
 //
 //      * For PutConformancePack and PutOrganizationConformancePack, a conformance
 //      pack cannot be created because you do not have permissions: To call IAM
-//      GetRole action or create a service linked role. To read Amazon S3 bucket.
+//      GetRole action or create a service-linked role. To read Amazon S3 bucket.
 //
 //   * NoAvailableConfigurationRecorderException
 //   There are no configuration recorders available to provide the role needed
@@ -9197,8 +9203,8 @@ func (c *ConfigService) PutConformancePackRequest(input *PutConformancePackInput
 // packs you can have per account, see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
 // in the Config Developer Guide.
 //
-// This API creates a service linked role AWSServiceRoleForConfigConforms in
-// your account. The service linked role is created only when the role does
+// This API creates a service-linked role AWSServiceRoleForConfigConforms in
+// your account. The service-linked role is created only when the role does
 // not exist in your account.
 //
 // You must specify either the TemplateS3Uri or the TemplateBody parameter,
@@ -9224,11 +9230,11 @@ func (c *ConfigService) PutConformancePackRequest(input *PutConformancePackInput
 //
 //      * For PutOrganizationConfigRule, organization Config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
-//      a service linked role.
+//      a service-linked role.
 //
 //      * For PutConformancePack and PutOrganizationConformancePack, a conformance
 //      pack cannot be created because you do not have permissions: To call IAM
-//      GetRole action or create a service linked role. To read Amazon S3 bucket.
+//      GetRole action or create a service-linked role. To read Amazon S3 bucket.
 //
 //   * ConformancePackTemplateValidationException
 //   You have specified a template that is not valid or supported.
@@ -9625,8 +9631,8 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 
 // PutOrganizationConfigRule API operation for AWS Config.
 //
-// Adds or updates organization Config rule for your entire organization evaluating
-// whether your Amazon Web Services resources comply with your desired configurations.
+// Adds or updates an Config rule for your entire organization to evaluate if
+// your Amazon Web Services resources comply with your desired configurations.
 // For information on how many organization Config rules you can have per account,
 // see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
 // in the Config Developer Guide.
@@ -9637,29 +9643,42 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 // added. An organization can have up to 3 delegated administrators.
 //
 // This API enables organization service access through the EnableAWSServiceAccess
-// action and creates a service linked role AWSServiceRoleForConfigMultiAccountSetup
+// action and creates a service-linked role AWSServiceRoleForConfigMultiAccountSetup
 // in the master or delegated administrator account of your organization. The
-// service linked role is created only when the role does not exist in the caller
+// service-linked role is created only when the role does not exist in the caller
 // account. Config verifies the existence of role with GetRole action.
 //
 // To use this API with delegated administrator, register a delegated administrator
 // by calling Amazon Web Services Organization register-delegated-administrator
 // for config-multiaccountsetup.amazonaws.com.
 //
-// You can use this action to create both Config custom rules and Config managed
-// rules. If you are adding a new Config custom rule, you must first create
-// Lambda function in the master account or a delegated administrator that the
-// rule invokes to evaluate your resources. You also need to create an IAM role
-// in the managed-account that can be assumed by the Lambda function. When you
-// use the PutOrganizationConfigRule action to add the rule to Config, you must
-// specify the Amazon Resource Name (ARN) that Lambda assigns to the function.
-// If you are adding an Config managed rule, specify the rule's identifier for
-// the RuleIdentifier key.
+// There are two types of rules: Config Custom Rules and Config Managed Rules.
+// You can use PutOrganizationConfigRule to create both Config custom rules
+// and Config managed rules.
+//
+// Custom rules are rules that you can create using either Guard or Lambda functions.
+// Guard (Guard GitHub Repository (https://github.com/aws-cloudformation/cloudformation-guard))
+// is a policy-as-code language that allows you to write policies that are enforced
+// by Config Custom Policy rules. Lambda uses custom code that you upload to
+// evaluate a custom rule. If you are adding a new Custom Lambda rule, you first
+// need to create an Lambda function in the master account or a delegated administrator
+// that the rule invokes to evaluate your resources. You also need to create
+// an IAM role in the managed account that can be assumed by the Lambda function.
+// When you use PutOrganizationConfigRule to add a Custom Lambda rule to Config,
+// you must specify the Amazon Resource Name (ARN) that Lambda assigns to the
+// function.
+//
+// Managed rules are predefined, customizable rules created by Config. For a
+// list of managed rules, see List of Config Managed Rules (https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html).
+// If you are adding an Config managed rule, you must specify the rule's identifier
+// for the RuleIdentifier key.
 //
 // Prerequisite: Ensure you call EnableAllFeatures API to enable all features
 // in an organization.
 //
-// Specify either OrganizationCustomRuleMetadata or OrganizationManagedRuleMetadata.
+// Make sure to specify one of either OrganizationCustomPolicyRuleMetadata for
+// Custom Policy rules, OrganizationCustomRuleMetadata for Custom Lambda rules,
+// or OrganizationManagedRuleMetadata for managed rules.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9757,11 +9776,11 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 //
 //      * For PutOrganizationConfigRule, organization Config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
-//      a service linked role.
+//      a service-linked role.
 //
 //      * For PutConformancePack and PutOrganizationConformancePack, a conformance
 //      pack cannot be created because you do not have permissions: To call IAM
-//      GetRole action or create a service linked role. To read Amazon S3 bucket.
+//      GetRole action or create a service-linked role. To read Amazon S3 bucket.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutOrganizationConfigRule
 func (c *ConfigService) PutOrganizationConfigRule(input *PutOrganizationConfigRuleInput) (*PutOrganizationConfigRuleOutput, error) {
@@ -9840,9 +9859,9 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 // up to 3 delegated administrators.
 //
 // This API enables organization service access for config-multiaccountsetup.amazonaws.com
-// through the EnableAWSServiceAccess action and creates a service linked role
+// through the EnableAWSServiceAccess action and creates a service-linked role
 // AWSServiceRoleForConfigMultiAccountSetup in the master or delegated administrator
-// account of your organization. The service linked role is created only when
+// account of your organization. The service-linked role is created only when
 // the role does not exist in the caller account. To use this API with delegated
 // administrator, register a delegated administrator by calling Amazon Web Services
 // Organization register-delegate-admin for config-multiaccountsetup.amazonaws.com.
@@ -9944,11 +9963,11 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 //
 //      * For PutOrganizationConfigRule, organization Config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
-//      a service linked role.
+//      a service-linked role.
 //
 //      * For PutConformancePack and PutOrganizationConformancePack, a conformance
 //      pack cannot be created because you do not have permissions: To call IAM
-//      GetRole action or create a service linked role. To read Amazon S3 bucket.
+//      GetRole action or create a service-linked role. To read Amazon S3 bucket.
 //
 //   * OrganizationConformancePackTemplateValidationException
 //   You have specified a template that is not valid or supported.
@@ -10066,11 +10085,11 @@ func (c *ConfigService) PutRemediationConfigurationsRequest(input *PutRemediatio
 //
 //      * For PutOrganizationConfigRule, organization Config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
-//      a service linked role.
+//      a service-linked role.
 //
 //      * For PutConformancePack and PutOrganizationConformancePack, a conformance
 //      pack cannot be created because you do not have permissions: To call IAM
-//      GetRole action or create a service linked role. To read Amazon S3 bucket.
+//      GetRole action or create a service-linked role. To read Amazon S3 bucket.
 //
 //   * InvalidParameterValueException
 //   One or more of the specified parameters are invalid. Verify that your parameters
@@ -10173,11 +10192,11 @@ func (c *ConfigService) PutRemediationExceptionsRequest(input *PutRemediationExc
 //
 //      * For PutOrganizationConfigRule, organization Config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
-//      a service linked role.
+//      a service-linked role.
 //
 //      * For PutConformancePack and PutOrganizationConformancePack, a conformance
 //      pack cannot be created because you do not have permissions: To call IAM
-//      GetRole action or create a service linked role. To read Amazon S3 bucket.
+//      GetRole action or create a service-linked role. To read Amazon S3 bucket.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutRemediationExceptions
 func (c *ConfigService) PutRemediationExceptions(input *PutRemediationExceptionsInput) (*PutRemediationExceptionsOutput, error) {
@@ -10292,11 +10311,11 @@ func (c *ConfigService) PutResourceConfigRequest(input *PutResourceConfigInput) 
 //
 //      * For PutOrganizationConfigRule, organization Config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
-//      a service linked role.
+//      a service-linked role.
 //
 //      * For PutConformancePack and PutOrganizationConformancePack, a conformance
 //      pack cannot be created because you do not have permissions: To call IAM
-//      GetRole action or create a service linked role. To read Amazon S3 bucket.
+//      GetRole action or create a service-linked role. To read Amazon S3 bucket.
 //
 //   * NoRunningConfigurationRecorderException
 //   There is no configuration recorder running.
@@ -11138,11 +11157,11 @@ func (c *ConfigService) StartRemediationExecutionRequest(input *StartRemediation
 //
 //      * For PutOrganizationConfigRule, organization Config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
-//      a service linked role.
+//      a service-linked role.
 //
 //      * For PutConformancePack and PutOrganizationConformancePack, a conformance
 //      pack cannot be created because you do not have permissions: To call IAM
-//      GetRole action or create a service linked role. To read Amazon S3 bucket.
+//      GetRole action or create a service-linked role. To read Amazon S3 bucket.
 //
 //   * NoSuchRemediationConfigurationException
 //   You specified an Config rule without a remediation configuration.
@@ -13083,20 +13102,28 @@ func (s *ConfigExportDeliveryInfo) SetNextDeliveryTime(v time.Time) *ConfigExpor
 	return s
 }
 
-// An Config rule represents an Lambda function that you create for a custom
-// rule or a predefined function for an Config managed rule. The function evaluates
-// configuration items to assess whether your Amazon Web Services resources
-// comply with your desired configurations. This function can run when Config
-// detects a configuration change to an Amazon Web Services resource and at
-// a periodic frequency that you choose (for example, every 24 hours).
+// Config rules evaluate the configuration settings of your Amazon Web Services
+// resources. A rule can run when Config detects a configuration change to an
+// Amazon Web Services resource or at a periodic frequency that you choose (for
+// example, every 24 hours). There are two types of rules: Config Managed Rules
+// and Config Custom Rules. Managed rules are predefined, customizable rules
+// created by Config. For a list of managed rules, see List of Config Managed
+// Rules (https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html).
 //
-// You can use the Amazon Web Services CLI and Amazon Web Services SDKs if you
-// want to create a rule that triggers evaluations for your resources when Config
-// delivers the configuration snapshot. For more information, see ConfigSnapshotDeliveryProperties.
+// Custom rules are rules that you can create using either Guard or Lambda functions.
+// Guard (Guard GitHub Repository (https://github.com/aws-cloudformation/cloudformation-guard))
+// is a policy-as-code language that allows you to write policies that are enforced
+// by Config Custom Policy rules. Lambda uses custom code that you upload to
+// evaluate a custom rule. It is invoked by events that are published to it
+// by an event source, which Config invokes when the custom rule is initiated.
 //
 // For more information about developing and using Config rules, see Evaluating
 // Amazon Web Services resource Configurations with Config (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
 // in the Config Developer Guide.
+//
+// You can use the Amazon Web Services CLI and Amazon Web Services SDKs if you
+// want to create a rule that triggers evaluations for your resources when Config
+// delivers the configuration snapshot. For more information, see ConfigSnapshotDeliveryProperties.
 type ConfigRule struct {
 	_ struct{} `type:"structure"`
 
@@ -13128,7 +13155,7 @@ type ConfigRule struct {
 
 	// Service principal name of the service that created the rule.
 	//
-	// The field is populated only if the service linked rule is created by a service.
+	// The field is populated only if the service-linked rule is created by a service.
 	// The field is empty if you create your own rule.
 	CreatedBy *string `min:"1" type:"string"`
 
@@ -13161,9 +13188,10 @@ type ConfigRule struct {
 	// The scope can be empty.
 	Scope *Scope `type:"structure"`
 
-	// Provides the rule owner (Amazon Web Services or customer), the rule identifier,
-	// and the notifications that cause the function to evaluate your Amazon Web
-	// Services resources.
+	// Provides the rule owner (Amazon Web Services for managed rules, CUSTOM_POLICY
+	// for Custom Policy rules, and CUSTOM_LAMBDA for Custom Lambda rules), the
+	// rule identifier, and the notifications that cause the function to evaluate
+	// your Amazon Web Services resources.
 	//
 	// Source is a required field
 	Source *Source `type:"structure" required:"true"`
@@ -14242,7 +14270,7 @@ func (s *ConformancePackComplianceFilters) SetConfigRuleNames(v []*string) *Conf
 // combinations in a conformance pack compared to the number of total possible
 // rule-resource combinations in the conformance pack. This metric provides
 // you with a high-level view of the compliance state of your conformance packs,
-// and can be used to identify, investigate, and understand compliance deviations
+// and can be used to identify, investigate, and understand the level of compliance
 // in your conformance packs.
 type ConformancePackComplianceScore struct {
 	_ struct{} `type:"structure"`
@@ -14253,7 +14281,8 @@ type ConformancePackComplianceScore struct {
 	// The time that the conformance pack compliance score was last updated.
 	LastUpdatedTime *time.Time `type:"timestamp"`
 
-	// Compliance score for the conformance pack.
+	// Compliance score for the conformance pack. Conformance packs with no evaluation
+	// results will have a compliance score of INSUFFICIENT_DATA.
 	Score *string `type:"string"`
 }
 
@@ -14298,8 +14327,10 @@ func (s *ConformancePackComplianceScore) SetScore(v string) *ConformancePackComp
 type ConformancePackComplianceScoresFilters struct {
 	_ struct{} `type:"structure"`
 
-	// The name of a conformance pack whose score should be included in the compliance
-	// score result.
+	// The names of the conformance packs whose compliance scores you want to include
+	// in the conformance pack compliance score result set. You can include up to
+	// 25 conformance packs in the ConformancePackNames array of strings, each with
+	// a character limit of 256 characters for the conformance pack name.
 	//
 	// ConformancePackNames is a required field
 	ConformancePackNames []*string `min:"1" type:"list" required:"true"`
@@ -21723,11 +21754,11 @@ func (s *InsufficientDeliveryPolicyException) RequestID() string {
 //
 //    * For PutOrganizationConfigRule, organization Config rule cannot be created
 //    because you do not have permissions to call IAM GetRole action or create
-//    a service linked role.
+//    a service-linked role.
 //
 //    * For PutConformancePack and PutOrganizationConformancePack, a conformance
 //    pack cannot be created because you do not have permissions: To call IAM
-//    GetRole action or create a service linked role. To read Amazon S3 bucket.
+//    GetRole action or create a service-linked role. To read Amazon S3 bucket.
 type InsufficientPermissionsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22915,10 +22946,17 @@ type ListConformancePackComplianceScoresInput struct {
 
 	// Sorts your conformance pack compliance scores in either ascending or descending
 	// order, depending on SortOrder.
+	//
+	// By default, conformance pack compliance scores are sorted in ascending order
+	// by compliance score and alphabetically by name of the conformance pack if
+	// there is more than one conformance pack with the same compliance score.
 	SortBy *string `type:"string" enum:"SortBy"`
 
 	// Determines the order in which conformance pack compliance scores are sorted.
 	// Either in ascending or descending order.
+	//
+	// Conformance packs with a compliance score of INSUFFICIENT_DATA will be first
+	// when sorting by ascending order and last when sorting by descending order.
 	SortOrder *string `type:"string" enum:"SortOrder"`
 }
 
@@ -22988,7 +23026,7 @@ func (s *ListConformancePackComplianceScoresInput) SetSortOrder(v string) *ListC
 type ListConformancePackComplianceScoresOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of ConformancePackComplianceScore objects
+	// A list of ConformancePackComplianceScore objects.
 	//
 	// ConformancePackComplianceScores is a required field
 	ConformancePackComplianceScores []*ConformancePackComplianceScore `type:"list" required:"true"`
@@ -27514,18 +27552,27 @@ type PutOrganizationConfigRuleInput struct {
 	// OrganizationConfigRuleName is a required field
 	OrganizationConfigRuleName *string `min:"1" type:"string" required:"true"`
 
-	// An object that specifies metadata for your organization's Config Custom Policy
-	// rule. The metadata includes the runtime system in use, which accounts have
-	// debug logging enabled, and other custom rule metadata, such as resource type,
-	// resource ID of Amazon Web Services resource, and organization trigger types
-	// that initiate Config to evaluate Amazon Web Services resources against a
-	// rule.
+	// An OrganizationCustomPolicyRuleMetadata object. This object specifies metadata
+	// for your organization's Config Custom Policy rule. The metadata includes
+	// the runtime system in use, which accounts have debug logging enabled, and
+	// other custom rule metadata, such as resource type, resource ID of Amazon
+	// Web Services resource, and organization trigger types that initiate Config
+	// to evaluate Amazon Web Services resources against a rule.
 	OrganizationCustomPolicyRuleMetadata *OrganizationCustomPolicyRuleMetadata `type:"structure"`
 
-	// An OrganizationCustomRuleMetadata object.
+	// An OrganizationCustomRuleMetadata object. This object specifies organization
+	// custom rule metadata such as resource type, resource ID of Amazon Web Services
+	// resource, Lambda function ARN, and organization trigger types that trigger
+	// Config to evaluate your Amazon Web Services resources against a rule. It
+	// also provides the frequency with which you want Config to run evaluations
+	// for the rule if the trigger type is periodic.
 	OrganizationCustomRuleMetadata *OrganizationCustomRuleMetadata `type:"structure"`
 
-	// An OrganizationManagedRuleMetadata object.
+	// An OrganizationManagedRuleMetadata object. This object specifies organization
+	// managed rule metadata such as resource type and ID of Amazon Web Services
+	// resource along with the rule identifier. It also provides the frequency with
+	// which you want Config to run evaluations for the rule if the trigger type
+	// is periodic.
 	OrganizationManagedRuleMetadata *OrganizationManagedRuleMetadata `type:"structure"`
 }
 
@@ -28568,7 +28615,7 @@ type RemediationConfiguration struct {
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
 
-	// Name of the service that owns the service linked rule, if applicable.
+	// Name of the service that owns the service-linked rule, if applicable.
 	CreatedByService *string `min:"1" type:"string"`
 
 	// An ExecutionControls object.
@@ -30188,9 +30235,10 @@ func (s *SelectResourceConfigOutput) SetResults(v []*string) *SelectResourceConf
 	return s
 }
 
-// Provides the CustomPolicyDetails, the rule owner (Amazon Web Services or
-// customer), the rule identifier, and the events that cause the evaluation
-// of your Amazon Web Services resources.
+// Provides the CustomPolicyDetails, the rule owner (Amazon Web Services for
+// managed rules, CUSTOM_POLICY for Custom Policy rules, and CUSTOM_LAMBDA for
+// Custom Lambda rules), the rule identifier, and the events that cause the
+// evaluation of your Amazon Web Services resources.
 type Source struct {
 	_ struct{} `type:"structure"`
 
