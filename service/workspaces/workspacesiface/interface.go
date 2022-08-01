@@ -245,6 +245,10 @@ type WorkSpacesAPI interface {
 	ModifyClientPropertiesWithContext(aws.Context, *workspaces.ModifyClientPropertiesInput, ...request.Option) (*workspaces.ModifyClientPropertiesOutput, error)
 	ModifyClientPropertiesRequest(*workspaces.ModifyClientPropertiesInput) (*request.Request, *workspaces.ModifyClientPropertiesOutput)
 
+	ModifySamlProperties(*workspaces.ModifySamlPropertiesInput) (*workspaces.ModifySamlPropertiesOutput, error)
+	ModifySamlPropertiesWithContext(aws.Context, *workspaces.ModifySamlPropertiesInput, ...request.Option) (*workspaces.ModifySamlPropertiesOutput, error)
+	ModifySamlPropertiesRequest(*workspaces.ModifySamlPropertiesInput) (*request.Request, *workspaces.ModifySamlPropertiesOutput)
+
 	ModifySelfservicePermissions(*workspaces.ModifySelfservicePermissionsInput) (*workspaces.ModifySelfservicePermissionsOutput, error)
 	ModifySelfservicePermissionsWithContext(aws.Context, *workspaces.ModifySelfservicePermissionsInput, ...request.Option) (*workspaces.ModifySelfservicePermissionsOutput, error)
 	ModifySelfservicePermissionsRequest(*workspaces.ModifySelfservicePermissionsInput) (*request.Request, *workspaces.ModifySelfservicePermissionsOutput)

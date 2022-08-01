@@ -1,3 +1,11 @@
+Release v1.44.67 (2022-08-01)
+===
+
+### Service Client Updates
+* `service/config`: Updates service documentation
+* `service/workspaces`: Updates service API and documentation
+  * This release introduces ModifySamlProperties, a new API that allows control of SAML properties associated with a WorkSpaces directory. The DescribeWorkspaceDirectories API will now additionally return SAML properties in its responses.
+
 Release v1.44.66 (2022-07-29)
 ===
 
