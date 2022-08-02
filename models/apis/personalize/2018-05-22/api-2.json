@@ -1274,7 +1274,8 @@
         "datasetArn":{"shape":"Arn"},
         "dataSource":{"shape":"DataSource"},
         "roleArn":{"shape":"RoleArn"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "importMode":{"shape":"ImportMode"}
       }
     },
     "CreateDatasetImportJobResponse":{
@@ -1520,7 +1521,8 @@
         "status":{"shape":"Status"},
         "creationDateTime":{"shape":"Date"},
         "lastUpdatedDateTime":{"shape":"Date"},
-        "failureReason":{"shape":"FailureReason"}
+        "failureReason":{"shape":"FailureReason"},
+        "importMode":{"shape":"ImportMode"}
       }
     },
     "DatasetImportJobSummary":{
@@ -1531,7 +1533,8 @@
         "status":{"shape":"Status"},
         "creationDateTime":{"shape":"Date"},
         "lastUpdatedDateTime":{"shape":"Date"},
-        "failureReason":{"shape":"FailureReason"}
+        "failureReason":{"shape":"FailureReason"},
+        "importMode":{"shape":"ImportMode"}
       }
     },
     "DatasetImportJobs":{
@@ -2061,6 +2064,13 @@
       "key":{"shape":"ParameterName"},
       "value":{"shape":"ParameterValue"},
       "max":100
+    },
+    "ImportMode":{
+      "type":"string",
+      "enum":[
+        "FULL",
+        "INCREMENTAL"
+      ]
     },
     "IngestionMode":{
       "type":"string",
