@@ -1,3 +1,10 @@
+Release v1.44.68 (2022-08-02)
+===
+
+### Service Client Updates
+* `service/license-manager-user-subscriptions`: Adds new service
+* `service/personalize`: Updates service API and documentation
+
 Release v1.44.67 (2022-08-01)
 ===
 

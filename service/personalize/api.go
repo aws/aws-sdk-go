@@ -768,8 +768,10 @@ func (c *Personalize) CreateDatasetImportJobRequest(input *CreateDatasetImportJo
 // to your Amazon S3 bucket, see Giving Amazon Personalize Access to Amazon
 // S3 Resources (https://docs.aws.amazon.com/personalize/latest/dg/granting-personalize-s3-access.html).
 //
-// The dataset import job replaces any existing data in the dataset that you
-// imported in bulk.
+// By default, a dataset import job replaces any existing data in the dataset
+// that you imported in bulk. To add new records without replacing existing
+// data, specify INCREMENTAL for the import mode in the CreateDatasetImportJob
+// operation.
 //
 // Status
 //
@@ -8712,6 +8714,18 @@ type CreateDatasetImportJobInput struct {
 	// DatasetArn is a required field
 	DatasetArn *string `locationName:"datasetArn" type:"string" required:"true"`
 
+	// Specify how to add the new records to an existing dataset. The default import
+	// mode is FULL. If you haven't imported bulk records into the dataset previously,
+	// you can only specify FULL.
+	//
+	//    * Specify FULL to overwrite all existing bulk data in your dataset. Data
+	//    you imported individually is not replaced.
+	//
+	//    * Specify INCREMENTAL to append the new records to the existing data in
+	//    your dataset. Amazon Personalize replaces any record with the same ID
+	//    with the new one.
+	ImportMode *string `locationName:"importMode" type:"string" enum:"ImportMode"`
+
 	// The name for the dataset import job.
 	//
 	// JobName is a required field
@@ -8790,6 +8804,12 @@ func (s *CreateDatasetImportJobInput) SetDataSource(v *DataSource) *CreateDatase
 // SetDatasetArn sets the DatasetArn field's value.
 func (s *CreateDatasetImportJobInput) SetDatasetArn(v string) *CreateDatasetImportJobInput {
 	s.DatasetArn = &v
+	return s
+}
+
+// SetImportMode sets the ImportMode field's value.
+func (s *CreateDatasetImportJobInput) SetImportMode(v string) *CreateDatasetImportJobInput {
+	s.ImportMode = &v
 	return s
 }
 
@@ -10458,6 +10478,9 @@ type DatasetImportJob struct {
 	// If a dataset import job fails, provides the reason why.
 	FailureReason *string `locationName:"failureReason" type:"string"`
 
+	// The import mode used by the dataset import job to import new records.
+	ImportMode *string `locationName:"importMode" type:"string" enum:"ImportMode"`
+
 	// The name of the import job.
 	JobName *string `locationName:"jobName" min:"1" type:"string"`
 
@@ -10524,6 +10547,12 @@ func (s *DatasetImportJob) SetFailureReason(v string) *DatasetImportJob {
 	return s
 }
 
+// SetImportMode sets the ImportMode field's value.
+func (s *DatasetImportJob) SetImportMode(v string) *DatasetImportJob {
+	s.ImportMode = &v
+	return s
+}
+
 // SetJobName sets the JobName field's value.
 func (s *DatasetImportJob) SetJobName(v string) *DatasetImportJob {
 	s.JobName = &v
@@ -10562,6 +10591,10 @@ type DatasetImportJobSummary struct {
 
 	// If a dataset import job fails, the reason behind the failure.
 	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The import mode the dataset import job used to update the data in the dataset.
+	// For more information see Updating existing bulk data (https://docs.aws.amazon.com/personalize/latest/dg/updating-existing-bulk-data.html).
+	ImportMode *string `locationName:"importMode" type:"string" enum:"ImportMode"`
 
 	// The name of the dataset import job.
 	JobName *string `locationName:"jobName" min:"1" type:"string"`
@@ -10611,6 +10644,12 @@ func (s *DatasetImportJobSummary) SetDatasetImportJobArn(v string) *DatasetImpor
 // SetFailureReason sets the FailureReason field's value.
 func (s *DatasetImportJobSummary) SetFailureReason(v string) *DatasetImportJobSummary {
 	s.FailureReason = &v
+	return s
+}
+
+// SetImportMode sets the ImportMode field's value.
+func (s *DatasetImportJobSummary) SetImportMode(v string) *DatasetImportJobSummary {
+	s.ImportMode = &v
 	return s
 }
 
@@ -17779,6 +17818,22 @@ func Domain_Values() []string {
 	return []string{
 		DomainEcommerce,
 		DomainVideoOnDemand,
+	}
+}
+
+const (
+	// ImportModeFull is a ImportMode enum value
+	ImportModeFull = "FULL"
+
+	// ImportModeIncremental is a ImportMode enum value
+	ImportModeIncremental = "INCREMENTAL"
+)
+
+// ImportMode_Values returns all elements of the ImportMode enum
+func ImportMode_Values() []string {
+	return []string{
+		ImportModeFull,
+		ImportModeIncremental,
 	}
 }
 
