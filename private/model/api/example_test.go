@@ -6,6 +6,8 @@ package api
 import (
 	"encoding/json"
 	"testing"
+
+	"github.com/aws/aws-sdk-go/private/util"
 )
 
 func buildAPI() *API {
@@ -238,80 +240,77 @@ func TestExampleGeneration(t *testing.T) {
 	def.API = a
 
 	def.setup()
-	expected := `
-import (
+	expected := `import (
+	"bytes"
 	"fmt"
-	"strings"
 	"time"
 
-	"` + SDKImportRoot + `/aws"
-	"` + SDKImportRoot + `/aws/awserr"
-	"` + SDKImportRoot + `/aws/session"
-	"` + SDKImportRoot + `/service/fooservice"
-	
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/fooservice"
 )
 
 var _ time.Duration
-var _ strings.Reader
-var _ aws.Config
+var _ bytes.Buffer
 
-func parseTime(layout, value string) *time.Time {
-	t, err := time.Parse(layout, value)
-	if err != nil {
-		panic(err)
-	}
-	return &t
-}
+func ExampleFooService_Foo() {
+	sess := session.Must(session.NewSession())
 
-// I pity the foo
-//
-// Foo bar baz qux
-func ExampleFooService_Foo_shared00() {
-	svc := fooservice.New(session.New())
-	input := &fooservice.FooInput{
-		BarShape: aws.String("Hello world"),
+	svc := fooservice.New(sess)
+
+	params := &fooservice.FooInput{
+		BarShape: aws.String("string"),
 		ComplexField: &fooservice.ComplexShape{
-			Field: aws.String("bar"),
+			Field: aws.String("string"),
 			List: []*fooservice.NestedComplexShape{
-				{
-					NestedField: aws.String("qux"),
+				&fooservice.NestedComplexShape{ // Required
+					NestedField: aws.String("string"),
 				},
+				// More values...
 			},
 		},
 		ListField: []*fooservice.ComplexShape{
-			{
-				Field: aws.String("baz"),
-			},
-		},
-		ListsField: [][]*fooservice.ComplexShape{
-			{
-				{
-					Field: aws.String("baz"),
+			&fooservice.ComplexShape{ // Required
+				Field: aws.String("string"),
+				List: []*fooservice.NestedComplexShape{
+					&fooservice.NestedComplexShape{ // Required
+						NestedField: aws.String("string"),
+					},
+					// More values...
 				},
 			},
+			// More values...
+		},
+		ListsField: [][]*fooservice.ComplexShape{
+			[]*fooservice.ComplexShape{ // Required
+				&fooservice.ComplexShape{ // Required
+					Field: aws.String("string"),
+					List: []*fooservice.NestedComplexShape{
+						&fooservice.NestedComplexShape{ // Required
+							NestedField: aws.String("string"),
+						},
+						// More values...
+					},
+				},
+				// More values...
+			},
+			// More values...
 		},
 	}
+	resp, err := svc.Foo(params)
 
-	result, err := svc.Foo(input)
 	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
 		return
 	}
 
-	fmt.Println(result)
-}
-`
-	if expected != a.ExamplesGoCode() {
-		t.Errorf("Expected:\n%s\nReceived:\n%s\n", expected, a.ExamplesGoCode())
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}`
+	if e, a := util.GoFmt(expected), util.GoFmt(a.ExampleGoCode()); e != a {
+		t.Errorf("Expect:\n%s\nActual:\n%s\n", e, a)
 	}
 }
 
