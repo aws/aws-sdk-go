@@ -45,7 +45,8 @@
         {"shape":"WAFInvalidResourceException"},
         {"shape":"WAFUnavailableEntityException"},
         {"shape":"WAFSubscriptionNotFoundException"},
-        {"shape":"WAFExpiredManagedRuleGroupVersionException"}
+        {"shape":"WAFExpiredManagedRuleGroupVersionException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "CreateIPSet":{
@@ -2901,7 +2902,8 @@
       "enum":[
         "APPLICATION_LOAD_BALANCER",
         "API_GATEWAY",
-        "APPSYNC"
+        "APPSYNC",
+        "COGNITO_USER_POOL"
       ]
     },
     "ResponseCode":{"type":"integer"},

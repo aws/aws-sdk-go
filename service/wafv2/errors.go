@@ -13,10 +13,6 @@ const (
 	//
 	// WAF couldn’t perform the operation because your resource is being used
 	// by another resource or it’s associated with another resource.
-	//
-	// For DeleteWebACL, you will only get this exception if the web ACL is still
-	// associated with a regional resource. Deleting a web ACL that is still associated
-	// with an Amazon CloudFront distribution won't get this exception.
 	ErrCodeWAFAssociatedItemException = "WAFAssociatedItemException"
 
 	// ErrCodeWAFConfigurationWarningException for service response error code

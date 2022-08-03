@@ -29,7 +29,7 @@
     "AdminUpdateDeviceStatus": "<p>Updates the device status as an administrator.</p> <p>Calling this action requires developer credentials.</p>",
     "AdminUpdateUserAttributes": "<p>Updates the specified user's attributes, including developer attributes, as an administrator. Works on any user.</p> <p>For custom attributes, you must prepend the <code>custom:</code> prefix to the attribute name.</p> <p>In addition to updating user attributes, this API can also be used to mark phone and email as verified.</p> <note> <p>This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a phone number with <a href=\"https://console.aws.amazon.com/pinpoint/home/\">Amazon Pinpoint</a>. Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up, activate their accounts, or sign in.</p> <p>If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple Notification Service might place your account in the SMS sandbox. In <i> <a href=\"https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html\">sandbox mode</a> </i>, you can send messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move out of the sandbox and into production. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html\"> SMS message settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.</p> </note> <p>Calling this action requires developer credentials.</p>",
     "AdminUserGlobalSignOut": "<p>Signs out a user from all devices. You must sign <code>AdminUserGlobalSignOut</code> requests with Amazon Web Services credentials. It also invalidates all refresh tokens that Amazon Cognito has issued to a user. The user's current access and ID tokens remain valid until they expire. By default, access and ID tokens expire one hour after they're issued. A user can still use a hosted UI cookie to retrieve new tokens for the duration of the cookie validity period of 1 hour.</p> <p>Calling this action requires developer credentials.</p>",
-    "AssociateSoftwareToken": "<p>Begins setup of time-based one-time password multi-factor authentication (TOTP MFA) for a user, with a unique private key that Amazon Cognito generates and returns in the API response. You can authorize an <code>AssociateSoftwareToken</code> request with either the user's access token, or a session string from a challenge response that you received from Amazon Cognito.</p> <note> <p>Amazon Cognito disassociates an existing software token when you verify the new token in a <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerifySoftwareToken.html\"> VerifySoftwareToken</a> API request. If you don't verify the software token and your user pool doesn't require MFA, the user can then authenticate with user name and password credentials alone. If your user pool requires TOTP MFA, Amazon Cognito generates an <code>MFA_SETUP</code> or <code>SOFTWARE_TOKEN_SETUP</code> challenge each time your user signs. Complete setup with <code>AssociateSoftwareToken</code> and <code>VerifySoftwareToken</code>.</p> <p>After you set up software token MFA for your user, Amazon Cognito generates a <code>SOFTWARE_TOKEN_MFA</code> challenge when they authenticate. Respond to this challenge with your user's TOTP.</p> </note>",
+    "AssociateSoftwareToken": "<p>Begins setup of time-based one-time password (TOTP) multi-factor authentication (MFA) for a user, with a unique private key that Amazon Cognito generates and returns in the API response. You can authorize an <code>AssociateSoftwareToken</code> request with either the user's access token, or a session string from a challenge response that you received from Amazon Cognito.</p> <note> <p>Amazon Cognito disassociates an existing software token when you verify the new token in a <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerifySoftwareToken.html\"> VerifySoftwareToken</a> API request. If you don't verify the software token and your user pool doesn't require MFA, the user can then authenticate with user name and password credentials alone. If your user pool requires TOTP MFA, Amazon Cognito generates an <code>MFA_SETUP</code> or <code>SOFTWARE_TOKEN_SETUP</code> challenge each time your user signs. Complete setup with <code>AssociateSoftwareToken</code> and <code>VerifySoftwareToken</code>.</p> <p>After you set up software token MFA for your user, Amazon Cognito generates a <code>SOFTWARE_TOKEN_MFA</code> challenge when they authenticate. Respond to this challenge with your user's TOTP.</p> </note>",
     "ChangePassword": "<p>Changes the password for a specified user in a user pool.</p>",
     "ConfirmDevice": "<p>Confirms tracking of the device. This API call is the call that begins device tracking.</p>",
     "ConfirmForgotPassword": "<p>Allows a user to enter a confirmation code to reset a forgotten password.</p>",
@@ -635,8 +635,8 @@
         "AnalyticsConfigurationType$UserDataShared": "<p>If <code>UserDataShared</code> is <code>true</code>, Amazon Cognito includes user data in the events that it publishes to Amazon Pinpoint analytics.</p>",
         "ConfirmDeviceResponse$UserConfirmationNecessary": "<p>Indicates whether the user confirmation must confirm the device response.</p>",
         "CreateUserPoolClientRequest$AllowedOAuthFlowsUserPoolClient": "<p>Set to true if the client is allowed to follow the OAuth protocol when interacting with Amazon Cognito user pools.</p>",
-        "DeviceConfigurationType$ChallengeRequiredOnNewDevice": "<p>When true, device authentication can replace SMS and time-based one-time password (TOTP) factors for multi-factor authentication (MFA).</p> <note> <p>Users that sign in with devices that have not been confirmed or remembered will still have to provide a second factor, whether or not ChallengeRequiredOnNewDevice is true, when your user pool requires MFA.</p> </note>",
-        "DeviceConfigurationType$DeviceOnlyRememberedOnUserPrompt": "<p>When true, users can opt in to remembering their device. Your app code must use callback functions to return the user's choice.</p>",
+        "DeviceConfigurationType$ChallengeRequiredOnNewDevice": "<p>When true, device authentication can replace SMS and time-based one-time password (TOTP) factors for multi-factor authentication (MFA).</p> <note> <p>Regardless of the value of this field, users that sign in with new devices that have not been confirmed or remembered must provide a second factor if your user pool requires MFA.</p> </note>",
+        "DeviceConfigurationType$DeviceOnlyRememberedOnUserPrompt": "<p>When true, Amazon Cognito doesn't remember newly-confirmed devices. Users who want to authenticate with their device can instead opt in to remembering their device. To collect a choice from your user, create an input prompt in your app and return the value that the user chooses in an <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateDeviceStatus.html\">UpdateDeviceStatus</a> API request.</p>",
         "PasswordPolicyType$RequireUppercase": "<p>In the password policy that you have set, refers to whether you have required users to use at least one uppercase letter in their password.</p>",
         "PasswordPolicyType$RequireLowercase": "<p>In the password policy that you have set, refers to whether you have required users to use at least one lowercase letter in their password.</p>",
         "PasswordPolicyType$RequireNumbers": "<p>In the password policy that you have set, refers to whether you have required users to use at least one number in their password.</p>",
@@ -905,7 +905,7 @@
     "ConfirmationCodeType": {
       "base": null,
       "refs": {
-        "ConfirmForgotPasswordRequest$ConfirmationCode": "<p>The confirmation code sent by a user's request to retrieve a forgotten password. For more information, see <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ForgotPassword.html\">ForgotPassword</a>.</p>",
+        "ConfirmForgotPasswordRequest$ConfirmationCode": "<p>The confirmation code from your user's request to reset their password. For more information, see <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ForgotPassword.html\">ForgotPassword</a>.</p>",
         "ConfirmSignUpRequest$ConfirmationCode": "<p>The confirmation code sent by a user's request to confirm registration.</p>",
         "VerifyUserAttributeRequest$Code": "<p>The verification code in the request to verify user attributes.</p>"
       }
@@ -1212,11 +1212,11 @@
       }
     },
     "DeviceConfigurationType": {
-      "base": "<p>The device tracking configuration for a user pool. A user pool with device tracking deactivated returns a null value.</p> <note> <p>When you provide values for any DeviceConfiguration field, you activate device tracking.</p> </note>",
+      "base": "<p>The device-remembering configuration for a user pool. A null value indicates that you have deactivated device remembering in your user pool.</p> <note> <p>When you provide a value for any <code>DeviceConfiguration</code> field, you activate the Amazon Cognito device-remembering feature.</p> </note>",
       "refs": {
-        "CreateUserPoolRequest$DeviceConfiguration": "<p>The device configuration.</p>",
-        "UpdateUserPoolRequest$DeviceConfiguration": "<p>Device configuration.</p>",
-        "UserPoolType$DeviceConfiguration": "<p>The device configuration.</p>"
+        "CreateUserPoolRequest$DeviceConfiguration": "<p>The device-remembering configuration for a user pool. A null value indicates that you have deactivated device remembering in your user pool.</p> <note> <p>When you provide a value for any <code>DeviceConfiguration</code> field, you activate the Amazon Cognito device-remembering feature.</p> </note>",
+        "UpdateUserPoolRequest$DeviceConfiguration": "<p>The device-remembering configuration for a user pool. A null value indicates that you have deactivated device remembering in your user pool.</p> <note> <p>When you provide a value for any <code>DeviceConfiguration</code> field, you activate the Amazon Cognito device-remembering feature.</p> </note>",
+        "UserPoolType$DeviceConfiguration": "<p>The device-remembering configuration for a user pool. A null value indicates that you have deactivated device remembering in your user pool.</p> <note> <p>When you provide a value for any <code>DeviceConfiguration</code> field, you activate the Amazon Cognito device-remembering feature.</p> </note>"
       }
     },
     "DeviceKeyType": {
@@ -1346,7 +1346,7 @@
     "EmailVerificationMessageType": {
       "base": null,
       "refs": {
-        "CreateUserPoolRequest$EmailVerificationMessage": "<p>A string representing the email verification message. EmailVerificationMessage is allowed only if <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount\">EmailSendingAccount</a> is DEVELOPER. </p>",
+        "CreateUserPoolRequest$EmailVerificationMessage": "<p>A string representing the email verification message. <code>EmailVerificationMessage</code> is allowed only if <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount\">EmailSendingAccount</a> is DEVELOPER. </p>",
         "MessageTemplateType$EmailMessage": "<p>The message template for email messages. EmailMessage is allowed only if <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount\">EmailSendingAccount</a> is DEVELOPER. </p>",
         "UpdateUserPoolRequest$EmailVerificationMessage": "<p>The contents of the email verification message.</p>",
         "UserPoolType$EmailVerificationMessage": "<p>The contents of the email verification message.</p>",
@@ -1362,7 +1362,7 @@
     "EmailVerificationSubjectType": {
       "base": null,
       "refs": {
-        "CreateUserPoolRequest$EmailVerificationSubject": "<p>A string representing the email verification subject. EmailVerificationSubject is allowed only if <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount\">EmailSendingAccount</a> is DEVELOPER. </p>",
+        "CreateUserPoolRequest$EmailVerificationSubject": "<p>A string representing the email verification subject. <code>EmailVerificationSubject</code> is allowed only if <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount\">EmailSendingAccount</a> is DEVELOPER. </p>",
         "MessageTemplateType$EmailSubject": "<p>The subject line for email messages. EmailSubject is allowed only if <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount\">EmailSendingAccount</a> is DEVELOPER. </p>",
         "UpdateUserPoolRequest$EmailVerificationSubject": "<p>The subject of the email verification message.</p>",
         "UserPoolType$EmailVerificationSubject": "<p>The subject of the email verification message.</p>",
@@ -1431,7 +1431,7 @@
     "ExplicitAuthFlowsListType": {
       "base": null,
       "refs": {
-        "CreateUserPoolClientRequest$ExplicitAuthFlows": "<p>The authentication flows that are supported by the user pool clients. Flow names without the <code>ALLOW_</code> prefix are no longer supported, in favor of new names with the <code>ALLOW_</code> prefix.</p> <note> <p>Values with <code>ALLOW_</code> prefix must be used only along with the <code>ALLOW_</code> prefix.</p> </note> <p>Valid values include:</p> <ul> <li> <p> <code>ALLOW_ADMIN_USER_PASSWORD_AUTH</code>: Enable admin based user password authentication flow <code>ADMIN_USER_PASSWORD_AUTH</code>. This setting replaces the <code>ADMIN_NO_SRP_AUTH</code> setting. With this authentication flow, Amazon Cognito receives the password in the request instead of using the Secure Remote Password (SRP) protocol to verify passwords.</p> </li> <li> <p> <code>ALLOW_CUSTOM_AUTH</code>: Enable Lambda trigger based authentication.</p> </li> <li> <p> <code>ALLOW_USER_PASSWORD_AUTH</code>: Enable user password-based authentication. In this flow, Amazon Cognito receives the password in the request instead of using the SRP protocol to verify passwords.</p> </li> <li> <p> <code>ALLOW_USER_SRP_AUTH</code>: Enable SRP-based authentication.</p> </li> <li> <p> <code>ALLOW_REFRESH_TOKEN_AUTH</code>: Enable authflow to refresh tokens.</p> </li> </ul> <p>If you don't specify a value for <code>ExplicitAuthFlows</code>, your app client activates the <code>ALLOW_USER_SRP_AUTH</code> and <code>ALLOW_CUSTOM_AUTH</code> authentication flows.</p>",
+        "CreateUserPoolClientRequest$ExplicitAuthFlows": "<p>The authentication flows that are supported by the user pool clients. Flow names without the <code>ALLOW_</code> prefix are no longer supported, in favor of new names with the <code>ALLOW_</code> prefix.</p> <note> <p>Values with <code>ALLOW_</code> prefix must be used only along with the <code>ALLOW_</code> prefix.</p> </note> <p>Valid values include:</p> <dl> <dt>ALLOW_ADMIN_USER_PASSWORD_AUTH</dt> <dd> <p>Enable admin based user password authentication flow <code>ADMIN_USER_PASSWORD_AUTH</code>. This setting replaces the <code>ADMIN_NO_SRP_AUTH</code> setting. With this authentication flow, Amazon Cognito receives the password in the request instead of using the Secure Remote Password (SRP) protocol to verify passwords.</p> </dd> <dt>ALLOW_CUSTOM_AUTH</dt> <dd> <p>Enable Lambda trigger based authentication.</p> </dd> <dt>ALLOW_USER_PASSWORD_AUTH</dt> <dd> <p>Enable user password-based authentication. In this flow, Amazon Cognito receives the password in the request instead of using the SRP protocol to verify passwords.</p> </dd> <dt>ALLOW_USER_SRP_AUTH</dt> <dd> <p>Enable SRP-based authentication.</p> </dd> <dt>ALLOW_REFRESH_TOKEN_AUTH</dt> <dd> <p>Enable the authflow that refreshes tokens.</p> </dd> </dl> <p>If you don't specify a value for <code>ExplicitAuthFlows</code>, your user client supports <code>ALLOW_USER_SRP_AUTH</code> and <code>ALLOW_CUSTOM_AUTH</code>.</p>",
         "UpdateUserPoolClientRequest$ExplicitAuthFlows": "<p>The authentication flows that are supported by the user pool clients. Flow names without the <code>ALLOW_</code> prefix are no longer supported in favor of new names with the <code>ALLOW_</code> prefix. Note that values with <code>ALLOW_</code> prefix must be used only along with values with the <code>ALLOW_</code> prefix.</p> <p>Valid values include:</p> <ul> <li> <p> <code>ALLOW_ADMIN_USER_PASSWORD_AUTH</code>: Enable admin based user password authentication flow <code>ADMIN_USER_PASSWORD_AUTH</code>. This setting replaces the <code>ADMIN_NO_SRP_AUTH</code> setting. With this authentication flow, Amazon Cognito receives the password in the request instead of using the Secure Remote Password (SRP) protocol to verify passwords.</p> </li> <li> <p> <code>ALLOW_CUSTOM_AUTH</code>: Enable Lambda trigger based authentication.</p> </li> <li> <p> <code>ALLOW_USER_PASSWORD_AUTH</code>: Enable user password-based authentication. In this flow, Amazon Cognito receives the password in the request instead of using the SRP protocol to verify passwords.</p> </li> <li> <p> <code>ALLOW_USER_SRP_AUTH</code>: Enable SRP-based authentication.</p> </li> <li> <p> <code>ALLOW_REFRESH_TOKEN_AUTH</code>: Enable authflow to refresh tokens.</p> </li> </ul>",
         "UserPoolClientType$ExplicitAuthFlows": "<p>The authentication flows that are supported by the user pool clients. Flow names without the <code>ALLOW_</code> prefix are no longer supported in favor of new names with the <code>ALLOW_</code> prefix. Note that values with <code>ALLOW_</code> prefix must be used only along with values including the <code>ALLOW_</code> prefix.</p> <p>Valid values include:</p> <ul> <li> <p> <code>ALLOW_ADMIN_USER_PASSWORD_AUTH</code>: Enable admin based user password authentication flow <code>ADMIN_USER_PASSWORD_AUTH</code>. This setting replaces the <code>ADMIN_NO_SRP_AUTH</code> setting. With this authentication flow, Amazon Cognito receives the password in the request instead of using the Secure Remote Password (SRP) protocol to verify passwords.</p> </li> <li> <p> <code>ALLOW_CUSTOM_AUTH</code>: Enable Lambda trigger based authentication.</p> </li> <li> <p> <code>ALLOW_USER_PASSWORD_AUTH</code>: Enable user password-based authentication. In this flow, Amazon Cognito receives the password in the request instead of using the SRP protocol to verify passwords.</p> </li> <li> <p> <code>ALLOW_USER_SRP_AUTH</code>: Enable SRP-based authentication.</p> </li> <li> <p> <code>ALLOW_REFRESH_TOKEN_AUTH</code>: Enable authflow to refresh tokens.</p> </li> </ul>"
       }
@@ -1448,6 +1448,11 @@
         "AdminUpdateAuthEventFeedbackRequest$FeedbackValue": "<p>The authentication event feedback value.</p>",
         "EventFeedbackType$FeedbackValue": "<p>The event feedback value.</p>",
         "UpdateAuthEventFeedbackRequest$FeedbackValue": "<p>The authentication event feedback value.</p>"
+      }
+    },
+    "ForbiddenException": {
+      "base": "<p>This exception is thrown when WAF doesn't allow your request based on a web ACL that's associated with your user pool.</p>",
+      "refs": {
       }
     },
     "ForceAliasCreation": {
@@ -1928,13 +1933,14 @@
     "MessageType": {
       "base": null,
       "refs": {
-        "AliasExistsException$message": "<p>The message sent to the user when an alias exists.</p>",
+        "AliasExistsException$message": "<p>The message that Amazon Cognito sends to the user when the value of an alias attribute is already linked to another user profile.</p>",
         "CodeDeliveryFailureException$message": "<p>The message sent when a verification code fails to deliver successfully.</p>",
         "CodeMismatchException$message": "<p>The message provided when the code mismatch exception is thrown.</p>",
         "ConcurrentModificationException$message": "<p>The message provided when the concurrent exception is thrown.</p>",
         "DuplicateProviderException$message": null,
         "EnableSoftwareTokenMFAException$message": null,
         "ExpiredCodeException$message": "<p>The message returned when the expired code exception is thrown.</p>",
+        "ForbiddenException$message": "<p>The message returned when WAF doesn't allow your request based on a web ACL that's associated with your user pool.</p>",
         "GroupExistsException$message": null,
         "InternalErrorException$message": "<p>The message returned when Amazon Cognito throws an internal error exception.</p>",
         "InvalidEmailRoleAccessPolicyException$message": "<p>The message returned when you have an unverified email address or the identity policy isn't set on an email address that Amazon Cognito can access.</p>",
@@ -2067,7 +2073,7 @@
         "AdminSetUserPasswordRequest$Password": "<p>The password for the user.</p>",
         "ChangePasswordRequest$PreviousPassword": "<p>The old password.</p>",
         "ChangePasswordRequest$ProposedPassword": "<p>The new password.</p>",
-        "ConfirmForgotPasswordRequest$Password": "<p>The password sent by a user's request to retrieve a forgotten password.</p>",
+        "ConfirmForgotPasswordRequest$Password": "<p>The new password that your user wants to set.</p>",
         "SignUpRequest$Password": "<p>The password of the user you want to register.</p>"
       }
     },
@@ -2409,7 +2415,7 @@
     "SecretCodeType": {
       "base": null,
       "refs": {
-        "AssociateSoftwareTokenResponse$SecretCode": "<p>A unique generated shared secret code that is used in the time-based one-time password (TOTP) algorithm to generate a one-time code.</p>"
+        "AssociateSoftwareTokenResponse$SecretCode": "<p>A unique generated shared secret code that is used in the TOTP algorithm to generate a one-time code.</p>"
       }
     },
     "SecretHashType": {
@@ -2515,7 +2521,7 @@
     "SmsMfaConfigType": {
       "base": "<p>The SMS text message multi-factor authentication (MFA) configuration type.</p>",
       "refs": {
-        "GetUserPoolMfaConfigResponse$SmsMfaConfiguration": "<p>The SMS text message multi-factor (MFA) configuration.</p>",
+        "GetUserPoolMfaConfigResponse$SmsMfaConfiguration": "<p>The SMS text message multi-factor authentication (MFA) configuration.</p>",
         "SetUserPoolMfaConfigRequest$SmsMfaConfiguration": "<p>The SMS text message MFA configuration.</p>",
         "SetUserPoolMfaConfigResponse$SmsMfaConfiguration": "<p>The SMS text message MFA configuration.</p>"
       }
@@ -2548,7 +2554,7 @@
     "SoftwareTokenMfaConfigType": {
       "base": "<p>The type used for enabling software token MFA at the user pool level.</p>",
       "refs": {
-        "GetUserPoolMfaConfigResponse$SoftwareTokenMfaConfiguration": "<p>The software token multi-factor (MFA) configuration.</p>",
+        "GetUserPoolMfaConfigResponse$SoftwareTokenMfaConfiguration": "<p>The software token multi-factor authentication (MFA) configuration.</p>",
         "SetUserPoolMfaConfigRequest$SoftwareTokenMfaConfiguration": "<p>The software token MFA configuration.</p>",
         "SetUserPoolMfaConfigResponse$SoftwareTokenMfaConfiguration": "<p>The software token MFA configuration.</p>"
       }
@@ -2557,7 +2563,7 @@
       "base": "<p>The type used for enabling software token MFA at the user level. If an MFA type is activated for a user, the user will be prompted for MFA during all sign-in attempts, unless device tracking is turned on and the device has been trusted. If you want MFA to be applied selectively based on the assessed risk level of sign-in attempts, deactivate MFA for users and turn on Adaptive Authentication for the user pool.</p>",
       "refs": {
         "AdminSetUserMFAPreferenceRequest$SoftwareTokenMfaSettings": "<p>The time-based one-time password software token MFA settings.</p>",
-        "SetUserMFAPreferenceRequest$SoftwareTokenMfaSettings": "<p>The time-based one-time password software token MFA settings.</p>"
+        "SetUserMFAPreferenceRequest$SoftwareTokenMfaSettings": "<p>The time-based one-time password (TOTP) software token MFA settings.</p>"
       }
     },
     "StartUserImportJobRequest": {
@@ -2658,9 +2664,9 @@
     "SupportedIdentityProvidersListType": {
       "base": null,
       "refs": {
-        "CreateUserPoolClientRequest$SupportedIdentityProviders": "<p>A list of provider names for the IdPs that this client supports. The following are supported: <code>COGNITO</code>, <code>Facebook</code>, <code>Google</code> <code>LoginWithAmazon</code>, and the names of your own SAML and OIDC providers.</p>",
-        "UpdateUserPoolClientRequest$SupportedIdentityProviders": "<p>A list of provider names for the IdPs that this client supports. The following are supported: <code>COGNITO</code>, <code>Facebook</code>, <code>Google</code> <code>LoginWithAmazon</code>, and the names of your own SAML and OIDC providers.</p>",
-        "UserPoolClientType$SupportedIdentityProviders": "<p>A list of provider names for the IdPs that this client supports. The following are supported: <code>COGNITO</code>, <code>Facebook</code>, <code>Google</code> <code>LoginWithAmazon</code>, and the names of your own SAML and OIDC providers.</p>"
+        "CreateUserPoolClientRequest$SupportedIdentityProviders": "<p>A list of provider names for the identity providers (IdPs) that are supported on this client. The following are supported: <code>COGNITO</code>, <code>Facebook</code>, <code>Google</code>, <code>SignInWithApple</code>, and <code>LoginWithAmazon</code>. You can also specify the names that you configured for the SAML and OIDC IdPs in your user pool, for example <code>MySAMLIdP</code> or <code>MyOIDCIdP</code>.</p>",
+        "UpdateUserPoolClientRequest$SupportedIdentityProviders": "<p>A list of provider names for the IdPs that this client supports. The following are supported: <code>COGNITO</code>, <code>Facebook</code>, <code>Google</code>, <code>SignInWithApple</code>, <code>LoginWithAmazon</code>, and the names of your own SAML and OIDC providers.</p>",
+        "UserPoolClientType$SupportedIdentityProviders": "<p>A list of provider names for the IdPs that this client supports. The following are supported: <code>COGNITO</code>, <code>Facebook</code>, <code>Google</code>, <code>SignInWithApple</code>, <code>LoginWithAmazon</code>, and the names of your own SAML and OIDC providers.</p>"
       }
     },
     "TagKeysType": {
@@ -2883,11 +2889,11 @@
       }
     },
     "UserAttributeUpdateSettingsType": {
-      "base": "<p>The settings for updates to user attributes. These settings include the property <code>AttributesRequireVerificationBeforeUpdate</code>, a user-pool setting that tells Amazon Cognito how to handle changes to the value of your users' email address and phone number attributes. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates\"> Verifying updates to to email addresses and phone numbers</a>.</p>",
+      "base": "<p>The settings for updates to user attributes. These settings include the property <code>AttributesRequireVerificationBeforeUpdate</code>, a user-pool setting that tells Amazon Cognito how to handle changes to the value of your users' email address and phone number attributes. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates\"> Verifying updates to email addresses and phone numbers</a>.</p>",
       "refs": {
-        "CreateUserPoolRequest$UserAttributeUpdateSettings": "<p>The settings for updates to user attributes. These settings include the property <code>AttributesRequireVerificationBeforeUpdate</code>, a user-pool setting that tells Amazon Cognito how to handle changes to the value of your users' email address and phone number attributes. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates\"> Verifying updates to to email addresses and phone numbers</a>.</p>",
-        "UpdateUserPoolRequest$UserAttributeUpdateSettings": "<p>The settings for updates to user attributes. These settings include the property <code>AttributesRequireVerificationBeforeUpdate</code>, a user-pool setting that tells Amazon Cognito how to handle changes to the value of your users' email address and phone number attributes. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates\"> Verifying updates to to email addresses and phone numbers</a>.</p>",
-        "UserPoolType$UserAttributeUpdateSettings": "<p>The settings for updates to user attributes. These settings include the property <code>AttributesRequireVerificationBeforeUpdate</code>, a user-pool setting that tells Amazon Cognito how to handle changes to the value of your users' email address and phone number attributes. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates\"> Verifying updates to to email addresses and phone numbers</a>.</p>"
+        "CreateUserPoolRequest$UserAttributeUpdateSettings": "<p>The settings for updates to user attributes. These settings include the property <code>AttributesRequireVerificationBeforeUpdate</code>, a user-pool setting that tells Amazon Cognito how to handle changes to the value of your users' email address and phone number attributes. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates\"> Verifying updates to email addresses and phone numbers</a>.</p>",
+        "UpdateUserPoolRequest$UserAttributeUpdateSettings": "<p>The settings for updates to user attributes. These settings include the property <code>AttributesRequireVerificationBeforeUpdate</code>, a user-pool setting that tells Amazon Cognito how to handle changes to the value of your users' email address and phone number attributes. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates\"> Verifying updates to email addresses and phone numbers</a>.</p>",
+        "UserPoolType$UserAttributeUpdateSettings": "<p>The settings for updates to user attributes. These settings include the property <code>AttributesRequireVerificationBeforeUpdate</code>, a user-pool setting that tells Amazon Cognito how to handle changes to the value of your users' email address and phone number attributes. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates\"> Verifying updates to email addresses and phone numbers</a>.</p>"
       }
     },
     "UserContextDataType": {
@@ -3107,7 +3113,7 @@
       "base": null,
       "refs": {
         "CreateUserPoolRequest$MfaConfiguration": "<p>Specifies MFA configuration details.</p>",
-        "GetUserPoolMfaConfigResponse$MfaConfiguration": "<p>The multi-factor (MFA) configuration. Valid values include:</p> <ul> <li> <p> <code>OFF</code> MFA won't be used for any users.</p> </li> <li> <p> <code>ON</code> MFA is required for all users to sign in.</p> </li> <li> <p> <code>OPTIONAL</code> MFA will be required only for individual users who have an MFA factor activated.</p> </li> </ul>",
+        "GetUserPoolMfaConfigResponse$MfaConfiguration": "<p>The multi-factor authentication (MFA) configuration. Valid values include:</p> <ul> <li> <p> <code>OFF</code> MFA won't be used for any users.</p> </li> <li> <p> <code>ON</code> MFA is required for all users to sign in.</p> </li> <li> <p> <code>OPTIONAL</code> MFA will be required only for individual users who have an MFA factor activated.</p> </li> </ul>",
         "SetUserPoolMfaConfigRequest$MfaConfiguration": "<p>The MFA configuration. If you set the MfaConfiguration value to ‘ON’, only users who have set up an MFA factor can sign in. To learn more, see <a href=\"cognito/latest/developerguide/user-pool-settings-mfa.html\">Adding Multi-Factor Authentication (MFA) to a user pool</a>. Valid values include:</p> <ul> <li> <p> <code>OFF</code> MFA won't be used for any users.</p> </li> <li> <p> <code>ON</code> MFA is required for all users to sign in.</p> </li> <li> <p> <code>OPTIONAL</code> MFA will be required only for individual users who have an MFA factor activated.</p> </li> </ul>",
         "SetUserPoolMfaConfigResponse$MfaConfiguration": "<p>The MFA configuration. Valid values include:</p> <ul> <li> <p> <code>OFF</code> MFA won't be used for any users.</p> </li> <li> <p> <code>ON</code> MFA is required for all users to sign in.</p> </li> <li> <p> <code>OPTIONAL</code> MFA will be required only for individual users who have an MFA factor enabled.</p> </li> </ul>",
         "UpdateUserPoolRequest$MfaConfiguration": "<p>Possible values include:</p> <ul> <li> <p> <code>OFF</code> - MFA tokens aren't required and can't be specified during user registration.</p> </li> <li> <p> <code>ON</code> - MFA tokens are required for all user registrations. You can only specify ON when you're initially creating a user pool. You can use the <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserPoolMfaConfig.html\">SetUserPoolMfaConfig</a> API operation to turn MFA \"ON\" for existing user pools. </p> </li> <li> <p> <code>OPTIONAL</code> - Users have the option when registering to create an MFA token.</p> </li> </ul>",

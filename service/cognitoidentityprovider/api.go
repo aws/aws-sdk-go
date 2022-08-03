@@ -3292,8 +3292,8 @@ func (c *CognitoIdentityProvider) AssociateSoftwareTokenRequest(input *Associate
 
 // AssociateSoftwareToken API operation for Amazon Cognito Identity Provider.
 //
-// Begins setup of time-based one-time password multi-factor authentication
-// (TOTP MFA) for a user, with a unique private key that Amazon Cognito generates
+// Begins setup of time-based one-time password (TOTP) multi-factor authentication
+// (MFA) for a user, with a unique private key that Amazon Cognito generates
 // and returns in the API response. You can authorize an AssociateSoftwareToken
 // request with either the user's access token, or a session string from a challenge
 // response that you received from Amazon Cognito.
@@ -3338,6 +3338,10 @@ func (c *CognitoIdentityProvider) AssociateSoftwareTokenRequest(input *Associate
 //   * SoftwareTokenMFANotFoundException
 //   This exception is thrown when the software token time-based one-time password
 //   (TOTP) multi-factor authentication (MFA) isn't activated for the user pool.
+//
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AssociateSoftwareToken
 func (c *CognitoIdentityProvider) AssociateSoftwareToken(input *AssociateSoftwareTokenInput) (*AssociateSoftwareTokenOutput, error) {
@@ -3450,6 +3454,10 @@ func (c *CognitoIdentityProvider) ChangePasswordRequest(input *ChangePasswordInp
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ChangePassword
 func (c *CognitoIdentityProvider) ChangePassword(input *ChangePasswordInput) (*ChangePasswordOutput, error) {
@@ -3568,6 +3576,10 @@ func (c *CognitoIdentityProvider) ConfirmDeviceRequest(input *ConfirmDeviceInput
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmDevice
 func (c *CognitoIdentityProvider) ConfirmDevice(input *ConfirmDeviceInput) (*ConfirmDeviceOutput, error) {
@@ -3701,6 +3713,10 @@ func (c *CognitoIdentityProvider) ConfirmForgotPasswordRequest(input *ConfirmFor
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmForgotPassword
 func (c *CognitoIdentityProvider) ConfirmForgotPassword(input *ConfirmForgotPasswordInput) (*ConfirmForgotPasswordOutput, error) {
 	req, out := c.ConfirmForgotPasswordRequest(input)
@@ -3833,6 +3849,10 @@ func (c *CognitoIdentityProvider) ConfirmSignUpRequest(input *ConfirmSignUpInput
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmSignUp
 func (c *CognitoIdentityProvider) ConfirmSignUp(input *ConfirmSignUpInput) (*ConfirmSignUpOutput, error) {
@@ -4965,6 +4985,10 @@ func (c *CognitoIdentityProvider) DeleteUserRequest(input *DeleteUserInput) (req
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUser
 func (c *CognitoIdentityProvider) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
 	req, out := c.DeleteUserRequest(input)
@@ -5069,6 +5093,10 @@ func (c *CognitoIdentityProvider) DeleteUserAttributesRequest(input *DeleteUserA
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserAttributes
 func (c *CognitoIdentityProvider) DeleteUserAttributes(input *DeleteUserAttributesInput) (*DeleteUserAttributesOutput, error) {
@@ -6124,6 +6152,10 @@ func (c *CognitoIdentityProvider) ForgetDeviceRequest(input *ForgetDeviceInput) 
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ForgetDevice
 func (c *CognitoIdentityProvider) ForgetDevice(input *ForgetDeviceInput) (*ForgetDeviceOutput, error) {
 	req, out := c.ForgetDeviceRequest(input)
@@ -6280,6 +6312,10 @@ func (c *CognitoIdentityProvider) ForgotPasswordRequest(input *ForgotPasswordInp
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ForgotPassword
 func (c *CognitoIdentityProvider) ForgotPassword(input *ForgotPasswordInput) (*ForgotPasswordOutput, error) {
@@ -6481,6 +6517,10 @@ func (c *CognitoIdentityProvider) GetDeviceRequest(input *GetDeviceInput) (req *
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetDevice
 func (c *CognitoIdentityProvider) GetDevice(input *GetDeviceInput) (*GetDeviceOutput, error) {
@@ -6961,6 +7001,10 @@ func (c *CognitoIdentityProvider) GetUserRequest(input *GetUserInput) (req *requ
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUser
 func (c *CognitoIdentityProvider) GetUser(input *GetUserInput) (*GetUserOutput, error) {
 	req, out := c.GetUserRequest(input)
@@ -7117,6 +7161,10 @@ func (c *CognitoIdentityProvider) GetUserAttributeVerificationCodeRequest(input 
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUserAttributeVerificationCode
 func (c *CognitoIdentityProvider) GetUserAttributeVerificationCode(input *GetUserAttributeVerificationCodeInput) (*GetUserAttributeVerificationCodeOutput, error) {
@@ -7318,6 +7366,10 @@ func (c *CognitoIdentityProvider) GlobalSignOutRequest(input *GlobalSignOutInput
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GlobalSignOut
 func (c *CognitoIdentityProvider) GlobalSignOut(input *GlobalSignOutInput) (*GlobalSignOutOutput, error) {
 	req, out := c.GlobalSignOutRequest(input)
@@ -7467,6 +7519,10 @@ func (c *CognitoIdentityProvider) InitiateAuthRequest(input *InitiateAuthInput) 
 //   or the external ID provided in the role does not match what is provided in
 //   the SMS configuration for the user pool.
 //
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/InitiateAuth
 func (c *CognitoIdentityProvider) InitiateAuth(input *InitiateAuthInput) (*InitiateAuthOutput, error) {
 	req, out := c.InitiateAuthRequest(input)
@@ -7573,6 +7629,10 @@ func (c *CognitoIdentityProvider) ListDevicesRequest(input *ListDevicesInput) (r
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListDevices
 func (c *CognitoIdentityProvider) ListDevices(input *ListDevicesInput) (*ListDevicesOutput, error) {
@@ -8982,6 +9042,10 @@ func (c *CognitoIdentityProvider) ResendConfirmationCodeRequest(input *ResendCon
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ResendConfirmationCode
 func (c *CognitoIdentityProvider) ResendConfirmationCode(input *ResendConfirmationCodeInput) (*ResendConfirmationCodeOutput, error) {
 	req, out := c.ResendConfirmationCodeRequest(input)
@@ -9154,6 +9218,10 @@ func (c *CognitoIdentityProvider) RespondToAuthChallengeRequest(input *RespondTo
 //   This exception is thrown when the software token time-based one-time password
 //   (TOTP) multi-factor authentication (MFA) isn't activated for the user pool.
 //
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/RespondToAuthChallenge
 func (c *CognitoIdentityProvider) RespondToAuthChallenge(input *RespondToAuthChallengeInput) (*RespondToAuthChallengeOutput, error) {
 	req, out := c.RespondToAuthChallengeRequest(input)
@@ -9254,6 +9322,10 @@ func (c *CognitoIdentityProvider) RevokeTokenRequest(input *RevokeTokenInput) (r
 //
 //   * UnsupportedTokenTypeException
 //   Exception that is thrown when an unsupported token is passed to an operation.
+//
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/RevokeToken
 func (c *CognitoIdentityProvider) RevokeToken(input *RevokeTokenInput) (*RevokeTokenOutput, error) {
@@ -9577,6 +9649,10 @@ func (c *CognitoIdentityProvider) SetUserMFAPreferenceRequest(input *SetUserMFAP
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetUserMFAPreference
 func (c *CognitoIdentityProvider) SetUserMFAPreference(input *SetUserMFAPreferenceInput) (*SetUserMFAPreferenceOutput, error) {
 	req, out := c.SetUserMFAPreferenceRequest(input)
@@ -9803,6 +9879,10 @@ func (c *CognitoIdentityProvider) SetUserSettingsRequest(input *SetUserSettingsI
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetUserSettings
 func (c *CognitoIdentityProvider) SetUserSettings(input *SetUserSettingsInput) (*SetUserSettingsOutput, error) {
 	req, out := c.SetUserSettingsRequest(input)
@@ -9952,6 +10032,10 @@ func (c *CognitoIdentityProvider) SignUpRequest(input *SignUpInput) (req *reques
 //
 //   * CodeDeliveryFailureException
 //   This exception is thrown when a verification code fails to deliver successfully.
+//
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SignUp
 func (c *CognitoIdentityProvider) SignUp(input *SignUpInput) (*SignUpOutput, error) {
@@ -10565,6 +10649,10 @@ func (c *CognitoIdentityProvider) UpdateDeviceStatusRequest(input *UpdateDeviceS
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateDeviceStatus
 func (c *CognitoIdentityProvider) UpdateDeviceStatus(input *UpdateDeviceStatusInput) (*UpdateDeviceStatusOutput, error) {
 	req, out := c.UpdateDeviceStatusRequest(input)
@@ -11018,6 +11106,10 @@ func (c *CognitoIdentityProvider) UpdateUserAttributesRequest(input *UpdateUserA
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserAttributes
 func (c *CognitoIdentityProvider) UpdateUserAttributes(input *UpdateUserAttributesInput) (*UpdateUserAttributesOutput, error) {
@@ -11515,6 +11607,10 @@ func (c *CognitoIdentityProvider) VerifySoftwareTokenRequest(input *VerifySoftwa
 //   This exception is thrown if the provided code doesn't match what the server
 //   was expecting.
 //
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/VerifySoftwareToken
 func (c *CognitoIdentityProvider) VerifySoftwareToken(input *VerifySoftwareTokenInput) (*VerifySoftwareTokenOutput, error) {
 	req, out := c.VerifySoftwareTokenRequest(input)
@@ -11642,6 +11738,10 @@ func (c *CognitoIdentityProvider) VerifyUserAttributeRequest(input *VerifyUserAt
 //   for a different user profile. This exception indicates that an account with
 //   this email address or phone already exists in a user pool that you've configured
 //   to use email address or phone number as a sign-in alias.
+//
+//   * ForbiddenException
+//   This exception is thrown when WAF doesn't allow your request based on a web
+//   ACL that's associated with your user pool.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/VerifyUserAttribute
 func (c *CognitoIdentityProvider) VerifyUserAttribute(input *VerifyUserAttributeInput) (*VerifyUserAttributeOutput, error) {
@@ -15834,7 +15934,8 @@ type AliasExistsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The message sent to the user when an alias exists.
+	// The message that Amazon Cognito sends to the user when the value of an alias
+	// attribute is already linked to another user profile.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -16090,8 +16191,8 @@ func (s *AssociateSoftwareTokenInput) SetSession(v string) *AssociateSoftwareTok
 type AssociateSoftwareTokenOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique generated shared secret code that is used in the time-based one-time
-	// password (TOTP) algorithm to generate a one-time code.
+	// A unique generated shared secret code that is used in the TOTP algorithm
+	// to generate a one-time code.
 	//
 	// SecretCode is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AssociateSoftwareTokenOutput's
@@ -17063,13 +17164,13 @@ type ConfirmForgotPasswordInput struct {
 	//    sensitive information.
 	ClientMetadata map[string]*string `type:"map"`
 
-	// The confirmation code sent by a user's request to retrieve a forgotten password.
-	// For more information, see ForgotPassword (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ForgotPassword.html).
+	// The confirmation code from your user's request to reset their password. For
+	// more information, see ForgotPassword (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ForgotPassword.html).
 	//
 	// ConfirmationCode is a required field
 	ConfirmationCode *string `min:"1" type:"string" required:"true"`
 
-	// The password sent by a user's request to retrieve a forgotten password.
+	// The new password that your user wants to set.
 	//
 	// Password is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ConfirmForgotPasswordInput's
@@ -18205,24 +18306,32 @@ type CreateUserPoolClientInput struct {
 	//
 	// Valid values include:
 	//
-	//    * ALLOW_ADMIN_USER_PASSWORD_AUTH: Enable admin based user password authentication
-	//    flow ADMIN_USER_PASSWORD_AUTH. This setting replaces the ADMIN_NO_SRP_AUTH
-	//    setting. With this authentication flow, Amazon Cognito receives the password
-	//    in the request instead of using the Secure Remote Password (SRP) protocol
-	//    to verify passwords.
+	// ALLOW_ADMIN_USER_PASSWORD_AUTH
 	//
-	//    * ALLOW_CUSTOM_AUTH: Enable Lambda trigger based authentication.
+	// Enable admin based user password authentication flow ADMIN_USER_PASSWORD_AUTH.
+	// This setting replaces the ADMIN_NO_SRP_AUTH setting. With this authentication
+	// flow, Amazon Cognito receives the password in the request instead of using
+	// the Secure Remote Password (SRP) protocol to verify passwords.
 	//
-	//    * ALLOW_USER_PASSWORD_AUTH: Enable user password-based authentication.
-	//    In this flow, Amazon Cognito receives the password in the request instead
-	//    of using the SRP protocol to verify passwords.
+	// ALLOW_CUSTOM_AUTH
 	//
-	//    * ALLOW_USER_SRP_AUTH: Enable SRP-based authentication.
+	// Enable Lambda trigger based authentication.
 	//
-	//    * ALLOW_REFRESH_TOKEN_AUTH: Enable authflow to refresh tokens.
+	// ALLOW_USER_PASSWORD_AUTH
 	//
-	// If you don't specify a value for ExplicitAuthFlows, your app client activates
-	// the ALLOW_USER_SRP_AUTH and ALLOW_CUSTOM_AUTH authentication flows.
+	// Enable user password-based authentication. In this flow, Amazon Cognito receives
+	// the password in the request instead of using the SRP protocol to verify passwords.
+	//
+	// ALLOW_USER_SRP_AUTH
+	//
+	// Enable SRP-based authentication.
+	//
+	// ALLOW_REFRESH_TOKEN_AUTH
+	//
+	// Enable the authflow that refreshes tokens.
+	//
+	// If you don't specify a value for ExplicitAuthFlows, your user client supports
+	// ALLOW_USER_SRP_AUTH and ALLOW_CUSTOM_AUTH.
 	ExplicitAuthFlows []*string `type:"list" enum:"ExplicitAuthFlowsType"`
 
 	// Boolean to specify whether you want to generate a secret for the user pool
@@ -18279,9 +18388,10 @@ type CreateUserPoolClientInput struct {
 	// in seconds.
 	RefreshTokenValidity *int64 `type:"integer"`
 
-	// A list of provider names for the IdPs that this client supports. The following
-	// are supported: COGNITO, Facebook, Google LoginWithAmazon, and the names of
-	// your own SAML and OIDC providers.
+	// A list of provider names for the identity providers (IdPs) that are supported
+	// on this client. The following are supported: COGNITO, Facebook, Google, SignInWithApple,
+	// and LoginWithAmazon. You can also specify the names that you configured for
+	// the SAML and OIDC IdPs in your user pool, for example MySAMLIdP or MyOIDCIdP.
 	SupportedIdentityProviders []*string `type:"list"`
 
 	// The units in which the validity times are represented. The default unit for
@@ -18662,7 +18772,11 @@ type CreateUserPoolInput struct {
 	// The attributes to be auto-verified. Possible values: email, phone_number.
 	AutoVerifiedAttributes []*string `type:"list" enum:"VerifiedAttributeType"`
 
-	// The device configuration.
+	// The device-remembering configuration for a user pool. A null value indicates
+	// that you have deactivated device remembering in your user pool.
+	//
+	// When you provide a value for any DeviceConfiguration field, you activate
+	// the Amazon Cognito device-remembering feature.
 	DeviceConfiguration *DeviceConfigurationType `type:"structure"`
 
 	// The email configuration of your user pool. The email configuration type sets
@@ -18725,7 +18839,7 @@ type CreateUserPoolInput struct {
 	// AttributesRequireVerificationBeforeUpdate, a user-pool setting that tells
 	// Amazon Cognito how to handle changes to the value of your users' email address
 	// and phone number attributes. For more information, see Verifying updates
-	// to to email addresses and phone numbers (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates).
+	// to email addresses and phone numbers (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates).
 	UserAttributeUpdateSettings *UserAttributeUpdateSettingsType `type:"structure"`
 
 	// Enables advanced security risk detection. Set the key AdvancedSecurityMode
@@ -20556,24 +20670,28 @@ func (s *DescribeUserPoolOutput) SetUserPool(v *UserPoolType) *DescribeUserPoolO
 	return s
 }
 
-// The device tracking configuration for a user pool. A user pool with device
-// tracking deactivated returns a null value.
+// The device-remembering configuration for a user pool. A null value indicates
+// that you have deactivated device remembering in your user pool.
 //
-// When you provide values for any DeviceConfiguration field, you activate device
-// tracking.
+// When you provide a value for any DeviceConfiguration field, you activate
+// the Amazon Cognito device-remembering feature.
 type DeviceConfigurationType struct {
 	_ struct{} `type:"structure"`
 
 	// When true, device authentication can replace SMS and time-based one-time
 	// password (TOTP) factors for multi-factor authentication (MFA).
 	//
-	// Users that sign in with devices that have not been confirmed or remembered
-	// will still have to provide a second factor, whether or not ChallengeRequiredOnNewDevice
-	// is true, when your user pool requires MFA.
+	// Regardless of the value of this field, users that sign in with new devices
+	// that have not been confirmed or remembered must provide a second factor if
+	// your user pool requires MFA.
 	ChallengeRequiredOnNewDevice *bool `type:"boolean"`
 
-	// When true, users can opt in to remembering their device. Your app code must
-	// use callback functions to return the user's choice.
+	// When true, Amazon Cognito doesn't remember newly-confirmed devices. Users
+	// who want to authenticate with their device can instead opt in to remembering
+	// their device. To collect a choice from your user, create an input prompt
+	// in your app and return the value that the user chooses in an UpdateDeviceStatus
+	// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateDeviceStatus.html)
+	// API request.
 	DeviceOnlyRememberedOnUserPrompt *bool `type:"boolean"`
 }
 
@@ -21343,6 +21461,73 @@ func (s *ExpiredCodeException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *ExpiredCodeException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// This exception is thrown when WAF doesn't allow your request based on a web
+// ACL that's associated with your user pool.
+type ForbiddenException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The message returned when WAF doesn't allow your request based on a web ACL
+	// that's associated with your user pool.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ForbiddenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ForbiddenException) GoString() string {
+	return s.String()
+}
+
+func newErrorForbiddenException(v protocol.ResponseMetadata) error {
+	return &ForbiddenException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ForbiddenException) Code() string {
+	return "ForbiddenException"
+}
+
+// Message returns the exception's message.
+func (s *ForbiddenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ForbiddenException) OrigErr() error {
+	return nil
+}
+
+func (s *ForbiddenException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ForbiddenException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ForbiddenException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -22512,7 +22697,7 @@ func (s *GetUserPoolMfaConfigInput) SetUserPoolId(v string) *GetUserPoolMfaConfi
 type GetUserPoolMfaConfigOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The multi-factor (MFA) configuration. Valid values include:
+	// The multi-factor authentication (MFA) configuration. Valid values include:
 	//
 	//    * OFF MFA won't be used for any users.
 	//
@@ -22522,10 +22707,10 @@ type GetUserPoolMfaConfigOutput struct {
 	//    MFA factor activated.
 	MfaConfiguration *string `type:"string" enum:"UserPoolMfaType"`
 
-	// The SMS text message multi-factor (MFA) configuration.
+	// The SMS text message multi-factor authentication (MFA) configuration.
 	SmsMfaConfiguration *SmsMfaConfigType `type:"structure"`
 
-	// The software token multi-factor (MFA) configuration.
+	// The software token multi-factor authentication (MFA) configuration.
 	SoftwareTokenMfaConfiguration *SoftwareTokenMfaConfigType `type:"structure"`
 }
 
@@ -27650,7 +27835,7 @@ type SetUserMFAPreferenceInput struct {
 	// The SMS text message multi-factor authentication (MFA) settings.
 	SMSMfaSettings *SMSMfaSettingsType `type:"structure"`
 
-	// The time-based one-time password software token MFA settings.
+	// The time-based one-time password (TOTP) software token MFA settings.
 	SoftwareTokenMfaSettings *SoftwareTokenMfaSettingsType `type:"structure"`
 }
 
@@ -30604,8 +30789,8 @@ type UpdateUserPoolClientInput struct {
 	RefreshTokenValidity *int64 `type:"integer"`
 
 	// A list of provider names for the IdPs that this client supports. The following
-	// are supported: COGNITO, Facebook, Google LoginWithAmazon, and the names of
-	// your own SAML and OIDC providers.
+	// are supported: COGNITO, Facebook, Google, SignInWithApple, LoginWithAmazon,
+	// and the names of your own SAML and OIDC providers.
 	SupportedIdentityProviders []*string `type:"list"`
 
 	// The units in which the validity times are represented. The default unit for
@@ -30986,7 +31171,11 @@ type UpdateUserPoolInput struct {
 	// to update user pools.
 	AutoVerifiedAttributes []*string `type:"list" enum:"VerifiedAttributeType"`
 
-	// Device configuration.
+	// The device-remembering configuration for a user pool. A null value indicates
+	// that you have deactivated device remembering in your user pool.
+	//
+	// When you provide a value for any DeviceConfiguration field, you activate
+	// the Amazon Cognito device-remembering feature.
 	DeviceConfiguration *DeviceConfigurationType `type:"structure"`
 
 	// The email configuration of your user pool. The email configuration type sets
@@ -31038,7 +31227,7 @@ type UpdateUserPoolInput struct {
 	// AttributesRequireVerificationBeforeUpdate, a user-pool setting that tells
 	// Amazon Cognito how to handle changes to the value of your users' email address
 	// and phone number attributes. For more information, see Verifying updates
-	// to to email addresses and phone numbers (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates).
+	// to email addresses and phone numbers (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates).
 	UserAttributeUpdateSettings *UserAttributeUpdateSettingsType `type:"structure"`
 
 	// Enables advanced security risk detection. Set the key AdvancedSecurityMode
@@ -31281,7 +31470,7 @@ func (s UpdateUserPoolOutput) GoString() string {
 // AttributesRequireVerificationBeforeUpdate, a user-pool setting that tells
 // Amazon Cognito how to handle changes to the value of your users' email address
 // and phone number attributes. For more information, see Verifying updates
-// to to email addresses and phone numbers (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates).
+// to email addresses and phone numbers (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates).
 type UserAttributeUpdateSettingsType struct {
 	_ struct{} `type:"structure"`
 
@@ -32174,8 +32363,8 @@ type UserPoolClientType struct {
 	RefreshTokenValidity *int64 `type:"integer"`
 
 	// A list of provider names for the IdPs that this client supports. The following
-	// are supported: COGNITO, Facebook, Google LoginWithAmazon, and the names of
-	// your own SAML and OIDC providers.
+	// are supported: COGNITO, Facebook, Google, SignInWithApple, LoginWithAmazon,
+	// and the names of your own SAML and OIDC providers.
 	SupportedIdentityProviders []*string `type:"list"`
 
 	// The time units used to specify the token validity times of each token type:
@@ -32575,7 +32764,11 @@ type UserPoolType struct {
 	// Using Your Own Domain for the Hosted UI (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html).
 	CustomDomain *string `min:"1" type:"string"`
 
-	// The device configuration.
+	// The device-remembering configuration for a user pool. A null value indicates
+	// that you have deactivated device remembering in your user pool.
+	//
+	// When you provide a value for any DeviceConfiguration field, you activate
+	// the Amazon Cognito device-remembering feature.
 	DeviceConfiguration *DeviceConfigurationType `type:"structure"`
 
 	// The domain prefix, if the user pool has a domain associated with it.
@@ -32669,7 +32862,7 @@ type UserPoolType struct {
 	// AttributesRequireVerificationBeforeUpdate, a user-pool setting that tells
 	// Amazon Cognito how to handle changes to the value of your users' email address
 	// and phone number attributes. For more information, see Verifying updates
-	// to to email addresses and phone numbers (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates).
+	// to email addresses and phone numbers (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates).
 	UserAttributeUpdateSettings *UserAttributeUpdateSettingsType `type:"structure"`
 
 	// The user pool add-ons.

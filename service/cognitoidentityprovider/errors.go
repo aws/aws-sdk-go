@@ -57,6 +57,13 @@ const (
 	// This exception is thrown if a code has expired.
 	ErrCodeExpiredCodeException = "ExpiredCodeException"
 
+	// ErrCodeForbiddenException for service response error code
+	// "ForbiddenException".
+	//
+	// This exception is thrown when WAF doesn't allow your request based on a web
+	// ACL that's associated with your user pool.
+	ErrCodeForbiddenException = "ForbiddenException"
+
 	// ErrCodeGroupExistsException for service response error code
 	// "GroupExistsException".
 	//
@@ -284,6 +291,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"DuplicateProviderException":               newErrorDuplicateProviderException,
 	"EnableSoftwareTokenMFAException":          newErrorEnableSoftwareTokenMFAException,
 	"ExpiredCodeException":                     newErrorExpiredCodeException,
+	"ForbiddenException":                       newErrorForbiddenException,
 	"GroupExistsException":                     newErrorGroupExistsException,
 	"InternalErrorException":                   newErrorInternalErrorException,
 	"InvalidEmailRoleAccessPolicyException":    newErrorInvalidEmailRoleAccessPolicyException,
