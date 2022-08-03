@@ -1,3 +1,10 @@
+Release v1.44.69 (2022-08-03)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.44.68 (2022-08-02)
 ===
 

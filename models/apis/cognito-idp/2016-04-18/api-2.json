@@ -541,7 +541,8 @@
         {"shape":"NotAuthorizedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalErrorException"},
-        {"shape":"SoftwareTokenMFANotFoundException"}
+        {"shape":"SoftwareTokenMFANotFoundException"},
+        {"shape":"ForbiddenException"}
       ]
     },
     "ChangePassword":{
@@ -562,7 +563,8 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     },
@@ -586,7 +588,8 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ]
     },
     "ConfirmForgotPassword":{
@@ -612,7 +615,8 @@
         {"shape":"LimitExceededException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     },
@@ -638,7 +642,8 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"LimitExceededException"},
         {"shape":"UserNotFoundException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     },
@@ -829,7 +834,8 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     },
@@ -849,7 +855,8 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     },
@@ -1028,7 +1035,8 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ]
     },
     "ForgotPassword":{
@@ -1053,7 +1061,8 @@
         {"shape":"InvalidEmailRoleAccessPolicyException"},
         {"shape":"CodeDeliveryFailureException"},
         {"shape":"UserNotFoundException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     },
@@ -1090,7 +1099,8 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ]
     },
     "GetGroup":{
@@ -1171,7 +1181,8 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     },
@@ -1199,7 +1210,8 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     },
@@ -1234,7 +1246,8 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ]
     },
     "InitiateAuth":{
@@ -1259,7 +1272,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"InvalidSmsRoleAccessPolicyException"},
-        {"shape":"InvalidSmsRoleTrustRelationshipException"}
+        {"shape":"InvalidSmsRoleTrustRelationshipException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     },
@@ -1280,7 +1294,8 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ]
     },
     "ListGroups":{
@@ -1448,7 +1463,8 @@
         {"shape":"InvalidEmailRoleAccessPolicyException"},
         {"shape":"CodeDeliveryFailureException"},
         {"shape":"UserNotFoundException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     },
@@ -1480,7 +1496,8 @@
         {"shape":"InvalidSmsRoleTrustRelationshipException"},
         {"shape":"AliasExistsException"},
         {"shape":"InternalErrorException"},
-        {"shape":"SoftwareTokenMFANotFoundException"}
+        {"shape":"SoftwareTokenMFANotFoundException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     },
@@ -1498,7 +1515,8 @@
         {"shape":"UnauthorizedException"},
         {"shape":"InvalidParameterException"},
         {"shape":"UnsupportedOperationException"},
-        {"shape":"UnsupportedTokenTypeException"}
+        {"shape":"UnsupportedTokenTypeException"},
+        {"shape":"ForbiddenException"}
       ]
     },
     "SetRiskConfiguration":{
@@ -1551,7 +1569,8 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ]
     },
     "SetUserPoolMfaConfig":{
@@ -1587,7 +1606,8 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     },
@@ -1613,7 +1633,8 @@
         {"shape":"InvalidSmsRoleAccessPolicyException"},
         {"shape":"InvalidSmsRoleTrustRelationshipException"},
         {"shape":"InvalidEmailRoleAccessPolicyException"},
-        {"shape":"CodeDeliveryFailureException"}
+        {"shape":"CodeDeliveryFailureException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     },
@@ -1718,7 +1739,8 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ]
     },
     "UpdateGroup":{
@@ -1796,7 +1818,8 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     },
@@ -1878,7 +1901,8 @@
         {"shape":"EnableSoftwareTokenMFAException"},
         {"shape":"NotAuthorizedException"},
         {"shape":"SoftwareTokenMFANotFoundException"},
-        {"shape":"CodeMismatchException"}
+        {"shape":"CodeMismatchException"},
+        {"shape":"ForbiddenException"}
       ]
     },
     "VerifyUserAttribute":{
@@ -1901,7 +1925,8 @@
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
-        {"shape":"AliasExistsException"}
+        {"shape":"AliasExistsException"},
+        {"shape":"ForbiddenException"}
       ],
       "authtype":"none"
     }
@@ -3578,6 +3603,13 @@
         "Valid",
         "Invalid"
       ]
+    },
+    "ForbiddenException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"MessageType"}
+      },
+      "exception":true
     },
     "ForceAliasCreation":{"type":"boolean"},
     "ForgetDeviceRequest":{
