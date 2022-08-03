@@ -31,12 +31,9 @@ jobs:
 
     - name: Test
       shell: bash
-      run: |
-        if [ "${{ matrix.os }}" == "windows-latest" ]; then
-          make unit-no-verify
-        else
-          make get-deps-verify ci-test
-        fi
+      # SDK is currently being released with go 1.18, this cannot perform
+      # ci-tests task until the release system is updated to go 1.19.
+      run: make unit-no-verify
 
   deprecated-go-module-tests:
     needs: full-test
