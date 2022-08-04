@@ -1,4 +1,4 @@
-FROM golang:1.10
+FROM golang:1.18
 
 ADD . /go/src/github.com/aws/aws-sdk-go
 
