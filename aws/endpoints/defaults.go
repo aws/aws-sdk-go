@@ -5230,6 +5230,22 @@ var awsPartition = partition{
 		"compute-optimizer": service{
 			Endpoints: serviceEndpoints{
 				endpointKey{
+					Region: "af-south-1",
+				}: endpoint{
+					Hostname: "compute-optimizer.af-south-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "af-south-1",
+					},
+				},
+				endpointKey{
+					Region: "ap-east-1",
+				}: endpoint{
+					Hostname: "compute-optimizer.ap-east-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "ap-east-1",
+					},
+				},
+				endpointKey{
 					Region: "ap-northeast-1",
 				}: endpoint{
 					Hostname: "compute-optimizer.ap-northeast-1.amazonaws.com",
@@ -5243,6 +5259,14 @@ var awsPartition = partition{
 					Hostname: "compute-optimizer.ap-northeast-2.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "ap-northeast-2",
+					},
+				},
+				endpointKey{
+					Region: "ap-northeast-3",
+				}: endpoint{
+					Hostname: "compute-optimizer.ap-northeast-3.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "ap-northeast-3",
 					},
 				},
 				endpointKey{
@@ -5294,6 +5318,14 @@ var awsPartition = partition{
 					},
 				},
 				endpointKey{
+					Region: "eu-south-1",
+				}: endpoint{
+					Hostname: "compute-optimizer.eu-south-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "eu-south-1",
+					},
+				},
+				endpointKey{
 					Region: "eu-west-1",
 				}: endpoint{
 					Hostname: "compute-optimizer.eu-west-1.amazonaws.com",
@@ -5315,6 +5347,14 @@ var awsPartition = partition{
 					Hostname: "compute-optimizer.eu-west-3.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "eu-west-3",
+					},
+				},
+				endpointKey{
+					Region: "me-south-1",
+				}: endpoint{
+					Hostname: "compute-optimizer.me-south-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "me-south-1",
 					},
 				},
 				endpointKey{

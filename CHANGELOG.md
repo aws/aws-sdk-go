@@ -1,3 +1,14 @@
+Release v1.44.70 (2022-08-04)
+===
+
+### Service Client Updates
+* `service/chime-sdk-meetings`: Updates service API and documentation
+* `service/config`: Updates service API
+* `service/dms`: Updates service documentation
+  * Documentation updates for Database Migration Service (DMS).
+* `service/iot`: Updates service API and documentation
+  * The release is to support attach a provisioning template to CACert for JITP function,  Customer now doesn't have to hardcode a roleArn and templateBody during register a CACert to enable JITP.
+
 Release v1.44.69 (2022-08-03)
 ===
 

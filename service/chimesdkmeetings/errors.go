@@ -38,6 +38,12 @@ const (
 	// One or more of the resources in the request does not exist in the system.
 	ErrCodeNotFoundException = "NotFoundException"
 
+	// ErrCodeResourceNotFoundException for service response error code
+	// "ResourceNotFoundException".
+	//
+	// The resource that you want to tag couldn't be found.
+	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
 	// ErrCodeServiceFailureException for service response error code
 	// "ServiceFailureException".
 	//
@@ -55,6 +61,12 @@ const (
 	//
 	// The number of customer requests exceeds the request rate limit.
 	ErrCodeThrottlingException = "ThrottlingException"
+
+	// ErrCodeTooManyTagsException for service response error code
+	// "TooManyTagsException".
+	//
+	// Too many tags were added to the specified resource.
+	ErrCodeTooManyTagsException = "TooManyTagsException"
 
 	// ErrCodeUnauthorizedException for service response error code
 	// "UnauthorizedException".
@@ -76,9 +88,11 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ForbiddenException":           newErrorForbiddenException,
 	"LimitExceededException":       newErrorLimitExceededException,
 	"NotFoundException":            newErrorNotFoundException,
+	"ResourceNotFoundException":    newErrorResourceNotFoundException,
 	"ServiceFailureException":      newErrorServiceFailureException,
 	"ServiceUnavailableException":  newErrorServiceUnavailableException,
 	"ThrottlingException":          newErrorThrottlingException,
+	"TooManyTagsException":         newErrorTooManyTagsException,
 	"UnauthorizedException":        newErrorUnauthorizedException,
 	"UnprocessableEntityException": newErrorUnprocessableEntityException,
 }

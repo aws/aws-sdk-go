@@ -103,6 +103,10 @@ type ChimeSDKMeetingsAPI interface {
 	ListAttendeesPages(*chimesdkmeetings.ListAttendeesInput, func(*chimesdkmeetings.ListAttendeesOutput, bool) bool) error
 	ListAttendeesPagesWithContext(aws.Context, *chimesdkmeetings.ListAttendeesInput, func(*chimesdkmeetings.ListAttendeesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*chimesdkmeetings.ListTagsForResourceInput) (*chimesdkmeetings.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *chimesdkmeetings.ListTagsForResourceInput, ...request.Option) (*chimesdkmeetings.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*chimesdkmeetings.ListTagsForResourceInput) (*request.Request, *chimesdkmeetings.ListTagsForResourceOutput)
+
 	StartMeetingTranscription(*chimesdkmeetings.StartMeetingTranscriptionInput) (*chimesdkmeetings.StartMeetingTranscriptionOutput, error)
 	StartMeetingTranscriptionWithContext(aws.Context, *chimesdkmeetings.StartMeetingTranscriptionInput, ...request.Option) (*chimesdkmeetings.StartMeetingTranscriptionOutput, error)
 	StartMeetingTranscriptionRequest(*chimesdkmeetings.StartMeetingTranscriptionInput) (*request.Request, *chimesdkmeetings.StartMeetingTranscriptionOutput)
@@ -110,6 +114,14 @@ type ChimeSDKMeetingsAPI interface {
 	StopMeetingTranscription(*chimesdkmeetings.StopMeetingTranscriptionInput) (*chimesdkmeetings.StopMeetingTranscriptionOutput, error)
 	StopMeetingTranscriptionWithContext(aws.Context, *chimesdkmeetings.StopMeetingTranscriptionInput, ...request.Option) (*chimesdkmeetings.StopMeetingTranscriptionOutput, error)
 	StopMeetingTranscriptionRequest(*chimesdkmeetings.StopMeetingTranscriptionInput) (*request.Request, *chimesdkmeetings.StopMeetingTranscriptionOutput)
+
+	TagResource(*chimesdkmeetings.TagResourceInput) (*chimesdkmeetings.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *chimesdkmeetings.TagResourceInput, ...request.Option) (*chimesdkmeetings.TagResourceOutput, error)
+	TagResourceRequest(*chimesdkmeetings.TagResourceInput) (*request.Request, *chimesdkmeetings.TagResourceOutput)
+
+	UntagResource(*chimesdkmeetings.UntagResourceInput) (*chimesdkmeetings.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *chimesdkmeetings.UntagResourceInput, ...request.Option) (*chimesdkmeetings.UntagResourceOutput, error)
+	UntagResourceRequest(*chimesdkmeetings.UntagResourceInput) (*request.Request, *chimesdkmeetings.UntagResourceOutput)
 
 	UpdateAttendeeCapabilities(*chimesdkmeetings.UpdateAttendeeCapabilitiesInput) (*chimesdkmeetings.UpdateAttendeeCapabilitiesOutput, error)
 	UpdateAttendeeCapabilitiesWithContext(aws.Context, *chimesdkmeetings.UpdateAttendeeCapabilitiesInput, ...request.Option) (*chimesdkmeetings.UpdateAttendeeCapabilitiesOutput, error)

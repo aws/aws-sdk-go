@@ -1106,6 +1106,85 @@ func (c *ChimeSDKMeetings) ListAttendeesPagesWithContext(ctx aws.Context, input 
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/ListTagsForResource
+func (c *ChimeSDKMeetings) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/tags",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Chime SDK Meetings.
+//
+// Returns a list of the tags available for the specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Meetings's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource that you want to tag couldn't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/ListTagsForResource
+func (c *ChimeSDKMeetings) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMeetings) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartMeetingTranscription = "StartMeetingTranscription"
 
 // StartMeetingTranscriptionRequest generates a "aws/request.Request" representing the
@@ -1308,6 +1387,198 @@ func (c *ChimeSDKMeetings) StopMeetingTranscription(input *StopMeetingTranscript
 // for more information on using Contexts.
 func (c *ChimeSDKMeetings) StopMeetingTranscriptionWithContext(ctx aws.Context, input *StopMeetingTranscriptionInput, opts ...request.Option) (*StopMeetingTranscriptionOutput, error) {
 	req, out := c.StopMeetingTranscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/TagResource
+func (c *ChimeSDKMeetings) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags?operation=tag-resource",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Chime SDK Meetings.
+//
+// The resource that supports tags.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Meetings's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ResourceNotFoundException
+//   The resource that you want to tag couldn't be found.
+//
+//   * TooManyTagsException
+//   Too many tags were added to the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/TagResource
+func (c *ChimeSDKMeetings) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMeetings) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/UntagResource
+func (c *ChimeSDKMeetings) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags?operation=untag-resource",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Chime SDK Meetings.
+//
+// Removes the specified tags from the specified resources. When you specify
+// a tag key, the action removes both that key and its associated value. The
+// operation succeeds even if you attempt to remove tags from a resource that
+// were already removed. Note the following:
+//
+//    * To remove tags from a resource, you need the necessary permissions for
+//    the service that the resource belongs to as well as permissions for removing
+//    tags. For more information, see the documentation for the service whose
+//    resource you want to untag.
+//
+//    * You can only tag resources that are located in the specified AWS Region
+//    for the calling AWS account.
+//
+// Minimum permissions
+//
+// In addition to the tag:UntagResources permission required by this operation,
+// you must also have the remove tags permission defined by the service that
+// created the resource. For example, to remove the tags from an Amazon EC2
+// instance using the UntagResources operation, you must have both of the following
+// permissions:
+//
+// tag:UntagResource
+//
+// ChimeSDKMeetings:DeleteTags
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Meetings's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ResourceNotFoundException
+//   The resource that you want to tag couldn't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/UntagResource
+func (c *ChimeSDKMeetings) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMeetings) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2012,6 +2283,7 @@ type ConflictException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
+	// The ID of the request involved in the conflict.
 	RequestId *string `type:"string"`
 }
 
@@ -2387,6 +2659,48 @@ type CreateMeetingInput struct {
 	// meeting.
 	PrimaryMeetingId *string `min:"2" type:"string"`
 
+	// Applies one or more tags to an Amazon Chime SDK meeting. Note the following:
+	//
+	//    * Not all resources have tags. For a list of services with resources that
+	//    support tagging using this operation, see Services that support the Resource
+	//    Groups Tagging API (https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/supported-services.html).
+	//    If the resource doesn't yet support this operation, the resource's service
+	//    might support tagging using its own API operations. For more information,
+	//    refer to the documentation for that service.
+	//
+	//    * Each resource can have up to 50 tags. For other limits, see Tag Naming
+	//    and Usage Conventions (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html#tag-conventions)
+	//    in the AWS General Reference.
+	//
+	//    * You can only tag resources that are located in the specified AWS Region
+	//    for the AWS account.
+	//
+	//    * To add tags to a resource, you need the necessary permissions for the
+	//    service that the resource belongs to as well as permissions for adding
+	//    tags. For more information, see the documentation for each service.
+	//
+	// Do not store personally identifiable information (PII) or other confidential
+	// or sensitive information in tags. We use tags to provide you with billing
+	// and administration services. Tags are not intended to be used for private
+	// or sensitive data.
+	//
+	// Minimum permissions
+	//
+	// In addition to the tag:TagResources permission required by this operation,
+	// you must also have the tagging permission defined by the service that created
+	// the resource. For example, to tag a ChimeSDKMeetings instance using the TagResources
+	// operation, you must have both of the following permissions:
+	//
+	// tag:TagResources
+	//
+	// ChimeSDKMeetings:CreateTags
+	//
+	// Some services might have specific requirements for tagging some resources.
+	// For example, to tag an Amazon S3 bucket, you must also have the s3:GetBucketTagging
+	// permission. If the expected minimum permissions don't work, check the documentation
+	// for that service's tagging APIs for more information.
+	Tags []*Tag `type:"list"`
+
 	// A consistent and opaque identifier, created and maintained by the builder
 	// to represent a segment of their users.
 	TenantIds []*string `min:"1" type:"list"`
@@ -2442,6 +2756,16 @@ func (s *CreateMeetingInput) Validate() error {
 			invalidParams.AddNested("NotificationsConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2488,6 +2812,12 @@ func (s *CreateMeetingInput) SetNotificationsConfiguration(v *NotificationsConfi
 // SetPrimaryMeetingId sets the PrimaryMeetingId field's value.
 func (s *CreateMeetingInput) SetPrimaryMeetingId(v string) *CreateMeetingInput {
 	s.PrimaryMeetingId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMeetingInput) SetTags(v []*Tag) *CreateMeetingInput {
+	s.Tags = v
 	return s
 }
 
@@ -2583,6 +2913,9 @@ type CreateMeetingWithAttendeesInput struct {
 	// meeting.
 	PrimaryMeetingId *string `min:"2" type:"string"`
 
+	// The tags in the request.
+	Tags []*Tag `type:"list"`
+
 	// A consistent and opaque identifier, created and maintained by the builder
 	// to represent a segment of their users.
 	TenantIds []*string `min:"1" type:"list"`
@@ -2654,6 +2987,16 @@ func (s *CreateMeetingWithAttendeesInput) Validate() error {
 			invalidParams.AddNested("NotificationsConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2706,6 +3049,12 @@ func (s *CreateMeetingWithAttendeesInput) SetNotificationsConfiguration(v *Notif
 // SetPrimaryMeetingId sets the PrimaryMeetingId field's value.
 func (s *CreateMeetingWithAttendeesInput) SetPrimaryMeetingId(v string) *CreateMeetingWithAttendeesInput {
 	s.PrimaryMeetingId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMeetingWithAttendeesInput) SetTags(v []*Tag) *CreateMeetingWithAttendeesInput {
+	s.Tags = v
 	return s
 }
 
@@ -3640,6 +3989,86 @@ func (s *ListAttendeesOutput) SetNextToken(v string) *ListAttendeesOutput {
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the resource.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `location:"querystring" locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The tags requested for the specified resource.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 // A set of endpoints used by clients to connect to the media service group
 // for an Amazon Chime SDK meeting.
 type MediaPlacement struct {
@@ -3758,6 +4187,9 @@ type Meeting struct {
 	// Available values in AWS GovCloud (US) Regions: us-gov-east-1, us-gov-west-1.
 	MediaRegion *string `min:"2" type:"string"`
 
+	// The ARN of the meeting.
+	MeetingArn *string `min:"1" type:"string"`
+
 	// The features available to a meeting, such as Amazon Voice Focus.
 	MeetingFeatures *MeetingFeaturesConfiguration `type:"structure"`
 
@@ -3811,6 +4243,12 @@ func (s *Meeting) SetMediaPlacement(v *MediaPlacement) *Meeting {
 // SetMediaRegion sets the MediaRegion field's value.
 func (s *Meeting) SetMediaRegion(v string) *Meeting {
 	s.MediaRegion = &v
+	return s
+}
+
+// SetMeetingArn sets the MeetingArn field's value.
+func (s *Meeting) SetMeetingArn(v string) *Meeting {
+	s.MeetingArn = &v
 	return s
 }
 
@@ -4027,6 +4465,78 @@ func (s *NotificationsConfiguration) SetSqsQueueArn(v string) *NotificationsConf
 	return s
 }
 
+// The resource that you want to tag couldn't be found.
+type ResourceNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The ID of the resource that couldn't be found.
+	RequestId *string `type:"string"`
+
+	// The name of the resource that couldn't be found.
+	ResourceName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The service encountered an unexpected error.
 type ServiceFailureException struct {
 	_            struct{}                  `type:"structure"`
@@ -4036,6 +4546,7 @@ type ServiceFailureException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
+	// The ID of the failed request.
 	RequestId *string `type:"string"`
 }
 
@@ -4329,6 +4840,165 @@ func (s StopMeetingTranscriptionOutput) GoString() string {
 	return s.String()
 }
 
+// A key-value pair that you define.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The tag's key.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The tag's value.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the resource.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// Lists the requested tags.
+	//
+	// Tags is a required field
+	Tags []*Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *TagResourceInput) SetResourceARN(v string) *TagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // The number of customer requests exceeds the request rate limit.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
@@ -4338,6 +5008,7 @@ type ThrottlingException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
+	// The ID of the request that exceeded the throttling limit.
 	RequestId *string `type:"string"`
 }
 
@@ -4394,6 +5065,78 @@ func (s *ThrottlingException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Too many tags were added to the specified resource.
+type TooManyTagsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The ID of the request that contains too many tags.
+	RequestId *string `type:"string"`
+
+	// The name of the resource that received too many tags.
+	ResourceName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
+	return &TooManyTagsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyTagsException) Code() string {
+	return "TooManyTagsException"
+}
+
+// Message returns the exception's message.
+func (s *TooManyTagsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyTagsException) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyTagsException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyTagsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyTagsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -4596,6 +5339,91 @@ func (s *UnprocessableEntityException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *UnprocessableEntityException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the resource that you're removing tags from.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// The tag keys being removed from the resources.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *UntagResourceInput) SetResourceARN(v string) *UntagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateAttendeeCapabilitiesInput struct {

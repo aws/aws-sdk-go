@@ -32514,6 +32514,33 @@ const (
 
 	// ResourceTypeAwsAccessAnalyzerAnalyzer is a ResourceType enum value
 	ResourceTypeAwsAccessAnalyzerAnalyzer = "AWS::AccessAnalyzer::Analyzer"
+
+	// ResourceTypeAwsAthenaWorkGroup is a ResourceType enum value
+	ResourceTypeAwsAthenaWorkGroup = "AWS::Athena::WorkGroup"
+
+	// ResourceTypeAwsAthenaDataCatalog is a ResourceType enum value
+	ResourceTypeAwsAthenaDataCatalog = "AWS::Athena::DataCatalog"
+
+	// ResourceTypeAwsDetectiveGraph is a ResourceType enum value
+	ResourceTypeAwsDetectiveGraph = "AWS::Detective::Graph"
+
+	// ResourceTypeAwsGlobalAcceleratorAccelerator is a ResourceType enum value
+	ResourceTypeAwsGlobalAcceleratorAccelerator = "AWS::GlobalAccelerator::Accelerator"
+
+	// ResourceTypeAwsGlobalAcceleratorEndpointGroup is a ResourceType enum value
+	ResourceTypeAwsGlobalAcceleratorEndpointGroup = "AWS::GlobalAccelerator::EndpointGroup"
+
+	// ResourceTypeAwsGlobalAcceleratorListener is a ResourceType enum value
+	ResourceTypeAwsGlobalAcceleratorListener = "AWS::GlobalAccelerator::Listener"
+
+	// ResourceTypeAwsEc2TransitGatewayAttachment is a ResourceType enum value
+	ResourceTypeAwsEc2TransitGatewayAttachment = "AWS::EC2::TransitGatewayAttachment"
+
+	// ResourceTypeAwsEc2TransitGatewayRouteTable is a ResourceType enum value
+	ResourceTypeAwsEc2TransitGatewayRouteTable = "AWS::EC2::TransitGatewayRouteTable"
+
+	// ResourceTypeAwsDmsCertificate is a ResourceType enum value
+	ResourceTypeAwsDmsCertificate = "AWS::DMS::Certificate"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -32654,6 +32681,15 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsBatchJobQueue,
 		ResourceTypeAwsBatchComputeEnvironment,
 		ResourceTypeAwsAccessAnalyzerAnalyzer,
+		ResourceTypeAwsAthenaWorkGroup,
+		ResourceTypeAwsAthenaDataCatalog,
+		ResourceTypeAwsDetectiveGraph,
+		ResourceTypeAwsGlobalAcceleratorAccelerator,
+		ResourceTypeAwsGlobalAcceleratorEndpointGroup,
+		ResourceTypeAwsGlobalAcceleratorListener,
+		ResourceTypeAwsEc2TransitGatewayAttachment,
+		ResourceTypeAwsEc2TransitGatewayRouteTable,
+		ResourceTypeAwsDmsCertificate,
 	}
 }
 
