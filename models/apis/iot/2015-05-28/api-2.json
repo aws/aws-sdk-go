@@ -3026,6 +3026,7 @@
       "input":{"shape":"RegisterCACertificateRequest"},
       "output":{"shape":"RegisterCACertificateResponse"},
       "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"RegistrationCodeValidationException"},
         {"shape":"InvalidRequestException"},
@@ -5720,7 +5721,8 @@
         "enabled":{"shape":"Enabled"},
         "provisioningRoleArn":{"shape":"RoleArn"},
         "preProvisioningHook":{"shape":"ProvisioningHook"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "type":{"shape":"TemplateType"}
       }
     },
     "CreateProvisioningTemplateResponse":{
@@ -7102,7 +7104,8 @@
         "templateBody":{"shape":"TemplateBody"},
         "enabled":{"shape":"Enabled"},
         "provisioningRoleArn":{"shape":"RoleArn"},
-        "preProvisioningHook":{"shape":"ProvisioningHook"}
+        "preProvisioningHook":{"shape":"ProvisioningHook"},
+        "type":{"shape":"TemplateType"}
       }
     },
     "DescribeProvisioningTemplateVersionRequest":{
@@ -9100,6 +9103,11 @@
           "shape":"AscendingOrder",
           "location":"querystring",
           "locationName":"isAscendingOrder"
+        },
+        "templateName":{
+          "shape":"TemplateName",
+          "location":"querystring",
+          "locationName":"templateName"
         }
       }
     },
@@ -11167,7 +11175,8 @@
         "description":{"shape":"TemplateDescription"},
         "creationDate":{"shape":"DateType"},
         "lastModifiedDate":{"shape":"DateType"},
-        "enabled":{"shape":"Enabled"}
+        "enabled":{"shape":"Enabled"},
+        "type":{"shape":"TemplateType"}
       }
     },
     "ProvisioningTemplateVersionListing":{
@@ -11382,7 +11391,8 @@
       "type":"structure",
       "members":{
         "templateBody":{"shape":"TemplateBody"},
-        "roleArn":{"shape":"RoleArn"}
+        "roleArn":{"shape":"RoleArn"},
+        "templateName":{"shape":"TemplateName"}
       }
     },
     "RegistryMaxResults":{
@@ -12396,6 +12406,13 @@
       "max":36,
       "min":1,
       "pattern":"^[0-9A-Za-z_-]+$"
+    },
+    "TemplateType":{
+      "type":"string",
+      "enum":[
+        "FLEET_PROVISIONING",
+        "JITP"
+      ]
     },
     "TemplateVersionId":{"type":"integer"},
     "TermsAggregation":{

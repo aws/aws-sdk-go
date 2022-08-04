@@ -3279,7 +3279,7 @@ func (c *IoT) CreateProvisioningTemplateRequest(input *CreateProvisioningTemplat
 
 // CreateProvisioningTemplate API operation for AWS IoT.
 //
-// Creates a fleet provisioning template.
+// Creates a provisioning template.
 //
 // Requires permission to access the CreateProvisioningTemplate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -3373,7 +3373,7 @@ func (c *IoT) CreateProvisioningTemplateVersionRequest(input *CreateProvisioning
 
 // CreateProvisioningTemplateVersion API operation for AWS IoT.
 //
-// Creates a new version of a fleet provisioning template.
+// Creates a new version of a provisioning template.
 //
 // Requires permission to access the CreateProvisioningTemplateVersion (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -6041,7 +6041,7 @@ func (c *IoT) DeleteProvisioningTemplateRequest(input *DeleteProvisioningTemplat
 
 // DeleteProvisioningTemplate API operation for AWS IoT.
 //
-// Deletes a fleet provisioning template.
+// Deletes a provisioning template.
 //
 // Requires permission to access the DeleteProvisioningTemplate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -6140,7 +6140,7 @@ func (c *IoT) DeleteProvisioningTemplateVersionRequest(input *DeleteProvisioning
 
 // DeleteProvisioningTemplateVersion API operation for AWS IoT.
 //
-// Deletes a fleet provisioning template version.
+// Deletes a provisioning template version.
 //
 // Requires permission to access the DeleteProvisioningTemplateVersion (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -9414,7 +9414,7 @@ func (c *IoT) DescribeProvisioningTemplateRequest(input *DescribeProvisioningTem
 
 // DescribeProvisioningTemplate API operation for AWS IoT.
 //
-// Returns information about a fleet provisioning template.
+// Returns information about a provisioning template.
 //
 // Requires permission to access the DescribeProvisioningTemplate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -9505,7 +9505,7 @@ func (c *IoT) DescribeProvisioningTemplateVersionRequest(input *DescribeProvisio
 
 // DescribeProvisioningTemplateVersion API operation for AWS IoT.
 //
-// Returns information about a fleet provisioning template version.
+// Returns information about a provisioning template version.
 //
 // Requires permission to access the DescribeProvisioningTemplateVersion (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -10433,7 +10433,8 @@ func (c *IoT) DetachPrincipalPolicyRequest(input *DetachPrincipalPolicyInput) (r
 //
 // Removes the specified policy from the specified certificate.
 //
-// This action is deprecated. Please use DetachPolicy instead.
+// Note: This action is deprecated and works as expected for backward compatibility,
+// but we won't add enhancements. Use DetachPolicy instead.
 //
 // Requires permission to access the DetachPrincipalPolicy (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -16678,7 +16679,8 @@ func (c *IoT) ListPolicyPrincipalsRequest(input *ListPolicyPrincipalsInput) (req
 //
 // Lists the principals associated with the specified policy.
 //
-// Note: This action is deprecated. Please use ListTargetsForPolicy instead.
+// Note: This action is deprecated and works as expected for backward compatibility,
+// but we won't add enhancements. Use ListTargetsForPolicy instead.
 //
 // Requires permission to access the ListPolicyPrincipals (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -16940,7 +16942,8 @@ func (c *IoT) ListPrincipalPoliciesRequest(input *ListPrincipalPoliciesInput) (r
 // Lists the policies attached to the specified principal. If you use an Cognito
 // identity, the ID must be in AmazonCognito Identity format (https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax).
 //
-// Note: This action is deprecated. Please use ListAttachedPolicies instead.
+// Note: This action is deprecated and works as expected for backward compatibility,
+// but we won't add enhancements. Use ListAttachedPolicies instead.
 //
 // Requires permission to access the ListPrincipalPolicies (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -17254,7 +17257,7 @@ func (c *IoT) ListProvisioningTemplateVersionsRequest(input *ListProvisioningTem
 
 // ListProvisioningTemplateVersions API operation for AWS IoT.
 //
-// A list of fleet provisioning template versions.
+// A list of provisioning template versions.
 //
 // Requires permission to access the ListProvisioningTemplateVersions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -17403,7 +17406,7 @@ func (c *IoT) ListProvisioningTemplatesRequest(input *ListProvisioningTemplatesI
 
 // ListProvisioningTemplates API operation for AWS IoT.
 //
-// Lists the fleet provisioning templates in your Amazon Web Services account.
+// Lists the provisioning templates in your Amazon Web Services account.
 //
 // Requires permission to access the ListProvisioningTemplates (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -20739,6 +20742,9 @@ func (c *IoT) RegisterCACertificateRequest(input *RegisterCACertificateInput) (r
 // API operation RegisterCACertificate for usage and error information.
 //
 // Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
 //   * ResourceAlreadyExistsException
 //   The resource already exists.
 //
@@ -24433,7 +24439,7 @@ func (c *IoT) UpdateProvisioningTemplateRequest(input *UpdateProvisioningTemplat
 
 // UpdateProvisioningTemplate API operation for AWS IoT.
 //
-// Updates a fleet provisioning template.
+// Updates a provisioning template.
 //
 // Requires permission to access the UpdateProvisioningTemplate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -33922,22 +33928,22 @@ func (s *CreateProvisioningClaimOutput) SetKeyPair(v *KeyPair) *CreateProvisioni
 type CreateProvisioningTemplateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The description of the fleet provisioning template.
+	// The description of the provisioning template.
 	Description *string `locationName:"description" type:"string"`
 
-	// True to enable the fleet provisioning template, otherwise false.
+	// True to enable the provisioning template, otherwise false.
 	Enabled *bool `locationName:"enabled" type:"boolean"`
 
 	// Creates a pre-provisioning hook template.
 	PreProvisioningHook *ProvisioningHook `locationName:"preProvisioningHook" type:"structure"`
 
-	// The role ARN for the role associated with the fleet provisioning template.
-	// This IoT role grants permission to provision a device.
+	// The role ARN for the role associated with the provisioning template. This
+	// IoT role grants permission to provision a device.
 	//
 	// ProvisioningRoleArn is a required field
 	ProvisioningRoleArn *string `locationName:"provisioningRoleArn" min:"20" type:"string" required:"true"`
 
-	// Metadata which can be used to manage the fleet provisioning template.
+	// Metadata which can be used to manage the provisioning template.
 	//
 	// For URI Request parameters use format: ...key1=value1&key2=value2...
 	//
@@ -33946,15 +33952,21 @@ type CreateProvisioningTemplateInput struct {
 	// For the cli-input-json file use format: "tags": "key1=value1&key2=value2..."
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	// The JSON formatted contents of the fleet provisioning template.
+	// The JSON formatted contents of the provisioning template.
 	//
 	// TemplateBody is a required field
 	TemplateBody *string `locationName:"templateBody" type:"string" required:"true"`
 
-	// The name of the fleet provisioning template.
+	// The name of the provisioning template.
 	//
 	// TemplateName is a required field
 	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
+
+	// The type you define in a provisioning template. You can create a template
+	// with only one type. You can't change the template type after its creation.
+	// The default value is FLEET_PROVISIONING. For more information about provisioning
+	// template, see: Provisioning template (https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html).
+	Type *string `locationName:"type" type:"string" enum:"TemplateType"`
 }
 
 // String returns the string representation.
@@ -34057,16 +34069,22 @@ func (s *CreateProvisioningTemplateInput) SetTemplateName(v string) *CreateProvi
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *CreateProvisioningTemplateInput) SetType(v string) *CreateProvisioningTemplateInput {
+	s.Type = &v
+	return s
+}
+
 type CreateProvisioningTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The default version of the fleet provisioning template.
+	// The default version of the provisioning template.
 	DefaultVersionId *int64 `locationName:"defaultVersionId" type:"integer"`
 
 	// The ARN that identifies the provisioning template.
 	TemplateArn *string `locationName:"templateArn" type:"string"`
 
-	// The name of the fleet provisioning template.
+	// The name of the provisioning template.
 	TemplateName *string `locationName:"templateName" min:"1" type:"string"`
 }
 
@@ -34112,12 +34130,12 @@ type CreateProvisioningTemplateVersionInput struct {
 	// Sets a fleet provision template version as the default version.
 	SetAsDefault *bool `location:"querystring" locationName:"setAsDefault" type:"boolean"`
 
-	// The JSON formatted contents of the fleet provisioning template.
+	// The JSON formatted contents of the provisioning template.
 	//
 	// TemplateBody is a required field
 	TemplateBody *string `locationName:"templateBody" type:"string" required:"true"`
 
-	// The name of the fleet provisioning template.
+	// The name of the provisioning template.
 	//
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"templateName" min:"1" type:"string" required:"true"`
@@ -34181,17 +34199,17 @@ func (s *CreateProvisioningTemplateVersionInput) SetTemplateName(v string) *Crea
 type CreateProvisioningTemplateVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// True if the fleet provisioning template version is the default version, otherwise
+	// True if the provisioning template version is the default version, otherwise
 	// false.
 	IsDefaultVersion *bool `locationName:"isDefaultVersion" type:"boolean"`
 
 	// The ARN that identifies the provisioning template.
 	TemplateArn *string `locationName:"templateArn" type:"string"`
 
-	// The name of the fleet provisioning template.
+	// The name of the provisioning template.
 	TemplateName *string `locationName:"templateName" min:"1" type:"string"`
 
-	// The version of the fleet provisioning template.
+	// The version of the provisioning template.
 	VersionId *int64 `locationName:"versionId" type:"integer"`
 }
 
@@ -37189,12 +37207,12 @@ func (s DeleteProvisioningTemplateOutput) GoString() string {
 type DeleteProvisioningTemplateVersionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the fleet provisioning template version to delete.
+	// The name of the provisioning template version to delete.
 	//
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"templateName" min:"1" type:"string" required:"true"`
 
-	// The fleet provisioning template version ID to delete.
+	// The provisioning template version ID to delete.
 	//
 	// VersionId is a required field
 	VersionId *int64 `location:"uri" locationName:"versionId" type:"integer" required:"true"`
@@ -40796,7 +40814,7 @@ func (s *DescribeMitigationActionOutput) SetRoleArn(v string) *DescribeMitigatio
 type DescribeProvisioningTemplateInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the fleet provisioning template.
+	// The name of the provisioning template.
 	//
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"templateName" min:"1" type:"string" required:"true"`
@@ -40845,19 +40863,19 @@ func (s *DescribeProvisioningTemplateInput) SetTemplateName(v string) *DescribeP
 type DescribeProvisioningTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The date when the fleet provisioning template was created.
+	// The date when the provisioning template was created.
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
 
 	// The default fleet template version ID.
 	DefaultVersionId *int64 `locationName:"defaultVersionId" type:"integer"`
 
-	// The description of the fleet provisioning template.
+	// The description of the provisioning template.
 	Description *string `locationName:"description" type:"string"`
 
-	// True if the fleet provisioning template is enabled, otherwise false.
+	// True if the provisioning template is enabled, otherwise false.
 	Enabled *bool `locationName:"enabled" type:"boolean"`
 
-	// The date when the fleet provisioning template was last modified.
+	// The date when the provisioning template was last modified.
 	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
 
 	// Gets information about a pre-provisioned hook.
@@ -40867,14 +40885,20 @@ type DescribeProvisioningTemplateOutput struct {
 	// grants permission to provision a device.
 	ProvisioningRoleArn *string `locationName:"provisioningRoleArn" min:"20" type:"string"`
 
-	// The ARN of the fleet provisioning template.
+	// The ARN of the provisioning template.
 	TemplateArn *string `locationName:"templateArn" type:"string"`
 
-	// The JSON formatted contents of the fleet provisioning template.
+	// The JSON formatted contents of the provisioning template.
 	TemplateBody *string `locationName:"templateBody" type:"string"`
 
-	// The name of the fleet provisioning template.
+	// The name of the provisioning template.
 	TemplateName *string `locationName:"templateName" min:"1" type:"string"`
+
+	// The type you define in a provisioning template. You can create a template
+	// with only one type. You can't change the template type after its creation.
+	// The default value is FLEET_PROVISIONING. For more information about provisioning
+	// template, see: Provisioning template (https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html).
+	Type *string `locationName:"type" type:"string" enum:"TemplateType"`
 }
 
 // String returns the string representation.
@@ -40955,6 +40979,12 @@ func (s *DescribeProvisioningTemplateOutput) SetTemplateName(v string) *Describe
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *DescribeProvisioningTemplateOutput) SetType(v string) *DescribeProvisioningTemplateOutput {
+	s.Type = &v
+	return s
+}
+
 type DescribeProvisioningTemplateVersionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -40963,7 +40993,7 @@ type DescribeProvisioningTemplateVersionInput struct {
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"templateName" min:"1" type:"string" required:"true"`
 
-	// The fleet provisioning template version ID.
+	// The provisioning template version ID.
 	//
 	// VersionId is a required field
 	VersionId *int64 `location:"uri" locationName:"versionId" type:"integer" required:"true"`
@@ -41021,16 +41051,16 @@ func (s *DescribeProvisioningTemplateVersionInput) SetVersionId(v int64) *Descri
 type DescribeProvisioningTemplateVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The date when the fleet provisioning template version was created.
+	// The date when the provisioning template version was created.
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
 
-	// True if the fleet provisioning template version is the default version.
+	// True if the provisioning template version is the default version.
 	IsDefaultVersion *bool `locationName:"isDefaultVersion" type:"boolean"`
 
-	// The JSON formatted contents of the fleet provisioning template version.
+	// The JSON formatted contents of the provisioning template version.
 	TemplateBody *string `locationName:"templateBody" type:"string"`
 
-	// The fleet provisioning template version ID.
+	// The provisioning template version ID.
 	VersionId *int64 `locationName:"versionId" type:"integer"`
 }
 
@@ -49456,6 +49486,9 @@ type ListCACertificatesInput struct {
 
 	// The result page size.
 	PageSize *int64 `location:"querystring" locationName:"pageSize" min:"1" type:"integer"`
+
+	// The name of the provisioning template.
+	TemplateName *string `location:"querystring" locationName:"templateName" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -49482,6 +49515,9 @@ func (s *ListCACertificatesInput) Validate() error {
 	if s.PageSize != nil && *s.PageSize < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("PageSize", 1))
 	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -49504,6 +49540,12 @@ func (s *ListCACertificatesInput) SetMarker(v string) *ListCACertificatesInput {
 // SetPageSize sets the PageSize field's value.
 func (s *ListCACertificatesInput) SetPageSize(v int64) *ListCACertificatesInput {
 	s.PageSize = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *ListCACertificatesInput) SetTemplateName(v string) *ListCACertificatesInput {
+	s.TemplateName = &v
 	return s
 }
 
@@ -52211,7 +52253,7 @@ type ListProvisioningTemplateVersionsInput struct {
 	// A token to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	// The name of the fleet provisioning template.
+	// The name of the provisioning template.
 	//
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"templateName" min:"1" type:"string" required:"true"`
@@ -52278,7 +52320,7 @@ type ListProvisioningTemplateVersionsOutput struct {
 	// A token to retrieve the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The list of fleet provisioning template versions.
+	// The list of provisioning template versions.
 	Versions []*ProvisioningTemplateVersionSummary `locationName:"versions" type:"list"`
 }
 
@@ -52371,7 +52413,7 @@ type ListProvisioningTemplatesOutput struct {
 	// A token to retrieve the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// A list of fleet provisioning templates
+	// A list of provisioning templates
 	Templates []*ProvisioningTemplateSummary `locationName:"templates" type:"list"`
 }
 
@@ -56642,27 +56684,33 @@ func (s *ProvisioningHook) SetTargetArn(v string) *ProvisioningHook {
 	return s
 }
 
-// A summary of information about a fleet provisioning template.
+// A summary of information about a provisioning template.
 type ProvisioningTemplateSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The date when the fleet provisioning template summary was created.
+	// The date when the provisioning template summary was created.
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
 
-	// The description of the fleet provisioning template.
+	// The description of the provisioning template.
 	Description *string `locationName:"description" type:"string"`
 
 	// True if the fleet provision template is enabled, otherwise false.
 	Enabled *bool `locationName:"enabled" type:"boolean"`
 
-	// The date when the fleet provisioning template summary was last modified.
+	// The date when the provisioning template summary was last modified.
 	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
 
-	// The ARN of the fleet provisioning template.
+	// The ARN of the provisioning template.
 	TemplateArn *string `locationName:"templateArn" type:"string"`
 
-	// The name of the fleet provisioning template.
+	// The name of the provisioning template.
 	TemplateName *string `locationName:"templateName" min:"1" type:"string"`
+
+	// The type you define in a provisioning template. You can create a template
+	// with only one type. You can't change the template type after its creation.
+	// The default value is FLEET_PROVISIONING. For more information about provisioning
+	// template, see: Provisioning template (https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html).
+	Type *string `locationName:"type" type:"string" enum:"TemplateType"`
 }
 
 // String returns the string representation.
@@ -56719,14 +56767,20 @@ func (s *ProvisioningTemplateSummary) SetTemplateName(v string) *ProvisioningTem
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *ProvisioningTemplateSummary) SetType(v string) *ProvisioningTemplateSummary {
+	s.Type = &v
+	return s
+}
+
 // A summary of information about a fleet provision template version.
 type ProvisioningTemplateVersionSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The date when the fleet provisioning template version was created
+	// The date when the provisioning template version was created
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
 
-	// True if the fleet provisioning template version is the default version, otherwise
+	// True if the provisioning template version is the default version, otherwise
 	// false.
 	IsDefaultVersion *bool `locationName:"isDefaultVersion" type:"boolean"`
 
@@ -57704,6 +57758,9 @@ type RegistrationConfig struct {
 
 	// The template body.
 	TemplateBody *string `locationName:"templateBody" type:"string"`
+
+	// The name of the provisioning template.
+	TemplateName *string `locationName:"templateName" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -57730,6 +57787,9 @@ func (s *RegistrationConfig) Validate() error {
 	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
 	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -57746,6 +57806,12 @@ func (s *RegistrationConfig) SetRoleArn(v string) *RegistrationConfig {
 // SetTemplateBody sets the TemplateBody field's value.
 func (s *RegistrationConfig) SetTemplateBody(v string) *RegistrationConfig {
 	s.TemplateBody = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *RegistrationConfig) SetTemplateName(v string) *RegistrationConfig {
+	s.TemplateName = &v
 	return s
 }
 
@@ -66189,10 +66255,10 @@ type UpdateProvisioningTemplateInput struct {
 	// The ID of the default provisioning template version.
 	DefaultVersionId *int64 `locationName:"defaultVersionId" type:"integer"`
 
-	// The description of the fleet provisioning template.
+	// The description of the provisioning template.
 	Description *string `locationName:"description" type:"string"`
 
-	// True to enable the fleet provisioning template, otherwise false.
+	// True to enable the provisioning template, otherwise false.
 	Enabled *bool `locationName:"enabled" type:"boolean"`
 
 	// Updates the pre-provisioning hook template.
@@ -66205,7 +66271,7 @@ type UpdateProvisioningTemplateInput struct {
 	// Removes pre-provisioning hook template.
 	RemovePreProvisioningHook *bool `locationName:"removePreProvisioningHook" type:"boolean"`
 
-	// The name of the fleet provisioning template.
+	// The name of the provisioning template.
 	//
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"templateName" min:"1" type:"string" required:"true"`
@@ -69535,6 +69601,22 @@ func TargetSelection_Values() []string {
 	return []string{
 		TargetSelectionContinuous,
 		TargetSelectionSnapshot,
+	}
+}
+
+const (
+	// TemplateTypeFleetProvisioning is a TemplateType enum value
+	TemplateTypeFleetProvisioning = "FLEET_PROVISIONING"
+
+	// TemplateTypeJitp is a TemplateType enum value
+	TemplateTypeJitp = "JITP"
+)
+
+// TemplateType_Values returns all elements of the TemplateType enum
+func TemplateType_Values() []string {
+	return []string{
+		TemplateTypeFleetProvisioning,
+		TemplateTypeJitp,
 	}
 }
 
