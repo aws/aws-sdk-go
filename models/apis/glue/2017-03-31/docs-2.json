@@ -2568,6 +2568,16 @@
         "S3Target$DlqEventQueueArn": "<p>A valid Amazon dead-letter SQS ARN. For example, <code>arn:aws:sqs:region:account:deadLetterQueue</code>.</p>"
       }
     },
+    "ExecutionClass": {
+      "base": null,
+      "refs": {
+        "CreateJobRequest$ExecutionClass": "<p>Indicates whether the job is run with a standard or flexible execution class. The standard execution-class is ideal for time-sensitive workloads that require fast job startup and dedicated resources.</p> <p>The flexible execution class is appropriate for time-insensitive jobs whose start and completion times may vary. </p> <p>Only jobs with Glue version 3.0 and above and command type <code>glueetl</code> will be allowed to set <code>ExecutionClass</code> to <code>FLEX</code>. The flexible execution class is available for Spark jobs.</p>",
+        "Job$ExecutionClass": "<p>Indicates whether the job is run with a standard or flexible execution class. The standard execution class is ideal for time-sensitive workloads that require fast job startup and dedicated resources.</p> <p>The flexible execution class is appropriate for time-insensitive jobs whose start and completion times may vary. </p> <p>Only jobs with Glue version 3.0 and above and command type <code>glueetl</code> will be allowed to set <code>ExecutionClass</code> to <code>FLEX</code>. The flexible execution class is available for Spark jobs.</p>",
+        "JobRun$ExecutionClass": "<p>Indicates whether the job is run with a standard or flexible execution class. The standard execution-class is ideal for time-sensitive workloads that require fast job startup and dedicated resources.</p> <p>The flexible execution class is appropriate for time-insensitive jobs whose start and completion times may vary. </p> <p>Only jobs with Glue version 3.0 and above and command type <code>glueetl</code> will be allowed to set <code>ExecutionClass</code> to <code>FLEX</code>. The flexible execution class is available for Spark jobs.</p>",
+        "JobUpdate$ExecutionClass": "<p>Indicates whether the job is run with a standard or flexible execution class. The standard execution-class is ideal for time-sensitive workloads that require fast job startup and dedicated resources.</p> <p>The flexible execution class is appropriate for time-insensitive jobs whose start and completion times may vary. </p> <p>Only jobs with Glue version 3.0 and above and command type <code>glueetl</code> will be allowed to set <code>ExecutionClass</code> to <code>FLEX</code>. The flexible execution class is available for Spark jobs.</p>",
+        "StartJobRunRequest$ExecutionClass": "<p>Indicates whether the job is run with a standard or flexible execution class. The standard execution-class is ideal for time-sensitive workloads that require fast job startup and dedicated resources.</p> <p>The flexible execution class is appropriate for time-insensitive jobs whose start and completion times may vary. </p> <p>Only jobs with Glue version 3.0 and above and command type <code>glueetl</code> will be allowed to set <code>ExecutionClass</code> to <code>FLEX</code>. The flexible execution class is available for Spark jobs.</p>"
+      }
+    },
     "ExecutionProperty": {
       "base": "<p>An execution property of a job.</p>",
       "refs": {
@@ -3783,7 +3793,9 @@
         "WorkflowRunStatistics$FailedActions": "<p>Total number of Actions that have failed.</p>",
         "WorkflowRunStatistics$StoppedActions": "<p>Total number of Actions that have stopped.</p>",
         "WorkflowRunStatistics$SucceededActions": "<p>Total number of Actions that have succeeded.</p>",
-        "WorkflowRunStatistics$RunningActions": "<p>Total number Actions in running state.</p>"
+        "WorkflowRunStatistics$RunningActions": "<p>Total number Actions in running state.</p>",
+        "WorkflowRunStatistics$ErroredActions": "<p>Indicates the count of job runs in the ERROR state in the workflow run.</p>",
+        "WorkflowRunStatistics$WaitingActions": "<p>Indicates the count of job runs in WAITING state in the workflow run.</p>"
       }
     },
     "InternalServiceException": {

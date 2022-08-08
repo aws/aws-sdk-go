@@ -131,6 +131,12 @@
         "GetPositionResponse$Accuracy": "<p>The accuracy of the estimated position in meters. An empty value indicates that no position data is available. A value of ‘0.0’ value indicates that position data is available. This data corresponds to the position information that you specified instead of the position computed by solver.</p>"
       }
     },
+    "AckModeRetryDurationSecs": {
+      "base": null,
+      "refs": {
+        "SidewalkSendDataToDevice$AckModeRetryDurationSecs": "<p>The duration of time in seconds for which you want to retry sending the ACK.</p>"
+      }
+    },
     "AddGwMetadata": {
       "base": null,
       "refs": {
@@ -863,10 +869,22 @@
         "LoRaWANGetServiceProfileInfo$DrMax": "<p>The DRMax value.</p>"
       }
     },
+    "DrMaxBox": {
+      "base": null,
+      "refs": {
+        "LoRaWANServiceProfile$DrMax": "<p>The DrMax value.</p>"
+      }
+    },
     "DrMin": {
       "base": null,
       "refs": {
         "LoRaWANGetServiceProfileInfo$DrMin": "<p>The DRMin value.</p>"
+      }
+    },
+    "DrMinBox": {
+      "base": null,
+      "refs": {
+        "LoRaWANServiceProfile$DrMin": "<p>The DrMin value.</p>"
       }
     },
     "EndPoint": {
@@ -923,6 +941,7 @@
         "LoRaWANConnectionStatusResourceTypeEventConfiguration$WirelessGatewayEventTopic": "<p>Enum to denote whether the wireless gateway connection status event topic is enabled or disabled.</p>",
         "LoRaWANJoinEventNotificationConfigurations$DevEuiEventTopic": "<p>Enum to denote whether the Dev EUI join event topic is enabled or disabled.</p>",
         "LoRaWANJoinResourceTypeEventConfiguration$WirelessDeviceEventTopic": "<p>Enum to denote whether the wireless device join event topic is enabled or disabled.</p>",
+        "MessageDeliveryStatusEventConfiguration$WirelessDeviceIdEventTopic": "<p>Enum to denote whether the wireless device id device registration state event topic is enabled or disabled.</p>",
         "ProximityEventConfiguration$WirelessDeviceIdEventTopic": "<p>Enum to denote whether the wireless device id proximity event topic is enabled or disabled.</p>",
         "SidewalkEventNotificationConfigurations$AmazonIdEventTopic": "<p>Enum to denote whether amazon id event topic is enabled or disabled.</p>",
         "SidewalkResourceTypeEventConfiguration$WirelessDeviceEventTopic": "<p>Enum to denote whether the wireless device join event topic is enabled or disabled.</p>"
@@ -1799,6 +1818,21 @@
         "ValidationException$Message": null
       }
     },
+    "MessageDeliveryStatusEventConfiguration": {
+      "base": "<p>Message delivery status event configuration object for enabling and disabling relevant topics.</p>",
+      "refs": {
+        "EventNotificationItemConfigurations$MessageDeliveryStatus": "<p>Message delivery status event configuration for an event configuration item.</p>",
+        "GetResourceEventConfigurationResponse$MessageDeliveryStatus": "<p>Event configuration for the message delivery status event.</p>",
+        "UpdateResourceEventConfigurationRequest$MessageDeliveryStatus": "<p>Event configuration for the message delivery status event.</p>"
+      }
+    },
+    "MessageDeliveryStatusResourceTypeEventConfiguration": {
+      "base": "<p>Message delivery status resource type event configuration object for enabling or disabling relevant topic.</p>",
+      "refs": {
+        "GetEventConfigurationByResourceTypesResponse$MessageDeliveryStatus": "<p>Resource type event configuration object for the message delivery status event.</p>",
+        "UpdateEventConfigurationByResourceTypesRequest$MessageDeliveryStatus": "<p>Message delivery status resource type event configuration object for enabling and disabling wireless device topic.</p>"
+      }
+    },
     "MessageId": {
       "base": null,
       "refs": {
@@ -2513,6 +2547,7 @@
       "base": "<p> <code>SidewalkEventNotificationConfigurations</code> object, which is the event configuration object for Sidewalk-related event topics.</p>",
       "refs": {
         "DeviceRegistrationStateEventConfiguration$Sidewalk": "<p>Device registration state event configuration object for enabling or disabling Sidewalk related event topics.</p>",
+        "MessageDeliveryStatusEventConfiguration$Sidewalk": null,
         "ProximityEventConfiguration$Sidewalk": "<p>Proximity event configuration object for enabling or disabling Sidewalk related event topics.</p>"
       }
     },
@@ -2540,6 +2575,7 @@
       "base": "<p>Sidewalk resource type event configuration object for enabling or disabling topic.</p>",
       "refs": {
         "DeviceRegistrationStateResourceTypeEventConfiguration$Sidewalk": "<p>Device registration resource type state event configuration object for enabling or disabling Sidewalk related event topics.</p>",
+        "MessageDeliveryStatusResourceTypeEventConfiguration$Sidewalk": null,
         "ProximityResourceTypeEventConfiguration$Sidewalk": "<p>Proximity resource type event configuration object for enabling and disabling wireless device topic.</p>"
       }
     },

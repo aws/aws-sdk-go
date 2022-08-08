@@ -27667,6 +27667,18 @@ type CreateJobInput struct {
 	// Description of the job being defined.
 	Description *string `type:"string"`
 
+	// Indicates whether the job is run with a standard or flexible execution class.
+	// The standard execution-class is ideal for time-sensitive workloads that require
+	// fast job startup and dedicated resources.
+	//
+	// The flexible execution class is appropriate for time-insensitive jobs whose
+	// start and completion times may vary.
+	//
+	// Only jobs with Glue version 3.0 and above and command type glueetl will be
+	// allowed to set ExecutionClass to FLEX. The flexible execution class is available
+	// for Spark jobs.
+	ExecutionClass *string `type:"string" enum:"ExecutionClass"`
+
 	// An ExecutionProperty specifying the maximum number of concurrent runs allowed
 	// for this job.
 	ExecutionProperty *ExecutionProperty `type:"structure"`
@@ -27864,6 +27876,12 @@ func (s *CreateJobInput) SetDefaultArguments(v map[string]*string) *CreateJobInp
 // SetDescription sets the Description field's value.
 func (s *CreateJobInput) SetDescription(v string) *CreateJobInput {
 	s.Description = &v
+	return s
+}
+
+// SetExecutionClass sets the ExecutionClass field's value.
+func (s *CreateJobInput) SetExecutionClass(v string) *CreateJobInput {
+	s.ExecutionClass = &v
 	return s
 }
 
@@ -44478,6 +44496,18 @@ type Job struct {
 	// A description of the job.
 	Description *string `type:"string"`
 
+	// Indicates whether the job is run with a standard or flexible execution class.
+	// The standard execution class is ideal for time-sensitive workloads that require
+	// fast job startup and dedicated resources.
+	//
+	// The flexible execution class is appropriate for time-insensitive jobs whose
+	// start and completion times may vary.
+	//
+	// Only jobs with Glue version 3.0 and above and command type glueetl will be
+	// allowed to set ExecutionClass to FLEX. The flexible execution class is available
+	// for Spark jobs.
+	ExecutionClass *string `type:"string" enum:"ExecutionClass"`
+
 	// An ExecutionProperty specifying the maximum number of concurrent runs allowed
 	// for this job.
 	ExecutionProperty *ExecutionProperty `type:"structure"`
@@ -44629,6 +44659,12 @@ func (s *Job) SetDefaultArguments(v map[string]*string) *Job {
 // SetDescription sets the Description field's value.
 func (s *Job) SetDescription(v string) *Job {
 	s.Description = &v
+	return s
+}
+
+// SetExecutionClass sets the ExecutionClass field's value.
+func (s *Job) SetExecutionClass(v string) *Job {
+	s.ExecutionClass = &v
 	return s
 }
 
@@ -44976,6 +45012,18 @@ type JobRun struct {
 	// An error message associated with this job run.
 	ErrorMessage *string `type:"string"`
 
+	// Indicates whether the job is run with a standard or flexible execution class.
+	// The standard execution-class is ideal for time-sensitive workloads that require
+	// fast job startup and dedicated resources.
+	//
+	// The flexible execution class is appropriate for time-insensitive jobs whose
+	// start and completion times may vary.
+	//
+	// Only jobs with Glue version 3.0 and above and command type glueetl will be
+	// allowed to set ExecutionClass to FLEX. The flexible execution class is available
+	// for Spark jobs.
+	ExecutionClass *string `type:"string" enum:"ExecutionClass"`
+
 	// The amount of time (in seconds) that the job run consumed resources.
 	ExecutionTime *int64 `type:"integer"`
 
@@ -45133,6 +45181,12 @@ func (s *JobRun) SetErrorMessage(v string) *JobRun {
 	return s
 }
 
+// SetExecutionClass sets the ExecutionClass field's value.
+func (s *JobRun) SetExecutionClass(v string) *JobRun {
+	s.ExecutionClass = &v
+	return s
+}
+
 // SetExecutionTime sets the ExecutionTime field's value.
 func (s *JobRun) SetExecutionTime(v int64) *JobRun {
 	s.ExecutionTime = &v
@@ -45280,6 +45334,18 @@ type JobUpdate struct {
 
 	// Description of the job being defined.
 	Description *string `type:"string"`
+
+	// Indicates whether the job is run with a standard or flexible execution class.
+	// The standard execution-class is ideal for time-sensitive workloads that require
+	// fast job startup and dedicated resources.
+	//
+	// The flexible execution class is appropriate for time-insensitive jobs whose
+	// start and completion times may vary.
+	//
+	// Only jobs with Glue version 3.0 and above and command type glueetl will be
+	// allowed to set ExecutionClass to FLEX. The flexible execution class is available
+	// for Spark jobs.
+	ExecutionClass *string `type:"string" enum:"ExecutionClass"`
 
 	// An ExecutionProperty specifying the maximum number of concurrent runs allowed
 	// for this job.
@@ -45451,6 +45517,12 @@ func (s *JobUpdate) SetDefaultArguments(v map[string]*string) *JobUpdate {
 // SetDescription sets the Description field's value.
 func (s *JobUpdate) SetDescription(v string) *JobUpdate {
 	s.Description = &v
+	return s
+}
+
+// SetExecutionClass sets the ExecutionClass field's value.
+func (s *JobUpdate) SetExecutionClass(v string) *JobUpdate {
+	s.ExecutionClass = &v
 	return s
 }
 
@@ -56976,6 +57048,18 @@ type StartJobRunInput struct {
 	// topic in the developer guide.
 	Arguments map[string]*string `type:"map"`
 
+	// Indicates whether the job is run with a standard or flexible execution class.
+	// The standard execution-class is ideal for time-sensitive workloads that require
+	// fast job startup and dedicated resources.
+	//
+	// The flexible execution class is appropriate for time-insensitive jobs whose
+	// start and completion times may vary.
+	//
+	// Only jobs with Glue version 3.0 and above and command type glueetl will be
+	// allowed to set ExecutionClass to FLEX. The flexible execution class is available
+	// for Spark jobs.
+	ExecutionClass *string `type:"string" enum:"ExecutionClass"`
+
 	// The name of the job definition to use.
 	//
 	// JobName is a required field
@@ -57097,6 +57181,12 @@ func (s *StartJobRunInput) SetAllocatedCapacity(v int64) *StartJobRunInput {
 // SetArguments sets the Arguments field's value.
 func (s *StartJobRunInput) SetArguments(v map[string]*string) *StartJobRunInput {
 	s.Arguments = v
+	return s
+}
+
+// SetExecutionClass sets the ExecutionClass field's value.
+func (s *StartJobRunInput) SetExecutionClass(v string) *StartJobRunInput {
+	s.ExecutionClass = &v
 	return s
 }
 
@@ -63693,6 +63783,9 @@ func (s *WorkflowRun) SetWorkflowRunProperties(v map[string]*string) *WorkflowRu
 type WorkflowRunStatistics struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates the count of job runs in the ERROR state in the workflow run.
+	ErroredActions *int64 `type:"integer"`
+
 	// Total number of Actions that have failed.
 	FailedActions *int64 `type:"integer"`
 
@@ -63710,6 +63803,9 @@ type WorkflowRunStatistics struct {
 
 	// Total number of Actions in the workflow run.
 	TotalActions *int64 `type:"integer"`
+
+	// Indicates the count of job runs in WAITING state in the workflow run.
+	WaitingActions *int64 `type:"integer"`
 }
 
 // String returns the string representation.
@@ -63728,6 +63824,12 @@ func (s WorkflowRunStatistics) String() string {
 // value will be replaced with "sensitive".
 func (s WorkflowRunStatistics) GoString() string {
 	return s.String()
+}
+
+// SetErroredActions sets the ErroredActions field's value.
+func (s *WorkflowRunStatistics) SetErroredActions(v int64) *WorkflowRunStatistics {
+	s.ErroredActions = &v
+	return s
 }
 
 // SetFailedActions sets the FailedActions field's value.
@@ -63763,6 +63865,12 @@ func (s *WorkflowRunStatistics) SetTimeoutActions(v int64) *WorkflowRunStatistic
 // SetTotalActions sets the TotalActions field's value.
 func (s *WorkflowRunStatistics) SetTotalActions(v int64) *WorkflowRunStatistics {
 	s.TotalActions = &v
+	return s
+}
+
+// SetWaitingActions sets the WaitingActions field's value.
+func (s *WorkflowRunStatistics) SetWaitingActions(v int64) *WorkflowRunStatistics {
+	s.WaitingActions = &v
 	return s
 }
 
@@ -64326,6 +64434,9 @@ const (
 
 	// CrawlStateFailed is a CrawlState enum value
 	CrawlStateFailed = "FAILED"
+
+	// CrawlStateError is a CrawlState enum value
+	CrawlStateError = "ERROR"
 )
 
 // CrawlState_Values returns all elements of the CrawlState enum
@@ -64336,6 +64447,7 @@ func CrawlState_Values() []string {
 		CrawlStateCancelled,
 		CrawlStateSucceeded,
 		CrawlStateFailed,
+		CrawlStateError,
 	}
 }
 
@@ -64472,6 +64584,22 @@ func EnableHybridValues_Values() []string {
 	return []string{
 		EnableHybridValuesTrue,
 		EnableHybridValuesFalse,
+	}
+}
+
+const (
+	// ExecutionClassFlex is a ExecutionClass enum value
+	ExecutionClassFlex = "FLEX"
+
+	// ExecutionClassStandard is a ExecutionClass enum value
+	ExecutionClassStandard = "STANDARD"
+)
+
+// ExecutionClass_Values returns all elements of the ExecutionClass enum
+func ExecutionClass_Values() []string {
+	return []string{
+		ExecutionClassFlex,
+		ExecutionClassStandard,
 	}
 }
 
@@ -64872,6 +65000,12 @@ const (
 
 	// JobRunStateTimeout is a JobRunState enum value
 	JobRunStateTimeout = "TIMEOUT"
+
+	// JobRunStateError is a JobRunState enum value
+	JobRunStateError = "ERROR"
+
+	// JobRunStateWaiting is a JobRunState enum value
+	JobRunStateWaiting = "WAITING"
 )
 
 // JobRunState_Values returns all elements of the JobRunState enum
@@ -64884,6 +65018,8 @@ func JobRunState_Values() []string {
 		JobRunStateSucceeded,
 		JobRunStateFailed,
 		JobRunStateTimeout,
+		JobRunStateError,
+		JobRunStateWaiting,
 	}
 }
 

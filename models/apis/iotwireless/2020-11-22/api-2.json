@@ -1688,6 +1688,11 @@
         "VerticalAccuracy":{"shape":"VerticalAccuracy"}
       }
     },
+    "AckModeRetryDurationSecs":{
+      "type":"integer",
+      "max":604800,
+      "min":0
+    },
     "AddGwMetadata":{"type":"boolean"},
     "AmazonId":{
       "type":"string",
@@ -2655,7 +2660,17 @@
       "max":15,
       "min":0
     },
+    "DrMaxBox":{
+      "type":"integer",
+      "max":15,
+      "min":0
+    },
     "DrMin":{
+      "type":"integer",
+      "max":15,
+      "min":0
+    },
+    "DrMinBox":{
       "type":"integer",
       "max":15,
       "min":0
@@ -2694,7 +2709,8 @@
         "DeviceRegistrationState":{"shape":"DeviceRegistrationStateEventConfiguration"},
         "Proximity":{"shape":"ProximityEventConfiguration"},
         "Join":{"shape":"JoinEventConfiguration"},
-        "ConnectionStatus":{"shape":"ConnectionStatusEventConfiguration"}
+        "ConnectionStatus":{"shape":"ConnectionStatusEventConfiguration"},
+        "MessageDeliveryStatus":{"shape":"MessageDeliveryStatusEventConfiguration"}
       }
     },
     "EventNotificationPartnerType":{
@@ -2884,7 +2900,8 @@
         "DeviceRegistrationState":{"shape":"DeviceRegistrationStateResourceTypeEventConfiguration"},
         "Proximity":{"shape":"ProximityResourceTypeEventConfiguration"},
         "Join":{"shape":"JoinResourceTypeEventConfiguration"},
-        "ConnectionStatus":{"shape":"ConnectionStatusResourceTypeEventConfiguration"}
+        "ConnectionStatus":{"shape":"ConnectionStatusResourceTypeEventConfiguration"},
+        "MessageDeliveryStatus":{"shape":"MessageDeliveryStatusResourceTypeEventConfiguration"}
       }
     },
     "GetFuotaTaskRequest":{
@@ -3099,7 +3116,8 @@
         "DeviceRegistrationState":{"shape":"DeviceRegistrationStateEventConfiguration"},
         "Proximity":{"shape":"ProximityEventConfiguration"},
         "Join":{"shape":"JoinEventConfiguration"},
-        "ConnectionStatus":{"shape":"ConnectionStatusEventConfiguration"}
+        "ConnectionStatus":{"shape":"ConnectionStatusEventConfiguration"},
+        "MessageDeliveryStatus":{"shape":"MessageDeliveryStatusEventConfiguration"}
       }
     },
     "GetResourceLogLevelRequest":{
@@ -3990,7 +4008,9 @@
     "LoRaWANServiceProfile":{
       "type":"structure",
       "members":{
-        "AddGwMetadata":{"shape":"AddGwMetadata"}
+        "AddGwMetadata":{"shape":"AddGwMetadata"},
+        "DrMin":{"shape":"DrMinBox"},
+        "DrMax":{"shape":"DrMaxBox"}
       }
     },
     "LoRaWANStartFuotaTask":{
@@ -4060,6 +4080,19 @@
     "Message":{
       "type":"string",
       "max":2048
+    },
+    "MessageDeliveryStatusEventConfiguration":{
+      "type":"structure",
+      "members":{
+        "Sidewalk":{"shape":"SidewalkEventNotificationConfigurations"},
+        "WirelessDeviceIdEventTopic":{"shape":"EventNotificationTopicStatus"}
+      }
+    },
+    "MessageDeliveryStatusResourceTypeEventConfiguration":{
+      "type":"structure",
+      "members":{
+        "Sidewalk":{"shape":"SidewalkResourceTypeEventConfiguration"}
+      }
     },
     "MessageId":{"type":"string"},
     "MessageType":{
@@ -4666,7 +4699,8 @@
       "type":"structure",
       "members":{
         "Seq":{"shape":"Seq"},
-        "MessageType":{"shape":"MessageType"}
+        "MessageType":{"shape":"MessageType"},
+        "AckModeRetryDurationSecs":{"shape":"AckModeRetryDurationSecs"}
       }
     },
     "SidewalkUpdateAccount":{
@@ -4975,7 +5009,8 @@
         "DeviceRegistrationState":{"shape":"DeviceRegistrationStateResourceTypeEventConfiguration"},
         "Proximity":{"shape":"ProximityResourceTypeEventConfiguration"},
         "Join":{"shape":"JoinResourceTypeEventConfiguration"},
-        "ConnectionStatus":{"shape":"ConnectionStatusResourceTypeEventConfiguration"}
+        "ConnectionStatus":{"shape":"ConnectionStatusResourceTypeEventConfiguration"},
+        "MessageDeliveryStatus":{"shape":"MessageDeliveryStatusResourceTypeEventConfiguration"}
       }
     },
     "UpdateEventConfigurationByResourceTypesResponse":{
@@ -5141,7 +5176,8 @@
         "DeviceRegistrationState":{"shape":"DeviceRegistrationStateEventConfiguration"},
         "Proximity":{"shape":"ProximityEventConfiguration"},
         "Join":{"shape":"JoinEventConfiguration"},
-        "ConnectionStatus":{"shape":"ConnectionStatusEventConfiguration"}
+        "ConnectionStatus":{"shape":"ConnectionStatusEventConfiguration"},
+        "MessageDeliveryStatus":{"shape":"MessageDeliveryStatusEventConfiguration"}
       }
     },
     "UpdateResourceEventConfigurationResponse":{

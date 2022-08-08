@@ -1509,7 +1509,9 @@
         "WriteApplicationSettingsRequest$CloudWatchMetricsEnabled" : "<p>Specifies whether to enable application-related alarms in Amazon CloudWatch.</p>",
         "WriteApplicationSettingsRequest$EventTaggingEnabled" : null,
         "WriteCampaignRequest$IsPaused" : "<p>Specifies whether to pause the campaign. A paused campaign doesn't run unless you resume it by changing this value to false.</p>",
-        "WriteJourneyRequest$LocalTime" : "<p>Specifies whether the journey's scheduled start and end times use each participant's local time. To base the schedule on each participant's local time, set this value to true.</p>"
+        "WriteJourneyRequest$LocalTime" : "<p>Specifies whether the journey's scheduled start and end times use each participant's local time. To base the schedule on each participant's local time, set this value to true.</p>",
+        "WriteJourneyRequest$SendingSchedule" : "<p>Indicates if journey have Advance Quiet Time (OpenHours and ClosedDays). This flag should be set to true in order to allow (OpenHours and ClosedDays)</p>",
+        "JourneyResponse$SendingSchedule" : "<p>Indicates if journey have Advance Quiet Time (OpenHours and ClosedDays). This flag should be set to true in order to allow (OpenHours and ClosedDays)</p>"
       }
     },
     "__double" : {
@@ -2565,8 +2567,72 @@
         "WriteTreatmentResource$TreatmentDescription" : "<p>A custom description of the treatment.</p>",
         "WriteTreatmentResource$TreatmentName" : "<p>A custom name for the treatment.</p>",
         "ListOf__string$member" : null,
-        "MapOf__string$member" : null
+        "MapOf__string$member" : null,
+        "OpenHoursRule$StartTime" : "<p>Local start time in ISO 8601 format.</p>",
+        "OpenHoursRule$EndTime" : "<p>Local start time in ISO 8601 format.</p>",
+        "ClosedDaysRule$Name" : "<p>Name of the rule.</p>",
+        "ClosedDaysRule$StartDateTime" : "<p>Start Datetime in ISO 8601 format.</p>",
+        "ClosedDaysRule$EndDateTime" : "<p>End Datetime in ISO 8601 format.</p>"
       }
+    },
+    "DayOfWeek": {
+        "base" : "<p>Day of a week.</p>",
+        "refs" : {
+            "MapOfOpenHoursRules$key" : "<p>Day of a week when the rule will be applied. Valid values are [MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY]</p>"
+        }
+    },
+    "ListOfOpenHoursRules": {
+        "base" : "<p>List of OpenHours Rules.</p>",
+        "refs" : {
+            "MapOfOpenHoursRules$value" : "<p>Open Hour Rules.</p>"
+        }
+    },
+    "OpenHoursRule": {
+        "base" : "<p>Open Hour Rules.</p>",
+        "refs" : {
+            "ListOfOpenHoursRules$member" : "<p>Open Hour Rule Details.</p>"
+        }
+    },
+    "MapOfListOfOpenHoursRules": {
+        "base" : "<p>OpenHours Rules for a channel</p>",
+        "refs" : {
+            "OpenHours$EMAIL" : "<p>Rules for Email Channel.</p>",
+            "OpenHours$SMS" : "<p>Rules for SMS Channel.</p>",
+            "OpenHours$PUSH" : "<p>Rules for Push Channel.</p>",
+            "OpenHours$VOICE" : "<p>Rules for Email Channel.</p>",
+            "OpenHours$CUSTOM" : "<p>Rules for Custom Channel.</p>"
+        }
+    },
+    "OpenHours": {
+        "base" : "<p>The time when journey allow to send messages. QuietTime should be configured first and SendingSchedule should be set to true.</p>",
+        "refs" : {
+            "WriteJourneyRequest$OpenHours" : "<p>The time when journey allow to send messages. QuietTime should be configured first and SendingSchedule should be set to true.</p>",
+            "JourneyResponse$OpenHours" : "<p>The time when journey allow to send messages. QuietTime should be configured first and SendingSchedule should be set to true.</p>"
+        }
+    },
+    "ClosedDaysRule" : {
+        "base" : "<p>Closed Days Rule. Part of Journey sending schedule.</p>",
+        "refs" : {
+            "ListOfClosedDaysRules$member" : "<p>Closed Days Rule. Part of Journey sending schedule.</p>"
+        }
+    },
+    "ListOfClosedDaysRules": {
+        "base" : "<p>Rules for a Channel.</p>",
+        "refs" : {
+            "OpenHours$EMAIL" : "<p>Rules for Email Channel.</p>",
+            "OpenHours$SMS" : "<p>Rules for SMS Channel.</p>",
+            "OpenHours$PUSH" : "<p>Rules for Push Channel.</p>",
+            "OpenHours$VOICE" : "<p>Rules for Email Channel.</p>",
+            "OpenHours$CUSTOM" : "<p>Rules for Custom Channel.</p>"
+        }
+    },
+    "ClosedDays": {
+        "base" : "<p>The time when journey will stop sending messages.</p>",
+        "refs" : {
+            "WriteJourneyRequest$ClosedDays" : "<p>The time when journey will stop sending messages. QuietTime should be configured first and SendingSchedule should be set to true.</p>",
+            "JourneyResponse$ClosedDays" : "<p>The time when journey will stop sending messages. QuietTime should be configured first and SendingSchedule should be set to true.</p>"
+
+        }
     }
   }
 }

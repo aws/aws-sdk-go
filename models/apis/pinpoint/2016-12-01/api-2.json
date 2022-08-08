@@ -9868,8 +9868,23 @@
           "shape": "MapOf__string",
           "locationName": "tags"
         },
+        "WaitForQuietTime": {
+            "shape": "__boolean"
+        },
+        "RefreshOnSegmentUpdate": {
+            "shape": "__boolean"
+        },
         "JourneyChannelSettings": {
             "shape": "JourneyChannelSettings"
+        },
+        "SendingSchedule": {
+            "shape": "__boolean"
+        },
+        "OpenHours": {
+            "shape": "OpenHours"
+        },
+        "ClosedDays": {
+            "shape": "ClosedDays"
         }
       },
       "required": [
@@ -13025,6 +13040,15 @@
         },
         "JourneyChannelSettings": {
             "shape": "JourneyChannelSettings"
+        },
+        "SendingSchedule": {
+            "shape": "__boolean"
+        },
+        "OpenHours": {
+            "shape": "OpenHours"
+        },
+        "ClosedDays": {
+            "shape": "ClosedDays"
         }
       },
       "required": [
@@ -13427,6 +13451,104 @@
     "__timestampUnix": {
       "type": "timestamp",
       "timestampFormat": "unixTimestamp"
+    },
+    "DayOfWeek": {
+        "type": "string",
+        "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
+        ]
+    },
+    "ListOfOpenHoursRules": {
+        "type": "list",
+        "member": {
+            "shape": "OpenHoursRule"
+          }
+    },
+    "OpenHoursRule": {
+        "type": "structure",
+        "members": {
+            "StartTime": {
+                "shape": "__string"
+            },
+            "EndTime": {
+                "shape": "__string"
+            }
+        }
+    },
+    "MapOfListOfOpenHoursRules": {
+        "type": "map",
+        "key": {
+          "shape": "DayOfWeek"
+        },
+        "value": {
+          "shape": "ListOfOpenHoursRules"
+        }
+    },
+    "OpenHours": {
+        "type": "structure",
+        "members": {
+            "EMAIL": {
+                "shape": "MapOfListOfOpenHoursRules"
+            },
+            "SMS": {
+                "shape": "MapOfListOfOpenHoursRules"
+            },
+            "PUSH": {
+                "shape": "MapOfListOfOpenHoursRules"
+            },
+            "VOICE": {
+                "shape": "MapOfListOfOpenHoursRules"
+            },
+            "CUSTOM": {
+                "shape": "MapOfListOfOpenHoursRules"
+            }
+        }
+    },
+    "ClosedDaysRule": {
+        "type": "structure",
+        "members": {
+            "Name": {
+                "shape": "__string"
+            },
+            "StartDateTime": {
+                "shape": "__string"
+            },
+            "EndDateTime": {
+                "shape": "__string"
+            }
+        }
+    },  
+    "ListOfClosedDaysRules": {
+        "type": "list",
+        "member": {
+            "shape": "ClosedDaysRule"
+          }
+    },
+    "ClosedDays": {
+        "type": "structure",
+        "members": {
+            "EMAIL": {
+                "shape": "ListOfClosedDaysRules"
+            },
+            "SMS": {
+                "shape": "ListOfClosedDaysRules"
+            },
+            "PUSH": {
+                "shape": "ListOfClosedDaysRules"
+            },
+            "VOICE": {
+                "shape": "ListOfClosedDaysRules"
+            },
+            "CUSTOM": {
+                "shape": "ListOfClosedDaysRules"
+            }
+        }
     }
   }
 }
