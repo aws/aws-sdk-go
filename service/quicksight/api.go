@@ -1055,7 +1055,9 @@ func (c *QuickSight) CreateGroupRequest(input *CreateGroupInput) (req *request.R
 
 // CreateGroup API operation for Amazon QuickSight.
 //
-// Creates an Amazon QuickSight group.
+// Use the CreateGroup operation to create a group in Amazon QuickSight. You
+// can create up to 10,000 groups in a namespace. If you want to create more
+// than 10,000 groups in a namespace, contact AWS Support.
 //
 // The permissions resource is arn:aws:quicksight:<your-region>:<relevant-aws-account-id>:group/default/<group-name> .
 //
@@ -6755,10 +6757,10 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 
 // GetDashboardEmbedUrl API operation for Amazon QuickSight.
 //
-// Generates a temporary session URL and authorization code that you can use
-// to embed an Amazon QuickSight read-only dashboard in your website or application.
-// Before you use this command, make sure that you have configured the dashboards
-// and permissions.
+// Generates a temporary session URL and authorization code(bearer token) that
+// you can use to embed an Amazon QuickSight read-only dashboard in your website
+// or application. Before you use this command, make sure that you have configured
+// the dashboards and permissions.
 //
 // Currently, you can use GetDashboardEmbedURL only from the server, not from
 // the user's browser. The following rules apply to the generated URL:
@@ -6769,9 +6771,12 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 //
 //    * They are valid for 5 minutes after you run this command.
 //
+//    * You are charged only when the URL is used or there is interaction with
+//    Amazon QuickSight.
+//
 //    * The resulting user session is valid for 15 minutes (default) up to 10
 //    hours (maximum). You can use the optional SessionLifetimeInMinutes parameter
-//    to customi session duration.
+//    to customize session duration.
 //
 // For more information, see Embedding Analytics Using GetDashboardEmbedUrl
 // (https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics-deprecated.html)
@@ -8584,7 +8589,8 @@ func (c *QuickSight) ListNamespacesRequest(input *ListNamespacesInput) (req *req
 
 // ListNamespaces API operation for Amazon QuickSight.
 //
-// Lists the namespaces for the specified Amazon Web Services account.
+// Lists the namespaces for the specified Amazon Web Services account. This
+// operation doesn't list deleted namespaces.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -27448,12 +27454,11 @@ type GenerateEmbedUrlForAnonymousUserInput struct {
 	// The domains that you want to add to the allow list for access to the generated
 	// URL that is then embedded. This optional parameter overrides the static domains
 	// that are configured in the Manage QuickSight menu in the Amazon QuickSight
-	// console and instead allows only the domains that you include in this parameter.
+	// console. Instead, it allows only the domains that you include in this parameter.
 	// You can list up to three domains or subdomains in each API call.
 	//
-	// To include a subdomain, use * to include all subdomains under a specific
-	// domain to the allow list. For example, https://*.sapp.amazon.com, includes
-	// all subdomains under https://sapp.amazon.com.
+	// To include all subdomains under a specific domain to the allow list, use
+	// *. For example, https://*.sapp.amazon.com includes all subdomains under https://sapp.amazon.com.
 	AllowedDomains []*string `type:"list"`
 
 	// The Amazon Resource Names (ARNs) for the Amazon QuickSight resources that
@@ -27669,12 +27674,11 @@ type GenerateEmbedUrlForRegisteredUserInput struct {
 	// The domains that you want to add to the allow list for access to the generated
 	// URL that is then embedded. This optional parameter overrides the static domains
 	// that are configured in the Manage QuickSight menu in the Amazon QuickSight
-	// console and instead allows only the domains that you include in this parameter.
+	// console. Instead, it allows only the domains that you include in this parameter.
 	// You can list up to three domains or subdomains in each API call.
 	//
-	// To include a subdomain, use * to include all subdomains under a specific
-	// domain to the allow list. For example, https://*.sapp.amazon.com, includes
-	// all subdomains under https://sapp.amazon.com.
+	// To include all subdomains under a specific domain to the allow list, use
+	// *. For example, https://*.sapp.amazon.com includes all subdomains under https://sapp.amazon.com.
 	AllowedDomains []*string `type:"list"`
 
 	// The ID for the Amazon Web Services account that contains the dashboard that
@@ -31195,7 +31199,13 @@ type ListNamespacesInput struct {
 	// The maximum number of results to return.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
-	// A pagination token that can be used in a subsequent request.
+	// A unique pagination token that can be used in a subsequent request. You will
+	// receive a pagination token in the response body of a previous ListNameSpaces
+	// API call if there is more data that can be returned. To receive the data,
+	// make another ListNamespaces API call with the returned token to retrieve
+	// the next page of data. Each token is valid for 24 hours. If you try to make
+	// a ListNamespaces API call with an expired token, you will receive a HTTP
+	// 400 InvalidNextTokenException error.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
@@ -31262,7 +31272,12 @@ type ListNamespacesOutput struct {
 	// notification email address, creation status, and identity store.
 	Namespaces []*NamespaceInfoV2 `type:"list"`
 
-	// A pagination token that can be used in a subsequent request.
+	// A unique pagination token that can be used in a subsequent request. Receiving
+	// NextToken in your response inticates that there is more data that can be
+	// returned. To receive the data, make another ListNamespaces API call with
+	// the returned token to retrieve the next page of data. Each token is valid
+	// for 24 hours. If you try to make a ListNamespaces API call with an expired
+	// token, you will receive a HTTP 400 InvalidNextTokenException error.
 	NextToken *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.

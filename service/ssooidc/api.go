@@ -59,7 +59,7 @@ func (c *SSOOIDC) CreateTokenRequest(input *CreateTokenInput) (req *request.Requ
 //
 // Creates and returns an access token for the authorized client. The access
 // token issued will be used to fetch short-term credentials for the assigned
-// roles in the AWS account.
+// roles in the Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -178,8 +178,9 @@ func (c *SSOOIDC) RegisterClientRequest(input *RegisterClientInput) (req *reques
 
 // RegisterClient API operation for AWS SSO OIDC.
 //
-// Registers a client with AWS SSO. This allows clients to initiate device authorization.
-// The output should be persisted for reuse through many authentication requests.
+// Registers a client with Amazon Web Services SSO. This allows clients to initiate
+// device authorization. The output should be persisted for reuse through many
+// authentication requests.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -489,8 +490,13 @@ type CreateTokenInput struct {
 	// DeviceCode is a required field
 	DeviceCode *string `locationName:"deviceCode" type:"string" required:"true"`
 
-	// Supports grant types for authorization code, refresh token, and device code
-	// request.
+	// Supports grant types for the authorization code, refresh token, and device
+	// code request. For device code requests, specify the following value:
+	//
+	// urn:ietf:params:oauth:grant-type:device_code
+	//
+	// For information about how to obtain the device code, see the StartDeviceAuthorization
+	// topic.
 	//
 	// GrantType is a required field
 	GrantType *string `locationName:"grantType" type:"string" required:"true"`
@@ -499,8 +505,13 @@ type CreateTokenInput struct {
 	// Users authorize the service to send the request to this location.
 	RedirectUri *string `locationName:"redirectUri" type:"string"`
 
+	// Currently, refreshToken is not yet implemented and is not supported. For
+	// more information about the features and limitations of the current Amazon
+	// Web Services SSO OIDC implementation, see Considerations for Using this Guide
+	// in the Amazon Web Services SSO OIDC API Reference (https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/Welcome.html).
+	//
 	// The token used to obtain an access token in the event that the access token
-	// is invalid or expired. This token is not issued by the service.
+	// is invalid or expired.
 	RefreshToken *string `locationName:"refreshToken" type:"string"`
 
 	// The list of scopes that is defined by the client. Upon authorization, this
@@ -599,15 +610,26 @@ func (s *CreateTokenInput) SetScope(v []*string) *CreateTokenInput {
 type CreateTokenOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An opaque token to access AWS SSO resources assigned to a user.
+	// An opaque token to access Amazon Web Services SSO resources assigned to a
+	// user.
 	AccessToken *string `locationName:"accessToken" type:"string"`
 
 	// Indicates the time in seconds when an access token will expire.
 	ExpiresIn *int64 `locationName:"expiresIn" type:"integer"`
 
+	// Currently, idToken is not yet implemented and is not supported. For more
+	// information about the features and limitations of the current Amazon Web
+	// Services SSO OIDC implementation, see Considerations for Using this Guide
+	// in the Amazon Web Services SSO OIDC API Reference (https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/Welcome.html).
+	//
 	// The identifier of the user that associated with the access token, if present.
 	IdToken *string `locationName:"idToken" type:"string"`
 
+	// Currently, refreshToken is not yet implemented and is not supported. For
+	// more information about the features and limitations of the current Amazon
+	// Web Services SSO OIDC implementation, see Considerations for Using this Guide
+	// in the Amazon Web Services SSO OIDC API Reference (https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/Welcome.html).
+	//
 	// A token that, if present, can be used to refresh a previously issued access
 	// token that might have expired.
 	RefreshToken *string `locationName:"refreshToken" type:"string"`
@@ -1369,9 +1391,9 @@ func (s *SlowDownException) RequestID() string {
 type StartDeviceAuthorizationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier string for the client that is registered with AWS SSO.
-	// This value should come from the persisted result of the RegisterClient API
-	// operation.
+	// The unique identifier string for the client that is registered with Amazon
+	// Web Services SSO. This value should come from the persisted result of the
+	// RegisterClient API operation.
 	//
 	// ClientId is a required field
 	ClientId *string `locationName:"clientId" type:"string" required:"true"`
@@ -1382,9 +1404,9 @@ type StartDeviceAuthorizationInput struct {
 	// ClientSecret is a required field
 	ClientSecret *string `locationName:"clientSecret" type:"string" required:"true"`
 
-	// The URL for the AWS SSO user portal. For more information, see Using the
-	// User Portal (https://docs.aws.amazon.com/singlesignon/latest/userguide/using-the-portal.html)
-	// in the AWS Single Sign-On User Guide.
+	// The URL for the AWS access portal. For more information, see Using the AWS
+	// access portal (https://docs.aws.amazon.com/singlesignon/latest/userguide/using-the-portal.html)
+	// in the Amazon Web Services SSO User Guide.
 	//
 	// StartUrl is a required field
 	StartUrl *string `locationName:"startUrl" type:"string" required:"true"`

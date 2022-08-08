@@ -15868,6 +15868,124 @@ func (s *ChannelsResponse) SetChannels(v map[string]*ChannelResponse) *ChannelsR
 	return s
 }
 
+// The time when journey will stop sending messages.
+type ClosedDays struct {
+	_ struct{} `type:"structure"`
+
+	// Rules for a Channel.
+	CUSTOM []*ClosedDaysRule `type:"list"`
+
+	// Rules for a Channel.
+	EMAIL []*ClosedDaysRule `type:"list"`
+
+	// Rules for a Channel.
+	PUSH []*ClosedDaysRule `type:"list"`
+
+	// Rules for a Channel.
+	SMS []*ClosedDaysRule `type:"list"`
+
+	// Rules for a Channel.
+	VOICE []*ClosedDaysRule `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClosedDays) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClosedDays) GoString() string {
+	return s.String()
+}
+
+// SetCUSTOM sets the CUSTOM field's value.
+func (s *ClosedDays) SetCUSTOM(v []*ClosedDaysRule) *ClosedDays {
+	s.CUSTOM = v
+	return s
+}
+
+// SetEMAIL sets the EMAIL field's value.
+func (s *ClosedDays) SetEMAIL(v []*ClosedDaysRule) *ClosedDays {
+	s.EMAIL = v
+	return s
+}
+
+// SetPUSH sets the PUSH field's value.
+func (s *ClosedDays) SetPUSH(v []*ClosedDaysRule) *ClosedDays {
+	s.PUSH = v
+	return s
+}
+
+// SetSMS sets the SMS field's value.
+func (s *ClosedDays) SetSMS(v []*ClosedDaysRule) *ClosedDays {
+	s.SMS = v
+	return s
+}
+
+// SetVOICE sets the VOICE field's value.
+func (s *ClosedDays) SetVOICE(v []*ClosedDaysRule) *ClosedDays {
+	s.VOICE = v
+	return s
+}
+
+// Closed Days Rule. Part of Journey sending schedule.
+type ClosedDaysRule struct {
+	_ struct{} `type:"structure"`
+
+	// End Datetime in ISO 8601 format.
+	EndDateTime *string `type:"string"`
+
+	// Name of the rule.
+	Name *string `type:"string"`
+
+	// Start Datetime in ISO 8601 format.
+	StartDateTime *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClosedDaysRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClosedDaysRule) GoString() string {
+	return s.String()
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *ClosedDaysRule) SetEndDateTime(v string) *ClosedDaysRule {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ClosedDaysRule) SetName(v string) *ClosedDaysRule {
+	s.Name = &v
+	return s
+}
+
+// SetStartDateTime sets the StartDateTime field's value.
+func (s *ClosedDaysRule) SetStartDateTime(v string) *ClosedDaysRule {
+	s.StartDateTime = &v
+	return s
+}
+
 // Specifies the conditions to evaluate for an activity in a journey, and how
 // to evaluate those conditions.
 type Condition struct {
@@ -29964,6 +30082,10 @@ type JourneyResponse struct {
 	// ApplicationId is a required field
 	ApplicationId *string `type:"string" required:"true"`
 
+	// The time when journey will stop sending messages. QuietTime should be configured
+	// first and SendingSchedule should be set to true.
+	ClosedDays *ClosedDays `type:"structure"`
+
 	// The date, in ISO 8601 format, when the journey was created.
 	CreationDate *string `type:"string"`
 
@@ -29991,6 +30113,10 @@ type JourneyResponse struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// The time when journey allow to send messages. QuietTime should be configured
+	// first and SendingSchedule should be set to true.
+	OpenHours *OpenHours `type:"structure"`
+
 	// The quiet time settings for the journey. Quiet time is a specific time range
 	// when a journey doesn't send messages to participants, if all the following
 	// conditions are met:
@@ -30012,8 +30138,14 @@ type JourneyResponse struct {
 	// for the journey, as a duration in ISO 8601 format.
 	RefreshFrequency *string `type:"string"`
 
+	RefreshOnSegmentUpdate *bool `type:"boolean"`
+
 	// The schedule settings for the journey.
 	Schedule *JourneySchedule `type:"structure"`
+
+	// Indicates if journey have Advance Quiet Time (OpenHours and ClosedDays).
+	// This flag should be set to true in order to allow (OpenHours and ClosedDays)
+	SendingSchedule *bool `type:"boolean"`
 
 	// The unique identifier for the first activity in the journey.
 	StartActivity *string `type:"string"`
@@ -30052,6 +30184,8 @@ type JourneyResponse struct {
 
 	// This object is not used or supported.
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	WaitForQuietTime *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -30081,6 +30215,12 @@ func (s *JourneyResponse) SetActivities(v map[string]*Activity) *JourneyResponse
 // SetApplicationId sets the ApplicationId field's value.
 func (s *JourneyResponse) SetApplicationId(v string) *JourneyResponse {
 	s.ApplicationId = &v
+	return s
+}
+
+// SetClosedDays sets the ClosedDays field's value.
+func (s *JourneyResponse) SetClosedDays(v *ClosedDays) *JourneyResponse {
+	s.ClosedDays = v
 	return s
 }
 
@@ -30126,6 +30266,12 @@ func (s *JourneyResponse) SetName(v string) *JourneyResponse {
 	return s
 }
 
+// SetOpenHours sets the OpenHours field's value.
+func (s *JourneyResponse) SetOpenHours(v *OpenHours) *JourneyResponse {
+	s.OpenHours = v
+	return s
+}
+
 // SetQuietTime sets the QuietTime field's value.
 func (s *JourneyResponse) SetQuietTime(v *QuietTime) *JourneyResponse {
 	s.QuietTime = v
@@ -30138,9 +30284,21 @@ func (s *JourneyResponse) SetRefreshFrequency(v string) *JourneyResponse {
 	return s
 }
 
+// SetRefreshOnSegmentUpdate sets the RefreshOnSegmentUpdate field's value.
+func (s *JourneyResponse) SetRefreshOnSegmentUpdate(v bool) *JourneyResponse {
+	s.RefreshOnSegmentUpdate = &v
+	return s
+}
+
 // SetSchedule sets the Schedule field's value.
 func (s *JourneyResponse) SetSchedule(v *JourneySchedule) *JourneyResponse {
 	s.Schedule = v
+	return s
+}
+
+// SetSendingSchedule sets the SendingSchedule field's value.
+func (s *JourneyResponse) SetSendingSchedule(v bool) *JourneyResponse {
+	s.SendingSchedule = &v
 	return s
 }
 
@@ -30165,6 +30323,12 @@ func (s *JourneyResponse) SetState(v string) *JourneyResponse {
 // SetTags sets the Tags field's value.
 func (s *JourneyResponse) SetTags(v map[string]*string) *JourneyResponse {
 	s.Tags = v
+	return s
+}
+
+// SetWaitForQuietTime sets the WaitForQuietTime field's value.
+func (s *JourneyResponse) SetWaitForQuietTime(v bool) *JourneyResponse {
+	s.WaitForQuietTime = &v
 	return s
 }
 
@@ -31953,6 +32117,116 @@ func (s *NumberValidateResponse) SetTimezone(v string) *NumberValidateResponse {
 // SetZipCode sets the ZipCode field's value.
 func (s *NumberValidateResponse) SetZipCode(v string) *NumberValidateResponse {
 	s.ZipCode = &v
+	return s
+}
+
+// The time when journey allow to send messages. QuietTime should be configured
+// first and SendingSchedule should be set to true.
+type OpenHours struct {
+	_ struct{} `type:"structure"`
+
+	// Rules for Custom Channel.
+	CUSTOM map[string][]*OpenHoursRule `type:"map"`
+
+	// Rules for Email Channel.
+	EMAIL map[string][]*OpenHoursRule `type:"map"`
+
+	// Rules for Push Channel.
+	PUSH map[string][]*OpenHoursRule `type:"map"`
+
+	// Rules for SMS Channel.
+	SMS map[string][]*OpenHoursRule `type:"map"`
+
+	// Rules for Email Channel.
+	VOICE map[string][]*OpenHoursRule `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenHours) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenHours) GoString() string {
+	return s.String()
+}
+
+// SetCUSTOM sets the CUSTOM field's value.
+func (s *OpenHours) SetCUSTOM(v map[string][]*OpenHoursRule) *OpenHours {
+	s.CUSTOM = v
+	return s
+}
+
+// SetEMAIL sets the EMAIL field's value.
+func (s *OpenHours) SetEMAIL(v map[string][]*OpenHoursRule) *OpenHours {
+	s.EMAIL = v
+	return s
+}
+
+// SetPUSH sets the PUSH field's value.
+func (s *OpenHours) SetPUSH(v map[string][]*OpenHoursRule) *OpenHours {
+	s.PUSH = v
+	return s
+}
+
+// SetSMS sets the SMS field's value.
+func (s *OpenHours) SetSMS(v map[string][]*OpenHoursRule) *OpenHours {
+	s.SMS = v
+	return s
+}
+
+// SetVOICE sets the VOICE field's value.
+func (s *OpenHours) SetVOICE(v map[string][]*OpenHoursRule) *OpenHours {
+	s.VOICE = v
+	return s
+}
+
+// Open Hour Rules.
+type OpenHoursRule struct {
+	_ struct{} `type:"structure"`
+
+	// Local start time in ISO 8601 format.
+	EndTime *string `type:"string"`
+
+	// Local start time in ISO 8601 format.
+	StartTime *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenHoursRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenHoursRule) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *OpenHoursRule) SetEndTime(v string) *OpenHoursRule {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *OpenHoursRule) SetStartTime(v string) *OpenHoursRule {
+	s.StartTime = &v
 	return s
 }
 
@@ -41016,6 +41290,10 @@ type WriteJourneyRequest struct {
 	// must be alphanumeric characters.
 	Activities map[string]*Activity `type:"map"`
 
+	// The time when journey will stop sending messages. QuietTime should be configured
+	// first and SendingSchedule should be set to true.
+	ClosedDays *ClosedDays `type:"structure"`
+
 	// The date, in ISO 8601 format, when the journey was created.
 	CreationDate *string `type:"string"`
 
@@ -41040,6 +41318,10 @@ type WriteJourneyRequest struct {
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
+
+	// The time when journey allow to send messages. QuietTime should be configured
+	// first and SendingSchedule should be set to true.
+	OpenHours *OpenHours `type:"structure"`
 
 	// The quiet time settings for the journey. Quiet time is a specific time range
 	// when a journey doesn't send messages to participants, if all the following
@@ -41066,6 +41348,10 @@ type WriteJourneyRequest struct {
 
 	// The schedule settings for the journey.
 	Schedule *JourneySchedule `type:"structure"`
+
+	// Indicates if journey have Advance Quiet Time (OpenHours and ClosedDays).
+	// This flag should be set to true in order to allow (OpenHours and ClosedDays)
+	SendingSchedule *bool `type:"boolean"`
 
 	// The unique identifier for the first activity in the journey. The identifier
 	// for this activity can contain a maximum of 128 characters. The characters
@@ -41144,6 +41430,12 @@ func (s *WriteJourneyRequest) SetActivities(v map[string]*Activity) *WriteJourne
 	return s
 }
 
+// SetClosedDays sets the ClosedDays field's value.
+func (s *WriteJourneyRequest) SetClosedDays(v *ClosedDays) *WriteJourneyRequest {
+	s.ClosedDays = v
+	return s
+}
+
 // SetCreationDate sets the CreationDate field's value.
 func (s *WriteJourneyRequest) SetCreationDate(v string) *WriteJourneyRequest {
 	s.CreationDate = &v
@@ -41180,6 +41472,12 @@ func (s *WriteJourneyRequest) SetName(v string) *WriteJourneyRequest {
 	return s
 }
 
+// SetOpenHours sets the OpenHours field's value.
+func (s *WriteJourneyRequest) SetOpenHours(v *OpenHours) *WriteJourneyRequest {
+	s.OpenHours = v
+	return s
+}
+
 // SetQuietTime sets the QuietTime field's value.
 func (s *WriteJourneyRequest) SetQuietTime(v *QuietTime) *WriteJourneyRequest {
 	s.QuietTime = v
@@ -41201,6 +41499,12 @@ func (s *WriteJourneyRequest) SetRefreshOnSegmentUpdate(v bool) *WriteJourneyReq
 // SetSchedule sets the Schedule field's value.
 func (s *WriteJourneyRequest) SetSchedule(v *JourneySchedule) *WriteJourneyRequest {
 	s.Schedule = v
+	return s
+}
+
+// SetSendingSchedule sets the SendingSchedule field's value.
+func (s *WriteJourneyRequest) SetSendingSchedule(v bool) *WriteJourneyRequest {
+	s.SendingSchedule = &v
 	return s
 }
 
@@ -41622,6 +41926,43 @@ func ChannelType_Values() []string {
 		ChannelTypeBaidu,
 		ChannelTypeCustom,
 		ChannelTypeInApp,
+	}
+}
+
+// Day of a week.
+const (
+	// DayOfWeekMonday is a DayOfWeek enum value
+	DayOfWeekMonday = "MONDAY"
+
+	// DayOfWeekTuesday is a DayOfWeek enum value
+	DayOfWeekTuesday = "TUESDAY"
+
+	// DayOfWeekWednesday is a DayOfWeek enum value
+	DayOfWeekWednesday = "WEDNESDAY"
+
+	// DayOfWeekThursday is a DayOfWeek enum value
+	DayOfWeekThursday = "THURSDAY"
+
+	// DayOfWeekFriday is a DayOfWeek enum value
+	DayOfWeekFriday = "FRIDAY"
+
+	// DayOfWeekSaturday is a DayOfWeek enum value
+	DayOfWeekSaturday = "SATURDAY"
+
+	// DayOfWeekSunday is a DayOfWeek enum value
+	DayOfWeekSunday = "SUNDAY"
+)
+
+// DayOfWeek_Values returns all elements of the DayOfWeek enum
+func DayOfWeek_Values() []string {
+	return []string{
+		DayOfWeekMonday,
+		DayOfWeekTuesday,
+		DayOfWeekWednesday,
+		DayOfWeekThursday,
+		DayOfWeekFriday,
+		DayOfWeekSaturday,
+		DayOfWeekSunday,
 	}
 }
 

@@ -3,25 +3,45 @@
 // Package ssooidc provides the client and types for making API
 // requests to AWS SSO OIDC.
 //
-// AWS Single Sign-On (SSO) OpenID Connect (OIDC) is a web service that enables
-// a client (such as AWS CLI or a native application) to register with AWS SSO.
-// The service also enables the client to fetch the user’s access token upon
-// successful authentication and authorization with AWS SSO. This service conforms
-// with the OAuth 2.0 based implementation of the device authorization grant
-// standard (https://tools.ietf.org/html/rfc8628 (https://tools.ietf.org/html/rfc8628)).
+// Amazon Web Services Single Sign On OpenID Connect (OIDC) is a web service
+// that enables a client (such as Amazon Web Services CLI or a native application)
+// to register with Amazon Web Services SSO. The service also enables the client
+// to fetch the user’s access token upon successful authentication and authorization
+// with Amazon Web Services SSO.
 //
-// For general information about AWS SSO, see What is AWS Single Sign-On? (https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html)
-// in the AWS SSO User Guide.
+// Although Amazon Web Services Single Sign-On was renamed, the sso and identitystore
+// API namespaces will continue to retain their original name for backward compatibility
+// purposes. For more information, see Amazon Web Services SSO rename (https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html#renamed).
 //
-// This API reference guide describes the AWS SSO OIDC operations that you can
-// call programatically and includes detailed information on data types and
-// errors.
+// Considerations for Using This Guide
 //
-// AWS provides SDKs that consist of libraries and sample code for various programming
-// languages and platforms such as Java, Ruby, .Net, iOS, and Android. The SDKs
-// provide a convenient way to create programmatic access to AWS SSO and other
-// AWS services. For more information about the AWS SDKs, including how to download
-// and install them, see Tools for Amazon Web Services (http://aws.amazon.com/tools/).
+// Before you begin using this guide, we recommend that you first review the
+// following important information about how the Amazon Web Services SSO OIDC
+// service works.
+//
+//    * The Amazon Web Services SSO OIDC service currently implements only the
+//    portions of the OAuth 2.0 Device Authorization Grant standard (https://tools.ietf.org/html/rfc8628
+//    (https://tools.ietf.org/html/rfc8628)) that are necessary to enable single
+//    sign-on authentication with the AWS CLI. Support for other OIDC flows
+//    frequently needed for native applications, such as Authorization Code
+//    Flow (+ PKCE), will be addressed in future releases.
+//
+//    * The service emits only OIDC access tokens, such that obtaining a new
+//    token (For example, token refresh) requires explicit user re-authentication.
+//
+//    * The access tokens provided by this service grant access to all AWS account
+//    entitlements assigned to an Amazon Web Services SSO user, not just a particular
+//    application.
+//
+//    * The documentation in this guide does not describe the mechanism to convert
+//    the access token into AWS Auth (“sigv4”) credentials for use with
+//    IAM-protected AWS service endpoints. For more information, see GetRoleCredentials
+//    (https://docs.aws.amazon.com/singlesignon/latest/PortalAPIReference/API_GetRoleCredentials.html)
+//    in the Amazon Web Services SSO Portal API Reference Guide.
+//
+// For general information about Amazon Web Services SSO, see What is Amazon
+// Web Services SSO? (https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html)
+// in the Amazon Web Services SSO User Guide.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/sso-oidc-2019-06-10 for more information on this service.
 //

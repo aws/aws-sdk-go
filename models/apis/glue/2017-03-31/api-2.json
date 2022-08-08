@@ -4217,7 +4217,8 @@
         "CANCELLING",
         "CANCELLED",
         "SUCCEEDED",
-        "FAILED"
+        "FAILED",
+        "ERROR"
       ]
     },
     "Crawler":{
@@ -4586,7 +4587,8 @@
         "GlueVersion":{"shape":"GlueVersionString"},
         "NumberOfWorkers":{"shape":"NullableInteger"},
         "WorkerType":{"shape":"WorkerType"},
-        "CodeGenConfigurationNodes":{"shape":"CodeGenConfigurationNodes"}
+        "CodeGenConfigurationNodes":{"shape":"CodeGenConfigurationNodes"},
+        "ExecutionClass":{"shape":"ExecutionClass"}
       }
     },
     "CreateJobResponse":{
@@ -5751,6 +5753,14 @@
       }
     },
     "EventQueueArn":{"type":"string"},
+    "ExecutionClass":{
+      "type":"string",
+      "enum":[
+        "FLEX",
+        "STANDARD"
+      ],
+      "max":16
+    },
     "ExecutionProperty":{
       "type":"structure",
       "members":{
@@ -7411,7 +7421,8 @@
         "SecurityConfiguration":{"shape":"NameString"},
         "NotificationProperty":{"shape":"NotificationProperty"},
         "GlueVersion":{"shape":"GlueVersionString"},
-        "CodeGenConfigurationNodes":{"shape":"CodeGenConfigurationNodes"}
+        "CodeGenConfigurationNodes":{"shape":"CodeGenConfigurationNodes"},
+        "ExecutionClass":{"shape":"ExecutionClass"}
       }
     },
     "JobBookmarkEntry":{
@@ -7492,7 +7503,8 @@
         "LogGroupName":{"shape":"GenericString"},
         "NotificationProperty":{"shape":"NotificationProperty"},
         "GlueVersion":{"shape":"GlueVersionString"},
-        "DPUSeconds":{"shape":"NullableDouble"}
+        "DPUSeconds":{"shape":"NullableDouble"},
+        "ExecutionClass":{"shape":"ExecutionClass"}
       }
     },
     "JobRunList":{
@@ -7508,7 +7520,9 @@
         "STOPPED",
         "SUCCEEDED",
         "FAILED",
-        "TIMEOUT"
+        "TIMEOUT",
+        "ERROR",
+        "WAITING"
       ]
     },
     "JobUpdate":{
@@ -7535,7 +7549,8 @@
         "SecurityConfiguration":{"shape":"NameString"},
         "NotificationProperty":{"shape":"NotificationProperty"},
         "GlueVersion":{"shape":"GlueVersionString"},
-        "CodeGenConfigurationNodes":{"shape":"CodeGenConfigurationNodes"}
+        "CodeGenConfigurationNodes":{"shape":"CodeGenConfigurationNodes"},
+        "ExecutionClass":{"shape":"ExecutionClass"}
       }
     },
     "Join":{
@@ -9881,7 +9896,8 @@
         "SecurityConfiguration":{"shape":"NameString"},
         "NotificationProperty":{"shape":"NotificationProperty"},
         "WorkerType":{"shape":"WorkerType"},
-        "NumberOfWorkers":{"shape":"NullableInteger"}
+        "NumberOfWorkers":{"shape":"NullableInteger"},
+        "ExecutionClass":{"shape":"ExecutionClass"}
       }
     },
     "StartJobRunResponse":{
@@ -11111,7 +11127,9 @@
         "FailedActions":{"shape":"IntegerValue"},
         "StoppedActions":{"shape":"IntegerValue"},
         "SucceededActions":{"shape":"IntegerValue"},
-        "RunningActions":{"shape":"IntegerValue"}
+        "RunningActions":{"shape":"IntegerValue"},
+        "ErroredActions":{"shape":"IntegerValue"},
+        "WaitingActions":{"shape":"IntegerValue"}
       }
     },
     "WorkflowRunStatus":{

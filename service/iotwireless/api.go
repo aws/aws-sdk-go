@@ -13945,6 +13945,9 @@ type EventNotificationItemConfigurations struct {
 	// Join event configuration for an event configuration item.
 	Join *JoinEventConfiguration `type:"structure"`
 
+	// Message delivery status event configuration for an event configuration item.
+	MessageDeliveryStatus *MessageDeliveryStatusEventConfiguration `type:"structure"`
+
 	// Proximity event configuration for an event configuration item.
 	Proximity *ProximityEventConfiguration `type:"structure"`
 }
@@ -13982,6 +13985,12 @@ func (s *EventNotificationItemConfigurations) SetDeviceRegistrationState(v *Devi
 // SetJoin sets the Join field's value.
 func (s *EventNotificationItemConfigurations) SetJoin(v *JoinEventConfiguration) *EventNotificationItemConfigurations {
 	s.Join = v
+	return s
+}
+
+// SetMessageDeliveryStatus sets the MessageDeliveryStatus field's value.
+func (s *EventNotificationItemConfigurations) SetMessageDeliveryStatus(v *MessageDeliveryStatusEventConfiguration) *EventNotificationItemConfigurations {
+	s.MessageDeliveryStatus = v
 	return s
 }
 
@@ -14391,6 +14400,10 @@ type GetEventConfigurationByResourceTypesOutput struct {
 	// Resource type event configuration for the join event.
 	Join *JoinResourceTypeEventConfiguration `type:"structure"`
 
+	// Resource type event configuration object for the message delivery status
+	// event.
+	MessageDeliveryStatus *MessageDeliveryStatusResourceTypeEventConfiguration `type:"structure"`
+
 	// Resource type event configuration for the proximity event.
 	Proximity *ProximityResourceTypeEventConfiguration `type:"structure"`
 }
@@ -14428,6 +14441,12 @@ func (s *GetEventConfigurationByResourceTypesOutput) SetDeviceRegistrationState(
 // SetJoin sets the Join field's value.
 func (s *GetEventConfigurationByResourceTypesOutput) SetJoin(v *JoinResourceTypeEventConfiguration) *GetEventConfigurationByResourceTypesOutput {
 	s.Join = v
+	return s
+}
+
+// SetMessageDeliveryStatus sets the MessageDeliveryStatus field's value.
+func (s *GetEventConfigurationByResourceTypesOutput) SetMessageDeliveryStatus(v *MessageDeliveryStatusResourceTypeEventConfiguration) *GetEventConfigurationByResourceTypesOutput {
+	s.MessageDeliveryStatus = v
 	return s
 }
 
@@ -15438,6 +15457,9 @@ type GetResourceEventConfigurationOutput struct {
 	// Event configuration for the join event.
 	Join *JoinEventConfiguration `type:"structure"`
 
+	// Event configuration for the message delivery status event.
+	MessageDeliveryStatus *MessageDeliveryStatusEventConfiguration `type:"structure"`
+
 	// Event configuration for the proximity event.
 	Proximity *ProximityEventConfiguration `type:"structure"`
 }
@@ -15475,6 +15497,12 @@ func (s *GetResourceEventConfigurationOutput) SetDeviceRegistrationState(v *Devi
 // SetJoin sets the Join field's value.
 func (s *GetResourceEventConfigurationOutput) SetJoin(v *JoinEventConfiguration) *GetResourceEventConfigurationOutput {
 	s.Join = v
+	return s
+}
+
+// SetMessageDeliveryStatus sets the MessageDeliveryStatus field's value.
+func (s *GetResourceEventConfigurationOutput) SetMessageDeliveryStatus(v *MessageDeliveryStatusEventConfiguration) *GetResourceEventConfigurationOutput {
+	s.MessageDeliveryStatus = v
 	return s
 }
 
@@ -19550,6 +19578,12 @@ type LoRaWANServiceProfile struct {
 
 	// The AddGWMetaData value.
 	AddGwMetadata *bool `type:"boolean"`
+
+	// The DrMax value.
+	DrMax *int64 `type:"integer"`
+
+	// The DrMin value.
+	DrMin *int64 `type:"integer"`
 }
 
 // String returns the string representation.
@@ -19573,6 +19607,18 @@ func (s LoRaWANServiceProfile) GoString() string {
 // SetAddGwMetadata sets the AddGwMetadata field's value.
 func (s *LoRaWANServiceProfile) SetAddGwMetadata(v bool) *LoRaWANServiceProfile {
 	s.AddGwMetadata = &v
+	return s
+}
+
+// SetDrMax sets the DrMax field's value.
+func (s *LoRaWANServiceProfile) SetDrMax(v int64) *LoRaWANServiceProfile {
+	s.DrMax = &v
+	return s
+}
+
+// SetDrMin sets the DrMin field's value.
+func (s *LoRaWANServiceProfile) SetDrMin(v int64) *LoRaWANServiceProfile {
+	s.DrMin = &v
 	return s
 }
 
@@ -19814,6 +19860,84 @@ func (s *LoRaWANUpdateGatewayTaskEntry) SetCurrentVersion(v *LoRaWANGatewayVersi
 // SetUpdateVersion sets the UpdateVersion field's value.
 func (s *LoRaWANUpdateGatewayTaskEntry) SetUpdateVersion(v *LoRaWANGatewayVersion) *LoRaWANUpdateGatewayTaskEntry {
 	s.UpdateVersion = v
+	return s
+}
+
+// Message delivery status event configuration object for enabling and disabling
+// relevant topics.
+type MessageDeliveryStatusEventConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// SidewalkEventNotificationConfigurations object, which is the event configuration
+	// object for Sidewalk-related event topics.
+	Sidewalk *SidewalkEventNotificationConfigurations `type:"structure"`
+
+	// Enum to denote whether the wireless device id device registration state event
+	// topic is enabled or disabled.
+	WirelessDeviceIdEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageDeliveryStatusEventConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageDeliveryStatusEventConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *MessageDeliveryStatusEventConfiguration) SetSidewalk(v *SidewalkEventNotificationConfigurations) *MessageDeliveryStatusEventConfiguration {
+	s.Sidewalk = v
+	return s
+}
+
+// SetWirelessDeviceIdEventTopic sets the WirelessDeviceIdEventTopic field's value.
+func (s *MessageDeliveryStatusEventConfiguration) SetWirelessDeviceIdEventTopic(v string) *MessageDeliveryStatusEventConfiguration {
+	s.WirelessDeviceIdEventTopic = &v
+	return s
+}
+
+// Message delivery status resource type event configuration object for enabling
+// or disabling relevant topic.
+type MessageDeliveryStatusResourceTypeEventConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Sidewalk resource type event configuration object for enabling or disabling
+	// topic.
+	Sidewalk *SidewalkResourceTypeEventConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageDeliveryStatusResourceTypeEventConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageDeliveryStatusResourceTypeEventConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *MessageDeliveryStatusResourceTypeEventConfiguration) SetSidewalk(v *SidewalkResourceTypeEventConfiguration) *MessageDeliveryStatusResourceTypeEventConfiguration {
+	s.Sidewalk = v
 	return s
 }
 
@@ -21651,6 +21775,9 @@ func (s *SidewalkResourceTypeEventConfiguration) SetWirelessDeviceEventTopic(v s
 type SidewalkSendDataToDevice struct {
 	_ struct{} `type:"structure"`
 
+	// The duration of time in seconds for which you want to retry sending the ACK.
+	AckModeRetryDurationSecs *int64 `type:"integer"`
+
 	// Sidewalk device message type. Default value is CUSTOM_COMMAND_ID_NOTIFY.
 	MessageType *string `type:"string" enum:"MessageType"`
 
@@ -21674,6 +21801,12 @@ func (s SidewalkSendDataToDevice) String() string {
 // value will be replaced with "sensitive".
 func (s SidewalkSendDataToDevice) GoString() string {
 	return s.String()
+}
+
+// SetAckModeRetryDurationSecs sets the AckModeRetryDurationSecs field's value.
+func (s *SidewalkSendDataToDevice) SetAckModeRetryDurationSecs(v int64) *SidewalkSendDataToDevice {
+	s.AckModeRetryDurationSecs = &v
+	return s
 }
 
 // SetMessageType sets the MessageType field's value.
@@ -22799,6 +22932,10 @@ type UpdateEventConfigurationByResourceTypesInput struct {
 	// wireless device topic.
 	Join *JoinResourceTypeEventConfiguration `type:"structure"`
 
+	// Message delivery status resource type event configuration object for enabling
+	// and disabling wireless device topic.
+	MessageDeliveryStatus *MessageDeliveryStatusResourceTypeEventConfiguration `type:"structure"`
+
 	// Proximity resource type event configuration object for enabling and disabling
 	// wireless gateway topic.
 	Proximity *ProximityResourceTypeEventConfiguration `type:"structure"`
@@ -22837,6 +22974,12 @@ func (s *UpdateEventConfigurationByResourceTypesInput) SetDeviceRegistrationStat
 // SetJoin sets the Join field's value.
 func (s *UpdateEventConfigurationByResourceTypesInput) SetJoin(v *JoinResourceTypeEventConfiguration) *UpdateEventConfigurationByResourceTypesInput {
 	s.Join = v
+	return s
+}
+
+// SetMessageDeliveryStatus sets the MessageDeliveryStatus field's value.
+func (s *UpdateEventConfigurationByResourceTypesInput) SetMessageDeliveryStatus(v *MessageDeliveryStatusResourceTypeEventConfiguration) *UpdateEventConfigurationByResourceTypesInput {
+	s.MessageDeliveryStatus = v
 	return s
 }
 
@@ -23593,6 +23736,9 @@ type UpdateResourceEventConfigurationInput struct {
 	// Event configuration for the join event.
 	Join *JoinEventConfiguration `type:"structure"`
 
+	// Event configuration for the message delivery status event.
+	MessageDeliveryStatus *MessageDeliveryStatusEventConfiguration `type:"structure"`
+
 	// Partner type of the resource if the identifier type is PartnerAccountId
 	PartnerType *string `location:"querystring" locationName:"partnerType" type:"string" enum:"EventNotificationPartnerType"`
 
@@ -23664,6 +23810,12 @@ func (s *UpdateResourceEventConfigurationInput) SetIdentifierType(v string) *Upd
 // SetJoin sets the Join field's value.
 func (s *UpdateResourceEventConfigurationInput) SetJoin(v *JoinEventConfiguration) *UpdateResourceEventConfigurationInput {
 	s.Join = v
+	return s
+}
+
+// SetMessageDeliveryStatus sets the MessageDeliveryStatus field's value.
+func (s *UpdateResourceEventConfigurationInput) SetMessageDeliveryStatus(v *MessageDeliveryStatusEventConfiguration) *UpdateResourceEventConfigurationInput {
+	s.MessageDeliveryStatus = v
 	return s
 }
 

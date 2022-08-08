@@ -3,9 +3,9 @@
 // Package identitystore provides the client and types for making API
 // requests to AWS SSO Identity Store.
 //
-// The AWS Single Sign-On (SSO) Identity Store service provides a single place
-// to retrieve all of your identities (users and groups). For more information
-// about AWS, see the AWS Single Sign-On User Guide (https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html).
+// The identity store service used by Amazon Web Services Single Sign On provides
+// a single place to retrieve all of your identities (users and groups). For
+// more information, see the Amazon Web Services SSO User Guide (https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/identitystore-2020-06-15 for more information on this service.
 //

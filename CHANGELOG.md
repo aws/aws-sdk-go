@@ -1,3 +1,20 @@
+Release v1.44.71 (2022-08-08)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * Add an option to run non-urgent or non-time sensitive Glue Jobs on spare capacity
+* `service/identitystore`: Updates service documentation
+* `service/iotwireless`: Updates service API and documentation
+* `service/pinpoint`: Updates service API and documentation
+  * Adds support for Advance Quiet Time in Journeys. Adds RefreshOnSegmentUpdate and WaitForQuietTime to JourneyResponse.
+* `service/quicksight`: Updates service documentation
+  * A series of documentation updates to the QuickSight API reference.
+* `service/sso`: Updates service documentation
+  * Documentation updates to reflect service rename - AWS IAM Identity Center (successor to AWS Single Sign-On)
+* `service/sso-admin`: Updates service documentation
+* `service/sso-oidc`: Updates service documentation
+
 Release v1.44.70 (2022-08-04)
 ===
 
