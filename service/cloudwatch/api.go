@@ -157,7 +157,10 @@ func (c *CloudWatch) DeleteAnomalyDetectorRequest(input *DeleteAnomalyDetectorIn
 
 // DeleteAnomalyDetector API operation for Amazon CloudWatch.
 //
-// Deletes the specified anomaly detection model from your account.
+// Deletes the specified anomaly detection model from your account. For more
+// information about how to delete an anomaly detection model, see Deleting
+// an anomaly detection model (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Create_Anomaly_Detection_Alarm.html#Delete_Anomaly_Detection_Model)
+// in the CloudWatch User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3236,16 +3239,16 @@ func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *reque
 // with one PutMetricData request, and supports retrieving percentile statistics
 // on this data.
 //
-// Each PutMetricData request is limited to 40 KB in size for HTTP POST requests.
+// Each PutMetricData request is limited to 1 MB in size for HTTP POST requests.
 // You can send a payload compressed by gzip. Each request is also limited to
-// no more than 20 different metrics.
+// no more than 1000 different metrics.
 //
 // Although the Value parameter accepts numbers of type Double, CloudWatch rejects
 // values that are either too small or too large. Values must be in the range
 // of -2^360 to 2^360. In addition, special values (for example, NaN, +Infinity,
 // -Infinity) are not supported.
 //
-// You can use up to 10 dimensions per metric to further clarify what data the
+// You can use up to 30 dimensions per metric to further clarify what data the
 // metric collects. Each dimension consists of a Name and Value pair. For more
 // information about specifying dimensions, see Publishing Metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html)
 // in the Amazon CloudWatch User Guide.
@@ -5818,7 +5821,7 @@ func (s *DescribeInsightRulesOutput) SetNextToken(v string) *DescribeInsightRule
 // InstanceId as a dimension name, and the actual instance ID as the value for
 // that dimension.
 //
-// You can assign up to 10 dimensions to a metric.
+// You can assign up to 30 dimensions to a metric.
 type Dimension struct {
 	_ struct{} `type:"structure"`
 
@@ -8880,7 +8883,7 @@ type MetricDatum struct {
 	// Array of numbers representing the values for the metric during the period.
 	// Each unique value is listed just once in this array, and the corresponding
 	// number in the Counts array specifies the number of times that value occurred
-	// during the period. You can include up to 150 unique values in each PutMetricData
+	// during the period. You can include up to 500 unique values in each PutMetricData
 	// action that specifies a Values array.
 	//
 	// Although the Values array accepts numbers of type Double, CloudWatch rejects
@@ -10427,7 +10430,7 @@ type PutMetricAlarmInput struct {
 	//
 	// However, if the metric is published with multiple types of units and you
 	// don't specify a unit, the alarm's behavior is not defined and it behaves
-	// predictably.
+	// unpredictably.
 	//
 	// We recommend omitting Unit so that you don't inadvertently specify an incorrect
 	// unit that is not published for this metric. Doing so causes the alarm to
@@ -10686,8 +10689,8 @@ func (s PutMetricAlarmOutput) GoString() string {
 type PutMetricDataInput struct {
 	_ struct{} `type:"structure"`
 
-	// The data for the metric. The array can include no more than 20 metrics per
-	// call.
+	// The data for the metric. The array can include no more than 1000 metrics
+	// per call.
 	//
 	// MetricData is a required field
 	MetricData []*MetricDatum `type:"list" required:"true"`

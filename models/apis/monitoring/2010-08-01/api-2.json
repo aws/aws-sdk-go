@@ -1119,13 +1119,13 @@
     },
     "DimensionValue":{
       "type":"string",
-      "max":255,
+      "max":1024,
       "min":1
     },
     "Dimensions":{
       "type":"list",
       "member":{"shape":"Dimension"},
-      "max":10
+      "max":30
     },
     "DisableAlarmActionsInput":{
       "type":"structure",
@@ -1182,10 +1182,7 @@
       "min":1
     },
     "ExceptionType":{"type":"string"},
-    "ExtendedStatistic":{
-      "type":"string",
-      "pattern":"p(\\d{1,2}(\\.\\d{0,2})?|100)"
-    },
+    "ExtendedStatistic":{"type":"string"},
     "ExtendedStatistics":{
       "type":"list",
       "member":{"shape":"ExtendedStatistic"},
@@ -1790,7 +1787,7 @@
     },
     "MetricExpression":{
       "type":"string",
-      "max":1024,
+      "max":2048,
       "min":1
     },
     "MetricId":{

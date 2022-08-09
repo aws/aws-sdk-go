@@ -807,7 +807,9 @@ func (c *LocationService) CalculateRouteRequest(input *CalculateRouteInput) (req
 //    * Specifying a travel mode (https://docs.aws.amazon.com/location/latest/developerguide/travel-mode.html)
 //    using TravelMode sets the transportation mode used to calculate the routes.
 //    This also lets you specify additional route preferences in CarModeOptions
-//    if traveling by Car, or TruckModeOptions if traveling by Truck.
+//    if traveling by Car, or TruckModeOptions if traveling by Truck. If you
+//    specify walking for the travel mode and your data provider is Esri, the
+//    start and destination must be within 40km.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6664,7 +6666,8 @@ type BatchPutGeofenceRequestEntry struct {
 	// GeofenceId is a required field
 	GeofenceId *string `min:"1" type:"string" required:"true"`
 
-	// Contains the polygon details to specify the position of the geofence.
+	// Contains the details of the position of the geofence. Can be either a polygon
+	// or a circle. Including both will return a validation error.
 	//
 	// Each geofence polygon (https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html)
 	// can have a maximum of 1,000 vertices.
@@ -7090,7 +7093,8 @@ type CalculateRouteInput struct {
 	IncludeLegGeometry *bool `type:"boolean"`
 
 	// Specifies the mode of transport when calculating a route. Used in estimating
-	// the speed of travel and road compatibility.
+	// the speed of travel and road compatibility. You can choose Car, Truck, or
+	// Walking as options for the TravelMode.
 	//
 	// The TravelMode you specify also determines how you specify route preferences:
 	//
@@ -7833,6 +7837,77 @@ func (s *CalculateRouteTruckModeOptions) SetDimensions(v *TruckDimensions) *Calc
 // SetWeight sets the Weight field's value.
 func (s *CalculateRouteTruckModeOptions) SetWeight(v *TruckWeight) *CalculateRouteTruckModeOptions {
 	s.Weight = v
+	return s
+}
+
+// A circle on the earth, as defined by a center point and a radius.
+type Circle struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// A single point geometry, specifying the center of the circle, using WGS 84
+	// (https://gisgeography.com/wgs84-world-geodetic-system/) coordinates, in the
+	// form [longitude, latitude].
+	//
+	// Center is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Circle's
+	// String and GoString methods.
+	//
+	// Center is a required field
+	Center []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
+
+	// The radius of the circle in meters. Must be greater than zero and no larger
+	// than 100,000 (100 kilometers).
+	//
+	// Radius is a required field
+	Radius *float64 `type:"double" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Circle) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Circle) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Circle) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Circle"}
+	if s.Center == nil {
+		invalidParams.Add(request.NewErrParamRequired("Center"))
+	}
+	if s.Center != nil && len(s.Center) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Center", 2))
+	}
+	if s.Radius == nil {
+		invalidParams.Add(request.NewErrParamRequired("Radius"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCenter sets the Center field's value.
+func (s *Circle) SetCenter(v []*float64) *Circle {
+	s.Center = v
+	return s
+}
+
+// SetRadius sets the Radius field's value.
+func (s *Circle) SetRadius(v float64) *Circle {
+	s.Radius = &v
 	return s
 }
 
@@ -10496,10 +10571,20 @@ func (s DisassociateTrackerConsumerOutput) GoString() string {
 
 // Contains the geofence geometry details.
 //
+// A geofence geometry is made up of either a polygon or a circle. Can be either
+// a polygon or a circle. Including both will return a validation error.
+//
 // Amazon Location doesn't currently support polygons with holes, multipolygons,
 // polygons that are wound clockwise, or that cross the antimeridian.
 type GeofenceGeometry struct {
 	_ struct{} `type:"structure"`
+
+	// A circle on the earth, as defined by a center point and a radius.
+	//
+	// Circle is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GeofenceGeometry's
+	// String and GoString methods.
+	Circle *Circle `type:"structure" sensitive:"true"`
 
 	// An array of 1 or more linear rings. A linear ring is an array of 4 or more
 	// vertices, where the first and last vertex are the same to form a closed boundary.
@@ -10511,6 +10596,8 @@ type GeofenceGeometry struct {
 	// around the ring's center, where the left side is the polygon's exterior.
 	// Inner rings must list their vertices in clockwise order, where the left side
 	// is the polygon's interior.
+	//
+	// A geofence polygon can consist of between 4 and 1,000 vertices.
 	Polygon [][][]*float64 `min:"1" type:"list"`
 }
 
@@ -10538,11 +10625,22 @@ func (s *GeofenceGeometry) Validate() error {
 	if s.Polygon != nil && len(s.Polygon) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Polygon", 1))
 	}
+	if s.Circle != nil {
+		if err := s.Circle.Validate(); err != nil {
+			invalidParams.AddNested("Circle", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCircle sets the Circle field's value.
+func (s *GeofenceGeometry) SetCircle(v *Circle) *GeofenceGeometry {
+	s.Circle = v
+	return s
 }
 
 // SetPolygon sets the Polygon field's value.
@@ -10959,7 +11057,7 @@ type GetGeofenceOutput struct {
 	// GeofenceId is a required field
 	GeofenceId *string `min:"1" type:"string" required:"true"`
 
-	// Contains the geofence geometry details describing a polygon.
+	// Contains the geofence geometry details describing a polygon or a circle.
 	//
 	// Geometry is a required field
 	Geometry *GeofenceGeometry `type:"structure" required:"true"`
@@ -11060,7 +11158,7 @@ type GetMapGlyphsInput struct {
 	// Valid font stacks for HERE Technologies (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html)
 	// styles:
 	//
-	//    * VectorHereBerlin – Fira GO Regular | Fira GO Bold
+	//    * VectorHereContrast – Fira GO Regular | Fira GO Bold
 	//
 	//    * VectorHereExplore, VectorHereExploreTruck – Firo GO Italic | Fira
 	//    GO Map | Fira GO Map Bold | Noto Sans CJK JP Bold | Noto Sans CJK JP Light
@@ -12181,7 +12279,7 @@ type ListGeofenceResponseEntry struct {
 	// GeofenceId is a required field
 	GeofenceId *string `min:"1" type:"string" required:"true"`
 
-	// Contains the geofence geometry details describing a polygon.
+	// Contains the geofence geometry details describing a polygon or a circle.
 	//
 	// Geometry is a required field
 	Geometry *GeofenceGeometry `type:"structure" required:"true"`
@@ -13421,8 +13519,8 @@ type MapConfiguration struct {
 	//
 	// Valid HERE Technologies map styles (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html):
 	//
-	//    * VectorHereBerlin – The HERE Berlin map style is a high contrast detailed
-	//    base map of the world that blends 3D and 2D rendering.
+	//    * VectorHereContrast – The HERE Contrast (Berlin) map style is a high
+	//    contrast detailed base map of the world that blends 3D and 2D rendering.
 	//
 	//    * VectorHereExplore – A default HERE map style containing a neutral,
 	//    global map and its features including roads, buildings, landmarks, and
@@ -13432,6 +13530,9 @@ type MapConfiguration struct {
 	//    and attributes (e.g. width / height / HAZMAT) symbolized with highlighted
 	//    segments and icons on top of HERE Explore to support use cases within
 	//    transport and logistics.
+	//
+	// The VectorHereContrast style has been renamed from VectorHereBerlin. VectorHereBerlin
+	// has been deprecated, but will continue to work in applications that use it.
 	//
 	// Style is a required field
 	Style *string `min:"1" type:"string" required:"true"`
@@ -13731,7 +13832,8 @@ type PutGeofenceInput struct {
 	// GeofenceId is a required field
 	GeofenceId *string `location:"uri" locationName:"GeofenceId" min:"1" type:"string" required:"true"`
 
-	// Contains the polygon details to specify the position of the geofence.
+	// Contains the details to specify the position of the geofence. Can be either
+	// a polygon or a circle. Including both will return a validation error.
 	//
 	// Each geofence polygon (https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html)
 	// can have a maximum of 1,000 vertices.
@@ -15544,11 +15646,17 @@ type TruckDimensions struct {
 	// The height of the truck.
 	//
 	//    * For example, 4.5.
+	//
+	// For routes calculated with a HERE resource, this value must be between 0
+	// and 50 meters.
 	Height *float64 `type:"double"`
 
 	// The length of the truck.
 	//
 	//    * For example, 15.5.
+	//
+	// For routes calculated with a HERE resource, this value must be between 0
+	// and 300 meters.
 	Length *float64 `type:"double"`
 
 	// Specifies the unit of measurement for the truck dimensions.
@@ -15559,6 +15667,9 @@ type TruckDimensions struct {
 	// The width of the truck.
 	//
 	//    * For example, 4.5.
+	//
+	// For routes calculated with a HERE resource, this value must be between 0
+	// and 50 meters.
 	Width *float64 `type:"double"`
 }
 
