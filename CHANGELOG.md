@@ -1,3 +1,14 @@
+Release v1.44.72 (2022-08-09)
+===
+
+### Service Client Updates
+* `service/location`: Updates service API and documentation
+* `service/monitoring`: Updates service API and documentation
+  * Various quota increases related to dimensions and custom metrics
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Automatic Model Tuning now supports specifying multiple alternate EC2 instance types to make tuning jobs more robust when the preferred instance type is not available due to insufficient capacity.
+* `service/sagemaker-a2i-runtime`: Updates service API
+
 Release v1.44.71 (2022-08-08)
 ===
 

@@ -1513,6 +1513,18 @@
         "Weight":{"shape":"TruckWeight"}
       }
     },
+    "Circle":{
+      "type":"structure",
+      "required":[
+        "Center",
+        "Radius"
+      ],
+      "members":{
+        "Center":{"shape":"Position"},
+        "Radius":{"shape":"Double"}
+      },
+      "sensitive":true
+    },
     "ConflictException":{
       "type":"structure",
       "required":["Message"],
@@ -2058,6 +2070,7 @@
     "GeofenceGeometry":{
       "type":"structure",
       "members":{
+        "Circle":{"shape":"Circle"},
         "Polygon":{"shape":"LinearRings"}
       }
     },

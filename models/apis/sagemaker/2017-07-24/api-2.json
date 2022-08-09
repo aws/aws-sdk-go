@@ -9575,7 +9575,6 @@
         "AlgorithmSpecification",
         "RoleArn",
         "OutputDataConfig",
-        "ResourceConfig",
         "StoppingCondition"
       ],
       "members":{
@@ -9594,7 +9593,8 @@
         "EnableInterContainerTrafficEncryption":{"shape":"Boolean"},
         "EnableManagedSpotTraining":{"shape":"Boolean"},
         "CheckpointConfig":{"shape":"CheckpointConfig"},
-        "RetryStrategy":{"shape":"RetryStrategy"}
+        "RetryStrategy":{"shape":"RetryStrategy"},
+        "HyperParameterTuningResourceConfig":{"shape":"HyperParameterTuningResourceConfig"}
       }
     },
     "HyperParameterTrainingJobDefinitionName":{
@@ -9636,6 +9636,29 @@
         "FinalHyperParameterTuningJobObjectiveMetric":{"shape":"FinalHyperParameterTuningJobObjectiveMetric"},
         "ObjectiveStatus":{"shape":"ObjectiveStatus"}
       }
+    },
+    "HyperParameterTuningAllocationStrategy":{
+      "type":"string",
+      "enum":["Prioritized"]
+    },
+    "HyperParameterTuningInstanceConfig":{
+      "type":"structure",
+      "required":[
+        "InstanceType",
+        "InstanceCount",
+        "VolumeSizeInGB"
+      ],
+      "members":{
+        "InstanceType":{"shape":"TrainingInstanceType"},
+        "InstanceCount":{"shape":"TrainingInstanceCount"},
+        "VolumeSizeInGB":{"shape":"VolumeSizeInGB"}
+      }
+    },
+    "HyperParameterTuningInstanceConfigs":{
+      "type":"list",
+      "member":{"shape":"HyperParameterTuningInstanceConfig"},
+      "max":6,
+      "min":1
     },
     "HyperParameterTuningJobArn":{
       "type":"string",
@@ -9755,6 +9778,17 @@
         "IdenticalDataAndAlgorithm",
         "TransferLearning"
       ]
+    },
+    "HyperParameterTuningResourceConfig":{
+      "type":"structure",
+      "members":{
+        "InstanceType":{"shape":"TrainingInstanceType"},
+        "InstanceCount":{"shape":"TrainingInstanceCount"},
+        "VolumeSizeInGB":{"shape":"OptionalVolumeSizeInGB"},
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "AllocationStrategy":{"shape":"HyperParameterTuningAllocationStrategy"},
+        "InstanceConfigs":{"shape":"HyperParameterTuningInstanceConfigs"}
+      }
     },
     "HyperParameterValue":{
       "type":"string",

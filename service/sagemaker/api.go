@@ -31789,7 +31789,9 @@ type CreateAppImageConfigInput struct {
 	// AppImageConfigName is a required field
 	AppImageConfigName *string `type:"string" required:"true"`
 
-	// The KernelGatewayImageConfig.
+	// The KernelGatewayImageConfig. You can only specify one image kernel in the
+	// AppImageConfig API. This kernel will be shown to users before the image starts.
+	// Once the image runs, all kernels are visible in JupyterLab.
 	KernelGatewayImageConfig *KernelGatewayImageConfig `type:"structure"`
 
 	// A list of tags to apply to the AppImageConfig.
@@ -61716,6 +61718,13 @@ type HyperParameterTrainingJobDefinition struct {
 	// all the ranges can't exceed the maximum number specified.
 	HyperParameterRanges *ParameterRanges `type:"structure"`
 
+	// The configuration for the hyperparameter tuning resources, including the
+	// compute instances and storage volumes, used for training jobs launched by
+	// the tuning job. By default, storage volumes hold model artifacts and incremental
+	// states. Choose File for TrainingInputMode in the AlgorithmSpecificationparameter
+	// to additionally store training data in the storage volume (optional).
+	HyperParameterTuningResourceConfig *HyperParameterTuningResourceConfig `type:"structure"`
+
 	// An array of Channel objects that specify the input for the training jobs
 	// that the tuning job launches.
 	InputDataConfig []*Channel `min:"1" type:"list"`
@@ -61735,8 +61744,9 @@ type HyperParameterTrainingJobDefinition struct {
 	// in the algorithm specification. For distributed training algorithms, specify
 	// an instance count greater than 1.
 	//
-	// ResourceConfig is a required field
-	ResourceConfig *ResourceConfig `type:"structure" required:"true"`
+	// If you want to use hyperparameter optimization with instance type flexibility,
+	// use HyperParameterTuningResourceConfig instead.
+	ResourceConfig *ResourceConfig `type:"structure"`
 
 	// The number of times to retry the job when the job fails due to an InternalServerError.
 	RetryStrategy *RetryStrategy `type:"structure"`
@@ -61805,9 +61815,6 @@ func (s *HyperParameterTrainingJobDefinition) Validate() error {
 	if s.OutputDataConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutputDataConfig"))
 	}
-	if s.ResourceConfig == nil {
-		invalidParams.Add(request.NewErrParamRequired("ResourceConfig"))
-	}
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
 	}
@@ -61830,6 +61837,11 @@ func (s *HyperParameterTrainingJobDefinition) Validate() error {
 	if s.HyperParameterRanges != nil {
 		if err := s.HyperParameterRanges.Validate(); err != nil {
 			invalidParams.AddNested("HyperParameterRanges", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.HyperParameterTuningResourceConfig != nil {
+		if err := s.HyperParameterTuningResourceConfig.Validate(); err != nil {
+			invalidParams.AddNested("HyperParameterTuningResourceConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.InputDataConfig != nil {
@@ -61918,6 +61930,12 @@ func (s *HyperParameterTrainingJobDefinition) SetEnableNetworkIsolation(v bool) 
 // SetHyperParameterRanges sets the HyperParameterRanges field's value.
 func (s *HyperParameterTrainingJobDefinition) SetHyperParameterRanges(v *ParameterRanges) *HyperParameterTrainingJobDefinition {
 	s.HyperParameterRanges = v
+	return s
+}
+
+// SetHyperParameterTuningResourceConfig sets the HyperParameterTuningResourceConfig field's value.
+func (s *HyperParameterTrainingJobDefinition) SetHyperParameterTuningResourceConfig(v *HyperParameterTuningResourceConfig) *HyperParameterTrainingJobDefinition {
+	s.HyperParameterTuningResourceConfig = v
 	return s
 }
 
@@ -62130,6 +62148,95 @@ func (s *HyperParameterTrainingJobSummary) SetTunedHyperParameters(v map[string]
 // SetTuningJobName sets the TuningJobName field's value.
 func (s *HyperParameterTrainingJobSummary) SetTuningJobName(v string) *HyperParameterTrainingJobSummary {
 	s.TuningJobName = &v
+	return s
+}
+
+// The configuration for hyperparameter tuning resources for use in training
+// jobs launched by the tuning job. These resources include compute instances
+// and storage volumes. Specify one or more compute instance configurations
+// and allocation strategies to select resources (optional).
+type HyperParameterTuningInstanceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The number of instances of the type specified by InstanceType. Choose an
+	// instance count larger than 1 for distributed training algorithms. See SageMaker
+	// distributed training jobs (https://docs.aws.amazon.com/data-parallel-use-api.html)
+	// for more information.
+	//
+	// InstanceCount is a required field
+	InstanceCount *int64 `type:"integer" required:"true"`
+
+	// The instance type used for processing of hyperparameter optimization jobs.
+	// Choose from general purpose (no GPUs) instance types: ml.m5.xlarge, ml.m5.2xlarge,
+	// and ml.m5.4xlarge or compute optimized (no GPUs) instance types: ml.c5.xlarge
+	// and ml.c5.2xlarge. For more information about instance types, see instance
+	// type descriptions (https://docs.aws.amazon.com/sagemaker/latest/dg/notebooks-available-instance-types.html).
+	//
+	// InstanceType is a required field
+	InstanceType *string `type:"string" required:"true" enum:"TrainingInstanceType"`
+
+	// The volume size in GB of the data to be processed for hyperparameter optimization
+	// (optional).
+	//
+	// VolumeSizeInGB is a required field
+	VolumeSizeInGB *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HyperParameterTuningInstanceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HyperParameterTuningInstanceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HyperParameterTuningInstanceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HyperParameterTuningInstanceConfig"}
+	if s.InstanceCount == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceCount"))
+	}
+	if s.InstanceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceType"))
+	}
+	if s.VolumeSizeInGB == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeSizeInGB"))
+	}
+	if s.VolumeSizeInGB != nil && *s.VolumeSizeInGB < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("VolumeSizeInGB", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *HyperParameterTuningInstanceConfig) SetInstanceCount(v int64) *HyperParameterTuningInstanceConfig {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *HyperParameterTuningInstanceConfig) SetInstanceType(v string) *HyperParameterTuningInstanceConfig {
+	s.InstanceType = &v
+	return s
+}
+
+// SetVolumeSizeInGB sets the VolumeSizeInGB field's value.
+func (s *HyperParameterTuningInstanceConfig) SetVolumeSizeInGB(v int64) *HyperParameterTuningInstanceConfig {
+	s.VolumeSizeInGB = &v
 	return s
 }
 
@@ -62584,6 +62691,156 @@ func (s *HyperParameterTuningJobWarmStartConfig) SetParentHyperParameterTuningJo
 // SetWarmStartType sets the WarmStartType field's value.
 func (s *HyperParameterTuningJobWarmStartConfig) SetWarmStartType(v string) *HyperParameterTuningJobWarmStartConfig {
 	s.WarmStartType = &v
+	return s
+}
+
+// The configuration of resources, including compute instances and storage volumes
+// for use in training jobs launched by hyperparameter tuning jobs. Specify
+// one or more instance type and count and the allocation strategy for instance
+// selection.
+//
+// HyperParameterTuningResourceConfig supports all of the capabilities of ResourceConfig
+// with added functionality for flexible instance management.
+type HyperParameterTuningResourceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The strategy that determines the order of preference for resources specified
+	// in InstanceConfigs used in hyperparameter optimization.
+	AllocationStrategy *string `type:"string" enum:"HyperParameterTuningAllocationStrategy"`
+
+	// A list containing the configuration(s) for one or more resources for processing
+	// hyperparameter jobs. These resources include compute instances and storage
+	// volumes to use in model training jobs launched by hyperparameter tuning jobs.
+	// The AllocationStrategy controls the order in which multiple configurations
+	// provided in InstanceConfigs are used.
+	//
+	// If you only want to use a single InstanceConfig inside the HyperParameterTuningResourceConfig
+	// API, do not provide a value for InstanceConfigs. Instead, use InstanceType,
+	// VolumeSizeInGB and InstanceCount. If you use InstanceConfigs, do not provide
+	// values for InstanceType, VolumeSizeInGB or InstanceCount.
+	InstanceConfigs []*HyperParameterTuningInstanceConfig `min:"1" type:"list"`
+
+	// The number of compute instances of type InstanceType to use. For distributed
+	// training (https://docs.aws.amazon.com/sagemaker/latest/dg/data-parallel-use-api.html),
+	// select a value greater than 1.
+	InstanceCount *int64 `type:"integer"`
+
+	// The instance type used to run hyperparameter optimization tuning jobs. See
+	// descriptions of instance types (https://docs.aws.amazon.com/notebooks-available-instance-types.html)
+	// for more information.
+	InstanceType *string `type:"string" enum:"TrainingInstanceType"`
+
+	// A key used by AWS Key Management Service to encrypt data on the storage volume
+	// attached to the compute instances used to run the training job. You can use
+	// either of the following formats to specify a key.
+	//
+	// KMS Key ID:
+	//
+	// "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	// Amazon Resource Name (ARN) of a AWS KMS key:
+	//
+	// "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	// Some instances use local storage, which use a hardware module to encrypt
+	// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html)
+	// storage volumes. If you choose one of these instance types, you cannot request
+	// a VolumeKmsKeyId. For a list of instance types that use local storage, see
+	// instance store volumes (https://aws.amazon.com/releasenotes/host-instance-storage-volumes-table/).
+	// For more information about AWS Key Management Service, see AWS KMS encryption
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security-kms-permissions.html)
+	// for more information.
+	VolumeKmsKeyId *string `type:"string"`
+
+	// The volume size in GB for the storage volume to be used in processing hyperparameter
+	// optimization jobs (optional). These volumes store model artifacts, incremental
+	// states and optionally, scratch space for training algorithms. Do not provide
+	// a value for this parameter if a value for InstanceConfigs is also specified.
+	//
+	// Some instance types have a fixed total local storage size. If you select
+	// one of these instances for training, VolumeSizeInGB cannot be greater than
+	// this total size. For a list of instance types with local instance storage
+	// and their sizes, see instance store volumes (https://aws.amazon.com/releasenotes/host-instance-storage-volumes-table/).
+	//
+	// SageMaker supports only the General Purpose SSD (gp2) (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)
+	// storage volume type.
+	VolumeSizeInGB *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HyperParameterTuningResourceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HyperParameterTuningResourceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HyperParameterTuningResourceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HyperParameterTuningResourceConfig"}
+	if s.InstanceConfigs != nil && len(s.InstanceConfigs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceConfigs", 1))
+	}
+	if s.InstanceConfigs != nil {
+		for i, v := range s.InstanceConfigs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InstanceConfigs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllocationStrategy sets the AllocationStrategy field's value.
+func (s *HyperParameterTuningResourceConfig) SetAllocationStrategy(v string) *HyperParameterTuningResourceConfig {
+	s.AllocationStrategy = &v
+	return s
+}
+
+// SetInstanceConfigs sets the InstanceConfigs field's value.
+func (s *HyperParameterTuningResourceConfig) SetInstanceConfigs(v []*HyperParameterTuningInstanceConfig) *HyperParameterTuningResourceConfig {
+	s.InstanceConfigs = v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *HyperParameterTuningResourceConfig) SetInstanceCount(v int64) *HyperParameterTuningResourceConfig {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *HyperParameterTuningResourceConfig) SetInstanceType(v string) *HyperParameterTuningResourceConfig {
+	s.InstanceType = &v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *HyperParameterTuningResourceConfig) SetVolumeKmsKeyId(v string) *HyperParameterTuningResourceConfig {
+	s.VolumeKmsKeyId = &v
+	return s
+}
+
+// SetVolumeSizeInGB sets the VolumeSizeInGB field's value.
+func (s *HyperParameterTuningResourceConfig) SetVolumeSizeInGB(v int64) *HyperParameterTuningResourceConfig {
+	s.VolumeSizeInGB = &v
 	return s
 }
 
@@ -94603,7 +94860,10 @@ func (s *UpdateExperimentOutput) SetExperimentArn(v string) *UpdateExperimentOut
 type UpdateFeatureGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of the features that you're adding to the feature group.
+	// Updates the feature group. Updating a feature group is an asynchronous operation.
+	// When you get an HTTP 200 response, you've made a valid request. It takes
+	// some time after you've made a valid request for Feature Store to update the
+	// feature group.
 	FeatureAdditions []*FeatureDefinition `min:"1" type:"list"`
 
 	// The name of the feature group that you're updating.
@@ -95846,7 +96106,10 @@ type UpdateProjectInput struct {
 	// An array of key-value pairs. You can use tags to categorize your Amazon Web
 	// Services resources in different ways, for example, by purpose, owner, or
 	// environment. For more information, see Tagging Amazon Web Services Resources
-	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html). In addition,
+	// the project must have tag update constraints set in order to include this
+	// parameter in the request. For more information, see Amazon Web Services Service
+	// Catalog Tag Update Constraints (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/constraints-resourceupdate.html).
 	Tags []*Tag `type:"list"`
 }
 
@@ -99313,6 +99576,18 @@ func HyperParameterScalingType_Values() []string {
 		HyperParameterScalingTypeLinear,
 		HyperParameterScalingTypeLogarithmic,
 		HyperParameterScalingTypeReverseLogarithmic,
+	}
+}
+
+const (
+	// HyperParameterTuningAllocationStrategyPrioritized is a HyperParameterTuningAllocationStrategy enum value
+	HyperParameterTuningAllocationStrategyPrioritized = "Prioritized"
+)
+
+// HyperParameterTuningAllocationStrategy_Values returns all elements of the HyperParameterTuningAllocationStrategy enum
+func HyperParameterTuningAllocationStrategy_Values() []string {
+	return []string{
+		HyperParameterTuningAllocationStrategyPrioritized,
 	}
 }
 
