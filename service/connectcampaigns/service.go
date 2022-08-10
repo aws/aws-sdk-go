@@ -40,13 +40,14 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a ConnectCampaigns client from just a session.
-//     svc := connectcampaigns.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a ConnectCampaigns client with additional configuration
-//     svc := connectcampaigns.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a ConnectCampaigns client from just a session.
+//	svc := connectcampaigns.New(mySession)
+//
+//	// Create a ConnectCampaigns client with additional configuration
+//	svc := connectcampaigns.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *ConnectCampaigns {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {

@@ -12,14 +12,14 @@
 // the performance of your applications for local and global users. Depending
 // on the type of accelerator you choose, you can gain additional benefits.
 //
-//    * By using a standard accelerator, you can improve availability of your
-//    internet applications that are used by a global audience. With a standard
-//    accelerator, Global Accelerator directs traffic to optimal endpoints over
-//    the Amazon Web Services global network.
+//   - By using a standard accelerator, you can improve availability of your
+//     internet applications that are used by a global audience. With a standard
+//     accelerator, Global Accelerator directs traffic to optimal endpoints over
+//     the Amazon Web Services global network.
 //
-//    * For other scenarios, you might choose a custom routing accelerator.
-//    With a custom routing accelerator, you can use application logic to directly
-//    map one or more users to a specific endpoint among many endpoints.
+//   - For other scenarios, you might choose a custom routing accelerator.
+//     With a custom routing accelerator, you can use application logic to directly
+//     map one or more users to a specific endpoint among many endpoints.
 //
 // Global Accelerator is a global service that supports endpoints in multiple
 // Amazon Web Services Regions but you must specify the US West (Oregon) Region
@@ -68,7 +68,7 @@
 // See globalaccelerator package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/globalaccelerator/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact AWS Global Accelerator with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

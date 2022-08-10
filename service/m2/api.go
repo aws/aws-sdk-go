@@ -29,14 +29,13 @@ const opCancelBatchJobExecution = "CancelBatchJobExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelBatchJobExecutionRequest method.
+//	req, resp := client.CancelBatchJobExecutionRequest(params)
 //
-//    // Example sending a request using the CancelBatchJobExecutionRequest method.
-//    req, resp := client.CancelBatchJobExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CancelBatchJobExecution
 func (c *M2) CancelBatchJobExecutionRequest(input *CancelBatchJobExecutionInput) (req *request.Request, output *CancelBatchJobExecutionOutput) {
@@ -68,23 +67,24 @@ func (c *M2) CancelBatchJobExecutionRequest(input *CancelBatchJobExecutionInput)
 // API operation CancelBatchJobExecution for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * ConflictException
-//   The parameters provided in the request conflict with existing resources.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CancelBatchJobExecution
 func (c *M2) CancelBatchJobExecution(input *CancelBatchJobExecutionInput) (*CancelBatchJobExecutionOutput, error) {
@@ -124,14 +124,13 @@ const opCreateApplication = "CreateApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateApplicationRequest method.
+//	req, resp := client.CreateApplicationRequest(params)
 //
-//    // Example sending a request using the CreateApplicationRequest method.
-//    req, resp := client.CreateApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CreateApplication
 func (c *M2) CreateApplicationRequest(input *CreateApplicationInput) (req *request.Request, output *CreateApplicationOutput) {
@@ -163,24 +162,25 @@ func (c *M2) CreateApplicationRequest(input *CreateApplicationInput) (req *reque
 // API operation CreateApplication for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * ServiceQuotaExceededException
-//   One or more quotas for Amazon Web Services Mainframe Modernization exceeds
-//   the limit.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * ConflictException
-//   The parameters provided in the request conflict with existing resources.
+//   - ServiceQuotaExceededException
+//     One or more quotas for Amazon Web Services Mainframe Modernization exceeds
+//     the limit.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CreateApplication
 func (c *M2) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
@@ -220,14 +220,13 @@ const opCreateDataSetImportTask = "CreateDataSetImportTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDataSetImportTaskRequest method.
+//	req, resp := client.CreateDataSetImportTaskRequest(params)
 //
-//    // Example sending a request using the CreateDataSetImportTaskRequest method.
-//    req, resp := client.CreateDataSetImportTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CreateDataSetImportTask
 func (c *M2) CreateDataSetImportTaskRequest(input *CreateDataSetImportTaskInput) (req *request.Request, output *CreateDataSetImportTaskOutput) {
@@ -258,27 +257,28 @@ func (c *M2) CreateDataSetImportTaskRequest(input *CreateDataSetImportTaskInput)
 // API operation CreateDataSetImportTask for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * ServiceQuotaExceededException
-//   One or more quotas for Amazon Web Services Mainframe Modernization exceeds
-//   the limit.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * ConflictException
-//   The parameters provided in the request conflict with existing resources.
+//   - ServiceQuotaExceededException
+//     One or more quotas for Amazon Web Services Mainframe Modernization exceeds
+//     the limit.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CreateDataSetImportTask
 func (c *M2) CreateDataSetImportTask(input *CreateDataSetImportTaskInput) (*CreateDataSetImportTaskOutput, error) {
@@ -318,14 +318,13 @@ const opCreateDeployment = "CreateDeployment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDeploymentRequest method.
+//	req, resp := client.CreateDeploymentRequest(params)
 //
-//    // Example sending a request using the CreateDeploymentRequest method.
-//    req, resp := client.CreateDeploymentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CreateDeployment
 func (c *M2) CreateDeploymentRequest(input *CreateDeploymentInput) (req *request.Request, output *CreateDeploymentOutput) {
@@ -356,27 +355,28 @@ func (c *M2) CreateDeploymentRequest(input *CreateDeploymentInput) (req *request
 // API operation CreateDeployment for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * ServiceQuotaExceededException
-//   One or more quotas for Amazon Web Services Mainframe Modernization exceeds
-//   the limit.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * ConflictException
-//   The parameters provided in the request conflict with existing resources.
+//   - ServiceQuotaExceededException
+//     One or more quotas for Amazon Web Services Mainframe Modernization exceeds
+//     the limit.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CreateDeployment
 func (c *M2) CreateDeployment(input *CreateDeploymentInput) (*CreateDeploymentOutput, error) {
@@ -416,14 +416,13 @@ const opCreateEnvironment = "CreateEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEnvironmentRequest method.
+//	req, resp := client.CreateEnvironmentRequest(params)
 //
-//    // Example sending a request using the CreateEnvironmentRequest method.
-//    req, resp := client.CreateEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CreateEnvironment
 func (c *M2) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *request.Request, output *CreateEnvironmentOutput) {
@@ -454,24 +453,25 @@ func (c *M2) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *reque
 // API operation CreateEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * ServiceQuotaExceededException
-//   One or more quotas for Amazon Web Services Mainframe Modernization exceeds
-//   the limit.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * ConflictException
-//   The parameters provided in the request conflict with existing resources.
+//   - ServiceQuotaExceededException
+//     One or more quotas for Amazon Web Services Mainframe Modernization exceeds
+//     the limit.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/CreateEnvironment
 func (c *M2) CreateEnvironment(input *CreateEnvironmentInput) (*CreateEnvironmentOutput, error) {
@@ -511,14 +511,13 @@ const opDeleteApplication = "DeleteApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteApplicationRequest method.
+//	req, resp := client.DeleteApplicationRequest(params)
 //
-//    // Example sending a request using the DeleteApplicationRequest method.
-//    req, resp := client.DeleteApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/DeleteApplication
 func (c *M2) DeleteApplicationRequest(input *DeleteApplicationInput) (req *request.Request, output *DeleteApplicationOutput) {
@@ -550,20 +549,21 @@ func (c *M2) DeleteApplicationRequest(input *DeleteApplicationInput) (req *reque
 // API operation DeleteApplication for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * ConflictException
-//   The parameters provided in the request conflict with existing resources.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/DeleteApplication
 func (c *M2) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
@@ -603,14 +603,13 @@ const opDeleteApplicationFromEnvironment = "DeleteApplicationFromEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteApplicationFromEnvironmentRequest method.
+//	req, resp := client.DeleteApplicationFromEnvironmentRequest(params)
 //
-//    // Example sending a request using the DeleteApplicationFromEnvironmentRequest method.
-//    req, resp := client.DeleteApplicationFromEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/DeleteApplicationFromEnvironment
 func (c *M2) DeleteApplicationFromEnvironmentRequest(input *DeleteApplicationFromEnvironmentInput) (req *request.Request, output *DeleteApplicationFromEnvironmentOutput) {
@@ -646,23 +645,24 @@ func (c *M2) DeleteApplicationFromEnvironmentRequest(input *DeleteApplicationFro
 // API operation DeleteApplicationFromEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * ConflictException
-//   The parameters provided in the request conflict with existing resources.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/DeleteApplicationFromEnvironment
 func (c *M2) DeleteApplicationFromEnvironment(input *DeleteApplicationFromEnvironmentInput) (*DeleteApplicationFromEnvironmentOutput, error) {
@@ -702,14 +702,13 @@ const opDeleteEnvironment = "DeleteEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEnvironmentRequest method.
+//	req, resp := client.DeleteEnvironmentRequest(params)
 //
-//    // Example sending a request using the DeleteEnvironmentRequest method.
-//    req, resp := client.DeleteEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/DeleteEnvironment
 func (c *M2) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req *request.Request, output *DeleteEnvironmentOutput) {
@@ -742,20 +741,21 @@ func (c *M2) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req *reque
 // API operation DeleteEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * ConflictException
-//   The parameters provided in the request conflict with existing resources.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/DeleteEnvironment
 func (c *M2) DeleteEnvironment(input *DeleteEnvironmentInput) (*DeleteEnvironmentOutput, error) {
@@ -795,14 +795,13 @@ const opGetApplication = "GetApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetApplicationRequest method.
+//	req, resp := client.GetApplicationRequest(params)
 //
-//    // Example sending a request using the GetApplicationRequest method.
-//    req, resp := client.GetApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetApplication
 func (c *M2) GetApplicationRequest(input *GetApplicationInput) (req *request.Request, output *GetApplicationOutput) {
@@ -833,20 +832,21 @@ func (c *M2) GetApplicationRequest(input *GetApplicationInput) (req *request.Req
 // API operation GetApplication for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetApplication
 func (c *M2) GetApplication(input *GetApplicationInput) (*GetApplicationOutput, error) {
@@ -886,14 +886,13 @@ const opGetApplicationVersion = "GetApplicationVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetApplicationVersionRequest method.
+//	req, resp := client.GetApplicationVersionRequest(params)
 //
-//    // Example sending a request using the GetApplicationVersionRequest method.
-//    req, resp := client.GetApplicationVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetApplicationVersion
 func (c *M2) GetApplicationVersionRequest(input *GetApplicationVersionInput) (req *request.Request, output *GetApplicationVersionOutput) {
@@ -924,20 +923,21 @@ func (c *M2) GetApplicationVersionRequest(input *GetApplicationVersionInput) (re
 // API operation GetApplicationVersion for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetApplicationVersion
 func (c *M2) GetApplicationVersion(input *GetApplicationVersionInput) (*GetApplicationVersionOutput, error) {
@@ -977,14 +977,13 @@ const opGetBatchJobExecution = "GetBatchJobExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBatchJobExecutionRequest method.
+//	req, resp := client.GetBatchJobExecutionRequest(params)
 //
-//    // Example sending a request using the GetBatchJobExecutionRequest method.
-//    req, resp := client.GetBatchJobExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetBatchJobExecution
 func (c *M2) GetBatchJobExecutionRequest(input *GetBatchJobExecutionInput) (req *request.Request, output *GetBatchJobExecutionOutput) {
@@ -1015,20 +1014,21 @@ func (c *M2) GetBatchJobExecutionRequest(input *GetBatchJobExecutionInput) (req 
 // API operation GetBatchJobExecution for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetBatchJobExecution
 func (c *M2) GetBatchJobExecution(input *GetBatchJobExecutionInput) (*GetBatchJobExecutionOutput, error) {
@@ -1068,14 +1068,13 @@ const opGetDataSetDetails = "GetDataSetDetails"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDataSetDetailsRequest method.
+//	req, resp := client.GetDataSetDetailsRequest(params)
 //
-//    // Example sending a request using the GetDataSetDetailsRequest method.
-//    req, resp := client.GetDataSetDetailsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetDataSetDetails
 func (c *M2) GetDataSetDetailsRequest(input *GetDataSetDetailsInput) (req *request.Request, output *GetDataSetDetailsOutput) {
@@ -1106,20 +1105,21 @@ func (c *M2) GetDataSetDetailsRequest(input *GetDataSetDetailsInput) (req *reque
 // API operation GetDataSetDetails for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetDataSetDetails
 func (c *M2) GetDataSetDetails(input *GetDataSetDetailsInput) (*GetDataSetDetailsOutput, error) {
@@ -1159,14 +1159,13 @@ const opGetDataSetImportTask = "GetDataSetImportTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDataSetImportTaskRequest method.
+//	req, resp := client.GetDataSetImportTaskRequest(params)
 //
-//    // Example sending a request using the GetDataSetImportTaskRequest method.
-//    req, resp := client.GetDataSetImportTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetDataSetImportTask
 func (c *M2) GetDataSetImportTaskRequest(input *GetDataSetImportTaskInput) (req *request.Request, output *GetDataSetImportTaskOutput) {
@@ -1198,20 +1197,21 @@ func (c *M2) GetDataSetImportTaskRequest(input *GetDataSetImportTaskInput) (req 
 // API operation GetDataSetImportTask for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetDataSetImportTask
 func (c *M2) GetDataSetImportTask(input *GetDataSetImportTaskInput) (*GetDataSetImportTaskOutput, error) {
@@ -1251,14 +1251,13 @@ const opGetDeployment = "GetDeployment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDeploymentRequest method.
+//	req, resp := client.GetDeploymentRequest(params)
 //
-//    // Example sending a request using the GetDeploymentRequest method.
-//    req, resp := client.GetDeploymentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetDeployment
 func (c *M2) GetDeploymentRequest(input *GetDeploymentInput) (req *request.Request, output *GetDeploymentOutput) {
@@ -1289,20 +1288,21 @@ func (c *M2) GetDeploymentRequest(input *GetDeploymentInput) (req *request.Reque
 // API operation GetDeployment for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetDeployment
 func (c *M2) GetDeployment(input *GetDeploymentInput) (*GetDeploymentOutput, error) {
@@ -1342,14 +1342,13 @@ const opGetEnvironment = "GetEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetEnvironmentRequest method.
+//	req, resp := client.GetEnvironmentRequest(params)
 //
-//    // Example sending a request using the GetEnvironmentRequest method.
-//    req, resp := client.GetEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetEnvironment
 func (c *M2) GetEnvironmentRequest(input *GetEnvironmentInput) (req *request.Request, output *GetEnvironmentOutput) {
@@ -1380,20 +1379,21 @@ func (c *M2) GetEnvironmentRequest(input *GetEnvironmentInput) (req *request.Req
 // API operation GetEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/GetEnvironment
 func (c *M2) GetEnvironment(input *GetEnvironmentInput) (*GetEnvironmentOutput, error) {
@@ -1433,14 +1433,13 @@ const opListApplicationVersions = "ListApplicationVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListApplicationVersionsRequest method.
+//	req, resp := client.ListApplicationVersionsRequest(params)
 //
-//    // Example sending a request using the ListApplicationVersionsRequest method.
-//    req, resp := client.ListApplicationVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListApplicationVersions
 func (c *M2) ListApplicationVersionsRequest(input *ListApplicationVersionsInput) (req *request.Request, output *ListApplicationVersionsOutput) {
@@ -1477,20 +1476,21 @@ func (c *M2) ListApplicationVersionsRequest(input *ListApplicationVersionsInput)
 // API operation ListApplicationVersions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListApplicationVersions
 func (c *M2) ListApplicationVersions(input *ListApplicationVersionsInput) (*ListApplicationVersionsOutput, error) {
@@ -1522,15 +1522,14 @@ func (c *M2) ListApplicationVersionsWithContext(ctx aws.Context, input *ListAppl
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListApplicationVersions operation.
-//    pageNum := 0
-//    err := client.ListApplicationVersionsPages(params,
-//        func(page *m2.ListApplicationVersionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListApplicationVersions operation.
+//	pageNum := 0
+//	err := client.ListApplicationVersionsPages(params,
+//	    func(page *m2.ListApplicationVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *M2) ListApplicationVersionsPages(input *ListApplicationVersionsInput, fn func(*ListApplicationVersionsOutput, bool) bool) error {
 	return c.ListApplicationVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1582,14 +1581,13 @@ const opListApplications = "ListApplications"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListApplicationsRequest method.
+//	req, resp := client.ListApplicationsRequest(params)
 //
-//    // Example sending a request using the ListApplicationsRequest method.
-//    req, resp := client.ListApplicationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListApplications
 func (c *M2) ListApplicationsRequest(input *ListApplicationsInput) (req *request.Request, output *ListApplicationsOutput) {
@@ -1628,17 +1626,18 @@ func (c *M2) ListApplicationsRequest(input *ListApplicationsInput) (req *request
 // API operation ListApplications for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListApplications
 func (c *M2) ListApplications(input *ListApplicationsInput) (*ListApplicationsOutput, error) {
@@ -1670,15 +1669,14 @@ func (c *M2) ListApplicationsWithContext(ctx aws.Context, input *ListApplication
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListApplications operation.
-//    pageNum := 0
-//    err := client.ListApplicationsPages(params,
-//        func(page *m2.ListApplicationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListApplications operation.
+//	pageNum := 0
+//	err := client.ListApplicationsPages(params,
+//	    func(page *m2.ListApplicationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *M2) ListApplicationsPages(input *ListApplicationsInput, fn func(*ListApplicationsOutput, bool) bool) error {
 	return c.ListApplicationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1730,14 +1728,13 @@ const opListBatchJobDefinitions = "ListBatchJobDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBatchJobDefinitionsRequest method.
+//	req, resp := client.ListBatchJobDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListBatchJobDefinitionsRequest method.
-//    req, resp := client.ListBatchJobDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListBatchJobDefinitions
 func (c *M2) ListBatchJobDefinitionsRequest(input *ListBatchJobDefinitionsInput) (req *request.Request, output *ListBatchJobDefinitionsOutput) {
@@ -1776,20 +1773,21 @@ func (c *M2) ListBatchJobDefinitionsRequest(input *ListBatchJobDefinitionsInput)
 // API operation ListBatchJobDefinitions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListBatchJobDefinitions
 func (c *M2) ListBatchJobDefinitions(input *ListBatchJobDefinitionsInput) (*ListBatchJobDefinitionsOutput, error) {
@@ -1821,15 +1819,14 @@ func (c *M2) ListBatchJobDefinitionsWithContext(ctx aws.Context, input *ListBatc
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListBatchJobDefinitions operation.
-//    pageNum := 0
-//    err := client.ListBatchJobDefinitionsPages(params,
-//        func(page *m2.ListBatchJobDefinitionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListBatchJobDefinitions operation.
+//	pageNum := 0
+//	err := client.ListBatchJobDefinitionsPages(params,
+//	    func(page *m2.ListBatchJobDefinitionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *M2) ListBatchJobDefinitionsPages(input *ListBatchJobDefinitionsInput, fn func(*ListBatchJobDefinitionsOutput, bool) bool) error {
 	return c.ListBatchJobDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1881,14 +1878,13 @@ const opListBatchJobExecutions = "ListBatchJobExecutions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBatchJobExecutionsRequest method.
+//	req, resp := client.ListBatchJobExecutionsRequest(params)
 //
-//    // Example sending a request using the ListBatchJobExecutionsRequest method.
-//    req, resp := client.ListBatchJobExecutionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListBatchJobExecutions
 func (c *M2) ListBatchJobExecutionsRequest(input *ListBatchJobExecutionsInput) (req *request.Request, output *ListBatchJobExecutionsOutput) {
@@ -1926,20 +1922,21 @@ func (c *M2) ListBatchJobExecutionsRequest(input *ListBatchJobExecutionsInput) (
 // API operation ListBatchJobExecutions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListBatchJobExecutions
 func (c *M2) ListBatchJobExecutions(input *ListBatchJobExecutionsInput) (*ListBatchJobExecutionsOutput, error) {
@@ -1971,15 +1968,14 @@ func (c *M2) ListBatchJobExecutionsWithContext(ctx aws.Context, input *ListBatch
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListBatchJobExecutions operation.
-//    pageNum := 0
-//    err := client.ListBatchJobExecutionsPages(params,
-//        func(page *m2.ListBatchJobExecutionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListBatchJobExecutions operation.
+//	pageNum := 0
+//	err := client.ListBatchJobExecutionsPages(params,
+//	    func(page *m2.ListBatchJobExecutionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *M2) ListBatchJobExecutionsPages(input *ListBatchJobExecutionsInput, fn func(*ListBatchJobExecutionsOutput, bool) bool) error {
 	return c.ListBatchJobExecutionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2031,14 +2027,13 @@ const opListDataSetImportHistory = "ListDataSetImportHistory"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDataSetImportHistoryRequest method.
+//	req, resp := client.ListDataSetImportHistoryRequest(params)
 //
-//    // Example sending a request using the ListDataSetImportHistoryRequest method.
-//    req, resp := client.ListDataSetImportHistoryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListDataSetImportHistory
 func (c *M2) ListDataSetImportHistoryRequest(input *ListDataSetImportHistoryInput) (req *request.Request, output *ListDataSetImportHistoryOutput) {
@@ -2075,20 +2070,21 @@ func (c *M2) ListDataSetImportHistoryRequest(input *ListDataSetImportHistoryInpu
 // API operation ListDataSetImportHistory for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListDataSetImportHistory
 func (c *M2) ListDataSetImportHistory(input *ListDataSetImportHistoryInput) (*ListDataSetImportHistoryOutput, error) {
@@ -2120,15 +2116,14 @@ func (c *M2) ListDataSetImportHistoryWithContext(ctx aws.Context, input *ListDat
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDataSetImportHistory operation.
-//    pageNum := 0
-//    err := client.ListDataSetImportHistoryPages(params,
-//        func(page *m2.ListDataSetImportHistoryOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDataSetImportHistory operation.
+//	pageNum := 0
+//	err := client.ListDataSetImportHistoryPages(params,
+//	    func(page *m2.ListDataSetImportHistoryOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *M2) ListDataSetImportHistoryPages(input *ListDataSetImportHistoryInput, fn func(*ListDataSetImportHistoryOutput, bool) bool) error {
 	return c.ListDataSetImportHistoryPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2180,14 +2175,13 @@ const opListDataSets = "ListDataSets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDataSetsRequest method.
+//	req, resp := client.ListDataSetsRequest(params)
 //
-//    // Example sending a request using the ListDataSetsRequest method.
-//    req, resp := client.ListDataSetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListDataSets
 func (c *M2) ListDataSetsRequest(input *ListDataSetsInput) (req *request.Request, output *ListDataSetsOutput) {
@@ -2228,20 +2222,21 @@ func (c *M2) ListDataSetsRequest(input *ListDataSetsInput) (req *request.Request
 // API operation ListDataSets for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListDataSets
 func (c *M2) ListDataSets(input *ListDataSetsInput) (*ListDataSetsOutput, error) {
@@ -2273,15 +2268,14 @@ func (c *M2) ListDataSetsWithContext(ctx aws.Context, input *ListDataSetsInput, 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDataSets operation.
-//    pageNum := 0
-//    err := client.ListDataSetsPages(params,
-//        func(page *m2.ListDataSetsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDataSets operation.
+//	pageNum := 0
+//	err := client.ListDataSetsPages(params,
+//	    func(page *m2.ListDataSetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *M2) ListDataSetsPages(input *ListDataSetsInput, fn func(*ListDataSetsOutput, bool) bool) error {
 	return c.ListDataSetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2333,14 +2327,13 @@ const opListDeployments = "ListDeployments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDeploymentsRequest method.
+//	req, resp := client.ListDeploymentsRequest(params)
 //
-//    // Example sending a request using the ListDeploymentsRequest method.
-//    req, resp := client.ListDeploymentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListDeployments
 func (c *M2) ListDeploymentsRequest(input *ListDeploymentsInput) (req *request.Request, output *ListDeploymentsOutput) {
@@ -2379,20 +2372,21 @@ func (c *M2) ListDeploymentsRequest(input *ListDeploymentsInput) (req *request.R
 // API operation ListDeployments for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListDeployments
 func (c *M2) ListDeployments(input *ListDeploymentsInput) (*ListDeploymentsOutput, error) {
@@ -2424,15 +2418,14 @@ func (c *M2) ListDeploymentsWithContext(ctx aws.Context, input *ListDeploymentsI
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDeployments operation.
-//    pageNum := 0
-//    err := client.ListDeploymentsPages(params,
-//        func(page *m2.ListDeploymentsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDeployments operation.
+//	pageNum := 0
+//	err := client.ListDeploymentsPages(params,
+//	    func(page *m2.ListDeploymentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *M2) ListDeploymentsPages(input *ListDeploymentsInput, fn func(*ListDeploymentsOutput, bool) bool) error {
 	return c.ListDeploymentsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2484,14 +2477,13 @@ const opListEngineVersions = "ListEngineVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEngineVersionsRequest method.
+//	req, resp := client.ListEngineVersionsRequest(params)
 //
-//    // Example sending a request using the ListEngineVersionsRequest method.
-//    req, resp := client.ListEngineVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListEngineVersions
 func (c *M2) ListEngineVersionsRequest(input *ListEngineVersionsInput) (req *request.Request, output *ListEngineVersionsOutput) {
@@ -2528,17 +2520,18 @@ func (c *M2) ListEngineVersionsRequest(input *ListEngineVersionsInput) (req *req
 // API operation ListEngineVersions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListEngineVersions
 func (c *M2) ListEngineVersions(input *ListEngineVersionsInput) (*ListEngineVersionsOutput, error) {
@@ -2570,15 +2563,14 @@ func (c *M2) ListEngineVersionsWithContext(ctx aws.Context, input *ListEngineVer
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEngineVersions operation.
-//    pageNum := 0
-//    err := client.ListEngineVersionsPages(params,
-//        func(page *m2.ListEngineVersionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEngineVersions operation.
+//	pageNum := 0
+//	err := client.ListEngineVersionsPages(params,
+//	    func(page *m2.ListEngineVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *M2) ListEngineVersionsPages(input *ListEngineVersionsInput, fn func(*ListEngineVersionsOutput, bool) bool) error {
 	return c.ListEngineVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2630,14 +2622,13 @@ const opListEnvironments = "ListEnvironments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEnvironmentsRequest method.
+//	req, resp := client.ListEnvironmentsRequest(params)
 //
-//    // Example sending a request using the ListEnvironmentsRequest method.
-//    req, resp := client.ListEnvironmentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListEnvironments
 func (c *M2) ListEnvironmentsRequest(input *ListEnvironmentsInput) (req *request.Request, output *ListEnvironmentsOutput) {
@@ -2674,17 +2665,18 @@ func (c *M2) ListEnvironmentsRequest(input *ListEnvironmentsInput) (req *request
 // API operation ListEnvironments for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListEnvironments
 func (c *M2) ListEnvironments(input *ListEnvironmentsInput) (*ListEnvironmentsOutput, error) {
@@ -2716,15 +2708,14 @@ func (c *M2) ListEnvironmentsWithContext(ctx aws.Context, input *ListEnvironment
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEnvironments operation.
-//    pageNum := 0
-//    err := client.ListEnvironmentsPages(params,
-//        func(page *m2.ListEnvironmentsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEnvironments operation.
+//	pageNum := 0
+//	err := client.ListEnvironmentsPages(params,
+//	    func(page *m2.ListEnvironmentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *M2) ListEnvironmentsPages(input *ListEnvironmentsInput, fn func(*ListEnvironmentsOutput, bool) bool) error {
 	return c.ListEnvironmentsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2776,14 +2767,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListTagsForResource
 func (c *M2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -2814,20 +2804,21 @@ func (c *M2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *r
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListTagsForResource
 func (c *M2) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2867,14 +2858,13 @@ const opStartApplication = "StartApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartApplicationRequest method.
+//	req, resp := client.StartApplicationRequest(params)
 //
-//    // Example sending a request using the StartApplicationRequest method.
-//    req, resp := client.StartApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/StartApplication
 func (c *M2) StartApplicationRequest(input *StartApplicationInput) (req *request.Request, output *StartApplicationOutput) {
@@ -2906,23 +2896,24 @@ func (c *M2) StartApplicationRequest(input *StartApplicationInput) (req *request
 // API operation StartApplication for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * ConflictException
-//   The parameters provided in the request conflict with existing resources.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/StartApplication
 func (c *M2) StartApplication(input *StartApplicationInput) (*StartApplicationOutput, error) {
@@ -2962,14 +2953,13 @@ const opStartBatchJob = "StartBatchJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartBatchJobRequest method.
+//	req, resp := client.StartBatchJobRequest(params)
 //
-//    // Example sending a request using the StartBatchJobRequest method.
-//    req, resp := client.StartBatchJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/StartBatchJob
 func (c *M2) StartBatchJobRequest(input *StartBatchJobInput) (req *request.Request, output *StartBatchJobOutput) {
@@ -3002,23 +2992,24 @@ func (c *M2) StartBatchJobRequest(input *StartBatchJobInput) (req *request.Reque
 // API operation StartBatchJob for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * ConflictException
-//   The parameters provided in the request conflict with existing resources.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/StartBatchJob
 func (c *M2) StartBatchJob(input *StartBatchJobInput) (*StartBatchJobOutput, error) {
@@ -3058,14 +3049,13 @@ const opStopApplication = "StopApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopApplicationRequest method.
+//	req, resp := client.StopApplicationRequest(params)
 //
-//    // Example sending a request using the StopApplicationRequest method.
-//    req, resp := client.StopApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/StopApplication
 func (c *M2) StopApplicationRequest(input *StopApplicationInput) (req *request.Request, output *StopApplicationOutput) {
@@ -3097,23 +3087,24 @@ func (c *M2) StopApplicationRequest(input *StopApplicationInput) (req *request.R
 // API operation StopApplication for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * ConflictException
-//   The parameters provided in the request conflict with existing resources.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/StopApplication
 func (c *M2) StopApplication(input *StopApplicationInput) (*StopApplicationOutput, error) {
@@ -3153,14 +3144,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/TagResource
 func (c *M2) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -3192,24 +3182,25 @@ func (c *M2) TagResourceRequest(input *TagResourceInput) (req *request.Request, 
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * ServiceQuotaExceededException
-//   One or more quotas for Amazon Web Services Mainframe Modernization exceeds
-//   the limit.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ServiceQuotaExceededException
+//     One or more quotas for Amazon Web Services Mainframe Modernization exceeds
+//     the limit.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/TagResource
 func (c *M2) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -3249,14 +3240,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/UntagResource
 func (c *M2) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -3288,20 +3278,21 @@ func (c *M2) UntagResourceRequest(input *UntagResourceInput) (req *request.Reque
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/UntagResource
 func (c *M2) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -3341,14 +3332,13 @@ const opUpdateApplication = "UpdateApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateApplicationRequest method.
+//	req, resp := client.UpdateApplicationRequest(params)
 //
-//    // Example sending a request using the UpdateApplicationRequest method.
-//    req, resp := client.UpdateApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/UpdateApplication
 func (c *M2) UpdateApplicationRequest(input *UpdateApplicationInput) (req *request.Request, output *UpdateApplicationOutput) {
@@ -3379,23 +3369,24 @@ func (c *M2) UpdateApplicationRequest(input *UpdateApplicationInput) (req *reque
 // API operation UpdateApplication for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * ConflictException
-//   The parameters provided in the request conflict with existing resources.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/UpdateApplication
 func (c *M2) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
@@ -3435,14 +3426,13 @@ const opUpdateEnvironment = "UpdateEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateEnvironmentRequest method.
+//	req, resp := client.UpdateEnvironmentRequest(params)
 //
-//    // Example sending a request using the UpdateEnvironmentRequest method.
-//    req, resp := client.UpdateEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/UpdateEnvironment
 func (c *M2) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *request.Request, output *UpdateEnvironmentOutput) {
@@ -3473,27 +3463,28 @@ func (c *M2) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *reque
 // API operation UpdateEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   One or more parameters provided in the request is not valid.
 //
-//   * ServiceQuotaExceededException
-//   One or more quotas for Amazon Web Services Mainframe Modernization exceeds
-//   the limit.
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
 //
-//   * ConflictException
-//   The parameters provided in the request conflict with existing resources.
+//   - ServiceQuotaExceededException
+//     One or more quotas for Amazon Web Services Mainframe Modernization exceeds
+//     the limit.
 //
-//   * InternalServerException
-//   An unexpected error occurred during the processing of the request.
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
-//   * AccessDeniedException
-//   The account or role doesn't have the right permissions to make the request.
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
 //
-//   * ThrottlingException
-//   The number of requests made exceeds the limit.
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/UpdateEnvironment
 func (c *M2) UpdateEnvironment(input *UpdateEnvironmentInput) (*UpdateEnvironmentOutput, error) {

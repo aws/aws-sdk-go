@@ -29,14 +29,13 @@ const opAcceptInvitation = "AcceptInvitation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AcceptInvitationRequest method.
+//	req, resp := client.AcceptInvitationRequest(params)
 //
-//    // Example sending a request using the AcceptInvitationRequest method.
-//    req, resp := client.AcceptInvitationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/AcceptInvitation
 func (c *Detective) AcceptInvitationRequest(input *AcceptInvitationInput) (req *request.Request, output *AcceptInvitationOutput) {
@@ -73,17 +72,18 @@ func (c *Detective) AcceptInvitationRequest(input *AcceptInvitationInput) (req *
 // API operation AcceptInvitation for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   The request attempted an invalid action.
 //
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
+//   - ConflictException
+//     The request attempted an invalid action.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
+//
+//   - ValidationException
+//     The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/AcceptInvitation
 func (c *Detective) AcceptInvitation(input *AcceptInvitationInput) (*AcceptInvitationOutput, error) {
@@ -123,14 +123,13 @@ const opBatchGetGraphMemberDatasources = "BatchGetGraphMemberDatasources"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchGetGraphMemberDatasourcesRequest method.
+//	req, resp := client.BatchGetGraphMemberDatasourcesRequest(params)
 //
-//    // Example sending a request using the BatchGetGraphMemberDatasourcesRequest method.
-//    req, resp := client.BatchGetGraphMemberDatasourcesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/BatchGetGraphMemberDatasources
 func (c *Detective) BatchGetGraphMemberDatasourcesRequest(input *BatchGetGraphMemberDatasourcesInput) (req *request.Request, output *BatchGetGraphMemberDatasourcesOutput) {
@@ -161,14 +160,15 @@ func (c *Detective) BatchGetGraphMemberDatasourcesRequest(input *BatchGetGraphMe
 // API operation BatchGetGraphMemberDatasources for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
+//
+//   - ValidationException
+//     The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/BatchGetGraphMemberDatasources
 func (c *Detective) BatchGetGraphMemberDatasources(input *BatchGetGraphMemberDatasourcesInput) (*BatchGetGraphMemberDatasourcesOutput, error) {
@@ -208,14 +208,13 @@ const opBatchGetMembershipDatasources = "BatchGetMembershipDatasources"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchGetMembershipDatasourcesRequest method.
+//	req, resp := client.BatchGetMembershipDatasourcesRequest(params)
 //
-//    // Example sending a request using the BatchGetMembershipDatasourcesRequest method.
-//    req, resp := client.BatchGetMembershipDatasourcesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/BatchGetMembershipDatasources
 func (c *Detective) BatchGetMembershipDatasourcesRequest(input *BatchGetMembershipDatasourcesInput) (req *request.Request, output *BatchGetMembershipDatasourcesOutput) {
@@ -246,14 +245,15 @@ func (c *Detective) BatchGetMembershipDatasourcesRequest(input *BatchGetMembersh
 // API operation BatchGetMembershipDatasources for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
+//
+//   - ValidationException
+//     The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/BatchGetMembershipDatasources
 func (c *Detective) BatchGetMembershipDatasources(input *BatchGetMembershipDatasourcesInput) (*BatchGetMembershipDatasourcesOutput, error) {
@@ -293,14 +293,13 @@ const opCreateGraph = "CreateGraph"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateGraphRequest method.
+//	req, resp := client.CreateGraphRequest(params)
 //
-//    // Example sending a request using the CreateGraphRequest method.
-//    req, resp := client.CreateGraphRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/CreateGraph
 func (c *Detective) CreateGraphRequest(input *CreateGraphInput) (req *request.Request, output *CreateGraphOutput) {
@@ -351,24 +350,25 @@ func (c *Detective) CreateGraphRequest(input *CreateGraphInput) (req *request.Re
 // API operation CreateGraph for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   The request attempted an invalid action.
 //
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
+//   - ConflictException
+//     The request attempted an invalid action.
 //
-//   * ServiceQuotaExceededException
-//   This request cannot be completed for one of the following reasons.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//      * The request would cause the number of member accounts in the behavior
-//      graph to exceed the maximum allowed. A behavior graph cannot have more
-//      than 1200 member accounts.
+//   - ServiceQuotaExceededException
+//     This request cannot be completed for one of the following reasons.
 //
-//      * The request would cause the data rate for the behavior graph to exceed
-//      the maximum allowed.
+//   - The request would cause the number of member accounts in the behavior
+//     graph to exceed the maximum allowed. A behavior graph cannot have more
+//     than 1200 member accounts.
 //
-//      * Detective is unable to verify the data rate for the member account.
-//      This is usually because the member account is not enrolled in Amazon GuardDuty.
+//   - The request would cause the data rate for the behavior graph to exceed
+//     the maximum allowed.
+//
+//   - Detective is unable to verify the data rate for the member account.
+//     This is usually because the member account is not enrolled in Amazon GuardDuty.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/CreateGraph
 func (c *Detective) CreateGraph(input *CreateGraphInput) (*CreateGraphOutput, error) {
@@ -408,14 +408,13 @@ const opCreateMembers = "CreateMembers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateMembersRequest method.
+//	req, resp := client.CreateMembersRequest(params)
 //
-//    // Example sending a request using the CreateMembersRequest method.
-//    req, resp := client.CreateMembersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/CreateMembers
 func (c *Detective) CreateMembersRequest(input *CreateMembersInput) (req *request.Request, output *CreateMembersOutput) {
@@ -459,15 +458,15 @@ func (c *Detective) CreateMembersRequest(input *CreateMembersInput) (req *reques
 //
 // The response separates the requested accounts into two lists:
 //
-//    * The accounts that CreateMembers was able to process. For invited accounts,
-//    includes member accounts that are being verified, that have passed verification
-//    and are to be invited, and that have failed verification. For organization
-//    accounts in the organization behavior graph, includes accounts that can
-//    be enabled and that cannot be enabled.
+//   - The accounts that CreateMembers was able to process. For invited accounts,
+//     includes member accounts that are being verified, that have passed verification
+//     and are to be invited, and that have failed verification. For organization
+//     accounts in the organization behavior graph, includes accounts that can
+//     be enabled and that cannot be enabled.
 //
-//    * The accounts that CreateMembers was unable to process. This list includes
-//    accounts that were already invited to be member accounts in the behavior
-//    graph.
+//   - The accounts that CreateMembers was unable to process. This list includes
+//     accounts that were already invited to be member accounts in the behavior
+//     graph.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -477,27 +476,28 @@ func (c *Detective) CreateMembersRequest(input *CreateMembersInput) (req *reques
 // API operation CreateMembers for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
 //
-//   * ServiceQuotaExceededException
-//   This request cannot be completed for one of the following reasons.
+//   - ValidationException
+//     The request parameters are invalid.
 //
-//      * The request would cause the number of member accounts in the behavior
-//      graph to exceed the maximum allowed. A behavior graph cannot have more
-//      than 1200 member accounts.
+//   - ServiceQuotaExceededException
+//     This request cannot be completed for one of the following reasons.
 //
-//      * The request would cause the data rate for the behavior graph to exceed
-//      the maximum allowed.
+//   - The request would cause the number of member accounts in the behavior
+//     graph to exceed the maximum allowed. A behavior graph cannot have more
+//     than 1200 member accounts.
 //
-//      * Detective is unable to verify the data rate for the member account.
-//      This is usually because the member account is not enrolled in Amazon GuardDuty.
+//   - The request would cause the data rate for the behavior graph to exceed
+//     the maximum allowed.
+//
+//   - Detective is unable to verify the data rate for the member account.
+//     This is usually because the member account is not enrolled in Amazon GuardDuty.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/CreateMembers
 func (c *Detective) CreateMembers(input *CreateMembersInput) (*CreateMembersOutput, error) {
@@ -537,14 +537,13 @@ const opDeleteGraph = "DeleteGraph"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteGraphRequest method.
+//	req, resp := client.DeleteGraphRequest(params)
 //
-//    // Example sending a request using the DeleteGraphRequest method.
-//    req, resp := client.DeleteGraphRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/DeleteGraph
 func (c *Detective) DeleteGraphRequest(input *DeleteGraphInput) (req *request.Request, output *DeleteGraphOutput) {
@@ -580,14 +579,15 @@ func (c *Detective) DeleteGraphRequest(input *DeleteGraphInput) (req *request.Re
 // API operation DeleteGraph for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
+//
+//   - ValidationException
+//     The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/DeleteGraph
 func (c *Detective) DeleteGraph(input *DeleteGraphInput) (*DeleteGraphOutput, error) {
@@ -627,14 +627,13 @@ const opDeleteMembers = "DeleteMembers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteMembersRequest method.
+//	req, resp := client.DeleteMembersRequest(params)
 //
-//    // Example sending a request using the DeleteMembersRequest method.
-//    req, resp := client.DeleteMembersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/DeleteMembers
 func (c *Detective) DeleteMembersRequest(input *DeleteMembersInput) (req *request.Request, output *DeleteMembersOutput) {
@@ -680,17 +679,18 @@ func (c *Detective) DeleteMembersRequest(input *DeleteMembersInput) (req *reques
 // API operation DeleteMembers for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   The request attempted an invalid action.
 //
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
+//   - ConflictException
+//     The request attempted an invalid action.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
+//
+//   - ValidationException
+//     The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/DeleteMembers
 func (c *Detective) DeleteMembers(input *DeleteMembersInput) (*DeleteMembersOutput, error) {
@@ -730,14 +730,13 @@ const opDescribeOrganizationConfiguration = "DescribeOrganizationConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeOrganizationConfigurationRequest method.
+//	req, resp := client.DescribeOrganizationConfigurationRequest(params)
 //
-//    // Example sending a request using the DescribeOrganizationConfigurationRequest method.
-//    req, resp := client.DescribeOrganizationConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/DescribeOrganizationConfiguration
 func (c *Detective) DescribeOrganizationConfigurationRequest(input *DescribeOrganizationConfigurationInput) (req *request.Request, output *DescribeOrganizationConfigurationOutput) {
@@ -772,15 +771,16 @@ func (c *Detective) DescribeOrganizationConfigurationRequest(input *DescribeOrga
 // API operation DescribeOrganizationConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * TooManyRequestsException
-//   The request cannot be completed because too many other requests are occurring
-//   at the same time.
+//   - ValidationException
+//     The request parameters are invalid.
+//
+//   - TooManyRequestsException
+//     The request cannot be completed because too many other requests are occurring
+//     at the same time.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/DescribeOrganizationConfiguration
 func (c *Detective) DescribeOrganizationConfiguration(input *DescribeOrganizationConfigurationInput) (*DescribeOrganizationConfigurationOutput, error) {
@@ -820,14 +820,13 @@ const opDisableOrganizationAdminAccount = "DisableOrganizationAdminAccount"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisableOrganizationAdminAccountRequest method.
+//	req, resp := client.DisableOrganizationAdminAccountRequest(params)
 //
-//    // Example sending a request using the DisableOrganizationAdminAccountRequest method.
-//    req, resp := client.DisableOrganizationAdminAccountRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/DisableOrganizationAdminAccount
 func (c *Detective) DisableOrganizationAdminAccountRequest(input *DisableOrganizationAdminAccountInput) (req *request.Request, output *DisableOrganizationAdminAccountOutput) {
@@ -870,15 +869,16 @@ func (c *Detective) DisableOrganizationAdminAccountRequest(input *DisableOrganiz
 // API operation DisableOrganizationAdminAccount for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * TooManyRequestsException
-//   The request cannot be completed because too many other requests are occurring
-//   at the same time.
+//   - ValidationException
+//     The request parameters are invalid.
+//
+//   - TooManyRequestsException
+//     The request cannot be completed because too many other requests are occurring
+//     at the same time.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/DisableOrganizationAdminAccount
 func (c *Detective) DisableOrganizationAdminAccount(input *DisableOrganizationAdminAccountInput) (*DisableOrganizationAdminAccountOutput, error) {
@@ -918,14 +918,13 @@ const opDisassociateMembership = "DisassociateMembership"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateMembershipRequest method.
+//	req, resp := client.DisassociateMembershipRequest(params)
 //
-//    // Example sending a request using the DisassociateMembershipRequest method.
-//    req, resp := client.DisassociateMembershipRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/DisassociateMembership
 func (c *Detective) DisassociateMembershipRequest(input *DisassociateMembershipInput) (req *request.Request, output *DisassociateMembershipOutput) {
@@ -963,17 +962,18 @@ func (c *Detective) DisassociateMembershipRequest(input *DisassociateMembershipI
 // API operation DisassociateMembership for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   The request attempted an invalid action.
 //
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
+//   - ConflictException
+//     The request attempted an invalid action.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
+//
+//   - ValidationException
+//     The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/DisassociateMembership
 func (c *Detective) DisassociateMembership(input *DisassociateMembershipInput) (*DisassociateMembershipOutput, error) {
@@ -1013,14 +1013,13 @@ const opEnableOrganizationAdminAccount = "EnableOrganizationAdminAccount"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the EnableOrganizationAdminAccountRequest method.
+//	req, resp := client.EnableOrganizationAdminAccountRequest(params)
 //
-//    // Example sending a request using the EnableOrganizationAdminAccountRequest method.
-//    req, resp := client.EnableOrganizationAdminAccountRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/EnableOrganizationAdminAccount
 func (c *Detective) EnableOrganizationAdminAccountRequest(input *EnableOrganizationAdminAccountInput) (req *request.Request, output *EnableOrganizationAdminAccountOutput) {
@@ -1068,15 +1067,16 @@ func (c *Detective) EnableOrganizationAdminAccountRequest(input *EnableOrganizat
 // API operation EnableOrganizationAdminAccount for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * TooManyRequestsException
-//   The request cannot be completed because too many other requests are occurring
-//   at the same time.
+//   - ValidationException
+//     The request parameters are invalid.
+//
+//   - TooManyRequestsException
+//     The request cannot be completed because too many other requests are occurring
+//     at the same time.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/EnableOrganizationAdminAccount
 func (c *Detective) EnableOrganizationAdminAccount(input *EnableOrganizationAdminAccountInput) (*EnableOrganizationAdminAccountOutput, error) {
@@ -1116,14 +1116,13 @@ const opGetMembers = "GetMembers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetMembersRequest method.
+//	req, resp := client.GetMembersRequest(params)
 //
-//    // Example sending a request using the GetMembersRequest method.
-//    req, resp := client.GetMembersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/GetMembers
 func (c *Detective) GetMembersRequest(input *GetMembersInput) (req *request.Request, output *GetMembersOutput) {
@@ -1155,14 +1154,15 @@ func (c *Detective) GetMembersRequest(input *GetMembersInput) (req *request.Requ
 // API operation GetMembers for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
+//
+//   - ValidationException
+//     The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/GetMembers
 func (c *Detective) GetMembers(input *GetMembersInput) (*GetMembersOutput, error) {
@@ -1202,14 +1202,13 @@ const opListDatasourcePackages = "ListDatasourcePackages"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDatasourcePackagesRequest method.
+//	req, resp := client.ListDatasourcePackagesRequest(params)
 //
-//    // Example sending a request using the ListDatasourcePackagesRequest method.
-//    req, resp := client.ListDatasourcePackagesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListDatasourcePackages
 func (c *Detective) ListDatasourcePackagesRequest(input *ListDatasourcePackagesInput) (req *request.Request, output *ListDatasourcePackagesOutput) {
@@ -1246,14 +1245,15 @@ func (c *Detective) ListDatasourcePackagesRequest(input *ListDatasourcePackagesI
 // API operation ListDatasourcePackages for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
+//
+//   - ValidationException
+//     The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListDatasourcePackages
 func (c *Detective) ListDatasourcePackages(input *ListDatasourcePackagesInput) (*ListDatasourcePackagesOutput, error) {
@@ -1285,15 +1285,14 @@ func (c *Detective) ListDatasourcePackagesWithContext(ctx aws.Context, input *Li
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDatasourcePackages operation.
-//    pageNum := 0
-//    err := client.ListDatasourcePackagesPages(params,
-//        func(page *detective.ListDatasourcePackagesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDatasourcePackages operation.
+//	pageNum := 0
+//	err := client.ListDatasourcePackagesPages(params,
+//	    func(page *detective.ListDatasourcePackagesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Detective) ListDatasourcePackagesPages(input *ListDatasourcePackagesInput, fn func(*ListDatasourcePackagesOutput, bool) bool) error {
 	return c.ListDatasourcePackagesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1345,14 +1344,13 @@ const opListGraphs = "ListGraphs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListGraphsRequest method.
+//	req, resp := client.ListGraphsRequest(params)
 //
-//    // Example sending a request using the ListGraphsRequest method.
-//    req, resp := client.ListGraphsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListGraphs
 func (c *Detective) ListGraphsRequest(input *ListGraphsInput) (req *request.Request, output *ListGraphsOutput) {
@@ -1393,11 +1391,12 @@ func (c *Detective) ListGraphsRequest(input *ListGraphsInput) (req *request.Requ
 // API operation ListGraphs for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
+//
+//   - ValidationException
+//     The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListGraphs
 func (c *Detective) ListGraphs(input *ListGraphsInput) (*ListGraphsOutput, error) {
@@ -1429,15 +1428,14 @@ func (c *Detective) ListGraphsWithContext(ctx aws.Context, input *ListGraphsInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListGraphs operation.
-//    pageNum := 0
-//    err := client.ListGraphsPages(params,
-//        func(page *detective.ListGraphsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListGraphs operation.
+//	pageNum := 0
+//	err := client.ListGraphsPages(params,
+//	    func(page *detective.ListGraphsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Detective) ListGraphsPages(input *ListGraphsInput, fn func(*ListGraphsOutput, bool) bool) error {
 	return c.ListGraphsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1489,14 +1487,13 @@ const opListInvitations = "ListInvitations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListInvitationsRequest method.
+//	req, resp := client.ListInvitationsRequest(params)
 //
-//    // Example sending a request using the ListInvitationsRequest method.
-//    req, resp := client.ListInvitationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListInvitations
 func (c *Detective) ListInvitationsRequest(input *ListInvitationsInput) (req *request.Request, output *ListInvitationsOutput) {
@@ -1541,11 +1538,12 @@ func (c *Detective) ListInvitationsRequest(input *ListInvitationsInput) (req *re
 // API operation ListInvitations for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
+//
+//   - ValidationException
+//     The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListInvitations
 func (c *Detective) ListInvitations(input *ListInvitationsInput) (*ListInvitationsOutput, error) {
@@ -1577,15 +1575,14 @@ func (c *Detective) ListInvitationsWithContext(ctx aws.Context, input *ListInvit
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListInvitations operation.
-//    pageNum := 0
-//    err := client.ListInvitationsPages(params,
-//        func(page *detective.ListInvitationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListInvitations operation.
+//	pageNum := 0
+//	err := client.ListInvitationsPages(params,
+//	    func(page *detective.ListInvitationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Detective) ListInvitationsPages(input *ListInvitationsInput, fn func(*ListInvitationsOutput, bool) bool) error {
 	return c.ListInvitationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1637,14 +1634,13 @@ const opListMembers = "ListMembers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListMembersRequest method.
+//	req, resp := client.ListMembersRequest(params)
 //
-//    // Example sending a request using the ListMembersRequest method.
-//    req, resp := client.ListMembersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListMembers
 func (c *Detective) ListMembersRequest(input *ListMembersInput) (req *request.Request, output *ListMembersOutput) {
@@ -1688,14 +1684,15 @@ func (c *Detective) ListMembersRequest(input *ListMembersInput) (req *request.Re
 // API operation ListMembers for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
+//
+//   - ValidationException
+//     The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListMembers
 func (c *Detective) ListMembers(input *ListMembersInput) (*ListMembersOutput, error) {
@@ -1727,15 +1724,14 @@ func (c *Detective) ListMembersWithContext(ctx aws.Context, input *ListMembersIn
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListMembers operation.
-//    pageNum := 0
-//    err := client.ListMembersPages(params,
-//        func(page *detective.ListMembersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListMembers operation.
+//	pageNum := 0
+//	err := client.ListMembersPages(params,
+//	    func(page *detective.ListMembersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Detective) ListMembersPages(input *ListMembersInput, fn func(*ListMembersOutput, bool) bool) error {
 	return c.ListMembersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1787,14 +1783,13 @@ const opListOrganizationAdminAccounts = "ListOrganizationAdminAccounts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListOrganizationAdminAccountsRequest method.
+//	req, resp := client.ListOrganizationAdminAccountsRequest(params)
 //
-//    // Example sending a request using the ListOrganizationAdminAccountsRequest method.
-//    req, resp := client.ListOrganizationAdminAccountsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListOrganizationAdminAccounts
 func (c *Detective) ListOrganizationAdminAccountsRequest(input *ListOrganizationAdminAccountsInput) (req *request.Request, output *ListOrganizationAdminAccountsOutput) {
@@ -1832,15 +1827,16 @@ func (c *Detective) ListOrganizationAdminAccountsRequest(input *ListOrganization
 // API operation ListOrganizationAdminAccounts for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * TooManyRequestsException
-//   The request cannot be completed because too many other requests are occurring
-//   at the same time.
+//   - ValidationException
+//     The request parameters are invalid.
+//
+//   - TooManyRequestsException
+//     The request cannot be completed because too many other requests are occurring
+//     at the same time.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListOrganizationAdminAccounts
 func (c *Detective) ListOrganizationAdminAccounts(input *ListOrganizationAdminAccountsInput) (*ListOrganizationAdminAccountsOutput, error) {
@@ -1872,15 +1868,14 @@ func (c *Detective) ListOrganizationAdminAccountsWithContext(ctx aws.Context, in
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListOrganizationAdminAccounts operation.
-//    pageNum := 0
-//    err := client.ListOrganizationAdminAccountsPages(params,
-//        func(page *detective.ListOrganizationAdminAccountsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListOrganizationAdminAccounts operation.
+//	pageNum := 0
+//	err := client.ListOrganizationAdminAccountsPages(params,
+//	    func(page *detective.ListOrganizationAdminAccountsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Detective) ListOrganizationAdminAccountsPages(input *ListOrganizationAdminAccountsInput, fn func(*ListOrganizationAdminAccountsOutput, bool) bool) error {
 	return c.ListOrganizationAdminAccountsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1932,14 +1927,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListTagsForResource
 func (c *Detective) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1970,14 +1964,15 @@ func (c *Detective) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - ValidationException
+//     The request parameters are invalid.
+//
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListTagsForResource
 func (c *Detective) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2017,14 +2012,13 @@ const opRejectInvitation = "RejectInvitation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RejectInvitationRequest method.
+//	req, resp := client.RejectInvitationRequest(params)
 //
-//    // Example sending a request using the RejectInvitationRequest method.
-//    req, resp := client.RejectInvitationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/RejectInvitation
 func (c *Detective) RejectInvitationRequest(input *RejectInvitationInput) (req *request.Request, output *RejectInvitationOutput) {
@@ -2062,17 +2056,18 @@ func (c *Detective) RejectInvitationRequest(input *RejectInvitationInput) (req *
 // API operation RejectInvitation for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   The request attempted an invalid action.
 //
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
+//   - ConflictException
+//     The request attempted an invalid action.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
+//
+//   - ValidationException
+//     The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/RejectInvitation
 func (c *Detective) RejectInvitation(input *RejectInvitationInput) (*RejectInvitationOutput, error) {
@@ -2112,14 +2107,13 @@ const opStartMonitoringMember = "StartMonitoringMember"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartMonitoringMemberRequest method.
+//	req, resp := client.StartMonitoringMemberRequest(params)
 //
-//    // Example sending a request using the StartMonitoringMemberRequest method.
-//    req, resp := client.StartMonitoringMemberRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/StartMonitoringMember
 func (c *Detective) StartMonitoringMemberRequest(input *StartMonitoringMemberInput) (req *request.Request, output *StartMonitoringMemberOutput) {
@@ -2146,9 +2140,9 @@ func (c *Detective) StartMonitoringMemberRequest(input *StartMonitoringMemberInp
 //
 // For valid member accounts, the status is updated as follows.
 //
-//    * If Detective enabled the member account, then the new status is ENABLED.
+//   - If Detective enabled the member account, then the new status is ENABLED.
 //
-//    * If Detective cannot enable the member account, the status remains ACCEPTED_BUT_DISABLED.
+//   - If Detective cannot enable the member account, the status remains ACCEPTED_BUT_DISABLED.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2158,30 +2152,31 @@ func (c *Detective) StartMonitoringMemberRequest(input *StartMonitoringMemberInp
 // API operation StartMonitoringMember for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   The request attempted an invalid action.
 //
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
+//   - ConflictException
+//     The request attempted an invalid action.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ServiceQuotaExceededException
-//   This request cannot be completed for one of the following reasons.
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
 //
-//      * The request would cause the number of member accounts in the behavior
-//      graph to exceed the maximum allowed. A behavior graph cannot have more
-//      than 1200 member accounts.
+//   - ServiceQuotaExceededException
+//     This request cannot be completed for one of the following reasons.
 //
-//      * The request would cause the data rate for the behavior graph to exceed
-//      the maximum allowed.
+//   - The request would cause the number of member accounts in the behavior
+//     graph to exceed the maximum allowed. A behavior graph cannot have more
+//     than 1200 member accounts.
 //
-//      * Detective is unable to verify the data rate for the member account.
-//      This is usually because the member account is not enrolled in Amazon GuardDuty.
+//   - The request would cause the data rate for the behavior graph to exceed
+//     the maximum allowed.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - Detective is unable to verify the data rate for the member account.
+//     This is usually because the member account is not enrolled in Amazon GuardDuty.
+//
+//   - ValidationException
+//     The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/StartMonitoringMember
 func (c *Detective) StartMonitoringMember(input *StartMonitoringMemberInput) (*StartMonitoringMemberOutput, error) {
@@ -2221,14 +2216,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/TagResource
 func (c *Detective) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -2260,14 +2254,15 @@ func (c *Detective) TagResourceRequest(input *TagResourceInput) (req *request.Re
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - ValidationException
+//     The request parameters are invalid.
+//
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/TagResource
 func (c *Detective) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2307,14 +2302,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/UntagResource
 func (c *Detective) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2346,14 +2340,15 @@ func (c *Detective) UntagResourceRequest(input *UntagResourceInput) (req *reques
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - ValidationException
+//     The request parameters are invalid.
+//
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/UntagResource
 func (c *Detective) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2393,14 +2388,13 @@ const opUpdateDatasourcePackages = "UpdateDatasourcePackages"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDatasourcePackagesRequest method.
+//	req, resp := client.UpdateDatasourcePackagesRequest(params)
 //
-//    // Example sending a request using the UpdateDatasourcePackagesRequest method.
-//    req, resp := client.UpdateDatasourcePackagesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/UpdateDatasourcePackages
 func (c *Detective) UpdateDatasourcePackagesRequest(input *UpdateDatasourcePackagesInput) (req *request.Request, output *UpdateDatasourcePackagesOutput) {
@@ -2432,27 +2426,28 @@ func (c *Detective) UpdateDatasourcePackagesRequest(input *UpdateDatasourcePacka
 // API operation UpdateDatasourcePackages for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ResourceNotFoundException
-//   The request refers to a nonexistent resource.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * ServiceQuotaExceededException
-//   This request cannot be completed for one of the following reasons.
+//   - ResourceNotFoundException
+//     The request refers to a nonexistent resource.
 //
-//      * The request would cause the number of member accounts in the behavior
-//      graph to exceed the maximum allowed. A behavior graph cannot have more
-//      than 1200 member accounts.
+//   - ServiceQuotaExceededException
+//     This request cannot be completed for one of the following reasons.
 //
-//      * The request would cause the data rate for the behavior graph to exceed
-//      the maximum allowed.
+//   - The request would cause the number of member accounts in the behavior
+//     graph to exceed the maximum allowed. A behavior graph cannot have more
+//     than 1200 member accounts.
 //
-//      * Detective is unable to verify the data rate for the member account.
-//      This is usually because the member account is not enrolled in Amazon GuardDuty.
+//   - The request would cause the data rate for the behavior graph to exceed
+//     the maximum allowed.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - Detective is unable to verify the data rate for the member account.
+//     This is usually because the member account is not enrolled in Amazon GuardDuty.
+//
+//   - ValidationException
+//     The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/UpdateDatasourcePackages
 func (c *Detective) UpdateDatasourcePackages(input *UpdateDatasourcePackagesInput) (*UpdateDatasourcePackagesOutput, error) {
@@ -2492,14 +2487,13 @@ const opUpdateOrganizationConfiguration = "UpdateOrganizationConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateOrganizationConfigurationRequest method.
+//	req, resp := client.UpdateOrganizationConfigurationRequest(params)
 //
-//    // Example sending a request using the UpdateOrganizationConfigurationRequest method.
-//    req, resp := client.UpdateOrganizationConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/UpdateOrganizationConfiguration
 func (c *Detective) UpdateOrganizationConfigurationRequest(input *UpdateOrganizationConfigurationInput) (req *request.Request, output *UpdateOrganizationConfigurationOutput) {
@@ -2533,15 +2527,16 @@ func (c *Detective) UpdateOrganizationConfigurationRequest(input *UpdateOrganiza
 // API operation UpdateOrganizationConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request was valid but failed because of a problem with the service.
 //
-//   * ValidationException
-//   The request parameters are invalid.
+//   - InternalServerException
+//     The request was valid but failed because of a problem with the service.
 //
-//   * TooManyRequestsException
-//   The request cannot be completed because too many other requests are occurring
-//   at the same time.
+//   - ValidationException
+//     The request parameters are invalid.
+//
+//   - TooManyRequestsException
+//     The request cannot be completed because too many other requests are occurring
+//     at the same time.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/UpdateOrganizationConfiguration
 func (c *Detective) UpdateOrganizationConfiguration(input *UpdateOrganizationConfigurationInput) (*UpdateOrganizationConfigurationOutput, error) {
@@ -5031,15 +5026,15 @@ func (s *ResourceNotFoundException) RequestID() string {
 
 // This request cannot be completed for one of the following reasons.
 //
-//    * The request would cause the number of member accounts in the behavior
-//    graph to exceed the maximum allowed. A behavior graph cannot have more
-//    than 1200 member accounts.
+//   - The request would cause the number of member accounts in the behavior
+//     graph to exceed the maximum allowed. A behavior graph cannot have more
+//     than 1200 member accounts.
 //
-//    * The request would cause the data rate for the behavior graph to exceed
-//    the maximum allowed.
+//   - The request would cause the data rate for the behavior graph to exceed
+//     the maximum allowed.
 //
-//    * Detective is unable to verify the data rate for the member account.
-//    This is usually because the member account is not enrolled in Amazon GuardDuty.
+//   - Detective is unable to verify the data rate for the member account.
+//     This is usually because the member account is not enrolled in Amazon GuardDuty.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

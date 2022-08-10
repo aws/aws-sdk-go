@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To create an IP set
-//
 // The following example creates an IP match set named MyIPSetFriendlyName.
 func ExampleWAF_CreateIPSet_shared00() {
 	svc := waf.New(session.New())
@@ -66,7 +65,6 @@ func ExampleWAF_CreateIPSet_shared00() {
 }
 
 // To create a rule
-//
 // The following example creates a rule named WAFByteHeaderRule.
 func ExampleWAF_CreateRule_shared00() {
 	svc := waf.New(session.New())
@@ -111,7 +109,6 @@ func ExampleWAF_CreateRule_shared00() {
 }
 
 // To create a size constraint
-//
 // The following example creates size constraint set named MySampleSizeConstraintSet.
 func ExampleWAF_CreateSizeConstraintSet_shared00() {
 	svc := waf.New(session.New())
@@ -151,7 +148,6 @@ func ExampleWAF_CreateSizeConstraintSet_shared00() {
 }
 
 // To create a SQL injection match set
-//
 // The following example creates a SQL injection match set named MySQLInjectionMatchSet.
 func ExampleWAF_CreateSqlInjectionMatchSet_shared00() {
 	svc := waf.New(session.New())
@@ -191,7 +187,6 @@ func ExampleWAF_CreateSqlInjectionMatchSet_shared00() {
 }
 
 // To create a web ACL
-//
 // The following example creates a web ACL named CreateExample.
 func ExampleWAF_CreateWebACL_shared00() {
 	svc := waf.New(session.New())
@@ -241,7 +236,6 @@ func ExampleWAF_CreateWebACL_shared00() {
 }
 
 // To create an XSS match set
-//
 // The following example creates an XSS match set named MySampleXssMatchSet.
 func ExampleWAF_CreateXssMatchSet_shared00() {
 	svc := waf.New(session.New())
@@ -281,7 +275,6 @@ func ExampleWAF_CreateXssMatchSet_shared00() {
 }
 
 // To delete a byte match set
-//
 // The following example deletes a byte match set with the ID exampleIDs3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_DeleteByteMatchSet_shared00() {
 	svc := waf.New(session.New())
@@ -321,7 +314,6 @@ func ExampleWAF_DeleteByteMatchSet_shared00() {
 }
 
 // To delete an IP set
-//
 // The following example deletes an IP match set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_DeleteIPSet_shared00() {
 	svc := waf.New(session.New())
@@ -361,7 +353,6 @@ func ExampleWAF_DeleteIPSet_shared00() {
 }
 
 // To delete a rule
-//
 // The following example deletes a rule with the ID WAFRule-1-Example.
 func ExampleWAF_DeleteRule_shared00() {
 	svc := waf.New(session.New())
@@ -405,7 +396,6 @@ func ExampleWAF_DeleteRule_shared00() {
 }
 
 // To delete a size constraint set
-//
 // The following example deletes a size constraint set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_DeleteSizeConstraintSet_shared00() {
 	svc := waf.New(session.New())
@@ -445,7 +435,6 @@ func ExampleWAF_DeleteSizeConstraintSet_shared00() {
 }
 
 // To delete a SQL injection match set
-//
 // The following example deletes a SQL injection match set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_DeleteSqlInjectionMatchSet_shared00() {
 	svc := waf.New(session.New())
@@ -485,7 +474,6 @@ func ExampleWAF_DeleteSqlInjectionMatchSet_shared00() {
 }
 
 // To delete a web ACL
-//
 // The following example deletes a web ACL with the ID example-46da-4444-5555-example.
 func ExampleWAF_DeleteWebACL_shared00() {
 	svc := waf.New(session.New())
@@ -529,7 +517,6 @@ func ExampleWAF_DeleteWebACL_shared00() {
 }
 
 // To delete an XSS match set
-//
 // The following example deletes an XSS match set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_DeleteXssMatchSet_shared00() {
 	svc := waf.New(session.New())
@@ -569,7 +556,6 @@ func ExampleWAF_DeleteXssMatchSet_shared00() {
 }
 
 // To get a byte match set
-//
 // The following example returns the details of a byte match set with the ID exampleIDs3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_GetByteMatchSet_shared00() {
 	svc := waf.New(session.New())
@@ -602,7 +588,6 @@ func ExampleWAF_GetByteMatchSet_shared00() {
 }
 
 // To get a change token
-//
 // The following example returns a change token to use for a create, update or delete
 // operation.
 func ExampleWAF_GetChangeToken_shared00() {
@@ -630,7 +615,6 @@ func ExampleWAF_GetChangeToken_shared00() {
 }
 
 // To get the change token status
-//
 // The following example returns the status of a change token with the ID abcd12f2-46da-4fdb-b8d5-fbd4c466928f.
 func ExampleWAF_GetChangeTokenStatus_shared00() {
 	svc := waf.New(session.New())
@@ -661,7 +645,6 @@ func ExampleWAF_GetChangeTokenStatus_shared00() {
 }
 
 // To get an IP set
-//
 // The following example returns the details of an IP match set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_GetIPSet_shared00() {
 	svc := waf.New(session.New())
@@ -694,7 +677,6 @@ func ExampleWAF_GetIPSet_shared00() {
 }
 
 // To get a rule
-//
 // The following example returns the details of a rule with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_GetRule_shared00() {
 	svc := waf.New(session.New())
@@ -727,7 +709,6 @@ func ExampleWAF_GetRule_shared00() {
 }
 
 // To get a sampled requests
-//
 // The following example returns detailed information about 100 requests --a sample--
 // that AWS WAF randomly selects from among the first 5,000 requests that your AWS resource
 // received between the time period 2016-09-27T15:50Z to 2016-09-27T15:50Z.
@@ -766,7 +747,6 @@ func ExampleWAF_GetSampledRequests_shared00() {
 }
 
 // To get a size constraint set
-//
 // The following example returns the details of a size constraint match set with the
 // ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_GetSizeConstraintSet_shared00() {
@@ -800,7 +780,6 @@ func ExampleWAF_GetSizeConstraintSet_shared00() {
 }
 
 // To get a SQL injection match set
-//
 // The following example returns the details of a SQL injection match set with the ID
 // example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_GetSqlInjectionMatchSet_shared00() {
@@ -834,7 +813,6 @@ func ExampleWAF_GetSqlInjectionMatchSet_shared00() {
 }
 
 // To get a web ACL
-//
 // The following example returns the details of a web ACL with the ID createwebacl-1472061481310.
 func ExampleWAF_GetWebACL_shared00() {
 	svc := waf.New(session.New())
@@ -867,7 +845,6 @@ func ExampleWAF_GetWebACL_shared00() {
 }
 
 // To get an XSS match set
-//
 // The following example returns the details of an XSS match set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_GetXssMatchSet_shared00() {
 	svc := waf.New(session.New())
@@ -900,7 +877,6 @@ func ExampleWAF_GetXssMatchSet_shared00() {
 }
 
 // To list IP sets
-//
 // The following example returns an array of up to 100 IP match sets.
 func ExampleWAF_ListIPSets_shared00() {
 	svc := waf.New(session.New())
@@ -931,7 +907,6 @@ func ExampleWAF_ListIPSets_shared00() {
 }
 
 // To list rules
-//
 // The following example returns an array of up to 100 rules.
 func ExampleWAF_ListRules_shared00() {
 	svc := waf.New(session.New())
@@ -962,7 +937,6 @@ func ExampleWAF_ListRules_shared00() {
 }
 
 // To list a size constraint sets
-//
 // The following example returns an array of up to 100 size contraint match sets.
 func ExampleWAF_ListSizeConstraintSets_shared00() {
 	svc := waf.New(session.New())
@@ -993,7 +967,6 @@ func ExampleWAF_ListSizeConstraintSets_shared00() {
 }
 
 // To list SQL injection match sets
-//
 // The following example returns an array of up to 100 SQL injection match sets.
 func ExampleWAF_ListSqlInjectionMatchSets_shared00() {
 	svc := waf.New(session.New())
@@ -1024,7 +997,6 @@ func ExampleWAF_ListSqlInjectionMatchSets_shared00() {
 }
 
 // To list Web ACLs
-//
 // The following example returns an array of up to 100 web ACLs.
 func ExampleWAF_ListWebACLs_shared00() {
 	svc := waf.New(session.New())
@@ -1055,7 +1027,6 @@ func ExampleWAF_ListWebACLs_shared00() {
 }
 
 // To list XSS match sets
-//
 // The following example returns an array of up to 100 XSS match sets.
 func ExampleWAF_ListXssMatchSets_shared00() {
 	svc := waf.New(session.New())
@@ -1086,7 +1057,6 @@ func ExampleWAF_ListXssMatchSets_shared00() {
 }
 
 // To update a byte match set
-//
 // The following example deletes a ByteMatchTuple object (filters) in an byte match
 // set with the ID exampleIDs3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_UpdateByteMatchSet_shared00() {
@@ -1145,7 +1115,6 @@ func ExampleWAF_UpdateByteMatchSet_shared00() {
 }
 
 // To update an IP set
-//
 // The following example deletes an IPSetDescriptor object in an IP match set with the
 // ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_UpdateIPSet_shared00() {
@@ -1201,7 +1170,6 @@ func ExampleWAF_UpdateIPSet_shared00() {
 }
 
 // To update a rule
-//
 // The following example deletes a Predicate object in a rule with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_UpdateRule_shared00() {
 	svc := waf.New(session.New())
@@ -1257,7 +1225,6 @@ func ExampleWAF_UpdateRule_shared00() {
 }
 
 // To update a size constraint set
-//
 // The following example deletes a SizeConstraint object (filters) in a size constraint
 // set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_UpdateSizeConstraintSet_shared00() {
@@ -1317,7 +1284,6 @@ func ExampleWAF_UpdateSizeConstraintSet_shared00() {
 }
 
 // To update a SQL injection match set
-//
 // The following example deletes a SqlInjectionMatchTuple object (filters) in a SQL
 // injection match set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_UpdateSqlInjectionMatchSet_shared00() {
@@ -1373,7 +1339,6 @@ func ExampleWAF_UpdateSqlInjectionMatchSet_shared00() {
 }
 
 // To update a Web ACL
-//
 // The following example deletes an ActivatedRule object in a WebACL with the ID webacl-1472061481310.
 func ExampleWAF_UpdateWebACL_shared00() {
 	svc := waf.New(session.New())
@@ -1436,7 +1401,6 @@ func ExampleWAF_UpdateWebACL_shared00() {
 }
 
 // To update an XSS match set
-//
 // The following example deletes an XssMatchTuple object (filters) in an XssMatchSet
 // with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_UpdateXssMatchSet_shared00() {

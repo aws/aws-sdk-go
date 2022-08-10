@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To create a new file system
-//
 // This operation creates a new, encrypted file system with automatic backups enabled,
 // and the default generalpurpose performance mode.
 func ExampleEFS_CreateFileSystem_shared00() {
@@ -77,7 +76,6 @@ func ExampleEFS_CreateFileSystem_shared00() {
 }
 
 // To create a new mount target
-//
 // This operation creates a new mount target for an EFS file system.
 func ExampleEFS_CreateMountTarget_shared00() {
 	svc := efs.New(session.New())
@@ -131,7 +129,6 @@ func ExampleEFS_CreateMountTarget_shared00() {
 }
 
 // To create a new tag
-//
 // This operation creates a new tag for an EFS file system.
 func ExampleEFS_CreateTags_shared00() {
 	svc := efs.New(session.New())
@@ -170,7 +167,6 @@ func ExampleEFS_CreateTags_shared00() {
 }
 
 // To delete a file system
-//
 // This operation deletes an EFS file system.
 func ExampleEFS_DeleteFileSystem_shared00() {
 	svc := efs.New(session.New())
@@ -205,7 +201,6 @@ func ExampleEFS_DeleteFileSystem_shared00() {
 }
 
 // To delete a mount target
-//
 // This operation deletes a mount target.
 func ExampleEFS_DeleteMountTarget_shared00() {
 	svc := efs.New(session.New())
@@ -240,7 +235,6 @@ func ExampleEFS_DeleteMountTarget_shared00() {
 }
 
 // To delete tags for an EFS file system
-//
 // This operation deletes tags for an EFS file system.
 func ExampleEFS_DeleteTags_shared00() {
 	svc := efs.New(session.New())
@@ -276,7 +270,6 @@ func ExampleEFS_DeleteTags_shared00() {
 }
 
 // To describe an EFS file system
-//
 // This operation describes all of the EFS file systems in an account.
 func ExampleEFS_DescribeFileSystems_shared00() {
 	svc := efs.New(session.New())
@@ -307,7 +300,6 @@ func ExampleEFS_DescribeFileSystems_shared00() {
 }
 
 // To describe the lifecycle configuration for a file system
-//
 // This operation describes a file system's LifecycleConfiguration. EFS lifecycle management
 // uses the LifecycleConfiguration object to identify which files to move to the EFS
 // Infrequent Access (IA) storage class.
@@ -342,7 +334,6 @@ func ExampleEFS_DescribeLifecycleConfiguration_shared00() {
 }
 
 // To describe the security groups for a mount target
-//
 // This operation describes all of the security groups for a file system's mount target.
 func ExampleEFS_DescribeMountTargetSecurityGroups_shared00() {
 	svc := efs.New(session.New())
@@ -377,7 +368,6 @@ func ExampleEFS_DescribeMountTargetSecurityGroups_shared00() {
 }
 
 // To describe the mount targets for a file system
-//
 // This operation describes all of a file system's mount targets.
 func ExampleEFS_DescribeMountTargets_shared00() {
 	svc := efs.New(session.New())
@@ -414,7 +404,6 @@ func ExampleEFS_DescribeMountTargets_shared00() {
 }
 
 // To describe the tags for a file system
-//
 // This operation describes all of a file system's tags.
 func ExampleEFS_DescribeTags_shared00() {
 	svc := efs.New(session.New())
@@ -447,7 +436,6 @@ func ExampleEFS_DescribeTags_shared00() {
 }
 
 // To modify the security groups associated with a mount target for a file system
-//
 // This operation modifies the security groups associated with a mount target for a
 // file system.
 func ExampleEFS_ModifyMountTargetSecurityGroups_shared00() {
@@ -490,7 +478,6 @@ func ExampleEFS_ModifyMountTargetSecurityGroups_shared00() {
 }
 
 // Creates a new lifecycleconfiguration object for a file system
-//
 // This operation enables lifecycle management on a file system by creating a new LifecycleConfiguration
 // object. A LifecycleConfiguration object defines when files in an Amazon EFS file
 // system are automatically transitioned to the lower-cost EFS Infrequent Access (IA)

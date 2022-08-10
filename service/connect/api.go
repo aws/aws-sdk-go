@@ -29,14 +29,13 @@ const opAssociateApprovedOrigin = "AssociateApprovedOrigin"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateApprovedOriginRequest method.
+//	req, resp := client.AssociateApprovedOriginRequest(params)
 //
-//    // Example sending a request using the AssociateApprovedOriginRequest method.
-//    req, resp := client.AssociateApprovedOriginRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateApprovedOrigin
 func (c *Connect) AssociateApprovedOriginRequest(input *AssociateApprovedOriginInput) (req *request.Request, output *AssociateApprovedOriginOutput) {
@@ -70,26 +69,27 @@ func (c *Connect) AssociateApprovedOriginRequest(input *AssociateApprovedOriginI
 // API operation AssociateApprovedOrigin for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ResourceConflictException
-//   A resource already has that name.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceConflictException
+//     A resource already has that name.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ServiceQuotaExceededException
-//   The service quota has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateApprovedOrigin
 func (c *Connect) AssociateApprovedOrigin(input *AssociateApprovedOriginInput) (*AssociateApprovedOriginOutput, error) {
@@ -129,14 +129,13 @@ const opAssociateBot = "AssociateBot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateBotRequest method.
+//	req, resp := client.AssociateBotRequest(params)
 //
-//    // Example sending a request using the AssociateBotRequest method.
-//    req, resp := client.AssociateBotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateBot
 func (c *Connect) AssociateBotRequest(input *AssociateBotInput) (req *request.Request, output *AssociateBotOutput) {
@@ -171,26 +170,27 @@ func (c *Connect) AssociateBotRequest(input *AssociateBotInput) (req *request.Re
 // API operation AssociateBot for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ResourceConflictException
-//   A resource already has that name.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceConflictException
+//     A resource already has that name.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ServiceQuotaExceededException
-//   The service quota has been exceeded.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateBot
 func (c *Connect) AssociateBot(input *AssociateBotInput) (*AssociateBotOutput, error) {
@@ -230,14 +230,13 @@ const opAssociateDefaultVocabulary = "AssociateDefaultVocabulary"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateDefaultVocabularyRequest method.
+//	req, resp := client.AssociateDefaultVocabularyRequest(params)
 //
-//    // Example sending a request using the AssociateDefaultVocabularyRequest method.
-//    req, resp := client.AssociateDefaultVocabularyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateDefaultVocabulary
 func (c *Connect) AssociateDefaultVocabularyRequest(input *AssociateDefaultVocabularyInput) (req *request.Request, output *AssociateDefaultVocabularyOutput) {
@@ -271,20 +270,21 @@ func (c *Connect) AssociateDefaultVocabularyRequest(input *AssociateDefaultVocab
 // API operation AssociateDefaultVocabulary for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateDefaultVocabulary
 func (c *Connect) AssociateDefaultVocabulary(input *AssociateDefaultVocabularyInput) (*AssociateDefaultVocabularyOutput, error) {
@@ -324,14 +324,13 @@ const opAssociateInstanceStorageConfig = "AssociateInstanceStorageConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateInstanceStorageConfigRequest method.
+//	req, resp := client.AssociateInstanceStorageConfigRequest(params)
 //
-//    // Example sending a request using the AssociateInstanceStorageConfigRequest method.
-//    req, resp := client.AssociateInstanceStorageConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateInstanceStorageConfig
 func (c *Connect) AssociateInstanceStorageConfigRequest(input *AssociateInstanceStorageConfigInput) (req *request.Request, output *AssociateInstanceStorageConfigOutput) {
@@ -371,23 +370,24 @@ func (c *Connect) AssociateInstanceStorageConfigRequest(input *AssociateInstance
 // API operation AssociateInstanceStorageConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ResourceConflictException
-//   A resource already has that name.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceConflictException
+//     A resource already has that name.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateInstanceStorageConfig
 func (c *Connect) AssociateInstanceStorageConfig(input *AssociateInstanceStorageConfigInput) (*AssociateInstanceStorageConfigOutput, error) {
@@ -427,14 +427,13 @@ const opAssociateLambdaFunction = "AssociateLambdaFunction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateLambdaFunctionRequest method.
+//	req, resp := client.AssociateLambdaFunctionRequest(params)
 //
-//    // Example sending a request using the AssociateLambdaFunctionRequest method.
-//    req, resp := client.AssociateLambdaFunctionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateLambdaFunction
 func (c *Connect) AssociateLambdaFunctionRequest(input *AssociateLambdaFunctionInput) (req *request.Request, output *AssociateLambdaFunctionOutput) {
@@ -469,26 +468,27 @@ func (c *Connect) AssociateLambdaFunctionRequest(input *AssociateLambdaFunctionI
 // API operation AssociateLambdaFunction for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ResourceConflictException
-//   A resource already has that name.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceConflictException
+//     A resource already has that name.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ServiceQuotaExceededException
-//   The service quota has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateLambdaFunction
 func (c *Connect) AssociateLambdaFunction(input *AssociateLambdaFunctionInput) (*AssociateLambdaFunctionOutput, error) {
@@ -528,14 +528,13 @@ const opAssociateLexBot = "AssociateLexBot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateLexBotRequest method.
+//	req, resp := client.AssociateLexBotRequest(params)
 //
-//    // Example sending a request using the AssociateLexBotRequest method.
-//    req, resp := client.AssociateLexBotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateLexBot
 func (c *Connect) AssociateLexBotRequest(input *AssociateLexBotInput) (req *request.Request, output *AssociateLexBotOutput) {
@@ -570,26 +569,27 @@ func (c *Connect) AssociateLexBotRequest(input *AssociateLexBotInput) (req *requ
 // API operation AssociateLexBot for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ResourceConflictException
-//   A resource already has that name.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceConflictException
+//     A resource already has that name.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ServiceQuotaExceededException
-//   The service quota has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateLexBot
 func (c *Connect) AssociateLexBot(input *AssociateLexBotInput) (*AssociateLexBotOutput, error) {
@@ -629,14 +629,13 @@ const opAssociatePhoneNumberContactFlow = "AssociatePhoneNumberContactFlow"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociatePhoneNumberContactFlowRequest method.
+//	req, resp := client.AssociatePhoneNumberContactFlowRequest(params)
 //
-//    // Example sending a request using the AssociatePhoneNumberContactFlowRequest method.
-//    req, resp := client.AssociatePhoneNumberContactFlowRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociatePhoneNumberContactFlow
 func (c *Connect) AssociatePhoneNumberContactFlowRequest(input *AssociatePhoneNumberContactFlowInput) (req *request.Request, output *AssociatePhoneNumberContactFlowOutput) {
@@ -669,20 +668,21 @@ func (c *Connect) AssociatePhoneNumberContactFlowRequest(input *AssociatePhoneNu
 // API operation AssociatePhoneNumberContactFlow for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociatePhoneNumberContactFlow
 func (c *Connect) AssociatePhoneNumberContactFlow(input *AssociatePhoneNumberContactFlowInput) (*AssociatePhoneNumberContactFlowOutput, error) {
@@ -722,14 +722,13 @@ const opAssociateQueueQuickConnects = "AssociateQueueQuickConnects"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateQueueQuickConnectsRequest method.
+//	req, resp := client.AssociateQueueQuickConnectsRequest(params)
 //
-//    // Example sending a request using the AssociateQueueQuickConnectsRequest method.
-//    req, resp := client.AssociateQueueQuickConnectsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateQueueQuickConnects
 func (c *Connect) AssociateQueueQuickConnectsRequest(input *AssociateQueueQuickConnectsInput) (req *request.Request, output *AssociateQueueQuickConnectsOutput) {
@@ -763,23 +762,24 @@ func (c *Connect) AssociateQueueQuickConnectsRequest(input *AssociateQueueQuickC
 // API operation AssociateQueueQuickConnects for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateQueueQuickConnects
 func (c *Connect) AssociateQueueQuickConnects(input *AssociateQueueQuickConnectsInput) (*AssociateQueueQuickConnectsOutput, error) {
@@ -819,14 +819,13 @@ const opAssociateRoutingProfileQueues = "AssociateRoutingProfileQueues"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateRoutingProfileQueuesRequest method.
+//	req, resp := client.AssociateRoutingProfileQueuesRequest(params)
 //
-//    // Example sending a request using the AssociateRoutingProfileQueuesRequest method.
-//    req, resp := client.AssociateRoutingProfileQueuesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateRoutingProfileQueues
 func (c *Connect) AssociateRoutingProfileQueuesRequest(input *AssociateRoutingProfileQueuesInput) (req *request.Request, output *AssociateRoutingProfileQueuesOutput) {
@@ -858,20 +857,21 @@ func (c *Connect) AssociateRoutingProfileQueuesRequest(input *AssociateRoutingPr
 // API operation AssociateRoutingProfileQueues for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateRoutingProfileQueues
 func (c *Connect) AssociateRoutingProfileQueues(input *AssociateRoutingProfileQueuesInput) (*AssociateRoutingProfileQueuesOutput, error) {
@@ -911,14 +911,13 @@ const opAssociateSecurityKey = "AssociateSecurityKey"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateSecurityKeyRequest method.
+//	req, resp := client.AssociateSecurityKeyRequest(params)
 //
-//    // Example sending a request using the AssociateSecurityKeyRequest method.
-//    req, resp := client.AssociateSecurityKeyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateSecurityKey
 func (c *Connect) AssociateSecurityKeyRequest(input *AssociateSecurityKeyInput) (req *request.Request, output *AssociateSecurityKeyOutput) {
@@ -951,26 +950,27 @@ func (c *Connect) AssociateSecurityKeyRequest(input *AssociateSecurityKeyInput) 
 // API operation AssociateSecurityKey for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ResourceConflictException
-//   A resource already has that name.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceConflictException
+//     A resource already has that name.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ServiceQuotaExceededException
-//   The service quota has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateSecurityKey
 func (c *Connect) AssociateSecurityKey(input *AssociateSecurityKeyInput) (*AssociateSecurityKeyOutput, error) {
@@ -1010,14 +1010,13 @@ const opClaimPhoneNumber = "ClaimPhoneNumber"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ClaimPhoneNumberRequest method.
+//	req, resp := client.ClaimPhoneNumberRequest(params)
 //
-//    // Example sending a request using the ClaimPhoneNumberRequest method.
-//    req, resp := client.ClaimPhoneNumberRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ClaimPhoneNumber
 func (c *Connect) ClaimPhoneNumberRequest(input *ClaimPhoneNumberInput) (req *request.Request, output *ClaimPhoneNumberOutput) {
@@ -1048,23 +1047,24 @@ func (c *Connect) ClaimPhoneNumberRequest(input *ClaimPhoneNumberInput) (req *re
 // API operation ClaimPhoneNumber for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * IdempotencyException
-//   An entity with the same name already exists.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - IdempotencyException
+//     An entity with the same name already exists.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ClaimPhoneNumber
 func (c *Connect) ClaimPhoneNumber(input *ClaimPhoneNumberInput) (*ClaimPhoneNumberOutput, error) {
@@ -1104,14 +1104,13 @@ const opCreateAgentStatus = "CreateAgentStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateAgentStatusRequest method.
+//	req, resp := client.CreateAgentStatusRequest(params)
 //
-//    // Example sending a request using the CreateAgentStatusRequest method.
-//    req, resp := client.CreateAgentStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateAgentStatus
 func (c *Connect) CreateAgentStatusRequest(input *CreateAgentStatusInput) (req *request.Request, output *CreateAgentStatusOutput) {
@@ -1144,26 +1143,27 @@ func (c *Connect) CreateAgentStatusRequest(input *CreateAgentStatusInput) (req *
 // API operation CreateAgentStatus for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateAgentStatus
 func (c *Connect) CreateAgentStatus(input *CreateAgentStatusInput) (*CreateAgentStatusOutput, error) {
@@ -1203,14 +1203,13 @@ const opCreateContactFlow = "CreateContactFlow"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateContactFlowRequest method.
+//	req, resp := client.CreateContactFlowRequest(params)
 //
-//    // Example sending a request using the CreateContactFlowRequest method.
-//    req, resp := client.CreateContactFlowRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateContactFlow
 func (c *Connect) CreateContactFlowRequest(input *CreateContactFlowInput) (req *request.Request, output *CreateContactFlowOutput) {
@@ -1244,29 +1243,30 @@ func (c *Connect) CreateContactFlowRequest(input *CreateContactFlowInput) (req *
 // API operation CreateContactFlow for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidContactFlowException
-//   The contact flow is not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidContactFlowException
+//     The contact flow is not valid.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateContactFlow
 func (c *Connect) CreateContactFlow(input *CreateContactFlowInput) (*CreateContactFlowOutput, error) {
@@ -1306,14 +1306,13 @@ const opCreateContactFlowModule = "CreateContactFlowModule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateContactFlowModuleRequest method.
+//	req, resp := client.CreateContactFlowModuleRequest(params)
 //
-//    // Example sending a request using the CreateContactFlowModuleRequest method.
-//    req, resp := client.CreateContactFlowModuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateContactFlowModule
 func (c *Connect) CreateContactFlowModuleRequest(input *CreateContactFlowModuleInput) (req *request.Request, output *CreateContactFlowModuleOutput) {
@@ -1344,35 +1343,36 @@ func (c *Connect) CreateContactFlowModuleRequest(input *CreateContactFlowModuleI
 // API operation CreateContactFlowModule for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
-//   * InvalidContactFlowModuleException
-//   The problems with the module. Please fix before trying again.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidContactFlowModuleException
+//     The problems with the module. Please fix before trying again.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * IdempotencyException
-//   An entity with the same name already exists.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - IdempotencyException
+//     An entity with the same name already exists.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateContactFlowModule
 func (c *Connect) CreateContactFlowModule(input *CreateContactFlowModuleInput) (*CreateContactFlowModuleOutput, error) {
@@ -1412,14 +1412,13 @@ const opCreateHoursOfOperation = "CreateHoursOfOperation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateHoursOfOperationRequest method.
+//	req, resp := client.CreateHoursOfOperationRequest(params)
 //
-//    // Example sending a request using the CreateHoursOfOperationRequest method.
-//    req, resp := client.CreateHoursOfOperationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateHoursOfOperation
 func (c *Connect) CreateHoursOfOperationRequest(input *CreateHoursOfOperationInput) (req *request.Request, output *CreateHoursOfOperationOutput) {
@@ -1452,26 +1451,27 @@ func (c *Connect) CreateHoursOfOperationRequest(input *CreateHoursOfOperationInp
 // API operation CreateHoursOfOperation for usage and error information.
 //
 // Returned Error Types:
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateHoursOfOperation
 func (c *Connect) CreateHoursOfOperation(input *CreateHoursOfOperationInput) (*CreateHoursOfOperationOutput, error) {
@@ -1511,14 +1511,13 @@ const opCreateInstance = "CreateInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateInstanceRequest method.
+//	req, resp := client.CreateInstanceRequest(params)
 //
-//    // Example sending a request using the CreateInstanceRequest method.
-//    req, resp := client.CreateInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateInstance
 func (c *Connect) CreateInstanceRequest(input *CreateInstanceInput) (req *request.Request, output *CreateInstanceOutput) {
@@ -1560,20 +1559,21 @@ func (c *Connect) CreateInstanceRequest(input *CreateInstanceInput) (req *reques
 // API operation CreateInstance for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * ServiceQuotaExceededException
-//   The service quota has been exceeded.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateInstance
 func (c *Connect) CreateInstance(input *CreateInstanceInput) (*CreateInstanceOutput, error) {
@@ -1613,14 +1613,13 @@ const opCreateIntegrationAssociation = "CreateIntegrationAssociation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateIntegrationAssociationRequest method.
+//	req, resp := client.CreateIntegrationAssociationRequest(params)
 //
-//    // Example sending a request using the CreateIntegrationAssociationRequest method.
-//    req, resp := client.CreateIntegrationAssociationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateIntegrationAssociation
 func (c *Connect) CreateIntegrationAssociationRequest(input *CreateIntegrationAssociationInput) (req *request.Request, output *CreateIntegrationAssociationOutput) {
@@ -1652,20 +1651,21 @@ func (c *Connect) CreateIntegrationAssociationRequest(input *CreateIntegrationAs
 // API operation CreateIntegrationAssociation for usage and error information.
 //
 // Returned Error Types:
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateIntegrationAssociation
 func (c *Connect) CreateIntegrationAssociation(input *CreateIntegrationAssociationInput) (*CreateIntegrationAssociationOutput, error) {
@@ -1705,14 +1705,13 @@ const opCreateQueue = "CreateQueue"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateQueueRequest method.
+//	req, resp := client.CreateQueueRequest(params)
 //
-//    // Example sending a request using the CreateQueueRequest method.
-//    req, resp := client.CreateQueueRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateQueue
 func (c *Connect) CreateQueueRequest(input *CreateQueueInput) (req *request.Request, output *CreateQueueOutput) {
@@ -1745,26 +1744,27 @@ func (c *Connect) CreateQueueRequest(input *CreateQueueInput) (req *request.Requ
 // API operation CreateQueue for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateQueue
 func (c *Connect) CreateQueue(input *CreateQueueInput) (*CreateQueueOutput, error) {
@@ -1804,14 +1804,13 @@ const opCreateQuickConnect = "CreateQuickConnect"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateQuickConnectRequest method.
+//	req, resp := client.CreateQuickConnectRequest(params)
 //
-//    // Example sending a request using the CreateQuickConnectRequest method.
-//    req, resp := client.CreateQuickConnectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateQuickConnect
 func (c *Connect) CreateQuickConnectRequest(input *CreateQuickConnectInput) (req *request.Request, output *CreateQuickConnectOutput) {
@@ -1842,26 +1841,27 @@ func (c *Connect) CreateQuickConnectRequest(input *CreateQuickConnectInput) (req
 // API operation CreateQuickConnect for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateQuickConnect
 func (c *Connect) CreateQuickConnect(input *CreateQuickConnectInput) (*CreateQuickConnectOutput, error) {
@@ -1901,14 +1901,13 @@ const opCreateRoutingProfile = "CreateRoutingProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateRoutingProfileRequest method.
+//	req, resp := client.CreateRoutingProfileRequest(params)
 //
-//    // Example sending a request using the CreateRoutingProfileRequest method.
-//    req, resp := client.CreateRoutingProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateRoutingProfile
 func (c *Connect) CreateRoutingProfileRequest(input *CreateRoutingProfileInput) (req *request.Request, output *CreateRoutingProfileOutput) {
@@ -1939,26 +1938,27 @@ func (c *Connect) CreateRoutingProfileRequest(input *CreateRoutingProfileInput) 
 // API operation CreateRoutingProfile for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateRoutingProfile
 func (c *Connect) CreateRoutingProfile(input *CreateRoutingProfileInput) (*CreateRoutingProfileOutput, error) {
@@ -1998,14 +1998,13 @@ const opCreateSecurityProfile = "CreateSecurityProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSecurityProfileRequest method.
+//	req, resp := client.CreateSecurityProfileRequest(params)
 //
-//    // Example sending a request using the CreateSecurityProfileRequest method.
-//    req, resp := client.CreateSecurityProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateSecurityProfile
 func (c *Connect) CreateSecurityProfileRequest(input *CreateSecurityProfileInput) (req *request.Request, output *CreateSecurityProfileOutput) {
@@ -2038,26 +2037,27 @@ func (c *Connect) CreateSecurityProfileRequest(input *CreateSecurityProfileInput
 // API operation CreateSecurityProfile for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateSecurityProfile
 func (c *Connect) CreateSecurityProfile(input *CreateSecurityProfileInput) (*CreateSecurityProfileOutput, error) {
@@ -2097,14 +2097,13 @@ const opCreateTaskTemplate = "CreateTaskTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTaskTemplateRequest method.
+//	req, resp := client.CreateTaskTemplateRequest(params)
 //
-//    // Example sending a request using the CreateTaskTemplateRequest method.
-//    req, resp := client.CreateTaskTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateTaskTemplate
 func (c *Connect) CreateTaskTemplateRequest(input *CreateTaskTemplateInput) (req *request.Request, output *CreateTaskTemplateOutput) {
@@ -2135,22 +2134,23 @@ func (c *Connect) CreateTaskTemplateRequest(input *CreateTaskTemplateInput) (req
 // API operation CreateTaskTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * PropertyValidationException
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - PropertyValidationException
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ServiceQuotaExceededException
-//   The service quota has been exceeded.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateTaskTemplate
 func (c *Connect) CreateTaskTemplate(input *CreateTaskTemplateInput) (*CreateTaskTemplateOutput, error) {
@@ -2190,14 +2190,13 @@ const opCreateUseCase = "CreateUseCase"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateUseCaseRequest method.
+//	req, resp := client.CreateUseCaseRequest(params)
 //
-//    // Example sending a request using the CreateUseCaseRequest method.
-//    req, resp := client.CreateUseCaseRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateUseCase
 func (c *Connect) CreateUseCaseRequest(input *CreateUseCaseInput) (req *request.Request, output *CreateUseCaseOutput) {
@@ -2228,20 +2227,21 @@ func (c *Connect) CreateUseCaseRequest(input *CreateUseCaseInput) (req *request.
 // API operation CreateUseCase for usage and error information.
 //
 // Returned Error Types:
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateUseCase
 func (c *Connect) CreateUseCase(input *CreateUseCaseInput) (*CreateUseCaseOutput, error) {
@@ -2281,14 +2281,13 @@ const opCreateUser = "CreateUser"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateUserRequest method.
+//	req, resp := client.CreateUserRequest(params)
 //
-//    // Example sending a request using the CreateUserRequest method.
-//    req, resp := client.CreateUserRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateUser
 func (c *Connect) CreateUserRequest(input *CreateUserInput) (req *request.Request, output *CreateUserOutput) {
@@ -2323,26 +2322,27 @@ func (c *Connect) CreateUserRequest(input *CreateUserInput) (req *request.Reques
 // API operation CreateUser for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateUser
 func (c *Connect) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
@@ -2382,14 +2382,13 @@ const opCreateUserHierarchyGroup = "CreateUserHierarchyGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateUserHierarchyGroupRequest method.
+//	req, resp := client.CreateUserHierarchyGroupRequest(params)
 //
-//    // Example sending a request using the CreateUserHierarchyGroupRequest method.
-//    req, resp := client.CreateUserHierarchyGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateUserHierarchyGroup
 func (c *Connect) CreateUserHierarchyGroupRequest(input *CreateUserHierarchyGroupInput) (req *request.Request, output *CreateUserHierarchyGroupOutput) {
@@ -2420,26 +2419,27 @@ func (c *Connect) CreateUserHierarchyGroupRequest(input *CreateUserHierarchyGrou
 // API operation CreateUserHierarchyGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateUserHierarchyGroup
 func (c *Connect) CreateUserHierarchyGroup(input *CreateUserHierarchyGroupInput) (*CreateUserHierarchyGroupOutput, error) {
@@ -2479,14 +2479,13 @@ const opCreateVocabulary = "CreateVocabulary"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateVocabularyRequest method.
+//	req, resp := client.CreateVocabularyRequest(params)
 //
-//    // Example sending a request using the CreateVocabularyRequest method.
-//    req, resp := client.CreateVocabularyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateVocabulary
 func (c *Connect) CreateVocabularyRequest(input *CreateVocabularyInput) (req *request.Request, output *CreateVocabularyOutput) {
@@ -2520,26 +2519,27 @@ func (c *Connect) CreateVocabularyRequest(input *CreateVocabularyInput) (req *re
 // API operation CreateVocabulary for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * ResourceConflictException
-//   A resource already has that name.
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
-//   * ServiceQuotaExceededException
-//   The service quota has been exceeded.
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateVocabulary
 func (c *Connect) CreateVocabulary(input *CreateVocabularyInput) (*CreateVocabularyOutput, error) {
@@ -2579,14 +2579,13 @@ const opDeleteContactFlow = "DeleteContactFlow"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteContactFlowRequest method.
+//	req, resp := client.DeleteContactFlowRequest(params)
 //
-//    // Example sending a request using the DeleteContactFlowRequest method.
-//    req, resp := client.DeleteContactFlowRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteContactFlow
 func (c *Connect) DeleteContactFlowRequest(input *DeleteContactFlowInput) (req *request.Request, output *DeleteContactFlowOutput) {
@@ -2618,23 +2617,24 @@ func (c *Connect) DeleteContactFlowRequest(input *DeleteContactFlowInput) (req *
 // API operation DeleteContactFlow for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteContactFlow
 func (c *Connect) DeleteContactFlow(input *DeleteContactFlowInput) (*DeleteContactFlowOutput, error) {
@@ -2674,14 +2674,13 @@ const opDeleteContactFlowModule = "DeleteContactFlowModule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteContactFlowModuleRequest method.
+//	req, resp := client.DeleteContactFlowModuleRequest(params)
 //
-//    // Example sending a request using the DeleteContactFlowModuleRequest method.
-//    req, resp := client.DeleteContactFlowModuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteContactFlowModule
 func (c *Connect) DeleteContactFlowModuleRequest(input *DeleteContactFlowModuleInput) (req *request.Request, output *DeleteContactFlowModuleOutput) {
@@ -2713,23 +2712,24 @@ func (c *Connect) DeleteContactFlowModuleRequest(input *DeleteContactFlowModuleI
 // API operation DeleteContactFlowModule for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteContactFlowModule
 func (c *Connect) DeleteContactFlowModule(input *DeleteContactFlowModuleInput) (*DeleteContactFlowModuleOutput, error) {
@@ -2769,14 +2769,13 @@ const opDeleteHoursOfOperation = "DeleteHoursOfOperation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteHoursOfOperationRequest method.
+//	req, resp := client.DeleteHoursOfOperationRequest(params)
 //
-//    // Example sending a request using the DeleteHoursOfOperationRequest method.
-//    req, resp := client.DeleteHoursOfOperationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteHoursOfOperation
 func (c *Connect) DeleteHoursOfOperationRequest(input *DeleteHoursOfOperationInput) (req *request.Request, output *DeleteHoursOfOperationOutput) {
@@ -2810,20 +2809,21 @@ func (c *Connect) DeleteHoursOfOperationRequest(input *DeleteHoursOfOperationInp
 // API operation DeleteHoursOfOperation for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteHoursOfOperation
 func (c *Connect) DeleteHoursOfOperation(input *DeleteHoursOfOperationInput) (*DeleteHoursOfOperationOutput, error) {
@@ -2863,14 +2863,13 @@ const opDeleteInstance = "DeleteInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteInstanceRequest method.
+//	req, resp := client.DeleteInstanceRequest(params)
 //
-//    // Example sending a request using the DeleteInstanceRequest method.
-//    req, resp := client.DeleteInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteInstance
 func (c *Connect) DeleteInstanceRequest(input *DeleteInstanceInput) (req *request.Request, output *DeleteInstanceOutput) {
@@ -2910,14 +2909,15 @@ func (c *Connect) DeleteInstanceRequest(input *DeleteInstanceInput) (req *reques
 // API operation DeleteInstance for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - InvalidRequestException
+//     The request is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteInstance
 func (c *Connect) DeleteInstance(input *DeleteInstanceInput) (*DeleteInstanceOutput, error) {
@@ -2957,14 +2957,13 @@ const opDeleteIntegrationAssociation = "DeleteIntegrationAssociation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteIntegrationAssociationRequest method.
+//	req, resp := client.DeleteIntegrationAssociationRequest(params)
 //
-//    // Example sending a request using the DeleteIntegrationAssociationRequest method.
-//    req, resp := client.DeleteIntegrationAssociationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteIntegrationAssociation
 func (c *Connect) DeleteIntegrationAssociationRequest(input *DeleteIntegrationAssociationInput) (req *request.Request, output *DeleteIntegrationAssociationOutput) {
@@ -2997,17 +2996,18 @@ func (c *Connect) DeleteIntegrationAssociationRequest(input *DeleteIntegrationAs
 // API operation DeleteIntegrationAssociation for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteIntegrationAssociation
 func (c *Connect) DeleteIntegrationAssociation(input *DeleteIntegrationAssociationInput) (*DeleteIntegrationAssociationOutput, error) {
@@ -3047,14 +3047,13 @@ const opDeleteQuickConnect = "DeleteQuickConnect"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteQuickConnectRequest method.
+//	req, resp := client.DeleteQuickConnectRequest(params)
 //
-//    // Example sending a request using the DeleteQuickConnectRequest method.
-//    req, resp := client.DeleteQuickConnectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteQuickConnect
 func (c *Connect) DeleteQuickConnectRequest(input *DeleteQuickConnectInput) (req *request.Request, output *DeleteQuickConnectOutput) {
@@ -3086,20 +3085,21 @@ func (c *Connect) DeleteQuickConnectRequest(input *DeleteQuickConnectInput) (req
 // API operation DeleteQuickConnect for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteQuickConnect
 func (c *Connect) DeleteQuickConnect(input *DeleteQuickConnectInput) (*DeleteQuickConnectOutput, error) {
@@ -3139,14 +3139,13 @@ const opDeleteSecurityProfile = "DeleteSecurityProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSecurityProfileRequest method.
+//	req, resp := client.DeleteSecurityProfileRequest(params)
 //
-//    // Example sending a request using the DeleteSecurityProfileRequest method.
-//    req, resp := client.DeleteSecurityProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteSecurityProfile
 func (c *Connect) DeleteSecurityProfileRequest(input *DeleteSecurityProfileInput) (req *request.Request, output *DeleteSecurityProfileOutput) {
@@ -3180,26 +3179,27 @@ func (c *Connect) DeleteSecurityProfileRequest(input *DeleteSecurityProfileInput
 // API operation DeleteSecurityProfile for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ResourceInUseException
-//   That resource is already in use. Please try another.
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteSecurityProfile
 func (c *Connect) DeleteSecurityProfile(input *DeleteSecurityProfileInput) (*DeleteSecurityProfileOutput, error) {
@@ -3239,14 +3239,13 @@ const opDeleteTaskTemplate = "DeleteTaskTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteTaskTemplateRequest method.
+//	req, resp := client.DeleteTaskTemplateRequest(params)
 //
-//    // Example sending a request using the DeleteTaskTemplateRequest method.
-//    req, resp := client.DeleteTaskTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteTaskTemplate
 func (c *Connect) DeleteTaskTemplateRequest(input *DeleteTaskTemplateInput) (req *request.Request, output *DeleteTaskTemplateOutput) {
@@ -3278,20 +3277,21 @@ func (c *Connect) DeleteTaskTemplateRequest(input *DeleteTaskTemplateInput) (req
 // API operation DeleteTaskTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteTaskTemplate
 func (c *Connect) DeleteTaskTemplate(input *DeleteTaskTemplateInput) (*DeleteTaskTemplateOutput, error) {
@@ -3331,14 +3331,13 @@ const opDeleteUseCase = "DeleteUseCase"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteUseCaseRequest method.
+//	req, resp := client.DeleteUseCaseRequest(params)
 //
-//    // Example sending a request using the DeleteUseCaseRequest method.
-//    req, resp := client.DeleteUseCaseRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteUseCase
 func (c *Connect) DeleteUseCaseRequest(input *DeleteUseCaseInput) (req *request.Request, output *DeleteUseCaseOutput) {
@@ -3370,17 +3369,18 @@ func (c *Connect) DeleteUseCaseRequest(input *DeleteUseCaseInput) (req *request.
 // API operation DeleteUseCase for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteUseCase
 func (c *Connect) DeleteUseCase(input *DeleteUseCaseInput) (*DeleteUseCaseOutput, error) {
@@ -3420,14 +3420,13 @@ const opDeleteUser = "DeleteUser"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteUserRequest method.
+//	req, resp := client.DeleteUserRequest(params)
 //
-//    // Example sending a request using the DeleteUserRequest method.
-//    req, resp := client.DeleteUserRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteUser
 func (c *Connect) DeleteUserRequest(input *DeleteUserInput) (req *request.Request, output *DeleteUserOutput) {
@@ -3463,20 +3462,21 @@ func (c *Connect) DeleteUserRequest(input *DeleteUserInput) (req *request.Reques
 // API operation DeleteUser for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteUser
 func (c *Connect) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
@@ -3516,14 +3516,13 @@ const opDeleteUserHierarchyGroup = "DeleteUserHierarchyGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteUserHierarchyGroupRequest method.
+//	req, resp := client.DeleteUserHierarchyGroupRequest(params)
 //
-//    // Example sending a request using the DeleteUserHierarchyGroupRequest method.
-//    req, resp := client.DeleteUserHierarchyGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteUserHierarchyGroup
 func (c *Connect) DeleteUserHierarchyGroupRequest(input *DeleteUserHierarchyGroupInput) (req *request.Request, output *DeleteUserHierarchyGroupOutput) {
@@ -3556,23 +3555,24 @@ func (c *Connect) DeleteUserHierarchyGroupRequest(input *DeleteUserHierarchyGrou
 // API operation DeleteUserHierarchyGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ResourceInUseException
-//   That resource is already in use. Please try another.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteUserHierarchyGroup
 func (c *Connect) DeleteUserHierarchyGroup(input *DeleteUserHierarchyGroupInput) (*DeleteUserHierarchyGroupOutput, error) {
@@ -3612,14 +3612,13 @@ const opDeleteVocabulary = "DeleteVocabulary"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteVocabularyRequest method.
+//	req, resp := client.DeleteVocabularyRequest(params)
 //
-//    // Example sending a request using the DeleteVocabularyRequest method.
-//    req, resp := client.DeleteVocabularyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteVocabulary
 func (c *Connect) DeleteVocabularyRequest(input *DeleteVocabularyInput) (req *request.Request, output *DeleteVocabularyOutput) {
@@ -3650,23 +3649,24 @@ func (c *Connect) DeleteVocabularyRequest(input *DeleteVocabularyInput) (req *re
 // API operation DeleteVocabulary for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * ResourceInUseException
-//   That resource is already in use. Please try another.
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteVocabulary
 func (c *Connect) DeleteVocabulary(input *DeleteVocabularyInput) (*DeleteVocabularyOutput, error) {
@@ -3706,14 +3706,13 @@ const opDescribeAgentStatus = "DescribeAgentStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAgentStatusRequest method.
+//	req, resp := client.DescribeAgentStatusRequest(params)
 //
-//    // Example sending a request using the DescribeAgentStatusRequest method.
-//    req, resp := client.DescribeAgentStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeAgentStatus
 func (c *Connect) DescribeAgentStatusRequest(input *DescribeAgentStatusInput) (req *request.Request, output *DescribeAgentStatusOutput) {
@@ -3746,20 +3745,21 @@ func (c *Connect) DescribeAgentStatusRequest(input *DescribeAgentStatusInput) (r
 // API operation DescribeAgentStatus for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeAgentStatus
 func (c *Connect) DescribeAgentStatus(input *DescribeAgentStatusInput) (*DescribeAgentStatusOutput, error) {
@@ -3799,14 +3799,13 @@ const opDescribeContact = "DescribeContact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeContactRequest method.
+//	req, resp := client.DescribeContactRequest(params)
 //
-//    // Example sending a request using the DescribeContactRequest method.
-//    req, resp := client.DescribeContactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContact
 func (c *Connect) DescribeContactRequest(input *DescribeContactInput) (req *request.Request, output *DescribeContactOutput) {
@@ -3842,20 +3841,21 @@ func (c *Connect) DescribeContactRequest(input *DescribeContactInput) (req *requ
 // API operation DescribeContact for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContact
 func (c *Connect) DescribeContact(input *DescribeContactInput) (*DescribeContactOutput, error) {
@@ -3895,14 +3895,13 @@ const opDescribeContactFlow = "DescribeContactFlow"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeContactFlowRequest method.
+//	req, resp := client.DescribeContactFlowRequest(params)
 //
-//    // Example sending a request using the DescribeContactFlowRequest method.
-//    req, resp := client.DescribeContactFlowRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContactFlow
 func (c *Connect) DescribeContactFlowRequest(input *DescribeContactFlowInput) (req *request.Request, output *DescribeContactFlowOutput) {
@@ -3936,23 +3935,24 @@ func (c *Connect) DescribeContactFlowRequest(input *DescribeContactFlowInput) (r
 // API operation DescribeContactFlow for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ContactFlowNotPublishedException
-//   The contact flow has not been published.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ContactFlowNotPublishedException
+//     The contact flow has not been published.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContactFlow
 func (c *Connect) DescribeContactFlow(input *DescribeContactFlowInput) (*DescribeContactFlowOutput, error) {
@@ -3992,14 +3992,13 @@ const opDescribeContactFlowModule = "DescribeContactFlowModule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeContactFlowModuleRequest method.
+//	req, resp := client.DescribeContactFlowModuleRequest(params)
 //
-//    // Example sending a request using the DescribeContactFlowModuleRequest method.
-//    req, resp := client.DescribeContactFlowModuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContactFlowModule
 func (c *Connect) DescribeContactFlowModuleRequest(input *DescribeContactFlowModuleInput) (req *request.Request, output *DescribeContactFlowModuleOutput) {
@@ -4030,23 +4029,24 @@ func (c *Connect) DescribeContactFlowModuleRequest(input *DescribeContactFlowMod
 // API operation DescribeContactFlowModule for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContactFlowModule
 func (c *Connect) DescribeContactFlowModule(input *DescribeContactFlowModuleInput) (*DescribeContactFlowModuleOutput, error) {
@@ -4086,14 +4086,13 @@ const opDescribeHoursOfOperation = "DescribeHoursOfOperation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeHoursOfOperationRequest method.
+//	req, resp := client.DescribeHoursOfOperationRequest(params)
 //
-//    // Example sending a request using the DescribeHoursOfOperationRequest method.
-//    req, resp := client.DescribeHoursOfOperationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeHoursOfOperation
 func (c *Connect) DescribeHoursOfOperationRequest(input *DescribeHoursOfOperationInput) (req *request.Request, output *DescribeHoursOfOperationOutput) {
@@ -4126,20 +4125,21 @@ func (c *Connect) DescribeHoursOfOperationRequest(input *DescribeHoursOfOperatio
 // API operation DescribeHoursOfOperation for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeHoursOfOperation
 func (c *Connect) DescribeHoursOfOperation(input *DescribeHoursOfOperationInput) (*DescribeHoursOfOperationOutput, error) {
@@ -4179,14 +4179,13 @@ const opDescribeInstance = "DescribeInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeInstanceRequest method.
+//	req, resp := client.DescribeInstanceRequest(params)
 //
-//    // Example sending a request using the DescribeInstanceRequest method.
-//    req, resp := client.DescribeInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeInstance
 func (c *Connect) DescribeInstanceRequest(input *DescribeInstanceInput) (req *request.Request, output *DescribeInstanceOutput) {
@@ -4224,14 +4223,15 @@ func (c *Connect) DescribeInstanceRequest(input *DescribeInstanceInput) (req *re
 // API operation DescribeInstance for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeInstance
 func (c *Connect) DescribeInstance(input *DescribeInstanceInput) (*DescribeInstanceOutput, error) {
@@ -4271,14 +4271,13 @@ const opDescribeInstanceAttribute = "DescribeInstanceAttribute"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeInstanceAttributeRequest method.
+//	req, resp := client.DescribeInstanceAttributeRequest(params)
 //
-//    // Example sending a request using the DescribeInstanceAttributeRequest method.
-//    req, resp := client.DescribeInstanceAttributeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeInstanceAttribute
 func (c *Connect) DescribeInstanceAttributeRequest(input *DescribeInstanceAttributeInput) (req *request.Request, output *DescribeInstanceAttributeOutput) {
@@ -4311,20 +4310,21 @@ func (c *Connect) DescribeInstanceAttributeRequest(input *DescribeInstanceAttrib
 // API operation DescribeInstanceAttribute for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeInstanceAttribute
 func (c *Connect) DescribeInstanceAttribute(input *DescribeInstanceAttributeInput) (*DescribeInstanceAttributeOutput, error) {
@@ -4364,14 +4364,13 @@ const opDescribeInstanceStorageConfig = "DescribeInstanceStorageConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeInstanceStorageConfigRequest method.
+//	req, resp := client.DescribeInstanceStorageConfigRequest(params)
 //
-//    // Example sending a request using the DescribeInstanceStorageConfigRequest method.
-//    req, resp := client.DescribeInstanceStorageConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeInstanceStorageConfig
 func (c *Connect) DescribeInstanceStorageConfigRequest(input *DescribeInstanceStorageConfigInput) (req *request.Request, output *DescribeInstanceStorageConfigOutput) {
@@ -4405,20 +4404,21 @@ func (c *Connect) DescribeInstanceStorageConfigRequest(input *DescribeInstanceSt
 // API operation DescribeInstanceStorageConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeInstanceStorageConfig
 func (c *Connect) DescribeInstanceStorageConfig(input *DescribeInstanceStorageConfigInput) (*DescribeInstanceStorageConfigOutput, error) {
@@ -4458,14 +4458,13 @@ const opDescribePhoneNumber = "DescribePhoneNumber"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePhoneNumberRequest method.
+//	req, resp := client.DescribePhoneNumberRequest(params)
 //
-//    // Example sending a request using the DescribePhoneNumberRequest method.
-//    req, resp := client.DescribePhoneNumberRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribePhoneNumber
 func (c *Connect) DescribePhoneNumberRequest(input *DescribePhoneNumberInput) (req *request.Request, output *DescribePhoneNumberOutput) {
@@ -4497,20 +4496,21 @@ func (c *Connect) DescribePhoneNumberRequest(input *DescribePhoneNumberInput) (r
 // API operation DescribePhoneNumber for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribePhoneNumber
 func (c *Connect) DescribePhoneNumber(input *DescribePhoneNumberInput) (*DescribePhoneNumberOutput, error) {
@@ -4550,14 +4550,13 @@ const opDescribeQueue = "DescribeQueue"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeQueueRequest method.
+//	req, resp := client.DescribeQueueRequest(params)
 //
-//    // Example sending a request using the DescribeQueueRequest method.
-//    req, resp := client.DescribeQueueRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeQueue
 func (c *Connect) DescribeQueueRequest(input *DescribeQueueInput) (req *request.Request, output *DescribeQueueOutput) {
@@ -4590,20 +4589,21 @@ func (c *Connect) DescribeQueueRequest(input *DescribeQueueInput) (req *request.
 // API operation DescribeQueue for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeQueue
 func (c *Connect) DescribeQueue(input *DescribeQueueInput) (*DescribeQueueOutput, error) {
@@ -4643,14 +4643,13 @@ const opDescribeQuickConnect = "DescribeQuickConnect"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeQuickConnectRequest method.
+//	req, resp := client.DescribeQuickConnectRequest(params)
 //
-//    // Example sending a request using the DescribeQuickConnectRequest method.
-//    req, resp := client.DescribeQuickConnectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeQuickConnect
 func (c *Connect) DescribeQuickConnectRequest(input *DescribeQuickConnectInput) (req *request.Request, output *DescribeQuickConnectOutput) {
@@ -4681,20 +4680,21 @@ func (c *Connect) DescribeQuickConnectRequest(input *DescribeQuickConnectInput) 
 // API operation DescribeQuickConnect for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeQuickConnect
 func (c *Connect) DescribeQuickConnect(input *DescribeQuickConnectInput) (*DescribeQuickConnectOutput, error) {
@@ -4734,14 +4734,13 @@ const opDescribeRoutingProfile = "DescribeRoutingProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeRoutingProfileRequest method.
+//	req, resp := client.DescribeRoutingProfileRequest(params)
 //
-//    // Example sending a request using the DescribeRoutingProfileRequest method.
-//    req, resp := client.DescribeRoutingProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeRoutingProfile
 func (c *Connect) DescribeRoutingProfileRequest(input *DescribeRoutingProfileInput) (req *request.Request, output *DescribeRoutingProfileOutput) {
@@ -4772,20 +4771,21 @@ func (c *Connect) DescribeRoutingProfileRequest(input *DescribeRoutingProfileInp
 // API operation DescribeRoutingProfile for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeRoutingProfile
 func (c *Connect) DescribeRoutingProfile(input *DescribeRoutingProfileInput) (*DescribeRoutingProfileOutput, error) {
@@ -4825,14 +4825,13 @@ const opDescribeSecurityProfile = "DescribeSecurityProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSecurityProfileRequest method.
+//	req, resp := client.DescribeSecurityProfileRequest(params)
 //
-//    // Example sending a request using the DescribeSecurityProfileRequest method.
-//    req, resp := client.DescribeSecurityProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeSecurityProfile
 func (c *Connect) DescribeSecurityProfileRequest(input *DescribeSecurityProfileInput) (req *request.Request, output *DescribeSecurityProfileOutput) {
@@ -4865,20 +4864,21 @@ func (c *Connect) DescribeSecurityProfileRequest(input *DescribeSecurityProfileI
 // API operation DescribeSecurityProfile for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeSecurityProfile
 func (c *Connect) DescribeSecurityProfile(input *DescribeSecurityProfileInput) (*DescribeSecurityProfileOutput, error) {
@@ -4918,14 +4918,13 @@ const opDescribeUser = "DescribeUser"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeUserRequest method.
+//	req, resp := client.DescribeUserRequest(params)
 //
-//    // Example sending a request using the DescribeUserRequest method.
-//    req, resp := client.DescribeUserRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeUser
 func (c *Connect) DescribeUserRequest(input *DescribeUserInput) (req *request.Request, output *DescribeUserOutput) {
@@ -4958,20 +4957,21 @@ func (c *Connect) DescribeUserRequest(input *DescribeUserInput) (req *request.Re
 // API operation DescribeUser for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeUser
 func (c *Connect) DescribeUser(input *DescribeUserInput) (*DescribeUserOutput, error) {
@@ -5011,14 +5011,13 @@ const opDescribeUserHierarchyGroup = "DescribeUserHierarchyGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeUserHierarchyGroupRequest method.
+//	req, resp := client.DescribeUserHierarchyGroupRequest(params)
 //
-//    // Example sending a request using the DescribeUserHierarchyGroupRequest method.
-//    req, resp := client.DescribeUserHierarchyGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeUserHierarchyGroup
 func (c *Connect) DescribeUserHierarchyGroupRequest(input *DescribeUserHierarchyGroupInput) (req *request.Request, output *DescribeUserHierarchyGroupOutput) {
@@ -5049,20 +5048,21 @@ func (c *Connect) DescribeUserHierarchyGroupRequest(input *DescribeUserHierarchy
 // API operation DescribeUserHierarchyGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeUserHierarchyGroup
 func (c *Connect) DescribeUserHierarchyGroup(input *DescribeUserHierarchyGroupInput) (*DescribeUserHierarchyGroupOutput, error) {
@@ -5102,14 +5102,13 @@ const opDescribeUserHierarchyStructure = "DescribeUserHierarchyStructure"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeUserHierarchyStructureRequest method.
+//	req, resp := client.DescribeUserHierarchyStructureRequest(params)
 //
-//    // Example sending a request using the DescribeUserHierarchyStructureRequest method.
-//    req, resp := client.DescribeUserHierarchyStructureRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeUserHierarchyStructure
 func (c *Connect) DescribeUserHierarchyStructureRequest(input *DescribeUserHierarchyStructureInput) (req *request.Request, output *DescribeUserHierarchyStructureOutput) {
@@ -5140,20 +5139,21 @@ func (c *Connect) DescribeUserHierarchyStructureRequest(input *DescribeUserHiera
 // API operation DescribeUserHierarchyStructure for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeUserHierarchyStructure
 func (c *Connect) DescribeUserHierarchyStructure(input *DescribeUserHierarchyStructureInput) (*DescribeUserHierarchyStructureOutput, error) {
@@ -5193,14 +5193,13 @@ const opDescribeVocabulary = "DescribeVocabulary"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeVocabularyRequest method.
+//	req, resp := client.DescribeVocabularyRequest(params)
 //
-//    // Example sending a request using the DescribeVocabularyRequest method.
-//    req, resp := client.DescribeVocabularyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeVocabulary
 func (c *Connect) DescribeVocabularyRequest(input *DescribeVocabularyInput) (req *request.Request, output *DescribeVocabularyOutput) {
@@ -5231,20 +5230,21 @@ func (c *Connect) DescribeVocabularyRequest(input *DescribeVocabularyInput) (req
 // API operation DescribeVocabulary for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeVocabulary
 func (c *Connect) DescribeVocabulary(input *DescribeVocabularyInput) (*DescribeVocabularyOutput, error) {
@@ -5284,14 +5284,13 @@ const opDisassociateApprovedOrigin = "DisassociateApprovedOrigin"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateApprovedOriginRequest method.
+//	req, resp := client.DisassociateApprovedOriginRequest(params)
 //
-//    // Example sending a request using the DisassociateApprovedOriginRequest method.
-//    req, resp := client.DisassociateApprovedOriginRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateApprovedOrigin
 func (c *Connect) DisassociateApprovedOriginRequest(input *DisassociateApprovedOriginInput) (req *request.Request, output *DisassociateApprovedOriginOutput) {
@@ -5325,20 +5324,21 @@ func (c *Connect) DisassociateApprovedOriginRequest(input *DisassociateApprovedO
 // API operation DisassociateApprovedOrigin for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateApprovedOrigin
 func (c *Connect) DisassociateApprovedOrigin(input *DisassociateApprovedOriginInput) (*DisassociateApprovedOriginOutput, error) {
@@ -5378,14 +5378,13 @@ const opDisassociateBot = "DisassociateBot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateBotRequest method.
+//	req, resp := client.DisassociateBotRequest(params)
 //
-//    // Example sending a request using the DisassociateBotRequest method.
-//    req, resp := client.DisassociateBotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateBot
 func (c *Connect) DisassociateBotRequest(input *DisassociateBotInput) (req *request.Request, output *DisassociateBotOutput) {
@@ -5420,17 +5419,18 @@ func (c *Connect) DisassociateBotRequest(input *DisassociateBotInput) (req *requ
 // API operation DisassociateBot for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateBot
 func (c *Connect) DisassociateBot(input *DisassociateBotInput) (*DisassociateBotOutput, error) {
@@ -5470,14 +5470,13 @@ const opDisassociateInstanceStorageConfig = "DisassociateInstanceStorageConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateInstanceStorageConfigRequest method.
+//	req, resp := client.DisassociateInstanceStorageConfigRequest(params)
 //
-//    // Example sending a request using the DisassociateInstanceStorageConfigRequest method.
-//    req, resp := client.DisassociateInstanceStorageConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateInstanceStorageConfig
 func (c *Connect) DisassociateInstanceStorageConfigRequest(input *DisassociateInstanceStorageConfigInput) (req *request.Request, output *DisassociateInstanceStorageConfigOutput) {
@@ -5512,20 +5511,21 @@ func (c *Connect) DisassociateInstanceStorageConfigRequest(input *DisassociateIn
 // API operation DisassociateInstanceStorageConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateInstanceStorageConfig
 func (c *Connect) DisassociateInstanceStorageConfig(input *DisassociateInstanceStorageConfigInput) (*DisassociateInstanceStorageConfigOutput, error) {
@@ -5565,14 +5565,13 @@ const opDisassociateLambdaFunction = "DisassociateLambdaFunction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateLambdaFunctionRequest method.
+//	req, resp := client.DisassociateLambdaFunctionRequest(params)
 //
-//    // Example sending a request using the DisassociateLambdaFunctionRequest method.
-//    req, resp := client.DisassociateLambdaFunctionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateLambdaFunction
 func (c *Connect) DisassociateLambdaFunctionRequest(input *DisassociateLambdaFunctionInput) (req *request.Request, output *DisassociateLambdaFunctionOutput) {
@@ -5607,20 +5606,21 @@ func (c *Connect) DisassociateLambdaFunctionRequest(input *DisassociateLambdaFun
 // API operation DisassociateLambdaFunction for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateLambdaFunction
 func (c *Connect) DisassociateLambdaFunction(input *DisassociateLambdaFunctionInput) (*DisassociateLambdaFunctionOutput, error) {
@@ -5660,14 +5660,13 @@ const opDisassociateLexBot = "DisassociateLexBot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateLexBotRequest method.
+//	req, resp := client.DisassociateLexBotRequest(params)
 //
-//    // Example sending a request using the DisassociateLexBotRequest method.
-//    req, resp := client.DisassociateLexBotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateLexBot
 func (c *Connect) DisassociateLexBotRequest(input *DisassociateLexBotInput) (req *request.Request, output *DisassociateLexBotOutput) {
@@ -5702,20 +5701,21 @@ func (c *Connect) DisassociateLexBotRequest(input *DisassociateLexBotInput) (req
 // API operation DisassociateLexBot for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateLexBot
 func (c *Connect) DisassociateLexBot(input *DisassociateLexBotInput) (*DisassociateLexBotOutput, error) {
@@ -5755,14 +5755,13 @@ const opDisassociatePhoneNumberContactFlow = "DisassociatePhoneNumberContactFlow
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociatePhoneNumberContactFlowRequest method.
+//	req, resp := client.DisassociatePhoneNumberContactFlowRequest(params)
 //
-//    // Example sending a request using the DisassociatePhoneNumberContactFlowRequest method.
-//    req, resp := client.DisassociatePhoneNumberContactFlowRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociatePhoneNumberContactFlow
 func (c *Connect) DisassociatePhoneNumberContactFlowRequest(input *DisassociatePhoneNumberContactFlowInput) (req *request.Request, output *DisassociatePhoneNumberContactFlowOutput) {
@@ -5795,20 +5794,21 @@ func (c *Connect) DisassociatePhoneNumberContactFlowRequest(input *DisassociateP
 // API operation DisassociatePhoneNumberContactFlow for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociatePhoneNumberContactFlow
 func (c *Connect) DisassociatePhoneNumberContactFlow(input *DisassociatePhoneNumberContactFlowInput) (*DisassociatePhoneNumberContactFlowOutput, error) {
@@ -5848,14 +5848,13 @@ const opDisassociateQueueQuickConnects = "DisassociateQueueQuickConnects"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateQueueQuickConnectsRequest method.
+//	req, resp := client.DisassociateQueueQuickConnectsRequest(params)
 //
-//    // Example sending a request using the DisassociateQueueQuickConnectsRequest method.
-//    req, resp := client.DisassociateQueueQuickConnectsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateQueueQuickConnects
 func (c *Connect) DisassociateQueueQuickConnectsRequest(input *DisassociateQueueQuickConnectsInput) (req *request.Request, output *DisassociateQueueQuickConnectsOutput) {
@@ -5889,20 +5888,21 @@ func (c *Connect) DisassociateQueueQuickConnectsRequest(input *DisassociateQueue
 // API operation DisassociateQueueQuickConnects for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateQueueQuickConnects
 func (c *Connect) DisassociateQueueQuickConnects(input *DisassociateQueueQuickConnectsInput) (*DisassociateQueueQuickConnectsOutput, error) {
@@ -5942,14 +5942,13 @@ const opDisassociateRoutingProfileQueues = "DisassociateRoutingProfileQueues"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateRoutingProfileQueuesRequest method.
+//	req, resp := client.DisassociateRoutingProfileQueuesRequest(params)
 //
-//    // Example sending a request using the DisassociateRoutingProfileQueuesRequest method.
-//    req, resp := client.DisassociateRoutingProfileQueuesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateRoutingProfileQueues
 func (c *Connect) DisassociateRoutingProfileQueuesRequest(input *DisassociateRoutingProfileQueuesInput) (req *request.Request, output *DisassociateRoutingProfileQueuesOutput) {
@@ -5981,20 +5980,21 @@ func (c *Connect) DisassociateRoutingProfileQueuesRequest(input *DisassociateRou
 // API operation DisassociateRoutingProfileQueues for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateRoutingProfileQueues
 func (c *Connect) DisassociateRoutingProfileQueues(input *DisassociateRoutingProfileQueuesInput) (*DisassociateRoutingProfileQueuesOutput, error) {
@@ -6034,14 +6034,13 @@ const opDisassociateSecurityKey = "DisassociateSecurityKey"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateSecurityKeyRequest method.
+//	req, resp := client.DisassociateSecurityKeyRequest(params)
 //
-//    // Example sending a request using the DisassociateSecurityKeyRequest method.
-//    req, resp := client.DisassociateSecurityKeyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateSecurityKey
 func (c *Connect) DisassociateSecurityKeyRequest(input *DisassociateSecurityKeyInput) (req *request.Request, output *DisassociateSecurityKeyOutput) {
@@ -6075,20 +6074,21 @@ func (c *Connect) DisassociateSecurityKeyRequest(input *DisassociateSecurityKeyI
 // API operation DisassociateSecurityKey for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateSecurityKey
 func (c *Connect) DisassociateSecurityKey(input *DisassociateSecurityKeyInput) (*DisassociateSecurityKeyOutput, error) {
@@ -6128,14 +6128,13 @@ const opGetContactAttributes = "GetContactAttributes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetContactAttributesRequest method.
+//	req, resp := client.GetContactAttributesRequest(params)
 //
-//    // Example sending a request using the GetContactAttributesRequest method.
-//    req, resp := client.GetContactAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetContactAttributes
 func (c *Connect) GetContactAttributesRequest(input *GetContactAttributesInput) (req *request.Request, output *GetContactAttributesOutput) {
@@ -6166,14 +6165,15 @@ func (c *Connect) GetContactAttributesRequest(input *GetContactAttributesInput) 
 // API operation GetContactAttributes for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetContactAttributes
 func (c *Connect) GetContactAttributes(input *GetContactAttributesInput) (*GetContactAttributesOutput, error) {
@@ -6213,14 +6213,13 @@ const opGetCurrentMetricData = "GetCurrentMetricData"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCurrentMetricDataRequest method.
+//	req, resp := client.GetCurrentMetricDataRequest(params)
 //
-//    // Example sending a request using the GetCurrentMetricDataRequest method.
-//    req, resp := client.GetCurrentMetricDataRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetCurrentMetricData
 func (c *Connect) GetCurrentMetricDataRequest(input *GetCurrentMetricDataInput) (req *request.Request, output *GetCurrentMetricDataOutput) {
@@ -6260,20 +6259,21 @@ func (c *Connect) GetCurrentMetricDataRequest(input *GetCurrentMetricDataInput) 
 // API operation GetCurrentMetricData for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetCurrentMetricData
 func (c *Connect) GetCurrentMetricData(input *GetCurrentMetricDataInput) (*GetCurrentMetricDataOutput, error) {
@@ -6305,15 +6305,14 @@ func (c *Connect) GetCurrentMetricDataWithContext(ctx aws.Context, input *GetCur
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetCurrentMetricData operation.
-//    pageNum := 0
-//    err := client.GetCurrentMetricDataPages(params,
-//        func(page *connect.GetCurrentMetricDataOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetCurrentMetricData operation.
+//	pageNum := 0
+//	err := client.GetCurrentMetricDataPages(params,
+//	    func(page *connect.GetCurrentMetricDataOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) GetCurrentMetricDataPages(input *GetCurrentMetricDataInput, fn func(*GetCurrentMetricDataOutput, bool) bool) error {
 	return c.GetCurrentMetricDataPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6365,14 +6364,13 @@ const opGetCurrentUserData = "GetCurrentUserData"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCurrentUserDataRequest method.
+//	req, resp := client.GetCurrentUserDataRequest(params)
 //
-//    // Example sending a request using the GetCurrentUserDataRequest method.
-//    req, resp := client.GetCurrentUserDataRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetCurrentUserData
 func (c *Connect) GetCurrentUserDataRequest(input *GetCurrentUserDataInput) (req *request.Request, output *GetCurrentUserDataOutput) {
@@ -6409,20 +6407,21 @@ func (c *Connect) GetCurrentUserDataRequest(input *GetCurrentUserDataInput) (req
 // API operation GetCurrentUserData for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetCurrentUserData
 func (c *Connect) GetCurrentUserData(input *GetCurrentUserDataInput) (*GetCurrentUserDataOutput, error) {
@@ -6454,15 +6453,14 @@ func (c *Connect) GetCurrentUserDataWithContext(ctx aws.Context, input *GetCurre
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetCurrentUserData operation.
-//    pageNum := 0
-//    err := client.GetCurrentUserDataPages(params,
-//        func(page *connect.GetCurrentUserDataOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetCurrentUserData operation.
+//	pageNum := 0
+//	err := client.GetCurrentUserDataPages(params,
+//	    func(page *connect.GetCurrentUserDataOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) GetCurrentUserDataPages(input *GetCurrentUserDataInput, fn func(*GetCurrentUserDataOutput, bool) bool) error {
 	return c.GetCurrentUserDataPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6514,14 +6512,13 @@ const opGetFederationToken = "GetFederationToken"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetFederationTokenRequest method.
+//	req, resp := client.GetFederationTokenRequest(params)
 //
-//    // Example sending a request using the GetFederationTokenRequest method.
-//    req, resp := client.GetFederationTokenRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetFederationToken
 func (c *Connect) GetFederationTokenRequest(input *GetFederationTokenInput) (req *request.Request, output *GetFederationTokenOutput) {
@@ -6558,23 +6555,24 @@ func (c *Connect) GetFederationTokenRequest(input *GetFederationTokenInput) (req
 // API operation GetFederationToken for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * UserNotFoundException
-//   No user with the specified credentials was found in the Amazon Connect instance.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - UserNotFoundException
+//     No user with the specified credentials was found in the Amazon Connect instance.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetFederationToken
 func (c *Connect) GetFederationToken(input *GetFederationTokenInput) (*GetFederationTokenOutput, error) {
@@ -6614,14 +6612,13 @@ const opGetMetricData = "GetMetricData"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetMetricDataRequest method.
+//	req, resp := client.GetMetricDataRequest(params)
 //
-//    // Example sending a request using the GetMetricDataRequest method.
-//    req, resp := client.GetMetricDataRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetMetricData
 func (c *Connect) GetMetricDataRequest(input *GetMetricDataInput) (req *request.Request, output *GetMetricDataOutput) {
@@ -6662,20 +6659,21 @@ func (c *Connect) GetMetricDataRequest(input *GetMetricDataInput) (req *request.
 // API operation GetMetricData for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetMetricData
 func (c *Connect) GetMetricData(input *GetMetricDataInput) (*GetMetricDataOutput, error) {
@@ -6707,15 +6705,14 @@ func (c *Connect) GetMetricDataWithContext(ctx aws.Context, input *GetMetricData
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetMetricData operation.
-//    pageNum := 0
-//    err := client.GetMetricDataPages(params,
-//        func(page *connect.GetMetricDataOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetMetricData operation.
+//	pageNum := 0
+//	err := client.GetMetricDataPages(params,
+//	    func(page *connect.GetMetricDataOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) GetMetricDataPages(input *GetMetricDataInput, fn func(*GetMetricDataOutput, bool) bool) error {
 	return c.GetMetricDataPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6767,14 +6764,13 @@ const opGetTaskTemplate = "GetTaskTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetTaskTemplateRequest method.
+//	req, resp := client.GetTaskTemplateRequest(params)
 //
-//    // Example sending a request using the GetTaskTemplateRequest method.
-//    req, resp := client.GetTaskTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetTaskTemplate
 func (c *Connect) GetTaskTemplateRequest(input *GetTaskTemplateInput) (req *request.Request, output *GetTaskTemplateOutput) {
@@ -6806,20 +6802,21 @@ func (c *Connect) GetTaskTemplateRequest(input *GetTaskTemplateInput) (req *requ
 // API operation GetTaskTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetTaskTemplate
 func (c *Connect) GetTaskTemplate(input *GetTaskTemplateInput) (*GetTaskTemplateOutput, error) {
@@ -6859,14 +6856,13 @@ const opListAgentStatuses = "ListAgentStatuses"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAgentStatusesRequest method.
+//	req, resp := client.ListAgentStatusesRequest(params)
 //
-//    // Example sending a request using the ListAgentStatusesRequest method.
-//    req, resp := client.ListAgentStatusesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListAgentStatuses
 func (c *Connect) ListAgentStatusesRequest(input *ListAgentStatusesInput) (req *request.Request, output *ListAgentStatusesOutput) {
@@ -6905,20 +6901,21 @@ func (c *Connect) ListAgentStatusesRequest(input *ListAgentStatusesInput) (req *
 // API operation ListAgentStatuses for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListAgentStatuses
 func (c *Connect) ListAgentStatuses(input *ListAgentStatusesInput) (*ListAgentStatusesOutput, error) {
@@ -6950,15 +6947,14 @@ func (c *Connect) ListAgentStatusesWithContext(ctx aws.Context, input *ListAgent
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListAgentStatuses operation.
-//    pageNum := 0
-//    err := client.ListAgentStatusesPages(params,
-//        func(page *connect.ListAgentStatusesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListAgentStatuses operation.
+//	pageNum := 0
+//	err := client.ListAgentStatusesPages(params,
+//	    func(page *connect.ListAgentStatusesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListAgentStatusesPages(input *ListAgentStatusesInput, fn func(*ListAgentStatusesOutput, bool) bool) error {
 	return c.ListAgentStatusesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -7010,14 +7006,13 @@ const opListApprovedOrigins = "ListApprovedOrigins"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListApprovedOriginsRequest method.
+//	req, resp := client.ListApprovedOriginsRequest(params)
 //
-//    // Example sending a request using the ListApprovedOriginsRequest method.
-//    req, resp := client.ListApprovedOriginsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListApprovedOrigins
 func (c *Connect) ListApprovedOriginsRequest(input *ListApprovedOriginsInput) (req *request.Request, output *ListApprovedOriginsOutput) {
@@ -7056,20 +7051,21 @@ func (c *Connect) ListApprovedOriginsRequest(input *ListApprovedOriginsInput) (r
 // API operation ListApprovedOrigins for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListApprovedOrigins
 func (c *Connect) ListApprovedOrigins(input *ListApprovedOriginsInput) (*ListApprovedOriginsOutput, error) {
@@ -7101,15 +7097,14 @@ func (c *Connect) ListApprovedOriginsWithContext(ctx aws.Context, input *ListApp
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListApprovedOrigins operation.
-//    pageNum := 0
-//    err := client.ListApprovedOriginsPages(params,
-//        func(page *connect.ListApprovedOriginsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListApprovedOrigins operation.
+//	pageNum := 0
+//	err := client.ListApprovedOriginsPages(params,
+//	    func(page *connect.ListApprovedOriginsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListApprovedOriginsPages(input *ListApprovedOriginsInput, fn func(*ListApprovedOriginsOutput, bool) bool) error {
 	return c.ListApprovedOriginsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -7161,14 +7156,13 @@ const opListBots = "ListBots"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBotsRequest method.
+//	req, resp := client.ListBotsRequest(params)
 //
-//    // Example sending a request using the ListBotsRequest method.
-//    req, resp := client.ListBotsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListBots
 func (c *Connect) ListBotsRequest(input *ListBotsInput) (req *request.Request, output *ListBotsOutput) {
@@ -7208,17 +7202,18 @@ func (c *Connect) ListBotsRequest(input *ListBotsInput) (req *request.Request, o
 // API operation ListBots for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListBots
 func (c *Connect) ListBots(input *ListBotsInput) (*ListBotsOutput, error) {
@@ -7250,15 +7245,14 @@ func (c *Connect) ListBotsWithContext(ctx aws.Context, input *ListBotsInput, opt
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListBots operation.
-//    pageNum := 0
-//    err := client.ListBotsPages(params,
-//        func(page *connect.ListBotsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListBots operation.
+//	pageNum := 0
+//	err := client.ListBotsPages(params,
+//	    func(page *connect.ListBotsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListBotsPages(input *ListBotsInput, fn func(*ListBotsOutput, bool) bool) error {
 	return c.ListBotsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -7310,14 +7304,13 @@ const opListContactFlowModules = "ListContactFlowModules"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListContactFlowModulesRequest method.
+//	req, resp := client.ListContactFlowModulesRequest(params)
 //
-//    // Example sending a request using the ListContactFlowModulesRequest method.
-//    req, resp := client.ListContactFlowModulesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactFlowModules
 func (c *Connect) ListContactFlowModulesRequest(input *ListContactFlowModulesInput) (req *request.Request, output *ListContactFlowModulesOutput) {
@@ -7355,23 +7348,24 @@ func (c *Connect) ListContactFlowModulesRequest(input *ListContactFlowModulesInp
 // API operation ListContactFlowModules for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactFlowModules
 func (c *Connect) ListContactFlowModules(input *ListContactFlowModulesInput) (*ListContactFlowModulesOutput, error) {
@@ -7403,15 +7397,14 @@ func (c *Connect) ListContactFlowModulesWithContext(ctx aws.Context, input *List
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListContactFlowModules operation.
-//    pageNum := 0
-//    err := client.ListContactFlowModulesPages(params,
-//        func(page *connect.ListContactFlowModulesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListContactFlowModules operation.
+//	pageNum := 0
+//	err := client.ListContactFlowModulesPages(params,
+//	    func(page *connect.ListContactFlowModulesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListContactFlowModulesPages(input *ListContactFlowModulesInput, fn func(*ListContactFlowModulesOutput, bool) bool) error {
 	return c.ListContactFlowModulesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -7463,14 +7456,13 @@ const opListContactFlows = "ListContactFlows"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListContactFlowsRequest method.
+//	req, resp := client.ListContactFlowsRequest(params)
 //
-//    // Example sending a request using the ListContactFlowsRequest method.
-//    req, resp := client.ListContactFlowsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactFlows
 func (c *Connect) ListContactFlowsRequest(input *ListContactFlowsInput) (req *request.Request, output *ListContactFlowsOutput) {
@@ -7514,20 +7506,21 @@ func (c *Connect) ListContactFlowsRequest(input *ListContactFlowsInput) (req *re
 // API operation ListContactFlows for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactFlows
 func (c *Connect) ListContactFlows(input *ListContactFlowsInput) (*ListContactFlowsOutput, error) {
@@ -7559,15 +7552,14 @@ func (c *Connect) ListContactFlowsWithContext(ctx aws.Context, input *ListContac
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListContactFlows operation.
-//    pageNum := 0
-//    err := client.ListContactFlowsPages(params,
-//        func(page *connect.ListContactFlowsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListContactFlows operation.
+//	pageNum := 0
+//	err := client.ListContactFlowsPages(params,
+//	    func(page *connect.ListContactFlowsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListContactFlowsPages(input *ListContactFlowsInput, fn func(*ListContactFlowsOutput, bool) bool) error {
 	return c.ListContactFlowsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -7619,14 +7611,13 @@ const opListContactReferences = "ListContactReferences"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListContactReferencesRequest method.
+//	req, resp := client.ListContactReferencesRequest(params)
 //
-//    // Example sending a request using the ListContactReferencesRequest method.
-//    req, resp := client.ListContactReferencesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactReferences
 func (c *Connect) ListContactReferencesRequest(input *ListContactReferencesInput) (req *request.Request, output *ListContactReferencesOutput) {
@@ -7666,20 +7657,21 @@ func (c *Connect) ListContactReferencesRequest(input *ListContactReferencesInput
 // API operation ListContactReferences for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactReferences
 func (c *Connect) ListContactReferences(input *ListContactReferencesInput) (*ListContactReferencesOutput, error) {
@@ -7711,15 +7703,14 @@ func (c *Connect) ListContactReferencesWithContext(ctx aws.Context, input *ListC
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListContactReferences operation.
-//    pageNum := 0
-//    err := client.ListContactReferencesPages(params,
-//        func(page *connect.ListContactReferencesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListContactReferences operation.
+//	pageNum := 0
+//	err := client.ListContactReferencesPages(params,
+//	    func(page *connect.ListContactReferencesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListContactReferencesPages(input *ListContactReferencesInput, fn func(*ListContactReferencesOutput, bool) bool) error {
 	return c.ListContactReferencesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -7771,14 +7762,13 @@ const opListDefaultVocabularies = "ListDefaultVocabularies"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDefaultVocabulariesRequest method.
+//	req, resp := client.ListDefaultVocabulariesRequest(params)
 //
-//    // Example sending a request using the ListDefaultVocabulariesRequest method.
-//    req, resp := client.ListDefaultVocabulariesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListDefaultVocabularies
 func (c *Connect) ListDefaultVocabulariesRequest(input *ListDefaultVocabulariesInput) (req *request.Request, output *ListDefaultVocabulariesOutput) {
@@ -7815,17 +7805,18 @@ func (c *Connect) ListDefaultVocabulariesRequest(input *ListDefaultVocabulariesI
 // API operation ListDefaultVocabularies for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListDefaultVocabularies
 func (c *Connect) ListDefaultVocabularies(input *ListDefaultVocabulariesInput) (*ListDefaultVocabulariesOutput, error) {
@@ -7857,15 +7848,14 @@ func (c *Connect) ListDefaultVocabulariesWithContext(ctx aws.Context, input *Lis
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDefaultVocabularies operation.
-//    pageNum := 0
-//    err := client.ListDefaultVocabulariesPages(params,
-//        func(page *connect.ListDefaultVocabulariesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDefaultVocabularies operation.
+//	pageNum := 0
+//	err := client.ListDefaultVocabulariesPages(params,
+//	    func(page *connect.ListDefaultVocabulariesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListDefaultVocabulariesPages(input *ListDefaultVocabulariesInput, fn func(*ListDefaultVocabulariesOutput, bool) bool) error {
 	return c.ListDefaultVocabulariesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -7917,14 +7907,13 @@ const opListHoursOfOperations = "ListHoursOfOperations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListHoursOfOperationsRequest method.
+//	req, resp := client.ListHoursOfOperationsRequest(params)
 //
-//    // Example sending a request using the ListHoursOfOperationsRequest method.
-//    req, resp := client.ListHoursOfOperationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListHoursOfOperations
 func (c *Connect) ListHoursOfOperationsRequest(input *ListHoursOfOperationsInput) (req *request.Request, output *ListHoursOfOperationsOutput) {
@@ -7966,20 +7955,21 @@ func (c *Connect) ListHoursOfOperationsRequest(input *ListHoursOfOperationsInput
 // API operation ListHoursOfOperations for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListHoursOfOperations
 func (c *Connect) ListHoursOfOperations(input *ListHoursOfOperationsInput) (*ListHoursOfOperationsOutput, error) {
@@ -8011,15 +8001,14 @@ func (c *Connect) ListHoursOfOperationsWithContext(ctx aws.Context, input *ListH
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListHoursOfOperations operation.
-//    pageNum := 0
-//    err := client.ListHoursOfOperationsPages(params,
-//        func(page *connect.ListHoursOfOperationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListHoursOfOperations operation.
+//	pageNum := 0
+//	err := client.ListHoursOfOperationsPages(params,
+//	    func(page *connect.ListHoursOfOperationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListHoursOfOperationsPages(input *ListHoursOfOperationsInput, fn func(*ListHoursOfOperationsOutput, bool) bool) error {
 	return c.ListHoursOfOperationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -8071,14 +8060,13 @@ const opListInstanceAttributes = "ListInstanceAttributes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListInstanceAttributesRequest method.
+//	req, resp := client.ListInstanceAttributesRequest(params)
 //
-//    // Example sending a request using the ListInstanceAttributesRequest method.
-//    req, resp := client.ListInstanceAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListInstanceAttributes
 func (c *Connect) ListInstanceAttributesRequest(input *ListInstanceAttributesInput) (req *request.Request, output *ListInstanceAttributesOutput) {
@@ -8117,20 +8105,21 @@ func (c *Connect) ListInstanceAttributesRequest(input *ListInstanceAttributesInp
 // API operation ListInstanceAttributes for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListInstanceAttributes
 func (c *Connect) ListInstanceAttributes(input *ListInstanceAttributesInput) (*ListInstanceAttributesOutput, error) {
@@ -8162,15 +8151,14 @@ func (c *Connect) ListInstanceAttributesWithContext(ctx aws.Context, input *List
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListInstanceAttributes operation.
-//    pageNum := 0
-//    err := client.ListInstanceAttributesPages(params,
-//        func(page *connect.ListInstanceAttributesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListInstanceAttributes operation.
+//	pageNum := 0
+//	err := client.ListInstanceAttributesPages(params,
+//	    func(page *connect.ListInstanceAttributesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListInstanceAttributesPages(input *ListInstanceAttributesInput, fn func(*ListInstanceAttributesOutput, bool) bool) error {
 	return c.ListInstanceAttributesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -8222,14 +8210,13 @@ const opListInstanceStorageConfigs = "ListInstanceStorageConfigs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListInstanceStorageConfigsRequest method.
+//	req, resp := client.ListInstanceStorageConfigsRequest(params)
 //
-//    // Example sending a request using the ListInstanceStorageConfigsRequest method.
-//    req, resp := client.ListInstanceStorageConfigsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListInstanceStorageConfigs
 func (c *Connect) ListInstanceStorageConfigsRequest(input *ListInstanceStorageConfigsInput) (req *request.Request, output *ListInstanceStorageConfigsOutput) {
@@ -8269,20 +8256,21 @@ func (c *Connect) ListInstanceStorageConfigsRequest(input *ListInstanceStorageCo
 // API operation ListInstanceStorageConfigs for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListInstanceStorageConfigs
 func (c *Connect) ListInstanceStorageConfigs(input *ListInstanceStorageConfigsInput) (*ListInstanceStorageConfigsOutput, error) {
@@ -8314,15 +8302,14 @@ func (c *Connect) ListInstanceStorageConfigsWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListInstanceStorageConfigs operation.
-//    pageNum := 0
-//    err := client.ListInstanceStorageConfigsPages(params,
-//        func(page *connect.ListInstanceStorageConfigsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListInstanceStorageConfigs operation.
+//	pageNum := 0
+//	err := client.ListInstanceStorageConfigsPages(params,
+//	    func(page *connect.ListInstanceStorageConfigsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListInstanceStorageConfigsPages(input *ListInstanceStorageConfigsInput, fn func(*ListInstanceStorageConfigsOutput, bool) bool) error {
 	return c.ListInstanceStorageConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -8374,14 +8361,13 @@ const opListInstances = "ListInstances"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListInstancesRequest method.
+//	req, resp := client.ListInstancesRequest(params)
 //
-//    // Example sending a request using the ListInstancesRequest method.
-//    req, resp := client.ListInstancesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListInstances
 func (c *Connect) ListInstancesRequest(input *ListInstancesInput) (req *request.Request, output *ListInstancesOutput) {
@@ -8423,11 +8409,12 @@ func (c *Connect) ListInstancesRequest(input *ListInstancesInput) (req *request.
 // API operation ListInstances for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListInstances
 func (c *Connect) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, error) {
@@ -8459,15 +8446,14 @@ func (c *Connect) ListInstancesWithContext(ctx aws.Context, input *ListInstances
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListInstances operation.
-//    pageNum := 0
-//    err := client.ListInstancesPages(params,
-//        func(page *connect.ListInstancesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListInstances operation.
+//	pageNum := 0
+//	err := client.ListInstancesPages(params,
+//	    func(page *connect.ListInstancesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListInstancesPages(input *ListInstancesInput, fn func(*ListInstancesOutput, bool) bool) error {
 	return c.ListInstancesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -8519,14 +8505,13 @@ const opListIntegrationAssociations = "ListIntegrationAssociations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListIntegrationAssociationsRequest method.
+//	req, resp := client.ListIntegrationAssociationsRequest(params)
 //
-//    // Example sending a request using the ListIntegrationAssociationsRequest method.
-//    req, resp := client.ListIntegrationAssociationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListIntegrationAssociations
 func (c *Connect) ListIntegrationAssociationsRequest(input *ListIntegrationAssociationsInput) (req *request.Request, output *ListIntegrationAssociationsOutput) {
@@ -8564,17 +8549,18 @@ func (c *Connect) ListIntegrationAssociationsRequest(input *ListIntegrationAssoc
 // API operation ListIntegrationAssociations for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListIntegrationAssociations
 func (c *Connect) ListIntegrationAssociations(input *ListIntegrationAssociationsInput) (*ListIntegrationAssociationsOutput, error) {
@@ -8606,15 +8592,14 @@ func (c *Connect) ListIntegrationAssociationsWithContext(ctx aws.Context, input 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListIntegrationAssociations operation.
-//    pageNum := 0
-//    err := client.ListIntegrationAssociationsPages(params,
-//        func(page *connect.ListIntegrationAssociationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListIntegrationAssociations operation.
+//	pageNum := 0
+//	err := client.ListIntegrationAssociationsPages(params,
+//	    func(page *connect.ListIntegrationAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListIntegrationAssociationsPages(input *ListIntegrationAssociationsInput, fn func(*ListIntegrationAssociationsOutput, bool) bool) error {
 	return c.ListIntegrationAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -8666,14 +8651,13 @@ const opListLambdaFunctions = "ListLambdaFunctions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListLambdaFunctionsRequest method.
+//	req, resp := client.ListLambdaFunctionsRequest(params)
 //
-//    // Example sending a request using the ListLambdaFunctionsRequest method.
-//    req, resp := client.ListLambdaFunctionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListLambdaFunctions
 func (c *Connect) ListLambdaFunctionsRequest(input *ListLambdaFunctionsInput) (req *request.Request, output *ListLambdaFunctionsOutput) {
@@ -8713,20 +8697,21 @@ func (c *Connect) ListLambdaFunctionsRequest(input *ListLambdaFunctionsInput) (r
 // API operation ListLambdaFunctions for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListLambdaFunctions
 func (c *Connect) ListLambdaFunctions(input *ListLambdaFunctionsInput) (*ListLambdaFunctionsOutput, error) {
@@ -8758,15 +8743,14 @@ func (c *Connect) ListLambdaFunctionsWithContext(ctx aws.Context, input *ListLam
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListLambdaFunctions operation.
-//    pageNum := 0
-//    err := client.ListLambdaFunctionsPages(params,
-//        func(page *connect.ListLambdaFunctionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListLambdaFunctions operation.
+//	pageNum := 0
+//	err := client.ListLambdaFunctionsPages(params,
+//	    func(page *connect.ListLambdaFunctionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListLambdaFunctionsPages(input *ListLambdaFunctionsInput, fn func(*ListLambdaFunctionsOutput, bool) bool) error {
 	return c.ListLambdaFunctionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -8818,14 +8802,13 @@ const opListLexBots = "ListLexBots"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListLexBotsRequest method.
+//	req, resp := client.ListLexBotsRequest(params)
 //
-//    // Example sending a request using the ListLexBotsRequest method.
-//    req, resp := client.ListLexBotsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListLexBots
 func (c *Connect) ListLexBotsRequest(input *ListLexBotsInput) (req *request.Request, output *ListLexBotsOutput) {
@@ -8865,20 +8848,21 @@ func (c *Connect) ListLexBotsRequest(input *ListLexBotsInput) (req *request.Requ
 // API operation ListLexBots for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListLexBots
 func (c *Connect) ListLexBots(input *ListLexBotsInput) (*ListLexBotsOutput, error) {
@@ -8910,15 +8894,14 @@ func (c *Connect) ListLexBotsWithContext(ctx aws.Context, input *ListLexBotsInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListLexBots operation.
-//    pageNum := 0
-//    err := client.ListLexBotsPages(params,
-//        func(page *connect.ListLexBotsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListLexBots operation.
+//	pageNum := 0
+//	err := client.ListLexBotsPages(params,
+//	    func(page *connect.ListLexBotsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListLexBotsPages(input *ListLexBotsInput, fn func(*ListLexBotsOutput, bool) bool) error {
 	return c.ListLexBotsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -8970,14 +8953,13 @@ const opListPhoneNumbers = "ListPhoneNumbers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPhoneNumbersRequest method.
+//	req, resp := client.ListPhoneNumbersRequest(params)
 //
-//    // Example sending a request using the ListPhoneNumbersRequest method.
-//    req, resp := client.ListPhoneNumbersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPhoneNumbers
 func (c *Connect) ListPhoneNumbersRequest(input *ListPhoneNumbersInput) (req *request.Request, output *ListPhoneNumbersOutput) {
@@ -9019,20 +9001,21 @@ func (c *Connect) ListPhoneNumbersRequest(input *ListPhoneNumbersInput) (req *re
 // API operation ListPhoneNumbers for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPhoneNumbers
 func (c *Connect) ListPhoneNumbers(input *ListPhoneNumbersInput) (*ListPhoneNumbersOutput, error) {
@@ -9064,15 +9047,14 @@ func (c *Connect) ListPhoneNumbersWithContext(ctx aws.Context, input *ListPhoneN
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPhoneNumbers operation.
-//    pageNum := 0
-//    err := client.ListPhoneNumbersPages(params,
-//        func(page *connect.ListPhoneNumbersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPhoneNumbers operation.
+//	pageNum := 0
+//	err := client.ListPhoneNumbersPages(params,
+//	    func(page *connect.ListPhoneNumbersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListPhoneNumbersPages(input *ListPhoneNumbersInput, fn func(*ListPhoneNumbersOutput, bool) bool) error {
 	return c.ListPhoneNumbersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -9124,14 +9106,13 @@ const opListPhoneNumbersV2 = "ListPhoneNumbersV2"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPhoneNumbersV2Request method.
+//	req, resp := client.ListPhoneNumbersV2Request(params)
 //
-//    // Example sending a request using the ListPhoneNumbersV2Request method.
-//    req, resp := client.ListPhoneNumbersV2Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPhoneNumbersV2
 func (c *Connect) ListPhoneNumbersV2Request(input *ListPhoneNumbersV2Input) (req *request.Request, output *ListPhoneNumbersV2Output) {
@@ -9172,20 +9153,21 @@ func (c *Connect) ListPhoneNumbersV2Request(input *ListPhoneNumbersV2Input) (req
 // API operation ListPhoneNumbersV2 for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPhoneNumbersV2
 func (c *Connect) ListPhoneNumbersV2(input *ListPhoneNumbersV2Input) (*ListPhoneNumbersV2Output, error) {
@@ -9217,15 +9199,14 @@ func (c *Connect) ListPhoneNumbersV2WithContext(ctx aws.Context, input *ListPhon
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPhoneNumbersV2 operation.
-//    pageNum := 0
-//    err := client.ListPhoneNumbersV2Pages(params,
-//        func(page *connect.ListPhoneNumbersV2Output, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPhoneNumbersV2 operation.
+//	pageNum := 0
+//	err := client.ListPhoneNumbersV2Pages(params,
+//	    func(page *connect.ListPhoneNumbersV2Output, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListPhoneNumbersV2Pages(input *ListPhoneNumbersV2Input, fn func(*ListPhoneNumbersV2Output, bool) bool) error {
 	return c.ListPhoneNumbersV2PagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -9277,14 +9258,13 @@ const opListPrompts = "ListPrompts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPromptsRequest method.
+//	req, resp := client.ListPromptsRequest(params)
 //
-//    // Example sending a request using the ListPromptsRequest method.
-//    req, resp := client.ListPromptsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPrompts
 func (c *Connect) ListPromptsRequest(input *ListPromptsInput) (req *request.Request, output *ListPromptsOutput) {
@@ -9321,20 +9301,21 @@ func (c *Connect) ListPromptsRequest(input *ListPromptsInput) (req *request.Requ
 // API operation ListPrompts for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPrompts
 func (c *Connect) ListPrompts(input *ListPromptsInput) (*ListPromptsOutput, error) {
@@ -9366,15 +9347,14 @@ func (c *Connect) ListPromptsWithContext(ctx aws.Context, input *ListPromptsInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPrompts operation.
-//    pageNum := 0
-//    err := client.ListPromptsPages(params,
-//        func(page *connect.ListPromptsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPrompts operation.
+//	pageNum := 0
+//	err := client.ListPromptsPages(params,
+//	    func(page *connect.ListPromptsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListPromptsPages(input *ListPromptsInput, fn func(*ListPromptsOutput, bool) bool) error {
 	return c.ListPromptsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -9426,14 +9406,13 @@ const opListQueueQuickConnects = "ListQueueQuickConnects"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListQueueQuickConnectsRequest method.
+//	req, resp := client.ListQueueQuickConnectsRequest(params)
 //
-//    // Example sending a request using the ListQueueQuickConnectsRequest method.
-//    req, resp := client.ListQueueQuickConnectsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListQueueQuickConnects
 func (c *Connect) ListQueueQuickConnectsRequest(input *ListQueueQuickConnectsInput) (req *request.Request, output *ListQueueQuickConnectsOutput) {
@@ -9472,20 +9451,21 @@ func (c *Connect) ListQueueQuickConnectsRequest(input *ListQueueQuickConnectsInp
 // API operation ListQueueQuickConnects for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListQueueQuickConnects
 func (c *Connect) ListQueueQuickConnects(input *ListQueueQuickConnectsInput) (*ListQueueQuickConnectsOutput, error) {
@@ -9517,15 +9497,14 @@ func (c *Connect) ListQueueQuickConnectsWithContext(ctx aws.Context, input *List
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListQueueQuickConnects operation.
-//    pageNum := 0
-//    err := client.ListQueueQuickConnectsPages(params,
-//        func(page *connect.ListQueueQuickConnectsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListQueueQuickConnects operation.
+//	pageNum := 0
+//	err := client.ListQueueQuickConnectsPages(params,
+//	    func(page *connect.ListQueueQuickConnectsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListQueueQuickConnectsPages(input *ListQueueQuickConnectsInput, fn func(*ListQueueQuickConnectsOutput, bool) bool) error {
 	return c.ListQueueQuickConnectsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -9577,14 +9556,13 @@ const opListQueues = "ListQueues"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListQueuesRequest method.
+//	req, resp := client.ListQueuesRequest(params)
 //
-//    // Example sending a request using the ListQueuesRequest method.
-//    req, resp := client.ListQueuesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListQueues
 func (c *Connect) ListQueuesRequest(input *ListQueuesInput) (req *request.Request, output *ListQueuesOutput) {
@@ -9629,20 +9607,21 @@ func (c *Connect) ListQueuesRequest(input *ListQueuesInput) (req *request.Reques
 // API operation ListQueues for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListQueues
 func (c *Connect) ListQueues(input *ListQueuesInput) (*ListQueuesOutput, error) {
@@ -9674,15 +9653,14 @@ func (c *Connect) ListQueuesWithContext(ctx aws.Context, input *ListQueuesInput,
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListQueues operation.
-//    pageNum := 0
-//    err := client.ListQueuesPages(params,
-//        func(page *connect.ListQueuesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListQueues operation.
+//	pageNum := 0
+//	err := client.ListQueuesPages(params,
+//	    func(page *connect.ListQueuesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListQueuesPages(input *ListQueuesInput, fn func(*ListQueuesOutput, bool) bool) error {
 	return c.ListQueuesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -9734,14 +9712,13 @@ const opListQuickConnects = "ListQuickConnects"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListQuickConnectsRequest method.
+//	req, resp := client.ListQuickConnectsRequest(params)
 //
-//    // Example sending a request using the ListQuickConnectsRequest method.
-//    req, resp := client.ListQuickConnectsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListQuickConnects
 func (c *Connect) ListQuickConnectsRequest(input *ListQuickConnectsInput) (req *request.Request, output *ListQuickConnectsOutput) {
@@ -9779,20 +9756,21 @@ func (c *Connect) ListQuickConnectsRequest(input *ListQuickConnectsInput) (req *
 // API operation ListQuickConnects for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListQuickConnects
 func (c *Connect) ListQuickConnects(input *ListQuickConnectsInput) (*ListQuickConnectsOutput, error) {
@@ -9824,15 +9802,14 @@ func (c *Connect) ListQuickConnectsWithContext(ctx aws.Context, input *ListQuick
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListQuickConnects operation.
-//    pageNum := 0
-//    err := client.ListQuickConnectsPages(params,
-//        func(page *connect.ListQuickConnectsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListQuickConnects operation.
+//	pageNum := 0
+//	err := client.ListQuickConnectsPages(params,
+//	    func(page *connect.ListQuickConnectsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListQuickConnectsPages(input *ListQuickConnectsInput, fn func(*ListQuickConnectsOutput, bool) bool) error {
 	return c.ListQuickConnectsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -9884,14 +9861,13 @@ const opListRoutingProfileQueues = "ListRoutingProfileQueues"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRoutingProfileQueuesRequest method.
+//	req, resp := client.ListRoutingProfileQueuesRequest(params)
 //
-//    // Example sending a request using the ListRoutingProfileQueuesRequest method.
-//    req, resp := client.ListRoutingProfileQueuesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListRoutingProfileQueues
 func (c *Connect) ListRoutingProfileQueuesRequest(input *ListRoutingProfileQueuesInput) (req *request.Request, output *ListRoutingProfileQueuesOutput) {
@@ -9928,20 +9904,21 @@ func (c *Connect) ListRoutingProfileQueuesRequest(input *ListRoutingProfileQueue
 // API operation ListRoutingProfileQueues for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListRoutingProfileQueues
 func (c *Connect) ListRoutingProfileQueues(input *ListRoutingProfileQueuesInput) (*ListRoutingProfileQueuesOutput, error) {
@@ -9973,15 +9950,14 @@ func (c *Connect) ListRoutingProfileQueuesWithContext(ctx aws.Context, input *Li
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRoutingProfileQueues operation.
-//    pageNum := 0
-//    err := client.ListRoutingProfileQueuesPages(params,
-//        func(page *connect.ListRoutingProfileQueuesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRoutingProfileQueues operation.
+//	pageNum := 0
+//	err := client.ListRoutingProfileQueuesPages(params,
+//	    func(page *connect.ListRoutingProfileQueuesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListRoutingProfileQueuesPages(input *ListRoutingProfileQueuesInput, fn func(*ListRoutingProfileQueuesOutput, bool) bool) error {
 	return c.ListRoutingProfileQueuesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -10033,14 +10009,13 @@ const opListRoutingProfiles = "ListRoutingProfiles"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRoutingProfilesRequest method.
+//	req, resp := client.ListRoutingProfilesRequest(params)
 //
-//    // Example sending a request using the ListRoutingProfilesRequest method.
-//    req, resp := client.ListRoutingProfilesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListRoutingProfiles
 func (c *Connect) ListRoutingProfilesRequest(input *ListRoutingProfilesInput) (req *request.Request, output *ListRoutingProfilesOutput) {
@@ -10082,20 +10057,21 @@ func (c *Connect) ListRoutingProfilesRequest(input *ListRoutingProfilesInput) (r
 // API operation ListRoutingProfiles for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListRoutingProfiles
 func (c *Connect) ListRoutingProfiles(input *ListRoutingProfilesInput) (*ListRoutingProfilesOutput, error) {
@@ -10127,15 +10103,14 @@ func (c *Connect) ListRoutingProfilesWithContext(ctx aws.Context, input *ListRou
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRoutingProfiles operation.
-//    pageNum := 0
-//    err := client.ListRoutingProfilesPages(params,
-//        func(page *connect.ListRoutingProfilesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRoutingProfiles operation.
+//	pageNum := 0
+//	err := client.ListRoutingProfilesPages(params,
+//	    func(page *connect.ListRoutingProfilesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListRoutingProfilesPages(input *ListRoutingProfilesInput, fn func(*ListRoutingProfilesOutput, bool) bool) error {
 	return c.ListRoutingProfilesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -10187,14 +10162,13 @@ const opListSecurityKeys = "ListSecurityKeys"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSecurityKeysRequest method.
+//	req, resp := client.ListSecurityKeysRequest(params)
 //
-//    // Example sending a request using the ListSecurityKeysRequest method.
-//    req, resp := client.ListSecurityKeysRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityKeys
 func (c *Connect) ListSecurityKeysRequest(input *ListSecurityKeysInput) (req *request.Request, output *ListSecurityKeysOutput) {
@@ -10233,20 +10207,21 @@ func (c *Connect) ListSecurityKeysRequest(input *ListSecurityKeysInput) (req *re
 // API operation ListSecurityKeys for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityKeys
 func (c *Connect) ListSecurityKeys(input *ListSecurityKeysInput) (*ListSecurityKeysOutput, error) {
@@ -10278,15 +10253,14 @@ func (c *Connect) ListSecurityKeysWithContext(ctx aws.Context, input *ListSecuri
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSecurityKeys operation.
-//    pageNum := 0
-//    err := client.ListSecurityKeysPages(params,
-//        func(page *connect.ListSecurityKeysOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSecurityKeys operation.
+//	pageNum := 0
+//	err := client.ListSecurityKeysPages(params,
+//	    func(page *connect.ListSecurityKeysOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListSecurityKeysPages(input *ListSecurityKeysInput, fn func(*ListSecurityKeysOutput, bool) bool) error {
 	return c.ListSecurityKeysPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -10338,14 +10312,13 @@ const opListSecurityProfilePermissions = "ListSecurityProfilePermissions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSecurityProfilePermissionsRequest method.
+//	req, resp := client.ListSecurityProfilePermissionsRequest(params)
 //
-//    // Example sending a request using the ListSecurityProfilePermissionsRequest method.
-//    req, resp := client.ListSecurityProfilePermissionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityProfilePermissions
 func (c *Connect) ListSecurityProfilePermissionsRequest(input *ListSecurityProfilePermissionsInput) (req *request.Request, output *ListSecurityProfilePermissionsOutput) {
@@ -10384,20 +10357,21 @@ func (c *Connect) ListSecurityProfilePermissionsRequest(input *ListSecurityProfi
 // API operation ListSecurityProfilePermissions for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityProfilePermissions
 func (c *Connect) ListSecurityProfilePermissions(input *ListSecurityProfilePermissionsInput) (*ListSecurityProfilePermissionsOutput, error) {
@@ -10429,15 +10403,14 @@ func (c *Connect) ListSecurityProfilePermissionsWithContext(ctx aws.Context, inp
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSecurityProfilePermissions operation.
-//    pageNum := 0
-//    err := client.ListSecurityProfilePermissionsPages(params,
-//        func(page *connect.ListSecurityProfilePermissionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSecurityProfilePermissions operation.
+//	pageNum := 0
+//	err := client.ListSecurityProfilePermissionsPages(params,
+//	    func(page *connect.ListSecurityProfilePermissionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListSecurityProfilePermissionsPages(input *ListSecurityProfilePermissionsInput, fn func(*ListSecurityProfilePermissionsOutput, bool) bool) error {
 	return c.ListSecurityProfilePermissionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -10489,14 +10462,13 @@ const opListSecurityProfiles = "ListSecurityProfiles"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSecurityProfilesRequest method.
+//	req, resp := client.ListSecurityProfilesRequest(params)
 //
-//    // Example sending a request using the ListSecurityProfilesRequest method.
-//    req, resp := client.ListSecurityProfilesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityProfiles
 func (c *Connect) ListSecurityProfilesRequest(input *ListSecurityProfilesInput) (req *request.Request, output *ListSecurityProfilesOutput) {
@@ -10537,20 +10509,21 @@ func (c *Connect) ListSecurityProfilesRequest(input *ListSecurityProfilesInput) 
 // API operation ListSecurityProfiles for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityProfiles
 func (c *Connect) ListSecurityProfiles(input *ListSecurityProfilesInput) (*ListSecurityProfilesOutput, error) {
@@ -10582,15 +10555,14 @@ func (c *Connect) ListSecurityProfilesWithContext(ctx aws.Context, input *ListSe
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSecurityProfiles operation.
-//    pageNum := 0
-//    err := client.ListSecurityProfilesPages(params,
-//        func(page *connect.ListSecurityProfilesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSecurityProfiles operation.
+//	pageNum := 0
+//	err := client.ListSecurityProfilesPages(params,
+//	    func(page *connect.ListSecurityProfilesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListSecurityProfilesPages(input *ListSecurityProfilesInput, fn func(*ListSecurityProfilesOutput, bool) bool) error {
 	return c.ListSecurityProfilesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -10642,14 +10614,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListTagsForResource
 func (c *Connect) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -10684,20 +10655,21 @@ func (c *Connect) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListTagsForResource
 func (c *Connect) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -10737,14 +10709,13 @@ const opListTaskTemplates = "ListTaskTemplates"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTaskTemplatesRequest method.
+//	req, resp := client.ListTaskTemplatesRequest(params)
 //
-//    // Example sending a request using the ListTaskTemplatesRequest method.
-//    req, resp := client.ListTaskTemplatesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListTaskTemplates
 func (c *Connect) ListTaskTemplatesRequest(input *ListTaskTemplatesInput) (req *request.Request, output *ListTaskTemplatesOutput) {
@@ -10781,20 +10752,21 @@ func (c *Connect) ListTaskTemplatesRequest(input *ListTaskTemplatesInput) (req *
 // API operation ListTaskTemplates for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListTaskTemplates
 func (c *Connect) ListTaskTemplates(input *ListTaskTemplatesInput) (*ListTaskTemplatesOutput, error) {
@@ -10826,15 +10798,14 @@ func (c *Connect) ListTaskTemplatesWithContext(ctx aws.Context, input *ListTaskT
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTaskTemplates operation.
-//    pageNum := 0
-//    err := client.ListTaskTemplatesPages(params,
-//        func(page *connect.ListTaskTemplatesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTaskTemplates operation.
+//	pageNum := 0
+//	err := client.ListTaskTemplatesPages(params,
+//	    func(page *connect.ListTaskTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListTaskTemplatesPages(input *ListTaskTemplatesInput, fn func(*ListTaskTemplatesOutput, bool) bool) error {
 	return c.ListTaskTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -10886,14 +10857,13 @@ const opListUseCases = "ListUseCases"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListUseCasesRequest method.
+//	req, resp := client.ListUseCasesRequest(params)
 //
-//    // Example sending a request using the ListUseCasesRequest method.
-//    req, resp := client.ListUseCasesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListUseCases
 func (c *Connect) ListUseCasesRequest(input *ListUseCasesInput) (req *request.Request, output *ListUseCasesOutput) {
@@ -10930,17 +10900,18 @@ func (c *Connect) ListUseCasesRequest(input *ListUseCasesInput) (req *request.Re
 // API operation ListUseCases for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListUseCases
 func (c *Connect) ListUseCases(input *ListUseCasesInput) (*ListUseCasesOutput, error) {
@@ -10972,15 +10943,14 @@ func (c *Connect) ListUseCasesWithContext(ctx aws.Context, input *ListUseCasesIn
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListUseCases operation.
-//    pageNum := 0
-//    err := client.ListUseCasesPages(params,
-//        func(page *connect.ListUseCasesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListUseCases operation.
+//	pageNum := 0
+//	err := client.ListUseCasesPages(params,
+//	    func(page *connect.ListUseCasesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListUseCasesPages(input *ListUseCasesInput, fn func(*ListUseCasesOutput, bool) bool) error {
 	return c.ListUseCasesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -11032,14 +11002,13 @@ const opListUserHierarchyGroups = "ListUserHierarchyGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListUserHierarchyGroupsRequest method.
+//	req, resp := client.ListUserHierarchyGroupsRequest(params)
 //
-//    // Example sending a request using the ListUserHierarchyGroupsRequest method.
-//    req, resp := client.ListUserHierarchyGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListUserHierarchyGroups
 func (c *Connect) ListUserHierarchyGroupsRequest(input *ListUserHierarchyGroupsInput) (req *request.Request, output *ListUserHierarchyGroupsOutput) {
@@ -11081,20 +11050,21 @@ func (c *Connect) ListUserHierarchyGroupsRequest(input *ListUserHierarchyGroupsI
 // API operation ListUserHierarchyGroups for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListUserHierarchyGroups
 func (c *Connect) ListUserHierarchyGroups(input *ListUserHierarchyGroupsInput) (*ListUserHierarchyGroupsOutput, error) {
@@ -11126,15 +11096,14 @@ func (c *Connect) ListUserHierarchyGroupsWithContext(ctx aws.Context, input *Lis
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListUserHierarchyGroups operation.
-//    pageNum := 0
-//    err := client.ListUserHierarchyGroupsPages(params,
-//        func(page *connect.ListUserHierarchyGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListUserHierarchyGroups operation.
+//	pageNum := 0
+//	err := client.ListUserHierarchyGroupsPages(params,
+//	    func(page *connect.ListUserHierarchyGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListUserHierarchyGroupsPages(input *ListUserHierarchyGroupsInput, fn func(*ListUserHierarchyGroupsOutput, bool) bool) error {
 	return c.ListUserHierarchyGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -11186,14 +11155,13 @@ const opListUsers = "ListUsers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListUsersRequest method.
+//	req, resp := client.ListUsersRequest(params)
 //
-//    // Example sending a request using the ListUsersRequest method.
-//    req, resp := client.ListUsersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListUsers
 func (c *Connect) ListUsersRequest(input *ListUsersInput) (req *request.Request, output *ListUsersOutput) {
@@ -11231,20 +11199,21 @@ func (c *Connect) ListUsersRequest(input *ListUsersInput) (req *request.Request,
 // API operation ListUsers for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListUsers
 func (c *Connect) ListUsers(input *ListUsersInput) (*ListUsersOutput, error) {
@@ -11276,15 +11245,14 @@ func (c *Connect) ListUsersWithContext(ctx aws.Context, input *ListUsersInput, o
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListUsers operation.
-//    pageNum := 0
-//    err := client.ListUsersPages(params,
-//        func(page *connect.ListUsersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListUsers operation.
+//	pageNum := 0
+//	err := client.ListUsersPages(params,
+//	    func(page *connect.ListUsersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) ListUsersPages(input *ListUsersInput, fn func(*ListUsersOutput, bool) bool) error {
 	return c.ListUsersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -11336,14 +11304,13 @@ const opPutUserStatus = "PutUserStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutUserStatusRequest method.
+//	req, resp := client.PutUserStatusRequest(params)
 //
-//    // Example sending a request using the PutUserStatusRequest method.
-//    req, resp := client.PutUserStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/PutUserStatus
 func (c *Connect) PutUserStatusRequest(input *PutUserStatusInput) (req *request.Request, output *PutUserStatusOutput) {
@@ -11380,23 +11347,24 @@ func (c *Connect) PutUserStatusRequest(input *PutUserStatusInput) (req *request.
 // API operation PutUserStatus for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/PutUserStatus
 func (c *Connect) PutUserStatus(input *PutUserStatusInput) (*PutUserStatusOutput, error) {
@@ -11436,14 +11404,13 @@ const opReleasePhoneNumber = "ReleasePhoneNumber"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ReleasePhoneNumberRequest method.
+//	req, resp := client.ReleasePhoneNumberRequest(params)
 //
-//    // Example sending a request using the ReleasePhoneNumberRequest method.
-//    req, resp := client.ReleasePhoneNumberRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ReleasePhoneNumber
 func (c *Connect) ReleasePhoneNumberRequest(input *ReleasePhoneNumberInput) (req *request.Request, output *ReleasePhoneNumberOutput) {
@@ -11475,26 +11442,27 @@ func (c *Connect) ReleasePhoneNumberRequest(input *ReleasePhoneNumberInput) (req
 // API operation ReleasePhoneNumber for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * ResourceInUseException
-//   That resource is already in use. Please try another.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * IdempotencyException
-//   An entity with the same name already exists.
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - IdempotencyException
+//     An entity with the same name already exists.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ReleasePhoneNumber
 func (c *Connect) ReleasePhoneNumber(input *ReleasePhoneNumberInput) (*ReleasePhoneNumberOutput, error) {
@@ -11534,14 +11502,13 @@ const opResumeContactRecording = "ResumeContactRecording"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ResumeContactRecordingRequest method.
+//	req, resp := client.ResumeContactRecordingRequest(params)
 //
-//    // Example sending a request using the ResumeContactRecordingRequest method.
-//    req, resp := client.ResumeContactRecordingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ResumeContactRecording
 func (c *Connect) ResumeContactRecordingRequest(input *ResumeContactRecordingInput) (req *request.Request, output *ResumeContactRecordingOutput) {
@@ -11576,14 +11543,15 @@ func (c *Connect) ResumeContactRecordingRequest(input *ResumeContactRecordingInp
 // API operation ResumeContactRecording for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ResumeContactRecording
 func (c *Connect) ResumeContactRecording(input *ResumeContactRecordingInput) (*ResumeContactRecordingOutput, error) {
@@ -11623,14 +11591,13 @@ const opSearchAvailablePhoneNumbers = "SearchAvailablePhoneNumbers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SearchAvailablePhoneNumbersRequest method.
+//	req, resp := client.SearchAvailablePhoneNumbersRequest(params)
 //
-//    // Example sending a request using the SearchAvailablePhoneNumbersRequest method.
-//    req, resp := client.SearchAvailablePhoneNumbersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchAvailablePhoneNumbers
 func (c *Connect) SearchAvailablePhoneNumbersRequest(input *SearchAvailablePhoneNumbersInput) (req *request.Request, output *SearchAvailablePhoneNumbersOutput) {
@@ -11668,17 +11635,18 @@ func (c *Connect) SearchAvailablePhoneNumbersRequest(input *SearchAvailablePhone
 // API operation SearchAvailablePhoneNumbers for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchAvailablePhoneNumbers
 func (c *Connect) SearchAvailablePhoneNumbers(input *SearchAvailablePhoneNumbersInput) (*SearchAvailablePhoneNumbersOutput, error) {
@@ -11710,15 +11678,14 @@ func (c *Connect) SearchAvailablePhoneNumbersWithContext(ctx aws.Context, input 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a SearchAvailablePhoneNumbers operation.
-//    pageNum := 0
-//    err := client.SearchAvailablePhoneNumbersPages(params,
-//        func(page *connect.SearchAvailablePhoneNumbersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a SearchAvailablePhoneNumbers operation.
+//	pageNum := 0
+//	err := client.SearchAvailablePhoneNumbersPages(params,
+//	    func(page *connect.SearchAvailablePhoneNumbersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) SearchAvailablePhoneNumbersPages(input *SearchAvailablePhoneNumbersInput, fn func(*SearchAvailablePhoneNumbersOutput, bool) bool) error {
 	return c.SearchAvailablePhoneNumbersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -11770,14 +11737,13 @@ const opSearchUsers = "SearchUsers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SearchUsersRequest method.
+//	req, resp := client.SearchUsersRequest(params)
 //
-//    // Example sending a request using the SearchUsersRequest method.
-//    req, resp := client.SearchUsersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchUsers
 func (c *Connect) SearchUsersRequest(input *SearchUsersInput) (req *request.Request, output *SearchUsersOutput) {
@@ -11814,20 +11780,21 @@ func (c *Connect) SearchUsersRequest(input *SearchUsersInput) (req *request.Requ
 // API operation SearchUsers for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchUsers
 func (c *Connect) SearchUsers(input *SearchUsersInput) (*SearchUsersOutput, error) {
@@ -11859,15 +11826,14 @@ func (c *Connect) SearchUsersWithContext(ctx aws.Context, input *SearchUsersInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a SearchUsers operation.
-//    pageNum := 0
-//    err := client.SearchUsersPages(params,
-//        func(page *connect.SearchUsersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a SearchUsers operation.
+//	pageNum := 0
+//	err := client.SearchUsersPages(params,
+//	    func(page *connect.SearchUsersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) SearchUsersPages(input *SearchUsersInput, fn func(*SearchUsersOutput, bool) bool) error {
 	return c.SearchUsersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -11919,14 +11885,13 @@ const opSearchVocabularies = "SearchVocabularies"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SearchVocabulariesRequest method.
+//	req, resp := client.SearchVocabulariesRequest(params)
 //
-//    // Example sending a request using the SearchVocabulariesRequest method.
-//    req, resp := client.SearchVocabulariesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchVocabularies
 func (c *Connect) SearchVocabulariesRequest(input *SearchVocabulariesInput) (req *request.Request, output *SearchVocabulariesOutput) {
@@ -11964,17 +11929,18 @@ func (c *Connect) SearchVocabulariesRequest(input *SearchVocabulariesInput) (req
 // API operation SearchVocabularies for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchVocabularies
 func (c *Connect) SearchVocabularies(input *SearchVocabulariesInput) (*SearchVocabulariesOutput, error) {
@@ -12006,15 +11972,14 @@ func (c *Connect) SearchVocabulariesWithContext(ctx aws.Context, input *SearchVo
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a SearchVocabularies operation.
-//    pageNum := 0
-//    err := client.SearchVocabulariesPages(params,
-//        func(page *connect.SearchVocabulariesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a SearchVocabularies operation.
+//	pageNum := 0
+//	err := client.SearchVocabulariesPages(params,
+//	    func(page *connect.SearchVocabulariesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Connect) SearchVocabulariesPages(input *SearchVocabulariesInput, fn func(*SearchVocabulariesOutput, bool) bool) error {
 	return c.SearchVocabulariesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -12066,14 +12031,13 @@ const opStartChatContact = "StartChatContact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartChatContactRequest method.
+//	req, resp := client.StartChatContactRequest(params)
 //
-//    // Example sending a request using the StartChatContactRequest method.
-//    req, resp := client.StartChatContactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartChatContact
 func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *request.Request, output *StartChatContactOutput) {
@@ -12106,11 +12070,11 @@ func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *re
 //
 // A 429 error occurs in the following situations:
 //
-//    * API rate limit is exceeded. API TPS throttling returns a TooManyRequests
-//    exception.
+//   - API rate limit is exceeded. API TPS throttling returns a TooManyRequests
+//     exception.
 //
-//    * The quota for concurrent active chats (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
-//    is exceeded. Active chat throttling returns a LimitExceededException.
+//   - The quota for concurrent active chats (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
+//     is exceeded. Active chat throttling returns a LimitExceededException.
 //
 // If you use the ChatDurationInMinutes parameter and receive a 400 error, your
 // account may not support the ability to configure custom chat durations. For
@@ -12127,20 +12091,21 @@ func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *re
 // API operation StartChatContact for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartChatContact
 func (c *Connect) StartChatContact(input *StartChatContactInput) (*StartChatContactOutput, error) {
@@ -12180,14 +12145,13 @@ const opStartContactRecording = "StartContactRecording"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartContactRecordingRequest method.
+//	req, resp := client.StartContactRecordingRequest(params)
 //
-//    // Example sending a request using the StartContactRecordingRequest method.
-//    req, resp := client.StartContactRecordingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartContactRecording
 func (c *Connect) StartContactRecordingRequest(input *StartContactRecordingInput) (req *request.Request, output *StartContactRecordingOutput) {
@@ -12211,11 +12175,11 @@ func (c *Connect) StartContactRecordingRequest(input *StartContactRecordingInput
 //
 // Starts recording the contact:
 //
-//    * If the API is called before the agent joins the call, recording starts
-//    when the agent joins the call.
+//   - If the API is called before the agent joins the call, recording starts
+//     when the agent joins the call.
 //
-//    * If the API is called after the agent joins the call, recording starts
-//    at the time of the API call.
+//   - If the API is called after the agent joins the call, recording starts
+//     at the time of the API call.
 //
 // StartContactRecording is a one-time action. For example, if you use StopContactRecording
 // to stop recording an ongoing call, you can't use StartContactRecording to
@@ -12237,17 +12201,18 @@ func (c *Connect) StartContactRecordingRequest(input *StartContactRecordingInput
 // API operation StartContactRecording for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartContactRecording
 func (c *Connect) StartContactRecording(input *StartContactRecordingInput) (*StartContactRecordingOutput, error) {
@@ -12287,14 +12252,13 @@ const opStartContactStreaming = "StartContactStreaming"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartContactStreamingRequest method.
+//	req, resp := client.StartContactStreamingRequest(params)
 //
-//    // Example sending a request using the StartContactStreamingRequest method.
-//    req, resp := client.StartContactStreamingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartContactStreaming
 func (c *Connect) StartContactStreamingRequest(input *StartContactStreamingInput) (req *request.Request, output *StartContactStreamingOutput) {
@@ -12329,20 +12293,21 @@ func (c *Connect) StartContactStreamingRequest(input *StartContactStreamingInput
 // API operation StartContactStreaming for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartContactStreaming
 func (c *Connect) StartContactStreaming(input *StartContactStreamingInput) (*StartContactStreamingOutput, error) {
@@ -12382,14 +12347,13 @@ const opStartOutboundVoiceContact = "StartOutboundVoiceContact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartOutboundVoiceContactRequest method.
+//	req, resp := client.StartOutboundVoiceContactRequest(params)
 //
-//    // Example sending a request using the StartOutboundVoiceContactRequest method.
-//    req, resp := client.StartOutboundVoiceContactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartOutboundVoiceContact
 func (c *Connect) StartOutboundVoiceContactRequest(input *StartOutboundVoiceContactInput) (req *request.Request, output *StartOutboundVoiceContactOutput) {
@@ -12439,26 +12403,27 @@ func (c *Connect) StartOutboundVoiceContactRequest(input *StartOutboundVoiceCont
 // API operation StartOutboundVoiceContact for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * DestinationNotAllowedException
-//   Outbound calls to the destination number are not allowed.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
-//   * OutboundContactNotPermittedException
-//   The contact is not permitted.
+//   - DestinationNotAllowedException
+//     Outbound calls to the destination number are not allowed.
+//
+//   - OutboundContactNotPermittedException
+//     The contact is not permitted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartOutboundVoiceContact
 func (c *Connect) StartOutboundVoiceContact(input *StartOutboundVoiceContactInput) (*StartOutboundVoiceContactOutput, error) {
@@ -12498,14 +12463,13 @@ const opStartTaskContact = "StartTaskContact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartTaskContactRequest method.
+//	req, resp := client.StartTaskContactRequest(params)
 //
-//    // Example sending a request using the StartTaskContactRequest method.
-//    req, resp := client.StartTaskContactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartTaskContact
 func (c *Connect) StartTaskContactRequest(input *StartTaskContactInput) (req *request.Request, output *StartTaskContactOutput) {
@@ -12536,23 +12500,24 @@ func (c *Connect) StartTaskContactRequest(input *StartTaskContactInput) (req *re
 // API operation StartTaskContact for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ServiceQuotaExceededException
-//   The service quota has been exceeded.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartTaskContact
 func (c *Connect) StartTaskContact(input *StartTaskContactInput) (*StartTaskContactOutput, error) {
@@ -12592,14 +12557,13 @@ const opStopContact = "StopContact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopContactRequest method.
+//	req, resp := client.StopContactRequest(params)
 //
-//    // Example sending a request using the StopContactRequest method.
-//    req, resp := client.StopContactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContact
 func (c *Connect) StopContactRequest(input *StopContactInput) (req *request.Request, output *StopContactOutput) {
@@ -12624,11 +12588,11 @@ func (c *Connect) StopContactRequest(input *StopContactInput) (req *request.Requ
 // Ends the specified contact. This call does not work for the following initiation
 // methods:
 //
-//    * DISCONNECT
+//   - DISCONNECT
 //
-//    * TRANSFER
+//   - TRANSFER
 //
-//    * QUEUE_TRANSFER
+//   - QUEUE_TRANSFER
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12638,20 +12602,21 @@ func (c *Connect) StopContactRequest(input *StopContactInput) (req *request.Requ
 // API operation StopContact for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * ContactNotFoundException
-//   The contact with the specified ID is not active or does not exist.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - ContactNotFoundException
+//     The contact with the specified ID is not active or does not exist.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContact
 func (c *Connect) StopContact(input *StopContactInput) (*StopContactOutput, error) {
@@ -12691,14 +12656,13 @@ const opStopContactRecording = "StopContactRecording"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopContactRecordingRequest method.
+//	req, resp := client.StopContactRecordingRequest(params)
 //
-//    // Example sending a request using the StopContactRecordingRequest method.
-//    req, resp := client.StopContactRecordingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContactRecording
 func (c *Connect) StopContactRecordingRequest(input *StopContactRecordingInput) (req *request.Request, output *StopContactRecordingOutput) {
@@ -12737,14 +12701,15 @@ func (c *Connect) StopContactRecordingRequest(input *StopContactRecordingInput) 
 // API operation StopContactRecording for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContactRecording
 func (c *Connect) StopContactRecording(input *StopContactRecordingInput) (*StopContactRecordingOutput, error) {
@@ -12784,14 +12749,13 @@ const opStopContactStreaming = "StopContactStreaming"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopContactStreamingRequest method.
+//	req, resp := client.StopContactStreamingRequest(params)
 //
-//    // Example sending a request using the StopContactStreamingRequest method.
-//    req, resp := client.StopContactStreamingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContactStreaming
 func (c *Connect) StopContactStreamingRequest(input *StopContactStreamingInput) (req *request.Request, output *StopContactStreamingOutput) {
@@ -12825,17 +12789,18 @@ func (c *Connect) StopContactStreamingRequest(input *StopContactStreamingInput) 
 // API operation StopContactStreaming for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContactStreaming
 func (c *Connect) StopContactStreaming(input *StopContactStreamingInput) (*StopContactStreamingOutput, error) {
@@ -12875,14 +12840,13 @@ const opSuspendContactRecording = "SuspendContactRecording"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SuspendContactRecordingRequest method.
+//	req, resp := client.SuspendContactRecordingRequest(params)
 //
-//    // Example sending a request using the SuspendContactRecordingRequest method.
-//    req, resp := client.SuspendContactRecordingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SuspendContactRecording
 func (c *Connect) SuspendContactRecordingRequest(input *SuspendContactRecordingInput) (req *request.Request, output *SuspendContactRecordingOutput) {
@@ -12922,14 +12886,15 @@ func (c *Connect) SuspendContactRecordingRequest(input *SuspendContactRecordingI
 // API operation SuspendContactRecording for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SuspendContactRecording
 func (c *Connect) SuspendContactRecording(input *SuspendContactRecordingInput) (*SuspendContactRecordingOutput, error) {
@@ -12969,14 +12934,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/TagResource
 func (c *Connect) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -13016,20 +12980,21 @@ func (c *Connect) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/TagResource
 func (c *Connect) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -13069,14 +13034,13 @@ const opTransferContact = "TransferContact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TransferContactRequest method.
+//	req, resp := client.TransferContactRequest(params)
 //
-//    // Example sending a request using the TransferContactRequest method.
-//    req, resp := client.TransferContactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/TransferContact
 func (c *Connect) TransferContactRequest(input *TransferContactInput) (req *request.Request, output *TransferContactOutput) {
@@ -13105,16 +13069,16 @@ func (c *Connect) TransferContactRequest(input *TransferContactInput) (req *requ
 //
 // Note the following requirements:
 //
-//    * Transfer is supported for only TASK contacts.
+//   - Transfer is supported for only TASK contacts.
 //
-//    * Do not use both QueueId and UserId in the same call.
+//   - Do not use both QueueId and UserId in the same call.
 //
-//    * The following contact flow types are supported: Inbound contact flow,
-//    Transfer to agent flow, and Transfer to queue flow.
+//   - The following contact flow types are supported: Inbound contact flow,
+//     Transfer to agent flow, and Transfer to queue flow.
 //
-//    * The TransferContact API can be called only on active contacts.
+//   - The TransferContact API can be called only on active contacts.
 //
-//    * A contact cannot be transferred more than 11 times.
+//   - A contact cannot be transferred more than 11 times.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13124,26 +13088,27 @@ func (c *Connect) TransferContactRequest(input *TransferContactInput) (req *requ
 // API operation TransferContact for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * IdempotencyException
-//   An entity with the same name already exists.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - IdempotencyException
+//     An entity with the same name already exists.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
-//   * ServiceQuotaExceededException
-//   The service quota has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/TransferContact
 func (c *Connect) TransferContact(input *TransferContactInput) (*TransferContactOutput, error) {
@@ -13183,14 +13148,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UntagResource
 func (c *Connect) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -13222,20 +13186,21 @@ func (c *Connect) UntagResourceRequest(input *UntagResourceInput) (req *request.
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UntagResource
 func (c *Connect) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -13275,14 +13240,13 @@ const opUpdateAgentStatus = "UpdateAgentStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateAgentStatusRequest method.
+//	req, resp := client.UpdateAgentStatusRequest(params)
 //
-//    // Example sending a request using the UpdateAgentStatusRequest method.
-//    req, resp := client.UpdateAgentStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateAgentStatus
 func (c *Connect) UpdateAgentStatusRequest(input *UpdateAgentStatusInput) (req *request.Request, output *UpdateAgentStatusOutput) {
@@ -13316,26 +13280,27 @@ func (c *Connect) UpdateAgentStatusRequest(input *UpdateAgentStatusInput) (req *
 // API operation UpdateAgentStatus for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateAgentStatus
 func (c *Connect) UpdateAgentStatus(input *UpdateAgentStatusInput) (*UpdateAgentStatusOutput, error) {
@@ -13375,14 +13340,13 @@ const opUpdateContact = "UpdateContact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateContactRequest method.
+//	req, resp := client.UpdateContactRequest(params)
 //
-//    // Example sending a request using the UpdateContactRequest method.
-//    req, resp := client.UpdateContactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContact
 func (c *Connect) UpdateContactRequest(input *UpdateContactInput) (req *request.Request, output *UpdateContactOutput) {
@@ -13420,20 +13384,21 @@ func (c *Connect) UpdateContactRequest(input *UpdateContactInput) (req *request.
 // API operation UpdateContact for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContact
 func (c *Connect) UpdateContact(input *UpdateContactInput) (*UpdateContactOutput, error) {
@@ -13473,14 +13438,13 @@ const opUpdateContactAttributes = "UpdateContactAttributes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateContactAttributesRequest method.
+//	req, resp := client.UpdateContactAttributesRequest(params)
 //
-//    // Example sending a request using the UpdateContactAttributesRequest method.
-//    req, resp := client.UpdateContactAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactAttributes
 func (c *Connect) UpdateContactAttributesRequest(input *UpdateContactAttributesInput) (req *request.Request, output *UpdateContactAttributesOutput) {
@@ -13535,17 +13499,18 @@ func (c *Connect) UpdateContactAttributesRequest(input *UpdateContactAttributesI
 // API operation UpdateContactAttributes for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactAttributes
 func (c *Connect) UpdateContactAttributes(input *UpdateContactAttributesInput) (*UpdateContactAttributesOutput, error) {
@@ -13585,14 +13550,13 @@ const opUpdateContactFlowContent = "UpdateContactFlowContent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateContactFlowContentRequest method.
+//	req, resp := client.UpdateContactFlowContentRequest(params)
 //
-//    // Example sending a request using the UpdateContactFlowContentRequest method.
-//    req, resp := client.UpdateContactFlowContentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowContent
 func (c *Connect) UpdateContactFlowContentRequest(input *UpdateContactFlowContentInput) (req *request.Request, output *UpdateContactFlowContentOutput) {
@@ -13627,23 +13591,24 @@ func (c *Connect) UpdateContactFlowContentRequest(input *UpdateContactFlowConten
 // API operation UpdateContactFlowContent for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidContactFlowException
-//   The contact flow is not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidContactFlowException
+//     The contact flow is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowContent
 func (c *Connect) UpdateContactFlowContent(input *UpdateContactFlowContentInput) (*UpdateContactFlowContentOutput, error) {
@@ -13683,14 +13648,13 @@ const opUpdateContactFlowMetadata = "UpdateContactFlowMetadata"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateContactFlowMetadataRequest method.
+//	req, resp := client.UpdateContactFlowMetadataRequest(params)
 //
-//    // Example sending a request using the UpdateContactFlowMetadataRequest method.
-//    req, resp := client.UpdateContactFlowMetadataRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowMetadata
 func (c *Connect) UpdateContactFlowMetadataRequest(input *UpdateContactFlowMetadataInput) (req *request.Request, output *UpdateContactFlowMetadataOutput) {
@@ -13722,23 +13686,24 @@ func (c *Connect) UpdateContactFlowMetadataRequest(input *UpdateContactFlowMetad
 // API operation UpdateContactFlowMetadata for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowMetadata
 func (c *Connect) UpdateContactFlowMetadata(input *UpdateContactFlowMetadataInput) (*UpdateContactFlowMetadataOutput, error) {
@@ -13778,14 +13743,13 @@ const opUpdateContactFlowModuleContent = "UpdateContactFlowModuleContent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateContactFlowModuleContentRequest method.
+//	req, resp := client.UpdateContactFlowModuleContentRequest(params)
 //
-//    // Example sending a request using the UpdateContactFlowModuleContentRequest method.
-//    req, resp := client.UpdateContactFlowModuleContentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowModuleContent
 func (c *Connect) UpdateContactFlowModuleContentRequest(input *UpdateContactFlowModuleContentInput) (req *request.Request, output *UpdateContactFlowModuleContentOutput) {
@@ -13817,23 +13781,24 @@ func (c *Connect) UpdateContactFlowModuleContentRequest(input *UpdateContactFlow
 // API operation UpdateContactFlowModuleContent for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
-//   * InvalidContactFlowModuleException
-//   The problems with the module. Please fix before trying again.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidContactFlowModuleException
+//     The problems with the module. Please fix before trying again.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowModuleContent
 func (c *Connect) UpdateContactFlowModuleContent(input *UpdateContactFlowModuleContentInput) (*UpdateContactFlowModuleContentOutput, error) {
@@ -13873,14 +13838,13 @@ const opUpdateContactFlowModuleMetadata = "UpdateContactFlowModuleMetadata"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateContactFlowModuleMetadataRequest method.
+//	req, resp := client.UpdateContactFlowModuleMetadataRequest(params)
 //
-//    // Example sending a request using the UpdateContactFlowModuleMetadataRequest method.
-//    req, resp := client.UpdateContactFlowModuleMetadataRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowModuleMetadata
 func (c *Connect) UpdateContactFlowModuleMetadataRequest(input *UpdateContactFlowModuleMetadataInput) (req *request.Request, output *UpdateContactFlowModuleMetadataOutput) {
@@ -13912,26 +13876,27 @@ func (c *Connect) UpdateContactFlowModuleMetadataRequest(input *UpdateContactFlo
 // API operation UpdateContactFlowModuleMetadata for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowModuleMetadata
 func (c *Connect) UpdateContactFlowModuleMetadata(input *UpdateContactFlowModuleMetadataInput) (*UpdateContactFlowModuleMetadataOutput, error) {
@@ -13971,14 +13936,13 @@ const opUpdateContactFlowName = "UpdateContactFlowName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateContactFlowNameRequest method.
+//	req, resp := client.UpdateContactFlowNameRequest(params)
 //
-//    // Example sending a request using the UpdateContactFlowNameRequest method.
-//    req, resp := client.UpdateContactFlowNameRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowName
 func (c *Connect) UpdateContactFlowNameRequest(input *UpdateContactFlowNameInput) (req *request.Request, output *UpdateContactFlowNameOutput) {
@@ -14013,23 +13977,24 @@ func (c *Connect) UpdateContactFlowNameRequest(input *UpdateContactFlowNameInput
 // API operation UpdateContactFlowName for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowName
 func (c *Connect) UpdateContactFlowName(input *UpdateContactFlowNameInput) (*UpdateContactFlowNameOutput, error) {
@@ -14069,14 +14034,13 @@ const opUpdateContactSchedule = "UpdateContactSchedule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateContactScheduleRequest method.
+//	req, resp := client.UpdateContactScheduleRequest(params)
 //
-//    // Example sending a request using the UpdateContactScheduleRequest method.
-//    req, resp := client.UpdateContactScheduleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactSchedule
 func (c *Connect) UpdateContactScheduleRequest(input *UpdateContactScheduleInput) (req *request.Request, output *UpdateContactScheduleOutput) {
@@ -14108,23 +14072,24 @@ func (c *Connect) UpdateContactScheduleRequest(input *UpdateContactScheduleInput
 // API operation UpdateContactSchedule for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * LimitExceededException
-//   The allowed limit for the resource has been exceeded.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactSchedule
 func (c *Connect) UpdateContactSchedule(input *UpdateContactScheduleInput) (*UpdateContactScheduleOutput, error) {
@@ -14164,14 +14129,13 @@ const opUpdateHoursOfOperation = "UpdateHoursOfOperation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateHoursOfOperationRequest method.
+//	req, resp := client.UpdateHoursOfOperationRequest(params)
 //
-//    // Example sending a request using the UpdateHoursOfOperationRequest method.
-//    req, resp := client.UpdateHoursOfOperationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateHoursOfOperation
 func (c *Connect) UpdateHoursOfOperationRequest(input *UpdateHoursOfOperationInput) (req *request.Request, output *UpdateHoursOfOperationOutput) {
@@ -14205,23 +14169,24 @@ func (c *Connect) UpdateHoursOfOperationRequest(input *UpdateHoursOfOperationInp
 // API operation UpdateHoursOfOperation for usage and error information.
 //
 // Returned Error Types:
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateHoursOfOperation
 func (c *Connect) UpdateHoursOfOperation(input *UpdateHoursOfOperationInput) (*UpdateHoursOfOperationOutput, error) {
@@ -14261,14 +14226,13 @@ const opUpdateInstanceAttribute = "UpdateInstanceAttribute"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateInstanceAttributeRequest method.
+//	req, resp := client.UpdateInstanceAttributeRequest(params)
 //
-//    // Example sending a request using the UpdateInstanceAttributeRequest method.
-//    req, resp := client.UpdateInstanceAttributeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateInstanceAttribute
 func (c *Connect) UpdateInstanceAttributeRequest(input *UpdateInstanceAttributeInput) (req *request.Request, output *UpdateInstanceAttributeOutput) {
@@ -14302,20 +14266,21 @@ func (c *Connect) UpdateInstanceAttributeRequest(input *UpdateInstanceAttributeI
 // API operation UpdateInstanceAttribute for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateInstanceAttribute
 func (c *Connect) UpdateInstanceAttribute(input *UpdateInstanceAttributeInput) (*UpdateInstanceAttributeOutput, error) {
@@ -14355,14 +14320,13 @@ const opUpdateInstanceStorageConfig = "UpdateInstanceStorageConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateInstanceStorageConfigRequest method.
+//	req, resp := client.UpdateInstanceStorageConfigRequest(params)
 //
-//    // Example sending a request using the UpdateInstanceStorageConfigRequest method.
-//    req, resp := client.UpdateInstanceStorageConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateInstanceStorageConfig
 func (c *Connect) UpdateInstanceStorageConfigRequest(input *UpdateInstanceStorageConfigInput) (req *request.Request, output *UpdateInstanceStorageConfigOutput) {
@@ -14396,20 +14360,21 @@ func (c *Connect) UpdateInstanceStorageConfigRequest(input *UpdateInstanceStorag
 // API operation UpdateInstanceStorageConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateInstanceStorageConfig
 func (c *Connect) UpdateInstanceStorageConfig(input *UpdateInstanceStorageConfigInput) (*UpdateInstanceStorageConfigOutput, error) {
@@ -14449,14 +14414,13 @@ const opUpdatePhoneNumber = "UpdatePhoneNumber"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdatePhoneNumberRequest method.
+//	req, resp := client.UpdatePhoneNumberRequest(params)
 //
-//    // Example sending a request using the UpdatePhoneNumberRequest method.
-//    req, resp := client.UpdatePhoneNumberRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdatePhoneNumber
 func (c *Connect) UpdatePhoneNumberRequest(input *UpdatePhoneNumberInput) (req *request.Request, output *UpdatePhoneNumberOutput) {
@@ -14488,26 +14452,27 @@ func (c *Connect) UpdatePhoneNumberRequest(input *UpdatePhoneNumberInput) (req *
 // API operation UpdatePhoneNumber for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * ResourceInUseException
-//   That resource is already in use. Please try another.
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * IdempotencyException
-//   An entity with the same name already exists.
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action.
+//   - IdempotencyException
+//     An entity with the same name already exists.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdatePhoneNumber
 func (c *Connect) UpdatePhoneNumber(input *UpdatePhoneNumberInput) (*UpdatePhoneNumberOutput, error) {
@@ -14547,14 +14512,13 @@ const opUpdateQueueHoursOfOperation = "UpdateQueueHoursOfOperation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateQueueHoursOfOperationRequest method.
+//	req, resp := client.UpdateQueueHoursOfOperationRequest(params)
 //
-//    // Example sending a request using the UpdateQueueHoursOfOperationRequest method.
-//    req, resp := client.UpdateQueueHoursOfOperationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueHoursOfOperation
 func (c *Connect) UpdateQueueHoursOfOperationRequest(input *UpdateQueueHoursOfOperationInput) (req *request.Request, output *UpdateQueueHoursOfOperationOutput) {
@@ -14588,20 +14552,21 @@ func (c *Connect) UpdateQueueHoursOfOperationRequest(input *UpdateQueueHoursOfOp
 // API operation UpdateQueueHoursOfOperation for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueHoursOfOperation
 func (c *Connect) UpdateQueueHoursOfOperation(input *UpdateQueueHoursOfOperationInput) (*UpdateQueueHoursOfOperationOutput, error) {
@@ -14641,14 +14606,13 @@ const opUpdateQueueMaxContacts = "UpdateQueueMaxContacts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateQueueMaxContactsRequest method.
+//	req, resp := client.UpdateQueueMaxContactsRequest(params)
 //
-//    // Example sending a request using the UpdateQueueMaxContactsRequest method.
-//    req, resp := client.UpdateQueueMaxContactsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueMaxContacts
 func (c *Connect) UpdateQueueMaxContactsRequest(input *UpdateQueueMaxContactsInput) (req *request.Request, output *UpdateQueueMaxContactsOutput) {
@@ -14683,20 +14647,21 @@ func (c *Connect) UpdateQueueMaxContactsRequest(input *UpdateQueueMaxContactsInp
 // API operation UpdateQueueMaxContacts for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueMaxContacts
 func (c *Connect) UpdateQueueMaxContacts(input *UpdateQueueMaxContactsInput) (*UpdateQueueMaxContactsOutput, error) {
@@ -14736,14 +14701,13 @@ const opUpdateQueueName = "UpdateQueueName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateQueueNameRequest method.
+//	req, resp := client.UpdateQueueNameRequest(params)
 //
-//    // Example sending a request using the UpdateQueueNameRequest method.
-//    req, resp := client.UpdateQueueNameRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueName
 func (c *Connect) UpdateQueueNameRequest(input *UpdateQueueNameInput) (req *request.Request, output *UpdateQueueNameOutput) {
@@ -14778,23 +14742,24 @@ func (c *Connect) UpdateQueueNameRequest(input *UpdateQueueNameInput) (req *requ
 // API operation UpdateQueueName for usage and error information.
 //
 // Returned Error Types:
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueName
 func (c *Connect) UpdateQueueName(input *UpdateQueueNameInput) (*UpdateQueueNameOutput, error) {
@@ -14834,14 +14799,13 @@ const opUpdateQueueOutboundCallerConfig = "UpdateQueueOutboundCallerConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateQueueOutboundCallerConfigRequest method.
+//	req, resp := client.UpdateQueueOutboundCallerConfigRequest(params)
 //
-//    // Example sending a request using the UpdateQueueOutboundCallerConfigRequest method.
-//    req, resp := client.UpdateQueueOutboundCallerConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueOutboundCallerConfig
 func (c *Connect) UpdateQueueOutboundCallerConfigRequest(input *UpdateQueueOutboundCallerConfigInput) (req *request.Request, output *UpdateQueueOutboundCallerConfigOutput) {
@@ -14876,20 +14840,21 @@ func (c *Connect) UpdateQueueOutboundCallerConfigRequest(input *UpdateQueueOutbo
 // API operation UpdateQueueOutboundCallerConfig for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueOutboundCallerConfig
 func (c *Connect) UpdateQueueOutboundCallerConfig(input *UpdateQueueOutboundCallerConfigInput) (*UpdateQueueOutboundCallerConfigOutput, error) {
@@ -14929,14 +14894,13 @@ const opUpdateQueueStatus = "UpdateQueueStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateQueueStatusRequest method.
+//	req, resp := client.UpdateQueueStatusRequest(params)
 //
-//    // Example sending a request using the UpdateQueueStatusRequest method.
-//    req, resp := client.UpdateQueueStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueStatus
 func (c *Connect) UpdateQueueStatusRequest(input *UpdateQueueStatusInput) (req *request.Request, output *UpdateQueueStatusOutput) {
@@ -14970,20 +14934,21 @@ func (c *Connect) UpdateQueueStatusRequest(input *UpdateQueueStatusInput) (req *
 // API operation UpdateQueueStatus for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueStatus
 func (c *Connect) UpdateQueueStatus(input *UpdateQueueStatusInput) (*UpdateQueueStatusOutput, error) {
@@ -15023,14 +14988,13 @@ const opUpdateQuickConnectConfig = "UpdateQuickConnectConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateQuickConnectConfigRequest method.
+//	req, resp := client.UpdateQuickConnectConfigRequest(params)
 //
-//    // Example sending a request using the UpdateQuickConnectConfigRequest method.
-//    req, resp := client.UpdateQuickConnectConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQuickConnectConfig
 func (c *Connect) UpdateQuickConnectConfigRequest(input *UpdateQuickConnectConfigInput) (req *request.Request, output *UpdateQuickConnectConfigOutput) {
@@ -15062,20 +15026,21 @@ func (c *Connect) UpdateQuickConnectConfigRequest(input *UpdateQuickConnectConfi
 // API operation UpdateQuickConnectConfig for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQuickConnectConfig
 func (c *Connect) UpdateQuickConnectConfig(input *UpdateQuickConnectConfigInput) (*UpdateQuickConnectConfigOutput, error) {
@@ -15115,14 +15080,13 @@ const opUpdateQuickConnectName = "UpdateQuickConnectName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateQuickConnectNameRequest method.
+//	req, resp := client.UpdateQuickConnectNameRequest(params)
 //
-//    // Example sending a request using the UpdateQuickConnectNameRequest method.
-//    req, resp := client.UpdateQuickConnectNameRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQuickConnectName
 func (c *Connect) UpdateQuickConnectNameRequest(input *UpdateQuickConnectNameInput) (req *request.Request, output *UpdateQuickConnectNameOutput) {
@@ -15155,20 +15119,21 @@ func (c *Connect) UpdateQuickConnectNameRequest(input *UpdateQuickConnectNameInp
 // API operation UpdateQuickConnectName for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQuickConnectName
 func (c *Connect) UpdateQuickConnectName(input *UpdateQuickConnectNameInput) (*UpdateQuickConnectNameOutput, error) {
@@ -15208,14 +15173,13 @@ const opUpdateRoutingProfileConcurrency = "UpdateRoutingProfileConcurrency"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRoutingProfileConcurrencyRequest method.
+//	req, resp := client.UpdateRoutingProfileConcurrencyRequest(params)
 //
-//    // Example sending a request using the UpdateRoutingProfileConcurrencyRequest method.
-//    req, resp := client.UpdateRoutingProfileConcurrencyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileConcurrency
 func (c *Connect) UpdateRoutingProfileConcurrencyRequest(input *UpdateRoutingProfileConcurrencyInput) (req *request.Request, output *UpdateRoutingProfileConcurrencyOutput) {
@@ -15248,20 +15212,21 @@ func (c *Connect) UpdateRoutingProfileConcurrencyRequest(input *UpdateRoutingPro
 // API operation UpdateRoutingProfileConcurrency for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileConcurrency
 func (c *Connect) UpdateRoutingProfileConcurrency(input *UpdateRoutingProfileConcurrencyInput) (*UpdateRoutingProfileConcurrencyOutput, error) {
@@ -15301,14 +15266,13 @@ const opUpdateRoutingProfileDefaultOutboundQueue = "UpdateRoutingProfileDefaultO
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRoutingProfileDefaultOutboundQueueRequest method.
+//	req, resp := client.UpdateRoutingProfileDefaultOutboundQueueRequest(params)
 //
-//    // Example sending a request using the UpdateRoutingProfileDefaultOutboundQueueRequest method.
-//    req, resp := client.UpdateRoutingProfileDefaultOutboundQueueRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileDefaultOutboundQueue
 func (c *Connect) UpdateRoutingProfileDefaultOutboundQueueRequest(input *UpdateRoutingProfileDefaultOutboundQueueInput) (req *request.Request, output *UpdateRoutingProfileDefaultOutboundQueueOutput) {
@@ -15340,20 +15304,21 @@ func (c *Connect) UpdateRoutingProfileDefaultOutboundQueueRequest(input *UpdateR
 // API operation UpdateRoutingProfileDefaultOutboundQueue for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileDefaultOutboundQueue
 func (c *Connect) UpdateRoutingProfileDefaultOutboundQueue(input *UpdateRoutingProfileDefaultOutboundQueueInput) (*UpdateRoutingProfileDefaultOutboundQueueOutput, error) {
@@ -15393,14 +15358,13 @@ const opUpdateRoutingProfileName = "UpdateRoutingProfileName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRoutingProfileNameRequest method.
+//	req, resp := client.UpdateRoutingProfileNameRequest(params)
 //
-//    // Example sending a request using the UpdateRoutingProfileNameRequest method.
-//    req, resp := client.UpdateRoutingProfileNameRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileName
 func (c *Connect) UpdateRoutingProfileNameRequest(input *UpdateRoutingProfileNameInput) (req *request.Request, output *UpdateRoutingProfileNameOutput) {
@@ -15433,23 +15397,24 @@ func (c *Connect) UpdateRoutingProfileNameRequest(input *UpdateRoutingProfileNam
 // API operation UpdateRoutingProfileName for usage and error information.
 //
 // Returned Error Types:
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
 //
-//   * InvalidRequestException
-//   The request is not valid.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileName
 func (c *Connect) UpdateRoutingProfileName(input *UpdateRoutingProfileNameInput) (*UpdateRoutingProfileNameOutput, error) {
@@ -15489,14 +15454,13 @@ const opUpdateRoutingProfileQueues = "UpdateRoutingProfileQueues"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRoutingProfileQueuesRequest method.
+//	req, resp := client.UpdateRoutingProfileQueuesRequest(params)
 //
-//    // Example sending a request using the UpdateRoutingProfileQueuesRequest method.
-//    req, resp := client.UpdateRoutingProfileQueuesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileQueues
 func (c *Connect) UpdateRoutingProfileQueuesRequest(input *UpdateRoutingProfileQueuesInput) (req *request.Request, output *UpdateRoutingProfileQueuesOutput) {
@@ -15528,20 +15492,21 @@ func (c *Connect) UpdateRoutingProfileQueuesRequest(input *UpdateRoutingProfileQ
 // API operation UpdateRoutingProfileQueues for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileQueues
 func (c *Connect) UpdateRoutingProfileQueues(input *UpdateRoutingProfileQueuesInput) (*UpdateRoutingProfileQueuesOutput, error) {
@@ -15581,14 +15546,13 @@ const opUpdateSecurityProfile = "UpdateSecurityProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateSecurityProfileRequest method.
+//	req, resp := client.UpdateSecurityProfileRequest(params)
 //
-//    // Example sending a request using the UpdateSecurityProfileRequest method.
-//    req, resp := client.UpdateSecurityProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateSecurityProfile
 func (c *Connect) UpdateSecurityProfileRequest(input *UpdateSecurityProfileInput) (req *request.Request, output *UpdateSecurityProfileOutput) {
@@ -15622,20 +15586,21 @@ func (c *Connect) UpdateSecurityProfileRequest(input *UpdateSecurityProfileInput
 // API operation UpdateSecurityProfile for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateSecurityProfile
 func (c *Connect) UpdateSecurityProfile(input *UpdateSecurityProfileInput) (*UpdateSecurityProfileOutput, error) {
@@ -15675,14 +15640,13 @@ const opUpdateTaskTemplate = "UpdateTaskTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateTaskTemplateRequest method.
+//	req, resp := client.UpdateTaskTemplateRequest(params)
 //
-//    // Example sending a request using the UpdateTaskTemplateRequest method.
-//    req, resp := client.UpdateTaskTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateTaskTemplate
 func (c *Connect) UpdateTaskTemplateRequest(input *UpdateTaskTemplateInput) (req *request.Request, output *UpdateTaskTemplateOutput) {
@@ -15715,22 +15679,23 @@ func (c *Connect) UpdateTaskTemplateRequest(input *UpdateTaskTemplateInput) (req
 // API operation UpdateTaskTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * PropertyValidationException
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - PropertyValidationException
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ServiceQuotaExceededException
-//   The service quota has been exceeded.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateTaskTemplate
 func (c *Connect) UpdateTaskTemplate(input *UpdateTaskTemplateInput) (*UpdateTaskTemplateOutput, error) {
@@ -15770,14 +15735,13 @@ const opUpdateUserHierarchy = "UpdateUserHierarchy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateUserHierarchyRequest method.
+//	req, resp := client.UpdateUserHierarchyRequest(params)
 //
-//    // Example sending a request using the UpdateUserHierarchyRequest method.
-//    req, resp := client.UpdateUserHierarchyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserHierarchy
 func (c *Connect) UpdateUserHierarchyRequest(input *UpdateUserHierarchyInput) (req *request.Request, output *UpdateUserHierarchyOutput) {
@@ -15809,20 +15773,21 @@ func (c *Connect) UpdateUserHierarchyRequest(input *UpdateUserHierarchyInput) (r
 // API operation UpdateUserHierarchy for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserHierarchy
 func (c *Connect) UpdateUserHierarchy(input *UpdateUserHierarchyInput) (*UpdateUserHierarchyOutput, error) {
@@ -15862,14 +15827,13 @@ const opUpdateUserHierarchyGroupName = "UpdateUserHierarchyGroupName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateUserHierarchyGroupNameRequest method.
+//	req, resp := client.UpdateUserHierarchyGroupNameRequest(params)
 //
-//    // Example sending a request using the UpdateUserHierarchyGroupNameRequest method.
-//    req, resp := client.UpdateUserHierarchyGroupNameRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserHierarchyGroupName
 func (c *Connect) UpdateUserHierarchyGroupNameRequest(input *UpdateUserHierarchyGroupNameInput) (req *request.Request, output *UpdateUserHierarchyGroupNameOutput) {
@@ -15901,23 +15865,24 @@ func (c *Connect) UpdateUserHierarchyGroupNameRequest(input *UpdateUserHierarchy
 // API operation UpdateUserHierarchyGroupName for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * DuplicateResourceException
-//   A resource with the specified name already exists.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserHierarchyGroupName
 func (c *Connect) UpdateUserHierarchyGroupName(input *UpdateUserHierarchyGroupNameInput) (*UpdateUserHierarchyGroupNameOutput, error) {
@@ -15957,14 +15922,13 @@ const opUpdateUserHierarchyStructure = "UpdateUserHierarchyStructure"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateUserHierarchyStructureRequest method.
+//	req, resp := client.UpdateUserHierarchyStructureRequest(params)
 //
-//    // Example sending a request using the UpdateUserHierarchyStructureRequest method.
-//    req, resp := client.UpdateUserHierarchyStructureRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserHierarchyStructure
 func (c *Connect) UpdateUserHierarchyStructureRequest(input *UpdateUserHierarchyStructureInput) (req *request.Request, output *UpdateUserHierarchyStructureOutput) {
@@ -15997,23 +15961,24 @@ func (c *Connect) UpdateUserHierarchyStructureRequest(input *UpdateUserHierarchy
 // API operation UpdateUserHierarchyStructure for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ResourceInUseException
-//   That resource is already in use. Please try another.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserHierarchyStructure
 func (c *Connect) UpdateUserHierarchyStructure(input *UpdateUserHierarchyStructureInput) (*UpdateUserHierarchyStructureOutput, error) {
@@ -16053,14 +16018,13 @@ const opUpdateUserIdentityInfo = "UpdateUserIdentityInfo"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateUserIdentityInfoRequest method.
+//	req, resp := client.UpdateUserIdentityInfoRequest(params)
 //
-//    // Example sending a request using the UpdateUserIdentityInfoRequest method.
-//    req, resp := client.UpdateUserIdentityInfoRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserIdentityInfo
 func (c *Connect) UpdateUserIdentityInfoRequest(input *UpdateUserIdentityInfoInput) (req *request.Request, output *UpdateUserIdentityInfoOutput) {
@@ -16100,20 +16064,21 @@ func (c *Connect) UpdateUserIdentityInfoRequest(input *UpdateUserIdentityInfoInp
 // API operation UpdateUserIdentityInfo for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserIdentityInfo
 func (c *Connect) UpdateUserIdentityInfo(input *UpdateUserIdentityInfoInput) (*UpdateUserIdentityInfoOutput, error) {
@@ -16153,14 +16118,13 @@ const opUpdateUserPhoneConfig = "UpdateUserPhoneConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateUserPhoneConfigRequest method.
+//	req, resp := client.UpdateUserPhoneConfigRequest(params)
 //
-//    // Example sending a request using the UpdateUserPhoneConfigRequest method.
-//    req, resp := client.UpdateUserPhoneConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserPhoneConfig
 func (c *Connect) UpdateUserPhoneConfigRequest(input *UpdateUserPhoneConfigInput) (req *request.Request, output *UpdateUserPhoneConfigOutput) {
@@ -16192,20 +16156,21 @@ func (c *Connect) UpdateUserPhoneConfigRequest(input *UpdateUserPhoneConfigInput
 // API operation UpdateUserPhoneConfig for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserPhoneConfig
 func (c *Connect) UpdateUserPhoneConfig(input *UpdateUserPhoneConfigInput) (*UpdateUserPhoneConfigOutput, error) {
@@ -16245,14 +16210,13 @@ const opUpdateUserRoutingProfile = "UpdateUserRoutingProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateUserRoutingProfileRequest method.
+//	req, resp := client.UpdateUserRoutingProfileRequest(params)
 //
-//    // Example sending a request using the UpdateUserRoutingProfileRequest method.
-//    req, resp := client.UpdateUserRoutingProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserRoutingProfile
 func (c *Connect) UpdateUserRoutingProfileRequest(input *UpdateUserRoutingProfileInput) (req *request.Request, output *UpdateUserRoutingProfileOutput) {
@@ -16284,20 +16248,21 @@ func (c *Connect) UpdateUserRoutingProfileRequest(input *UpdateUserRoutingProfil
 // API operation UpdateUserRoutingProfile for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserRoutingProfile
 func (c *Connect) UpdateUserRoutingProfile(input *UpdateUserRoutingProfileInput) (*UpdateUserRoutingProfileOutput, error) {
@@ -16337,14 +16302,13 @@ const opUpdateUserSecurityProfiles = "UpdateUserSecurityProfiles"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateUserSecurityProfilesRequest method.
+//	req, resp := client.UpdateUserSecurityProfilesRequest(params)
 //
-//    // Example sending a request using the UpdateUserSecurityProfilesRequest method.
-//    req, resp := client.UpdateUserSecurityProfilesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserSecurityProfiles
 func (c *Connect) UpdateUserSecurityProfilesRequest(input *UpdateUserSecurityProfilesInput) (req *request.Request, output *UpdateUserSecurityProfilesOutput) {
@@ -16376,20 +16340,21 @@ func (c *Connect) UpdateUserSecurityProfilesRequest(input *UpdateUserSecurityPro
 // API operation UpdateUserSecurityProfiles for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The request is not valid.
 //
-//   * InvalidParameterException
-//   One or more of the specified parameters are not valid.
+//   - InvalidRequestException
+//     The request is not valid.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
 //
-//   * ThrottlingException
-//   The throttling limit has been exceeded.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InternalServiceException
-//   Request processing failed because of an error or failure with the service.
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserSecurityProfiles
 func (c *Connect) UpdateUserSecurityProfiles(input *UpdateUserSecurityProfilesInput) (*UpdateUserSecurityProfilesOutput, error) {
@@ -18986,10 +18951,10 @@ func (s *ContactNotFoundException) RequestID() string {
 // An object that can be used to specify Tag conditions inside the SearchFilter.
 // This accepts an OR of AND (List of List) input where:
 //
-//    * Top level list specifies conditions that need to be applied with OR
-//    operator
+//   - Top level list specifies conditions that need to be applied with OR
+//     operator
 //
-//    * Inner list specifies conditions that need to be applied with AND operator.
+//   - Inner list specifies conditions that need to be applied with AND operator.
 type ControlPlaneTagFilter struct {
 	_ struct{} `type:"structure"`
 

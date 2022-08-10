@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To compare two images
-//
 // This operation compares the largest face detected in the source image with each face
 // detected in the target image.
 func ExampleRekognition_CompareFaces_shared00() {
@@ -82,7 +81,6 @@ func ExampleRekognition_CompareFaces_shared00() {
 }
 
 // To create a collection
-//
 // This operation creates a Rekognition collection for storing image data.
 func ExampleRekognition_CreateCollection_shared00() {
 	svc := rekognition.New(session.New())
@@ -123,7 +121,6 @@ func ExampleRekognition_CreateCollection_shared00() {
 }
 
 // To delete a collection
-//
 // This operation deletes a Rekognition collection.
 func ExampleRekognition_DeleteCollection_shared00() {
 	svc := rekognition.New(session.New())
@@ -162,7 +159,6 @@ func ExampleRekognition_DeleteCollection_shared00() {
 }
 
 // To delete a face
-//
 // This operation deletes one or more faces from a Rekognition collection.
 func ExampleRekognition_DeleteFaces_shared00() {
 	svc := rekognition.New(session.New())
@@ -204,7 +200,6 @@ func ExampleRekognition_DeleteFaces_shared00() {
 }
 
 // To detect faces in an image
-//
 // This operation detects faces in an image stored in an AWS S3 bucket.
 func ExampleRekognition_DetectFaces_shared00() {
 	svc := rekognition.New(session.New())
@@ -252,7 +247,6 @@ func ExampleRekognition_DetectFaces_shared00() {
 }
 
 // To detect labels
-//
 // This operation detects labels in the supplied image
 func ExampleRekognition_DetectLabels_shared00() {
 	svc := rekognition.New(session.New())
@@ -302,7 +296,6 @@ func ExampleRekognition_DetectLabels_shared00() {
 }
 
 // To add a face to a collection
-//
 // This operation detects faces in an image and adds them to the specified Rekognition
 // collection.
 func ExampleRekognition_IndexFaces_shared00() {
@@ -357,7 +350,6 @@ func ExampleRekognition_IndexFaces_shared00() {
 }
 
 // To list the collections
-//
 // This operation returns a list of Rekognition collections.
 func ExampleRekognition_ListCollections_shared00() {
 	svc := rekognition.New(session.New())
@@ -396,7 +388,6 @@ func ExampleRekognition_ListCollections_shared00() {
 }
 
 // To list the faces in a collection
-//
 // This operation lists the faces in a Rekognition collection.
 func ExampleRekognition_ListFaces_shared00() {
 	svc := rekognition.New(session.New())
@@ -438,7 +429,6 @@ func ExampleRekognition_ListFaces_shared00() {
 }
 
 // To delete a face
-//
 // This operation searches for matching faces in the collection the supplied face belongs
 // to.
 func ExampleRekognition_SearchFaces_shared00() {
@@ -481,7 +471,6 @@ func ExampleRekognition_SearchFaces_shared00() {
 }
 
 // To search for faces matching a supplied image
-//
 // This operation searches for faces in a Rekognition collection that match the largest
 // face in an S3 bucket stored image.
 func ExampleRekognition_SearchFacesByImage_shared00() {

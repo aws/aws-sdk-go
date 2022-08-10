@@ -27,14 +27,13 @@ const opBatchExecuteStatement = "BatchExecuteStatement"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchExecuteStatementRequest method.
+//	req, resp := client.BatchExecuteStatementRequest(params)
 //
-//    // Example sending a request using the BatchExecuteStatementRequest method.
-//    req, resp := client.BatchExecuteStatementRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/BatchExecuteStatement
 func (c *RDSDataService) BatchExecuteStatementRequest(input *BatchExecuteStatementInput) (req *request.Request, output *BatchExecuteStatementOutput) {
@@ -83,23 +82,24 @@ func (c *RDSDataService) BatchExecuteStatementRequest(input *BatchExecuteStateme
 // API operation BatchExecuteStatement for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * BadRequestException
-//   There is an error in the call or in a SQL statement.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * StatementTimeoutException
-//   The execution of the SQL statement timed out.
+//   - BadRequestException
+//     There is an error in the call or in a SQL statement.
 //
-//   * InternalServerErrorException
-//   An internal error occurred.
+//   - StatementTimeoutException
+//     The execution of the SQL statement timed out.
 //
-//   * ForbiddenException
-//   There are insufficient privileges to make the call.
+//   - InternalServerErrorException
+//     An internal error occurred.
 //
-//   * ServiceUnavailableError
-//   The service specified by the resourceArn parameter is not available.
+//   - ForbiddenException
+//     There are insufficient privileges to make the call.
+//
+//   - ServiceUnavailableError
+//     The service specified by the resourceArn parameter is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/BatchExecuteStatement
 func (c *RDSDataService) BatchExecuteStatement(input *BatchExecuteStatementInput) (*BatchExecuteStatementOutput, error) {
@@ -139,14 +139,13 @@ const opBeginTransaction = "BeginTransaction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BeginTransactionRequest method.
+//	req, resp := client.BeginTransactionRequest(params)
 //
-//    // Example sending a request using the BeginTransactionRequest method.
-//    req, resp := client.BeginTransactionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/BeginTransaction
 func (c *RDSDataService) BeginTransactionRequest(input *BeginTransactionInput) (req *request.Request, output *BeginTransactionOutput) {
@@ -169,13 +168,13 @@ func (c *RDSDataService) BeginTransactionRequest(input *BeginTransactionInput) (
 //
 // Starts a SQL transaction.
 //
-//    <important> <p>A transaction can run for a maximum of 24 hours. A transaction
-//    is terminated and rolled back automatically after 24 hours.</p> <p>A transaction
-//    times out if no calls use its transaction ID in three minutes. If a transaction
-//    times out before it's committed, it's rolled back automatically.</p> <p>DDL
-//    statements inside a transaction cause an implicit commit. We recommend
-//    that you run each DDL statement in a separate <code>ExecuteStatement</code>
-//    call with <code>continueAfterTimeout</code> enabled.</p> </important>
+//	<important> <p>A transaction can run for a maximum of 24 hours. A transaction
+//	is terminated and rolled back automatically after 24 hours.</p> <p>A transaction
+//	times out if no calls use its transaction ID in three minutes. If a transaction
+//	times out before it's committed, it's rolled back automatically.</p> <p>DDL
+//	statements inside a transaction cause an implicit commit. We recommend
+//	that you run each DDL statement in a separate <code>ExecuteStatement</code>
+//	call with <code>continueAfterTimeout</code> enabled.</p> </important>
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -185,23 +184,24 @@ func (c *RDSDataService) BeginTransactionRequest(input *BeginTransactionInput) (
 // API operation BeginTransaction for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * BadRequestException
-//   There is an error in the call or in a SQL statement.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * StatementTimeoutException
-//   The execution of the SQL statement timed out.
+//   - BadRequestException
+//     There is an error in the call or in a SQL statement.
 //
-//   * InternalServerErrorException
-//   An internal error occurred.
+//   - StatementTimeoutException
+//     The execution of the SQL statement timed out.
 //
-//   * ForbiddenException
-//   There are insufficient privileges to make the call.
+//   - InternalServerErrorException
+//     An internal error occurred.
 //
-//   * ServiceUnavailableError
-//   The service specified by the resourceArn parameter is not available.
+//   - ForbiddenException
+//     There are insufficient privileges to make the call.
+//
+//   - ServiceUnavailableError
+//     The service specified by the resourceArn parameter is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/BeginTransaction
 func (c *RDSDataService) BeginTransaction(input *BeginTransactionInput) (*BeginTransactionOutput, error) {
@@ -241,14 +241,13 @@ const opCommitTransaction = "CommitTransaction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CommitTransactionRequest method.
+//	req, resp := client.CommitTransactionRequest(params)
 //
-//    // Example sending a request using the CommitTransactionRequest method.
-//    req, resp := client.CommitTransactionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/CommitTransaction
 func (c *RDSDataService) CommitTransactionRequest(input *CommitTransactionInput) (req *request.Request, output *CommitTransactionOutput) {
@@ -280,26 +279,27 @@ func (c *RDSDataService) CommitTransactionRequest(input *CommitTransactionInput)
 // API operation CommitTransaction for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * BadRequestException
-//   There is an error in the call or in a SQL statement.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * StatementTimeoutException
-//   The execution of the SQL statement timed out.
+//   - BadRequestException
+//     There is an error in the call or in a SQL statement.
 //
-//   * InternalServerErrorException
-//   An internal error occurred.
+//   - StatementTimeoutException
+//     The execution of the SQL statement timed out.
 //
-//   * ForbiddenException
-//   There are insufficient privileges to make the call.
+//   - InternalServerErrorException
+//     An internal error occurred.
 //
-//   * ServiceUnavailableError
-//   The service specified by the resourceArn parameter is not available.
+//   - ForbiddenException
+//     There are insufficient privileges to make the call.
 //
-//   * NotFoundException
-//   The resourceArn, secretArn, or transactionId value can't be found.
+//   - ServiceUnavailableError
+//     The service specified by the resourceArn parameter is not available.
+//
+//   - NotFoundException
+//     The resourceArn, secretArn, or transactionId value can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/CommitTransaction
 func (c *RDSDataService) CommitTransaction(input *CommitTransactionInput) (*CommitTransactionOutput, error) {
@@ -339,14 +339,13 @@ const opExecuteSql = "ExecuteSql"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ExecuteSqlRequest method.
+//	req, resp := client.ExecuteSqlRequest(params)
 //
-//    // Example sending a request using the ExecuteSqlRequest method.
-//    req, resp := client.ExecuteSqlRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/ExecuteSql
 //
@@ -385,20 +384,21 @@ func (c *RDSDataService) ExecuteSqlRequest(input *ExecuteSqlInput) (req *request
 // API operation ExecuteSql for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * BadRequestException
-//   There is an error in the call or in a SQL statement.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * InternalServerErrorException
-//   An internal error occurred.
+//   - BadRequestException
+//     There is an error in the call or in a SQL statement.
 //
-//   * ForbiddenException
-//   There are insufficient privileges to make the call.
+//   - InternalServerErrorException
+//     An internal error occurred.
 //
-//   * ServiceUnavailableError
-//   The service specified by the resourceArn parameter is not available.
+//   - ForbiddenException
+//     There are insufficient privileges to make the call.
+//
+//   - ServiceUnavailableError
+//     The service specified by the resourceArn parameter is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/ExecuteSql
 //
@@ -442,14 +442,13 @@ const opExecuteStatement = "ExecuteStatement"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ExecuteStatementRequest method.
+//	req, resp := client.ExecuteStatementRequest(params)
 //
-//    // Example sending a request using the ExecuteStatementRequest method.
-//    req, resp := client.ExecuteStatementRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/ExecuteStatement
 func (c *RDSDataService) ExecuteStatementRequest(input *ExecuteStatementInput) (req *request.Request, output *ExecuteStatementOutput) {
@@ -486,23 +485,24 @@ func (c *RDSDataService) ExecuteStatementRequest(input *ExecuteStatementInput) (
 // API operation ExecuteStatement for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * BadRequestException
-//   There is an error in the call or in a SQL statement.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * StatementTimeoutException
-//   The execution of the SQL statement timed out.
+//   - BadRequestException
+//     There is an error in the call or in a SQL statement.
 //
-//   * InternalServerErrorException
-//   An internal error occurred.
+//   - StatementTimeoutException
+//     The execution of the SQL statement timed out.
 //
-//   * ForbiddenException
-//   There are insufficient privileges to make the call.
+//   - InternalServerErrorException
+//     An internal error occurred.
 //
-//   * ServiceUnavailableError
-//   The service specified by the resourceArn parameter is not available.
+//   - ForbiddenException
+//     There are insufficient privileges to make the call.
+//
+//   - ServiceUnavailableError
+//     The service specified by the resourceArn parameter is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/ExecuteStatement
 func (c *RDSDataService) ExecuteStatement(input *ExecuteStatementInput) (*ExecuteStatementOutput, error) {
@@ -542,14 +542,13 @@ const opRollbackTransaction = "RollbackTransaction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RollbackTransactionRequest method.
+//	req, resp := client.RollbackTransactionRequest(params)
 //
-//    // Example sending a request using the RollbackTransactionRequest method.
-//    req, resp := client.RollbackTransactionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/RollbackTransaction
 func (c *RDSDataService) RollbackTransactionRequest(input *RollbackTransactionInput) (req *request.Request, output *RollbackTransactionOutput) {
@@ -581,26 +580,27 @@ func (c *RDSDataService) RollbackTransactionRequest(input *RollbackTransactionIn
 // API operation RollbackTransaction for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
 //
-//   * BadRequestException
-//   There is an error in the call or in a SQL statement.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * StatementTimeoutException
-//   The execution of the SQL statement timed out.
+//   - BadRequestException
+//     There is an error in the call or in a SQL statement.
 //
-//   * InternalServerErrorException
-//   An internal error occurred.
+//   - StatementTimeoutException
+//     The execution of the SQL statement timed out.
 //
-//   * ForbiddenException
-//   There are insufficient privileges to make the call.
+//   - InternalServerErrorException
+//     An internal error occurred.
 //
-//   * ServiceUnavailableError
-//   The service specified by the resourceArn parameter is not available.
+//   - ForbiddenException
+//     There are insufficient privileges to make the call.
 //
-//   * NotFoundException
-//   The resourceArn, secretArn, or transactionId value can't be found.
+//   - ServiceUnavailableError
+//     The service specified by the resourceArn parameter is not available.
+//
+//   - NotFoundException
+//     The resourceArn, secretArn, or transactionId value can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/RollbackTransaction
 func (c *RDSDataService) RollbackTransaction(input *RollbackTransactionInput) (*RollbackTransactionOutput, error) {
@@ -2472,9 +2472,9 @@ func (s *SqlParameter) SetValue(v *Field) *SqlParameter {
 
 // The result of a SQL statement.
 //
-//    <important> <p>This data structure is only used with the deprecated <code>ExecuteSql</code>
-//    operation. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code>
-//    operation instead.</p> </important>
+//	<important> <p>This data structure is only used with the deprecated <code>ExecuteSql</code>
+//	operation. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code>
+//	operation instead.</p> </important>
 type SqlStatementResult struct {
 	_ struct{} `type:"structure"`
 
@@ -2652,9 +2652,9 @@ func (s *UpdateResult) SetGeneratedFields(v []*Field) *UpdateResult {
 
 // Contains the value of a column.
 //
-//    <important> <p>This data structure is only used with the deprecated <code>ExecuteSql</code>
-//    operation. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code>
-//    operation instead.</p> </important>
+//	<important> <p>This data structure is only used with the deprecated <code>ExecuteSql</code>
+//	operation. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code>
+//	operation instead.</p> </important>
 type Value struct {
 	_ struct{} `type:"structure"`
 

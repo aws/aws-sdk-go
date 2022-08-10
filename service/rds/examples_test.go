@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To add a source identifier to an event notification subscription
-//
 // This example add a source identifier to an event notification subscription.
 func ExampleRDS_AddSourceIdentifierToSubscription_shared00() {
 	svc := rds.New(session.New())
@@ -58,7 +57,6 @@ func ExampleRDS_AddSourceIdentifierToSubscription_shared00() {
 }
 
 // To add tags to a resource
-//
 // This example adds a tag to an option group.
 func ExampleRDS_AddTagsToResource_shared00() {
 	svc := rds.New(session.New())
@@ -101,7 +99,6 @@ func ExampleRDS_AddTagsToResource_shared00() {
 }
 
 // To apply a pending maintenance action
-//
 // This example immediately applies a pending system update to a DB instance.
 func ExampleRDS_ApplyPendingMaintenanceAction_shared00() {
 	svc := rds.New(session.New())
@@ -136,7 +133,6 @@ func ExampleRDS_ApplyPendingMaintenanceAction_shared00() {
 }
 
 // To authorize DB security group integress
-//
 // This example authorizes access to the specified security group by the specified CIDR
 // block.
 func ExampleRDS_AuthorizeDBSecurityGroupIngress_shared00() {
@@ -173,7 +169,6 @@ func ExampleRDS_AuthorizeDBSecurityGroupIngress_shared00() {
 }
 
 // To copy a DB cluster parameter group
-//
 // This example copies a DB cluster parameter group.
 func ExampleRDS_CopyDBClusterParameterGroup_shared00() {
 	svc := rds.New(session.New())
@@ -208,7 +203,6 @@ func ExampleRDS_CopyDBClusterParameterGroup_shared00() {
 }
 
 // To copy a DB cluster snapshot
-//
 // The following example copies an automated snapshot of a DB cluster to a new DB cluster
 // snapshot.
 func ExampleRDS_CopyDBClusterSnapshot_shared00() {
@@ -249,7 +243,6 @@ func ExampleRDS_CopyDBClusterSnapshot_shared00() {
 }
 
 // To copy a DB parameter group
-//
 // This example copies a DB parameter group.
 func ExampleRDS_CopyDBParameterGroup_shared00() {
 	svc := rds.New(session.New())
@@ -284,7 +277,6 @@ func ExampleRDS_CopyDBParameterGroup_shared00() {
 }
 
 // To copy a DB snapshot
-//
 // This example copies a DB snapshot.
 func ExampleRDS_CopyDBSnapshot_shared00() {
 	svc := rds.New(session.New())
@@ -324,7 +316,6 @@ func ExampleRDS_CopyDBSnapshot_shared00() {
 }
 
 // To copy an option group
-//
 // This example copies an option group.
 func ExampleRDS_CopyOptionGroup_shared00() {
 	svc := rds.New(session.New())
@@ -359,7 +350,6 @@ func ExampleRDS_CopyOptionGroup_shared00() {
 }
 
 // To create a DB cluster
-//
 // This example creates a DB cluster.
 func ExampleRDS_CreateDBCluster_shared00() {
 	svc := rds.New(session.New())
@@ -434,7 +424,6 @@ func ExampleRDS_CreateDBCluster_shared00() {
 }
 
 // To create a DB cluster parameter group
-//
 // This example creates a DB cluster parameter group.
 func ExampleRDS_CreateDBClusterParameterGroup_shared00() {
 	svc := rds.New(session.New())
@@ -467,7 +456,6 @@ func ExampleRDS_CreateDBClusterParameterGroup_shared00() {
 }
 
 // To create a DB cluster snapshot
-//
 // This example creates a DB cluster snapshot.
 func ExampleRDS_CreateDBClusterSnapshot_shared00() {
 	svc := rds.New(session.New())
@@ -505,7 +493,6 @@ func ExampleRDS_CreateDBClusterSnapshot_shared00() {
 }
 
 // To create a DB instance.
-//
 // This example creates a DB instance.
 func ExampleRDS_CreateDBInstance_shared00() {
 	svc := rds.New(session.New())
@@ -577,7 +564,6 @@ func ExampleRDS_CreateDBInstance_shared00() {
 }
 
 // To create a DB instance read replica.
-//
 // This example creates a DB instance read replica.
 func ExampleRDS_CreateDBInstanceReadReplica_shared00() {
 	svc := rds.New(session.New())
@@ -656,7 +642,6 @@ func ExampleRDS_CreateDBInstanceReadReplica_shared00() {
 }
 
 // To create a DB parameter group.
-//
 // This example creates a DB parameter group.
 func ExampleRDS_CreateDBParameterGroup_shared00() {
 	svc := rds.New(session.New())
@@ -689,7 +674,6 @@ func ExampleRDS_CreateDBParameterGroup_shared00() {
 }
 
 // To create a DB security group.
-//
 // This example creates a DB security group.
 func ExampleRDS_CreateDBSecurityGroup_shared00() {
 	svc := rds.New(session.New())
@@ -723,7 +707,6 @@ func ExampleRDS_CreateDBSecurityGroup_shared00() {
 }
 
 // To create a DB snapshot.
-//
 // This example creates a DB snapshot.
 func ExampleRDS_CreateDBSnapshot_shared00() {
 	svc := rds.New(session.New())
@@ -759,7 +742,6 @@ func ExampleRDS_CreateDBSnapshot_shared00() {
 }
 
 // To create a DB subnet group.
-//
 // This example creates a DB subnet group.
 func ExampleRDS_CreateDBSubnetGroup_shared00() {
 	svc := rds.New(session.New())
@@ -801,7 +783,6 @@ func ExampleRDS_CreateDBSubnetGroup_shared00() {
 }
 
 // To create an event notification subscription
-//
 // This example creates an event notification subscription.
 func ExampleRDS_CreateEventSubscription_shared00() {
 	svc := rds.New(session.New())
@@ -851,7 +832,6 @@ func ExampleRDS_CreateEventSubscription_shared00() {
 }
 
 // To create an option group
-//
 // This example creates an option group.
 func ExampleRDS_CreateOptionGroup_shared00() {
 	svc := rds.New(session.New())
@@ -885,7 +865,6 @@ func ExampleRDS_CreateOptionGroup_shared00() {
 }
 
 // To delete a DB cluster.
-//
 // This example deletes the specified DB cluster.
 func ExampleRDS_DeleteDBCluster_shared00() {
 	svc := rds.New(session.New())
@@ -923,7 +902,6 @@ func ExampleRDS_DeleteDBCluster_shared00() {
 }
 
 // To delete a DB cluster parameter group.
-//
 // This example deletes the specified DB cluster parameter group.
 func ExampleRDS_DeleteDBClusterParameterGroup_shared00() {
 	svc := rds.New(session.New())
@@ -954,7 +932,6 @@ func ExampleRDS_DeleteDBClusterParameterGroup_shared00() {
 }
 
 // To delete a DB cluster snapshot.
-//
 // This example deletes the specified DB cluster snapshot.
 func ExampleRDS_DeleteDBClusterSnapshot_shared00() {
 	svc := rds.New(session.New())
@@ -985,7 +962,6 @@ func ExampleRDS_DeleteDBClusterSnapshot_shared00() {
 }
 
 // To delete a DB instance.
-//
 // This example deletes the specified DB instance.
 func ExampleRDS_DeleteDBInstance_shared00() {
 	svc := rds.New(session.New())
@@ -1025,7 +1001,6 @@ func ExampleRDS_DeleteDBInstance_shared00() {
 }
 
 // To delete a DB parameter group
-//
 // The following example deletes a DB parameter group.
 func ExampleRDS_DeleteDBParameterGroup_shared00() {
 	svc := rds.New(session.New())
@@ -1056,7 +1031,6 @@ func ExampleRDS_DeleteDBParameterGroup_shared00() {
 }
 
 // To delete a DB security group
-//
 // The following example deletes a DB security group.
 func ExampleRDS_DeleteDBSecurityGroup_shared00() {
 	svc := rds.New(session.New())
@@ -1087,7 +1061,6 @@ func ExampleRDS_DeleteDBSecurityGroup_shared00() {
 }
 
 // To delete a DB cluster snapshot.
-//
 // This example deletes the specified DB snapshot.
 func ExampleRDS_DeleteDBSnapshot_shared00() {
 	svc := rds.New(session.New())
@@ -1118,7 +1091,6 @@ func ExampleRDS_DeleteDBSnapshot_shared00() {
 }
 
 // To delete a DB subnet group.
-//
 // This example deletes the specified DB subnetgroup.
 func ExampleRDS_DeleteDBSubnetGroup_shared00() {
 	svc := rds.New(session.New())
@@ -1151,7 +1123,6 @@ func ExampleRDS_DeleteDBSubnetGroup_shared00() {
 }
 
 // To delete a DB event subscription.
-//
 // This example deletes the specified DB event subscription.
 func ExampleRDS_DeleteEventSubscription_shared00() {
 	svc := rds.New(session.New())
@@ -1182,7 +1153,6 @@ func ExampleRDS_DeleteEventSubscription_shared00() {
 }
 
 // To delete an option group.
-//
 // This example deletes the specified option group.
 func ExampleRDS_DeleteOptionGroup_shared00() {
 	svc := rds.New(session.New())
@@ -1213,7 +1183,6 @@ func ExampleRDS_DeleteOptionGroup_shared00() {
 }
 
 // To list account attributes
-//
 // This example lists account attributes.
 func ExampleRDS_DescribeAccountAttributes_shared00() {
 	svc := rds.New(session.New())
@@ -1238,7 +1207,6 @@ func ExampleRDS_DescribeAccountAttributes_shared00() {
 }
 
 // To list certificates
-//
 // This example lists up to 20 certificates for the specified certificate identifier.
 func ExampleRDS_DescribeCertificates_shared00() {
 	svc := rds.New(session.New())
@@ -1268,7 +1236,6 @@ func ExampleRDS_DescribeCertificates_shared00() {
 }
 
 // To list DB cluster parameter group settings
-//
 // This example lists settings for the specified DB cluster parameter group.
 func ExampleRDS_DescribeDBClusterParameterGroups_shared00() {
 	svc := rds.New(session.New())
@@ -1297,7 +1264,6 @@ func ExampleRDS_DescribeDBClusterParameterGroups_shared00() {
 }
 
 // To list DB cluster parameters
-//
 // This example lists system parameters for the specified DB cluster parameter group.
 func ExampleRDS_DescribeDBClusterParameters_shared00() {
 	svc := rds.New(session.New())
@@ -1327,7 +1293,6 @@ func ExampleRDS_DescribeDBClusterParameters_shared00() {
 }
 
 // To list DB cluster snapshot attributes
-//
 // This example lists attributes for the specified DB cluster snapshot.
 func ExampleRDS_DescribeDBClusterSnapshotAttributes_shared00() {
 	svc := rds.New(session.New())
@@ -1356,7 +1321,6 @@ func ExampleRDS_DescribeDBClusterSnapshotAttributes_shared00() {
 }
 
 // To list DB cluster snapshots
-//
 // This example lists settings for the specified, manually-created cluster snapshot.
 func ExampleRDS_DescribeDBClusterSnapshots_shared00() {
 	svc := rds.New(session.New())
@@ -1386,7 +1350,6 @@ func ExampleRDS_DescribeDBClusterSnapshots_shared00() {
 }
 
 // To list DB clusters
-//
 // This example lists settings for the specified DB cluster.
 func ExampleRDS_DescribeDBClusters_shared00() {
 	svc := rds.New(session.New())
@@ -1415,7 +1378,6 @@ func ExampleRDS_DescribeDBClusters_shared00() {
 }
 
 // To list DB engine version settings
-//
 // This example lists settings for the specified DB engine version.
 func ExampleRDS_DescribeDBEngineVersions_shared00() {
 	svc := rds.New(session.New())
@@ -1446,7 +1408,6 @@ func ExampleRDS_DescribeDBEngineVersions_shared00() {
 }
 
 // To list DB instance settings
-//
 // This example lists settings for the specified DB instance.
 func ExampleRDS_DescribeDBInstances_shared00() {
 	svc := rds.New(session.New())
@@ -1475,7 +1436,6 @@ func ExampleRDS_DescribeDBInstances_shared00() {
 }
 
 // To list DB log file names
-//
 // This example lists matching log file names for the specified DB instance, file name
 // pattern, last write date in POSIX time with milleseconds, and minimum file size.
 func ExampleRDS_DescribeDBLogFiles_shared00() {
@@ -1508,7 +1468,6 @@ func ExampleRDS_DescribeDBLogFiles_shared00() {
 }
 
 // To list information about DB parameter groups
-//
 // This example lists information about the specified DB parameter group.
 func ExampleRDS_DescribeDBParameterGroups_shared00() {
 	svc := rds.New(session.New())
@@ -1537,7 +1496,6 @@ func ExampleRDS_DescribeDBParameterGroups_shared00() {
 }
 
 // To list information about DB parameters
-//
 // This example lists information for up to the first 20 system parameters for the specified
 // DB parameter group.
 func ExampleRDS_DescribeDBParameters_shared00() {
@@ -1569,7 +1527,6 @@ func ExampleRDS_DescribeDBParameters_shared00() {
 }
 
 // To list DB security group settings
-//
 // This example lists settings for the specified security group.
 func ExampleRDS_DescribeDBSecurityGroups_shared00() {
 	svc := rds.New(session.New())
@@ -1598,7 +1555,6 @@ func ExampleRDS_DescribeDBSecurityGroups_shared00() {
 }
 
 // To list DB snapshot attributes
-//
 // This example lists attributes for the specified DB snapshot.
 func ExampleRDS_DescribeDBSnapshotAttributes_shared00() {
 	svc := rds.New(session.New())
@@ -1627,7 +1583,6 @@ func ExampleRDS_DescribeDBSnapshotAttributes_shared00() {
 }
 
 // To list DB snapshot attributes
-//
 // This example lists all manually-created, shared snapshots for the specified DB instance.
 func ExampleRDS_DescribeDBSnapshots_shared00() {
 	svc := rds.New(session.New())
@@ -1659,7 +1614,6 @@ func ExampleRDS_DescribeDBSnapshots_shared00() {
 }
 
 // To list information about DB subnet groups
-//
 // This example lists information about the specified DB subnet group.
 func ExampleRDS_DescribeDBSubnetGroups_shared00() {
 	svc := rds.New(session.New())
@@ -1688,7 +1642,6 @@ func ExampleRDS_DescribeDBSubnetGroups_shared00() {
 }
 
 // To list default parameters for a DB cluster engine
-//
 // This example lists default parameters for the specified DB cluster engine.
 func ExampleRDS_DescribeEngineDefaultClusterParameters_shared00() {
 	svc := rds.New(session.New())
@@ -1715,7 +1668,6 @@ func ExampleRDS_DescribeEngineDefaultClusterParameters_shared00() {
 }
 
 // To list default parameters for a DB engine
-//
 // This example lists default parameters for the specified DB engine.
 func ExampleRDS_DescribeEngineDefaultParameters_shared00() {
 	svc := rds.New(session.New())
@@ -1742,7 +1694,6 @@ func ExampleRDS_DescribeEngineDefaultParameters_shared00() {
 }
 
 // To list event categories.
-//
 // This example lists all DB instance event categories.
 func ExampleRDS_DescribeEventCategories_shared00() {
 	svc := rds.New(session.New())
@@ -1769,7 +1720,6 @@ func ExampleRDS_DescribeEventCategories_shared00() {
 }
 
 // To list information about DB event notification subscriptions
-//
 // This example lists information for the specified DB event notification subscription.
 func ExampleRDS_DescribeEventSubscriptions_shared00() {
 	svc := rds.New(session.New())
@@ -1798,7 +1748,6 @@ func ExampleRDS_DescribeEventSubscriptions_shared00() {
 }
 
 // To list information about events
-//
 // This example lists information for all backup-related events for the specified DB
 // instance for the past 7 days (7 days * 24 hours * 60 minutes = 10,080 minutes).
 func ExampleRDS_DescribeEvents_shared00() {
@@ -1831,7 +1780,6 @@ func ExampleRDS_DescribeEvents_shared00() {
 }
 
 // To list information about DB option group options
-//
 // This example lists information for all option group options for the specified DB
 // engine.
 func ExampleRDS_DescribeOptionGroupOptions_shared00() {
@@ -1860,7 +1808,6 @@ func ExampleRDS_DescribeOptionGroupOptions_shared00() {
 }
 
 // To list information about DB option groups
-//
 // This example lists information for all option groups for the specified DB engine.
 func ExampleRDS_DescribeOptionGroups_shared00() {
 	svc := rds.New(session.New())
@@ -1890,7 +1837,6 @@ func ExampleRDS_DescribeOptionGroups_shared00() {
 }
 
 // To list information about orderable DB instance options
-//
 // This example lists information for all orderable DB instance options for the specified
 // DB engine, engine version, DB instance class, license model, and VPC settings.
 func ExampleRDS_DescribeOrderableDBInstanceOptions_shared00() {
@@ -1922,7 +1868,6 @@ func ExampleRDS_DescribeOrderableDBInstanceOptions_shared00() {
 }
 
 // To list information about pending maintenance actions
-//
 // This example lists information for all pending maintenance actions for the specified
 // DB instance.
 func ExampleRDS_DescribePendingMaintenanceActions_shared00() {
@@ -1952,7 +1897,6 @@ func ExampleRDS_DescribePendingMaintenanceActions_shared00() {
 }
 
 // To list information about reserved DB instances
-//
 // This example lists information for all reserved DB instances for the specified DB
 // instance class, duration, product, offering type, and availability zone settings.
 func ExampleRDS_DescribeReservedDBInstances_shared00() {
@@ -1986,7 +1930,6 @@ func ExampleRDS_DescribeReservedDBInstances_shared00() {
 }
 
 // To list information about reserved DB instance offerings
-//
 // This example lists information for all reserved DB instance offerings for the specified
 // DB instance class, duration, product, offering type, and availability zone settings.
 func ExampleRDS_DescribeReservedDBInstancesOfferings_shared00() {
@@ -2020,7 +1963,6 @@ func ExampleRDS_DescribeReservedDBInstancesOfferings_shared00() {
 }
 
 // To describe source regions
-//
 // To list the AWS regions where a Read Replica can be created.
 func ExampleRDS_DescribeSourceRegions_shared00() {
 	svc := rds.New(session.New())
@@ -2045,7 +1987,6 @@ func ExampleRDS_DescribeSourceRegions_shared00() {
 }
 
 // To list information about DB log files
-//
 // This example lists information for the specified log file for the specified DB instance.
 func ExampleRDS_DownloadDBLogFilePortion_shared00() {
 	svc := rds.New(session.New())
@@ -2077,7 +2018,6 @@ func ExampleRDS_DownloadDBLogFilePortion_shared00() {
 }
 
 // To perform a failover for a DB cluster
-//
 // This example performs a failover for the specified DB cluster to the specified DB
 // instance.
 func ExampleRDS_FailoverDBCluster_shared00() {
@@ -2112,7 +2052,6 @@ func ExampleRDS_FailoverDBCluster_shared00() {
 }
 
 // To list information about tags associated with a resource
-//
 // This example lists information about all tags associated with the specified DB option
 // group.
 func ExampleRDS_ListTagsForResource_shared00() {
@@ -2150,7 +2089,6 @@ func ExampleRDS_ListTagsForResource_shared00() {
 }
 
 // To change DB cluster settings
-//
 // This example changes the specified settings for the specified DB cluster.
 func ExampleRDS_ModifyDBCluster_shared00() {
 	svc := rds.New(session.New())
@@ -2206,7 +2144,6 @@ func ExampleRDS_ModifyDBCluster_shared00() {
 }
 
 // To change DB cluster parameter group settings
-//
 // This example immediately changes the specified setting for the specified DB cluster
 // parameter group.
 func ExampleRDS_ModifyDBClusterParameterGroup_shared00() {
@@ -2245,7 +2182,6 @@ func ExampleRDS_ModifyDBClusterParameterGroup_shared00() {
 }
 
 // To add or remove access to a manual DB cluster snapshot
-//
 // The following example gives two AWS accounts access to a manual DB cluster snapshot
 // and ensures that the DB cluster snapshot is private by removing the value "all".
 func ExampleRDS_ModifyDBClusterSnapshotAttribute_shared00() {
@@ -2287,7 +2223,6 @@ func ExampleRDS_ModifyDBClusterSnapshotAttribute_shared00() {
 }
 
 // To change DB instance settings
-//
 // This example immediately changes the specified settings for the specified DB instance.
 func ExampleRDS_ModifyDBInstance_shared00() {
 	svc := rds.New(session.New())
@@ -2361,7 +2296,6 @@ func ExampleRDS_ModifyDBInstance_shared00() {
 }
 
 // To change DB parameter group settings
-//
 // This example immediately changes the specified setting for the specified DB parameter
 // group.
 func ExampleRDS_ModifyDBParameterGroup_shared00() {
@@ -2400,7 +2334,6 @@ func ExampleRDS_ModifyDBParameterGroup_shared00() {
 }
 
 // To change DB snapshot attributes
-//
 // This example adds the specified attribute for the specified DB snapshot.
 func ExampleRDS_ModifyDBSnapshotAttribute_shared00() {
 	svc := rds.New(session.New())
@@ -2437,7 +2370,6 @@ func ExampleRDS_ModifyDBSnapshotAttribute_shared00() {
 }
 
 // To change DB subnet group settings
-//
 // This example changes the specified setting for the specified DB subnet group.
 func ExampleRDS_ModifyDBSubnetGroup_shared00() {
 	svc := rds.New(session.New())
@@ -2478,7 +2410,6 @@ func ExampleRDS_ModifyDBSubnetGroup_shared00() {
 }
 
 // To change event notification subscription settings
-//
 // This example changes the specified setting for the specified event notification subscription.
 func ExampleRDS_ModifyEventSubscription_shared00() {
 	svc := rds.New(session.New())
@@ -2523,7 +2454,6 @@ func ExampleRDS_ModifyEventSubscription_shared00() {
 }
 
 // To modify an option group
-//
 // The following example adds an option to an option group.
 func ExampleRDS_ModifyOptionGroup_shared00() {
 	svc := rds.New(session.New())
@@ -2563,7 +2493,6 @@ func ExampleRDS_ModifyOptionGroup_shared00() {
 }
 
 // To promote a read replica
-//
 // This example promotes the specified read replica and sets its backup retention period
 // and preferred backup window.
 func ExampleRDS_PromoteReadReplica_shared00() {
@@ -2597,7 +2526,6 @@ func ExampleRDS_PromoteReadReplica_shared00() {
 }
 
 // To purchase a reserved DB instance offering
-//
 // This example purchases a reserved DB instance offering that matches the specified
 // settings.
 func ExampleRDS_PurchaseReservedDBInstancesOffering_shared00() {
@@ -2632,7 +2560,6 @@ func ExampleRDS_PurchaseReservedDBInstancesOffering_shared00() {
 }
 
 // To reboot a DB instance
-//
 // This example reboots the specified DB instance without forcing a failover.
 func ExampleRDS_RebootDBInstance_shared00() {
 	svc := rds.New(session.New())
@@ -2664,7 +2591,6 @@ func ExampleRDS_RebootDBInstance_shared00() {
 }
 
 // To remove a source identifier from a DB event subscription
-//
 // This example removes the specified source identifier from the specified DB event
 // subscription.
 func ExampleRDS_RemoveSourceIdentifierFromSubscription_shared00() {
@@ -2697,7 +2623,6 @@ func ExampleRDS_RemoveSourceIdentifierFromSubscription_shared00() {
 }
 
 // To remove tags from a resource
-//
 // This example removes the specified tag associated with the specified DB option group.
 func ExampleRDS_RemoveTagsFromResource_shared00() {
 	svc := rds.New(session.New())
@@ -2737,7 +2662,6 @@ func ExampleRDS_RemoveTagsFromResource_shared00() {
 }
 
 // To reset the values of a DB cluster parameter group
-//
 // This example resets all parameters for the specified DB cluster parameter group to
 // their default values.
 func ExampleRDS_ResetDBClusterParameterGroup_shared00() {
@@ -2770,7 +2694,6 @@ func ExampleRDS_ResetDBClusterParameterGroup_shared00() {
 }
 
 // To reset the values of a DB parameter group
-//
 // This example resets all parameters for the specified DB parameter group to their
 // default values.
 func ExampleRDS_ResetDBParameterGroup_shared00() {
@@ -2803,7 +2726,6 @@ func ExampleRDS_ResetDBParameterGroup_shared00() {
 }
 
 // To restore an Amazon Aurora DB cluster from a DB cluster snapshot
-//
 // The following example restores an Amazon Aurora DB cluster from a DB cluster snapshot.
 func ExampleRDS_RestoreDBClusterFromSnapshot_shared00() {
 	svc := rds.New(session.New())
@@ -2866,7 +2788,6 @@ func ExampleRDS_RestoreDBClusterFromSnapshot_shared00() {
 }
 
 // To restore a DB cluster to a point in time.
-//
 // The following example restores a DB cluster to a new DB cluster at a point in time
 // from the source DB cluster.
 func ExampleRDS_RestoreDBClusterToPointInTime_shared00() {
@@ -2932,7 +2853,6 @@ func ExampleRDS_RestoreDBClusterToPointInTime_shared00() {
 }
 
 // To restore a DB instance from a DB snapshot.
-//
 // The following example restores a DB instance from a DB snapshot.
 func ExampleRDS_RestoreDBInstanceFromDBSnapshot_shared00() {
 	svc := rds.New(session.New())
@@ -3002,7 +2922,6 @@ func ExampleRDS_RestoreDBInstanceFromDBSnapshot_shared00() {
 }
 
 // To restore a DB instance to a point in time.
-//
 // The following example restores a DB instance to a new DB instance at a point in time
 // from the source DB instance.
 func ExampleRDS_RestoreDBInstanceToPointInTime_shared00() {
@@ -3078,7 +2997,6 @@ func ExampleRDS_RestoreDBInstanceToPointInTime_shared00() {
 }
 
 // To revoke ingress for a DB security group
-//
 // This example revokes ingress for the specified CIDR block associated with the specified
 // DB security group.
 func ExampleRDS_RevokeDBSecurityGroupIngress_shared00() {

@@ -29,14 +29,13 @@ const opAssociateDRTLogBucket = "AssociateDRTLogBucket"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateDRTLogBucketRequest method.
+//	req, resp := client.AssociateDRTLogBucketRequest(params)
 //
-//    // Example sending a request using the AssociateDRTLogBucketRequest method.
-//    req, resp := client.AssociateDRTLogBucketRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/AssociateDRTLogBucket
 func (c *Shield) AssociateDRTLogBucketRequest(input *AssociateDRTLogBucketInput) (req *request.Request, output *AssociateDRTLogBucketOutput) {
@@ -75,38 +74,39 @@ func (c *Shield) AssociateDRTLogBucketRequest(input *AssociateDRTLogBucketInput)
 // API operation AssociateDRTLogBucket for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidOperationException
-//   Exception that indicates that the operation would not cause any change to
-//   occur.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * NoAssociatedRoleException
-//   The ARN of the role that you specified does not exist.
+//   - InvalidOperationException
+//     Exception that indicates that the operation would not cause any change to
+//     occur.
 //
-//   * LimitsExceededException
-//   Exception that indicates that the operation would exceed a limit.
+//   - NoAssociatedRoleException
+//     The ARN of the role that you specified does not exist.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - LimitsExceededException
+//     Exception that indicates that the operation would exceed a limit.
 //
-//   * AccessDeniedForDependencyException
-//   In order to grant the necessary access to the Shield Response Team (SRT)
-//   the user submitting the request must have the iam:PassRole permission. This
-//   error indicates the user did not have the appropriate permissions. For more
-//   information, see Granting a User Permissions to Pass a Role to an Amazon
-//   Web Services Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - AccessDeniedForDependencyException
+//     In order to grant the necessary access to the Shield Response Team (SRT)
+//     the user submitting the request must have the iam:PassRole permission. This
+//     error indicates the user did not have the appropriate permissions. For more
+//     information, see Granting a User Permissions to Pass a Role to an Amazon
+//     Web Services Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/AssociateDRTLogBucket
 func (c *Shield) AssociateDRTLogBucket(input *AssociateDRTLogBucketInput) (*AssociateDRTLogBucketOutput, error) {
@@ -146,14 +146,13 @@ const opAssociateDRTRole = "AssociateDRTRole"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateDRTRoleRequest method.
+//	req, resp := client.AssociateDRTRoleRequest(params)
 //
-//    // Example sending a request using the AssociateDRTRoleRequest method.
-//    req, resp := client.AssociateDRTRoleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/AssociateDRTRole
 func (c *Shield) AssociateDRTRoleRequest(input *AssociateDRTRoleInput) (req *request.Request, output *AssociateDRTRoleOutput) {
@@ -212,32 +211,33 @@ func (c *Shield) AssociateDRTRoleRequest(input *AssociateDRTRoleInput) (req *req
 // API operation AssociateDRTRole for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidOperationException
-//   Exception that indicates that the operation would not cause any change to
-//   occur.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - InvalidOperationException
+//     Exception that indicates that the operation would not cause any change to
+//     occur.
 //
-//   * AccessDeniedForDependencyException
-//   In order to grant the necessary access to the Shield Response Team (SRT)
-//   the user submitting the request must have the iam:PassRole permission. This
-//   error indicates the user did not have the appropriate permissions. For more
-//   information, see Granting a User Permissions to Pass a Role to an Amazon
-//   Web Services Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - AccessDeniedForDependencyException
+//     In order to grant the necessary access to the Shield Response Team (SRT)
+//     the user submitting the request must have the iam:PassRole permission. This
+//     error indicates the user did not have the appropriate permissions. For more
+//     information, see Granting a User Permissions to Pass a Role to an Amazon
+//     Web Services Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/AssociateDRTRole
 func (c *Shield) AssociateDRTRole(input *AssociateDRTRoleInput) (*AssociateDRTRoleOutput, error) {
@@ -277,14 +277,13 @@ const opAssociateHealthCheck = "AssociateHealthCheck"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateHealthCheckRequest method.
+//	req, resp := client.AssociateHealthCheckRequest(params)
 //
-//    // Example sending a request using the AssociateHealthCheckRequest method.
-//    req, resp := client.AssociateHealthCheckRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/AssociateHealthCheck
 func (c *Shield) AssociateHealthCheckRequest(input *AssociateHealthCheckInput) (req *request.Request, output *AssociateHealthCheckOutput) {
@@ -324,28 +323,29 @@ func (c *Shield) AssociateHealthCheckRequest(input *AssociateHealthCheckInput) (
 // API operation AssociateHealthCheck for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * LimitsExceededException
-//   Exception that indicates that the operation would exceed a limit.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - LimitsExceededException
+//     Exception that indicates that the operation would exceed a limit.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
 //
-//   * InvalidResourceException
-//   Exception that indicates that the resource is invalid. You might not have
-//   access to the resource, or the resource might not exist.
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
+//
+//   - InvalidResourceException
+//     Exception that indicates that the resource is invalid. You might not have
+//     access to the resource, or the resource might not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/AssociateHealthCheck
 func (c *Shield) AssociateHealthCheck(input *AssociateHealthCheckInput) (*AssociateHealthCheckOutput, error) {
@@ -385,14 +385,13 @@ const opAssociateProactiveEngagementDetails = "AssociateProactiveEngagementDetai
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateProactiveEngagementDetailsRequest method.
+//	req, resp := client.AssociateProactiveEngagementDetailsRequest(params)
 //
-//    // Example sending a request using the AssociateProactiveEngagementDetailsRequest method.
-//    req, resp := client.AssociateProactiveEngagementDetailsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/AssociateProactiveEngagementDetails
 func (c *Shield) AssociateProactiveEngagementDetailsRequest(input *AssociateProactiveEngagementDetailsInput) (req *request.Request, output *AssociateProactiveEngagementDetailsOutput) {
@@ -439,25 +438,26 @@ func (c *Shield) AssociateProactiveEngagementDetailsRequest(input *AssociateProa
 // API operation AssociateProactiveEngagementDetails for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidOperationException
-//   Exception that indicates that the operation would not cause any change to
-//   occur.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - InvalidOperationException
+//     Exception that indicates that the operation would not cause any change to
+//     occur.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
+//
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/AssociateProactiveEngagementDetails
 func (c *Shield) AssociateProactiveEngagementDetails(input *AssociateProactiveEngagementDetailsInput) (*AssociateProactiveEngagementDetailsOutput, error) {
@@ -497,14 +497,13 @@ const opCreateProtection = "CreateProtection"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateProtectionRequest method.
+//	req, resp := client.CreateProtectionRequest(params)
 //
-//    // Example sending a request using the CreateProtectionRequest method.
-//    req, resp := client.CreateProtectionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateProtection
 func (c *Shield) CreateProtectionRequest(input *CreateProtectionInput) (req *request.Request, output *CreateProtectionOutput) {
@@ -547,36 +546,37 @@ func (c *Shield) CreateProtectionRequest(input *CreateProtectionInput) (req *req
 // API operation CreateProtection for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidResourceException
-//   Exception that indicates that the resource is invalid. You might not have
-//   access to the resource, or the resource might not exist.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * InvalidOperationException
-//   Exception that indicates that the operation would not cause any change to
-//   occur.
+//   - InvalidResourceException
+//     Exception that indicates that the resource is invalid. You might not have
+//     access to the resource, or the resource might not exist.
 //
-//   * LimitsExceededException
-//   Exception that indicates that the operation would exceed a limit.
+//   - InvalidOperationException
+//     Exception that indicates that the operation would not cause any change to
+//     occur.
 //
-//   * ResourceAlreadyExistsException
-//   Exception indicating the specified resource already exists. If available,
-//   this exception includes details in additional properties.
+//   - LimitsExceededException
+//     Exception that indicates that the operation would exceed a limit.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - ResourceAlreadyExistsException
+//     Exception indicating the specified resource already exists. If available,
+//     this exception includes details in additional properties.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
+//
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateProtection
 func (c *Shield) CreateProtection(input *CreateProtectionInput) (*CreateProtectionOutput, error) {
@@ -616,14 +616,13 @@ const opCreateProtectionGroup = "CreateProtectionGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateProtectionGroupRequest method.
+//	req, resp := client.CreateProtectionGroupRequest(params)
 //
-//    // Example sending a request using the CreateProtectionGroupRequest method.
-//    req, resp := client.CreateProtectionGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateProtectionGroup
 func (c *Shield) CreateProtectionGroupRequest(input *CreateProtectionGroupInput) (req *request.Request, output *CreateProtectionGroupOutput) {
@@ -657,28 +656,29 @@ func (c *Shield) CreateProtectionGroupRequest(input *CreateProtectionGroupInput)
 // API operation CreateProtectionGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * ResourceAlreadyExistsException
-//   Exception indicating the specified resource already exists. If available,
-//   this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - ResourceAlreadyExistsException
+//     Exception indicating the specified resource already exists. If available,
+//     this exception includes details in additional properties.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
-//   * LimitsExceededException
-//   Exception that indicates that the operation would exceed a limit.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
+//
+//   - LimitsExceededException
+//     Exception that indicates that the operation would exceed a limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateProtectionGroup
 func (c *Shield) CreateProtectionGroup(input *CreateProtectionGroupInput) (*CreateProtectionGroupOutput, error) {
@@ -718,14 +718,13 @@ const opCreateSubscription = "CreateSubscription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSubscriptionRequest method.
+//	req, resp := client.CreateSubscriptionRequest(params)
 //
-//    // Example sending a request using the CreateSubscriptionRequest method.
-//    req, resp := client.CreateSubscriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateSubscription
 func (c *Shield) CreateSubscriptionRequest(input *CreateSubscriptionInput) (req *request.Request, output *CreateSubscriptionOutput) {
@@ -765,13 +764,14 @@ func (c *Shield) CreateSubscriptionRequest(input *CreateSubscriptionInput) (req 
 // API operation CreateSubscription for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * ResourceAlreadyExistsException
-//   Exception indicating the specified resource already exists. If available,
-//   this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
+//
+//   - ResourceAlreadyExistsException
+//     Exception indicating the specified resource already exists. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateSubscription
 func (c *Shield) CreateSubscription(input *CreateSubscriptionInput) (*CreateSubscriptionOutput, error) {
@@ -811,14 +811,13 @@ const opDeleteProtection = "DeleteProtection"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteProtectionRequest method.
+//	req, resp := client.DeleteProtectionRequest(params)
 //
-//    // Example sending a request using the DeleteProtectionRequest method.
-//    req, resp := client.DeleteProtectionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteProtection
 func (c *Shield) DeleteProtectionRequest(input *DeleteProtectionInput) (req *request.Request, output *DeleteProtectionOutput) {
@@ -850,17 +849,18 @@ func (c *Shield) DeleteProtectionRequest(input *DeleteProtectionInput) (req *req
 // API operation DeleteProtection for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
+//
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteProtection
 func (c *Shield) DeleteProtection(input *DeleteProtectionInput) (*DeleteProtectionOutput, error) {
@@ -900,14 +900,13 @@ const opDeleteProtectionGroup = "DeleteProtectionGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteProtectionGroupRequest method.
+//	req, resp := client.DeleteProtectionGroupRequest(params)
 //
-//    // Example sending a request using the DeleteProtectionGroupRequest method.
-//    req, resp := client.DeleteProtectionGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteProtectionGroup
 func (c *Shield) DeleteProtectionGroupRequest(input *DeleteProtectionGroupInput) (req *request.Request, output *DeleteProtectionGroupOutput) {
@@ -939,17 +938,18 @@ func (c *Shield) DeleteProtectionGroupRequest(input *DeleteProtectionGroupInput)
 // API operation DeleteProtectionGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteProtectionGroup
 func (c *Shield) DeleteProtectionGroup(input *DeleteProtectionGroupInput) (*DeleteProtectionGroupOutput, error) {
@@ -989,14 +989,13 @@ const opDeleteSubscription = "DeleteSubscription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSubscriptionRequest method.
+//	req, resp := client.DeleteSubscriptionRequest(params)
 //
-//    // Example sending a request using the DeleteSubscriptionRequest method.
-//    req, resp := client.DeleteSubscriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteSubscription
 //
@@ -1035,19 +1034,20 @@ func (c *Shield) DeleteSubscriptionRequest(input *DeleteSubscriptionInput) (req 
 // API operation DeleteSubscription for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * LockedSubscriptionException
-//   You are trying to update a subscription that has not yet completed the 1-year
-//   commitment. You can change the AutoRenew parameter during the last 30 days
-//   of your subscription. This exception indicates that you are attempting to
-//   change AutoRenew prior to that period.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - LockedSubscriptionException
+//     You are trying to update a subscription that has not yet completed the 1-year
+//     commitment. You can change the AutoRenew parameter during the last 30 days
+//     of your subscription. This exception indicates that you are attempting to
+//     change AutoRenew prior to that period.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteSubscription
 //
@@ -1091,14 +1091,13 @@ const opDescribeAttack = "DescribeAttack"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAttackRequest method.
+//	req, resp := client.DescribeAttackRequest(params)
 //
-//    // Example sending a request using the DescribeAttackRequest method.
-//    req, resp := client.DescribeAttackRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeAttack
 func (c *Shield) DescribeAttackRequest(input *DescribeAttackInput) (req *request.Request, output *DescribeAttackOutput) {
@@ -1129,13 +1128,14 @@ func (c *Shield) DescribeAttackRequest(input *DescribeAttackInput) (req *request
 // API operation DescribeAttack for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * AccessDeniedException
-//   Exception that indicates the specified AttackId does not exist, or the requester
-//   does not have the appropriate permissions to access the AttackId.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
+//
+//   - AccessDeniedException
+//     Exception that indicates the specified AttackId does not exist, or the requester
+//     does not have the appropriate permissions to access the AttackId.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeAttack
 func (c *Shield) DescribeAttack(input *DescribeAttackInput) (*DescribeAttackOutput, error) {
@@ -1175,14 +1175,13 @@ const opDescribeAttackStatistics = "DescribeAttackStatistics"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAttackStatisticsRequest method.
+//	req, resp := client.DescribeAttackStatisticsRequest(params)
 //
-//    // Example sending a request using the DescribeAttackStatisticsRequest method.
-//    req, resp := client.DescribeAttackStatisticsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeAttackStatistics
 func (c *Shield) DescribeAttackStatisticsRequest(input *DescribeAttackStatisticsInput) (req *request.Request, output *DescribeAttackStatisticsOutput) {
@@ -1224,9 +1223,9 @@ func (c *Shield) DescribeAttackStatisticsRequest(input *DescribeAttackStatistics
 // API operation DescribeAttackStatistics for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeAttackStatistics
 func (c *Shield) DescribeAttackStatistics(input *DescribeAttackStatisticsInput) (*DescribeAttackStatisticsOutput, error) {
@@ -1266,14 +1265,13 @@ const opDescribeDRTAccess = "DescribeDRTAccess"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDRTAccessRequest method.
+//	req, resp := client.DescribeDRTAccessRequest(params)
 //
-//    // Example sending a request using the DescribeDRTAccessRequest method.
-//    req, resp := client.DescribeDRTAccessRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeDRTAccess
 func (c *Shield) DescribeDRTAccessRequest(input *DescribeDRTAccessInput) (req *request.Request, output *DescribeDRTAccessOutput) {
@@ -1306,13 +1304,14 @@ func (c *Shield) DescribeDRTAccessRequest(input *DescribeDRTAccessInput) (req *r
 // API operation DescribeDRTAccess for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeDRTAccess
 func (c *Shield) DescribeDRTAccess(input *DescribeDRTAccessInput) (*DescribeDRTAccessOutput, error) {
@@ -1352,14 +1351,13 @@ const opDescribeEmergencyContactSettings = "DescribeEmergencyContactSettings"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEmergencyContactSettingsRequest method.
+//	req, resp := client.DescribeEmergencyContactSettingsRequest(params)
 //
-//    // Example sending a request using the DescribeEmergencyContactSettingsRequest method.
-//    req, resp := client.DescribeEmergencyContactSettingsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeEmergencyContactSettings
 func (c *Shield) DescribeEmergencyContactSettingsRequest(input *DescribeEmergencyContactSettingsInput) (req *request.Request, output *DescribeEmergencyContactSettingsOutput) {
@@ -1392,13 +1390,14 @@ func (c *Shield) DescribeEmergencyContactSettingsRequest(input *DescribeEmergenc
 // API operation DescribeEmergencyContactSettings for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeEmergencyContactSettings
 func (c *Shield) DescribeEmergencyContactSettings(input *DescribeEmergencyContactSettingsInput) (*DescribeEmergencyContactSettingsOutput, error) {
@@ -1438,14 +1437,13 @@ const opDescribeProtection = "DescribeProtection"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProtectionRequest method.
+//	req, resp := client.DescribeProtectionRequest(params)
 //
-//    // Example sending a request using the DescribeProtectionRequest method.
-//    req, resp := client.DescribeProtectionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeProtection
 func (c *Shield) DescribeProtectionRequest(input *DescribeProtectionInput) (req *request.Request, output *DescribeProtectionOutput) {
@@ -1476,17 +1474,18 @@ func (c *Shield) DescribeProtectionRequest(input *DescribeProtectionInput) (req 
 // API operation DescribeProtection for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeProtection
 func (c *Shield) DescribeProtection(input *DescribeProtectionInput) (*DescribeProtectionOutput, error) {
@@ -1526,14 +1525,13 @@ const opDescribeProtectionGroup = "DescribeProtectionGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProtectionGroupRequest method.
+//	req, resp := client.DescribeProtectionGroupRequest(params)
 //
-//    // Example sending a request using the DescribeProtectionGroupRequest method.
-//    req, resp := client.DescribeProtectionGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeProtectionGroup
 func (c *Shield) DescribeProtectionGroupRequest(input *DescribeProtectionGroupInput) (req *request.Request, output *DescribeProtectionGroupOutput) {
@@ -1564,13 +1562,14 @@ func (c *Shield) DescribeProtectionGroupRequest(input *DescribeProtectionGroupIn
 // API operation DescribeProtectionGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeProtectionGroup
 func (c *Shield) DescribeProtectionGroup(input *DescribeProtectionGroupInput) (*DescribeProtectionGroupOutput, error) {
@@ -1610,14 +1609,13 @@ const opDescribeSubscription = "DescribeSubscription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSubscriptionRequest method.
+//	req, resp := client.DescribeSubscriptionRequest(params)
 //
-//    // Example sending a request using the DescribeSubscriptionRequest method.
-//    req, resp := client.DescribeSubscriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeSubscription
 func (c *Shield) DescribeSubscriptionRequest(input *DescribeSubscriptionInput) (req *request.Request, output *DescribeSubscriptionOutput) {
@@ -1648,13 +1646,14 @@ func (c *Shield) DescribeSubscriptionRequest(input *DescribeSubscriptionInput) (
 // API operation DescribeSubscription for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeSubscription
 func (c *Shield) DescribeSubscription(input *DescribeSubscriptionInput) (*DescribeSubscriptionOutput, error) {
@@ -1694,14 +1693,13 @@ const opDisableApplicationLayerAutomaticResponse = "DisableApplicationLayerAutom
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisableApplicationLayerAutomaticResponseRequest method.
+//	req, resp := client.DisableApplicationLayerAutomaticResponseRequest(params)
 //
-//    // Example sending a request using the DisableApplicationLayerAutomaticResponseRequest method.
-//    req, resp := client.DisableApplicationLayerAutomaticResponseRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DisableApplicationLayerAutomaticResponse
 func (c *Shield) DisableApplicationLayerAutomaticResponseRequest(input *DisableApplicationLayerAutomaticResponseInput) (req *request.Request, output *DisableApplicationLayerAutomaticResponseOutput) {
@@ -1735,25 +1733,26 @@ func (c *Shield) DisableApplicationLayerAutomaticResponseRequest(input *DisableA
 // API operation DisableApplicationLayerAutomaticResponse for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
-//   * InvalidOperationException
-//   Exception that indicates that the operation would not cause any change to
-//   occur.
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
+//
+//   - InvalidOperationException
+//     Exception that indicates that the operation would not cause any change to
+//     occur.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DisableApplicationLayerAutomaticResponse
 func (c *Shield) DisableApplicationLayerAutomaticResponse(input *DisableApplicationLayerAutomaticResponseInput) (*DisableApplicationLayerAutomaticResponseOutput, error) {
@@ -1793,14 +1792,13 @@ const opDisableProactiveEngagement = "DisableProactiveEngagement"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisableProactiveEngagementRequest method.
+//	req, resp := client.DisableProactiveEngagementRequest(params)
 //
-//    // Example sending a request using the DisableProactiveEngagementRequest method.
-//    req, resp := client.DisableProactiveEngagementRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DisableProactiveEngagement
 func (c *Shield) DisableProactiveEngagementRequest(input *DisableProactiveEngagementInput) (req *request.Request, output *DisableProactiveEngagementOutput) {
@@ -1833,25 +1831,26 @@ func (c *Shield) DisableProactiveEngagementRequest(input *DisableProactiveEngage
 // API operation DisableProactiveEngagement for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidOperationException
-//   Exception that indicates that the operation would not cause any change to
-//   occur.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - InvalidOperationException
+//     Exception that indicates that the operation would not cause any change to
+//     occur.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
+//
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DisableProactiveEngagement
 func (c *Shield) DisableProactiveEngagement(input *DisableProactiveEngagementInput) (*DisableProactiveEngagementOutput, error) {
@@ -1891,14 +1890,13 @@ const opDisassociateDRTLogBucket = "DisassociateDRTLogBucket"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateDRTLogBucketRequest method.
+//	req, resp := client.DisassociateDRTLogBucketRequest(params)
 //
-//    // Example sending a request using the DisassociateDRTLogBucketRequest method.
-//    req, resp := client.DisassociateDRTLogBucketRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DisassociateDRTLogBucket
 func (c *Shield) DisassociateDRTLogBucketRequest(input *DisassociateDRTLogBucketInput) (req *request.Request, output *DisassociateDRTLogBucketOutput) {
@@ -1931,31 +1929,32 @@ func (c *Shield) DisassociateDRTLogBucketRequest(input *DisassociateDRTLogBucket
 // API operation DisassociateDRTLogBucket for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidOperationException
-//   Exception that indicates that the operation would not cause any change to
-//   occur.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * NoAssociatedRoleException
-//   The ARN of the role that you specified does not exist.
+//   - InvalidOperationException
+//     Exception that indicates that the operation would not cause any change to
+//     occur.
 //
-//   * AccessDeniedForDependencyException
-//   In order to grant the necessary access to the Shield Response Team (SRT)
-//   the user submitting the request must have the iam:PassRole permission. This
-//   error indicates the user did not have the appropriate permissions. For more
-//   information, see Granting a User Permissions to Pass a Role to an Amazon
-//   Web Services Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
+//   - NoAssociatedRoleException
+//     The ARN of the role that you specified does not exist.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - AccessDeniedForDependencyException
+//     In order to grant the necessary access to the Shield Response Team (SRT)
+//     the user submitting the request must have the iam:PassRole permission. This
+//     error indicates the user did not have the appropriate permissions. For more
+//     information, see Granting a User Permissions to Pass a Role to an Amazon
+//     Web Services Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DisassociateDRTLogBucket
 func (c *Shield) DisassociateDRTLogBucket(input *DisassociateDRTLogBucketInput) (*DisassociateDRTLogBucketOutput, error) {
@@ -1995,14 +1994,13 @@ const opDisassociateDRTRole = "DisassociateDRTRole"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateDRTRoleRequest method.
+//	req, resp := client.DisassociateDRTRoleRequest(params)
 //
-//    // Example sending a request using the DisassociateDRTRoleRequest method.
-//    req, resp := client.DisassociateDRTRoleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DisassociateDRTRole
 func (c *Shield) DisassociateDRTRoleRequest(input *DisassociateDRTRoleInput) (req *request.Request, output *DisassociateDRTRoleOutput) {
@@ -2035,21 +2033,22 @@ func (c *Shield) DisassociateDRTRoleRequest(input *DisassociateDRTRoleInput) (re
 // API operation DisassociateDRTRole for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidOperationException
-//   Exception that indicates that the operation would not cause any change to
-//   occur.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - InvalidOperationException
+//     Exception that indicates that the operation would not cause any change to
+//     occur.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DisassociateDRTRole
 func (c *Shield) DisassociateDRTRole(input *DisassociateDRTRoleInput) (*DisassociateDRTRoleOutput, error) {
@@ -2089,14 +2088,13 @@ const opDisassociateHealthCheck = "DisassociateHealthCheck"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateHealthCheckRequest method.
+//	req, resp := client.DisassociateHealthCheckRequest(params)
 //
-//    // Example sending a request using the DisassociateHealthCheckRequest method.
-//    req, resp := client.DisassociateHealthCheckRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DisassociateHealthCheck
 func (c *Shield) DisassociateHealthCheckRequest(input *DisassociateHealthCheckInput) (req *request.Request, output *DisassociateHealthCheckOutput) {
@@ -2136,25 +2134,26 @@ func (c *Shield) DisassociateHealthCheckRequest(input *DisassociateHealthCheckIn
 // API operation DisassociateHealthCheck for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
-//   * InvalidResourceException
-//   Exception that indicates that the resource is invalid. You might not have
-//   access to the resource, or the resource might not exist.
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
+//
+//   - InvalidResourceException
+//     Exception that indicates that the resource is invalid. You might not have
+//     access to the resource, or the resource might not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DisassociateHealthCheck
 func (c *Shield) DisassociateHealthCheck(input *DisassociateHealthCheckInput) (*DisassociateHealthCheckOutput, error) {
@@ -2194,14 +2193,13 @@ const opEnableApplicationLayerAutomaticResponse = "EnableApplicationLayerAutomat
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the EnableApplicationLayerAutomaticResponseRequest method.
+//	req, resp := client.EnableApplicationLayerAutomaticResponseRequest(params)
 //
-//    // Example sending a request using the EnableApplicationLayerAutomaticResponseRequest method.
-//    req, resp := client.EnableApplicationLayerAutomaticResponseRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/EnableApplicationLayerAutomaticResponse
 func (c *Shield) EnableApplicationLayerAutomaticResponseRequest(input *EnableApplicationLayerAutomaticResponseInput) (req *request.Request, output *EnableApplicationLayerAutomaticResponseOutput) {
@@ -2257,28 +2255,29 @@ func (c *Shield) EnableApplicationLayerAutomaticResponseRequest(input *EnableApp
 // API operation EnableApplicationLayerAutomaticResponse for usage and error information.
 //
 // Returned Error Types:
-//   * LimitsExceededException
-//   Exception that indicates that the operation would exceed a limit.
 //
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
+//   - LimitsExceededException
+//     Exception that indicates that the operation would exceed a limit.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
 //
-//   * InvalidOperationException
-//   Exception that indicates that the operation would not cause any change to
-//   occur.
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
+//
+//   - InvalidOperationException
+//     Exception that indicates that the operation would not cause any change to
+//     occur.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/EnableApplicationLayerAutomaticResponse
 func (c *Shield) EnableApplicationLayerAutomaticResponse(input *EnableApplicationLayerAutomaticResponseInput) (*EnableApplicationLayerAutomaticResponseOutput, error) {
@@ -2318,14 +2317,13 @@ const opEnableProactiveEngagement = "EnableProactiveEngagement"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the EnableProactiveEngagementRequest method.
+//	req, resp := client.EnableProactiveEngagementRequest(params)
 //
-//    // Example sending a request using the EnableProactiveEngagementRequest method.
-//    req, resp := client.EnableProactiveEngagementRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/EnableProactiveEngagement
 func (c *Shield) EnableProactiveEngagementRequest(input *EnableProactiveEngagementInput) (req *request.Request, output *EnableProactiveEngagementOutput) {
@@ -2359,25 +2357,26 @@ func (c *Shield) EnableProactiveEngagementRequest(input *EnableProactiveEngageme
 // API operation EnableProactiveEngagement for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidOperationException
-//   Exception that indicates that the operation would not cause any change to
-//   occur.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - InvalidOperationException
+//     Exception that indicates that the operation would not cause any change to
+//     occur.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
+//
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/EnableProactiveEngagement
 func (c *Shield) EnableProactiveEngagement(input *EnableProactiveEngagementInput) (*EnableProactiveEngagementOutput, error) {
@@ -2417,14 +2416,13 @@ const opGetSubscriptionState = "GetSubscriptionState"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSubscriptionStateRequest method.
+//	req, resp := client.GetSubscriptionStateRequest(params)
 //
-//    // Example sending a request using the GetSubscriptionStateRequest method.
-//    req, resp := client.GetSubscriptionStateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/GetSubscriptionState
 func (c *Shield) GetSubscriptionStateRequest(input *GetSubscriptionStateInput) (req *request.Request, output *GetSubscriptionStateOutput) {
@@ -2455,9 +2453,9 @@ func (c *Shield) GetSubscriptionStateRequest(input *GetSubscriptionStateInput) (
 // API operation GetSubscriptionState for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/GetSubscriptionState
 func (c *Shield) GetSubscriptionState(input *GetSubscriptionStateInput) (*GetSubscriptionStateOutput, error) {
@@ -2497,14 +2495,13 @@ const opListAttacks = "ListAttacks"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAttacksRequest method.
+//	req, resp := client.ListAttacksRequest(params)
 //
-//    // Example sending a request using the ListAttacksRequest method.
-//    req, resp := client.ListAttacksRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListAttacks
 func (c *Shield) ListAttacksRequest(input *ListAttacksInput) (req *request.Request, output *ListAttacksOutput) {
@@ -2542,17 +2539,18 @@ func (c *Shield) ListAttacksRequest(input *ListAttacksInput) (req *request.Reque
 // API operation ListAttacks for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * InvalidOperationException
-//   Exception that indicates that the operation would not cause any change to
-//   occur.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
+//
+//   - InvalidOperationException
+//     Exception that indicates that the operation would not cause any change to
+//     occur.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListAttacks
 func (c *Shield) ListAttacks(input *ListAttacksInput) (*ListAttacksOutput, error) {
@@ -2584,15 +2582,14 @@ func (c *Shield) ListAttacksWithContext(ctx aws.Context, input *ListAttacksInput
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListAttacks operation.
-//    pageNum := 0
-//    err := client.ListAttacksPages(params,
-//        func(page *shield.ListAttacksOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListAttacks operation.
+//	pageNum := 0
+//	err := client.ListAttacksPages(params,
+//	    func(page *shield.ListAttacksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Shield) ListAttacksPages(input *ListAttacksInput, fn func(*ListAttacksOutput, bool) bool) error {
 	return c.ListAttacksPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2644,14 +2641,13 @@ const opListProtectionGroups = "ListProtectionGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProtectionGroupsRequest method.
+//	req, resp := client.ListProtectionGroupsRequest(params)
 //
-//    // Example sending a request using the ListProtectionGroupsRequest method.
-//    req, resp := client.ListProtectionGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListProtectionGroups
 func (c *Shield) ListProtectionGroupsRequest(input *ListProtectionGroupsInput) (req *request.Request, output *ListProtectionGroupsOutput) {
@@ -2690,18 +2686,19 @@ func (c *Shield) ListProtectionGroupsRequest(input *ListProtectionGroupsInput) (
 // API operation ListProtectionGroups for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * InvalidPaginationTokenException
-//   Exception that indicates that the NextToken specified in the request is invalid.
-//   Submit the request using the NextToken value that was returned in the prior
-//   response.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
+//
+//   - InvalidPaginationTokenException
+//     Exception that indicates that the NextToken specified in the request is invalid.
+//     Submit the request using the NextToken value that was returned in the prior
+//     response.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListProtectionGroups
 func (c *Shield) ListProtectionGroups(input *ListProtectionGroupsInput) (*ListProtectionGroupsOutput, error) {
@@ -2733,15 +2730,14 @@ func (c *Shield) ListProtectionGroupsWithContext(ctx aws.Context, input *ListPro
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListProtectionGroups operation.
-//    pageNum := 0
-//    err := client.ListProtectionGroupsPages(params,
-//        func(page *shield.ListProtectionGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListProtectionGroups operation.
+//	pageNum := 0
+//	err := client.ListProtectionGroupsPages(params,
+//	    func(page *shield.ListProtectionGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Shield) ListProtectionGroupsPages(input *ListProtectionGroupsInput, fn func(*ListProtectionGroupsOutput, bool) bool) error {
 	return c.ListProtectionGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2793,14 +2789,13 @@ const opListProtections = "ListProtections"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProtectionsRequest method.
+//	req, resp := client.ListProtectionsRequest(params)
 //
-//    // Example sending a request using the ListProtectionsRequest method.
-//    req, resp := client.ListProtectionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListProtections
 func (c *Shield) ListProtectionsRequest(input *ListProtectionsInput) (req *request.Request, output *ListProtectionsOutput) {
@@ -2839,18 +2834,19 @@ func (c *Shield) ListProtectionsRequest(input *ListProtectionsInput) (req *reque
 // API operation ListProtections for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * InvalidPaginationTokenException
-//   Exception that indicates that the NextToken specified in the request is invalid.
-//   Submit the request using the NextToken value that was returned in the prior
-//   response.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
+//
+//   - InvalidPaginationTokenException
+//     Exception that indicates that the NextToken specified in the request is invalid.
+//     Submit the request using the NextToken value that was returned in the prior
+//     response.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListProtections
 func (c *Shield) ListProtections(input *ListProtectionsInput) (*ListProtectionsOutput, error) {
@@ -2882,15 +2878,14 @@ func (c *Shield) ListProtectionsWithContext(ctx aws.Context, input *ListProtecti
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListProtections operation.
-//    pageNum := 0
-//    err := client.ListProtectionsPages(params,
-//        func(page *shield.ListProtectionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListProtections operation.
+//	pageNum := 0
+//	err := client.ListProtectionsPages(params,
+//	    func(page *shield.ListProtectionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Shield) ListProtectionsPages(input *ListProtectionsInput, fn func(*ListProtectionsOutput, bool) bool) error {
 	return c.ListProtectionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2942,14 +2937,13 @@ const opListResourcesInProtectionGroup = "ListResourcesInProtectionGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListResourcesInProtectionGroupRequest method.
+//	req, resp := client.ListResourcesInProtectionGroupRequest(params)
 //
-//    // Example sending a request using the ListResourcesInProtectionGroupRequest method.
-//    req, resp := client.ListResourcesInProtectionGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListResourcesInProtectionGroup
 func (c *Shield) ListResourcesInProtectionGroupRequest(input *ListResourcesInProtectionGroupInput) (req *request.Request, output *ListResourcesInProtectionGroupOutput) {
@@ -2986,18 +2980,19 @@ func (c *Shield) ListResourcesInProtectionGroupRequest(input *ListResourcesInPro
 // API operation ListResourcesInProtectionGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * InvalidPaginationTokenException
-//   Exception that indicates that the NextToken specified in the request is invalid.
-//   Submit the request using the NextToken value that was returned in the prior
-//   response.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
+//
+//   - InvalidPaginationTokenException
+//     Exception that indicates that the NextToken specified in the request is invalid.
+//     Submit the request using the NextToken value that was returned in the prior
+//     response.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListResourcesInProtectionGroup
 func (c *Shield) ListResourcesInProtectionGroup(input *ListResourcesInProtectionGroupInput) (*ListResourcesInProtectionGroupOutput, error) {
@@ -3029,15 +3024,14 @@ func (c *Shield) ListResourcesInProtectionGroupWithContext(ctx aws.Context, inpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListResourcesInProtectionGroup operation.
-//    pageNum := 0
-//    err := client.ListResourcesInProtectionGroupPages(params,
-//        func(page *shield.ListResourcesInProtectionGroupOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListResourcesInProtectionGroup operation.
+//	pageNum := 0
+//	err := client.ListResourcesInProtectionGroupPages(params,
+//	    func(page *shield.ListResourcesInProtectionGroupOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Shield) ListResourcesInProtectionGroupPages(input *ListResourcesInProtectionGroupInput, fn func(*ListResourcesInProtectionGroupOutput, bool) bool) error {
 	return c.ListResourcesInProtectionGroupPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3089,14 +3083,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListTagsForResource
 func (c *Shield) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -3128,17 +3121,18 @@ func (c *Shield) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidResourceException
-//   Exception that indicates that the resource is invalid. You might not have
-//   access to the resource, or the resource might not exist.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InvalidResourceException
+//     Exception that indicates that the resource is invalid. You might not have
+//     access to the resource, or the resource might not exist.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListTagsForResource
 func (c *Shield) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -3178,14 +3172,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/TagResource
 func (c *Shield) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -3217,21 +3210,22 @@ func (c *Shield) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidResourceException
-//   Exception that indicates that the resource is invalid. You might not have
-//   access to the resource, or the resource might not exist.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - InvalidResourceException
+//     Exception that indicates that the resource is invalid. You might not have
+//     access to the resource, or the resource might not exist.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/TagResource
 func (c *Shield) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -3271,14 +3265,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/UntagResource
 func (c *Shield) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -3310,21 +3303,22 @@ func (c *Shield) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidResourceException
-//   Exception that indicates that the resource is invalid. You might not have
-//   access to the resource, or the resource might not exist.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - InvalidResourceException
+//     Exception that indicates that the resource is invalid. You might not have
+//     access to the resource, or the resource might not exist.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/UntagResource
 func (c *Shield) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -3364,14 +3358,13 @@ const opUpdateApplicationLayerAutomaticResponse = "UpdateApplicationLayerAutomat
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateApplicationLayerAutomaticResponseRequest method.
+//	req, resp := client.UpdateApplicationLayerAutomaticResponseRequest(params)
 //
-//    // Example sending a request using the UpdateApplicationLayerAutomaticResponseRequest method.
-//    req, resp := client.UpdateApplicationLayerAutomaticResponseRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/UpdateApplicationLayerAutomaticResponse
 func (c *Shield) UpdateApplicationLayerAutomaticResponseRequest(input *UpdateApplicationLayerAutomaticResponseInput) (req *request.Request, output *UpdateApplicationLayerAutomaticResponseOutput) {
@@ -3404,25 +3397,26 @@ func (c *Shield) UpdateApplicationLayerAutomaticResponseRequest(input *UpdateApp
 // API operation UpdateApplicationLayerAutomaticResponse for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
 //
-//   * InvalidOperationException
-//   Exception that indicates that the operation would not cause any change to
-//   occur.
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
+//
+//   - InvalidOperationException
+//     Exception that indicates that the operation would not cause any change to
+//     occur.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/UpdateApplicationLayerAutomaticResponse
 func (c *Shield) UpdateApplicationLayerAutomaticResponse(input *UpdateApplicationLayerAutomaticResponseInput) (*UpdateApplicationLayerAutomaticResponseOutput, error) {
@@ -3462,14 +3456,13 @@ const opUpdateEmergencyContactSettings = "UpdateEmergencyContactSettings"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateEmergencyContactSettingsRequest method.
+//	req, resp := client.UpdateEmergencyContactSettingsRequest(params)
 //
-//    // Example sending a request using the UpdateEmergencyContactSettingsRequest method.
-//    req, resp := client.UpdateEmergencyContactSettingsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/UpdateEmergencyContactSettings
 func (c *Shield) UpdateEmergencyContactSettingsRequest(input *UpdateEmergencyContactSettingsInput) (req *request.Request, output *UpdateEmergencyContactSettingsOutput) {
@@ -3504,21 +3497,22 @@ func (c *Shield) UpdateEmergencyContactSettingsRequest(input *UpdateEmergencyCon
 // API operation UpdateEmergencyContactSettings for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
+//
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/UpdateEmergencyContactSettings
 func (c *Shield) UpdateEmergencyContactSettings(input *UpdateEmergencyContactSettingsInput) (*UpdateEmergencyContactSettingsOutput, error) {
@@ -3558,14 +3552,13 @@ const opUpdateProtectionGroup = "UpdateProtectionGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateProtectionGroupRequest method.
+//	req, resp := client.UpdateProtectionGroupRequest(params)
 //
-//    // Example sending a request using the UpdateProtectionGroupRequest method.
-//    req, resp := client.UpdateProtectionGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/UpdateProtectionGroup
 func (c *Shield) UpdateProtectionGroupRequest(input *UpdateProtectionGroupInput) (req *request.Request, output *UpdateProtectionGroupOutput) {
@@ -3599,21 +3592,22 @@ func (c *Shield) UpdateProtectionGroupRequest(input *UpdateProtectionGroupInput)
 // API operation UpdateProtectionGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
+//
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/UpdateProtectionGroup
 func (c *Shield) UpdateProtectionGroup(input *UpdateProtectionGroupInput) (*UpdateProtectionGroupOutput, error) {
@@ -3653,14 +3647,13 @@ const opUpdateSubscription = "UpdateSubscription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateSubscriptionRequest method.
+//	req, resp := client.UpdateSubscriptionRequest(params)
 //
-//    // Example sending a request using the UpdateSubscriptionRequest method.
-//    req, resp := client.UpdateSubscriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/UpdateSubscription
 func (c *Shield) UpdateSubscriptionRequest(input *UpdateSubscriptionInput) (req *request.Request, output *UpdateSubscriptionOutput) {
@@ -3697,27 +3690,28 @@ func (c *Shield) UpdateSubscriptionRequest(input *UpdateSubscriptionInput) (req 
 // API operation UpdateSubscription for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   Exception that indicates that a problem occurred with the service infrastructure.
-//   You can retry the request.
 //
-//   * LockedSubscriptionException
-//   You are trying to update a subscription that has not yet completed the 1-year
-//   commitment. You can change the AutoRenew parameter during the last 30 days
-//   of your subscription. This exception indicates that you are attempting to
-//   change AutoRenew prior to that period.
+//   - InternalErrorException
+//     Exception that indicates that a problem occurred with the service infrastructure.
+//     You can retry the request.
 //
-//   * ResourceNotFoundException
-//   Exception indicating the specified resource does not exist. If available,
-//   this exception includes details in additional properties.
+//   - LockedSubscriptionException
+//     You are trying to update a subscription that has not yet completed the 1-year
+//     commitment. You can change the AutoRenew parameter during the last 30 days
+//     of your subscription. This exception indicates that you are attempting to
+//     change AutoRenew prior to that period.
 //
-//   * InvalidParameterException
-//   Exception that indicates that the parameters passed to the API are invalid.
-//   If available, this exception includes details in additional properties.
+//   - ResourceNotFoundException
+//     Exception indicating the specified resource does not exist. If available,
+//     this exception includes details in additional properties.
 //
-//   * OptimisticLockException
-//   Exception that indicates that the resource state has been modified by another
-//   client. Retrieve the resource and then retry your request.
+//   - InvalidParameterException
+//     Exception that indicates that the parameters passed to the API are invalid.
+//     If available, this exception includes details in additional properties.
+//
+//   - OptimisticLockException
+//     Exception that indicates that the resource state has been modified by another
+//     client. Retrieve the resource and then retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/UpdateSubscription
 func (c *Shield) UpdateSubscription(input *UpdateSubscriptionInput) (*UpdateSubscriptionOutput, error) {

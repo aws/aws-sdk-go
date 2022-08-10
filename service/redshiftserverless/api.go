@@ -29,14 +29,13 @@ const opConvertRecoveryPointToSnapshot = "ConvertRecoveryPointToSnapshot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ConvertRecoveryPointToSnapshotRequest method.
+//	req, resp := client.ConvertRecoveryPointToSnapshotRequest(params)
 //
-//    // Example sending a request using the ConvertRecoveryPointToSnapshotRequest method.
-//    req, resp := client.ConvertRecoveryPointToSnapshotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ConvertRecoveryPointToSnapshot
 func (c *RedshiftServerless) ConvertRecoveryPointToSnapshotRequest(input *ConvertRecoveryPointToSnapshotInput) (req *request.Request, output *ConvertRecoveryPointToSnapshotOutput) {
@@ -68,21 +67,22 @@ func (c *RedshiftServerless) ConvertRecoveryPointToSnapshotRequest(input *Conver
 // API operation ConvertRecoveryPointToSnapshot for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
 //
-//   * ServiceQuotaExceededException
-//   The service limit was exceeded.
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - ServiceQuotaExceededException
+//     The service limit was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ConvertRecoveryPointToSnapshot
 func (c *RedshiftServerless) ConvertRecoveryPointToSnapshot(input *ConvertRecoveryPointToSnapshotInput) (*ConvertRecoveryPointToSnapshotOutput, error) {
@@ -122,14 +122,13 @@ const opCreateEndpointAccess = "CreateEndpointAccess"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEndpointAccessRequest method.
+//	req, resp := client.CreateEndpointAccessRequest(params)
 //
-//    // Example sending a request using the CreateEndpointAccessRequest method.
-//    req, resp := client.CreateEndpointAccessRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateEndpointAccess
 func (c *RedshiftServerless) CreateEndpointAccessRequest(input *CreateEndpointAccessInput) (req *request.Request, output *CreateEndpointAccessOutput) {
@@ -160,24 +159,25 @@ func (c *RedshiftServerless) CreateEndpointAccessRequest(input *CreateEndpointAc
 // API operation CreateEndpointAccess for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
-//   * ServiceQuotaExceededException
-//   The service limit was exceeded.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ServiceQuotaExceededException
+//     The service limit was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateEndpointAccess
 func (c *RedshiftServerless) CreateEndpointAccess(input *CreateEndpointAccessInput) (*CreateEndpointAccessOutput, error) {
@@ -217,14 +217,13 @@ const opCreateNamespace = "CreateNamespace"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateNamespaceRequest method.
+//	req, resp := client.CreateNamespaceRequest(params)
 //
-//    // Example sending a request using the CreateNamespaceRequest method.
-//    req, resp := client.CreateNamespaceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateNamespace
 func (c *RedshiftServerless) CreateNamespaceRequest(input *CreateNamespaceInput) (req *request.Request, output *CreateNamespaceOutput) {
@@ -255,18 +254,19 @@ func (c *RedshiftServerless) CreateNamespaceRequest(input *CreateNamespaceInput)
 // API operation CreateNamespace for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
 //
-//   * TooManyTagsException
-//   The request exceeded the number of tags allowed for a resource.
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - TooManyTagsException
+//     The request exceeded the number of tags allowed for a resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateNamespace
 func (c *RedshiftServerless) CreateNamespace(input *CreateNamespaceInput) (*CreateNamespaceOutput, error) {
@@ -306,14 +306,13 @@ const opCreateSnapshot = "CreateSnapshot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSnapshotRequest method.
+//	req, resp := client.CreateSnapshotRequest(params)
 //
-//    // Example sending a request using the CreateSnapshotRequest method.
-//    req, resp := client.CreateSnapshotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateSnapshot
 func (c *RedshiftServerless) CreateSnapshotRequest(input *CreateSnapshotInput) (req *request.Request, output *CreateSnapshotOutput) {
@@ -345,21 +344,22 @@ func (c *RedshiftServerless) CreateSnapshotRequest(input *CreateSnapshotInput) (
 // API operation CreateSnapshot for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
 //
-//   * ServiceQuotaExceededException
-//   The service limit was exceeded.
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - ServiceQuotaExceededException
+//     The service limit was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateSnapshot
 func (c *RedshiftServerless) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, error) {
@@ -399,14 +399,13 @@ const opCreateUsageLimit = "CreateUsageLimit"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateUsageLimitRequest method.
+//	req, resp := client.CreateUsageLimitRequest(params)
 //
-//    // Example sending a request using the CreateUsageLimitRequest method.
-//    req, resp := client.CreateUsageLimitRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateUsageLimit
 func (c *RedshiftServerless) CreateUsageLimitRequest(input *CreateUsageLimitInput) (req *request.Request, output *CreateUsageLimitOutput) {
@@ -438,21 +437,22 @@ func (c *RedshiftServerless) CreateUsageLimitRequest(input *CreateUsageLimitInpu
 // API operation CreateUsageLimit for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
 //
-//   * ServiceQuotaExceededException
-//   The service limit was exceeded.
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - ServiceQuotaExceededException
+//     The service limit was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateUsageLimit
 func (c *RedshiftServerless) CreateUsageLimit(input *CreateUsageLimitInput) (*CreateUsageLimitOutput, error) {
@@ -492,14 +492,13 @@ const opCreateWorkgroup = "CreateWorkgroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateWorkgroupRequest method.
+//	req, resp := client.CreateWorkgroupRequest(params)
 //
-//    // Example sending a request using the CreateWorkgroupRequest method.
-//    req, resp := client.CreateWorkgroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateWorkgroup
 func (c *RedshiftServerless) CreateWorkgroupRequest(input *CreateWorkgroupInput) (req *request.Request, output *CreateWorkgroupOutput) {
@@ -530,24 +529,25 @@ func (c *RedshiftServerless) CreateWorkgroupRequest(input *CreateWorkgroupInput)
 // API operation CreateWorkgroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * InsufficientCapacityException
-//   There is an insufficient capacity to perform the action.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InsufficientCapacityException
+//     There is an insufficient capacity to perform the action.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
 //
-//   * TooManyTagsException
-//   The request exceeded the number of tags allowed for a resource.
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - TooManyTagsException
+//     The request exceeded the number of tags allowed for a resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateWorkgroup
 func (c *RedshiftServerless) CreateWorkgroup(input *CreateWorkgroupInput) (*CreateWorkgroupOutput, error) {
@@ -587,14 +587,13 @@ const opDeleteEndpointAccess = "DeleteEndpointAccess"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEndpointAccessRequest method.
+//	req, resp := client.DeleteEndpointAccessRequest(params)
 //
-//    // Example sending a request using the DeleteEndpointAccessRequest method.
-//    req, resp := client.DeleteEndpointAccessRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteEndpointAccess
 func (c *RedshiftServerless) DeleteEndpointAccessRequest(input *DeleteEndpointAccessInput) (req *request.Request, output *DeleteEndpointAccessOutput) {
@@ -625,18 +624,19 @@ func (c *RedshiftServerless) DeleteEndpointAccessRequest(input *DeleteEndpointAc
 // API operation DeleteEndpointAccess for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteEndpointAccess
 func (c *RedshiftServerless) DeleteEndpointAccess(input *DeleteEndpointAccessInput) (*DeleteEndpointAccessOutput, error) {
@@ -676,14 +676,13 @@ const opDeleteNamespace = "DeleteNamespace"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteNamespaceRequest method.
+//	req, resp := client.DeleteNamespaceRequest(params)
 //
-//    // Example sending a request using the DeleteNamespaceRequest method.
-//    req, resp := client.DeleteNamespaceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteNamespace
 func (c *RedshiftServerless) DeleteNamespaceRequest(input *DeleteNamespaceInput) (req *request.Request, output *DeleteNamespaceOutput) {
@@ -716,18 +715,19 @@ func (c *RedshiftServerless) DeleteNamespaceRequest(input *DeleteNamespaceInput)
 // API operation DeleteNamespace for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteNamespace
 func (c *RedshiftServerless) DeleteNamespace(input *DeleteNamespaceInput) (*DeleteNamespaceOutput, error) {
@@ -767,14 +767,13 @@ const opDeleteResourcePolicy = "DeleteResourcePolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteResourcePolicyRequest method.
+//	req, resp := client.DeleteResourcePolicyRequest(params)
 //
-//    // Example sending a request using the DeleteResourcePolicyRequest method.
-//    req, resp := client.DeleteResourcePolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteResourcePolicy
 func (c *RedshiftServerless) DeleteResourcePolicyRequest(input *DeleteResourcePolicyInput) (req *request.Request, output *DeleteResourcePolicyOutput) {
@@ -806,15 +805,16 @@ func (c *RedshiftServerless) DeleteResourcePolicyRequest(input *DeleteResourcePo
 // API operation DeleteResourcePolicy for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteResourcePolicy
 func (c *RedshiftServerless) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*DeleteResourcePolicyOutput, error) {
@@ -854,14 +854,13 @@ const opDeleteSnapshot = "DeleteSnapshot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSnapshotRequest method.
+//	req, resp := client.DeleteSnapshotRequest(params)
 //
-//    // Example sending a request using the DeleteSnapshotRequest method.
-//    req, resp := client.DeleteSnapshotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteSnapshot
 func (c *RedshiftServerless) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *request.Request, output *DeleteSnapshotOutput) {
@@ -892,18 +891,19 @@ func (c *RedshiftServerless) DeleteSnapshotRequest(input *DeleteSnapshotInput) (
 // API operation DeleteSnapshot for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteSnapshot
 func (c *RedshiftServerless) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapshotOutput, error) {
@@ -943,14 +943,13 @@ const opDeleteUsageLimit = "DeleteUsageLimit"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteUsageLimitRequest method.
+//	req, resp := client.DeleteUsageLimitRequest(params)
 //
-//    // Example sending a request using the DeleteUsageLimitRequest method.
-//    req, resp := client.DeleteUsageLimitRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteUsageLimit
 func (c *RedshiftServerless) DeleteUsageLimitRequest(input *DeleteUsageLimitInput) (req *request.Request, output *DeleteUsageLimitOutput) {
@@ -981,18 +980,19 @@ func (c *RedshiftServerless) DeleteUsageLimitRequest(input *DeleteUsageLimitInpu
 // API operation DeleteUsageLimit for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteUsageLimit
 func (c *RedshiftServerless) DeleteUsageLimit(input *DeleteUsageLimitInput) (*DeleteUsageLimitOutput, error) {
@@ -1032,14 +1032,13 @@ const opDeleteWorkgroup = "DeleteWorkgroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteWorkgroupRequest method.
+//	req, resp := client.DeleteWorkgroupRequest(params)
 //
-//    // Example sending a request using the DeleteWorkgroupRequest method.
-//    req, resp := client.DeleteWorkgroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteWorkgroup
 func (c *RedshiftServerless) DeleteWorkgroupRequest(input *DeleteWorkgroupInput) (req *request.Request, output *DeleteWorkgroupOutput) {
@@ -1070,18 +1069,19 @@ func (c *RedshiftServerless) DeleteWorkgroupRequest(input *DeleteWorkgroupInput)
 // API operation DeleteWorkgroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteWorkgroup
 func (c *RedshiftServerless) DeleteWorkgroup(input *DeleteWorkgroupInput) (*DeleteWorkgroupOutput, error) {
@@ -1121,14 +1121,13 @@ const opGetCredentials = "GetCredentials"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCredentialsRequest method.
+//	req, resp := client.GetCredentialsRequest(params)
 //
-//    // Example sending a request using the GetCredentialsRequest method.
-//    req, resp := client.GetCredentialsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetCredentials
 func (c *RedshiftServerless) GetCredentialsRequest(input *GetCredentialsInput) (req *request.Request, output *GetCredentialsOutput) {
@@ -1156,11 +1155,11 @@ func (c *RedshiftServerless) GetCredentialsRequest(input *GetCredentialsInput) (
 // specify a duration between 900 seconds (15 minutes) and 3600 seconds (60
 // minutes).
 //
-//    <p> The Identity and Access Management (IAM) user or role that runs GetCredentials
-//    must have an IAM policy attached that allows access to all necessary actions
-//    and resources. </p> <p> If the <code>DbName</code> parameter is specified,
-//    the IAM policy must allow access to the resource dbname for the specified
-//    database name.</p>
+//	<p> The Identity and Access Management (IAM) user or role that runs GetCredentials
+//	must have an IAM policy attached that allows access to all necessary actions
+//	and resources. </p> <p> If the <code>DbName</code> parameter is specified,
+//	the IAM policy must allow access to the resource dbname for the specified
+//	database name.</p>
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1170,15 +1169,16 @@ func (c *RedshiftServerless) GetCredentialsRequest(input *GetCredentialsInput) (
 // API operation GetCredentials for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetCredentials
 func (c *RedshiftServerless) GetCredentials(input *GetCredentialsInput) (*GetCredentialsOutput, error) {
@@ -1218,14 +1218,13 @@ const opGetEndpointAccess = "GetEndpointAccess"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetEndpointAccessRequest method.
+//	req, resp := client.GetEndpointAccessRequest(params)
 //
-//    // Example sending a request using the GetEndpointAccessRequest method.
-//    req, resp := client.GetEndpointAccessRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetEndpointAccess
 func (c *RedshiftServerless) GetEndpointAccessRequest(input *GetEndpointAccessInput) (req *request.Request, output *GetEndpointAccessOutput) {
@@ -1256,18 +1255,19 @@ func (c *RedshiftServerless) GetEndpointAccessRequest(input *GetEndpointAccessIn
 // API operation GetEndpointAccess for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetEndpointAccess
 func (c *RedshiftServerless) GetEndpointAccess(input *GetEndpointAccessInput) (*GetEndpointAccessOutput, error) {
@@ -1307,14 +1307,13 @@ const opGetNamespace = "GetNamespace"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetNamespaceRequest method.
+//	req, resp := client.GetNamespaceRequest(params)
 //
-//    // Example sending a request using the GetNamespaceRequest method.
-//    req, resp := client.GetNamespaceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetNamespace
 func (c *RedshiftServerless) GetNamespaceRequest(input *GetNamespaceInput) (req *request.Request, output *GetNamespaceOutput) {
@@ -1345,15 +1344,16 @@ func (c *RedshiftServerless) GetNamespaceRequest(input *GetNamespaceInput) (req 
 // API operation GetNamespace for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetNamespace
 func (c *RedshiftServerless) GetNamespace(input *GetNamespaceInput) (*GetNamespaceOutput, error) {
@@ -1393,14 +1393,13 @@ const opGetRecoveryPoint = "GetRecoveryPoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetRecoveryPointRequest method.
+//	req, resp := client.GetRecoveryPointRequest(params)
 //
-//    // Example sending a request using the GetRecoveryPointRequest method.
-//    req, resp := client.GetRecoveryPointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetRecoveryPoint
 func (c *RedshiftServerless) GetRecoveryPointRequest(input *GetRecoveryPointInput) (req *request.Request, output *GetRecoveryPointOutput) {
@@ -1431,18 +1430,19 @@ func (c *RedshiftServerless) GetRecoveryPointRequest(input *GetRecoveryPointInpu
 // API operation GetRecoveryPoint for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetRecoveryPoint
 func (c *RedshiftServerless) GetRecoveryPoint(input *GetRecoveryPointInput) (*GetRecoveryPointOutput, error) {
@@ -1482,14 +1482,13 @@ const opGetResourcePolicy = "GetResourcePolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResourcePolicyRequest method.
+//	req, resp := client.GetResourcePolicyRequest(params)
 //
-//    // Example sending a request using the GetResourcePolicyRequest method.
-//    req, resp := client.GetResourcePolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetResourcePolicy
 func (c *RedshiftServerless) GetResourcePolicyRequest(input *GetResourcePolicyInput) (req *request.Request, output *GetResourcePolicyOutput) {
@@ -1520,15 +1519,16 @@ func (c *RedshiftServerless) GetResourcePolicyRequest(input *GetResourcePolicyIn
 // API operation GetResourcePolicy for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetResourcePolicy
 func (c *RedshiftServerless) GetResourcePolicy(input *GetResourcePolicyInput) (*GetResourcePolicyOutput, error) {
@@ -1568,14 +1568,13 @@ const opGetSnapshot = "GetSnapshot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSnapshotRequest method.
+//	req, resp := client.GetSnapshotRequest(params)
 //
-//    // Example sending a request using the GetSnapshotRequest method.
-//    req, resp := client.GetSnapshotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetSnapshot
 func (c *RedshiftServerless) GetSnapshotRequest(input *GetSnapshotInput) (req *request.Request, output *GetSnapshotOutput) {
@@ -1606,15 +1605,16 @@ func (c *RedshiftServerless) GetSnapshotRequest(input *GetSnapshotInput) (req *r
 // API operation GetSnapshot for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetSnapshot
 func (c *RedshiftServerless) GetSnapshot(input *GetSnapshotInput) (*GetSnapshotOutput, error) {
@@ -1654,14 +1654,13 @@ const opGetUsageLimit = "GetUsageLimit"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetUsageLimitRequest method.
+//	req, resp := client.GetUsageLimitRequest(params)
 //
-//    // Example sending a request using the GetUsageLimitRequest method.
-//    req, resp := client.GetUsageLimitRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetUsageLimit
 func (c *RedshiftServerless) GetUsageLimitRequest(input *GetUsageLimitInput) (req *request.Request, output *GetUsageLimitOutput) {
@@ -1692,18 +1691,19 @@ func (c *RedshiftServerless) GetUsageLimitRequest(input *GetUsageLimitInput) (re
 // API operation GetUsageLimit for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetUsageLimit
 func (c *RedshiftServerless) GetUsageLimit(input *GetUsageLimitInput) (*GetUsageLimitOutput, error) {
@@ -1743,14 +1743,13 @@ const opGetWorkgroup = "GetWorkgroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetWorkgroupRequest method.
+//	req, resp := client.GetWorkgroupRequest(params)
 //
-//    // Example sending a request using the GetWorkgroupRequest method.
-//    req, resp := client.GetWorkgroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetWorkgroup
 func (c *RedshiftServerless) GetWorkgroupRequest(input *GetWorkgroupInput) (req *request.Request, output *GetWorkgroupOutput) {
@@ -1781,15 +1780,16 @@ func (c *RedshiftServerless) GetWorkgroupRequest(input *GetWorkgroupInput) (req 
 // API operation GetWorkgroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetWorkgroup
 func (c *RedshiftServerless) GetWorkgroup(input *GetWorkgroupInput) (*GetWorkgroupOutput, error) {
@@ -1829,14 +1829,13 @@ const opListEndpointAccess = "ListEndpointAccess"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEndpointAccessRequest method.
+//	req, resp := client.ListEndpointAccessRequest(params)
 //
-//    // Example sending a request using the ListEndpointAccessRequest method.
-//    req, resp := client.ListEndpointAccessRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListEndpointAccess
 func (c *RedshiftServerless) ListEndpointAccessRequest(input *ListEndpointAccessInput) (req *request.Request, output *ListEndpointAccessOutput) {
@@ -1873,18 +1872,19 @@ func (c *RedshiftServerless) ListEndpointAccessRequest(input *ListEndpointAccess
 // API operation ListEndpointAccess for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListEndpointAccess
 func (c *RedshiftServerless) ListEndpointAccess(input *ListEndpointAccessInput) (*ListEndpointAccessOutput, error) {
@@ -1916,15 +1916,14 @@ func (c *RedshiftServerless) ListEndpointAccessWithContext(ctx aws.Context, inpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEndpointAccess operation.
-//    pageNum := 0
-//    err := client.ListEndpointAccessPages(params,
-//        func(page *redshiftserverless.ListEndpointAccessOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEndpointAccess operation.
+//	pageNum := 0
+//	err := client.ListEndpointAccessPages(params,
+//	    func(page *redshiftserverless.ListEndpointAccessOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RedshiftServerless) ListEndpointAccessPages(input *ListEndpointAccessInput, fn func(*ListEndpointAccessOutput, bool) bool) error {
 	return c.ListEndpointAccessPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1976,14 +1975,13 @@ const opListNamespaces = "ListNamespaces"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListNamespacesRequest method.
+//	req, resp := client.ListNamespacesRequest(params)
 //
-//    // Example sending a request using the ListNamespacesRequest method.
-//    req, resp := client.ListNamespacesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListNamespaces
 func (c *RedshiftServerless) ListNamespacesRequest(input *ListNamespacesInput) (req *request.Request, output *ListNamespacesOutput) {
@@ -2020,12 +2018,13 @@ func (c *RedshiftServerless) ListNamespacesRequest(input *ListNamespacesInput) (
 // API operation ListNamespaces for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListNamespaces
 func (c *RedshiftServerless) ListNamespaces(input *ListNamespacesInput) (*ListNamespacesOutput, error) {
@@ -2057,15 +2056,14 @@ func (c *RedshiftServerless) ListNamespacesWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListNamespaces operation.
-//    pageNum := 0
-//    err := client.ListNamespacesPages(params,
-//        func(page *redshiftserverless.ListNamespacesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListNamespaces operation.
+//	pageNum := 0
+//	err := client.ListNamespacesPages(params,
+//	    func(page *redshiftserverless.ListNamespacesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RedshiftServerless) ListNamespacesPages(input *ListNamespacesInput, fn func(*ListNamespacesOutput, bool) bool) error {
 	return c.ListNamespacesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2117,14 +2115,13 @@ const opListRecoveryPoints = "ListRecoveryPoints"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRecoveryPointsRequest method.
+//	req, resp := client.ListRecoveryPointsRequest(params)
 //
-//    // Example sending a request using the ListRecoveryPointsRequest method.
-//    req, resp := client.ListRecoveryPointsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListRecoveryPoints
 func (c *RedshiftServerless) ListRecoveryPointsRequest(input *ListRecoveryPointsInput) (req *request.Request, output *ListRecoveryPointsOutput) {
@@ -2161,12 +2158,13 @@ func (c *RedshiftServerless) ListRecoveryPointsRequest(input *ListRecoveryPoints
 // API operation ListRecoveryPoints for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListRecoveryPoints
 func (c *RedshiftServerless) ListRecoveryPoints(input *ListRecoveryPointsInput) (*ListRecoveryPointsOutput, error) {
@@ -2198,15 +2196,14 @@ func (c *RedshiftServerless) ListRecoveryPointsWithContext(ctx aws.Context, inpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRecoveryPoints operation.
-//    pageNum := 0
-//    err := client.ListRecoveryPointsPages(params,
-//        func(page *redshiftserverless.ListRecoveryPointsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRecoveryPoints operation.
+//	pageNum := 0
+//	err := client.ListRecoveryPointsPages(params,
+//	    func(page *redshiftserverless.ListRecoveryPointsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RedshiftServerless) ListRecoveryPointsPages(input *ListRecoveryPointsInput, fn func(*ListRecoveryPointsOutput, bool) bool) error {
 	return c.ListRecoveryPointsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2258,14 +2255,13 @@ const opListSnapshots = "ListSnapshots"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSnapshotsRequest method.
+//	req, resp := client.ListSnapshotsRequest(params)
 //
-//    // Example sending a request using the ListSnapshotsRequest method.
-//    req, resp := client.ListSnapshotsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListSnapshots
 func (c *RedshiftServerless) ListSnapshotsRequest(input *ListSnapshotsInput) (req *request.Request, output *ListSnapshotsOutput) {
@@ -2302,15 +2298,16 @@ func (c *RedshiftServerless) ListSnapshotsRequest(input *ListSnapshotsInput) (re
 // API operation ListSnapshots for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListSnapshots
 func (c *RedshiftServerless) ListSnapshots(input *ListSnapshotsInput) (*ListSnapshotsOutput, error) {
@@ -2342,15 +2339,14 @@ func (c *RedshiftServerless) ListSnapshotsWithContext(ctx aws.Context, input *Li
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSnapshots operation.
-//    pageNum := 0
-//    err := client.ListSnapshotsPages(params,
-//        func(page *redshiftserverless.ListSnapshotsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSnapshots operation.
+//	pageNum := 0
+//	err := client.ListSnapshotsPages(params,
+//	    func(page *redshiftserverless.ListSnapshotsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RedshiftServerless) ListSnapshotsPages(input *ListSnapshotsInput, fn func(*ListSnapshotsOutput, bool) bool) error {
 	return c.ListSnapshotsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2402,14 +2398,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListTagsForResource
 func (c *RedshiftServerless) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -2440,18 +2435,19 @@ func (c *RedshiftServerless) ListTagsForResourceRequest(input *ListTagsForResour
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListTagsForResource
 func (c *RedshiftServerless) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2491,14 +2487,13 @@ const opListUsageLimits = "ListUsageLimits"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListUsageLimitsRequest method.
+//	req, resp := client.ListUsageLimitsRequest(params)
 //
-//    // Example sending a request using the ListUsageLimitsRequest method.
-//    req, resp := client.ListUsageLimitsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListUsageLimits
 func (c *RedshiftServerless) ListUsageLimitsRequest(input *ListUsageLimitsInput) (req *request.Request, output *ListUsageLimitsOutput) {
@@ -2535,21 +2530,22 @@ func (c *RedshiftServerless) ListUsageLimitsRequest(input *ListUsageLimitsInput)
 // API operation ListUsageLimits for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * InvalidPaginationException
-//   The provided pagination token is invalid.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InvalidPaginationException
+//     The provided pagination token is invalid.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListUsageLimits
 func (c *RedshiftServerless) ListUsageLimits(input *ListUsageLimitsInput) (*ListUsageLimitsOutput, error) {
@@ -2581,15 +2577,14 @@ func (c *RedshiftServerless) ListUsageLimitsWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListUsageLimits operation.
-//    pageNum := 0
-//    err := client.ListUsageLimitsPages(params,
-//        func(page *redshiftserverless.ListUsageLimitsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListUsageLimits operation.
+//	pageNum := 0
+//	err := client.ListUsageLimitsPages(params,
+//	    func(page *redshiftserverless.ListUsageLimitsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RedshiftServerless) ListUsageLimitsPages(input *ListUsageLimitsInput, fn func(*ListUsageLimitsOutput, bool) bool) error {
 	return c.ListUsageLimitsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2641,14 +2636,13 @@ const opListWorkgroups = "ListWorkgroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListWorkgroupsRequest method.
+//	req, resp := client.ListWorkgroupsRequest(params)
 //
-//    // Example sending a request using the ListWorkgroupsRequest method.
-//    req, resp := client.ListWorkgroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListWorkgroups
 func (c *RedshiftServerless) ListWorkgroupsRequest(input *ListWorkgroupsInput) (req *request.Request, output *ListWorkgroupsOutput) {
@@ -2685,12 +2679,13 @@ func (c *RedshiftServerless) ListWorkgroupsRequest(input *ListWorkgroupsInput) (
 // API operation ListWorkgroups for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListWorkgroups
 func (c *RedshiftServerless) ListWorkgroups(input *ListWorkgroupsInput) (*ListWorkgroupsOutput, error) {
@@ -2722,15 +2717,14 @@ func (c *RedshiftServerless) ListWorkgroupsWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListWorkgroups operation.
-//    pageNum := 0
-//    err := client.ListWorkgroupsPages(params,
-//        func(page *redshiftserverless.ListWorkgroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListWorkgroups operation.
+//	pageNum := 0
+//	err := client.ListWorkgroupsPages(params,
+//	    func(page *redshiftserverless.ListWorkgroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RedshiftServerless) ListWorkgroupsPages(input *ListWorkgroupsInput, fn func(*ListWorkgroupsOutput, bool) bool) error {
 	return c.ListWorkgroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2782,14 +2776,13 @@ const opPutResourcePolicy = "PutResourcePolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutResourcePolicyRequest method.
+//	req, resp := client.PutResourcePolicyRequest(params)
 //
-//    // Example sending a request using the PutResourcePolicyRequest method.
-//    req, resp := client.PutResourcePolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/PutResourcePolicy
 func (c *RedshiftServerless) PutResourcePolicyRequest(input *PutResourcePolicyInput) (req *request.Request, output *PutResourcePolicyOutput) {
@@ -2821,21 +2814,22 @@ func (c *RedshiftServerless) PutResourcePolicyRequest(input *PutResourcePolicyIn
 // API operation PutResourcePolicy for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
 //
-//   * ServiceQuotaExceededException
-//   The service limit was exceeded.
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - ServiceQuotaExceededException
+//     The service limit was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/PutResourcePolicy
 func (c *RedshiftServerless) PutResourcePolicy(input *PutResourcePolicyInput) (*PutResourcePolicyOutput, error) {
@@ -2875,14 +2869,13 @@ const opRestoreFromRecoveryPoint = "RestoreFromRecoveryPoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RestoreFromRecoveryPointRequest method.
+//	req, resp := client.RestoreFromRecoveryPointRequest(params)
 //
-//    // Example sending a request using the RestoreFromRecoveryPointRequest method.
-//    req, resp := client.RestoreFromRecoveryPointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/RestoreFromRecoveryPoint
 func (c *RedshiftServerless) RestoreFromRecoveryPointRequest(input *RestoreFromRecoveryPointInput) (req *request.Request, output *RestoreFromRecoveryPointOutput) {
@@ -2913,18 +2906,19 @@ func (c *RedshiftServerless) RestoreFromRecoveryPointRequest(input *RestoreFromR
 // API operation RestoreFromRecoveryPoint for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/RestoreFromRecoveryPoint
 func (c *RedshiftServerless) RestoreFromRecoveryPoint(input *RestoreFromRecoveryPointInput) (*RestoreFromRecoveryPointOutput, error) {
@@ -2964,14 +2958,13 @@ const opRestoreFromSnapshot = "RestoreFromSnapshot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RestoreFromSnapshotRequest method.
+//	req, resp := client.RestoreFromSnapshotRequest(params)
 //
-//    // Example sending a request using the RestoreFromSnapshotRequest method.
-//    req, resp := client.RestoreFromSnapshotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/RestoreFromSnapshot
 func (c *RedshiftServerless) RestoreFromSnapshotRequest(input *RestoreFromSnapshotInput) (req *request.Request, output *RestoreFromSnapshotOutput) {
@@ -3002,21 +2995,22 @@ func (c *RedshiftServerless) RestoreFromSnapshotRequest(input *RestoreFromSnapsh
 // API operation RestoreFromSnapshot for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
 //
-//   * ServiceQuotaExceededException
-//   The service limit was exceeded.
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - ServiceQuotaExceededException
+//     The service limit was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/RestoreFromSnapshot
 func (c *RedshiftServerless) RestoreFromSnapshot(input *RestoreFromSnapshotInput) (*RestoreFromSnapshotOutput, error) {
@@ -3056,14 +3050,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/TagResource
 func (c *RedshiftServerless) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -3095,21 +3088,22 @@ func (c *RedshiftServerless) TagResourceRequest(input *TagResourceInput) (req *r
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * TooManyTagsException
-//   The request exceeded the number of tags allowed for a resource.
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - TooManyTagsException
+//     The request exceeded the number of tags allowed for a resource.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/TagResource
 func (c *RedshiftServerless) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -3149,14 +3143,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UntagResource
 func (c *RedshiftServerless) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -3188,18 +3181,19 @@ func (c *RedshiftServerless) UntagResourceRequest(input *UntagResourceInput) (re
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UntagResource
 func (c *RedshiftServerless) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -3239,14 +3233,13 @@ const opUpdateEndpointAccess = "UpdateEndpointAccess"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateEndpointAccessRequest method.
+//	req, resp := client.UpdateEndpointAccessRequest(params)
 //
-//    // Example sending a request using the UpdateEndpointAccessRequest method.
-//    req, resp := client.UpdateEndpointAccessRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateEndpointAccess
 func (c *RedshiftServerless) UpdateEndpointAccessRequest(input *UpdateEndpointAccessInput) (req *request.Request, output *UpdateEndpointAccessOutput) {
@@ -3277,21 +3270,22 @@ func (c *RedshiftServerless) UpdateEndpointAccessRequest(input *UpdateEndpointAc
 // API operation UpdateEndpointAccess for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateEndpointAccess
 func (c *RedshiftServerless) UpdateEndpointAccess(input *UpdateEndpointAccessInput) (*UpdateEndpointAccessOutput, error) {
@@ -3331,14 +3325,13 @@ const opUpdateNamespace = "UpdateNamespace"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateNamespaceRequest method.
+//	req, resp := client.UpdateNamespaceRequest(params)
 //
-//    // Example sending a request using the UpdateNamespaceRequest method.
-//    req, resp := client.UpdateNamespaceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateNamespace
 func (c *RedshiftServerless) UpdateNamespaceRequest(input *UpdateNamespaceInput) (req *request.Request, output *UpdateNamespaceOutput) {
@@ -3369,18 +3362,19 @@ func (c *RedshiftServerless) UpdateNamespaceRequest(input *UpdateNamespaceInput)
 // API operation UpdateNamespace for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateNamespace
 func (c *RedshiftServerless) UpdateNamespace(input *UpdateNamespaceInput) (*UpdateNamespaceOutput, error) {
@@ -3420,14 +3414,13 @@ const opUpdateSnapshot = "UpdateSnapshot"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateSnapshotRequest method.
+//	req, resp := client.UpdateSnapshotRequest(params)
 //
-//    // Example sending a request using the UpdateSnapshotRequest method.
-//    req, resp := client.UpdateSnapshotRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateSnapshot
 func (c *RedshiftServerless) UpdateSnapshotRequest(input *UpdateSnapshotInput) (req *request.Request, output *UpdateSnapshotOutput) {
@@ -3458,18 +3451,19 @@ func (c *RedshiftServerless) UpdateSnapshotRequest(input *UpdateSnapshotInput) (
 // API operation UpdateSnapshot for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateSnapshot
 func (c *RedshiftServerless) UpdateSnapshot(input *UpdateSnapshotInput) (*UpdateSnapshotOutput, error) {
@@ -3509,14 +3503,13 @@ const opUpdateUsageLimit = "UpdateUsageLimit"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateUsageLimitRequest method.
+//	req, resp := client.UpdateUsageLimitRequest(params)
 //
-//    // Example sending a request using the UpdateUsageLimitRequest method.
-//    req, resp := client.UpdateUsageLimitRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateUsageLimit
 func (c *RedshiftServerless) UpdateUsageLimitRequest(input *UpdateUsageLimitInput) (req *request.Request, output *UpdateUsageLimitOutput) {
@@ -3548,18 +3541,19 @@ func (c *RedshiftServerless) UpdateUsageLimitRequest(input *UpdateUsageLimitInpu
 // API operation UpdateUsageLimit for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateUsageLimit
 func (c *RedshiftServerless) UpdateUsageLimit(input *UpdateUsageLimitInput) (*UpdateUsageLimitOutput, error) {
@@ -3599,14 +3593,13 @@ const opUpdateWorkgroup = "UpdateWorkgroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateWorkgroupRequest method.
+//	req, resp := client.UpdateWorkgroupRequest(params)
 //
-//    // Example sending a request using the UpdateWorkgroupRequest method.
-//    req, resp := client.UpdateWorkgroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateWorkgroup
 func (c *RedshiftServerless) UpdateWorkgroupRequest(input *UpdateWorkgroupInput) (req *request.Request, output *UpdateWorkgroupOutput) {
@@ -3637,21 +3630,22 @@ func (c *RedshiftServerless) UpdateWorkgroupRequest(input *UpdateWorkgroupInput)
 // API operation UpdateWorkgroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   The request processing has failed because of an unknown error, exception
-//   or failure.
 //
-//   * InsufficientCapacityException
-//   There is an insufficient capacity to perform the action.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - InsufficientCapacityException
+//     There is an insufficient capacity to perform the action.
 //
-//   * ConflictException
-//   The submitted action has conflicts.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * ValidationException
-//   The input failed to satisfy the constraints specified by an AWS service.
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateWorkgroup
 func (c *RedshiftServerless) UpdateWorkgroup(input *UpdateWorkgroupInput) (*UpdateWorkgroupOutput, error) {
