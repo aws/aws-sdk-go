@@ -1,3 +1,11 @@
+Release v1.44.73 (2022-08-10)
+===
+
+### Service Client Updates
+* `service/dlm`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for excluding specific data (non-root) volumes from multi-volume snapshot sets created from instances.
+
 Release v1.44.72 (2022-08-09)
 ===
 

@@ -20401,7 +20401,8 @@
       "refs": {
         "DescribeVolumeStatusRequest$VolumeIds": "<p>The IDs of the volumes.</p> <p>Default: Describes all your volumes.</p>",
         "DescribeVolumesModificationsRequest$VolumeIds": "<p>The IDs of the volumes.</p>",
-        "DescribeVolumesRequest$VolumeIds": "<p>The volume IDs.</p>"
+        "DescribeVolumesRequest$VolumeIds": "<p>The volume IDs.</p>",
+        "InstanceSpecification$ExcludeDataVolumeIds": null
       }
     },
     "VolumeList": {
