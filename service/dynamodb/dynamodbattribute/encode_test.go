@@ -11,6 +11,14 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
+func TestString(t *testing.T) {
+	gotime := time.Date(2016, time.May, 03, 17, 06, 26, 0, time.UTC)
+	ddbtime := UnixTime(gotime)
+	if fmt.Sprint(gotime) != fmt.Sprint(ddbtime) {
+		t.Error("UnixTime.String not equal to time.Time.String")
+	}
+}
+
 func TestMarshalErrorTypes(t *testing.T) {
 	var _ awserr.Error = (*InvalidMarshalError)(nil)
 	var _ awserr.Error = (*unsupportedMarshalTypeError)(nil)
