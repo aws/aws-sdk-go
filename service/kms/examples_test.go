@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To cancel deletion of a KMS key
-//
 // The following example cancels deletion of the specified KMS key.
 func ExampleKMS_CancelKeyDeletion_shared00() {
 	svc := kms.New(session.New())
@@ -63,7 +62,6 @@ func ExampleKMS_CancelKeyDeletion_shared00() {
 }
 
 // To connect a custom key store to its CloudHSM cluster
-//
 // This example connects an AWS KMS custom key store to its AWS CloudHSM cluster. This
 // operation does not return any data. To verify that the custom key store is connected,
 // use the <code>DescribeCustomKeyStores</code> operation.
@@ -102,7 +100,6 @@ func ExampleKMS_ConnectCustomKeyStore_shared00() {
 }
 
 // To create an alias
-//
 // The following example creates an alias for the specified KMS key.
 func ExampleKMS_CreateAlias_shared00() {
 	svc := kms.New(session.New())
@@ -144,7 +141,6 @@ func ExampleKMS_CreateAlias_shared00() {
 }
 
 // To create an AWS CloudHSM custom key store
-//
 // This example creates a custom key store that is associated with an AWS CloudHSM cluster.
 func ExampleKMS_CreateCustomKeyStore_shared00() {
 	svc := kms.New(session.New())
@@ -188,7 +184,6 @@ func ExampleKMS_CreateCustomKeyStore_shared00() {
 }
 
 // To create a grant
-//
 // The following example creates a grant that allows the specified IAM role to encrypt
 // data with the specified KMS key.
 func ExampleKMS_CreateGrant_shared00() {
@@ -237,7 +232,6 @@ func ExampleKMS_CreateGrant_shared00() {
 }
 
 // To create a KMS key
-//
 // The following example creates a symmetric KMS key for encryption and decryption.
 // No parameters are required for this operation.
 func ExampleKMS_CreateKey_shared00() {
@@ -283,7 +277,6 @@ func ExampleKMS_CreateKey_shared00() {
 }
 
 // To create an asymmetric RSA KMS key for encryption and decryption
-//
 // This example creates a KMS key that contains an asymmetric RSA key pair for encryption
 // and decryption. The key spec and key usage can't be changed after the key is created.
 func ExampleKMS_CreateKey_shared01() {
@@ -332,7 +325,6 @@ func ExampleKMS_CreateKey_shared01() {
 }
 
 // To create an asymmetric elliptic curve KMS key for signing and verification
-//
 // This example creates a KMS key that contains an asymmetric elliptic curve (ECC) key
 // pair for signing and verification. The key usage is required even though "SIGN_VERIFY"
 // is the only valid value for ECC KMS keys. The key spec and key usage can't be changed
@@ -383,7 +375,6 @@ func ExampleKMS_CreateKey_shared02() {
 }
 
 // To create a multi-Region primary KMS key
-//
 // This example creates a multi-Region primary symmetric encryption key. Because the
 // default values for all parameters create a symmetric encryption key, only the MultiRegion
 // parameter is required for this KMS key.
@@ -432,7 +423,6 @@ func ExampleKMS_CreateKey_shared03() {
 }
 
 // To create a KMS key for imported key material
-//
 // This example creates a KMS key with no key material. When the operation is complete,
 // you can import your own key material into the KMS key. To create this KMS key, set
 // the Origin parameter to EXTERNAL.
@@ -481,7 +471,6 @@ func ExampleKMS_CreateKey_shared04() {
 }
 
 // To create a KMS key in a custom key store
-//
 // This example creates a KMS key in the specified custom key store. The operation creates
 // the KMS key and its metadata in AWS KMS and the key material in the AWS CloudHSM
 // cluster associated with the custom key store. This example requires the Origin and
@@ -532,7 +521,6 @@ func ExampleKMS_CreateKey_shared05() {
 }
 
 // To create an HMAC KMS key
-//
 // This example creates a 384-bit symmetric HMAC KMS key. The GENERATE_VERIFY_MAC key
 // usage value is required even though it's the only valid value for HMAC KMS keys.
 // The key spec and key usage can't be changed after the key is created.
@@ -582,7 +570,6 @@ func ExampleKMS_CreateKey_shared06() {
 }
 
 // To decrypt data
-//
 // The following example decrypts data that was encrypted with a KMS key.
 func ExampleKMS_Decrypt_shared00() {
 	svc := kms.New(session.New())
@@ -630,7 +617,6 @@ func ExampleKMS_Decrypt_shared00() {
 }
 
 // To delete an alias
-//
 // The following example deletes the specified alias.
 func ExampleKMS_DeleteAlias_shared00() {
 	svc := kms.New(session.New())
@@ -665,7 +651,6 @@ func ExampleKMS_DeleteAlias_shared00() {
 }
 
 // To delete a custom key store from AWS KMS
-//
 // This example deletes a custom key store from AWS KMS. This operation does not delete
 // the AWS CloudHSM cluster that was associated with the CloudHSM cluster. This operation
 // doesn't return any data. To verify that the operation was successful, use the DescribeCustomKeyStores
@@ -703,7 +688,6 @@ func ExampleKMS_DeleteCustomKeyStore_shared00() {
 }
 
 // To delete imported key material
-//
 // The following example deletes the imported key material from the specified KMS key.
 func ExampleKMS_DeleteImportedKeyMaterial_shared00() {
 	svc := kms.New(session.New())
@@ -742,7 +726,6 @@ func ExampleKMS_DeleteImportedKeyMaterial_shared00() {
 }
 
 // To get detailed information about custom key stores in the account and Region
-//
 // This example gets detailed information about all AWS KMS custom key stores in an
 // AWS account and Region. To get all key stores, do not enter a custom key store name
 // or ID.
@@ -775,7 +758,6 @@ func ExampleKMS_DescribeCustomKeyStores_shared00() {
 }
 
 // To get detailed information about a custom key store associated with a CloudHSM cluster.
-//
 // This example gets detailed information about a particular AWS KMS custom key store
 // that is associate with an AWS CloudHSM cluster. To limit the output to a particular
 // custom key store, provide the custom key store name or ID.
@@ -810,7 +792,6 @@ func ExampleKMS_DescribeCustomKeyStores_shared01() {
 }
 
 // To get details about a KMS key
-//
 // The following example gets metadata for a symmetric encryption KMS key.
 func ExampleKMS_DescribeKey_shared00() {
 	svc := kms.New(session.New())
@@ -845,7 +826,6 @@ func ExampleKMS_DescribeKey_shared00() {
 }
 
 // To get details about an RSA asymmetric KMS key
-//
 // The following example gets metadata for an asymmetric RSA KMS key used for signing
 // and verification.
 func ExampleKMS_DescribeKey_shared01() {
@@ -881,7 +861,6 @@ func ExampleKMS_DescribeKey_shared01() {
 }
 
 // To get details about a multi-Region key
-//
 // The following example gets metadata for a multi-Region replica key. This multi-Region
 // key is a symmetric encryption key. DescribeKey returns information about the primary
 // key and all of its replicas.
@@ -918,7 +897,6 @@ func ExampleKMS_DescribeKey_shared02() {
 }
 
 // To get details about an HMAC KMS key
-//
 // The following example gets the metadata of an HMAC KMS key.
 func ExampleKMS_DescribeKey_shared03() {
 	svc := kms.New(session.New())
@@ -953,7 +931,6 @@ func ExampleKMS_DescribeKey_shared03() {
 }
 
 // To disable a KMS key
-//
 // The following example disables the specified KMS key.
 func ExampleKMS_DisableKey_shared00() {
 	svc := kms.New(session.New())
@@ -990,7 +967,6 @@ func ExampleKMS_DisableKey_shared00() {
 }
 
 // To disable automatic rotation of key material
-//
 // The following example disables automatic annual rotation of the key material for
 // the specified KMS key.
 func ExampleKMS_DisableKeyRotation_shared00() {
@@ -1032,7 +1008,6 @@ func ExampleKMS_DisableKeyRotation_shared00() {
 }
 
 // To disconnect a custom key store from its CloudHSM cluster
-//
 // This example disconnects an AWS KMS custom key store from its AWS CloudHSM cluster.
 // This operation doesn't return any data. To verify that the custom key store is disconnected,
 // use the <code>DescribeCustomKeyStores</code> operation.
@@ -1067,7 +1042,6 @@ func ExampleKMS_DisconnectCustomKeyStore_shared00() {
 }
 
 // To enable a KMS key
-//
 // The following example enables the specified KMS key.
 func ExampleKMS_EnableKey_shared00() {
 	svc := kms.New(session.New())
@@ -1106,7 +1080,6 @@ func ExampleKMS_EnableKey_shared00() {
 }
 
 // To enable automatic rotation of key material
-//
 // The following example enables automatic annual rotation of the key material for the
 // specified KMS key.
 func ExampleKMS_EnableKeyRotation_shared00() {
@@ -1148,7 +1121,6 @@ func ExampleKMS_EnableKeyRotation_shared00() {
 }
 
 // To encrypt data
-//
 // The following example encrypts data with the specified KMS key.
 func ExampleKMS_Encrypt_shared00() {
 	svc := kms.New(session.New())
@@ -1192,7 +1164,6 @@ func ExampleKMS_Encrypt_shared00() {
 }
 
 // To generate a data key
-//
 // The following example generates a 256-bit symmetric data encryption key (data key)
 // in two formats. One is the unencrypted (plainext) data key, and the other is the
 // data key encrypted with the specified KMS key.
@@ -1238,7 +1209,6 @@ func ExampleKMS_GenerateDataKey_shared00() {
 }
 
 // To generate an RSA key pair for encryption and decryption
-//
 // This example generates an RSA data key pair for encryption and decryption. The operation
 // returns a plaintext public key and private key, and a copy of the private key that
 // is encrypted under a symmetric encryption KMS key that you specify.
@@ -1286,7 +1256,6 @@ func ExampleKMS_GenerateDataKeyPair_shared00() {
 }
 
 // To generate an asymmetric data key pair without a plaintext key
-//
 // This example returns an asymmetric elliptic curve (ECC) data key pair. The private
 // key is encrypted under the symmetric encryption KMS key that you specify. This operation
 // doesn't return a plaintext (unencrypted) private key.
@@ -1334,7 +1303,6 @@ func ExampleKMS_GenerateDataKeyPairWithoutPlaintext_shared00() {
 }
 
 // To generate an encrypted data key
-//
 // The following example generates an encrypted copy of a 256-bit symmetric data encryption
 // key (data key). The data key is encrypted with the specified KMS key.
 func ExampleKMS_GenerateDataKeyWithoutPlaintext_shared00() {
@@ -1379,7 +1347,6 @@ func ExampleKMS_GenerateDataKeyWithoutPlaintext_shared00() {
 }
 
 // To generate an HMAC for a message
-//
 // This example generates an HMAC for a message, an HMAC KMS key, and a MAC algorithm.
 // The algorithm must be supported by the specified HMAC KMS key.
 func ExampleKMS_GenerateMac_shared00() {
@@ -1423,7 +1390,6 @@ func ExampleKMS_GenerateMac_shared00() {
 }
 
 // To generate random data
-//
 // The following example generates 32 bytes of random data.
 func ExampleKMS_GenerateRandom_shared00() {
 	svc := kms.New(session.New())
@@ -1458,7 +1424,6 @@ func ExampleKMS_GenerateRandom_shared00() {
 }
 
 // To retrieve a key policy
-//
 // The following example retrieves the key policy for the specified KMS key.
 func ExampleKMS_GetKeyPolicy_shared00() {
 	svc := kms.New(session.New())
@@ -1496,7 +1461,6 @@ func ExampleKMS_GetKeyPolicy_shared00() {
 }
 
 // To retrieve the rotation status for a KMS key
-//
 // The following example retrieves the status of automatic annual rotation of the key
 // material for the specified KMS key.
 func ExampleKMS_GetKeyRotationStatus_shared00() {
@@ -1536,7 +1500,6 @@ func ExampleKMS_GetKeyRotationStatus_shared00() {
 }
 
 // To retrieve the public key and import token for a KMS key
-//
 // The following example retrieves the public key and import token for the specified
 // KMS key.
 func ExampleKMS_GetParametersForImport_shared00() {
@@ -1578,7 +1541,6 @@ func ExampleKMS_GetParametersForImport_shared00() {
 }
 
 // To download the public key of an asymmetric KMS key
-//
 // This example gets the public key of an asymmetric RSA KMS key used for encryption
 // and decryption. The operation returns the key spec, key usage, and encryption or
 // signing algorithms to help you use the public key correctly outside of AWS KMS.
@@ -1627,7 +1589,6 @@ func ExampleKMS_GetPublicKey_shared00() {
 }
 
 // To import key material into a KMS key
-//
 // The following example imports key material into the specified KMS key.
 func ExampleKMS_ImportKeyMaterial_shared00() {
 	svc := kms.New(session.New())
@@ -1677,7 +1638,6 @@ func ExampleKMS_ImportKeyMaterial_shared00() {
 }
 
 // To list aliases
-//
 // The following example lists aliases.
 func ExampleKMS_ListAliases_shared00() {
 	svc := kms.New(session.New())
@@ -1712,7 +1672,6 @@ func ExampleKMS_ListAliases_shared00() {
 }
 
 // To list grants for a KMS key
-//
 // The following example lists grants for the specified KMS key.
 func ExampleKMS_ListGrants_shared00() {
 	svc := kms.New(session.New())
@@ -1753,7 +1712,6 @@ func ExampleKMS_ListGrants_shared00() {
 }
 
 // To list key policies for a KMS key
-//
 // The following example lists key policies for the specified KMS key.
 func ExampleKMS_ListKeyPolicies_shared00() {
 	svc := kms.New(session.New())
@@ -1790,7 +1748,6 @@ func ExampleKMS_ListKeyPolicies_shared00() {
 }
 
 // To list KMS keys
-//
 // The following example lists KMS keys.
 func ExampleKMS_ListKeys_shared00() {
 	svc := kms.New(session.New())
@@ -1821,7 +1778,6 @@ func ExampleKMS_ListKeys_shared00() {
 }
 
 // To list tags for a KMS key
-//
 // The following example lists tags for a KMS key.
 func ExampleKMS_ListResourceTags_shared00() {
 	svc := kms.New(session.New())
@@ -1856,7 +1812,6 @@ func ExampleKMS_ListResourceTags_shared00() {
 }
 
 // To list grants that the specified principal can retire
-//
 // The following example lists the grants that the specified principal (identity) can
 // retire.
 func ExampleKMS_ListRetirableGrants_shared00() {
@@ -1894,7 +1849,6 @@ func ExampleKMS_ListRetirableGrants_shared00() {
 }
 
 // To attach a key policy to a KMS key
-//
 // The following example attaches a key policy to the specified KMS key.
 func ExampleKMS_PutKeyPolicy_shared00() {
 	svc := kms.New(session.New())
@@ -1939,7 +1893,6 @@ func ExampleKMS_PutKeyPolicy_shared00() {
 }
 
 // To reencrypt data
-//
 // The following example reencrypts data with the specified KMS key.
 func ExampleKMS_ReEncrypt_shared00() {
 	svc := kms.New(session.New())
@@ -1987,7 +1940,6 @@ func ExampleKMS_ReEncrypt_shared00() {
 }
 
 // To replicate a multi-Region key in a different AWS Region
-//
 // This example creates a multi-Region replica key in us-west-2 of a multi-Region primary
 // key in us-east-1.
 func ExampleKMS_ReplicateKey_shared00() {
@@ -2036,7 +1988,6 @@ func ExampleKMS_ReplicateKey_shared00() {
 }
 
 // To retire a grant
-//
 // The following example retires a grant.
 func ExampleKMS_RetireGrant_shared00() {
 	svc := kms.New(session.New())
@@ -2078,7 +2029,6 @@ func ExampleKMS_RetireGrant_shared00() {
 }
 
 // To revoke a grant
-//
 // The following example revokes a grant.
 func ExampleKMS_RevokeGrant_shared00() {
 	svc := kms.New(session.New())
@@ -2118,7 +2068,6 @@ func ExampleKMS_RevokeGrant_shared00() {
 }
 
 // To schedule a KMS key for deletion
-//
 // The following example schedules the specified KMS key for deletion.
 func ExampleKMS_ScheduleKeyDeletion_shared00() {
 	svc := kms.New(session.New())
@@ -2156,7 +2105,6 @@ func ExampleKMS_ScheduleKeyDeletion_shared00() {
 }
 
 // To digitally sign a message with an asymmetric KMS key.
-//
 // This operation uses the private key in an asymmetric elliptic curve (ECC) KMS key
 // to generate a digital signature for a given message.
 func ExampleKMS_Sign_shared00() {
@@ -2203,7 +2151,6 @@ func ExampleKMS_Sign_shared00() {
 }
 
 // To tag a KMS key
-//
 // The following example tags a KMS key.
 func ExampleKMS_TagResource_shared00() {
 	svc := kms.New(session.New())
@@ -2248,7 +2195,6 @@ func ExampleKMS_TagResource_shared00() {
 }
 
 // To remove tags from a KMS key
-//
 // The following example removes tags from a KMS key.
 func ExampleKMS_UntagResource_shared00() {
 	svc := kms.New(session.New())
@@ -2289,7 +2235,6 @@ func ExampleKMS_UntagResource_shared00() {
 }
 
 // To update an alias
-//
 // The following example updates the specified alias to refer to the specified KMS key.
 func ExampleKMS_UpdateAlias_shared00() {
 	svc := kms.New(session.New())
@@ -2327,7 +2272,6 @@ func ExampleKMS_UpdateAlias_shared00() {
 }
 
 // To edit the password of a custom key store
-//
 // This example tells KMS the password for the kmsuser crypto user in the AWS CloudHSM
 // cluster that is associated with the AWS KMS custom key store. (It does not change
 // the password in the CloudHSM cluster.) This operation does not return any data.
@@ -2373,7 +2317,6 @@ func ExampleKMS_UpdateCustomKeyStore_shared00() {
 }
 
 // To edit the friendly name of a custom key store
-//
 // This example changes the friendly name of the AWS KMS custom key store to the name
 // that you specify. This operation does not return any data. To verify that the operation
 // worked, use the DescribeCustomKeyStores operation.
@@ -2419,7 +2362,6 @@ func ExampleKMS_UpdateCustomKeyStore_shared01() {
 }
 
 // To associate the custom key store with a different, but related, AWS CloudHSM cluster.
-//
 // This example changes the cluster that is associated with a custom key store to a
 // related cluster, such as a different backup of the same cluster. This operation does
 // not return any data. To verify that the operation worked, use the DescribeCustomKeyStores
@@ -2466,7 +2408,6 @@ func ExampleKMS_UpdateCustomKeyStore_shared02() {
 }
 
 // To update the description of a KMS key
-//
 // The following example updates the description of the specified KMS key.
 func ExampleKMS_UpdateKeyDescription_shared00() {
 	svc := kms.New(session.New())
@@ -2504,7 +2445,6 @@ func ExampleKMS_UpdateKeyDescription_shared00() {
 }
 
 // To use an asymmetric KMS key to verify a digital signature
-//
 // This operation uses the public key in an elliptic curve (ECC) asymmetric key to verify
 // a digital signature within AWS KMS.
 func ExampleKMS_Verify_shared00() {
@@ -2554,7 +2494,6 @@ func ExampleKMS_Verify_shared00() {
 }
 
 // To verify an HMAC
-//
 // This example verifies an HMAC for a particular message, HMAC KMS keys, and MAC algorithm.
 // A value of 'true' in the MacValid value in the response indicates that the HMAC is
 // valid.

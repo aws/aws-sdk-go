@@ -29,14 +29,13 @@ const opCreateProfile = "CreateProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateProfileRequest method.
+//	req, resp := client.CreateProfileRequest(params)
 //
-//    // Example sending a request using the CreateProfileRequest method.
-//    req, resp := client.CreateProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/CreateProfile
 func (c *RolesAnywhere) CreateProfileRequest(input *CreateProfileInput) (req *request.Request, output *CreateProfileOutput) {
@@ -71,11 +70,12 @@ func (c *RolesAnywhere) CreateProfileRequest(input *CreateProfileInput) (req *re
 // API operation CreateProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Validation exception error.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     Validation exception error.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/CreateProfile
 func (c *RolesAnywhere) CreateProfile(input *CreateProfileInput) (*CreateProfileOutput, error) {
@@ -115,14 +115,13 @@ const opCreateTrustAnchor = "CreateTrustAnchor"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTrustAnchorRequest method.
+//	req, resp := client.CreateTrustAnchorRequest(params)
 //
-//    // Example sending a request using the CreateTrustAnchorRequest method.
-//    req, resp := client.CreateTrustAnchorRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/CreateTrustAnchor
 func (c *RolesAnywhere) CreateTrustAnchorRequest(input *CreateTrustAnchorInput) (req *request.Request, output *CreateTrustAnchorOutput) {
@@ -161,11 +160,12 @@ func (c *RolesAnywhere) CreateTrustAnchorRequest(input *CreateTrustAnchorInput) 
 // API operation CreateTrustAnchor for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Validation exception error.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     Validation exception error.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/CreateTrustAnchor
 func (c *RolesAnywhere) CreateTrustAnchor(input *CreateTrustAnchorInput) (*CreateTrustAnchorOutput, error) {
@@ -205,14 +205,13 @@ const opDeleteCrl = "DeleteCrl"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteCrlRequest method.
+//	req, resp := client.DeleteCrlRequest(params)
 //
-//    // Example sending a request using the DeleteCrlRequest method.
-//    req, resp := client.DeleteCrlRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DeleteCrl
 func (c *RolesAnywhere) DeleteCrlRequest(input *DeleteCrlInput) (req *request.Request, output *DeleteCrlOutput) {
@@ -245,11 +244,12 @@ func (c *RolesAnywhere) DeleteCrlRequest(input *DeleteCrlInput) (req *request.Re
 // API operation DeleteCrl for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DeleteCrl
 func (c *RolesAnywhere) DeleteCrl(input *DeleteCrlInput) (*DeleteCrlOutput, error) {
@@ -289,14 +289,13 @@ const opDeleteProfile = "DeleteProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteProfileRequest method.
+//	req, resp := client.DeleteProfileRequest(params)
 //
-//    // Example sending a request using the DeleteProfileRequest method.
-//    req, resp := client.DeleteProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DeleteProfile
 func (c *RolesAnywhere) DeleteProfileRequest(input *DeleteProfileInput) (req *request.Request, output *DeleteProfileOutput) {
@@ -329,11 +328,12 @@ func (c *RolesAnywhere) DeleteProfileRequest(input *DeleteProfileInput) (req *re
 // API operation DeleteProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DeleteProfile
 func (c *RolesAnywhere) DeleteProfile(input *DeleteProfileInput) (*DeleteProfileOutput, error) {
@@ -373,14 +373,13 @@ const opDeleteTrustAnchor = "DeleteTrustAnchor"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteTrustAnchorRequest method.
+//	req, resp := client.DeleteTrustAnchorRequest(params)
 //
-//    // Example sending a request using the DeleteTrustAnchorRequest method.
-//    req, resp := client.DeleteTrustAnchorRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DeleteTrustAnchor
 func (c *RolesAnywhere) DeleteTrustAnchorRequest(input *DeleteTrustAnchorInput) (req *request.Request, output *DeleteTrustAnchorOutput) {
@@ -413,11 +412,12 @@ func (c *RolesAnywhere) DeleteTrustAnchorRequest(input *DeleteTrustAnchorInput) 
 // API operation DeleteTrustAnchor for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DeleteTrustAnchor
 func (c *RolesAnywhere) DeleteTrustAnchor(input *DeleteTrustAnchorInput) (*DeleteTrustAnchorOutput, error) {
@@ -457,14 +457,13 @@ const opDisableCrl = "DisableCrl"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisableCrlRequest method.
+//	req, resp := client.DisableCrlRequest(params)
 //
-//    // Example sending a request using the DisableCrlRequest method.
-//    req, resp := client.DisableCrlRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DisableCrl
 func (c *RolesAnywhere) DisableCrlRequest(input *DisableCrlInput) (req *request.Request, output *DisableCrlOutput) {
@@ -497,11 +496,12 @@ func (c *RolesAnywhere) DisableCrlRequest(input *DisableCrlInput) (req *request.
 // API operation DisableCrl for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DisableCrl
 func (c *RolesAnywhere) DisableCrl(input *DisableCrlInput) (*DisableCrlOutput, error) {
@@ -541,14 +541,13 @@ const opDisableProfile = "DisableProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisableProfileRequest method.
+//	req, resp := client.DisableProfileRequest(params)
 //
-//    // Example sending a request using the DisableProfileRequest method.
-//    req, resp := client.DisableProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DisableProfile
 func (c *RolesAnywhere) DisableProfileRequest(input *DisableProfileInput) (req *request.Request, output *DisableProfileOutput) {
@@ -582,11 +581,12 @@ func (c *RolesAnywhere) DisableProfileRequest(input *DisableProfileInput) (req *
 // API operation DisableProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DisableProfile
 func (c *RolesAnywhere) DisableProfile(input *DisableProfileInput) (*DisableProfileOutput, error) {
@@ -626,14 +626,13 @@ const opDisableTrustAnchor = "DisableTrustAnchor"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisableTrustAnchorRequest method.
+//	req, resp := client.DisableTrustAnchorRequest(params)
 //
-//    // Example sending a request using the DisableTrustAnchorRequest method.
-//    req, resp := client.DisableTrustAnchorRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DisableTrustAnchor
 func (c *RolesAnywhere) DisableTrustAnchorRequest(input *DisableTrustAnchorInput) (req *request.Request, output *DisableTrustAnchorOutput) {
@@ -667,11 +666,12 @@ func (c *RolesAnywhere) DisableTrustAnchorRequest(input *DisableTrustAnchorInput
 // API operation DisableTrustAnchor for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DisableTrustAnchor
 func (c *RolesAnywhere) DisableTrustAnchor(input *DisableTrustAnchorInput) (*DisableTrustAnchorOutput, error) {
@@ -711,14 +711,13 @@ const opEnableCrl = "EnableCrl"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the EnableCrlRequest method.
+//	req, resp := client.EnableCrlRequest(params)
 //
-//    // Example sending a request using the EnableCrlRequest method.
-//    req, resp := client.EnableCrlRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/EnableCrl
 func (c *RolesAnywhere) EnableCrlRequest(input *EnableCrlInput) (req *request.Request, output *EnableCrlOutput) {
@@ -752,11 +751,12 @@ func (c *RolesAnywhere) EnableCrlRequest(input *EnableCrlInput) (req *request.Re
 // API operation EnableCrl for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/EnableCrl
 func (c *RolesAnywhere) EnableCrl(input *EnableCrlInput) (*EnableCrlOutput, error) {
@@ -796,14 +796,13 @@ const opEnableProfile = "EnableProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the EnableProfileRequest method.
+//	req, resp := client.EnableProfileRequest(params)
 //
-//    // Example sending a request using the EnableProfileRequest method.
-//    req, resp := client.EnableProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/EnableProfile
 func (c *RolesAnywhere) EnableProfileRequest(input *EnableProfileInput) (req *request.Request, output *EnableProfileOutput) {
@@ -837,11 +836,12 @@ func (c *RolesAnywhere) EnableProfileRequest(input *EnableProfileInput) (req *re
 // API operation EnableProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/EnableProfile
 func (c *RolesAnywhere) EnableProfile(input *EnableProfileInput) (*EnableProfileOutput, error) {
@@ -881,14 +881,13 @@ const opEnableTrustAnchor = "EnableTrustAnchor"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the EnableTrustAnchorRequest method.
+//	req, resp := client.EnableTrustAnchorRequest(params)
 //
-//    // Example sending a request using the EnableTrustAnchorRequest method.
-//    req, resp := client.EnableTrustAnchorRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/EnableTrustAnchor
 func (c *RolesAnywhere) EnableTrustAnchorRequest(input *EnableTrustAnchorInput) (req *request.Request, output *EnableTrustAnchorOutput) {
@@ -922,11 +921,12 @@ func (c *RolesAnywhere) EnableTrustAnchorRequest(input *EnableTrustAnchorInput) 
 // API operation EnableTrustAnchor for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/EnableTrustAnchor
 func (c *RolesAnywhere) EnableTrustAnchor(input *EnableTrustAnchorInput) (*EnableTrustAnchorOutput, error) {
@@ -966,14 +966,13 @@ const opGetCrl = "GetCrl"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCrlRequest method.
+//	req, resp := client.GetCrlRequest(params)
 //
-//    // Example sending a request using the GetCrlRequest method.
-//    req, resp := client.GetCrlRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/GetCrl
 func (c *RolesAnywhere) GetCrlRequest(input *GetCrlInput) (req *request.Request, output *GetCrlOutput) {
@@ -1006,8 +1005,8 @@ func (c *RolesAnywhere) GetCrlRequest(input *GetCrlInput) (req *request.Request,
 // API operation GetCrl for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/GetCrl
 func (c *RolesAnywhere) GetCrl(input *GetCrlInput) (*GetCrlOutput, error) {
@@ -1047,14 +1046,13 @@ const opGetProfile = "GetProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetProfileRequest method.
+//	req, resp := client.GetProfileRequest(params)
 //
-//    // Example sending a request using the GetProfileRequest method.
-//    req, resp := client.GetProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/GetProfile
 func (c *RolesAnywhere) GetProfileRequest(input *GetProfileInput) (req *request.Request, output *GetProfileOutput) {
@@ -1087,11 +1085,12 @@ func (c *RolesAnywhere) GetProfileRequest(input *GetProfileInput) (req *request.
 // API operation GetProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/GetProfile
 func (c *RolesAnywhere) GetProfile(input *GetProfileInput) (*GetProfileOutput, error) {
@@ -1131,14 +1130,13 @@ const opGetSubject = "GetSubject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSubjectRequest method.
+//	req, resp := client.GetSubjectRequest(params)
 //
-//    // Example sending a request using the GetSubjectRequest method.
-//    req, resp := client.GetSubjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/GetSubject
 func (c *RolesAnywhere) GetSubjectRequest(input *GetSubjectInput) (req *request.Request, output *GetSubjectOutput) {
@@ -1174,11 +1172,12 @@ func (c *RolesAnywhere) GetSubjectRequest(input *GetSubjectInput) (req *request.
 // API operation GetSubject for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource could not be found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/GetSubject
 func (c *RolesAnywhere) GetSubject(input *GetSubjectInput) (*GetSubjectOutput, error) {
@@ -1218,14 +1217,13 @@ const opGetTrustAnchor = "GetTrustAnchor"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetTrustAnchorRequest method.
+//	req, resp := client.GetTrustAnchorRequest(params)
 //
-//    // Example sending a request using the GetTrustAnchorRequest method.
-//    req, resp := client.GetTrustAnchorRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/GetTrustAnchor
 func (c *RolesAnywhere) GetTrustAnchorRequest(input *GetTrustAnchorInput) (req *request.Request, output *GetTrustAnchorOutput) {
@@ -1258,14 +1256,15 @@ func (c *RolesAnywhere) GetTrustAnchorRequest(input *GetTrustAnchorInput) (req *
 // API operation GetTrustAnchor for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Validation exception error.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - ValidationException
+//     Validation exception error.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/GetTrustAnchor
 func (c *RolesAnywhere) GetTrustAnchor(input *GetTrustAnchorInput) (*GetTrustAnchorOutput, error) {
@@ -1305,14 +1304,13 @@ const opImportCrl = "ImportCrl"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ImportCrlRequest method.
+//	req, resp := client.ImportCrlRequest(params)
 //
-//    // Example sending a request using the ImportCrlRequest method.
-//    req, resp := client.ImportCrlRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/ImportCrl
 func (c *RolesAnywhere) ImportCrlRequest(input *ImportCrlInput) (req *request.Request, output *ImportCrlOutput) {
@@ -1347,11 +1345,12 @@ func (c *RolesAnywhere) ImportCrlRequest(input *ImportCrlInput) (req *request.Re
 // API operation ImportCrl for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Validation exception error.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     Validation exception error.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/ImportCrl
 func (c *RolesAnywhere) ImportCrl(input *ImportCrlInput) (*ImportCrlOutput, error) {
@@ -1391,14 +1390,13 @@ const opListCrls = "ListCrls"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListCrlsRequest method.
+//	req, resp := client.ListCrlsRequest(params)
 //
-//    // Example sending a request using the ListCrlsRequest method.
-//    req, resp := client.ListCrlsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/ListCrls
 func (c *RolesAnywhere) ListCrlsRequest(input *ListCrlsInput) (req *request.Request, output *ListCrlsOutput) {
@@ -1437,11 +1435,12 @@ func (c *RolesAnywhere) ListCrlsRequest(input *ListCrlsInput) (req *request.Requ
 // API operation ListCrls for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Validation exception error.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     Validation exception error.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/ListCrls
 func (c *RolesAnywhere) ListCrls(input *ListCrlsInput) (*ListCrlsOutput, error) {
@@ -1473,15 +1472,14 @@ func (c *RolesAnywhere) ListCrlsWithContext(ctx aws.Context, input *ListCrlsInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListCrls operation.
-//    pageNum := 0
-//    err := client.ListCrlsPages(params,
-//        func(page *rolesanywhere.ListCrlsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListCrls operation.
+//	pageNum := 0
+//	err := client.ListCrlsPages(params,
+//	    func(page *rolesanywhere.ListCrlsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RolesAnywhere) ListCrlsPages(input *ListCrlsInput, fn func(*ListCrlsOutput, bool) bool) error {
 	return c.ListCrlsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1533,14 +1531,13 @@ const opListProfiles = "ListProfiles"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProfilesRequest method.
+//	req, resp := client.ListProfilesRequest(params)
 //
-//    // Example sending a request using the ListProfilesRequest method.
-//    req, resp := client.ListProfilesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/ListProfiles
 func (c *RolesAnywhere) ListProfilesRequest(input *ListProfilesInput) (req *request.Request, output *ListProfilesOutput) {
@@ -1579,11 +1576,12 @@ func (c *RolesAnywhere) ListProfilesRequest(input *ListProfilesInput) (req *requ
 // API operation ListProfiles for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Validation exception error.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     Validation exception error.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/ListProfiles
 func (c *RolesAnywhere) ListProfiles(input *ListProfilesInput) (*ListProfilesOutput, error) {
@@ -1615,15 +1613,14 @@ func (c *RolesAnywhere) ListProfilesWithContext(ctx aws.Context, input *ListProf
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListProfiles operation.
-//    pageNum := 0
-//    err := client.ListProfilesPages(params,
-//        func(page *rolesanywhere.ListProfilesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListProfiles operation.
+//	pageNum := 0
+//	err := client.ListProfilesPages(params,
+//	    func(page *rolesanywhere.ListProfilesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RolesAnywhere) ListProfilesPages(input *ListProfilesInput, fn func(*ListProfilesOutput, bool) bool) error {
 	return c.ListProfilesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1675,14 +1672,13 @@ const opListSubjects = "ListSubjects"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSubjectsRequest method.
+//	req, resp := client.ListSubjectsRequest(params)
 //
-//    // Example sending a request using the ListSubjectsRequest method.
-//    req, resp := client.ListSubjectsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/ListSubjects
 func (c *RolesAnywhere) ListSubjectsRequest(input *ListSubjectsInput) (req *request.Request, output *ListSubjectsOutput) {
@@ -1721,11 +1717,12 @@ func (c *RolesAnywhere) ListSubjectsRequest(input *ListSubjectsInput) (req *requ
 // API operation ListSubjects for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Validation exception error.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     Validation exception error.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/ListSubjects
 func (c *RolesAnywhere) ListSubjects(input *ListSubjectsInput) (*ListSubjectsOutput, error) {
@@ -1757,15 +1754,14 @@ func (c *RolesAnywhere) ListSubjectsWithContext(ctx aws.Context, input *ListSubj
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSubjects operation.
-//    pageNum := 0
-//    err := client.ListSubjectsPages(params,
-//        func(page *rolesanywhere.ListSubjectsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSubjects operation.
+//	pageNum := 0
+//	err := client.ListSubjectsPages(params,
+//	    func(page *rolesanywhere.ListSubjectsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RolesAnywhere) ListSubjectsPages(input *ListSubjectsInput, fn func(*ListSubjectsOutput, bool) bool) error {
 	return c.ListSubjectsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1817,14 +1813,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/ListTagsForResource
 func (c *RolesAnywhere) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1857,14 +1852,15 @@ func (c *RolesAnywhere) ListTagsForResourceRequest(input *ListTagsForResourceInp
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Validation exception error.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - ValidationException
+//     Validation exception error.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/ListTagsForResource
 func (c *RolesAnywhere) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1904,14 +1900,13 @@ const opListTrustAnchors = "ListTrustAnchors"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTrustAnchorsRequest method.
+//	req, resp := client.ListTrustAnchorsRequest(params)
 //
-//    // Example sending a request using the ListTrustAnchorsRequest method.
-//    req, resp := client.ListTrustAnchorsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/ListTrustAnchors
 func (c *RolesAnywhere) ListTrustAnchorsRequest(input *ListTrustAnchorsInput) (req *request.Request, output *ListTrustAnchorsOutput) {
@@ -1951,11 +1946,12 @@ func (c *RolesAnywhere) ListTrustAnchorsRequest(input *ListTrustAnchorsInput) (r
 // API operation ListTrustAnchors for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Validation exception error.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     Validation exception error.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/ListTrustAnchors
 func (c *RolesAnywhere) ListTrustAnchors(input *ListTrustAnchorsInput) (*ListTrustAnchorsOutput, error) {
@@ -1987,15 +1983,14 @@ func (c *RolesAnywhere) ListTrustAnchorsWithContext(ctx aws.Context, input *List
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTrustAnchors operation.
-//    pageNum := 0
-//    err := client.ListTrustAnchorsPages(params,
-//        func(page *rolesanywhere.ListTrustAnchorsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTrustAnchors operation.
+//	pageNum := 0
+//	err := client.ListTrustAnchorsPages(params,
+//	    func(page *rolesanywhere.ListTrustAnchorsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *RolesAnywhere) ListTrustAnchorsPages(input *ListTrustAnchorsInput, fn func(*ListTrustAnchorsOutput, bool) bool) error {
 	return c.ListTrustAnchorsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2047,14 +2042,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/TagResource
 func (c *RolesAnywhere) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -2088,17 +2082,18 @@ func (c *RolesAnywhere) TagResourceRequest(input *TagResourceInput) (req *reques
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Validation exception error.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - ValidationException
+//     Validation exception error.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
 //
-//   * TooManyTagsException
-//   Too many tags.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - TooManyTagsException
+//     Too many tags.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/TagResource
 func (c *RolesAnywhere) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2138,14 +2133,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/UntagResource
 func (c *RolesAnywhere) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2179,14 +2173,15 @@ func (c *RolesAnywhere) UntagResourceRequest(input *UntagResourceInput) (req *re
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Validation exception error.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - ValidationException
+//     Validation exception error.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/UntagResource
 func (c *RolesAnywhere) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2226,14 +2221,13 @@ const opUpdateCrl = "UpdateCrl"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateCrlRequest method.
+//	req, resp := client.UpdateCrlRequest(params)
 //
-//    // Example sending a request using the UpdateCrlRequest method.
-//    req, resp := client.UpdateCrlRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/UpdateCrl
 func (c *RolesAnywhere) UpdateCrlRequest(input *UpdateCrlInput) (req *request.Request, output *UpdateCrlOutput) {
@@ -2268,14 +2262,15 @@ func (c *RolesAnywhere) UpdateCrlRequest(input *UpdateCrlInput) (req *request.Re
 // API operation UpdateCrl for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Validation exception error.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - ValidationException
+//     Validation exception error.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/UpdateCrl
 func (c *RolesAnywhere) UpdateCrl(input *UpdateCrlInput) (*UpdateCrlOutput, error) {
@@ -2315,14 +2310,13 @@ const opUpdateProfile = "UpdateProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateProfileRequest method.
+//	req, resp := client.UpdateProfileRequest(params)
 //
-//    // Example sending a request using the UpdateProfileRequest method.
-//    req, resp := client.UpdateProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/UpdateProfile
 func (c *RolesAnywhere) UpdateProfileRequest(input *UpdateProfileInput) (req *request.Request, output *UpdateProfileOutput) {
@@ -2357,14 +2351,15 @@ func (c *RolesAnywhere) UpdateProfileRequest(input *UpdateProfileInput) (req *re
 // API operation UpdateProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Validation exception error.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - ValidationException
+//     Validation exception error.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/UpdateProfile
 func (c *RolesAnywhere) UpdateProfile(input *UpdateProfileInput) (*UpdateProfileOutput, error) {
@@ -2404,14 +2399,13 @@ const opUpdateTrustAnchor = "UpdateTrustAnchor"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateTrustAnchorRequest method.
+//	req, resp := client.UpdateTrustAnchorRequest(params)
 //
-//    // Example sending a request using the UpdateTrustAnchorRequest method.
-//    req, resp := client.UpdateTrustAnchorRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/UpdateTrustAnchor
 func (c *RolesAnywhere) UpdateTrustAnchorRequest(input *UpdateTrustAnchorInput) (req *request.Request, output *UpdateTrustAnchorOutput) {
@@ -2450,14 +2444,15 @@ func (c *RolesAnywhere) UpdateTrustAnchorRequest(input *UpdateTrustAnchorInput) 
 // API operation UpdateTrustAnchor for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   Validation exception error.
 //
-//   * ResourceNotFoundException
-//   The resource could not be found.
+//   - ValidationException
+//     Validation exception error.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/UpdateTrustAnchor
 func (c *RolesAnywhere) UpdateTrustAnchor(input *UpdateTrustAnchorInput) (*UpdateTrustAnchorOutput, error) {

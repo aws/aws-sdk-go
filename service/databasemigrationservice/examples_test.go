@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // Add tags to resource
-//
 // Adds metadata tags to an AWS DMS resource, including replication instance, endpoint,
 // security group, and migration task. These tags can also be used with cost allocation
 // reporting to track cost associated with AWS DMS resources, or used in a Condition
@@ -64,7 +63,6 @@ func ExampleDatabaseMigrationService_AddTagsToResource_shared00() {
 }
 
 // Create endpoint
-//
 // Creates an endpoint using the provided settings.
 func ExampleDatabaseMigrationService_CreateEndpoint_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -122,7 +120,6 @@ func ExampleDatabaseMigrationService_CreateEndpoint_shared00() {
 }
 
 // Create replication instance
-//
 // Creates the replication instance using the specified parameters.
 func ExampleDatabaseMigrationService_CreateReplicationInstance_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -185,7 +182,6 @@ func ExampleDatabaseMigrationService_CreateReplicationInstance_shared00() {
 }
 
 // Create replication subnet group
-//
 // Creates a replication subnet group given a list of the subnet IDs in a VPC.
 func ExampleDatabaseMigrationService_CreateReplicationSubnetGroup_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -235,7 +231,6 @@ func ExampleDatabaseMigrationService_CreateReplicationSubnetGroup_shared00() {
 }
 
 // Create replication task
-//
 // Creates a replication task using the specified parameters.
 func ExampleDatabaseMigrationService_CreateReplicationTask_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -287,7 +282,6 @@ func ExampleDatabaseMigrationService_CreateReplicationTask_shared00() {
 }
 
 // Delete Certificate
-//
 // Deletes the specified certificate.
 func ExampleDatabaseMigrationService_DeleteCertificate_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -318,7 +312,6 @@ func ExampleDatabaseMigrationService_DeleteCertificate_shared00() {
 }
 
 // Delete Connection
-//
 // Deletes the connection between the replication instance and the endpoint.
 func ExampleDatabaseMigrationService_DeleteConnection_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -352,7 +345,6 @@ func ExampleDatabaseMigrationService_DeleteConnection_shared00() {
 }
 
 // Delete Endpoint
-//
 // Deletes the specified endpoint. All tasks associated with the endpoint must be deleted
 // before you can delete the endpoint.
 func ExampleDatabaseMigrationService_DeleteEndpoint_shared00() {
@@ -384,7 +376,6 @@ func ExampleDatabaseMigrationService_DeleteEndpoint_shared00() {
 }
 
 // Delete Replication Instance
-//
 // Deletes the specified replication instance. You must delete any migration tasks that
 // are associated with the replication instance before you can delete it.
 func ExampleDatabaseMigrationService_DeleteReplicationInstance_shared00() {
@@ -416,7 +407,6 @@ func ExampleDatabaseMigrationService_DeleteReplicationInstance_shared00() {
 }
 
 // Delete Replication Subnet Group
-//
 // Deletes a replication subnet group.
 func ExampleDatabaseMigrationService_DeleteReplicationSubnetGroup_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -447,7 +437,6 @@ func ExampleDatabaseMigrationService_DeleteReplicationSubnetGroup_shared00() {
 }
 
 // Delete Replication Task
-//
 // Deletes the specified replication task.
 func ExampleDatabaseMigrationService_DeleteReplicationTask_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -478,7 +467,6 @@ func ExampleDatabaseMigrationService_DeleteReplicationTask_shared00() {
 }
 
 // Describe acount attributes
-//
 // Lists all of the AWS DMS attributes for a customer account. The attributes include
 // AWS DMS quotas for the account, such as the number of replication instances allowed.
 // The description for a quota includes the quota name, current usage toward that quota,
@@ -506,7 +494,6 @@ func ExampleDatabaseMigrationService_DescribeAccountAttributes_shared00() {
 }
 
 // Describe certificates
-//
 // Provides a description of the certificate.
 func ExampleDatabaseMigrationService_DescribeCertificates_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -545,7 +532,6 @@ func ExampleDatabaseMigrationService_DescribeCertificates_shared00() {
 }
 
 // Describe connections
-//
 // Describes the status of the connections that have been made between the replication
 // instance and an endpoint. Connections are created when you test an endpoint.
 func ExampleDatabaseMigrationService_DescribeConnections_shared00() {
@@ -585,7 +571,6 @@ func ExampleDatabaseMigrationService_DescribeConnections_shared00() {
 }
 
 // Describe endpoint types
-//
 // Returns information about the type of endpoints available.
 func ExampleDatabaseMigrationService_DescribeEndpointTypes_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -622,7 +607,6 @@ func ExampleDatabaseMigrationService_DescribeEndpointTypes_shared00() {
 }
 
 // Describe endpoints
-//
 // Returns information about the endpoints for your account in the current region.
 func ExampleDatabaseMigrationService_DescribeEndpoints_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -661,7 +645,6 @@ func ExampleDatabaseMigrationService_DescribeEndpoints_shared00() {
 }
 
 // Describe orderable replication instances
-//
 // Returns information about the replication instance types that can be created in the
 // specified region.
 func ExampleDatabaseMigrationService_DescribeOrderableReplicationInstances_shared00() {
@@ -690,7 +673,6 @@ func ExampleDatabaseMigrationService_DescribeOrderableReplicationInstances_share
 }
 
 // Describe refresh schema status
-//
 // Returns the status of the refresh-schemas operation.
 func ExampleDatabaseMigrationService_DescribeRefreshSchemasStatus_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -721,7 +703,6 @@ func ExampleDatabaseMigrationService_DescribeRefreshSchemasStatus_shared00() {
 }
 
 // Describe replication instances
-//
 // Returns the status of the refresh-schemas operation.
 func ExampleDatabaseMigrationService_DescribeReplicationInstances_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -760,7 +741,6 @@ func ExampleDatabaseMigrationService_DescribeReplicationInstances_shared00() {
 }
 
 // Describe replication subnet groups
-//
 // Returns information about the replication subnet groups.
 func ExampleDatabaseMigrationService_DescribeReplicationSubnetGroups_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -799,7 +779,6 @@ func ExampleDatabaseMigrationService_DescribeReplicationSubnetGroups_shared00() 
 }
 
 // Describe replication tasks
-//
 // Returns information about replication tasks for your account in the current region.
 func ExampleDatabaseMigrationService_DescribeReplicationTasks_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -838,7 +817,6 @@ func ExampleDatabaseMigrationService_DescribeReplicationTasks_shared00() {
 }
 
 // Describe schemas
-//
 // Returns information about the schema for the specified endpoint.
 func ExampleDatabaseMigrationService_DescribeSchemas_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -871,7 +849,6 @@ func ExampleDatabaseMigrationService_DescribeSchemas_shared00() {
 }
 
 // Describe table statistics
-//
 // Returns table statistics on the database migration task, including table name, rows
 // inserted, rows updated, and rows deleted.
 func ExampleDatabaseMigrationService_DescribeTableStatistics_shared00() {
@@ -905,7 +882,6 @@ func ExampleDatabaseMigrationService_DescribeTableStatistics_shared00() {
 }
 
 // Import certificate
-//
 // Uploads the specified certificate.
 func ExampleDatabaseMigrationService_ImportCertificate_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -939,7 +915,6 @@ func ExampleDatabaseMigrationService_ImportCertificate_shared00() {
 }
 
 // List tags for resource
-//
 // Lists all tags for an AWS DMS resource.
 func ExampleDatabaseMigrationService_ListTagsForResource_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -968,7 +943,6 @@ func ExampleDatabaseMigrationService_ListTagsForResource_shared00() {
 }
 
 // Modify endpoint
-//
 // Modifies the specified endpoint.
 func ExampleDatabaseMigrationService_ModifyEndpoint_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -1016,7 +990,6 @@ func ExampleDatabaseMigrationService_ModifyEndpoint_shared00() {
 }
 
 // Modify replication instance
-//
 // Modifies the replication instance to apply new settings. You can change one or more
 // parameters by specifying these parameters and the new values in the request. Some
 // settings are applied during the maintenance window.
@@ -1068,7 +1041,6 @@ func ExampleDatabaseMigrationService_ModifyReplicationInstance_shared00() {
 }
 
 // Modify replication subnet group
-//
 // Modifies the settings for the specified replication subnet group.
 func ExampleDatabaseMigrationService_ModifyReplicationSubnetGroup_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -1108,7 +1080,6 @@ func ExampleDatabaseMigrationService_ModifyReplicationSubnetGroup_shared00() {
 }
 
 // Refresh schema
-//
 // Populates the schema for the specified endpoint. This is an asynchronous operation
 // and can take several minutes. You can check the status of this operation by calling
 // the describe-refresh-schemas-status operation.
@@ -1146,7 +1117,6 @@ func ExampleDatabaseMigrationService_RefreshSchemas_shared00() {
 }
 
 // Remove tags from resource
-//
 // Removes metadata tags from an AWS DMS resource.
 func ExampleDatabaseMigrationService_RemoveTagsFromResource_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -1175,7 +1145,6 @@ func ExampleDatabaseMigrationService_RemoveTagsFromResource_shared00() {
 }
 
 // Start replication task
-//
 // Starts the replication task.
 func ExampleDatabaseMigrationService_StartReplicationTask_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -1210,7 +1179,6 @@ func ExampleDatabaseMigrationService_StartReplicationTask_shared00() {
 }
 
 // Stop replication task
-//
 // Stops the replication task.
 func ExampleDatabaseMigrationService_StopReplicationTask_shared00() {
 	svc := databasemigrationservice.New(session.New())
@@ -1241,7 +1209,6 @@ func ExampleDatabaseMigrationService_StopReplicationTask_shared00() {
 }
 
 // Test conection
-//
 // Tests the connection between the replication instance and the endpoint.
 func ExampleDatabaseMigrationService_TestConnection_shared00() {
 	svc := databasemigrationservice.New(session.New())

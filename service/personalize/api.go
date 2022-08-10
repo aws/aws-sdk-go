@@ -29,14 +29,13 @@ const opCreateBatchInferenceJob = "CreateBatchInferenceJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateBatchInferenceJobRequest method.
+//	req, resp := client.CreateBatchInferenceJobRequest(params)
 //
-//    // Example sending a request using the CreateBatchInferenceJobRequest method.
-//    req, resp := client.CreateBatchInferenceJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateBatchInferenceJob
 func (c *Personalize) CreateBatchInferenceJobRequest(input *CreateBatchInferenceJobInput) (req *request.Request, output *CreateBatchInferenceJobOutput) {
@@ -69,23 +68,24 @@ func (c *Personalize) CreateBatchInferenceJobRequest(input *CreateBatchInference
 // API operation CreateBatchInferenceJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * TooManyTagsException
-//   You have exceeded the maximum number of tags you can apply to this resource.
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateBatchInferenceJob
 func (c *Personalize) CreateBatchInferenceJob(input *CreateBatchInferenceJobInput) (*CreateBatchInferenceJobOutput, error) {
@@ -125,14 +125,13 @@ const opCreateBatchSegmentJob = "CreateBatchSegmentJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateBatchSegmentJobRequest method.
+//	req, resp := client.CreateBatchSegmentJobRequest(params)
 //
-//    // Example sending a request using the CreateBatchSegmentJobRequest method.
-//    req, resp := client.CreateBatchSegmentJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateBatchSegmentJob
 func (c *Personalize) CreateBatchSegmentJobRequest(input *CreateBatchSegmentJobInput) (req *request.Request, output *CreateBatchSegmentJobOutput) {
@@ -165,23 +164,24 @@ func (c *Personalize) CreateBatchSegmentJobRequest(input *CreateBatchSegmentJobI
 // API operation CreateBatchSegmentJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * TooManyTagsException
-//   You have exceeded the maximum number of tags you can apply to this resource.
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateBatchSegmentJob
 func (c *Personalize) CreateBatchSegmentJob(input *CreateBatchSegmentJobInput) (*CreateBatchSegmentJobOutput, error) {
@@ -221,14 +221,13 @@ const opCreateCampaign = "CreateCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateCampaignRequest method.
+//	req, resp := client.CreateCampaignRequest(params)
 //
-//    // Example sending a request using the CreateCampaignRequest method.
-//    req, resp := client.CreateCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateCampaign
 func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *request.Request, output *CreateCampaignOutput) {
@@ -254,7 +253,7 @@ func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *re
 // and GetPersonalizedRanking (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetPersonalizedRanking.html)
 // APIs, a campaign is specified in the request.
 //
-// Minimum Provisioned TPS and Auto-Scaling
+// # Minimum Provisioned TPS and Auto-Scaling
 //
 // A transaction is a single GetRecommendations or GetPersonalizedRanking call.
 // Transactions per second (TPS) is the throughput and unit of billing for Amazon
@@ -273,13 +272,13 @@ func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *re
 // your usage using Amazon CloudWatch metrics, and then increase the minProvisionedTPS
 // as necessary.
 //
-// Status
+// # Status
 //
 // A campaign can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-//    * DELETE PENDING > DELETE IN_PROGRESS
+//   - DELETE PENDING > DELETE IN_PROGRESS
 //
 // To get the campaign status, call DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html).
 //
@@ -288,13 +287,13 @@ func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *re
 //
 // Related APIs
 //
-//    * ListCampaigns (https://docs.aws.amazon.com/personalize/latest/dg/API_ListCampaigns.html)
+//   - ListCampaigns (https://docs.aws.amazon.com/personalize/latest/dg/API_ListCampaigns.html)
 //
-//    * DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
+//   - DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
 //
-//    * UpdateCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_UpdateCampaign.html)
+//   - UpdateCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_UpdateCampaign.html)
 //
-//    * DeleteCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteCampaign.html)
+//   - DeleteCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteCampaign.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -304,23 +303,24 @@ func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *re
 // API operation CreateCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
 //
-//   * TooManyTagsException
-//   You have exceeded the maximum number of tags you can apply to this resource.
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateCampaign
 func (c *Personalize) CreateCampaign(input *CreateCampaignInput) (*CreateCampaignOutput, error) {
@@ -360,14 +360,13 @@ const opCreateDataset = "CreateDataset"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDatasetRequest method.
+//	req, resp := client.CreateDatasetRequest(params)
 //
-//    // Example sending a request using the CreateDatasetRequest method.
-//    req, resp := client.CreateDatasetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDataset
 func (c *Personalize) CreateDatasetRequest(input *CreateDatasetInput) (req *request.Request, output *CreateDatasetOutput) {
@@ -394,11 +393,11 @@ func (c *Personalize) CreateDatasetRequest(input *CreateDatasetInput) (req *requ
 //
 // There are three types of datasets:
 //
-//    * Interactions
+//   - Interactions
 //
-//    * Items
+//   - Items
 //
-//    * Users
+//   - Users
 //
 // Each dataset type has an associated schema with required field types. Only
 // the Interactions dataset is required in order to train a model (also referred
@@ -406,21 +405,21 @@ func (c *Personalize) CreateDatasetRequest(input *CreateDatasetInput) (req *requ
 //
 // A dataset can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-//    * DELETE PENDING > DELETE IN_PROGRESS
+//   - DELETE PENDING > DELETE IN_PROGRESS
 //
 // To get the status of the dataset, call DescribeDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataset.html).
 //
 // Related APIs
 //
-//    * CreateDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html)
+//   - CreateDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html)
 //
-//    * ListDatasets (https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasets.html)
+//   - ListDatasets (https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasets.html)
 //
-//    * DescribeDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataset.html)
+//   - DescribeDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataset.html)
 //
-//    * DeleteDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteDataset.html)
+//   - DeleteDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteDataset.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -430,23 +429,24 @@ func (c *Personalize) CreateDatasetRequest(input *CreateDatasetInput) (req *requ
 // API operation CreateDataset for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
 //
-//   * TooManyTagsException
-//   You have exceeded the maximum number of tags you can apply to this resource.
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDataset
 func (c *Personalize) CreateDataset(input *CreateDatasetInput) (*CreateDatasetOutput, error) {
@@ -486,14 +486,13 @@ const opCreateDatasetExportJob = "CreateDatasetExportJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDatasetExportJobRequest method.
+//	req, resp := client.CreateDatasetExportJobRequest(params)
 //
-//    // Example sending a request using the CreateDatasetExportJobRequest method.
-//    req, resp := client.CreateDatasetExportJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetExportJob
 func (c *Personalize) CreateDatasetExportJobRequest(input *CreateDatasetExportJobInput) (req *request.Request, output *CreateDatasetExportJobOutput) {
@@ -520,11 +519,11 @@ func (c *Personalize) CreateDatasetExportJobRequest(input *CreateDatasetExportJo
 // for your Amazon S3 bucket. For information, see Exporting a dataset (https://docs.aws.amazon.com/personalize/latest/dg/export-data.html)
 // in the Amazon Personalize developer guide.
 //
-// Status
+// # Status
 //
 // A dataset export job can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
 // To get the status of the export job, call DescribeDatasetExportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetExportJob.html),
 // and specify the Amazon Resource Name (ARN) of the dataset export job. The
@@ -540,23 +539,24 @@ func (c *Personalize) CreateDatasetExportJobRequest(input *CreateDatasetExportJo
 // API operation CreateDatasetExportJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
 //
-//   * TooManyTagsException
-//   You have exceeded the maximum number of tags you can apply to this resource.
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetExportJob
 func (c *Personalize) CreateDatasetExportJob(input *CreateDatasetExportJobInput) (*CreateDatasetExportJobOutput, error) {
@@ -596,14 +596,13 @@ const opCreateDatasetGroup = "CreateDatasetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDatasetGroupRequest method.
+//	req, resp := client.CreateDatasetGroupRequest(params)
 //
-//    // Example sending a request using the CreateDatasetGroupRequest method.
-//    req, resp := client.CreateDatasetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetGroup
 func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) (req *request.Request, output *CreateDatasetGroupOutput) {
@@ -628,11 +627,11 @@ func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) 
 // Personalize resources. A dataset group can contain at most three datasets,
 // one for each type of dataset:
 //
-//    * Interactions
+//   - Interactions
 //
-//    * Items
+//   - Items
 //
-//    * Users
+//   - Users
 //
 // A dataset group can be a Domain dataset group, where you specify a domain
 // and use pre-configured resources like recommenders, or a Custom dataset group,
@@ -643,9 +642,9 @@ func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) 
 //
 // A dataset group can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-//    * DELETE PENDING
+//   - DELETE PENDING
 //
 // To get the status of the dataset group, call DescribeDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetGroup.html).
 // If the status shows as CREATE FAILED, the response includes a failureReason
@@ -660,19 +659,19 @@ func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) 
 //
 // APIs that require a dataset group ARN in the request
 //
-//    * CreateDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html)
+//   - CreateDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html)
 //
-//    * CreateEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html)
+//   - CreateEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html)
 //
-//    * CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
+//   - CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
 //
 // Related APIs
 //
-//    * ListDatasetGroups (https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasetGroups.html)
+//   - ListDatasetGroups (https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasetGroups.html)
 //
-//    * DescribeDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetGroup.html)
+//   - DescribeDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetGroup.html)
 //
-//    * DeleteDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteDatasetGroup.html)
+//   - DeleteDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteDatasetGroup.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -682,17 +681,18 @@ func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) 
 // API operation CreateDatasetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * TooManyTagsException
-//   You have exceeded the maximum number of tags you can apply to this resource.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetGroup
 func (c *Personalize) CreateDatasetGroup(input *CreateDatasetGroupInput) (*CreateDatasetGroupOutput, error) {
@@ -732,14 +732,13 @@ const opCreateDatasetImportJob = "CreateDatasetImportJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDatasetImportJobRequest method.
+//	req, resp := client.CreateDatasetImportJobRequest(params)
 //
-//    // Example sending a request using the CreateDatasetImportJobRequest method.
-//    req, resp := client.CreateDatasetImportJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetImportJob
 func (c *Personalize) CreateDatasetImportJobRequest(input *CreateDatasetImportJobInput) (req *request.Request, output *CreateDatasetImportJobOutput) {
@@ -773,11 +772,11 @@ func (c *Personalize) CreateDatasetImportJobRequest(input *CreateDatasetImportJo
 // data, specify INCREMENTAL for the import mode in the CreateDatasetImportJob
 // operation.
 //
-// Status
+// # Status
 //
 // A dataset import job can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
 // To get the status of the import job, call DescribeDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetImportJob.html),
 // providing the Amazon Resource Name (ARN) of the dataset import job. The dataset
@@ -790,9 +789,9 @@ func (c *Personalize) CreateDatasetImportJobRequest(input *CreateDatasetImportJo
 //
 // Related APIs
 //
-//    * ListDatasetImportJobs (https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasetImportJobs.html)
+//   - ListDatasetImportJobs (https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasetImportJobs.html)
 //
-//    * DescribeDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetImportJob.html)
+//   - DescribeDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetImportJob.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -802,23 +801,24 @@ func (c *Personalize) CreateDatasetImportJobRequest(input *CreateDatasetImportJo
 // API operation CreateDatasetImportJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
 //
-//   * TooManyTagsException
-//   You have exceeded the maximum number of tags you can apply to this resource.
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetImportJob
 func (c *Personalize) CreateDatasetImportJob(input *CreateDatasetImportJobInput) (*CreateDatasetImportJobOutput, error) {
@@ -858,14 +858,13 @@ const opCreateEventTracker = "CreateEventTracker"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEventTrackerRequest method.
+//	req, resp := client.CreateEventTrackerRequest(params)
 //
-//    // Example sending a request using the CreateEventTrackerRequest method.
-//    req, resp := client.CreateEventTrackerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateEventTracker
 func (c *Personalize) CreateEventTrackerRequest(input *CreateEventTrackerInput) (req *request.Request, output *CreateEventTrackerOutput) {
@@ -901,9 +900,9 @@ func (c *Personalize) CreateEventTrackerRequest(input *CreateEventTrackerInput) 
 //
 // The event tracker can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-//    * DELETE PENDING > DELETE IN_PROGRESS
+//   - DELETE PENDING > DELETE IN_PROGRESS
 //
 // To get the status of the event tracker, call DescribeEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeEventTracker.html).
 //
@@ -911,11 +910,11 @@ func (c *Personalize) CreateEventTrackerRequest(input *CreateEventTrackerInput) 
 //
 // Related APIs
 //
-//    * ListEventTrackers (https://docs.aws.amazon.com/personalize/latest/dg/API_ListEventTrackers.html)
+//   - ListEventTrackers (https://docs.aws.amazon.com/personalize/latest/dg/API_ListEventTrackers.html)
 //
-//    * DescribeEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeEventTracker.html)
+//   - DescribeEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeEventTracker.html)
 //
-//    * DeleteEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteEventTracker.html)
+//   - DeleteEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteEventTracker.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -925,23 +924,24 @@ func (c *Personalize) CreateEventTrackerRequest(input *CreateEventTrackerInput) 
 // API operation CreateEventTracker for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
 //
-//   * TooManyTagsException
-//   You have exceeded the maximum number of tags you can apply to this resource.
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateEventTracker
 func (c *Personalize) CreateEventTracker(input *CreateEventTrackerInput) (*CreateEventTrackerOutput, error) {
@@ -981,14 +981,13 @@ const opCreateFilter = "CreateFilter"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFilterRequest method.
+//	req, resp := client.CreateFilterRequest(params)
 //
-//    // Example sending a request using the CreateFilterRequest method.
-//    req, resp := client.CreateFilterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateFilter
 func (c *Personalize) CreateFilterRequest(input *CreateFilterInput) (req *request.Request, output *CreateFilterOutput) {
@@ -1020,20 +1019,21 @@ func (c *Personalize) CreateFilterRequest(input *CreateFilterInput) (req *reques
 // API operation CreateFilter for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * TooManyTagsException
-//   You have exceeded the maximum number of tags you can apply to this resource.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateFilter
 func (c *Personalize) CreateFilter(input *CreateFilterInput) (*CreateFilterOutput, error) {
@@ -1073,14 +1073,13 @@ const opCreateRecommender = "CreateRecommender"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateRecommenderRequest method.
+//	req, resp := client.CreateRecommenderRequest(params)
 //
-//    // Example sending a request using the CreateRecommenderRequest method.
-//    req, resp := client.CreateRecommenderRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateRecommender
 func (c *Personalize) CreateRecommenderRequest(input *CreateRecommenderInput) (req *request.Request, output *CreateRecommenderOutput) {
@@ -1107,7 +1106,7 @@ func (c *Personalize) CreateRecommenderRequest(input *CreateRecommenderInput) (r
 // (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
 // request.
 //
-// Minimum recommendation requests per second
+// # Minimum recommendation requests per second
 //
 // When you create a recommender, you can configure the recommender's minimum
 // recommendation requests per second. The minimum recommendation requests per
@@ -1130,16 +1129,16 @@ func (c *Personalize) CreateRecommenderRequest(input *CreateRecommenderInput) (r
 // track your usage using Amazon CloudWatch metrics, and then increase the minRecommendationRequestsPerSecond
 // as necessary.
 //
-// Status
+// # Status
 //
 // A recommender can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-//    * STOP PENDING > STOP IN_PROGRESS > INACTIVE > START PENDING > START IN_PROGRESS
-//    > ACTIVE
+//   - STOP PENDING > STOP IN_PROGRESS > INACTIVE > START PENDING > START IN_PROGRESS
+//     > ACTIVE
 //
-//    * DELETE PENDING > DELETE IN_PROGRESS
+//   - DELETE PENDING > DELETE IN_PROGRESS
 //
 // To get the recommender status, call DescribeRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html).
 //
@@ -1148,13 +1147,13 @@ func (c *Personalize) CreateRecommenderRequest(input *CreateRecommenderInput) (r
 //
 // Related APIs
 //
-//    * ListRecommenders (https://docs.aws.amazon.com/personalize/latest/dg/API_ListRecommenders.html)
+//   - ListRecommenders (https://docs.aws.amazon.com/personalize/latest/dg/API_ListRecommenders.html)
 //
-//    * DescribeRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html)
+//   - DescribeRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html)
 //
-//    * UpdateRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_UpdateRecommender.html)
+//   - UpdateRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_UpdateRecommender.html)
 //
-//    * DeleteRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteRecommender.html)
+//   - DeleteRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteRecommender.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1164,23 +1163,24 @@ func (c *Personalize) CreateRecommenderRequest(input *CreateRecommenderInput) (r
 // API operation CreateRecommender for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
 //
-//   * TooManyTagsException
-//   You have exceeded the maximum number of tags you can apply to this resource.
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateRecommender
 func (c *Personalize) CreateRecommender(input *CreateRecommenderInput) (*CreateRecommenderOutput, error) {
@@ -1220,14 +1220,13 @@ const opCreateSchema = "CreateSchema"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSchemaRequest method.
+//	req, resp := client.CreateSchemaRequest(params)
 //
-//    // Example sending a request using the CreateSchemaRequest method.
-//    req, resp := client.CreateSchemaRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateSchema
 func (c *Personalize) CreateSchemaRequest(input *CreateSchemaInput) (req *request.Request, output *CreateSchemaOutput) {
@@ -1259,11 +1258,11 @@ func (c *Personalize) CreateSchemaRequest(input *CreateSchemaInput) (req *reques
 //
 // Related APIs
 //
-//    * ListSchemas (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSchemas.html)
+//   - ListSchemas (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSchemas.html)
 //
-//    * DescribeSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSchema.html)
+//   - DescribeSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSchema.html)
 //
-//    * DeleteSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSchema.html)
+//   - DeleteSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSchema.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1273,14 +1272,15 @@ func (c *Personalize) CreateSchemaRequest(input *CreateSchemaInput) (req *reques
 // API operation CreateSchema for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateSchema
 func (c *Personalize) CreateSchema(input *CreateSchemaInput) (*CreateSchemaOutput, error) {
@@ -1320,14 +1320,13 @@ const opCreateSolution = "CreateSolution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSolutionRequest method.
+//	req, resp := client.CreateSolutionRequest(params)
 //
-//    // Example sending a request using the CreateSolutionRequest method.
-//    req, resp := client.CreateSolutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateSolution
 func (c *Personalize) CreateSolutionRequest(input *CreateSolutionInput) (req *request.Request, output *CreateSolutionOutput) {
@@ -1373,30 +1372,30 @@ func (c *Personalize) CreateSolutionRequest(input *CreateSolutionInput) (req *re
 // Amazon Personalize doesn't support configuring the hpoObjective for solution
 // hyperparameter optimization at this time.
 //
-// Status
+// # Status
 //
 // A solution can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-//    * DELETE PENDING > DELETE IN_PROGRESS
+//   - DELETE PENDING > DELETE IN_PROGRESS
 //
 // To get the status of the solution, call DescribeSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html).
 // Wait until the status shows as ACTIVE before calling CreateSolutionVersion.
 //
 // Related APIs
 //
-//    * ListSolutions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutions.html)
+//   - ListSolutions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutions.html)
 //
-//    * CreateSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolutionVersion.html)
+//   - CreateSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolutionVersion.html)
 //
-//    * DescribeSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html)
+//   - DescribeSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html)
 //
-//    * DeleteSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSolution.html)
+//   - DeleteSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSolution.html)
 //
-//    * ListSolutionVersions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutionVersions.html)
+//   - ListSolutionVersions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutionVersions.html)
 //
-//    * DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html)
+//   - DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1406,23 +1405,24 @@ func (c *Personalize) CreateSolutionRequest(input *CreateSolutionInput) (req *re
 // API operation CreateSolution for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
 //
-//   * TooManyTagsException
-//   You have exceeded the maximum number of tags you can apply to this resource.
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateSolution
 func (c *Personalize) CreateSolution(input *CreateSolutionInput) (*CreateSolutionOutput, error) {
@@ -1462,14 +1462,13 @@ const opCreateSolutionVersion = "CreateSolutionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSolutionVersionRequest method.
+//	req, resp := client.CreateSolutionVersionRequest(params)
 //
-//    // Example sending a request using the CreateSolutionVersionRequest method.
-//    req, resp := client.CreateSolutionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateSolutionVersion
 func (c *Personalize) CreateSolutionVersionRequest(input *CreateSolutionVersionInput) (req *request.Request, output *CreateSolutionVersionOutput) {
@@ -1495,21 +1494,21 @@ func (c *Personalize) CreateSolutionVersionRequest(input *CreateSolutionVersionI
 // operation and must be in the ACTIVE state before calling CreateSolutionVersion.
 // A new version of the solution is created every time you call this operation.
 //
-// Status
+// # Status
 //
 // A solution version can be in one of the following states:
 //
-//    * CREATE PENDING
+//   - CREATE PENDING
 //
-//    * CREATE IN_PROGRESS
+//   - CREATE IN_PROGRESS
 //
-//    * ACTIVE
+//   - ACTIVE
 //
-//    * CREATE FAILED
+//   - CREATE FAILED
 //
-//    * CREATE STOPPING
+//   - CREATE STOPPING
 //
-//    * CREATE STOPPED
+//   - CREATE STOPPED
 //
 // To get the status of the version, call DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html).
 // Wait until the status shows as ACTIVE before calling CreateCampaign.
@@ -1519,17 +1518,17 @@ func (c *Personalize) CreateSolutionVersionRequest(input *CreateSolutionVersionI
 //
 // Related APIs
 //
-//    * ListSolutionVersions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutionVersions.html)
+//   - ListSolutionVersions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutionVersions.html)
 //
-//    * DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html)
+//   - DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html)
 //
-//    * ListSolutions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutions.html)
+//   - ListSolutions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutions.html)
 //
-//    * CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
+//   - CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
 //
-//    * DescribeSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html)
+//   - DescribeSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html)
 //
-//    * DeleteSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSolution.html)
+//   - DeleteSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSolution.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1539,20 +1538,21 @@ func (c *Personalize) CreateSolutionVersionRequest(input *CreateSolutionVersionI
 // API operation CreateSolutionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
 //
-//   * TooManyTagsException
-//   You have exceeded the maximum number of tags you can apply to this resource.
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateSolutionVersion
 func (c *Personalize) CreateSolutionVersion(input *CreateSolutionVersionInput) (*CreateSolutionVersionOutput, error) {
@@ -1592,14 +1592,13 @@ const opDeleteCampaign = "DeleteCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteCampaignRequest method.
+//	req, resp := client.DeleteCampaignRequest(params)
 //
-//    // Example sending a request using the DeleteCampaignRequest method.
-//    req, resp := client.DeleteCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteCampaign
 func (c *Personalize) DeleteCampaignRequest(input *DeleteCampaignInput) (req *request.Request, output *DeleteCampaignOutput) {
@@ -1634,14 +1633,15 @@ func (c *Personalize) DeleteCampaignRequest(input *DeleteCampaignInput) (req *re
 // API operation DeleteCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteCampaign
 func (c *Personalize) DeleteCampaign(input *DeleteCampaignInput) (*DeleteCampaignOutput, error) {
@@ -1681,14 +1681,13 @@ const opDeleteDataset = "DeleteDataset"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDatasetRequest method.
+//	req, resp := client.DeleteDatasetRequest(params)
 //
-//    // Example sending a request using the DeleteDatasetRequest method.
-//    req, resp := client.DeleteDatasetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteDataset
 func (c *Personalize) DeleteDatasetRequest(input *DeleteDatasetInput) (req *request.Request, output *DeleteDatasetOutput) {
@@ -1722,14 +1721,15 @@ func (c *Personalize) DeleteDatasetRequest(input *DeleteDatasetInput) (req *requ
 // API operation DeleteDataset for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteDataset
 func (c *Personalize) DeleteDataset(input *DeleteDatasetInput) (*DeleteDatasetOutput, error) {
@@ -1769,14 +1769,13 @@ const opDeleteDatasetGroup = "DeleteDatasetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDatasetGroupRequest method.
+//	req, resp := client.DeleteDatasetGroupRequest(params)
 //
-//    // Example sending a request using the DeleteDatasetGroupRequest method.
-//    req, resp := client.DeleteDatasetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteDatasetGroup
 func (c *Personalize) DeleteDatasetGroupRequest(input *DeleteDatasetGroupInput) (req *request.Request, output *DeleteDatasetGroupOutput) {
@@ -1801,11 +1800,11 @@ func (c *Personalize) DeleteDatasetGroupRequest(input *DeleteDatasetGroupInput) 
 // Deletes a dataset group. Before you delete a dataset group, you must delete
 // the following:
 //
-//    * All associated event trackers.
+//   - All associated event trackers.
 //
-//    * All associated solutions.
+//   - All associated solutions.
 //
-//    * All datasets in the dataset group.
+//   - All datasets in the dataset group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1815,14 +1814,15 @@ func (c *Personalize) DeleteDatasetGroupRequest(input *DeleteDatasetGroupInput) 
 // API operation DeleteDatasetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteDatasetGroup
 func (c *Personalize) DeleteDatasetGroup(input *DeleteDatasetGroupInput) (*DeleteDatasetGroupOutput, error) {
@@ -1862,14 +1862,13 @@ const opDeleteEventTracker = "DeleteEventTracker"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEventTrackerRequest method.
+//	req, resp := client.DeleteEventTrackerRequest(params)
 //
-//    // Example sending a request using the DeleteEventTrackerRequest method.
-//    req, resp := client.DeleteEventTrackerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteEventTracker
 func (c *Personalize) DeleteEventTrackerRequest(input *DeleteEventTrackerInput) (req *request.Request, output *DeleteEventTrackerOutput) {
@@ -1903,14 +1902,15 @@ func (c *Personalize) DeleteEventTrackerRequest(input *DeleteEventTrackerInput) 
 // API operation DeleteEventTracker for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteEventTracker
 func (c *Personalize) DeleteEventTracker(input *DeleteEventTrackerInput) (*DeleteEventTrackerOutput, error) {
@@ -1950,14 +1950,13 @@ const opDeleteFilter = "DeleteFilter"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFilterRequest method.
+//	req, resp := client.DeleteFilterRequest(params)
 //
-//    // Example sending a request using the DeleteFilterRequest method.
-//    req, resp := client.DeleteFilterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteFilter
 func (c *Personalize) DeleteFilterRequest(input *DeleteFilterInput) (req *request.Request, output *DeleteFilterOutput) {
@@ -1989,14 +1988,15 @@ func (c *Personalize) DeleteFilterRequest(input *DeleteFilterInput) (req *reques
 // API operation DeleteFilter for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteFilter
 func (c *Personalize) DeleteFilter(input *DeleteFilterInput) (*DeleteFilterOutput, error) {
@@ -2036,14 +2036,13 @@ const opDeleteRecommender = "DeleteRecommender"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteRecommenderRequest method.
+//	req, resp := client.DeleteRecommenderRequest(params)
 //
-//    // Example sending a request using the DeleteRecommenderRequest method.
-//    req, resp := client.DeleteRecommenderRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteRecommender
 func (c *Personalize) DeleteRecommenderRequest(input *DeleteRecommenderInput) (req *request.Request, output *DeleteRecommenderOutput) {
@@ -2077,14 +2076,15 @@ func (c *Personalize) DeleteRecommenderRequest(input *DeleteRecommenderInput) (r
 // API operation DeleteRecommender for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteRecommender
 func (c *Personalize) DeleteRecommender(input *DeleteRecommenderInput) (*DeleteRecommenderOutput, error) {
@@ -2124,14 +2124,13 @@ const opDeleteSchema = "DeleteSchema"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSchemaRequest method.
+//	req, resp := client.DeleteSchemaRequest(params)
 //
-//    // Example sending a request using the DeleteSchemaRequest method.
-//    req, resp := client.DeleteSchemaRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteSchema
 func (c *Personalize) DeleteSchemaRequest(input *DeleteSchemaInput) (req *request.Request, output *DeleteSchemaOutput) {
@@ -2165,14 +2164,15 @@ func (c *Personalize) DeleteSchemaRequest(input *DeleteSchemaInput) (req *reques
 // API operation DeleteSchema for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteSchema
 func (c *Personalize) DeleteSchema(input *DeleteSchemaInput) (*DeleteSchemaOutput, error) {
@@ -2212,14 +2212,13 @@ const opDeleteSolution = "DeleteSolution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSolutionRequest method.
+//	req, resp := client.DeleteSolutionRequest(params)
 //
-//    // Example sending a request using the DeleteSolutionRequest method.
-//    req, resp := client.DeleteSolutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteSolution
 func (c *Personalize) DeleteSolutionRequest(input *DeleteSolutionInput) (req *request.Request, output *DeleteSolutionOutput) {
@@ -2256,14 +2255,15 @@ func (c *Personalize) DeleteSolutionRequest(input *DeleteSolutionInput) (req *re
 // API operation DeleteSolution for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteSolution
 func (c *Personalize) DeleteSolution(input *DeleteSolutionInput) (*DeleteSolutionOutput, error) {
@@ -2303,14 +2303,13 @@ const opDescribeAlgorithm = "DescribeAlgorithm"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAlgorithmRequest method.
+//	req, resp := client.DescribeAlgorithmRequest(params)
 //
-//    // Example sending a request using the DescribeAlgorithmRequest method.
-//    req, resp := client.DescribeAlgorithmRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeAlgorithm
 func (c *Personalize) DescribeAlgorithmRequest(input *DescribeAlgorithmInput) (req *request.Request, output *DescribeAlgorithmOutput) {
@@ -2341,11 +2340,12 @@ func (c *Personalize) DescribeAlgorithmRequest(input *DescribeAlgorithmInput) (r
 // API operation DescribeAlgorithm for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeAlgorithm
 func (c *Personalize) DescribeAlgorithm(input *DescribeAlgorithmInput) (*DescribeAlgorithmOutput, error) {
@@ -2385,14 +2385,13 @@ const opDescribeBatchInferenceJob = "DescribeBatchInferenceJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeBatchInferenceJobRequest method.
+//	req, resp := client.DescribeBatchInferenceJobRequest(params)
 //
-//    // Example sending a request using the DescribeBatchInferenceJobRequest method.
-//    req, resp := client.DescribeBatchInferenceJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeBatchInferenceJob
 func (c *Personalize) DescribeBatchInferenceJobRequest(input *DescribeBatchInferenceJobInput) (req *request.Request, output *DescribeBatchInferenceJobOutput) {
@@ -2425,11 +2424,12 @@ func (c *Personalize) DescribeBatchInferenceJobRequest(input *DescribeBatchInfer
 // API operation DescribeBatchInferenceJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeBatchInferenceJob
 func (c *Personalize) DescribeBatchInferenceJob(input *DescribeBatchInferenceJobInput) (*DescribeBatchInferenceJobOutput, error) {
@@ -2469,14 +2469,13 @@ const opDescribeBatchSegmentJob = "DescribeBatchSegmentJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeBatchSegmentJobRequest method.
+//	req, resp := client.DescribeBatchSegmentJobRequest(params)
 //
-//    // Example sending a request using the DescribeBatchSegmentJobRequest method.
-//    req, resp := client.DescribeBatchSegmentJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeBatchSegmentJob
 func (c *Personalize) DescribeBatchSegmentJobRequest(input *DescribeBatchSegmentJobInput) (req *request.Request, output *DescribeBatchSegmentJobOutput) {
@@ -2509,11 +2508,12 @@ func (c *Personalize) DescribeBatchSegmentJobRequest(input *DescribeBatchSegment
 // API operation DescribeBatchSegmentJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeBatchSegmentJob
 func (c *Personalize) DescribeBatchSegmentJob(input *DescribeBatchSegmentJobInput) (*DescribeBatchSegmentJobOutput, error) {
@@ -2553,14 +2553,13 @@ const opDescribeCampaign = "DescribeCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeCampaignRequest method.
+//	req, resp := client.DescribeCampaignRequest(params)
 //
-//    // Example sending a request using the DescribeCampaignRequest method.
-//    req, resp := client.DescribeCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeCampaign
 func (c *Personalize) DescribeCampaignRequest(input *DescribeCampaignInput) (req *request.Request, output *DescribeCampaignOutput) {
@@ -2585,9 +2584,9 @@ func (c *Personalize) DescribeCampaignRequest(input *DescribeCampaignInput) (req
 //
 // A campaign can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-//    * DELETE PENDING > DELETE IN_PROGRESS
+//   - DELETE PENDING > DELETE IN_PROGRESS
 //
 // When the status is CREATE FAILED, the response includes the failureReason
 // key, which describes why.
@@ -2602,11 +2601,12 @@ func (c *Personalize) DescribeCampaignRequest(input *DescribeCampaignInput) (req
 // API operation DescribeCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeCampaign
 func (c *Personalize) DescribeCampaign(input *DescribeCampaignInput) (*DescribeCampaignOutput, error) {
@@ -2646,14 +2646,13 @@ const opDescribeDataset = "DescribeDataset"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDatasetRequest method.
+//	req, resp := client.DescribeDatasetRequest(params)
 //
-//    // Example sending a request using the DescribeDatasetRequest method.
-//    req, resp := client.DescribeDatasetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDataset
 func (c *Personalize) DescribeDatasetRequest(input *DescribeDatasetInput) (req *request.Request, output *DescribeDatasetOutput) {
@@ -2685,11 +2684,12 @@ func (c *Personalize) DescribeDatasetRequest(input *DescribeDatasetInput) (req *
 // API operation DescribeDataset for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDataset
 func (c *Personalize) DescribeDataset(input *DescribeDatasetInput) (*DescribeDatasetOutput, error) {
@@ -2729,14 +2729,13 @@ const opDescribeDatasetExportJob = "DescribeDatasetExportJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDatasetExportJobRequest method.
+//	req, resp := client.DescribeDatasetExportJobRequest(params)
 //
-//    // Example sending a request using the DescribeDatasetExportJobRequest method.
-//    req, resp := client.DescribeDatasetExportJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDatasetExportJob
 func (c *Personalize) DescribeDatasetExportJobRequest(input *DescribeDatasetExportJobInput) (req *request.Request, output *DescribeDatasetExportJobOutput) {
@@ -2768,11 +2767,12 @@ func (c *Personalize) DescribeDatasetExportJobRequest(input *DescribeDatasetExpo
 // API operation DescribeDatasetExportJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDatasetExportJob
 func (c *Personalize) DescribeDatasetExportJob(input *DescribeDatasetExportJobInput) (*DescribeDatasetExportJobOutput, error) {
@@ -2812,14 +2812,13 @@ const opDescribeDatasetGroup = "DescribeDatasetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDatasetGroupRequest method.
+//	req, resp := client.DescribeDatasetGroupRequest(params)
 //
-//    // Example sending a request using the DescribeDatasetGroupRequest method.
-//    req, resp := client.DescribeDatasetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDatasetGroup
 func (c *Personalize) DescribeDatasetGroupRequest(input *DescribeDatasetGroupInput) (req *request.Request, output *DescribeDatasetGroupOutput) {
@@ -2851,11 +2850,12 @@ func (c *Personalize) DescribeDatasetGroupRequest(input *DescribeDatasetGroupInp
 // API operation DescribeDatasetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDatasetGroup
 func (c *Personalize) DescribeDatasetGroup(input *DescribeDatasetGroupInput) (*DescribeDatasetGroupOutput, error) {
@@ -2895,14 +2895,13 @@ const opDescribeDatasetImportJob = "DescribeDatasetImportJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDatasetImportJobRequest method.
+//	req, resp := client.DescribeDatasetImportJobRequest(params)
 //
-//    // Example sending a request using the DescribeDatasetImportJobRequest method.
-//    req, resp := client.DescribeDatasetImportJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDatasetImportJob
 func (c *Personalize) DescribeDatasetImportJobRequest(input *DescribeDatasetImportJobInput) (req *request.Request, output *DescribeDatasetImportJobOutput) {
@@ -2934,11 +2933,12 @@ func (c *Personalize) DescribeDatasetImportJobRequest(input *DescribeDatasetImpo
 // API operation DescribeDatasetImportJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDatasetImportJob
 func (c *Personalize) DescribeDatasetImportJob(input *DescribeDatasetImportJobInput) (*DescribeDatasetImportJobOutput, error) {
@@ -2978,14 +2978,13 @@ const opDescribeEventTracker = "DescribeEventTracker"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEventTrackerRequest method.
+//	req, resp := client.DescribeEventTrackerRequest(params)
 //
-//    // Example sending a request using the DescribeEventTrackerRequest method.
-//    req, resp := client.DescribeEventTrackerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeEventTracker
 func (c *Personalize) DescribeEventTrackerRequest(input *DescribeEventTrackerInput) (req *request.Request, output *DescribeEventTrackerOutput) {
@@ -3018,11 +3017,12 @@ func (c *Personalize) DescribeEventTrackerRequest(input *DescribeEventTrackerInp
 // API operation DescribeEventTracker for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeEventTracker
 func (c *Personalize) DescribeEventTracker(input *DescribeEventTrackerInput) (*DescribeEventTrackerOutput, error) {
@@ -3062,14 +3062,13 @@ const opDescribeFeatureTransformation = "DescribeFeatureTransformation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFeatureTransformationRequest method.
+//	req, resp := client.DescribeFeatureTransformationRequest(params)
 //
-//    // Example sending a request using the DescribeFeatureTransformationRequest method.
-//    req, resp := client.DescribeFeatureTransformationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeFeatureTransformation
 func (c *Personalize) DescribeFeatureTransformationRequest(input *DescribeFeatureTransformationInput) (req *request.Request, output *DescribeFeatureTransformationOutput) {
@@ -3100,11 +3099,12 @@ func (c *Personalize) DescribeFeatureTransformationRequest(input *DescribeFeatur
 // API operation DescribeFeatureTransformation for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeFeatureTransformation
 func (c *Personalize) DescribeFeatureTransformation(input *DescribeFeatureTransformationInput) (*DescribeFeatureTransformationOutput, error) {
@@ -3144,14 +3144,13 @@ const opDescribeFilter = "DescribeFilter"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFilterRequest method.
+//	req, resp := client.DescribeFilterRequest(params)
 //
-//    // Example sending a request using the DescribeFilterRequest method.
-//    req, resp := client.DescribeFilterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeFilter
 func (c *Personalize) DescribeFilterRequest(input *DescribeFilterInput) (req *request.Request, output *DescribeFilterOutput) {
@@ -3182,11 +3181,12 @@ func (c *Personalize) DescribeFilterRequest(input *DescribeFilterInput) (req *re
 // API operation DescribeFilter for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeFilter
 func (c *Personalize) DescribeFilter(input *DescribeFilterInput) (*DescribeFilterOutput, error) {
@@ -3226,14 +3226,13 @@ const opDescribeRecipe = "DescribeRecipe"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeRecipeRequest method.
+//	req, resp := client.DescribeRecipeRequest(params)
 //
-//    // Example sending a request using the DescribeRecipeRequest method.
-//    req, resp := client.DescribeRecipeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeRecipe
 func (c *Personalize) DescribeRecipeRequest(input *DescribeRecipeInput) (req *request.Request, output *DescribeRecipeOutput) {
@@ -3258,12 +3257,12 @@ func (c *Personalize) DescribeRecipeRequest(input *DescribeRecipeInput) (req *re
 //
 // A recipe contains three items:
 //
-//    * An algorithm that trains a model.
+//   - An algorithm that trains a model.
 //
-//    * Hyperparameters that govern the training.
+//   - Hyperparameters that govern the training.
 //
-//    * Feature transformation information for modifying the input data before
-//    training.
+//   - Feature transformation information for modifying the input data before
+//     training.
 //
 // Amazon Personalize provides a set of predefined recipes. You specify a recipe
 // when you create a solution with the CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
@@ -3280,11 +3279,12 @@ func (c *Personalize) DescribeRecipeRequest(input *DescribeRecipeInput) (req *re
 // API operation DescribeRecipe for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeRecipe
 func (c *Personalize) DescribeRecipe(input *DescribeRecipeInput) (*DescribeRecipeOutput, error) {
@@ -3324,14 +3324,13 @@ const opDescribeRecommender = "DescribeRecommender"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeRecommenderRequest method.
+//	req, resp := client.DescribeRecommenderRequest(params)
 //
-//    // Example sending a request using the DescribeRecommenderRequest method.
-//    req, resp := client.DescribeRecommenderRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeRecommender
 func (c *Personalize) DescribeRecommenderRequest(input *DescribeRecommenderInput) (req *request.Request, output *DescribeRecommenderOutput) {
@@ -3356,12 +3355,12 @@ func (c *Personalize) DescribeRecommenderRequest(input *DescribeRecommenderInput
 //
 // A recommender can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-//    * STOP PENDING > STOP IN_PROGRESS > INACTIVE > START PENDING > START IN_PROGRESS
-//    > ACTIVE
+//   - STOP PENDING > STOP IN_PROGRESS > INACTIVE > START PENDING > START IN_PROGRESS
+//     > ACTIVE
 //
-//    * DELETE PENDING > DELETE IN_PROGRESS
+//   - DELETE PENDING > DELETE IN_PROGRESS
 //
 // When the status is CREATE FAILED, the response includes the failureReason
 // key, which describes why.
@@ -3378,11 +3377,12 @@ func (c *Personalize) DescribeRecommenderRequest(input *DescribeRecommenderInput
 // API operation DescribeRecommender for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeRecommender
 func (c *Personalize) DescribeRecommender(input *DescribeRecommenderInput) (*DescribeRecommenderOutput, error) {
@@ -3422,14 +3422,13 @@ const opDescribeSchema = "DescribeSchema"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSchemaRequest method.
+//	req, resp := client.DescribeSchemaRequest(params)
 //
-//    // Example sending a request using the DescribeSchemaRequest method.
-//    req, resp := client.DescribeSchemaRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeSchema
 func (c *Personalize) DescribeSchemaRequest(input *DescribeSchemaInput) (req *request.Request, output *DescribeSchemaOutput) {
@@ -3460,11 +3459,12 @@ func (c *Personalize) DescribeSchemaRequest(input *DescribeSchemaInput) (req *re
 // API operation DescribeSchema for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeSchema
 func (c *Personalize) DescribeSchema(input *DescribeSchemaInput) (*DescribeSchemaOutput, error) {
@@ -3504,14 +3504,13 @@ const opDescribeSolution = "DescribeSolution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSolutionRequest method.
+//	req, resp := client.DescribeSolutionRequest(params)
 //
-//    // Example sending a request using the DescribeSolutionRequest method.
-//    req, resp := client.DescribeSolutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeSolution
 func (c *Personalize) DescribeSolutionRequest(input *DescribeSolutionInput) (req *request.Request, output *DescribeSolutionOutput) {
@@ -3543,11 +3542,12 @@ func (c *Personalize) DescribeSolutionRequest(input *DescribeSolutionInput) (req
 // API operation DescribeSolution for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeSolution
 func (c *Personalize) DescribeSolution(input *DescribeSolutionInput) (*DescribeSolutionOutput, error) {
@@ -3587,14 +3587,13 @@ const opDescribeSolutionVersion = "DescribeSolutionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSolutionVersionRequest method.
+//	req, resp := client.DescribeSolutionVersionRequest(params)
 //
-//    // Example sending a request using the DescribeSolutionVersionRequest method.
-//    req, resp := client.DescribeSolutionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeSolutionVersion
 func (c *Personalize) DescribeSolutionVersionRequest(input *DescribeSolutionVersionInput) (req *request.Request, output *DescribeSolutionVersionOutput) {
@@ -3626,11 +3625,12 @@ func (c *Personalize) DescribeSolutionVersionRequest(input *DescribeSolutionVers
 // API operation DescribeSolutionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeSolutionVersion
 func (c *Personalize) DescribeSolutionVersion(input *DescribeSolutionVersionInput) (*DescribeSolutionVersionOutput, error) {
@@ -3670,14 +3670,13 @@ const opGetSolutionMetrics = "GetSolutionMetrics"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSolutionMetricsRequest method.
+//	req, resp := client.GetSolutionMetricsRequest(params)
 //
-//    // Example sending a request using the GetSolutionMetricsRequest method.
-//    req, resp := client.GetSolutionMetricsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/GetSolutionMetrics
 func (c *Personalize) GetSolutionMetricsRequest(input *GetSolutionMetricsInput) (req *request.Request, output *GetSolutionMetricsOutput) {
@@ -3708,14 +3707,15 @@ func (c *Personalize) GetSolutionMetricsRequest(input *GetSolutionMetricsInput) 
 // API operation GetSolutionMetrics for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/GetSolutionMetrics
 func (c *Personalize) GetSolutionMetrics(input *GetSolutionMetricsInput) (*GetSolutionMetricsOutput, error) {
@@ -3755,14 +3755,13 @@ const opListBatchInferenceJobs = "ListBatchInferenceJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBatchInferenceJobsRequest method.
+//	req, resp := client.ListBatchInferenceJobsRequest(params)
 //
-//    // Example sending a request using the ListBatchInferenceJobsRequest method.
-//    req, resp := client.ListBatchInferenceJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListBatchInferenceJobs
 func (c *Personalize) ListBatchInferenceJobsRequest(input *ListBatchInferenceJobsInput) (req *request.Request, output *ListBatchInferenceJobsOutput) {
@@ -3800,11 +3799,12 @@ func (c *Personalize) ListBatchInferenceJobsRequest(input *ListBatchInferenceJob
 // API operation ListBatchInferenceJobs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListBatchInferenceJobs
 func (c *Personalize) ListBatchInferenceJobs(input *ListBatchInferenceJobsInput) (*ListBatchInferenceJobsOutput, error) {
@@ -3836,15 +3836,14 @@ func (c *Personalize) ListBatchInferenceJobsWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListBatchInferenceJobs operation.
-//    pageNum := 0
-//    err := client.ListBatchInferenceJobsPages(params,
-//        func(page *personalize.ListBatchInferenceJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListBatchInferenceJobs operation.
+//	pageNum := 0
+//	err := client.ListBatchInferenceJobsPages(params,
+//	    func(page *personalize.ListBatchInferenceJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListBatchInferenceJobsPages(input *ListBatchInferenceJobsInput, fn func(*ListBatchInferenceJobsOutput, bool) bool) error {
 	return c.ListBatchInferenceJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3896,14 +3895,13 @@ const opListBatchSegmentJobs = "ListBatchSegmentJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBatchSegmentJobsRequest method.
+//	req, resp := client.ListBatchSegmentJobsRequest(params)
 //
-//    // Example sending a request using the ListBatchSegmentJobsRequest method.
-//    req, resp := client.ListBatchSegmentJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListBatchSegmentJobs
 func (c *Personalize) ListBatchSegmentJobsRequest(input *ListBatchSegmentJobsInput) (req *request.Request, output *ListBatchSegmentJobsOutput) {
@@ -3941,11 +3939,12 @@ func (c *Personalize) ListBatchSegmentJobsRequest(input *ListBatchSegmentJobsInp
 // API operation ListBatchSegmentJobs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListBatchSegmentJobs
 func (c *Personalize) ListBatchSegmentJobs(input *ListBatchSegmentJobsInput) (*ListBatchSegmentJobsOutput, error) {
@@ -3977,15 +3976,14 @@ func (c *Personalize) ListBatchSegmentJobsWithContext(ctx aws.Context, input *Li
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListBatchSegmentJobs operation.
-//    pageNum := 0
-//    err := client.ListBatchSegmentJobsPages(params,
-//        func(page *personalize.ListBatchSegmentJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListBatchSegmentJobs operation.
+//	pageNum := 0
+//	err := client.ListBatchSegmentJobsPages(params,
+//	    func(page *personalize.ListBatchSegmentJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListBatchSegmentJobsPages(input *ListBatchSegmentJobsInput, fn func(*ListBatchSegmentJobsOutput, bool) bool) error {
 	return c.ListBatchSegmentJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4037,14 +4035,13 @@ const opListCampaigns = "ListCampaigns"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListCampaignsRequest method.
+//	req, resp := client.ListCampaignsRequest(params)
 //
-//    // Example sending a request using the ListCampaignsRequest method.
-//    req, resp := client.ListCampaignsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListCampaigns
 func (c *Personalize) ListCampaignsRequest(input *ListCampaignsInput) (req *request.Request, output *ListCampaignsOutput) {
@@ -4085,11 +4082,12 @@ func (c *Personalize) ListCampaignsRequest(input *ListCampaignsInput) (req *requ
 // API operation ListCampaigns for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListCampaigns
 func (c *Personalize) ListCampaigns(input *ListCampaignsInput) (*ListCampaignsOutput, error) {
@@ -4121,15 +4119,14 @@ func (c *Personalize) ListCampaignsWithContext(ctx aws.Context, input *ListCampa
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListCampaigns operation.
-//    pageNum := 0
-//    err := client.ListCampaignsPages(params,
-//        func(page *personalize.ListCampaignsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListCampaigns operation.
+//	pageNum := 0
+//	err := client.ListCampaignsPages(params,
+//	    func(page *personalize.ListCampaignsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListCampaignsPages(input *ListCampaignsInput, fn func(*ListCampaignsOutput, bool) bool) error {
 	return c.ListCampaignsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4181,14 +4178,13 @@ const opListDatasetExportJobs = "ListDatasetExportJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDatasetExportJobsRequest method.
+//	req, resp := client.ListDatasetExportJobsRequest(params)
 //
-//    // Example sending a request using the ListDatasetExportJobsRequest method.
-//    req, resp := client.ListDatasetExportJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasetExportJobs
 func (c *Personalize) ListDatasetExportJobsRequest(input *ListDatasetExportJobsInput) (req *request.Request, output *ListDatasetExportJobsOutput) {
@@ -4230,11 +4226,12 @@ func (c *Personalize) ListDatasetExportJobsRequest(input *ListDatasetExportJobsI
 // API operation ListDatasetExportJobs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasetExportJobs
 func (c *Personalize) ListDatasetExportJobs(input *ListDatasetExportJobsInput) (*ListDatasetExportJobsOutput, error) {
@@ -4266,15 +4263,14 @@ func (c *Personalize) ListDatasetExportJobsWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDatasetExportJobs operation.
-//    pageNum := 0
-//    err := client.ListDatasetExportJobsPages(params,
-//        func(page *personalize.ListDatasetExportJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDatasetExportJobs operation.
+//	pageNum := 0
+//	err := client.ListDatasetExportJobsPages(params,
+//	    func(page *personalize.ListDatasetExportJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListDatasetExportJobsPages(input *ListDatasetExportJobsInput, fn func(*ListDatasetExportJobsOutput, bool) bool) error {
 	return c.ListDatasetExportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4326,14 +4322,13 @@ const opListDatasetGroups = "ListDatasetGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDatasetGroupsRequest method.
+//	req, resp := client.ListDatasetGroupsRequest(params)
 //
-//    // Example sending a request using the ListDatasetGroupsRequest method.
-//    req, resp := client.ListDatasetGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasetGroups
 func (c *Personalize) ListDatasetGroupsRequest(input *ListDatasetGroupsInput) (req *request.Request, output *ListDatasetGroupsOutput) {
@@ -4372,8 +4367,8 @@ func (c *Personalize) ListDatasetGroupsRequest(input *ListDatasetGroupsInput) (r
 // API operation ListDatasetGroups for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasetGroups
 func (c *Personalize) ListDatasetGroups(input *ListDatasetGroupsInput) (*ListDatasetGroupsOutput, error) {
@@ -4405,15 +4400,14 @@ func (c *Personalize) ListDatasetGroupsWithContext(ctx aws.Context, input *ListD
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDatasetGroups operation.
-//    pageNum := 0
-//    err := client.ListDatasetGroupsPages(params,
-//        func(page *personalize.ListDatasetGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDatasetGroups operation.
+//	pageNum := 0
+//	err := client.ListDatasetGroupsPages(params,
+//	    func(page *personalize.ListDatasetGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListDatasetGroupsPages(input *ListDatasetGroupsInput, fn func(*ListDatasetGroupsOutput, bool) bool) error {
 	return c.ListDatasetGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4465,14 +4459,13 @@ const opListDatasetImportJobs = "ListDatasetImportJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDatasetImportJobsRequest method.
+//	req, resp := client.ListDatasetImportJobsRequest(params)
 //
-//    // Example sending a request using the ListDatasetImportJobsRequest method.
-//    req, resp := client.ListDatasetImportJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasetImportJobs
 func (c *Personalize) ListDatasetImportJobsRequest(input *ListDatasetImportJobsInput) (req *request.Request, output *ListDatasetImportJobsOutput) {
@@ -4514,11 +4507,12 @@ func (c *Personalize) ListDatasetImportJobsRequest(input *ListDatasetImportJobsI
 // API operation ListDatasetImportJobs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasetImportJobs
 func (c *Personalize) ListDatasetImportJobs(input *ListDatasetImportJobsInput) (*ListDatasetImportJobsOutput, error) {
@@ -4550,15 +4544,14 @@ func (c *Personalize) ListDatasetImportJobsWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDatasetImportJobs operation.
-//    pageNum := 0
-//    err := client.ListDatasetImportJobsPages(params,
-//        func(page *personalize.ListDatasetImportJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDatasetImportJobs operation.
+//	pageNum := 0
+//	err := client.ListDatasetImportJobsPages(params,
+//	    func(page *personalize.ListDatasetImportJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListDatasetImportJobsPages(input *ListDatasetImportJobsInput, fn func(*ListDatasetImportJobsOutput, bool) bool) error {
 	return c.ListDatasetImportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4610,14 +4603,13 @@ const opListDatasets = "ListDatasets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDatasetsRequest method.
+//	req, resp := client.ListDatasetsRequest(params)
 //
-//    // Example sending a request using the ListDatasetsRequest method.
-//    req, resp := client.ListDatasetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasets
 func (c *Personalize) ListDatasetsRequest(input *ListDatasetsInput) (req *request.Request, output *ListDatasetsOutput) {
@@ -4656,11 +4648,12 @@ func (c *Personalize) ListDatasetsRequest(input *ListDatasetsInput) (req *reques
 // API operation ListDatasets for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasets
 func (c *Personalize) ListDatasets(input *ListDatasetsInput) (*ListDatasetsOutput, error) {
@@ -4692,15 +4685,14 @@ func (c *Personalize) ListDatasetsWithContext(ctx aws.Context, input *ListDatase
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDatasets operation.
-//    pageNum := 0
-//    err := client.ListDatasetsPages(params,
-//        func(page *personalize.ListDatasetsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDatasets operation.
+//	pageNum := 0
+//	err := client.ListDatasetsPages(params,
+//	    func(page *personalize.ListDatasetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListDatasetsPages(input *ListDatasetsInput, fn func(*ListDatasetsOutput, bool) bool) error {
 	return c.ListDatasetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4752,14 +4744,13 @@ const opListEventTrackers = "ListEventTrackers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEventTrackersRequest method.
+//	req, resp := client.ListEventTrackersRequest(params)
 //
-//    // Example sending a request using the ListEventTrackersRequest method.
-//    req, resp := client.ListEventTrackersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListEventTrackers
 func (c *Personalize) ListEventTrackersRequest(input *ListEventTrackersInput) (req *request.Request, output *ListEventTrackersOutput) {
@@ -4799,11 +4790,12 @@ func (c *Personalize) ListEventTrackersRequest(input *ListEventTrackersInput) (r
 // API operation ListEventTrackers for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListEventTrackers
 func (c *Personalize) ListEventTrackers(input *ListEventTrackersInput) (*ListEventTrackersOutput, error) {
@@ -4835,15 +4827,14 @@ func (c *Personalize) ListEventTrackersWithContext(ctx aws.Context, input *ListE
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEventTrackers operation.
-//    pageNum := 0
-//    err := client.ListEventTrackersPages(params,
-//        func(page *personalize.ListEventTrackersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEventTrackers operation.
+//	pageNum := 0
+//	err := client.ListEventTrackersPages(params,
+//	    func(page *personalize.ListEventTrackersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListEventTrackersPages(input *ListEventTrackersInput, fn func(*ListEventTrackersOutput, bool) bool) error {
 	return c.ListEventTrackersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4895,14 +4886,13 @@ const opListFilters = "ListFilters"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFiltersRequest method.
+//	req, resp := client.ListFiltersRequest(params)
 //
-//    // Example sending a request using the ListFiltersRequest method.
-//    req, resp := client.ListFiltersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListFilters
 func (c *Personalize) ListFiltersRequest(input *ListFiltersInput) (req *request.Request, output *ListFiltersOutput) {
@@ -4939,11 +4929,12 @@ func (c *Personalize) ListFiltersRequest(input *ListFiltersInput) (req *request.
 // API operation ListFilters for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListFilters
 func (c *Personalize) ListFilters(input *ListFiltersInput) (*ListFiltersOutput, error) {
@@ -4975,15 +4966,14 @@ func (c *Personalize) ListFiltersWithContext(ctx aws.Context, input *ListFilters
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListFilters operation.
-//    pageNum := 0
-//    err := client.ListFiltersPages(params,
-//        func(page *personalize.ListFiltersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListFilters operation.
+//	pageNum := 0
+//	err := client.ListFiltersPages(params,
+//	    func(page *personalize.ListFiltersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListFiltersPages(input *ListFiltersInput, fn func(*ListFiltersOutput, bool) bool) error {
 	return c.ListFiltersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5035,14 +5025,13 @@ const opListRecipes = "ListRecipes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRecipesRequest method.
+//	req, resp := client.ListRecipesRequest(params)
 //
-//    // Example sending a request using the ListRecipesRequest method.
-//    req, resp := client.ListRecipesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListRecipes
 func (c *Personalize) ListRecipesRequest(input *ListRecipesInput) (req *request.Request, output *ListRecipesOutput) {
@@ -5080,11 +5069,12 @@ func (c *Personalize) ListRecipesRequest(input *ListRecipesInput) (req *request.
 // API operation ListRecipes for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidNextTokenException
-//   The token is not valid.
 //
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
+//   - InvalidNextTokenException
+//     The token is not valid.
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListRecipes
 func (c *Personalize) ListRecipes(input *ListRecipesInput) (*ListRecipesOutput, error) {
@@ -5116,15 +5106,14 @@ func (c *Personalize) ListRecipesWithContext(ctx aws.Context, input *ListRecipes
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRecipes operation.
-//    pageNum := 0
-//    err := client.ListRecipesPages(params,
-//        func(page *personalize.ListRecipesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRecipes operation.
+//	pageNum := 0
+//	err := client.ListRecipesPages(params,
+//	    func(page *personalize.ListRecipesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListRecipesPages(input *ListRecipesInput, fn func(*ListRecipesOutput, bool) bool) error {
 	return c.ListRecipesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5176,14 +5165,13 @@ const opListRecommenders = "ListRecommenders"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRecommendersRequest method.
+//	req, resp := client.ListRecommendersRequest(params)
 //
-//    // Example sending a request using the ListRecommendersRequest method.
-//    req, resp := client.ListRecommendersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListRecommenders
 func (c *Personalize) ListRecommendersRequest(input *ListRecommendersInput) (req *request.Request, output *ListRecommendersOutput) {
@@ -5224,11 +5212,12 @@ func (c *Personalize) ListRecommendersRequest(input *ListRecommendersInput) (req
 // API operation ListRecommenders for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListRecommenders
 func (c *Personalize) ListRecommenders(input *ListRecommendersInput) (*ListRecommendersOutput, error) {
@@ -5260,15 +5249,14 @@ func (c *Personalize) ListRecommendersWithContext(ctx aws.Context, input *ListRe
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRecommenders operation.
-//    pageNum := 0
-//    err := client.ListRecommendersPages(params,
-//        func(page *personalize.ListRecommendersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRecommenders operation.
+//	pageNum := 0
+//	err := client.ListRecommendersPages(params,
+//	    func(page *personalize.ListRecommendersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListRecommendersPages(input *ListRecommendersInput, fn func(*ListRecommendersOutput, bool) bool) error {
 	return c.ListRecommendersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5320,14 +5308,13 @@ const opListSchemas = "ListSchemas"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSchemasRequest method.
+//	req, resp := client.ListSchemasRequest(params)
 //
-//    // Example sending a request using the ListSchemasRequest method.
-//    req, resp := client.ListSchemasRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListSchemas
 func (c *Personalize) ListSchemasRequest(input *ListSchemasInput) (req *request.Request, output *ListSchemasOutput) {
@@ -5366,8 +5353,8 @@ func (c *Personalize) ListSchemasRequest(input *ListSchemasInput) (req *request.
 // API operation ListSchemas for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListSchemas
 func (c *Personalize) ListSchemas(input *ListSchemasInput) (*ListSchemasOutput, error) {
@@ -5399,15 +5386,14 @@ func (c *Personalize) ListSchemasWithContext(ctx aws.Context, input *ListSchemas
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSchemas operation.
-//    pageNum := 0
-//    err := client.ListSchemasPages(params,
-//        func(page *personalize.ListSchemasOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSchemas operation.
+//	pageNum := 0
+//	err := client.ListSchemasPages(params,
+//	    func(page *personalize.ListSchemasOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListSchemasPages(input *ListSchemasInput, fn func(*ListSchemasOutput, bool) bool) error {
 	return c.ListSchemasPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5459,14 +5445,13 @@ const opListSolutionVersions = "ListSolutionVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSolutionVersionsRequest method.
+//	req, resp := client.ListSolutionVersionsRequest(params)
 //
-//    // Example sending a request using the ListSolutionVersionsRequest method.
-//    req, resp := client.ListSolutionVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListSolutionVersions
 func (c *Personalize) ListSolutionVersionsRequest(input *ListSolutionVersionsInput) (req *request.Request, output *ListSolutionVersionsOutput) {
@@ -5506,14 +5491,15 @@ func (c *Personalize) ListSolutionVersionsRequest(input *ListSolutionVersionsInp
 // API operation ListSolutionVersions for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListSolutionVersions
 func (c *Personalize) ListSolutionVersions(input *ListSolutionVersionsInput) (*ListSolutionVersionsOutput, error) {
@@ -5545,15 +5531,14 @@ func (c *Personalize) ListSolutionVersionsWithContext(ctx aws.Context, input *Li
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSolutionVersions operation.
-//    pageNum := 0
-//    err := client.ListSolutionVersionsPages(params,
-//        func(page *personalize.ListSolutionVersionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSolutionVersions operation.
+//	pageNum := 0
+//	err := client.ListSolutionVersionsPages(params,
+//	    func(page *personalize.ListSolutionVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListSolutionVersionsPages(input *ListSolutionVersionsInput, fn func(*ListSolutionVersionsOutput, bool) bool) error {
 	return c.ListSolutionVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5605,14 +5590,13 @@ const opListSolutions = "ListSolutions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSolutionsRequest method.
+//	req, resp := client.ListSolutionsRequest(params)
 //
-//    // Example sending a request using the ListSolutionsRequest method.
-//    req, resp := client.ListSolutionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListSolutions
 func (c *Personalize) ListSolutionsRequest(input *ListSolutionsInput) (req *request.Request, output *ListSolutionsOutput) {
@@ -5653,11 +5637,12 @@ func (c *Personalize) ListSolutionsRequest(input *ListSolutionsInput) (req *requ
 // API operation ListSolutions for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListSolutions
 func (c *Personalize) ListSolutions(input *ListSolutionsInput) (*ListSolutionsOutput, error) {
@@ -5689,15 +5674,14 @@ func (c *Personalize) ListSolutionsWithContext(ctx aws.Context, input *ListSolut
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSolutions operation.
-//    pageNum := 0
-//    err := client.ListSolutionsPages(params,
-//        func(page *personalize.ListSolutionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSolutions operation.
+//	pageNum := 0
+//	err := client.ListSolutionsPages(params,
+//	    func(page *personalize.ListSolutionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListSolutionsPages(input *ListSolutionsInput, fn func(*ListSolutionsOutput, bool) bool) error {
 	return c.ListSolutionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5749,14 +5733,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListTagsForResource
 func (c *Personalize) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -5788,14 +5771,15 @@ func (c *Personalize) ListTagsForResourceRequest(input *ListTagsForResourceInput
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListTagsForResource
 func (c *Personalize) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -5835,14 +5819,13 @@ const opStartRecommender = "StartRecommender"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartRecommenderRequest method.
+//	req, resp := client.StartRecommenderRequest(params)
 //
-//    // Example sending a request using the StartRecommenderRequest method.
-//    req, resp := client.StartRecommenderRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StartRecommender
 func (c *Personalize) StartRecommenderRequest(input *StartRecommenderInput) (req *request.Request, output *StartRecommenderOutput) {
@@ -5874,14 +5857,15 @@ func (c *Personalize) StartRecommenderRequest(input *StartRecommenderInput) (req
 // API operation StartRecommender for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StartRecommender
 func (c *Personalize) StartRecommender(input *StartRecommenderInput) (*StartRecommenderOutput, error) {
@@ -5921,14 +5905,13 @@ const opStopRecommender = "StopRecommender"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopRecommenderRequest method.
+//	req, resp := client.StopRecommenderRequest(params)
 //
-//    // Example sending a request using the StopRecommenderRequest method.
-//    req, resp := client.StopRecommenderRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StopRecommender
 func (c *Personalize) StopRecommenderRequest(input *StopRecommenderInput) (req *request.Request, output *StopRecommenderOutput) {
@@ -5960,14 +5943,15 @@ func (c *Personalize) StopRecommenderRequest(input *StopRecommenderInput) (req *
 // API operation StopRecommender for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StopRecommender
 func (c *Personalize) StopRecommender(input *StopRecommenderInput) (*StopRecommenderOutput, error) {
@@ -6007,14 +5991,13 @@ const opStopSolutionVersionCreation = "StopSolutionVersionCreation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopSolutionVersionCreationRequest method.
+//	req, resp := client.StopSolutionVersionCreationRequest(params)
 //
-//    // Example sending a request using the StopSolutionVersionCreationRequest method.
-//    req, resp := client.StopSolutionVersionCreationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StopSolutionVersionCreation
 func (c *Personalize) StopSolutionVersionCreationRequest(input *StopSolutionVersionCreationInput) (req *request.Request, output *StopSolutionVersionCreationOutput) {
@@ -6042,9 +6025,9 @@ func (c *Personalize) StopSolutionVersionCreationRequest(input *StopSolutionVers
 // Depending on the current state of the solution version, the solution version
 // state changes as follows:
 //
-//    * CREATE_PENDING > CREATE_STOPPED or
+//   - CREATE_PENDING > CREATE_STOPPED or
 //
-//    * CREATE_IN_PROGRESS > CREATE_STOPPING > CREATE_STOPPED
+//   - CREATE_IN_PROGRESS > CREATE_STOPPING > CREATE_STOPPED
 //
 // You are billed for all of the training completed up until you stop the solution
 // version creation. You cannot resume creating a solution version once it has
@@ -6058,14 +6041,15 @@ func (c *Personalize) StopSolutionVersionCreationRequest(input *StopSolutionVers
 // API operation StopSolutionVersionCreation for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StopSolutionVersionCreation
 func (c *Personalize) StopSolutionVersionCreation(input *StopSolutionVersionCreationInput) (*StopSolutionVersionCreationOutput, error) {
@@ -6105,14 +6089,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/TagResource
 func (c *Personalize) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -6144,20 +6127,21 @@ func (c *Personalize) TagResourceRequest(input *TagResourceInput) (req *request.
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * TooManyTagsException
-//   You have exceeded the maximum number of tags you can apply to this resource.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/TagResource
 func (c *Personalize) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -6197,14 +6181,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UntagResource
 func (c *Personalize) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -6237,18 +6220,19 @@ func (c *Personalize) UntagResourceRequest(input *UntagResourceInput) (req *requ
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * TooManyTagKeysException
-//   The request contains more tag keys than can be associated with a resource
-//   (50 tag keys per resource).
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - TooManyTagKeysException
+//     The request contains more tag keys than can be associated with a resource
+//     (50 tag keys per resource).
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UntagResource
 func (c *Personalize) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -6288,14 +6272,13 @@ const opUpdateCampaign = "UpdateCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateCampaignRequest method.
+//	req, resp := client.UpdateCampaignRequest(params)
 //
-//    // Example sending a request using the UpdateCampaignRequest method.
-//    req, resp := client.UpdateCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateCampaign
 func (c *Personalize) UpdateCampaignRequest(input *UpdateCampaignInput) (req *request.Request, output *UpdateCampaignOutput) {
@@ -6337,14 +6320,15 @@ func (c *Personalize) UpdateCampaignRequest(input *UpdateCampaignInput) (req *re
 // API operation UpdateCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateCampaign
 func (c *Personalize) UpdateCampaign(input *UpdateCampaignInput) (*UpdateCampaignOutput, error) {
@@ -6384,14 +6368,13 @@ const opUpdateRecommender = "UpdateRecommender"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRecommenderRequest method.
+//	req, resp := client.UpdateRecommenderRequest(params)
 //
-//    // Example sending a request using the UpdateRecommenderRequest method.
-//    req, resp := client.UpdateRecommenderRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateRecommender
 func (c *Personalize) UpdateRecommenderRequest(input *UpdateRecommenderInput) (req *request.Request, output *UpdateRecommenderOutput) {
@@ -6422,14 +6405,15 @@ func (c *Personalize) UpdateRecommenderRequest(input *UpdateRecommenderInput) (r
 // API operation UpdateRecommender for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateRecommender
 func (c *Personalize) UpdateRecommender(input *UpdateRecommenderInput) (*UpdateRecommenderOutput, error) {
@@ -9978,7 +9962,7 @@ func (s *Dataset) SetStatus(v string) *Dataset {
 //
 // A dataset export job can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 type DatasetExportJob struct {
 	_ struct{} `type:"structure"`
 
@@ -10458,7 +10442,7 @@ func (s *DatasetGroupSummary) SetStatus(v string) *DatasetGroupSummary {
 //
 // A dataset import job can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 type DatasetImportJob struct {
 	_ struct{} `type:"structure"`
 

@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To push an SSH key to an EC2 instance
-//
 // The following example pushes a sample SSH public key to the EC2 instance i-abcd1234
 // in AZ us-west-2b for use by the instance OS user ec2-user.
 func ExampleEC2InstanceConnect_SendSSHPublicKey_shared00() {

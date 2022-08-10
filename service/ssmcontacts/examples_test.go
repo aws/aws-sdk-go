@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To accept a page during and engagement
-//
 // The following accept-page operation uses an accept code sent to the contact channel
 // to accept a page.
 func ExampleSSMContacts_AcceptPage_shared00() {
@@ -66,7 +65,6 @@ func ExampleSSMContacts_AcceptPage_shared00() {
 }
 
 // Activate a contact's contact channel
-//
 // The following activate-contact-channel example activates a contact channel and makes
 // it usable as part of an incident.
 func ExampleSSMContacts_ActivateContactChannel_shared00() {
@@ -105,7 +103,6 @@ func ExampleSSMContacts_ActivateContactChannel_shared00() {
 }
 
 // To create a contact
-//
 // The following create-contact example creates a contact in your environment with a
 // blank plan. The plan can be updated after creating contact channels. Use the create-contact-channel
 // operation with the output ARN of this command. After you have created contact channels
@@ -152,7 +149,6 @@ func ExampleSSMContacts_CreateContact_shared00() {
 }
 
 // To create a contact channel
-//
 // Creates a contact channel of type SMS for the contact Akua Mansa. Contact channels
 // can be created of type SMS, EMAIL, or VOICE.
 func ExampleSSMContacts_CreateContactChannel_shared00() {
@@ -197,8 +193,7 @@ func ExampleSSMContacts_CreateContactChannel_shared00() {
 }
 
 // To deactivate a contact channel
-//
-// The following ``deactivate-contact-channel`` example deactivates a contact channel.
+// The following “deactivate-contact-channel“ example deactivates a contact channel.
 // Deactivating a contact channel means the contact channel will no longer be paged
 // during an incident. You can also reactivate a contact channel at any time using the
 // activate-contact-channel operation.
@@ -237,7 +232,6 @@ func ExampleSSMContacts_DeactivateContactChannel_shared00() {
 }
 
 // To delete a contact
-//
 // The following delete-contact example deletes a contact. The contact will no longer
 // be reachable from any escalation plan that refers to them.
 func ExampleSSMContacts_DeleteContact_shared00() {
@@ -275,7 +269,6 @@ func ExampleSSMContacts_DeleteContact_shared00() {
 }
 
 // To delete a contact channel
-//
 // The following delete-contact-channel example deletes a contact channel. Deleting
 // a contact channel ensures the contact channel will not be paged during an incident.
 func ExampleSSMContacts_DeleteContactChannel_shared00() {
@@ -313,7 +306,6 @@ func ExampleSSMContacts_DeleteContactChannel_shared00() {
 }
 
 // To describe the details of an engagement
-//
 // The following describe-engagement example lists the details of an engagement to a
 // contact or escalation plan. The subject and content are sent to the contact channels.
 func ExampleSSMContacts_DescribeEngagement_shared00() {
@@ -353,7 +345,6 @@ func ExampleSSMContacts_DescribeEngagement_shared00() {
 }
 
 // To list the details of a page to a contact channel
-//
 // The following describe-page example lists details of a page to a contact channel.
 // The page will include the subject and content provided.
 func ExampleSSMContacts_DescribePage_shared00() {
@@ -393,7 +384,6 @@ func ExampleSSMContacts_DescribePage_shared00() {
 }
 
 // Example 1: To describe a contact plan
-//
 // The following get-contact example describes a contact.
 func ExampleSSMContacts_GetContact_shared00() {
 	svc := ssmcontacts.New(session.New())
@@ -432,7 +422,6 @@ func ExampleSSMContacts_GetContact_shared00() {
 }
 
 // Example 2: To describe an escalation plan
-//
 // The following get-contact example describes an escalation plan.
 func ExampleSSMContacts_GetContact_shared01() {
 	svc := ssmcontacts.New(session.New())
@@ -471,7 +460,6 @@ func ExampleSSMContacts_GetContact_shared01() {
 }
 
 // To list the details of a contact channel
-//
 // The following get-contact-channel example lists the details of a contact channel.
 func ExampleSSMContacts_GetContactChannel_shared00() {
 	svc := ssmcontacts.New(session.New())
@@ -510,7 +498,6 @@ func ExampleSSMContacts_GetContactChannel_shared00() {
 }
 
 // To list the resource policies of a contact
-//
 // The following get-contact-policy example lists the resource policies associated with
 // the specified contact.
 func ExampleSSMContacts_GetContactPolicy_shared00() {
@@ -548,7 +535,6 @@ func ExampleSSMContacts_GetContactPolicy_shared00() {
 }
 
 // To list the contact channels of a contact
-//
 // The following list-contact-channels example lists the available contact channels
 // of the specified contact.
 func ExampleSSMContacts_ListContactChannels_shared00() {
@@ -588,7 +574,6 @@ func ExampleSSMContacts_ListContactChannels_shared00() {
 }
 
 // To list all escalation plans and contacts
-//
 // The following list-contacts example lists the contacts and escalation plans in your
 // account.
 func ExampleSSMContacts_ListContacts_shared00() {
@@ -622,7 +607,6 @@ func ExampleSSMContacts_ListContacts_shared00() {
 }
 
 // To list all engagements
-//
 // The following list-engagements example lists engagements to escalation plans and
 // contacts. You can also list engagements for a single incident.
 func ExampleSSMContacts_ListEngagements_shared00() {
@@ -656,7 +640,6 @@ func ExampleSSMContacts_ListEngagements_shared00() {
 }
 
 // To list page receipts
-//
 // The following command-name example lists whether a page was received or not by a
 // contact.
 func ExampleSSMContacts_ListPageReceipts_shared00() {
@@ -694,7 +677,6 @@ func ExampleSSMContacts_ListPageReceipts_shared00() {
 }
 
 // To list pages by contact
-//
 // The following list-pages-by-contact example lists all pages to the specified contact.
 func ExampleSSMContacts_ListPagesByContact_shared00() {
 	svc := ssmcontacts.New(session.New())
@@ -731,7 +713,6 @@ func ExampleSSMContacts_ListPagesByContact_shared00() {
 }
 
 // To list pages to contact channels started from an engagement.
-//
 // The following list-pages-by-engagement example lists the pages that occurred while
 // engaging the defined engagement plan.
 func ExampleSSMContacts_ListPagesByEngagement_shared00() {
@@ -769,7 +750,6 @@ func ExampleSSMContacts_ListPagesByEngagement_shared00() {
 }
 
 // To list tags for a contact
-//
 // The following list-tags-for-resource example lists the tags of the specified contact.
 func ExampleSSMContacts_ListTagsForResource_shared00() {
 	svc := ssmcontacts.New(session.New())
@@ -806,7 +786,6 @@ func ExampleSSMContacts_ListTagsForResource_shared00() {
 }
 
 // To share a contact and engagements
-//
 // The following put-contact-policy example adds a resource policy to the contact Akua
 // that shares the contact and related engagements with the principal.
 func ExampleSSMContacts_PutContactPolicy_shared00() {
@@ -847,7 +826,6 @@ func ExampleSSMContacts_PutContactPolicy_shared00() {
 }
 
 // To send an activation code
-//
 // The following send-activation-code example sends an activation code and message to
 // the specified contact channel.
 func ExampleSSMContacts_SendActivationCode_shared00() {
@@ -889,7 +867,6 @@ func ExampleSSMContacts_SendActivationCode_shared00() {
 }
 
 // Example 1: To page a contact's contact channels
-//
 // The following start-engagement pages contact's contact channels. Sender, subject,
 // public-subject, and public-content are all free from fields. Incident Manager sends
 // the subject and content to the provided VOICE or EMAIL contact channels. Incident
@@ -937,7 +914,6 @@ func ExampleSSMContacts_StartEngagement_shared00() {
 }
 
 // Example 2: To page a contact in the provided escalation plan.
-//
 // The following start-engagement engages contact's through an escalation plan. Each
 // contact is paged according to their engagement plan.
 func ExampleSSMContacts_StartEngagement_shared01() {
@@ -982,7 +958,6 @@ func ExampleSSMContacts_StartEngagement_shared01() {
 }
 
 // To stop an engagement
-//
 // The following stop-engagement example stops an engagement from paging further contacts
 // and contact channels.
 func ExampleSSMContacts_StopEngagement_shared00() {
@@ -1020,7 +995,6 @@ func ExampleSSMContacts_StopEngagement_shared00() {
 }
 
 // To tag a contact
-//
 // The following tag-resource example tags a specified contact with the provided tag
 // key value pair.
 func ExampleSSMContacts_TagResource_shared00() {
@@ -1066,7 +1040,6 @@ func ExampleSSMContacts_TagResource_shared00() {
 }
 
 // To remove tags from a contact
-//
 // The following untag-resource example removes the group1 tag from the specified contact.
 func ExampleSSMContacts_UntagResource_shared00() {
 	svc := ssmcontacts.New(session.New())
@@ -1106,7 +1079,6 @@ func ExampleSSMContacts_UntagResource_shared00() {
 }
 
 // To update the engagement plan of contact
-//
 // The following update-contact example updates the engagement plan of the contact Akua
 // to include the three types of contacts channels. This is done after creating contact
 // channels for Akua.
@@ -1186,7 +1158,6 @@ func ExampleSSMContacts_UpdateContact_shared00() {
 }
 
 // To update a contact channel
-//
 // The following update-contact-channel example updates the name and delivery address
 // of a contact channel.
 func ExampleSSMContacts_UpdateContactChannel_shared00() {

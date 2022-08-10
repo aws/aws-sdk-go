@@ -29,14 +29,13 @@ const opCreateDomain = "CreateDomain"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDomainRequest method.
+//	req, resp := client.CreateDomainRequest(params)
 //
-//    // Example sending a request using the CreateDomainRequest method.
-//    req, resp := client.CreateDomainRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/CreateDomain
 func (c *VoiceID) CreateDomainRequest(input *CreateDomainInput) (req *request.Request, output *CreateDomainOutput) {
@@ -68,34 +67,35 @@ func (c *VoiceID) CreateDomainRequest(input *CreateDomainInput) (req *request.Re
 // API operation CreateDomain for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   The request exceeded the service quota. Refer to Voice ID Service Quotas
-//   (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#voiceid-quotas)
-//   and try your request again.
 //
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
+//   - ServiceQuotaExceededException
+//     The request exceeded the service quota. Refer to Voice ID Service Quotas
+//     (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#voiceid-quotas)
+//     and try your request again.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * ConflictException
-//   The request failed due to a conflict. Check the ConflictType and error message
-//   for more details.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/CreateDomain
 func (c *VoiceID) CreateDomain(input *CreateDomainInput) (*CreateDomainOutput, error) {
@@ -135,14 +135,13 @@ const opDeleteDomain = "DeleteDomain"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDomainRequest method.
+//	req, resp := client.DeleteDomainRequest(params)
 //
-//    // Example sending a request using the DeleteDomainRequest method.
-//    req, resp := client.DeleteDomainRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DeleteDomain
 func (c *VoiceID) DeleteDomainRequest(input *DeleteDomainInput) (req *request.Request, output *DeleteDomainOutput) {
@@ -174,29 +173,30 @@ func (c *VoiceID) DeleteDomainRequest(input *DeleteDomainInput) (req *request.Re
 // API operation DeleteDomain for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * ConflictException
-//   The request failed due to a conflict. Check the ConflictType and error message
-//   for more details.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DeleteDomain
 func (c *VoiceID) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutput, error) {
@@ -236,14 +236,13 @@ const opDeleteFraudster = "DeleteFraudster"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFraudsterRequest method.
+//	req, resp := client.DeleteFraudsterRequest(params)
 //
-//    // Example sending a request using the DeleteFraudsterRequest method.
-//    req, resp := client.DeleteFraudsterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DeleteFraudster
 func (c *VoiceID) DeleteFraudsterRequest(input *DeleteFraudsterInput) (req *request.Request, output *DeleteFraudsterOutput) {
@@ -275,29 +274,30 @@ func (c *VoiceID) DeleteFraudsterRequest(input *DeleteFraudsterInput) (req *requ
 // API operation DeleteFraudster for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * ConflictException
-//   The request failed due to a conflict. Check the ConflictType and error message
-//   for more details.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DeleteFraudster
 func (c *VoiceID) DeleteFraudster(input *DeleteFraudsterInput) (*DeleteFraudsterOutput, error) {
@@ -337,14 +337,13 @@ const opDeleteSpeaker = "DeleteSpeaker"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSpeakerRequest method.
+//	req, resp := client.DeleteSpeakerRequest(params)
 //
-//    // Example sending a request using the DeleteSpeakerRequest method.
-//    req, resp := client.DeleteSpeakerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DeleteSpeaker
 func (c *VoiceID) DeleteSpeakerRequest(input *DeleteSpeakerInput) (req *request.Request, output *DeleteSpeakerOutput) {
@@ -376,29 +375,30 @@ func (c *VoiceID) DeleteSpeakerRequest(input *DeleteSpeakerInput) (req *request.
 // API operation DeleteSpeaker for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * ConflictException
-//   The request failed due to a conflict. Check the ConflictType and error message
-//   for more details.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DeleteSpeaker
 func (c *VoiceID) DeleteSpeaker(input *DeleteSpeakerInput) (*DeleteSpeakerOutput, error) {
@@ -438,14 +438,13 @@ const opDescribeDomain = "DescribeDomain"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDomainRequest method.
+//	req, resp := client.DescribeDomainRequest(params)
 //
-//    // Example sending a request using the DescribeDomainRequest method.
-//    req, resp := client.DescribeDomainRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DescribeDomain
 func (c *VoiceID) DescribeDomainRequest(input *DescribeDomainInput) (req *request.Request, output *DescribeDomainOutput) {
@@ -476,25 +475,26 @@ func (c *VoiceID) DescribeDomainRequest(input *DescribeDomainInput) (req *reques
 // API operation DescribeDomain for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DescribeDomain
 func (c *VoiceID) DescribeDomain(input *DescribeDomainInput) (*DescribeDomainOutput, error) {
@@ -534,14 +534,13 @@ const opDescribeFraudster = "DescribeFraudster"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFraudsterRequest method.
+//	req, resp := client.DescribeFraudsterRequest(params)
 //
-//    // Example sending a request using the DescribeFraudsterRequest method.
-//    req, resp := client.DescribeFraudsterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DescribeFraudster
 func (c *VoiceID) DescribeFraudsterRequest(input *DescribeFraudsterInput) (req *request.Request, output *DescribeFraudsterOutput) {
@@ -572,25 +571,26 @@ func (c *VoiceID) DescribeFraudsterRequest(input *DescribeFraudsterInput) (req *
 // API operation DescribeFraudster for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DescribeFraudster
 func (c *VoiceID) DescribeFraudster(input *DescribeFraudsterInput) (*DescribeFraudsterOutput, error) {
@@ -630,14 +630,13 @@ const opDescribeFraudsterRegistrationJob = "DescribeFraudsterRegistrationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFraudsterRegistrationJobRequest method.
+//	req, resp := client.DescribeFraudsterRegistrationJobRequest(params)
 //
-//    // Example sending a request using the DescribeFraudsterRegistrationJobRequest method.
-//    req, resp := client.DescribeFraudsterRegistrationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DescribeFraudsterRegistrationJob
 func (c *VoiceID) DescribeFraudsterRegistrationJobRequest(input *DescribeFraudsterRegistrationJobInput) (req *request.Request, output *DescribeFraudsterRegistrationJobOutput) {
@@ -668,25 +667,26 @@ func (c *VoiceID) DescribeFraudsterRegistrationJobRequest(input *DescribeFraudst
 // API operation DescribeFraudsterRegistrationJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DescribeFraudsterRegistrationJob
 func (c *VoiceID) DescribeFraudsterRegistrationJob(input *DescribeFraudsterRegistrationJobInput) (*DescribeFraudsterRegistrationJobOutput, error) {
@@ -726,14 +726,13 @@ const opDescribeSpeaker = "DescribeSpeaker"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSpeakerRequest method.
+//	req, resp := client.DescribeSpeakerRequest(params)
 //
-//    // Example sending a request using the DescribeSpeakerRequest method.
-//    req, resp := client.DescribeSpeakerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DescribeSpeaker
 func (c *VoiceID) DescribeSpeakerRequest(input *DescribeSpeakerInput) (req *request.Request, output *DescribeSpeakerOutput) {
@@ -764,25 +763,26 @@ func (c *VoiceID) DescribeSpeakerRequest(input *DescribeSpeakerInput) (req *requ
 // API operation DescribeSpeaker for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DescribeSpeaker
 func (c *VoiceID) DescribeSpeaker(input *DescribeSpeakerInput) (*DescribeSpeakerOutput, error) {
@@ -822,14 +822,13 @@ const opDescribeSpeakerEnrollmentJob = "DescribeSpeakerEnrollmentJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSpeakerEnrollmentJobRequest method.
+//	req, resp := client.DescribeSpeakerEnrollmentJobRequest(params)
 //
-//    // Example sending a request using the DescribeSpeakerEnrollmentJobRequest method.
-//    req, resp := client.DescribeSpeakerEnrollmentJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DescribeSpeakerEnrollmentJob
 func (c *VoiceID) DescribeSpeakerEnrollmentJobRequest(input *DescribeSpeakerEnrollmentJobInput) (req *request.Request, output *DescribeSpeakerEnrollmentJobOutput) {
@@ -860,25 +859,26 @@ func (c *VoiceID) DescribeSpeakerEnrollmentJobRequest(input *DescribeSpeakerEnro
 // API operation DescribeSpeakerEnrollmentJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DescribeSpeakerEnrollmentJob
 func (c *VoiceID) DescribeSpeakerEnrollmentJob(input *DescribeSpeakerEnrollmentJobInput) (*DescribeSpeakerEnrollmentJobOutput, error) {
@@ -918,14 +918,13 @@ const opEvaluateSession = "EvaluateSession"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the EvaluateSessionRequest method.
+//	req, resp := client.EvaluateSessionRequest(params)
 //
-//    // Example sending a request using the EvaluateSessionRequest method.
-//    req, resp := client.EvaluateSessionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/EvaluateSession
 func (c *VoiceID) EvaluateSessionRequest(input *EvaluateSessionInput) (req *request.Request, output *EvaluateSessionOutput) {
@@ -957,29 +956,30 @@ func (c *VoiceID) EvaluateSessionRequest(input *EvaluateSessionInput) (req *requ
 // API operation EvaluateSession for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * ConflictException
-//   The request failed due to a conflict. Check the ConflictType and error message
-//   for more details.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/EvaluateSession
 func (c *VoiceID) EvaluateSession(input *EvaluateSessionInput) (*EvaluateSessionOutput, error) {
@@ -1019,14 +1019,13 @@ const opListDomains = "ListDomains"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDomainsRequest method.
+//	req, resp := client.ListDomainsRequest(params)
 //
-//    // Example sending a request using the ListDomainsRequest method.
-//    req, resp := client.ListDomainsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/ListDomains
 func (c *VoiceID) ListDomainsRequest(input *ListDomainsInput) (req *request.Request, output *ListDomainsOutput) {
@@ -1063,21 +1062,22 @@ func (c *VoiceID) ListDomainsRequest(input *ListDomainsInput) (req *request.Requ
 // API operation ListDomains for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/ListDomains
 func (c *VoiceID) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, error) {
@@ -1109,15 +1109,14 @@ func (c *VoiceID) ListDomainsWithContext(ctx aws.Context, input *ListDomainsInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDomains operation.
-//    pageNum := 0
-//    err := client.ListDomainsPages(params,
-//        func(page *voiceid.ListDomainsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDomains operation.
+//	pageNum := 0
+//	err := client.ListDomainsPages(params,
+//	    func(page *voiceid.ListDomainsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *VoiceID) ListDomainsPages(input *ListDomainsInput, fn func(*ListDomainsOutput, bool) bool) error {
 	return c.ListDomainsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1169,14 +1168,13 @@ const opListFraudsterRegistrationJobs = "ListFraudsterRegistrationJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFraudsterRegistrationJobsRequest method.
+//	req, resp := client.ListFraudsterRegistrationJobsRequest(params)
 //
-//    // Example sending a request using the ListFraudsterRegistrationJobsRequest method.
-//    req, resp := client.ListFraudsterRegistrationJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/ListFraudsterRegistrationJobs
 func (c *VoiceID) ListFraudsterRegistrationJobsRequest(input *ListFraudsterRegistrationJobsInput) (req *request.Request, output *ListFraudsterRegistrationJobsOutput) {
@@ -1215,25 +1213,26 @@ func (c *VoiceID) ListFraudsterRegistrationJobsRequest(input *ListFraudsterRegis
 // API operation ListFraudsterRegistrationJobs for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/ListFraudsterRegistrationJobs
 func (c *VoiceID) ListFraudsterRegistrationJobs(input *ListFraudsterRegistrationJobsInput) (*ListFraudsterRegistrationJobsOutput, error) {
@@ -1265,15 +1264,14 @@ func (c *VoiceID) ListFraudsterRegistrationJobsWithContext(ctx aws.Context, inpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListFraudsterRegistrationJobs operation.
-//    pageNum := 0
-//    err := client.ListFraudsterRegistrationJobsPages(params,
-//        func(page *voiceid.ListFraudsterRegistrationJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListFraudsterRegistrationJobs operation.
+//	pageNum := 0
+//	err := client.ListFraudsterRegistrationJobsPages(params,
+//	    func(page *voiceid.ListFraudsterRegistrationJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *VoiceID) ListFraudsterRegistrationJobsPages(input *ListFraudsterRegistrationJobsInput, fn func(*ListFraudsterRegistrationJobsOutput, bool) bool) error {
 	return c.ListFraudsterRegistrationJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1325,14 +1323,13 @@ const opListSpeakerEnrollmentJobs = "ListSpeakerEnrollmentJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSpeakerEnrollmentJobsRequest method.
+//	req, resp := client.ListSpeakerEnrollmentJobsRequest(params)
 //
-//    // Example sending a request using the ListSpeakerEnrollmentJobsRequest method.
-//    req, resp := client.ListSpeakerEnrollmentJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/ListSpeakerEnrollmentJobs
 func (c *VoiceID) ListSpeakerEnrollmentJobsRequest(input *ListSpeakerEnrollmentJobsInput) (req *request.Request, output *ListSpeakerEnrollmentJobsOutput) {
@@ -1371,25 +1368,26 @@ func (c *VoiceID) ListSpeakerEnrollmentJobsRequest(input *ListSpeakerEnrollmentJ
 // API operation ListSpeakerEnrollmentJobs for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/ListSpeakerEnrollmentJobs
 func (c *VoiceID) ListSpeakerEnrollmentJobs(input *ListSpeakerEnrollmentJobsInput) (*ListSpeakerEnrollmentJobsOutput, error) {
@@ -1421,15 +1419,14 @@ func (c *VoiceID) ListSpeakerEnrollmentJobsWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSpeakerEnrollmentJobs operation.
-//    pageNum := 0
-//    err := client.ListSpeakerEnrollmentJobsPages(params,
-//        func(page *voiceid.ListSpeakerEnrollmentJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSpeakerEnrollmentJobs operation.
+//	pageNum := 0
+//	err := client.ListSpeakerEnrollmentJobsPages(params,
+//	    func(page *voiceid.ListSpeakerEnrollmentJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *VoiceID) ListSpeakerEnrollmentJobsPages(input *ListSpeakerEnrollmentJobsInput, fn func(*ListSpeakerEnrollmentJobsOutput, bool) bool) error {
 	return c.ListSpeakerEnrollmentJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1481,14 +1478,13 @@ const opListSpeakers = "ListSpeakers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSpeakersRequest method.
+//	req, resp := client.ListSpeakersRequest(params)
 //
-//    // Example sending a request using the ListSpeakersRequest method.
-//    req, resp := client.ListSpeakersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/ListSpeakers
 func (c *VoiceID) ListSpeakersRequest(input *ListSpeakersInput) (req *request.Request, output *ListSpeakersOutput) {
@@ -1525,25 +1521,26 @@ func (c *VoiceID) ListSpeakersRequest(input *ListSpeakersInput) (req *request.Re
 // API operation ListSpeakers for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/ListSpeakers
 func (c *VoiceID) ListSpeakers(input *ListSpeakersInput) (*ListSpeakersOutput, error) {
@@ -1575,15 +1572,14 @@ func (c *VoiceID) ListSpeakersWithContext(ctx aws.Context, input *ListSpeakersIn
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSpeakers operation.
-//    pageNum := 0
-//    err := client.ListSpeakersPages(params,
-//        func(page *voiceid.ListSpeakersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSpeakers operation.
+//	pageNum := 0
+//	err := client.ListSpeakersPages(params,
+//	    func(page *voiceid.ListSpeakersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *VoiceID) ListSpeakersPages(input *ListSpeakersInput, fn func(*ListSpeakersOutput, bool) bool) error {
 	return c.ListSpeakersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1635,14 +1631,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/ListTagsForResource
 func (c *VoiceID) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1673,25 +1668,26 @@ func (c *VoiceID) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/ListTagsForResource
 func (c *VoiceID) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1731,14 +1727,13 @@ const opOptOutSpeaker = "OptOutSpeaker"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the OptOutSpeakerRequest method.
+//	req, resp := client.OptOutSpeakerRequest(params)
 //
-//    // Example sending a request using the OptOutSpeakerRequest method.
-//    req, resp := client.OptOutSpeakerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/OptOutSpeaker
 func (c *VoiceID) OptOutSpeakerRequest(input *OptOutSpeakerInput) (req *request.Request, output *OptOutSpeakerOutput) {
@@ -1774,29 +1769,30 @@ func (c *VoiceID) OptOutSpeakerRequest(input *OptOutSpeakerInput) (req *request.
 // API operation OptOutSpeaker for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * ConflictException
-//   The request failed due to a conflict. Check the ConflictType and error message
-//   for more details.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/OptOutSpeaker
 func (c *VoiceID) OptOutSpeaker(input *OptOutSpeakerInput) (*OptOutSpeakerOutput, error) {
@@ -1836,14 +1832,13 @@ const opStartFraudsterRegistrationJob = "StartFraudsterRegistrationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartFraudsterRegistrationJobRequest method.
+//	req, resp := client.StartFraudsterRegistrationJobRequest(params)
 //
-//    // Example sending a request using the StartFraudsterRegistrationJobRequest method.
-//    req, resp := client.StartFraudsterRegistrationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/StartFraudsterRegistrationJob
 func (c *VoiceID) StartFraudsterRegistrationJobRequest(input *StartFraudsterRegistrationJobInput) (req *request.Request, output *StartFraudsterRegistrationJobOutput) {
@@ -1874,34 +1869,35 @@ func (c *VoiceID) StartFraudsterRegistrationJobRequest(input *StartFraudsterRegi
 // API operation StartFraudsterRegistrationJob for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   The request exceeded the service quota. Refer to Voice ID Service Quotas
-//   (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#voiceid-quotas)
-//   and try your request again.
 //
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
+//   - ServiceQuotaExceededException
+//     The request exceeded the service quota. Refer to Voice ID Service Quotas
+//     (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#voiceid-quotas)
+//     and try your request again.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * ConflictException
-//   The request failed due to a conflict. Check the ConflictType and error message
-//   for more details.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/StartFraudsterRegistrationJob
 func (c *VoiceID) StartFraudsterRegistrationJob(input *StartFraudsterRegistrationJobInput) (*StartFraudsterRegistrationJobOutput, error) {
@@ -1941,14 +1937,13 @@ const opStartSpeakerEnrollmentJob = "StartSpeakerEnrollmentJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartSpeakerEnrollmentJobRequest method.
+//	req, resp := client.StartSpeakerEnrollmentJobRequest(params)
 //
-//    // Example sending a request using the StartSpeakerEnrollmentJobRequest method.
-//    req, resp := client.StartSpeakerEnrollmentJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/StartSpeakerEnrollmentJob
 func (c *VoiceID) StartSpeakerEnrollmentJobRequest(input *StartSpeakerEnrollmentJobInput) (req *request.Request, output *StartSpeakerEnrollmentJobOutput) {
@@ -1979,34 +1974,35 @@ func (c *VoiceID) StartSpeakerEnrollmentJobRequest(input *StartSpeakerEnrollment
 // API operation StartSpeakerEnrollmentJob for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   The request exceeded the service quota. Refer to Voice ID Service Quotas
-//   (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#voiceid-quotas)
-//   and try your request again.
 //
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
+//   - ServiceQuotaExceededException
+//     The request exceeded the service quota. Refer to Voice ID Service Quotas
+//     (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#voiceid-quotas)
+//     and try your request again.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * ConflictException
-//   The request failed due to a conflict. Check the ConflictType and error message
-//   for more details.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/StartSpeakerEnrollmentJob
 func (c *VoiceID) StartSpeakerEnrollmentJob(input *StartSpeakerEnrollmentJobInput) (*StartSpeakerEnrollmentJobOutput, error) {
@@ -2046,14 +2042,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/TagResource
 func (c *VoiceID) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -2085,29 +2080,30 @@ func (c *VoiceID) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * ConflictException
-//   The request failed due to a conflict. Check the ConflictType and error message
-//   for more details.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/TagResource
 func (c *VoiceID) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2147,14 +2143,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/UntagResource
 func (c *VoiceID) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2186,29 +2181,30 @@ func (c *VoiceID) UntagResourceRequest(input *UntagResourceInput) (req *request.
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * ConflictException
-//   The request failed due to a conflict. Check the ConflictType and error message
-//   for more details.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/UntagResource
 func (c *VoiceID) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2248,14 +2244,13 @@ const opUpdateDomain = "UpdateDomain"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDomainRequest method.
+//	req, resp := client.UpdateDomainRequest(params)
 //
-//    // Example sending a request using the UpdateDomainRequest method.
-//    req, resp := client.UpdateDomainRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/UpdateDomain
 func (c *VoiceID) UpdateDomainRequest(input *UpdateDomainInput) (req *request.Request, output *UpdateDomainOutput) {
@@ -2288,29 +2283,30 @@ func (c *VoiceID) UpdateDomainRequest(input *UpdateDomainInput) (req *request.Re
 // API operation UpdateDomain for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource cannot be found. Check the ResourceType and error
-//   message for more details.
 //
-//   * ValidationException
-//   The request failed one or more validations; check the error message for more
-//   details.
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
 //
-//   * ConflictException
-//   The request failed due to a conflict. Check the ConflictType and error message
-//   for more details.
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
 //
-//   * InternalServerException
-//   The request failed due to an unknown error on the server side.
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling. Please slow down your request
-//   rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
-//   and try your request again.
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
 //
-//   * AccessDeniedException
-//   You do not have sufficient permissions to perform this action. Check the
-//   error message and try again.
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/UpdateDomain
 func (c *VoiceID) UpdateDomain(input *UpdateDomainInput) (*UpdateDomainOutput, error) {

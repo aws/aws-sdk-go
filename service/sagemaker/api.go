@@ -29,14 +29,13 @@ const opAddAssociation = "AddAssociation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AddAssociationRequest method.
+//	req, resp := client.AddAssociationRequest(params)
 //
-//    // Example sending a request using the AddAssociationRequest method.
-//    req, resp := client.AddAssociationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/AddAssociation
 func (c *SageMaker) AddAssociationRequest(input *AddAssociationInput) (req *request.Request, output *AddAssociationOutput) {
@@ -70,12 +69,13 @@ func (c *SageMaker) AddAssociationRequest(input *AddAssociationInput) (req *requ
 // API operation AddAssociation for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceNotFound
+//     Resource being access is not found.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/AddAssociation
 func (c *SageMaker) AddAssociation(input *AddAssociationInput) (*AddAssociationOutput, error) {
@@ -115,14 +115,13 @@ const opAddTags = "AddTags"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AddTagsRequest method.
+//	req, resp := client.AddTagsRequest(params)
 //
-//    // Example sending a request using the AddTagsRequest method.
-//    req, resp := client.AddTagsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/AddTags
 func (c *SageMaker) AddTagsRequest(input *AddTagsInput) (req *request.Request, output *AddTagsOutput) {
@@ -213,14 +212,13 @@ const opAssociateTrialComponent = "AssociateTrialComponent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateTrialComponentRequest method.
+//	req, resp := client.AssociateTrialComponentRequest(params)
 //
-//    // Example sending a request using the AssociateTrialComponentRequest method.
-//    req, resp := client.AssociateTrialComponentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/AssociateTrialComponent
 func (c *SageMaker) AssociateTrialComponentRequest(input *AssociateTrialComponentInput) (req *request.Request, output *AssociateTrialComponentOutput) {
@@ -253,12 +251,13 @@ func (c *SageMaker) AssociateTrialComponentRequest(input *AssociateTrialComponen
 // API operation AssociateTrialComponent for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceNotFound
+//     Resource being access is not found.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/AssociateTrialComponent
 func (c *SageMaker) AssociateTrialComponent(input *AssociateTrialComponentInput) (*AssociateTrialComponentOutput, error) {
@@ -298,14 +297,13 @@ const opBatchDescribeModelPackage = "BatchDescribeModelPackage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchDescribeModelPackageRequest method.
+//	req, resp := client.BatchDescribeModelPackageRequest(params)
 //
-//    // Example sending a request using the BatchDescribeModelPackageRequest method.
-//    req, resp := client.BatchDescribeModelPackageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/BatchDescribeModelPackage
 func (c *SageMaker) BatchDescribeModelPackageRequest(input *BatchDescribeModelPackageInput) (req *request.Request, output *BatchDescribeModelPackageOutput) {
@@ -326,7 +324,7 @@ func (c *SageMaker) BatchDescribeModelPackageRequest(input *BatchDescribeModelPa
 
 // BatchDescribeModelPackage API operation for Amazon SageMaker Service.
 //
-// This action batch describes a list of versioned model packages
+// # This action batch describes a list of versioned model packages
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -372,14 +370,13 @@ const opCreateAction = "CreateAction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateActionRequest method.
+//	req, resp := client.CreateActionRequest(params)
 //
-//    // Example sending a request using the CreateActionRequest method.
-//    req, resp := client.CreateActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateAction
 func (c *SageMaker) CreateActionRequest(input *CreateActionInput) (req *request.Request, output *CreateActionOutput) {
@@ -413,9 +410,9 @@ func (c *SageMaker) CreateActionRequest(input *CreateActionInput) (req *request.
 // API operation CreateAction for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateAction
 func (c *SageMaker) CreateAction(input *CreateActionInput) (*CreateActionOutput, error) {
@@ -455,14 +452,13 @@ const opCreateAlgorithm = "CreateAlgorithm"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateAlgorithmRequest method.
+//	req, resp := client.CreateAlgorithmRequest(params)
 //
-//    // Example sending a request using the CreateAlgorithmRequest method.
-//    req, resp := client.CreateAlgorithmRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateAlgorithm
 func (c *SageMaker) CreateAlgorithmRequest(input *CreateAlgorithmInput) (req *request.Request, output *CreateAlgorithmOutput) {
@@ -530,14 +526,13 @@ const opCreateApp = "CreateApp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateAppRequest method.
+//	req, resp := client.CreateAppRequest(params)
 //
-//    // Example sending a request using the CreateAppRequest method.
-//    req, resp := client.CreateAppRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateApp
 func (c *SageMaker) CreateAppRequest(input *CreateAppInput) (req *request.Request, output *CreateAppOutput) {
@@ -571,12 +566,13 @@ func (c *SageMaker) CreateAppRequest(input *CreateAppInput) (req *request.Reques
 // API operation CreateApp for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
 //
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateApp
 func (c *SageMaker) CreateApp(input *CreateAppInput) (*CreateAppOutput, error) {
@@ -616,14 +612,13 @@ const opCreateAppImageConfig = "CreateAppImageConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateAppImageConfigRequest method.
+//	req, resp := client.CreateAppImageConfigRequest(params)
 //
-//    // Example sending a request using the CreateAppImageConfigRequest method.
-//    req, resp := client.CreateAppImageConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateAppImageConfig
 func (c *SageMaker) CreateAppImageConfigRequest(input *CreateAppImageConfigInput) (req *request.Request, output *CreateAppImageConfigOutput) {
@@ -656,8 +651,8 @@ func (c *SageMaker) CreateAppImageConfigRequest(input *CreateAppImageConfigInput
 // API operation CreateAppImageConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateAppImageConfig
 func (c *SageMaker) CreateAppImageConfig(input *CreateAppImageConfigInput) (*CreateAppImageConfigOutput, error) {
@@ -697,14 +692,13 @@ const opCreateArtifact = "CreateArtifact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateArtifactRequest method.
+//	req, resp := client.CreateArtifactRequest(params)
 //
-//    // Example sending a request using the CreateArtifactRequest method.
-//    req, resp := client.CreateArtifactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateArtifact
 func (c *SageMaker) CreateArtifactRequest(input *CreateArtifactInput) (req *request.Request, output *CreateArtifactOutput) {
@@ -738,9 +732,9 @@ func (c *SageMaker) CreateArtifactRequest(input *CreateArtifactInput) (req *requ
 // API operation CreateArtifact for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateArtifact
 func (c *SageMaker) CreateArtifact(input *CreateArtifactInput) (*CreateArtifactOutput, error) {
@@ -780,14 +774,13 @@ const opCreateAutoMLJob = "CreateAutoMLJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateAutoMLJobRequest method.
+//	req, resp := client.CreateAutoMLJobRequest(params)
 //
-//    // Example sending a request using the CreateAutoMLJobRequest method.
-//    req, resp := client.CreateAutoMLJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateAutoMLJob
 func (c *SageMaker) CreateAutoMLJobRequest(input *CreateAutoMLJobInput) (req *request.Request, output *CreateAutoMLJobOutput) {
@@ -823,12 +816,13 @@ func (c *SageMaker) CreateAutoMLJobRequest(input *CreateAutoMLJobInput) (req *re
 // API operation CreateAutoMLJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateAutoMLJob
 func (c *SageMaker) CreateAutoMLJob(input *CreateAutoMLJobInput) (*CreateAutoMLJobOutput, error) {
@@ -868,14 +862,13 @@ const opCreateCodeRepository = "CreateCodeRepository"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateCodeRepositoryRequest method.
+//	req, resp := client.CreateCodeRepositoryRequest(params)
 //
-//    // Example sending a request using the CreateCodeRepositoryRequest method.
-//    req, resp := client.CreateCodeRepositoryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateCodeRepository
 func (c *SageMaker) CreateCodeRepositoryRequest(input *CreateCodeRepositoryInput) (req *request.Request, output *CreateCodeRepositoryOutput) {
@@ -950,14 +943,13 @@ const opCreateCompilationJob = "CreateCompilationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateCompilationJobRequest method.
+//	req, resp := client.CreateCompilationJobRequest(params)
 //
-//    // Example sending a request using the CreateCompilationJobRequest method.
-//    req, resp := client.CreateCompilationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateCompilationJob
 func (c *SageMaker) CreateCompilationJobRequest(input *CreateCompilationJobInput) (req *request.Request, output *CreateCompilationJobOutput) {
@@ -989,15 +981,15 @@ func (c *SageMaker) CreateCompilationJobRequest(input *CreateCompilationJobInput
 //
 // In the request body, you provide the following:
 //
-//    * A name for the compilation job
+//   - A name for the compilation job
 //
-//    * Information about the input model artifacts
+//   - Information about the input model artifacts
 //
-//    * The output location for the compiled model and the device (target) that
-//    the model runs on
+//   - The output location for the compiled model and the device (target) that
+//     the model runs on
 //
-//    * The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker
-//    assumes to perform the model compilation job.
+//   - The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker
+//     assumes to perform the model compilation job.
 //
 // You can also provide a Tag to track the model compilation job's resource
 // use and costs. The response body contains the CompilationJobArn for the compiled
@@ -1015,12 +1007,13 @@ func (c *SageMaker) CreateCompilationJobRequest(input *CreateCompilationJobInput
 // API operation CreateCompilationJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateCompilationJob
 func (c *SageMaker) CreateCompilationJob(input *CreateCompilationJobInput) (*CreateCompilationJobOutput, error) {
@@ -1060,14 +1053,13 @@ const opCreateContext = "CreateContext"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateContextRequest method.
+//	req, resp := client.CreateContextRequest(params)
 //
-//    // Example sending a request using the CreateContextRequest method.
-//    req, resp := client.CreateContextRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateContext
 func (c *SageMaker) CreateContextRequest(input *CreateContextInput) (req *request.Request, output *CreateContextOutput) {
@@ -1101,9 +1093,9 @@ func (c *SageMaker) CreateContextRequest(input *CreateContextInput) (req *reques
 // API operation CreateContext for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateContext
 func (c *SageMaker) CreateContext(input *CreateContextInput) (*CreateContextOutput, error) {
@@ -1143,14 +1135,13 @@ const opCreateDataQualityJobDefinition = "CreateDataQualityJobDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDataQualityJobDefinitionRequest method.
+//	req, resp := client.CreateDataQualityJobDefinitionRequest(params)
 //
-//    // Example sending a request using the CreateDataQualityJobDefinitionRequest method.
-//    req, resp := client.CreateDataQualityJobDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateDataQualityJobDefinition
 func (c *SageMaker) CreateDataQualityJobDefinitionRequest(input *CreateDataQualityJobDefinitionInput) (req *request.Request, output *CreateDataQualityJobDefinitionOutput) {
@@ -1182,12 +1173,13 @@ func (c *SageMaker) CreateDataQualityJobDefinitionRequest(input *CreateDataQuali
 // API operation CreateDataQualityJobDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
 //
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateDataQualityJobDefinition
 func (c *SageMaker) CreateDataQualityJobDefinition(input *CreateDataQualityJobDefinitionInput) (*CreateDataQualityJobDefinitionOutput, error) {
@@ -1227,14 +1219,13 @@ const opCreateDeviceFleet = "CreateDeviceFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDeviceFleetRequest method.
+//	req, resp := client.CreateDeviceFleetRequest(params)
 //
-//    // Example sending a request using the CreateDeviceFleetRequest method.
-//    req, resp := client.CreateDeviceFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateDeviceFleet
 func (c *SageMaker) CreateDeviceFleetRequest(input *CreateDeviceFleetInput) (req *request.Request, output *CreateDeviceFleetOutput) {
@@ -1266,12 +1257,13 @@ func (c *SageMaker) CreateDeviceFleetRequest(input *CreateDeviceFleetInput) (req
 // API operation CreateDeviceFleet for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateDeviceFleet
 func (c *SageMaker) CreateDeviceFleet(input *CreateDeviceFleetInput) (*CreateDeviceFleetOutput, error) {
@@ -1311,14 +1303,13 @@ const opCreateDomain = "CreateDomain"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDomainRequest method.
+//	req, resp := client.CreateDomainRequest(params)
 //
-//    // Example sending a request using the CreateDomainRequest method.
-//    req, resp := client.CreateDomainRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateDomain
 func (c *SageMaker) CreateDomainRequest(input *CreateDomainInput) (req *request.Request, output *CreateDomainOutput) {
@@ -1346,7 +1337,7 @@ func (c *SageMaker) CreateDomainRequest(input *CreateDomainInput) (req *request.
 // to one domain per region. Users within a domain can share notebook files
 // and other artifacts with each other.
 //
-// EFS storage
+// # EFS storage
 //
 // When a domain is created, an EFS volume is created for use by all of the
 // users within the domain. Each user receives a private home directory within
@@ -1358,7 +1349,7 @@ func (c *SageMaker) CreateDomainRequest(input *CreateDomainInput) (req *request.
 // customer managed key. For more information, see Protect Data at Rest Using
 // Encryption (https://docs.aws.amazon.com/sagemaker/latest/dg/encryption-at-rest.html).
 //
-// VPC configuration
+// # VPC configuration
 //
 // All SageMaker Studio traffic between the domain and the EFS volume is through
 // the specified VPC and subnets. For other Studio traffic, you can specify
@@ -1366,15 +1357,15 @@ func (c *SageMaker) CreateDomainRequest(input *CreateDomainInput) (req *request.
 // network access type that you choose when you onboard to Studio. The following
 // options are available:
 //
-//    * PublicInternetOnly - Non-EFS traffic goes through a VPC managed by Amazon
-//    SageMaker, which allows internet access. This is the default value.
+//   - PublicInternetOnly - Non-EFS traffic goes through a VPC managed by Amazon
+//     SageMaker, which allows internet access. This is the default value.
 //
-//    * VpcOnly - All Studio traffic is through the specified VPC and subnets.
-//    Internet access is disabled by default. To allow internet access, you
-//    must specify a NAT gateway. When internet access is disabled, you won't
-//    be able to run a Studio notebook or to train or host models unless your
-//    VPC has an interface endpoint to the SageMaker API and runtime or a NAT
-//    gateway and your security groups allow outbound connections.
+//   - VpcOnly - All Studio traffic is through the specified VPC and subnets.
+//     Internet access is disabled by default. To allow internet access, you
+//     must specify a NAT gateway. When internet access is disabled, you won't
+//     be able to run a Studio notebook or to train or host models unless your
+//     VPC has an interface endpoint to the SageMaker API and runtime or a NAT
+//     gateway and your security groups allow outbound connections.
 //
 // NFS traffic over TCP on port 2049 needs to be allowed in both inbound and
 // outbound rules in order to launch a SageMaker Studio app successfully.
@@ -1390,12 +1381,13 @@ func (c *SageMaker) CreateDomainRequest(input *CreateDomainInput) (req *request.
 // API operation CreateDomain for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
 //
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateDomain
 func (c *SageMaker) CreateDomain(input *CreateDomainInput) (*CreateDomainOutput, error) {
@@ -1435,14 +1427,13 @@ const opCreateEdgeDeploymentPlan = "CreateEdgeDeploymentPlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEdgeDeploymentPlanRequest method.
+//	req, resp := client.CreateEdgeDeploymentPlanRequest(params)
 //
-//    // Example sending a request using the CreateEdgeDeploymentPlanRequest method.
-//    req, resp := client.CreateEdgeDeploymentPlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEdgeDeploymentPlan
 func (c *SageMaker) CreateEdgeDeploymentPlanRequest(input *CreateEdgeDeploymentPlanInput) (req *request.Request, output *CreateEdgeDeploymentPlanOutput) {
@@ -1474,9 +1465,9 @@ func (c *SageMaker) CreateEdgeDeploymentPlanRequest(input *CreateEdgeDeploymentP
 // API operation CreateEdgeDeploymentPlan for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEdgeDeploymentPlan
 func (c *SageMaker) CreateEdgeDeploymentPlan(input *CreateEdgeDeploymentPlanInput) (*CreateEdgeDeploymentPlanOutput, error) {
@@ -1516,14 +1507,13 @@ const opCreateEdgeDeploymentStage = "CreateEdgeDeploymentStage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEdgeDeploymentStageRequest method.
+//	req, resp := client.CreateEdgeDeploymentStageRequest(params)
 //
-//    // Example sending a request using the CreateEdgeDeploymentStageRequest method.
-//    req, resp := client.CreateEdgeDeploymentStageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEdgeDeploymentStage
 func (c *SageMaker) CreateEdgeDeploymentStageRequest(input *CreateEdgeDeploymentStageInput) (req *request.Request, output *CreateEdgeDeploymentStageOutput) {
@@ -1555,9 +1545,9 @@ func (c *SageMaker) CreateEdgeDeploymentStageRequest(input *CreateEdgeDeployment
 // API operation CreateEdgeDeploymentStage for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEdgeDeploymentStage
 func (c *SageMaker) CreateEdgeDeploymentStage(input *CreateEdgeDeploymentStageInput) (*CreateEdgeDeploymentStageOutput, error) {
@@ -1597,14 +1587,13 @@ const opCreateEdgePackagingJob = "CreateEdgePackagingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEdgePackagingJobRequest method.
+//	req, resp := client.CreateEdgePackagingJobRequest(params)
 //
-//    // Example sending a request using the CreateEdgePackagingJobRequest method.
-//    req, resp := client.CreateEdgePackagingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEdgePackagingJob
 func (c *SageMaker) CreateEdgePackagingJobRequest(input *CreateEdgePackagingJobInput) (req *request.Request, output *CreateEdgePackagingJobOutput) {
@@ -1639,9 +1628,9 @@ func (c *SageMaker) CreateEdgePackagingJobRequest(input *CreateEdgePackagingJobI
 // API operation CreateEdgePackagingJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEdgePackagingJob
 func (c *SageMaker) CreateEdgePackagingJob(input *CreateEdgePackagingJobInput) (*CreateEdgePackagingJobOutput, error) {
@@ -1681,14 +1670,13 @@ const opCreateEndpoint = "CreateEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEndpointRequest method.
+//	req, resp := client.CreateEndpointRequest(params)
 //
-//    // Example sending a request using the CreateEndpointRequest method.
-//    req, resp := client.CreateEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEndpoint
 func (c *SageMaker) CreateEndpointRequest(input *CreateEndpointInput) (req *request.Request, output *CreateEndpointOutput) {
@@ -1759,15 +1747,15 @@ func (c *SageMaker) CreateEndpointRequest(input *CreateEndpointInput) (req *requ
 // the CreateEndpoint and CreateEndpointConfig API operations, add the following
 // policies to the role.
 //
-//    * Option 1: For a full SageMaker access, search and attach the AmazonSageMakerFullAccess
-//    policy.
+//   - Option 1: For a full SageMaker access, search and attach the AmazonSageMakerFullAccess
+//     policy.
 //
-//    * Option 2: For granting a limited access to an IAM role, paste the following
-//    Action elements manually into the JSON file of the IAM role: "Action":
-//    ["sagemaker:CreateEndpoint", "sagemaker:CreateEndpointConfig"] "Resource":
-//    [ "arn:aws:sagemaker:region:account-id:endpoint/endpointName" "arn:aws:sagemaker:region:account-id:endpoint-config/endpointConfigName"
-//    ] For more information, see SageMaker API Permissions: Actions, Permissions,
-//    and Resources Reference (https://docs.aws.amazon.com/sagemaker/latest/dg/api-permissions-reference.html).
+//   - Option 2: For granting a limited access to an IAM role, paste the following
+//     Action elements manually into the JSON file of the IAM role: "Action":
+//     ["sagemaker:CreateEndpoint", "sagemaker:CreateEndpointConfig"] "Resource":
+//     [ "arn:aws:sagemaker:region:account-id:endpoint/endpointName" "arn:aws:sagemaker:region:account-id:endpoint-config/endpointConfigName"
+//     ] For more information, see SageMaker API Permissions: Actions, Permissions,
+//     and Resources Reference (https://docs.aws.amazon.com/sagemaker/latest/dg/api-permissions-reference.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1777,9 +1765,9 @@ func (c *SageMaker) CreateEndpointRequest(input *CreateEndpointInput) (req *requ
 // API operation CreateEndpoint for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEndpoint
 func (c *SageMaker) CreateEndpoint(input *CreateEndpointInput) (*CreateEndpointOutput, error) {
@@ -1819,14 +1807,13 @@ const opCreateEndpointConfig = "CreateEndpointConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEndpointConfigRequest method.
+//	req, resp := client.CreateEndpointConfigRequest(params)
 //
-//    // Example sending a request using the CreateEndpointConfigRequest method.
-//    req, resp := client.CreateEndpointConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEndpointConfig
 func (c *SageMaker) CreateEndpointConfigRequest(input *CreateEndpointConfigInput) (req *request.Request, output *CreateEndpointConfigOutput) {
@@ -1885,9 +1872,9 @@ func (c *SageMaker) CreateEndpointConfigRequest(input *CreateEndpointConfigInput
 // API operation CreateEndpointConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEndpointConfig
 func (c *SageMaker) CreateEndpointConfig(input *CreateEndpointConfigInput) (*CreateEndpointConfigOutput, error) {
@@ -1927,14 +1914,13 @@ const opCreateExperiment = "CreateExperiment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateExperimentRequest method.
+//	req, resp := client.CreateExperimentRequest(params)
 //
-//    // Example sending a request using the CreateExperimentRequest method.
-//    req, resp := client.CreateExperimentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateExperiment
 func (c *SageMaker) CreateExperimentRequest(input *CreateExperimentInput) (req *request.Request, output *CreateExperimentOutput) {
@@ -1989,9 +1975,9 @@ func (c *SageMaker) CreateExperimentRequest(input *CreateExperimentInput) (req *
 // API operation CreateExperiment for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateExperiment
 func (c *SageMaker) CreateExperiment(input *CreateExperimentInput) (*CreateExperimentOutput, error) {
@@ -2031,14 +2017,13 @@ const opCreateFeatureGroup = "CreateFeatureGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFeatureGroupRequest method.
+//	req, resp := client.CreateFeatureGroupRequest(params)
 //
-//    // Example sending a request using the CreateFeatureGroupRequest method.
-//    req, resp := client.CreateFeatureGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateFeatureGroup
 func (c *SageMaker) CreateFeatureGroupRequest(input *CreateFeatureGroupInput) (req *request.Request, output *CreateFeatureGroupOutput) {
@@ -2079,12 +2064,13 @@ func (c *SageMaker) CreateFeatureGroupRequest(input *CreateFeatureGroupInput) (r
 // API operation CreateFeatureGroup for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateFeatureGroup
 func (c *SageMaker) CreateFeatureGroup(input *CreateFeatureGroupInput) (*CreateFeatureGroupOutput, error) {
@@ -2124,14 +2110,13 @@ const opCreateFlowDefinition = "CreateFlowDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFlowDefinitionRequest method.
+//	req, resp := client.CreateFlowDefinitionRequest(params)
 //
-//    // Example sending a request using the CreateFlowDefinitionRequest method.
-//    req, resp := client.CreateFlowDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateFlowDefinition
 func (c *SageMaker) CreateFlowDefinitionRequest(input *CreateFlowDefinitionInput) (req *request.Request, output *CreateFlowDefinitionOutput) {
@@ -2162,12 +2147,13 @@ func (c *SageMaker) CreateFlowDefinitionRequest(input *CreateFlowDefinitionInput
 // API operation CreateFlowDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
 //
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateFlowDefinition
 func (c *SageMaker) CreateFlowDefinition(input *CreateFlowDefinitionInput) (*CreateFlowDefinitionOutput, error) {
@@ -2207,14 +2193,13 @@ const opCreateHumanTaskUi = "CreateHumanTaskUi"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateHumanTaskUiRequest method.
+//	req, resp := client.CreateHumanTaskUiRequest(params)
 //
-//    // Example sending a request using the CreateHumanTaskUiRequest method.
-//    req, resp := client.CreateHumanTaskUiRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateHumanTaskUi
 func (c *SageMaker) CreateHumanTaskUiRequest(input *CreateHumanTaskUiInput) (req *request.Request, output *CreateHumanTaskUiOutput) {
@@ -2247,12 +2232,13 @@ func (c *SageMaker) CreateHumanTaskUiRequest(input *CreateHumanTaskUiInput) (req
 // API operation CreateHumanTaskUi for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
 //
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateHumanTaskUi
 func (c *SageMaker) CreateHumanTaskUi(input *CreateHumanTaskUiInput) (*CreateHumanTaskUiOutput, error) {
@@ -2292,14 +2278,13 @@ const opCreateHyperParameterTuningJob = "CreateHyperParameterTuningJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateHyperParameterTuningJobRequest method.
+//	req, resp := client.CreateHyperParameterTuningJobRequest(params)
 //
-//    // Example sending a request using the CreateHyperParameterTuningJobRequest method.
-//    req, resp := client.CreateHyperParameterTuningJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateHyperParameterTuningJob
 func (c *SageMaker) CreateHyperParameterTuningJobRequest(input *CreateHyperParameterTuningJobInput) (req *request.Request, output *CreateHyperParameterTuningJobOutput) {
@@ -2334,12 +2319,13 @@ func (c *SageMaker) CreateHyperParameterTuningJobRequest(input *CreateHyperParam
 // API operation CreateHyperParameterTuningJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateHyperParameterTuningJob
 func (c *SageMaker) CreateHyperParameterTuningJob(input *CreateHyperParameterTuningJobInput) (*CreateHyperParameterTuningJobOutput, error) {
@@ -2379,14 +2365,13 @@ const opCreateImage = "CreateImage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateImageRequest method.
+//	req, resp := client.CreateImageRequest(params)
 //
-//    // Example sending a request using the CreateImageRequest method.
-//    req, resp := client.CreateImageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateImage
 func (c *SageMaker) CreateImageRequest(input *CreateImageInput) (req *request.Request, output *CreateImageOutput) {
@@ -2420,12 +2405,13 @@ func (c *SageMaker) CreateImageRequest(input *CreateImageInput) (req *request.Re
 // API operation CreateImage for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateImage
 func (c *SageMaker) CreateImage(input *CreateImageInput) (*CreateImageOutput, error) {
@@ -2465,14 +2451,13 @@ const opCreateImageVersion = "CreateImageVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateImageVersionRequest method.
+//	req, resp := client.CreateImageVersionRequest(params)
 //
-//    // Example sending a request using the CreateImageVersionRequest method.
-//    req, resp := client.CreateImageVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateImageVersion
 func (c *SageMaker) CreateImageVersionRequest(input *CreateImageVersionInput) (req *request.Request, output *CreateImageVersionOutput) {
@@ -2505,15 +2490,16 @@ func (c *SageMaker) CreateImageVersionRequest(input *CreateImageVersionInput) (r
 // API operation CreateImageVersion for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateImageVersion
 func (c *SageMaker) CreateImageVersion(input *CreateImageVersionInput) (*CreateImageVersionOutput, error) {
@@ -2553,14 +2539,13 @@ const opCreateInferenceRecommendationsJob = "CreateInferenceRecommendationsJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateInferenceRecommendationsJobRequest method.
+//	req, resp := client.CreateInferenceRecommendationsJobRequest(params)
 //
-//    // Example sending a request using the CreateInferenceRecommendationsJobRequest method.
-//    req, resp := client.CreateInferenceRecommendationsJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateInferenceRecommendationsJob
 func (c *SageMaker) CreateInferenceRecommendationsJobRequest(input *CreateInferenceRecommendationsJobInput) (req *request.Request, output *CreateInferenceRecommendationsJobOutput) {
@@ -2592,12 +2577,13 @@ func (c *SageMaker) CreateInferenceRecommendationsJobRequest(input *CreateInfere
 // API operation CreateInferenceRecommendationsJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateInferenceRecommendationsJob
 func (c *SageMaker) CreateInferenceRecommendationsJob(input *CreateInferenceRecommendationsJobInput) (*CreateInferenceRecommendationsJobOutput, error) {
@@ -2637,14 +2623,13 @@ const opCreateLabelingJob = "CreateLabelingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateLabelingJobRequest method.
+//	req, resp := client.CreateLabelingJobRequest(params)
 //
-//    // Example sending a request using the CreateLabelingJobRequest method.
-//    req, resp := client.CreateLabelingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateLabelingJob
 func (c *SageMaker) CreateLabelingJobRequest(input *CreateLabelingJobInput) (req *request.Request, output *CreateLabelingJobOutput) {
@@ -2670,16 +2655,16 @@ func (c *SageMaker) CreateLabelingJobRequest(input *CreateLabelingJobInput) (req
 //
 // You can select your workforce from one of three providers:
 //
-//    * A private workforce that you create. It can include employees, contractors,
-//    and outside experts. Use a private workforce when want the data to stay
-//    within your organization or when a specific set of skills is required.
+//   - A private workforce that you create. It can include employees, contractors,
+//     and outside experts. Use a private workforce when want the data to stay
+//     within your organization or when a specific set of skills is required.
 //
-//    * One or more vendors that you select from the Amazon Web Services Marketplace.
-//    Vendors provide expertise in specific areas.
+//   - One or more vendors that you select from the Amazon Web Services Marketplace.
+//     Vendors provide expertise in specific areas.
 //
-//    * The Amazon Mechanical Turk workforce. This is the largest workforce,
-//    but it should only be used for public data or data that has been stripped
-//    of any personally identifiable information.
+//   - The Amazon Mechanical Turk workforce. This is the largest workforce,
+//     but it should only be used for public data or data that has been stripped
+//     of any personally identifiable information.
 //
 // You can also use automated data labeling to reduce the number of data objects
 // that need to be labeled by a human. Automated data labeling uses active learning
@@ -2712,12 +2697,13 @@ func (c *SageMaker) CreateLabelingJobRequest(input *CreateLabelingJobInput) (req
 // API operation CreateLabelingJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateLabelingJob
 func (c *SageMaker) CreateLabelingJob(input *CreateLabelingJobInput) (*CreateLabelingJobOutput, error) {
@@ -2757,14 +2743,13 @@ const opCreateModel = "CreateModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateModelRequest method.
+//	req, resp := client.CreateModelRequest(params)
 //
-//    // Example sending a request using the CreateModelRequest method.
-//    req, resp := client.CreateModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModel
 func (c *SageMaker) CreateModelRequest(input *CreateModelInput) (req *request.Request, output *CreateModelOutput) {
@@ -2822,9 +2807,9 @@ func (c *SageMaker) CreateModelRequest(input *CreateModelInput) (req *request.Re
 // API operation CreateModel for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModel
 func (c *SageMaker) CreateModel(input *CreateModelInput) (*CreateModelOutput, error) {
@@ -2864,14 +2849,13 @@ const opCreateModelBiasJobDefinition = "CreateModelBiasJobDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateModelBiasJobDefinitionRequest method.
+//	req, resp := client.CreateModelBiasJobDefinitionRequest(params)
 //
-//    // Example sending a request using the CreateModelBiasJobDefinitionRequest method.
-//    req, resp := client.CreateModelBiasJobDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelBiasJobDefinition
 func (c *SageMaker) CreateModelBiasJobDefinitionRequest(input *CreateModelBiasJobDefinitionInput) (req *request.Request, output *CreateModelBiasJobDefinitionOutput) {
@@ -2902,12 +2886,13 @@ func (c *SageMaker) CreateModelBiasJobDefinitionRequest(input *CreateModelBiasJo
 // API operation CreateModelBiasJobDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
 //
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelBiasJobDefinition
 func (c *SageMaker) CreateModelBiasJobDefinition(input *CreateModelBiasJobDefinitionInput) (*CreateModelBiasJobDefinitionOutput, error) {
@@ -2947,14 +2932,13 @@ const opCreateModelExplainabilityJobDefinition = "CreateModelExplainabilityJobDe
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateModelExplainabilityJobDefinitionRequest method.
+//	req, resp := client.CreateModelExplainabilityJobDefinitionRequest(params)
 //
-//    // Example sending a request using the CreateModelExplainabilityJobDefinitionRequest method.
-//    req, resp := client.CreateModelExplainabilityJobDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelExplainabilityJobDefinition
 func (c *SageMaker) CreateModelExplainabilityJobDefinitionRequest(input *CreateModelExplainabilityJobDefinitionInput) (req *request.Request, output *CreateModelExplainabilityJobDefinitionOutput) {
@@ -2985,12 +2969,13 @@ func (c *SageMaker) CreateModelExplainabilityJobDefinitionRequest(input *CreateM
 // API operation CreateModelExplainabilityJobDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
 //
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelExplainabilityJobDefinition
 func (c *SageMaker) CreateModelExplainabilityJobDefinition(input *CreateModelExplainabilityJobDefinitionInput) (*CreateModelExplainabilityJobDefinitionOutput, error) {
@@ -3030,14 +3015,13 @@ const opCreateModelPackage = "CreateModelPackage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateModelPackageRequest method.
+//	req, resp := client.CreateModelPackageRequest(params)
 //
-//    // Example sending a request using the CreateModelPackageRequest method.
-//    req, resp := client.CreateModelPackageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelPackage
 func (c *SageMaker) CreateModelPackageRequest(input *CreateModelPackageInput) (req *request.Request, output *CreateModelPackageOutput) {
@@ -3071,9 +3055,9 @@ func (c *SageMaker) CreateModelPackageRequest(input *CreateModelPackageInput) (r
 //
 // There are two types of model packages:
 //
-//    * Versioned - a model that is part of a model group in the model registry.
+//   - Versioned - a model that is part of a model group in the model registry.
 //
-//    * Unversioned - a model package that is not part of a model group.
+//   - Unversioned - a model package that is not part of a model group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3083,13 +3067,14 @@ func (c *SageMaker) CreateModelPackageRequest(input *CreateModelPackageInput) (r
 // API operation CreateModelPackage for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   There was a conflict when you attempted to modify a SageMaker entity such
-//   as an Experiment or Artifact.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ConflictException
+//     There was a conflict when you attempted to modify a SageMaker entity such
+//     as an Experiment or Artifact.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelPackage
 func (c *SageMaker) CreateModelPackage(input *CreateModelPackageInput) (*CreateModelPackageOutput, error) {
@@ -3129,14 +3114,13 @@ const opCreateModelPackageGroup = "CreateModelPackageGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateModelPackageGroupRequest method.
+//	req, resp := client.CreateModelPackageGroupRequest(params)
 //
-//    // Example sending a request using the CreateModelPackageGroupRequest method.
-//    req, resp := client.CreateModelPackageGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelPackageGroup
 func (c *SageMaker) CreateModelPackageGroupRequest(input *CreateModelPackageGroupInput) (req *request.Request, output *CreateModelPackageGroupOutput) {
@@ -3167,9 +3151,9 @@ func (c *SageMaker) CreateModelPackageGroupRequest(input *CreateModelPackageGrou
 // API operation CreateModelPackageGroup for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelPackageGroup
 func (c *SageMaker) CreateModelPackageGroup(input *CreateModelPackageGroupInput) (*CreateModelPackageGroupOutput, error) {
@@ -3209,14 +3193,13 @@ const opCreateModelQualityJobDefinition = "CreateModelQualityJobDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateModelQualityJobDefinitionRequest method.
+//	req, resp := client.CreateModelQualityJobDefinitionRequest(params)
 //
-//    // Example sending a request using the CreateModelQualityJobDefinitionRequest method.
-//    req, resp := client.CreateModelQualityJobDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelQualityJobDefinition
 func (c *SageMaker) CreateModelQualityJobDefinitionRequest(input *CreateModelQualityJobDefinitionInput) (req *request.Request, output *CreateModelQualityJobDefinitionOutput) {
@@ -3248,12 +3231,13 @@ func (c *SageMaker) CreateModelQualityJobDefinitionRequest(input *CreateModelQua
 // API operation CreateModelQualityJobDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
 //
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelQualityJobDefinition
 func (c *SageMaker) CreateModelQualityJobDefinition(input *CreateModelQualityJobDefinitionInput) (*CreateModelQualityJobDefinitionOutput, error) {
@@ -3293,14 +3277,13 @@ const opCreateMonitoringSchedule = "CreateMonitoringSchedule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateMonitoringScheduleRequest method.
+//	req, resp := client.CreateMonitoringScheduleRequest(params)
 //
-//    // Example sending a request using the CreateMonitoringScheduleRequest method.
-//    req, resp := client.CreateMonitoringScheduleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateMonitoringSchedule
 func (c *SageMaker) CreateMonitoringScheduleRequest(input *CreateMonitoringScheduleInput) (req *request.Request, output *CreateMonitoringScheduleOutput) {
@@ -3332,12 +3315,13 @@ func (c *SageMaker) CreateMonitoringScheduleRequest(input *CreateMonitoringSched
 // API operation CreateMonitoringSchedule for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
 //
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateMonitoringSchedule
 func (c *SageMaker) CreateMonitoringSchedule(input *CreateMonitoringScheduleInput) (*CreateMonitoringScheduleOutput, error) {
@@ -3377,14 +3361,13 @@ const opCreateNotebookInstance = "CreateNotebookInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateNotebookInstanceRequest method.
+//	req, resp := client.CreateNotebookInstanceRequest(params)
 //
-//    // Example sending a request using the CreateNotebookInstanceRequest method.
-//    req, resp := client.CreateNotebookInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateNotebookInstance
 func (c *SageMaker) CreateNotebookInstanceRequest(input *CreateNotebookInstanceInput) (req *request.Request, output *CreateNotebookInstanceOutput) {
@@ -3452,9 +3435,9 @@ func (c *SageMaker) CreateNotebookInstanceRequest(input *CreateNotebookInstanceI
 // API operation CreateNotebookInstance for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateNotebookInstance
 func (c *SageMaker) CreateNotebookInstance(input *CreateNotebookInstanceInput) (*CreateNotebookInstanceOutput, error) {
@@ -3494,14 +3477,13 @@ const opCreateNotebookInstanceLifecycleConfig = "CreateNotebookInstanceLifecycle
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateNotebookInstanceLifecycleConfigRequest method.
+//	req, resp := client.CreateNotebookInstanceLifecycleConfigRequest(params)
 //
-//    // Example sending a request using the CreateNotebookInstanceLifecycleConfigRequest method.
-//    req, resp := client.CreateNotebookInstanceLifecycleConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateNotebookInstanceLifecycleConfig
 func (c *SageMaker) CreateNotebookInstanceLifecycleConfigRequest(input *CreateNotebookInstanceLifecycleConfigInput) (req *request.Request, output *CreateNotebookInstanceLifecycleConfigOutput) {
@@ -3549,9 +3531,9 @@ func (c *SageMaker) CreateNotebookInstanceLifecycleConfigRequest(input *CreateNo
 // API operation CreateNotebookInstanceLifecycleConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateNotebookInstanceLifecycleConfig
 func (c *SageMaker) CreateNotebookInstanceLifecycleConfig(input *CreateNotebookInstanceLifecycleConfigInput) (*CreateNotebookInstanceLifecycleConfigOutput, error) {
@@ -3591,14 +3573,13 @@ const opCreatePipeline = "CreatePipeline"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreatePipelineRequest method.
+//	req, resp := client.CreatePipelineRequest(params)
 //
-//    // Example sending a request using the CreatePipelineRequest method.
-//    req, resp := client.CreatePipelineRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreatePipeline
 func (c *SageMaker) CreatePipelineRequest(input *CreatePipelineInput) (req *request.Request, output *CreatePipelineOutput) {
@@ -3629,12 +3610,13 @@ func (c *SageMaker) CreatePipelineRequest(input *CreatePipelineInput) (req *requ
 // API operation CreatePipeline for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceNotFound
+//     Resource being access is not found.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreatePipeline
 func (c *SageMaker) CreatePipeline(input *CreatePipelineInput) (*CreatePipelineOutput, error) {
@@ -3674,14 +3656,13 @@ const opCreatePresignedDomainUrl = "CreatePresignedDomainUrl"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreatePresignedDomainUrlRequest method.
+//	req, resp := client.CreatePresignedDomainUrlRequest(params)
 //
-//    // Example sending a request using the CreatePresignedDomainUrlRequest method.
-//    req, resp := client.CreatePresignedDomainUrlRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreatePresignedDomainUrl
 func (c *SageMaker) CreatePresignedDomainUrlRequest(input *CreatePresignedDomainUrlInput) (req *request.Request, output *CreatePresignedDomainUrlOutput) {
@@ -3732,8 +3713,8 @@ func (c *SageMaker) CreatePresignedDomainUrlRequest(input *CreatePresignedDomain
 // API operation CreatePresignedDomainUrl for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreatePresignedDomainUrl
 func (c *SageMaker) CreatePresignedDomainUrl(input *CreatePresignedDomainUrlInput) (*CreatePresignedDomainUrlOutput, error) {
@@ -3773,14 +3754,13 @@ const opCreatePresignedNotebookInstanceUrl = "CreatePresignedNotebookInstanceUrl
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreatePresignedNotebookInstanceUrlRequest method.
+//	req, resp := client.CreatePresignedNotebookInstanceUrlRequest(params)
 //
-//    // Example sending a request using the CreatePresignedNotebookInstanceUrlRequest method.
-//    req, resp := client.CreatePresignedNotebookInstanceUrlRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreatePresignedNotebookInstanceUrl
 func (c *SageMaker) CreatePresignedNotebookInstanceUrlRequest(input *CreatePresignedNotebookInstanceUrlInput) (req *request.Request, output *CreatePresignedNotebookInstanceUrlOutput) {
@@ -3867,14 +3847,13 @@ const opCreateProcessingJob = "CreateProcessingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateProcessingJobRequest method.
+//	req, resp := client.CreateProcessingJobRequest(params)
 //
-//    // Example sending a request using the CreateProcessingJobRequest method.
-//    req, resp := client.CreateProcessingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateProcessingJob
 func (c *SageMaker) CreateProcessingJobRequest(input *CreateProcessingJobInput) (req *request.Request, output *CreateProcessingJobOutput) {
@@ -3905,15 +3884,16 @@ func (c *SageMaker) CreateProcessingJobRequest(input *CreateProcessingJobInput) 
 // API operation CreateProcessingJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateProcessingJob
 func (c *SageMaker) CreateProcessingJob(input *CreateProcessingJobInput) (*CreateProcessingJobOutput, error) {
@@ -3953,14 +3933,13 @@ const opCreateProject = "CreateProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateProjectRequest method.
+//	req, resp := client.CreateProjectRequest(params)
 //
-//    // Example sending a request using the CreateProjectRequest method.
-//    req, resp := client.CreateProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateProject
 func (c *SageMaker) CreateProjectRequest(input *CreateProjectInput) (req *request.Request, output *CreateProjectOutput) {
@@ -3992,9 +3971,9 @@ func (c *SageMaker) CreateProjectRequest(input *CreateProjectInput) (req *reques
 // API operation CreateProject for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateProject
 func (c *SageMaker) CreateProject(input *CreateProjectInput) (*CreateProjectOutput, error) {
@@ -4034,14 +4013,13 @@ const opCreateStudioLifecycleConfig = "CreateStudioLifecycleConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateStudioLifecycleConfigRequest method.
+//	req, resp := client.CreateStudioLifecycleConfigRequest(params)
 //
-//    // Example sending a request using the CreateStudioLifecycleConfigRequest method.
-//    req, resp := client.CreateStudioLifecycleConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateStudioLifecycleConfig
 func (c *SageMaker) CreateStudioLifecycleConfigRequest(input *CreateStudioLifecycleConfigInput) (req *request.Request, output *CreateStudioLifecycleConfigOutput) {
@@ -4072,8 +4050,8 @@ func (c *SageMaker) CreateStudioLifecycleConfigRequest(input *CreateStudioLifecy
 // API operation CreateStudioLifecycleConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateStudioLifecycleConfig
 func (c *SageMaker) CreateStudioLifecycleConfig(input *CreateStudioLifecycleConfigInput) (*CreateStudioLifecycleConfigOutput, error) {
@@ -4113,14 +4091,13 @@ const opCreateTrainingJob = "CreateTrainingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTrainingJobRequest method.
+//	req, resp := client.CreateTrainingJobRequest(params)
 //
-//    // Example sending a request using the CreateTrainingJobRequest method.
-//    req, resp := client.CreateTrainingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateTrainingJob
 func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req *request.Request, output *CreateTrainingJobOutput) {
@@ -4151,40 +4128,40 @@ func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req
 //
 // In the request body, you provide the following:
 //
-//    * AlgorithmSpecification - Identifies the training algorithm to use.
+//   - AlgorithmSpecification - Identifies the training algorithm to use.
 //
-//    * HyperParameters - Specify these algorithm-specific parameters to enable
-//    the estimation of model parameters during training. Hyperparameters can
-//    be tuned to optimize this learning process. For a list of hyperparameters
-//    for each training algorithm provided by SageMaker, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).
+//   - HyperParameters - Specify these algorithm-specific parameters to enable
+//     the estimation of model parameters during training. Hyperparameters can
+//     be tuned to optimize this learning process. For a list of hyperparameters
+//     for each training algorithm provided by SageMaker, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).
 //
-//    * InputDataConfig - Describes the training dataset and the Amazon S3,
-//    EFS, or FSx location where it is stored.
+//   - InputDataConfig - Describes the training dataset and the Amazon S3,
+//     EFS, or FSx location where it is stored.
 //
-//    * OutputDataConfig - Identifies the Amazon S3 bucket where you want SageMaker
-//    to save the results of model training.
+//   - OutputDataConfig - Identifies the Amazon S3 bucket where you want SageMaker
+//     to save the results of model training.
 //
-//    * ResourceConfig - Identifies the resources, ML compute instances, and
-//    ML storage volumes to deploy for model training. In distributed training,
-//    you specify more than one instance.
+//   - ResourceConfig - Identifies the resources, ML compute instances, and
+//     ML storage volumes to deploy for model training. In distributed training,
+//     you specify more than one instance.
 //
-//    * EnableManagedSpotTraining - Optimize the cost of training machine learning
-//    models by up to 80% by using Amazon EC2 Spot instances. For more information,
-//    see Managed Spot Training (https://docs.aws.amazon.com/sagemaker/latest/dg/model-managed-spot-training.html).
+//   - EnableManagedSpotTraining - Optimize the cost of training machine learning
+//     models by up to 80% by using Amazon EC2 Spot instances. For more information,
+//     see Managed Spot Training (https://docs.aws.amazon.com/sagemaker/latest/dg/model-managed-spot-training.html).
 //
-//    * RoleArn - The Amazon Resource Name (ARN) that SageMaker assumes to perform
-//    tasks on your behalf during model training. You must grant this role the
-//    necessary permissions so that SageMaker can successfully complete model
-//    training.
+//   - RoleArn - The Amazon Resource Name (ARN) that SageMaker assumes to perform
+//     tasks on your behalf during model training. You must grant this role the
+//     necessary permissions so that SageMaker can successfully complete model
+//     training.
 //
-//    * StoppingCondition - To help cap training costs, use MaxRuntimeInSeconds
-//    to set a time limit for training. Use MaxWaitTimeInSeconds to specify
-//    how long a managed spot training job has to complete.
+//   - StoppingCondition - To help cap training costs, use MaxRuntimeInSeconds
+//     to set a time limit for training. Use MaxWaitTimeInSeconds to specify
+//     how long a managed spot training job has to complete.
 //
-//    * Environment - The environment variables to set in the Docker container.
+//   - Environment - The environment variables to set in the Docker container.
 //
-//    * RetryStrategy - The number of times to retry the job when the job fails
-//    due to an InternalServerError.
+//   - RetryStrategy - The number of times to retry the job when the job fails
+//     due to an InternalServerError.
 //
 // For more information about SageMaker, see How It Works (https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works.html).
 //
@@ -4196,15 +4173,16 @@ func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req
 // API operation CreateTrainingJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateTrainingJob
 func (c *SageMaker) CreateTrainingJob(input *CreateTrainingJobInput) (*CreateTrainingJobOutput, error) {
@@ -4244,14 +4222,13 @@ const opCreateTransformJob = "CreateTransformJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTransformJobRequest method.
+//	req, resp := client.CreateTransformJobRequest(params)
 //
-//    // Example sending a request using the CreateTransformJobRequest method.
-//    req, resp := client.CreateTransformJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateTransformJob
 func (c *SageMaker) CreateTransformJobRequest(input *CreateTransformJobInput) (req *request.Request, output *CreateTransformJobOutput) {
@@ -4280,22 +4257,22 @@ func (c *SageMaker) CreateTransformJobRequest(input *CreateTransformJobInput) (r
 //
 // In the request body, you provide the following:
 //
-//    * TransformJobName - Identifies the transform job. The name must be unique
-//    within an Amazon Web Services Region in an Amazon Web Services account.
+//   - TransformJobName - Identifies the transform job. The name must be unique
+//     within an Amazon Web Services Region in an Amazon Web Services account.
 //
-//    * ModelName - Identifies the model to use. ModelName must be the name
-//    of an existing Amazon SageMaker model in the same Amazon Web Services
-//    Region and Amazon Web Services account. For information on creating a
-//    model, see CreateModel (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html).
+//   - ModelName - Identifies the model to use. ModelName must be the name
+//     of an existing Amazon SageMaker model in the same Amazon Web Services
+//     Region and Amazon Web Services account. For information on creating a
+//     model, see CreateModel (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html).
 //
-//    * TransformInput - Describes the dataset to be transformed and the Amazon
-//    S3 location where it is stored.
+//   - TransformInput - Describes the dataset to be transformed and the Amazon
+//     S3 location where it is stored.
 //
-//    * TransformOutput - Identifies the Amazon S3 location where you want Amazon
-//    SageMaker to save the results from the transform job.
+//   - TransformOutput - Identifies the Amazon S3 location where you want Amazon
+//     SageMaker to save the results from the transform job.
 //
-//    * TransformResources - Identifies the ML compute instances for the transform
-//    job.
+//   - TransformResources - Identifies the ML compute instances for the transform
+//     job.
 //
 // For more information about how batch transformation works, see Batch Transform
 // (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html).
@@ -4308,15 +4285,16 @@ func (c *SageMaker) CreateTransformJobRequest(input *CreateTransformJobInput) (r
 // API operation CreateTransformJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateTransformJob
 func (c *SageMaker) CreateTransformJob(input *CreateTransformJobInput) (*CreateTransformJobOutput, error) {
@@ -4356,14 +4334,13 @@ const opCreateTrial = "CreateTrial"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTrialRequest method.
+//	req, resp := client.CreateTrialRequest(params)
 //
-//    // Example sending a request using the CreateTrialRequest method.
-//    req, resp := client.CreateTrialRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateTrial
 func (c *SageMaker) CreateTrialRequest(input *CreateTrialInput) (req *request.Request, output *CreateTrialOutput) {
@@ -4408,12 +4385,13 @@ func (c *SageMaker) CreateTrialRequest(input *CreateTrialInput) (req *request.Re
 // API operation CreateTrial for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceNotFound
+//     Resource being access is not found.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateTrial
 func (c *SageMaker) CreateTrial(input *CreateTrialInput) (*CreateTrialOutput, error) {
@@ -4453,14 +4431,13 @@ const opCreateTrialComponent = "CreateTrialComponent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTrialComponentRequest method.
+//	req, resp := client.CreateTrialComponentRequest(params)
 //
-//    // Example sending a request using the CreateTrialComponentRequest method.
-//    req, resp := client.CreateTrialComponentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateTrialComponent
 func (c *SageMaker) CreateTrialComponentRequest(input *CreateTrialComponentInput) (req *request.Request, output *CreateTrialComponentOutput) {
@@ -4504,9 +4481,9 @@ func (c *SageMaker) CreateTrialComponentRequest(input *CreateTrialComponentInput
 // API operation CreateTrialComponent for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateTrialComponent
 func (c *SageMaker) CreateTrialComponent(input *CreateTrialComponentInput) (*CreateTrialComponentOutput, error) {
@@ -4546,14 +4523,13 @@ const opCreateUserProfile = "CreateUserProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateUserProfileRequest method.
+//	req, resp := client.CreateUserProfileRequest(params)
 //
-//    // Example sending a request using the CreateUserProfileRequest method.
-//    req, resp := client.CreateUserProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateUserProfile
 func (c *SageMaker) CreateUserProfileRequest(input *CreateUserProfileInput) (req *request.Request, output *CreateUserProfileOutput) {
@@ -4591,12 +4567,13 @@ func (c *SageMaker) CreateUserProfileRequest(input *CreateUserProfileInput) (req
 // API operation CreateUserProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
 //
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateUserProfile
 func (c *SageMaker) CreateUserProfile(input *CreateUserProfileInput) (*CreateUserProfileOutput, error) {
@@ -4636,14 +4613,13 @@ const opCreateWorkforce = "CreateWorkforce"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateWorkforceRequest method.
+//	req, resp := client.CreateWorkforceRequest(params)
 //
-//    // Example sending a request using the CreateWorkforceRequest method.
-//    req, resp := client.CreateWorkforceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateWorkforce
 func (c *SageMaker) CreateWorkforceRequest(input *CreateWorkforceInput) (req *request.Request, output *CreateWorkforceOutput) {
@@ -4727,14 +4703,13 @@ const opCreateWorkteam = "CreateWorkteam"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateWorkteamRequest method.
+//	req, resp := client.CreateWorkteamRequest(params)
 //
-//    // Example sending a request using the CreateWorkteamRequest method.
-//    req, resp := client.CreateWorkteamRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateWorkteam
 func (c *SageMaker) CreateWorkteamRequest(input *CreateWorkteamInput) (req *request.Request, output *CreateWorkteamOutput) {
@@ -4769,12 +4744,13 @@ func (c *SageMaker) CreateWorkteamRequest(input *CreateWorkteamInput) (req *requ
 // API operation CreateWorkteam for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateWorkteam
 func (c *SageMaker) CreateWorkteam(input *CreateWorkteamInput) (*CreateWorkteamOutput, error) {
@@ -4814,14 +4790,13 @@ const opDeleteAction = "DeleteAction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteActionRequest method.
+//	req, resp := client.DeleteActionRequest(params)
 //
-//    // Example sending a request using the DeleteActionRequest method.
-//    req, resp := client.DeleteActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteAction
 func (c *SageMaker) DeleteActionRequest(input *DeleteActionInput) (req *request.Request, output *DeleteActionOutput) {
@@ -4852,8 +4827,8 @@ func (c *SageMaker) DeleteActionRequest(input *DeleteActionInput) (req *request.
 // API operation DeleteAction for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteAction
 func (c *SageMaker) DeleteAction(input *DeleteActionInput) (*DeleteActionOutput, error) {
@@ -4893,14 +4868,13 @@ const opDeleteAlgorithm = "DeleteAlgorithm"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAlgorithmRequest method.
+//	req, resp := client.DeleteAlgorithmRequest(params)
 //
-//    // Example sending a request using the DeleteAlgorithmRequest method.
-//    req, resp := client.DeleteAlgorithmRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteAlgorithm
 func (c *SageMaker) DeleteAlgorithmRequest(input *DeleteAlgorithmInput) (req *request.Request, output *DeleteAlgorithmOutput) {
@@ -4968,14 +4942,13 @@ const opDeleteApp = "DeleteApp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAppRequest method.
+//	req, resp := client.DeleteAppRequest(params)
 //
-//    // Example sending a request using the DeleteAppRequest method.
-//    req, resp := client.DeleteAppRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteApp
 func (c *SageMaker) DeleteAppRequest(input *DeleteAppInput) (req *request.Request, output *DeleteAppOutput) {
@@ -5007,11 +4980,12 @@ func (c *SageMaker) DeleteAppRequest(input *DeleteAppInput) (req *request.Reques
 // API operation DeleteApp for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteApp
 func (c *SageMaker) DeleteApp(input *DeleteAppInput) (*DeleteAppOutput, error) {
@@ -5051,14 +5025,13 @@ const opDeleteAppImageConfig = "DeleteAppImageConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAppImageConfigRequest method.
+//	req, resp := client.DeleteAppImageConfigRequest(params)
 //
-//    // Example sending a request using the DeleteAppImageConfigRequest method.
-//    req, resp := client.DeleteAppImageConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteAppImageConfig
 func (c *SageMaker) DeleteAppImageConfigRequest(input *DeleteAppImageConfigInput) (req *request.Request, output *DeleteAppImageConfigOutput) {
@@ -5090,8 +5063,8 @@ func (c *SageMaker) DeleteAppImageConfigRequest(input *DeleteAppImageConfigInput
 // API operation DeleteAppImageConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteAppImageConfig
 func (c *SageMaker) DeleteAppImageConfig(input *DeleteAppImageConfigInput) (*DeleteAppImageConfigOutput, error) {
@@ -5131,14 +5104,13 @@ const opDeleteArtifact = "DeleteArtifact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteArtifactRequest method.
+//	req, resp := client.DeleteArtifactRequest(params)
 //
-//    // Example sending a request using the DeleteArtifactRequest method.
-//    req, resp := client.DeleteArtifactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteArtifact
 func (c *SageMaker) DeleteArtifactRequest(input *DeleteArtifactInput) (req *request.Request, output *DeleteArtifactOutput) {
@@ -5169,8 +5141,8 @@ func (c *SageMaker) DeleteArtifactRequest(input *DeleteArtifactInput) (req *requ
 // API operation DeleteArtifact for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteArtifact
 func (c *SageMaker) DeleteArtifact(input *DeleteArtifactInput) (*DeleteArtifactOutput, error) {
@@ -5210,14 +5182,13 @@ const opDeleteAssociation = "DeleteAssociation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAssociationRequest method.
+//	req, resp := client.DeleteAssociationRequest(params)
 //
-//    // Example sending a request using the DeleteAssociationRequest method.
-//    req, resp := client.DeleteAssociationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteAssociation
 func (c *SageMaker) DeleteAssociationRequest(input *DeleteAssociationInput) (req *request.Request, output *DeleteAssociationOutput) {
@@ -5248,8 +5219,8 @@ func (c *SageMaker) DeleteAssociationRequest(input *DeleteAssociationInput) (req
 // API operation DeleteAssociation for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteAssociation
 func (c *SageMaker) DeleteAssociation(input *DeleteAssociationInput) (*DeleteAssociationOutput, error) {
@@ -5289,14 +5260,13 @@ const opDeleteCodeRepository = "DeleteCodeRepository"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteCodeRepositoryRequest method.
+//	req, resp := client.DeleteCodeRepositoryRequest(params)
 //
-//    // Example sending a request using the DeleteCodeRepositoryRequest method.
-//    req, resp := client.DeleteCodeRepositoryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteCodeRepository
 func (c *SageMaker) DeleteCodeRepositoryRequest(input *DeleteCodeRepositoryInput) (req *request.Request, output *DeleteCodeRepositoryOutput) {
@@ -5364,14 +5334,13 @@ const opDeleteContext = "DeleteContext"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteContextRequest method.
+//	req, resp := client.DeleteContextRequest(params)
 //
-//    // Example sending a request using the DeleteContextRequest method.
-//    req, resp := client.DeleteContextRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteContext
 func (c *SageMaker) DeleteContextRequest(input *DeleteContextInput) (req *request.Request, output *DeleteContextOutput) {
@@ -5402,8 +5371,8 @@ func (c *SageMaker) DeleteContextRequest(input *DeleteContextInput) (req *reques
 // API operation DeleteContext for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteContext
 func (c *SageMaker) DeleteContext(input *DeleteContextInput) (*DeleteContextOutput, error) {
@@ -5443,14 +5412,13 @@ const opDeleteDataQualityJobDefinition = "DeleteDataQualityJobDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDataQualityJobDefinitionRequest method.
+//	req, resp := client.DeleteDataQualityJobDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteDataQualityJobDefinitionRequest method.
-//    req, resp := client.DeleteDataQualityJobDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteDataQualityJobDefinition
 func (c *SageMaker) DeleteDataQualityJobDefinitionRequest(input *DeleteDataQualityJobDefinitionInput) (req *request.Request, output *DeleteDataQualityJobDefinitionOutput) {
@@ -5482,8 +5450,8 @@ func (c *SageMaker) DeleteDataQualityJobDefinitionRequest(input *DeleteDataQuali
 // API operation DeleteDataQualityJobDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteDataQualityJobDefinition
 func (c *SageMaker) DeleteDataQualityJobDefinition(input *DeleteDataQualityJobDefinitionInput) (*DeleteDataQualityJobDefinitionOutput, error) {
@@ -5523,14 +5491,13 @@ const opDeleteDeviceFleet = "DeleteDeviceFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDeviceFleetRequest method.
+//	req, resp := client.DeleteDeviceFleetRequest(params)
 //
-//    // Example sending a request using the DeleteDeviceFleetRequest method.
-//    req, resp := client.DeleteDeviceFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteDeviceFleet
 func (c *SageMaker) DeleteDeviceFleetRequest(input *DeleteDeviceFleetInput) (req *request.Request, output *DeleteDeviceFleetOutput) {
@@ -5562,8 +5529,8 @@ func (c *SageMaker) DeleteDeviceFleetRequest(input *DeleteDeviceFleetInput) (req
 // API operation DeleteDeviceFleet for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteDeviceFleet
 func (c *SageMaker) DeleteDeviceFleet(input *DeleteDeviceFleetInput) (*DeleteDeviceFleetOutput, error) {
@@ -5603,14 +5570,13 @@ const opDeleteDomain = "DeleteDomain"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDomainRequest method.
+//	req, resp := client.DeleteDomainRequest(params)
 //
-//    // Example sending a request using the DeleteDomainRequest method.
-//    req, resp := client.DeleteDomainRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteDomain
 func (c *SageMaker) DeleteDomainRequest(input *DeleteDomainInput) (req *request.Request, output *DeleteDomainOutput) {
@@ -5645,11 +5611,12 @@ func (c *SageMaker) DeleteDomainRequest(input *DeleteDomainInput) (req *request.
 // API operation DeleteDomain for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteDomain
 func (c *SageMaker) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutput, error) {
@@ -5689,14 +5656,13 @@ const opDeleteEdgeDeploymentPlan = "DeleteEdgeDeploymentPlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEdgeDeploymentPlanRequest method.
+//	req, resp := client.DeleteEdgeDeploymentPlanRequest(params)
 //
-//    // Example sending a request using the DeleteEdgeDeploymentPlanRequest method.
-//    req, resp := client.DeleteEdgeDeploymentPlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteEdgeDeploymentPlan
 func (c *SageMaker) DeleteEdgeDeploymentPlanRequest(input *DeleteEdgeDeploymentPlanInput) (req *request.Request, output *DeleteEdgeDeploymentPlanOutput) {
@@ -5729,8 +5695,8 @@ func (c *SageMaker) DeleteEdgeDeploymentPlanRequest(input *DeleteEdgeDeploymentP
 // API operation DeleteEdgeDeploymentPlan for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteEdgeDeploymentPlan
 func (c *SageMaker) DeleteEdgeDeploymentPlan(input *DeleteEdgeDeploymentPlanInput) (*DeleteEdgeDeploymentPlanOutput, error) {
@@ -5770,14 +5736,13 @@ const opDeleteEdgeDeploymentStage = "DeleteEdgeDeploymentStage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEdgeDeploymentStageRequest method.
+//	req, resp := client.DeleteEdgeDeploymentStageRequest(params)
 //
-//    // Example sending a request using the DeleteEdgeDeploymentStageRequest method.
-//    req, resp := client.DeleteEdgeDeploymentStageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteEdgeDeploymentStage
 func (c *SageMaker) DeleteEdgeDeploymentStageRequest(input *DeleteEdgeDeploymentStageInput) (req *request.Request, output *DeleteEdgeDeploymentStageOutput) {
@@ -5809,8 +5774,8 @@ func (c *SageMaker) DeleteEdgeDeploymentStageRequest(input *DeleteEdgeDeployment
 // API operation DeleteEdgeDeploymentStage for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteEdgeDeploymentStage
 func (c *SageMaker) DeleteEdgeDeploymentStage(input *DeleteEdgeDeploymentStageInput) (*DeleteEdgeDeploymentStageOutput, error) {
@@ -5850,14 +5815,13 @@ const opDeleteEndpoint = "DeleteEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEndpointRequest method.
+//	req, resp := client.DeleteEndpointRequest(params)
 //
-//    // Example sending a request using the DeleteEndpointRequest method.
-//    req, resp := client.DeleteEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteEndpoint
 func (c *SageMaker) DeleteEndpointRequest(input *DeleteEndpointInput) (req *request.Request, output *DeleteEndpointOutput) {
@@ -5936,14 +5900,13 @@ const opDeleteEndpointConfig = "DeleteEndpointConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEndpointConfigRequest method.
+//	req, resp := client.DeleteEndpointConfigRequest(params)
 //
-//    // Example sending a request using the DeleteEndpointConfigRequest method.
-//    req, resp := client.DeleteEndpointConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteEndpointConfig
 func (c *SageMaker) DeleteEndpointConfigRequest(input *DeleteEndpointConfigInput) (req *request.Request, output *DeleteEndpointConfigOutput) {
@@ -6020,14 +5983,13 @@ const opDeleteExperiment = "DeleteExperiment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteExperimentRequest method.
+//	req, resp := client.DeleteExperimentRequest(params)
 //
-//    // Example sending a request using the DeleteExperimentRequest method.
-//    req, resp := client.DeleteExperimentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteExperiment
 func (c *SageMaker) DeleteExperimentRequest(input *DeleteExperimentInput) (req *request.Request, output *DeleteExperimentOutput) {
@@ -6060,8 +6022,8 @@ func (c *SageMaker) DeleteExperimentRequest(input *DeleteExperimentInput) (req *
 // API operation DeleteExperiment for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteExperiment
 func (c *SageMaker) DeleteExperiment(input *DeleteExperimentInput) (*DeleteExperimentOutput, error) {
@@ -6101,14 +6063,13 @@ const opDeleteFeatureGroup = "DeleteFeatureGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFeatureGroupRequest method.
+//	req, resp := client.DeleteFeatureGroupRequest(params)
 //
-//    // Example sending a request using the DeleteFeatureGroupRequest method.
-//    req, resp := client.DeleteFeatureGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteFeatureGroup
 func (c *SageMaker) DeleteFeatureGroupRequest(input *DeleteFeatureGroupInput) (req *request.Request, output *DeleteFeatureGroupOutput) {
@@ -6146,8 +6107,8 @@ func (c *SageMaker) DeleteFeatureGroupRequest(input *DeleteFeatureGroupInput) (r
 // API operation DeleteFeatureGroup for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteFeatureGroup
 func (c *SageMaker) DeleteFeatureGroup(input *DeleteFeatureGroupInput) (*DeleteFeatureGroupOutput, error) {
@@ -6187,14 +6148,13 @@ const opDeleteFlowDefinition = "DeleteFlowDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFlowDefinitionRequest method.
+//	req, resp := client.DeleteFlowDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteFlowDefinitionRequest method.
-//    req, resp := client.DeleteFlowDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteFlowDefinition
 func (c *SageMaker) DeleteFlowDefinitionRequest(input *DeleteFlowDefinitionInput) (req *request.Request, output *DeleteFlowDefinitionOutput) {
@@ -6226,11 +6186,12 @@ func (c *SageMaker) DeleteFlowDefinitionRequest(input *DeleteFlowDefinitionInput
 // API operation DeleteFlowDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteFlowDefinition
 func (c *SageMaker) DeleteFlowDefinition(input *DeleteFlowDefinitionInput) (*DeleteFlowDefinitionOutput, error) {
@@ -6270,14 +6231,13 @@ const opDeleteHumanTaskUi = "DeleteHumanTaskUi"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteHumanTaskUiRequest method.
+//	req, resp := client.DeleteHumanTaskUiRequest(params)
 //
-//    // Example sending a request using the DeleteHumanTaskUiRequest method.
-//    req, resp := client.DeleteHumanTaskUiRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteHumanTaskUi
 func (c *SageMaker) DeleteHumanTaskUiRequest(input *DeleteHumanTaskUiInput) (req *request.Request, output *DeleteHumanTaskUiOutput) {
@@ -6313,8 +6273,8 @@ func (c *SageMaker) DeleteHumanTaskUiRequest(input *DeleteHumanTaskUiInput) (req
 // API operation DeleteHumanTaskUi for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteHumanTaskUi
 func (c *SageMaker) DeleteHumanTaskUi(input *DeleteHumanTaskUiInput) (*DeleteHumanTaskUiOutput, error) {
@@ -6354,14 +6314,13 @@ const opDeleteImage = "DeleteImage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteImageRequest method.
+//	req, resp := client.DeleteImageRequest(params)
 //
-//    // Example sending a request using the DeleteImageRequest method.
-//    req, resp := client.DeleteImageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteImage
 func (c *SageMaker) DeleteImageRequest(input *DeleteImageInput) (req *request.Request, output *DeleteImageOutput) {
@@ -6394,11 +6353,12 @@ func (c *SageMaker) DeleteImageRequest(input *DeleteImageInput) (req *request.Re
 // API operation DeleteImage for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteImage
 func (c *SageMaker) DeleteImage(input *DeleteImageInput) (*DeleteImageOutput, error) {
@@ -6438,14 +6398,13 @@ const opDeleteImageVersion = "DeleteImageVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteImageVersionRequest method.
+//	req, resp := client.DeleteImageVersionRequest(params)
 //
-//    // Example sending a request using the DeleteImageVersionRequest method.
-//    req, resp := client.DeleteImageVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteImageVersion
 func (c *SageMaker) DeleteImageVersionRequest(input *DeleteImageVersionInput) (req *request.Request, output *DeleteImageVersionOutput) {
@@ -6478,11 +6437,12 @@ func (c *SageMaker) DeleteImageVersionRequest(input *DeleteImageVersionInput) (r
 // API operation DeleteImageVersion for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteImageVersion
 func (c *SageMaker) DeleteImageVersion(input *DeleteImageVersionInput) (*DeleteImageVersionOutput, error) {
@@ -6522,14 +6482,13 @@ const opDeleteModel = "DeleteModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteModelRequest method.
+//	req, resp := client.DeleteModelRequest(params)
 //
-//    // Example sending a request using the DeleteModelRequest method.
-//    req, resp := client.DeleteModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModel
 func (c *SageMaker) DeleteModelRequest(input *DeleteModelInput) (req *request.Request, output *DeleteModelOutput) {
@@ -6600,14 +6559,13 @@ const opDeleteModelBiasJobDefinition = "DeleteModelBiasJobDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteModelBiasJobDefinitionRequest method.
+//	req, resp := client.DeleteModelBiasJobDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteModelBiasJobDefinitionRequest method.
-//    req, resp := client.DeleteModelBiasJobDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelBiasJobDefinition
 func (c *SageMaker) DeleteModelBiasJobDefinitionRequest(input *DeleteModelBiasJobDefinitionInput) (req *request.Request, output *DeleteModelBiasJobDefinitionOutput) {
@@ -6639,8 +6597,8 @@ func (c *SageMaker) DeleteModelBiasJobDefinitionRequest(input *DeleteModelBiasJo
 // API operation DeleteModelBiasJobDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelBiasJobDefinition
 func (c *SageMaker) DeleteModelBiasJobDefinition(input *DeleteModelBiasJobDefinitionInput) (*DeleteModelBiasJobDefinitionOutput, error) {
@@ -6680,14 +6638,13 @@ const opDeleteModelExplainabilityJobDefinition = "DeleteModelExplainabilityJobDe
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteModelExplainabilityJobDefinitionRequest method.
+//	req, resp := client.DeleteModelExplainabilityJobDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteModelExplainabilityJobDefinitionRequest method.
-//    req, resp := client.DeleteModelExplainabilityJobDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelExplainabilityJobDefinition
 func (c *SageMaker) DeleteModelExplainabilityJobDefinitionRequest(input *DeleteModelExplainabilityJobDefinitionInput) (req *request.Request, output *DeleteModelExplainabilityJobDefinitionOutput) {
@@ -6719,8 +6676,8 @@ func (c *SageMaker) DeleteModelExplainabilityJobDefinitionRequest(input *DeleteM
 // API operation DeleteModelExplainabilityJobDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelExplainabilityJobDefinition
 func (c *SageMaker) DeleteModelExplainabilityJobDefinition(input *DeleteModelExplainabilityJobDefinitionInput) (*DeleteModelExplainabilityJobDefinitionOutput, error) {
@@ -6760,14 +6717,13 @@ const opDeleteModelPackage = "DeleteModelPackage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteModelPackageRequest method.
+//	req, resp := client.DeleteModelPackageRequest(params)
 //
-//    // Example sending a request using the DeleteModelPackageRequest method.
-//    req, resp := client.DeleteModelPackageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelPackage
 func (c *SageMaker) DeleteModelPackageRequest(input *DeleteModelPackageInput) (req *request.Request, output *DeleteModelPackageOutput) {
@@ -6803,9 +6759,9 @@ func (c *SageMaker) DeleteModelPackageRequest(input *DeleteModelPackageInput) (r
 // API operation DeleteModelPackage for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   There was a conflict when you attempted to modify a SageMaker entity such
-//   as an Experiment or Artifact.
+//   - ConflictException
+//     There was a conflict when you attempted to modify a SageMaker entity such
+//     as an Experiment or Artifact.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelPackage
 func (c *SageMaker) DeleteModelPackage(input *DeleteModelPackageInput) (*DeleteModelPackageOutput, error) {
@@ -6845,14 +6801,13 @@ const opDeleteModelPackageGroup = "DeleteModelPackageGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteModelPackageGroupRequest method.
+//	req, resp := client.DeleteModelPackageGroupRequest(params)
 //
-//    // Example sending a request using the DeleteModelPackageGroupRequest method.
-//    req, resp := client.DeleteModelPackageGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelPackageGroup
 func (c *SageMaker) DeleteModelPackageGroupRequest(input *DeleteModelPackageGroupInput) (req *request.Request, output *DeleteModelPackageGroupOutput) {
@@ -6884,9 +6839,9 @@ func (c *SageMaker) DeleteModelPackageGroupRequest(input *DeleteModelPackageGrou
 // API operation DeleteModelPackageGroup for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   There was a conflict when you attempted to modify a SageMaker entity such
-//   as an Experiment or Artifact.
+//   - ConflictException
+//     There was a conflict when you attempted to modify a SageMaker entity such
+//     as an Experiment or Artifact.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelPackageGroup
 func (c *SageMaker) DeleteModelPackageGroup(input *DeleteModelPackageGroupInput) (*DeleteModelPackageGroupOutput, error) {
@@ -6926,14 +6881,13 @@ const opDeleteModelPackageGroupPolicy = "DeleteModelPackageGroupPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteModelPackageGroupPolicyRequest method.
+//	req, resp := client.DeleteModelPackageGroupPolicyRequest(params)
 //
-//    // Example sending a request using the DeleteModelPackageGroupPolicyRequest method.
-//    req, resp := client.DeleteModelPackageGroupPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelPackageGroupPolicy
 func (c *SageMaker) DeleteModelPackageGroupPolicyRequest(input *DeleteModelPackageGroupPolicyInput) (req *request.Request, output *DeleteModelPackageGroupPolicyOutput) {
@@ -7001,14 +6955,13 @@ const opDeleteModelQualityJobDefinition = "DeleteModelQualityJobDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteModelQualityJobDefinitionRequest method.
+//	req, resp := client.DeleteModelQualityJobDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteModelQualityJobDefinitionRequest method.
-//    req, resp := client.DeleteModelQualityJobDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelQualityJobDefinition
 func (c *SageMaker) DeleteModelQualityJobDefinitionRequest(input *DeleteModelQualityJobDefinitionInput) (req *request.Request, output *DeleteModelQualityJobDefinitionOutput) {
@@ -7040,8 +6993,8 @@ func (c *SageMaker) DeleteModelQualityJobDefinitionRequest(input *DeleteModelQua
 // API operation DeleteModelQualityJobDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelQualityJobDefinition
 func (c *SageMaker) DeleteModelQualityJobDefinition(input *DeleteModelQualityJobDefinitionInput) (*DeleteModelQualityJobDefinitionOutput, error) {
@@ -7081,14 +7034,13 @@ const opDeleteMonitoringSchedule = "DeleteMonitoringSchedule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteMonitoringScheduleRequest method.
+//	req, resp := client.DeleteMonitoringScheduleRequest(params)
 //
-//    // Example sending a request using the DeleteMonitoringScheduleRequest method.
-//    req, resp := client.DeleteMonitoringScheduleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteMonitoringSchedule
 func (c *SageMaker) DeleteMonitoringScheduleRequest(input *DeleteMonitoringScheduleInput) (req *request.Request, output *DeleteMonitoringScheduleOutput) {
@@ -7122,8 +7074,8 @@ func (c *SageMaker) DeleteMonitoringScheduleRequest(input *DeleteMonitoringSched
 // API operation DeleteMonitoringSchedule for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteMonitoringSchedule
 func (c *SageMaker) DeleteMonitoringSchedule(input *DeleteMonitoringScheduleInput) (*DeleteMonitoringScheduleOutput, error) {
@@ -7163,14 +7115,13 @@ const opDeleteNotebookInstance = "DeleteNotebookInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteNotebookInstanceRequest method.
+//	req, resp := client.DeleteNotebookInstanceRequest(params)
 //
-//    // Example sending a request using the DeleteNotebookInstanceRequest method.
-//    req, resp := client.DeleteNotebookInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteNotebookInstance
 func (c *SageMaker) DeleteNotebookInstanceRequest(input *DeleteNotebookInstanceInput) (req *request.Request, output *DeleteNotebookInstanceOutput) {
@@ -7243,14 +7194,13 @@ const opDeleteNotebookInstanceLifecycleConfig = "DeleteNotebookInstanceLifecycle
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteNotebookInstanceLifecycleConfigRequest method.
+//	req, resp := client.DeleteNotebookInstanceLifecycleConfigRequest(params)
 //
-//    // Example sending a request using the DeleteNotebookInstanceLifecycleConfigRequest method.
-//    req, resp := client.DeleteNotebookInstanceLifecycleConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteNotebookInstanceLifecycleConfig
 func (c *SageMaker) DeleteNotebookInstanceLifecycleConfigRequest(input *DeleteNotebookInstanceLifecycleConfigInput) (req *request.Request, output *DeleteNotebookInstanceLifecycleConfigOutput) {
@@ -7318,14 +7268,13 @@ const opDeletePipeline = "DeletePipeline"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeletePipelineRequest method.
+//	req, resp := client.DeletePipelineRequest(params)
 //
-//    // Example sending a request using the DeletePipelineRequest method.
-//    req, resp := client.DeletePipelineRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeletePipeline
 func (c *SageMaker) DeletePipelineRequest(input *DeletePipelineInput) (req *request.Request, output *DeletePipelineOutput) {
@@ -7359,8 +7308,8 @@ func (c *SageMaker) DeletePipelineRequest(input *DeletePipelineInput) (req *requ
 // API operation DeletePipeline for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeletePipeline
 func (c *SageMaker) DeletePipeline(input *DeletePipelineInput) (*DeletePipelineOutput, error) {
@@ -7400,14 +7349,13 @@ const opDeleteProject = "DeleteProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteProjectRequest method.
+//	req, resp := client.DeleteProjectRequest(params)
 //
-//    // Example sending a request using the DeleteProjectRequest method.
-//    req, resp := client.DeleteProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteProject
 func (c *SageMaker) DeleteProjectRequest(input *DeleteProjectInput) (req *request.Request, output *DeleteProjectOutput) {
@@ -7439,9 +7387,9 @@ func (c *SageMaker) DeleteProjectRequest(input *DeleteProjectInput) (req *reques
 // API operation DeleteProject for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   There was a conflict when you attempted to modify a SageMaker entity such
-//   as an Experiment or Artifact.
+//   - ConflictException
+//     There was a conflict when you attempted to modify a SageMaker entity such
+//     as an Experiment or Artifact.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteProject
 func (c *SageMaker) DeleteProject(input *DeleteProjectInput) (*DeleteProjectOutput, error) {
@@ -7481,14 +7429,13 @@ const opDeleteStudioLifecycleConfig = "DeleteStudioLifecycleConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteStudioLifecycleConfigRequest method.
+//	req, resp := client.DeleteStudioLifecycleConfigRequest(params)
 //
-//    // Example sending a request using the DeleteStudioLifecycleConfigRequest method.
-//    req, resp := client.DeleteStudioLifecycleConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteStudioLifecycleConfig
 func (c *SageMaker) DeleteStudioLifecycleConfigRequest(input *DeleteStudioLifecycleConfigInput) (req *request.Request, output *DeleteStudioLifecycleConfigOutput) {
@@ -7523,11 +7470,12 @@ func (c *SageMaker) DeleteStudioLifecycleConfigRequest(input *DeleteStudioLifecy
 // API operation DeleteStudioLifecycleConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
 //
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceNotFound
+//     Resource being access is not found.
+//
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteStudioLifecycleConfig
 func (c *SageMaker) DeleteStudioLifecycleConfig(input *DeleteStudioLifecycleConfigInput) (*DeleteStudioLifecycleConfigOutput, error) {
@@ -7567,14 +7515,13 @@ const opDeleteTags = "DeleteTags"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteTagsRequest method.
+//	req, resp := client.DeleteTagsRequest(params)
 //
-//    // Example sending a request using the DeleteTagsRequest method.
-//    req, resp := client.DeleteTagsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteTags
 func (c *SageMaker) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, output *DeleteTagsOutput) {
@@ -7652,14 +7599,13 @@ const opDeleteTrial = "DeleteTrial"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteTrialRequest method.
+//	req, resp := client.DeleteTrialRequest(params)
 //
-//    // Example sending a request using the DeleteTrialRequest method.
-//    req, resp := client.DeleteTrialRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteTrial
 func (c *SageMaker) DeleteTrialRequest(input *DeleteTrialInput) (req *request.Request, output *DeleteTrialOutput) {
@@ -7692,8 +7638,8 @@ func (c *SageMaker) DeleteTrialRequest(input *DeleteTrialInput) (req *request.Re
 // API operation DeleteTrial for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteTrial
 func (c *SageMaker) DeleteTrial(input *DeleteTrialInput) (*DeleteTrialOutput, error) {
@@ -7733,14 +7679,13 @@ const opDeleteTrialComponent = "DeleteTrialComponent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteTrialComponentRequest method.
+//	req, resp := client.DeleteTrialComponentRequest(params)
 //
-//    // Example sending a request using the DeleteTrialComponentRequest method.
-//    req, resp := client.DeleteTrialComponentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteTrialComponent
 func (c *SageMaker) DeleteTrialComponentRequest(input *DeleteTrialComponentInput) (req *request.Request, output *DeleteTrialComponentOutput) {
@@ -7773,8 +7718,8 @@ func (c *SageMaker) DeleteTrialComponentRequest(input *DeleteTrialComponentInput
 // API operation DeleteTrialComponent for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteTrialComponent
 func (c *SageMaker) DeleteTrialComponent(input *DeleteTrialComponentInput) (*DeleteTrialComponentOutput, error) {
@@ -7814,14 +7759,13 @@ const opDeleteUserProfile = "DeleteUserProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteUserProfileRequest method.
+//	req, resp := client.DeleteUserProfileRequest(params)
 //
-//    // Example sending a request using the DeleteUserProfileRequest method.
-//    req, resp := client.DeleteUserProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteUserProfile
 func (c *SageMaker) DeleteUserProfileRequest(input *DeleteUserProfileInput) (req *request.Request, output *DeleteUserProfileOutput) {
@@ -7854,11 +7798,12 @@ func (c *SageMaker) DeleteUserProfileRequest(input *DeleteUserProfileInput) (req
 // API operation DeleteUserProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteUserProfile
 func (c *SageMaker) DeleteUserProfile(input *DeleteUserProfileInput) (*DeleteUserProfileOutput, error) {
@@ -7898,14 +7843,13 @@ const opDeleteWorkforce = "DeleteWorkforce"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteWorkforceRequest method.
+//	req, resp := client.DeleteWorkforceRequest(params)
 //
-//    // Example sending a request using the DeleteWorkforceRequest method.
-//    req, resp := client.DeleteWorkforceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteWorkforce
 func (c *SageMaker) DeleteWorkforceRequest(input *DeleteWorkforceInput) (req *request.Request, output *DeleteWorkforceOutput) {
@@ -7982,14 +7926,13 @@ const opDeleteWorkteam = "DeleteWorkteam"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteWorkteamRequest method.
+//	req, resp := client.DeleteWorkteamRequest(params)
 //
-//    // Example sending a request using the DeleteWorkteamRequest method.
-//    req, resp := client.DeleteWorkteamRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteWorkteam
 func (c *SageMaker) DeleteWorkteamRequest(input *DeleteWorkteamInput) (req *request.Request, output *DeleteWorkteamOutput) {
@@ -8020,9 +7963,9 @@ func (c *SageMaker) DeleteWorkteamRequest(input *DeleteWorkteamInput) (req *requ
 // API operation DeleteWorkteam for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteWorkteam
 func (c *SageMaker) DeleteWorkteam(input *DeleteWorkteamInput) (*DeleteWorkteamOutput, error) {
@@ -8062,14 +8005,13 @@ const opDeregisterDevices = "DeregisterDevices"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeregisterDevicesRequest method.
+//	req, resp := client.DeregisterDevicesRequest(params)
 //
-//    // Example sending a request using the DeregisterDevicesRequest method.
-//    req, resp := client.DeregisterDevicesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeregisterDevices
 func (c *SageMaker) DeregisterDevicesRequest(input *DeregisterDevicesInput) (req *request.Request, output *DeregisterDevicesOutput) {
@@ -8138,14 +8080,13 @@ const opDescribeAction = "DescribeAction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeActionRequest method.
+//	req, resp := client.DescribeActionRequest(params)
 //
-//    // Example sending a request using the DescribeActionRequest method.
-//    req, resp := client.DescribeActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeAction
 func (c *SageMaker) DescribeActionRequest(input *DescribeActionInput) (req *request.Request, output *DescribeActionOutput) {
@@ -8176,8 +8117,8 @@ func (c *SageMaker) DescribeActionRequest(input *DescribeActionInput) (req *requ
 // API operation DescribeAction for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeAction
 func (c *SageMaker) DescribeAction(input *DescribeActionInput) (*DescribeActionOutput, error) {
@@ -8217,14 +8158,13 @@ const opDescribeAlgorithm = "DescribeAlgorithm"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAlgorithmRequest method.
+//	req, resp := client.DescribeAlgorithmRequest(params)
 //
-//    // Example sending a request using the DescribeAlgorithmRequest method.
-//    req, resp := client.DescribeAlgorithmRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeAlgorithm
 func (c *SageMaker) DescribeAlgorithmRequest(input *DescribeAlgorithmInput) (req *request.Request, output *DescribeAlgorithmOutput) {
@@ -8291,14 +8231,13 @@ const opDescribeApp = "DescribeApp"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAppRequest method.
+//	req, resp := client.DescribeAppRequest(params)
 //
-//    // Example sending a request using the DescribeAppRequest method.
-//    req, resp := client.DescribeAppRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeApp
 func (c *SageMaker) DescribeAppRequest(input *DescribeAppInput) (req *request.Request, output *DescribeAppOutput) {
@@ -8329,8 +8268,8 @@ func (c *SageMaker) DescribeAppRequest(input *DescribeAppInput) (req *request.Re
 // API operation DescribeApp for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeApp
 func (c *SageMaker) DescribeApp(input *DescribeAppInput) (*DescribeAppOutput, error) {
@@ -8370,14 +8309,13 @@ const opDescribeAppImageConfig = "DescribeAppImageConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAppImageConfigRequest method.
+//	req, resp := client.DescribeAppImageConfigRequest(params)
 //
-//    // Example sending a request using the DescribeAppImageConfigRequest method.
-//    req, resp := client.DescribeAppImageConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeAppImageConfig
 func (c *SageMaker) DescribeAppImageConfigRequest(input *DescribeAppImageConfigInput) (req *request.Request, output *DescribeAppImageConfigOutput) {
@@ -8408,8 +8346,8 @@ func (c *SageMaker) DescribeAppImageConfigRequest(input *DescribeAppImageConfigI
 // API operation DescribeAppImageConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeAppImageConfig
 func (c *SageMaker) DescribeAppImageConfig(input *DescribeAppImageConfigInput) (*DescribeAppImageConfigOutput, error) {
@@ -8449,14 +8387,13 @@ const opDescribeArtifact = "DescribeArtifact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeArtifactRequest method.
+//	req, resp := client.DescribeArtifactRequest(params)
 //
-//    // Example sending a request using the DescribeArtifactRequest method.
-//    req, resp := client.DescribeArtifactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeArtifact
 func (c *SageMaker) DescribeArtifactRequest(input *DescribeArtifactInput) (req *request.Request, output *DescribeArtifactOutput) {
@@ -8487,8 +8424,8 @@ func (c *SageMaker) DescribeArtifactRequest(input *DescribeArtifactInput) (req *
 // API operation DescribeArtifact for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeArtifact
 func (c *SageMaker) DescribeArtifact(input *DescribeArtifactInput) (*DescribeArtifactOutput, error) {
@@ -8528,14 +8465,13 @@ const opDescribeAutoMLJob = "DescribeAutoMLJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAutoMLJobRequest method.
+//	req, resp := client.DescribeAutoMLJobRequest(params)
 //
-//    // Example sending a request using the DescribeAutoMLJobRequest method.
-//    req, resp := client.DescribeAutoMLJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeAutoMLJob
 func (c *SageMaker) DescribeAutoMLJobRequest(input *DescribeAutoMLJobInput) (req *request.Request, output *DescribeAutoMLJobOutput) {
@@ -8566,8 +8502,8 @@ func (c *SageMaker) DescribeAutoMLJobRequest(input *DescribeAutoMLJobInput) (req
 // API operation DescribeAutoMLJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeAutoMLJob
 func (c *SageMaker) DescribeAutoMLJob(input *DescribeAutoMLJobInput) (*DescribeAutoMLJobOutput, error) {
@@ -8607,14 +8543,13 @@ const opDescribeCodeRepository = "DescribeCodeRepository"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeCodeRepositoryRequest method.
+//	req, resp := client.DescribeCodeRepositoryRequest(params)
 //
-//    // Example sending a request using the DescribeCodeRepositoryRequest method.
-//    req, resp := client.DescribeCodeRepositoryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeCodeRepository
 func (c *SageMaker) DescribeCodeRepositoryRequest(input *DescribeCodeRepositoryInput) (req *request.Request, output *DescribeCodeRepositoryOutput) {
@@ -8681,14 +8616,13 @@ const opDescribeCompilationJob = "DescribeCompilationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeCompilationJobRequest method.
+//	req, resp := client.DescribeCompilationJobRequest(params)
 //
-//    // Example sending a request using the DescribeCompilationJobRequest method.
-//    req, resp := client.DescribeCompilationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeCompilationJob
 func (c *SageMaker) DescribeCompilationJobRequest(input *DescribeCompilationJobInput) (req *request.Request, output *DescribeCompilationJobOutput) {
@@ -8722,8 +8656,8 @@ func (c *SageMaker) DescribeCompilationJobRequest(input *DescribeCompilationJobI
 // API operation DescribeCompilationJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeCompilationJob
 func (c *SageMaker) DescribeCompilationJob(input *DescribeCompilationJobInput) (*DescribeCompilationJobOutput, error) {
@@ -8763,14 +8697,13 @@ const opDescribeContext = "DescribeContext"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeContextRequest method.
+//	req, resp := client.DescribeContextRequest(params)
 //
-//    // Example sending a request using the DescribeContextRequest method.
-//    req, resp := client.DescribeContextRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeContext
 func (c *SageMaker) DescribeContextRequest(input *DescribeContextInput) (req *request.Request, output *DescribeContextOutput) {
@@ -8801,8 +8734,8 @@ func (c *SageMaker) DescribeContextRequest(input *DescribeContextInput) (req *re
 // API operation DescribeContext for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeContext
 func (c *SageMaker) DescribeContext(input *DescribeContextInput) (*DescribeContextOutput, error) {
@@ -8842,14 +8775,13 @@ const opDescribeDataQualityJobDefinition = "DescribeDataQualityJobDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDataQualityJobDefinitionRequest method.
+//	req, resp := client.DescribeDataQualityJobDefinitionRequest(params)
 //
-//    // Example sending a request using the DescribeDataQualityJobDefinitionRequest method.
-//    req, resp := client.DescribeDataQualityJobDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeDataQualityJobDefinition
 func (c *SageMaker) DescribeDataQualityJobDefinitionRequest(input *DescribeDataQualityJobDefinitionInput) (req *request.Request, output *DescribeDataQualityJobDefinitionOutput) {
@@ -8880,8 +8812,8 @@ func (c *SageMaker) DescribeDataQualityJobDefinitionRequest(input *DescribeDataQ
 // API operation DescribeDataQualityJobDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeDataQualityJobDefinition
 func (c *SageMaker) DescribeDataQualityJobDefinition(input *DescribeDataQualityJobDefinitionInput) (*DescribeDataQualityJobDefinitionOutput, error) {
@@ -8921,14 +8853,13 @@ const opDescribeDevice = "DescribeDevice"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDeviceRequest method.
+//	req, resp := client.DescribeDeviceRequest(params)
 //
-//    // Example sending a request using the DescribeDeviceRequest method.
-//    req, resp := client.DescribeDeviceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeDevice
 func (c *SageMaker) DescribeDeviceRequest(input *DescribeDeviceInput) (req *request.Request, output *DescribeDeviceOutput) {
@@ -8959,8 +8890,8 @@ func (c *SageMaker) DescribeDeviceRequest(input *DescribeDeviceInput) (req *requ
 // API operation DescribeDevice for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeDevice
 func (c *SageMaker) DescribeDevice(input *DescribeDeviceInput) (*DescribeDeviceOutput, error) {
@@ -9000,14 +8931,13 @@ const opDescribeDeviceFleet = "DescribeDeviceFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDeviceFleetRequest method.
+//	req, resp := client.DescribeDeviceFleetRequest(params)
 //
-//    // Example sending a request using the DescribeDeviceFleetRequest method.
-//    req, resp := client.DescribeDeviceFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeDeviceFleet
 func (c *SageMaker) DescribeDeviceFleetRequest(input *DescribeDeviceFleetInput) (req *request.Request, output *DescribeDeviceFleetOutput) {
@@ -9038,8 +8968,8 @@ func (c *SageMaker) DescribeDeviceFleetRequest(input *DescribeDeviceFleetInput) 
 // API operation DescribeDeviceFleet for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeDeviceFleet
 func (c *SageMaker) DescribeDeviceFleet(input *DescribeDeviceFleetInput) (*DescribeDeviceFleetOutput, error) {
@@ -9079,14 +9009,13 @@ const opDescribeDomain = "DescribeDomain"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDomainRequest method.
+//	req, resp := client.DescribeDomainRequest(params)
 //
-//    // Example sending a request using the DescribeDomainRequest method.
-//    req, resp := client.DescribeDomainRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeDomain
 func (c *SageMaker) DescribeDomainRequest(input *DescribeDomainInput) (req *request.Request, output *DescribeDomainOutput) {
@@ -9117,8 +9046,8 @@ func (c *SageMaker) DescribeDomainRequest(input *DescribeDomainInput) (req *requ
 // API operation DescribeDomain for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeDomain
 func (c *SageMaker) DescribeDomain(input *DescribeDomainInput) (*DescribeDomainOutput, error) {
@@ -9158,14 +9087,13 @@ const opDescribeEdgeDeploymentPlan = "DescribeEdgeDeploymentPlan"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEdgeDeploymentPlanRequest method.
+//	req, resp := client.DescribeEdgeDeploymentPlanRequest(params)
 //
-//    // Example sending a request using the DescribeEdgeDeploymentPlanRequest method.
-//    req, resp := client.DescribeEdgeDeploymentPlanRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeEdgeDeploymentPlan
 func (c *SageMaker) DescribeEdgeDeploymentPlanRequest(input *DescribeEdgeDeploymentPlanInput) (req *request.Request, output *DescribeEdgeDeploymentPlanOutput) {
@@ -9196,8 +9124,8 @@ func (c *SageMaker) DescribeEdgeDeploymentPlanRequest(input *DescribeEdgeDeploym
 // API operation DescribeEdgeDeploymentPlan for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeEdgeDeploymentPlan
 func (c *SageMaker) DescribeEdgeDeploymentPlan(input *DescribeEdgeDeploymentPlanInput) (*DescribeEdgeDeploymentPlanOutput, error) {
@@ -9237,14 +9165,13 @@ const opDescribeEdgePackagingJob = "DescribeEdgePackagingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEdgePackagingJobRequest method.
+//	req, resp := client.DescribeEdgePackagingJobRequest(params)
 //
-//    // Example sending a request using the DescribeEdgePackagingJobRequest method.
-//    req, resp := client.DescribeEdgePackagingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeEdgePackagingJob
 func (c *SageMaker) DescribeEdgePackagingJobRequest(input *DescribeEdgePackagingJobInput) (req *request.Request, output *DescribeEdgePackagingJobOutput) {
@@ -9275,8 +9202,8 @@ func (c *SageMaker) DescribeEdgePackagingJobRequest(input *DescribeEdgePackaging
 // API operation DescribeEdgePackagingJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeEdgePackagingJob
 func (c *SageMaker) DescribeEdgePackagingJob(input *DescribeEdgePackagingJobInput) (*DescribeEdgePackagingJobOutput, error) {
@@ -9316,14 +9243,13 @@ const opDescribeEndpoint = "DescribeEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEndpointRequest method.
+//	req, resp := client.DescribeEndpointRequest(params)
 //
-//    // Example sending a request using the DescribeEndpointRequest method.
-//    req, resp := client.DescribeEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeEndpoint
 func (c *SageMaker) DescribeEndpointRequest(input *DescribeEndpointInput) (req *request.Request, output *DescribeEndpointOutput) {
@@ -9390,14 +9316,13 @@ const opDescribeEndpointConfig = "DescribeEndpointConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEndpointConfigRequest method.
+//	req, resp := client.DescribeEndpointConfigRequest(params)
 //
-//    // Example sending a request using the DescribeEndpointConfigRequest method.
-//    req, resp := client.DescribeEndpointConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeEndpointConfig
 func (c *SageMaker) DescribeEndpointConfigRequest(input *DescribeEndpointConfigInput) (req *request.Request, output *DescribeEndpointConfigOutput) {
@@ -9465,14 +9390,13 @@ const opDescribeExperiment = "DescribeExperiment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeExperimentRequest method.
+//	req, resp := client.DescribeExperimentRequest(params)
 //
-//    // Example sending a request using the DescribeExperimentRequest method.
-//    req, resp := client.DescribeExperimentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeExperiment
 func (c *SageMaker) DescribeExperimentRequest(input *DescribeExperimentInput) (req *request.Request, output *DescribeExperimentOutput) {
@@ -9503,8 +9427,8 @@ func (c *SageMaker) DescribeExperimentRequest(input *DescribeExperimentInput) (r
 // API operation DescribeExperiment for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeExperiment
 func (c *SageMaker) DescribeExperiment(input *DescribeExperimentInput) (*DescribeExperimentOutput, error) {
@@ -9544,14 +9468,13 @@ const opDescribeFeatureGroup = "DescribeFeatureGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFeatureGroupRequest method.
+//	req, resp := client.DescribeFeatureGroupRequest(params)
 //
-//    // Example sending a request using the DescribeFeatureGroupRequest method.
-//    req, resp := client.DescribeFeatureGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeFeatureGroup
 func (c *SageMaker) DescribeFeatureGroupRequest(input *DescribeFeatureGroupInput) (req *request.Request, output *DescribeFeatureGroupOutput) {
@@ -9584,8 +9507,8 @@ func (c *SageMaker) DescribeFeatureGroupRequest(input *DescribeFeatureGroupInput
 // API operation DescribeFeatureGroup for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeFeatureGroup
 func (c *SageMaker) DescribeFeatureGroup(input *DescribeFeatureGroupInput) (*DescribeFeatureGroupOutput, error) {
@@ -9625,14 +9548,13 @@ const opDescribeFeatureMetadata = "DescribeFeatureMetadata"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFeatureMetadataRequest method.
+//	req, resp := client.DescribeFeatureMetadataRequest(params)
 //
-//    // Example sending a request using the DescribeFeatureMetadataRequest method.
-//    req, resp := client.DescribeFeatureMetadataRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeFeatureMetadata
 func (c *SageMaker) DescribeFeatureMetadataRequest(input *DescribeFeatureMetadataInput) (req *request.Request, output *DescribeFeatureMetadataOutput) {
@@ -9663,8 +9585,8 @@ func (c *SageMaker) DescribeFeatureMetadataRequest(input *DescribeFeatureMetadat
 // API operation DescribeFeatureMetadata for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeFeatureMetadata
 func (c *SageMaker) DescribeFeatureMetadata(input *DescribeFeatureMetadataInput) (*DescribeFeatureMetadataOutput, error) {
@@ -9704,14 +9626,13 @@ const opDescribeFlowDefinition = "DescribeFlowDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFlowDefinitionRequest method.
+//	req, resp := client.DescribeFlowDefinitionRequest(params)
 //
-//    // Example sending a request using the DescribeFlowDefinitionRequest method.
-//    req, resp := client.DescribeFlowDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeFlowDefinition
 func (c *SageMaker) DescribeFlowDefinitionRequest(input *DescribeFlowDefinitionInput) (req *request.Request, output *DescribeFlowDefinitionOutput) {
@@ -9742,8 +9663,8 @@ func (c *SageMaker) DescribeFlowDefinitionRequest(input *DescribeFlowDefinitionI
 // API operation DescribeFlowDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeFlowDefinition
 func (c *SageMaker) DescribeFlowDefinition(input *DescribeFlowDefinitionInput) (*DescribeFlowDefinitionOutput, error) {
@@ -9783,14 +9704,13 @@ const opDescribeHumanTaskUi = "DescribeHumanTaskUi"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeHumanTaskUiRequest method.
+//	req, resp := client.DescribeHumanTaskUiRequest(params)
 //
-//    // Example sending a request using the DescribeHumanTaskUiRequest method.
-//    req, resp := client.DescribeHumanTaskUiRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeHumanTaskUi
 func (c *SageMaker) DescribeHumanTaskUiRequest(input *DescribeHumanTaskUiInput) (req *request.Request, output *DescribeHumanTaskUiOutput) {
@@ -9822,8 +9742,8 @@ func (c *SageMaker) DescribeHumanTaskUiRequest(input *DescribeHumanTaskUiInput) 
 // API operation DescribeHumanTaskUi for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeHumanTaskUi
 func (c *SageMaker) DescribeHumanTaskUi(input *DescribeHumanTaskUiInput) (*DescribeHumanTaskUiOutput, error) {
@@ -9863,14 +9783,13 @@ const opDescribeHyperParameterTuningJob = "DescribeHyperParameterTuningJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeHyperParameterTuningJobRequest method.
+//	req, resp := client.DescribeHyperParameterTuningJobRequest(params)
 //
-//    // Example sending a request using the DescribeHyperParameterTuningJobRequest method.
-//    req, resp := client.DescribeHyperParameterTuningJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeHyperParameterTuningJob
 func (c *SageMaker) DescribeHyperParameterTuningJobRequest(input *DescribeHyperParameterTuningJobInput) (req *request.Request, output *DescribeHyperParameterTuningJobOutput) {
@@ -9901,8 +9820,8 @@ func (c *SageMaker) DescribeHyperParameterTuningJobRequest(input *DescribeHyperP
 // API operation DescribeHyperParameterTuningJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeHyperParameterTuningJob
 func (c *SageMaker) DescribeHyperParameterTuningJob(input *DescribeHyperParameterTuningJobInput) (*DescribeHyperParameterTuningJobOutput, error) {
@@ -9942,14 +9861,13 @@ const opDescribeImage = "DescribeImage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeImageRequest method.
+//	req, resp := client.DescribeImageRequest(params)
 //
-//    // Example sending a request using the DescribeImageRequest method.
-//    req, resp := client.DescribeImageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeImage
 func (c *SageMaker) DescribeImageRequest(input *DescribeImageInput) (req *request.Request, output *DescribeImageOutput) {
@@ -9980,8 +9898,8 @@ func (c *SageMaker) DescribeImageRequest(input *DescribeImageInput) (req *reques
 // API operation DescribeImage for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeImage
 func (c *SageMaker) DescribeImage(input *DescribeImageInput) (*DescribeImageOutput, error) {
@@ -10021,14 +9939,13 @@ const opDescribeImageVersion = "DescribeImageVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeImageVersionRequest method.
+//	req, resp := client.DescribeImageVersionRequest(params)
 //
-//    // Example sending a request using the DescribeImageVersionRequest method.
-//    req, resp := client.DescribeImageVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeImageVersion
 func (c *SageMaker) DescribeImageVersionRequest(input *DescribeImageVersionInput) (req *request.Request, output *DescribeImageVersionOutput) {
@@ -10059,8 +9976,8 @@ func (c *SageMaker) DescribeImageVersionRequest(input *DescribeImageVersionInput
 // API operation DescribeImageVersion for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeImageVersion
 func (c *SageMaker) DescribeImageVersion(input *DescribeImageVersionInput) (*DescribeImageVersionOutput, error) {
@@ -10100,14 +10017,13 @@ const opDescribeInferenceRecommendationsJob = "DescribeInferenceRecommendationsJ
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeInferenceRecommendationsJobRequest method.
+//	req, resp := client.DescribeInferenceRecommendationsJobRequest(params)
 //
-//    // Example sending a request using the DescribeInferenceRecommendationsJobRequest method.
-//    req, resp := client.DescribeInferenceRecommendationsJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeInferenceRecommendationsJob
 func (c *SageMaker) DescribeInferenceRecommendationsJobRequest(input *DescribeInferenceRecommendationsJobInput) (req *request.Request, output *DescribeInferenceRecommendationsJobOutput) {
@@ -10139,8 +10055,8 @@ func (c *SageMaker) DescribeInferenceRecommendationsJobRequest(input *DescribeIn
 // API operation DescribeInferenceRecommendationsJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeInferenceRecommendationsJob
 func (c *SageMaker) DescribeInferenceRecommendationsJob(input *DescribeInferenceRecommendationsJobInput) (*DescribeInferenceRecommendationsJobOutput, error) {
@@ -10180,14 +10096,13 @@ const opDescribeLabelingJob = "DescribeLabelingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeLabelingJobRequest method.
+//	req, resp := client.DescribeLabelingJobRequest(params)
 //
-//    // Example sending a request using the DescribeLabelingJobRequest method.
-//    req, resp := client.DescribeLabelingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeLabelingJob
 func (c *SageMaker) DescribeLabelingJobRequest(input *DescribeLabelingJobInput) (req *request.Request, output *DescribeLabelingJobOutput) {
@@ -10218,8 +10133,8 @@ func (c *SageMaker) DescribeLabelingJobRequest(input *DescribeLabelingJobInput) 
 // API operation DescribeLabelingJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeLabelingJob
 func (c *SageMaker) DescribeLabelingJob(input *DescribeLabelingJobInput) (*DescribeLabelingJobOutput, error) {
@@ -10259,14 +10174,13 @@ const opDescribeLineageGroup = "DescribeLineageGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeLineageGroupRequest method.
+//	req, resp := client.DescribeLineageGroupRequest(params)
 //
-//    // Example sending a request using the DescribeLineageGroupRequest method.
-//    req, resp := client.DescribeLineageGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeLineageGroup
 func (c *SageMaker) DescribeLineageGroupRequest(input *DescribeLineageGroupInput) (req *request.Request, output *DescribeLineageGroupOutput) {
@@ -10299,8 +10213,8 @@ func (c *SageMaker) DescribeLineageGroupRequest(input *DescribeLineageGroupInput
 // API operation DescribeLineageGroup for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeLineageGroup
 func (c *SageMaker) DescribeLineageGroup(input *DescribeLineageGroupInput) (*DescribeLineageGroupOutput, error) {
@@ -10340,14 +10254,13 @@ const opDescribeModel = "DescribeModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeModelRequest method.
+//	req, resp := client.DescribeModelRequest(params)
 //
-//    // Example sending a request using the DescribeModelRequest method.
-//    req, resp := client.DescribeModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModel
 func (c *SageMaker) DescribeModelRequest(input *DescribeModelInput) (req *request.Request, output *DescribeModelOutput) {
@@ -10414,14 +10327,13 @@ const opDescribeModelBiasJobDefinition = "DescribeModelBiasJobDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeModelBiasJobDefinitionRequest method.
+//	req, resp := client.DescribeModelBiasJobDefinitionRequest(params)
 //
-//    // Example sending a request using the DescribeModelBiasJobDefinitionRequest method.
-//    req, resp := client.DescribeModelBiasJobDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModelBiasJobDefinition
 func (c *SageMaker) DescribeModelBiasJobDefinitionRequest(input *DescribeModelBiasJobDefinitionInput) (req *request.Request, output *DescribeModelBiasJobDefinitionOutput) {
@@ -10452,8 +10364,8 @@ func (c *SageMaker) DescribeModelBiasJobDefinitionRequest(input *DescribeModelBi
 // API operation DescribeModelBiasJobDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModelBiasJobDefinition
 func (c *SageMaker) DescribeModelBiasJobDefinition(input *DescribeModelBiasJobDefinitionInput) (*DescribeModelBiasJobDefinitionOutput, error) {
@@ -10493,14 +10405,13 @@ const opDescribeModelExplainabilityJobDefinition = "DescribeModelExplainabilityJ
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeModelExplainabilityJobDefinitionRequest method.
+//	req, resp := client.DescribeModelExplainabilityJobDefinitionRequest(params)
 //
-//    // Example sending a request using the DescribeModelExplainabilityJobDefinitionRequest method.
-//    req, resp := client.DescribeModelExplainabilityJobDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModelExplainabilityJobDefinition
 func (c *SageMaker) DescribeModelExplainabilityJobDefinitionRequest(input *DescribeModelExplainabilityJobDefinitionInput) (req *request.Request, output *DescribeModelExplainabilityJobDefinitionOutput) {
@@ -10531,8 +10442,8 @@ func (c *SageMaker) DescribeModelExplainabilityJobDefinitionRequest(input *Descr
 // API operation DescribeModelExplainabilityJobDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModelExplainabilityJobDefinition
 func (c *SageMaker) DescribeModelExplainabilityJobDefinition(input *DescribeModelExplainabilityJobDefinitionInput) (*DescribeModelExplainabilityJobDefinitionOutput, error) {
@@ -10572,14 +10483,13 @@ const opDescribeModelPackage = "DescribeModelPackage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeModelPackageRequest method.
+//	req, resp := client.DescribeModelPackageRequest(params)
 //
-//    // Example sending a request using the DescribeModelPackageRequest method.
-//    req, resp := client.DescribeModelPackageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModelPackage
 func (c *SageMaker) DescribeModelPackageRequest(input *DescribeModelPackageInput) (req *request.Request, output *DescribeModelPackageOutput) {
@@ -10650,14 +10560,13 @@ const opDescribeModelPackageGroup = "DescribeModelPackageGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeModelPackageGroupRequest method.
+//	req, resp := client.DescribeModelPackageGroupRequest(params)
 //
-//    // Example sending a request using the DescribeModelPackageGroupRequest method.
-//    req, resp := client.DescribeModelPackageGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModelPackageGroup
 func (c *SageMaker) DescribeModelPackageGroupRequest(input *DescribeModelPackageGroupInput) (req *request.Request, output *DescribeModelPackageGroupOutput) {
@@ -10724,14 +10633,13 @@ const opDescribeModelQualityJobDefinition = "DescribeModelQualityJobDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeModelQualityJobDefinitionRequest method.
+//	req, resp := client.DescribeModelQualityJobDefinitionRequest(params)
 //
-//    // Example sending a request using the DescribeModelQualityJobDefinitionRequest method.
-//    req, resp := client.DescribeModelQualityJobDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModelQualityJobDefinition
 func (c *SageMaker) DescribeModelQualityJobDefinitionRequest(input *DescribeModelQualityJobDefinitionInput) (req *request.Request, output *DescribeModelQualityJobDefinitionOutput) {
@@ -10762,8 +10670,8 @@ func (c *SageMaker) DescribeModelQualityJobDefinitionRequest(input *DescribeMode
 // API operation DescribeModelQualityJobDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModelQualityJobDefinition
 func (c *SageMaker) DescribeModelQualityJobDefinition(input *DescribeModelQualityJobDefinitionInput) (*DescribeModelQualityJobDefinitionOutput, error) {
@@ -10803,14 +10711,13 @@ const opDescribeMonitoringSchedule = "DescribeMonitoringSchedule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeMonitoringScheduleRequest method.
+//	req, resp := client.DescribeMonitoringScheduleRequest(params)
 //
-//    // Example sending a request using the DescribeMonitoringScheduleRequest method.
-//    req, resp := client.DescribeMonitoringScheduleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeMonitoringSchedule
 func (c *SageMaker) DescribeMonitoringScheduleRequest(input *DescribeMonitoringScheduleInput) (req *request.Request, output *DescribeMonitoringScheduleOutput) {
@@ -10841,8 +10748,8 @@ func (c *SageMaker) DescribeMonitoringScheduleRequest(input *DescribeMonitoringS
 // API operation DescribeMonitoringSchedule for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeMonitoringSchedule
 func (c *SageMaker) DescribeMonitoringSchedule(input *DescribeMonitoringScheduleInput) (*DescribeMonitoringScheduleOutput, error) {
@@ -10882,14 +10789,13 @@ const opDescribeNotebookInstance = "DescribeNotebookInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeNotebookInstanceRequest method.
+//	req, resp := client.DescribeNotebookInstanceRequest(params)
 //
-//    // Example sending a request using the DescribeNotebookInstanceRequest method.
-//    req, resp := client.DescribeNotebookInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeNotebookInstance
 func (c *SageMaker) DescribeNotebookInstanceRequest(input *DescribeNotebookInstanceInput) (req *request.Request, output *DescribeNotebookInstanceOutput) {
@@ -10956,14 +10862,13 @@ const opDescribeNotebookInstanceLifecycleConfig = "DescribeNotebookInstanceLifec
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeNotebookInstanceLifecycleConfigRequest method.
+//	req, resp := client.DescribeNotebookInstanceLifecycleConfigRequest(params)
 //
-//    // Example sending a request using the DescribeNotebookInstanceLifecycleConfigRequest method.
-//    req, resp := client.DescribeNotebookInstanceLifecycleConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeNotebookInstanceLifecycleConfig
 func (c *SageMaker) DescribeNotebookInstanceLifecycleConfigRequest(input *DescribeNotebookInstanceLifecycleConfigInput) (req *request.Request, output *DescribeNotebookInstanceLifecycleConfigOutput) {
@@ -11033,14 +10938,13 @@ const opDescribePipeline = "DescribePipeline"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePipelineRequest method.
+//	req, resp := client.DescribePipelineRequest(params)
 //
-//    // Example sending a request using the DescribePipelineRequest method.
-//    req, resp := client.DescribePipelineRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribePipeline
 func (c *SageMaker) DescribePipelineRequest(input *DescribePipelineInput) (req *request.Request, output *DescribePipelineOutput) {
@@ -11071,8 +10975,8 @@ func (c *SageMaker) DescribePipelineRequest(input *DescribePipelineInput) (req *
 // API operation DescribePipeline for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribePipeline
 func (c *SageMaker) DescribePipeline(input *DescribePipelineInput) (*DescribePipelineOutput, error) {
@@ -11112,14 +11016,13 @@ const opDescribePipelineDefinitionForExecution = "DescribePipelineDefinitionForE
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePipelineDefinitionForExecutionRequest method.
+//	req, resp := client.DescribePipelineDefinitionForExecutionRequest(params)
 //
-//    // Example sending a request using the DescribePipelineDefinitionForExecutionRequest method.
-//    req, resp := client.DescribePipelineDefinitionForExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribePipelineDefinitionForExecution
 func (c *SageMaker) DescribePipelineDefinitionForExecutionRequest(input *DescribePipelineDefinitionForExecutionInput) (req *request.Request, output *DescribePipelineDefinitionForExecutionOutput) {
@@ -11150,8 +11053,8 @@ func (c *SageMaker) DescribePipelineDefinitionForExecutionRequest(input *Describ
 // API operation DescribePipelineDefinitionForExecution for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribePipelineDefinitionForExecution
 func (c *SageMaker) DescribePipelineDefinitionForExecution(input *DescribePipelineDefinitionForExecutionInput) (*DescribePipelineDefinitionForExecutionOutput, error) {
@@ -11191,14 +11094,13 @@ const opDescribePipelineExecution = "DescribePipelineExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePipelineExecutionRequest method.
+//	req, resp := client.DescribePipelineExecutionRequest(params)
 //
-//    // Example sending a request using the DescribePipelineExecutionRequest method.
-//    req, resp := client.DescribePipelineExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribePipelineExecution
 func (c *SageMaker) DescribePipelineExecutionRequest(input *DescribePipelineExecutionInput) (req *request.Request, output *DescribePipelineExecutionOutput) {
@@ -11229,8 +11131,8 @@ func (c *SageMaker) DescribePipelineExecutionRequest(input *DescribePipelineExec
 // API operation DescribePipelineExecution for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribePipelineExecution
 func (c *SageMaker) DescribePipelineExecution(input *DescribePipelineExecutionInput) (*DescribePipelineExecutionOutput, error) {
@@ -11270,14 +11172,13 @@ const opDescribeProcessingJob = "DescribeProcessingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProcessingJobRequest method.
+//	req, resp := client.DescribeProcessingJobRequest(params)
 //
-//    // Example sending a request using the DescribeProcessingJobRequest method.
-//    req, resp := client.DescribeProcessingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeProcessingJob
 func (c *SageMaker) DescribeProcessingJobRequest(input *DescribeProcessingJobInput) (req *request.Request, output *DescribeProcessingJobOutput) {
@@ -11308,8 +11209,8 @@ func (c *SageMaker) DescribeProcessingJobRequest(input *DescribeProcessingJobInp
 // API operation DescribeProcessingJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeProcessingJob
 func (c *SageMaker) DescribeProcessingJob(input *DescribeProcessingJobInput) (*DescribeProcessingJobOutput, error) {
@@ -11349,14 +11250,13 @@ const opDescribeProject = "DescribeProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeProjectRequest method.
+//	req, resp := client.DescribeProjectRequest(params)
 //
-//    // Example sending a request using the DescribeProjectRequest method.
-//    req, resp := client.DescribeProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeProject
 func (c *SageMaker) DescribeProjectRequest(input *DescribeProjectInput) (req *request.Request, output *DescribeProjectOutput) {
@@ -11423,14 +11323,13 @@ const opDescribeStudioLifecycleConfig = "DescribeStudioLifecycleConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeStudioLifecycleConfigRequest method.
+//	req, resp := client.DescribeStudioLifecycleConfigRequest(params)
 //
-//    // Example sending a request using the DescribeStudioLifecycleConfigRequest method.
-//    req, resp := client.DescribeStudioLifecycleConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeStudioLifecycleConfig
 func (c *SageMaker) DescribeStudioLifecycleConfigRequest(input *DescribeStudioLifecycleConfigInput) (req *request.Request, output *DescribeStudioLifecycleConfigOutput) {
@@ -11461,8 +11360,8 @@ func (c *SageMaker) DescribeStudioLifecycleConfigRequest(input *DescribeStudioLi
 // API operation DescribeStudioLifecycleConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeStudioLifecycleConfig
 func (c *SageMaker) DescribeStudioLifecycleConfig(input *DescribeStudioLifecycleConfigInput) (*DescribeStudioLifecycleConfigOutput, error) {
@@ -11502,14 +11401,13 @@ const opDescribeSubscribedWorkteam = "DescribeSubscribedWorkteam"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSubscribedWorkteamRequest method.
+//	req, resp := client.DescribeSubscribedWorkteamRequest(params)
 //
-//    // Example sending a request using the DescribeSubscribedWorkteamRequest method.
-//    req, resp := client.DescribeSubscribedWorkteamRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeSubscribedWorkteam
 func (c *SageMaker) DescribeSubscribedWorkteamRequest(input *DescribeSubscribedWorkteamInput) (req *request.Request, output *DescribeSubscribedWorkteamOutput) {
@@ -11577,14 +11475,13 @@ const opDescribeTrainingJob = "DescribeTrainingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeTrainingJobRequest method.
+//	req, resp := client.DescribeTrainingJobRequest(params)
 //
-//    // Example sending a request using the DescribeTrainingJobRequest method.
-//    req, resp := client.DescribeTrainingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeTrainingJob
 func (c *SageMaker) DescribeTrainingJobRequest(input *DescribeTrainingJobInput) (req *request.Request, output *DescribeTrainingJobOutput) {
@@ -11620,8 +11517,8 @@ func (c *SageMaker) DescribeTrainingJobRequest(input *DescribeTrainingJobInput) 
 // API operation DescribeTrainingJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeTrainingJob
 func (c *SageMaker) DescribeTrainingJob(input *DescribeTrainingJobInput) (*DescribeTrainingJobOutput, error) {
@@ -11661,14 +11558,13 @@ const opDescribeTransformJob = "DescribeTransformJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeTransformJobRequest method.
+//	req, resp := client.DescribeTransformJobRequest(params)
 //
-//    // Example sending a request using the DescribeTransformJobRequest method.
-//    req, resp := client.DescribeTransformJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeTransformJob
 func (c *SageMaker) DescribeTransformJobRequest(input *DescribeTransformJobInput) (req *request.Request, output *DescribeTransformJobOutput) {
@@ -11699,8 +11595,8 @@ func (c *SageMaker) DescribeTransformJobRequest(input *DescribeTransformJobInput
 // API operation DescribeTransformJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeTransformJob
 func (c *SageMaker) DescribeTransformJob(input *DescribeTransformJobInput) (*DescribeTransformJobOutput, error) {
@@ -11740,14 +11636,13 @@ const opDescribeTrial = "DescribeTrial"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeTrialRequest method.
+//	req, resp := client.DescribeTrialRequest(params)
 //
-//    // Example sending a request using the DescribeTrialRequest method.
-//    req, resp := client.DescribeTrialRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeTrial
 func (c *SageMaker) DescribeTrialRequest(input *DescribeTrialInput) (req *request.Request, output *DescribeTrialOutput) {
@@ -11778,8 +11673,8 @@ func (c *SageMaker) DescribeTrialRequest(input *DescribeTrialInput) (req *reques
 // API operation DescribeTrial for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeTrial
 func (c *SageMaker) DescribeTrial(input *DescribeTrialInput) (*DescribeTrialOutput, error) {
@@ -11819,14 +11714,13 @@ const opDescribeTrialComponent = "DescribeTrialComponent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeTrialComponentRequest method.
+//	req, resp := client.DescribeTrialComponentRequest(params)
 //
-//    // Example sending a request using the DescribeTrialComponentRequest method.
-//    req, resp := client.DescribeTrialComponentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeTrialComponent
 func (c *SageMaker) DescribeTrialComponentRequest(input *DescribeTrialComponentInput) (req *request.Request, output *DescribeTrialComponentOutput) {
@@ -11857,8 +11751,8 @@ func (c *SageMaker) DescribeTrialComponentRequest(input *DescribeTrialComponentI
 // API operation DescribeTrialComponent for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeTrialComponent
 func (c *SageMaker) DescribeTrialComponent(input *DescribeTrialComponentInput) (*DescribeTrialComponentOutput, error) {
@@ -11898,14 +11792,13 @@ const opDescribeUserProfile = "DescribeUserProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeUserProfileRequest method.
+//	req, resp := client.DescribeUserProfileRequest(params)
 //
-//    // Example sending a request using the DescribeUserProfileRequest method.
-//    req, resp := client.DescribeUserProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeUserProfile
 func (c *SageMaker) DescribeUserProfileRequest(input *DescribeUserProfileInput) (req *request.Request, output *DescribeUserProfileOutput) {
@@ -11936,8 +11829,8 @@ func (c *SageMaker) DescribeUserProfileRequest(input *DescribeUserProfileInput) 
 // API operation DescribeUserProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeUserProfile
 func (c *SageMaker) DescribeUserProfile(input *DescribeUserProfileInput) (*DescribeUserProfileOutput, error) {
@@ -11977,14 +11870,13 @@ const opDescribeWorkforce = "DescribeWorkforce"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeWorkforceRequest method.
+//	req, resp := client.DescribeWorkforceRequest(params)
 //
-//    // Example sending a request using the DescribeWorkforceRequest method.
-//    req, resp := client.DescribeWorkforceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeWorkforce
 func (c *SageMaker) DescribeWorkforceRequest(input *DescribeWorkforceInput) (req *request.Request, output *DescribeWorkforceOutput) {
@@ -12056,14 +11948,13 @@ const opDescribeWorkteam = "DescribeWorkteam"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeWorkteamRequest method.
+//	req, resp := client.DescribeWorkteamRequest(params)
 //
-//    // Example sending a request using the DescribeWorkteamRequest method.
-//    req, resp := client.DescribeWorkteamRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeWorkteam
 func (c *SageMaker) DescribeWorkteamRequest(input *DescribeWorkteamInput) (req *request.Request, output *DescribeWorkteamOutput) {
@@ -12132,14 +12023,13 @@ const opDisableSagemakerServicecatalogPortfolio = "DisableSagemakerServicecatalo
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisableSagemakerServicecatalogPortfolioRequest method.
+//	req, resp := client.DisableSagemakerServicecatalogPortfolioRequest(params)
 //
-//    // Example sending a request using the DisableSagemakerServicecatalogPortfolioRequest method.
-//    req, resp := client.DisableSagemakerServicecatalogPortfolioRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DisableSagemakerServicecatalogPortfolio
 func (c *SageMaker) DisableSagemakerServicecatalogPortfolioRequest(input *DisableSagemakerServicecatalogPortfolioInput) (req *request.Request, output *DisableSagemakerServicecatalogPortfolioOutput) {
@@ -12208,14 +12098,13 @@ const opDisassociateTrialComponent = "DisassociateTrialComponent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateTrialComponentRequest method.
+//	req, resp := client.DisassociateTrialComponentRequest(params)
 //
-//    // Example sending a request using the DisassociateTrialComponentRequest method.
-//    req, resp := client.DisassociateTrialComponentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DisassociateTrialComponent
 func (c *SageMaker) DisassociateTrialComponentRequest(input *DisassociateTrialComponentInput) (req *request.Request, output *DisassociateTrialComponentOutput) {
@@ -12254,8 +12143,8 @@ func (c *SageMaker) DisassociateTrialComponentRequest(input *DisassociateTrialCo
 // API operation DisassociateTrialComponent for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DisassociateTrialComponent
 func (c *SageMaker) DisassociateTrialComponent(input *DisassociateTrialComponentInput) (*DisassociateTrialComponentOutput, error) {
@@ -12295,14 +12184,13 @@ const opEnableSagemakerServicecatalogPortfolio = "EnableSagemakerServicecatalogP
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the EnableSagemakerServicecatalogPortfolioRequest method.
+//	req, resp := client.EnableSagemakerServicecatalogPortfolioRequest(params)
 //
-//    // Example sending a request using the EnableSagemakerServicecatalogPortfolioRequest method.
-//    req, resp := client.EnableSagemakerServicecatalogPortfolioRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/EnableSagemakerServicecatalogPortfolio
 func (c *SageMaker) EnableSagemakerServicecatalogPortfolioRequest(input *EnableSagemakerServicecatalogPortfolioInput) (req *request.Request, output *EnableSagemakerServicecatalogPortfolioOutput) {
@@ -12371,14 +12259,13 @@ const opGetDeviceFleetReport = "GetDeviceFleetReport"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDeviceFleetReportRequest method.
+//	req, resp := client.GetDeviceFleetReportRequest(params)
 //
-//    // Example sending a request using the GetDeviceFleetReportRequest method.
-//    req, resp := client.GetDeviceFleetReportRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/GetDeviceFleetReport
 func (c *SageMaker) GetDeviceFleetReportRequest(input *GetDeviceFleetReportInput) (req *request.Request, output *GetDeviceFleetReportOutput) {
@@ -12445,14 +12332,13 @@ const opGetLineageGroupPolicy = "GetLineageGroupPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetLineageGroupPolicyRequest method.
+//	req, resp := client.GetLineageGroupPolicyRequest(params)
 //
-//    // Example sending a request using the GetLineageGroupPolicyRequest method.
-//    req, resp := client.GetLineageGroupPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/GetLineageGroupPolicy
 func (c *SageMaker) GetLineageGroupPolicyRequest(input *GetLineageGroupPolicyInput) (req *request.Request, output *GetLineageGroupPolicyOutput) {
@@ -12483,8 +12369,8 @@ func (c *SageMaker) GetLineageGroupPolicyRequest(input *GetLineageGroupPolicyInp
 // API operation GetLineageGroupPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/GetLineageGroupPolicy
 func (c *SageMaker) GetLineageGroupPolicy(input *GetLineageGroupPolicyInput) (*GetLineageGroupPolicyOutput, error) {
@@ -12524,14 +12410,13 @@ const opGetModelPackageGroupPolicy = "GetModelPackageGroupPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetModelPackageGroupPolicyRequest method.
+//	req, resp := client.GetModelPackageGroupPolicyRequest(params)
 //
-//    // Example sending a request using the GetModelPackageGroupPolicyRequest method.
-//    req, resp := client.GetModelPackageGroupPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/GetModelPackageGroupPolicy
 func (c *SageMaker) GetModelPackageGroupPolicyRequest(input *GetModelPackageGroupPolicyInput) (req *request.Request, output *GetModelPackageGroupPolicyOutput) {
@@ -12601,14 +12486,13 @@ const opGetSagemakerServicecatalogPortfolioStatus = "GetSagemakerServicecatalogP
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSagemakerServicecatalogPortfolioStatusRequest method.
+//	req, resp := client.GetSagemakerServicecatalogPortfolioStatusRequest(params)
 //
-//    // Example sending a request using the GetSagemakerServicecatalogPortfolioStatusRequest method.
-//    req, resp := client.GetSagemakerServicecatalogPortfolioStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/GetSagemakerServicecatalogPortfolioStatus
 func (c *SageMaker) GetSagemakerServicecatalogPortfolioStatusRequest(input *GetSagemakerServicecatalogPortfolioStatusInput) (req *request.Request, output *GetSagemakerServicecatalogPortfolioStatusOutput) {
@@ -12676,14 +12560,13 @@ const opGetSearchSuggestions = "GetSearchSuggestions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSearchSuggestionsRequest method.
+//	req, resp := client.GetSearchSuggestionsRequest(params)
 //
-//    // Example sending a request using the GetSearchSuggestionsRequest method.
-//    req, resp := client.GetSearchSuggestionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/GetSearchSuggestions
 func (c *SageMaker) GetSearchSuggestionsRequest(input *GetSearchSuggestionsInput) (req *request.Request, output *GetSearchSuggestionsOutput) {
@@ -12753,14 +12636,13 @@ const opListActions = "ListActions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListActionsRequest method.
+//	req, resp := client.ListActionsRequest(params)
 //
-//    // Example sending a request using the ListActionsRequest method.
-//    req, resp := client.ListActionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListActions
 func (c *SageMaker) ListActionsRequest(input *ListActionsInput) (req *request.Request, output *ListActionsOutput) {
@@ -12797,8 +12679,8 @@ func (c *SageMaker) ListActionsRequest(input *ListActionsInput) (req *request.Re
 // API operation ListActions for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListActions
 func (c *SageMaker) ListActions(input *ListActionsInput) (*ListActionsOutput, error) {
@@ -12830,15 +12712,14 @@ func (c *SageMaker) ListActionsWithContext(ctx aws.Context, input *ListActionsIn
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListActions operation.
-//    pageNum := 0
-//    err := client.ListActionsPages(params,
-//        func(page *sagemaker.ListActionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListActions operation.
+//	pageNum := 0
+//	err := client.ListActionsPages(params,
+//	    func(page *sagemaker.ListActionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListActionsPages(input *ListActionsInput, fn func(*ListActionsOutput, bool) bool) error {
 	return c.ListActionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -12890,14 +12771,13 @@ const opListAlgorithms = "ListAlgorithms"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAlgorithmsRequest method.
+//	req, resp := client.ListAlgorithmsRequest(params)
 //
-//    // Example sending a request using the ListAlgorithmsRequest method.
-//    req, resp := client.ListAlgorithmsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListAlgorithms
 func (c *SageMaker) ListAlgorithmsRequest(input *ListAlgorithmsInput) (req *request.Request, output *ListAlgorithmsOutput) {
@@ -12962,15 +12842,14 @@ func (c *SageMaker) ListAlgorithmsWithContext(ctx aws.Context, input *ListAlgori
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListAlgorithms operation.
-//    pageNum := 0
-//    err := client.ListAlgorithmsPages(params,
-//        func(page *sagemaker.ListAlgorithmsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListAlgorithms operation.
+//	pageNum := 0
+//	err := client.ListAlgorithmsPages(params,
+//	    func(page *sagemaker.ListAlgorithmsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListAlgorithmsPages(input *ListAlgorithmsInput, fn func(*ListAlgorithmsOutput, bool) bool) error {
 	return c.ListAlgorithmsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -13022,14 +12901,13 @@ const opListAppImageConfigs = "ListAppImageConfigs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAppImageConfigsRequest method.
+//	req, resp := client.ListAppImageConfigsRequest(params)
 //
-//    // Example sending a request using the ListAppImageConfigsRequest method.
-//    req, resp := client.ListAppImageConfigsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListAppImageConfigs
 func (c *SageMaker) ListAppImageConfigsRequest(input *ListAppImageConfigsInput) (req *request.Request, output *ListAppImageConfigsOutput) {
@@ -13096,15 +12974,14 @@ func (c *SageMaker) ListAppImageConfigsWithContext(ctx aws.Context, input *ListA
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListAppImageConfigs operation.
-//    pageNum := 0
-//    err := client.ListAppImageConfigsPages(params,
-//        func(page *sagemaker.ListAppImageConfigsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListAppImageConfigs operation.
+//	pageNum := 0
+//	err := client.ListAppImageConfigsPages(params,
+//	    func(page *sagemaker.ListAppImageConfigsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListAppImageConfigsPages(input *ListAppImageConfigsInput, fn func(*ListAppImageConfigsOutput, bool) bool) error {
 	return c.ListAppImageConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -13156,14 +13033,13 @@ const opListApps = "ListApps"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAppsRequest method.
+//	req, resp := client.ListAppsRequest(params)
 //
-//    // Example sending a request using the ListAppsRequest method.
-//    req, resp := client.ListAppsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListApps
 func (c *SageMaker) ListAppsRequest(input *ListAppsInput) (req *request.Request, output *ListAppsOutput) {
@@ -13228,15 +13104,14 @@ func (c *SageMaker) ListAppsWithContext(ctx aws.Context, input *ListAppsInput, o
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListApps operation.
-//    pageNum := 0
-//    err := client.ListAppsPages(params,
-//        func(page *sagemaker.ListAppsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListApps operation.
+//	pageNum := 0
+//	err := client.ListAppsPages(params,
+//	    func(page *sagemaker.ListAppsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListAppsPages(input *ListAppsInput, fn func(*ListAppsOutput, bool) bool) error {
 	return c.ListAppsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -13288,14 +13163,13 @@ const opListArtifacts = "ListArtifacts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListArtifactsRequest method.
+//	req, resp := client.ListArtifactsRequest(params)
 //
-//    // Example sending a request using the ListArtifactsRequest method.
-//    req, resp := client.ListArtifactsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListArtifacts
 func (c *SageMaker) ListArtifactsRequest(input *ListArtifactsInput) (req *request.Request, output *ListArtifactsOutput) {
@@ -13332,8 +13206,8 @@ func (c *SageMaker) ListArtifactsRequest(input *ListArtifactsInput) (req *reques
 // API operation ListArtifacts for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListArtifacts
 func (c *SageMaker) ListArtifacts(input *ListArtifactsInput) (*ListArtifactsOutput, error) {
@@ -13365,15 +13239,14 @@ func (c *SageMaker) ListArtifactsWithContext(ctx aws.Context, input *ListArtifac
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListArtifacts operation.
-//    pageNum := 0
-//    err := client.ListArtifactsPages(params,
-//        func(page *sagemaker.ListArtifactsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListArtifacts operation.
+//	pageNum := 0
+//	err := client.ListArtifactsPages(params,
+//	    func(page *sagemaker.ListArtifactsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListArtifactsPages(input *ListArtifactsInput, fn func(*ListArtifactsOutput, bool) bool) error {
 	return c.ListArtifactsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -13425,14 +13298,13 @@ const opListAssociations = "ListAssociations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAssociationsRequest method.
+//	req, resp := client.ListAssociationsRequest(params)
 //
-//    // Example sending a request using the ListAssociationsRequest method.
-//    req, resp := client.ListAssociationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListAssociations
 func (c *SageMaker) ListAssociationsRequest(input *ListAssociationsInput) (req *request.Request, output *ListAssociationsOutput) {
@@ -13469,8 +13341,8 @@ func (c *SageMaker) ListAssociationsRequest(input *ListAssociationsInput) (req *
 // API operation ListAssociations for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListAssociations
 func (c *SageMaker) ListAssociations(input *ListAssociationsInput) (*ListAssociationsOutput, error) {
@@ -13502,15 +13374,14 @@ func (c *SageMaker) ListAssociationsWithContext(ctx aws.Context, input *ListAsso
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListAssociations operation.
-//    pageNum := 0
-//    err := client.ListAssociationsPages(params,
-//        func(page *sagemaker.ListAssociationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListAssociations operation.
+//	pageNum := 0
+//	err := client.ListAssociationsPages(params,
+//	    func(page *sagemaker.ListAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListAssociationsPages(input *ListAssociationsInput, fn func(*ListAssociationsOutput, bool) bool) error {
 	return c.ListAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -13562,14 +13433,13 @@ const opListAutoMLJobs = "ListAutoMLJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAutoMLJobsRequest method.
+//	req, resp := client.ListAutoMLJobsRequest(params)
 //
-//    // Example sending a request using the ListAutoMLJobsRequest method.
-//    req, resp := client.ListAutoMLJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListAutoMLJobs
 func (c *SageMaker) ListAutoMLJobsRequest(input *ListAutoMLJobsInput) (req *request.Request, output *ListAutoMLJobsOutput) {
@@ -13634,15 +13504,14 @@ func (c *SageMaker) ListAutoMLJobsWithContext(ctx aws.Context, input *ListAutoML
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListAutoMLJobs operation.
-//    pageNum := 0
-//    err := client.ListAutoMLJobsPages(params,
-//        func(page *sagemaker.ListAutoMLJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListAutoMLJobs operation.
+//	pageNum := 0
+//	err := client.ListAutoMLJobsPages(params,
+//	    func(page *sagemaker.ListAutoMLJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListAutoMLJobsPages(input *ListAutoMLJobsInput, fn func(*ListAutoMLJobsOutput, bool) bool) error {
 	return c.ListAutoMLJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -13694,14 +13563,13 @@ const opListCandidatesForAutoMLJob = "ListCandidatesForAutoMLJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListCandidatesForAutoMLJobRequest method.
+//	req, resp := client.ListCandidatesForAutoMLJobRequest(params)
 //
-//    // Example sending a request using the ListCandidatesForAutoMLJobRequest method.
-//    req, resp := client.ListCandidatesForAutoMLJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListCandidatesForAutoMLJob
 func (c *SageMaker) ListCandidatesForAutoMLJobRequest(input *ListCandidatesForAutoMLJobInput) (req *request.Request, output *ListCandidatesForAutoMLJobOutput) {
@@ -13738,8 +13606,8 @@ func (c *SageMaker) ListCandidatesForAutoMLJobRequest(input *ListCandidatesForAu
 // API operation ListCandidatesForAutoMLJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListCandidatesForAutoMLJob
 func (c *SageMaker) ListCandidatesForAutoMLJob(input *ListCandidatesForAutoMLJobInput) (*ListCandidatesForAutoMLJobOutput, error) {
@@ -13771,15 +13639,14 @@ func (c *SageMaker) ListCandidatesForAutoMLJobWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListCandidatesForAutoMLJob operation.
-//    pageNum := 0
-//    err := client.ListCandidatesForAutoMLJobPages(params,
-//        func(page *sagemaker.ListCandidatesForAutoMLJobOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListCandidatesForAutoMLJob operation.
+//	pageNum := 0
+//	err := client.ListCandidatesForAutoMLJobPages(params,
+//	    func(page *sagemaker.ListCandidatesForAutoMLJobOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListCandidatesForAutoMLJobPages(input *ListCandidatesForAutoMLJobInput, fn func(*ListCandidatesForAutoMLJobOutput, bool) bool) error {
 	return c.ListCandidatesForAutoMLJobPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -13831,14 +13698,13 @@ const opListCodeRepositories = "ListCodeRepositories"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListCodeRepositoriesRequest method.
+//	req, resp := client.ListCodeRepositoriesRequest(params)
 //
-//    // Example sending a request using the ListCodeRepositoriesRequest method.
-//    req, resp := client.ListCodeRepositoriesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListCodeRepositories
 func (c *SageMaker) ListCodeRepositoriesRequest(input *ListCodeRepositoriesInput) (req *request.Request, output *ListCodeRepositoriesOutput) {
@@ -13903,15 +13769,14 @@ func (c *SageMaker) ListCodeRepositoriesWithContext(ctx aws.Context, input *List
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListCodeRepositories operation.
-//    pageNum := 0
-//    err := client.ListCodeRepositoriesPages(params,
-//        func(page *sagemaker.ListCodeRepositoriesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListCodeRepositories operation.
+//	pageNum := 0
+//	err := client.ListCodeRepositoriesPages(params,
+//	    func(page *sagemaker.ListCodeRepositoriesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListCodeRepositoriesPages(input *ListCodeRepositoriesInput, fn func(*ListCodeRepositoriesOutput, bool) bool) error {
 	return c.ListCodeRepositoriesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -13963,14 +13828,13 @@ const opListCompilationJobs = "ListCompilationJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListCompilationJobsRequest method.
+//	req, resp := client.ListCompilationJobsRequest(params)
 //
-//    // Example sending a request using the ListCompilationJobsRequest method.
-//    req, resp := client.ListCompilationJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListCompilationJobs
 func (c *SageMaker) ListCompilationJobsRequest(input *ListCompilationJobsInput) (req *request.Request, output *ListCompilationJobsOutput) {
@@ -14038,15 +13902,14 @@ func (c *SageMaker) ListCompilationJobsWithContext(ctx aws.Context, input *ListC
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListCompilationJobs operation.
-//    pageNum := 0
-//    err := client.ListCompilationJobsPages(params,
-//        func(page *sagemaker.ListCompilationJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListCompilationJobs operation.
+//	pageNum := 0
+//	err := client.ListCompilationJobsPages(params,
+//	    func(page *sagemaker.ListCompilationJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListCompilationJobsPages(input *ListCompilationJobsInput, fn func(*ListCompilationJobsOutput, bool) bool) error {
 	return c.ListCompilationJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -14098,14 +13961,13 @@ const opListContexts = "ListContexts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListContextsRequest method.
+//	req, resp := client.ListContextsRequest(params)
 //
-//    // Example sending a request using the ListContextsRequest method.
-//    req, resp := client.ListContextsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListContexts
 func (c *SageMaker) ListContextsRequest(input *ListContextsInput) (req *request.Request, output *ListContextsOutput) {
@@ -14142,8 +14004,8 @@ func (c *SageMaker) ListContextsRequest(input *ListContextsInput) (req *request.
 // API operation ListContexts for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListContexts
 func (c *SageMaker) ListContexts(input *ListContextsInput) (*ListContextsOutput, error) {
@@ -14175,15 +14037,14 @@ func (c *SageMaker) ListContextsWithContext(ctx aws.Context, input *ListContexts
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListContexts operation.
-//    pageNum := 0
-//    err := client.ListContextsPages(params,
-//        func(page *sagemaker.ListContextsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListContexts operation.
+//	pageNum := 0
+//	err := client.ListContextsPages(params,
+//	    func(page *sagemaker.ListContextsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListContextsPages(input *ListContextsInput, fn func(*ListContextsOutput, bool) bool) error {
 	return c.ListContextsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -14235,14 +14096,13 @@ const opListDataQualityJobDefinitions = "ListDataQualityJobDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDataQualityJobDefinitionsRequest method.
+//	req, resp := client.ListDataQualityJobDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListDataQualityJobDefinitionsRequest method.
-//    req, resp := client.ListDataQualityJobDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListDataQualityJobDefinitions
 func (c *SageMaker) ListDataQualityJobDefinitionsRequest(input *ListDataQualityJobDefinitionsInput) (req *request.Request, output *ListDataQualityJobDefinitionsOutput) {
@@ -14307,15 +14167,14 @@ func (c *SageMaker) ListDataQualityJobDefinitionsWithContext(ctx aws.Context, in
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDataQualityJobDefinitions operation.
-//    pageNum := 0
-//    err := client.ListDataQualityJobDefinitionsPages(params,
-//        func(page *sagemaker.ListDataQualityJobDefinitionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDataQualityJobDefinitions operation.
+//	pageNum := 0
+//	err := client.ListDataQualityJobDefinitionsPages(params,
+//	    func(page *sagemaker.ListDataQualityJobDefinitionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListDataQualityJobDefinitionsPages(input *ListDataQualityJobDefinitionsInput, fn func(*ListDataQualityJobDefinitionsOutput, bool) bool) error {
 	return c.ListDataQualityJobDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -14367,14 +14226,13 @@ const opListDeviceFleets = "ListDeviceFleets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDeviceFleetsRequest method.
+//	req, resp := client.ListDeviceFleetsRequest(params)
 //
-//    // Example sending a request using the ListDeviceFleetsRequest method.
-//    req, resp := client.ListDeviceFleetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListDeviceFleets
 func (c *SageMaker) ListDeviceFleetsRequest(input *ListDeviceFleetsInput) (req *request.Request, output *ListDeviceFleetsOutput) {
@@ -14439,15 +14297,14 @@ func (c *SageMaker) ListDeviceFleetsWithContext(ctx aws.Context, input *ListDevi
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDeviceFleets operation.
-//    pageNum := 0
-//    err := client.ListDeviceFleetsPages(params,
-//        func(page *sagemaker.ListDeviceFleetsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDeviceFleets operation.
+//	pageNum := 0
+//	err := client.ListDeviceFleetsPages(params,
+//	    func(page *sagemaker.ListDeviceFleetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListDeviceFleetsPages(input *ListDeviceFleetsInput, fn func(*ListDeviceFleetsOutput, bool) bool) error {
 	return c.ListDeviceFleetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -14499,14 +14356,13 @@ const opListDevices = "ListDevices"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDevicesRequest method.
+//	req, resp := client.ListDevicesRequest(params)
 //
-//    // Example sending a request using the ListDevicesRequest method.
-//    req, resp := client.ListDevicesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListDevices
 func (c *SageMaker) ListDevicesRequest(input *ListDevicesInput) (req *request.Request, output *ListDevicesOutput) {
@@ -14571,15 +14427,14 @@ func (c *SageMaker) ListDevicesWithContext(ctx aws.Context, input *ListDevicesIn
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDevices operation.
-//    pageNum := 0
-//    err := client.ListDevicesPages(params,
-//        func(page *sagemaker.ListDevicesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDevices operation.
+//	pageNum := 0
+//	err := client.ListDevicesPages(params,
+//	    func(page *sagemaker.ListDevicesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListDevicesPages(input *ListDevicesInput, fn func(*ListDevicesOutput, bool) bool) error {
 	return c.ListDevicesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -14631,14 +14486,13 @@ const opListDomains = "ListDomains"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDomainsRequest method.
+//	req, resp := client.ListDomainsRequest(params)
 //
-//    // Example sending a request using the ListDomainsRequest method.
-//    req, resp := client.ListDomainsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListDomains
 func (c *SageMaker) ListDomainsRequest(input *ListDomainsInput) (req *request.Request, output *ListDomainsOutput) {
@@ -14703,15 +14557,14 @@ func (c *SageMaker) ListDomainsWithContext(ctx aws.Context, input *ListDomainsIn
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDomains operation.
-//    pageNum := 0
-//    err := client.ListDomainsPages(params,
-//        func(page *sagemaker.ListDomainsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDomains operation.
+//	pageNum := 0
+//	err := client.ListDomainsPages(params,
+//	    func(page *sagemaker.ListDomainsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListDomainsPages(input *ListDomainsInput, fn func(*ListDomainsOutput, bool) bool) error {
 	return c.ListDomainsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -14763,14 +14616,13 @@ const opListEdgeDeploymentPlans = "ListEdgeDeploymentPlans"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEdgeDeploymentPlansRequest method.
+//	req, resp := client.ListEdgeDeploymentPlansRequest(params)
 //
-//    // Example sending a request using the ListEdgeDeploymentPlansRequest method.
-//    req, resp := client.ListEdgeDeploymentPlansRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListEdgeDeploymentPlans
 func (c *SageMaker) ListEdgeDeploymentPlansRequest(input *ListEdgeDeploymentPlansInput) (req *request.Request, output *ListEdgeDeploymentPlansOutput) {
@@ -14835,15 +14687,14 @@ func (c *SageMaker) ListEdgeDeploymentPlansWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEdgeDeploymentPlans operation.
-//    pageNum := 0
-//    err := client.ListEdgeDeploymentPlansPages(params,
-//        func(page *sagemaker.ListEdgeDeploymentPlansOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEdgeDeploymentPlans operation.
+//	pageNum := 0
+//	err := client.ListEdgeDeploymentPlansPages(params,
+//	    func(page *sagemaker.ListEdgeDeploymentPlansOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListEdgeDeploymentPlansPages(input *ListEdgeDeploymentPlansInput, fn func(*ListEdgeDeploymentPlansOutput, bool) bool) error {
 	return c.ListEdgeDeploymentPlansPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -14895,14 +14746,13 @@ const opListEdgePackagingJobs = "ListEdgePackagingJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEdgePackagingJobsRequest method.
+//	req, resp := client.ListEdgePackagingJobsRequest(params)
 //
-//    // Example sending a request using the ListEdgePackagingJobsRequest method.
-//    req, resp := client.ListEdgePackagingJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListEdgePackagingJobs
 func (c *SageMaker) ListEdgePackagingJobsRequest(input *ListEdgePackagingJobsInput) (req *request.Request, output *ListEdgePackagingJobsOutput) {
@@ -14967,15 +14817,14 @@ func (c *SageMaker) ListEdgePackagingJobsWithContext(ctx aws.Context, input *Lis
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEdgePackagingJobs operation.
-//    pageNum := 0
-//    err := client.ListEdgePackagingJobsPages(params,
-//        func(page *sagemaker.ListEdgePackagingJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEdgePackagingJobs operation.
+//	pageNum := 0
+//	err := client.ListEdgePackagingJobsPages(params,
+//	    func(page *sagemaker.ListEdgePackagingJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListEdgePackagingJobsPages(input *ListEdgePackagingJobsInput, fn func(*ListEdgePackagingJobsOutput, bool) bool) error {
 	return c.ListEdgePackagingJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -15027,14 +14876,13 @@ const opListEndpointConfigs = "ListEndpointConfigs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEndpointConfigsRequest method.
+//	req, resp := client.ListEndpointConfigsRequest(params)
 //
-//    // Example sending a request using the ListEndpointConfigsRequest method.
-//    req, resp := client.ListEndpointConfigsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListEndpointConfigs
 func (c *SageMaker) ListEndpointConfigsRequest(input *ListEndpointConfigsInput) (req *request.Request, output *ListEndpointConfigsOutput) {
@@ -15099,15 +14947,14 @@ func (c *SageMaker) ListEndpointConfigsWithContext(ctx aws.Context, input *ListE
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEndpointConfigs operation.
-//    pageNum := 0
-//    err := client.ListEndpointConfigsPages(params,
-//        func(page *sagemaker.ListEndpointConfigsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEndpointConfigs operation.
+//	pageNum := 0
+//	err := client.ListEndpointConfigsPages(params,
+//	    func(page *sagemaker.ListEndpointConfigsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListEndpointConfigsPages(input *ListEndpointConfigsInput, fn func(*ListEndpointConfigsOutput, bool) bool) error {
 	return c.ListEndpointConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -15159,14 +15006,13 @@ const opListEndpoints = "ListEndpoints"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEndpointsRequest method.
+//	req, resp := client.ListEndpointsRequest(params)
 //
-//    // Example sending a request using the ListEndpointsRequest method.
-//    req, resp := client.ListEndpointsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListEndpoints
 func (c *SageMaker) ListEndpointsRequest(input *ListEndpointsInput) (req *request.Request, output *ListEndpointsOutput) {
@@ -15231,15 +15077,14 @@ func (c *SageMaker) ListEndpointsWithContext(ctx aws.Context, input *ListEndpoin
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEndpoints operation.
-//    pageNum := 0
-//    err := client.ListEndpointsPages(params,
-//        func(page *sagemaker.ListEndpointsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEndpoints operation.
+//	pageNum := 0
+//	err := client.ListEndpointsPages(params,
+//	    func(page *sagemaker.ListEndpointsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListEndpointsPages(input *ListEndpointsInput, fn func(*ListEndpointsOutput, bool) bool) error {
 	return c.ListEndpointsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -15291,14 +15136,13 @@ const opListExperiments = "ListExperiments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListExperimentsRequest method.
+//	req, resp := client.ListExperimentsRequest(params)
 //
-//    // Example sending a request using the ListExperimentsRequest method.
-//    req, resp := client.ListExperimentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListExperiments
 func (c *SageMaker) ListExperimentsRequest(input *ListExperimentsInput) (req *request.Request, output *ListExperimentsOutput) {
@@ -15365,15 +15209,14 @@ func (c *SageMaker) ListExperimentsWithContext(ctx aws.Context, input *ListExper
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListExperiments operation.
-//    pageNum := 0
-//    err := client.ListExperimentsPages(params,
-//        func(page *sagemaker.ListExperimentsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListExperiments operation.
+//	pageNum := 0
+//	err := client.ListExperimentsPages(params,
+//	    func(page *sagemaker.ListExperimentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListExperimentsPages(input *ListExperimentsInput, fn func(*ListExperimentsOutput, bool) bool) error {
 	return c.ListExperimentsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -15425,14 +15268,13 @@ const opListFeatureGroups = "ListFeatureGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFeatureGroupsRequest method.
+//	req, resp := client.ListFeatureGroupsRequest(params)
 //
-//    // Example sending a request using the ListFeatureGroupsRequest method.
-//    req, resp := client.ListFeatureGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListFeatureGroups
 func (c *SageMaker) ListFeatureGroupsRequest(input *ListFeatureGroupsInput) (req *request.Request, output *ListFeatureGroupsOutput) {
@@ -15497,15 +15339,14 @@ func (c *SageMaker) ListFeatureGroupsWithContext(ctx aws.Context, input *ListFea
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListFeatureGroups operation.
-//    pageNum := 0
-//    err := client.ListFeatureGroupsPages(params,
-//        func(page *sagemaker.ListFeatureGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListFeatureGroups operation.
+//	pageNum := 0
+//	err := client.ListFeatureGroupsPages(params,
+//	    func(page *sagemaker.ListFeatureGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListFeatureGroupsPages(input *ListFeatureGroupsInput, fn func(*ListFeatureGroupsOutput, bool) bool) error {
 	return c.ListFeatureGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -15557,14 +15398,13 @@ const opListFlowDefinitions = "ListFlowDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFlowDefinitionsRequest method.
+//	req, resp := client.ListFlowDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListFlowDefinitionsRequest method.
-//    req, resp := client.ListFlowDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListFlowDefinitions
 func (c *SageMaker) ListFlowDefinitionsRequest(input *ListFlowDefinitionsInput) (req *request.Request, output *ListFlowDefinitionsOutput) {
@@ -15629,15 +15469,14 @@ func (c *SageMaker) ListFlowDefinitionsWithContext(ctx aws.Context, input *ListF
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListFlowDefinitions operation.
-//    pageNum := 0
-//    err := client.ListFlowDefinitionsPages(params,
-//        func(page *sagemaker.ListFlowDefinitionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListFlowDefinitions operation.
+//	pageNum := 0
+//	err := client.ListFlowDefinitionsPages(params,
+//	    func(page *sagemaker.ListFlowDefinitionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListFlowDefinitionsPages(input *ListFlowDefinitionsInput, fn func(*ListFlowDefinitionsOutput, bool) bool) error {
 	return c.ListFlowDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -15689,14 +15528,13 @@ const opListHumanTaskUis = "ListHumanTaskUis"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListHumanTaskUisRequest method.
+//	req, resp := client.ListHumanTaskUisRequest(params)
 //
-//    // Example sending a request using the ListHumanTaskUisRequest method.
-//    req, resp := client.ListHumanTaskUisRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListHumanTaskUis
 func (c *SageMaker) ListHumanTaskUisRequest(input *ListHumanTaskUisInput) (req *request.Request, output *ListHumanTaskUisOutput) {
@@ -15761,15 +15599,14 @@ func (c *SageMaker) ListHumanTaskUisWithContext(ctx aws.Context, input *ListHuma
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListHumanTaskUis operation.
-//    pageNum := 0
-//    err := client.ListHumanTaskUisPages(params,
-//        func(page *sagemaker.ListHumanTaskUisOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListHumanTaskUis operation.
+//	pageNum := 0
+//	err := client.ListHumanTaskUisPages(params,
+//	    func(page *sagemaker.ListHumanTaskUisOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListHumanTaskUisPages(input *ListHumanTaskUisInput, fn func(*ListHumanTaskUisOutput, bool) bool) error {
 	return c.ListHumanTaskUisPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -15821,14 +15658,13 @@ const opListHyperParameterTuningJobs = "ListHyperParameterTuningJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListHyperParameterTuningJobsRequest method.
+//	req, resp := client.ListHyperParameterTuningJobsRequest(params)
 //
-//    // Example sending a request using the ListHyperParameterTuningJobsRequest method.
-//    req, resp := client.ListHyperParameterTuningJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListHyperParameterTuningJobs
 func (c *SageMaker) ListHyperParameterTuningJobsRequest(input *ListHyperParameterTuningJobsInput) (req *request.Request, output *ListHyperParameterTuningJobsOutput) {
@@ -15894,15 +15730,14 @@ func (c *SageMaker) ListHyperParameterTuningJobsWithContext(ctx aws.Context, inp
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListHyperParameterTuningJobs operation.
-//    pageNum := 0
-//    err := client.ListHyperParameterTuningJobsPages(params,
-//        func(page *sagemaker.ListHyperParameterTuningJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListHyperParameterTuningJobs operation.
+//	pageNum := 0
+//	err := client.ListHyperParameterTuningJobsPages(params,
+//	    func(page *sagemaker.ListHyperParameterTuningJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListHyperParameterTuningJobsPages(input *ListHyperParameterTuningJobsInput, fn func(*ListHyperParameterTuningJobsOutput, bool) bool) error {
 	return c.ListHyperParameterTuningJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -15954,14 +15789,13 @@ const opListImageVersions = "ListImageVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListImageVersionsRequest method.
+//	req, resp := client.ListImageVersionsRequest(params)
 //
-//    // Example sending a request using the ListImageVersionsRequest method.
-//    req, resp := client.ListImageVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListImageVersions
 func (c *SageMaker) ListImageVersionsRequest(input *ListImageVersionsInput) (req *request.Request, output *ListImageVersionsOutput) {
@@ -15999,8 +15833,8 @@ func (c *SageMaker) ListImageVersionsRequest(input *ListImageVersionsInput) (req
 // API operation ListImageVersions for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListImageVersions
 func (c *SageMaker) ListImageVersions(input *ListImageVersionsInput) (*ListImageVersionsOutput, error) {
@@ -16032,15 +15866,14 @@ func (c *SageMaker) ListImageVersionsWithContext(ctx aws.Context, input *ListIma
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListImageVersions operation.
-//    pageNum := 0
-//    err := client.ListImageVersionsPages(params,
-//        func(page *sagemaker.ListImageVersionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListImageVersions operation.
+//	pageNum := 0
+//	err := client.ListImageVersionsPages(params,
+//	    func(page *sagemaker.ListImageVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListImageVersionsPages(input *ListImageVersionsInput, fn func(*ListImageVersionsOutput, bool) bool) error {
 	return c.ListImageVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -16092,14 +15925,13 @@ const opListImages = "ListImages"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListImagesRequest method.
+//	req, resp := client.ListImagesRequest(params)
 //
-//    // Example sending a request using the ListImagesRequest method.
-//    req, resp := client.ListImagesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListImages
 func (c *SageMaker) ListImagesRequest(input *ListImagesInput) (req *request.Request, output *ListImagesOutput) {
@@ -16166,15 +15998,14 @@ func (c *SageMaker) ListImagesWithContext(ctx aws.Context, input *ListImagesInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListImages operation.
-//    pageNum := 0
-//    err := client.ListImagesPages(params,
-//        func(page *sagemaker.ListImagesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListImages operation.
+//	pageNum := 0
+//	err := client.ListImagesPages(params,
+//	    func(page *sagemaker.ListImagesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListImagesPages(input *ListImagesInput, fn func(*ListImagesOutput, bool) bool) error {
 	return c.ListImagesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -16226,14 +16057,13 @@ const opListInferenceRecommendationsJobs = "ListInferenceRecommendationsJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListInferenceRecommendationsJobsRequest method.
+//	req, resp := client.ListInferenceRecommendationsJobsRequest(params)
 //
-//    // Example sending a request using the ListInferenceRecommendationsJobsRequest method.
-//    req, resp := client.ListInferenceRecommendationsJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListInferenceRecommendationsJobs
 func (c *SageMaker) ListInferenceRecommendationsJobsRequest(input *ListInferenceRecommendationsJobsInput) (req *request.Request, output *ListInferenceRecommendationsJobsOutput) {
@@ -16298,15 +16128,14 @@ func (c *SageMaker) ListInferenceRecommendationsJobsWithContext(ctx aws.Context,
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListInferenceRecommendationsJobs operation.
-//    pageNum := 0
-//    err := client.ListInferenceRecommendationsJobsPages(params,
-//        func(page *sagemaker.ListInferenceRecommendationsJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListInferenceRecommendationsJobs operation.
+//	pageNum := 0
+//	err := client.ListInferenceRecommendationsJobsPages(params,
+//	    func(page *sagemaker.ListInferenceRecommendationsJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListInferenceRecommendationsJobsPages(input *ListInferenceRecommendationsJobsInput, fn func(*ListInferenceRecommendationsJobsOutput, bool) bool) error {
 	return c.ListInferenceRecommendationsJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -16358,14 +16187,13 @@ const opListLabelingJobs = "ListLabelingJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListLabelingJobsRequest method.
+//	req, resp := client.ListLabelingJobsRequest(params)
 //
-//    // Example sending a request using the ListLabelingJobsRequest method.
-//    req, resp := client.ListLabelingJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListLabelingJobs
 func (c *SageMaker) ListLabelingJobsRequest(input *ListLabelingJobsInput) (req *request.Request, output *ListLabelingJobsOutput) {
@@ -16430,15 +16258,14 @@ func (c *SageMaker) ListLabelingJobsWithContext(ctx aws.Context, input *ListLabe
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListLabelingJobs operation.
-//    pageNum := 0
-//    err := client.ListLabelingJobsPages(params,
-//        func(page *sagemaker.ListLabelingJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListLabelingJobs operation.
+//	pageNum := 0
+//	err := client.ListLabelingJobsPages(params,
+//	    func(page *sagemaker.ListLabelingJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListLabelingJobsPages(input *ListLabelingJobsInput, fn func(*ListLabelingJobsOutput, bool) bool) error {
 	return c.ListLabelingJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -16490,14 +16317,13 @@ const opListLabelingJobsForWorkteam = "ListLabelingJobsForWorkteam"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListLabelingJobsForWorkteamRequest method.
+//	req, resp := client.ListLabelingJobsForWorkteamRequest(params)
 //
-//    // Example sending a request using the ListLabelingJobsForWorkteamRequest method.
-//    req, resp := client.ListLabelingJobsForWorkteamRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListLabelingJobsForWorkteam
 func (c *SageMaker) ListLabelingJobsForWorkteamRequest(input *ListLabelingJobsForWorkteamInput) (req *request.Request, output *ListLabelingJobsForWorkteamOutput) {
@@ -16534,8 +16360,8 @@ func (c *SageMaker) ListLabelingJobsForWorkteamRequest(input *ListLabelingJobsFo
 // API operation ListLabelingJobsForWorkteam for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListLabelingJobsForWorkteam
 func (c *SageMaker) ListLabelingJobsForWorkteam(input *ListLabelingJobsForWorkteamInput) (*ListLabelingJobsForWorkteamOutput, error) {
@@ -16567,15 +16393,14 @@ func (c *SageMaker) ListLabelingJobsForWorkteamWithContext(ctx aws.Context, inpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListLabelingJobsForWorkteam operation.
-//    pageNum := 0
-//    err := client.ListLabelingJobsForWorkteamPages(params,
-//        func(page *sagemaker.ListLabelingJobsForWorkteamOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListLabelingJobsForWorkteam operation.
+//	pageNum := 0
+//	err := client.ListLabelingJobsForWorkteamPages(params,
+//	    func(page *sagemaker.ListLabelingJobsForWorkteamOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListLabelingJobsForWorkteamPages(input *ListLabelingJobsForWorkteamInput, fn func(*ListLabelingJobsForWorkteamOutput, bool) bool) error {
 	return c.ListLabelingJobsForWorkteamPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -16627,14 +16452,13 @@ const opListLineageGroups = "ListLineageGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListLineageGroupsRequest method.
+//	req, resp := client.ListLineageGroupsRequest(params)
 //
-//    // Example sending a request using the ListLineageGroupsRequest method.
-//    req, resp := client.ListLineageGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListLineageGroups
 func (c *SageMaker) ListLineageGroupsRequest(input *ListLineageGroupsInput) (req *request.Request, output *ListLineageGroupsOutput) {
@@ -16701,15 +16525,14 @@ func (c *SageMaker) ListLineageGroupsWithContext(ctx aws.Context, input *ListLin
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListLineageGroups operation.
-//    pageNum := 0
-//    err := client.ListLineageGroupsPages(params,
-//        func(page *sagemaker.ListLineageGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListLineageGroups operation.
+//	pageNum := 0
+//	err := client.ListLineageGroupsPages(params,
+//	    func(page *sagemaker.ListLineageGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListLineageGroupsPages(input *ListLineageGroupsInput, fn func(*ListLineageGroupsOutput, bool) bool) error {
 	return c.ListLineageGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -16761,14 +16584,13 @@ const opListModelBiasJobDefinitions = "ListModelBiasJobDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListModelBiasJobDefinitionsRequest method.
+//	req, resp := client.ListModelBiasJobDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListModelBiasJobDefinitionsRequest method.
-//    req, resp := client.ListModelBiasJobDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModelBiasJobDefinitions
 func (c *SageMaker) ListModelBiasJobDefinitionsRequest(input *ListModelBiasJobDefinitionsInput) (req *request.Request, output *ListModelBiasJobDefinitionsOutput) {
@@ -16833,15 +16655,14 @@ func (c *SageMaker) ListModelBiasJobDefinitionsWithContext(ctx aws.Context, inpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListModelBiasJobDefinitions operation.
-//    pageNum := 0
-//    err := client.ListModelBiasJobDefinitionsPages(params,
-//        func(page *sagemaker.ListModelBiasJobDefinitionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListModelBiasJobDefinitions operation.
+//	pageNum := 0
+//	err := client.ListModelBiasJobDefinitionsPages(params,
+//	    func(page *sagemaker.ListModelBiasJobDefinitionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListModelBiasJobDefinitionsPages(input *ListModelBiasJobDefinitionsInput, fn func(*ListModelBiasJobDefinitionsOutput, bool) bool) error {
 	return c.ListModelBiasJobDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -16893,14 +16714,13 @@ const opListModelExplainabilityJobDefinitions = "ListModelExplainabilityJobDefin
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListModelExplainabilityJobDefinitionsRequest method.
+//	req, resp := client.ListModelExplainabilityJobDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListModelExplainabilityJobDefinitionsRequest method.
-//    req, resp := client.ListModelExplainabilityJobDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModelExplainabilityJobDefinitions
 func (c *SageMaker) ListModelExplainabilityJobDefinitionsRequest(input *ListModelExplainabilityJobDefinitionsInput) (req *request.Request, output *ListModelExplainabilityJobDefinitionsOutput) {
@@ -16965,15 +16785,14 @@ func (c *SageMaker) ListModelExplainabilityJobDefinitionsWithContext(ctx aws.Con
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListModelExplainabilityJobDefinitions operation.
-//    pageNum := 0
-//    err := client.ListModelExplainabilityJobDefinitionsPages(params,
-//        func(page *sagemaker.ListModelExplainabilityJobDefinitionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListModelExplainabilityJobDefinitions operation.
+//	pageNum := 0
+//	err := client.ListModelExplainabilityJobDefinitionsPages(params,
+//	    func(page *sagemaker.ListModelExplainabilityJobDefinitionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListModelExplainabilityJobDefinitionsPages(input *ListModelExplainabilityJobDefinitionsInput, fn func(*ListModelExplainabilityJobDefinitionsOutput, bool) bool) error {
 	return c.ListModelExplainabilityJobDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -17025,14 +16844,13 @@ const opListModelMetadata = "ListModelMetadata"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListModelMetadataRequest method.
+//	req, resp := client.ListModelMetadataRequest(params)
 //
-//    // Example sending a request using the ListModelMetadataRequest method.
-//    req, resp := client.ListModelMetadataRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModelMetadata
 func (c *SageMaker) ListModelMetadataRequest(input *ListModelMetadataInput) (req *request.Request, output *ListModelMetadataOutput) {
@@ -17098,15 +16916,14 @@ func (c *SageMaker) ListModelMetadataWithContext(ctx aws.Context, input *ListMod
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListModelMetadata operation.
-//    pageNum := 0
-//    err := client.ListModelMetadataPages(params,
-//        func(page *sagemaker.ListModelMetadataOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListModelMetadata operation.
+//	pageNum := 0
+//	err := client.ListModelMetadataPages(params,
+//	    func(page *sagemaker.ListModelMetadataOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListModelMetadataPages(input *ListModelMetadataInput, fn func(*ListModelMetadataOutput, bool) bool) error {
 	return c.ListModelMetadataPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -17158,14 +16975,13 @@ const opListModelPackageGroups = "ListModelPackageGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListModelPackageGroupsRequest method.
+//	req, resp := client.ListModelPackageGroupsRequest(params)
 //
-//    // Example sending a request using the ListModelPackageGroupsRequest method.
-//    req, resp := client.ListModelPackageGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModelPackageGroups
 func (c *SageMaker) ListModelPackageGroupsRequest(input *ListModelPackageGroupsInput) (req *request.Request, output *ListModelPackageGroupsOutput) {
@@ -17230,15 +17046,14 @@ func (c *SageMaker) ListModelPackageGroupsWithContext(ctx aws.Context, input *Li
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListModelPackageGroups operation.
-//    pageNum := 0
-//    err := client.ListModelPackageGroupsPages(params,
-//        func(page *sagemaker.ListModelPackageGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListModelPackageGroups operation.
+//	pageNum := 0
+//	err := client.ListModelPackageGroupsPages(params,
+//	    func(page *sagemaker.ListModelPackageGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListModelPackageGroupsPages(input *ListModelPackageGroupsInput, fn func(*ListModelPackageGroupsOutput, bool) bool) error {
 	return c.ListModelPackageGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -17290,14 +17105,13 @@ const opListModelPackages = "ListModelPackages"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListModelPackagesRequest method.
+//	req, resp := client.ListModelPackagesRequest(params)
 //
-//    // Example sending a request using the ListModelPackagesRequest method.
-//    req, resp := client.ListModelPackagesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModelPackages
 func (c *SageMaker) ListModelPackagesRequest(input *ListModelPackagesInput) (req *request.Request, output *ListModelPackagesOutput) {
@@ -17362,15 +17176,14 @@ func (c *SageMaker) ListModelPackagesWithContext(ctx aws.Context, input *ListMod
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListModelPackages operation.
-//    pageNum := 0
-//    err := client.ListModelPackagesPages(params,
-//        func(page *sagemaker.ListModelPackagesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListModelPackages operation.
+//	pageNum := 0
+//	err := client.ListModelPackagesPages(params,
+//	    func(page *sagemaker.ListModelPackagesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListModelPackagesPages(input *ListModelPackagesInput, fn func(*ListModelPackagesOutput, bool) bool) error {
 	return c.ListModelPackagesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -17422,14 +17235,13 @@ const opListModelQualityJobDefinitions = "ListModelQualityJobDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListModelQualityJobDefinitionsRequest method.
+//	req, resp := client.ListModelQualityJobDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListModelQualityJobDefinitionsRequest method.
-//    req, resp := client.ListModelQualityJobDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModelQualityJobDefinitions
 func (c *SageMaker) ListModelQualityJobDefinitionsRequest(input *ListModelQualityJobDefinitionsInput) (req *request.Request, output *ListModelQualityJobDefinitionsOutput) {
@@ -17494,15 +17306,14 @@ func (c *SageMaker) ListModelQualityJobDefinitionsWithContext(ctx aws.Context, i
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListModelQualityJobDefinitions operation.
-//    pageNum := 0
-//    err := client.ListModelQualityJobDefinitionsPages(params,
-//        func(page *sagemaker.ListModelQualityJobDefinitionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListModelQualityJobDefinitions operation.
+//	pageNum := 0
+//	err := client.ListModelQualityJobDefinitionsPages(params,
+//	    func(page *sagemaker.ListModelQualityJobDefinitionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListModelQualityJobDefinitionsPages(input *ListModelQualityJobDefinitionsInput, fn func(*ListModelQualityJobDefinitionsOutput, bool) bool) error {
 	return c.ListModelQualityJobDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -17554,14 +17365,13 @@ const opListModels = "ListModels"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListModelsRequest method.
+//	req, resp := client.ListModelsRequest(params)
 //
-//    // Example sending a request using the ListModelsRequest method.
-//    req, resp := client.ListModelsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModels
 func (c *SageMaker) ListModelsRequest(input *ListModelsInput) (req *request.Request, output *ListModelsOutput) {
@@ -17626,15 +17436,14 @@ func (c *SageMaker) ListModelsWithContext(ctx aws.Context, input *ListModelsInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListModels operation.
-//    pageNum := 0
-//    err := client.ListModelsPages(params,
-//        func(page *sagemaker.ListModelsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListModels operation.
+//	pageNum := 0
+//	err := client.ListModelsPages(params,
+//	    func(page *sagemaker.ListModelsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListModelsPages(input *ListModelsInput, fn func(*ListModelsOutput, bool) bool) error {
 	return c.ListModelsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -17686,14 +17495,13 @@ const opListMonitoringExecutions = "ListMonitoringExecutions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListMonitoringExecutionsRequest method.
+//	req, resp := client.ListMonitoringExecutionsRequest(params)
 //
-//    // Example sending a request using the ListMonitoringExecutionsRequest method.
-//    req, resp := client.ListMonitoringExecutionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListMonitoringExecutions
 func (c *SageMaker) ListMonitoringExecutionsRequest(input *ListMonitoringExecutionsInput) (req *request.Request, output *ListMonitoringExecutionsOutput) {
@@ -17758,15 +17566,14 @@ func (c *SageMaker) ListMonitoringExecutionsWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListMonitoringExecutions operation.
-//    pageNum := 0
-//    err := client.ListMonitoringExecutionsPages(params,
-//        func(page *sagemaker.ListMonitoringExecutionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListMonitoringExecutions operation.
+//	pageNum := 0
+//	err := client.ListMonitoringExecutionsPages(params,
+//	    func(page *sagemaker.ListMonitoringExecutionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListMonitoringExecutionsPages(input *ListMonitoringExecutionsInput, fn func(*ListMonitoringExecutionsOutput, bool) bool) error {
 	return c.ListMonitoringExecutionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -17818,14 +17625,13 @@ const opListMonitoringSchedules = "ListMonitoringSchedules"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListMonitoringSchedulesRequest method.
+//	req, resp := client.ListMonitoringSchedulesRequest(params)
 //
-//    // Example sending a request using the ListMonitoringSchedulesRequest method.
-//    req, resp := client.ListMonitoringSchedulesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListMonitoringSchedules
 func (c *SageMaker) ListMonitoringSchedulesRequest(input *ListMonitoringSchedulesInput) (req *request.Request, output *ListMonitoringSchedulesOutput) {
@@ -17890,15 +17696,14 @@ func (c *SageMaker) ListMonitoringSchedulesWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListMonitoringSchedules operation.
-//    pageNum := 0
-//    err := client.ListMonitoringSchedulesPages(params,
-//        func(page *sagemaker.ListMonitoringSchedulesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListMonitoringSchedules operation.
+//	pageNum := 0
+//	err := client.ListMonitoringSchedulesPages(params,
+//	    func(page *sagemaker.ListMonitoringSchedulesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListMonitoringSchedulesPages(input *ListMonitoringSchedulesInput, fn func(*ListMonitoringSchedulesOutput, bool) bool) error {
 	return c.ListMonitoringSchedulesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -17950,14 +17755,13 @@ const opListNotebookInstanceLifecycleConfigs = "ListNotebookInstanceLifecycleCon
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListNotebookInstanceLifecycleConfigsRequest method.
+//	req, resp := client.ListNotebookInstanceLifecycleConfigsRequest(params)
 //
-//    // Example sending a request using the ListNotebookInstanceLifecycleConfigsRequest method.
-//    req, resp := client.ListNotebookInstanceLifecycleConfigsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListNotebookInstanceLifecycleConfigs
 func (c *SageMaker) ListNotebookInstanceLifecycleConfigsRequest(input *ListNotebookInstanceLifecycleConfigsInput) (req *request.Request, output *ListNotebookInstanceLifecycleConfigsOutput) {
@@ -18023,15 +17827,14 @@ func (c *SageMaker) ListNotebookInstanceLifecycleConfigsWithContext(ctx aws.Cont
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListNotebookInstanceLifecycleConfigs operation.
-//    pageNum := 0
-//    err := client.ListNotebookInstanceLifecycleConfigsPages(params,
-//        func(page *sagemaker.ListNotebookInstanceLifecycleConfigsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListNotebookInstanceLifecycleConfigs operation.
+//	pageNum := 0
+//	err := client.ListNotebookInstanceLifecycleConfigsPages(params,
+//	    func(page *sagemaker.ListNotebookInstanceLifecycleConfigsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListNotebookInstanceLifecycleConfigsPages(input *ListNotebookInstanceLifecycleConfigsInput, fn func(*ListNotebookInstanceLifecycleConfigsOutput, bool) bool) error {
 	return c.ListNotebookInstanceLifecycleConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -18083,14 +17886,13 @@ const opListNotebookInstances = "ListNotebookInstances"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListNotebookInstancesRequest method.
+//	req, resp := client.ListNotebookInstancesRequest(params)
 //
-//    // Example sending a request using the ListNotebookInstancesRequest method.
-//    req, resp := client.ListNotebookInstancesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListNotebookInstances
 func (c *SageMaker) ListNotebookInstancesRequest(input *ListNotebookInstancesInput) (req *request.Request, output *ListNotebookInstancesOutput) {
@@ -18156,15 +17958,14 @@ func (c *SageMaker) ListNotebookInstancesWithContext(ctx aws.Context, input *Lis
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListNotebookInstances operation.
-//    pageNum := 0
-//    err := client.ListNotebookInstancesPages(params,
-//        func(page *sagemaker.ListNotebookInstancesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListNotebookInstances operation.
+//	pageNum := 0
+//	err := client.ListNotebookInstancesPages(params,
+//	    func(page *sagemaker.ListNotebookInstancesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListNotebookInstancesPages(input *ListNotebookInstancesInput, fn func(*ListNotebookInstancesOutput, bool) bool) error {
 	return c.ListNotebookInstancesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -18216,14 +18017,13 @@ const opListPipelineExecutionSteps = "ListPipelineExecutionSteps"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPipelineExecutionStepsRequest method.
+//	req, resp := client.ListPipelineExecutionStepsRequest(params)
 //
-//    // Example sending a request using the ListPipelineExecutionStepsRequest method.
-//    req, resp := client.ListPipelineExecutionStepsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListPipelineExecutionSteps
 func (c *SageMaker) ListPipelineExecutionStepsRequest(input *ListPipelineExecutionStepsInput) (req *request.Request, output *ListPipelineExecutionStepsOutput) {
@@ -18260,8 +18060,8 @@ func (c *SageMaker) ListPipelineExecutionStepsRequest(input *ListPipelineExecuti
 // API operation ListPipelineExecutionSteps for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListPipelineExecutionSteps
 func (c *SageMaker) ListPipelineExecutionSteps(input *ListPipelineExecutionStepsInput) (*ListPipelineExecutionStepsOutput, error) {
@@ -18293,15 +18093,14 @@ func (c *SageMaker) ListPipelineExecutionStepsWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPipelineExecutionSteps operation.
-//    pageNum := 0
-//    err := client.ListPipelineExecutionStepsPages(params,
-//        func(page *sagemaker.ListPipelineExecutionStepsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPipelineExecutionSteps operation.
+//	pageNum := 0
+//	err := client.ListPipelineExecutionStepsPages(params,
+//	    func(page *sagemaker.ListPipelineExecutionStepsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListPipelineExecutionStepsPages(input *ListPipelineExecutionStepsInput, fn func(*ListPipelineExecutionStepsOutput, bool) bool) error {
 	return c.ListPipelineExecutionStepsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -18353,14 +18152,13 @@ const opListPipelineExecutions = "ListPipelineExecutions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPipelineExecutionsRequest method.
+//	req, resp := client.ListPipelineExecutionsRequest(params)
 //
-//    // Example sending a request using the ListPipelineExecutionsRequest method.
-//    req, resp := client.ListPipelineExecutionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListPipelineExecutions
 func (c *SageMaker) ListPipelineExecutionsRequest(input *ListPipelineExecutionsInput) (req *request.Request, output *ListPipelineExecutionsOutput) {
@@ -18397,8 +18195,8 @@ func (c *SageMaker) ListPipelineExecutionsRequest(input *ListPipelineExecutionsI
 // API operation ListPipelineExecutions for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListPipelineExecutions
 func (c *SageMaker) ListPipelineExecutions(input *ListPipelineExecutionsInput) (*ListPipelineExecutionsOutput, error) {
@@ -18430,15 +18228,14 @@ func (c *SageMaker) ListPipelineExecutionsWithContext(ctx aws.Context, input *Li
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPipelineExecutions operation.
-//    pageNum := 0
-//    err := client.ListPipelineExecutionsPages(params,
-//        func(page *sagemaker.ListPipelineExecutionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPipelineExecutions operation.
+//	pageNum := 0
+//	err := client.ListPipelineExecutionsPages(params,
+//	    func(page *sagemaker.ListPipelineExecutionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListPipelineExecutionsPages(input *ListPipelineExecutionsInput, fn func(*ListPipelineExecutionsOutput, bool) bool) error {
 	return c.ListPipelineExecutionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -18490,14 +18287,13 @@ const opListPipelineParametersForExecution = "ListPipelineParametersForExecution
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPipelineParametersForExecutionRequest method.
+//	req, resp := client.ListPipelineParametersForExecutionRequest(params)
 //
-//    // Example sending a request using the ListPipelineParametersForExecutionRequest method.
-//    req, resp := client.ListPipelineParametersForExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListPipelineParametersForExecution
 func (c *SageMaker) ListPipelineParametersForExecutionRequest(input *ListPipelineParametersForExecutionInput) (req *request.Request, output *ListPipelineParametersForExecutionOutput) {
@@ -18534,8 +18330,8 @@ func (c *SageMaker) ListPipelineParametersForExecutionRequest(input *ListPipelin
 // API operation ListPipelineParametersForExecution for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListPipelineParametersForExecution
 func (c *SageMaker) ListPipelineParametersForExecution(input *ListPipelineParametersForExecutionInput) (*ListPipelineParametersForExecutionOutput, error) {
@@ -18567,15 +18363,14 @@ func (c *SageMaker) ListPipelineParametersForExecutionWithContext(ctx aws.Contex
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPipelineParametersForExecution operation.
-//    pageNum := 0
-//    err := client.ListPipelineParametersForExecutionPages(params,
-//        func(page *sagemaker.ListPipelineParametersForExecutionOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPipelineParametersForExecution operation.
+//	pageNum := 0
+//	err := client.ListPipelineParametersForExecutionPages(params,
+//	    func(page *sagemaker.ListPipelineParametersForExecutionOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListPipelineParametersForExecutionPages(input *ListPipelineParametersForExecutionInput, fn func(*ListPipelineParametersForExecutionOutput, bool) bool) error {
 	return c.ListPipelineParametersForExecutionPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -18627,14 +18422,13 @@ const opListPipelines = "ListPipelines"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPipelinesRequest method.
+//	req, resp := client.ListPipelinesRequest(params)
 //
-//    // Example sending a request using the ListPipelinesRequest method.
-//    req, resp := client.ListPipelinesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListPipelines
 func (c *SageMaker) ListPipelinesRequest(input *ListPipelinesInput) (req *request.Request, output *ListPipelinesOutput) {
@@ -18699,15 +18493,14 @@ func (c *SageMaker) ListPipelinesWithContext(ctx aws.Context, input *ListPipelin
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPipelines operation.
-//    pageNum := 0
-//    err := client.ListPipelinesPages(params,
-//        func(page *sagemaker.ListPipelinesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPipelines operation.
+//	pageNum := 0
+//	err := client.ListPipelinesPages(params,
+//	    func(page *sagemaker.ListPipelinesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListPipelinesPages(input *ListPipelinesInput, fn func(*ListPipelinesOutput, bool) bool) error {
 	return c.ListPipelinesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -18759,14 +18552,13 @@ const opListProcessingJobs = "ListProcessingJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProcessingJobsRequest method.
+//	req, resp := client.ListProcessingJobsRequest(params)
 //
-//    // Example sending a request using the ListProcessingJobsRequest method.
-//    req, resp := client.ListProcessingJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListProcessingJobs
 func (c *SageMaker) ListProcessingJobsRequest(input *ListProcessingJobsInput) (req *request.Request, output *ListProcessingJobsOutput) {
@@ -18831,15 +18623,14 @@ func (c *SageMaker) ListProcessingJobsWithContext(ctx aws.Context, input *ListPr
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListProcessingJobs operation.
-//    pageNum := 0
-//    err := client.ListProcessingJobsPages(params,
-//        func(page *sagemaker.ListProcessingJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListProcessingJobs operation.
+//	pageNum := 0
+//	err := client.ListProcessingJobsPages(params,
+//	    func(page *sagemaker.ListProcessingJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListProcessingJobsPages(input *ListProcessingJobsInput, fn func(*ListProcessingJobsOutput, bool) bool) error {
 	return c.ListProcessingJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -18891,14 +18682,13 @@ const opListProjects = "ListProjects"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProjectsRequest method.
+//	req, resp := client.ListProjectsRequest(params)
 //
-//    // Example sending a request using the ListProjectsRequest method.
-//    req, resp := client.ListProjectsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListProjects
 func (c *SageMaker) ListProjectsRequest(input *ListProjectsInput) (req *request.Request, output *ListProjectsOutput) {
@@ -18963,15 +18753,14 @@ func (c *SageMaker) ListProjectsWithContext(ctx aws.Context, input *ListProjects
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListProjects operation.
-//    pageNum := 0
-//    err := client.ListProjectsPages(params,
-//        func(page *sagemaker.ListProjectsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListProjects operation.
+//	pageNum := 0
+//	err := client.ListProjectsPages(params,
+//	    func(page *sagemaker.ListProjectsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListProjectsPages(input *ListProjectsInput, fn func(*ListProjectsOutput, bool) bool) error {
 	return c.ListProjectsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -19023,14 +18812,13 @@ const opListStageDevices = "ListStageDevices"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListStageDevicesRequest method.
+//	req, resp := client.ListStageDevicesRequest(params)
 //
-//    // Example sending a request using the ListStageDevicesRequest method.
-//    req, resp := client.ListStageDevicesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListStageDevices
 func (c *SageMaker) ListStageDevicesRequest(input *ListStageDevicesInput) (req *request.Request, output *ListStageDevicesOutput) {
@@ -19096,15 +18884,14 @@ func (c *SageMaker) ListStageDevicesWithContext(ctx aws.Context, input *ListStag
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListStageDevices operation.
-//    pageNum := 0
-//    err := client.ListStageDevicesPages(params,
-//        func(page *sagemaker.ListStageDevicesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListStageDevices operation.
+//	pageNum := 0
+//	err := client.ListStageDevicesPages(params,
+//	    func(page *sagemaker.ListStageDevicesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListStageDevicesPages(input *ListStageDevicesInput, fn func(*ListStageDevicesOutput, bool) bool) error {
 	return c.ListStageDevicesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -19156,14 +18943,13 @@ const opListStudioLifecycleConfigs = "ListStudioLifecycleConfigs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListStudioLifecycleConfigsRequest method.
+//	req, resp := client.ListStudioLifecycleConfigsRequest(params)
 //
-//    // Example sending a request using the ListStudioLifecycleConfigsRequest method.
-//    req, resp := client.ListStudioLifecycleConfigsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListStudioLifecycleConfigs
 func (c *SageMaker) ListStudioLifecycleConfigsRequest(input *ListStudioLifecycleConfigsInput) (req *request.Request, output *ListStudioLifecycleConfigsOutput) {
@@ -19200,8 +18986,8 @@ func (c *SageMaker) ListStudioLifecycleConfigsRequest(input *ListStudioLifecycle
 // API operation ListStudioLifecycleConfigs for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListStudioLifecycleConfigs
 func (c *SageMaker) ListStudioLifecycleConfigs(input *ListStudioLifecycleConfigsInput) (*ListStudioLifecycleConfigsOutput, error) {
@@ -19233,15 +19019,14 @@ func (c *SageMaker) ListStudioLifecycleConfigsWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListStudioLifecycleConfigs operation.
-//    pageNum := 0
-//    err := client.ListStudioLifecycleConfigsPages(params,
-//        func(page *sagemaker.ListStudioLifecycleConfigsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListStudioLifecycleConfigs operation.
+//	pageNum := 0
+//	err := client.ListStudioLifecycleConfigsPages(params,
+//	    func(page *sagemaker.ListStudioLifecycleConfigsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListStudioLifecycleConfigsPages(input *ListStudioLifecycleConfigsInput, fn func(*ListStudioLifecycleConfigsOutput, bool) bool) error {
 	return c.ListStudioLifecycleConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -19293,14 +19078,13 @@ const opListSubscribedWorkteams = "ListSubscribedWorkteams"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSubscribedWorkteamsRequest method.
+//	req, resp := client.ListSubscribedWorkteamsRequest(params)
 //
-//    // Example sending a request using the ListSubscribedWorkteamsRequest method.
-//    req, resp := client.ListSubscribedWorkteamsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListSubscribedWorkteams
 func (c *SageMaker) ListSubscribedWorkteamsRequest(input *ListSubscribedWorkteamsInput) (req *request.Request, output *ListSubscribedWorkteamsOutput) {
@@ -19367,15 +19151,14 @@ func (c *SageMaker) ListSubscribedWorkteamsWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSubscribedWorkteams operation.
-//    pageNum := 0
-//    err := client.ListSubscribedWorkteamsPages(params,
-//        func(page *sagemaker.ListSubscribedWorkteamsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSubscribedWorkteams operation.
+//	pageNum := 0
+//	err := client.ListSubscribedWorkteamsPages(params,
+//	    func(page *sagemaker.ListSubscribedWorkteamsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListSubscribedWorkteamsPages(input *ListSubscribedWorkteamsInput, fn func(*ListSubscribedWorkteamsOutput, bool) bool) error {
 	return c.ListSubscribedWorkteamsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -19427,14 +19210,13 @@ const opListTags = "ListTags"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsRequest method.
+//	req, resp := client.ListTagsRequest(params)
 //
-//    // Example sending a request using the ListTagsRequest method.
-//    req, resp := client.ListTagsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListTags
 func (c *SageMaker) ListTagsRequest(input *ListTagsInput) (req *request.Request, output *ListTagsOutput) {
@@ -19499,15 +19281,14 @@ func (c *SageMaker) ListTagsWithContext(ctx aws.Context, input *ListTagsInput, o
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTags operation.
-//    pageNum := 0
-//    err := client.ListTagsPages(params,
-//        func(page *sagemaker.ListTagsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTags operation.
+//	pageNum := 0
+//	err := client.ListTagsPages(params,
+//	    func(page *sagemaker.ListTagsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListTagsPages(input *ListTagsInput, fn func(*ListTagsOutput, bool) bool) error {
 	return c.ListTagsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -19559,14 +19340,13 @@ const opListTrainingJobs = "ListTrainingJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTrainingJobsRequest method.
+//	req, resp := client.ListTrainingJobsRequest(params)
 //
-//    // Example sending a request using the ListTrainingJobsRequest method.
-//    req, resp := client.ListTrainingJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListTrainingJobs
 func (c *SageMaker) ListTrainingJobsRequest(input *ListTrainingJobsInput) (req *request.Request, output *ListTrainingJobsOutput) {
@@ -19649,15 +19429,14 @@ func (c *SageMaker) ListTrainingJobsWithContext(ctx aws.Context, input *ListTrai
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTrainingJobs operation.
-//    pageNum := 0
-//    err := client.ListTrainingJobsPages(params,
-//        func(page *sagemaker.ListTrainingJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTrainingJobs operation.
+//	pageNum := 0
+//	err := client.ListTrainingJobsPages(params,
+//	    func(page *sagemaker.ListTrainingJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListTrainingJobsPages(input *ListTrainingJobsInput, fn func(*ListTrainingJobsOutput, bool) bool) error {
 	return c.ListTrainingJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -19709,14 +19488,13 @@ const opListTrainingJobsForHyperParameterTuningJob = "ListTrainingJobsForHyperPa
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTrainingJobsForHyperParameterTuningJobRequest method.
+//	req, resp := client.ListTrainingJobsForHyperParameterTuningJobRequest(params)
 //
-//    // Example sending a request using the ListTrainingJobsForHyperParameterTuningJobRequest method.
-//    req, resp := client.ListTrainingJobsForHyperParameterTuningJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListTrainingJobsForHyperParameterTuningJob
 func (c *SageMaker) ListTrainingJobsForHyperParameterTuningJobRequest(input *ListTrainingJobsForHyperParameterTuningJobInput) (req *request.Request, output *ListTrainingJobsForHyperParameterTuningJobOutput) {
@@ -19754,8 +19532,8 @@ func (c *SageMaker) ListTrainingJobsForHyperParameterTuningJobRequest(input *Lis
 // API operation ListTrainingJobsForHyperParameterTuningJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListTrainingJobsForHyperParameterTuningJob
 func (c *SageMaker) ListTrainingJobsForHyperParameterTuningJob(input *ListTrainingJobsForHyperParameterTuningJobInput) (*ListTrainingJobsForHyperParameterTuningJobOutput, error) {
@@ -19787,15 +19565,14 @@ func (c *SageMaker) ListTrainingJobsForHyperParameterTuningJobWithContext(ctx aw
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTrainingJobsForHyperParameterTuningJob operation.
-//    pageNum := 0
-//    err := client.ListTrainingJobsForHyperParameterTuningJobPages(params,
-//        func(page *sagemaker.ListTrainingJobsForHyperParameterTuningJobOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTrainingJobsForHyperParameterTuningJob operation.
+//	pageNum := 0
+//	err := client.ListTrainingJobsForHyperParameterTuningJobPages(params,
+//	    func(page *sagemaker.ListTrainingJobsForHyperParameterTuningJobOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListTrainingJobsForHyperParameterTuningJobPages(input *ListTrainingJobsForHyperParameterTuningJobInput, fn func(*ListTrainingJobsForHyperParameterTuningJobOutput, bool) bool) error {
 	return c.ListTrainingJobsForHyperParameterTuningJobPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -19847,14 +19624,13 @@ const opListTransformJobs = "ListTransformJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTransformJobsRequest method.
+//	req, resp := client.ListTransformJobsRequest(params)
 //
-//    // Example sending a request using the ListTransformJobsRequest method.
-//    req, resp := client.ListTransformJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListTransformJobs
 func (c *SageMaker) ListTransformJobsRequest(input *ListTransformJobsInput) (req *request.Request, output *ListTransformJobsOutput) {
@@ -19919,15 +19695,14 @@ func (c *SageMaker) ListTransformJobsWithContext(ctx aws.Context, input *ListTra
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTransformJobs operation.
-//    pageNum := 0
-//    err := client.ListTransformJobsPages(params,
-//        func(page *sagemaker.ListTransformJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTransformJobs operation.
+//	pageNum := 0
+//	err := client.ListTransformJobsPages(params,
+//	    func(page *sagemaker.ListTransformJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListTransformJobsPages(input *ListTransformJobsInput, fn func(*ListTransformJobsOutput, bool) bool) error {
 	return c.ListTransformJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -19979,14 +19754,13 @@ const opListTrialComponents = "ListTrialComponents"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTrialComponentsRequest method.
+//	req, resp := client.ListTrialComponentsRequest(params)
 //
-//    // Example sending a request using the ListTrialComponentsRequest method.
-//    req, resp := client.ListTrialComponentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListTrialComponents
 func (c *SageMaker) ListTrialComponentsRequest(input *ListTrialComponentsInput) (req *request.Request, output *ListTrialComponentsOutput) {
@@ -20018,11 +19792,11 @@ func (c *SageMaker) ListTrialComponentsRequest(input *ListTrialComponentsInput) 
 // that were created in a specific time range. You can also filter on one of
 // the following:
 //
-//    * ExperimentName
+//   - ExperimentName
 //
-//    * SourceArn
+//   - SourceArn
 //
-//    * TrialName
+//   - TrialName
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20032,8 +19806,8 @@ func (c *SageMaker) ListTrialComponentsRequest(input *ListTrialComponentsInput) 
 // API operation ListTrialComponents for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListTrialComponents
 func (c *SageMaker) ListTrialComponents(input *ListTrialComponentsInput) (*ListTrialComponentsOutput, error) {
@@ -20065,15 +19839,14 @@ func (c *SageMaker) ListTrialComponentsWithContext(ctx aws.Context, input *ListT
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTrialComponents operation.
-//    pageNum := 0
-//    err := client.ListTrialComponentsPages(params,
-//        func(page *sagemaker.ListTrialComponentsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTrialComponents operation.
+//	pageNum := 0
+//	err := client.ListTrialComponentsPages(params,
+//	    func(page *sagemaker.ListTrialComponentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListTrialComponentsPages(input *ListTrialComponentsInput, fn func(*ListTrialComponentsOutput, bool) bool) error {
 	return c.ListTrialComponentsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -20125,14 +19898,13 @@ const opListTrials = "ListTrials"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTrialsRequest method.
+//	req, resp := client.ListTrialsRequest(params)
 //
-//    // Example sending a request using the ListTrialsRequest method.
-//    req, resp := client.ListTrialsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListTrials
 func (c *SageMaker) ListTrialsRequest(input *ListTrialsInput) (req *request.Request, output *ListTrialsOutput) {
@@ -20173,8 +19945,8 @@ func (c *SageMaker) ListTrialsRequest(input *ListTrialsInput) (req *request.Requ
 // API operation ListTrials for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListTrials
 func (c *SageMaker) ListTrials(input *ListTrialsInput) (*ListTrialsOutput, error) {
@@ -20206,15 +19978,14 @@ func (c *SageMaker) ListTrialsWithContext(ctx aws.Context, input *ListTrialsInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTrials operation.
-//    pageNum := 0
-//    err := client.ListTrialsPages(params,
-//        func(page *sagemaker.ListTrialsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTrials operation.
+//	pageNum := 0
+//	err := client.ListTrialsPages(params,
+//	    func(page *sagemaker.ListTrialsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListTrialsPages(input *ListTrialsInput, fn func(*ListTrialsOutput, bool) bool) error {
 	return c.ListTrialsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -20266,14 +20037,13 @@ const opListUserProfiles = "ListUserProfiles"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListUserProfilesRequest method.
+//	req, resp := client.ListUserProfilesRequest(params)
 //
-//    // Example sending a request using the ListUserProfilesRequest method.
-//    req, resp := client.ListUserProfilesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListUserProfiles
 func (c *SageMaker) ListUserProfilesRequest(input *ListUserProfilesInput) (req *request.Request, output *ListUserProfilesOutput) {
@@ -20338,15 +20108,14 @@ func (c *SageMaker) ListUserProfilesWithContext(ctx aws.Context, input *ListUser
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListUserProfiles operation.
-//    pageNum := 0
-//    err := client.ListUserProfilesPages(params,
-//        func(page *sagemaker.ListUserProfilesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListUserProfiles operation.
+//	pageNum := 0
+//	err := client.ListUserProfilesPages(params,
+//	    func(page *sagemaker.ListUserProfilesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListUserProfilesPages(input *ListUserProfilesInput, fn func(*ListUserProfilesOutput, bool) bool) error {
 	return c.ListUserProfilesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -20398,14 +20167,13 @@ const opListWorkforces = "ListWorkforces"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListWorkforcesRequest method.
+//	req, resp := client.ListWorkforcesRequest(params)
 //
-//    // Example sending a request using the ListWorkforcesRequest method.
-//    req, resp := client.ListWorkforcesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListWorkforces
 func (c *SageMaker) ListWorkforcesRequest(input *ListWorkforcesInput) (req *request.Request, output *ListWorkforcesOutput) {
@@ -20472,15 +20240,14 @@ func (c *SageMaker) ListWorkforcesWithContext(ctx aws.Context, input *ListWorkfo
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListWorkforces operation.
-//    pageNum := 0
-//    err := client.ListWorkforcesPages(params,
-//        func(page *sagemaker.ListWorkforcesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListWorkforces operation.
+//	pageNum := 0
+//	err := client.ListWorkforcesPages(params,
+//	    func(page *sagemaker.ListWorkforcesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListWorkforcesPages(input *ListWorkforcesInput, fn func(*ListWorkforcesOutput, bool) bool) error {
 	return c.ListWorkforcesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -20532,14 +20299,13 @@ const opListWorkteams = "ListWorkteams"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListWorkteamsRequest method.
+//	req, resp := client.ListWorkteamsRequest(params)
 //
-//    // Example sending a request using the ListWorkteamsRequest method.
-//    req, resp := client.ListWorkteamsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListWorkteams
 func (c *SageMaker) ListWorkteamsRequest(input *ListWorkteamsInput) (req *request.Request, output *ListWorkteamsOutput) {
@@ -20606,15 +20372,14 @@ func (c *SageMaker) ListWorkteamsWithContext(ctx aws.Context, input *ListWorktea
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListWorkteams operation.
-//    pageNum := 0
-//    err := client.ListWorkteamsPages(params,
-//        func(page *sagemaker.ListWorkteamsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListWorkteams operation.
+//	pageNum := 0
+//	err := client.ListWorkteamsPages(params,
+//	    func(page *sagemaker.ListWorkteamsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) ListWorkteamsPages(input *ListWorkteamsInput, fn func(*ListWorkteamsOutput, bool) bool) error {
 	return c.ListWorkteamsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -20666,14 +20431,13 @@ const opPutModelPackageGroupPolicy = "PutModelPackageGroupPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutModelPackageGroupPolicyRequest method.
+//	req, resp := client.PutModelPackageGroupPolicyRequest(params)
 //
-//    // Example sending a request using the PutModelPackageGroupPolicyRequest method.
-//    req, resp := client.PutModelPackageGroupPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/PutModelPackageGroupPolicy
 func (c *SageMaker) PutModelPackageGroupPolicyRequest(input *PutModelPackageGroupPolicyInput) (req *request.Request, output *PutModelPackageGroupPolicyOutput) {
@@ -20743,14 +20507,13 @@ const opQueryLineage = "QueryLineage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the QueryLineageRequest method.
+//	req, resp := client.QueryLineageRequest(params)
 //
-//    // Example sending a request using the QueryLineageRequest method.
-//    req, resp := client.QueryLineageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/QueryLineage
 func (c *SageMaker) QueryLineageRequest(input *QueryLineageInput) (req *request.Request, output *QueryLineageOutput) {
@@ -20789,8 +20552,8 @@ func (c *SageMaker) QueryLineageRequest(input *QueryLineageInput) (req *request.
 // API operation QueryLineage for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/QueryLineage
 func (c *SageMaker) QueryLineage(input *QueryLineageInput) (*QueryLineageOutput, error) {
@@ -20822,15 +20585,14 @@ func (c *SageMaker) QueryLineageWithContext(ctx aws.Context, input *QueryLineage
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a QueryLineage operation.
-//    pageNum := 0
-//    err := client.QueryLineagePages(params,
-//        func(page *sagemaker.QueryLineageOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a QueryLineage operation.
+//	pageNum := 0
+//	err := client.QueryLineagePages(params,
+//	    func(page *sagemaker.QueryLineageOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) QueryLineagePages(input *QueryLineageInput, fn func(*QueryLineageOutput, bool) bool) error {
 	return c.QueryLineagePagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -20882,14 +20644,13 @@ const opRegisterDevices = "RegisterDevices"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RegisterDevicesRequest method.
+//	req, resp := client.RegisterDevicesRequest(params)
 //
-//    // Example sending a request using the RegisterDevicesRequest method.
-//    req, resp := client.RegisterDevicesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/RegisterDevices
 func (c *SageMaker) RegisterDevicesRequest(input *RegisterDevicesInput) (req *request.Request, output *RegisterDevicesOutput) {
@@ -20921,9 +20682,9 @@ func (c *SageMaker) RegisterDevicesRequest(input *RegisterDevicesInput) (req *re
 // API operation RegisterDevices for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/RegisterDevices
 func (c *SageMaker) RegisterDevices(input *RegisterDevicesInput) (*RegisterDevicesOutput, error) {
@@ -20963,14 +20724,13 @@ const opRenderUiTemplate = "RenderUiTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RenderUiTemplateRequest method.
+//	req, resp := client.RenderUiTemplateRequest(params)
 //
-//    // Example sending a request using the RenderUiTemplateRequest method.
-//    req, resp := client.RenderUiTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/RenderUiTemplate
 func (c *SageMaker) RenderUiTemplateRequest(input *RenderUiTemplateInput) (req *request.Request, output *RenderUiTemplateOutput) {
@@ -21001,8 +20761,8 @@ func (c *SageMaker) RenderUiTemplateRequest(input *RenderUiTemplateInput) (req *
 // API operation RenderUiTemplate for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/RenderUiTemplate
 func (c *SageMaker) RenderUiTemplate(input *RenderUiTemplateInput) (*RenderUiTemplateOutput, error) {
@@ -21042,14 +20802,13 @@ const opRetryPipelineExecution = "RetryPipelineExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RetryPipelineExecutionRequest method.
+//	req, resp := client.RetryPipelineExecutionRequest(params)
 //
-//    // Example sending a request using the RetryPipelineExecutionRequest method.
-//    req, resp := client.RetryPipelineExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/RetryPipelineExecution
 func (c *SageMaker) RetryPipelineExecutionRequest(input *RetryPipelineExecutionInput) (req *request.Request, output *RetryPipelineExecutionOutput) {
@@ -21080,16 +20839,17 @@ func (c *SageMaker) RetryPipelineExecutionRequest(input *RetryPipelineExecutionI
 // API operation RetryPipelineExecution for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
-//   * ConflictException
-//   There was a conflict when you attempted to modify a SageMaker entity such
-//   as an Experiment or Artifact.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ConflictException
+//     There was a conflict when you attempted to modify a SageMaker entity such
+//     as an Experiment or Artifact.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/RetryPipelineExecution
 func (c *SageMaker) RetryPipelineExecution(input *RetryPipelineExecutionInput) (*RetryPipelineExecutionOutput, error) {
@@ -21129,14 +20889,13 @@ const opSearch = "Search"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SearchRequest method.
+//	req, resp := client.SearchRequest(params)
 //
-//    // Example sending a request using the SearchRequest method.
-//    req, resp := client.SearchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/Search
 func (c *SageMaker) SearchRequest(input *SearchInput) (req *request.Request, output *SearchOutput) {
@@ -21207,15 +20966,14 @@ func (c *SageMaker) SearchWithContext(ctx aws.Context, input *SearchInput, opts 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a Search operation.
-//    pageNum := 0
-//    err := client.SearchPages(params,
-//        func(page *sagemaker.SearchOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a Search operation.
+//	pageNum := 0
+//	err := client.SearchPages(params,
+//	    func(page *sagemaker.SearchOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SageMaker) SearchPages(input *SearchInput, fn func(*SearchOutput, bool) bool) error {
 	return c.SearchPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -21267,14 +21025,13 @@ const opSendPipelineExecutionStepFailure = "SendPipelineExecutionStepFailure"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SendPipelineExecutionStepFailureRequest method.
+//	req, resp := client.SendPipelineExecutionStepFailureRequest(params)
 //
-//    // Example sending a request using the SendPipelineExecutionStepFailureRequest method.
-//    req, resp := client.SendPipelineExecutionStepFailureRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/SendPipelineExecutionStepFailure
 func (c *SageMaker) SendPipelineExecutionStepFailureRequest(input *SendPipelineExecutionStepFailureInput) (req *request.Request, output *SendPipelineExecutionStepFailureOutput) {
@@ -21308,12 +21065,13 @@ func (c *SageMaker) SendPipelineExecutionStepFailureRequest(input *SendPipelineE
 // API operation SendPipelineExecutionStepFailure for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceNotFound
+//     Resource being access is not found.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/SendPipelineExecutionStepFailure
 func (c *SageMaker) SendPipelineExecutionStepFailure(input *SendPipelineExecutionStepFailureInput) (*SendPipelineExecutionStepFailureOutput, error) {
@@ -21353,14 +21111,13 @@ const opSendPipelineExecutionStepSuccess = "SendPipelineExecutionStepSuccess"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SendPipelineExecutionStepSuccessRequest method.
+//	req, resp := client.SendPipelineExecutionStepSuccessRequest(params)
 //
-//    // Example sending a request using the SendPipelineExecutionStepSuccessRequest method.
-//    req, resp := client.SendPipelineExecutionStepSuccessRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/SendPipelineExecutionStepSuccess
 func (c *SageMaker) SendPipelineExecutionStepSuccessRequest(input *SendPipelineExecutionStepSuccessInput) (req *request.Request, output *SendPipelineExecutionStepSuccessOutput) {
@@ -21394,12 +21151,13 @@ func (c *SageMaker) SendPipelineExecutionStepSuccessRequest(input *SendPipelineE
 // API operation SendPipelineExecutionStepSuccess for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceNotFound
+//     Resource being access is not found.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/SendPipelineExecutionStepSuccess
 func (c *SageMaker) SendPipelineExecutionStepSuccess(input *SendPipelineExecutionStepSuccessInput) (*SendPipelineExecutionStepSuccessOutput, error) {
@@ -21439,14 +21197,13 @@ const opStartEdgeDeploymentStage = "StartEdgeDeploymentStage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartEdgeDeploymentStageRequest method.
+//	req, resp := client.StartEdgeDeploymentStageRequest(params)
 //
-//    // Example sending a request using the StartEdgeDeploymentStageRequest method.
-//    req, resp := client.StartEdgeDeploymentStageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StartEdgeDeploymentStage
 func (c *SageMaker) StartEdgeDeploymentStageRequest(input *StartEdgeDeploymentStageInput) (req *request.Request, output *StartEdgeDeploymentStageOutput) {
@@ -21514,14 +21271,13 @@ const opStartMonitoringSchedule = "StartMonitoringSchedule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartMonitoringScheduleRequest method.
+//	req, resp := client.StartMonitoringScheduleRequest(params)
 //
-//    // Example sending a request using the StartMonitoringScheduleRequest method.
-//    req, resp := client.StartMonitoringScheduleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StartMonitoringSchedule
 func (c *SageMaker) StartMonitoringScheduleRequest(input *StartMonitoringScheduleInput) (req *request.Request, output *StartMonitoringScheduleOutput) {
@@ -21556,8 +21312,8 @@ func (c *SageMaker) StartMonitoringScheduleRequest(input *StartMonitoringSchedul
 // API operation StartMonitoringSchedule for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StartMonitoringSchedule
 func (c *SageMaker) StartMonitoringSchedule(input *StartMonitoringScheduleInput) (*StartMonitoringScheduleOutput, error) {
@@ -21597,14 +21353,13 @@ const opStartNotebookInstance = "StartNotebookInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartNotebookInstanceRequest method.
+//	req, resp := client.StartNotebookInstanceRequest(params)
 //
-//    // Example sending a request using the StartNotebookInstanceRequest method.
-//    req, resp := client.StartNotebookInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StartNotebookInstance
 func (c *SageMaker) StartNotebookInstanceRequest(input *StartNotebookInstanceInput) (req *request.Request, output *StartNotebookInstanceOutput) {
@@ -21639,9 +21394,9 @@ func (c *SageMaker) StartNotebookInstanceRequest(input *StartNotebookInstanceInp
 // API operation StartNotebookInstance for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StartNotebookInstance
 func (c *SageMaker) StartNotebookInstance(input *StartNotebookInstanceInput) (*StartNotebookInstanceOutput, error) {
@@ -21681,14 +21436,13 @@ const opStartPipelineExecution = "StartPipelineExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartPipelineExecutionRequest method.
+//	req, resp := client.StartPipelineExecutionRequest(params)
 //
-//    // Example sending a request using the StartPipelineExecutionRequest method.
-//    req, resp := client.StartPipelineExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StartPipelineExecution
 func (c *SageMaker) StartPipelineExecutionRequest(input *StartPipelineExecutionInput) (req *request.Request, output *StartPipelineExecutionOutput) {
@@ -21719,12 +21473,13 @@ func (c *SageMaker) StartPipelineExecutionRequest(input *StartPipelineExecutionI
 // API operation StartPipelineExecution for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
 //
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceNotFound
+//     Resource being access is not found.
+//
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StartPipelineExecution
 func (c *SageMaker) StartPipelineExecution(input *StartPipelineExecutionInput) (*StartPipelineExecutionOutput, error) {
@@ -21764,14 +21519,13 @@ const opStopAutoMLJob = "StopAutoMLJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopAutoMLJobRequest method.
+//	req, resp := client.StopAutoMLJobRequest(params)
 //
-//    // Example sending a request using the StopAutoMLJobRequest method.
-//    req, resp := client.StopAutoMLJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopAutoMLJob
 func (c *SageMaker) StopAutoMLJobRequest(input *StopAutoMLJobInput) (req *request.Request, output *StopAutoMLJobOutput) {
@@ -21803,8 +21557,8 @@ func (c *SageMaker) StopAutoMLJobRequest(input *StopAutoMLJobInput) (req *reques
 // API operation StopAutoMLJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopAutoMLJob
 func (c *SageMaker) StopAutoMLJob(input *StopAutoMLJobInput) (*StopAutoMLJobOutput, error) {
@@ -21844,14 +21598,13 @@ const opStopCompilationJob = "StopCompilationJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopCompilationJobRequest method.
+//	req, resp := client.StopCompilationJobRequest(params)
 //
-//    // Example sending a request using the StopCompilationJobRequest method.
-//    req, resp := client.StopCompilationJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopCompilationJob
 func (c *SageMaker) StopCompilationJobRequest(input *StopCompilationJobInput) (req *request.Request, output *StopCompilationJobOutput) {
@@ -21892,8 +21645,8 @@ func (c *SageMaker) StopCompilationJobRequest(input *StopCompilationJobInput) (r
 // API operation StopCompilationJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopCompilationJob
 func (c *SageMaker) StopCompilationJob(input *StopCompilationJobInput) (*StopCompilationJobOutput, error) {
@@ -21933,14 +21686,13 @@ const opStopEdgeDeploymentStage = "StopEdgeDeploymentStage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopEdgeDeploymentStageRequest method.
+//	req, resp := client.StopEdgeDeploymentStageRequest(params)
 //
-//    // Example sending a request using the StopEdgeDeploymentStageRequest method.
-//    req, resp := client.StopEdgeDeploymentStageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopEdgeDeploymentStage
 func (c *SageMaker) StopEdgeDeploymentStageRequest(input *StopEdgeDeploymentStageInput) (req *request.Request, output *StopEdgeDeploymentStageOutput) {
@@ -22008,14 +21760,13 @@ const opStopEdgePackagingJob = "StopEdgePackagingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopEdgePackagingJobRequest method.
+//	req, resp := client.StopEdgePackagingJobRequest(params)
 //
-//    // Example sending a request using the StopEdgePackagingJobRequest method.
-//    req, resp := client.StopEdgePackagingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopEdgePackagingJob
 func (c *SageMaker) StopEdgePackagingJobRequest(input *StopEdgePackagingJobInput) (req *request.Request, output *StopEdgePackagingJobOutput) {
@@ -22083,14 +21834,13 @@ const opStopHyperParameterTuningJob = "StopHyperParameterTuningJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopHyperParameterTuningJobRequest method.
+//	req, resp := client.StopHyperParameterTuningJobRequest(params)
 //
-//    // Example sending a request using the StopHyperParameterTuningJobRequest method.
-//    req, resp := client.StopHyperParameterTuningJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopHyperParameterTuningJob
 func (c *SageMaker) StopHyperParameterTuningJobRequest(input *StopHyperParameterTuningJobInput) (req *request.Request, output *StopHyperParameterTuningJobOutput) {
@@ -22128,8 +21878,8 @@ func (c *SageMaker) StopHyperParameterTuningJobRequest(input *StopHyperParameter
 // API operation StopHyperParameterTuningJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopHyperParameterTuningJob
 func (c *SageMaker) StopHyperParameterTuningJob(input *StopHyperParameterTuningJobInput) (*StopHyperParameterTuningJobOutput, error) {
@@ -22169,14 +21919,13 @@ const opStopInferenceRecommendationsJob = "StopInferenceRecommendationsJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopInferenceRecommendationsJobRequest method.
+//	req, resp := client.StopInferenceRecommendationsJobRequest(params)
 //
-//    // Example sending a request using the StopInferenceRecommendationsJobRequest method.
-//    req, resp := client.StopInferenceRecommendationsJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopInferenceRecommendationsJob
 func (c *SageMaker) StopInferenceRecommendationsJobRequest(input *StopInferenceRecommendationsJobInput) (req *request.Request, output *StopInferenceRecommendationsJobOutput) {
@@ -22208,8 +21957,8 @@ func (c *SageMaker) StopInferenceRecommendationsJobRequest(input *StopInferenceR
 // API operation StopInferenceRecommendationsJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopInferenceRecommendationsJob
 func (c *SageMaker) StopInferenceRecommendationsJob(input *StopInferenceRecommendationsJobInput) (*StopInferenceRecommendationsJobOutput, error) {
@@ -22249,14 +21998,13 @@ const opStopLabelingJob = "StopLabelingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopLabelingJobRequest method.
+//	req, resp := client.StopLabelingJobRequest(params)
 //
-//    // Example sending a request using the StopLabelingJobRequest method.
-//    req, resp := client.StopLabelingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopLabelingJob
 func (c *SageMaker) StopLabelingJobRequest(input *StopLabelingJobInput) (req *request.Request, output *StopLabelingJobOutput) {
@@ -22290,8 +22038,8 @@ func (c *SageMaker) StopLabelingJobRequest(input *StopLabelingJobInput) (req *re
 // API operation StopLabelingJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopLabelingJob
 func (c *SageMaker) StopLabelingJob(input *StopLabelingJobInput) (*StopLabelingJobOutput, error) {
@@ -22331,14 +22079,13 @@ const opStopMonitoringSchedule = "StopMonitoringSchedule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopMonitoringScheduleRequest method.
+//	req, resp := client.StopMonitoringScheduleRequest(params)
 //
-//    // Example sending a request using the StopMonitoringScheduleRequest method.
-//    req, resp := client.StopMonitoringScheduleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopMonitoringSchedule
 func (c *SageMaker) StopMonitoringScheduleRequest(input *StopMonitoringScheduleInput) (req *request.Request, output *StopMonitoringScheduleOutput) {
@@ -22370,8 +22117,8 @@ func (c *SageMaker) StopMonitoringScheduleRequest(input *StopMonitoringScheduleI
 // API operation StopMonitoringSchedule for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopMonitoringSchedule
 func (c *SageMaker) StopMonitoringSchedule(input *StopMonitoringScheduleInput) (*StopMonitoringScheduleOutput, error) {
@@ -22411,14 +22158,13 @@ const opStopNotebookInstance = "StopNotebookInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopNotebookInstanceRequest method.
+//	req, resp := client.StopNotebookInstanceRequest(params)
 //
-//    // Example sending a request using the StopNotebookInstanceRequest method.
-//    req, resp := client.StopNotebookInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopNotebookInstance
 func (c *SageMaker) StopNotebookInstanceRequest(input *StopNotebookInstanceInput) (req *request.Request, output *StopNotebookInstanceOutput) {
@@ -22494,14 +22240,13 @@ const opStopPipelineExecution = "StopPipelineExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopPipelineExecutionRequest method.
+//	req, resp := client.StopPipelineExecutionRequest(params)
 //
-//    // Example sending a request using the StopPipelineExecutionRequest method.
-//    req, resp := client.StopPipelineExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopPipelineExecution
 func (c *SageMaker) StopPipelineExecutionRequest(input *StopPipelineExecutionInput) (req *request.Request, output *StopPipelineExecutionOutput) {
@@ -22524,7 +22269,7 @@ func (c *SageMaker) StopPipelineExecutionRequest(input *StopPipelineExecutionInp
 //
 // Stops a pipeline execution.
 //
-// Callback Step
+// # Callback Step
 //
 // A pipeline execution won't stop while a callback step is running. When you
 // call StopPipelineExecution on a pipeline execution with a running callback
@@ -22539,7 +22284,7 @@ func (c *SageMaker) StopPipelineExecutionRequest(input *StopPipelineExecutionInp
 // Only when SageMaker Pipelines receives one of these calls will it stop the
 // pipeline execution.
 //
-// Lambda Step
+// # Lambda Step
 //
 // A pipeline execution can't be stopped while a lambda step is running because
 // the Lambda function invoked by the lambda step can't be stopped. If you attempt
@@ -22557,8 +22302,8 @@ func (c *SageMaker) StopPipelineExecutionRequest(input *StopPipelineExecutionInp
 // API operation StopPipelineExecution for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopPipelineExecution
 func (c *SageMaker) StopPipelineExecution(input *StopPipelineExecutionInput) (*StopPipelineExecutionOutput, error) {
@@ -22598,14 +22343,13 @@ const opStopProcessingJob = "StopProcessingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopProcessingJobRequest method.
+//	req, resp := client.StopProcessingJobRequest(params)
 //
-//    // Example sending a request using the StopProcessingJobRequest method.
-//    req, resp := client.StopProcessingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopProcessingJob
 func (c *SageMaker) StopProcessingJobRequest(input *StopProcessingJobInput) (req *request.Request, output *StopProcessingJobOutput) {
@@ -22637,8 +22381,8 @@ func (c *SageMaker) StopProcessingJobRequest(input *StopProcessingJobInput) (req
 // API operation StopProcessingJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopProcessingJob
 func (c *SageMaker) StopProcessingJob(input *StopProcessingJobInput) (*StopProcessingJobOutput, error) {
@@ -22678,14 +22422,13 @@ const opStopTrainingJob = "StopTrainingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopTrainingJobRequest method.
+//	req, resp := client.StopTrainingJobRequest(params)
 //
-//    // Example sending a request using the StopTrainingJobRequest method.
-//    req, resp := client.StopTrainingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopTrainingJob
 func (c *SageMaker) StopTrainingJobRequest(input *StopTrainingJobInput) (req *request.Request, output *StopTrainingJobOutput) {
@@ -22724,8 +22467,8 @@ func (c *SageMaker) StopTrainingJobRequest(input *StopTrainingJobInput) (req *re
 // API operation StopTrainingJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopTrainingJob
 func (c *SageMaker) StopTrainingJob(input *StopTrainingJobInput) (*StopTrainingJobOutput, error) {
@@ -22765,14 +22508,13 @@ const opStopTransformJob = "StopTransformJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopTransformJobRequest method.
+//	req, resp := client.StopTransformJobRequest(params)
 //
-//    // Example sending a request using the StopTransformJobRequest method.
-//    req, resp := client.StopTransformJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopTransformJob
 func (c *SageMaker) StopTransformJobRequest(input *StopTransformJobInput) (req *request.Request, output *StopTransformJobOutput) {
@@ -22809,8 +22551,8 @@ func (c *SageMaker) StopTransformJobRequest(input *StopTransformJobInput) (req *
 // API operation StopTransformJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopTransformJob
 func (c *SageMaker) StopTransformJob(input *StopTransformJobInput) (*StopTransformJobOutput, error) {
@@ -22850,14 +22592,13 @@ const opUpdateAction = "UpdateAction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateActionRequest method.
+//	req, resp := client.UpdateActionRequest(params)
 //
-//    // Example sending a request using the UpdateActionRequest method.
-//    req, resp := client.UpdateActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateAction
 func (c *SageMaker) UpdateActionRequest(input *UpdateActionInput) (req *request.Request, output *UpdateActionOutput) {
@@ -22888,12 +22629,13 @@ func (c *SageMaker) UpdateActionRequest(input *UpdateActionInput) (req *request.
 // API operation UpdateAction for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   There was a conflict when you attempted to modify a SageMaker entity such
-//   as an Experiment or Artifact.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ConflictException
+//     There was a conflict when you attempted to modify a SageMaker entity such
+//     as an Experiment or Artifact.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateAction
 func (c *SageMaker) UpdateAction(input *UpdateActionInput) (*UpdateActionOutput, error) {
@@ -22933,14 +22675,13 @@ const opUpdateAppImageConfig = "UpdateAppImageConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateAppImageConfigRequest method.
+//	req, resp := client.UpdateAppImageConfigRequest(params)
 //
-//    // Example sending a request using the UpdateAppImageConfigRequest method.
-//    req, resp := client.UpdateAppImageConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateAppImageConfig
 func (c *SageMaker) UpdateAppImageConfigRequest(input *UpdateAppImageConfigInput) (req *request.Request, output *UpdateAppImageConfigOutput) {
@@ -22971,8 +22712,8 @@ func (c *SageMaker) UpdateAppImageConfigRequest(input *UpdateAppImageConfigInput
 // API operation UpdateAppImageConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateAppImageConfig
 func (c *SageMaker) UpdateAppImageConfig(input *UpdateAppImageConfigInput) (*UpdateAppImageConfigOutput, error) {
@@ -23012,14 +22753,13 @@ const opUpdateArtifact = "UpdateArtifact"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateArtifactRequest method.
+//	req, resp := client.UpdateArtifactRequest(params)
 //
-//    // Example sending a request using the UpdateArtifactRequest method.
-//    req, resp := client.UpdateArtifactRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateArtifact
 func (c *SageMaker) UpdateArtifactRequest(input *UpdateArtifactInput) (req *request.Request, output *UpdateArtifactOutput) {
@@ -23050,12 +22790,13 @@ func (c *SageMaker) UpdateArtifactRequest(input *UpdateArtifactInput) (req *requ
 // API operation UpdateArtifact for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   There was a conflict when you attempted to modify a SageMaker entity such
-//   as an Experiment or Artifact.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ConflictException
+//     There was a conflict when you attempted to modify a SageMaker entity such
+//     as an Experiment or Artifact.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateArtifact
 func (c *SageMaker) UpdateArtifact(input *UpdateArtifactInput) (*UpdateArtifactOutput, error) {
@@ -23095,14 +22836,13 @@ const opUpdateCodeRepository = "UpdateCodeRepository"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateCodeRepositoryRequest method.
+//	req, resp := client.UpdateCodeRepositoryRequest(params)
 //
-//    // Example sending a request using the UpdateCodeRepositoryRequest method.
-//    req, resp := client.UpdateCodeRepositoryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateCodeRepository
 func (c *SageMaker) UpdateCodeRepositoryRequest(input *UpdateCodeRepositoryInput) (req *request.Request, output *UpdateCodeRepositoryOutput) {
@@ -23169,14 +22909,13 @@ const opUpdateContext = "UpdateContext"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateContextRequest method.
+//	req, resp := client.UpdateContextRequest(params)
 //
-//    // Example sending a request using the UpdateContextRequest method.
-//    req, resp := client.UpdateContextRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateContext
 func (c *SageMaker) UpdateContextRequest(input *UpdateContextInput) (req *request.Request, output *UpdateContextOutput) {
@@ -23207,12 +22946,13 @@ func (c *SageMaker) UpdateContextRequest(input *UpdateContextInput) (req *reques
 // API operation UpdateContext for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   There was a conflict when you attempted to modify a SageMaker entity such
-//   as an Experiment or Artifact.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ConflictException
+//     There was a conflict when you attempted to modify a SageMaker entity such
+//     as an Experiment or Artifact.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateContext
 func (c *SageMaker) UpdateContext(input *UpdateContextInput) (*UpdateContextOutput, error) {
@@ -23252,14 +22992,13 @@ const opUpdateDeviceFleet = "UpdateDeviceFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDeviceFleetRequest method.
+//	req, resp := client.UpdateDeviceFleetRequest(params)
 //
-//    // Example sending a request using the UpdateDeviceFleetRequest method.
-//    req, resp := client.UpdateDeviceFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateDeviceFleet
 func (c *SageMaker) UpdateDeviceFleetRequest(input *UpdateDeviceFleetInput) (req *request.Request, output *UpdateDeviceFleetOutput) {
@@ -23291,8 +23030,8 @@ func (c *SageMaker) UpdateDeviceFleetRequest(input *UpdateDeviceFleetInput) (req
 // API operation UpdateDeviceFleet for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceInUse
+//     Resource being accessed is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateDeviceFleet
 func (c *SageMaker) UpdateDeviceFleet(input *UpdateDeviceFleetInput) (*UpdateDeviceFleetOutput, error) {
@@ -23332,14 +23071,13 @@ const opUpdateDevices = "UpdateDevices"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDevicesRequest method.
+//	req, resp := client.UpdateDevicesRequest(params)
 //
-//    // Example sending a request using the UpdateDevicesRequest method.
-//    req, resp := client.UpdateDevicesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateDevices
 func (c *SageMaker) UpdateDevicesRequest(input *UpdateDevicesInput) (req *request.Request, output *UpdateDevicesOutput) {
@@ -23407,14 +23145,13 @@ const opUpdateDomain = "UpdateDomain"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDomainRequest method.
+//	req, resp := client.UpdateDomainRequest(params)
 //
-//    // Example sending a request using the UpdateDomainRequest method.
-//    req, resp := client.UpdateDomainRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateDomain
 func (c *SageMaker) UpdateDomainRequest(input *UpdateDomainInput) (req *request.Request, output *UpdateDomainOutput) {
@@ -23445,15 +23182,16 @@ func (c *SageMaker) UpdateDomainRequest(input *UpdateDomainInput) (req *request.
 // API operation UpdateDomain for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
 //
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateDomain
 func (c *SageMaker) UpdateDomain(input *UpdateDomainInput) (*UpdateDomainOutput, error) {
@@ -23493,14 +23231,13 @@ const opUpdateEndpoint = "UpdateEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateEndpointRequest method.
+//	req, resp := client.UpdateEndpointRequest(params)
 //
-//    // Example sending a request using the UpdateEndpointRequest method.
-//    req, resp := client.UpdateEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateEndpoint
 func (c *SageMaker) UpdateEndpointRequest(input *UpdateEndpointInput) (req *request.Request, output *UpdateEndpointOutput) {
@@ -23545,9 +23282,9 @@ func (c *SageMaker) UpdateEndpointRequest(input *UpdateEndpointInput) (req *requ
 // API operation UpdateEndpoint for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateEndpoint
 func (c *SageMaker) UpdateEndpoint(input *UpdateEndpointInput) (*UpdateEndpointOutput, error) {
@@ -23587,14 +23324,13 @@ const opUpdateEndpointWeightsAndCapacities = "UpdateEndpointWeightsAndCapacities
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateEndpointWeightsAndCapacitiesRequest method.
+//	req, resp := client.UpdateEndpointWeightsAndCapacitiesRequest(params)
 //
-//    // Example sending a request using the UpdateEndpointWeightsAndCapacitiesRequest method.
-//    req, resp := client.UpdateEndpointWeightsAndCapacitiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateEndpointWeightsAndCapacities
 func (c *SageMaker) UpdateEndpointWeightsAndCapacitiesRequest(input *UpdateEndpointWeightsAndCapacitiesInput) (req *request.Request, output *UpdateEndpointWeightsAndCapacitiesOutput) {
@@ -23629,9 +23365,9 @@ func (c *SageMaker) UpdateEndpointWeightsAndCapacitiesRequest(input *UpdateEndpo
 // API operation UpdateEndpointWeightsAndCapacities for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateEndpointWeightsAndCapacities
 func (c *SageMaker) UpdateEndpointWeightsAndCapacities(input *UpdateEndpointWeightsAndCapacitiesInput) (*UpdateEndpointWeightsAndCapacitiesOutput, error) {
@@ -23671,14 +23407,13 @@ const opUpdateExperiment = "UpdateExperiment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateExperimentRequest method.
+//	req, resp := client.UpdateExperimentRequest(params)
 //
-//    // Example sending a request using the UpdateExperimentRequest method.
-//    req, resp := client.UpdateExperimentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateExperiment
 func (c *SageMaker) UpdateExperimentRequest(input *UpdateExperimentInput) (req *request.Request, output *UpdateExperimentOutput) {
@@ -23710,12 +23445,13 @@ func (c *SageMaker) UpdateExperimentRequest(input *UpdateExperimentInput) (req *
 // API operation UpdateExperiment for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   There was a conflict when you attempted to modify a SageMaker entity such
-//   as an Experiment or Artifact.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ConflictException
+//     There was a conflict when you attempted to modify a SageMaker entity such
+//     as an Experiment or Artifact.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateExperiment
 func (c *SageMaker) UpdateExperiment(input *UpdateExperimentInput) (*UpdateExperimentOutput, error) {
@@ -23755,14 +23491,13 @@ const opUpdateFeatureGroup = "UpdateFeatureGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateFeatureGroupRequest method.
+//	req, resp := client.UpdateFeatureGroupRequest(params)
 //
-//    // Example sending a request using the UpdateFeatureGroupRequest method.
-//    req, resp := client.UpdateFeatureGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateFeatureGroup
 func (c *SageMaker) UpdateFeatureGroupRequest(input *UpdateFeatureGroupInput) (req *request.Request, output *UpdateFeatureGroupOutput) {
@@ -23793,8 +23528,8 @@ func (c *SageMaker) UpdateFeatureGroupRequest(input *UpdateFeatureGroupInput) (r
 // API operation UpdateFeatureGroup for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateFeatureGroup
 func (c *SageMaker) UpdateFeatureGroup(input *UpdateFeatureGroupInput) (*UpdateFeatureGroupOutput, error) {
@@ -23834,14 +23569,13 @@ const opUpdateFeatureMetadata = "UpdateFeatureMetadata"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateFeatureMetadataRequest method.
+//	req, resp := client.UpdateFeatureMetadataRequest(params)
 //
-//    // Example sending a request using the UpdateFeatureMetadataRequest method.
-//    req, resp := client.UpdateFeatureMetadataRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateFeatureMetadata
 func (c *SageMaker) UpdateFeatureMetadataRequest(input *UpdateFeatureMetadataInput) (req *request.Request, output *UpdateFeatureMetadataOutput) {
@@ -23873,8 +23607,8 @@ func (c *SageMaker) UpdateFeatureMetadataRequest(input *UpdateFeatureMetadataInp
 // API operation UpdateFeatureMetadata for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateFeatureMetadata
 func (c *SageMaker) UpdateFeatureMetadata(input *UpdateFeatureMetadataInput) (*UpdateFeatureMetadataOutput, error) {
@@ -23914,14 +23648,13 @@ const opUpdateImage = "UpdateImage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateImageRequest method.
+//	req, resp := client.UpdateImageRequest(params)
 //
-//    // Example sending a request using the UpdateImageRequest method.
-//    req, resp := client.UpdateImageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateImage
 func (c *SageMaker) UpdateImageRequest(input *UpdateImageInput) (req *request.Request, output *UpdateImageOutput) {
@@ -23953,11 +23686,12 @@ func (c *SageMaker) UpdateImageRequest(input *UpdateImageInput) (req *request.Re
 // API operation UpdateImage for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUse
-//   Resource being accessed is in use.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateImage
 func (c *SageMaker) UpdateImage(input *UpdateImageInput) (*UpdateImageOutput, error) {
@@ -23997,14 +23731,13 @@ const opUpdateModelPackage = "UpdateModelPackage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateModelPackageRequest method.
+//	req, resp := client.UpdateModelPackageRequest(params)
 //
-//    // Example sending a request using the UpdateModelPackageRequest method.
-//    req, resp := client.UpdateModelPackageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateModelPackage
 func (c *SageMaker) UpdateModelPackageRequest(input *UpdateModelPackageInput) (req *request.Request, output *UpdateModelPackageOutput) {
@@ -24071,14 +23804,13 @@ const opUpdateMonitoringSchedule = "UpdateMonitoringSchedule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateMonitoringScheduleRequest method.
+//	req, resp := client.UpdateMonitoringScheduleRequest(params)
 //
-//    // Example sending a request using the UpdateMonitoringScheduleRequest method.
-//    req, resp := client.UpdateMonitoringScheduleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateMonitoringSchedule
 func (c *SageMaker) UpdateMonitoringScheduleRequest(input *UpdateMonitoringScheduleInput) (req *request.Request, output *UpdateMonitoringScheduleOutput) {
@@ -24109,12 +23841,13 @@ func (c *SageMaker) UpdateMonitoringScheduleRequest(input *UpdateMonitoringSched
 // API operation UpdateMonitoringSchedule for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateMonitoringSchedule
 func (c *SageMaker) UpdateMonitoringSchedule(input *UpdateMonitoringScheduleInput) (*UpdateMonitoringScheduleOutput, error) {
@@ -24154,14 +23887,13 @@ const opUpdateNotebookInstance = "UpdateNotebookInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateNotebookInstanceRequest method.
+//	req, resp := client.UpdateNotebookInstanceRequest(params)
 //
-//    // Example sending a request using the UpdateNotebookInstanceRequest method.
-//    req, resp := client.UpdateNotebookInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateNotebookInstance
 func (c *SageMaker) UpdateNotebookInstanceRequest(input *UpdateNotebookInstanceInput) (req *request.Request, output *UpdateNotebookInstanceOutput) {
@@ -24195,9 +23927,9 @@ func (c *SageMaker) UpdateNotebookInstanceRequest(input *UpdateNotebookInstanceI
 // API operation UpdateNotebookInstance for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateNotebookInstance
 func (c *SageMaker) UpdateNotebookInstance(input *UpdateNotebookInstanceInput) (*UpdateNotebookInstanceOutput, error) {
@@ -24237,14 +23969,13 @@ const opUpdateNotebookInstanceLifecycleConfig = "UpdateNotebookInstanceLifecycle
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateNotebookInstanceLifecycleConfigRequest method.
+//	req, resp := client.UpdateNotebookInstanceLifecycleConfigRequest(params)
 //
-//    // Example sending a request using the UpdateNotebookInstanceLifecycleConfigRequest method.
-//    req, resp := client.UpdateNotebookInstanceLifecycleConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateNotebookInstanceLifecycleConfig
 func (c *SageMaker) UpdateNotebookInstanceLifecycleConfigRequest(input *UpdateNotebookInstanceLifecycleConfigInput) (req *request.Request, output *UpdateNotebookInstanceLifecycleConfigOutput) {
@@ -24277,9 +24008,9 @@ func (c *SageMaker) UpdateNotebookInstanceLifecycleConfigRequest(input *UpdateNo
 // API operation UpdateNotebookInstanceLifecycleConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateNotebookInstanceLifecycleConfig
 func (c *SageMaker) UpdateNotebookInstanceLifecycleConfig(input *UpdateNotebookInstanceLifecycleConfigInput) (*UpdateNotebookInstanceLifecycleConfigOutput, error) {
@@ -24319,14 +24050,13 @@ const opUpdatePipeline = "UpdatePipeline"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdatePipelineRequest method.
+//	req, resp := client.UpdatePipelineRequest(params)
 //
-//    // Example sending a request using the UpdatePipelineRequest method.
-//    req, resp := client.UpdatePipelineRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdatePipeline
 func (c *SageMaker) UpdatePipelineRequest(input *UpdatePipelineInput) (req *request.Request, output *UpdatePipelineOutput) {
@@ -24357,8 +24087,8 @@ func (c *SageMaker) UpdatePipelineRequest(input *UpdatePipelineInput) (req *requ
 // API operation UpdatePipeline for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdatePipeline
 func (c *SageMaker) UpdatePipeline(input *UpdatePipelineInput) (*UpdatePipelineOutput, error) {
@@ -24398,14 +24128,13 @@ const opUpdatePipelineExecution = "UpdatePipelineExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdatePipelineExecutionRequest method.
+//	req, resp := client.UpdatePipelineExecutionRequest(params)
 //
-//    // Example sending a request using the UpdatePipelineExecutionRequest method.
-//    req, resp := client.UpdatePipelineExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdatePipelineExecution
 func (c *SageMaker) UpdatePipelineExecutionRequest(input *UpdatePipelineExecutionInput) (req *request.Request, output *UpdatePipelineExecutionOutput) {
@@ -24436,8 +24165,8 @@ func (c *SageMaker) UpdatePipelineExecutionRequest(input *UpdatePipelineExecutio
 // API operation UpdatePipelineExecution for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdatePipelineExecution
 func (c *SageMaker) UpdatePipelineExecution(input *UpdatePipelineExecutionInput) (*UpdatePipelineExecutionOutput, error) {
@@ -24477,14 +24206,13 @@ const opUpdateProject = "UpdateProject"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateProjectRequest method.
+//	req, resp := client.UpdateProjectRequest(params)
 //
-//    // Example sending a request using the UpdateProjectRequest method.
-//    req, resp := client.UpdateProjectRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateProject
 func (c *SageMaker) UpdateProjectRequest(input *UpdateProjectInput) (req *request.Request, output *UpdateProjectOutput) {
@@ -24556,14 +24284,13 @@ const opUpdateTrainingJob = "UpdateTrainingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateTrainingJobRequest method.
+//	req, resp := client.UpdateTrainingJobRequest(params)
 //
-//    // Example sending a request using the UpdateTrainingJobRequest method.
-//    req, resp := client.UpdateTrainingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateTrainingJob
 func (c *SageMaker) UpdateTrainingJobRequest(input *UpdateTrainingJobInput) (req *request.Request, output *UpdateTrainingJobOutput) {
@@ -24594,8 +24321,8 @@ func (c *SageMaker) UpdateTrainingJobRequest(input *UpdateTrainingJobInput) (req
 // API operation UpdateTrainingJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateTrainingJob
 func (c *SageMaker) UpdateTrainingJob(input *UpdateTrainingJobInput) (*UpdateTrainingJobOutput, error) {
@@ -24635,14 +24362,13 @@ const opUpdateTrial = "UpdateTrial"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateTrialRequest method.
+//	req, resp := client.UpdateTrialRequest(params)
 //
-//    // Example sending a request using the UpdateTrialRequest method.
-//    req, resp := client.UpdateTrialRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateTrial
 func (c *SageMaker) UpdateTrialRequest(input *UpdateTrialInput) (req *request.Request, output *UpdateTrialOutput) {
@@ -24673,12 +24399,13 @@ func (c *SageMaker) UpdateTrialRequest(input *UpdateTrialInput) (req *request.Re
 // API operation UpdateTrial for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   There was a conflict when you attempted to modify a SageMaker entity such
-//   as an Experiment or Artifact.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ConflictException
+//     There was a conflict when you attempted to modify a SageMaker entity such
+//     as an Experiment or Artifact.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateTrial
 func (c *SageMaker) UpdateTrial(input *UpdateTrialInput) (*UpdateTrialOutput, error) {
@@ -24718,14 +24445,13 @@ const opUpdateTrialComponent = "UpdateTrialComponent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateTrialComponentRequest method.
+//	req, resp := client.UpdateTrialComponentRequest(params)
 //
-//    // Example sending a request using the UpdateTrialComponentRequest method.
-//    req, resp := client.UpdateTrialComponentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateTrialComponent
 func (c *SageMaker) UpdateTrialComponentRequest(input *UpdateTrialComponentInput) (req *request.Request, output *UpdateTrialComponentOutput) {
@@ -24756,12 +24482,13 @@ func (c *SageMaker) UpdateTrialComponentRequest(input *UpdateTrialComponentInput
 // API operation UpdateTrialComponent for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   There was a conflict when you attempted to modify a SageMaker entity such
-//   as an Experiment or Artifact.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ConflictException
+//     There was a conflict when you attempted to modify a SageMaker entity such
+//     as an Experiment or Artifact.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateTrialComponent
 func (c *SageMaker) UpdateTrialComponent(input *UpdateTrialComponentInput) (*UpdateTrialComponentOutput, error) {
@@ -24801,14 +24528,13 @@ const opUpdateUserProfile = "UpdateUserProfile"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateUserProfileRequest method.
+//	req, resp := client.UpdateUserProfileRequest(params)
 //
-//    // Example sending a request using the UpdateUserProfileRequest method.
-//    req, resp := client.UpdateUserProfileRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateUserProfile
 func (c *SageMaker) UpdateUserProfileRequest(input *UpdateUserProfileInput) (req *request.Request, output *UpdateUserProfileOutput) {
@@ -24839,15 +24565,16 @@ func (c *SageMaker) UpdateUserProfileRequest(input *UpdateUserProfileInput) (req
 // API operation UpdateUserProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
 //
-//   * ResourceInUse
-//   Resource being accessed is in use.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
-//   * ResourceNotFound
-//   Resource being access is not found.
+//   - ResourceInUse
+//     Resource being accessed is in use.
+//
+//   - ResourceNotFound
+//     Resource being access is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateUserProfile
 func (c *SageMaker) UpdateUserProfile(input *UpdateUserProfileInput) (*UpdateUserProfileOutput, error) {
@@ -24887,14 +24614,13 @@ const opUpdateWorkforce = "UpdateWorkforce"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateWorkforceRequest method.
+//	req, resp := client.UpdateWorkforceRequest(params)
 //
-//    // Example sending a request using the UpdateWorkforceRequest method.
-//    req, resp := client.UpdateWorkforceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateWorkforce
 func (c *SageMaker) UpdateWorkforceRequest(input *UpdateWorkforceInput) (req *request.Request, output *UpdateWorkforceOutput) {
@@ -24955,9 +24681,9 @@ func (c *SageMaker) UpdateWorkforceRequest(input *UpdateWorkforceInput) (req *re
 // API operation UpdateWorkforce for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   There was a conflict when you attempted to modify a SageMaker entity such
-//   as an Experiment or Artifact.
+//   - ConflictException
+//     There was a conflict when you attempted to modify a SageMaker entity such
+//     as an Experiment or Artifact.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateWorkforce
 func (c *SageMaker) UpdateWorkforce(input *UpdateWorkforceInput) (*UpdateWorkforceOutput, error) {
@@ -24997,14 +24723,13 @@ const opUpdateWorkteam = "UpdateWorkteam"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateWorkteamRequest method.
+//	req, resp := client.UpdateWorkteamRequest(params)
 //
-//    // Example sending a request using the UpdateWorkteamRequest method.
-//    req, resp := client.UpdateWorkteamRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateWorkteam
 func (c *SageMaker) UpdateWorkteamRequest(input *UpdateWorkteamInput) (req *request.Request, output *UpdateWorkteamOutput) {
@@ -25035,9 +24760,9 @@ func (c *SageMaker) UpdateWorkteamRequest(input *UpdateWorkteamInput) (req *requ
 // API operation UpdateWorkteam for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceLimitExceeded
-//   You have exceeded an SageMaker resource limit. For example, you might have
-//   too many training jobs created.
+//   - ResourceLimitExceeded
+//     You have exceeded an SageMaker resource limit. For example, you might have
+//     too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateWorkteam
 func (c *SageMaker) UpdateWorkteam(input *UpdateWorkteamInput) (*UpdateWorkteamOutput, error) {
@@ -57966,11 +57691,11 @@ func (s *Experiment) SetTags(v []*Tag) *Experiment {
 // Associates a SageMaker job as a trial component with an experiment and trial.
 // Specified when you call the following APIs:
 //
-//    * CreateProcessingJob
+//   - CreateProcessingJob
 //
-//    * CreateTrainingJob
+//   - CreateTrainingJob
 //
-//    * CreateTransformJob
+//   - CreateTransformJob
 type ExperimentConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -58941,7 +58666,7 @@ func (s *FileSystemDataSource) SetFileSystemType(v string) *FileSystemDataSource
 //
 // In search, there are several property types:
 //
-// Metrics
+// # Metrics
 //
 // To define a metric filter, enter a value using the form "Metrics.<name>",
 // where <name> is a metric name. For example, the following filter searches
@@ -58957,7 +58682,7 @@ func (s *FileSystemDataSource) SetFileSystemType(v string) *FileSystemDataSource
 //
 // }
 //
-// HyperParameters
+// # HyperParameters
 //
 // To define a hyperparameter filter, enter a value with the form "HyperParameters.<name>".
 // Decimal hyperparameter values are treated as a decimal in a comparison if
@@ -58976,7 +58701,7 @@ func (s *FileSystemDataSource) SetFileSystemType(v string) *FileSystemDataSource
 //
 // }
 //
-// Tags
+// # Tags
 //
 // To define a tag filter, enter a value with the form Tags.<key>.
 type Filter struct {
@@ -78841,10 +78566,10 @@ func (s *NeoVpcConfig) SetSubnets(v []*string) *NeoVpcConfig {
 // For example, to filter on a training job's InputDataConfig property with
 // a specific channel name and S3Uri prefix, define the following filters:
 //
-//    * '{Name:"InputDataConfig.ChannelName", "Operator":"Equals", "Value":"train"}',
+//   - '{Name:"InputDataConfig.ChannelName", "Operator":"Equals", "Value":"train"}',
 //
-//    * '{Name:"InputDataConfig.DataSource.S3DataSource.S3Uri", "Operator":"Contains",
-//    "Value":"mybucket/catdata"}'
+//   - '{Name:"InputDataConfig.DataSource.S3DataSource.S3Uri", "Operator":"Contains",
+//     "Value":"mybucket/catdata"}'
 type NestedFilters struct {
 	_ struct{} `type:"structure"`
 
@@ -83984,204 +83709,204 @@ func (s *ProvisioningParameter) SetValue(v string) *ProvisioningParameter {
 // dollars and should be based on the complexity of the task; the longer it
 // takes in your initial testing, the more you should offer.
 //
-//    * 0.036
+//   - 0.036
 //
-//    * 0.048
+//   - 0.048
 //
-//    * 0.060
+//   - 0.060
 //
-//    * 0.072
+//   - 0.072
 //
-//    * 0.120
+//   - 0.120
 //
-//    * 0.240
+//   - 0.240
 //
-//    * 0.360
+//   - 0.360
 //
-//    * 0.480
+//   - 0.480
 //
-//    * 0.600
+//   - 0.600
 //
-//    * 0.720
+//   - 0.720
 //
-//    * 0.840
+//   - 0.840
 //
-//    * 0.960
+//   - 0.960
 //
-//    * 1.080
+//   - 1.080
 //
-//    * 1.200
+//   - 1.200
 //
 // Use one of the following prices for image classification, text classification,
 // and custom tasks. Prices are in US dollars.
 //
-//    * 0.012
+//   - 0.012
 //
-//    * 0.024
+//   - 0.024
 //
-//    * 0.036
+//   - 0.036
 //
-//    * 0.048
+//   - 0.048
 //
-//    * 0.060
+//   - 0.060
 //
-//    * 0.072
+//   - 0.072
 //
-//    * 0.120
+//   - 0.120
 //
-//    * 0.240
+//   - 0.240
 //
-//    * 0.360
+//   - 0.360
 //
-//    * 0.480
+//   - 0.480
 //
-//    * 0.600
+//   - 0.600
 //
-//    * 0.720
+//   - 0.720
 //
-//    * 0.840
+//   - 0.840
 //
-//    * 0.960
+//   - 0.960
 //
-//    * 1.080
+//   - 1.080
 //
-//    * 1.200
+//   - 1.200
 //
 // Use one of the following prices for semantic segmentation tasks. Prices are
 // in US dollars.
 //
-//    * 0.840
+//   - 0.840
 //
-//    * 0.960
+//   - 0.960
 //
-//    * 1.080
+//   - 1.080
 //
-//    * 1.200
+//   - 1.200
 //
 // Use one of the following prices for Textract AnalyzeDocument Important Form
 // Key Amazon Augmented AI review tasks. Prices are in US dollars.
 //
-//    * 2.400
+//   - 2.400
 //
-//    * 2.280
+//   - 2.280
 //
-//    * 2.160
+//   - 2.160
 //
-//    * 2.040
+//   - 2.040
 //
-//    * 1.920
+//   - 1.920
 //
-//    * 1.800
+//   - 1.800
 //
-//    * 1.680
+//   - 1.680
 //
-//    * 1.560
+//   - 1.560
 //
-//    * 1.440
+//   - 1.440
 //
-//    * 1.320
+//   - 1.320
 //
-//    * 1.200
+//   - 1.200
 //
-//    * 1.080
+//   - 1.080
 //
-//    * 0.960
+//   - 0.960
 //
-//    * 0.840
+//   - 0.840
 //
-//    * 0.720
+//   - 0.720
 //
-//    * 0.600
+//   - 0.600
 //
-//    * 0.480
+//   - 0.480
 //
-//    * 0.360
+//   - 0.360
 //
-//    * 0.240
+//   - 0.240
 //
-//    * 0.120
+//   - 0.120
 //
-//    * 0.072
+//   - 0.072
 //
-//    * 0.060
+//   - 0.060
 //
-//    * 0.048
+//   - 0.048
 //
-//    * 0.036
+//   - 0.036
 //
-//    * 0.024
+//   - 0.024
 //
-//    * 0.012
+//   - 0.012
 //
 // Use one of the following prices for Rekognition DetectModerationLabels Amazon
 // Augmented AI review tasks. Prices are in US dollars.
 //
-//    * 1.200
+//   - 1.200
 //
-//    * 1.080
+//   - 1.080
 //
-//    * 0.960
+//   - 0.960
 //
-//    * 0.840
+//   - 0.840
 //
-//    * 0.720
+//   - 0.720
 //
-//    * 0.600
+//   - 0.600
 //
-//    * 0.480
+//   - 0.480
 //
-//    * 0.360
+//   - 0.360
 //
-//    * 0.240
+//   - 0.240
 //
-//    * 0.120
+//   - 0.120
 //
-//    * 0.072
+//   - 0.072
 //
-//    * 0.060
+//   - 0.060
 //
-//    * 0.048
+//   - 0.048
 //
-//    * 0.036
+//   - 0.036
 //
-//    * 0.024
+//   - 0.024
 //
-//    * 0.012
+//   - 0.012
 //
 // Use one of the following prices for Amazon Augmented AI custom human review
 // tasks. Prices are in US dollars.
 //
-//    * 1.200
+//   - 1.200
 //
-//    * 1.080
+//   - 1.080
 //
-//    * 0.960
+//   - 0.960
 //
-//    * 0.840
+//   - 0.840
 //
-//    * 0.720
+//   - 0.720
 //
-//    * 0.600
+//   - 0.600
 //
-//    * 0.480
+//   - 0.480
 //
-//    * 0.360
+//   - 0.360
 //
-//    * 0.240
+//   - 0.240
 //
-//    * 0.120
+//   - 0.120
 //
-//    * 0.072
+//   - 0.072
 //
-//    * 0.060
+//   - 0.060
 //
-//    * 0.048
+//   - 0.048
 //
-//    * 0.036
+//   - 0.036
 //
-//    * 0.024
+//   - 0.024
 //
-//    * 0.012
+//   - 0.012
 type PublicWorkforceTaskPrice struct {
 	_ struct{} `type:"structure"`
 
@@ -86965,17 +86690,17 @@ func (s *ScheduleConfig) SetScheduleExpression(v string) *ScheduleConfig {
 //
 // A SearchExpression contains the following components:
 //
-//    * A list of Filter objects. Each filter defines a simple Boolean expression
-//    comprised of a resource property name, Boolean operator, and value.
+//   - A list of Filter objects. Each filter defines a simple Boolean expression
+//     comprised of a resource property name, Boolean operator, and value.
 //
-//    * A list of NestedFilter objects. Each nested filter defines a list of
-//    Boolean expressions using a list of resource properties. A nested filter
-//    is satisfied if a single object in the list satisfies all Boolean expressions.
+//   - A list of NestedFilter objects. Each nested filter defines a list of
+//     Boolean expressions using a list of resource properties. A nested filter
+//     is satisfied if a single object in the list satisfies all Boolean expressions.
 //
-//    * A list of SearchExpression objects. A search expression object can be
-//    nested in a list of search expression objects.
+//   - A list of SearchExpression objects. A search expression object can be
+//     nested in a list of search expression objects.
 //
-//    * A Boolean operator: And or Or.
+//   - A Boolean operator: And or Or.
 type SearchExpression struct {
 	_ struct{} `type:"structure"`
 
@@ -102822,12 +102547,12 @@ func TrafficType_Values() []string {
 // The training input mode that the algorithm supports. For more information
 // about input modes, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).
 //
-// Pipe mode
+// # Pipe mode
 //
 // If an algorithm supports Pipe mode, Amazon SageMaker streams data directly
 // from Amazon S3 to the container.
 //
-// File mode
+// # File mode
 //
 // If an algorithm supports File mode, SageMaker downloads the training data
 // from S3 to the provisioned ML storage volume, and mounts the directory to
@@ -102845,7 +102570,7 @@ func TrafficType_Values() []string {
 // is also skewed when one host in a training cluster is overloaded, thus becoming
 // a bottleneck in training.
 //
-// FastFile mode
+// # FastFile mode
 //
 // If an algorithm supports FastFile mode, SageMaker streams data directly from
 // S3 to the container with no code changes, and provides file system access

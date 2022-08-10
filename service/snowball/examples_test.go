@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To cancel a cluster job
-//
 // This operation cancels a cluster job. You can only cancel a cluster job while it's
 // in the AwaitingQuorum status.
 func ExampleSnowball_CancelCluster_shared00() {
@@ -60,7 +59,6 @@ func ExampleSnowball_CancelCluster_shared00() {
 }
 
 // To cancel a job for a Snowball device
-//
 // This operation cancels a job. You can only cancel a job before its JobState value
 // changes to PreparingAppliance.
 func ExampleSnowball_CancelJob_shared00() {
@@ -94,7 +92,6 @@ func ExampleSnowball_CancelJob_shared00() {
 }
 
 // To create an address for a job
-//
 // This operation creates an address for a job. Addresses are validated at the time
 // of creation. The address you provide must be located within the serviceable area
 // of your region. If the address is invalid or unsupported, then an exception is thrown.
@@ -136,7 +133,6 @@ func ExampleSnowball_CreateAddress_shared00() {
 }
 
 // To create a cluster
-//
 // Creates an empty cluster. Each cluster supports five nodes. You use the CreateJob
 // action separately to create the jobs for each of these nodes. The cluster does not
 // ship until these five node jobs have been created.
@@ -190,7 +186,6 @@ func ExampleSnowball_CreateCluster_shared00() {
 }
 
 // To create a job
-//
 // Creates a job to import or export data between Amazon S3 and your on-premises data
 // center. Your AWS account must have the right trust policies and permissions in place
 // to create a job for Snowball. If you're creating a job for a node in a cluster, you
@@ -249,7 +244,6 @@ func ExampleSnowball_CreateJob_shared00() {
 }
 
 // To describe an address for a job
-//
 // This operation describes an address for a job.
 func ExampleSnowball_DescribeAddress_shared00() {
 	svc := snowball.New(session.New())
@@ -278,7 +272,6 @@ func ExampleSnowball_DescribeAddress_shared00() {
 }
 
 // To describe all the addresses you've created for AWS Snowball
-//
 // This operation describes all the addresses that you've created for AWS Snowball.
 // Calling this API in one of the US regions will return addresses from the list of
 // all addresses associated with this account in all US regions.
@@ -309,7 +302,6 @@ func ExampleSnowball_DescribeAddresses_shared00() {
 }
 
 // To describe a cluster
-//
 // Returns information about a specific cluster including shipping information, cluster
 // status, and other important metadata.
 func ExampleSnowball_DescribeCluster_shared00() {
@@ -339,7 +331,6 @@ func ExampleSnowball_DescribeCluster_shared00() {
 }
 
 // To describe a job you've created for AWS Snowball
-//
 // This operation describes a job you've created for AWS Snowball.
 func ExampleSnowball_DescribeJob_shared00() {
 	svc := snowball.New(session.New())
@@ -368,7 +359,6 @@ func ExampleSnowball_DescribeJob_shared00() {
 }
 
 // To get the manifest for a job you've created for AWS Snowball
-//
 // Returns a link to an Amazon S3 presigned URL for the manifest file associated with
 // the specified JobId value. You can access the manifest file for up to 60 minutes
 // after this request has been made. To access the manifest file after 60 minutes have
@@ -415,7 +405,6 @@ func ExampleSnowball_GetJobManifest_shared00() {
 }
 
 // To get the unlock code for a job you've created for AWS Snowball
-//
 // Returns the UnlockCode code value for the specified job. A particular UnlockCode
 // value can be accessed for up to 90 days after the associated job has been created.
 //
@@ -457,7 +446,6 @@ func ExampleSnowball_GetJobUnlockCode_shared00() {
 }
 
 // To see your Snowball service limit and the number of Snowballs you have in use
-//
 // Returns information about the Snowball service limit for your account, and also the
 // number of Snowballs your account has in use.
 //
@@ -486,7 +474,6 @@ func ExampleSnowball_GetSnowballUsage_shared00() {
 }
 
 // To get a list of jobs in a cluster that you've created for AWS Snowball
-//
 // Returns an array of JobListEntry objects of the specified length. Each JobListEntry
 // object is for a job in the specified cluster and contains a job's state, a job's
 // ID, and other information.
@@ -519,7 +506,6 @@ func ExampleSnowball_ListClusterJobs_shared00() {
 }
 
 // To get a list of clusters that you've created for AWS Snowball
-//
 // Returns an array of ClusterListEntry objects of the specified length. Each ClusterListEntry
 // object contains a cluster's state, a cluster's ID, and other important status information.
 func ExampleSnowball_ListClusters_shared00() {
@@ -547,7 +533,6 @@ func ExampleSnowball_ListClusters_shared00() {
 }
 
 // To get a list of jobs that you've created for AWS Snowball
-//
 // Returns an array of JobListEntry objects of the specified length. Each JobListEntry
 // object contains a job's state, a job's ID, and a value that indicates whether the
 // job is a job part, in the case of export jobs. Calling this API action in one of
@@ -578,7 +563,6 @@ func ExampleSnowball_ListJobs_shared00() {
 }
 
 // To update a cluster
-//
 // This action allows you to update certain parameters for a cluster. Once the cluster
 // changes to a different state, usually within 60 minutes of it being created, this
 // action is no longer available.
@@ -619,7 +603,6 @@ func ExampleSnowball_UpdateCluster_shared00() {
 }
 
 // To update a job
-//
 // This action allows you to update certain parameters for a job. Once the job changes
 // to a different job state, usually within 60 minutes of the job being created, this
 // action is no longer available.

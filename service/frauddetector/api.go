@@ -28,14 +28,13 @@ const opBatchCreateVariable = "BatchCreateVariable"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchCreateVariableRequest method.
+//	req, resp := client.BatchCreateVariableRequest(params)
 //
-//    // Example sending a request using the BatchCreateVariableRequest method.
-//    req, resp := client.BatchCreateVariableRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/BatchCreateVariable
 func (c *FraudDetector) BatchCreateVariableRequest(input *BatchCreateVariableInput) (req *request.Request, output *BatchCreateVariableOutput) {
@@ -66,19 +65,20 @@ func (c *FraudDetector) BatchCreateVariableRequest(input *BatchCreateVariableInp
 // API operation BatchCreateVariable for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/BatchCreateVariable
 func (c *FraudDetector) BatchCreateVariable(input *BatchCreateVariableInput) (*BatchCreateVariableOutput, error) {
@@ -118,14 +118,13 @@ const opBatchGetVariable = "BatchGetVariable"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchGetVariableRequest method.
+//	req, resp := client.BatchGetVariableRequest(params)
 //
-//    // Example sending a request using the BatchGetVariableRequest method.
-//    req, resp := client.BatchGetVariableRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/BatchGetVariable
 func (c *FraudDetector) BatchGetVariableRequest(input *BatchGetVariableInput) (req *request.Request, output *BatchGetVariableOutput) {
@@ -156,19 +155,20 @@ func (c *FraudDetector) BatchGetVariableRequest(input *BatchGetVariableInput) (r
 // API operation BatchGetVariable for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/BatchGetVariable
 func (c *FraudDetector) BatchGetVariable(input *BatchGetVariableInput) (*BatchGetVariableOutput, error) {
@@ -208,14 +208,13 @@ const opCancelBatchImportJob = "CancelBatchImportJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelBatchImportJobRequest method.
+//	req, resp := client.CancelBatchImportJobRequest(params)
 //
-//    // Example sending a request using the CancelBatchImportJobRequest method.
-//    req, resp := client.CancelBatchImportJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CancelBatchImportJob
 func (c *FraudDetector) CancelBatchImportJobRequest(input *CancelBatchImportJobInput) (req *request.Request, output *CancelBatchImportJobOutput) {
@@ -247,22 +246,23 @@ func (c *FraudDetector) CancelBatchImportJobRequest(input *CancelBatchImportJobI
 // API operation CancelBatchImportJob for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CancelBatchImportJob
 func (c *FraudDetector) CancelBatchImportJob(input *CancelBatchImportJobInput) (*CancelBatchImportJobOutput, error) {
@@ -302,14 +302,13 @@ const opCancelBatchPredictionJob = "CancelBatchPredictionJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelBatchPredictionJobRequest method.
+//	req, resp := client.CancelBatchPredictionJobRequest(params)
 //
-//    // Example sending a request using the CancelBatchPredictionJobRequest method.
-//    req, resp := client.CancelBatchPredictionJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CancelBatchPredictionJob
 func (c *FraudDetector) CancelBatchPredictionJobRequest(input *CancelBatchPredictionJobInput) (req *request.Request, output *CancelBatchPredictionJobOutput) {
@@ -341,22 +340,23 @@ func (c *FraudDetector) CancelBatchPredictionJobRequest(input *CancelBatchPredic
 // API operation CancelBatchPredictionJob for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CancelBatchPredictionJob
 func (c *FraudDetector) CancelBatchPredictionJob(input *CancelBatchPredictionJobInput) (*CancelBatchPredictionJobOutput, error) {
@@ -396,14 +396,13 @@ const opCreateBatchImportJob = "CreateBatchImportJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateBatchImportJobRequest method.
+//	req, resp := client.CreateBatchImportJobRequest(params)
 //
-//    // Example sending a request using the CreateBatchImportJobRequest method.
-//    req, resp := client.CreateBatchImportJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateBatchImportJob
 func (c *FraudDetector) CreateBatchImportJobRequest(input *CreateBatchImportJobInput) (req *request.Request, output *CreateBatchImportJobOutput) {
@@ -435,22 +434,23 @@ func (c *FraudDetector) CreateBatchImportJobRequest(input *CreateBatchImportJobI
 // API operation CreateBatchImportJob for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateBatchImportJob
 func (c *FraudDetector) CreateBatchImportJob(input *CreateBatchImportJobInput) (*CreateBatchImportJobOutput, error) {
@@ -490,14 +490,13 @@ const opCreateBatchPredictionJob = "CreateBatchPredictionJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateBatchPredictionJobRequest method.
+//	req, resp := client.CreateBatchPredictionJobRequest(params)
 //
-//    // Example sending a request using the CreateBatchPredictionJobRequest method.
-//    req, resp := client.CreateBatchPredictionJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateBatchPredictionJob
 func (c *FraudDetector) CreateBatchPredictionJobRequest(input *CreateBatchPredictionJobInput) (req *request.Request, output *CreateBatchPredictionJobOutput) {
@@ -529,22 +528,23 @@ func (c *FraudDetector) CreateBatchPredictionJobRequest(input *CreateBatchPredic
 // API operation CreateBatchPredictionJob for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateBatchPredictionJob
 func (c *FraudDetector) CreateBatchPredictionJob(input *CreateBatchPredictionJobInput) (*CreateBatchPredictionJobOutput, error) {
@@ -584,14 +584,13 @@ const opCreateDetectorVersion = "CreateDetectorVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDetectorVersionRequest method.
+//	req, resp := client.CreateDetectorVersionRequest(params)
 //
-//    // Example sending a request using the CreateDetectorVersionRequest method.
-//    req, resp := client.CreateDetectorVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateDetectorVersion
 func (c *FraudDetector) CreateDetectorVersionRequest(input *CreateDetectorVersionInput) (req *request.Request, output *CreateDetectorVersionOutput) {
@@ -622,22 +621,23 @@ func (c *FraudDetector) CreateDetectorVersionRequest(input *CreateDetectorVersio
 // API operation CreateDetectorVersion for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateDetectorVersion
 func (c *FraudDetector) CreateDetectorVersion(input *CreateDetectorVersionInput) (*CreateDetectorVersionOutput, error) {
@@ -677,14 +677,13 @@ const opCreateModel = "CreateModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateModelRequest method.
+//	req, resp := client.CreateModelRequest(params)
 //
-//    // Example sending a request using the CreateModelRequest method.
-//    req, resp := client.CreateModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateModel
 func (c *FraudDetector) CreateModelRequest(input *CreateModelInput) (req *request.Request, output *CreateModelOutput) {
@@ -716,19 +715,20 @@ func (c *FraudDetector) CreateModelRequest(input *CreateModelInput) (req *reques
 // API operation CreateModel for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateModel
 func (c *FraudDetector) CreateModel(input *CreateModelInput) (*CreateModelOutput, error) {
@@ -768,14 +768,13 @@ const opCreateModelVersion = "CreateModelVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateModelVersionRequest method.
+//	req, resp := client.CreateModelVersionRequest(params)
 //
-//    // Example sending a request using the CreateModelVersionRequest method.
-//    req, resp := client.CreateModelVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateModelVersion
 func (c *FraudDetector) CreateModelVersionRequest(input *CreateModelVersionInput) (req *request.Request, output *CreateModelVersionOutput) {
@@ -806,22 +805,23 @@ func (c *FraudDetector) CreateModelVersionRequest(input *CreateModelVersionInput
 // API operation CreateModelVersion for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateModelVersion
 func (c *FraudDetector) CreateModelVersion(input *CreateModelVersionInput) (*CreateModelVersionOutput, error) {
@@ -861,14 +861,13 @@ const opCreateRule = "CreateRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateRuleRequest method.
+//	req, resp := client.CreateRuleRequest(params)
 //
-//    // Example sending a request using the CreateRuleRequest method.
-//    req, resp := client.CreateRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateRule
 func (c *FraudDetector) CreateRuleRequest(input *CreateRuleInput) (req *request.Request, output *CreateRuleOutput) {
@@ -899,19 +898,20 @@ func (c *FraudDetector) CreateRuleRequest(input *CreateRuleInput) (req *request.
 // API operation CreateRule for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateRule
 func (c *FraudDetector) CreateRule(input *CreateRuleInput) (*CreateRuleOutput, error) {
@@ -951,14 +951,13 @@ const opCreateVariable = "CreateVariable"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateVariableRequest method.
+//	req, resp := client.CreateVariableRequest(params)
 //
-//    // Example sending a request using the CreateVariableRequest method.
-//    req, resp := client.CreateVariableRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateVariable
 func (c *FraudDetector) CreateVariableRequest(input *CreateVariableInput) (req *request.Request, output *CreateVariableOutput) {
@@ -990,19 +989,20 @@ func (c *FraudDetector) CreateVariableRequest(input *CreateVariableInput) (req *
 // API operation CreateVariable for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateVariable
 func (c *FraudDetector) CreateVariable(input *CreateVariableInput) (*CreateVariableOutput, error) {
@@ -1042,14 +1042,13 @@ const opDeleteBatchImportJob = "DeleteBatchImportJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteBatchImportJobRequest method.
+//	req, resp := client.DeleteBatchImportJobRequest(params)
 //
-//    // Example sending a request using the DeleteBatchImportJobRequest method.
-//    req, resp := client.DeleteBatchImportJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteBatchImportJob
 func (c *FraudDetector) DeleteBatchImportJobRequest(input *DeleteBatchImportJobInput) (req *request.Request, output *DeleteBatchImportJobOutput) {
@@ -1082,19 +1081,20 @@ func (c *FraudDetector) DeleteBatchImportJobRequest(input *DeleteBatchImportJobI
 // API operation DeleteBatchImportJob for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteBatchImportJob
 func (c *FraudDetector) DeleteBatchImportJob(input *DeleteBatchImportJobInput) (*DeleteBatchImportJobOutput, error) {
@@ -1134,14 +1134,13 @@ const opDeleteBatchPredictionJob = "DeleteBatchPredictionJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteBatchPredictionJobRequest method.
+//	req, resp := client.DeleteBatchPredictionJobRequest(params)
 //
-//    // Example sending a request using the DeleteBatchPredictionJobRequest method.
-//    req, resp := client.DeleteBatchPredictionJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteBatchPredictionJob
 func (c *FraudDetector) DeleteBatchPredictionJobRequest(input *DeleteBatchPredictionJobInput) (req *request.Request, output *DeleteBatchPredictionJobOutput) {
@@ -1173,19 +1172,20 @@ func (c *FraudDetector) DeleteBatchPredictionJobRequest(input *DeleteBatchPredic
 // API operation DeleteBatchPredictionJob for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteBatchPredictionJob
 func (c *FraudDetector) DeleteBatchPredictionJob(input *DeleteBatchPredictionJobInput) (*DeleteBatchPredictionJobOutput, error) {
@@ -1225,14 +1225,13 @@ const opDeleteDetector = "DeleteDetector"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDetectorRequest method.
+//	req, resp := client.DeleteDetectorRequest(params)
 //
-//    // Example sending a request using the DeleteDetectorRequest method.
-//    req, resp := client.DeleteDetectorRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteDetector
 func (c *FraudDetector) DeleteDetectorRequest(input *DeleteDetectorInput) (req *request.Request, output *DeleteDetectorOutput) {
@@ -1268,22 +1267,23 @@ func (c *FraudDetector) DeleteDetectorRequest(input *DeleteDetectorInput) (req *
 // API operation DeleteDetector for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
 //
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteDetector
 func (c *FraudDetector) DeleteDetector(input *DeleteDetectorInput) (*DeleteDetectorOutput, error) {
@@ -1323,14 +1323,13 @@ const opDeleteDetectorVersion = "DeleteDetectorVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDetectorVersionRequest method.
+//	req, resp := client.DeleteDetectorVersionRequest(params)
 //
-//    // Example sending a request using the DeleteDetectorVersionRequest method.
-//    req, resp := client.DeleteDetectorVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteDetectorVersion
 func (c *FraudDetector) DeleteDetectorVersionRequest(input *DeleteDetectorVersionInput) (req *request.Request, output *DeleteDetectorVersionOutput) {
@@ -1366,25 +1365,26 @@ func (c *FraudDetector) DeleteDetectorVersionRequest(input *DeleteDetectorVersio
 // API operation DeleteDetectorVersion for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteDetectorVersion
 func (c *FraudDetector) DeleteDetectorVersion(input *DeleteDetectorVersionInput) (*DeleteDetectorVersionOutput, error) {
@@ -1424,14 +1424,13 @@ const opDeleteEntityType = "DeleteEntityType"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEntityTypeRequest method.
+//	req, resp := client.DeleteEntityTypeRequest(params)
 //
-//    // Example sending a request using the DeleteEntityTypeRequest method.
-//    req, resp := client.DeleteEntityTypeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEntityType
 func (c *FraudDetector) DeleteEntityTypeRequest(input *DeleteEntityTypeInput) (req *request.Request, output *DeleteEntityTypeOutput) {
@@ -1468,22 +1467,23 @@ func (c *FraudDetector) DeleteEntityTypeRequest(input *DeleteEntityTypeInput) (r
 // API operation DeleteEntityType for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEntityType
 func (c *FraudDetector) DeleteEntityType(input *DeleteEntityTypeInput) (*DeleteEntityTypeOutput, error) {
@@ -1523,14 +1523,13 @@ const opDeleteEvent = "DeleteEvent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEventRequest method.
+//	req, resp := client.DeleteEventRequest(params)
 //
-//    // Example sending a request using the DeleteEventRequest method.
-//    req, resp := client.DeleteEventRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEvent
 func (c *FraudDetector) DeleteEventRequest(input *DeleteEventInput) (req *request.Request, output *DeleteEventOutput) {
@@ -1565,19 +1564,20 @@ func (c *FraudDetector) DeleteEventRequest(input *DeleteEventInput) (req *reques
 // API operation DeleteEvent for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An exception indicating an internal server error.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEvent
 func (c *FraudDetector) DeleteEvent(input *DeleteEventInput) (*DeleteEventOutput, error) {
@@ -1617,14 +1617,13 @@ const opDeleteEventType = "DeleteEventType"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEventTypeRequest method.
+//	req, resp := client.DeleteEventTypeRequest(params)
 //
-//    // Example sending a request using the DeleteEventTypeRequest method.
-//    req, resp := client.DeleteEventTypeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEventType
 func (c *FraudDetector) DeleteEventTypeRequest(input *DeleteEventTypeInput) (req *request.Request, output *DeleteEventTypeOutput) {
@@ -1661,22 +1660,23 @@ func (c *FraudDetector) DeleteEventTypeRequest(input *DeleteEventTypeInput) (req
 // API operation DeleteEventType for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
 //
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEventType
 func (c *FraudDetector) DeleteEventType(input *DeleteEventTypeInput) (*DeleteEventTypeOutput, error) {
@@ -1716,14 +1716,13 @@ const opDeleteEventsByEventType = "DeleteEventsByEventType"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEventsByEventTypeRequest method.
+//	req, resp := client.DeleteEventsByEventTypeRequest(params)
 //
-//    // Example sending a request using the DeleteEventsByEventTypeRequest method.
-//    req, resp := client.DeleteEventsByEventTypeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEventsByEventType
 func (c *FraudDetector) DeleteEventsByEventTypeRequest(input *DeleteEventsByEventTypeInput) (req *request.Request, output *DeleteEventsByEventTypeOutput) {
@@ -1754,25 +1753,26 @@ func (c *FraudDetector) DeleteEventsByEventTypeRequest(input *DeleteEventsByEven
 // API operation DeleteEventsByEventType for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
 //
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEventsByEventType
 func (c *FraudDetector) DeleteEventsByEventType(input *DeleteEventsByEventTypeInput) (*DeleteEventsByEventTypeOutput, error) {
@@ -1812,14 +1812,13 @@ const opDeleteExternalModel = "DeleteExternalModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteExternalModelRequest method.
+//	req, resp := client.DeleteExternalModelRequest(params)
 //
-//    // Example sending a request using the DeleteExternalModelRequest method.
-//    req, resp := client.DeleteExternalModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteExternalModel
 func (c *FraudDetector) DeleteExternalModelRequest(input *DeleteExternalModelInput) (req *request.Request, output *DeleteExternalModelOutput) {
@@ -1855,22 +1854,23 @@ func (c *FraudDetector) DeleteExternalModelRequest(input *DeleteExternalModelInp
 // API operation DeleteExternalModel for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteExternalModel
 func (c *FraudDetector) DeleteExternalModel(input *DeleteExternalModelInput) (*DeleteExternalModelOutput, error) {
@@ -1910,14 +1910,13 @@ const opDeleteLabel = "DeleteLabel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteLabelRequest method.
+//	req, resp := client.DeleteLabelRequest(params)
 //
-//    // Example sending a request using the DeleteLabelRequest method.
-//    req, resp := client.DeleteLabelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteLabel
 func (c *FraudDetector) DeleteLabelRequest(input *DeleteLabelInput) (req *request.Request, output *DeleteLabelOutput) {
@@ -1958,17 +1957,18 @@ func (c *FraudDetector) DeleteLabelRequest(input *DeleteLabelInput) (req *reques
 // API operation DeleteLabel for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteLabel
 func (c *FraudDetector) DeleteLabel(input *DeleteLabelInput) (*DeleteLabelOutput, error) {
@@ -2008,14 +2008,13 @@ const opDeleteModel = "DeleteModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteModelRequest method.
+//	req, resp := client.DeleteModelRequest(params)
 //
-//    // Example sending a request using the DeleteModelRequest method.
-//    req, resp := client.DeleteModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteModel
 func (c *FraudDetector) DeleteModelRequest(input *DeleteModelInput) (req *request.Request, output *DeleteModelOutput) {
@@ -2053,22 +2052,23 @@ func (c *FraudDetector) DeleteModelRequest(input *DeleteModelInput) (req *reques
 // API operation DeleteModel for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
 //
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteModel
 func (c *FraudDetector) DeleteModel(input *DeleteModelInput) (*DeleteModelOutput, error) {
@@ -2108,14 +2108,13 @@ const opDeleteModelVersion = "DeleteModelVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteModelVersionRequest method.
+//	req, resp := client.DeleteModelVersionRequest(params)
 //
-//    // Example sending a request using the DeleteModelVersionRequest method.
-//    req, resp := client.DeleteModelVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteModelVersion
 func (c *FraudDetector) DeleteModelVersionRequest(input *DeleteModelVersionInput) (req *request.Request, output *DeleteModelVersionOutput) {
@@ -2153,22 +2152,23 @@ func (c *FraudDetector) DeleteModelVersionRequest(input *DeleteModelVersionInput
 // API operation DeleteModelVersion for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteModelVersion
 func (c *FraudDetector) DeleteModelVersion(input *DeleteModelVersionInput) (*DeleteModelVersionOutput, error) {
@@ -2208,14 +2208,13 @@ const opDeleteOutcome = "DeleteOutcome"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteOutcomeRequest method.
+//	req, resp := client.DeleteOutcomeRequest(params)
 //
-//    // Example sending a request using the DeleteOutcomeRequest method.
-//    req, resp := client.DeleteOutcomeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteOutcome
 func (c *FraudDetector) DeleteOutcomeRequest(input *DeleteOutcomeInput) (req *request.Request, output *DeleteOutcomeOutput) {
@@ -2252,22 +2251,23 @@ func (c *FraudDetector) DeleteOutcomeRequest(input *DeleteOutcomeInput) (req *re
 // API operation DeleteOutcome for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteOutcome
 func (c *FraudDetector) DeleteOutcome(input *DeleteOutcomeInput) (*DeleteOutcomeOutput, error) {
@@ -2307,14 +2307,13 @@ const opDeleteRule = "DeleteRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteRuleRequest method.
+//	req, resp := client.DeleteRuleRequest(params)
 //
-//    // Example sending a request using the DeleteRuleRequest method.
-//    req, resp := client.DeleteRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteRule
 func (c *FraudDetector) DeleteRuleRequest(input *DeleteRuleInput) (req *request.Request, output *DeleteRuleOutput) {
@@ -2350,22 +2349,23 @@ func (c *FraudDetector) DeleteRuleRequest(input *DeleteRuleInput) (req *request.
 // API operation DeleteRule for usage and error information.
 //
 // Returned Error Types:
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
 //
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteRule
 func (c *FraudDetector) DeleteRule(input *DeleteRuleInput) (*DeleteRuleOutput, error) {
@@ -2405,14 +2405,13 @@ const opDeleteVariable = "DeleteVariable"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteVariableRequest method.
+//	req, resp := client.DeleteVariableRequest(params)
 //
-//    // Example sending a request using the DeleteVariableRequest method.
-//    req, resp := client.DeleteVariableRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteVariable
 func (c *FraudDetector) DeleteVariableRequest(input *DeleteVariableInput) (req *request.Request, output *DeleteVariableOutput) {
@@ -2454,22 +2453,23 @@ func (c *FraudDetector) DeleteVariableRequest(input *DeleteVariableInput) (req *
 // API operation DeleteVariable for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteVariable
 func (c *FraudDetector) DeleteVariable(input *DeleteVariableInput) (*DeleteVariableOutput, error) {
@@ -2509,14 +2509,13 @@ const opDescribeDetector = "DescribeDetector"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDetectorRequest method.
+//	req, resp := client.DescribeDetectorRequest(params)
 //
-//    // Example sending a request using the DescribeDetectorRequest method.
-//    req, resp := client.DescribeDetectorRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DescribeDetector
 func (c *FraudDetector) DescribeDetectorRequest(input *DescribeDetectorInput) (req *request.Request, output *DescribeDetectorOutput) {
@@ -2547,22 +2546,23 @@ func (c *FraudDetector) DescribeDetectorRequest(input *DescribeDetectorInput) (r
 // API operation DescribeDetector for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DescribeDetector
 func (c *FraudDetector) DescribeDetector(input *DescribeDetectorInput) (*DescribeDetectorOutput, error) {
@@ -2602,14 +2602,13 @@ const opDescribeModelVersions = "DescribeModelVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeModelVersionsRequest method.
+//	req, resp := client.DescribeModelVersionsRequest(params)
 //
-//    // Example sending a request using the DescribeModelVersionsRequest method.
-//    req, resp := client.DescribeModelVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DescribeModelVersions
 func (c *FraudDetector) DescribeModelVersionsRequest(input *DescribeModelVersionsInput) (req *request.Request, output *DescribeModelVersionsOutput) {
@@ -2648,22 +2647,23 @@ func (c *FraudDetector) DescribeModelVersionsRequest(input *DescribeModelVersion
 // API operation DescribeModelVersions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DescribeModelVersions
 func (c *FraudDetector) DescribeModelVersions(input *DescribeModelVersionsInput) (*DescribeModelVersionsOutput, error) {
@@ -2695,15 +2695,14 @@ func (c *FraudDetector) DescribeModelVersionsWithContext(ctx aws.Context, input 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeModelVersions operation.
-//    pageNum := 0
-//    err := client.DescribeModelVersionsPages(params,
-//        func(page *frauddetector.DescribeModelVersionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeModelVersions operation.
+//	pageNum := 0
+//	err := client.DescribeModelVersionsPages(params,
+//	    func(page *frauddetector.DescribeModelVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FraudDetector) DescribeModelVersionsPages(input *DescribeModelVersionsInput, fn func(*DescribeModelVersionsOutput, bool) bool) error {
 	return c.DescribeModelVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2755,14 +2754,13 @@ const opGetBatchImportJobs = "GetBatchImportJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBatchImportJobsRequest method.
+//	req, resp := client.GetBatchImportJobsRequest(params)
 //
-//    // Example sending a request using the GetBatchImportJobsRequest method.
-//    req, resp := client.GetBatchImportJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetBatchImportJobs
 func (c *FraudDetector) GetBatchImportJobsRequest(input *GetBatchImportJobsInput) (req *request.Request, output *GetBatchImportJobsOutput) {
@@ -2804,22 +2802,23 @@ func (c *FraudDetector) GetBatchImportJobsRequest(input *GetBatchImportJobsInput
 // API operation GetBatchImportJobs for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetBatchImportJobs
 func (c *FraudDetector) GetBatchImportJobs(input *GetBatchImportJobsInput) (*GetBatchImportJobsOutput, error) {
@@ -2851,15 +2850,14 @@ func (c *FraudDetector) GetBatchImportJobsWithContext(ctx aws.Context, input *Ge
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetBatchImportJobs operation.
-//    pageNum := 0
-//    err := client.GetBatchImportJobsPages(params,
-//        func(page *frauddetector.GetBatchImportJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetBatchImportJobs operation.
+//	pageNum := 0
+//	err := client.GetBatchImportJobsPages(params,
+//	    func(page *frauddetector.GetBatchImportJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FraudDetector) GetBatchImportJobsPages(input *GetBatchImportJobsInput, fn func(*GetBatchImportJobsOutput, bool) bool) error {
 	return c.GetBatchImportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2911,14 +2909,13 @@ const opGetBatchPredictionJobs = "GetBatchPredictionJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBatchPredictionJobsRequest method.
+//	req, resp := client.GetBatchPredictionJobsRequest(params)
 //
-//    // Example sending a request using the GetBatchPredictionJobsRequest method.
-//    req, resp := client.GetBatchPredictionJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetBatchPredictionJobs
 func (c *FraudDetector) GetBatchPredictionJobsRequest(input *GetBatchPredictionJobsInput) (req *request.Request, output *GetBatchPredictionJobsOutput) {
@@ -2960,22 +2957,23 @@ func (c *FraudDetector) GetBatchPredictionJobsRequest(input *GetBatchPredictionJ
 // API operation GetBatchPredictionJobs for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetBatchPredictionJobs
 func (c *FraudDetector) GetBatchPredictionJobs(input *GetBatchPredictionJobsInput) (*GetBatchPredictionJobsOutput, error) {
@@ -3007,15 +3005,14 @@ func (c *FraudDetector) GetBatchPredictionJobsWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetBatchPredictionJobs operation.
-//    pageNum := 0
-//    err := client.GetBatchPredictionJobsPages(params,
-//        func(page *frauddetector.GetBatchPredictionJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetBatchPredictionJobs operation.
+//	pageNum := 0
+//	err := client.GetBatchPredictionJobsPages(params,
+//	    func(page *frauddetector.GetBatchPredictionJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FraudDetector) GetBatchPredictionJobsPages(input *GetBatchPredictionJobsInput, fn func(*GetBatchPredictionJobsOutput, bool) bool) error {
 	return c.GetBatchPredictionJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3067,14 +3064,13 @@ const opGetDeleteEventsByEventTypeStatus = "GetDeleteEventsByEventTypeStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDeleteEventsByEventTypeStatusRequest method.
+//	req, resp := client.GetDeleteEventsByEventTypeStatusRequest(params)
 //
-//    // Example sending a request using the GetDeleteEventsByEventTypeStatusRequest method.
-//    req, resp := client.GetDeleteEventsByEventTypeStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetDeleteEventsByEventTypeStatus
 func (c *FraudDetector) GetDeleteEventsByEventTypeStatusRequest(input *GetDeleteEventsByEventTypeStatusInput) (req *request.Request, output *GetDeleteEventsByEventTypeStatusOutput) {
@@ -3105,22 +3101,23 @@ func (c *FraudDetector) GetDeleteEventsByEventTypeStatusRequest(input *GetDelete
 // API operation GetDeleteEventsByEventTypeStatus for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetDeleteEventsByEventTypeStatus
 func (c *FraudDetector) GetDeleteEventsByEventTypeStatus(input *GetDeleteEventsByEventTypeStatusInput) (*GetDeleteEventsByEventTypeStatusOutput, error) {
@@ -3160,14 +3157,13 @@ const opGetDetectorVersion = "GetDetectorVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDetectorVersionRequest method.
+//	req, resp := client.GetDetectorVersionRequest(params)
 //
-//    // Example sending a request using the GetDetectorVersionRequest method.
-//    req, resp := client.GetDetectorVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetDetectorVersion
 func (c *FraudDetector) GetDetectorVersionRequest(input *GetDetectorVersionInput) (req *request.Request, output *GetDetectorVersionOutput) {
@@ -3198,22 +3194,23 @@ func (c *FraudDetector) GetDetectorVersionRequest(input *GetDetectorVersionInput
 // API operation GetDetectorVersion for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetDetectorVersion
 func (c *FraudDetector) GetDetectorVersion(input *GetDetectorVersionInput) (*GetDetectorVersionOutput, error) {
@@ -3253,14 +3250,13 @@ const opGetDetectors = "GetDetectors"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDetectorsRequest method.
+//	req, resp := client.GetDetectorsRequest(params)
 //
-//    // Example sending a request using the GetDetectorsRequest method.
-//    req, resp := client.GetDetectorsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetDetectors
 func (c *FraudDetector) GetDetectorsRequest(input *GetDetectorsInput) (req *request.Request, output *GetDetectorsOutput) {
@@ -3302,22 +3298,23 @@ func (c *FraudDetector) GetDetectorsRequest(input *GetDetectorsInput) (req *requ
 // API operation GetDetectors for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetDetectors
 func (c *FraudDetector) GetDetectors(input *GetDetectorsInput) (*GetDetectorsOutput, error) {
@@ -3349,15 +3346,14 @@ func (c *FraudDetector) GetDetectorsWithContext(ctx aws.Context, input *GetDetec
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetDetectors operation.
-//    pageNum := 0
-//    err := client.GetDetectorsPages(params,
-//        func(page *frauddetector.GetDetectorsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetDetectors operation.
+//	pageNum := 0
+//	err := client.GetDetectorsPages(params,
+//	    func(page *frauddetector.GetDetectorsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FraudDetector) GetDetectorsPages(input *GetDetectorsInput, fn func(*GetDetectorsOutput, bool) bool) error {
 	return c.GetDetectorsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3409,14 +3405,13 @@ const opGetEntityTypes = "GetEntityTypes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetEntityTypesRequest method.
+//	req, resp := client.GetEntityTypesRequest(params)
 //
-//    // Example sending a request using the GetEntityTypesRequest method.
-//    req, resp := client.GetEntityTypesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEntityTypes
 func (c *FraudDetector) GetEntityTypesRequest(input *GetEntityTypesInput) (req *request.Request, output *GetEntityTypesOutput) {
@@ -3458,22 +3453,23 @@ func (c *FraudDetector) GetEntityTypesRequest(input *GetEntityTypesInput) (req *
 // API operation GetEntityTypes for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEntityTypes
 func (c *FraudDetector) GetEntityTypes(input *GetEntityTypesInput) (*GetEntityTypesOutput, error) {
@@ -3505,15 +3501,14 @@ func (c *FraudDetector) GetEntityTypesWithContext(ctx aws.Context, input *GetEnt
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetEntityTypes operation.
-//    pageNum := 0
-//    err := client.GetEntityTypesPages(params,
-//        func(page *frauddetector.GetEntityTypesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetEntityTypes operation.
+//	pageNum := 0
+//	err := client.GetEntityTypesPages(params,
+//	    func(page *frauddetector.GetEntityTypesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FraudDetector) GetEntityTypesPages(input *GetEntityTypesInput, fn func(*GetEntityTypesOutput, bool) bool) error {
 	return c.GetEntityTypesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3565,14 +3560,13 @@ const opGetEvent = "GetEvent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetEventRequest method.
+//	req, resp := client.GetEventRequest(params)
 //
-//    // Example sending a request using the GetEventRequest method.
-//    req, resp := client.GetEventRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEvent
 func (c *FraudDetector) GetEventRequest(input *GetEventInput) (req *request.Request, output *GetEventOutput) {
@@ -3604,22 +3598,23 @@ func (c *FraudDetector) GetEventRequest(input *GetEventInput) (req *request.Requ
 // API operation GetEvent for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEvent
 func (c *FraudDetector) GetEvent(input *GetEventInput) (*GetEventOutput, error) {
@@ -3659,14 +3654,13 @@ const opGetEventPrediction = "GetEventPrediction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetEventPredictionRequest method.
+//	req, resp := client.GetEventPredictionRequest(params)
 //
-//    // Example sending a request using the GetEventPredictionRequest method.
-//    req, resp := client.GetEventPredictionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEventPrediction
 func (c *FraudDetector) GetEventPredictionRequest(input *GetEventPredictionInput) (req *request.Request, output *GetEventPredictionOutput) {
@@ -3698,29 +3692,30 @@ func (c *FraudDetector) GetEventPredictionRequest(input *GetEventPredictionInput
 // API operation GetEventPrediction for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
-//   * ResourceUnavailableException
-//   An exception indicating that the attached customer-owned (external) model
-//   threw an exception when Amazon Fraud Detector invoked the model.
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
+//
+//   - ResourceUnavailableException
+//     An exception indicating that the attached customer-owned (external) model
+//     threw an exception when Amazon Fraud Detector invoked the model.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEventPrediction
 func (c *FraudDetector) GetEventPrediction(input *GetEventPredictionInput) (*GetEventPredictionOutput, error) {
@@ -3760,14 +3755,13 @@ const opGetEventPredictionMetadata = "GetEventPredictionMetadata"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetEventPredictionMetadataRequest method.
+//	req, resp := client.GetEventPredictionMetadataRequest(params)
 //
-//    // Example sending a request using the GetEventPredictionMetadataRequest method.
-//    req, resp := client.GetEventPredictionMetadataRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEventPredictionMetadata
 func (c *FraudDetector) GetEventPredictionMetadataRequest(input *GetEventPredictionMetadataInput) (req *request.Request, output *GetEventPredictionMetadataOutput) {
@@ -3800,22 +3794,23 @@ func (c *FraudDetector) GetEventPredictionMetadataRequest(input *GetEventPredict
 // API operation GetEventPredictionMetadata for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEventPredictionMetadata
 func (c *FraudDetector) GetEventPredictionMetadata(input *GetEventPredictionMetadataInput) (*GetEventPredictionMetadataOutput, error) {
@@ -3855,14 +3850,13 @@ const opGetEventTypes = "GetEventTypes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetEventTypesRequest method.
+//	req, resp := client.GetEventTypesRequest(params)
 //
-//    // Example sending a request using the GetEventTypesRequest method.
-//    req, resp := client.GetEventTypesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEventTypes
 func (c *FraudDetector) GetEventTypesRequest(input *GetEventTypesInput) (req *request.Request, output *GetEventTypesOutput) {
@@ -3904,22 +3898,23 @@ func (c *FraudDetector) GetEventTypesRequest(input *GetEventTypesInput) (req *re
 // API operation GetEventTypes for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEventTypes
 func (c *FraudDetector) GetEventTypes(input *GetEventTypesInput) (*GetEventTypesOutput, error) {
@@ -3951,15 +3946,14 @@ func (c *FraudDetector) GetEventTypesWithContext(ctx aws.Context, input *GetEven
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetEventTypes operation.
-//    pageNum := 0
-//    err := client.GetEventTypesPages(params,
-//        func(page *frauddetector.GetEventTypesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetEventTypes operation.
+//	pageNum := 0
+//	err := client.GetEventTypesPages(params,
+//	    func(page *frauddetector.GetEventTypesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FraudDetector) GetEventTypesPages(input *GetEventTypesInput, fn func(*GetEventTypesOutput, bool) bool) error {
 	return c.GetEventTypesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4011,14 +4005,13 @@ const opGetExternalModels = "GetExternalModels"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetExternalModelsRequest method.
+//	req, resp := client.GetExternalModelsRequest(params)
 //
-//    // Example sending a request using the GetExternalModelsRequest method.
-//    req, resp := client.GetExternalModelsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetExternalModels
 func (c *FraudDetector) GetExternalModelsRequest(input *GetExternalModelsInput) (req *request.Request, output *GetExternalModelsOutput) {
@@ -4060,22 +4053,23 @@ func (c *FraudDetector) GetExternalModelsRequest(input *GetExternalModelsInput) 
 // API operation GetExternalModels for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetExternalModels
 func (c *FraudDetector) GetExternalModels(input *GetExternalModelsInput) (*GetExternalModelsOutput, error) {
@@ -4107,15 +4101,14 @@ func (c *FraudDetector) GetExternalModelsWithContext(ctx aws.Context, input *Get
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetExternalModels operation.
-//    pageNum := 0
-//    err := client.GetExternalModelsPages(params,
-//        func(page *frauddetector.GetExternalModelsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetExternalModels operation.
+//	pageNum := 0
+//	err := client.GetExternalModelsPages(params,
+//	    func(page *frauddetector.GetExternalModelsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FraudDetector) GetExternalModelsPages(input *GetExternalModelsInput, fn func(*GetExternalModelsOutput, bool) bool) error {
 	return c.GetExternalModelsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4167,14 +4160,13 @@ const opGetKMSEncryptionKey = "GetKMSEncryptionKey"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetKMSEncryptionKeyRequest method.
+//	req, resp := client.GetKMSEncryptionKeyRequest(params)
 //
-//    // Example sending a request using the GetKMSEncryptionKeyRequest method.
-//    req, resp := client.GetKMSEncryptionKeyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetKMSEncryptionKey
 func (c *FraudDetector) GetKMSEncryptionKeyRequest(input *GetKMSEncryptionKeyInput) (req *request.Request, output *GetKMSEncryptionKeyOutput) {
@@ -4206,19 +4198,20 @@ func (c *FraudDetector) GetKMSEncryptionKeyRequest(input *GetKMSEncryptionKeyInp
 // API operation GetKMSEncryptionKey for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetKMSEncryptionKey
 func (c *FraudDetector) GetKMSEncryptionKey(input *GetKMSEncryptionKeyInput) (*GetKMSEncryptionKeyOutput, error) {
@@ -4258,14 +4251,13 @@ const opGetLabels = "GetLabels"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetLabelsRequest method.
+//	req, resp := client.GetLabelsRequest(params)
 //
-//    // Example sending a request using the GetLabelsRequest method.
-//    req, resp := client.GetLabelsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetLabels
 func (c *FraudDetector) GetLabelsRequest(input *GetLabelsInput) (req *request.Request, output *GetLabelsOutput) {
@@ -4307,22 +4299,23 @@ func (c *FraudDetector) GetLabelsRequest(input *GetLabelsInput) (req *request.Re
 // API operation GetLabels for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetLabels
 func (c *FraudDetector) GetLabels(input *GetLabelsInput) (*GetLabelsOutput, error) {
@@ -4354,15 +4347,14 @@ func (c *FraudDetector) GetLabelsWithContext(ctx aws.Context, input *GetLabelsIn
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetLabels operation.
-//    pageNum := 0
-//    err := client.GetLabelsPages(params,
-//        func(page *frauddetector.GetLabelsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetLabels operation.
+//	pageNum := 0
+//	err := client.GetLabelsPages(params,
+//	    func(page *frauddetector.GetLabelsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FraudDetector) GetLabelsPages(input *GetLabelsInput, fn func(*GetLabelsOutput, bool) bool) error {
 	return c.GetLabelsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4414,14 +4406,13 @@ const opGetModelVersion = "GetModelVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetModelVersionRequest method.
+//	req, resp := client.GetModelVersionRequest(params)
 //
-//    // Example sending a request using the GetModelVersionRequest method.
-//    req, resp := client.GetModelVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetModelVersion
 func (c *FraudDetector) GetModelVersionRequest(input *GetModelVersionInput) (req *request.Request, output *GetModelVersionOutput) {
@@ -4452,22 +4443,23 @@ func (c *FraudDetector) GetModelVersionRequest(input *GetModelVersionInput) (req
 // API operation GetModelVersion for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetModelVersion
 func (c *FraudDetector) GetModelVersion(input *GetModelVersionInput) (*GetModelVersionOutput, error) {
@@ -4507,14 +4499,13 @@ const opGetModels = "GetModels"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetModelsRequest method.
+//	req, resp := client.GetModelsRequest(params)
 //
-//    // Example sending a request using the GetModelsRequest method.
-//    req, resp := client.GetModelsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetModels
 func (c *FraudDetector) GetModelsRequest(input *GetModelsInput) (req *request.Request, output *GetModelsOutput) {
@@ -4561,22 +4552,23 @@ func (c *FraudDetector) GetModelsRequest(input *GetModelsInput) (req *request.Re
 // API operation GetModels for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetModels
 func (c *FraudDetector) GetModels(input *GetModelsInput) (*GetModelsOutput, error) {
@@ -4608,15 +4600,14 @@ func (c *FraudDetector) GetModelsWithContext(ctx aws.Context, input *GetModelsIn
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetModels operation.
-//    pageNum := 0
-//    err := client.GetModelsPages(params,
-//        func(page *frauddetector.GetModelsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetModels operation.
+//	pageNum := 0
+//	err := client.GetModelsPages(params,
+//	    func(page *frauddetector.GetModelsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FraudDetector) GetModelsPages(input *GetModelsInput, fn func(*GetModelsOutput, bool) bool) error {
 	return c.GetModelsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4668,14 +4659,13 @@ const opGetOutcomes = "GetOutcomes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetOutcomesRequest method.
+//	req, resp := client.GetOutcomesRequest(params)
 //
-//    // Example sending a request using the GetOutcomesRequest method.
-//    req, resp := client.GetOutcomesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetOutcomes
 func (c *FraudDetector) GetOutcomesRequest(input *GetOutcomesInput) (req *request.Request, output *GetOutcomesOutput) {
@@ -4717,22 +4707,23 @@ func (c *FraudDetector) GetOutcomesRequest(input *GetOutcomesInput) (req *reques
 // API operation GetOutcomes for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetOutcomes
 func (c *FraudDetector) GetOutcomes(input *GetOutcomesInput) (*GetOutcomesOutput, error) {
@@ -4764,15 +4755,14 @@ func (c *FraudDetector) GetOutcomesWithContext(ctx aws.Context, input *GetOutcom
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetOutcomes operation.
-//    pageNum := 0
-//    err := client.GetOutcomesPages(params,
-//        func(page *frauddetector.GetOutcomesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetOutcomes operation.
+//	pageNum := 0
+//	err := client.GetOutcomesPages(params,
+//	    func(page *frauddetector.GetOutcomesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FraudDetector) GetOutcomesPages(input *GetOutcomesInput, fn func(*GetOutcomesOutput, bool) bool) error {
 	return c.GetOutcomesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4824,14 +4814,13 @@ const opGetRules = "GetRules"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetRulesRequest method.
+//	req, resp := client.GetRulesRequest(params)
 //
-//    // Example sending a request using the GetRulesRequest method.
-//    req, resp := client.GetRulesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetRules
 func (c *FraudDetector) GetRulesRequest(input *GetRulesInput) (req *request.Request, output *GetRulesOutput) {
@@ -4876,22 +4865,23 @@ func (c *FraudDetector) GetRulesRequest(input *GetRulesInput) (req *request.Requ
 // API operation GetRules for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetRules
 func (c *FraudDetector) GetRules(input *GetRulesInput) (*GetRulesOutput, error) {
@@ -4923,15 +4913,14 @@ func (c *FraudDetector) GetRulesWithContext(ctx aws.Context, input *GetRulesInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetRules operation.
-//    pageNum := 0
-//    err := client.GetRulesPages(params,
-//        func(page *frauddetector.GetRulesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetRules operation.
+//	pageNum := 0
+//	err := client.GetRulesPages(params,
+//	    func(page *frauddetector.GetRulesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FraudDetector) GetRulesPages(input *GetRulesInput, fn func(*GetRulesOutput, bool) bool) error {
 	return c.GetRulesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4983,14 +4972,13 @@ const opGetVariables = "GetVariables"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetVariablesRequest method.
+//	req, resp := client.GetVariablesRequest(params)
 //
-//    // Example sending a request using the GetVariablesRequest method.
-//    req, resp := client.GetVariablesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetVariables
 func (c *FraudDetector) GetVariablesRequest(input *GetVariablesInput) (req *request.Request, output *GetVariablesOutput) {
@@ -5032,22 +5020,23 @@ func (c *FraudDetector) GetVariablesRequest(input *GetVariablesInput) (req *requ
 // API operation GetVariables for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetVariables
 func (c *FraudDetector) GetVariables(input *GetVariablesInput) (*GetVariablesOutput, error) {
@@ -5079,15 +5068,14 @@ func (c *FraudDetector) GetVariablesWithContext(ctx aws.Context, input *GetVaria
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetVariables operation.
-//    pageNum := 0
-//    err := client.GetVariablesPages(params,
-//        func(page *frauddetector.GetVariablesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetVariables operation.
+//	pageNum := 0
+//	err := client.GetVariablesPages(params,
+//	    func(page *frauddetector.GetVariablesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FraudDetector) GetVariablesPages(input *GetVariablesInput, fn func(*GetVariablesOutput, bool) bool) error {
 	return c.GetVariablesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5139,14 +5127,13 @@ const opListEventPredictions = "ListEventPredictions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEventPredictionsRequest method.
+//	req, resp := client.ListEventPredictionsRequest(params)
 //
-//    // Example sending a request using the ListEventPredictionsRequest method.
-//    req, resp := client.ListEventPredictionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/ListEventPredictions
 func (c *FraudDetector) ListEventPredictionsRequest(input *ListEventPredictionsInput) (req *request.Request, output *ListEventPredictionsOutput) {
@@ -5194,19 +5181,20 @@ func (c *FraudDetector) ListEventPredictionsRequest(input *ListEventPredictionsI
 // API operation ListEventPredictions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/ListEventPredictions
 func (c *FraudDetector) ListEventPredictions(input *ListEventPredictionsInput) (*ListEventPredictionsOutput, error) {
@@ -5238,15 +5226,14 @@ func (c *FraudDetector) ListEventPredictionsWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEventPredictions operation.
-//    pageNum := 0
-//    err := client.ListEventPredictionsPages(params,
-//        func(page *frauddetector.ListEventPredictionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEventPredictions operation.
+//	pageNum := 0
+//	err := client.ListEventPredictionsPages(params,
+//	    func(page *frauddetector.ListEventPredictionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FraudDetector) ListEventPredictionsPages(input *ListEventPredictionsInput, fn func(*ListEventPredictionsOutput, bool) bool) error {
 	return c.ListEventPredictionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5298,14 +5285,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/ListTagsForResource
 func (c *FraudDetector) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -5345,19 +5331,20 @@ func (c *FraudDetector) ListTagsForResourceRequest(input *ListTagsForResourceInp
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/ListTagsForResource
 func (c *FraudDetector) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -5389,15 +5376,14 @@ func (c *FraudDetector) ListTagsForResourceWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTagsForResource operation.
-//    pageNum := 0
-//    err := client.ListTagsForResourcePages(params,
-//        func(page *frauddetector.ListTagsForResourceOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTagsForResource operation.
+//	pageNum := 0
+//	err := client.ListTagsForResourcePages(params,
+//	    func(page *frauddetector.ListTagsForResourceOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *FraudDetector) ListTagsForResourcePages(input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool) error {
 	return c.ListTagsForResourcePagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5449,14 +5435,13 @@ const opPutDetector = "PutDetector"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutDetectorRequest method.
+//	req, resp := client.PutDetectorRequest(params)
 //
-//    // Example sending a request using the PutDetectorRequest method.
-//    req, resp := client.PutDetectorRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutDetector
 func (c *FraudDetector) PutDetectorRequest(input *PutDetectorInput) (req *request.Request, output *PutDetectorOutput) {
@@ -5488,22 +5473,23 @@ func (c *FraudDetector) PutDetectorRequest(input *PutDetectorInput) (req *reques
 // API operation PutDetector for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutDetector
 func (c *FraudDetector) PutDetector(input *PutDetectorInput) (*PutDetectorOutput, error) {
@@ -5543,14 +5529,13 @@ const opPutEntityType = "PutEntityType"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutEntityTypeRequest method.
+//	req, resp := client.PutEntityTypeRequest(params)
 //
-//    // Example sending a request using the PutEntityTypeRequest method.
-//    req, resp := client.PutEntityTypeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutEntityType
 func (c *FraudDetector) PutEntityTypeRequest(input *PutEntityTypeInput) (req *request.Request, output *PutEntityTypeOutput) {
@@ -5585,22 +5570,23 @@ func (c *FraudDetector) PutEntityTypeRequest(input *PutEntityTypeInput) (req *re
 // API operation PutEntityType for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutEntityType
 func (c *FraudDetector) PutEntityType(input *PutEntityTypeInput) (*PutEntityTypeOutput, error) {
@@ -5640,14 +5626,13 @@ const opPutEventType = "PutEventType"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutEventTypeRequest method.
+//	req, resp := client.PutEventTypeRequest(params)
 //
-//    // Example sending a request using the PutEventTypeRequest method.
-//    req, resp := client.PutEventTypeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutEventType
 func (c *FraudDetector) PutEventTypeRequest(input *PutEventTypeInput) (req *request.Request, output *PutEventTypeOutput) {
@@ -5685,22 +5670,23 @@ func (c *FraudDetector) PutEventTypeRequest(input *PutEventTypeInput) (req *requ
 // API operation PutEventType for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutEventType
 func (c *FraudDetector) PutEventType(input *PutEventTypeInput) (*PutEventTypeOutput, error) {
@@ -5740,14 +5726,13 @@ const opPutExternalModel = "PutExternalModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutExternalModelRequest method.
+//	req, resp := client.PutExternalModelRequest(params)
 //
-//    // Example sending a request using the PutExternalModelRequest method.
-//    req, resp := client.PutExternalModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutExternalModel
 func (c *FraudDetector) PutExternalModelRequest(input *PutExternalModelInput) (req *request.Request, output *PutExternalModelOutput) {
@@ -5781,22 +5766,23 @@ func (c *FraudDetector) PutExternalModelRequest(input *PutExternalModelInput) (r
 // API operation PutExternalModel for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutExternalModel
 func (c *FraudDetector) PutExternalModel(input *PutExternalModelInput) (*PutExternalModelOutput, error) {
@@ -5836,14 +5822,13 @@ const opPutKMSEncryptionKey = "PutKMSEncryptionKey"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutKMSEncryptionKeyRequest method.
+//	req, resp := client.PutKMSEncryptionKeyRequest(params)
 //
-//    // Example sending a request using the PutKMSEncryptionKeyRequest method.
-//    req, resp := client.PutKMSEncryptionKeyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutKMSEncryptionKey
 func (c *FraudDetector) PutKMSEncryptionKeyRequest(input *PutKMSEncryptionKeyInput) (req *request.Request, output *PutKMSEncryptionKeyOutput) {
@@ -5875,25 +5860,26 @@ func (c *FraudDetector) PutKMSEncryptionKeyRequest(input *PutKMSEncryptionKeyInp
 // API operation PutKMSEncryptionKey for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutKMSEncryptionKey
 func (c *FraudDetector) PutKMSEncryptionKey(input *PutKMSEncryptionKeyInput) (*PutKMSEncryptionKeyOutput, error) {
@@ -5933,14 +5919,13 @@ const opPutLabel = "PutLabel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutLabelRequest method.
+//	req, resp := client.PutLabelRequest(params)
 //
-//    // Example sending a request using the PutLabelRequest method.
-//    req, resp := client.PutLabelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutLabel
 func (c *FraudDetector) PutLabelRequest(input *PutLabelInput) (req *request.Request, output *PutLabelOutput) {
@@ -5974,22 +5959,23 @@ func (c *FraudDetector) PutLabelRequest(input *PutLabelInput) (req *request.Requ
 // API operation PutLabel for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutLabel
 func (c *FraudDetector) PutLabel(input *PutLabelInput) (*PutLabelOutput, error) {
@@ -6029,14 +6015,13 @@ const opPutOutcome = "PutOutcome"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutOutcomeRequest method.
+//	req, resp := client.PutOutcomeRequest(params)
 //
-//    // Example sending a request using the PutOutcomeRequest method.
-//    req, resp := client.PutOutcomeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutOutcome
 func (c *FraudDetector) PutOutcomeRequest(input *PutOutcomeInput) (req *request.Request, output *PutOutcomeOutput) {
@@ -6068,22 +6053,23 @@ func (c *FraudDetector) PutOutcomeRequest(input *PutOutcomeInput) (req *request.
 // API operation PutOutcome for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutOutcome
 func (c *FraudDetector) PutOutcome(input *PutOutcomeInput) (*PutOutcomeOutput, error) {
@@ -6123,14 +6109,13 @@ const opSendEvent = "SendEvent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SendEventRequest method.
+//	req, resp := client.SendEventRequest(params)
 //
-//    // Example sending a request using the SendEventRequest method.
-//    req, resp := client.SendEventRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/SendEvent
 func (c *FraudDetector) SendEventRequest(input *SendEventInput) (req *request.Request, output *SendEventOutput) {
@@ -6164,25 +6149,26 @@ func (c *FraudDetector) SendEventRequest(input *SendEventInput) (req *request.Re
 // API operation SendEvent for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/SendEvent
 func (c *FraudDetector) SendEvent(input *SendEventInput) (*SendEventOutput, error) {
@@ -6222,14 +6208,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/TagResource
 func (c *FraudDetector) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -6261,19 +6246,20 @@ func (c *FraudDetector) TagResourceRequest(input *TagResourceInput) (req *reques
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/TagResource
 func (c *FraudDetector) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -6313,14 +6299,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UntagResource
 func (c *FraudDetector) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -6352,19 +6337,20 @@ func (c *FraudDetector) UntagResourceRequest(input *UntagResourceInput) (req *re
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
+//
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UntagResource
 func (c *FraudDetector) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -6404,14 +6390,13 @@ const opUpdateDetectorVersion = "UpdateDetectorVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDetectorVersionRequest method.
+//	req, resp := client.UpdateDetectorVersionRequest(params)
 //
-//    // Example sending a request using the UpdateDetectorVersionRequest method.
-//    req, resp := client.UpdateDetectorVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersion
 func (c *FraudDetector) UpdateDetectorVersionRequest(input *UpdateDetectorVersionInput) (req *request.Request, output *UpdateDetectorVersionOutput) {
@@ -6445,25 +6430,26 @@ func (c *FraudDetector) UpdateDetectorVersionRequest(input *UpdateDetectorVersio
 // API operation UpdateDetectorVersion for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersion
 func (c *FraudDetector) UpdateDetectorVersion(input *UpdateDetectorVersionInput) (*UpdateDetectorVersionOutput, error) {
@@ -6503,14 +6489,13 @@ const opUpdateDetectorVersionMetadata = "UpdateDetectorVersionMetadata"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDetectorVersionMetadataRequest method.
+//	req, resp := client.UpdateDetectorVersionMetadataRequest(params)
 //
-//    // Example sending a request using the UpdateDetectorVersionMetadataRequest method.
-//    req, resp := client.UpdateDetectorVersionMetadataRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersionMetadata
 func (c *FraudDetector) UpdateDetectorVersionMetadataRequest(input *UpdateDetectorVersionMetadataInput) (req *request.Request, output *UpdateDetectorVersionMetadataOutput) {
@@ -6543,22 +6528,23 @@ func (c *FraudDetector) UpdateDetectorVersionMetadataRequest(input *UpdateDetect
 // API operation UpdateDetectorVersionMetadata for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersionMetadata
 func (c *FraudDetector) UpdateDetectorVersionMetadata(input *UpdateDetectorVersionMetadataInput) (*UpdateDetectorVersionMetadataOutput, error) {
@@ -6598,14 +6584,13 @@ const opUpdateDetectorVersionStatus = "UpdateDetectorVersionStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDetectorVersionStatusRequest method.
+//	req, resp := client.UpdateDetectorVersionStatusRequest(params)
 //
-//    // Example sending a request using the UpdateDetectorVersionStatusRequest method.
-//    req, resp := client.UpdateDetectorVersionStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersionStatus
 func (c *FraudDetector) UpdateDetectorVersionStatusRequest(input *UpdateDetectorVersionStatusInput) (req *request.Request, output *UpdateDetectorVersionStatusOutput) {
@@ -6639,25 +6624,26 @@ func (c *FraudDetector) UpdateDetectorVersionStatusRequest(input *UpdateDetector
 // API operation UpdateDetectorVersionStatus for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersionStatus
 func (c *FraudDetector) UpdateDetectorVersionStatus(input *UpdateDetectorVersionStatusInput) (*UpdateDetectorVersionStatusOutput, error) {
@@ -6697,14 +6683,13 @@ const opUpdateEventLabel = "UpdateEventLabel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateEventLabelRequest method.
+//	req, resp := client.UpdateEventLabelRequest(params)
 //
-//    // Example sending a request using the UpdateEventLabelRequest method.
-//    req, resp := client.UpdateEventLabelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateEventLabel
 func (c *FraudDetector) UpdateEventLabelRequest(input *UpdateEventLabelInput) (req *request.Request, output *UpdateEventLabelOutput) {
@@ -6736,25 +6721,26 @@ func (c *FraudDetector) UpdateEventLabelRequest(input *UpdateEventLabelInput) (r
 // API operation UpdateEventLabel for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateEventLabel
 func (c *FraudDetector) UpdateEventLabel(input *UpdateEventLabelInput) (*UpdateEventLabelOutput, error) {
@@ -6794,14 +6780,13 @@ const opUpdateModel = "UpdateModel"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateModelRequest method.
+//	req, resp := client.UpdateModelRequest(params)
 //
-//    // Example sending a request using the UpdateModelRequest method.
-//    req, resp := client.UpdateModelRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModel
 func (c *FraudDetector) UpdateModelRequest(input *UpdateModelInput) (req *request.Request, output *UpdateModelOutput) {
@@ -6833,25 +6818,26 @@ func (c *FraudDetector) UpdateModelRequest(input *UpdateModelInput) (req *reques
 // API operation UpdateModel for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModel
 func (c *FraudDetector) UpdateModel(input *UpdateModelInput) (*UpdateModelOutput, error) {
@@ -6891,14 +6877,13 @@ const opUpdateModelVersion = "UpdateModelVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateModelVersionRequest method.
+//	req, resp := client.UpdateModelVersionRequest(params)
 //
-//    // Example sending a request using the UpdateModelVersionRequest method.
-//    req, resp := client.UpdateModelVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModelVersion
 func (c *FraudDetector) UpdateModelVersionRequest(input *UpdateModelVersionInput) (req *request.Request, output *UpdateModelVersionOutput) {
@@ -6933,25 +6918,26 @@ func (c *FraudDetector) UpdateModelVersionRequest(input *UpdateModelVersionInput
 // API operation UpdateModelVersion for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - InternalServerException
+//     An exception indicating an internal server error.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModelVersion
 func (c *FraudDetector) UpdateModelVersion(input *UpdateModelVersionInput) (*UpdateModelVersionOutput, error) {
@@ -6991,14 +6977,13 @@ const opUpdateModelVersionStatus = "UpdateModelVersionStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateModelVersionStatusRequest method.
+//	req, resp := client.UpdateModelVersionStatusRequest(params)
 //
-//    // Example sending a request using the UpdateModelVersionStatusRequest method.
-//    req, resp := client.UpdateModelVersionStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModelVersionStatus
 func (c *FraudDetector) UpdateModelVersionStatusRequest(input *UpdateModelVersionStatusInput) (req *request.Request, output *UpdateModelVersionStatusOutput) {
@@ -7038,25 +7023,26 @@ func (c *FraudDetector) UpdateModelVersionStatusRequest(input *UpdateModelVersio
 // API operation UpdateModelVersionStatus for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModelVersionStatus
 func (c *FraudDetector) UpdateModelVersionStatus(input *UpdateModelVersionStatusInput) (*UpdateModelVersionStatusOutput, error) {
@@ -7096,14 +7082,13 @@ const opUpdateRuleMetadata = "UpdateRuleMetadata"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRuleMetadataRequest method.
+//	req, resp := client.UpdateRuleMetadataRequest(params)
 //
-//    // Example sending a request using the UpdateRuleMetadataRequest method.
-//    req, resp := client.UpdateRuleMetadataRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateRuleMetadata
 func (c *FraudDetector) UpdateRuleMetadataRequest(input *UpdateRuleMetadataInput) (req *request.Request, output *UpdateRuleMetadataOutput) {
@@ -7135,25 +7120,26 @@ func (c *FraudDetector) UpdateRuleMetadataRequest(input *UpdateRuleMetadataInput
 // API operation UpdateRuleMetadata for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateRuleMetadata
 func (c *FraudDetector) UpdateRuleMetadata(input *UpdateRuleMetadataInput) (*UpdateRuleMetadataOutput, error) {
@@ -7193,14 +7179,13 @@ const opUpdateRuleVersion = "UpdateRuleVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRuleVersionRequest method.
+//	req, resp := client.UpdateRuleVersionRequest(params)
 //
-//    // Example sending a request using the UpdateRuleVersionRequest method.
-//    req, resp := client.UpdateRuleVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateRuleVersion
 func (c *FraudDetector) UpdateRuleVersionRequest(input *UpdateRuleVersionInput) (req *request.Request, output *UpdateRuleVersionOutput) {
@@ -7232,25 +7217,26 @@ func (c *FraudDetector) UpdateRuleVersionRequest(input *UpdateRuleVersionInput) 
 // API operation UpdateRuleVersion for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateRuleVersion
 func (c *FraudDetector) UpdateRuleVersion(input *UpdateRuleVersionInput) (*UpdateRuleVersionOutput, error) {
@@ -7290,14 +7276,13 @@ const opUpdateVariable = "UpdateVariable"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateVariableRequest method.
+//	req, resp := client.UpdateVariableRequest(params)
 //
-//    // Example sending a request using the UpdateVariableRequest method.
-//    req, resp := client.UpdateVariableRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateVariable
 func (c *FraudDetector) UpdateVariableRequest(input *UpdateVariableInput) (req *request.Request, output *UpdateVariableOutput) {
@@ -7329,25 +7314,26 @@ func (c *FraudDetector) UpdateVariableRequest(input *UpdateVariableInput) (req *
 // API operation UpdateVariable for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
 //
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   - ValidationException
+//     An exception indicating a specified value is not allowed.
 //
-//   * InternalServerException
-//   An exception indicating an internal server error.
+//   - ResourceNotFoundException
+//     An exception indicating the specified resource was not found.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   - InternalServerException
+//     An exception indicating an internal server error.
 //
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
+//   - ThrottlingException
+//     An exception indicating a throttling error.
 //
-//   * ConflictException
-//   An exception indicating there was a conflict during a delete operation.
+//   - AccessDeniedException
+//     An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//     This can occur if you submit a request, such as PutExternalModel, that specifies
+//     a role that is not in your account.
+//
+//   - ConflictException
+//     An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateVariable
 func (c *FraudDetector) UpdateVariable(input *UpdateVariableInput) (*UpdateVariableOutput, error) {

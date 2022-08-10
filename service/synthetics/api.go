@@ -29,14 +29,13 @@ const opAssociateResource = "AssociateResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateResourceRequest method.
+//	req, resp := client.AssociateResourceRequest(params)
 //
-//    // Example sending a request using the AssociateResourceRequest method.
-//    req, resp := client.AssociateResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/AssociateResource
 func (c *Synthetics) AssociateResourceRequest(input *AssociateResourceInput) (req *request.Request, output *AssociateResourceOutput) {
@@ -72,20 +71,21 @@ func (c *Synthetics) AssociateResourceRequest(input *AssociateResourceInput) (re
 // API operation AssociateResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
 //
-//   * ResourceNotFoundException
-//   One of the specified resources was not found.
+//   - ValidationException
+//     A parameter could not be validated.
 //
-//   * ConflictException
-//   A conflicting operation is already in progress.
+//   - ResourceNotFoundException
+//     One of the specified resources was not found.
 //
-//   * ServiceQuotaExceededException
-//   The request exceeded a service quota value.
+//   - ConflictException
+//     A conflicting operation is already in progress.
+//
+//   - ServiceQuotaExceededException
+//     The request exceeded a service quota value.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/AssociateResource
 func (c *Synthetics) AssociateResource(input *AssociateResourceInput) (*AssociateResourceOutput, error) {
@@ -125,14 +125,13 @@ const opCreateCanary = "CreateCanary"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateCanaryRequest method.
+//	req, resp := client.CreateCanaryRequest(params)
 //
-//    // Example sending a request using the CreateCanaryRequest method.
-//    req, resp := client.CreateCanaryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/CreateCanary
 func (c *Synthetics) CreateCanaryRequest(input *CreateCanaryInput) (req *request.Request, output *CreateCanaryOutput) {
@@ -180,14 +179,15 @@ func (c *Synthetics) CreateCanaryRequest(input *CreateCanaryInput) (req *request
 // API operation CreateCanary for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
 //
-//   * RequestEntityTooLargeException
-//   One of the input resources is larger than is allowed.
+//   - ValidationException
+//     A parameter could not be validated.
+//
+//   - RequestEntityTooLargeException
+//     One of the input resources is larger than is allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/CreateCanary
 func (c *Synthetics) CreateCanary(input *CreateCanaryInput) (*CreateCanaryOutput, error) {
@@ -227,14 +227,13 @@ const opCreateGroup = "CreateGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateGroupRequest method.
+//	req, resp := client.CreateGroupRequest(params)
 //
-//    // Example sending a request using the CreateGroupRequest method.
-//    req, resp := client.CreateGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/CreateGroup
 func (c *Synthetics) CreateGroupRequest(input *CreateGroupInput) (req *request.Request, output *CreateGroupOutput) {
@@ -282,17 +281,18 @@ func (c *Synthetics) CreateGroupRequest(input *CreateGroupInput) (req *request.R
 // API operation CreateGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
 //
-//   * ConflictException
-//   A conflicting operation is already in progress.
+//   - ValidationException
+//     A parameter could not be validated.
 //
-//   * ServiceQuotaExceededException
-//   The request exceeded a service quota value.
+//   - ConflictException
+//     A conflicting operation is already in progress.
+//
+//   - ServiceQuotaExceededException
+//     The request exceeded a service quota value.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/CreateGroup
 func (c *Synthetics) CreateGroup(input *CreateGroupInput) (*CreateGroupOutput, error) {
@@ -332,14 +332,13 @@ const opDeleteCanary = "DeleteCanary"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteCanaryRequest method.
+//	req, resp := client.DeleteCanaryRequest(params)
 //
-//    // Example sending a request using the DeleteCanaryRequest method.
-//    req, resp := client.DeleteCanaryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/DeleteCanary
 func (c *Synthetics) DeleteCanaryRequest(input *DeleteCanaryInput) (req *request.Request, output *DeleteCanaryOutput) {
@@ -370,16 +369,16 @@ func (c *Synthetics) DeleteCanaryRequest(input *DeleteCanaryInput) (req *request
 // After you delete a canary that you do not intend to use again, you should
 // also delete the following:
 //
-//    * The CloudWatch alarms created for this canary. These alarms have a name
-//    of Synthetics-SharpDrop-Alarm-MyCanaryName .
+//   - The CloudWatch alarms created for this canary. These alarms have a name
+//     of Synthetics-SharpDrop-Alarm-MyCanaryName .
 //
-//    * Amazon S3 objects and buckets, such as the canary's artifact location.
+//   - Amazon S3 objects and buckets, such as the canary's artifact location.
 //
-//    * IAM roles created for the canary. If they were created in the console,
-//    these roles have the name role/service-role/CloudWatchSyntheticsRole-MyCanaryName .
+//   - IAM roles created for the canary. If they were created in the console,
+//     these roles have the name role/service-role/CloudWatchSyntheticsRole-MyCanaryName .
 //
-//    * CloudWatch Logs log groups created for the canary. These logs groups
-//    have the name /aws/lambda/cwsyn-MyCanaryName .
+//   - CloudWatch Logs log groups created for the canary. These logs groups
+//     have the name /aws/lambda/cwsyn-MyCanaryName .
 //
 // Before you delete a canary, you might want to use GetCanary to display the
 // information about this canary. Make note of the information returned by this
@@ -393,17 +392,18 @@ func (c *Synthetics) DeleteCanaryRequest(input *DeleteCanaryInput) (req *request
 // API operation DeleteCanary for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
 //
-//   * ResourceNotFoundException
-//   One of the specified resources was not found.
+//   - ValidationException
+//     A parameter could not be validated.
 //
-//   * ConflictException
-//   A conflicting operation is already in progress.
+//   - ResourceNotFoundException
+//     One of the specified resources was not found.
+//
+//   - ConflictException
+//     A conflicting operation is already in progress.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/DeleteCanary
 func (c *Synthetics) DeleteCanary(input *DeleteCanaryInput) (*DeleteCanaryOutput, error) {
@@ -443,14 +443,13 @@ const opDeleteGroup = "DeleteGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteGroupRequest method.
+//	req, resp := client.DeleteGroupRequest(params)
 //
-//    // Example sending a request using the DeleteGroupRequest method.
-//    req, resp := client.DeleteGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/DeleteGroup
 func (c *Synthetics) DeleteGroupRequest(input *DeleteGroupInput) (req *request.Request, output *DeleteGroupOutput) {
@@ -487,17 +486,18 @@ func (c *Synthetics) DeleteGroupRequest(input *DeleteGroupInput) (req *request.R
 // API operation DeleteGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
 //
-//   * ResourceNotFoundException
-//   One of the specified resources was not found.
+//   - ValidationException
+//     A parameter could not be validated.
 //
-//   * ConflictException
-//   A conflicting operation is already in progress.
+//   - ResourceNotFoundException
+//     One of the specified resources was not found.
+//
+//   - ConflictException
+//     A conflicting operation is already in progress.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/DeleteGroup
 func (c *Synthetics) DeleteGroup(input *DeleteGroupInput) (*DeleteGroupOutput, error) {
@@ -537,14 +537,13 @@ const opDescribeCanaries = "DescribeCanaries"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeCanariesRequest method.
+//	req, resp := client.DescribeCanariesRequest(params)
 //
-//    // Example sending a request using the DescribeCanariesRequest method.
-//    req, resp := client.DescribeCanariesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/DescribeCanaries
 func (c *Synthetics) DescribeCanariesRequest(input *DescribeCanariesInput) (req *request.Request, output *DescribeCanariesOutput) {
@@ -593,11 +592,12 @@ func (c *Synthetics) DescribeCanariesRequest(input *DescribeCanariesInput) (req 
 // API operation DescribeCanaries for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
+//
+//   - ValidationException
+//     A parameter could not be validated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/DescribeCanaries
 func (c *Synthetics) DescribeCanaries(input *DescribeCanariesInput) (*DescribeCanariesOutput, error) {
@@ -629,15 +629,14 @@ func (c *Synthetics) DescribeCanariesWithContext(ctx aws.Context, input *Describ
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeCanaries operation.
-//    pageNum := 0
-//    err := client.DescribeCanariesPages(params,
-//        func(page *synthetics.DescribeCanariesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeCanaries operation.
+//	pageNum := 0
+//	err := client.DescribeCanariesPages(params,
+//	    func(page *synthetics.DescribeCanariesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Synthetics) DescribeCanariesPages(input *DescribeCanariesInput, fn func(*DescribeCanariesOutput, bool) bool) error {
 	return c.DescribeCanariesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -689,14 +688,13 @@ const opDescribeCanariesLastRun = "DescribeCanariesLastRun"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeCanariesLastRunRequest method.
+//	req, resp := client.DescribeCanariesLastRunRequest(params)
 //
-//    // Example sending a request using the DescribeCanariesLastRunRequest method.
-//    req, resp := client.DescribeCanariesLastRunRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/DescribeCanariesLastRun
 func (c *Synthetics) DescribeCanariesLastRunRequest(input *DescribeCanariesLastRunInput) (req *request.Request, output *DescribeCanariesLastRunOutput) {
@@ -745,11 +743,12 @@ func (c *Synthetics) DescribeCanariesLastRunRequest(input *DescribeCanariesLastR
 // API operation DescribeCanariesLastRun for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
+//
+//   - ValidationException
+//     A parameter could not be validated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/DescribeCanariesLastRun
 func (c *Synthetics) DescribeCanariesLastRun(input *DescribeCanariesLastRunInput) (*DescribeCanariesLastRunOutput, error) {
@@ -781,15 +780,14 @@ func (c *Synthetics) DescribeCanariesLastRunWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeCanariesLastRun operation.
-//    pageNum := 0
-//    err := client.DescribeCanariesLastRunPages(params,
-//        func(page *synthetics.DescribeCanariesLastRunOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeCanariesLastRun operation.
+//	pageNum := 0
+//	err := client.DescribeCanariesLastRunPages(params,
+//	    func(page *synthetics.DescribeCanariesLastRunOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Synthetics) DescribeCanariesLastRunPages(input *DescribeCanariesLastRunInput, fn func(*DescribeCanariesLastRunOutput, bool) bool) error {
 	return c.DescribeCanariesLastRunPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -841,14 +839,13 @@ const opDescribeRuntimeVersions = "DescribeRuntimeVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeRuntimeVersionsRequest method.
+//	req, resp := client.DescribeRuntimeVersionsRequest(params)
 //
-//    // Example sending a request using the DescribeRuntimeVersionsRequest method.
-//    req, resp := client.DescribeRuntimeVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/DescribeRuntimeVersions
 func (c *Synthetics) DescribeRuntimeVersionsRequest(input *DescribeRuntimeVersionsInput) (req *request.Request, output *DescribeRuntimeVersionsOutput) {
@@ -886,11 +883,12 @@ func (c *Synthetics) DescribeRuntimeVersionsRequest(input *DescribeRuntimeVersio
 // API operation DescribeRuntimeVersions for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
+//
+//   - ValidationException
+//     A parameter could not be validated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/DescribeRuntimeVersions
 func (c *Synthetics) DescribeRuntimeVersions(input *DescribeRuntimeVersionsInput) (*DescribeRuntimeVersionsOutput, error) {
@@ -922,15 +920,14 @@ func (c *Synthetics) DescribeRuntimeVersionsWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeRuntimeVersions operation.
-//    pageNum := 0
-//    err := client.DescribeRuntimeVersionsPages(params,
-//        func(page *synthetics.DescribeRuntimeVersionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeRuntimeVersions operation.
+//	pageNum := 0
+//	err := client.DescribeRuntimeVersionsPages(params,
+//	    func(page *synthetics.DescribeRuntimeVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Synthetics) DescribeRuntimeVersionsPages(input *DescribeRuntimeVersionsInput, fn func(*DescribeRuntimeVersionsOutput, bool) bool) error {
 	return c.DescribeRuntimeVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -982,14 +979,13 @@ const opDisassociateResource = "DisassociateResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateResourceRequest method.
+//	req, resp := client.DisassociateResourceRequest(params)
 //
-//    // Example sending a request using the DisassociateResourceRequest method.
-//    req, resp := client.DisassociateResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/DisassociateResource
 func (c *Synthetics) DisassociateResourceRequest(input *DisassociateResourceInput) (req *request.Request, output *DisassociateResourceOutput) {
@@ -1022,17 +1018,18 @@ func (c *Synthetics) DisassociateResourceRequest(input *DisassociateResourceInpu
 // API operation DisassociateResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
 //
-//   * ResourceNotFoundException
-//   One of the specified resources was not found.
+//   - ValidationException
+//     A parameter could not be validated.
 //
-//   * ConflictException
-//   A conflicting operation is already in progress.
+//   - ResourceNotFoundException
+//     One of the specified resources was not found.
+//
+//   - ConflictException
+//     A conflicting operation is already in progress.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/DisassociateResource
 func (c *Synthetics) DisassociateResource(input *DisassociateResourceInput) (*DisassociateResourceOutput, error) {
@@ -1072,14 +1069,13 @@ const opGetCanary = "GetCanary"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCanaryRequest method.
+//	req, resp := client.GetCanaryRequest(params)
 //
-//    // Example sending a request using the GetCanaryRequest method.
-//    req, resp := client.GetCanaryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/GetCanary
 func (c *Synthetics) GetCanaryRequest(input *GetCanaryInput) (req *request.Request, output *GetCanaryOutput) {
@@ -1112,11 +1108,12 @@ func (c *Synthetics) GetCanaryRequest(input *GetCanaryInput) (req *request.Reque
 // API operation GetCanary for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
+//
+//   - ValidationException
+//     A parameter could not be validated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/GetCanary
 func (c *Synthetics) GetCanary(input *GetCanaryInput) (*GetCanaryOutput, error) {
@@ -1156,14 +1153,13 @@ const opGetCanaryRuns = "GetCanaryRuns"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCanaryRunsRequest method.
+//	req, resp := client.GetCanaryRunsRequest(params)
 //
-//    // Example sending a request using the GetCanaryRunsRequest method.
-//    req, resp := client.GetCanaryRunsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/GetCanaryRuns
 func (c *Synthetics) GetCanaryRunsRequest(input *GetCanaryRunsInput) (req *request.Request, output *GetCanaryRunsOutput) {
@@ -1200,14 +1196,15 @@ func (c *Synthetics) GetCanaryRunsRequest(input *GetCanaryRunsInput) (req *reque
 // API operation GetCanaryRuns for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
 //
-//   * ResourceNotFoundException
-//   One of the specified resources was not found.
+//   - ValidationException
+//     A parameter could not be validated.
+//
+//   - ResourceNotFoundException
+//     One of the specified resources was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/GetCanaryRuns
 func (c *Synthetics) GetCanaryRuns(input *GetCanaryRunsInput) (*GetCanaryRunsOutput, error) {
@@ -1239,15 +1236,14 @@ func (c *Synthetics) GetCanaryRunsWithContext(ctx aws.Context, input *GetCanaryR
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetCanaryRuns operation.
-//    pageNum := 0
-//    err := client.GetCanaryRunsPages(params,
-//        func(page *synthetics.GetCanaryRunsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetCanaryRuns operation.
+//	pageNum := 0
+//	err := client.GetCanaryRunsPages(params,
+//	    func(page *synthetics.GetCanaryRunsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Synthetics) GetCanaryRunsPages(input *GetCanaryRunsInput, fn func(*GetCanaryRunsOutput, bool) bool) error {
 	return c.GetCanaryRunsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1299,14 +1295,13 @@ const opGetGroup = "GetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetGroupRequest method.
+//	req, resp := client.GetGroupRequest(params)
 //
-//    // Example sending a request using the GetGroupRequest method.
-//    req, resp := client.GetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/GetGroup
 func (c *Synthetics) GetGroupRequest(input *GetGroupInput) (req *request.Request, output *GetGroupOutput) {
@@ -1338,17 +1333,18 @@ func (c *Synthetics) GetGroupRequest(input *GetGroupInput) (req *request.Request
 // API operation GetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
 //
-//   * ResourceNotFoundException
-//   One of the specified resources was not found.
+//   - ValidationException
+//     A parameter could not be validated.
 //
-//   * ConflictException
-//   A conflicting operation is already in progress.
+//   - ResourceNotFoundException
+//     One of the specified resources was not found.
+//
+//   - ConflictException
+//     A conflicting operation is already in progress.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/GetGroup
 func (c *Synthetics) GetGroup(input *GetGroupInput) (*GetGroupOutput, error) {
@@ -1388,14 +1384,13 @@ const opListAssociatedGroups = "ListAssociatedGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAssociatedGroupsRequest method.
+//	req, resp := client.ListAssociatedGroupsRequest(params)
 //
-//    // Example sending a request using the ListAssociatedGroupsRequest method.
-//    req, resp := client.ListAssociatedGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/ListAssociatedGroups
 func (c *Synthetics) ListAssociatedGroupsRequest(input *ListAssociatedGroupsInput) (req *request.Request, output *ListAssociatedGroupsOutput) {
@@ -1433,14 +1428,15 @@ func (c *Synthetics) ListAssociatedGroupsRequest(input *ListAssociatedGroupsInpu
 // API operation ListAssociatedGroups for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
 //
-//   * ResourceNotFoundException
-//   One of the specified resources was not found.
+//   - ValidationException
+//     A parameter could not be validated.
+//
+//   - ResourceNotFoundException
+//     One of the specified resources was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/ListAssociatedGroups
 func (c *Synthetics) ListAssociatedGroups(input *ListAssociatedGroupsInput) (*ListAssociatedGroupsOutput, error) {
@@ -1472,15 +1468,14 @@ func (c *Synthetics) ListAssociatedGroupsWithContext(ctx aws.Context, input *Lis
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListAssociatedGroups operation.
-//    pageNum := 0
-//    err := client.ListAssociatedGroupsPages(params,
-//        func(page *synthetics.ListAssociatedGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListAssociatedGroups operation.
+//	pageNum := 0
+//	err := client.ListAssociatedGroupsPages(params,
+//	    func(page *synthetics.ListAssociatedGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Synthetics) ListAssociatedGroupsPages(input *ListAssociatedGroupsInput, fn func(*ListAssociatedGroupsOutput, bool) bool) error {
 	return c.ListAssociatedGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1532,14 +1527,13 @@ const opListGroupResources = "ListGroupResources"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListGroupResourcesRequest method.
+//	req, resp := client.ListGroupResourcesRequest(params)
 //
-//    // Example sending a request using the ListGroupResourcesRequest method.
-//    req, resp := client.ListGroupResourcesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/ListGroupResources
 func (c *Synthetics) ListGroupResourcesRequest(input *ListGroupResourcesInput) (req *request.Request, output *ListGroupResourcesOutput) {
@@ -1577,17 +1571,18 @@ func (c *Synthetics) ListGroupResourcesRequest(input *ListGroupResourcesInput) (
 // API operation ListGroupResources for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
 //
-//   * ResourceNotFoundException
-//   One of the specified resources was not found.
+//   - ValidationException
+//     A parameter could not be validated.
 //
-//   * ConflictException
-//   A conflicting operation is already in progress.
+//   - ResourceNotFoundException
+//     One of the specified resources was not found.
+//
+//   - ConflictException
+//     A conflicting operation is already in progress.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/ListGroupResources
 func (c *Synthetics) ListGroupResources(input *ListGroupResourcesInput) (*ListGroupResourcesOutput, error) {
@@ -1619,15 +1614,14 @@ func (c *Synthetics) ListGroupResourcesWithContext(ctx aws.Context, input *ListG
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListGroupResources operation.
-//    pageNum := 0
-//    err := client.ListGroupResourcesPages(params,
-//        func(page *synthetics.ListGroupResourcesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListGroupResources operation.
+//	pageNum := 0
+//	err := client.ListGroupResourcesPages(params,
+//	    func(page *synthetics.ListGroupResourcesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Synthetics) ListGroupResourcesPages(input *ListGroupResourcesInput, fn func(*ListGroupResourcesOutput, bool) bool) error {
 	return c.ListGroupResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1679,14 +1673,13 @@ const opListGroups = "ListGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListGroupsRequest method.
+//	req, resp := client.ListGroupsRequest(params)
 //
-//    // Example sending a request using the ListGroupsRequest method.
-//    req, resp := client.ListGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/ListGroups
 func (c *Synthetics) ListGroupsRequest(input *ListGroupsInput) (req *request.Request, output *ListGroupsOutput) {
@@ -1724,11 +1717,12 @@ func (c *Synthetics) ListGroupsRequest(input *ListGroupsInput) (req *request.Req
 // API operation ListGroups for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
+//
+//   - ValidationException
+//     A parameter could not be validated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/ListGroups
 func (c *Synthetics) ListGroups(input *ListGroupsInput) (*ListGroupsOutput, error) {
@@ -1760,15 +1754,14 @@ func (c *Synthetics) ListGroupsWithContext(ctx aws.Context, input *ListGroupsInp
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListGroups operation.
-//    pageNum := 0
-//    err := client.ListGroupsPages(params,
-//        func(page *synthetics.ListGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListGroups operation.
+//	pageNum := 0
+//	err := client.ListGroupsPages(params,
+//	    func(page *synthetics.ListGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Synthetics) ListGroupsPages(input *ListGroupsInput, fn func(*ListGroupsOutput, bool) bool) error {
 	return c.ListGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1820,14 +1813,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/ListTagsForResource
 func (c *Synthetics) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1858,20 +1850,21 @@ func (c *Synthetics) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The request was not valid.
 //
-//   * NotFoundException
-//   The specified resource was not found.
+//   - BadRequestException
+//     The request was not valid.
 //
-//   * TooManyRequestsException
-//   There were too many simultaneous requests. Try the operation again.
+//   - NotFoundException
+//     The specified resource was not found.
 //
-//   * ConflictException
-//   A conflicting operation is already in progress.
+//   - TooManyRequestsException
+//     There were too many simultaneous requests. Try the operation again.
 //
-//   * InternalFailureException
-//   An internal failure occurred. Try the operation again.
+//   - ConflictException
+//     A conflicting operation is already in progress.
+//
+//   - InternalFailureException
+//     An internal failure occurred. Try the operation again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/ListTagsForResource
 func (c *Synthetics) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1911,14 +1904,13 @@ const opStartCanary = "StartCanary"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartCanaryRequest method.
+//	req, resp := client.StartCanaryRequest(params)
 //
-//    // Example sending a request using the StartCanaryRequest method.
-//    req, resp := client.StartCanaryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/StartCanary
 func (c *Synthetics) StartCanaryRequest(input *StartCanaryInput) (req *request.Request, output *StartCanaryOutput) {
@@ -1952,17 +1944,18 @@ func (c *Synthetics) StartCanaryRequest(input *StartCanaryInput) (req *request.R
 // API operation StartCanary for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
 //
-//   * ResourceNotFoundException
-//   One of the specified resources was not found.
+//   - ValidationException
+//     A parameter could not be validated.
 //
-//   * ConflictException
-//   A conflicting operation is already in progress.
+//   - ResourceNotFoundException
+//     One of the specified resources was not found.
+//
+//   - ConflictException
+//     A conflicting operation is already in progress.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/StartCanary
 func (c *Synthetics) StartCanary(input *StartCanaryInput) (*StartCanaryOutput, error) {
@@ -2002,14 +1995,13 @@ const opStopCanary = "StopCanary"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopCanaryRequest method.
+//	req, resp := client.StopCanaryRequest(params)
 //
-//    // Example sending a request using the StopCanaryRequest method.
-//    req, resp := client.StopCanaryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/StopCanary
 func (c *Synthetics) StopCanaryRequest(input *StopCanaryInput) (req *request.Request, output *StopCanaryOutput) {
@@ -2046,17 +2038,18 @@ func (c *Synthetics) StopCanaryRequest(input *StopCanaryInput) (req *request.Req
 // API operation StopCanary for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
 //
-//   * ResourceNotFoundException
-//   One of the specified resources was not found.
+//   - ValidationException
+//     A parameter could not be validated.
 //
-//   * ConflictException
-//   A conflicting operation is already in progress.
+//   - ResourceNotFoundException
+//     One of the specified resources was not found.
+//
+//   - ConflictException
+//     A conflicting operation is already in progress.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/StopCanary
 func (c *Synthetics) StopCanary(input *StopCanaryInput) (*StopCanaryOutput, error) {
@@ -2096,14 +2089,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/TagResource
 func (c *Synthetics) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -2150,20 +2142,21 @@ func (c *Synthetics) TagResourceRequest(input *TagResourceInput) (req *request.R
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The request was not valid.
 //
-//   * NotFoundException
-//   The specified resource was not found.
+//   - BadRequestException
+//     The request was not valid.
 //
-//   * TooManyRequestsException
-//   There were too many simultaneous requests. Try the operation again.
+//   - NotFoundException
+//     The specified resource was not found.
 //
-//   * ConflictException
-//   A conflicting operation is already in progress.
+//   - TooManyRequestsException
+//     There were too many simultaneous requests. Try the operation again.
 //
-//   * InternalFailureException
-//   An internal failure occurred. Try the operation again.
+//   - ConflictException
+//     A conflicting operation is already in progress.
+//
+//   - InternalFailureException
+//     An internal failure occurred. Try the operation again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/TagResource
 func (c *Synthetics) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2203,14 +2196,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/UntagResource
 func (c *Synthetics) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2242,20 +2234,21 @@ func (c *Synthetics) UntagResourceRequest(input *UntagResourceInput) (req *reque
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The request was not valid.
 //
-//   * NotFoundException
-//   The specified resource was not found.
+//   - BadRequestException
+//     The request was not valid.
 //
-//   * TooManyRequestsException
-//   There were too many simultaneous requests. Try the operation again.
+//   - NotFoundException
+//     The specified resource was not found.
 //
-//   * ConflictException
-//   A conflicting operation is already in progress.
+//   - TooManyRequestsException
+//     There were too many simultaneous requests. Try the operation again.
 //
-//   * InternalFailureException
-//   An internal failure occurred. Try the operation again.
+//   - ConflictException
+//     A conflicting operation is already in progress.
+//
+//   - InternalFailureException
+//     An internal failure occurred. Try the operation again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/UntagResource
 func (c *Synthetics) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2295,14 +2288,13 @@ const opUpdateCanary = "UpdateCanary"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateCanaryRequest method.
+//	req, resp := client.UpdateCanaryRequest(params)
 //
-//    // Example sending a request using the UpdateCanaryRequest method.
-//    req, resp := client.UpdateCanaryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/UpdateCanary
 func (c *Synthetics) UpdateCanaryRequest(input *UpdateCanaryInput) (req *request.Request, output *UpdateCanaryOutput) {
@@ -2337,20 +2329,21 @@ func (c *Synthetics) UpdateCanaryRequest(input *UpdateCanaryInput) (req *request
 // API operation UpdateCanary for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   An unknown internal error occurred.
 //
-//   * ValidationException
-//   A parameter could not be validated.
+//   - InternalServerException
+//     An unknown internal error occurred.
 //
-//   * ResourceNotFoundException
-//   One of the specified resources was not found.
+//   - ValidationException
+//     A parameter could not be validated.
 //
-//   * ConflictException
-//   A conflicting operation is already in progress.
+//   - ResourceNotFoundException
+//     One of the specified resources was not found.
 //
-//   * RequestEntityTooLargeException
-//   One of the input resources is larger than is allowed.
+//   - ConflictException
+//     A conflicting operation is already in progress.
+//
+//   - RequestEntityTooLargeException
+//     One of the input resources is larger than is allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/UpdateCanary
 func (c *Synthetics) UpdateCanary(input *UpdateCanaryInput) (*UpdateCanaryOutput, error) {

@@ -29,14 +29,13 @@ const opCreateCampaign = "CreateCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateCampaignRequest method.
+//	req, resp := client.CreateCampaignRequest(params)
 //
-//    // Example sending a request using the CreateCampaignRequest method.
-//    req, resp := client.CreateCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/CreateCampaign
 func (c *ConnectCampaigns) CreateCampaignRequest(input *CreateCampaignInput) (req *request.Request, output *CreateCampaignOutput) {
@@ -68,27 +67,28 @@ func (c *ConnectCampaigns) CreateCampaignRequest(input *CreateCampaignInput) (re
 // API operation CreateCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ConflictException
-//   The request could not be processed because of conflict in the current state
-//   of the resource.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
 //
-//   * ServiceQuotaExceededException
-//   Request would cause a service quota to be exceeded.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - ServiceQuotaExceededException
+//     Request would cause a service quota to be exceeded.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/CreateCampaign
 func (c *ConnectCampaigns) CreateCampaign(input *CreateCampaignInput) (*CreateCampaignOutput, error) {
@@ -128,14 +128,13 @@ const opDeleteCampaign = "DeleteCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteCampaignRequest method.
+//	req, resp := client.DeleteCampaignRequest(params)
 //
-//    // Example sending a request using the DeleteCampaignRequest method.
-//    req, resp := client.DeleteCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/DeleteCampaign
 func (c *ConnectCampaigns) DeleteCampaignRequest(input *DeleteCampaignInput) (req *request.Request, output *DeleteCampaignOutput) {
@@ -167,17 +166,18 @@ func (c *ConnectCampaigns) DeleteCampaignRequest(input *DeleteCampaignInput) (re
 // API operation DeleteCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/DeleteCampaign
 func (c *ConnectCampaigns) DeleteCampaign(input *DeleteCampaignInput) (*DeleteCampaignOutput, error) {
@@ -217,14 +217,13 @@ const opDeleteConnectInstanceConfig = "DeleteConnectInstanceConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteConnectInstanceConfigRequest method.
+//	req, resp := client.DeleteConnectInstanceConfigRequest(params)
 //
-//    // Example sending a request using the DeleteConnectInstanceConfigRequest method.
-//    req, resp := client.DeleteConnectInstanceConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/DeleteConnectInstanceConfig
 func (c *ConnectCampaigns) DeleteConnectInstanceConfigRequest(input *DeleteConnectInstanceConfigInput) (req *request.Request, output *DeleteConnectInstanceConfigOutput) {
@@ -256,23 +255,24 @@ func (c *ConnectCampaigns) DeleteConnectInstanceConfigRequest(input *DeleteConne
 // API operation DeleteConnectInstanceConfig for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * InvalidStateException
-//   The request could not be processed because of conflict in the current state.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - InvalidStateException
+//     The request could not be processed because of conflict in the current state.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/DeleteConnectInstanceConfig
 func (c *ConnectCampaigns) DeleteConnectInstanceConfig(input *DeleteConnectInstanceConfigInput) (*DeleteConnectInstanceConfigOutput, error) {
@@ -312,14 +312,13 @@ const opDeleteInstanceOnboardingJob = "DeleteInstanceOnboardingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteInstanceOnboardingJobRequest method.
+//	req, resp := client.DeleteInstanceOnboardingJobRequest(params)
 //
-//    // Example sending a request using the DeleteInstanceOnboardingJobRequest method.
-//    req, resp := client.DeleteInstanceOnboardingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/DeleteInstanceOnboardingJob
 func (c *ConnectCampaigns) DeleteInstanceOnboardingJobRequest(input *DeleteInstanceOnboardingJobInput) (req *request.Request, output *DeleteInstanceOnboardingJobOutput) {
@@ -352,20 +351,21 @@ func (c *ConnectCampaigns) DeleteInstanceOnboardingJobRequest(input *DeleteInsta
 // API operation DeleteInstanceOnboardingJob for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * InvalidStateException
-//   The request could not be processed because of conflict in the current state.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - InvalidStateException
+//     The request could not be processed because of conflict in the current state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/DeleteInstanceOnboardingJob
 func (c *ConnectCampaigns) DeleteInstanceOnboardingJob(input *DeleteInstanceOnboardingJobInput) (*DeleteInstanceOnboardingJobOutput, error) {
@@ -405,14 +405,13 @@ const opDescribeCampaign = "DescribeCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeCampaignRequest method.
+//	req, resp := client.DescribeCampaignRequest(params)
 //
-//    // Example sending a request using the DescribeCampaignRequest method.
-//    req, resp := client.DescribeCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/DescribeCampaign
 func (c *ConnectCampaigns) DescribeCampaignRequest(input *DescribeCampaignInput) (req *request.Request, output *DescribeCampaignOutput) {
@@ -443,17 +442,18 @@ func (c *ConnectCampaigns) DescribeCampaignRequest(input *DescribeCampaignInput)
 // API operation DescribeCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/DescribeCampaign
 func (c *ConnectCampaigns) DescribeCampaign(input *DescribeCampaignInput) (*DescribeCampaignOutput, error) {
@@ -493,14 +493,13 @@ const opGetCampaignState = "GetCampaignState"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCampaignStateRequest method.
+//	req, resp := client.GetCampaignStateRequest(params)
 //
-//    // Example sending a request using the GetCampaignStateRequest method.
-//    req, resp := client.GetCampaignStateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/GetCampaignState
 func (c *ConnectCampaigns) GetCampaignStateRequest(input *GetCampaignStateInput) (req *request.Request, output *GetCampaignStateOutput) {
@@ -531,17 +530,18 @@ func (c *ConnectCampaigns) GetCampaignStateRequest(input *GetCampaignStateInput)
 // API operation GetCampaignState for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/GetCampaignState
 func (c *ConnectCampaigns) GetCampaignState(input *GetCampaignStateInput) (*GetCampaignStateOutput, error) {
@@ -581,14 +581,13 @@ const opGetCampaignStateBatch = "GetCampaignStateBatch"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCampaignStateBatchRequest method.
+//	req, resp := client.GetCampaignStateBatchRequest(params)
 //
-//    // Example sending a request using the GetCampaignStateBatchRequest method.
-//    req, resp := client.GetCampaignStateBatchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/GetCampaignStateBatch
 func (c *ConnectCampaigns) GetCampaignStateBatchRequest(input *GetCampaignStateBatchInput) (req *request.Request, output *GetCampaignStateBatchOutput) {
@@ -619,17 +618,18 @@ func (c *ConnectCampaigns) GetCampaignStateBatchRequest(input *GetCampaignStateB
 // API operation GetCampaignStateBatch for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/GetCampaignStateBatch
 func (c *ConnectCampaigns) GetCampaignStateBatch(input *GetCampaignStateBatchInput) (*GetCampaignStateBatchOutput, error) {
@@ -669,14 +669,13 @@ const opGetConnectInstanceConfig = "GetConnectInstanceConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetConnectInstanceConfigRequest method.
+//	req, resp := client.GetConnectInstanceConfigRequest(params)
 //
-//    // Example sending a request using the GetConnectInstanceConfigRequest method.
-//    req, resp := client.GetConnectInstanceConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/GetConnectInstanceConfig
 func (c *ConnectCampaigns) GetConnectInstanceConfigRequest(input *GetConnectInstanceConfigInput) (req *request.Request, output *GetConnectInstanceConfigOutput) {
@@ -707,17 +706,18 @@ func (c *ConnectCampaigns) GetConnectInstanceConfigRequest(input *GetConnectInst
 // API operation GetConnectInstanceConfig for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/GetConnectInstanceConfig
 func (c *ConnectCampaigns) GetConnectInstanceConfig(input *GetConnectInstanceConfigInput) (*GetConnectInstanceConfigOutput, error) {
@@ -757,14 +757,13 @@ const opGetInstanceOnboardingJobStatus = "GetInstanceOnboardingJobStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetInstanceOnboardingJobStatusRequest method.
+//	req, resp := client.GetInstanceOnboardingJobStatusRequest(params)
 //
-//    // Example sending a request using the GetInstanceOnboardingJobStatusRequest method.
-//    req, resp := client.GetInstanceOnboardingJobStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/GetInstanceOnboardingJobStatus
 func (c *ConnectCampaigns) GetInstanceOnboardingJobStatusRequest(input *GetInstanceOnboardingJobStatusInput) (req *request.Request, output *GetInstanceOnboardingJobStatusOutput) {
@@ -795,17 +794,18 @@ func (c *ConnectCampaigns) GetInstanceOnboardingJobStatusRequest(input *GetInsta
 // API operation GetInstanceOnboardingJobStatus for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/GetInstanceOnboardingJobStatus
 func (c *ConnectCampaigns) GetInstanceOnboardingJobStatus(input *GetInstanceOnboardingJobStatusInput) (*GetInstanceOnboardingJobStatusOutput, error) {
@@ -845,14 +845,13 @@ const opListCampaigns = "ListCampaigns"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListCampaignsRequest method.
+//	req, resp := client.ListCampaignsRequest(params)
 //
-//    // Example sending a request using the ListCampaignsRequest method.
-//    req, resp := client.ListCampaignsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/ListCampaigns
 func (c *ConnectCampaigns) ListCampaignsRequest(input *ListCampaignsInput) (req *request.Request, output *ListCampaignsOutput) {
@@ -890,14 +889,15 @@ func (c *ConnectCampaigns) ListCampaignsRequest(input *ListCampaignsInput) (req 
 // API operation ListCampaigns for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/ListCampaigns
 func (c *ConnectCampaigns) ListCampaigns(input *ListCampaignsInput) (*ListCampaignsOutput, error) {
@@ -929,15 +929,14 @@ func (c *ConnectCampaigns) ListCampaignsWithContext(ctx aws.Context, input *List
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListCampaigns operation.
-//    pageNum := 0
-//    err := client.ListCampaignsPages(params,
-//        func(page *connectcampaigns.ListCampaignsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListCampaigns operation.
+//	pageNum := 0
+//	err := client.ListCampaignsPages(params,
+//	    func(page *connectcampaigns.ListCampaignsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ConnectCampaigns) ListCampaignsPages(input *ListCampaignsInput, fn func(*ListCampaignsOutput, bool) bool) error {
 	return c.ListCampaignsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -989,14 +988,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/ListTagsForResource
 func (c *ConnectCampaigns) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1027,20 +1025,21 @@ func (c *ConnectCampaigns) ListTagsForResourceRequest(input *ListTagsForResource
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/ListTagsForResource
 func (c *ConnectCampaigns) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1080,14 +1079,13 @@ const opPauseCampaign = "PauseCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PauseCampaignRequest method.
+//	req, resp := client.PauseCampaignRequest(params)
 //
-//    // Example sending a request using the PauseCampaignRequest method.
-//    req, resp := client.PauseCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/PauseCampaign
 func (c *ConnectCampaigns) PauseCampaignRequest(input *PauseCampaignInput) (req *request.Request, output *PauseCampaignOutput) {
@@ -1119,25 +1117,26 @@ func (c *ConnectCampaigns) PauseCampaignRequest(input *PauseCampaignInput) (req 
 // API operation PauseCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ConflictException
-//   The request could not be processed because of conflict in the current state
-//   of the resource.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidCampaignStateException
-//   The request could not be processed because of conflict in the current state
-//   of the campaign.
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - InvalidCampaignStateException
+//     The request could not be processed because of conflict in the current state
+//     of the campaign.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/PauseCampaign
 func (c *ConnectCampaigns) PauseCampaign(input *PauseCampaignInput) (*PauseCampaignOutput, error) {
@@ -1177,14 +1176,13 @@ const opPutDialRequestBatch = "PutDialRequestBatch"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutDialRequestBatchRequest method.
+//	req, resp := client.PutDialRequestBatchRequest(params)
 //
-//    // Example sending a request using the PutDialRequestBatchRequest method.
-//    req, resp := client.PutDialRequestBatchRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/PutDialRequestBatch
 func (c *ConnectCampaigns) PutDialRequestBatchRequest(input *PutDialRequestBatchInput) (req *request.Request, output *PutDialRequestBatchOutput) {
@@ -1216,28 +1214,29 @@ func (c *ConnectCampaigns) PutDialRequestBatchRequest(input *PutDialRequestBatch
 // API operation PutDialRequestBatch for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ConflictException
-//   The request could not be processed because of conflict in the current state
-//   of the resource.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * InvalidCampaignStateException
-//   The request could not be processed because of conflict in the current state
-//   of the campaign.
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - InvalidCampaignStateException
+//     The request could not be processed because of conflict in the current state
+//     of the campaign.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/PutDialRequestBatch
 func (c *ConnectCampaigns) PutDialRequestBatch(input *PutDialRequestBatchInput) (*PutDialRequestBatchOutput, error) {
@@ -1277,14 +1276,13 @@ const opResumeCampaign = "ResumeCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ResumeCampaignRequest method.
+//	req, resp := client.ResumeCampaignRequest(params)
 //
-//    // Example sending a request using the ResumeCampaignRequest method.
-//    req, resp := client.ResumeCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/ResumeCampaign
 func (c *ConnectCampaigns) ResumeCampaignRequest(input *ResumeCampaignInput) (req *request.Request, output *ResumeCampaignOutput) {
@@ -1316,25 +1314,26 @@ func (c *ConnectCampaigns) ResumeCampaignRequest(input *ResumeCampaignInput) (re
 // API operation ResumeCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ConflictException
-//   The request could not be processed because of conflict in the current state
-//   of the resource.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidCampaignStateException
-//   The request could not be processed because of conflict in the current state
-//   of the campaign.
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - InvalidCampaignStateException
+//     The request could not be processed because of conflict in the current state
+//     of the campaign.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/ResumeCampaign
 func (c *ConnectCampaigns) ResumeCampaign(input *ResumeCampaignInput) (*ResumeCampaignOutput, error) {
@@ -1374,14 +1373,13 @@ const opStartCampaign = "StartCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartCampaignRequest method.
+//	req, resp := client.StartCampaignRequest(params)
 //
-//    // Example sending a request using the StartCampaignRequest method.
-//    req, resp := client.StartCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/StartCampaign
 func (c *ConnectCampaigns) StartCampaignRequest(input *StartCampaignInput) (req *request.Request, output *StartCampaignOutput) {
@@ -1413,25 +1411,26 @@ func (c *ConnectCampaigns) StartCampaignRequest(input *StartCampaignInput) (req 
 // API operation StartCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ConflictException
-//   The request could not be processed because of conflict in the current state
-//   of the resource.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidCampaignStateException
-//   The request could not be processed because of conflict in the current state
-//   of the campaign.
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - InvalidCampaignStateException
+//     The request could not be processed because of conflict in the current state
+//     of the campaign.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/StartCampaign
 func (c *ConnectCampaigns) StartCampaign(input *StartCampaignInput) (*StartCampaignOutput, error) {
@@ -1471,14 +1470,13 @@ const opStartInstanceOnboardingJob = "StartInstanceOnboardingJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartInstanceOnboardingJobRequest method.
+//	req, resp := client.StartInstanceOnboardingJobRequest(params)
 //
-//    // Example sending a request using the StartInstanceOnboardingJobRequest method.
-//    req, resp := client.StartInstanceOnboardingJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/StartInstanceOnboardingJob
 func (c *ConnectCampaigns) StartInstanceOnboardingJobRequest(input *StartInstanceOnboardingJobInput) (req *request.Request, output *StartInstanceOnboardingJobOutput) {
@@ -1509,24 +1507,25 @@ func (c *ConnectCampaigns) StartInstanceOnboardingJobRequest(input *StartInstanc
 // API operation StartInstanceOnboardingJob for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ConflictException
-//   The request could not be processed because of conflict in the current state
-//   of the resource.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/StartInstanceOnboardingJob
 func (c *ConnectCampaigns) StartInstanceOnboardingJob(input *StartInstanceOnboardingJobInput) (*StartInstanceOnboardingJobOutput, error) {
@@ -1566,14 +1565,13 @@ const opStopCampaign = "StopCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopCampaignRequest method.
+//	req, resp := client.StopCampaignRequest(params)
 //
-//    // Example sending a request using the StopCampaignRequest method.
-//    req, resp := client.StopCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/StopCampaign
 func (c *ConnectCampaigns) StopCampaignRequest(input *StopCampaignInput) (req *request.Request, output *StopCampaignOutput) {
@@ -1605,25 +1603,26 @@ func (c *ConnectCampaigns) StopCampaignRequest(input *StopCampaignInput) (req *r
 // API operation StopCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ConflictException
-//   The request could not be processed because of conflict in the current state
-//   of the resource.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidCampaignStateException
-//   The request could not be processed because of conflict in the current state
-//   of the campaign.
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - InvalidCampaignStateException
+//     The request could not be processed because of conflict in the current state
+//     of the campaign.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/StopCampaign
 func (c *ConnectCampaigns) StopCampaign(input *StopCampaignInput) (*StopCampaignOutput, error) {
@@ -1663,14 +1662,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/TagResource
 func (c *ConnectCampaigns) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -1702,20 +1700,21 @@ func (c *ConnectCampaigns) TagResourceRequest(input *TagResourceInput) (req *req
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/TagResource
 func (c *ConnectCampaigns) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -1755,14 +1754,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/UntagResource
 func (c *ConnectCampaigns) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -1794,20 +1792,21 @@ func (c *ConnectCampaigns) UntagResourceRequest(input *UntagResourceInput) (req 
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/UntagResource
 func (c *ConnectCampaigns) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -1847,14 +1846,13 @@ const opUpdateCampaignDialerConfig = "UpdateCampaignDialerConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateCampaignDialerConfigRequest method.
+//	req, resp := client.UpdateCampaignDialerConfigRequest(params)
 //
-//    // Example sending a request using the UpdateCampaignDialerConfigRequest method.
-//    req, resp := client.UpdateCampaignDialerConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/UpdateCampaignDialerConfig
 func (c *ConnectCampaigns) UpdateCampaignDialerConfigRequest(input *UpdateCampaignDialerConfigInput) (req *request.Request, output *UpdateCampaignDialerConfigOutput) {
@@ -1886,21 +1884,22 @@ func (c *ConnectCampaigns) UpdateCampaignDialerConfigRequest(input *UpdateCampai
 // API operation UpdateCampaignDialerConfig for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ConflictException
-//   The request could not be processed because of conflict in the current state
-//   of the resource.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/UpdateCampaignDialerConfig
 func (c *ConnectCampaigns) UpdateCampaignDialerConfig(input *UpdateCampaignDialerConfigInput) (*UpdateCampaignDialerConfigOutput, error) {
@@ -1940,14 +1939,13 @@ const opUpdateCampaignName = "UpdateCampaignName"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateCampaignNameRequest method.
+//	req, resp := client.UpdateCampaignNameRequest(params)
 //
-//    // Example sending a request using the UpdateCampaignNameRequest method.
-//    req, resp := client.UpdateCampaignNameRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/UpdateCampaignName
 func (c *ConnectCampaigns) UpdateCampaignNameRequest(input *UpdateCampaignNameInput) (req *request.Request, output *UpdateCampaignNameOutput) {
@@ -1979,21 +1977,22 @@ func (c *ConnectCampaigns) UpdateCampaignNameRequest(input *UpdateCampaignNameIn
 // API operation UpdateCampaignName for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ConflictException
-//   The request could not be processed because of conflict in the current state
-//   of the resource.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/UpdateCampaignName
 func (c *ConnectCampaigns) UpdateCampaignName(input *UpdateCampaignNameInput) (*UpdateCampaignNameOutput, error) {
@@ -2033,14 +2032,13 @@ const opUpdateCampaignOutboundCallConfig = "UpdateCampaignOutboundCallConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateCampaignOutboundCallConfigRequest method.
+//	req, resp := client.UpdateCampaignOutboundCallConfigRequest(params)
 //
-//    // Example sending a request using the UpdateCampaignOutboundCallConfigRequest method.
-//    req, resp := client.UpdateCampaignOutboundCallConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/UpdateCampaignOutboundCallConfig
 func (c *ConnectCampaigns) UpdateCampaignOutboundCallConfigRequest(input *UpdateCampaignOutboundCallConfigInput) (req *request.Request, output *UpdateCampaignOutboundCallConfigOutput) {
@@ -2072,24 +2070,25 @@ func (c *ConnectCampaigns) UpdateCampaignOutboundCallConfigRequest(input *Update
 // API operation UpdateCampaignOutboundCallConfig for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   Request processing failed because of an error or failure with the service.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ConflictException
-//   The request could not be processed because of conflict in the current state
-//   of the resource.
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
 //
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcampaigns-2021-01-30/UpdateCampaignOutboundCallConfig
 func (c *ConnectCampaigns) UpdateCampaignOutboundCallConfig(input *UpdateCampaignOutboundCallConfigInput) (*UpdateCampaignOutboundCallConfigOutput, error) {

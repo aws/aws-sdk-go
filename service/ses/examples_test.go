@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // CloneReceiptRuleSet
-//
 // The following example creates a receipt rule set by cloning an existing one:
 func ExampleSES_CloneReceiptRuleSet_shared00() {
 	svc := ses.New(session.New())
@@ -60,7 +59,6 @@ func ExampleSES_CloneReceiptRuleSet_shared00() {
 }
 
 // CreateReceiptFilter
-//
 // The following example creates a new IP address filter:
 func ExampleSES_CreateReceiptFilter_shared00() {
 	svc := ses.New(session.New())
@@ -97,7 +95,6 @@ func ExampleSES_CreateReceiptFilter_shared00() {
 }
 
 // CreateReceiptRule
-//
 // The following example creates a new receipt rule:
 func ExampleSES_CreateReceiptRule_shared00() {
 	svc := ses.New(session.New())
@@ -153,7 +150,6 @@ func ExampleSES_CreateReceiptRule_shared00() {
 }
 
 // CreateReceiptRuleSet
-//
 // The following example creates an empty receipt rule set:
 func ExampleSES_CreateReceiptRuleSet_shared00() {
 	svc := ses.New(session.New())
@@ -184,7 +180,6 @@ func ExampleSES_CreateReceiptRuleSet_shared00() {
 }
 
 // DeleteIdentity
-//
 // The following example deletes an identity from the list of identities that have been
 // submitted for verification with Amazon SES:
 func ExampleSES_DeleteIdentity_shared00() {
@@ -212,7 +207,6 @@ func ExampleSES_DeleteIdentity_shared00() {
 }
 
 // DeleteIdentityPolicy
-//
 // The following example deletes a sending authorization policy for an identity:
 func ExampleSES_DeleteIdentityPolicy_shared00() {
 	svc := ses.New(session.New())
@@ -240,7 +234,6 @@ func ExampleSES_DeleteIdentityPolicy_shared00() {
 }
 
 // DeleteReceiptFilter
-//
 // The following example deletes an IP address filter:
 func ExampleSES_DeleteReceiptFilter_shared00() {
 	svc := ses.New(session.New())
@@ -267,7 +260,6 @@ func ExampleSES_DeleteReceiptFilter_shared00() {
 }
 
 // DeleteReceiptRule
-//
 // The following example deletes a receipt rule:
 func ExampleSES_DeleteReceiptRule_shared00() {
 	svc := ses.New(session.New())
@@ -297,7 +289,6 @@ func ExampleSES_DeleteReceiptRule_shared00() {
 }
 
 // DeleteReceiptRuleSet
-//
 // The following example deletes a receipt rule set:
 func ExampleSES_DeleteReceiptRuleSet_shared00() {
 	svc := ses.New(session.New())
@@ -326,7 +317,6 @@ func ExampleSES_DeleteReceiptRuleSet_shared00() {
 }
 
 // DeleteVerifiedEmailAddress
-//
 // The following example deletes an email address from the list of identities that have
 // been submitted for verification with Amazon SES:
 func ExampleSES_DeleteVerifiedEmailAddress_shared00() {
@@ -354,7 +344,6 @@ func ExampleSES_DeleteVerifiedEmailAddress_shared00() {
 }
 
 // DescribeActiveReceiptRuleSet
-//
 // The following example returns the metadata and receipt rules for the receipt rule
 // set that is currently active:
 func ExampleSES_DescribeActiveReceiptRuleSet_shared00() {
@@ -380,7 +369,6 @@ func ExampleSES_DescribeActiveReceiptRuleSet_shared00() {
 }
 
 // DescribeReceiptRule
-//
 // The following example returns the details of a receipt rule:
 func ExampleSES_DescribeReceiptRule_shared00() {
 	svc := ses.New(session.New())
@@ -412,7 +400,6 @@ func ExampleSES_DescribeReceiptRule_shared00() {
 }
 
 // DescribeReceiptRuleSet
-//
 // The following example returns the metadata and receipt rules of a receipt rule set:
 func ExampleSES_DescribeReceiptRuleSet_shared00() {
 	svc := ses.New(session.New())
@@ -441,7 +428,6 @@ func ExampleSES_DescribeReceiptRuleSet_shared00() {
 }
 
 // GetAccountSendingEnabled
-//
 // The following example returns if sending status for an account is enabled. (true
 // / false):
 func ExampleSES_GetAccountSendingEnabled_shared00() {
@@ -467,7 +453,6 @@ func ExampleSES_GetAccountSendingEnabled_shared00() {
 }
 
 // GetIdentityDkimAttributes
-//
 // The following example retrieves the Amazon SES Easy DKIM attributes for a list of
 // identities:
 func ExampleSES_GetIdentityDkimAttributes_shared00() {
@@ -498,7 +483,6 @@ func ExampleSES_GetIdentityDkimAttributes_shared00() {
 }
 
 // GetIdentityMailFromDomainAttributes
-//
 // The following example returns the custom MAIL FROM attributes for an identity:
 func ExampleSES_GetIdentityMailFromDomainAttributes_shared00() {
 	svc := ses.New(session.New())
@@ -527,7 +511,6 @@ func ExampleSES_GetIdentityMailFromDomainAttributes_shared00() {
 }
 
 // GetIdentityNotificationAttributes
-//
 // The following example returns the notification attributes for an identity:
 func ExampleSES_GetIdentityNotificationAttributes_shared00() {
 	svc := ses.New(session.New())
@@ -556,7 +539,6 @@ func ExampleSES_GetIdentityNotificationAttributes_shared00() {
 }
 
 // GetIdentityPolicies
-//
 // The following example returns a sending authorization policy for an identity:
 func ExampleSES_GetIdentityPolicies_shared00() {
 	svc := ses.New(session.New())
@@ -586,7 +568,6 @@ func ExampleSES_GetIdentityPolicies_shared00() {
 }
 
 // GetIdentityVerificationAttributes
-//
 // The following example returns the verification status and the verification token
 // for a domain identity:
 func ExampleSES_GetIdentityVerificationAttributes_shared00() {
@@ -616,7 +597,6 @@ func ExampleSES_GetIdentityVerificationAttributes_shared00() {
 }
 
 // GetSendQuota
-//
 // The following example returns the Amazon SES sending limits for an AWS account:
 func ExampleSES_GetSendQuota_shared00() {
 	svc := ses.New(session.New())
@@ -641,7 +621,6 @@ func ExampleSES_GetSendQuota_shared00() {
 }
 
 // GetSendStatistics
-//
 // The following example returns Amazon SES sending statistics:
 func ExampleSES_GetSendStatistics_shared00() {
 	svc := ses.New(session.New())
@@ -666,7 +645,6 @@ func ExampleSES_GetSendStatistics_shared00() {
 }
 
 // ListIdentities
-//
 // The following example lists the email address identities that have been submitted
 // for verification with Amazon SES:
 func ExampleSES_ListIdentities_shared00() {
@@ -696,7 +674,6 @@ func ExampleSES_ListIdentities_shared00() {
 }
 
 // ListIdentityPolicies
-//
 // The following example returns a list of sending authorization policies that are attached
 // to an identity:
 func ExampleSES_ListIdentityPolicies_shared00() {
@@ -724,7 +701,6 @@ func ExampleSES_ListIdentityPolicies_shared00() {
 }
 
 // ListReceiptFilters
-//
 // The following example lists the IP address filters that are associated with an AWS
 // account:
 func ExampleSES_ListReceiptFilters_shared00() {
@@ -750,7 +726,6 @@ func ExampleSES_ListReceiptFilters_shared00() {
 }
 
 // ListReceiptRuleSets
-//
 // The following example lists the receipt rule sets that exist under an AWS account:
 func ExampleSES_ListReceiptRuleSets_shared00() {
 	svc := ses.New(session.New())
@@ -777,7 +752,6 @@ func ExampleSES_ListReceiptRuleSets_shared00() {
 }
 
 // ListVerifiedEmailAddresses
-//
 // The following example lists all email addresses that have been submitted for verification
 // with Amazon SES:
 func ExampleSES_ListVerifiedEmailAddresses_shared00() {
@@ -803,7 +777,6 @@ func ExampleSES_ListVerifiedEmailAddresses_shared00() {
 }
 
 // PutIdentityPolicy
-//
 // The following example adds a sending authorization policy to an identity:
 func ExampleSES_PutIdentityPolicy_shared00() {
 	svc := ses.New(session.New())
@@ -834,7 +807,6 @@ func ExampleSES_PutIdentityPolicy_shared00() {
 }
 
 // ReorderReceiptRuleSet
-//
 // The following example reorders the receipt rules within a receipt rule set:
 func ExampleSES_ReorderReceiptRuleSet_shared00() {
 	svc := ses.New(session.New())
@@ -869,7 +841,6 @@ func ExampleSES_ReorderReceiptRuleSet_shared00() {
 }
 
 // SendEmail
-//
 // The following example sends a formatted email:
 func ExampleSES_SendEmail_shared00() {
 	svc := ses.New(session.New())
@@ -934,7 +905,6 @@ func ExampleSES_SendEmail_shared00() {
 }
 
 // SendRawEmail
-//
 // The following example sends an email with an attachment:
 func ExampleSES_SendRawEmail_shared00() {
 	svc := ses.New(session.New())
@@ -977,7 +947,6 @@ func ExampleSES_SendRawEmail_shared00() {
 }
 
 // SetActiveReceiptRuleSet
-//
 // The following example sets the active receipt rule set:
 func ExampleSES_SetActiveReceiptRuleSet_shared00() {
 	svc := ses.New(session.New())
@@ -1006,7 +975,6 @@ func ExampleSES_SetActiveReceiptRuleSet_shared00() {
 }
 
 // SetIdentityDkimEnabled
-//
 // The following example configures Amazon SES to Easy DKIM-sign the email sent from
 // an identity:
 func ExampleSES_SetIdentityDkimEnabled_shared00() {
@@ -1035,7 +1003,6 @@ func ExampleSES_SetIdentityDkimEnabled_shared00() {
 }
 
 // SetIdentityFeedbackForwardingEnabled
-//
 // The following example configures Amazon SES to forward an identity's bounces and
 // complaints via email:
 func ExampleSES_SetIdentityFeedbackForwardingEnabled_shared00() {
@@ -1064,7 +1031,6 @@ func ExampleSES_SetIdentityFeedbackForwardingEnabled_shared00() {
 }
 
 // SetIdentityHeadersInNotificationsEnabled
-//
 // The following example configures Amazon SES to include the original email headers
 // in the Amazon SNS bounce notifications for an identity:
 func ExampleSES_SetIdentityHeadersInNotificationsEnabled_shared00() {
@@ -1094,7 +1060,6 @@ func ExampleSES_SetIdentityHeadersInNotificationsEnabled_shared00() {
 }
 
 // SetIdentityMailFromDomain
-//
 // The following example configures Amazon SES to use a custom MAIL FROM domain for
 // an identity:
 func ExampleSES_SetIdentityMailFromDomain_shared00() {
@@ -1124,7 +1089,6 @@ func ExampleSES_SetIdentityMailFromDomain_shared00() {
 }
 
 // SetIdentityNotificationTopic
-//
 // The following example sets the Amazon SNS topic to which Amazon SES will publish
 // bounce, complaint, and/or delivery notifications for emails sent with the specified
 // identity as the Source:
@@ -1155,7 +1119,6 @@ func ExampleSES_SetIdentityNotificationTopic_shared00() {
 }
 
 // SetReceiptRulePosition
-//
 // The following example sets the position of a receipt rule in a receipt rule set:
 func ExampleSES_SetReceiptRulePosition_shared00() {
 	svc := ses.New(session.New())
@@ -1188,7 +1151,6 @@ func ExampleSES_SetReceiptRulePosition_shared00() {
 }
 
 // UpdateAccountSendingEnabled
-//
 // The following example updated the sending status for this account.
 func ExampleSES_UpdateAccountSendingEnabled_shared00() {
 	svc := ses.New(session.New())
@@ -1215,7 +1177,6 @@ func ExampleSES_UpdateAccountSendingEnabled_shared00() {
 }
 
 // UpdateConfigurationSetReputationMetricsEnabled
-//
 // Set the reputationMetricsEnabled flag for a specific configuration set.
 func ExampleSES_UpdateConfigurationSetReputationMetricsEnabled_shared00() {
 	svc := ses.New(session.New())
@@ -1245,7 +1206,6 @@ func ExampleSES_UpdateConfigurationSetReputationMetricsEnabled_shared00() {
 }
 
 // UpdateConfigurationSetReputationMetricsEnabled
-//
 // Set the sending enabled flag for a specific configuration set.
 func ExampleSES_UpdateConfigurationSetSendingEnabled_shared00() {
 	svc := ses.New(session.New())
@@ -1275,7 +1235,6 @@ func ExampleSES_UpdateConfigurationSetSendingEnabled_shared00() {
 }
 
 // UpdateReceiptRule
-//
 // The following example updates a receipt rule to use an Amazon S3 action:
 func ExampleSES_UpdateReceiptRule_shared00() {
 	svc := ses.New(session.New())
@@ -1328,7 +1287,6 @@ func ExampleSES_UpdateReceiptRule_shared00() {
 }
 
 // VerifyDomainDkim
-//
 // The following example generates DKIM tokens for a domain that has been verified with
 // Amazon SES:
 func ExampleSES_VerifyDomainDkim_shared00() {
@@ -1356,7 +1314,6 @@ func ExampleSES_VerifyDomainDkim_shared00() {
 }
 
 // VerifyDomainIdentity
-//
 // The following example starts the domain verification process with Amazon SES:
 func ExampleSES_VerifyDomainIdentity_shared00() {
 	svc := ses.New(session.New())
@@ -1383,7 +1340,6 @@ func ExampleSES_VerifyDomainIdentity_shared00() {
 }
 
 // VerifyEmailAddress
-//
 // The following example starts the email address verification process with Amazon SES:
 func ExampleSES_VerifyEmailAddress_shared00() {
 	svc := ses.New(session.New())
@@ -1410,7 +1366,6 @@ func ExampleSES_VerifyEmailAddress_shared00() {
 }
 
 // VerifyEmailIdentity
-//
 // The following example starts the email address verification process with Amazon SES:
 func ExampleSES_VerifyEmailIdentity_shared00() {
 	svc := ses.New(session.New())

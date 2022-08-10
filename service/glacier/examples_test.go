@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To abort a multipart upload identified by the upload ID
-//
 // The example deletes an in-progress multipart upload to a vault named my-vault:
 func ExampleGlacier_AbortMultipartUpload_shared00() {
 	svc := glacier.New(session.New())
@@ -63,7 +62,6 @@ func ExampleGlacier_AbortMultipartUpload_shared00() {
 }
 
 // To abort a vault lock
-//
 // The example aborts the vault locking process if the vault lock is not in the Locked
 // state for the vault named examplevault.
 func ExampleGlacier_AbortVaultLock_shared00() {
@@ -100,7 +98,6 @@ func ExampleGlacier_AbortVaultLock_shared00() {
 }
 
 // To add tags to a vault
-//
 // The example adds two tags to a my-vault.
 func ExampleGlacier_AddTagsToVault_shared00() {
 	svc := glacier.New(session.New())
@@ -142,7 +139,6 @@ func ExampleGlacier_AddTagsToVault_shared00() {
 }
 
 // To complete a multipart upload
-//
 // The example completes a multipart upload for a 3 MiB archive.
 func ExampleGlacier_CompleteMultipartUpload_shared00() {
 	svc := glacier.New(session.New())
@@ -181,7 +177,6 @@ func ExampleGlacier_CompleteMultipartUpload_shared00() {
 }
 
 // To complete a vault lock
-//
 // The example completes the vault locking process by transitioning the vault lock from
 // the InProgress state to the Locked state.
 func ExampleGlacier_CompleteVaultLock_shared00() {
@@ -219,7 +214,6 @@ func ExampleGlacier_CompleteVaultLock_shared00() {
 }
 
 // To create a new vault
-//
 // The following example creates a new vault named my-vault.
 func ExampleGlacier_CreateVault_shared00() {
 	svc := glacier.New(session.New())
@@ -255,7 +249,6 @@ func ExampleGlacier_CreateVault_shared00() {
 }
 
 // To delete an archive
-//
 // The example deletes the archive specified by the archive ID.
 func ExampleGlacier_DeleteArchive_shared00() {
 	svc := glacier.New(session.New())
@@ -292,7 +285,6 @@ func ExampleGlacier_DeleteArchive_shared00() {
 }
 
 // To delete a vault
-//
 // The example deletes a vault named my-vault:
 func ExampleGlacier_DeleteVault_shared00() {
 	svc := glacier.New(session.New())
@@ -328,7 +320,6 @@ func ExampleGlacier_DeleteVault_shared00() {
 }
 
 // To delete the vault access policy
-//
 // The example deletes the access policy associated with the vault named examplevault.
 func ExampleGlacier_DeleteVaultAccessPolicy_shared00() {
 	svc := glacier.New(session.New())
@@ -364,7 +355,6 @@ func ExampleGlacier_DeleteVaultAccessPolicy_shared00() {
 }
 
 // To delete the notification configuration set for a vault
-//
 // The example deletes the notification configuration set for the vault named examplevault.
 func ExampleGlacier_DeleteVaultNotifications_shared00() {
 	svc := glacier.New(session.New())
@@ -400,7 +390,6 @@ func ExampleGlacier_DeleteVaultNotifications_shared00() {
 }
 
 // To get information about a previously initiated job
-//
 // The example returns information about the previously initiated job specified by the
 // job ID.
 func ExampleGlacier_DescribeJob_shared00() {
@@ -438,7 +427,6 @@ func ExampleGlacier_DescribeJob_shared00() {
 }
 
 // To retrieve information about a vault
-//
 // The example retrieves data about a vault named my-vault.
 func ExampleGlacier_DescribeVault_shared00() {
 	svc := glacier.New(session.New())
@@ -474,7 +462,6 @@ func ExampleGlacier_DescribeVault_shared00() {
 }
 
 // To get the current data retrieval policy for an account
-//
 // The example returns the current data retrieval policy for the account.
 func ExampleGlacier_GetDataRetrievalPolicy_shared00() {
 	svc := glacier.New(session.New())
@@ -507,7 +494,6 @@ func ExampleGlacier_GetDataRetrievalPolicy_shared00() {
 }
 
 // To get the output of a previously initiated job
-//
 // The example downloads the output of a previously initiated inventory retrieval job
 // that is identified by the job ID.
 func ExampleGlacier_GetJobOutput_shared00() {
@@ -546,7 +532,6 @@ func ExampleGlacier_GetJobOutput_shared00() {
 }
 
 // To get the access-policy set on the vault
-//
 // The example retrieves the access-policy set on the vault named example-vault.
 func ExampleGlacier_GetVaultAccessPolicy_shared00() {
 	svc := glacier.New(session.New())
@@ -582,7 +567,6 @@ func ExampleGlacier_GetVaultAccessPolicy_shared00() {
 }
 
 // To retrieve vault lock-policy related attributes that are set on a vault
-//
 // The example retrieves the attributes from the lock-policy subresource set on the
 // vault named examplevault.
 func ExampleGlacier_GetVaultLock_shared00() {
@@ -619,7 +603,6 @@ func ExampleGlacier_GetVaultLock_shared00() {
 }
 
 // To get the notification-configuration for the specified vault
-//
 // The example retrieves the notification-configuration for the vault named my-vault.
 func ExampleGlacier_GetVaultNotifications_shared00() {
 	svc := glacier.New(session.New())
@@ -655,7 +638,6 @@ func ExampleGlacier_GetVaultNotifications_shared00() {
 }
 
 // To initiate an inventory-retrieval job
-//
 // The example initiates an inventory-retrieval job for the vault named examplevault.
 func ExampleGlacier_InitiateJob_shared00() {
 	svc := glacier.New(session.New())
@@ -701,7 +683,6 @@ func ExampleGlacier_InitiateJob_shared00() {
 }
 
 // To initiate a multipart upload
-//
 // The example initiates a multipart upload to a vault named my-vault with a part size
 // of 1 MiB (1024 x 1024 bytes) per file.
 func ExampleGlacier_InitiateMultipartUpload_shared00() {
@@ -739,7 +720,6 @@ func ExampleGlacier_InitiateMultipartUpload_shared00() {
 }
 
 // To initiate the vault locking process
-//
 // The example initiates the vault locking process for the vault named my-vault.
 func ExampleGlacier_InitiateVaultLock_shared00() {
 	svc := glacier.New(session.New())
@@ -778,7 +758,6 @@ func ExampleGlacier_InitiateVaultLock_shared00() {
 }
 
 // To list jobs for a vault
-//
 // The example lists jobs for the vault named my-vault.
 func ExampleGlacier_ListJobs_shared00() {
 	svc := glacier.New(session.New())
@@ -814,7 +793,6 @@ func ExampleGlacier_ListJobs_shared00() {
 }
 
 // To list all the in-progress multipart uploads for a vault
-//
 // The example lists all the in-progress multipart uploads for the vault named examplevault.
 func ExampleGlacier_ListMultipartUploads_shared00() {
 	svc := glacier.New(session.New())
@@ -850,7 +828,6 @@ func ExampleGlacier_ListMultipartUploads_shared00() {
 }
 
 // To list the parts of an archive that have been uploaded in a multipart upload
-//
 // The example lists all the parts of a multipart upload.
 func ExampleGlacier_ListParts_shared00() {
 	svc := glacier.New(session.New())
@@ -887,7 +864,6 @@ func ExampleGlacier_ListParts_shared00() {
 }
 
 // To list the provisioned capacity units for an account
-//
 // The example lists the provisioned capacity units for an account.
 func ExampleGlacier_ListProvisionedCapacity_shared00() {
 	svc := glacier.New(session.New())
@@ -920,7 +896,6 @@ func ExampleGlacier_ListProvisionedCapacity_shared00() {
 }
 
 // To list the tags for a vault
-//
 // The example lists all the tags attached to the vault examplevault.
 func ExampleGlacier_ListTagsForVault_shared00() {
 	svc := glacier.New(session.New())
@@ -956,7 +931,6 @@ func ExampleGlacier_ListTagsForVault_shared00() {
 }
 
 // To list all vaults owned by the calling user's account
-//
 // The example lists all vaults owned by the specified AWS account.
 func ExampleGlacier_ListVaults_shared00() {
 	svc := glacier.New(session.New())
@@ -993,7 +967,6 @@ func ExampleGlacier_ListVaults_shared00() {
 }
 
 // To purchases a provisioned capacity unit for an AWS account
-//
 // The example purchases provisioned capacity unit for an AWS account.
 func ExampleGlacier_PurchaseProvisionedCapacity_shared00() {
 	svc := glacier.New(session.New())
@@ -1028,7 +1001,6 @@ func ExampleGlacier_PurchaseProvisionedCapacity_shared00() {
 }
 
 // To remove tags from a vault
-//
 // The example removes two tags from the vault named examplevault.
 func ExampleGlacier_RemoveTagsFromVault_shared00() {
 	svc := glacier.New(session.New())
@@ -1068,7 +1040,6 @@ func ExampleGlacier_RemoveTagsFromVault_shared00() {
 }
 
 // To set and then enact a data retrieval policy
-//
 // The example sets and then enacts a data retrieval policy.
 func ExampleGlacier_SetDataRetrievalPolicy_shared00() {
 	svc := glacier.New(session.New())
@@ -1109,7 +1080,6 @@ func ExampleGlacier_SetDataRetrievalPolicy_shared00() {
 }
 
 // To set the access-policy on a vault
-//
 // The example configures an access policy for the vault named examplevault.
 func ExampleGlacier_SetVaultAccessPolicy_shared00() {
 	svc := glacier.New(session.New())
@@ -1148,7 +1118,6 @@ func ExampleGlacier_SetVaultAccessPolicy_shared00() {
 }
 
 // To configure a vault to post a message to an Amazon SNS topic when jobs complete
-//
 // The example sets the examplevault notification configuration.
 func ExampleGlacier_SetVaultNotifications_shared00() {
 	svc := glacier.New(session.New())
@@ -1191,7 +1160,6 @@ func ExampleGlacier_SetVaultNotifications_shared00() {
 }
 
 // To upload an archive
-//
 // The example adds an archive to a vault.
 func ExampleGlacier_UploadArchive_shared00() {
 	svc := glacier.New(session.New())
@@ -1232,7 +1200,6 @@ func ExampleGlacier_UploadArchive_shared00() {
 }
 
 // To upload the first part of an archive
-//
 // The example uploads the first 1 MiB (1024 x 1024 bytes) part of an archive.
 func ExampleGlacier_UploadMultipartPart_shared00() {
 	svc := glacier.New(session.New())

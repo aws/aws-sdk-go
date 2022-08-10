@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To describe a stream with a given stream ARN
-//
 // The following example describes a stream with a given stream ARN.
 func ExampleDynamoDBStreams_DescribeStream_shared00() {
 	svc := dynamodbstreams.New(session.New())
@@ -57,7 +56,6 @@ func ExampleDynamoDBStreams_DescribeStream_shared00() {
 }
 
 // To retrieve all the stream records from a shard
-//
 // The following example retrieves all the stream records from a shard.
 func ExampleDynamoDBStreams_GetRecords_shared00() {
 	svc := dynamodbstreams.New(session.New())
@@ -94,7 +92,6 @@ func ExampleDynamoDBStreams_GetRecords_shared00() {
 }
 
 // To obtain a shard iterator for the provided stream ARN and shard ID
-//
 // The following example returns a shard iterator for the provided stream ARN and shard
 // ID.
 func ExampleDynamoDBStreams_GetShardIterator_shared00() {
@@ -130,7 +127,6 @@ func ExampleDynamoDBStreams_GetShardIterator_shared00() {
 }
 
 // To list all of the stream ARNs
-//
 // The following example lists all of the stream ARNs.
 func ExampleDynamoDBStreams_ListStreams_shared00() {
 	svc := dynamodbstreams.New(session.New())

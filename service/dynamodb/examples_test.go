@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To retrieve multiple items from a table
-//
 // This example reads multiple items from the Music table using a batch of three GetItem
 // requests. Only the AlbumTitle attribute is returned.
 func ExampleDynamoDB_BatchGetItem_shared00() {
@@ -92,7 +91,6 @@ func ExampleDynamoDB_BatchGetItem_shared00() {
 }
 
 // To add multiple items to a table
-//
 // This example adds three new items to the Music table using a batch of three PutItem
 // requests.
 func ExampleDynamoDB_BatchWriteItem_shared00() {
@@ -178,7 +176,6 @@ func ExampleDynamoDB_BatchWriteItem_shared00() {
 }
 
 // To create a table
-//
 // This example creates a table named Music.
 func ExampleDynamoDB_CreateTable_shared00() {
 	svc := dynamodb.New(session.New())
@@ -235,7 +232,6 @@ func ExampleDynamoDB_CreateTable_shared00() {
 }
 
 // To delete an item
-//
 // This example deletes an item from the Music table.
 func ExampleDynamoDB_DeleteItem_shared00() {
 	svc := dynamodb.New(session.New())
@@ -284,7 +280,6 @@ func ExampleDynamoDB_DeleteItem_shared00() {
 }
 
 // To delete a table
-//
 // This example deletes the Music table.
 func ExampleDynamoDB_DeleteTable_shared00() {
 	svc := dynamodb.New(session.New())
@@ -319,7 +314,6 @@ func ExampleDynamoDB_DeleteTable_shared00() {
 }
 
 // To determine capacity limits per table and account, in the current AWS region
-//
 // The following example returns the maximum read and write capacity units per table,
 // and for the AWS account, in the current AWS region.
 func ExampleDynamoDB_DescribeLimits_shared00() {
@@ -347,7 +341,6 @@ func ExampleDynamoDB_DescribeLimits_shared00() {
 }
 
 // To describe a table
-//
 // This example describes the Music table.
 func ExampleDynamoDB_DescribeTable_shared00() {
 	svc := dynamodb.New(session.New())
@@ -378,7 +371,6 @@ func ExampleDynamoDB_DescribeTable_shared00() {
 }
 
 // To read an item from a table
-//
 // This example retrieves an item from the Music table. The table has a partition key
 // and a sort key (Artist and SongTitle), so you must specify both of these attributes.
 func ExampleDynamoDB_GetItem_shared00() {
@@ -422,7 +414,6 @@ func ExampleDynamoDB_GetItem_shared00() {
 }
 
 // To list tables
-//
 // This example lists all of the tables associated with the current AWS account and
 // endpoint.
 func ExampleDynamoDB_ListTables_shared00() {
@@ -450,7 +441,6 @@ func ExampleDynamoDB_ListTables_shared00() {
 }
 
 // To add an item to a table
-//
 // This example adds a new item to the Music table.
 func ExampleDynamoDB_PutItem_shared00() {
 	svc := dynamodb.New(session.New())
@@ -503,7 +493,6 @@ func ExampleDynamoDB_PutItem_shared00() {
 }
 
 // To query an item
-//
 // This example queries items in the Music table. The table has a partition key and
 // sort key (Artist and SongTitle), but this query only specifies the partition key
 // value. It returns song titles by the artist named "No One You Know".
@@ -547,7 +536,6 @@ func ExampleDynamoDB_Query_shared00() {
 }
 
 // To scan a table
-//
 // This example scans the entire Music table, and then narrows the results to songs
 // by the artist "No One You Know". For each item, only the album title and song title
 // are returned.
@@ -595,7 +583,6 @@ func ExampleDynamoDB_Scan_shared00() {
 }
 
 // To update an item in a table
-//
 // This example updates an item in the Music table. It adds a new attribute (Year) and
 // modifies the AlbumTitle attribute. All of the attributes in the item, as they appear
 // after the update, are returned in the response.
@@ -660,7 +647,6 @@ func ExampleDynamoDB_UpdateItem_shared00() {
 }
 
 // To modify a table's provisioned throughput
-//
 // This example increases the provisioned read and write capacity on the Music table.
 func ExampleDynamoDB_UpdateTable_shared00() {
 	svc := dynamodb.New(session.New())

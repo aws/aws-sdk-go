@@ -29,14 +29,13 @@ const opAssociateEntitiesToExperience = "AssociateEntitiesToExperience"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateEntitiesToExperienceRequest method.
+//	req, resp := client.AssociateEntitiesToExperienceRequest(params)
 //
-//    // Example sending a request using the AssociateEntitiesToExperienceRequest method.
-//    req, resp := client.AssociateEntitiesToExperienceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/AssociateEntitiesToExperience
 func (c *Kendra) AssociateEntitiesToExperienceRequest(input *AssociateEntitiesToExperienceInput) (req *request.Request, output *AssociateEntitiesToExperienceOutput) {
@@ -70,17 +69,18 @@ func (c *Kendra) AssociateEntitiesToExperienceRequest(input *AssociateEntitiesTo
 // API operation AssociateEntitiesToExperience for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ResourceAlreadyExistException
+//   - ResourceNotFoundException
 //
-//   * ThrottlingException
+//   - ResourceAlreadyExistException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/AssociateEntitiesToExperience
 func (c *Kendra) AssociateEntitiesToExperience(input *AssociateEntitiesToExperienceInput) (*AssociateEntitiesToExperienceOutput, error) {
@@ -120,14 +120,13 @@ const opAssociatePersonasToEntities = "AssociatePersonasToEntities"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociatePersonasToEntitiesRequest method.
+//	req, resp := client.AssociatePersonasToEntitiesRequest(params)
 //
-//    // Example sending a request using the AssociatePersonasToEntitiesRequest method.
-//    req, resp := client.AssociatePersonasToEntitiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/AssociatePersonasToEntities
 func (c *Kendra) AssociatePersonasToEntitiesRequest(input *AssociatePersonasToEntitiesInput) (req *request.Request, output *AssociatePersonasToEntitiesOutput) {
@@ -162,17 +161,18 @@ func (c *Kendra) AssociatePersonasToEntitiesRequest(input *AssociatePersonasToEn
 // API operation AssociatePersonasToEntities for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ResourceAlreadyExistException
+//   - ResourceNotFoundException
 //
-//   * ThrottlingException
+//   - ResourceAlreadyExistException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/AssociatePersonasToEntities
 func (c *Kendra) AssociatePersonasToEntities(input *AssociatePersonasToEntitiesInput) (*AssociatePersonasToEntitiesOutput, error) {
@@ -212,14 +212,13 @@ const opBatchDeleteDocument = "BatchDeleteDocument"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchDeleteDocumentRequest method.
+//	req, resp := client.BatchDeleteDocumentRequest(params)
 //
-//    // Example sending a request using the BatchDeleteDocumentRequest method.
-//    req, resp := client.BatchDeleteDocumentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/BatchDeleteDocument
 func (c *Kendra) BatchDeleteDocumentRequest(input *BatchDeleteDocumentInput) (req *request.Request, output *BatchDeleteDocumentOutput) {
@@ -255,17 +254,18 @@ func (c *Kendra) BatchDeleteDocumentRequest(input *BatchDeleteDocumentInput) (re
 // API operation BatchDeleteDocument for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/BatchDeleteDocument
 func (c *Kendra) BatchDeleteDocument(input *BatchDeleteDocumentInput) (*BatchDeleteDocumentOutput, error) {
@@ -305,14 +305,13 @@ const opBatchGetDocumentStatus = "BatchGetDocumentStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchGetDocumentStatusRequest method.
+//	req, resp := client.BatchGetDocumentStatusRequest(params)
 //
-//    // Example sending a request using the BatchGetDocumentStatusRequest method.
-//    req, resp := client.BatchGetDocumentStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/BatchGetDocumentStatus
 func (c *Kendra) BatchGetDocumentStatusRequest(input *BatchGetDocumentStatusInput) (req *request.Request, output *BatchGetDocumentStatusOutput) {
@@ -355,17 +354,18 @@ func (c *Kendra) BatchGetDocumentStatusRequest(input *BatchGetDocumentStatusInpu
 // API operation BatchGetDocumentStatus for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/BatchGetDocumentStatus
 func (c *Kendra) BatchGetDocumentStatus(input *BatchGetDocumentStatusInput) (*BatchGetDocumentStatusOutput, error) {
@@ -405,14 +405,13 @@ const opBatchPutDocument = "BatchPutDocument"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchPutDocumentRequest method.
+//	req, resp := client.BatchPutDocumentRequest(params)
 //
-//    // Example sending a request using the BatchPutDocumentRequest method.
-//    req, resp := client.BatchPutDocumentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/BatchPutDocument
 func (c *Kendra) BatchPutDocumentRequest(input *BatchPutDocumentInput) (req *request.Request, output *BatchPutDocumentOutput) {
@@ -455,19 +454,20 @@ func (c *Kendra) BatchPutDocumentRequest(input *BatchPutDocumentInput) (req *req
 // API operation BatchPutDocument for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * ServiceQuotaExceededException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ServiceQuotaExceededException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/BatchPutDocument
 func (c *Kendra) BatchPutDocument(input *BatchPutDocumentInput) (*BatchPutDocumentOutput, error) {
@@ -507,14 +507,13 @@ const opClearQuerySuggestions = "ClearQuerySuggestions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ClearQuerySuggestionsRequest method.
+//	req, resp := client.ClearQuerySuggestionsRequest(params)
 //
-//    // Example sending a request using the ClearQuerySuggestionsRequest method.
-//    req, resp := client.ClearQuerySuggestionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ClearQuerySuggestions
 func (c *Kendra) ClearQuerySuggestionsRequest(input *ClearQuerySuggestionsInput) (req *request.Request, output *ClearQuerySuggestionsOutput) {
@@ -555,17 +554,18 @@ func (c *Kendra) ClearQuerySuggestionsRequest(input *ClearQuerySuggestionsInput)
 // API operation ClearQuerySuggestions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * ConflictException
+//   - ThrottlingException
 //
-//   * AccessDeniedException
+//   - ConflictException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ClearQuerySuggestions
 func (c *Kendra) ClearQuerySuggestions(input *ClearQuerySuggestionsInput) (*ClearQuerySuggestionsOutput, error) {
@@ -605,14 +605,13 @@ const opCreateAccessControlConfiguration = "CreateAccessControlConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateAccessControlConfigurationRequest method.
+//	req, resp := client.CreateAccessControlConfigurationRequest(params)
 //
-//    // Example sending a request using the CreateAccessControlConfigurationRequest method.
-//    req, resp := client.CreateAccessControlConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateAccessControlConfiguration
 func (c *Kendra) CreateAccessControlConfigurationRequest(input *CreateAccessControlConfigurationInput) (req *request.Request, output *CreateAccessControlConfigurationOutput) {
@@ -666,19 +665,20 @@ func (c *Kendra) CreateAccessControlConfigurationRequest(input *CreateAccessCont
 // API operation CreateAccessControlConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
 //
-//   * ValidationException
+//   - ServiceQuotaExceededException
 //
-//   * ThrottlingException
+//   - ValidationException
 //
-//   * ConflictException
+//   - ThrottlingException
 //
-//   * AccessDeniedException
+//   - ConflictException
 //
-//   * ResourceNotFoundException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ResourceNotFoundException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateAccessControlConfiguration
 func (c *Kendra) CreateAccessControlConfiguration(input *CreateAccessControlConfigurationInput) (*CreateAccessControlConfigurationOutput, error) {
@@ -718,14 +718,13 @@ const opCreateDataSource = "CreateDataSource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDataSourceRequest method.
+//	req, resp := client.CreateDataSourceRequest(params)
 //
-//    // Example sending a request using the CreateDataSourceRequest method.
-//    req, resp := client.CreateDataSourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateDataSource
 func (c *Kendra) CreateDataSourceRequest(input *CreateDataSourceInput) (req *request.Request, output *CreateDataSourceOutput) {
@@ -771,21 +770,22 @@ func (c *Kendra) CreateDataSourceRequest(input *CreateDataSourceInput) (req *req
 // API operation CreateDataSource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ResourceAlreadyExistException
+//   - ResourceNotFoundException
 //
-//   * ServiceQuotaExceededException
+//   - ResourceAlreadyExistException
 //
-//   * ThrottlingException
+//   - ServiceQuotaExceededException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateDataSource
 func (c *Kendra) CreateDataSource(input *CreateDataSourceInput) (*CreateDataSourceOutput, error) {
@@ -825,14 +825,13 @@ const opCreateExperience = "CreateExperience"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateExperienceRequest method.
+//	req, resp := client.CreateExperienceRequest(params)
 //
-//    // Example sending a request using the CreateExperienceRequest method.
-//    req, resp := client.CreateExperienceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateExperience
 func (c *Kendra) CreateExperienceRequest(input *CreateExperienceInput) (req *request.Request, output *CreateExperienceOutput) {
@@ -865,19 +864,20 @@ func (c *Kendra) CreateExperienceRequest(input *CreateExperienceInput) (req *req
 // API operation CreateExperience for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ServiceQuotaExceededException
+//   - ResourceNotFoundException
 //
-//   * ThrottlingException
+//   - ServiceQuotaExceededException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateExperience
 func (c *Kendra) CreateExperience(input *CreateExperienceInput) (*CreateExperienceOutput, error) {
@@ -917,14 +917,13 @@ const opCreateFaq = "CreateFaq"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFaqRequest method.
+//	req, resp := client.CreateFaqRequest(params)
 //
-//    // Example sending a request using the CreateFaqRequest method.
-//    req, resp := client.CreateFaqRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateFaq
 func (c *Kendra) CreateFaqRequest(input *CreateFaqInput) (req *request.Request, output *CreateFaqOutput) {
@@ -960,19 +959,20 @@ func (c *Kendra) CreateFaqRequest(input *CreateFaqInput) (req *request.Request, 
 // API operation CreateFaq for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * ServiceQuotaExceededException
+//   - ThrottlingException
 //
-//   * AccessDeniedException
+//   - ServiceQuotaExceededException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateFaq
 func (c *Kendra) CreateFaq(input *CreateFaqInput) (*CreateFaqOutput, error) {
@@ -1012,14 +1012,13 @@ const opCreateIndex = "CreateIndex"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateIndexRequest method.
+//	req, resp := client.CreateIndexRequest(params)
 //
-//    // Example sending a request using the CreateIndexRequest method.
-//    req, resp := client.CreateIndexRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateIndex
 func (c *Kendra) CreateIndexRequest(input *CreateIndexInput) (req *request.Request, output *CreateIndexOutput) {
@@ -1061,19 +1060,20 @@ func (c *Kendra) CreateIndexRequest(input *CreateIndexInput) (req *request.Reque
 // API operation CreateIndex for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceAlreadyExistException
+//   - ValidationException
 //
-//   * ServiceQuotaExceededException
+//   - ResourceAlreadyExistException
 //
-//   * ThrottlingException
+//   - ServiceQuotaExceededException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * ConflictException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ConflictException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateIndex
 func (c *Kendra) CreateIndex(input *CreateIndexInput) (*CreateIndexOutput, error) {
@@ -1113,14 +1113,13 @@ const opCreateQuerySuggestionsBlockList = "CreateQuerySuggestionsBlockList"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateQuerySuggestionsBlockListRequest method.
+//	req, resp := client.CreateQuerySuggestionsBlockListRequest(params)
 //
-//    // Example sending a request using the CreateQuerySuggestionsBlockListRequest method.
-//    req, resp := client.CreateQuerySuggestionsBlockListRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateQuerySuggestionsBlockList
 func (c *Kendra) CreateQuerySuggestionsBlockListRequest(input *CreateQuerySuggestionsBlockListInput) (req *request.Request, output *CreateQuerySuggestionsBlockListOutput) {
@@ -1167,19 +1166,20 @@ func (c *Kendra) CreateQuerySuggestionsBlockListRequest(input *CreateQuerySugges
 // API operation CreateQuerySuggestionsBlockList for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * ServiceQuotaExceededException
+//   - AccessDeniedException
 //
-//   * ConflictException
+//   - ServiceQuotaExceededException
 //
-//   * InternalServerException
+//   - ConflictException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateQuerySuggestionsBlockList
 func (c *Kendra) CreateQuerySuggestionsBlockList(input *CreateQuerySuggestionsBlockListInput) (*CreateQuerySuggestionsBlockListOutput, error) {
@@ -1219,14 +1219,13 @@ const opCreateThesaurus = "CreateThesaurus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateThesaurusRequest method.
+//	req, resp := client.CreateThesaurusRequest(params)
 //
-//    // Example sending a request using the CreateThesaurusRequest method.
-//    req, resp := client.CreateThesaurusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateThesaurus
 func (c *Kendra) CreateThesaurusRequest(input *CreateThesaurusInput) (req *request.Request, output *CreateThesaurusOutput) {
@@ -1261,19 +1260,20 @@ func (c *Kendra) CreateThesaurusRequest(input *CreateThesaurusInput) (req *reque
 // API operation CreateThesaurus for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * ServiceQuotaExceededException
+//   - ThrottlingException
 //
-//   * AccessDeniedException
+//   - ServiceQuotaExceededException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateThesaurus
 func (c *Kendra) CreateThesaurus(input *CreateThesaurusInput) (*CreateThesaurusOutput, error) {
@@ -1313,14 +1313,13 @@ const opDeleteAccessControlConfiguration = "DeleteAccessControlConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAccessControlConfigurationRequest method.
+//	req, resp := client.DeleteAccessControlConfigurationRequest(params)
 //
-//    // Example sending a request using the DeleteAccessControlConfigurationRequest method.
-//    req, resp := client.DeleteAccessControlConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteAccessControlConfiguration
 func (c *Kendra) DeleteAccessControlConfigurationRequest(input *DeleteAccessControlConfigurationInput) (req *request.Request, output *DeleteAccessControlConfigurationOutput) {
@@ -1355,17 +1354,18 @@ func (c *Kendra) DeleteAccessControlConfigurationRequest(input *DeleteAccessCont
 // API operation DeleteAccessControlConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ThrottlingException
+//   - ValidationException
 //
-//   * ConflictException
+//   - ThrottlingException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * AccessDeniedException
+//   - ResourceNotFoundException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteAccessControlConfiguration
 func (c *Kendra) DeleteAccessControlConfiguration(input *DeleteAccessControlConfigurationInput) (*DeleteAccessControlConfigurationOutput, error) {
@@ -1405,14 +1405,13 @@ const opDeleteDataSource = "DeleteDataSource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDataSourceRequest method.
+//	req, resp := client.DeleteDataSourceRequest(params)
 //
-//    // Example sending a request using the DeleteDataSourceRequest method.
-//    req, resp := client.DeleteDataSourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteDataSource
 func (c *Kendra) DeleteDataSourceRequest(input *DeleteDataSourceInput) (req *request.Request, output *DeleteDataSourceOutput) {
@@ -1447,17 +1446,18 @@ func (c *Kendra) DeleteDataSourceRequest(input *DeleteDataSourceInput) (req *req
 // API operation DeleteDataSource for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
 //
-//   * ValidationException
+//   - AccessDeniedException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * InternalServerException
+//   - ThrottlingException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteDataSource
 func (c *Kendra) DeleteDataSource(input *DeleteDataSourceInput) (*DeleteDataSourceOutput, error) {
@@ -1497,14 +1497,13 @@ const opDeleteExperience = "DeleteExperience"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteExperienceRequest method.
+//	req, resp := client.DeleteExperienceRequest(params)
 //
-//    // Example sending a request using the DeleteExperienceRequest method.
-//    req, resp := client.DeleteExperienceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteExperience
 func (c *Kendra) DeleteExperienceRequest(input *DeleteExperienceInput) (req *request.Request, output *DeleteExperienceOutput) {
@@ -1538,17 +1537,18 @@ func (c *Kendra) DeleteExperienceRequest(input *DeleteExperienceInput) (req *req
 // API operation DeleteExperience for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedException
 //
-//   * ValidationException
+//   - AccessDeniedException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * InternalServerException
+//   - ThrottlingException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteExperience
 func (c *Kendra) DeleteExperience(input *DeleteExperienceInput) (*DeleteExperienceOutput, error) {
@@ -1588,14 +1588,13 @@ const opDeleteFaq = "DeleteFaq"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFaqRequest method.
+//	req, resp := client.DeleteFaqRequest(params)
 //
-//    // Example sending a request using the DeleteFaqRequest method.
-//    req, resp := client.DeleteFaqRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteFaq
 func (c *Kendra) DeleteFaqRequest(input *DeleteFaqInput) (req *request.Request, output *DeleteFaqOutput) {
@@ -1627,17 +1626,18 @@ func (c *Kendra) DeleteFaqRequest(input *DeleteFaqInput) (req *request.Request, 
 // API operation DeleteFaq for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteFaq
 func (c *Kendra) DeleteFaq(input *DeleteFaqInput) (*DeleteFaqOutput, error) {
@@ -1677,14 +1677,13 @@ const opDeleteIndex = "DeleteIndex"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteIndexRequest method.
+//	req, resp := client.DeleteIndexRequest(params)
 //
-//    // Example sending a request using the DeleteIndexRequest method.
-//    req, resp := client.DeleteIndexRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteIndex
 func (c *Kendra) DeleteIndexRequest(input *DeleteIndexInput) (req *request.Request, output *DeleteIndexOutput) {
@@ -1718,17 +1717,18 @@ func (c *Kendra) DeleteIndexRequest(input *DeleteIndexInput) (req *request.Reque
 // API operation DeleteIndex for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteIndex
 func (c *Kendra) DeleteIndex(input *DeleteIndexInput) (*DeleteIndexOutput, error) {
@@ -1768,14 +1768,13 @@ const opDeletePrincipalMapping = "DeletePrincipalMapping"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeletePrincipalMappingRequest method.
+//	req, resp := client.DeletePrincipalMappingRequest(params)
 //
-//    // Example sending a request using the DeletePrincipalMappingRequest method.
-//    req, resp := client.DeletePrincipalMappingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeletePrincipalMapping
 func (c *Kendra) DeletePrincipalMappingRequest(input *DeletePrincipalMappingInput) (req *request.Request, output *DeletePrincipalMappingOutput) {
@@ -1821,17 +1820,18 @@ func (c *Kendra) DeletePrincipalMappingRequest(input *DeletePrincipalMappingInpu
 // API operation DeletePrincipalMapping for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeletePrincipalMapping
 func (c *Kendra) DeletePrincipalMapping(input *DeletePrincipalMappingInput) (*DeletePrincipalMappingOutput, error) {
@@ -1871,14 +1871,13 @@ const opDeleteQuerySuggestionsBlockList = "DeleteQuerySuggestionsBlockList"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteQuerySuggestionsBlockListRequest method.
+//	req, resp := client.DeleteQuerySuggestionsBlockListRequest(params)
 //
-//    // Example sending a request using the DeleteQuerySuggestionsBlockListRequest method.
-//    req, resp := client.DeleteQuerySuggestionsBlockListRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteQuerySuggestionsBlockList
 func (c *Kendra) DeleteQuerySuggestionsBlockListRequest(input *DeleteQuerySuggestionsBlockListInput) (req *request.Request, output *DeleteQuerySuggestionsBlockListOutput) {
@@ -1917,17 +1916,18 @@ func (c *Kendra) DeleteQuerySuggestionsBlockListRequest(input *DeleteQuerySugges
 // API operation DeleteQuerySuggestionsBlockList for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * ConflictException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ConflictException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteQuerySuggestionsBlockList
 func (c *Kendra) DeleteQuerySuggestionsBlockList(input *DeleteQuerySuggestionsBlockListInput) (*DeleteQuerySuggestionsBlockListOutput, error) {
@@ -1967,14 +1967,13 @@ const opDeleteThesaurus = "DeleteThesaurus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteThesaurusRequest method.
+//	req, resp := client.DeleteThesaurusRequest(params)
 //
-//    // Example sending a request using the DeleteThesaurusRequest method.
-//    req, resp := client.DeleteThesaurusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteThesaurus
 func (c *Kendra) DeleteThesaurusRequest(input *DeleteThesaurusInput) (req *request.Request, output *DeleteThesaurusOutput) {
@@ -2006,17 +2005,18 @@ func (c *Kendra) DeleteThesaurusRequest(input *DeleteThesaurusInput) (req *reque
 // API operation DeleteThesaurus for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteThesaurus
 func (c *Kendra) DeleteThesaurus(input *DeleteThesaurusInput) (*DeleteThesaurusOutput, error) {
@@ -2056,14 +2056,13 @@ const opDescribeAccessControlConfiguration = "DescribeAccessControlConfiguration
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAccessControlConfigurationRequest method.
+//	req, resp := client.DescribeAccessControlConfigurationRequest(params)
 //
-//    // Example sending a request using the DescribeAccessControlConfigurationRequest method.
-//    req, resp := client.DescribeAccessControlConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeAccessControlConfiguration
 func (c *Kendra) DescribeAccessControlConfigurationRequest(input *DescribeAccessControlConfigurationInput) (req *request.Request, output *DescribeAccessControlConfigurationOutput) {
@@ -2097,15 +2096,16 @@ func (c *Kendra) DescribeAccessControlConfigurationRequest(input *DescribeAccess
 // API operation DescribeAccessControlConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ThrottlingException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ThrottlingException
 //
-//   * AccessDeniedException
+//   - ResourceNotFoundException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeAccessControlConfiguration
 func (c *Kendra) DescribeAccessControlConfiguration(input *DescribeAccessControlConfigurationInput) (*DescribeAccessControlConfigurationOutput, error) {
@@ -2145,14 +2145,13 @@ const opDescribeDataSource = "DescribeDataSource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDataSourceRequest method.
+//	req, resp := client.DescribeDataSourceRequest(params)
 //
-//    // Example sending a request using the DescribeDataSourceRequest method.
-//    req, resp := client.DescribeDataSourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeDataSource
 func (c *Kendra) DescribeDataSourceRequest(input *DescribeDataSourceInput) (req *request.Request, output *DescribeDataSourceOutput) {
@@ -2183,15 +2182,16 @@ func (c *Kendra) DescribeDataSourceRequest(input *DescribeDataSourceInput) (req 
 // API operation DescribeDataSource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeDataSource
 func (c *Kendra) DescribeDataSource(input *DescribeDataSourceInput) (*DescribeDataSourceOutput, error) {
@@ -2231,14 +2231,13 @@ const opDescribeExperience = "DescribeExperience"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeExperienceRequest method.
+//	req, resp := client.DescribeExperienceRequest(params)
 //
-//    // Example sending a request using the DescribeExperienceRequest method.
-//    req, resp := client.DescribeExperienceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeExperience
 func (c *Kendra) DescribeExperienceRequest(input *DescribeExperienceInput) (req *request.Request, output *DescribeExperienceOutput) {
@@ -2271,15 +2270,16 @@ func (c *Kendra) DescribeExperienceRequest(input *DescribeExperienceInput) (req 
 // API operation DescribeExperience for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeExperience
 func (c *Kendra) DescribeExperience(input *DescribeExperienceInput) (*DescribeExperienceOutput, error) {
@@ -2319,14 +2319,13 @@ const opDescribeFaq = "DescribeFaq"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFaqRequest method.
+//	req, resp := client.DescribeFaqRequest(params)
 //
-//    // Example sending a request using the DescribeFaqRequest method.
-//    req, resp := client.DescribeFaqRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeFaq
 func (c *Kendra) DescribeFaqRequest(input *DescribeFaqInput) (req *request.Request, output *DescribeFaqOutput) {
@@ -2357,15 +2356,16 @@ func (c *Kendra) DescribeFaqRequest(input *DescribeFaqInput) (req *request.Reque
 // API operation DescribeFaq for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeFaq
 func (c *Kendra) DescribeFaq(input *DescribeFaqInput) (*DescribeFaqOutput, error) {
@@ -2405,14 +2405,13 @@ const opDescribeIndex = "DescribeIndex"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeIndexRequest method.
+//	req, resp := client.DescribeIndexRequest(params)
 //
-//    // Example sending a request using the DescribeIndexRequest method.
-//    req, resp := client.DescribeIndexRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeIndex
 func (c *Kendra) DescribeIndexRequest(input *DescribeIndexInput) (req *request.Request, output *DescribeIndexOutput) {
@@ -2443,15 +2442,16 @@ func (c *Kendra) DescribeIndexRequest(input *DescribeIndexInput) (req *request.R
 // API operation DescribeIndex for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeIndex
 func (c *Kendra) DescribeIndex(input *DescribeIndexInput) (*DescribeIndexOutput, error) {
@@ -2491,14 +2491,13 @@ const opDescribePrincipalMapping = "DescribePrincipalMapping"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePrincipalMappingRequest method.
+//	req, resp := client.DescribePrincipalMappingRequest(params)
 //
-//    // Example sending a request using the DescribePrincipalMappingRequest method.
-//    req, resp := client.DescribePrincipalMappingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribePrincipalMapping
 func (c *Kendra) DescribePrincipalMappingRequest(input *DescribePrincipalMappingInput) (req *request.Request, output *DescribePrincipalMappingOutput) {
@@ -2537,15 +2536,16 @@ func (c *Kendra) DescribePrincipalMappingRequest(input *DescribePrincipalMapping
 // API operation DescribePrincipalMapping for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribePrincipalMapping
 func (c *Kendra) DescribePrincipalMapping(input *DescribePrincipalMappingInput) (*DescribePrincipalMappingOutput, error) {
@@ -2585,14 +2585,13 @@ const opDescribeQuerySuggestionsBlockList = "DescribeQuerySuggestionsBlockList"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeQuerySuggestionsBlockListRequest method.
+//	req, resp := client.DescribeQuerySuggestionsBlockListRequest(params)
 //
-//    // Example sending a request using the DescribeQuerySuggestionsBlockListRequest method.
-//    req, resp := client.DescribeQuerySuggestionsBlockListRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeQuerySuggestionsBlockList
 func (c *Kendra) DescribeQuerySuggestionsBlockListRequest(input *DescribeQuerySuggestionsBlockListInput) (req *request.Request, output *DescribeQuerySuggestionsBlockListOutput) {
@@ -2628,15 +2627,16 @@ func (c *Kendra) DescribeQuerySuggestionsBlockListRequest(input *DescribeQuerySu
 // API operation DescribeQuerySuggestionsBlockList for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeQuerySuggestionsBlockList
 func (c *Kendra) DescribeQuerySuggestionsBlockList(input *DescribeQuerySuggestionsBlockListInput) (*DescribeQuerySuggestionsBlockListOutput, error) {
@@ -2676,14 +2676,13 @@ const opDescribeQuerySuggestionsConfig = "DescribeQuerySuggestionsConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeQuerySuggestionsConfigRequest method.
+//	req, resp := client.DescribeQuerySuggestionsConfigRequest(params)
 //
-//    // Example sending a request using the DescribeQuerySuggestionsConfigRequest method.
-//    req, resp := client.DescribeQuerySuggestionsConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeQuerySuggestionsConfig
 func (c *Kendra) DescribeQuerySuggestionsConfigRequest(input *DescribeQuerySuggestionsConfigInput) (req *request.Request, output *DescribeQuerySuggestionsConfigOutput) {
@@ -2719,15 +2718,16 @@ func (c *Kendra) DescribeQuerySuggestionsConfigRequest(input *DescribeQuerySugge
 // API operation DescribeQuerySuggestionsConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeQuerySuggestionsConfig
 func (c *Kendra) DescribeQuerySuggestionsConfig(input *DescribeQuerySuggestionsConfigInput) (*DescribeQuerySuggestionsConfigOutput, error) {
@@ -2767,14 +2767,13 @@ const opDescribeThesaurus = "DescribeThesaurus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeThesaurusRequest method.
+//	req, resp := client.DescribeThesaurusRequest(params)
 //
-//    // Example sending a request using the DescribeThesaurusRequest method.
-//    req, resp := client.DescribeThesaurusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeThesaurus
 func (c *Kendra) DescribeThesaurusRequest(input *DescribeThesaurusInput) (req *request.Request, output *DescribeThesaurusOutput) {
@@ -2805,15 +2804,16 @@ func (c *Kendra) DescribeThesaurusRequest(input *DescribeThesaurusInput) (req *r
 // API operation DescribeThesaurus for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeThesaurus
 func (c *Kendra) DescribeThesaurus(input *DescribeThesaurusInput) (*DescribeThesaurusOutput, error) {
@@ -2853,14 +2853,13 @@ const opDisassociateEntitiesFromExperience = "DisassociateEntitiesFromExperience
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateEntitiesFromExperienceRequest method.
+//	req, resp := client.DisassociateEntitiesFromExperienceRequest(params)
 //
-//    // Example sending a request using the DisassociateEntitiesFromExperienceRequest method.
-//    req, resp := client.DisassociateEntitiesFromExperienceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DisassociateEntitiesFromExperience
 func (c *Kendra) DisassociateEntitiesFromExperienceRequest(input *DisassociateEntitiesFromExperienceInput) (req *request.Request, output *DisassociateEntitiesFromExperienceOutput) {
@@ -2895,15 +2894,16 @@ func (c *Kendra) DisassociateEntitiesFromExperienceRequest(input *DisassociateEn
 // API operation DisassociateEntitiesFromExperience for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DisassociateEntitiesFromExperience
 func (c *Kendra) DisassociateEntitiesFromExperience(input *DisassociateEntitiesFromExperienceInput) (*DisassociateEntitiesFromExperienceOutput, error) {
@@ -2943,14 +2943,13 @@ const opDisassociatePersonasFromEntities = "DisassociatePersonasFromEntities"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociatePersonasFromEntitiesRequest method.
+//	req, resp := client.DisassociatePersonasFromEntitiesRequest(params)
 //
-//    // Example sending a request using the DisassociatePersonasFromEntitiesRequest method.
-//    req, resp := client.DisassociatePersonasFromEntitiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DisassociatePersonasFromEntities
 func (c *Kendra) DisassociatePersonasFromEntitiesRequest(input *DisassociatePersonasFromEntitiesInput) (req *request.Request, output *DisassociatePersonasFromEntitiesOutput) {
@@ -2985,15 +2984,16 @@ func (c *Kendra) DisassociatePersonasFromEntitiesRequest(input *DisassociatePers
 // API operation DisassociatePersonasFromEntities for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DisassociatePersonasFromEntities
 func (c *Kendra) DisassociatePersonasFromEntities(input *DisassociatePersonasFromEntitiesInput) (*DisassociatePersonasFromEntitiesOutput, error) {
@@ -3033,14 +3033,13 @@ const opGetQuerySuggestions = "GetQuerySuggestions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetQuerySuggestionsRequest method.
+//	req, resp := client.GetQuerySuggestionsRequest(params)
 //
-//    // Example sending a request using the GetQuerySuggestionsRequest method.
-//    req, resp := client.GetQuerySuggestionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/GetQuerySuggestions
 func (c *Kendra) GetQuerySuggestionsRequest(input *GetQuerySuggestionsInput) (req *request.Request, output *GetQuerySuggestionsOutput) {
@@ -3074,19 +3073,20 @@ func (c *Kendra) GetQuerySuggestionsRequest(input *GetQuerySuggestionsInput) (re
 // API operation GetQuerySuggestions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * ServiceQuotaExceededException
+//   - AccessDeniedException
 //
-//   * ConflictException
+//   - ServiceQuotaExceededException
 //
-//   * InternalServerException
+//   - ConflictException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/GetQuerySuggestions
 func (c *Kendra) GetQuerySuggestions(input *GetQuerySuggestionsInput) (*GetQuerySuggestionsOutput, error) {
@@ -3126,14 +3126,13 @@ const opGetSnapshots = "GetSnapshots"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSnapshotsRequest method.
+//	req, resp := client.GetSnapshotsRequest(params)
 //
-//    // Example sending a request using the GetSnapshotsRequest method.
-//    req, resp := client.GetSnapshotsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/GetSnapshots
 func (c *Kendra) GetSnapshotsRequest(input *GetSnapshotsInput) (req *request.Request, output *GetSnapshotsOutput) {
@@ -3171,14 +3170,15 @@ func (c *Kendra) GetSnapshotsRequest(input *GetSnapshotsInput) (req *request.Req
 // API operation GetSnapshots for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   The input to the request is not valid.
 //
-//   * ResourceNotFoundException
+//   - InvalidRequestException
+//     The input to the request is not valid.
 //
-//   * AccessDeniedException
+//   - ResourceNotFoundException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/GetSnapshots
 func (c *Kendra) GetSnapshots(input *GetSnapshotsInput) (*GetSnapshotsOutput, error) {
@@ -3210,15 +3210,14 @@ func (c *Kendra) GetSnapshotsWithContext(ctx aws.Context, input *GetSnapshotsInp
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a GetSnapshots operation.
-//    pageNum := 0
-//    err := client.GetSnapshotsPages(params,
-//        func(page *kendra.GetSnapshotsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a GetSnapshots operation.
+//	pageNum := 0
+//	err := client.GetSnapshotsPages(params,
+//	    func(page *kendra.GetSnapshotsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Kendra) GetSnapshotsPages(input *GetSnapshotsInput, fn func(*GetSnapshotsOutput, bool) bool) error {
 	return c.GetSnapshotsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3270,14 +3269,13 @@ const opListAccessControlConfigurations = "ListAccessControlConfigurations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAccessControlConfigurationsRequest method.
+//	req, resp := client.ListAccessControlConfigurationsRequest(params)
 //
-//    // Example sending a request using the ListAccessControlConfigurationsRequest method.
-//    req, resp := client.ListAccessControlConfigurationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListAccessControlConfigurations
 func (c *Kendra) ListAccessControlConfigurationsRequest(input *ListAccessControlConfigurationsInput) (req *request.Request, output *ListAccessControlConfigurationsOutput) {
@@ -3317,15 +3315,16 @@ func (c *Kendra) ListAccessControlConfigurationsRequest(input *ListAccessControl
 // API operation ListAccessControlConfigurations for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ThrottlingException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ThrottlingException
 //
-//   * AccessDeniedException
+//   - ResourceNotFoundException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListAccessControlConfigurations
 func (c *Kendra) ListAccessControlConfigurations(input *ListAccessControlConfigurationsInput) (*ListAccessControlConfigurationsOutput, error) {
@@ -3357,15 +3356,14 @@ func (c *Kendra) ListAccessControlConfigurationsWithContext(ctx aws.Context, inp
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListAccessControlConfigurations operation.
-//    pageNum := 0
-//    err := client.ListAccessControlConfigurationsPages(params,
-//        func(page *kendra.ListAccessControlConfigurationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListAccessControlConfigurations operation.
+//	pageNum := 0
+//	err := client.ListAccessControlConfigurationsPages(params,
+//	    func(page *kendra.ListAccessControlConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Kendra) ListAccessControlConfigurationsPages(input *ListAccessControlConfigurationsInput, fn func(*ListAccessControlConfigurationsOutput, bool) bool) error {
 	return c.ListAccessControlConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3417,14 +3415,13 @@ const opListDataSourceSyncJobs = "ListDataSourceSyncJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDataSourceSyncJobsRequest method.
+//	req, resp := client.ListDataSourceSyncJobsRequest(params)
 //
-//    // Example sending a request using the ListDataSourceSyncJobsRequest method.
-//    req, resp := client.ListDataSourceSyncJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListDataSourceSyncJobs
 func (c *Kendra) ListDataSourceSyncJobsRequest(input *ListDataSourceSyncJobsInput) (req *request.Request, output *ListDataSourceSyncJobsOutput) {
@@ -3461,17 +3458,18 @@ func (c *Kendra) ListDataSourceSyncJobsRequest(input *ListDataSourceSyncJobsInpu
 // API operation ListDataSourceSyncJobs for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * ConflictException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ConflictException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListDataSourceSyncJobs
 func (c *Kendra) ListDataSourceSyncJobs(input *ListDataSourceSyncJobsInput) (*ListDataSourceSyncJobsOutput, error) {
@@ -3503,15 +3501,14 @@ func (c *Kendra) ListDataSourceSyncJobsWithContext(ctx aws.Context, input *ListD
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDataSourceSyncJobs operation.
-//    pageNum := 0
-//    err := client.ListDataSourceSyncJobsPages(params,
-//        func(page *kendra.ListDataSourceSyncJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDataSourceSyncJobs operation.
+//	pageNum := 0
+//	err := client.ListDataSourceSyncJobsPages(params,
+//	    func(page *kendra.ListDataSourceSyncJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Kendra) ListDataSourceSyncJobsPages(input *ListDataSourceSyncJobsInput, fn func(*ListDataSourceSyncJobsOutput, bool) bool) error {
 	return c.ListDataSourceSyncJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3563,14 +3560,13 @@ const opListDataSources = "ListDataSources"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDataSourcesRequest method.
+//	req, resp := client.ListDataSourcesRequest(params)
 //
-//    // Example sending a request using the ListDataSourcesRequest method.
-//    req, resp := client.ListDataSourcesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListDataSources
 func (c *Kendra) ListDataSourcesRequest(input *ListDataSourcesInput) (req *request.Request, output *ListDataSourcesOutput) {
@@ -3607,15 +3603,16 @@ func (c *Kendra) ListDataSourcesRequest(input *ListDataSourcesInput) (req *reque
 // API operation ListDataSources for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * AccessDeniedException
+//   - ResourceNotFoundException
 //
-//   * ThrottlingException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ThrottlingException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListDataSources
 func (c *Kendra) ListDataSources(input *ListDataSourcesInput) (*ListDataSourcesOutput, error) {
@@ -3647,15 +3644,14 @@ func (c *Kendra) ListDataSourcesWithContext(ctx aws.Context, input *ListDataSour
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDataSources operation.
-//    pageNum := 0
-//    err := client.ListDataSourcesPages(params,
-//        func(page *kendra.ListDataSourcesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDataSources operation.
+//	pageNum := 0
+//	err := client.ListDataSourcesPages(params,
+//	    func(page *kendra.ListDataSourcesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Kendra) ListDataSourcesPages(input *ListDataSourcesInput, fn func(*ListDataSourcesOutput, bool) bool) error {
 	return c.ListDataSourcesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3707,14 +3703,13 @@ const opListEntityPersonas = "ListEntityPersonas"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEntityPersonasRequest method.
+//	req, resp := client.ListEntityPersonasRequest(params)
 //
-//    // Example sending a request using the ListEntityPersonasRequest method.
-//    req, resp := client.ListEntityPersonasRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListEntityPersonas
 func (c *Kendra) ListEntityPersonasRequest(input *ListEntityPersonasInput) (req *request.Request, output *ListEntityPersonasOutput) {
@@ -3752,15 +3747,16 @@ func (c *Kendra) ListEntityPersonasRequest(input *ListEntityPersonasInput) (req 
 // API operation ListEntityPersonas for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * AccessDeniedException
+//   - ResourceNotFoundException
 //
-//   * ThrottlingException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ThrottlingException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListEntityPersonas
 func (c *Kendra) ListEntityPersonas(input *ListEntityPersonasInput) (*ListEntityPersonasOutput, error) {
@@ -3792,15 +3788,14 @@ func (c *Kendra) ListEntityPersonasWithContext(ctx aws.Context, input *ListEntit
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEntityPersonas operation.
-//    pageNum := 0
-//    err := client.ListEntityPersonasPages(params,
-//        func(page *kendra.ListEntityPersonasOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEntityPersonas operation.
+//	pageNum := 0
+//	err := client.ListEntityPersonasPages(params,
+//	    func(page *kendra.ListEntityPersonasOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Kendra) ListEntityPersonasPages(input *ListEntityPersonasInput, fn func(*ListEntityPersonasOutput, bool) bool) error {
 	return c.ListEntityPersonasPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3852,14 +3847,13 @@ const opListExperienceEntities = "ListExperienceEntities"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListExperienceEntitiesRequest method.
+//	req, resp := client.ListExperienceEntitiesRequest(params)
 //
-//    // Example sending a request using the ListExperienceEntitiesRequest method.
-//    req, resp := client.ListExperienceEntitiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListExperienceEntities
 func (c *Kendra) ListExperienceEntitiesRequest(input *ListExperienceEntitiesInput) (req *request.Request, output *ListExperienceEntitiesOutput) {
@@ -3900,15 +3894,16 @@ func (c *Kendra) ListExperienceEntitiesRequest(input *ListExperienceEntitiesInpu
 // API operation ListExperienceEntities for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * AccessDeniedException
+//   - ResourceNotFoundException
 //
-//   * ThrottlingException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ThrottlingException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListExperienceEntities
 func (c *Kendra) ListExperienceEntities(input *ListExperienceEntitiesInput) (*ListExperienceEntitiesOutput, error) {
@@ -3940,15 +3935,14 @@ func (c *Kendra) ListExperienceEntitiesWithContext(ctx aws.Context, input *ListE
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListExperienceEntities operation.
-//    pageNum := 0
-//    err := client.ListExperienceEntitiesPages(params,
-//        func(page *kendra.ListExperienceEntitiesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListExperienceEntities operation.
+//	pageNum := 0
+//	err := client.ListExperienceEntitiesPages(params,
+//	    func(page *kendra.ListExperienceEntitiesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Kendra) ListExperienceEntitiesPages(input *ListExperienceEntitiesInput, fn func(*ListExperienceEntitiesOutput, bool) bool) error {
 	return c.ListExperienceEntitiesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4000,14 +3994,13 @@ const opListExperiences = "ListExperiences"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListExperiencesRequest method.
+//	req, resp := client.ListExperiencesRequest(params)
 //
-//    // Example sending a request using the ListExperiencesRequest method.
-//    req, resp := client.ListExperiencesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListExperiences
 func (c *Kendra) ListExperiencesRequest(input *ListExperiencesInput) (req *request.Request, output *ListExperiencesOutput) {
@@ -4047,15 +4040,16 @@ func (c *Kendra) ListExperiencesRequest(input *ListExperiencesInput) (req *reque
 // API operation ListExperiences for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * AccessDeniedException
+//   - ResourceNotFoundException
 //
-//   * ThrottlingException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ThrottlingException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListExperiences
 func (c *Kendra) ListExperiences(input *ListExperiencesInput) (*ListExperiencesOutput, error) {
@@ -4087,15 +4081,14 @@ func (c *Kendra) ListExperiencesWithContext(ctx aws.Context, input *ListExperien
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListExperiences operation.
-//    pageNum := 0
-//    err := client.ListExperiencesPages(params,
-//        func(page *kendra.ListExperiencesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListExperiences operation.
+//	pageNum := 0
+//	err := client.ListExperiencesPages(params,
+//	    func(page *kendra.ListExperiencesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Kendra) ListExperiencesPages(input *ListExperiencesInput, fn func(*ListExperiencesOutput, bool) bool) error {
 	return c.ListExperiencesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4147,14 +4140,13 @@ const opListFaqs = "ListFaqs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFaqsRequest method.
+//	req, resp := client.ListFaqsRequest(params)
 //
-//    // Example sending a request using the ListFaqsRequest method.
-//    req, resp := client.ListFaqsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListFaqs
 func (c *Kendra) ListFaqsRequest(input *ListFaqsInput) (req *request.Request, output *ListFaqsOutput) {
@@ -4191,15 +4183,16 @@ func (c *Kendra) ListFaqsRequest(input *ListFaqsInput) (req *request.Request, ou
 // API operation ListFaqs for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListFaqs
 func (c *Kendra) ListFaqs(input *ListFaqsInput) (*ListFaqsOutput, error) {
@@ -4231,15 +4224,14 @@ func (c *Kendra) ListFaqsWithContext(ctx aws.Context, input *ListFaqsInput, opts
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListFaqs operation.
-//    pageNum := 0
-//    err := client.ListFaqsPages(params,
-//        func(page *kendra.ListFaqsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListFaqs operation.
+//	pageNum := 0
+//	err := client.ListFaqsPages(params,
+//	    func(page *kendra.ListFaqsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Kendra) ListFaqsPages(input *ListFaqsInput, fn func(*ListFaqsOutput, bool) bool) error {
 	return c.ListFaqsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4291,14 +4283,13 @@ const opListGroupsOlderThanOrderingId = "ListGroupsOlderThanOrderingId"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListGroupsOlderThanOrderingIdRequest method.
+//	req, resp := client.ListGroupsOlderThanOrderingIdRequest(params)
 //
-//    // Example sending a request using the ListGroupsOlderThanOrderingIdRequest method.
-//    req, resp := client.ListGroupsOlderThanOrderingIdRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListGroupsOlderThanOrderingId
 func (c *Kendra) ListGroupsOlderThanOrderingIdRequest(input *ListGroupsOlderThanOrderingIdInput) (req *request.Request, output *ListGroupsOlderThanOrderingIdOutput) {
@@ -4339,17 +4330,18 @@ func (c *Kendra) ListGroupsOlderThanOrderingIdRequest(input *ListGroupsOlderThan
 // API operation ListGroupsOlderThanOrderingId for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * AccessDeniedException
+//   - ResourceNotFoundException
 //
-//   * ThrottlingException
+//   - AccessDeniedException
 //
-//   * ConflictException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - ConflictException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListGroupsOlderThanOrderingId
 func (c *Kendra) ListGroupsOlderThanOrderingId(input *ListGroupsOlderThanOrderingIdInput) (*ListGroupsOlderThanOrderingIdOutput, error) {
@@ -4381,15 +4373,14 @@ func (c *Kendra) ListGroupsOlderThanOrderingIdWithContext(ctx aws.Context, input
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListGroupsOlderThanOrderingId operation.
-//    pageNum := 0
-//    err := client.ListGroupsOlderThanOrderingIdPages(params,
-//        func(page *kendra.ListGroupsOlderThanOrderingIdOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListGroupsOlderThanOrderingId operation.
+//	pageNum := 0
+//	err := client.ListGroupsOlderThanOrderingIdPages(params,
+//	    func(page *kendra.ListGroupsOlderThanOrderingIdOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Kendra) ListGroupsOlderThanOrderingIdPages(input *ListGroupsOlderThanOrderingIdInput, fn func(*ListGroupsOlderThanOrderingIdOutput, bool) bool) error {
 	return c.ListGroupsOlderThanOrderingIdPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4441,14 +4432,13 @@ const opListIndices = "ListIndices"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListIndicesRequest method.
+//	req, resp := client.ListIndicesRequest(params)
 //
-//    // Example sending a request using the ListIndicesRequest method.
-//    req, resp := client.ListIndicesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListIndices
 func (c *Kendra) ListIndicesRequest(input *ListIndicesInput) (req *request.Request, output *ListIndicesOutput) {
@@ -4485,13 +4475,14 @@ func (c *Kendra) ListIndicesRequest(input *ListIndicesInput) (req *request.Reque
 // API operation ListIndices for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ThrottlingException
+//   - ValidationException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListIndices
 func (c *Kendra) ListIndices(input *ListIndicesInput) (*ListIndicesOutput, error) {
@@ -4523,15 +4514,14 @@ func (c *Kendra) ListIndicesWithContext(ctx aws.Context, input *ListIndicesInput
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListIndices operation.
-//    pageNum := 0
-//    err := client.ListIndicesPages(params,
-//        func(page *kendra.ListIndicesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListIndices operation.
+//	pageNum := 0
+//	err := client.ListIndicesPages(params,
+//	    func(page *kendra.ListIndicesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Kendra) ListIndicesPages(input *ListIndicesInput, fn func(*ListIndicesOutput, bool) bool) error {
 	return c.ListIndicesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4583,14 +4573,13 @@ const opListQuerySuggestionsBlockLists = "ListQuerySuggestionsBlockLists"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListQuerySuggestionsBlockListsRequest method.
+//	req, resp := client.ListQuerySuggestionsBlockListsRequest(params)
 //
-//    // Example sending a request using the ListQuerySuggestionsBlockListsRequest method.
-//    req, resp := client.ListQuerySuggestionsBlockListsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListQuerySuggestionsBlockLists
 func (c *Kendra) ListQuerySuggestionsBlockListsRequest(input *ListQuerySuggestionsBlockListsInput) (req *request.Request, output *ListQuerySuggestionsBlockListsOutput) {
@@ -4633,15 +4622,16 @@ func (c *Kendra) ListQuerySuggestionsBlockListsRequest(input *ListQuerySuggestio
 // API operation ListQuerySuggestionsBlockLists for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListQuerySuggestionsBlockLists
 func (c *Kendra) ListQuerySuggestionsBlockLists(input *ListQuerySuggestionsBlockListsInput) (*ListQuerySuggestionsBlockListsOutput, error) {
@@ -4673,15 +4663,14 @@ func (c *Kendra) ListQuerySuggestionsBlockListsWithContext(ctx aws.Context, inpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListQuerySuggestionsBlockLists operation.
-//    pageNum := 0
-//    err := client.ListQuerySuggestionsBlockListsPages(params,
-//        func(page *kendra.ListQuerySuggestionsBlockListsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListQuerySuggestionsBlockLists operation.
+//	pageNum := 0
+//	err := client.ListQuerySuggestionsBlockListsPages(params,
+//	    func(page *kendra.ListQuerySuggestionsBlockListsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Kendra) ListQuerySuggestionsBlockListsPages(input *ListQuerySuggestionsBlockListsInput, fn func(*ListQuerySuggestionsBlockListsOutput, bool) bool) error {
 	return c.ListQuerySuggestionsBlockListsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4733,14 +4722,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListTagsForResource
 func (c *Kendra) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -4772,15 +4760,16 @@ func (c *Kendra) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceUnavailableException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceUnavailableException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListTagsForResource
 func (c *Kendra) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -4820,14 +4809,13 @@ const opListThesauri = "ListThesauri"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListThesauriRequest method.
+//	req, resp := client.ListThesauriRequest(params)
 //
-//    // Example sending a request using the ListThesauriRequest method.
-//    req, resp := client.ListThesauriRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListThesauri
 func (c *Kendra) ListThesauriRequest(input *ListThesauriInput) (req *request.Request, output *ListThesauriOutput) {
@@ -4864,15 +4852,16 @@ func (c *Kendra) ListThesauriRequest(input *ListThesauriInput) (req *request.Req
 // API operation ListThesauri for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListThesauri
 func (c *Kendra) ListThesauri(input *ListThesauriInput) (*ListThesauriOutput, error) {
@@ -4904,15 +4893,14 @@ func (c *Kendra) ListThesauriWithContext(ctx aws.Context, input *ListThesauriInp
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListThesauri operation.
-//    pageNum := 0
-//    err := client.ListThesauriPages(params,
-//        func(page *kendra.ListThesauriOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListThesauri operation.
+//	pageNum := 0
+//	err := client.ListThesauriPages(params,
+//	    func(page *kendra.ListThesauriOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Kendra) ListThesauriPages(input *ListThesauriInput, fn func(*ListThesauriOutput, bool) bool) error {
 	return c.ListThesauriPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4964,14 +4952,13 @@ const opPutPrincipalMapping = "PutPrincipalMapping"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutPrincipalMappingRequest method.
+//	req, resp := client.PutPrincipalMappingRequest(params)
 //
-//    // Example sending a request using the PutPrincipalMappingRequest method.
-//    req, resp := client.PutPrincipalMappingRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/PutPrincipalMapping
 func (c *Kendra) PutPrincipalMappingRequest(input *PutPrincipalMappingInput) (req *request.Request, output *PutPrincipalMappingOutput) {
@@ -5021,19 +5008,20 @@ func (c *Kendra) PutPrincipalMappingRequest(input *PutPrincipalMappingInput) (re
 // API operation PutPrincipalMapping for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * ServiceQuotaExceededException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ServiceQuotaExceededException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/PutPrincipalMapping
 func (c *Kendra) PutPrincipalMapping(input *PutPrincipalMappingInput) (*PutPrincipalMappingOutput, error) {
@@ -5073,14 +5061,13 @@ const opQuery = "Query"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the QueryRequest method.
+//	req, resp := client.QueryRequest(params)
 //
-//    // Example sending a request using the QueryRequest method.
-//    req, resp := client.QueryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/Query
 func (c *Kendra) QueryRequest(input *QueryInput) (req *request.Request, output *QueryOutput) {
@@ -5111,11 +5098,11 @@ func (c *Kendra) QueryRequest(input *QueryInput) (req *request.Request, output *
 // Amazon Kendra searches your index for text content and question and answer
 // (FAQ) content. By default the response contains three types of results.
 //
-//    * Relevant passages
+//   - Relevant passages
 //
-//    * Matching FAQs
+//   - Matching FAQs
 //
-//    * Relevant documents
+//   - Relevant documents
 //
 // You can specify that the query return only one type of result using the QueryResultTypeConfig
 // parameter.
@@ -5130,19 +5117,20 @@ func (c *Kendra) QueryRequest(input *QueryInput) (req *request.Request, output *
 // API operation Query for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * ServiceQuotaExceededException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ServiceQuotaExceededException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/Query
 func (c *Kendra) Query(input *QueryInput) (*QueryOutput, error) {
@@ -5182,14 +5170,13 @@ const opStartDataSourceSyncJob = "StartDataSourceSyncJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartDataSourceSyncJobRequest method.
+//	req, resp := client.StartDataSourceSyncJobRequest(params)
 //
-//    // Example sending a request using the StartDataSourceSyncJobRequest method.
-//    req, resp := client.StartDataSourceSyncJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/StartDataSourceSyncJob
 func (c *Kendra) StartDataSourceSyncJobRequest(input *StartDataSourceSyncJobInput) (req *request.Request, output *StartDataSourceSyncJobOutput) {
@@ -5221,19 +5208,20 @@ func (c *Kendra) StartDataSourceSyncJobRequest(input *StartDataSourceSyncJobInpu
 // API operation StartDataSourceSyncJob for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ResourceInUseException
+//   - ResourceNotFoundException
 //
-//   * ThrottlingException
+//   - ResourceInUseException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * ConflictException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ConflictException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/StartDataSourceSyncJob
 func (c *Kendra) StartDataSourceSyncJob(input *StartDataSourceSyncJobInput) (*StartDataSourceSyncJobOutput, error) {
@@ -5273,14 +5261,13 @@ const opStopDataSourceSyncJob = "StopDataSourceSyncJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopDataSourceSyncJobRequest method.
+//	req, resp := client.StopDataSourceSyncJobRequest(params)
 //
-//    // Example sending a request using the StopDataSourceSyncJobRequest method.
-//    req, resp := client.StopDataSourceSyncJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/StopDataSourceSyncJob
 func (c *Kendra) StopDataSourceSyncJobRequest(input *StopDataSourceSyncJobInput) (req *request.Request, output *StopDataSourceSyncJobOutput) {
@@ -5313,15 +5300,16 @@ func (c *Kendra) StopDataSourceSyncJobRequest(input *StopDataSourceSyncJobInput)
 // API operation StopDataSourceSyncJob for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/StopDataSourceSyncJob
 func (c *Kendra) StopDataSourceSyncJob(input *StopDataSourceSyncJobInput) (*StopDataSourceSyncJobOutput, error) {
@@ -5361,14 +5349,13 @@ const opSubmitFeedback = "SubmitFeedback"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SubmitFeedbackRequest method.
+//	req, resp := client.SubmitFeedbackRequest(params)
 //
-//    // Example sending a request using the SubmitFeedbackRequest method.
-//    req, resp := client.SubmitFeedbackRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/SubmitFeedback
 func (c *Kendra) SubmitFeedbackRequest(input *SubmitFeedbackInput) (req *request.Request, output *SubmitFeedbackOutput) {
@@ -5404,17 +5391,18 @@ func (c *Kendra) SubmitFeedbackRequest(input *SubmitFeedbackInput) (req *request
 // API operation SubmitFeedback for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceUnavailableException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ResourceUnavailableException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/SubmitFeedback
 func (c *Kendra) SubmitFeedback(input *SubmitFeedbackInput) (*SubmitFeedbackOutput, error) {
@@ -5454,14 +5442,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/TagResource
 func (c *Kendra) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -5494,15 +5481,16 @@ func (c *Kendra) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceUnavailableException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceUnavailableException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/TagResource
 func (c *Kendra) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -5542,14 +5530,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UntagResource
 func (c *Kendra) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -5581,15 +5568,16 @@ func (c *Kendra) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceUnavailableException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceUnavailableException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UntagResource
 func (c *Kendra) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -5629,14 +5617,13 @@ const opUpdateAccessControlConfiguration = "UpdateAccessControlConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateAccessControlConfigurationRequest method.
+//	req, resp := client.UpdateAccessControlConfigurationRequest(params)
 //
-//    // Example sending a request using the UpdateAccessControlConfigurationRequest method.
-//    req, resp := client.UpdateAccessControlConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateAccessControlConfiguration
 func (c *Kendra) UpdateAccessControlConfigurationRequest(input *UpdateAccessControlConfigurationInput) (req *request.Request, output *UpdateAccessControlConfigurationOutput) {
@@ -5689,19 +5676,20 @@ func (c *Kendra) UpdateAccessControlConfigurationRequest(input *UpdateAccessCont
 // API operation UpdateAccessControlConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ThrottlingException
+//   - ValidationException
 //
-//   * ConflictException
+//   - ThrottlingException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * AccessDeniedException
+//   - ResourceNotFoundException
 //
-//   * ServiceQuotaExceededException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ServiceQuotaExceededException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateAccessControlConfiguration
 func (c *Kendra) UpdateAccessControlConfiguration(input *UpdateAccessControlConfigurationInput) (*UpdateAccessControlConfigurationOutput, error) {
@@ -5741,14 +5729,13 @@ const opUpdateDataSource = "UpdateDataSource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDataSourceRequest method.
+//	req, resp := client.UpdateDataSourceRequest(params)
 //
-//    // Example sending a request using the UpdateDataSourceRequest method.
-//    req, resp := client.UpdateDataSourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateDataSource
 func (c *Kendra) UpdateDataSourceRequest(input *UpdateDataSourceInput) (req *request.Request, output *UpdateDataSourceOutput) {
@@ -5780,17 +5767,18 @@ func (c *Kendra) UpdateDataSourceRequest(input *UpdateDataSourceInput) (req *req
 // API operation UpdateDataSource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateDataSource
 func (c *Kendra) UpdateDataSource(input *UpdateDataSourceInput) (*UpdateDataSourceOutput, error) {
@@ -5830,14 +5818,13 @@ const opUpdateExperience = "UpdateExperience"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateExperienceRequest method.
+//	req, resp := client.UpdateExperienceRequest(params)
 //
-//    // Example sending a request using the UpdateExperienceRequest method.
-//    req, resp := client.UpdateExperienceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateExperience
 func (c *Kendra) UpdateExperienceRequest(input *UpdateExperienceInput) (req *request.Request, output *UpdateExperienceOutput) {
@@ -5871,17 +5858,18 @@ func (c *Kendra) UpdateExperienceRequest(input *UpdateExperienceInput) (req *req
 // API operation UpdateExperience for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateExperience
 func (c *Kendra) UpdateExperience(input *UpdateExperienceInput) (*UpdateExperienceOutput, error) {
@@ -5921,14 +5909,13 @@ const opUpdateIndex = "UpdateIndex"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateIndexRequest method.
+//	req, resp := client.UpdateIndexRequest(params)
 //
-//    // Example sending a request using the UpdateIndexRequest method.
-//    req, resp := client.UpdateIndexRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateIndex
 func (c *Kendra) UpdateIndexRequest(input *UpdateIndexInput) (req *request.Request, output *UpdateIndexOutput) {
@@ -5960,19 +5947,20 @@ func (c *Kendra) UpdateIndexRequest(input *UpdateIndexInput) (req *request.Reque
 // API operation UpdateIndex for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * ServiceQuotaExceededException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ServiceQuotaExceededException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateIndex
 func (c *Kendra) UpdateIndex(input *UpdateIndexInput) (*UpdateIndexOutput, error) {
@@ -6012,14 +6000,13 @@ const opUpdateQuerySuggestionsBlockList = "UpdateQuerySuggestionsBlockList"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateQuerySuggestionsBlockListRequest method.
+//	req, resp := client.UpdateQuerySuggestionsBlockListRequest(params)
 //
-//    // Example sending a request using the UpdateQuerySuggestionsBlockListRequest method.
-//    req, resp := client.UpdateQuerySuggestionsBlockListRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateQuerySuggestionsBlockList
 func (c *Kendra) UpdateQuerySuggestionsBlockListRequest(input *UpdateQuerySuggestionsBlockListInput) (req *request.Request, output *UpdateQuerySuggestionsBlockListOutput) {
@@ -6064,17 +6051,18 @@ func (c *Kendra) UpdateQuerySuggestionsBlockListRequest(input *UpdateQuerySugges
 // API operation UpdateQuerySuggestionsBlockList for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * ConflictException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ConflictException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateQuerySuggestionsBlockList
 func (c *Kendra) UpdateQuerySuggestionsBlockList(input *UpdateQuerySuggestionsBlockListInput) (*UpdateQuerySuggestionsBlockListOutput, error) {
@@ -6114,14 +6102,13 @@ const opUpdateQuerySuggestionsConfig = "UpdateQuerySuggestionsConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateQuerySuggestionsConfigRequest method.
+//	req, resp := client.UpdateQuerySuggestionsConfigRequest(params)
 //
-//    // Example sending a request using the UpdateQuerySuggestionsConfigRequest method.
-//    req, resp := client.UpdateQuerySuggestionsConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateQuerySuggestionsConfig
 func (c *Kendra) UpdateQuerySuggestionsConfigRequest(input *UpdateQuerySuggestionsConfigInput) (req *request.Request, output *UpdateQuerySuggestionsConfigOutput) {
@@ -6168,17 +6155,18 @@ func (c *Kendra) UpdateQuerySuggestionsConfigRequest(input *UpdateQuerySuggestio
 // API operation UpdateQuerySuggestionsConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ConflictException
+//   - ValidationException
 //
-//   * ResourceNotFoundException
+//   - ConflictException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * InternalServerException
+//   - AccessDeniedException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateQuerySuggestionsConfig
 func (c *Kendra) UpdateQuerySuggestionsConfig(input *UpdateQuerySuggestionsConfigInput) (*UpdateQuerySuggestionsConfigOutput, error) {
@@ -6218,14 +6206,13 @@ const opUpdateThesaurus = "UpdateThesaurus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateThesaurusRequest method.
+//	req, resp := client.UpdateThesaurusRequest(params)
 //
-//    // Example sending a request using the UpdateThesaurusRequest method.
-//    req, resp := client.UpdateThesaurusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateThesaurus
 func (c *Kendra) UpdateThesaurusRequest(input *UpdateThesaurusInput) (req *request.Request, output *UpdateThesaurusOutput) {
@@ -6257,17 +6244,18 @@ func (c *Kendra) UpdateThesaurusRequest(input *UpdateThesaurusInput) (req *reque
 // API operation UpdateThesaurus for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
 //
-//   * ResourceNotFoundException
+//   - ValidationException
 //
-//   * ThrottlingException
+//   - ResourceNotFoundException
 //
-//   * AccessDeniedException
+//   - ThrottlingException
 //
-//   * ConflictException
+//   - AccessDeniedException
 //
-//   * InternalServerException
+//   - ConflictException
+//
+//   - InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateThesaurus
 func (c *Kendra) UpdateThesaurus(input *UpdateThesaurusInput) (*UpdateThesaurusOutput, error) {
@@ -24676,15 +24664,15 @@ func (s *SlackConfiguration) SetVpcConfiguration(v *DataSourceVpcConfiguration) 
 //
 // You can sort attributes of the following types.
 //
-//    * Date value
+//   - Date value
 //
-//    * Long value
+//   - Long value
 //
-//    * String value
+//   - String value
 //
 // You can't sort attributes of the following type.
 //
-//    * String list value
+//   - String list value
 type SortingConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -27127,10 +27115,10 @@ func (s *Urls) SetSiteMapsConfiguration(v *SiteMapsConfiguration) *Urls {
 //
 // You provide one of the following:
 //
-//    * User token
+//   - User token
 //
-//    * User ID, the groups the user belongs to, and any data sources the groups
-//    can access.
+//   - User ID, the groups the user belongs to, and any data sources the groups
+//     can access.
 //
 // If you provide both, an exception is thrown.
 type UserContext struct {

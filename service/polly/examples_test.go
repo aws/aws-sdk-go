@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To delete a lexicon
-//
 // Deletes a specified pronunciation lexicon stored in an AWS Region.
 func ExamplePolly_DeleteLexicon_shared00() {
 	svc := polly.New(session.New())
@@ -57,7 +56,6 @@ func ExamplePolly_DeleteLexicon_shared00() {
 }
 
 // To describe available voices
-//
 // Returns the list of voices that are available for use when requesting speech synthesis.
 // Displayed languages are those within the specified language code. If no language
 // code is specified, voices for all available languages are displayed.
@@ -90,7 +88,6 @@ func ExamplePolly_DescribeVoices_shared00() {
 }
 
 // To retrieve a lexicon
-//
 // Returns the content of the specified pronunciation lexicon stored in an AWS Region.
 func ExamplePolly_GetLexicon_shared00() {
 	svc := polly.New(session.New())
@@ -121,7 +118,6 @@ func ExamplePolly_GetLexicon_shared00() {
 }
 
 // To list all lexicons in a region
-//
 // Returns a list of pronunciation lexicons stored in an AWS Region.
 func ExamplePolly_ListLexicons_shared00() {
 	svc := polly.New(session.New())
@@ -150,7 +146,6 @@ func ExamplePolly_ListLexicons_shared00() {
 }
 
 // To save a lexicon
-//
 // Stores a pronunciation lexicon in an AWS Region.
 func ExamplePolly_PutLexicon_shared00() {
 	svc := polly.New(session.New())
@@ -192,7 +187,6 @@ func ExamplePolly_PutLexicon_shared00() {
 }
 
 // To synthesize speech
-//
 // Synthesizes plain text or SSML into a file of human-like speech.
 func ExamplePolly_SynthesizeSpeech_shared00() {
 	svc := polly.New(session.New())

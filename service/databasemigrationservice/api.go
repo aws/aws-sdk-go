@@ -29,14 +29,13 @@ const opAddTagsToResource = "AddTagsToResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AddTagsToResourceRequest method.
+//	req, resp := client.AddTagsToResourceRequest(params)
 //
-//    // Example sending a request using the AddTagsToResourceRequest method.
-//    req, resp := client.AddTagsToResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/AddTagsToResource
 func (c *DatabaseMigrationService) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *request.Request, output *AddTagsToResourceOutput) {
@@ -73,8 +72,8 @@ func (c *DatabaseMigrationService) AddTagsToResourceRequest(input *AddTagsToReso
 // API operation AddTagsToResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/AddTagsToResource
 func (c *DatabaseMigrationService) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
@@ -114,14 +113,13 @@ const opApplyPendingMaintenanceAction = "ApplyPendingMaintenanceAction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ApplyPendingMaintenanceActionRequest method.
+//	req, resp := client.ApplyPendingMaintenanceActionRequest(params)
 //
-//    // Example sending a request using the ApplyPendingMaintenanceActionRequest method.
-//    req, resp := client.ApplyPendingMaintenanceActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ApplyPendingMaintenanceAction
 func (c *DatabaseMigrationService) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanceActionInput) (req *request.Request, output *ApplyPendingMaintenanceActionOutput) {
@@ -153,8 +151,8 @@ func (c *DatabaseMigrationService) ApplyPendingMaintenanceActionRequest(input *A
 // API operation ApplyPendingMaintenanceAction for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ApplyPendingMaintenanceAction
 func (c *DatabaseMigrationService) ApplyPendingMaintenanceAction(input *ApplyPendingMaintenanceActionInput) (*ApplyPendingMaintenanceActionOutput, error) {
@@ -194,14 +192,13 @@ const opCancelReplicationTaskAssessmentRun = "CancelReplicationTaskAssessmentRun
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelReplicationTaskAssessmentRunRequest method.
+//	req, resp := client.CancelReplicationTaskAssessmentRunRequest(params)
 //
-//    // Example sending a request using the CancelReplicationTaskAssessmentRunRequest method.
-//    req, resp := client.CancelReplicationTaskAssessmentRunRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CancelReplicationTaskAssessmentRun
 func (c *DatabaseMigrationService) CancelReplicationTaskAssessmentRunRequest(input *CancelReplicationTaskAssessmentRunInput) (req *request.Request, output *CancelReplicationTaskAssessmentRunOutput) {
@@ -236,15 +233,16 @@ func (c *DatabaseMigrationService) CancelReplicationTaskAssessmentRunRequest(inp
 // API operation CancelReplicationTaskAssessmentRun for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CancelReplicationTaskAssessmentRun
 func (c *DatabaseMigrationService) CancelReplicationTaskAssessmentRun(input *CancelReplicationTaskAssessmentRunInput) (*CancelReplicationTaskAssessmentRunOutput, error) {
@@ -284,14 +282,13 @@ const opCreateEndpoint = "CreateEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEndpointRequest method.
+//	req, resp := client.CreateEndpointRequest(params)
 //
-//    // Example sending a request using the CreateEndpointRequest method.
-//    req, resp := client.CreateEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateEndpoint
 func (c *DatabaseMigrationService) CreateEndpointRequest(input *CreateEndpointInput) (req *request.Request, output *CreateEndpointOutput) {
@@ -329,27 +326,28 @@ func (c *DatabaseMigrationService) CreateEndpointRequest(input *CreateEndpointIn
 // API operation CreateEndpoint for usage and error information.
 //
 // Returned Error Types:
-//   * KMSKeyNotAccessibleFault
-//   DMS cannot access the KMS key.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * S3AccessDeniedFault
-//   Insufficient privileges are preventing access to an Amazon S3 object.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - S3AccessDeniedFault
+//     Insufficient privileges are preventing access to an Amazon S3 object.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateEndpoint
 func (c *DatabaseMigrationService) CreateEndpoint(input *CreateEndpointInput) (*CreateEndpointOutput, error) {
@@ -389,14 +387,13 @@ const opCreateEventSubscription = "CreateEventSubscription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEventSubscriptionRequest method.
+//	req, resp := client.CreateEventSubscriptionRequest(params)
 //
-//    // Example sending a request using the CreateEventSubscriptionRequest method.
-//    req, resp := client.CreateEventSubscriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateEventSubscription
 func (c *DatabaseMigrationService) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *request.Request, output *CreateEventSubscriptionOutput) {
@@ -443,36 +440,37 @@ func (c *DatabaseMigrationService) CreateEventSubscriptionRequest(input *CreateE
 // API operation CreateEventSubscription for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * SNSInvalidTopicFault
-//   The SNS topic is invalid.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * SNSNoAuthorizationFault
-//   You are not authorized for the SNS subscription.
+//   - SNSInvalidTopicFault
+//     The SNS topic is invalid.
 //
-//   * KMSAccessDeniedFault
-//   The ciphertext references a key that doesn't exist or that the DMS account
-//   doesn't have access to.
+//   - SNSNoAuthorizationFault
+//     You are not authorized for the SNS subscription.
 //
-//   * KMSDisabledFault
-//   The specified KMS key isn't enabled.
+//   - KMSAccessDeniedFault
+//     The ciphertext references a key that doesn't exist or that the DMS account
+//     doesn't have access to.
 //
-//   * KMSInvalidStateFault
-//   The state of the specified KMS resource isn't valid for this request.
+//   - KMSDisabledFault
+//     The specified KMS key isn't enabled.
 //
-//   * KMSNotFoundFault
-//   The specified KMS entity or resource can't be found.
+//   - KMSInvalidStateFault
+//     The state of the specified KMS resource isn't valid for this request.
 //
-//   * KMSThrottlingFault
-//   This request triggered KMS request throttling.
+//   - KMSNotFoundFault
+//     The specified KMS entity or resource can't be found.
+//
+//   - KMSThrottlingFault
+//     This request triggered KMS request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateEventSubscription
 func (c *DatabaseMigrationService) CreateEventSubscription(input *CreateEventSubscriptionInput) (*CreateEventSubscriptionOutput, error) {
@@ -512,14 +510,13 @@ const opCreateFleetAdvisorCollector = "CreateFleetAdvisorCollector"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFleetAdvisorCollectorRequest method.
+//	req, resp := client.CreateFleetAdvisorCollectorRequest(params)
 //
-//    // Example sending a request using the CreateFleetAdvisorCollectorRequest method.
-//    req, resp := client.CreateFleetAdvisorCollectorRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateFleetAdvisorCollector
 func (c *DatabaseMigrationService) CreateFleetAdvisorCollectorRequest(input *CreateFleetAdvisorCollectorInput) (req *request.Request, output *CreateFleetAdvisorCollectorOutput) {
@@ -550,21 +547,22 @@ func (c *DatabaseMigrationService) CreateFleetAdvisorCollectorRequest(input *Cre
 // API operation CreateFleetAdvisorCollector for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * S3AccessDeniedFault
-//   Insufficient privileges are preventing access to an Amazon S3 object.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * S3ResourceNotFoundFault
-//   A specified Amazon S3 bucket, bucket folder, or other object can't be found.
+//   - S3AccessDeniedFault
+//     Insufficient privileges are preventing access to an Amazon S3 object.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - S3ResourceNotFoundFault
+//     A specified Amazon S3 bucket, bucket folder, or other object can't be found.
+//
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateFleetAdvisorCollector
 func (c *DatabaseMigrationService) CreateFleetAdvisorCollector(input *CreateFleetAdvisorCollectorInput) (*CreateFleetAdvisorCollectorOutput, error) {
@@ -604,14 +602,13 @@ const opCreateReplicationInstance = "CreateReplicationInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateReplicationInstanceRequest method.
+//	req, resp := client.CreateReplicationInstanceRequest(params)
 //
-//    // Example sending a request using the CreateReplicationInstanceRequest method.
-//    req, resp := client.CreateReplicationInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationInstance
 func (c *DatabaseMigrationService) CreateReplicationInstanceRequest(input *CreateReplicationInstanceInput) (req *request.Request, output *CreateReplicationInstanceOutput) {
@@ -648,37 +645,38 @@ func (c *DatabaseMigrationService) CreateReplicationInstanceRequest(input *Creat
 // API operation CreateReplicationInstance for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * InsufficientResourceCapacityFault
-//   There are not enough resources allocated to the database migration.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - InsufficientResourceCapacityFault
+//     There are not enough resources allocated to the database migration.
 //
-//   * StorageQuotaExceededFault
-//   The storage quota has been exceeded.
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - StorageQuotaExceededFault
+//     The storage quota has been exceeded.
 //
-//   * ReplicationSubnetGroupDoesNotCoverEnoughAZs
-//   The replication subnet group does not cover enough Availability Zones (AZs).
-//   Edit the replication subnet group and add more AZs.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ReplicationSubnetGroupDoesNotCoverEnoughAZs
+//     The replication subnet group does not cover enough Availability Zones (AZs).
+//     Edit the replication subnet group and add more AZs.
 //
-//   * InvalidSubnet
-//   The subnet provided is invalid.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * KMSKeyNotAccessibleFault
-//   DMS cannot access the KMS key.
+//   - InvalidSubnet
+//     The subnet provided is invalid.
+//
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationInstance
 func (c *DatabaseMigrationService) CreateReplicationInstance(input *CreateReplicationInstanceInput) (*CreateReplicationInstanceOutput, error) {
@@ -718,14 +716,13 @@ const opCreateReplicationSubnetGroup = "CreateReplicationSubnetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateReplicationSubnetGroupRequest method.
+//	req, resp := client.CreateReplicationSubnetGroupRequest(params)
 //
-//    // Example sending a request using the CreateReplicationSubnetGroupRequest method.
-//    req, resp := client.CreateReplicationSubnetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationSubnetGroup
 func (c *DatabaseMigrationService) CreateReplicationSubnetGroupRequest(input *CreateReplicationSubnetGroupInput) (req *request.Request, output *CreateReplicationSubnetGroupOutput) {
@@ -760,24 +757,25 @@ func (c *DatabaseMigrationService) CreateReplicationSubnetGroupRequest(input *Cr
 // API operation CreateReplicationSubnetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * ReplicationSubnetGroupDoesNotCoverEnoughAZs
-//   The replication subnet group does not cover enough Availability Zones (AZs).
-//   Edit the replication subnet group and add more AZs.
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
-//   * InvalidSubnet
-//   The subnet provided is invalid.
+//   - ReplicationSubnetGroupDoesNotCoverEnoughAZs
+//     The replication subnet group does not cover enough Availability Zones (AZs).
+//     Edit the replication subnet group and add more AZs.
+//
+//   - InvalidSubnet
+//     The subnet provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationSubnetGroup
 func (c *DatabaseMigrationService) CreateReplicationSubnetGroup(input *CreateReplicationSubnetGroupInput) (*CreateReplicationSubnetGroupOutput, error) {
@@ -817,14 +815,13 @@ const opCreateReplicationTask = "CreateReplicationTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateReplicationTaskRequest method.
+//	req, resp := client.CreateReplicationTaskRequest(params)
 //
-//    // Example sending a request using the CreateReplicationTaskRequest method.
-//    req, resp := client.CreateReplicationTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationTask
 func (c *DatabaseMigrationService) CreateReplicationTaskRequest(input *CreateReplicationTaskInput) (req *request.Request, output *CreateReplicationTaskOutput) {
@@ -855,24 +852,25 @@ func (c *DatabaseMigrationService) CreateReplicationTaskRequest(input *CreateRep
 // API operation CreateReplicationTask for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * KMSKeyNotAccessibleFault
-//   DMS cannot access the KMS key.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
+//
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationTask
 func (c *DatabaseMigrationService) CreateReplicationTask(input *CreateReplicationTaskInput) (*CreateReplicationTaskOutput, error) {
@@ -912,14 +910,13 @@ const opDeleteCertificate = "DeleteCertificate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteCertificateRequest method.
+//	req, resp := client.DeleteCertificateRequest(params)
 //
-//    // Example sending a request using the DeleteCertificateRequest method.
-//    req, resp := client.DeleteCertificateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteCertificate
 func (c *DatabaseMigrationService) DeleteCertificateRequest(input *DeleteCertificateInput) (req *request.Request, output *DeleteCertificateOutput) {
@@ -950,12 +947,13 @@ func (c *DatabaseMigrationService) DeleteCertificateRequest(input *DeleteCertifi
 // API operation DeleteCertificate for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteCertificate
 func (c *DatabaseMigrationService) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertificateOutput, error) {
@@ -995,14 +993,13 @@ const opDeleteConnection = "DeleteConnection"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteConnectionRequest method.
+//	req, resp := client.DeleteConnectionRequest(params)
 //
-//    // Example sending a request using the DeleteConnectionRequest method.
-//    req, resp := client.DeleteConnectionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteConnection
 func (c *DatabaseMigrationService) DeleteConnectionRequest(input *DeleteConnectionInput) (req *request.Request, output *DeleteConnectionOutput) {
@@ -1033,15 +1030,16 @@ func (c *DatabaseMigrationService) DeleteConnectionRequest(input *DeleteConnecti
 // API operation DeleteConnection for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteConnection
 func (c *DatabaseMigrationService) DeleteConnection(input *DeleteConnectionInput) (*DeleteConnectionOutput, error) {
@@ -1081,14 +1079,13 @@ const opDeleteEndpoint = "DeleteEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEndpointRequest method.
+//	req, resp := client.DeleteEndpointRequest(params)
 //
-//    // Example sending a request using the DeleteEndpointRequest method.
-//    req, resp := client.DeleteEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteEndpoint
 func (c *DatabaseMigrationService) DeleteEndpointRequest(input *DeleteEndpointInput) (req *request.Request, output *DeleteEndpointOutput) {
@@ -1122,12 +1119,13 @@ func (c *DatabaseMigrationService) DeleteEndpointRequest(input *DeleteEndpointIn
 // API operation DeleteEndpoint for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteEndpoint
 func (c *DatabaseMigrationService) DeleteEndpoint(input *DeleteEndpointInput) (*DeleteEndpointOutput, error) {
@@ -1167,14 +1165,13 @@ const opDeleteEventSubscription = "DeleteEventSubscription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEventSubscriptionRequest method.
+//	req, resp := client.DeleteEventSubscriptionRequest(params)
 //
-//    // Example sending a request using the DeleteEventSubscriptionRequest method.
-//    req, resp := client.DeleteEventSubscriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteEventSubscription
 func (c *DatabaseMigrationService) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *request.Request, output *DeleteEventSubscriptionOutput) {
@@ -1205,12 +1202,13 @@ func (c *DatabaseMigrationService) DeleteEventSubscriptionRequest(input *DeleteE
 // API operation DeleteEventSubscription for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteEventSubscription
 func (c *DatabaseMigrationService) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (*DeleteEventSubscriptionOutput, error) {
@@ -1250,14 +1248,13 @@ const opDeleteFleetAdvisorCollector = "DeleteFleetAdvisorCollector"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFleetAdvisorCollectorRequest method.
+//	req, resp := client.DeleteFleetAdvisorCollectorRequest(params)
 //
-//    // Example sending a request using the DeleteFleetAdvisorCollectorRequest method.
-//    req, resp := client.DeleteFleetAdvisorCollectorRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteFleetAdvisorCollector
 func (c *DatabaseMigrationService) DeleteFleetAdvisorCollectorRequest(input *DeleteFleetAdvisorCollectorInput) (req *request.Request, output *DeleteFleetAdvisorCollectorOutput) {
@@ -1289,12 +1286,13 @@ func (c *DatabaseMigrationService) DeleteFleetAdvisorCollectorRequest(input *Del
 // API operation DeleteFleetAdvisorCollector for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * CollectorNotFoundFault
-//   The specified collector doesn't exist.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - CollectorNotFoundFault
+//     The specified collector doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteFleetAdvisorCollector
 func (c *DatabaseMigrationService) DeleteFleetAdvisorCollector(input *DeleteFleetAdvisorCollectorInput) (*DeleteFleetAdvisorCollectorOutput, error) {
@@ -1334,14 +1332,13 @@ const opDeleteFleetAdvisorDatabases = "DeleteFleetAdvisorDatabases"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFleetAdvisorDatabasesRequest method.
+//	req, resp := client.DeleteFleetAdvisorDatabasesRequest(params)
 //
-//    // Example sending a request using the DeleteFleetAdvisorDatabasesRequest method.
-//    req, resp := client.DeleteFleetAdvisorDatabasesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteFleetAdvisorDatabases
 func (c *DatabaseMigrationService) DeleteFleetAdvisorDatabasesRequest(input *DeleteFleetAdvisorDatabasesInput) (req *request.Request, output *DeleteFleetAdvisorDatabasesOutput) {
@@ -1372,11 +1369,12 @@ func (c *DatabaseMigrationService) DeleteFleetAdvisorDatabasesRequest(input *Del
 // API operation DeleteFleetAdvisorDatabases for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidOperationFault
-//   The action or operation requested isn't valid.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidOperationFault
+//     The action or operation requested isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteFleetAdvisorDatabases
 func (c *DatabaseMigrationService) DeleteFleetAdvisorDatabases(input *DeleteFleetAdvisorDatabasesInput) (*DeleteFleetAdvisorDatabasesOutput, error) {
@@ -1416,14 +1414,13 @@ const opDeleteReplicationInstance = "DeleteReplicationInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteReplicationInstanceRequest method.
+//	req, resp := client.DeleteReplicationInstanceRequest(params)
 //
-//    // Example sending a request using the DeleteReplicationInstanceRequest method.
-//    req, resp := client.DeleteReplicationInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationInstance
 func (c *DatabaseMigrationService) DeleteReplicationInstanceRequest(input *DeleteReplicationInstanceInput) (req *request.Request, output *DeleteReplicationInstanceOutput) {
@@ -1457,12 +1454,13 @@ func (c *DatabaseMigrationService) DeleteReplicationInstanceRequest(input *Delet
 // API operation DeleteReplicationInstance for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationInstance
 func (c *DatabaseMigrationService) DeleteReplicationInstance(input *DeleteReplicationInstanceInput) (*DeleteReplicationInstanceOutput, error) {
@@ -1502,14 +1500,13 @@ const opDeleteReplicationSubnetGroup = "DeleteReplicationSubnetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteReplicationSubnetGroupRequest method.
+//	req, resp := client.DeleteReplicationSubnetGroupRequest(params)
 //
-//    // Example sending a request using the DeleteReplicationSubnetGroupRequest method.
-//    req, resp := client.DeleteReplicationSubnetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationSubnetGroup
 func (c *DatabaseMigrationService) DeleteReplicationSubnetGroupRequest(input *DeleteReplicationSubnetGroupInput) (req *request.Request, output *DeleteReplicationSubnetGroupOutput) {
@@ -1541,12 +1538,13 @@ func (c *DatabaseMigrationService) DeleteReplicationSubnetGroupRequest(input *De
 // API operation DeleteReplicationSubnetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationSubnetGroup
 func (c *DatabaseMigrationService) DeleteReplicationSubnetGroup(input *DeleteReplicationSubnetGroupInput) (*DeleteReplicationSubnetGroupOutput, error) {
@@ -1586,14 +1584,13 @@ const opDeleteReplicationTask = "DeleteReplicationTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteReplicationTaskRequest method.
+//	req, resp := client.DeleteReplicationTaskRequest(params)
 //
-//    // Example sending a request using the DeleteReplicationTaskRequest method.
-//    req, resp := client.DeleteReplicationTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationTask
 func (c *DatabaseMigrationService) DeleteReplicationTaskRequest(input *DeleteReplicationTaskInput) (req *request.Request, output *DeleteReplicationTaskOutput) {
@@ -1624,12 +1621,13 @@ func (c *DatabaseMigrationService) DeleteReplicationTaskRequest(input *DeleteRep
 // API operation DeleteReplicationTask for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationTask
 func (c *DatabaseMigrationService) DeleteReplicationTask(input *DeleteReplicationTaskInput) (*DeleteReplicationTaskOutput, error) {
@@ -1669,14 +1667,13 @@ const opDeleteReplicationTaskAssessmentRun = "DeleteReplicationTaskAssessmentRun
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteReplicationTaskAssessmentRunRequest method.
+//	req, resp := client.DeleteReplicationTaskAssessmentRunRequest(params)
 //
-//    // Example sending a request using the DeleteReplicationTaskAssessmentRunRequest method.
-//    req, resp := client.DeleteReplicationTaskAssessmentRunRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationTaskAssessmentRun
 func (c *DatabaseMigrationService) DeleteReplicationTaskAssessmentRunRequest(input *DeleteReplicationTaskAssessmentRunInput) (req *request.Request, output *DeleteReplicationTaskAssessmentRunOutput) {
@@ -1711,15 +1708,16 @@ func (c *DatabaseMigrationService) DeleteReplicationTaskAssessmentRunRequest(inp
 // API operation DeleteReplicationTaskAssessmentRun for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationTaskAssessmentRun
 func (c *DatabaseMigrationService) DeleteReplicationTaskAssessmentRun(input *DeleteReplicationTaskAssessmentRunInput) (*DeleteReplicationTaskAssessmentRunOutput, error) {
@@ -1759,14 +1757,13 @@ const opDescribeAccountAttributes = "DescribeAccountAttributes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAccountAttributesRequest method.
+//	req, resp := client.DescribeAccountAttributesRequest(params)
 //
-//    // Example sending a request using the DescribeAccountAttributesRequest method.
-//    req, resp := client.DescribeAccountAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeAccountAttributes
 func (c *DatabaseMigrationService) DescribeAccountAttributesRequest(input *DescribeAccountAttributesInput) (req *request.Request, output *DescribeAccountAttributesOutput) {
@@ -1841,14 +1838,13 @@ const opDescribeApplicableIndividualAssessments = "DescribeApplicableIndividualA
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeApplicableIndividualAssessmentsRequest method.
+//	req, resp := client.DescribeApplicableIndividualAssessmentsRequest(params)
 //
-//    // Example sending a request using the DescribeApplicableIndividualAssessmentsRequest method.
-//    req, resp := client.DescribeApplicableIndividualAssessmentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeApplicableIndividualAssessments
 func (c *DatabaseMigrationService) DescribeApplicableIndividualAssessmentsRequest(input *DescribeApplicableIndividualAssessmentsInput) (req *request.Request, output *DescribeApplicableIndividualAssessmentsOutput) {
@@ -1905,15 +1901,16 @@ func (c *DatabaseMigrationService) DescribeApplicableIndividualAssessmentsReques
 // API operation DescribeApplicableIndividualAssessments for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeApplicableIndividualAssessments
 func (c *DatabaseMigrationService) DescribeApplicableIndividualAssessments(input *DescribeApplicableIndividualAssessmentsInput) (*DescribeApplicableIndividualAssessmentsOutput, error) {
@@ -1945,15 +1942,14 @@ func (c *DatabaseMigrationService) DescribeApplicableIndividualAssessmentsWithCo
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeApplicableIndividualAssessments operation.
-//    pageNum := 0
-//    err := client.DescribeApplicableIndividualAssessmentsPages(params,
-//        func(page *databasemigrationservice.DescribeApplicableIndividualAssessmentsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeApplicableIndividualAssessments operation.
+//	pageNum := 0
+//	err := client.DescribeApplicableIndividualAssessmentsPages(params,
+//	    func(page *databasemigrationservice.DescribeApplicableIndividualAssessmentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeApplicableIndividualAssessmentsPages(input *DescribeApplicableIndividualAssessmentsInput, fn func(*DescribeApplicableIndividualAssessmentsOutput, bool) bool) error {
 	return c.DescribeApplicableIndividualAssessmentsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2005,14 +2001,13 @@ const opDescribeCertificates = "DescribeCertificates"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeCertificatesRequest method.
+//	req, resp := client.DescribeCertificatesRequest(params)
 //
-//    // Example sending a request using the DescribeCertificatesRequest method.
-//    req, resp := client.DescribeCertificatesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeCertificates
 func (c *DatabaseMigrationService) DescribeCertificatesRequest(input *DescribeCertificatesInput) (req *request.Request, output *DescribeCertificatesOutput) {
@@ -2049,8 +2044,8 @@ func (c *DatabaseMigrationService) DescribeCertificatesRequest(input *DescribeCe
 // API operation DescribeCertificates for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeCertificates
 func (c *DatabaseMigrationService) DescribeCertificates(input *DescribeCertificatesInput) (*DescribeCertificatesOutput, error) {
@@ -2082,15 +2077,14 @@ func (c *DatabaseMigrationService) DescribeCertificatesWithContext(ctx aws.Conte
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeCertificates operation.
-//    pageNum := 0
-//    err := client.DescribeCertificatesPages(params,
-//        func(page *databasemigrationservice.DescribeCertificatesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeCertificates operation.
+//	pageNum := 0
+//	err := client.DescribeCertificatesPages(params,
+//	    func(page *databasemigrationservice.DescribeCertificatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeCertificatesPages(input *DescribeCertificatesInput, fn func(*DescribeCertificatesOutput, bool) bool) error {
 	return c.DescribeCertificatesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2142,14 +2136,13 @@ const opDescribeConnections = "DescribeConnections"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeConnectionsRequest method.
+//	req, resp := client.DescribeConnectionsRequest(params)
 //
-//    // Example sending a request using the DescribeConnectionsRequest method.
-//    req, resp := client.DescribeConnectionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeConnections
 func (c *DatabaseMigrationService) DescribeConnectionsRequest(input *DescribeConnectionsInput) (req *request.Request, output *DescribeConnectionsOutput) {
@@ -2187,8 +2180,8 @@ func (c *DatabaseMigrationService) DescribeConnectionsRequest(input *DescribeCon
 // API operation DescribeConnections for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeConnections
 func (c *DatabaseMigrationService) DescribeConnections(input *DescribeConnectionsInput) (*DescribeConnectionsOutput, error) {
@@ -2220,15 +2213,14 @@ func (c *DatabaseMigrationService) DescribeConnectionsWithContext(ctx aws.Contex
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeConnections operation.
-//    pageNum := 0
-//    err := client.DescribeConnectionsPages(params,
-//        func(page *databasemigrationservice.DescribeConnectionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeConnections operation.
+//	pageNum := 0
+//	err := client.DescribeConnectionsPages(params,
+//	    func(page *databasemigrationservice.DescribeConnectionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeConnectionsPages(input *DescribeConnectionsInput, fn func(*DescribeConnectionsOutput, bool) bool) error {
 	return c.DescribeConnectionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2280,14 +2272,13 @@ const opDescribeEndpointSettings = "DescribeEndpointSettings"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEndpointSettingsRequest method.
+//	req, resp := client.DescribeEndpointSettingsRequest(params)
 //
-//    // Example sending a request using the DescribeEndpointSettingsRequest method.
-//    req, resp := client.DescribeEndpointSettingsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEndpointSettings
 func (c *DatabaseMigrationService) DescribeEndpointSettingsRequest(input *DescribeEndpointSettingsInput) (req *request.Request, output *DescribeEndpointSettingsOutput) {
@@ -2353,15 +2344,14 @@ func (c *DatabaseMigrationService) DescribeEndpointSettingsWithContext(ctx aws.C
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeEndpointSettings operation.
-//    pageNum := 0
-//    err := client.DescribeEndpointSettingsPages(params,
-//        func(page *databasemigrationservice.DescribeEndpointSettingsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeEndpointSettings operation.
+//	pageNum := 0
+//	err := client.DescribeEndpointSettingsPages(params,
+//	    func(page *databasemigrationservice.DescribeEndpointSettingsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeEndpointSettingsPages(input *DescribeEndpointSettingsInput, fn func(*DescribeEndpointSettingsOutput, bool) bool) error {
 	return c.DescribeEndpointSettingsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2413,14 +2403,13 @@ const opDescribeEndpointTypes = "DescribeEndpointTypes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEndpointTypesRequest method.
+//	req, resp := client.DescribeEndpointTypesRequest(params)
 //
-//    // Example sending a request using the DescribeEndpointTypesRequest method.
-//    req, resp := client.DescribeEndpointTypesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEndpointTypes
 func (c *DatabaseMigrationService) DescribeEndpointTypesRequest(input *DescribeEndpointTypesInput) (req *request.Request, output *DescribeEndpointTypesOutput) {
@@ -2485,15 +2474,14 @@ func (c *DatabaseMigrationService) DescribeEndpointTypesWithContext(ctx aws.Cont
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeEndpointTypes operation.
-//    pageNum := 0
-//    err := client.DescribeEndpointTypesPages(params,
-//        func(page *databasemigrationservice.DescribeEndpointTypesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeEndpointTypes operation.
+//	pageNum := 0
+//	err := client.DescribeEndpointTypesPages(params,
+//	    func(page *databasemigrationservice.DescribeEndpointTypesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeEndpointTypesPages(input *DescribeEndpointTypesInput, fn func(*DescribeEndpointTypesOutput, bool) bool) error {
 	return c.DescribeEndpointTypesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2545,14 +2533,13 @@ const opDescribeEndpoints = "DescribeEndpoints"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEndpointsRequest method.
+//	req, resp := client.DescribeEndpointsRequest(params)
 //
-//    // Example sending a request using the DescribeEndpointsRequest method.
-//    req, resp := client.DescribeEndpointsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEndpoints
 func (c *DatabaseMigrationService) DescribeEndpointsRequest(input *DescribeEndpointsInput) (req *request.Request, output *DescribeEndpointsOutput) {
@@ -2589,8 +2576,8 @@ func (c *DatabaseMigrationService) DescribeEndpointsRequest(input *DescribeEndpo
 // API operation DescribeEndpoints for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEndpoints
 func (c *DatabaseMigrationService) DescribeEndpoints(input *DescribeEndpointsInput) (*DescribeEndpointsOutput, error) {
@@ -2622,15 +2609,14 @@ func (c *DatabaseMigrationService) DescribeEndpointsWithContext(ctx aws.Context,
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeEndpoints operation.
-//    pageNum := 0
-//    err := client.DescribeEndpointsPages(params,
-//        func(page *databasemigrationservice.DescribeEndpointsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeEndpoints operation.
+//	pageNum := 0
+//	err := client.DescribeEndpointsPages(params,
+//	    func(page *databasemigrationservice.DescribeEndpointsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeEndpointsPages(input *DescribeEndpointsInput, fn func(*DescribeEndpointsOutput, bool) bool) error {
 	return c.DescribeEndpointsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2682,14 +2668,13 @@ const opDescribeEventCategories = "DescribeEventCategories"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEventCategoriesRequest method.
+//	req, resp := client.DescribeEventCategoriesRequest(params)
 //
-//    // Example sending a request using the DescribeEventCategoriesRequest method.
-//    req, resp := client.DescribeEventCategoriesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEventCategories
 func (c *DatabaseMigrationService) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *request.Request, output *DescribeEventCategoriesOutput) {
@@ -2759,14 +2744,13 @@ const opDescribeEventSubscriptions = "DescribeEventSubscriptions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEventSubscriptionsRequest method.
+//	req, resp := client.DescribeEventSubscriptionsRequest(params)
 //
-//    // Example sending a request using the DescribeEventSubscriptionsRequest method.
-//    req, resp := client.DescribeEventSubscriptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEventSubscriptions
 func (c *DatabaseMigrationService) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *request.Request, output *DescribeEventSubscriptionsOutput) {
@@ -2808,8 +2792,8 @@ func (c *DatabaseMigrationService) DescribeEventSubscriptionsRequest(input *Desc
 // API operation DescribeEventSubscriptions for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEventSubscriptions
 func (c *DatabaseMigrationService) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput) (*DescribeEventSubscriptionsOutput, error) {
@@ -2841,15 +2825,14 @@ func (c *DatabaseMigrationService) DescribeEventSubscriptionsWithContext(ctx aws
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeEventSubscriptions operation.
-//    pageNum := 0
-//    err := client.DescribeEventSubscriptionsPages(params,
-//        func(page *databasemigrationservice.DescribeEventSubscriptionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeEventSubscriptions operation.
+//	pageNum := 0
+//	err := client.DescribeEventSubscriptionsPages(params,
+//	    func(page *databasemigrationservice.DescribeEventSubscriptionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsInput, fn func(*DescribeEventSubscriptionsOutput, bool) bool) error {
 	return c.DescribeEventSubscriptionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2901,14 +2884,13 @@ const opDescribeEvents = "DescribeEvents"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEventsRequest method.
+//	req, resp := client.DescribeEventsRequest(params)
 //
-//    // Example sending a request using the DescribeEventsRequest method.
-//    req, resp := client.DescribeEventsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEvents
 func (c *DatabaseMigrationService) DescribeEventsRequest(input *DescribeEventsInput) (req *request.Request, output *DescribeEventsOutput) {
@@ -2976,15 +2958,14 @@ func (c *DatabaseMigrationService) DescribeEventsWithContext(ctx aws.Context, in
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeEvents operation.
-//    pageNum := 0
-//    err := client.DescribeEventsPages(params,
-//        func(page *databasemigrationservice.DescribeEventsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeEvents operation.
+//	pageNum := 0
+//	err := client.DescribeEventsPages(params,
+//	    func(page *databasemigrationservice.DescribeEventsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeEventsPages(input *DescribeEventsInput, fn func(*DescribeEventsOutput, bool) bool) error {
 	return c.DescribeEventsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3036,14 +3017,13 @@ const opDescribeFleetAdvisorCollectors = "DescribeFleetAdvisorCollectors"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFleetAdvisorCollectorsRequest method.
+//	req, resp := client.DescribeFleetAdvisorCollectorsRequest(params)
 //
-//    // Example sending a request using the DescribeFleetAdvisorCollectorsRequest method.
-//    req, resp := client.DescribeFleetAdvisorCollectorsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorCollectors
 func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectorsRequest(input *DescribeFleetAdvisorCollectorsInput) (req *request.Request, output *DescribeFleetAdvisorCollectorsOutput) {
@@ -3080,9 +3060,9 @@ func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectorsRequest(input *
 // API operation DescribeFleetAdvisorCollectors for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorCollectors
 func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectors(input *DescribeFleetAdvisorCollectorsInput) (*DescribeFleetAdvisorCollectorsOutput, error) {
@@ -3114,15 +3094,14 @@ func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectorsWithContext(ctx
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeFleetAdvisorCollectors operation.
-//    pageNum := 0
-//    err := client.DescribeFleetAdvisorCollectorsPages(params,
-//        func(page *databasemigrationservice.DescribeFleetAdvisorCollectorsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeFleetAdvisorCollectors operation.
+//	pageNum := 0
+//	err := client.DescribeFleetAdvisorCollectorsPages(params,
+//	    func(page *databasemigrationservice.DescribeFleetAdvisorCollectorsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectorsPages(input *DescribeFleetAdvisorCollectorsInput, fn func(*DescribeFleetAdvisorCollectorsOutput, bool) bool) error {
 	return c.DescribeFleetAdvisorCollectorsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3174,14 +3153,13 @@ const opDescribeFleetAdvisorDatabases = "DescribeFleetAdvisorDatabases"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFleetAdvisorDatabasesRequest method.
+//	req, resp := client.DescribeFleetAdvisorDatabasesRequest(params)
 //
-//    // Example sending a request using the DescribeFleetAdvisorDatabasesRequest method.
-//    req, resp := client.DescribeFleetAdvisorDatabasesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorDatabases
 func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabasesRequest(input *DescribeFleetAdvisorDatabasesInput) (req *request.Request, output *DescribeFleetAdvisorDatabasesOutput) {
@@ -3218,9 +3196,9 @@ func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabasesRequest(input *D
 // API operation DescribeFleetAdvisorDatabases for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorDatabases
 func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabases(input *DescribeFleetAdvisorDatabasesInput) (*DescribeFleetAdvisorDatabasesOutput, error) {
@@ -3252,15 +3230,14 @@ func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabasesWithContext(ctx 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeFleetAdvisorDatabases operation.
-//    pageNum := 0
-//    err := client.DescribeFleetAdvisorDatabasesPages(params,
-//        func(page *databasemigrationservice.DescribeFleetAdvisorDatabasesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeFleetAdvisorDatabases operation.
+//	pageNum := 0
+//	err := client.DescribeFleetAdvisorDatabasesPages(params,
+//	    func(page *databasemigrationservice.DescribeFleetAdvisorDatabasesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabasesPages(input *DescribeFleetAdvisorDatabasesInput, fn func(*DescribeFleetAdvisorDatabasesOutput, bool) bool) error {
 	return c.DescribeFleetAdvisorDatabasesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3312,14 +3289,13 @@ const opDescribeFleetAdvisorLsaAnalysis = "DescribeFleetAdvisorLsaAnalysis"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFleetAdvisorLsaAnalysisRequest method.
+//	req, resp := client.DescribeFleetAdvisorLsaAnalysisRequest(params)
 //
-//    // Example sending a request using the DescribeFleetAdvisorLsaAnalysisRequest method.
-//    req, resp := client.DescribeFleetAdvisorLsaAnalysisRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorLsaAnalysis
 func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysisRequest(input *DescribeFleetAdvisorLsaAnalysisInput) (req *request.Request, output *DescribeFleetAdvisorLsaAnalysisOutput) {
@@ -3357,9 +3333,9 @@ func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysisRequest(input 
 // API operation DescribeFleetAdvisorLsaAnalysis for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorLsaAnalysis
 func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysis(input *DescribeFleetAdvisorLsaAnalysisInput) (*DescribeFleetAdvisorLsaAnalysisOutput, error) {
@@ -3391,15 +3367,14 @@ func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysisWithContext(ct
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeFleetAdvisorLsaAnalysis operation.
-//    pageNum := 0
-//    err := client.DescribeFleetAdvisorLsaAnalysisPages(params,
-//        func(page *databasemigrationservice.DescribeFleetAdvisorLsaAnalysisOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeFleetAdvisorLsaAnalysis operation.
+//	pageNum := 0
+//	err := client.DescribeFleetAdvisorLsaAnalysisPages(params,
+//	    func(page *databasemigrationservice.DescribeFleetAdvisorLsaAnalysisOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysisPages(input *DescribeFleetAdvisorLsaAnalysisInput, fn func(*DescribeFleetAdvisorLsaAnalysisOutput, bool) bool) error {
 	return c.DescribeFleetAdvisorLsaAnalysisPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3451,14 +3426,13 @@ const opDescribeFleetAdvisorSchemaObjectSummary = "DescribeFleetAdvisorSchemaObj
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFleetAdvisorSchemaObjectSummaryRequest method.
+//	req, resp := client.DescribeFleetAdvisorSchemaObjectSummaryRequest(params)
 //
-//    // Example sending a request using the DescribeFleetAdvisorSchemaObjectSummaryRequest method.
-//    req, resp := client.DescribeFleetAdvisorSchemaObjectSummaryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorSchemaObjectSummary
 func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummaryRequest(input *DescribeFleetAdvisorSchemaObjectSummaryInput) (req *request.Request, output *DescribeFleetAdvisorSchemaObjectSummaryOutput) {
@@ -3495,9 +3469,9 @@ func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummaryReques
 // API operation DescribeFleetAdvisorSchemaObjectSummary for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorSchemaObjectSummary
 func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummary(input *DescribeFleetAdvisorSchemaObjectSummaryInput) (*DescribeFleetAdvisorSchemaObjectSummaryOutput, error) {
@@ -3529,15 +3503,14 @@ func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummaryWithCo
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeFleetAdvisorSchemaObjectSummary operation.
-//    pageNum := 0
-//    err := client.DescribeFleetAdvisorSchemaObjectSummaryPages(params,
-//        func(page *databasemigrationservice.DescribeFleetAdvisorSchemaObjectSummaryOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeFleetAdvisorSchemaObjectSummary operation.
+//	pageNum := 0
+//	err := client.DescribeFleetAdvisorSchemaObjectSummaryPages(params,
+//	    func(page *databasemigrationservice.DescribeFleetAdvisorSchemaObjectSummaryOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummaryPages(input *DescribeFleetAdvisorSchemaObjectSummaryInput, fn func(*DescribeFleetAdvisorSchemaObjectSummaryOutput, bool) bool) error {
 	return c.DescribeFleetAdvisorSchemaObjectSummaryPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3589,14 +3562,13 @@ const opDescribeFleetAdvisorSchemas = "DescribeFleetAdvisorSchemas"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFleetAdvisorSchemasRequest method.
+//	req, resp := client.DescribeFleetAdvisorSchemasRequest(params)
 //
-//    // Example sending a request using the DescribeFleetAdvisorSchemasRequest method.
-//    req, resp := client.DescribeFleetAdvisorSchemasRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorSchemas
 func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemasRequest(input *DescribeFleetAdvisorSchemasInput) (req *request.Request, output *DescribeFleetAdvisorSchemasOutput) {
@@ -3633,9 +3605,9 @@ func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemasRequest(input *Des
 // API operation DescribeFleetAdvisorSchemas for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorSchemas
 func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemas(input *DescribeFleetAdvisorSchemasInput) (*DescribeFleetAdvisorSchemasOutput, error) {
@@ -3667,15 +3639,14 @@ func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemasWithContext(ctx aw
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeFleetAdvisorSchemas operation.
-//    pageNum := 0
-//    err := client.DescribeFleetAdvisorSchemasPages(params,
-//        func(page *databasemigrationservice.DescribeFleetAdvisorSchemasOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeFleetAdvisorSchemas operation.
+//	pageNum := 0
+//	err := client.DescribeFleetAdvisorSchemasPages(params,
+//	    func(page *databasemigrationservice.DescribeFleetAdvisorSchemasOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemasPages(input *DescribeFleetAdvisorSchemasInput, fn func(*DescribeFleetAdvisorSchemasOutput, bool) bool) error {
 	return c.DescribeFleetAdvisorSchemasPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3727,14 +3698,13 @@ const opDescribeOrderableReplicationInstances = "DescribeOrderableReplicationIns
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeOrderableReplicationInstancesRequest method.
+//	req, resp := client.DescribeOrderableReplicationInstancesRequest(params)
 //
-//    // Example sending a request using the DescribeOrderableReplicationInstancesRequest method.
-//    req, resp := client.DescribeOrderableReplicationInstancesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeOrderableReplicationInstances
 func (c *DatabaseMigrationService) DescribeOrderableReplicationInstancesRequest(input *DescribeOrderableReplicationInstancesInput) (req *request.Request, output *DescribeOrderableReplicationInstancesOutput) {
@@ -3800,15 +3770,14 @@ func (c *DatabaseMigrationService) DescribeOrderableReplicationInstancesWithCont
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeOrderableReplicationInstances operation.
-//    pageNum := 0
-//    err := client.DescribeOrderableReplicationInstancesPages(params,
-//        func(page *databasemigrationservice.DescribeOrderableReplicationInstancesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeOrderableReplicationInstances operation.
+//	pageNum := 0
+//	err := client.DescribeOrderableReplicationInstancesPages(params,
+//	    func(page *databasemigrationservice.DescribeOrderableReplicationInstancesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeOrderableReplicationInstancesPages(input *DescribeOrderableReplicationInstancesInput, fn func(*DescribeOrderableReplicationInstancesOutput, bool) bool) error {
 	return c.DescribeOrderableReplicationInstancesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3860,14 +3829,13 @@ const opDescribePendingMaintenanceActions = "DescribePendingMaintenanceActions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePendingMaintenanceActionsRequest method.
+//	req, resp := client.DescribePendingMaintenanceActionsRequest(params)
 //
-//    // Example sending a request using the DescribePendingMaintenanceActionsRequest method.
-//    req, resp := client.DescribePendingMaintenanceActionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribePendingMaintenanceActions
 func (c *DatabaseMigrationService) DescribePendingMaintenanceActionsRequest(input *DescribePendingMaintenanceActionsInput) (req *request.Request, output *DescribePendingMaintenanceActionsOutput) {
@@ -3894,7 +3862,7 @@ func (c *DatabaseMigrationService) DescribePendingMaintenanceActionsRequest(inpu
 
 // DescribePendingMaintenanceActions API operation for AWS Database Migration Service.
 //
-// For internal use only
+// # For internal use only
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3904,8 +3872,8 @@ func (c *DatabaseMigrationService) DescribePendingMaintenanceActionsRequest(inpu
 // API operation DescribePendingMaintenanceActions for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribePendingMaintenanceActions
 func (c *DatabaseMigrationService) DescribePendingMaintenanceActions(input *DescribePendingMaintenanceActionsInput) (*DescribePendingMaintenanceActionsOutput, error) {
@@ -3937,15 +3905,14 @@ func (c *DatabaseMigrationService) DescribePendingMaintenanceActionsWithContext(
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribePendingMaintenanceActions operation.
-//    pageNum := 0
-//    err := client.DescribePendingMaintenanceActionsPages(params,
-//        func(page *databasemigrationservice.DescribePendingMaintenanceActionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribePendingMaintenanceActions operation.
+//	pageNum := 0
+//	err := client.DescribePendingMaintenanceActionsPages(params,
+//	    func(page *databasemigrationservice.DescribePendingMaintenanceActionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribePendingMaintenanceActionsPages(input *DescribePendingMaintenanceActionsInput, fn func(*DescribePendingMaintenanceActionsOutput, bool) bool) error {
 	return c.DescribePendingMaintenanceActionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3997,14 +3964,13 @@ const opDescribeRefreshSchemasStatus = "DescribeRefreshSchemasStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeRefreshSchemasStatusRequest method.
+//	req, resp := client.DescribeRefreshSchemasStatusRequest(params)
 //
-//    // Example sending a request using the DescribeRefreshSchemasStatusRequest method.
-//    req, resp := client.DescribeRefreshSchemasStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeRefreshSchemasStatus
 func (c *DatabaseMigrationService) DescribeRefreshSchemasStatusRequest(input *DescribeRefreshSchemasStatusInput) (req *request.Request, output *DescribeRefreshSchemasStatusOutput) {
@@ -4035,12 +4001,13 @@ func (c *DatabaseMigrationService) DescribeRefreshSchemasStatusRequest(input *De
 // API operation DescribeRefreshSchemasStatus for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeRefreshSchemasStatus
 func (c *DatabaseMigrationService) DescribeRefreshSchemasStatus(input *DescribeRefreshSchemasStatusInput) (*DescribeRefreshSchemasStatusOutput, error) {
@@ -4080,14 +4047,13 @@ const opDescribeReplicationInstanceTaskLogs = "DescribeReplicationInstanceTaskLo
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReplicationInstanceTaskLogsRequest method.
+//	req, resp := client.DescribeReplicationInstanceTaskLogsRequest(params)
 //
-//    // Example sending a request using the DescribeReplicationInstanceTaskLogsRequest method.
-//    req, resp := client.DescribeReplicationInstanceTaskLogsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationInstanceTaskLogs
 func (c *DatabaseMigrationService) DescribeReplicationInstanceTaskLogsRequest(input *DescribeReplicationInstanceTaskLogsInput) (req *request.Request, output *DescribeReplicationInstanceTaskLogsOutput) {
@@ -4124,12 +4090,13 @@ func (c *DatabaseMigrationService) DescribeReplicationInstanceTaskLogsRequest(in
 // API operation DescribeReplicationInstanceTaskLogs for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationInstanceTaskLogs
 func (c *DatabaseMigrationService) DescribeReplicationInstanceTaskLogs(input *DescribeReplicationInstanceTaskLogsInput) (*DescribeReplicationInstanceTaskLogsOutput, error) {
@@ -4161,15 +4128,14 @@ func (c *DatabaseMigrationService) DescribeReplicationInstanceTaskLogsWithContex
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeReplicationInstanceTaskLogs operation.
-//    pageNum := 0
-//    err := client.DescribeReplicationInstanceTaskLogsPages(params,
-//        func(page *databasemigrationservice.DescribeReplicationInstanceTaskLogsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeReplicationInstanceTaskLogs operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationInstanceTaskLogsPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationInstanceTaskLogsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeReplicationInstanceTaskLogsPages(input *DescribeReplicationInstanceTaskLogsInput, fn func(*DescribeReplicationInstanceTaskLogsOutput, bool) bool) error {
 	return c.DescribeReplicationInstanceTaskLogsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4221,14 +4187,13 @@ const opDescribeReplicationInstances = "DescribeReplicationInstances"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReplicationInstancesRequest method.
+//	req, resp := client.DescribeReplicationInstancesRequest(params)
 //
-//    // Example sending a request using the DescribeReplicationInstancesRequest method.
-//    req, resp := client.DescribeReplicationInstancesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationInstances
 func (c *DatabaseMigrationService) DescribeReplicationInstancesRequest(input *DescribeReplicationInstancesInput) (req *request.Request, output *DescribeReplicationInstancesOutput) {
@@ -4266,8 +4231,8 @@ func (c *DatabaseMigrationService) DescribeReplicationInstancesRequest(input *De
 // API operation DescribeReplicationInstances for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationInstances
 func (c *DatabaseMigrationService) DescribeReplicationInstances(input *DescribeReplicationInstancesInput) (*DescribeReplicationInstancesOutput, error) {
@@ -4299,15 +4264,14 @@ func (c *DatabaseMigrationService) DescribeReplicationInstancesWithContext(ctx a
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeReplicationInstances operation.
-//    pageNum := 0
-//    err := client.DescribeReplicationInstancesPages(params,
-//        func(page *databasemigrationservice.DescribeReplicationInstancesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeReplicationInstances operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationInstancesPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationInstancesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeReplicationInstancesPages(input *DescribeReplicationInstancesInput, fn func(*DescribeReplicationInstancesOutput, bool) bool) error {
 	return c.DescribeReplicationInstancesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4359,14 +4323,13 @@ const opDescribeReplicationSubnetGroups = "DescribeReplicationSubnetGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReplicationSubnetGroupsRequest method.
+//	req, resp := client.DescribeReplicationSubnetGroupsRequest(params)
 //
-//    // Example sending a request using the DescribeReplicationSubnetGroupsRequest method.
-//    req, resp := client.DescribeReplicationSubnetGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationSubnetGroups
 func (c *DatabaseMigrationService) DescribeReplicationSubnetGroupsRequest(input *DescribeReplicationSubnetGroupsInput) (req *request.Request, output *DescribeReplicationSubnetGroupsOutput) {
@@ -4403,8 +4366,8 @@ func (c *DatabaseMigrationService) DescribeReplicationSubnetGroupsRequest(input 
 // API operation DescribeReplicationSubnetGroups for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationSubnetGroups
 func (c *DatabaseMigrationService) DescribeReplicationSubnetGroups(input *DescribeReplicationSubnetGroupsInput) (*DescribeReplicationSubnetGroupsOutput, error) {
@@ -4436,15 +4399,14 @@ func (c *DatabaseMigrationService) DescribeReplicationSubnetGroupsWithContext(ct
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeReplicationSubnetGroups operation.
-//    pageNum := 0
-//    err := client.DescribeReplicationSubnetGroupsPages(params,
-//        func(page *databasemigrationservice.DescribeReplicationSubnetGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeReplicationSubnetGroups operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationSubnetGroupsPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationSubnetGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeReplicationSubnetGroupsPages(input *DescribeReplicationSubnetGroupsInput, fn func(*DescribeReplicationSubnetGroupsOutput, bool) bool) error {
 	return c.DescribeReplicationSubnetGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4496,14 +4458,13 @@ const opDescribeReplicationTaskAssessmentResults = "DescribeReplicationTaskAsses
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReplicationTaskAssessmentResultsRequest method.
+//	req, resp := client.DescribeReplicationTaskAssessmentResultsRequest(params)
 //
-//    // Example sending a request using the DescribeReplicationTaskAssessmentResultsRequest method.
-//    req, resp := client.DescribeReplicationTaskAssessmentResultsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTaskAssessmentResults
 func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResultsRequest(input *DescribeReplicationTaskAssessmentResultsInput) (req *request.Request, output *DescribeReplicationTaskAssessmentResultsOutput) {
@@ -4546,8 +4507,8 @@ func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResultsReque
 // API operation DescribeReplicationTaskAssessmentResults for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTaskAssessmentResults
 func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResults(input *DescribeReplicationTaskAssessmentResultsInput) (*DescribeReplicationTaskAssessmentResultsOutput, error) {
@@ -4579,15 +4540,14 @@ func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResultsWithC
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeReplicationTaskAssessmentResults operation.
-//    pageNum := 0
-//    err := client.DescribeReplicationTaskAssessmentResultsPages(params,
-//        func(page *databasemigrationservice.DescribeReplicationTaskAssessmentResultsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeReplicationTaskAssessmentResults operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationTaskAssessmentResultsPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationTaskAssessmentResultsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResultsPages(input *DescribeReplicationTaskAssessmentResultsInput, fn func(*DescribeReplicationTaskAssessmentResultsOutput, bool) bool) error {
 	return c.DescribeReplicationTaskAssessmentResultsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4639,14 +4599,13 @@ const opDescribeReplicationTaskAssessmentRuns = "DescribeReplicationTaskAssessme
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReplicationTaskAssessmentRunsRequest method.
+//	req, resp := client.DescribeReplicationTaskAssessmentRunsRequest(params)
 //
-//    // Example sending a request using the DescribeReplicationTaskAssessmentRunsRequest method.
-//    req, resp := client.DescribeReplicationTaskAssessmentRunsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTaskAssessmentRuns
 func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentRunsRequest(input *DescribeReplicationTaskAssessmentRunsInput) (req *request.Request, output *DescribeReplicationTaskAssessmentRunsOutput) {
@@ -4690,8 +4649,8 @@ func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentRunsRequest(
 // API operation DescribeReplicationTaskAssessmentRuns for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTaskAssessmentRuns
 func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentRuns(input *DescribeReplicationTaskAssessmentRunsInput) (*DescribeReplicationTaskAssessmentRunsOutput, error) {
@@ -4723,15 +4682,14 @@ func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentRunsWithCont
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeReplicationTaskAssessmentRuns operation.
-//    pageNum := 0
-//    err := client.DescribeReplicationTaskAssessmentRunsPages(params,
-//        func(page *databasemigrationservice.DescribeReplicationTaskAssessmentRunsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeReplicationTaskAssessmentRuns operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationTaskAssessmentRunsPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationTaskAssessmentRunsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentRunsPages(input *DescribeReplicationTaskAssessmentRunsInput, fn func(*DescribeReplicationTaskAssessmentRunsOutput, bool) bool) error {
 	return c.DescribeReplicationTaskAssessmentRunsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4783,14 +4741,13 @@ const opDescribeReplicationTaskIndividualAssessments = "DescribeReplicationTaskI
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReplicationTaskIndividualAssessmentsRequest method.
+//	req, resp := client.DescribeReplicationTaskIndividualAssessmentsRequest(params)
 //
-//    // Example sending a request using the DescribeReplicationTaskIndividualAssessmentsRequest method.
-//    req, resp := client.DescribeReplicationTaskIndividualAssessmentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTaskIndividualAssessments
 func (c *DatabaseMigrationService) DescribeReplicationTaskIndividualAssessmentsRequest(input *DescribeReplicationTaskIndividualAssessmentsInput) (req *request.Request, output *DescribeReplicationTaskIndividualAssessmentsOutput) {
@@ -4830,8 +4787,8 @@ func (c *DatabaseMigrationService) DescribeReplicationTaskIndividualAssessmentsR
 // API operation DescribeReplicationTaskIndividualAssessments for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTaskIndividualAssessments
 func (c *DatabaseMigrationService) DescribeReplicationTaskIndividualAssessments(input *DescribeReplicationTaskIndividualAssessmentsInput) (*DescribeReplicationTaskIndividualAssessmentsOutput, error) {
@@ -4863,15 +4820,14 @@ func (c *DatabaseMigrationService) DescribeReplicationTaskIndividualAssessmentsW
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeReplicationTaskIndividualAssessments operation.
-//    pageNum := 0
-//    err := client.DescribeReplicationTaskIndividualAssessmentsPages(params,
-//        func(page *databasemigrationservice.DescribeReplicationTaskIndividualAssessmentsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeReplicationTaskIndividualAssessments operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationTaskIndividualAssessmentsPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationTaskIndividualAssessmentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeReplicationTaskIndividualAssessmentsPages(input *DescribeReplicationTaskIndividualAssessmentsInput, fn func(*DescribeReplicationTaskIndividualAssessmentsOutput, bool) bool) error {
 	return c.DescribeReplicationTaskIndividualAssessmentsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4923,14 +4879,13 @@ const opDescribeReplicationTasks = "DescribeReplicationTasks"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReplicationTasksRequest method.
+//	req, resp := client.DescribeReplicationTasksRequest(params)
 //
-//    // Example sending a request using the DescribeReplicationTasksRequest method.
-//    req, resp := client.DescribeReplicationTasksRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTasks
 func (c *DatabaseMigrationService) DescribeReplicationTasksRequest(input *DescribeReplicationTasksInput) (req *request.Request, output *DescribeReplicationTasksOutput) {
@@ -4968,8 +4923,8 @@ func (c *DatabaseMigrationService) DescribeReplicationTasksRequest(input *Descri
 // API operation DescribeReplicationTasks for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTasks
 func (c *DatabaseMigrationService) DescribeReplicationTasks(input *DescribeReplicationTasksInput) (*DescribeReplicationTasksOutput, error) {
@@ -5001,15 +4956,14 @@ func (c *DatabaseMigrationService) DescribeReplicationTasksWithContext(ctx aws.C
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeReplicationTasks operation.
-//    pageNum := 0
-//    err := client.DescribeReplicationTasksPages(params,
-//        func(page *databasemigrationservice.DescribeReplicationTasksOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeReplicationTasks operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationTasksPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationTasksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeReplicationTasksPages(input *DescribeReplicationTasksInput, fn func(*DescribeReplicationTasksOutput, bool) bool) error {
 	return c.DescribeReplicationTasksPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5061,14 +5015,13 @@ const opDescribeSchemas = "DescribeSchemas"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSchemasRequest method.
+//	req, resp := client.DescribeSchemasRequest(params)
 //
-//    // Example sending a request using the DescribeSchemasRequest method.
-//    req, resp := client.DescribeSchemasRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeSchemas
 func (c *DatabaseMigrationService) DescribeSchemasRequest(input *DescribeSchemasInput) (req *request.Request, output *DescribeSchemasOutput) {
@@ -5105,12 +5058,13 @@ func (c *DatabaseMigrationService) DescribeSchemasRequest(input *DescribeSchemas
 // API operation DescribeSchemas for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeSchemas
 func (c *DatabaseMigrationService) DescribeSchemas(input *DescribeSchemasInput) (*DescribeSchemasOutput, error) {
@@ -5142,15 +5096,14 @@ func (c *DatabaseMigrationService) DescribeSchemasWithContext(ctx aws.Context, i
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeSchemas operation.
-//    pageNum := 0
-//    err := client.DescribeSchemasPages(params,
-//        func(page *databasemigrationservice.DescribeSchemasOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeSchemas operation.
+//	pageNum := 0
+//	err := client.DescribeSchemasPages(params,
+//	    func(page *databasemigrationservice.DescribeSchemasOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeSchemasPages(input *DescribeSchemasInput, fn func(*DescribeSchemasOutput, bool) bool) error {
 	return c.DescribeSchemasPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5202,14 +5155,13 @@ const opDescribeTableStatistics = "DescribeTableStatistics"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeTableStatisticsRequest method.
+//	req, resp := client.DescribeTableStatisticsRequest(params)
 //
-//    // Example sending a request using the DescribeTableStatisticsRequest method.
-//    req, resp := client.DescribeTableStatisticsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeTableStatistics
 func (c *DatabaseMigrationService) DescribeTableStatisticsRequest(input *DescribeTableStatisticsInput) (req *request.Request, output *DescribeTableStatisticsOutput) {
@@ -5251,12 +5203,13 @@ func (c *DatabaseMigrationService) DescribeTableStatisticsRequest(input *Describ
 // API operation DescribeTableStatistics for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeTableStatistics
 func (c *DatabaseMigrationService) DescribeTableStatistics(input *DescribeTableStatisticsInput) (*DescribeTableStatisticsOutput, error) {
@@ -5288,15 +5241,14 @@ func (c *DatabaseMigrationService) DescribeTableStatisticsWithContext(ctx aws.Co
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeTableStatistics operation.
-//    pageNum := 0
-//    err := client.DescribeTableStatisticsPages(params,
-//        func(page *databasemigrationservice.DescribeTableStatisticsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeTableStatistics operation.
+//	pageNum := 0
+//	err := client.DescribeTableStatisticsPages(params,
+//	    func(page *databasemigrationservice.DescribeTableStatisticsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeTableStatisticsPages(input *DescribeTableStatisticsInput, fn func(*DescribeTableStatisticsOutput, bool) bool) error {
 	return c.DescribeTableStatisticsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -5348,14 +5300,13 @@ const opImportCertificate = "ImportCertificate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ImportCertificateRequest method.
+//	req, resp := client.ImportCertificateRequest(params)
 //
-//    // Example sending a request using the ImportCertificateRequest method.
-//    req, resp := client.ImportCertificateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ImportCertificate
 func (c *DatabaseMigrationService) ImportCertificateRequest(input *ImportCertificateInput) (req *request.Request, output *ImportCertificateOutput) {
@@ -5386,14 +5337,15 @@ func (c *DatabaseMigrationService) ImportCertificateRequest(input *ImportCertifi
 // API operation ImportCertificate for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
 //
-//   * InvalidCertificateFault
-//   The certificate was not valid.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - InvalidCertificateFault
+//     The certificate was not valid.
+//
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ImportCertificate
 func (c *DatabaseMigrationService) ImportCertificate(input *ImportCertificateInput) (*ImportCertificateOutput, error) {
@@ -5433,14 +5385,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ListTagsForResource
 func (c *DatabaseMigrationService) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -5474,8 +5425,8 @@ func (c *DatabaseMigrationService) ListTagsForResourceRequest(input *ListTagsFor
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ListTagsForResource
 func (c *DatabaseMigrationService) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -5515,14 +5466,13 @@ const opModifyEndpoint = "ModifyEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyEndpointRequest method.
+//	req, resp := client.ModifyEndpointRequest(params)
 //
-//    // Example sending a request using the ModifyEndpointRequest method.
-//    req, resp := client.ModifyEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyEndpoint
 func (c *DatabaseMigrationService) ModifyEndpointRequest(input *ModifyEndpointInput) (req *request.Request, output *ModifyEndpointOutput) {
@@ -5560,21 +5510,22 @@ func (c *DatabaseMigrationService) ModifyEndpointRequest(input *ModifyEndpointIn
 // API operation ModifyEndpoint for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * KMSKeyNotAccessibleFault
-//   DMS cannot access the KMS key.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyEndpoint
 func (c *DatabaseMigrationService) ModifyEndpoint(input *ModifyEndpointInput) (*ModifyEndpointOutput, error) {
@@ -5614,14 +5565,13 @@ const opModifyEventSubscription = "ModifyEventSubscription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyEventSubscriptionRequest method.
+//	req, resp := client.ModifyEventSubscriptionRequest(params)
 //
-//    // Example sending a request using the ModifyEventSubscriptionRequest method.
-//    req, resp := client.ModifyEventSubscriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyEventSubscription
 func (c *DatabaseMigrationService) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *request.Request, output *ModifyEventSubscriptionOutput) {
@@ -5652,33 +5602,34 @@ func (c *DatabaseMigrationService) ModifyEventSubscriptionRequest(input *ModifyE
 // API operation ModifyEventSubscription for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
-//   * SNSInvalidTopicFault
-//   The SNS topic is invalid.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * SNSNoAuthorizationFault
-//   You are not authorized for the SNS subscription.
+//   - SNSInvalidTopicFault
+//     The SNS topic is invalid.
 //
-//   * KMSAccessDeniedFault
-//   The ciphertext references a key that doesn't exist or that the DMS account
-//   doesn't have access to.
+//   - SNSNoAuthorizationFault
+//     You are not authorized for the SNS subscription.
 //
-//   * KMSDisabledFault
-//   The specified KMS key isn't enabled.
+//   - KMSAccessDeniedFault
+//     The ciphertext references a key that doesn't exist or that the DMS account
+//     doesn't have access to.
 //
-//   * KMSInvalidStateFault
-//   The state of the specified KMS resource isn't valid for this request.
+//   - KMSDisabledFault
+//     The specified KMS key isn't enabled.
 //
-//   * KMSNotFoundFault
-//   The specified KMS entity or resource can't be found.
+//   - KMSInvalidStateFault
+//     The state of the specified KMS resource isn't valid for this request.
 //
-//   * KMSThrottlingFault
-//   This request triggered KMS request throttling.
+//   - KMSNotFoundFault
+//     The specified KMS entity or resource can't be found.
+//
+//   - KMSThrottlingFault
+//     This request triggered KMS request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyEventSubscription
 func (c *DatabaseMigrationService) ModifyEventSubscription(input *ModifyEventSubscriptionInput) (*ModifyEventSubscriptionOutput, error) {
@@ -5718,14 +5669,13 @@ const opModifyReplicationInstance = "ModifyReplicationInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyReplicationInstanceRequest method.
+//	req, resp := client.ModifyReplicationInstanceRequest(params)
 //
-//    // Example sending a request using the ModifyReplicationInstanceRequest method.
-//    req, resp := client.ModifyReplicationInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationInstance
 func (c *DatabaseMigrationService) ModifyReplicationInstanceRequest(input *ModifyReplicationInstanceInput) (req *request.Request, output *ModifyReplicationInstanceOutput) {
@@ -5760,27 +5710,28 @@ func (c *DatabaseMigrationService) ModifyReplicationInstanceRequest(input *Modif
 // API operation ModifyReplicationInstance for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * InsufficientResourceCapacityFault
-//   There are not enough resources allocated to the database migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * StorageQuotaExceededFault
-//   The storage quota has been exceeded.
+//   - InsufficientResourceCapacityFault
+//     There are not enough resources allocated to the database migration.
 //
-//   * UpgradeDependencyFailureFault
-//   An upgrade dependency is preventing the database migration.
+//   - StorageQuotaExceededFault
+//     The storage quota has been exceeded.
+//
+//   - UpgradeDependencyFailureFault
+//     An upgrade dependency is preventing the database migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationInstance
 func (c *DatabaseMigrationService) ModifyReplicationInstance(input *ModifyReplicationInstanceInput) (*ModifyReplicationInstanceOutput, error) {
@@ -5820,14 +5771,13 @@ const opModifyReplicationSubnetGroup = "ModifyReplicationSubnetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyReplicationSubnetGroupRequest method.
+//	req, resp := client.ModifyReplicationSubnetGroupRequest(params)
 //
-//    // Example sending a request using the ModifyReplicationSubnetGroupRequest method.
-//    req, resp := client.ModifyReplicationSubnetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationSubnetGroup
 func (c *DatabaseMigrationService) ModifyReplicationSubnetGroupRequest(input *ModifyReplicationSubnetGroupInput) (req *request.Request, output *ModifyReplicationSubnetGroupOutput) {
@@ -5858,24 +5808,25 @@ func (c *DatabaseMigrationService) ModifyReplicationSubnetGroupRequest(input *Mo
 // API operation ModifyReplicationSubnetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * SubnetAlreadyInUse
-//   The specified subnet is already in use.
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
-//   * ReplicationSubnetGroupDoesNotCoverEnoughAZs
-//   The replication subnet group does not cover enough Availability Zones (AZs).
-//   Edit the replication subnet group and add more AZs.
+//   - SubnetAlreadyInUse
+//     The specified subnet is already in use.
 //
-//   * InvalidSubnet
-//   The subnet provided is invalid.
+//   - ReplicationSubnetGroupDoesNotCoverEnoughAZs
+//     The replication subnet group does not cover enough Availability Zones (AZs).
+//     Edit the replication subnet group and add more AZs.
+//
+//   - InvalidSubnet
+//     The subnet provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationSubnetGroup
 func (c *DatabaseMigrationService) ModifyReplicationSubnetGroup(input *ModifyReplicationSubnetGroupInput) (*ModifyReplicationSubnetGroupOutput, error) {
@@ -5915,14 +5866,13 @@ const opModifyReplicationTask = "ModifyReplicationTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyReplicationTaskRequest method.
+//	req, resp := client.ModifyReplicationTaskRequest(params)
 //
-//    // Example sending a request using the ModifyReplicationTaskRequest method.
-//    req, resp := client.ModifyReplicationTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationTask
 func (c *DatabaseMigrationService) ModifyReplicationTaskRequest(input *ModifyReplicationTaskInput) (req *request.Request, output *ModifyReplicationTaskOutput) {
@@ -5959,18 +5909,19 @@ func (c *DatabaseMigrationService) ModifyReplicationTaskRequest(input *ModifyRep
 // API operation ModifyReplicationTask for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * KMSKeyNotAccessibleFault
-//   DMS cannot access the KMS key.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
+//
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationTask
 func (c *DatabaseMigrationService) ModifyReplicationTask(input *ModifyReplicationTaskInput) (*ModifyReplicationTaskOutput, error) {
@@ -6010,14 +5961,13 @@ const opMoveReplicationTask = "MoveReplicationTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the MoveReplicationTaskRequest method.
+//	req, resp := client.MoveReplicationTaskRequest(params)
 //
-//    // Example sending a request using the MoveReplicationTaskRequest method.
-//    req, resp := client.MoveReplicationTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/MoveReplicationTask
 func (c *DatabaseMigrationService) MoveReplicationTaskRequest(input *MoveReplicationTaskInput) (req *request.Request, output *MoveReplicationTaskOutput) {
@@ -6051,21 +6001,22 @@ func (c *DatabaseMigrationService) MoveReplicationTaskRequest(input *MoveReplica
 // API operation MoveReplicationTask for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * KMSKeyNotAccessibleFault
-//   DMS cannot access the KMS key.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
+//
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/MoveReplicationTask
 func (c *DatabaseMigrationService) MoveReplicationTask(input *MoveReplicationTaskInput) (*MoveReplicationTaskOutput, error) {
@@ -6105,14 +6056,13 @@ const opRebootReplicationInstance = "RebootReplicationInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RebootReplicationInstanceRequest method.
+//	req, resp := client.RebootReplicationInstanceRequest(params)
 //
-//    // Example sending a request using the RebootReplicationInstanceRequest method.
-//    req, resp := client.RebootReplicationInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RebootReplicationInstance
 func (c *DatabaseMigrationService) RebootReplicationInstanceRequest(input *RebootReplicationInstanceInput) (req *request.Request, output *RebootReplicationInstanceOutput) {
@@ -6144,12 +6094,13 @@ func (c *DatabaseMigrationService) RebootReplicationInstanceRequest(input *Reboo
 // API operation RebootReplicationInstance for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RebootReplicationInstance
 func (c *DatabaseMigrationService) RebootReplicationInstance(input *RebootReplicationInstanceInput) (*RebootReplicationInstanceOutput, error) {
@@ -6189,14 +6140,13 @@ const opRefreshSchemas = "RefreshSchemas"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RefreshSchemasRequest method.
+//	req, resp := client.RefreshSchemasRequest(params)
 //
-//    // Example sending a request using the RefreshSchemasRequest method.
-//    req, resp := client.RefreshSchemasRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RefreshSchemas
 func (c *DatabaseMigrationService) RefreshSchemasRequest(input *RefreshSchemasInput) (req *request.Request, output *RefreshSchemasOutput) {
@@ -6229,18 +6179,19 @@ func (c *DatabaseMigrationService) RefreshSchemasRequest(input *RefreshSchemasIn
 // API operation RefreshSchemas for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * KMSKeyNotAccessibleFault
-//   DMS cannot access the KMS key.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
+//
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RefreshSchemas
 func (c *DatabaseMigrationService) RefreshSchemas(input *RefreshSchemasInput) (*RefreshSchemasOutput, error) {
@@ -6280,14 +6231,13 @@ const opReloadTables = "ReloadTables"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ReloadTablesRequest method.
+//	req, resp := client.ReloadTablesRequest(params)
 //
-//    // Example sending a request using the ReloadTablesRequest method.
-//    req, resp := client.ReloadTablesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ReloadTables
 func (c *DatabaseMigrationService) ReloadTablesRequest(input *ReloadTablesInput) (req *request.Request, output *ReloadTablesOutput) {
@@ -6321,12 +6271,13 @@ func (c *DatabaseMigrationService) ReloadTablesRequest(input *ReloadTablesInput)
 // API operation ReloadTables for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ReloadTables
 func (c *DatabaseMigrationService) ReloadTables(input *ReloadTablesInput) (*ReloadTablesOutput, error) {
@@ -6366,14 +6317,13 @@ const opRemoveTagsFromResource = "RemoveTagsFromResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RemoveTagsFromResourceRequest method.
+//	req, resp := client.RemoveTagsFromResourceRequest(params)
 //
-//    // Example sending a request using the RemoveTagsFromResourceRequest method.
-//    req, resp := client.RemoveTagsFromResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RemoveTagsFromResource
 func (c *DatabaseMigrationService) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *request.Request, output *RemoveTagsFromResourceOutput) {
@@ -6408,8 +6358,8 @@ func (c *DatabaseMigrationService) RemoveTagsFromResourceRequest(input *RemoveTa
 // API operation RemoveTagsFromResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RemoveTagsFromResource
 func (c *DatabaseMigrationService) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
@@ -6449,14 +6399,13 @@ const opRunFleetAdvisorLsaAnalysis = "RunFleetAdvisorLsaAnalysis"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RunFleetAdvisorLsaAnalysisRequest method.
+//	req, resp := client.RunFleetAdvisorLsaAnalysisRequest(params)
 //
-//    // Example sending a request using the RunFleetAdvisorLsaAnalysisRequest method.
-//    req, resp := client.RunFleetAdvisorLsaAnalysisRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RunFleetAdvisorLsaAnalysis
 func (c *DatabaseMigrationService) RunFleetAdvisorLsaAnalysisRequest(input *RunFleetAdvisorLsaAnalysisInput) (req *request.Request, output *RunFleetAdvisorLsaAnalysisOutput) {
@@ -6488,12 +6437,13 @@ func (c *DatabaseMigrationService) RunFleetAdvisorLsaAnalysisRequest(input *RunF
 // API operation RunFleetAdvisorLsaAnalysis for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RunFleetAdvisorLsaAnalysis
 func (c *DatabaseMigrationService) RunFleetAdvisorLsaAnalysis(input *RunFleetAdvisorLsaAnalysisInput) (*RunFleetAdvisorLsaAnalysisOutput, error) {
@@ -6533,14 +6483,13 @@ const opStartReplicationTask = "StartReplicationTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartReplicationTaskRequest method.
+//	req, resp := client.StartReplicationTaskRequest(params)
 //
-//    // Example sending a request using the StartReplicationTaskRequest method.
-//    req, resp := client.StartReplicationTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplicationTask
 func (c *DatabaseMigrationService) StartReplicationTaskRequest(input *StartReplicationTaskInput) (req *request.Request, output *StartReplicationTaskOutput) {
@@ -6574,15 +6523,16 @@ func (c *DatabaseMigrationService) StartReplicationTaskRequest(input *StartRepli
 // API operation StartReplicationTask for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplicationTask
 func (c *DatabaseMigrationService) StartReplicationTask(input *StartReplicationTaskInput) (*StartReplicationTaskOutput, error) {
@@ -6622,14 +6572,13 @@ const opStartReplicationTaskAssessment = "StartReplicationTaskAssessment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartReplicationTaskAssessmentRequest method.
+//	req, resp := client.StartReplicationTaskAssessmentRequest(params)
 //
-//    // Example sending a request using the StartReplicationTaskAssessmentRequest method.
-//    req, resp := client.StartReplicationTaskAssessmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplicationTaskAssessment
 func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRequest(input *StartReplicationTaskAssessmentInput) (req *request.Request, output *StartReplicationTaskAssessmentOutput) {
@@ -6656,9 +6605,9 @@ func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRequest(input *
 // You can only use this operation for a task if the following conditions are
 // true:
 //
-//    * The task must be in the stopped state.
+//   - The task must be in the stopped state.
 //
-//    * The task must have successful connections to the source and target.
+//   - The task must have successful connections to the source and target.
 //
 // If either of these conditions are not met, an InvalidResourceStateFault error
 // will result.
@@ -6675,12 +6624,13 @@ func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRequest(input *
 // API operation StartReplicationTaskAssessment for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplicationTaskAssessment
 func (c *DatabaseMigrationService) StartReplicationTaskAssessment(input *StartReplicationTaskAssessmentInput) (*StartReplicationTaskAssessmentOutput, error) {
@@ -6720,14 +6670,13 @@ const opStartReplicationTaskAssessmentRun = "StartReplicationTaskAssessmentRun"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartReplicationTaskAssessmentRunRequest method.
+//	req, resp := client.StartReplicationTaskAssessmentRunRequest(params)
 //
-//    // Example sending a request using the StartReplicationTaskAssessmentRunRequest method.
-//    req, resp := client.StartReplicationTaskAssessmentRunRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplicationTaskAssessmentRun
 func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRunRequest(input *StartReplicationTaskAssessmentRunInput) (req *request.Request, output *StartReplicationTaskAssessmentRunOutput) {
@@ -6766,43 +6715,44 @@ func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRunRequest(inpu
 // API operation StartReplicationTaskAssessmentRun for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * KMSAccessDeniedFault
-//   The ciphertext references a key that doesn't exist or that the DMS account
-//   doesn't have access to.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * KMSDisabledFault
-//   The specified KMS key isn't enabled.
+//   - KMSAccessDeniedFault
+//     The ciphertext references a key that doesn't exist or that the DMS account
+//     doesn't have access to.
 //
-//   * KMSFault
-//   An Key Management Service (KMS) error is preventing access to KMS.
+//   - KMSDisabledFault
+//     The specified KMS key isn't enabled.
 //
-//   * KMSInvalidStateFault
-//   The state of the specified KMS resource isn't valid for this request.
+//   - KMSFault
+//     An Key Management Service (KMS) error is preventing access to KMS.
 //
-//   * KMSNotFoundFault
-//   The specified KMS entity or resource can't be found.
+//   - KMSInvalidStateFault
+//     The state of the specified KMS resource isn't valid for this request.
 //
-//   * KMSKeyNotAccessibleFault
-//   DMS cannot access the KMS key.
+//   - KMSNotFoundFault
+//     The specified KMS entity or resource can't be found.
 //
-//   * S3AccessDeniedFault
-//   Insufficient privileges are preventing access to an Amazon S3 object.
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
 //
-//   * S3ResourceNotFoundFault
-//   A specified Amazon S3 bucket, bucket folder, or other object can't be found.
+//   - S3AccessDeniedFault
+//     Insufficient privileges are preventing access to an Amazon S3 object.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - S3ResourceNotFoundFault
+//     A specified Amazon S3 bucket, bucket folder, or other object can't be found.
+//
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplicationTaskAssessmentRun
 func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRun(input *StartReplicationTaskAssessmentRunInput) (*StartReplicationTaskAssessmentRunOutput, error) {
@@ -6842,14 +6792,13 @@ const opStopReplicationTask = "StopReplicationTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopReplicationTaskRequest method.
+//	req, resp := client.StopReplicationTaskRequest(params)
 //
-//    // Example sending a request using the StopReplicationTaskRequest method.
-//    req, resp := client.StopReplicationTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StopReplicationTask
 func (c *DatabaseMigrationService) StopReplicationTaskRequest(input *StopReplicationTaskInput) (req *request.Request, output *StopReplicationTaskOutput) {
@@ -6880,12 +6829,13 @@ func (c *DatabaseMigrationService) StopReplicationTaskRequest(input *StopReplica
 // API operation StopReplicationTask for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StopReplicationTask
 func (c *DatabaseMigrationService) StopReplicationTask(input *StopReplicationTaskInput) (*StopReplicationTaskOutput, error) {
@@ -6925,14 +6875,13 @@ const opTestConnection = "TestConnection"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TestConnectionRequest method.
+//	req, resp := client.TestConnectionRequest(params)
 //
-//    // Example sending a request using the TestConnectionRequest method.
-//    req, resp := client.TestConnectionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/TestConnection
 func (c *DatabaseMigrationService) TestConnectionRequest(input *TestConnectionInput) (req *request.Request, output *TestConnectionOutput) {
@@ -6963,21 +6912,22 @@ func (c *DatabaseMigrationService) TestConnectionRequest(input *TestConnectionIn
 // API operation TestConnection for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * KMSKeyNotAccessibleFault
-//   DMS cannot access the KMS key.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
 //
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/TestConnection
 func (c *DatabaseMigrationService) TestConnection(input *TestConnectionInput) (*TestConnectionOutput, error) {
@@ -7017,14 +6967,13 @@ const opUpdateSubscriptionsToEventBridge = "UpdateSubscriptionsToEventBridge"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateSubscriptionsToEventBridgeRequest method.
+//	req, resp := client.UpdateSubscriptionsToEventBridgeRequest(params)
 //
-//    // Example sending a request using the UpdateSubscriptionsToEventBridgeRequest method.
-//    req, resp := client.UpdateSubscriptionsToEventBridgeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/UpdateSubscriptionsToEventBridge
 func (c *DatabaseMigrationService) UpdateSubscriptionsToEventBridgeRequest(input *UpdateSubscriptionsToEventBridgeInput) (req *request.Request, output *UpdateSubscriptionsToEventBridgeOutput) {
@@ -7068,12 +7017,13 @@ func (c *DatabaseMigrationService) UpdateSubscriptionsToEventBridgeRequest(input
 // API operation UpdateSubscriptionsToEventBridge for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/UpdateSubscriptionsToEventBridge
 func (c *DatabaseMigrationService) UpdateSubscriptionsToEventBridge(input *UpdateSubscriptionsToEventBridgeInput) (*UpdateSubscriptionsToEventBridgeOutput, error) {
@@ -14048,11 +13998,11 @@ func (s *ElasticsearchSettings) SetUseNewMappingType(v bool) *ElasticsearchSetti
 // Describes an endpoint of a database instance in response to operations such
 // as the following:
 //
-//    * CreateEndpoint
+//   - CreateEndpoint
 //
-//    * DescribeEndpoint
+//   - DescribeEndpoint
 //
-//    * ModifyEndpoint
+//   - ModifyEndpoint
 type Endpoint struct {
 	_ struct{} `type:"structure"`
 
@@ -24566,11 +24516,11 @@ func (s *TableToReload) SetTableName(v string) *TableToReload {
 // A user-defined key-value pair that describes metadata added to an DMS resource
 // and that is used by operations such as the following:
 //
-//    * AddTagsToResource
+//   - AddTagsToResource
 //
-//    * ListTagsForResource
+//   - ListTagsForResource
 //
-//    * RemoveTagsFromResource
+//   - RemoveTagsFromResource
 type Tag struct {
 	_ struct{} `type:"structure"`
 

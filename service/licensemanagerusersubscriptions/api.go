@@ -27,14 +27,13 @@ const opAssociateUser = "AssociateUser"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateUserRequest method.
+//	req, resp := client.AssociateUserRequest(params)
 //
-//    // Example sending a request using the AssociateUserRequest method.
-//    req, resp := client.AssociateUserRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/AssociateUser
 func (c *LicenseManagerUserSubscriptions) AssociateUserRequest(input *AssociateUserInput) (req *request.Request, output *AssociateUserOutput) {
@@ -65,27 +64,28 @@ func (c *LicenseManagerUserSubscriptions) AssociateUserRequest(input *AssociateU
 // API operation AssociateUser for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   The request failed because a service quota is exceeded.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ServiceQuotaExceededException
+//     The request failed because a service quota is exceeded.
 //
-//   * ValidationException
-//   A parameter is not valid.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ThrottlingException
-//   The request was denied because of request throttling. Retry the request.
+//   - ValidationException
+//     A parameter is not valid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ThrottlingException
+//     The request was denied because of request throttling. Retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - InternalServerException
+//     An exception occurred with the service.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/AssociateUser
 func (c *LicenseManagerUserSubscriptions) AssociateUser(input *AssociateUserInput) (*AssociateUserOutput, error) {
@@ -125,14 +125,13 @@ const opDeregisterIdentityProvider = "DeregisterIdentityProvider"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeregisterIdentityProviderRequest method.
+//	req, resp := client.DeregisterIdentityProviderRequest(params)
 //
-//    // Example sending a request using the DeregisterIdentityProviderRequest method.
-//    req, resp := client.DeregisterIdentityProviderRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/DeregisterIdentityProvider
 func (c *LicenseManagerUserSubscriptions) DeregisterIdentityProviderRequest(input *DeregisterIdentityProviderInput) (req *request.Request, output *DeregisterIdentityProviderOutput) {
@@ -163,27 +162,28 @@ func (c *LicenseManagerUserSubscriptions) DeregisterIdentityProviderRequest(inpu
 // API operation DeregisterIdentityProvider for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   The request failed because a service quota is exceeded.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ServiceQuotaExceededException
+//     The request failed because a service quota is exceeded.
 //
-//   * ValidationException
-//   A parameter is not valid.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ThrottlingException
-//   The request was denied because of request throttling. Retry the request.
+//   - ValidationException
+//     A parameter is not valid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ThrottlingException
+//     The request was denied because of request throttling. Retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - InternalServerException
+//     An exception occurred with the service.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/DeregisterIdentityProvider
 func (c *LicenseManagerUserSubscriptions) DeregisterIdentityProvider(input *DeregisterIdentityProviderInput) (*DeregisterIdentityProviderOutput, error) {
@@ -223,14 +223,13 @@ const opDisassociateUser = "DisassociateUser"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateUserRequest method.
+//	req, resp := client.DisassociateUserRequest(params)
 //
-//    // Example sending a request using the DisassociateUserRequest method.
-//    req, resp := client.DisassociateUserRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/DisassociateUser
 func (c *LicenseManagerUserSubscriptions) DisassociateUserRequest(input *DisassociateUserInput) (req *request.Request, output *DisassociateUserOutput) {
@@ -261,27 +260,28 @@ func (c *LicenseManagerUserSubscriptions) DisassociateUserRequest(input *Disasso
 // API operation DisassociateUser for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   The request failed because a service quota is exceeded.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ServiceQuotaExceededException
+//     The request failed because a service quota is exceeded.
 //
-//   * ValidationException
-//   A parameter is not valid.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ThrottlingException
-//   The request was denied because of request throttling. Retry the request.
+//   - ValidationException
+//     A parameter is not valid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ThrottlingException
+//     The request was denied because of request throttling. Retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - InternalServerException
+//     An exception occurred with the service.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/DisassociateUser
 func (c *LicenseManagerUserSubscriptions) DisassociateUser(input *DisassociateUserInput) (*DisassociateUserOutput, error) {
@@ -321,14 +321,13 @@ const opListIdentityProviders = "ListIdentityProviders"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListIdentityProvidersRequest method.
+//	req, resp := client.ListIdentityProvidersRequest(params)
 //
-//    // Example sending a request using the ListIdentityProvidersRequest method.
-//    req, resp := client.ListIdentityProvidersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/ListIdentityProviders
 func (c *LicenseManagerUserSubscriptions) ListIdentityProvidersRequest(input *ListIdentityProvidersInput) (req *request.Request, output *ListIdentityProvidersOutput) {
@@ -365,27 +364,28 @@ func (c *LicenseManagerUserSubscriptions) ListIdentityProvidersRequest(input *Li
 // API operation ListIdentityProviders for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   The request failed because a service quota is exceeded.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ServiceQuotaExceededException
+//     The request failed because a service quota is exceeded.
 //
-//   * ValidationException
-//   A parameter is not valid.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ThrottlingException
-//   The request was denied because of request throttling. Retry the request.
+//   - ValidationException
+//     A parameter is not valid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ThrottlingException
+//     The request was denied because of request throttling. Retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - InternalServerException
+//     An exception occurred with the service.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/ListIdentityProviders
 func (c *LicenseManagerUserSubscriptions) ListIdentityProviders(input *ListIdentityProvidersInput) (*ListIdentityProvidersOutput, error) {
@@ -417,15 +417,14 @@ func (c *LicenseManagerUserSubscriptions) ListIdentityProvidersWithContext(ctx a
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListIdentityProviders operation.
-//    pageNum := 0
-//    err := client.ListIdentityProvidersPages(params,
-//        func(page *licensemanagerusersubscriptions.ListIdentityProvidersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListIdentityProviders operation.
+//	pageNum := 0
+//	err := client.ListIdentityProvidersPages(params,
+//	    func(page *licensemanagerusersubscriptions.ListIdentityProvidersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *LicenseManagerUserSubscriptions) ListIdentityProvidersPages(input *ListIdentityProvidersInput, fn func(*ListIdentityProvidersOutput, bool) bool) error {
 	return c.ListIdentityProvidersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -477,14 +476,13 @@ const opListInstances = "ListInstances"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListInstancesRequest method.
+//	req, resp := client.ListInstancesRequest(params)
 //
-//    // Example sending a request using the ListInstancesRequest method.
-//    req, resp := client.ListInstancesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/ListInstances
 func (c *LicenseManagerUserSubscriptions) ListInstancesRequest(input *ListInstancesInput) (req *request.Request, output *ListInstancesOutput) {
@@ -521,27 +519,28 @@ func (c *LicenseManagerUserSubscriptions) ListInstancesRequest(input *ListInstan
 // API operation ListInstances for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   The request failed because a service quota is exceeded.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ServiceQuotaExceededException
+//     The request failed because a service quota is exceeded.
 //
-//   * ValidationException
-//   A parameter is not valid.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ThrottlingException
-//   The request was denied because of request throttling. Retry the request.
+//   - ValidationException
+//     A parameter is not valid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ThrottlingException
+//     The request was denied because of request throttling. Retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - InternalServerException
+//     An exception occurred with the service.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/ListInstances
 func (c *LicenseManagerUserSubscriptions) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, error) {
@@ -573,15 +572,14 @@ func (c *LicenseManagerUserSubscriptions) ListInstancesWithContext(ctx aws.Conte
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListInstances operation.
-//    pageNum := 0
-//    err := client.ListInstancesPages(params,
-//        func(page *licensemanagerusersubscriptions.ListInstancesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListInstances operation.
+//	pageNum := 0
+//	err := client.ListInstancesPages(params,
+//	    func(page *licensemanagerusersubscriptions.ListInstancesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *LicenseManagerUserSubscriptions) ListInstancesPages(input *ListInstancesInput, fn func(*ListInstancesOutput, bool) bool) error {
 	return c.ListInstancesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -633,14 +631,13 @@ const opListProductSubscriptions = "ListProductSubscriptions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListProductSubscriptionsRequest method.
+//	req, resp := client.ListProductSubscriptionsRequest(params)
 //
-//    // Example sending a request using the ListProductSubscriptionsRequest method.
-//    req, resp := client.ListProductSubscriptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/ListProductSubscriptions
 func (c *LicenseManagerUserSubscriptions) ListProductSubscriptionsRequest(input *ListProductSubscriptionsInput) (req *request.Request, output *ListProductSubscriptionsOutput) {
@@ -677,27 +674,28 @@ func (c *LicenseManagerUserSubscriptions) ListProductSubscriptionsRequest(input 
 // API operation ListProductSubscriptions for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   The request failed because a service quota is exceeded.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ServiceQuotaExceededException
+//     The request failed because a service quota is exceeded.
 //
-//   * ValidationException
-//   A parameter is not valid.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ThrottlingException
-//   The request was denied because of request throttling. Retry the request.
+//   - ValidationException
+//     A parameter is not valid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ThrottlingException
+//     The request was denied because of request throttling. Retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - InternalServerException
+//     An exception occurred with the service.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/ListProductSubscriptions
 func (c *LicenseManagerUserSubscriptions) ListProductSubscriptions(input *ListProductSubscriptionsInput) (*ListProductSubscriptionsOutput, error) {
@@ -729,15 +727,14 @@ func (c *LicenseManagerUserSubscriptions) ListProductSubscriptionsWithContext(ct
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListProductSubscriptions operation.
-//    pageNum := 0
-//    err := client.ListProductSubscriptionsPages(params,
-//        func(page *licensemanagerusersubscriptions.ListProductSubscriptionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListProductSubscriptions operation.
+//	pageNum := 0
+//	err := client.ListProductSubscriptionsPages(params,
+//	    func(page *licensemanagerusersubscriptions.ListProductSubscriptionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *LicenseManagerUserSubscriptions) ListProductSubscriptionsPages(input *ListProductSubscriptionsInput, fn func(*ListProductSubscriptionsOutput, bool) bool) error {
 	return c.ListProductSubscriptionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -789,14 +786,13 @@ const opListUserAssociations = "ListUserAssociations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListUserAssociationsRequest method.
+//	req, resp := client.ListUserAssociationsRequest(params)
 //
-//    // Example sending a request using the ListUserAssociationsRequest method.
-//    req, resp := client.ListUserAssociationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/ListUserAssociations
 func (c *LicenseManagerUserSubscriptions) ListUserAssociationsRequest(input *ListUserAssociationsInput) (req *request.Request, output *ListUserAssociationsOutput) {
@@ -833,27 +829,28 @@ func (c *LicenseManagerUserSubscriptions) ListUserAssociationsRequest(input *Lis
 // API operation ListUserAssociations for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   The request failed because a service quota is exceeded.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ServiceQuotaExceededException
+//     The request failed because a service quota is exceeded.
 //
-//   * ValidationException
-//   A parameter is not valid.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ThrottlingException
-//   The request was denied because of request throttling. Retry the request.
+//   - ValidationException
+//     A parameter is not valid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ThrottlingException
+//     The request was denied because of request throttling. Retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - InternalServerException
+//     An exception occurred with the service.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/ListUserAssociations
 func (c *LicenseManagerUserSubscriptions) ListUserAssociations(input *ListUserAssociationsInput) (*ListUserAssociationsOutput, error) {
@@ -885,15 +882,14 @@ func (c *LicenseManagerUserSubscriptions) ListUserAssociationsWithContext(ctx aw
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListUserAssociations operation.
-//    pageNum := 0
-//    err := client.ListUserAssociationsPages(params,
-//        func(page *licensemanagerusersubscriptions.ListUserAssociationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListUserAssociations operation.
+//	pageNum := 0
+//	err := client.ListUserAssociationsPages(params,
+//	    func(page *licensemanagerusersubscriptions.ListUserAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *LicenseManagerUserSubscriptions) ListUserAssociationsPages(input *ListUserAssociationsInput, fn func(*ListUserAssociationsOutput, bool) bool) error {
 	return c.ListUserAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -945,14 +941,13 @@ const opRegisterIdentityProvider = "RegisterIdentityProvider"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RegisterIdentityProviderRequest method.
+//	req, resp := client.RegisterIdentityProviderRequest(params)
 //
-//    // Example sending a request using the RegisterIdentityProviderRequest method.
-//    req, resp := client.RegisterIdentityProviderRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/RegisterIdentityProvider
 func (c *LicenseManagerUserSubscriptions) RegisterIdentityProviderRequest(input *RegisterIdentityProviderInput) (req *request.Request, output *RegisterIdentityProviderOutput) {
@@ -983,27 +978,28 @@ func (c *LicenseManagerUserSubscriptions) RegisterIdentityProviderRequest(input 
 // API operation RegisterIdentityProvider for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   The request failed because a service quota is exceeded.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ServiceQuotaExceededException
+//     The request failed because a service quota is exceeded.
 //
-//   * ValidationException
-//   A parameter is not valid.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ThrottlingException
-//   The request was denied because of request throttling. Retry the request.
+//   - ValidationException
+//     A parameter is not valid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ThrottlingException
+//     The request was denied because of request throttling. Retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - InternalServerException
+//     An exception occurred with the service.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/RegisterIdentityProvider
 func (c *LicenseManagerUserSubscriptions) RegisterIdentityProvider(input *RegisterIdentityProviderInput) (*RegisterIdentityProviderOutput, error) {
@@ -1043,14 +1039,13 @@ const opStartProductSubscription = "StartProductSubscription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartProductSubscriptionRequest method.
+//	req, resp := client.StartProductSubscriptionRequest(params)
 //
-//    // Example sending a request using the StartProductSubscriptionRequest method.
-//    req, resp := client.StartProductSubscriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/StartProductSubscription
 func (c *LicenseManagerUserSubscriptions) StartProductSubscriptionRequest(input *StartProductSubscriptionInput) (req *request.Request, output *StartProductSubscriptionOutput) {
@@ -1081,27 +1076,28 @@ func (c *LicenseManagerUserSubscriptions) StartProductSubscriptionRequest(input 
 // API operation StartProductSubscription for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   The request failed because a service quota is exceeded.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ServiceQuotaExceededException
+//     The request failed because a service quota is exceeded.
 //
-//   * ValidationException
-//   A parameter is not valid.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ThrottlingException
-//   The request was denied because of request throttling. Retry the request.
+//   - ValidationException
+//     A parameter is not valid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ThrottlingException
+//     The request was denied because of request throttling. Retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - InternalServerException
+//     An exception occurred with the service.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/StartProductSubscription
 func (c *LicenseManagerUserSubscriptions) StartProductSubscription(input *StartProductSubscriptionInput) (*StartProductSubscriptionOutput, error) {
@@ -1141,14 +1137,13 @@ const opStopProductSubscription = "StopProductSubscription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopProductSubscriptionRequest method.
+//	req, resp := client.StopProductSubscriptionRequest(params)
 //
-//    // Example sending a request using the StopProductSubscriptionRequest method.
-//    req, resp := client.StopProductSubscriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/StopProductSubscription
 func (c *LicenseManagerUserSubscriptions) StopProductSubscriptionRequest(input *StopProductSubscriptionInput) (req *request.Request, output *StopProductSubscriptionOutput) {
@@ -1179,27 +1174,28 @@ func (c *LicenseManagerUserSubscriptions) StopProductSubscriptionRequest(input *
 // API operation StopProductSubscription for usage and error information.
 //
 // Returned Error Types:
-//   * ServiceQuotaExceededException
-//   The request failed because a service quota is exceeded.
 //
-//   * ConflictException
-//   The request couldn't be completed because it conflicted with the current
-//   state of the resource.
+//   - ServiceQuotaExceededException
+//     The request failed because a service quota is exceeded.
 //
-//   * ValidationException
-//   A parameter is not valid.
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
 //
-//   * ThrottlingException
-//   The request was denied because of request throttling. Retry the request.
+//   - ValidationException
+//     A parameter is not valid.
 //
-//   * InternalServerException
-//   An exception occurred with the service.
+//   - ThrottlingException
+//     The request was denied because of request throttling. Retry the request.
 //
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
+//   - InternalServerException
+//     An exception occurred with the service.
 //
-//   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/StopProductSubscription
 func (c *LicenseManagerUserSubscriptions) StopProductSubscription(input *StopProductSubscriptionInput) (*StopProductSubscriptionOutput, error) {

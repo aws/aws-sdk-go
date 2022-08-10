@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // To get information about a bot
-//
 // This example shows how to get configuration information for a bot.
 func ExampleLexModelBuildingService_GetBot_shared00() {
 	svc := lexmodelbuildingservice.New(session.New())
@@ -62,7 +61,6 @@ func ExampleLexModelBuildingService_GetBot_shared00() {
 }
 
 // To get a list of bots
-//
 // This example shows how to get a list of all of the bots in your account.
 func ExampleLexModelBuildingService_GetBots_shared00() {
 	svc := lexmodelbuildingservice.New(session.New())
@@ -98,7 +96,6 @@ func ExampleLexModelBuildingService_GetBots_shared00() {
 }
 
 // To get a information about an intent
-//
 // This example shows how to get information about an intent.
 func ExampleLexModelBuildingService_GetIntent_shared00() {
 	svc := lexmodelbuildingservice.New(session.New())
@@ -134,7 +131,6 @@ func ExampleLexModelBuildingService_GetIntent_shared00() {
 }
 
 // To get a list of intents
-//
 // This example shows how to get a list of all of the intents in your account.
 func ExampleLexModelBuildingService_GetIntents_shared00() {
 	svc := lexmodelbuildingservice.New(session.New())
@@ -170,7 +166,6 @@ func ExampleLexModelBuildingService_GetIntents_shared00() {
 }
 
 // To get information about a slot type
-//
 // This example shows how to get information about a slot type.
 func ExampleLexModelBuildingService_GetSlotType_shared00() {
 	svc := lexmodelbuildingservice.New(session.New())
@@ -206,7 +201,6 @@ func ExampleLexModelBuildingService_GetSlotType_shared00() {
 }
 
 // To get a list of slot types
-//
 // This example shows how to get a list of all of the slot types in your account.
 func ExampleLexModelBuildingService_GetSlotTypes_shared00() {
 	svc := lexmodelbuildingservice.New(session.New())
@@ -242,7 +236,6 @@ func ExampleLexModelBuildingService_GetSlotTypes_shared00() {
 }
 
 // To create a bot
-//
 // This example shows how to create a bot for ordering pizzas.
 func ExampleLexModelBuildingService_PutBot_shared00() {
 	svc := lexmodelbuildingservice.New(session.New())
@@ -315,7 +308,6 @@ func ExampleLexModelBuildingService_PutBot_shared00() {
 }
 
 // To create an intent
-//
 // This example shows how to create an intent for ordering pizzas.
 func ExampleLexModelBuildingService_PutIntent_shared00() {
 	svc := lexmodelbuildingservice.New(session.New())
@@ -478,7 +470,6 @@ func ExampleLexModelBuildingService_PutIntent_shared00() {
 }
 
 // To Create a Slot Type
-//
 // This example shows how to create a slot type that describes pizza sauces.
 func ExampleLexModelBuildingService_PutSlotType_shared00() {
 	svc := lexmodelbuildingservice.New(session.New())

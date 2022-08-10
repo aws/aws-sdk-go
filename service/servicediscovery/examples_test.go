@@ -26,7 +26,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // CreateHttpNamespace example
-//
 // This example creates an HTTP namespace.
 func ExampleServiceDiscovery_CreateHttpNamespace_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -65,7 +64,6 @@ func ExampleServiceDiscovery_CreateHttpNamespace_shared00() {
 }
 
 // Example: Create private DNS namespace
-//
 // Example: Create private DNS namespace
 func ExampleServiceDiscovery_CreatePrivateDnsNamespace_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -104,7 +102,6 @@ func ExampleServiceDiscovery_CreatePrivateDnsNamespace_shared00() {
 }
 
 // CreatePublicDnsNamespace example
-//
 // This example creates a public namespace based on DNS.
 func ExampleServiceDiscovery_CreatePublicDnsNamespace_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -143,7 +140,6 @@ func ExampleServiceDiscovery_CreatePublicDnsNamespace_shared00() {
 }
 
 // Example: Create service
-//
 // Example: Create service
 func ExampleServiceDiscovery_CreateService_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -192,7 +188,6 @@ func ExampleServiceDiscovery_CreateService_shared00() {
 }
 
 // Example: Delete namespace
-//
 // Example: Delete namespace
 func ExampleServiceDiscovery_DeleteNamespace_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -227,7 +222,6 @@ func ExampleServiceDiscovery_DeleteNamespace_shared00() {
 }
 
 // Example: Delete service
-//
 // Example: Delete service
 func ExampleServiceDiscovery_DeleteService_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -260,7 +254,6 @@ func ExampleServiceDiscovery_DeleteService_shared00() {
 }
 
 // Example: Deregister a service instance
-//
 // Example: Deregister a service instance
 func ExampleServiceDiscovery_DeregisterInstance_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -298,7 +291,6 @@ func ExampleServiceDiscovery_DeregisterInstance_shared00() {
 }
 
 // Example: Discover registered instances
-//
 // Example: Discover registered instances
 func ExampleServiceDiscovery_DiscoverInstances_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -336,7 +328,6 @@ func ExampleServiceDiscovery_DiscoverInstances_shared00() {
 }
 
 // GetInstance example
-//
 // This example gets information about a specified instance.
 func ExampleServiceDiscovery_GetInstance_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -370,7 +361,6 @@ func ExampleServiceDiscovery_GetInstance_shared00() {
 }
 
 // GetInstancesHealthStatus example
-//
 // This example gets the current health status of one or more instances that are associate
 // with a specified service.
 func ExampleServiceDiscovery_GetInstancesHealthStatus_shared00() {
@@ -404,7 +394,6 @@ func ExampleServiceDiscovery_GetInstancesHealthStatus_shared00() {
 }
 
 // GetNamespace example
-//
 // This example gets information about a specified namespace.
 func ExampleServiceDiscovery_GetNamespace_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -435,7 +424,6 @@ func ExampleServiceDiscovery_GetNamespace_shared00() {
 }
 
 // Example: Get operation result
-//
 // Example: Get operation result
 func ExampleServiceDiscovery_GetOperation_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -466,7 +454,6 @@ func ExampleServiceDiscovery_GetOperation_shared00() {
 }
 
 // GetService Example
-//
 // This example gets the settings for a specified service.
 func ExampleServiceDiscovery_GetService_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -497,7 +484,6 @@ func ExampleServiceDiscovery_GetService_shared00() {
 }
 
 // Example: List service instances
-//
 // Example: List service instances
 func ExampleServiceDiscovery_ListInstances_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -528,7 +514,6 @@ func ExampleServiceDiscovery_ListInstances_shared00() {
 }
 
 // Example: List namespaces
-//
 // Example: List namespaces
 func ExampleServiceDiscovery_ListNamespaces_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -555,7 +540,6 @@ func ExampleServiceDiscovery_ListNamespaces_shared00() {
 }
 
 // ListOperations Example
-//
 // This example gets the operations that have a STATUS of either PENDING or SUCCESS.
 func ExampleServiceDiscovery_ListOperations_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -593,7 +577,6 @@ func ExampleServiceDiscovery_ListOperations_shared00() {
 }
 
 // Example: List services
-//
 // Example: List services
 func ExampleServiceDiscovery_ListServices_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -620,7 +603,6 @@ func ExampleServiceDiscovery_ListServices_shared00() {
 }
 
 // ListTagsForResource example
-//
 // This example lists the tags of a resource.
 func ExampleServiceDiscovery_ListTagsForResource_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -651,7 +633,6 @@ func ExampleServiceDiscovery_ListTagsForResource_shared00() {
 }
 
 // Example: Register Instance
-//
 // Example: Register Instance
 func ExampleServiceDiscovery_RegisterInstance_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -694,7 +675,6 @@ func ExampleServiceDiscovery_RegisterInstance_shared00() {
 }
 
 // TagResource example
-//
 // This example adds "Department" and "Project" tags to a resource.
 func ExampleServiceDiscovery_TagResource_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -737,7 +717,6 @@ func ExampleServiceDiscovery_TagResource_shared00() {
 }
 
 // UntagResource example
-//
 // This example removes the "Department" and "Project" tags from a resource.
 func ExampleServiceDiscovery_UntagResource_shared00() {
 	svc := servicediscovery.New(session.New())
@@ -772,7 +751,6 @@ func ExampleServiceDiscovery_UntagResource_shared00() {
 }
 
 // UpdateInstanceCustomHealthStatus Example
-//
 // This example submits a request to change the health status of an instance associated
 // with a service with a custom health check to HEALTHY.
 func ExampleServiceDiscovery_UpdateInstanceCustomHealthStatus_shared00() {
@@ -810,7 +788,6 @@ func ExampleServiceDiscovery_UpdateInstanceCustomHealthStatus_shared00() {
 }
 
 // UpdateService Example
-//
 // This example submits a request to replace the DnsConfig and HealthCheckConfig settings
 // of a specified service.
 func ExampleServiceDiscovery_UpdateService_shared00() {
