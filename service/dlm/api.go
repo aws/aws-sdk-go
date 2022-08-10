@@ -707,7 +707,7 @@ func (c *DLM) UpdateLifecyclePolicyWithContext(ctx aws.Context, input *UpdateLif
 	return out, req.Send()
 }
 
-// Specifies an action for an event-based policy.
+// [Event-based policies only] Specifies an action for an event-based policy.
 type Action struct {
 	_ struct{} `type:"structure"`
 
@@ -916,7 +916,8 @@ func (s *CreateLifecyclePolicyOutput) SetPolicyId(v string) *CreateLifecyclePoli
 	return s
 }
 
-// Specifies when to create snapshots of EBS volumes.
+// [Snapshot and AMI policies only] Specifies when the policy should create
+// snapshots or AMIs.
 //
 // You must specify either a Cron expression or an interval, interval unit,
 // and start time. You cannot specify both.
@@ -935,16 +936,15 @@ type CreateRule struct {
 	// The interval unit.
 	IntervalUnit *string `type:"string" enum:"IntervalUnitValues"`
 
-	// Specifies the destination for snapshots created by the policy. To create
-	// snapshots in the same Region as the source resource, specify CLOUD. To create
-	// snapshots on the same Outpost as the source resource, specify OUTPOST_LOCAL.
-	// If you omit this parameter, CLOUD is used by default.
+	// [Snapshot policies only] Specifies the destination for snapshots created
+	// by the policy. To create snapshots in the same Region as the source resource,
+	// specify CLOUD. To create snapshots on the same Outpost as the source resource,
+	// specify OUTPOST_LOCAL. If you omit this parameter, CLOUD is used by default.
 	//
 	// If the policy targets resources in an Amazon Web Services Region, then you
-	// must create snapshots in the same Region as the source resource.
-	//
-	// If the policy targets resources on an Outpost, then you can create snapshots
-	// on the same Outpost as the source resource, or in the Region of that Outpost.
+	// must create snapshots in the same Region as the source resource. If the policy
+	// targets resources on an Outpost, then you can create snapshots on the same
+	// Outpost as the source resource, or in the Region of that Outpost.
 	Location *string `type:"string" enum:"LocationValues"`
 
 	// The time, in UTC, to start the operation. The supported format is hh:mm.
@@ -1019,7 +1019,10 @@ func (s *CreateRule) SetTimes(v []*string) *CreateRule {
 	return s
 }
 
-// Specifies a rule for copying shared snapshots across Regions.
+// [Event-based policies only] Specifies a cross-Region copy action for event-based
+// policies.
+//
+// To specify a cross-Region copy rule for snapshot and AMI policies, use CrossRegionCopyRule.
 type CrossRegionCopyAction struct {
 	_ struct{} `type:"structure"`
 
@@ -1028,7 +1031,9 @@ type CrossRegionCopyAction struct {
 	// EncryptionConfiguration is a required field
 	EncryptionConfiguration *EncryptionConfiguration `type:"structure" required:"true"`
 
-	// Specifies the retention rule for cross-Region snapshot copies.
+	// Specifies a retention rule for cross-Region snapshot copies created by snapshot
+	// or event-based policies, or cross-Region AMI copies created by AMI policies.
+	// After the retention period expires, the cross-Region copy is deleted.
 	RetainRule *CrossRegionCopyRetainRule `type:"structure"`
 
 	// The target Region.
@@ -1099,8 +1104,8 @@ func (s *CrossRegionCopyAction) SetTarget(v string) *CrossRegionCopyAction {
 	return s
 }
 
-// Specifies an AMI deprecation rule for cross-Region AMI copies created by
-// a cross-Region copy rule.
+// [AMI policies only] Specifies an AMI deprecation rule for cross-Region AMI
+// copies created by an AMI policy.
 type CrossRegionCopyDeprecateRule struct {
 	_ struct{} `type:"structure"`
 
@@ -1110,7 +1115,8 @@ type CrossRegionCopyDeprecateRule struct {
 	// 520 weeks, or 3650 days.
 	Interval *int64 `min:"1" type:"integer"`
 
-	// The unit of time in which to measure the Interval.
+	// The unit of time in which to measure the Interval. For example, to deprecate
+	// a cross-Region AMI copy after 3 months, specify Interval=3 and IntervalUnit=MONTHS.
 	IntervalUnit *string `type:"string" enum:"RetentionIntervalUnitValues"`
 }
 
@@ -1157,15 +1163,18 @@ func (s *CrossRegionCopyDeprecateRule) SetIntervalUnit(v string) *CrossRegionCop
 	return s
 }
 
-// Specifies the retention rule for cross-Region snapshot copies.
+// Specifies a retention rule for cross-Region snapshot copies created by snapshot
+// or event-based policies, or cross-Region AMI copies created by AMI policies.
+// After the retention period expires, the cross-Region copy is deleted.
 type CrossRegionCopyRetainRule struct {
 	_ struct{} `type:"structure"`
 
-	// The amount of time to retain each snapshot. The maximum is 100 years. This
-	// is equivalent to 1200 months, 5200 weeks, or 36500 days.
+	// The amount of time to retain a cross-Region snapshot or AMI copy. The maximum
+	// is 100 years. This is equivalent to 1200 months, 5200 weeks, or 36500 days.
 	Interval *int64 `min:"1" type:"integer"`
 
-	// The unit of time for time-based retention.
+	// The unit of time for time-based retention. For example, to retain a cross-Region
+	// copy for 3 months, specify Interval=3 and IntervalUnit=MONTHS.
 	IntervalUnit *string `type:"string" enum:"RetentionIntervalUnitValues"`
 }
 
@@ -1212,7 +1221,10 @@ func (s *CrossRegionCopyRetainRule) SetIntervalUnit(v string) *CrossRegionCopyRe
 	return s
 }
 
-// Specifies a rule for cross-Region snapshot copies.
+// [Snapshot and AMI policies only] Specifies a cross-Region copy rule for snapshot
+// and AMI policies.
+//
+// To specify a cross-Region copy action for event-based polices, use CrossRegionCopyAction.
 type CrossRegionCopyRule struct {
 	_ struct{} `type:"structure"`
 
@@ -1222,10 +1234,11 @@ type CrossRegionCopyRule struct {
 	CmkArn *string `type:"string"`
 
 	// Indicates whether to copy all user-defined tags from the source snapshot
-	// to the cross-Region snapshot copy.
+	// or AMI to the cross-Region copy.
 	CopyTags *bool `type:"boolean"`
 
-	// The AMI deprecation rule for cross-Region AMI copies created by the rule.
+	// [AMI policies only] The AMI deprecation rule for cross-Region AMI copies
+	// created by the rule.
 	DeprecateRule *CrossRegionCopyDeprecateRule `type:"structure"`
 
 	// To encrypt a copy of an unencrypted snapshot if encryption by default is
@@ -1236,8 +1249,8 @@ type CrossRegionCopyRule struct {
 	// Encrypted is a required field
 	Encrypted *bool `type:"boolean" required:"true"`
 
-	// The retention rule that indicates how long snapshot copies are to be retained
-	// in the destination Region.
+	// The retention rule that indicates how long the cross-Region snapshot or AMI
+	// copies are to be retained in the destination Region.
 	RetainRule *CrossRegionCopyRetainRule `type:"structure"`
 
 	// The target Region or the Amazon Resource Name (ARN) of the target Outpost
@@ -1246,6 +1259,7 @@ type CrossRegionCopyRule struct {
 	// Use this parameter instead of TargetRegion. Do not specify both.
 	Target *string `type:"string"`
 
+	//
 	// Avoid using this parameter when creating new policies. Instead, use Target
 	// to specify a target Region or a target Outpost for snapshot copies.
 	//
@@ -1408,7 +1422,11 @@ func (s DeleteLifecyclePolicyOutput) GoString() string {
 	return s.String()
 }
 
-// Specifies an AMI deprecation rule for a schedule.
+// [AMI policies only] Specifies an AMI deprecation rule for AMIs created by
+// an AMI lifecycle policy.
+//
+// For age-based schedules, you must specify Interval and IntervalUnit. For
+// count-based schedules, you must specify Count.
 type DeprecateRule struct {
 	_ struct{} `type:"structure"`
 
@@ -1480,8 +1498,8 @@ func (s *DeprecateRule) SetIntervalUnit(v string) *DeprecateRule {
 	return s
 }
 
-// Specifies the encryption settings for shared snapshots that are copied across
-// Regions.
+// [Event-based policies only] Specifies the encryption settings for cross-Region
+// snapshot copies created by event-based policies.
 type EncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -1542,7 +1560,8 @@ func (s *EncryptionConfiguration) SetEncrypted(v bool) *EncryptionConfiguration 
 	return s
 }
 
-// Specifies an event that triggers an event-based policy.
+// [Event-based policies only] Specifies an event that activates an event-based
+// policy.
 type EventParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -1626,7 +1645,8 @@ func (s *EventParameters) SetSnapshotOwner(v []*string) *EventParameters {
 	return s
 }
 
-// Specifies an event that triggers an event-based policy.
+// [Event-based policies only] Specifies an event that activates an event-based
+// policy.
 type EventSource struct {
 	_ struct{} `type:"structure"`
 
@@ -1688,8 +1708,9 @@ func (s *EventSource) SetType(v string) *EventSource {
 	return s
 }
 
-// Specifies a rule for enabling fast snapshot restore. You can enable fast
-// snapshot restore based on either a count or a time interval.
+// [Snapshot policies only] Specifies a rule for enabling fast snapshot restore
+// for snapshots created by snaspshot policies. You can enable fast snapshot
+// restore based on either a count or a time interval.
 type FastRestoreRule struct {
 	_ struct{} `type:"structure"`
 
@@ -2112,7 +2133,8 @@ func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Detailed information about a lifecycle policy.
+// [All policy types] Detailed information about a snapshot, AMI, or event-based
+// lifecycle policy.
 type LifecyclePolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -2238,7 +2260,9 @@ type LifecyclePolicySummary struct {
 
 	// The type of policy. EBS_SNAPSHOT_MANAGEMENT indicates that the policy manages
 	// the lifecycle of Amazon EBS snapshots. IMAGE_MANAGEMENT indicates that the
-	// policy manages the lifecycle of EBS-backed AMIs.
+	// policy manages the lifecycle of EBS-backed AMIs. EVENT_BASED_POLICY indicates
+	// that the policy automates cross-account snapshot copies for snapshots that
+	// are shared with your account.
 	PolicyType *string `type:"string" enum:"PolicyTypeValues"`
 
 	// The activation state of the lifecycle policy.
@@ -2445,21 +2469,37 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Specifies optional parameters to add to a policy. The set of valid parameters
-// depends on the combination of policy type and resource type.
+// [Snapshot and AMI policies only] Specifies optional parameters for snapshot
+// and AMI policies. The set of valid parameters depends on the combination
+// of policy type and target resource type.
+//
+// If you choose to exclude boot volumes and you specify tags that consequently
+// exclude all of the additional data volumes attached to an instance, then
+// Amazon DLM will not create any snapshots for the affected instance, and it
+// will emit a SnapshotsCreateFailed Amazon CloudWatch metric. For more information,
+// see Monitor your policies using Amazon CloudWatch (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-dlm-cw-metrics.html).
 type Parameters struct {
 	_ struct{} `type:"structure"`
 
-	// [EBS Snapshot Management – Instance policies only] Indicates whether to
-	// exclude the root volume from snapshots created using CreateSnapshots (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSnapshots.html).
-	// The default is false.
+	// [Snapshot policies that target instances only] Indicates whether to exclude
+	// the root volume from multi-volume snapshot sets. The default is false. If
+	// you specify true, then the root volumes attached to targeted instances will
+	// be excluded from the multi-volume snapshot sets created by the policy.
 	ExcludeBootVolume *bool `type:"boolean"`
 
-	// Applies to AMI lifecycle policies only. Indicates whether targeted instances
-	// are rebooted when the lifecycle policy runs. true indicates that targeted
-	// instances are not rebooted when the policy runs. false indicates that target
-	// instances are rebooted when the policy runs. The default is true (instances
-	// are not rebooted).
+	// [Snapshot policies that target instances only] The tags used to identify
+	// data (non-root) volumes to exclude from multi-volume snapshot sets.
+	//
+	// If you create a snapshot lifecycle policy that targets instances and you
+	// specify tags for this parameter, then data volumes with the specified tags
+	// that are attached to targeted instances will be excluded from the multi-volume
+	// snapshot sets created by the policy.
+	ExcludeDataVolumeTags []*Tag `type:"list"`
+
+	// [AMI policies only] Indicates whether targeted instances are rebooted when
+	// the lifecycle policy runs. true indicates that targeted instances are not
+	// rebooted when the policy runs. false indicates that target instances are
+	// rebooted when the policy runs. The default is true (instances are not rebooted).
 	NoReboot *bool `type:"boolean"`
 }
 
@@ -2481,9 +2521,35 @@ func (s Parameters) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Parameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Parameters"}
+	if s.ExcludeDataVolumeTags != nil {
+		for i, v := range s.ExcludeDataVolumeTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExcludeDataVolumeTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetExcludeBootVolume sets the ExcludeBootVolume field's value.
 func (s *Parameters) SetExcludeBootVolume(v bool) *Parameters {
 	s.ExcludeBootVolume = &v
+	return s
+}
+
+// SetExcludeDataVolumeTags sets the ExcludeDataVolumeTags field's value.
+func (s *Parameters) SetExcludeDataVolumeTags(v []*Tag) *Parameters {
+	s.ExcludeDataVolumeTags = v
 	return s
 }
 
@@ -2493,68 +2559,59 @@ func (s *Parameters) SetNoReboot(v bool) *Parameters {
 	return s
 }
 
-// Specifies the configuration of a lifecycle policy.
+// [All policy types] Specifies the configuration of a lifecycle policy.
 type PolicyDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The actions to be performed when the event-based policy is triggered. You
-	// can specify only one action per policy.
-	//
-	// This parameter is required for event-based policies only. If you are creating
-	// a snapshot or AMI policy, omit this parameter.
+	// [Event-based policies only] The actions to be performed when the event-based
+	// policy is activated. You can specify only one action per policy.
 	Actions []*Action `min:"1" type:"list"`
 
-	// The event that triggers the event-based policy.
-	//
-	// This parameter is required for event-based policies only. If you are creating
-	// a snapshot or AMI policy, omit this parameter.
+	// [Event-based policies only] The event that activates the event-based policy.
 	EventSource *EventSource `type:"structure"`
 
-	// A set of optional parameters for snapshot and AMI lifecycle policies.
+	// [Snapshot and AMI policies only] A set of optional parameters for snapshot
+	// and AMI lifecycle policies.
 	//
-	// This parameter is required for snapshot and AMI policies only. If you are
-	// creating an event-based policy, omit this parameter.
+	// If you are modifying a policy that was created or previously modified using
+	// the Amazon Data Lifecycle Manager console, then you must include this parameter
+	// and specify either the default values or the new values that you require.
+	// You can't omit this parameter or set its values to null.
 	Parameters *Parameters `type:"structure"`
 
-	// The valid target resource types and actions a policy can manage. Specify
-	// EBS_SNAPSHOT_MANAGEMENT to create a lifecycle policy that manages the lifecycle
-	// of Amazon EBS snapshots. Specify IMAGE_MANAGEMENT to create a lifecycle policy
-	// that manages the lifecycle of EBS-backed AMIs. Specify EVENT_BASED_POLICY
-	// to create an event-based policy that performs specific actions when a defined
-	// event occurs in your Amazon Web Services account.
+	// [All policy types] The valid target resource types and actions a policy can
+	// manage. Specify EBS_SNAPSHOT_MANAGEMENT to create a lifecycle policy that
+	// manages the lifecycle of Amazon EBS snapshots. Specify IMAGE_MANAGEMENT to
+	// create a lifecycle policy that manages the lifecycle of EBS-backed AMIs.
+	// Specify EVENT_BASED_POLICY to create an event-based policy that performs
+	// specific actions when a defined event occurs in your Amazon Web Services
+	// account.
 	//
 	// The default is EBS_SNAPSHOT_MANAGEMENT.
 	PolicyType *string `type:"string" enum:"PolicyTypeValues"`
 
-	// The location of the resources to backup. If the source resources are located
-	// in an Amazon Web Services Region, specify CLOUD. If the source resources
-	// are located on an Outpost in your account, specify OUTPOST.
+	// [Snapshot and AMI policies only] The location of the resources to backup.
+	// If the source resources are located in an Amazon Web Services Region, specify
+	// CLOUD. If the source resources are located on an Outpost in your account,
+	// specify OUTPOST.
 	//
 	// If you specify OUTPOST, Amazon Data Lifecycle Manager backs up all resources
 	// of the specified type with matching target tags across all of the Outposts
 	// in your account.
 	ResourceLocations []*string `min:"1" type:"list" enum:"ResourceLocationValues"`
 
-	// The target resource type for snapshot and AMI lifecycle policies. Use VOLUME
-	// to create snapshots of individual volumes or use INSTANCE to create multi-volume
-	// snapshots from the volumes for an instance.
-	//
-	// This parameter is required for snapshot and AMI policies only. If you are
-	// creating an event-based policy, omit this parameter.
+	// [Snapshot policies only] The target resource type for snapshot and AMI lifecycle
+	// policies. Use VOLUME to create snapshots of individual volumes or use INSTANCE
+	// to create multi-volume snapshots from the volumes for an instance.
 	ResourceTypes []*string `min:"1" type:"list" enum:"ResourceTypeValues"`
 
-	// The schedules of policy-defined actions for snapshot and AMI lifecycle policies.
-	// A policy can have up to four schedules—one mandatory schedule and up to
-	// three optional schedules.
-	//
-	// This parameter is required for snapshot and AMI policies only. If you are
-	// creating an event-based policy, omit this parameter.
+	// [Snapshot and AMI policies only] The schedules of policy-defined actions
+	// for snapshot and AMI lifecycle policies. A policy can have up to four schedules—one
+	// mandatory schedule and up to three optional schedules.
 	Schedules []*Schedule `min:"1" type:"list"`
 
-	// The single tag that identifies targeted resources for this policy.
-	//
-	// This parameter is required for snapshot and AMI policies only. If you are
-	// creating an event-based policy, omit this parameter.
+	// [Snapshot and AMI policies only] The single tag that identifies targeted
+	// resources for this policy.
 	TargetTags []*Tag `min:"1" type:"list"`
 }
 
@@ -2607,6 +2664,11 @@ func (s *PolicyDetails) Validate() error {
 	if s.EventSource != nil {
 		if err := s.EventSource.Validate(); err != nil {
 			invalidParams.AddNested("EventSource", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Parameters != nil {
+		if err := s.Parameters.Validate(); err != nil {
+			invalidParams.AddNested("Parameters", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Schedules != nil {
@@ -2756,8 +2818,11 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies the retention rule for a lifecycle policy. You can retain snapshots
-// based on either a count or a time interval.
+// [Snapshot and AMI policies only] Specifies a retention rule for snapshots
+// created by snapshot policies or for AMIs created by AMI policies. You can
+// retain snapshots based on either a count or a time interval.
+//
+// You must specify either Count, or Interval and IntervalUnit.
 type RetainRule struct {
 	_ struct{} `type:"structure"`
 
@@ -2824,7 +2889,8 @@ func (s *RetainRule) SetIntervalUnit(v string) *RetainRule {
 	return s
 }
 
-// Specifies a backup schedule for a snapshot or AMI lifecycle policy.
+// [Snapshot and AMI policies only] Specifies a schedule for a snapshot or AMI
+// lifecycle policy.
 type Schedule struct {
 	_ struct{} `type:"structure"`
 
@@ -2835,37 +2901,38 @@ type Schedule struct {
 	// The creation rule.
 	CreateRule *CreateRule `type:"structure"`
 
-	// The rule for cross-Region snapshot copies.
+	// Specifies a rule for copying snapshots or AMIs across regions.
 	//
-	// You can only specify cross-Region copy rules for policies that create snapshots
-	// in a Region. If the policy creates snapshots on an Outpost, then you cannot
-	// copy the snapshots to a Region or to an Outpost. If the policy creates snapshots
-	// in a Region, then snapshots can be copied to up to three Regions or Outposts.
+	// You can't specify cross-Region copy rules for policies that create snapshots
+	// on an Outpost. If the policy creates snapshots in a Region, then snapshots
+	// can be copied to up to three Regions or Outposts.
 	CrossRegionCopyRules []*CrossRegionCopyRule `type:"list"`
 
-	// The AMI deprecation rule for the schedule.
+	// [AMI policies only] The AMI deprecation rule for the schedule.
 	DeprecateRule *DeprecateRule `type:"structure"`
 
-	// The rule for enabling fast snapshot restore.
+	// [Snapshot policies only] The rule for enabling fast snapshot restore.
 	FastRestoreRule *FastRestoreRule `type:"structure"`
 
 	// The name of the schedule.
 	Name *string `type:"string"`
 
-	// The retention rule.
+	// The retention rule for snapshots or AMIs created by the policy.
 	RetainRule *RetainRule `type:"structure"`
 
-	// The rule for sharing snapshots with other Amazon Web Services accounts.
+	// [Snapshot policies only] The rule for sharing snapshots with other Amazon
+	// Web Services accounts.
 	ShareRules []*ShareRule `type:"list"`
 
 	// The tags to apply to policy-created resources. These user-defined tags are
 	// in addition to the Amazon Web Services-added lifecycle tags.
 	TagsToAdd []*Tag `type:"list"`
 
-	// A collection of key/value pairs with values determined dynamically when the
-	// policy is executed. Keys may be any valid Amazon EC2 tag key. Values must
-	// be in one of the two following formats: $(instance-id) or $(timestamp). Variable
-	// tags are only valid for EBS Snapshot Management – Instance policies.
+	// [AMI policies and snapshot policies that target instances only] A collection
+	// of key/value pairs with values determined dynamically when the policy is
+	// executed. Keys may be any valid Amazon EC2 tag key. Values must be in one
+	// of the two following formats: $(instance-id) or $(timestamp). Variable tags
+	// are only valid for EBS Snapshot Management – Instance policies.
 	VariableTags []*Tag `type:"list"`
 }
 
@@ -3017,7 +3084,8 @@ func (s *Schedule) SetVariableTags(v []*Tag) *Schedule {
 	return s
 }
 
-// Specifies a rule for sharing snapshots across Amazon Web Services accounts.
+// [Snapshot policies only] Specifies a rule for sharing snapshots across Amazon
+// Web Services accounts.
 type ShareRule struct {
 	_ struct{} `type:"structure"`
 

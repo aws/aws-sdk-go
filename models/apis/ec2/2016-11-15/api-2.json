@@ -23843,7 +23843,11 @@
       "type":"structure",
       "members":{
         "InstanceId":{"shape":"InstanceId"},
-        "ExcludeBootVolume":{"shape":"Boolean"}
+        "ExcludeBootVolume":{"shape":"Boolean"},
+        "ExcludeDataVolumeIds":{
+          "shape":"VolumeIdStringList",
+          "locationName":"ExcludeDataVolumeId"
+        }
       }
     },
     "InstanceState":{

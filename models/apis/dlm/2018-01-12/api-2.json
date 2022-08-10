@@ -343,6 +343,12 @@
       "enum":["shareSnapshot"]
     },
     "ExcludeBootVolume":{"type":"boolean"},
+    "ExcludeDataVolumeTagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":50,
+      "min":0
+    },
     "ExecutionRoleArn":{
       "type":"string",
       "max":2048,
@@ -521,7 +527,8 @@
       "type":"structure",
       "members":{
         "ExcludeBootVolume":{"shape":"ExcludeBootVolume"},
-        "NoReboot":{"shape":"NoReboot"}
+        "NoReboot":{"shape":"NoReboot"},
+        "ExcludeDataVolumeTags":{"shape":"ExcludeDataVolumeTagList"}
       }
     },
     "PolicyArn":{
