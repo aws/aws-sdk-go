@@ -8873,7 +8873,7 @@
     "PythonScript":{"type":"string"},
     "PythonVersionString":{
       "type":"string",
-      "pattern":"^[2-3]$"
+      "pattern":"^([2-3]|3[.]9)$"
     },
     "QuerySchemaVersionMetadataInput":{
       "type":"structure",
