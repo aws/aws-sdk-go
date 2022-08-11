@@ -1,14 +1,14 @@
 Release v1.44.75 (2022-08-11)
 ===
 
-Release v1.44.74 (2022-08-11)
-===
-
 ### Service Client Updates
 * `service/backupstorage`: Adds new service
 * `service/glue`: Updates service API
   * Add support for Python 3.9 AWS Glue Python Shell jobs
 * `service/privatenetworks`: Adds new service
+
+Release v1.44.74 (2022-08-11)
+===
 
 ### SDK Enhancements
 * `service/dynamodb/dynamodbattribute`: Add String method to UnixTime
