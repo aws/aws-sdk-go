@@ -32,6 +32,23 @@
       ],
       "idempotent":true
     },
+    "CreateLoggingConfiguration":{
+      "name":"CreateLoggingConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/workspaces/{workspaceId}/logging",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateLoggingConfigurationRequest"},
+      "output":{"shape":"CreateLoggingConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "CreateRuleGroupsNamespace":{
       "name":"CreateRuleGroupsNamespace",
       "http":{
@@ -89,6 +106,23 @@
       ],
       "idempotent":true
     },
+    "DeleteLoggingConfiguration":{
+      "name":"DeleteLoggingConfiguration",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/workspaces/{workspaceId}/logging",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteLoggingConfigurationRequest"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "DeleteRuleGroupsNamespace":{
       "name":"DeleteRuleGroupsNamespace",
       "http":{
@@ -136,6 +170,22 @@
       "output":{"shape":"DescribeAlertManagerDefinitionResponse"},
       "errors":[
         {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeLoggingConfiguration":{
+      "name":"DescribeLoggingConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/workspaces/{workspaceId}/logging",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeLoggingConfigurationRequest"},
+      "output":{"shape":"DescribeLoggingConfigurationResponse"},
+      "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
@@ -301,6 +351,24 @@
       ],
       "idempotent":true
     },
+    "UpdateLoggingConfiguration":{
+      "name":"UpdateLoggingConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/workspaces/{workspaceId}/logging",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateLoggingConfigurationRequest"},
+      "output":{"shape":"UpdateLoggingConfigurationResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "UpdateWorkspaceAlias":{
       "name":"UpdateWorkspaceAlias",
       "http":{
@@ -413,6 +481,32 @@
         "status":{"shape":"AlertManagerDefinitionStatus"}
       }
     },
+    "CreateLoggingConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "logGroupArn",
+        "workspaceId"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        },
+        "logGroupArn":{"shape":"LogGroupArn"},
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "CreateLoggingConfigurationResponse":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"LoggingConfigurationStatus"}
+      }
+    },
     "CreateRuleGroupsNamespaceRequest":{
       "type":"structure",
       "required":[
@@ -491,6 +585,23 @@
         }
       }
     },
+    "DeleteLoggingConfigurationRequest":{
+      "type":"structure",
+      "required":["workspaceId"],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        },
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
     "DeleteRuleGroupsNamespaceRequest":{
       "type":"structure",
       "required":[
@@ -549,6 +660,24 @@
       "required":["alertManagerDefinition"],
       "members":{
         "alertManagerDefinition":{"shape":"AlertManagerDefinitionDescription"}
+      }
+    },
+    "DescribeLoggingConfigurationRequest":{
+      "type":"structure",
+      "required":["workspaceId"],
+      "members":{
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "DescribeLoggingConfigurationResponse":{
+      "type":"structure",
+      "required":["loggingConfiguration"],
+      "members":{
+        "loggingConfiguration":{"shape":"LoggingConfigurationMetadata"}
       }
     },
     "DescribeRuleGroupsNamespaceRequest":{
@@ -711,6 +840,46 @@
         "nextToken":{"shape":"PaginationToken"},
         "workspaces":{"shape":"WorkspaceSummaryList"}
       }
+    },
+    "LogGroupArn":{
+      "type":"string",
+      "pattern":"^arn:aws[a-z0-9-]*:logs:[a-z0-9-]+:\\d{12}:log-group:[A-Za-z0-9\\.\\-\\_\\#/]{1,512}\\:\\*$"
+    },
+    "LoggingConfigurationMetadata":{
+      "type":"structure",
+      "required":[
+        "createdAt",
+        "logGroupArn",
+        "modifiedAt",
+        "status",
+        "workspace"
+      ],
+      "members":{
+        "createdAt":{"shape":"Timestamp"},
+        "logGroupArn":{"shape":"LogGroupArn"},
+        "modifiedAt":{"shape":"Timestamp"},
+        "status":{"shape":"LoggingConfigurationStatus"},
+        "workspace":{"shape":"WorkspaceId"}
+      }
+    },
+    "LoggingConfigurationStatus":{
+      "type":"structure",
+      "required":["statusCode"],
+      "members":{
+        "statusCode":{"shape":"LoggingConfigurationStatusCode"},
+        "statusReason":{"shape":"String"}
+      }
+    },
+    "LoggingConfigurationStatusCode":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "UPDATING",
+        "DELETING",
+        "CREATION_FAILED",
+        "UPDATE_FAILED"
+      ]
     },
     "PaginationToken":{"type":"string"},
     "PutAlertManagerDefinitionRequest":{
@@ -974,6 +1143,32 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateLoggingConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "logGroupArn",
+        "workspaceId"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        },
+        "logGroupArn":{"shape":"LogGroupArn"},
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "UpdateLoggingConfigurationResponse":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"LoggingConfigurationStatus"}
       }
     },
     "UpdateWorkspaceAliasRequest":{
