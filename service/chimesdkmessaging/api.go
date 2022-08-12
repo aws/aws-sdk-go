@@ -187,11 +187,17 @@ func (c *ChimeSDKMessaging) BatchCreateChannelMembershipRequest(input *BatchCrea
 //   - BadRequestException
 //     The input parameters don't match the service's restrictions.
 //
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
 //   - ForbiddenException
 //     The client is permanently forbidden from making the request.
 //
 //   - ThrottledClientException
 //     The client exceeded its request rate limit.
+//
+//   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/BatchCreateChannelMembership
 func (c *ChimeSDKMessaging) BatchCreateChannelMembership(input *BatchCreateChannelMembershipInput) (*BatchCreateChannelMembershipOutput, error) {
@@ -732,6 +738,9 @@ func (c *ChimeSDKMessaging) CreateChannelMembershipRequest(input *CreateChannelM
 //
 //   - BadRequestException
 //     The input parameters don't match the service's restrictions.
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
 //
 //   - ForbiddenException
 //     The client is permanently forbidden from making the request.
@@ -4100,6 +4109,159 @@ func (c *ChimeSDKMessaging) ListChannelsModeratedByAppInstanceUserPagesWithConte
 	return p.Err()
 }
 
+const opListSubChannels = "ListSubChannels"
+
+// ListSubChannelsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSubChannels operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSubChannels for more information on using the ListSubChannels
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSubChannelsRequest method.
+//	req, resp := client.ListSubChannelsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/ListSubChannels
+func (c *ChimeSDKMessaging) ListSubChannelsRequest(input *ListSubChannelsInput) (req *request.Request, output *ListSubChannelsOutput) {
+	op := &request.Operation{
+		Name:       opListSubChannels,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels/{channelArn}/subchannels",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSubChannelsInput{}
+	}
+
+	output = &ListSubChannelsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSubChannels API operation for Amazon Chime SDK Messaging.
+//
+// Lists all the SubChannels in an elastic channel when given a channel ID.
+// Available only to the app instance admins and channel moderators of elastic
+// channels.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Messaging's
+// API operation ListSubChannels for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/ListSubChannels
+func (c *ChimeSDKMessaging) ListSubChannels(input *ListSubChannelsInput) (*ListSubChannelsOutput, error) {
+	req, out := c.ListSubChannelsRequest(input)
+	return out, req.Send()
+}
+
+// ListSubChannelsWithContext is the same as ListSubChannels with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSubChannels for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMessaging) ListSubChannelsWithContext(ctx aws.Context, input *ListSubChannelsInput, opts ...request.Option) (*ListSubChannelsOutput, error) {
+	req, out := c.ListSubChannelsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSubChannelsPages iterates over the pages of a ListSubChannels operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSubChannels method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListSubChannels operation.
+//	pageNum := 0
+//	err := client.ListSubChannelsPages(params,
+//	    func(page *chimesdkmessaging.ListSubChannelsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ChimeSDKMessaging) ListSubChannelsPages(input *ListSubChannelsInput, fn func(*ListSubChannelsOutput, bool) bool) error {
+	return c.ListSubChannelsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSubChannelsPagesWithContext same as ListSubChannelsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMessaging) ListSubChannelsPagesWithContext(ctx aws.Context, input *ListSubChannelsInput, fn func(*ListSubChannelsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSubChannelsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSubChannelsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSubChannelsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -5260,6 +5422,9 @@ type AppInstanceUserMembershipSummary struct {
 	// The time at which an AppInstanceUser last marked a channel as read.
 	ReadMarkerTimestamp *time.Time `type:"timestamp"`
 
+	// The ID of the SubChannel that the AppInstanceUser is a member of.
+	SubChannelId *string `min:"1" type:"string"`
+
 	// The type of ChannelMembership.
 	Type *string `type:"string" enum:"ChannelMembershipType"`
 }
@@ -5285,6 +5450,12 @@ func (s AppInstanceUserMembershipSummary) GoString() string {
 // SetReadMarkerTimestamp sets the ReadMarkerTimestamp field's value.
 func (s *AppInstanceUserMembershipSummary) SetReadMarkerTimestamp(v time.Time) *AppInstanceUserMembershipSummary {
 	s.ReadMarkerTimestamp = &v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *AppInstanceUserMembershipSummary) SetSubChannelId(v string) *AppInstanceUserMembershipSummary {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -5479,6 +5650,9 @@ type BatchChannelMemberships struct {
 	// The users successfully added to the request.
 	Members []*Identity `type:"list"`
 
+	// The ID of the SubChannel.
+	SubChannelId *string `min:"1" type:"string"`
+
 	// The membership types set for the channel users.
 	Type *string `type:"string" enum:"ChannelMembershipType"`
 }
@@ -5516,6 +5690,12 @@ func (s *BatchChannelMemberships) SetInvitedBy(v *Identity) *BatchChannelMembers
 // SetMembers sets the Members field's value.
 func (s *BatchChannelMemberships) SetMembers(v []*Identity) *BatchChannelMemberships {
 	s.Members = v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *BatchChannelMemberships) SetSubChannelId(v string) *BatchChannelMemberships {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -5593,6 +5773,12 @@ type BatchCreateChannelMembershipInput struct {
 	// MemberArns is a required field
 	MemberArns []*string `min:"1" type:"list" required:"true"`
 
+	// The ID of the SubChannel in the request.
+	//
+	// Only required when creating membership in a SubChannel for a moderator in
+	// an elastic channel.
+	SubChannelId *string `min:"1" type:"string"`
+
 	// The membership type of a user, DEFAULT or HIDDEN. Default members are always
 	// returned as part of ListChannelMemberships. Hidden members are only returned
 	// if the type filter in ListChannelMemberships equals HIDDEN. Otherwise hidden
@@ -5639,6 +5825,9 @@ func (s *BatchCreateChannelMembershipInput) Validate() error {
 	if s.MemberArns != nil && len(s.MemberArns) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MemberArns", 1))
 	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5661,6 +5850,12 @@ func (s *BatchCreateChannelMembershipInput) SetChimeBearer(v string) *BatchCreat
 // SetMemberArns sets the MemberArns field's value.
 func (s *BatchCreateChannelMembershipInput) SetMemberArns(v []*string) *BatchCreateChannelMembershipInput {
 	s.MemberArns = v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *BatchCreateChannelMembershipInput) SetSubChannelId(v string) *BatchCreateChannelMembershipInput {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -5726,6 +5921,10 @@ type Channel struct {
 
 	// The time at which the AppInstanceUser created the channel.
 	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The attributes required to configure and create an elastic channel. An elastic
+	// channel can support a maximum of 1-million members.
+	ElasticChannelConfiguration *ElasticChannelConfiguration `type:"structure"`
 
 	// The time at which a member sent the last message in the channel.
 	LastMessageTimestamp *time.Time `type:"timestamp"`
@@ -5793,6 +5992,12 @@ func (s *Channel) SetCreatedBy(v *Identity) *Channel {
 // SetCreatedTimestamp sets the CreatedTimestamp field's value.
 func (s *Channel) SetCreatedTimestamp(v time.Time) *Channel {
 	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetElasticChannelConfiguration sets the ElasticChannelConfiguration field's value.
+func (s *Channel) SetElasticChannelConfiguration(v *ElasticChannelConfiguration) *Channel {
+	s.ElasticChannelConfiguration = v
 	return s
 }
 
@@ -6275,6 +6480,9 @@ type ChannelMembership struct {
 	// The data of the channel member.
 	Member *Identity `type:"structure"`
 
+	// The ID of the SubChannel that a user belongs to.
+	SubChannelId *string `min:"1" type:"string"`
+
 	// The membership type set for the channel member.
 	Type *string `type:"string" enum:"ChannelMembershipType"`
 }
@@ -6324,6 +6532,12 @@ func (s *ChannelMembership) SetLastUpdatedTimestamp(v time.Time) *ChannelMembers
 // SetMember sets the Member field's value.
 func (s *ChannelMembership) SetMember(v *Identity) *ChannelMembership {
 	s.Member = v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *ChannelMembership) SetSubChannelId(v string) *ChannelMembership {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -6502,6 +6716,9 @@ type ChannelMessage struct {
 	// The status of the channel message.
 	Status *ChannelMessageStatusStructure `type:"structure"`
 
+	// The ID of the SubChannel.
+	SubChannelId *string `min:"1" type:"string"`
+
 	// The message type.
 	Type *string `type:"string" enum:"ChannelMessageType"`
 }
@@ -6596,6 +6813,12 @@ func (s *ChannelMessage) SetStatus(v *ChannelMessageStatusStructure) *ChannelMes
 	return s
 }
 
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *ChannelMessage) SetSubChannelId(v string) *ChannelMessage {
+	s.SubChannelId = &v
+	return s
+}
+
 // SetType sets the Type field's value.
 func (s *ChannelMessage) SetType(v string) *ChannelMessage {
 	s.Type = &v
@@ -6631,6 +6854,9 @@ type ChannelMessageCallback struct {
 
 	// The push notification configuration of the message.
 	PushNotification *PushNotificationConfiguration `type:"structure"`
+
+	// The ID of the SubChannel.
+	SubChannelId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -6662,6 +6888,9 @@ func (s *ChannelMessageCallback) Validate() error {
 	}
 	if s.MessageId != nil && len(*s.MessageId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MessageId", 1))
+	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6697,6 +6926,12 @@ func (s *ChannelMessageCallback) SetMetadata(v string) *ChannelMessageCallback {
 // SetPushNotification sets the PushNotification field's value.
 func (s *ChannelMessageCallback) SetPushNotification(v *PushNotificationConfiguration) *ChannelMessageCallback {
 	s.PushNotification = v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *ChannelMessageCallback) SetSubChannelId(v string) *ChannelMessageCallback {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -7469,6 +7704,10 @@ type CreateChannelInput struct {
 	// String and GoString methods.
 	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
 
+	// The attributes required to configure and create an elastic channel. An elastic
+	// channel can support a maximum of 1-million users, excluding moderators.
+	ElasticChannelConfiguration *ElasticChannelConfiguration `type:"structure"`
+
 	// The ARNs of the channel members in the request.
 	MemberArns []*string `min:"1" type:"list"`
 
@@ -7560,6 +7799,11 @@ func (s *CreateChannelInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.ElasticChannelConfiguration != nil {
+		if err := s.ElasticChannelConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ElasticChannelConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -7598,6 +7842,12 @@ func (s *CreateChannelInput) SetChimeBearer(v string) *CreateChannelInput {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *CreateChannelInput) SetClientRequestToken(v string) *CreateChannelInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetElasticChannelConfiguration sets the ElasticChannelConfiguration field's value.
+func (s *CreateChannelInput) SetElasticChannelConfiguration(v *ElasticChannelConfiguration) *CreateChannelInput {
+	s.ElasticChannelConfiguration = v
 	return s
 }
 
@@ -7661,6 +7911,12 @@ type CreateChannelMembershipInput struct {
 	// MemberArn is a required field
 	MemberArn *string `min:"5" type:"string" required:"true"`
 
+	// The ID of the SubChannel in the request.
+	//
+	// Only required when creating membership in a SubChannel for a moderator in
+	// an elastic channel.
+	SubChannelId *string `min:"1" type:"string"`
+
 	// The membership type of a user, DEFAULT or HIDDEN. Default members are always
 	// returned as part of ListChannelMemberships. Hidden members are only returned
 	// if the type filter in ListChannelMemberships equals HIDDEN. Otherwise hidden
@@ -7709,6 +7965,9 @@ func (s *CreateChannelMembershipInput) Validate() error {
 	if s.MemberArn != nil && len(*s.MemberArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("MemberArn", 5))
 	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
+	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
@@ -7737,6 +7996,12 @@ func (s *CreateChannelMembershipInput) SetMemberArn(v string) *CreateChannelMemb
 	return s
 }
 
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *CreateChannelMembershipInput) SetSubChannelId(v string) *CreateChannelMembershipInput {
+	s.SubChannelId = &v
+	return s
+}
+
 // SetType sets the Type field's value.
 func (s *CreateChannelMembershipInput) SetType(v string) *CreateChannelMembershipInput {
 	s.Type = &v
@@ -7751,6 +8016,9 @@ type CreateChannelMembershipOutput struct {
 
 	// The ARN and metadata of the member being added.
 	Member *Identity `type:"structure"`
+
+	// The ID of the SubChannel in the response.
+	SubChannelId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -7780,6 +8048,12 @@ func (s *CreateChannelMembershipOutput) SetChannelArn(v string) *CreateChannelMe
 // SetMember sets the Member field's value.
 func (s *CreateChannelMembershipOutput) SetMember(v *Identity) *CreateChannelMembershipOutput {
 	s.Member = v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *CreateChannelMembershipOutput) SetSubChannelId(v string) *CreateChannelMembershipOutput {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -8125,6 +8399,9 @@ type DeleteChannelInput struct {
 	//
 	// ChimeBearer is a required field
 	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string" required:"true"`
+
+	// The ID of the SubChannel in the request.
+	SubChannelId *string `location:"querystring" locationName:"sub-channel-id" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -8160,6 +8437,9 @@ func (s *DeleteChannelInput) Validate() error {
 	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
 	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8176,6 +8456,12 @@ func (s *DeleteChannelInput) SetChannelArn(v string) *DeleteChannelInput {
 // SetChimeBearer sets the ChimeBearer field's value.
 func (s *DeleteChannelInput) SetChimeBearer(v string) *DeleteChannelInput {
 	s.ChimeBearer = &v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *DeleteChannelInput) SetSubChannelId(v string) *DeleteChannelInput {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -8196,6 +8482,11 @@ type DeleteChannelMembershipInput struct {
 	//
 	// MemberArn is a required field
 	MemberArn *string `location:"uri" locationName:"memberArn" min:"5" type:"string" required:"true"`
+
+	// The ID of the SubChannel in the request.
+	//
+	// Only for use by moderators.
+	SubChannelId *string `location:"querystring" locationName:"sub-channel-id" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -8237,6 +8528,9 @@ func (s *DeleteChannelMembershipInput) Validate() error {
 	if s.MemberArn != nil && len(*s.MemberArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("MemberArn", 5))
 	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8259,6 +8553,12 @@ func (s *DeleteChannelMembershipInput) SetChimeBearer(v string) *DeleteChannelMe
 // SetMemberArn sets the MemberArn field's value.
 func (s *DeleteChannelMembershipInput) SetMemberArn(v string) *DeleteChannelMembershipInput {
 	s.MemberArn = &v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *DeleteChannelMembershipInput) SetSubChannelId(v string) *DeleteChannelMembershipInput {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -8301,6 +8601,12 @@ type DeleteChannelMessageInput struct {
 	//
 	// MessageId is a required field
 	MessageId *string `location:"uri" locationName:"messageId" min:"1" type:"string" required:"true"`
+
+	// The ID of the SubChannel in the request.
+	//
+	// Only required when deleting messages in a SubChannel that the user belongs
+	// to.
+	SubChannelId *string `location:"querystring" locationName:"sub-channel-id" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -8342,6 +8648,9 @@ func (s *DeleteChannelMessageInput) Validate() error {
 	if s.MessageId != nil && len(*s.MessageId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MessageId", 1))
 	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8364,6 +8673,12 @@ func (s *DeleteChannelMessageInput) SetChimeBearer(v string) *DeleteChannelMessa
 // SetMessageId sets the MessageId field's value.
 func (s *DeleteChannelMessageInput) SetMessageId(v string) *DeleteChannelMessageInput {
 	s.MessageId = &v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *DeleteChannelMessageInput) SetSubChannelId(v string) *DeleteChannelMessageInput {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -8907,6 +9222,12 @@ type DescribeChannelMembershipInput struct {
 	//
 	// MemberArn is a required field
 	MemberArn *string `location:"uri" locationName:"memberArn" min:"5" type:"string" required:"true"`
+
+	// The ID of the SubChannel in the request. The response contains an ElasticChannelConfiguration
+	// object.
+	//
+	// Only required to get a user’s SubChannel membership details.
+	SubChannelId *string `location:"querystring" locationName:"sub-channel-id" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -8948,6 +9269,9 @@ func (s *DescribeChannelMembershipInput) Validate() error {
 	if s.MemberArn != nil && len(*s.MemberArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("MemberArn", 5))
 	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8970,6 +9294,12 @@ func (s *DescribeChannelMembershipInput) SetChimeBearer(v string) *DescribeChann
 // SetMemberArn sets the MemberArn field's value.
 func (s *DescribeChannelMembershipInput) SetMemberArn(v string) *DescribeChannelMembershipInput {
 	s.MemberArn = &v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *DescribeChannelMembershipInput) SetSubChannelId(v string) *DescribeChannelMembershipInput {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -9368,6 +9698,93 @@ func (s DisassociateChannelFlowOutput) GoString() string {
 	return s.String()
 }
 
+// The attributes required to configure and create an elastic channel. An elastic
+// channel can support a maximum of 1-million members.
+type ElasticChannelConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of SubChannels that you want to allow in the elastic channel.
+	//
+	// MaximumSubChannels is a required field
+	MaximumSubChannels *int64 `min:"2" type:"integer" required:"true"`
+
+	// The minimum allowed percentage of TargetMembershipsPerSubChannel users. Ceil
+	// of the calculated value is used in balancing members among SubChannels of
+	// the elastic channel.
+	//
+	// MinimumMembershipPercentage is a required field
+	MinimumMembershipPercentage *int64 `min:"1" type:"integer" required:"true"`
+
+	// The maximum number of members allowed in a SubChannel.
+	//
+	// TargetMembershipsPerSubChannel is a required field
+	TargetMembershipsPerSubChannel *int64 `min:"2" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ElasticChannelConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ElasticChannelConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ElasticChannelConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ElasticChannelConfiguration"}
+	if s.MaximumSubChannels == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaximumSubChannels"))
+	}
+	if s.MaximumSubChannels != nil && *s.MaximumSubChannels < 2 {
+		invalidParams.Add(request.NewErrParamMinValue("MaximumSubChannels", 2))
+	}
+	if s.MinimumMembershipPercentage == nil {
+		invalidParams.Add(request.NewErrParamRequired("MinimumMembershipPercentage"))
+	}
+	if s.MinimumMembershipPercentage != nil && *s.MinimumMembershipPercentage < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MinimumMembershipPercentage", 1))
+	}
+	if s.TargetMembershipsPerSubChannel == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetMembershipsPerSubChannel"))
+	}
+	if s.TargetMembershipsPerSubChannel != nil && *s.TargetMembershipsPerSubChannel < 2 {
+		invalidParams.Add(request.NewErrParamMinValue("TargetMembershipsPerSubChannel", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaximumSubChannels sets the MaximumSubChannels field's value.
+func (s *ElasticChannelConfiguration) SetMaximumSubChannels(v int64) *ElasticChannelConfiguration {
+	s.MaximumSubChannels = &v
+	return s
+}
+
+// SetMinimumMembershipPercentage sets the MinimumMembershipPercentage field's value.
+func (s *ElasticChannelConfiguration) SetMinimumMembershipPercentage(v int64) *ElasticChannelConfiguration {
+	s.MinimumMembershipPercentage = &v
+	return s
+}
+
+// SetTargetMembershipsPerSubChannel sets the TargetMembershipsPerSubChannel field's value.
+func (s *ElasticChannelConfiguration) SetTargetMembershipsPerSubChannel(v int64) *ElasticChannelConfiguration {
+	s.TargetMembershipsPerSubChannel = &v
+	return s
+}
+
 // The client is permanently forbidden from making the request.
 type ForbiddenException struct {
 	_            struct{}                  `type:"structure"`
@@ -9583,6 +10000,12 @@ type GetChannelMessageInput struct {
 	//
 	// MessageId is a required field
 	MessageId *string `location:"uri" locationName:"messageId" min:"1" type:"string" required:"true"`
+
+	// The ID of the SubChannel in the request.
+	//
+	// Only required when getting messages in a SubChannel that the user belongs
+	// to.
+	SubChannelId *string `location:"querystring" locationName:"sub-channel-id" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -9624,6 +10047,9 @@ func (s *GetChannelMessageInput) Validate() error {
 	if s.MessageId != nil && len(*s.MessageId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MessageId", 1))
 	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9646,6 +10072,12 @@ func (s *GetChannelMessageInput) SetChimeBearer(v string) *GetChannelMessageInpu
 // SetMessageId sets the MessageId field's value.
 func (s *GetChannelMessageInput) SetMessageId(v string) *GetChannelMessageInput {
 	s.MessageId = &v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *GetChannelMessageInput) SetSubChannelId(v string) *GetChannelMessageInput {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -9697,6 +10129,12 @@ type GetChannelMessageStatusInput struct {
 	//
 	// MessageId is a required field
 	MessageId *string `location:"uri" locationName:"messageId" min:"1" type:"string" required:"true"`
+
+	// The ID of the SubChannel in the request.
+	//
+	// Only required when getting message status in a SubChannel that the user belongs
+	// to.
+	SubChannelId *string `location:"querystring" locationName:"sub-channel-id" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -9738,6 +10176,9 @@ func (s *GetChannelMessageStatusInput) Validate() error {
 	if s.MessageId != nil && len(*s.MessageId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MessageId", 1))
 	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9760,6 +10201,12 @@ func (s *GetChannelMessageStatusInput) SetChimeBearer(v string) *GetChannelMessa
 // SetMessageId sets the MessageId field's value.
 func (s *GetChannelMessageStatusInput) SetMessageId(v string) *GetChannelMessageStatusInput {
 	s.MessageId = &v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *GetChannelMessageStatusInput) SetSubChannelId(v string) *GetChannelMessageStatusInput {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -10374,6 +10821,12 @@ type ListChannelMembershipsInput struct {
 	// String and GoString methods.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
 
+	// The ID of the SubChannel in the request.
+	//
+	// Only required when listing a user's memberships in a particular sub-channel
+	// of an elastic channel.
+	SubChannelId *string `location:"querystring" locationName:"sub-channel-id" min:"1" type:"string"`
+
 	// The membership type of a user, DEFAULT or HIDDEN. Default members are returned
 	// as part of ListChannelMemberships if no type is specified. Hidden members
 	// are only returned if the type filter in ListChannelMemberships equals HIDDEN.
@@ -10416,6 +10869,9 @@ func (s *ListChannelMembershipsInput) Validate() error {
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10444,6 +10900,12 @@ func (s *ListChannelMembershipsInput) SetMaxResults(v int64) *ListChannelMembers
 // SetNextToken sets the NextToken field's value.
 func (s *ListChannelMembershipsInput) SetNextToken(v string) *ListChannelMembershipsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *ListChannelMembershipsInput) SetSubChannelId(v string) *ListChannelMembershipsInput {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -10539,6 +11001,12 @@ type ListChannelMessagesInput struct {
 	// The order in which you want messages sorted. Default is Descending, based
 	// on time created.
 	SortOrder *string `location:"querystring" locationName:"sort-order" type:"string" enum:"SortOrder"`
+
+	// The ID of the SubChannel in the request.
+	//
+	// Only required when listing the messages in a SubChannel that the user belongs
+	// to.
+	SubChannelId *string `location:"querystring" locationName:"sub-channel-id" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -10576,6 +11044,9 @@ func (s *ListChannelMessagesInput) Validate() error {
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -10626,6 +11097,12 @@ func (s *ListChannelMessagesInput) SetSortOrder(v string) *ListChannelMessagesIn
 	return s
 }
 
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *ListChannelMessagesInput) SetSubChannelId(v string) *ListChannelMessagesInput {
+	s.SubChannelId = &v
+	return s
+}
+
 type ListChannelMessagesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10641,6 +11118,9 @@ type ListChannelMessagesOutput struct {
 	// replaced with "sensitive" in string returned by ListChannelMessagesOutput's
 	// String and GoString methods.
 	NextToken *string `type:"string" sensitive:"true"`
+
+	// The ID of the SubChannel in the response.
+	SubChannelId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -10676,6 +11156,12 @@ func (s *ListChannelMessagesOutput) SetChannelMessages(v []*ChannelMessageSummar
 // SetNextToken sets the NextToken field's value.
 func (s *ListChannelMessagesOutput) SetNextToken(v string) *ListChannelMessagesOutput {
 	s.NextToken = &v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *ListChannelMessagesOutput) SetSubChannelId(v string) *ListChannelMessagesOutput {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -11218,6 +11704,152 @@ func (s *ListChannelsOutput) SetChannels(v []*ChannelSummary) *ListChannelsOutpu
 // SetNextToken sets the NextToken field's value.
 func (s *ListChannelsOutput) SetNextToken(v string) *ListChannelsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListSubChannelsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of elastic channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the user making the API call.
+	//
+	// ChimeBearer is a required field
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string" required:"true"`
+
+	// The maximum number of sub-channels that you want to return.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token passed by previous API calls until all requested sub-channels are
+	// returned.
+	//
+	// NextToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListSubChannelsInput's
+	// String and GoString methods.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSubChannelsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSubChannelsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSubChannelsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSubChannelsInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.ChimeBearer == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChimeBearer"))
+	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ListSubChannelsInput) SetChannelArn(v string) *ListSubChannelsInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *ListSubChannelsInput) SetChimeBearer(v string) *ListSubChannelsInput {
+	s.ChimeBearer = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSubChannelsInput) SetMaxResults(v int64) *ListSubChannelsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSubChannelsInput) SetNextToken(v string) *ListSubChannelsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSubChannelsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of elastic channel.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The token passed by previous API calls until all requested sub-channels are
+	// returned.
+	//
+	// NextToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListSubChannelsOutput's
+	// String and GoString methods.
+	NextToken *string `type:"string" sensitive:"true"`
+
+	// The information about each sub-channel.
+	SubChannels []*SubChannelSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSubChannelsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSubChannelsOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ListSubChannelsOutput) SetChannelArn(v string) *ListSubChannelsOutput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSubChannelsOutput) SetNextToken(v string) *ListSubChannelsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSubChannels sets the SubChannels field's value.
+func (s *ListSubChannelsOutput) SetSubChannels(v []*SubChannelSummary) *ListSubChannelsOutput {
+	s.SubChannels = v
 	return s
 }
 
@@ -11873,7 +12505,7 @@ func (s *PutChannelMembershipPreferencesOutput) SetPreferences(v *ChannelMembers
 }
 
 type RedactChannelMessageInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// The ARN of the channel containing the messages that you want to redact.
 	//
@@ -11889,6 +12521,9 @@ type RedactChannelMessageInput struct {
 	//
 	// MessageId is a required field
 	MessageId *string `location:"uri" locationName:"messageId" min:"1" type:"string" required:"true"`
+
+	// The ID of the SubChannel in the request.
+	SubChannelId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -11930,6 +12565,9 @@ func (s *RedactChannelMessageInput) Validate() error {
 	if s.MessageId != nil && len(*s.MessageId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MessageId", 1))
 	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -11955,6 +12593,12 @@ func (s *RedactChannelMessageInput) SetMessageId(v string) *RedactChannelMessage
 	return s
 }
 
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *RedactChannelMessageInput) SetSubChannelId(v string) *RedactChannelMessageInput {
+	s.SubChannelId = &v
+	return s
+}
+
 type RedactChannelMessageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11963,6 +12607,12 @@ type RedactChannelMessageOutput struct {
 
 	// The ID of the message being redacted.
 	MessageId *string `min:"1" type:"string"`
+
+	// The ID of the SubChannel in the response.
+	//
+	// Only required when redacting messages in a SubChannel that the user belongs
+	// to.
+	SubChannelId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -11992,6 +12642,12 @@ func (s *RedactChannelMessageOutput) SetChannelArn(v string) *RedactChannelMessa
 // SetMessageId sets the MessageId field's value.
 func (s *RedactChannelMessageOutput) SetMessageId(v string) *RedactChannelMessageOutput {
 	s.MessageId = &v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *RedactChannelMessageOutput) SetSubChannelId(v string) *RedactChannelMessageOutput {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -12340,6 +12996,9 @@ type SendChannelMessageInput struct {
 	// The push notification configuration of the message.
 	PushNotification *PushNotificationConfiguration `type:"structure"`
 
+	// The ID of the SubChannel in the request.
+	SubChannelId *string `min:"1" type:"string"`
+
 	// The type of message, STANDARD or CONTROL.
 	//
 	// Type is a required field
@@ -12390,6 +13049,9 @@ func (s *SendChannelMessageInput) Validate() error {
 	}
 	if s.Persistence == nil {
 		invalidParams.Add(request.NewErrParamRequired("Persistence"))
+	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
 	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
@@ -12449,6 +13111,12 @@ func (s *SendChannelMessageInput) SetPushNotification(v *PushNotificationConfigu
 	return s
 }
 
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *SendChannelMessageInput) SetSubChannelId(v string) *SendChannelMessageInput {
+	s.SubChannelId = &v
+	return s
+}
+
 // SetType sets the Type field's value.
 func (s *SendChannelMessageInput) SetType(v string) *SendChannelMessageInput {
 	s.Type = &v
@@ -12466,6 +13134,9 @@ type SendChannelMessageOutput struct {
 
 	// The status of the channel message.
 	Status *ChannelMessageStatusStructure `type:"structure"`
+
+	// The ID of the SubChannel in the response.
+	SubChannelId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -12501,6 +13172,12 @@ func (s *SendChannelMessageOutput) SetMessageId(v string) *SendChannelMessageOut
 // SetStatus sets the Status field's value.
 func (s *SendChannelMessageOutput) SetStatus(v *ChannelMessageStatusStructure) *SendChannelMessageOutput {
 	s.Status = v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *SendChannelMessageOutput) SetSubChannelId(v string) *SendChannelMessageOutput {
+	s.SubChannelId = &v
 	return s
 }
 
@@ -12634,6 +13311,47 @@ func (s *ServiceUnavailableException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Summary of the sub-channels associated with the elastic channel.
+type SubChannelSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The number of members in a SubChannel.
+	MembershipCount *int64 `type:"integer"`
+
+	// The unique ID of a SubChannel.
+	SubChannelId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubChannelSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubChannelSummary) GoString() string {
+	return s.String()
+}
+
+// SetMembershipCount sets the MembershipCount field's value.
+func (s *SubChannelSummary) SetMembershipCount(v int64) *SubChannelSummary {
+	s.MembershipCount = &v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *SubChannelSummary) SetSubChannelId(v string) *SubChannelSummary {
+	s.SubChannelId = &v
+	return s
 }
 
 // A tag object containing a key-value pair.
@@ -13292,6 +14010,12 @@ type UpdateChannelMessageInput struct {
 	// replaced with "sensitive" in string returned by UpdateChannelMessageInput's
 	// String and GoString methods.
 	Metadata *string `type:"string" sensitive:"true"`
+
+	// The ID of the SubChannel in the request.
+	//
+	// Only required when updating messages in a SubChannel that the user belongs
+	// to.
+	SubChannelId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -13333,6 +14057,9 @@ func (s *UpdateChannelMessageInput) Validate() error {
 	if s.MessageId != nil && len(*s.MessageId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MessageId", 1))
 	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -13370,6 +14097,12 @@ func (s *UpdateChannelMessageInput) SetMetadata(v string) *UpdateChannelMessageI
 	return s
 }
 
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *UpdateChannelMessageInput) SetSubChannelId(v string) *UpdateChannelMessageInput {
+	s.SubChannelId = &v
+	return s
+}
+
 type UpdateChannelMessageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13381,6 +14114,9 @@ type UpdateChannelMessageOutput struct {
 
 	// The status of the message update.
 	Status *ChannelMessageStatusStructure `type:"structure"`
+
+	// The ID of the SubChannel in the response.
+	SubChannelId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -13419,6 +14155,12 @@ func (s *UpdateChannelMessageOutput) SetStatus(v *ChannelMessageStatusStructure)
 	return s
 }
 
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *UpdateChannelMessageOutput) SetSubChannelId(v string) *UpdateChannelMessageOutput {
+	s.SubChannelId = &v
+	return s
+}
+
 type UpdateChannelOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13451,7 +14193,7 @@ func (s *UpdateChannelOutput) SetChannelArn(v string) *UpdateChannelOutput {
 }
 
 type UpdateChannelReadMarkerInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// The ARN of the channel.
 	//
@@ -13462,6 +14204,9 @@ type UpdateChannelReadMarkerInput struct {
 	//
 	// ChimeBearer is a required field
 	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string" required:"true"`
+
+	// The ID of the SubChannel in the request.
+	SubChannelId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -13497,6 +14242,9 @@ func (s *UpdateChannelReadMarkerInput) Validate() error {
 	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
 	}
+	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -13516,11 +14264,20 @@ func (s *UpdateChannelReadMarkerInput) SetChimeBearer(v string) *UpdateChannelRe
 	return s
 }
 
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *UpdateChannelReadMarkerInput) SetSubChannelId(v string) *UpdateChannelReadMarkerInput {
+	s.SubChannelId = &v
+	return s
+}
+
 type UpdateChannelReadMarkerOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the channel.
 	ChannelArn *string `min:"5" type:"string"`
+
+	// The ID of the SubChannel in the response.
+	SubChannelId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -13544,6 +14301,12 @@ func (s UpdateChannelReadMarkerOutput) GoString() string {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *UpdateChannelReadMarkerOutput) SetChannelArn(v string) *UpdateChannelReadMarkerOutput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetSubChannelId sets the SubChannelId field's value.
+func (s *UpdateChannelReadMarkerOutput) SetSubChannelId(v string) *UpdateChannelReadMarkerOutput {
+	s.SubChannelId = &v
 	return s
 }
 

@@ -2812,7 +2812,9 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Object specifying a stream’s audio configuration.
+// Object specifying a stream’s audio configuration, as set up by the broadcaster
+// (usually in an encoder). This is part of the IngestConfiguration object and
+// used for monitoring stream health.
 type AudioConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -3128,7 +3130,11 @@ type Channel struct {
 	// that recording is enabled. Default: "" (empty string, recording is disabled).
 	RecordingConfigurationArn *string `locationName:"recordingConfigurationArn" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value).
+	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
+	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Channel type, which determines the allowable resolution and bitrate. If you
@@ -3309,7 +3315,11 @@ type ChannelSummary struct {
 	// that recording is enabled. Default: "" (empty string, recording is disabled).
 	RecordingConfigurationArn *string `locationName:"recordingConfigurationArn" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value).
+	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
+	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -3452,7 +3462,11 @@ type CreateChannelInput struct {
 	// Recording-configuration ARN. Default: "" (empty string, recording is disabled).
 	RecordingConfigurationArn *string `locationName:"recordingConfigurationArn" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value).
+	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
+	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Channel type, which determines the allowable resolution and bitrate. If you
@@ -3577,7 +3591,11 @@ type CreateRecordingConfigurationInput struct {
 	// Recording-configuration name. The value does not need to be unique.
 	Name *string `locationName:"name" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value).
+	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
+	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// A complex type that allows you to enable/disable the recording of thumbnails
@@ -3690,7 +3708,11 @@ type CreateStreamKeyInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `locationName:"channelArn" min:"1" type:"string" required:"true"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value).
+	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
+	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -4604,6 +4626,10 @@ type ImportPlaybackKeyPairInput struct {
 	PublicKeyMaterial *string `locationName:"publicKeyMaterial" type:"string" required:"true"`
 
 	// Any tags provided with the request are added to the playback key pair tags.
+	// See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -4804,7 +4830,7 @@ type ListChannelsInput struct {
 	// Filters the channel list to match the specified recording-configuration ARN.
 	FilterByRecordingConfigurationArn *string `locationName:"filterByRecordingConfigurationArn" type:"string"`
 
-	// Maximum number of channels to return. Default: 50.
+	// Maximum number of channels to return. Default: 100.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The first channel to retrieve. This is used for pagination; see the nextToken
@@ -4913,11 +4939,12 @@ func (s *ListChannelsOutput) SetNextToken(v string) *ListChannelsOutput {
 type ListPlaybackKeyPairsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The first key pair to retrieve. This is used for pagination; see the nextToken
-	// response field. Default: 50.
+	// Maximum number of key pairs to return. Default: your service quota or 100,
+	// whichever is smaller.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// Maximum number of key pairs to return.
+	// The first key pair to retrieve. This is used for pagination; see the nextToken
+	// response field.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -5010,7 +5037,8 @@ func (s *ListPlaybackKeyPairsOutput) SetNextToken(v string) *ListPlaybackKeyPair
 type ListRecordingConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Maximum number of recording configurations to return. Default: 50.
+	// Maximum number of recording configurations to return. Default: your service
+	// quota or 100, whichever is smaller.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The first recording configuration to retrieve. This is used for pagination;
@@ -5112,7 +5140,7 @@ type ListStreamKeysInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `locationName:"channelArn" min:"1" type:"string" required:"true"`
 
-	// Maximum number of streamKeys to return. Default: 50.
+	// Maximum number of streamKeys to return. Default: 1.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The first stream key to retrieve. This is used for pagination; see the nextToken
@@ -5226,7 +5254,7 @@ type ListStreamSessionsInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `locationName:"channelArn" min:"1" type:"string" required:"true"`
 
-	// Maximum number of streams to return. Default: 50.
+	// Maximum number of streams to return. Default: 100.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The first stream to retrieve. This is used for pagination; see the nextToken
@@ -5338,7 +5366,7 @@ type ListStreamsInput struct {
 	// Filters the stream list to match the specified criterion.
 	FilterBy *StreamFilters `locationName:"filterBy" type:"structure"`
 
-	// Maximum number of streams to return. Default: 50.
+	// Maximum number of streams to return. Default: 100.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The first stream to retrieve. This is used for pagination; see the nextToken
@@ -5441,7 +5469,7 @@ func (s *ListStreamsOutput) SetStreams(v []*StreamSummary) *ListStreamsOutput {
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ARN of the resource to be retrieved.
+	// The ARN of the resource to be retrieved. The ARN must be URL-encoded.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
@@ -5597,7 +5625,11 @@ type PlaybackKeyPair struct {
 	// Playback-key-pair name. The value does not need to be unique.
 	Name *string `locationName:"name" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value).
+	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
+	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -5653,7 +5685,11 @@ type PlaybackKeyPairSummary struct {
 	// Playback-key-pair name. The value does not need to be unique.
 	Name *string `locationName:"name" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value).
+	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
+	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -5810,7 +5846,11 @@ type RecordingConfiguration struct {
 	// State is a required field
 	State *string `locationName:"state" type:"string" required:"true" enum:"RecordingConfigurationState"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value).
+	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
+	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// A complex type that allows you to enable/disable the recording of thumbnails
@@ -5897,7 +5937,11 @@ type RecordingConfigurationSummary struct {
 	// State is a required field
 	State *string `locationName:"state" type:"string" required:"true" enum:"RecordingConfigurationState"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value).
+	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
+	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -6217,8 +6261,8 @@ type Stream struct {
 	// stream.
 	PlaybackUrl *string `locationName:"playbackUrl" type:"string"`
 
-	// Time of the stream’s start. This is an ISO 8601 timestamp returned as a
-	// string.
+	// Time of the stream’s start. This is an ISO 8601 timestamp; note that this
+	// is returned as a string.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The stream’s state.
@@ -6299,7 +6343,8 @@ func (s *Stream) SetViewerCount(v int64) *Stream {
 type StreamEvent struct {
 	_ struct{} `type:"structure"`
 
-	// UTC ISO-8601 formatted timestamp of when the event occurred.
+	// Time when the event occurred. This is an ISO 8601 timestamp; note that this
+	// is returned as a string.
 	EventTime *time.Time `locationName:"eventTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// Name that identifies the stream event within a type.
@@ -6387,7 +6432,11 @@ type StreamKey struct {
 	// Channel ARN for the stream.
 	ChannelArn *string `locationName:"channelArn" min:"1" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value).
+	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
+	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Stream-key value.
@@ -6450,7 +6499,11 @@ type StreamKeySummary struct {
 	// Channel ARN for the stream.
 	ChannelArn *string `locationName:"channelArn" min:"1" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value).
+	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
+	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -6499,8 +6552,8 @@ type StreamSession struct {
 	// The properties of the channel at the time of going live.
 	Channel *Channel `locationName:"channel" type:"structure"`
 
-	// UTC ISO-8601 formatted timestamp of when the channel went offline. For live
-	// streams, this is NULL.
+	// Time when the channel went offline. This is an ISO 8601 timestamp; note that
+	// this is returned as a string. For live streams, this is NULL.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The properties of the incoming RTMP stream for the stream.
@@ -6509,7 +6562,8 @@ type StreamSession struct {
 	// The properties of recording the live stream.
 	RecordingConfiguration *RecordingConfiguration `locationName:"recordingConfiguration" type:"structure"`
 
-	// UTC ISO-8601 formatted timestamp of when the channel went live.
+	// Time when the channel went live. This is an ISO 8601 timestamp; note that
+	// this is returned as a string.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// Unique identifier for a live or previously live stream in the specified channel.
@@ -6585,14 +6639,15 @@ func (s *StreamSession) SetTruncatedEvents(v []*StreamEvent) *StreamSession {
 type StreamSessionSummary struct {
 	_ struct{} `type:"structure"`
 
-	// UTC ISO-8601 formatted timestamp of when the channel went offline. For live
-	// streams, this is NULL.
+	// Time when the channel went offline. This is an ISO 8601 timestamp; note that
+	// this is returned as a string. For live streams, this is NULL.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// If true, this stream encountered a quota breach or failure.
 	HasErrorEvent *bool `locationName:"hasErrorEvent" type:"boolean"`
 
-	// UTC ISO-8601 formatted timestamp of when the channel went live.
+	// Time when the channel went live. This is an ISO 8601 timestamp; note that
+	// this is returned as a string.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// Unique identifier for a live or previously live stream in the specified channel.
@@ -6651,8 +6706,8 @@ type StreamSummary struct {
 	// The stream’s health.
 	Health *string `locationName:"health" type:"string" enum:"StreamHealth"`
 
-	// Time of the stream’s start. This is an ISO 8601 timestamp returned as a
-	// string.
+	// Time of the stream’s start. This is an ISO 8601 timestamp; note that this
+	// is returned as a string.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The stream’s state.
@@ -6791,12 +6846,17 @@ func (s *StreamUnavailable) RequestID() string {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// ARN of the resource for which tags are to be added or updated.
+	// ARN of the resource for which tags are to be added or updated. The ARN must
+	// be URL-encoded.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
-	// Array of tags to be added or updated.
+	// Array of tags to be added or updated. See Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) for more
+	// information, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS has no service-specific constraints beyond
+	// what is documented there.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
@@ -7005,12 +7065,15 @@ func (s *ThumbnailConfiguration) SetTargetIntervalSeconds(v int64) *ThumbnailCon
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// ARN of the resource for which tags are to be removed.
+	// ARN of the resource for which tags are to be removed. The ARN must be URL-encoded.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
-	// Array of tags to be removed.
+	// Array of tags to be removed. See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
@@ -7296,7 +7359,9 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Object specifying a stream’s video configuration.
+// Object specifying a stream’s video configuration, as set up by the broadcaster
+// (usually in an encoder). This is part of the IngestConfiguration object and
+// used for monitoring stream health.
 type VideoConfiguration struct {
 	_ struct{} `type:"structure"`
 

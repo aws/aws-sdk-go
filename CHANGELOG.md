@@ -1,3 +1,14 @@
+Release v1.44.76 (2022-08-12)
+===
+
+### Service Client Updates
+* `service/amp`: Updates service API and documentation
+* `service/chime-sdk-messaging`: Updates service API, documentation, and paginators
+* `service/ivs`: Updates service API and documentation
+* `service/personalize-runtime`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds support for RDS Custom to DBInstanceClass in ModifyDBInstance
+
 Release v1.44.75 (2022-08-11)
 ===
 

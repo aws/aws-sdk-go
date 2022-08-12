@@ -914,17 +914,17 @@
     },
     "MaxChannelResults":{
       "type":"integer",
-      "max":50,
+      "max":100,
       "min":1
     },
     "MaxPlaybackKeyPairResults":{
       "type":"integer",
-      "max":50,
+      "max":100,
       "min":1
     },
     "MaxRecordingConfigurationResults":{
       "type":"integer",
-      "max":50,
+      "max":100,
       "min":1
     },
     "MaxStreamKeyResults":{
@@ -934,7 +934,7 @@
     },
     "MaxStreamResults":{
       "type":"integer",
-      "max":50,
+      "max":100,
       "min":1
     },
     "PaginationToken":{

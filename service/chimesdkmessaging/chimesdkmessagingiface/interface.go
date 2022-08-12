@@ -227,6 +227,13 @@ type ChimeSDKMessagingAPI interface {
 	ListChannelsModeratedByAppInstanceUserPages(*chimesdkmessaging.ListChannelsModeratedByAppInstanceUserInput, func(*chimesdkmessaging.ListChannelsModeratedByAppInstanceUserOutput, bool) bool) error
 	ListChannelsModeratedByAppInstanceUserPagesWithContext(aws.Context, *chimesdkmessaging.ListChannelsModeratedByAppInstanceUserInput, func(*chimesdkmessaging.ListChannelsModeratedByAppInstanceUserOutput, bool) bool, ...request.Option) error
 
+	ListSubChannels(*chimesdkmessaging.ListSubChannelsInput) (*chimesdkmessaging.ListSubChannelsOutput, error)
+	ListSubChannelsWithContext(aws.Context, *chimesdkmessaging.ListSubChannelsInput, ...request.Option) (*chimesdkmessaging.ListSubChannelsOutput, error)
+	ListSubChannelsRequest(*chimesdkmessaging.ListSubChannelsInput) (*request.Request, *chimesdkmessaging.ListSubChannelsOutput)
+
+	ListSubChannelsPages(*chimesdkmessaging.ListSubChannelsInput, func(*chimesdkmessaging.ListSubChannelsOutput, bool) bool) error
+	ListSubChannelsPagesWithContext(aws.Context, *chimesdkmessaging.ListSubChannelsInput, func(*chimesdkmessaging.ListSubChannelsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*chimesdkmessaging.ListTagsForResourceInput) (*chimesdkmessaging.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *chimesdkmessaging.ListTagsForResourceInput, ...request.Option) (*chimesdkmessaging.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*chimesdkmessaging.ListTagsForResourceInput) (*request.Request, *chimesdkmessaging.ListTagsForResourceOutput)

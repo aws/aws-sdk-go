@@ -37,6 +37,7 @@
     "ListChannels": "<p>Lists all Channels created under a single Chime App as a paginated list. You can specify filters to narrow results.</p> <p class=\"title\"> <b>Functionality &amp; restrictions</b> </p> <ul> <li> <p>Use privacy = <code>PUBLIC</code> to retrieve all public channels in the account.</p> </li> <li> <p>Only an <code>AppInstanceAdmin</code> can set privacy = <code>PRIVATE</code> to list the private channels in an account.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannelsAssociatedWithChannelFlow": "<p>Lists all channels associated with a specified channel flow. You can associate a channel flow with multiple channels, but you can only associate a channel with one channel flow. This is a developer API.</p>",
     "ListChannelsModeratedByAppInstanceUser": "<p>A list of the channels moderated by an <code>AppInstanceUser</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListSubChannels": "<p>Lists all the SubChannels in an elastic channel when given a channel ID. Available only to the app instance admins and channel moderators of elastic channels.</p>",
     "ListTagsForResource": "<p>Lists the tags applied to an Amazon Chime SDK messaging resource.</p>",
     "PutChannelMembershipPreferences": "<p>Sets the membership preferences of an <code>AppInstanceUser</code> for the specified channel. The <code>AppInstanceUser</code> must be a member of the channel. Only the <code>AppInstanceUser</code> who owns the membership can set preferences. Users in the <code>AppInstanceAdmin</code> and channel moderator roles can't set preferences for other users. Banned users can't set membership preferences for the channel from which they are banned.</p>",
     "RedactChannelMessage": "<p>Redacts message content, but not metadata. The message exists in the back end, but the action returns null content, and the state shows as redacted.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
@@ -471,6 +472,9 @@
         "ListChannelsModeratedByAppInstanceUserRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "ListChannelsRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
         "ListChannelsRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "ListSubChannelsRequest$ChannelArn": "<p>The ARN of elastic channel.</p>",
+        "ListSubChannelsRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user making the API call.</p>",
+        "ListSubChannelsResponse$ChannelArn": "<p>The ARN of elastic channel.</p>",
         "ListTagsForResourceRequest$ResourceARN": "<p>The ARN of the resource.</p>",
         "MemberArns$member": null,
         "PutChannelMembershipPreferencesRequest$ChannelArn": "<p>The ARN of the channel.</p>",
@@ -673,6 +677,13 @@
     "DisassociateChannelFlowRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "ElasticChannelConfiguration": {
+      "base": "<p>The attributes required to configure and create an elastic channel. An elastic channel can support a maximum of 1-million members.</p>",
+      "refs": {
+        "Channel$ElasticChannelConfiguration": "<p>The attributes required to configure and create an elastic channel. An elastic channel can support a maximum of 1-million members.</p>",
+        "CreateChannelRequest$ElasticChannelConfiguration": "<p>The attributes required to configure and create an elastic channel. An elastic channel can support a maximum of 1-million users, excluding moderators.</p>"
       }
     },
     "ErrorCode": {
@@ -879,6 +890,16 @@
       "refs": {
       }
     },
+    "ListSubChannelsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSubChannelsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -901,7 +922,14 @@
         "ListChannelsAssociatedWithChannelFlowRequest$MaxResults": "<p>The maximum number of channels that you want to return.</p>",
         "ListChannelsModeratedByAppInstanceUserRequest$MaxResults": "<p>The maximum number of channels in the request.</p>",
         "ListChannelsRequest$MaxResults": "<p>The maximum number of channels that you want to return.</p>",
+        "ListSubChannelsRequest$MaxResults": "<p>The maximum number of sub-channels that you want to return.</p>",
         "SearchChannelsRequest$MaxResults": "<p>The maximum number of channels that you want returned.</p>"
+      }
+    },
+    "MaximumSubChannels": {
+      "base": null,
+      "refs": {
+        "ElasticChannelConfiguration$MaximumSubChannels": "<p>The maximum number of SubChannels that you want to allow in the elastic channel.</p>"
       }
     },
     "MemberArns": {
@@ -914,6 +942,12 @@
       "base": null,
       "refs": {
         "BatchChannelMemberships$Members": "<p>The users successfully added to the request.</p>"
+      }
+    },
+    "MembershipCount": {
+      "base": null,
+      "refs": {
+        "SubChannelSummary$MembershipCount": "<p>The number of members in a SubChannel.</p>"
       }
     },
     "MessageAttributeMap": {
@@ -986,6 +1020,12 @@
         "UpdateChannelRequest$Metadata": "<p>The metadata for the update request.</p>"
       }
     },
+    "MinimumMembershipPercentage": {
+      "base": null,
+      "refs": {
+        "ElasticChannelConfiguration$MinimumMembershipPercentage": "<p>The minimum allowed percentage of TargetMembershipsPerSubChannel users. Ceil of the calculated value is used in balancing members among SubChannels of the elastic channel.</p>"
+      }
+    },
     "NextToken": {
       "base": null,
       "refs": {
@@ -1007,6 +1047,8 @@
         "ListChannelsModeratedByAppInstanceUserResponse$NextToken": "<p>The token returned from previous API requests until the number of channels moderated by the user is reached.</p>",
         "ListChannelsRequest$NextToken": "<p>The token passed by previous API calls until all requested channels are returned.</p>",
         "ListChannelsResponse$NextToken": "<p>The token returned from previous API requests until the number of channels is reached.</p>",
+        "ListSubChannelsRequest$NextToken": "<p>The token passed by previous API calls until all requested sub-channels are returned.</p>",
+        "ListSubChannelsResponse$NextToken": "<p>The token passed by previous API calls until all requested sub-channels are returned.</p>",
         "SearchChannelsRequest$NextToken": "<p>The token returned from previous API requests until the number of channels is reached.</p>",
         "SearchChannelsResponse$NextToken": "<p>The token returned from previous API responses until the number of channels is reached.</p>"
       }
@@ -1222,6 +1264,49 @@
         "UnauthorizedClientException$Message": null
       }
     },
+    "SubChannelId": {
+      "base": null,
+      "refs": {
+        "AppInstanceUserMembershipSummary$SubChannelId": "<p>The ID of the SubChannel that the <code>AppInstanceUser</code> is a member of.</p>",
+        "BatchChannelMemberships$SubChannelId": "<p>The ID of the SubChannel.</p>",
+        "BatchCreateChannelMembershipRequest$SubChannelId": "<p>The ID of the SubChannel in the request. </p> <note> <p>Only required when creating membership in a SubChannel for a moderator in an elastic channel.</p> </note>",
+        "ChannelMembership$SubChannelId": "<p>The ID of the SubChannel that a user belongs to.</p>",
+        "ChannelMessage$SubChannelId": "<p>The ID of the SubChannel.</p>",
+        "ChannelMessageCallback$SubChannelId": "<p>The ID of the SubChannel.</p>",
+        "CreateChannelMembershipRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p> <note> <p>Only required when creating membership in a SubChannel for a moderator in an elastic channel.</p> </note>",
+        "CreateChannelMembershipResponse$SubChannelId": "<p>The ID of the SubChannel in the response.</p>",
+        "DeleteChannelMembershipRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p> <note> <p>Only for use by moderators.</p> </note>",
+        "DeleteChannelMessageRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p> <note> <p>Only required when deleting messages in a SubChannel that the user belongs to.</p> </note>",
+        "DeleteChannelRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p>",
+        "DescribeChannelMembershipRequest$SubChannelId": "<p>The ID of the SubChannel in the request. The response contains an <code>ElasticChannelConfiguration</code> object.</p> <note> <p>Only required to get a user’s SubChannel membership details.</p> </note>",
+        "GetChannelMessageRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p> <note> <p>Only required when getting messages in a SubChannel that the user belongs to.</p> </note>",
+        "GetChannelMessageStatusRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p> <note> <p>Only required when getting message status in a SubChannel that the user belongs to.</p> </note>",
+        "ListChannelMembershipsRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p> <note> <p>Only required when listing a user's memberships in a particular sub-channel of an elastic channel.</p> </note>",
+        "ListChannelMessagesRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p> <note> <p>Only required when listing the messages in a SubChannel that the user belongs to.</p> </note>",
+        "ListChannelMessagesResponse$SubChannelId": "<p>The ID of the SubChannel in the response.</p>",
+        "RedactChannelMessageRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p>",
+        "RedactChannelMessageResponse$SubChannelId": "<p>The ID of the SubChannel in the response.</p> <note> <p>Only required when redacting messages in a SubChannel that the user belongs to.</p> </note>",
+        "SendChannelMessageRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p>",
+        "SendChannelMessageResponse$SubChannelId": "<p>The ID of the SubChannel in the response.</p>",
+        "SubChannelSummary$SubChannelId": "<p>The unique ID of a SubChannel.</p>",
+        "UpdateChannelMessageRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p> <note> <p>Only required when updating messages in a SubChannel that the user belongs to.</p> </note>",
+        "UpdateChannelMessageResponse$SubChannelId": "<p>The ID of the SubChannel in the response.</p>",
+        "UpdateChannelReadMarkerRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p>",
+        "UpdateChannelReadMarkerResponse$SubChannelId": "<p>The ID of the SubChannel in the response.</p>"
+      }
+    },
+    "SubChannelSummary": {
+      "base": "<p>Summary of the sub-channels associated with the elastic channel.</p>",
+      "refs": {
+        "SubChannelSummaryList$member": null
+      }
+    },
+    "SubChannelSummaryList": {
+      "base": null,
+      "refs": {
+        "ListSubChannelsResponse$SubChannels": "<p>The information about each sub-channel.</p>"
+      }
+    },
     "Tag": {
       "base": "<p>A tag object containing a key-value pair.</p>",
       "refs": {
@@ -1259,6 +1344,12 @@
       "base": null,
       "refs": {
         "Tag$Value": "<p>The value in a tag.</p>"
+      }
+    },
+    "TargetMembershipsPerSubChannel": {
+      "base": null,
+      "refs": {
+        "ElasticChannelConfiguration$TargetMembershipsPerSubChannel": "<p>The maximum number of members allowed in a SubChannel.</p>"
       }
     },
     "ThrottledClientException": {

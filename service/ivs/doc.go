@@ -56,7 +56,9 @@
 // A tag comprises a key and a value, both set by you. For example, you might
 // set a tag as topic:nature to label a particular video category. See Tagging
 // Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-// for more information, including restrictions that apply to tags.
+// for more information, including restrictions that apply to tags and "Tag
+// naming limits and requirements"; Amazon IVS has no service-specific constraints
+// beyond what is documented there.
 //
 // Tags can help you identify and organize your Amazon Web Services resources.
 // For example, you can use the same tag for different resources to indicate
@@ -76,8 +78,9 @@
 //   - Authentication is about verifying identity. You need to be authenticated
 //     to sign Amazon IVS API requests.
 //
-//   - Authorization is about granting permissions. You need to be authorized
-//     to view Amazon IVS private channels (https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html).
+//   - Authorization is about granting permissions. Your IAM roles need to
+//     have permissions for Amazon IVS API requests. In addition, authorization
+//     is needed to view Amazon IVS private channels (https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html).
 //     (Private channels are channels that are enabled for "playback authorization.")
 //
 // # Authentication
