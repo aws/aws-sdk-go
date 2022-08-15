@@ -1,3 +1,14 @@
+Release v1.44.77 (2022-08-15)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API and documentation
+  * Adds Http 3 support to distributions
+* `service/identitystore`: Updates service documentation
+* `service/sso`: Updates service documentation
+  * Documentation updates to reflect service rename - AWS IAM Identity Center (successor to AWS Single Sign-On)
+* `service/wisdom`: Updates service API and documentation
+
 Release v1.44.76 (2022-08-12)
 ===
 

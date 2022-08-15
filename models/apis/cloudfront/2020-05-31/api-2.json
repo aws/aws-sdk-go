@@ -4085,7 +4085,9 @@
       "type":"string",
       "enum":[
         "http1.1",
-        "http2"
+        "http2",
+        "http3",
+        "http2and3"
       ]
     },
     "ICPRecordalStatus":{
