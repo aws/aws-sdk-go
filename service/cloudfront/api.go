@@ -15664,17 +15664,20 @@ type DistributionConfig struct {
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 
-	// (Optional) Specify the maximum HTTP version that you want viewers to use
+	// (Optional) Specify the maximum HTTP version(s) that you want viewers to use
 	// to communicate with CloudFront. The default value for new web distributions
 	// is http2. Viewers that don't support HTTP/2 automatically use an earlier
 	// HTTP version.
 	//
-	// For viewers and CloudFront to use HTTP/2, viewers must support TLS 1.2 or
-	// later, and must support Server Name Identification (SNI).
+	// For viewers and CloudFront to use HTTP/2, viewers must support TLSv1.2 or
+	// later, and must support Server Name Indication (SNI).
 	//
-	// In general, configuring CloudFront to communicate with viewers using HTTP/2
-	// reduces latency. You can improve performance by optimizing for HTTP/2. For
-	// more information, do an Internet search for "http/2 optimization."
+	// For viewers and CloudFront to use HTTP/3, viewers must support TLSv1.3 and
+	// Server Name Indication (SNI). CloudFront supports HTTP/3 connection migration
+	// to allow the viewer to switch networks without losing connection. For more
+	// information about connection migration, see Connection Migration (https://www.rfc-editor.org/rfc/rfc9000.html#name-connection-migration)
+	// at RFC 9000. For more information about supported TLSv1.3 ciphers, see Supported
+	// protocols and ciphers between viewers and CloudFront (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/secure-connections-supported-viewer-protocols-ciphers.html).
 	HttpVersion *string `type:"string" enum:"HttpVersion"`
 
 	// If you want CloudFront to respond to IPv6 DNS requests with an IPv6 address
@@ -31120,6 +31123,12 @@ const (
 
 	// HttpVersionHttp2 is a HttpVersion enum value
 	HttpVersionHttp2 = "http2"
+
+	// HttpVersionHttp3 is a HttpVersion enum value
+	HttpVersionHttp3 = "http3"
+
+	// HttpVersionHttp2and3 is a HttpVersion enum value
+	HttpVersionHttp2and3 = "http2and3"
 )
 
 // HttpVersion_Values returns all elements of the HttpVersion enum
@@ -31127,6 +31136,8 @@ func HttpVersion_Values() []string {
 	return []string{
 		HttpVersionHttp11,
 		HttpVersionHttp2,
+		HttpVersionHttp3,
+		HttpVersionHttp2and3,
 	}
 }
 

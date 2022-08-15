@@ -355,6 +355,22 @@
       ],
       "idempotent":true
     },
+    "PutFeedback":{
+      "name":"PutFeedback",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/assistants/{assistantId}/feedback",
+        "responseCode":200
+      },
+      "input":{"shape":"PutFeedbackRequest"},
+      "output":{"shape":"PutFeedbackResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "QueryAssistant":{
       "name":"QueryAssistant",
       "http":{
@@ -999,6 +1015,13 @@
         "text":{"shape":"SensitiveString"}
       }
     },
+    "FeedbackData":{
+      "type":"structure",
+      "required":["relevance"],
+      "members":{
+        "relevance":{"shape":"Relevance"}
+      }
+    },
     "Filter":{
       "type":"structure",
       "required":[
@@ -1492,6 +1515,42 @@
       },
       "exception":true
     },
+    "PutFeedbackRequest":{
+      "type":"structure",
+      "required":[
+        "assistantId",
+        "feedback",
+        "targetId",
+        "targetType"
+      ],
+      "members":{
+        "assistantId":{
+          "shape":"UuidOrArn",
+          "location":"uri",
+          "locationName":"assistantId"
+        },
+        "feedback":{"shape":"FeedbackData"},
+        "targetId":{"shape":"String"},
+        "targetType":{"shape":"TargetType"}
+      }
+    },
+    "PutFeedbackResponse":{
+      "type":"structure",
+      "required":[
+        "assistantArn",
+        "assistantId",
+        "feedback",
+        "targetId",
+        "targetType"
+      ],
+      "members":{
+        "assistantArn":{"shape":"UuidOrArn"},
+        "assistantId":{"shape":"Uuid"},
+        "feedback":{"shape":"FeedbackData"},
+        "targetId":{"shape":"Uuid"},
+        "targetType":{"shape":"TargetType"}
+      }
+    },
     "QueryAssistantRequest":{
       "type":"structure",
       "required":[
@@ -1596,6 +1655,13 @@
     "RecommendationType":{
       "type":"string",
       "enum":["KNOWLEDGE_CONTENT"]
+    },
+    "Relevance":{
+      "type":"string",
+      "enum":[
+        "HELPFUL",
+        "NOT_HELPFUL"
+      ]
     },
     "RelevanceLevel":{
       "type":"string",
@@ -1866,6 +1932,13 @@
       "type":"map",
       "key":{"shape":"TagKey"},
       "value":{"shape":"TagValue"}
+    },
+    "TargetType":{
+      "type":"string",
+      "enum":[
+        "RECOMMENDATION",
+        "RESULT"
+      ]
     },
     "TooManyTagsException":{
       "type":"structure",
