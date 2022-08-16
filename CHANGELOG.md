@@ -1,3 +1,12 @@
+Release v1.44.78 (2022-08-16)
+===
+
+### Service Client Updates
+* `service/rekognition`: Updates service API, documentation, paginators, and examples
+  * This release adds APIs which support copying an Amazon Rekognition Custom Labels model and managing project policies across AWS account.
+* `service/servicecatalog`: Updates service documentation
+  * Documentation updates for Service Catalog
+
 Release v1.44.77 (2022-08-15)
 ===
 

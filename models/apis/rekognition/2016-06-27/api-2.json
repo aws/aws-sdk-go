@@ -31,6 +31,26 @@
         {"shape":"InvalidImageFormatException"}
       ]
     },
+    "CopyProjectVersion":{
+      "name":"CopyProjectVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CopyProjectVersionRequest"},
+      "output":{"shape":"CopyProjectVersionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"ResourceInUseException"}
+      ]
+    },
     "CreateCollection":{
       "name":"CreateCollection",
       "http":{
@@ -195,6 +215,24 @@
         {"shape":"InternalServerError"},
         {"shape":"ThrottlingException"},
         {"shape":"ProvisionedThroughputExceededException"}
+      ]
+    },
+    "DeleteProjectPolicy":{
+      "name":"DeleteProjectPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteProjectPolicyRequest"},
+      "output":{"shape":"DeleteProjectPolicyResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"InvalidPolicyRevisionIdException"}
       ]
     },
     "DeleteProjectVersion":{
@@ -713,6 +751,24 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "ListProjectPolicies":{
+      "name":"ListProjectPolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListProjectPoliciesRequest"},
+      "output":{"shape":"ListProjectPoliciesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"InvalidPaginationTokenException"}
+      ]
+    },
     "ListStreamProcessors":{
       "name":"ListStreamProcessors",
       "http":{
@@ -745,6 +801,28 @@
         {"shape":"InternalServerError"},
         {"shape":"ThrottlingException"},
         {"shape":"ProvisionedThroughputExceededException"}
+      ]
+    },
+    "PutProjectPolicy":{
+      "name":"PutProjectPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutProjectPolicyRequest"},
+      "output":{"shape":"PutProjectPolicyResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidPolicyRevisionIdException"},
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "RecognizeCelebrities":{
@@ -1387,6 +1465,31 @@
         "TIMESTAMP"
       ]
     },
+    "CopyProjectVersionRequest":{
+      "type":"structure",
+      "required":[
+        "SourceProjectArn",
+        "SourceProjectVersionArn",
+        "DestinationProjectArn",
+        "VersionName",
+        "OutputConfig"
+      ],
+      "members":{
+        "SourceProjectArn":{"shape":"ProjectArn"},
+        "SourceProjectVersionArn":{"shape":"ProjectVersionArn"},
+        "DestinationProjectArn":{"shape":"ProjectArn"},
+        "VersionName":{"shape":"VersionName"},
+        "OutputConfig":{"shape":"OutputConfig"},
+        "Tags":{"shape":"TagMap"},
+        "KmsKeyId":{"shape":"KmsKeyId"}
+      }
+    },
+    "CopyProjectVersionResponse":{
+      "type":"structure",
+      "members":{
+        "ProjectVersionArn":{"shape":"ProjectVersionArn"}
+      }
+    },
     "CoversBodyPart":{
       "type":"structure",
       "members":{
@@ -1672,6 +1775,23 @@
       "type":"structure",
       "members":{
         "DeletedFaces":{"shape":"FaceIdList"}
+      }
+    },
+    "DeleteProjectPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "ProjectArn",
+        "PolicyName"
+      ],
+      "members":{
+        "ProjectArn":{"shape":"ProjectArn"},
+        "PolicyName":{"shape":"ProjectPolicyName"},
+        "PolicyRevisionId":{"shape":"ProjectPolicyRevisionId"}
+      }
+    },
+    "DeleteProjectPolicyResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteProjectRequest":{
@@ -2490,6 +2610,12 @@
       },
       "exception":true
     },
+    "InvalidPolicyRevisionIdException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "InvalidS3ObjectException":{
       "type":"structure",
       "members":{
@@ -2725,6 +2851,27 @@
         "FaceModelVersion":{"shape":"String"}
       }
     },
+    "ListProjectPoliciesPageSize":{
+      "type":"integer",
+      "max":5,
+      "min":1
+    },
+    "ListProjectPoliciesRequest":{
+      "type":"structure",
+      "required":["ProjectArn"],
+      "members":{
+        "ProjectArn":{"shape":"ProjectArn"},
+        "NextToken":{"shape":"ExtendedPaginationToken"},
+        "MaxResults":{"shape":"ListProjectPoliciesPageSize"}
+      }
+    },
+    "ListProjectPoliciesResponse":{
+      "type":"structure",
+      "members":{
+        "ProjectPolicies":{"shape":"ProjectPolicies"},
+        "NextToken":{"shape":"ExtendedPaginationToken"}
+      }
+    },
     "ListStreamProcessorsRequest":{
       "type":"structure",
       "members":{
@@ -2751,6 +2898,12 @@
       "members":{
         "Tags":{"shape":"TagMap"}
       }
+    },
+    "MalformedPolicyDocumentException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "MaxDurationInSecondsULong":{
       "type":"long",
@@ -2946,6 +3099,38 @@
       "max":10,
       "min":1
     },
+    "ProjectPolicies":{
+      "type":"list",
+      "member":{"shape":"ProjectPolicy"}
+    },
+    "ProjectPolicy":{
+      "type":"structure",
+      "members":{
+        "ProjectArn":{"shape":"ProjectArn"},
+        "PolicyName":{"shape":"ProjectPolicyName"},
+        "PolicyRevisionId":{"shape":"ProjectPolicyRevisionId"},
+        "PolicyDocument":{"shape":"ProjectPolicyDocument"},
+        "CreationTimestamp":{"shape":"DateTime"},
+        "LastUpdatedTimestamp":{"shape":"DateTime"}
+      }
+    },
+    "ProjectPolicyDocument":{
+      "type":"string",
+      "max":2000,
+      "min":1,
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
+    },
+    "ProjectPolicyName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_.\\-]+"
+    },
+    "ProjectPolicyRevisionId":{
+      "type":"string",
+      "max":64,
+      "pattern":"[0-9A-Fa-f]+"
+    },
     "ProjectStatus":{
       "type":"string",
       "enum":[
@@ -2976,7 +3161,8 @@
         "EvaluationResult":{"shape":"EvaluationResult"},
         "ManifestSummary":{"shape":"GroundTruthManifest"},
         "KmsKeyId":{"shape":"KmsKeyId"},
-        "MaxInferenceUnits":{"shape":"InferenceUnits"}
+        "MaxInferenceUnits":{"shape":"InferenceUnits"},
+        "SourceProjectVersionArn":{"shape":"ProjectVersionArn"}
       }
     },
     "ProjectVersionDescriptions":{
@@ -2994,7 +3180,10 @@
         "FAILED",
         "STOPPING",
         "STOPPED",
-        "DELETING"
+        "DELETING",
+        "COPYING_IN_PROGRESS",
+        "COPYING_COMPLETED",
+        "COPYING_FAILED"
       ]
     },
     "ProjectVersionsPageSize":{
@@ -3068,6 +3257,26 @@
       "members":{
       },
       "exception":true
+    },
+    "PutProjectPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "ProjectArn",
+        "PolicyName",
+        "PolicyDocument"
+      ],
+      "members":{
+        "ProjectArn":{"shape":"ProjectArn"},
+        "PolicyName":{"shape":"ProjectPolicyName"},
+        "PolicyRevisionId":{"shape":"ProjectPolicyRevisionId"},
+        "PolicyDocument":{"shape":"ProjectPolicyDocument"}
+      }
+    },
+    "PutProjectPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "PolicyRevisionId":{"shape":"ProjectPolicyRevisionId"}
+      }
     },
     "QualityFilter":{
       "type":"string",

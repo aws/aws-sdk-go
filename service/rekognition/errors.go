@@ -63,6 +63,12 @@ const (
 	// the API operation again.
 	ErrCodeInvalidParameterException = "InvalidParameterException"
 
+	// ErrCodeInvalidPolicyRevisionIdException for service response error code
+	// "InvalidPolicyRevisionIdException".
+	//
+	// The supplied revision id for the project policy is invalid.
+	ErrCodeInvalidPolicyRevisionIdException = "InvalidPolicyRevisionIdException"
+
 	// ErrCodeInvalidS3ObjectException for service response error code
 	// "InvalidS3ObjectException".
 	//
@@ -78,6 +84,13 @@ const (
 	// (HTTP status code: 400) until the number of concurrently running jobs is
 	// below the Amazon Rekognition service limit.
 	ErrCodeLimitExceededException = "LimitExceededException"
+
+	// ErrCodeMalformedPolicyDocumentException for service response error code
+	// "MalformedPolicyDocumentException".
+	//
+	// The format of the project policy document that you supplied to PutProjectPolicy
+	// is incorrect.
+	ErrCodeMalformedPolicyDocumentException = "MalformedPolicyDocumentException"
 
 	// ErrCodeProvisionedThroughputExceededException for service response error code
 	// "ProvisionedThroughputExceededException".
@@ -143,8 +156,10 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidImageFormatException":            newErrorInvalidImageFormatException,
 	"InvalidPaginationTokenException":        newErrorInvalidPaginationTokenException,
 	"InvalidParameterException":              newErrorInvalidParameterException,
+	"InvalidPolicyRevisionIdException":       newErrorInvalidPolicyRevisionIdException,
 	"InvalidS3ObjectException":               newErrorInvalidS3ObjectException,
 	"LimitExceededException":                 newErrorLimitExceededException,
+	"MalformedPolicyDocumentException":       newErrorMalformedPolicyDocumentException,
 	"ProvisionedThroughputExceededException": newErrorProvisionedThroughputExceededException,
 	"ResourceAlreadyExistsException":         newErrorResourceAlreadyExistsException,
 	"ResourceInUseException":                 newErrorResourceInUseException,

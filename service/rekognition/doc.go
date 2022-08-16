@@ -48,6 +48,8 @@
 //
 // Amazon Rekognition Custom Labels
 //
+//   - CopyProjectVersion (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CopyProjectVersion.html)
+//
 //   - CreateDataset (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CreateDataset.html)
 //
 //   - CreateProject (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CreateProject.html)
@@ -57,6 +59,8 @@
 //   - DeleteDataset (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteDataset.html)
 //
 //   - DeleteProject (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteProject.html)
+//
+//   - DeleteProjectPolicy (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteProjectPolicy.html)
 //
 //   - DeleteProjectVersion (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteProjectVersion.html)
 //
@@ -73,6 +77,10 @@
 //   - ListDatasetEntries (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListDatasetEntries.html)
 //
 //   - ListDatasetLabels (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListDatasetLabels.html)
+//
+//   - ListProjectPolicies (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListProjectPolicies.html)
+//
+//   - PutProjectPolicy (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_PutProjectPolicy.html)
 //
 //   - StartProjectVersion (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_StartProjectVersion.html)
 //
@@ -127,6 +135,8 @@
 //   - StartStreamProcessor (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_StartStreamProcessor.html)
 //
 //   - StopStreamProcessor (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_StopStreamProcessor.html)
+//
+//   - UpdateStreamProcessor (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_UpdateStreamProcessor.html)
 //
 // See rekognition package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/rekognition/
