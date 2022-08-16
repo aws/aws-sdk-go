@@ -515,8 +515,8 @@ func (c *ServiceCatalog) AssociateTagOptionWithResourceRequest(input *AssociateT
 //
 //   - TagOptionNotMigratedException
 //     An operation requiring TagOptions failed because the TagOptions migration
-//     process has not been performed for this account. Please use the AWS console
-//     to perform the migration process before retrying the operation.
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -763,7 +763,8 @@ func (c *ServiceCatalog) CopyProductRequest(input *CopyProductInput) (req *reque
 // new product.
 //
 // You can copy a product to the same account or another account. You can copy
-// a product to the same region or another region.
+// a product to the same Region or another Region. If you copy a product to
+// another account, you must first share the product in a portfolio using CreatePortfolioShare.
 //
 // This operation is performed asynchronously. To track the progress of the
 // operation, use DescribeCopyProductStatus.
@@ -963,8 +964,8 @@ func (c *ServiceCatalog) CreatePortfolioRequest(input *CreatePortfolioInput) (re
 //
 //   - TagOptionNotMigratedException
 //     An operation requiring TagOptions failed because the TagOptions migration
-//     process has not been performed for this account. Please use the AWS console
-//     to perform the migration process before retrying the operation.
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolio
 func (c *ServiceCatalog) CreatePortfolio(input *CreatePortfolioInput) (*CreatePortfolioOutput, error) {
@@ -1169,8 +1170,8 @@ func (c *ServiceCatalog) CreateProductRequest(input *CreateProductInput) (req *r
 //
 //   - TagOptionNotMigratedException
 //     An operation requiring TagOptions failed because the TagOptions migration
-//     process has not been performed for this account. Please use the AWS console
-//     to perform the migration process before retrying the operation.
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProduct
 func (c *ServiceCatalog) CreateProduct(input *CreateProductInput) (*CreateProductOutput, error) {
@@ -1237,12 +1238,15 @@ func (c *ServiceCatalog) CreateProvisionedProductPlanRequest(input *CreateProvis
 
 // CreateProvisionedProductPlan API operation for AWS Service Catalog.
 //
-// Creates a plan. A plan includes the list of resources to be created (when
-// provisioning a new product) or modified (when updating a provisioned product)
-// when the plan is executed.
+// Creates a plan.
 //
-// You can create one plan per provisioned product. To create a plan for an
-// existing provisioned product, the product status must be AVAILBLE or TAINTED.
+// A plan includes the list of resources to be created (when provisioning a
+// new product) or modified (when updating a provisioned product) when the plan
+// is executed.
+//
+// You can create one plan for each provisioned product. To create a plan for
+// an existing provisioned product, the product status must be AVAILABLE or
+// TAINTED.
 //
 // To view the resource changes in the change set, use DescribeProvisionedProductPlan.
 // To create or modify the provisioned product, use ExecuteProvisionedProductPlan.
@@ -1524,8 +1528,8 @@ func (c *ServiceCatalog) CreateTagOptionRequest(input *CreateTagOptionInput) (re
 //
 //   - TagOptionNotMigratedException
 //     An operation requiring TagOptions failed because the TagOptions migration
-//     process has not been performed for this account. Please use the AWS console
-//     to perform the migration process before retrying the operation.
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 //   - DuplicateResourceException
 //     The specified resource is a duplicate.
@@ -1714,8 +1718,8 @@ func (c *ServiceCatalog) DeletePortfolioRequest(input *DeletePortfolioInput) (re
 //
 //   - TagOptionNotMigratedException
 //     An operation requiring TagOptions failed because the TagOptions migration
-//     process has not been performed for this account. Please use the AWS console
-//     to perform the migration process before retrying the operation.
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolio
 func (c *ServiceCatalog) DeletePortfolio(input *DeletePortfolioInput) (*DeletePortfolioOutput, error) {
@@ -1906,8 +1910,8 @@ func (c *ServiceCatalog) DeleteProductRequest(input *DeleteProductInput) (req *r
 //
 //   - TagOptionNotMigratedException
 //     An operation requiring TagOptions failed because the TagOptions migration
-//     process has not been performed for this account. Please use the AWS console
-//     to perform the migration process before retrying the operation.
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProduct
 func (c *ServiceCatalog) DeleteProduct(input *DeleteProductInput) (*DeleteProductOutput, error) {
@@ -2249,8 +2253,8 @@ func (c *ServiceCatalog) DeleteTagOptionRequest(input *DeleteTagOptionInput) (re
 //
 //   - TagOptionNotMigratedException
 //     An operation requiring TagOptions failed because the TagOptions migration
-//     process has not been performed for this account. Please use the AWS console
-//     to perform the migration process before retrying the operation.
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 //   - ResourceInUseException
 //     A resource that is currently in use. Ensure that the resource is not in use
@@ -3638,8 +3642,8 @@ func (c *ServiceCatalog) DescribeTagOptionRequest(input *DescribeTagOptionInput)
 //
 //   - TagOptionNotMigratedException
 //     An operation requiring TagOptions failed because the TagOptions migration
-//     process has not been performed for this account. Please use the AWS console
-//     to perform the migration process before retrying the operation.
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -3710,16 +3714,23 @@ func (c *ServiceCatalog) DisableAWSOrganizationsAccessRequest(input *DisableAWSO
 
 // DisableAWSOrganizationsAccess API operation for AWS Service Catalog.
 //
-// Disable portfolio sharing through AWS Organizations feature. This feature
-// will not delete your current shares but it will prevent you from creating
-// new shares throughout your organization. Current shares will not be in sync
-// with your organization structure if it changes after calling this API. This
-// API can only be called by the management account in the organization.
+// Disable portfolio sharing through the Organizations service. This command
+// will not delete your current shares, but prevents you from creating new shares
+// throughout your organization. Current shares are not kept in sync with your
+// organization structure if the structure changes after calling this API. Only
+// the management account in the organization can call this API.
 //
-// This API can't be invoked if there are active delegated administrators in
+// You cannot call this API if there are active delegated administrators in
 // the organization.
 //
 // Note that a delegated administrator is not authorized to invoke DisableAWSOrganizationsAccess.
+//
+// If you share an Service Catalog portfolio in an organization within Organizations,
+// and then disable Organizations access for Service Catalog, the portfolio
+// access permissions will not sync with the latest changes to the organization
+// structure. Specifically, accounts that you removed from the organization
+// after disabling Service Catalog access will retain access to the previously
+// shared portfolio.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4151,8 +4162,8 @@ func (c *ServiceCatalog) DisassociateTagOptionFromResourceRequest(input *Disasso
 //
 //   - TagOptionNotMigratedException
 //     An operation requiring TagOptions failed because the TagOptions migration
-//     process has not been performed for this account. Please use the AWS console
-//     to perform the migration process before retrying the operation.
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -4223,16 +4234,26 @@ func (c *ServiceCatalog) EnableAWSOrganizationsAccessRequest(input *EnableAWSOrg
 
 // EnableAWSOrganizationsAccess API operation for AWS Service Catalog.
 //
-// Enable portfolio sharing feature through AWS Organizations. This API will
-// allow Service Catalog to receive updates on your organization in order to
-// sync your shares with the current structure. This API can only be called
-// by the management account in the organization.
+// Enable portfolio sharing feature through Organizations. This API will allow
+// Service Catalog to receive updates on your organization in order to sync
+// your shares with the current structure. This API can only be called by the
+// management account in the organization.
 //
-// By calling this API Service Catalog will make a call to organizations:EnableAWSServiceAccess
-// on your behalf so that your shares can be in sync with any changes in your
-// AWS Organizations structure.
+// When you call this API, Service Catalog calls organizations:EnableAWSServiceAccess
+// on your behalf so that your shares stay in sync with any changes in your
+// Organizations structure.
 //
 // Note that a delegated administrator is not authorized to invoke EnableAWSOrganizationsAccess.
+//
+// If you have previously disabled Organizations access for Service Catalog,
+// and then enable access again, the portfolio access permissions might not
+// sync with the latest changes to the organization structure. Specifically,
+// accounts that you removed from the organization after disabling Service Catalog
+// access, and before you enabled access again, can retain access to the previously
+// shared portfolio. As a result, an account that has been removed from the
+// organization might still be able to create or manage Amazon Web Services
+// resources when it is no longer authorized to do so. Amazon Web Services is
+// working to resolve this issue.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4494,9 +4515,9 @@ func (c *ServiceCatalog) GetAWSOrganizationsAccessStatusRequest(input *GetAWSOrg
 
 // GetAWSOrganizationsAccessStatus API operation for AWS Service Catalog.
 //
-// Get the Access Status for AWS Organization portfolio share feature. This
-// API can only be called by the management account in the organization or by
-// a delegated admin.
+// Get the Access Status for Organizations portfolio share feature. This API
+// can only be called by the management account in the organization or by a
+// delegated admin.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4719,10 +4740,11 @@ func (c *ServiceCatalog) ImportAsProvisionedProductRequest(input *ImportAsProvis
 
 // ImportAsProvisionedProduct API operation for AWS Service Catalog.
 //
-// Requests the import of a resource as a Service Catalog provisioned product
-// that is associated to a Service Catalog product and provisioning artifact.
-// Once imported, all supported Service Catalog governance actions are supported
-// on the provisioned product.
+// Requests the import of a resource as a Amazon Web Services Service Catalog
+// provisioned product that is associated to a Amazon Web Services Service Catalog
+// product and provisioning artifact. Once imported, all supported Amazon Web
+// Services Service Catalog governance actions are supported on the provisioned
+// product.
 //
 // Resource import only supports CloudFormation stack ARNs. CloudFormation StackSets
 // and non-root nested stacks are not supported.
@@ -4732,7 +4754,7 @@ func (c *ServiceCatalog) ImportAsProvisionedProductRequest(input *ImportAsProvis
 // IMPORT_ROLLBACK_COMPLETE.
 //
 // Import of the resource requires that the CloudFormation stack template matches
-// the associated Service Catalog product provisioning artifact.
+// the associated Amazon Web Services Service Catalog product provisioning artifact.
 //
 // The user or role that performs this operation must have the cloudformation:GetTemplate
 // and cloudformation:DescribeStacks IAM policy permissions.
@@ -6490,8 +6512,8 @@ func (c *ServiceCatalog) ListResourcesForTagOptionRequest(input *ListResourcesFo
 //
 //   - TagOptionNotMigratedException
 //     An operation requiring TagOptions failed because the TagOptions migration
-//     process has not been performed for this account. Please use the AWS console
-//     to perform the migration process before retrying the operation.
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -6892,7 +6914,8 @@ func (c *ServiceCatalog) ListStackInstancesForProvisionedProductRequest(input *L
 //
 // Returns summary information about stack instances that are associated with
 // the specified CFN_STACKSET type provisioned product. You can filter for stack
-// instances that are associated with a specific AWS account name or region.
+// instances that are associated with a specific Amazon Web Services account
+// name or Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6993,8 +7016,8 @@ func (c *ServiceCatalog) ListTagOptionsRequest(input *ListTagOptionsInput) (req 
 //
 //   - TagOptionNotMigratedException
 //     An operation requiring TagOptions failed because the TagOptions migration
-//     process has not been performed for this account. Please use the AWS console
-//     to perform the migration process before retrying the operation.
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 //   - InvalidParametersException
 //     One or more parameters provided to the operation are not valid.
@@ -7651,6 +7674,13 @@ func (c *ServiceCatalog) SearchProvisionedProductsRequest(input *SearchProvision
 //
 // Gets information about the provisioned products that meet the specified criteria.
 //
+// To ensure a complete list of provisioned products and remove duplicate products,
+// use sort-by createdTime.
+//
+// Here is a CLI example:
+//
+// aws servicecatalog search-provisioned-products --sort-by createdTime
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7969,8 +7999,8 @@ func (c *ServiceCatalog) UpdatePortfolioRequest(input *UpdatePortfolioInput) (re
 //
 //   - TagOptionNotMigratedException
 //     An operation requiring TagOptions failed because the TagOptions migration
-//     process has not been performed for this account. Please use the AWS console
-//     to perform the migration process before retrying the operation.
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolio
 func (c *ServiceCatalog) UpdatePortfolio(input *UpdatePortfolioInput) (*UpdatePortfolioOutput, error) {
@@ -8161,8 +8191,8 @@ func (c *ServiceCatalog) UpdateProductRequest(input *UpdateProductInput) (req *r
 //
 //   - TagOptionNotMigratedException
 //     An operation requiring TagOptions failed because the TagOptions migration
-//     process has not been performed for this account. Please use the AWS console
-//     to perform the migration process before retrying the operation.
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProduct
 func (c *ServiceCatalog) UpdateProduct(input *UpdateProductInput) (*UpdateProductOutput, error) {
@@ -8586,8 +8616,8 @@ func (c *ServiceCatalog) UpdateTagOptionRequest(input *UpdateTagOptionInput) (re
 //
 //   - TagOptionNotMigratedException
 //     An operation requiring TagOptions failed because the TagOptions migration
-//     process has not been performed for this account. Please use the AWS console
-//     to perform the migration process before retrying the operation.
+//     process has not been performed for this account. Use the Amazon Web Services
+//     Management Console to perform the migration process before retrying the operation.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -9936,8 +9966,7 @@ type CreateConstraintInput struct {
 	//
 	// You also cannot have more than one STACKSET constraint on a product and portfolio.
 	//
-	// Products with a STACKSET constraint will launch an AWS CloudFormation stack
-	// set.
+	// Products with a STACKSET constraint will launch an CloudFormation stack set.
 	//
 	// TEMPLATE
 	//
@@ -10291,13 +10320,13 @@ type CreatePortfolioShareInput struct {
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
-	// The AWS account ID. For example, 123456789012.
+	// The Amazon Web Services account ID. For example, 123456789012.
 	AccountId *string `type:"string"`
 
-	// The organization node to whom you are going to share. If OrganizationNode
-	// is passed in, PortfolioShare will be created for the node an ListOrganizationPortfolioAccessd
-	// its children (when applies), and a PortfolioShareToken will be returned in
-	// the output in order for the administrator to monitor the status of the PortfolioShare
+	// The organization node to whom you are going to share. When you pass OrganizationNode,
+	// it creates PortfolioShare for all of the Amazon Web Services accounts that
+	// are associated to the OrganizationNode. The output returns a PortfolioShareToken,
+	// which enables the administrator to monitor the status of the PortfolioShare
 	// creation process.
 	OrganizationNode *OrganizationNode `type:"structure"`
 
@@ -10686,7 +10715,8 @@ type CreateProvisionedProductPlanInput struct {
 	ProductId *string `min:"1" type:"string" required:"true"`
 
 	// A user-friendly name for the provisioned product. This value must be unique
-	// for the AWS account and cannot be updated after the product is provisioned.
+	// for the Amazon Web Services account and cannot be updated after the product
+	// is provisioned.
 	//
 	// ProvisionedProductName is a required field
 	ProvisionedProductName *string `min:"1" type:"string" required:"true"`
@@ -11022,11 +11052,13 @@ type CreateProvisioningArtifactOutput struct {
 	// Specify the template source with one of the following options, but not both.
 	// Keys accepted: [ LoadTemplateFromURL, ImportFromPhysicalId ].
 	//
-	// The URL of the CloudFormation template in Amazon S3, in JSON format.
+	// The URL of the CloudFormation template in Amazon S3, Amazon Web Services
+	// CodeCommit, or GitHub in JSON format.
 	//
 	// LoadTemplateFromURL
 	//
-	// Use the URL of the CloudFormation template in Amazon S3 in JSON format.
+	// Use the URL of the CloudFormation template in Amazon S3, Amazon Web Services
+	// CodeCommit, or GitHub in JSON format.
 	//
 	// ImportFromPhysicalId
 	//
@@ -11093,16 +11125,16 @@ type CreateServiceActionInput struct {
 	//
 	// Name
 	//
-	// The name of the AWS Systems Manager document (SSM document). For example,
-	// AWS-RestartEC2Instance.
+	// The name of the Amazon Web Services Systems Manager document (SSM document).
+	// For example, AWS-RestartEC2Instance.
 	//
 	// If you are using a shared SSM document, you must provide the ARN instead
 	// of the name.
 	//
 	// Version
 	//
-	// The AWS Systems Manager automation document version. For example, "Version":
-	// "1"
+	// The Amazon Web Services Systems Manager automation document version. For
+	// example, "Version": "1"
 	//
 	// AssumeRole
 	//
@@ -11533,7 +11565,7 @@ type DeletePortfolioShareInput struct {
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
-	// The AWS account ID.
+	// The Amazon Web Services account ID.
 	AccountId *string `type:"string"`
 
 	// The organization node to whom you are going to stop sharing.
@@ -11733,7 +11765,7 @@ type DeleteProvisionedProductPlanInput struct {
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
-	// If set to true, AWS Service Catalog stops managing the specified provisioned
+	// If set to true, Service Catalog stops managing the specified provisioned
 	// product even if it cannot delete the underlying resources.
 	IgnoreErrors *bool `type:"boolean"`
 
@@ -13419,7 +13451,8 @@ func (s *DescribeProvisioningArtifactInput) SetVerbose(v bool) *DescribeProvisio
 type DescribeProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The URL of the CloudFormation template in Amazon S3.
+	// The URL of the CloudFormation template in Amazon S3, Amazon Web Services
+	// CodeCommit, or GitHub in JSON format.
 	Info map[string]*string `min:"1" type:"map"`
 
 	// Information about the provisioning artifact.
@@ -13602,7 +13635,7 @@ type DescribeProvisioningParametersOutput struct {
 	// Information about the parameters used to provision the product.
 	ProvisioningArtifactParameters []*ProvisioningArtifactParameter `type:"list"`
 
-	// An object that contains information about preferences, such as regions and
+	// An object that contains information about preferences, such as Regions and
 	// accounts, for the provisioning artifact.
 	ProvisioningArtifactPreferences *ProvisioningArtifactPreferences `type:"structure"`
 
@@ -14875,8 +14908,8 @@ type ExecuteProvisionedProductServiceActionInput struct {
 
 	// A map of all self-service action parameters and their values. If a provided
 	// parameter is of a special type, such as TARGET, the provided value will override
-	// the default value generated by AWS Service Catalog. If the parameters field
-	// is not provided, no additional parameters are passed and default values will
+	// the default value generated by Service Catalog. If the parameters field is
+	// not provided, no additional parameters are passed and default values will
 	// be used for any special parameters such as TARGET.
 	Parameters map[string][]*string `min:"1" type:"map"`
 
@@ -15344,7 +15377,8 @@ type ImportAsProvisionedProductInput struct {
 	ProductId *string `min:"1" type:"string" required:"true"`
 
 	// The user-friendly name of the provisioned product. The value must be unique
-	// for the AWS account. The name cannot be updated after the product is provisioned.
+	// for the Amazon Web Services account. The name cannot be updated after the
+	// product is provisioned.
 	//
 	// ProvisionedProductName is a required field
 	ProvisionedProductName *string `min:"1" type:"string" required:"true"`
@@ -16512,7 +16546,7 @@ func (s *ListPortfolioAccessInput) SetPortfolioId(v string) *ListPortfolioAccess
 type ListPortfolioAccessOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the AWS accounts with access to the portfolio.
+	// Information about the Amazon Web Services accounts with access to the portfolio.
 	AccountIds []*string `type:"list"`
 
 	// The page token to use to retrieve the next set of results. If there are no
@@ -18618,8 +18652,8 @@ type ProductViewSummary struct {
 	SupportUrl *string `type:"string"`
 
 	// The product type. Contact the product administrator for the significance
-	// of this value. If this value is MARKETPLACE, the product was created by AWS
-	// Marketplace.
+	// of this value. If this value is MARKETPLACE, the product was created by Amazon
+	// Web Services Marketplace.
 	Type *string `type:"string" enum:"ProductType"`
 }
 
@@ -18742,7 +18776,8 @@ type ProvisionProductInput struct {
 	ProvisionToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// A user-friendly name for the provisioned product. This value must be unique
-	// for the AWS account and cannot be updated after the product is provisioned.
+	// for the Amazon Web Services account and cannot be updated after the product
+	// is provisioned.
 	//
 	// ProvisionedProductName is a required field
 	ProvisionedProductName *string `min:"1" type:"string" required:"true"`
@@ -19710,11 +19745,12 @@ type ProvisioningArtifactDetail struct {
 
 	// The type of provisioning artifact.
 	//
-	//    * CLOUD_FORMATION_TEMPLATE - AWS CloudFormation template
+	//    * CLOUD_FORMATION_TEMPLATE - CloudFormation template
 	//
-	//    * MARKETPLACE_AMI - AWS Marketplace AMI
+	//    * MARKETPLACE_AMI - Amazon Web Services Marketplace AMI
 	//
-	//    * MARKETPLACE_CAR - AWS Marketplace Clusters and AWS Resources
+	//    * MARKETPLACE_CAR - Amazon Web Services Marketplace Clusters and Amazon
+	//    Web Services Resources
 	Type *string `type:"string" enum:"ProvisioningArtifactType"`
 }
 
@@ -19903,19 +19939,19 @@ func (s *ProvisioningArtifactParameter) SetParameterType(v string) *Provisioning
 //
 // For more information on maximum concurrent accounts and failure tolerance,
 // see Stack set operation options (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html#stackset-ops-options)
-// in the AWS CloudFormation User Guide.
+// in the CloudFormation User Guide.
 type ProvisioningArtifactPreferences struct {
 	_ struct{} `type:"structure"`
 
-	// One or more AWS accounts where stack instances are deployed from the stack
-	// set. These accounts can be scoped in ProvisioningPreferences$StackSetAccounts
+	// One or more Amazon Web Services accounts where stack instances are deployed
+	// from the stack set. These accounts can be scoped in ProvisioningPreferences$StackSetAccounts
 	// and UpdateProvisioningPreferences$StackSetAccounts.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	StackSetAccounts []*string `type:"list"`
 
-	// One or more AWS Regions where stack instances are deployed from the stack
-	// set. These regions can be scoped in ProvisioningPreferences$StackSetRegions
+	// One or more Amazon Web Services Regions where stack instances are deployed
+	// from the stack set. These Regions can be scoped in ProvisioningPreferences$StackSetRegions
 	// and UpdateProvisioningPreferences$StackSetRegions.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
@@ -19961,15 +19997,15 @@ type ProvisioningArtifactProperties struct {
 	// the previous provisioning artifact.
 	Description *string `type:"string"`
 
-	// If set to true, AWS Service Catalog stops validating the specified provisioning
-	// artifact even if it is invalid.
+	// If set to true, Amazon Web Services Service Catalog stops validating the
+	// specified provisioning artifact even if it is invalid.
 	DisableTemplateValidation *bool `type:"boolean"`
 
 	// Specify the template source with one of the following options, but not both.
 	// Keys accepted: [ LoadTemplateFromURL, ImportFromPhysicalId ]
 	//
-	// The URL of the CloudFormation template in Amazon S3. Specify the URL in JSON
-	// format as follows:
+	// The URL of the CloudFormation template in Amazon S3, Amazon Web Services
+	// CodeCommit, or GitHub in JSON format. Specify the URL in JSON format as follows:
 	//
 	// "LoadTemplateFromURL": "https://s3.amazonaws.com/cf-templates-ozkq9d3hgiq2-us-east-1/..."
 	//
@@ -19986,11 +20022,12 @@ type ProvisioningArtifactProperties struct {
 
 	// The type of provisioning artifact.
 	//
-	//    * CLOUD_FORMATION_TEMPLATE - AWS CloudFormation template
+	//    * CLOUD_FORMATION_TEMPLATE - CloudFormation template
 	//
-	//    * MARKETPLACE_AMI - AWS Marketplace AMI
+	//    * MARKETPLACE_AMI - Amazon Web Services Marketplace AMI
 	//
-	//    * MARKETPLACE_CAR - AWS Marketplace Clusters and AWS Resources
+	//    * MARKETPLACE_CAR - Amazon Web Services Marketplace Clusters and Amazon
+	//    Web Services Resources
 	Type *string `type:"string" enum:"ProvisioningArtifactType"`
 }
 
@@ -20075,8 +20112,8 @@ type ProvisioningArtifactSummary struct {
 	// The name of the provisioning artifact.
 	Name *string `type:"string"`
 
-	// The metadata for the provisioning artifact. This is used with AWS Marketplace
-	// products.
+	// The metadata for the provisioning artifact. This is used with Amazon Web
+	// Services Marketplace products.
 	ProvisioningArtifactMetadata map[string]*string `min:"1" type:"map"`
 }
 
@@ -20228,20 +20265,22 @@ func (s *ProvisioningParameter) SetValue(v string) *ProvisioningParameter {
 // The user-defined preferences that will be applied when updating a provisioned
 // product. Not all preferences are applicable to all provisioned product type
 //
-// One or more AWS accounts that will have access to the provisioned product.
+// One or more Amazon Web Services accounts that will have access to the provisioned
+// product.
 //
 // Applicable only to a CFN_STACKSET provisioned product type.
 //
-// The AWS accounts specified should be within the list of accounts in the STACKSET
-// constraint. To get the list of accounts in the STACKSET constraint, use the
-// DescribeProvisioningParameters operation.
+// The Amazon Web Services accounts specified should be within the list of accounts
+// in the STACKSET constraint. To get the list of accounts in the STACKSET constraint,
+// use the DescribeProvisioningParameters operation.
 //
 // If no values are specified, the default value is all accounts from the STACKSET
 // constraint.
 type ProvisioningPreferences struct {
 	_ struct{} `type:"structure"`
 
-	// One or more AWS accounts where the provisioned product will be available.
+	// One or more Amazon Web Services accounts where the provisioned product will
+	// be available.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
@@ -20253,10 +20292,10 @@ type ProvisioningPreferences struct {
 	// constraint.
 	StackSetAccounts []*string `type:"list"`
 
-	// The number of accounts, per region, for which this operation can fail before
-	// AWS Service Catalog stops the operation in that region. If the operation
-	// is stopped in a region, AWS Service Catalog doesn't attempt the operation
-	// in any subsequent regions.
+	// The number of accounts, per Region, for which this operation can fail before
+	// Service Catalog stops the operation in that Region. If the operation is stopped
+	// in a Region, Service Catalog doesn't attempt the operation in any subsequent
+	// Regions.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
@@ -20266,13 +20305,13 @@ type ProvisioningPreferences struct {
 	// The default value is 0 if no value is specified.
 	StackSetFailureToleranceCount *int64 `type:"integer"`
 
-	// The percentage of accounts, per region, for which this stack operation can
-	// fail before AWS Service Catalog stops the operation in that region. If the
-	// operation is stopped in a region, AWS Service Catalog doesn't attempt the
-	// operation in any subsequent regions.
+	// The percentage of accounts, per Region, for which this stack operation can
+	// fail before Service Catalog stops the operation in that Region. If the operation
+	// is stopped in a Region, Service Catalog doesn't attempt the operation in
+	// any subsequent Regions.
 	//
 	// When calculating the number of accounts based on the specified percentage,
-	// AWS Service Catalog rounds down to the next whole number.
+	// Service Catalog rounds down to the next whole number.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
@@ -20298,8 +20337,8 @@ type ProvisioningPreferences struct {
 	// one time.
 	//
 	// When calculating the number of accounts based on the specified percentage,
-	// AWS Service Catalog rounds down to the next whole number. This is true except
-	// in cases where rounding down would result is zero. In this case, AWS Service
+	// Service Catalog rounds down to the next whole number. This is true except
+	// in cases where rounding down would result is zero. In this case, Service
 	// Catalog sets the number as 1 instead.
 	//
 	// Note that this setting lets you specify the maximum for operations. For large
@@ -20312,15 +20351,16 @@ type ProvisioningPreferences struct {
 	// but not both.
 	StackSetMaxConcurrencyPercentage *int64 `min:"1" type:"integer"`
 
-	// One or more AWS Regions where the provisioned product will be available.
+	// One or more Amazon Web Services Regions where the provisioned product will
+	// be available.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
-	// The specified regions should be within the list of regions from the STACKSET
-	// constraint. To get the list of regions in the STACKSET constraint, use the
+	// The specified Regions should be within the list of Regions from the STACKSET
+	// constraint. To get the list of Regions in the STACKSET constraint, use the
 	// DescribeProvisioningParameters operation.
 	//
-	// If no values are specified, the default value is all regions from the STACKSET
+	// If no values are specified, the default value is all Regions from the STACKSET
 	// constraint.
 	StackSetRegions []*string `type:"list"`
 }
@@ -22013,20 +22053,22 @@ func (s *ShareError) SetMessage(v string) *ShareError {
 	return s
 }
 
-// An AWS CloudFormation stack, in a specific account and region, that's part
-// of a stack set operation. A stack instance is a reference to an attempted
-// or actual stack in a given account within a given region. A stack instance
-// can exist without a stack—for example, if the stack couldn't be created
-// for some reason. A stack instance is associated with only one stack set.
-// Each stack instance contains the ID of its associated stack set, as well
-// as the ID of the actual stack and the stack status.
+// An CloudFormation stack, in a specific account and Region, that's part of
+// a stack set operation. A stack instance is a reference to an attempted or
+// actual stack in a given account within a given Region. A stack instance can
+// exist without a stack—for example, if the stack couldn't be created for
+// some reason. A stack instance is associated with only one stack set. Each
+// stack instance contains the ID of its associated stack set, as well as the
+// ID of the actual stack and the stack status.
 type StackInstance struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS account that the stack instance is associated with.
+	// The name of the Amazon Web Services account that the stack instance is associated
+	// with.
 	Account *string `type:"string"`
 
-	// The name of the AWS region that the stack instance is associated with.
+	// The name of the Amazon Web Services Region that the stack instance is associated
+	// with.
 	Region *string `type:"string"`
 
 	// The status of the stack instance, in terms of its synchronization with its
@@ -22164,7 +22206,8 @@ type TagOptionDetail struct {
 	// The TagOption key.
 	Key *string `min:"1" type:"string"`
 
-	// The AWS account Id of the owner account that created the TagOption.
+	// The Amazon Web Services account Id of the owner account that created the
+	// TagOption.
 	Owner *string `type:"string"`
 
 	// The TagOption value.
@@ -22220,8 +22263,8 @@ func (s *TagOptionDetail) SetValue(v string) *TagOptionDetail {
 }
 
 // An operation requiring TagOptions failed because the TagOptions migration
-// process has not been performed for this account. Please use the AWS console
-// to perform the migration process before retrying the operation.
+// process has not been performed for this account. Use the Amazon Web Services
+// Management Console to perform the migration process before retrying the operation.
 type TagOptionNotMigratedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22338,7 +22381,7 @@ type TerminateProvisionedProductInput struct {
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
-	// If set to true, AWS Service Catalog stops managing the specified provisioned
+	// If set to true, Service Catalog stops managing the specified provisioned
 	// product even if it cannot delete the underlying resources.
 	IgnoreErrors *bool `type:"boolean"`
 
@@ -22541,8 +22584,7 @@ type UpdateConstraintInput struct {
 	//
 	// You also cannot have more than one STACKSET constraint on a product and portfolio.
 	//
-	// Products with a STACKSET constraint will launch an AWS CloudFormation stack
-	// set.
+	// Products with a STACKSET constraint will launch an CloudFormation stack set.
 	//
 	// TEMPLATE
 	//
@@ -22835,8 +22877,8 @@ type UpdatePortfolioShareInput struct {
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
-	// The AWS Account Id of the recipient account. This field is required when
-	// updating an external account to account type share.
+	// The Amazon Web Services account Id of the recipient account. This field is
+	// required when updating an external account to account type share.
 	AccountId *string `type:"string"`
 
 	// Information about the organization node.
@@ -23423,12 +23465,12 @@ type UpdateProvisionedProductPropertiesInput struct {
 	// or ExecuteProvisionedProductServiceAction. Only a role ARN is valid. A user
 	// ARN is invalid.
 	//
-	// The OWNER key accepts user ARNs and role ARNs. The owner is the user that
-	// has permission to see, update, terminate, and execute service actions in
-	// the provisioned product.
+	// The OWNER key accepts IAM user ARNs, IAM role ARNs, and STS assumed-role
+	// ARNs. The owner is the user that has permission to see, update, terminate,
+	// and execute service actions in the provisioned product.
 	//
 	// The administrator can change the owner of a provisioned product to another
-	// IAM user within the same account. Both end user owners and administrators
+	// IAM or STS entity within the same account. Both end user owners and administrators
 	// can see ownership history of the provisioned product using the ListRecordHistory
 	// API. The new owner can describe all past records for the provisioned product
 	// using the DescribeRecord API. The previous owner can no longer use DescribeRecord,
@@ -23701,7 +23743,8 @@ func (s *UpdateProvisioningArtifactInput) SetProvisioningArtifactId(v string) *U
 type UpdateProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The URL of the CloudFormation template in Amazon S3.
+	// The URL of the CloudFormation template in Amazon S3, Amazon Web Services
+	// CodeCommit, or GitHub in JSON format.
 	Info map[string]*string `min:"1" type:"map"`
 
 	// Information about the provisioning artifact.
@@ -23815,22 +23858,23 @@ func (s *UpdateProvisioningParameter) SetValue(v string) *UpdateProvisioningPara
 type UpdateProvisioningPreferences struct {
 	_ struct{} `type:"structure"`
 
-	// One or more AWS accounts that will have access to the provisioned product.
+	// One or more Amazon Web Services accounts that will have access to the provisioned
+	// product.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
-	// The AWS accounts specified should be within the list of accounts in the STACKSET
-	// constraint. To get the list of accounts in the STACKSET constraint, use the
-	// DescribeProvisioningParameters operation.
+	// The Amazon Web Services accounts specified should be within the list of accounts
+	// in the STACKSET constraint. To get the list of accounts in the STACKSET constraint,
+	// use the DescribeProvisioningParameters operation.
 	//
 	// If no values are specified, the default value is all accounts from the STACKSET
 	// constraint.
 	StackSetAccounts []*string `type:"list"`
 
-	// The number of accounts, per region, for which this operation can fail before
-	// AWS Service Catalog stops the operation in that region. If the operation
-	// is stopped in a region, AWS Service Catalog doesn't attempt the operation
-	// in any subsequent regions.
+	// The number of accounts, per Region, for which this operation can fail before
+	// Service Catalog stops the operation in that Region. If the operation is stopped
+	// in a Region, Service Catalog doesn't attempt the operation in any subsequent
+	// Regions.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
@@ -23840,13 +23884,13 @@ type UpdateProvisioningPreferences struct {
 	// The default value is 0 if no value is specified.
 	StackSetFailureToleranceCount *int64 `type:"integer"`
 
-	// The percentage of accounts, per region, for which this stack operation can
-	// fail before AWS Service Catalog stops the operation in that region. If the
-	// operation is stopped in a region, AWS Service Catalog doesn't attempt the
-	// operation in any subsequent regions.
+	// The percentage of accounts, per Region, for which this stack operation can
+	// fail before Service Catalog stops the operation in that Region. If the operation
+	// is stopped in a Region, Service Catalog doesn't attempt the operation in
+	// any subsequent Regions.
 	//
 	// When calculating the number of accounts based on the specified percentage,
-	// AWS Service Catalog rounds down to the next whole number.
+	// Service Catalog rounds down to the next whole number.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
@@ -23872,8 +23916,8 @@ type UpdateProvisioningPreferences struct {
 	// one time.
 	//
 	// When calculating the number of accounts based on the specified percentage,
-	// AWS Service Catalog rounds down to the next whole number. This is true except
-	// in cases where rounding down would result is zero. In this case, AWS Service
+	// Service Catalog rounds down to the next whole number. This is true except
+	// in cases where rounding down would result is zero. In this case, Service
 	// Catalog sets the number as 1 instead.
 	//
 	// Note that this setting lets you specify the maximum for operations. For large
@@ -23886,7 +23930,7 @@ type UpdateProvisioningPreferences struct {
 	// but not both.
 	StackSetMaxConcurrencyPercentage *int64 `min:"1" type:"integer"`
 
-	// Determines what action AWS Service Catalog performs to a stack set or a stack
+	// Determines what action Service Catalog performs to a stack set or a stack
 	// instance represented by the provisioned product. The default value is UPDATE
 	// if nothing is specified.
 	//
@@ -23896,7 +23940,7 @@ type UpdateProvisioningPreferences struct {
 	//
 	// Creates a new stack instance in the stack set represented by the provisioned
 	// product. In this case, only new stack instances are created based on accounts
-	// and regions; if new ProductId or ProvisioningArtifactID are passed, they
+	// and Regions; if new ProductId or ProvisioningArtifactID are passed, they
 	// will be ignored.
 	//
 	// UPDATE
@@ -23910,15 +23954,16 @@ type UpdateProvisioningPreferences struct {
 	// product.
 	StackSetOperationType *string `type:"string" enum:"StackSetOperationType"`
 
-	// One or more AWS Regions where the provisioned product will be available.
+	// One or more Amazon Web Services Regions where the provisioned product will
+	// be available.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
-	// The specified regions should be within the list of regions from the STACKSET
-	// constraint. To get the list of regions in the STACKSET constraint, use the
+	// The specified Regions should be within the list of Regions from the STACKSET
+	// constraint. To get the list of Regions in the STACKSET constraint, use the
 	// DescribeProvisioningParameters operation.
 	//
-	// If no values are specified, the default value is all regions from the STACKSET
+	// If no values are specified, the default value is all Regions from the STACKSET
 	// constraint.
 	StackSetRegions []*string `type:"list"`
 }

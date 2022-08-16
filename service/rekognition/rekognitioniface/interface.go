@@ -64,6 +64,10 @@ type RekognitionAPI interface {
 	CompareFacesWithContext(aws.Context, *rekognition.CompareFacesInput, ...request.Option) (*rekognition.CompareFacesOutput, error)
 	CompareFacesRequest(*rekognition.CompareFacesInput) (*request.Request, *rekognition.CompareFacesOutput)
 
+	CopyProjectVersion(*rekognition.CopyProjectVersionInput) (*rekognition.CopyProjectVersionOutput, error)
+	CopyProjectVersionWithContext(aws.Context, *rekognition.CopyProjectVersionInput, ...request.Option) (*rekognition.CopyProjectVersionOutput, error)
+	CopyProjectVersionRequest(*rekognition.CopyProjectVersionInput) (*request.Request, *rekognition.CopyProjectVersionOutput)
+
 	CreateCollection(*rekognition.CreateCollectionInput) (*rekognition.CreateCollectionOutput, error)
 	CreateCollectionWithContext(aws.Context, *rekognition.CreateCollectionInput, ...request.Option) (*rekognition.CreateCollectionOutput, error)
 	CreateCollectionRequest(*rekognition.CreateCollectionInput) (*request.Request, *rekognition.CreateCollectionOutput)
@@ -99,6 +103,10 @@ type RekognitionAPI interface {
 	DeleteProject(*rekognition.DeleteProjectInput) (*rekognition.DeleteProjectOutput, error)
 	DeleteProjectWithContext(aws.Context, *rekognition.DeleteProjectInput, ...request.Option) (*rekognition.DeleteProjectOutput, error)
 	DeleteProjectRequest(*rekognition.DeleteProjectInput) (*request.Request, *rekognition.DeleteProjectOutput)
+
+	DeleteProjectPolicy(*rekognition.DeleteProjectPolicyInput) (*rekognition.DeleteProjectPolicyOutput, error)
+	DeleteProjectPolicyWithContext(aws.Context, *rekognition.DeleteProjectPolicyInput, ...request.Option) (*rekognition.DeleteProjectPolicyOutput, error)
+	DeleteProjectPolicyRequest(*rekognition.DeleteProjectPolicyInput) (*request.Request, *rekognition.DeleteProjectPolicyOutput)
 
 	DeleteProjectVersion(*rekognition.DeleteProjectVersionInput) (*rekognition.DeleteProjectVersionOutput, error)
 	DeleteProjectVersionWithContext(aws.Context, *rekognition.DeleteProjectVersionInput, ...request.Option) (*rekognition.DeleteProjectVersionOutput, error)
@@ -254,6 +262,13 @@ type RekognitionAPI interface {
 	ListFacesPages(*rekognition.ListFacesInput, func(*rekognition.ListFacesOutput, bool) bool) error
 	ListFacesPagesWithContext(aws.Context, *rekognition.ListFacesInput, func(*rekognition.ListFacesOutput, bool) bool, ...request.Option) error
 
+	ListProjectPolicies(*rekognition.ListProjectPoliciesInput) (*rekognition.ListProjectPoliciesOutput, error)
+	ListProjectPoliciesWithContext(aws.Context, *rekognition.ListProjectPoliciesInput, ...request.Option) (*rekognition.ListProjectPoliciesOutput, error)
+	ListProjectPoliciesRequest(*rekognition.ListProjectPoliciesInput) (*request.Request, *rekognition.ListProjectPoliciesOutput)
+
+	ListProjectPoliciesPages(*rekognition.ListProjectPoliciesInput, func(*rekognition.ListProjectPoliciesOutput, bool) bool) error
+	ListProjectPoliciesPagesWithContext(aws.Context, *rekognition.ListProjectPoliciesInput, func(*rekognition.ListProjectPoliciesOutput, bool) bool, ...request.Option) error
+
 	ListStreamProcessors(*rekognition.ListStreamProcessorsInput) (*rekognition.ListStreamProcessorsOutput, error)
 	ListStreamProcessorsWithContext(aws.Context, *rekognition.ListStreamProcessorsInput, ...request.Option) (*rekognition.ListStreamProcessorsOutput, error)
 	ListStreamProcessorsRequest(*rekognition.ListStreamProcessorsInput) (*request.Request, *rekognition.ListStreamProcessorsOutput)
@@ -264,6 +279,10 @@ type RekognitionAPI interface {
 	ListTagsForResource(*rekognition.ListTagsForResourceInput) (*rekognition.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *rekognition.ListTagsForResourceInput, ...request.Option) (*rekognition.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*rekognition.ListTagsForResourceInput) (*request.Request, *rekognition.ListTagsForResourceOutput)
+
+	PutProjectPolicy(*rekognition.PutProjectPolicyInput) (*rekognition.PutProjectPolicyOutput, error)
+	PutProjectPolicyWithContext(aws.Context, *rekognition.PutProjectPolicyInput, ...request.Option) (*rekognition.PutProjectPolicyOutput, error)
+	PutProjectPolicyRequest(*rekognition.PutProjectPolicyInput) (*request.Request, *rekognition.PutProjectPolicyOutput)
 
 	RecognizeCelebrities(*rekognition.RecognizeCelebritiesInput) (*rekognition.RecognizeCelebritiesOutput, error)
 	RecognizeCelebritiesWithContext(aws.Context, *rekognition.RecognizeCelebritiesInput, ...request.Option) (*rekognition.RecognizeCelebritiesOutput, error)

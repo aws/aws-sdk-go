@@ -172,6 +172,137 @@ func (c *Rekognition) CompareFacesWithContext(ctx aws.Context, input *CompareFac
 	return out, req.Send()
 }
 
+const opCopyProjectVersion = "CopyProjectVersion"
+
+// CopyProjectVersionRequest generates a "aws/request.Request" representing the
+// client's request for the CopyProjectVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CopyProjectVersion for more information on using the CopyProjectVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CopyProjectVersionRequest method.
+//	req, resp := client.CopyProjectVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) CopyProjectVersionRequest(input *CopyProjectVersionInput) (req *request.Request, output *CopyProjectVersionOutput) {
+	op := &request.Operation{
+		Name:       opCopyProjectVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CopyProjectVersionInput{}
+	}
+
+	output = &CopyProjectVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CopyProjectVersion API operation for Amazon Rekognition.
+//
+// Copies a version of an Amazon Rekognition Custom Labels model from a source
+// project to a destination project. The source and destination projects can
+// be in different AWS accounts but must be in the same AWS Region. You can't
+// copy a model to another AWS service.
+//
+// To copy a model version to a different AWS account, you need to create a
+// resource-based policy known as a project policy. You attach the project policy
+// to the source project by calling PutProjectPolicy. The project policy gives
+// permission to copy the model version from a trusting AWS account to a trusted
+// account.
+//
+// For more information creating and attaching a project policy, see Attaching
+// a project policy (SDK) in the Amazon Rekognition Custom Labels Developer
+// Guide.
+//
+// If you are copying a model version to a project in the same AWS account,
+// you don't need to create a project policy.
+//
+// To copy a model, the destination project, source project, and source model
+// version must already exist.
+//
+// Copying a model version takes a while to complete. To get the current status,
+// call DescribeProjectVersions and check the value of Status in the ProjectVersionDescription
+// object. The copy operation has finished when the value of Status is COPYING_COMPLETED.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation CopyProjectVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - LimitExceededException
+//     An Amazon Rekognition service limit was exceeded. For example, if you start
+//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
+//     (StartLabelDetection, for example) will raise a LimitExceededException exception
+//     (HTTP status code: 400) until the number of concurrently running jobs is
+//     below the Amazon Rekognition service limit.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request cannot be found.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+//
+//   - ServiceQuotaExceededException
+//     The size of the collection exceeds the allowed limit. For more information,
+//     see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//     Developer Guide.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+//
+//   - ResourceInUseException
+//     The specified resource is already being used.
+func (c *Rekognition) CopyProjectVersion(input *CopyProjectVersionInput) (*CopyProjectVersionOutput, error) {
+	req, out := c.CopyProjectVersionRequest(input)
+	return out, req.Send()
+}
+
+// CopyProjectVersionWithContext is the same as CopyProjectVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CopyProjectVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) CopyProjectVersionWithContext(ctx aws.Context, input *CopyProjectVersionInput, opts ...request.Option) (*CopyProjectVersionOutput, error) {
+	req, out := c.CopyProjectVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateCollection = "CreateCollection"
 
 // CreateCollectionRequest generates a "aws/request.Request" representing the
@@ -1155,7 +1286,8 @@ func (c *Rekognition) DeleteProjectRequest(input *DeleteProjectInput) (req *requ
 //
 // DeleteProject is an asynchronous operation. To check if the project is deleted,
 // call DescribeProjects. The project is deleted when the project no longer
-// appears in the response.
+// appears in the response. Be aware that deleting a given project will also
+// delete any ProjectPolicies associated with that project.
 //
 // This operation requires permissions to perform the rekognition:DeleteProject
 // action.
@@ -1208,6 +1340,106 @@ func (c *Rekognition) DeleteProject(input *DeleteProjectInput) (*DeleteProjectOu
 // for more information on using Contexts.
 func (c *Rekognition) DeleteProjectWithContext(ctx aws.Context, input *DeleteProjectInput, opts ...request.Option) (*DeleteProjectOutput, error) {
 	req, out := c.DeleteProjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteProjectPolicy = "DeleteProjectPolicy"
+
+// DeleteProjectPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteProjectPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteProjectPolicy for more information on using the DeleteProjectPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteProjectPolicyRequest method.
+//	req, resp := client.DeleteProjectPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) DeleteProjectPolicyRequest(input *DeleteProjectPolicyInput) (req *request.Request, output *DeleteProjectPolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteProjectPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteProjectPolicyInput{}
+	}
+
+	output = &DeleteProjectPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteProjectPolicy API operation for Amazon Rekognition.
+//
+// Deletes an existing project policy.
+//
+// To get a list of project policies attached to a project, call ListProjectPolicies.
+// To attach a project policy to a project, call PutProjectPolicy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation DeleteProjectPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request cannot be found.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+//
+//   - InvalidPolicyRevisionIdException
+//     The supplied revision id for the project policy is invalid.
+func (c *Rekognition) DeleteProjectPolicy(input *DeleteProjectPolicyInput) (*DeleteProjectPolicyOutput, error) {
+	req, out := c.DeleteProjectPolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteProjectPolicyWithContext is the same as DeleteProjectPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteProjectPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) DeleteProjectPolicyWithContext(ctx aws.Context, input *DeleteProjectPolicyInput, opts ...request.Option) (*DeleteProjectPolicyOutput, error) {
+	req, out := c.DeleteProjectPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5411,6 +5643,162 @@ func (c *Rekognition) ListFacesPagesWithContext(ctx aws.Context, input *ListFace
 	return p.Err()
 }
 
+const opListProjectPolicies = "ListProjectPolicies"
+
+// ListProjectPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the ListProjectPolicies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListProjectPolicies for more information on using the ListProjectPolicies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListProjectPoliciesRequest method.
+//	req, resp := client.ListProjectPoliciesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) ListProjectPoliciesRequest(input *ListProjectPoliciesInput) (req *request.Request, output *ListProjectPoliciesOutput) {
+	op := &request.Operation{
+		Name:       opListProjectPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListProjectPoliciesInput{}
+	}
+
+	output = &ListProjectPoliciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListProjectPolicies API operation for Amazon Rekognition.
+//
+// Gets a list of the project policies attached to a project.
+//
+// To attach a project policy to a project, call PutProjectPolicy. To remove
+// a project policy from a project, call DeleteProjectPolicy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation ListProjectPolicies for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request cannot be found.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+//
+//   - InvalidPaginationTokenException
+//     Pagination token in the request is not valid.
+func (c *Rekognition) ListProjectPolicies(input *ListProjectPoliciesInput) (*ListProjectPoliciesOutput, error) {
+	req, out := c.ListProjectPoliciesRequest(input)
+	return out, req.Send()
+}
+
+// ListProjectPoliciesWithContext is the same as ListProjectPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListProjectPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) ListProjectPoliciesWithContext(ctx aws.Context, input *ListProjectPoliciesInput, opts ...request.Option) (*ListProjectPoliciesOutput, error) {
+	req, out := c.ListProjectPoliciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListProjectPoliciesPages iterates over the pages of a ListProjectPolicies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListProjectPolicies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListProjectPolicies operation.
+//	pageNum := 0
+//	err := client.ListProjectPoliciesPages(params,
+//	    func(page *rekognition.ListProjectPoliciesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Rekognition) ListProjectPoliciesPages(input *ListProjectPoliciesInput, fn func(*ListProjectPoliciesOutput, bool) bool) error {
+	return c.ListProjectPoliciesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListProjectPoliciesPagesWithContext same as ListProjectPoliciesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) ListProjectPoliciesPagesWithContext(ctx aws.Context, input *ListProjectPoliciesInput, fn func(*ListProjectPoliciesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListProjectPoliciesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListProjectPoliciesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListProjectPoliciesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListStreamProcessors = "ListStreamProcessors"
 
 // ListStreamProcessorsRequest generates a "aws/request.Request" representing the
@@ -5653,6 +6041,139 @@ func (c *Rekognition) ListTagsForResource(input *ListTagsForResourceInput) (*Lis
 // for more information on using Contexts.
 func (c *Rekognition) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutProjectPolicy = "PutProjectPolicy"
+
+// PutProjectPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutProjectPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutProjectPolicy for more information on using the PutProjectPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutProjectPolicyRequest method.
+//	req, resp := client.PutProjectPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) PutProjectPolicyRequest(input *PutProjectPolicyInput) (req *request.Request, output *PutProjectPolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutProjectPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutProjectPolicyInput{}
+	}
+
+	output = &PutProjectPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutProjectPolicy API operation for Amazon Rekognition.
+//
+// Attaches a project policy to a Amazon Rekognition Custom Labels project in
+// a trusting AWS account. A project policy specifies that a trusted AWS account
+// can copy a model version from a trusting AWS account to a project in the
+// trusted AWS account. To copy a model version you use the CopyProjectVersion
+// operation.
+//
+// For more information about the format of a project policy document, see Attaching
+// a project policy (SDK) in the Amazon Rekognition Custom Labels Developer
+// Guide.
+//
+// The response from PutProjectPolicy is a revision ID for the project policy.
+// You can attach multiple project policies to a project. You can also update
+// an existing project policy by specifying the policy revision ID of the existing
+// policy.
+//
+// To remove a project policy from a project, call DeleteProjectPolicy. To get
+// a list of project policies attached to a project, call ListProjectPolicies.
+//
+// You copy a model version by calling CopyProjectVersion.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation PutProjectPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - InvalidPolicyRevisionIdException
+//     The supplied revision id for the project policy is invalid.
+//
+//   - MalformedPolicyDocumentException
+//     The format of the project policy document that you supplied to PutProjectPolicy
+//     is incorrect.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request cannot be found.
+//
+//   - ResourceAlreadyExistsException
+//     A resource with the specified ID already exists.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+//
+//   - ServiceQuotaExceededException
+//     The size of the collection exceeds the allowed limit. For more information,
+//     see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//     Developer Guide.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+//
+//   - LimitExceededException
+//     An Amazon Rekognition service limit was exceeded. For example, if you start
+//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
+//     (StartLabelDetection, for example) will raise a LimitExceededException exception
+//     (HTTP status code: 400) until the number of concurrently running jobs is
+//     below the Amazon Rekognition service limit.
+func (c *Rekognition) PutProjectPolicy(input *PutProjectPolicyInput) (*PutProjectPolicyOutput, error) {
+	req, out := c.PutProjectPolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutProjectPolicyWithContext is the same as PutProjectPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutProjectPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) PutProjectPolicyWithContext(ctx aws.Context, input *PutProjectPolicyInput, opts ...request.Option) (*PutProjectPolicyOutput, error) {
+	req, out := c.PutProjectPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9053,6 +9574,198 @@ func (s *ContentModerationDetection) SetTimestamp(v int64) *ContentModerationDet
 	return s
 }
 
+type CopyProjectVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the project in the trusted AWS account that you want to copy the
+	// model version to.
+	//
+	// DestinationProjectArn is a required field
+	DestinationProjectArn *string `min:"20" type:"string" required:"true"`
+
+	// The identifier for your AWS Key Management Service key (AWS KMS key). You
+	// can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your
+	// KMS key, an alias for your KMS key, or an alias ARN. The key is used to encrypt
+	// training results and manifest files written to the output Amazon S3 bucket
+	// (OutputConfig).
+	//
+	// If you choose to use your own KMS key, you need the following permissions
+	// on the KMS key.
+	//
+	//    * kms:CreateGrant
+	//
+	//    * kms:DescribeKey
+	//
+	//    * kms:GenerateDataKey
+	//
+	//    * kms:Decrypt
+	//
+	// If you don't specify a value for KmsKeyId, images copied into the service
+	// are encrypted using a key that AWS owns and manages.
+	KmsKeyId *string `min:"1" type:"string"`
+
+	// The S3 bucket and folder location where the training output for the source
+	// model version is placed.
+	//
+	// OutputConfig is a required field
+	OutputConfig *OutputConfig `type:"structure" required:"true"`
+
+	// The ARN of the source project in the trusting AWS account.
+	//
+	// SourceProjectArn is a required field
+	SourceProjectArn *string `min:"20" type:"string" required:"true"`
+
+	// The ARN of the model version in the source project that you want to copy
+	// to a destination project.
+	//
+	// SourceProjectVersionArn is a required field
+	SourceProjectVersionArn *string `min:"20" type:"string" required:"true"`
+
+	// The key-value tags to assign to the model version.
+	Tags map[string]*string `type:"map"`
+
+	// A name for the version of the model that's copied to the destination project.
+	//
+	// VersionName is a required field
+	VersionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopyProjectVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopyProjectVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CopyProjectVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CopyProjectVersionInput"}
+	if s.DestinationProjectArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationProjectArn"))
+	}
+	if s.DestinationProjectArn != nil && len(*s.DestinationProjectArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DestinationProjectArn", 20))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.OutputConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputConfig"))
+	}
+	if s.SourceProjectArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceProjectArn"))
+	}
+	if s.SourceProjectArn != nil && len(*s.SourceProjectArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceProjectArn", 20))
+	}
+	if s.SourceProjectVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceProjectVersionArn"))
+	}
+	if s.SourceProjectVersionArn != nil && len(*s.SourceProjectVersionArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceProjectVersionArn", 20))
+	}
+	if s.VersionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VersionName"))
+	}
+	if s.VersionName != nil && len(*s.VersionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionName", 1))
+	}
+	if s.OutputConfig != nil {
+		if err := s.OutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationProjectArn sets the DestinationProjectArn field's value.
+func (s *CopyProjectVersionInput) SetDestinationProjectArn(v string) *CopyProjectVersionInput {
+	s.DestinationProjectArn = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CopyProjectVersionInput) SetKmsKeyId(v string) *CopyProjectVersionInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *CopyProjectVersionInput) SetOutputConfig(v *OutputConfig) *CopyProjectVersionInput {
+	s.OutputConfig = v
+	return s
+}
+
+// SetSourceProjectArn sets the SourceProjectArn field's value.
+func (s *CopyProjectVersionInput) SetSourceProjectArn(v string) *CopyProjectVersionInput {
+	s.SourceProjectArn = &v
+	return s
+}
+
+// SetSourceProjectVersionArn sets the SourceProjectVersionArn field's value.
+func (s *CopyProjectVersionInput) SetSourceProjectVersionArn(v string) *CopyProjectVersionInput {
+	s.SourceProjectVersionArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CopyProjectVersionInput) SetTags(v map[string]*string) *CopyProjectVersionInput {
+	s.Tags = v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *CopyProjectVersionInput) SetVersionName(v string) *CopyProjectVersionInput {
+	s.VersionName = &v
+	return s
+}
+
+type CopyProjectVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the copied model version in the destination project.
+	ProjectVersionArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopyProjectVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopyProjectVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetProjectVersionArn sets the ProjectVersionArn field's value.
+func (s *CopyProjectVersionOutput) SetProjectVersionArn(v string) *CopyProjectVersionOutput {
+	s.ProjectVersionArn = &v
+	return s
+}
+
 // Information about an item of Personal Protective Equipment covering a corresponding
 // body part. For more information, see DetectProtectiveEquipment.
 type CoversBodyPart struct {
@@ -10650,6 +11363,104 @@ func (s DeleteProjectOutput) GoString() string {
 func (s *DeleteProjectOutput) SetStatus(v string) *DeleteProjectOutput {
 	s.Status = &v
 	return s
+}
+
+type DeleteProjectPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the policy that you want to delete.
+	//
+	// PolicyName is a required field
+	PolicyName *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the project policy revision that you want to delete.
+	PolicyRevisionId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the project that the project policy you
+	// want to delete is attached to.
+	//
+	// ProjectArn is a required field
+	ProjectArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProjectPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProjectPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteProjectPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteProjectPolicyInput"}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+	if s.ProjectArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectArn"))
+	}
+	if s.ProjectArn != nil && len(*s.ProjectArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *DeleteProjectPolicyInput) SetPolicyName(v string) *DeleteProjectPolicyInput {
+	s.PolicyName = &v
+	return s
+}
+
+// SetPolicyRevisionId sets the PolicyRevisionId field's value.
+func (s *DeleteProjectPolicyInput) SetPolicyRevisionId(v string) *DeleteProjectPolicyInput {
+	s.PolicyRevisionId = &v
+	return s
+}
+
+// SetProjectArn sets the ProjectArn field's value.
+func (s *DeleteProjectPolicyInput) SetProjectArn(v string) *DeleteProjectPolicyInput {
+	s.ProjectArn = &v
+	return s
+}
+
+type DeleteProjectPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProjectPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProjectPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteProjectVersionInput struct {
@@ -15743,6 +16554,70 @@ func (s *InvalidParameterException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The supplied revision id for the project policy is invalid.
+type InvalidPolicyRevisionIdException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidPolicyRevisionIdException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidPolicyRevisionIdException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidPolicyRevisionIdException(v protocol.ResponseMetadata) error {
+	return &InvalidPolicyRevisionIdException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidPolicyRevisionIdException) Code() string {
+	return "InvalidPolicyRevisionIdException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidPolicyRevisionIdException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidPolicyRevisionIdException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidPolicyRevisionIdException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidPolicyRevisionIdException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidPolicyRevisionIdException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Amazon Rekognition is unable to access the S3 object specified in the request.
 type InvalidS3ObjectException struct {
 	_            struct{}                  `type:"structure"`
@@ -16693,6 +17568,123 @@ func (s *ListFacesOutput) SetNextToken(v string) *ListFacesOutput {
 	return s
 }
 
+type ListProjectPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return per paginated call. The largest value
+	// you can specify is 5. If you specify a value greater than 5, a ValidationException
+	// error occurs. The default value is 5.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the previous response was incomplete (because there is more results to
+	// retrieve), Amazon Rekognition Custom Labels returns a pagination token in
+	// the response. You can use this pagination token to retrieve the next set
+	// of results.
+	NextToken *string `type:"string"`
+
+	// The ARN of the project for which you want to list the project policies.
+	//
+	// ProjectArn is a required field
+	ProjectArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProjectPoliciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProjectPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListProjectPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListProjectPoliciesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ProjectArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectArn"))
+	}
+	if s.ProjectArn != nil && len(*s.ProjectArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListProjectPoliciesInput) SetMaxResults(v int64) *ListProjectPoliciesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProjectPoliciesInput) SetNextToken(v string) *ListProjectPoliciesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProjectArn sets the ProjectArn field's value.
+func (s *ListProjectPoliciesInput) SetProjectArn(v string) *ListProjectPoliciesInput {
+	s.ProjectArn = &v
+	return s
+}
+
+type ListProjectPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the response is truncated, Amazon Rekognition returns this token that
+	// you can use in the subsequent request to retrieve the next set of project
+	// policies.
+	NextToken *string `type:"string"`
+
+	// A list of project policies attached to the project.
+	ProjectPolicies []*ProjectPolicy `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProjectPoliciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProjectPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProjectPoliciesOutput) SetNextToken(v string) *ListProjectPoliciesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProjectPolicies sets the ProjectPolicies field's value.
+func (s *ListProjectPoliciesOutput) SetProjectPolicies(v []*ProjectPolicy) *ListProjectPoliciesOutput {
+	s.ProjectPolicies = v
+	return s
+}
+
 type ListStreamProcessorsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16871,6 +17863,71 @@ func (s ListTagsForResourceOutput) GoString() string {
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
 	return s
+}
+
+// The format of the project policy document that you supplied to PutProjectPolicy
+// is incorrect.
+type MalformedPolicyDocumentException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MalformedPolicyDocumentException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MalformedPolicyDocumentException) GoString() string {
+	return s.String()
+}
+
+func newErrorMalformedPolicyDocumentException(v protocol.ResponseMetadata) error {
+	return &MalformedPolicyDocumentException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *MalformedPolicyDocumentException) Code() string {
+	return "MalformedPolicyDocumentException"
+}
+
+// Message returns the exception's message.
+func (s *MalformedPolicyDocumentException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *MalformedPolicyDocumentException) OrigErr() error {
+	return nil
+}
+
+func (s *MalformedPolicyDocumentException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *MalformedPolicyDocumentException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *MalformedPolicyDocumentException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Provides information about a single type of inappropriate, unwanted, or offensive
@@ -17485,6 +18542,84 @@ func (s *ProjectDescription) SetStatus(v string) *ProjectDescription {
 	return s
 }
 
+// Describes a project policy in the response from ListProjectPolicies.
+type ProjectPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The Unix datetime for the creation of the project policy.
+	CreationTimestamp *time.Time `type:"timestamp"`
+
+	// The Unix datetime for when the project policy was last updated.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The JSON document for the project policy.
+	PolicyDocument *string `min:"1" type:"string"`
+
+	// The name of the project policy.
+	PolicyName *string `min:"1" type:"string"`
+
+	// The revision ID of the project policy.
+	PolicyRevisionId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the project to which the project policy
+	// is attached.
+	ProjectArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProjectPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProjectPolicy) GoString() string {
+	return s.String()
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *ProjectPolicy) SetCreationTimestamp(v time.Time) *ProjectPolicy {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *ProjectPolicy) SetLastUpdatedTimestamp(v time.Time) *ProjectPolicy {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetPolicyDocument sets the PolicyDocument field's value.
+func (s *ProjectPolicy) SetPolicyDocument(v string) *ProjectPolicy {
+	s.PolicyDocument = &v
+	return s
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *ProjectPolicy) SetPolicyName(v string) *ProjectPolicy {
+	s.PolicyName = &v
+	return s
+}
+
+// SetPolicyRevisionId sets the PolicyRevisionId field's value.
+func (s *ProjectPolicy) SetPolicyRevisionId(v string) *ProjectPolicy {
+	s.PolicyRevisionId = &v
+	return s
+}
+
+// SetProjectArn sets the ProjectArn field's value.
+func (s *ProjectPolicy) SetProjectArn(v string) *ProjectPolicy {
+	s.ProjectArn = &v
+	return s
+}
+
 // A description of a version of an Amazon Rekognition Custom Labels model.
 type ProjectVersionDescription struct {
 	_ struct{} `type:"structure"`
@@ -17521,6 +18656,10 @@ type ProjectVersionDescription struct {
 
 	// The Amazon Resource Name (ARN) of the model version.
 	ProjectVersionArn *string `min:"20" type:"string"`
+
+	// If the model version was copied from a different project, SourceProjectVersionArn
+	// contains the ARN of the source model version.
+	SourceProjectVersionArn *string `min:"20" type:"string"`
 
 	// The current status of the model version.
 	Status *string `type:"string" enum:"ProjectVersionStatus"`
@@ -17607,6 +18746,12 @@ func (s *ProjectVersionDescription) SetOutputConfig(v *OutputConfig) *ProjectVer
 // SetProjectVersionArn sets the ProjectVersionArn field's value.
 func (s *ProjectVersionDescription) SetProjectVersionArn(v string) *ProjectVersionDescription {
 	s.ProjectVersionArn = &v
+	return s
+}
+
+// SetSourceProjectVersionArn sets the SourceProjectVersionArn field's value.
+func (s *ProjectVersionDescription) SetSourceProjectVersionArn(v string) *ProjectVersionDescription {
+	s.SourceProjectVersionArn = &v
 	return s
 }
 
@@ -17967,6 +19112,135 @@ func (s *ProvisionedThroughputExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ProvisionedThroughputExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type PutProjectPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// A resource policy to add to the model. The policy is a JSON structure that
+	// contains one or more statements that define the policy. The policy must follow
+	// the IAM syntax. For more information about the contents of a JSON policy
+	// document, see IAM JSON policy reference (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html).
+	//
+	// PolicyDocument is a required field
+	PolicyDocument *string `min:"1" type:"string" required:"true"`
+
+	// A name for the policy.
+	//
+	// PolicyName is a required field
+	PolicyName *string `min:"1" type:"string" required:"true"`
+
+	// The revision ID for the Project Policy. Each time you modify a policy, Amazon
+	// Rekognition Custom Labels generates and assigns a new PolicyRevisionId and
+	// then deletes the previous version of the policy.
+	PolicyRevisionId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the project that the project policy is
+	// attached to.
+	//
+	// ProjectArn is a required field
+	ProjectArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutProjectPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutProjectPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutProjectPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutProjectPolicyInput"}
+	if s.PolicyDocument == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyDocument"))
+	}
+	if s.PolicyDocument != nil && len(*s.PolicyDocument) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyDocument", 1))
+	}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+	if s.ProjectArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectArn"))
+	}
+	if s.ProjectArn != nil && len(*s.ProjectArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPolicyDocument sets the PolicyDocument field's value.
+func (s *PutProjectPolicyInput) SetPolicyDocument(v string) *PutProjectPolicyInput {
+	s.PolicyDocument = &v
+	return s
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *PutProjectPolicyInput) SetPolicyName(v string) *PutProjectPolicyInput {
+	s.PolicyName = &v
+	return s
+}
+
+// SetPolicyRevisionId sets the PolicyRevisionId field's value.
+func (s *PutProjectPolicyInput) SetPolicyRevisionId(v string) *PutProjectPolicyInput {
+	s.PolicyRevisionId = &v
+	return s
+}
+
+// SetProjectArn sets the ProjectArn field's value.
+func (s *PutProjectPolicyInput) SetProjectArn(v string) *PutProjectPolicyInput {
+	s.ProjectArn = &v
+	return s
+}
+
+type PutProjectPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the project policy.
+	PolicyRevisionId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutProjectPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutProjectPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicyRevisionId sets the PolicyRevisionId field's value.
+func (s *PutProjectPolicyOutput) SetPolicyRevisionId(v string) *PutProjectPolicyOutput {
+	s.PolicyRevisionId = &v
+	return s
 }
 
 type RecognizeCelebritiesInput struct {
@@ -23181,6 +24455,15 @@ const (
 
 	// ProjectVersionStatusDeleting is a ProjectVersionStatus enum value
 	ProjectVersionStatusDeleting = "DELETING"
+
+	// ProjectVersionStatusCopyingInProgress is a ProjectVersionStatus enum value
+	ProjectVersionStatusCopyingInProgress = "COPYING_IN_PROGRESS"
+
+	// ProjectVersionStatusCopyingCompleted is a ProjectVersionStatus enum value
+	ProjectVersionStatusCopyingCompleted = "COPYING_COMPLETED"
+
+	// ProjectVersionStatusCopyingFailed is a ProjectVersionStatus enum value
+	ProjectVersionStatusCopyingFailed = "COPYING_FAILED"
 )
 
 // ProjectVersionStatus_Values returns all elements of the ProjectVersionStatus enum
@@ -23195,6 +24478,9 @@ func ProjectVersionStatus_Values() []string {
 		ProjectVersionStatusStopping,
 		ProjectVersionStatusStopped,
 		ProjectVersionStatusDeleting,
+		ProjectVersionStatusCopyingInProgress,
+		ProjectVersionStatusCopyingCompleted,
+		ProjectVersionStatusCopyingFailed,
 	}
 }
 

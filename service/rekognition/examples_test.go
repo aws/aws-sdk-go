@@ -80,6 +80,62 @@ func ExampleRekognition_CompareFaces_shared00() {
 	fmt.Println(result)
 }
 
+// CopyProjectVersion
+// This operation copies a version of an Amazon Rekognition Custom Labels model from
+// a source project to a destination project.
+func ExampleRekognition_CopyProjectVersion_shared00() {
+	svc := rekognition.New(session.New())
+	input := &rekognition.CopyProjectVersionInput{
+		DestinationProjectArn: aws.String("arn:aws:rekognition:us-east-1:555555555555:project/DestinationProject/1656705098765"),
+		KmsKeyId:              aws.String("arn:1234abcd-12ab-34cd-56ef-1234567890ab"),
+		OutputConfig: &rekognition.OutputConfig{
+			S3Bucket:    aws.String("bucket-name"),
+			S3KeyPrefix: aws.String("path_to_folder"),
+		},
+		SourceProjectArn:        aws.String("arn:aws:rekognition:us-east-1:111122223333:project/SourceProject/16565123456"),
+		SourceProjectVersionArn: aws.String("arn:aws:rekognition:us-east-1:111122223333:project/SourceProject/version/model_1/1656611123456"),
+		Tags: map[string]*string{
+			"key1": aws.String("val1"),
+		},
+		VersionName: aws.String("DestinationVersionName_cross_account"),
+	}
+
+	result, err := svc.CopyProjectVersion(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rekognition.ErrCodeAccessDeniedException:
+				fmt.Println(rekognition.ErrCodeAccessDeniedException, aerr.Error())
+			case rekognition.ErrCodeInternalServerError:
+				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
+			case rekognition.ErrCodeInvalidParameterException:
+				fmt.Println(rekognition.ErrCodeInvalidParameterException, aerr.Error())
+			case rekognition.ErrCodeLimitExceededException:
+				fmt.Println(rekognition.ErrCodeLimitExceededException, aerr.Error())
+			case rekognition.ErrCodeResourceNotFoundException:
+				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			case rekognition.ErrCodeThrottlingException:
+				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
+			case rekognition.ErrCodeServiceQuotaExceededException:
+				fmt.Println(rekognition.ErrCodeServiceQuotaExceededException, aerr.Error())
+			case rekognition.ErrCodeProvisionedThroughputExceededException:
+				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
+			case rekognition.ErrCodeResourceInUseException:
+				fmt.Println(rekognition.ErrCodeResourceInUseException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To create a collection
 // This operation creates a Rekognition collection for storing image data.
 func ExampleRekognition_CreateCollection_shared00() {
@@ -185,6 +241,49 @@ func ExampleRekognition_DeleteFaces_shared00() {
 				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
 			case rekognition.ErrCodeResourceNotFoundException:
 				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// DeleteProjectPolicy
+// This operation deletes a revision of an existing project policy from an Amazon Rekognition
+// Custom Labels project.
+func ExampleRekognition_DeleteProjectPolicy_shared00() {
+	svc := rekognition.New(session.New())
+	input := &rekognition.DeleteProjectPolicyInput{
+		PolicyName:       aws.String("testPolicy1"),
+		PolicyRevisionId: aws.String("3b274c25e9203a56a99e00e3ff205fbc"),
+		ProjectArn:       aws.String("arn:aws:rekognition:us-east-1:111122223333:project/SourceProject/1656557123456"),
+	}
+
+	result, err := svc.DeleteProjectPolicy(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rekognition.ErrCodeAccessDeniedException:
+				fmt.Println(rekognition.ErrCodeAccessDeniedException, aerr.Error())
+			case rekognition.ErrCodeInternalServerError:
+				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
+			case rekognition.ErrCodeInvalidParameterException:
+				fmt.Println(rekognition.ErrCodeInvalidParameterException, aerr.Error())
+			case rekognition.ErrCodeResourceNotFoundException:
+				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			case rekognition.ErrCodeThrottlingException:
+				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
+			case rekognition.ErrCodeProvisionedThroughputExceededException:
+				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
+			case rekognition.ErrCodeInvalidPolicyRevisionIdException:
+				fmt.Println(rekognition.ErrCodeInvalidPolicyRevisionIdException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -414,6 +513,101 @@ func ExampleRekognition_ListFaces_shared00() {
 				fmt.Println(rekognition.ErrCodeInvalidPaginationTokenException, aerr.Error())
 			case rekognition.ErrCodeResourceNotFoundException:
 				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// ListProjectPolicies
+// This operation lists the project policies that are attached to an Amazon Rekognition
+// Custom Labels project.
+func ExampleRekognition_ListProjectPolicies_shared00() {
+	svc := rekognition.New(session.New())
+	input := &rekognition.ListProjectPoliciesInput{
+		MaxResults: aws.Int64(5),
+		NextToken:  aws.String(""),
+		ProjectArn: aws.String("arn:aws:rekognition:us-east-1:111122223333:project/my-sdk-project/1656557051929"),
+	}
+
+	result, err := svc.ListProjectPolicies(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rekognition.ErrCodeAccessDeniedException:
+				fmt.Println(rekognition.ErrCodeAccessDeniedException, aerr.Error())
+			case rekognition.ErrCodeInternalServerError:
+				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
+			case rekognition.ErrCodeInvalidParameterException:
+				fmt.Println(rekognition.ErrCodeInvalidParameterException, aerr.Error())
+			case rekognition.ErrCodeResourceNotFoundException:
+				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			case rekognition.ErrCodeThrottlingException:
+				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
+			case rekognition.ErrCodeProvisionedThroughputExceededException:
+				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
+			case rekognition.ErrCodeInvalidPaginationTokenException:
+				fmt.Println(rekognition.ErrCodeInvalidPaginationTokenException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// PutProjectPolicy
+// This operation attaches a project policy to a Amazon Rekognition Custom Labels project
+// in a trusting AWS account.
+func ExampleRekognition_PutProjectPolicy_shared00() {
+	svc := rekognition.New(session.New())
+	input := &rekognition.PutProjectPolicyInput{
+		PolicyDocument:   aws.String("'{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"ALLOW\",\"Principal\":{\"AWS\":\"principal\"},\"Action\":\"rekognition:CopyProjectVersion\",\"Resource\":\"arn:aws:rekognition:us-east-1:123456789012:project/my-sdk-project/version/DestinationVersionName/1627045542080\"}]}'"),
+		PolicyName:       aws.String("SamplePolicy"),
+		PolicyRevisionId: aws.String("0123456789abcdef"),
+		ProjectArn:       aws.String("arn:aws:rekognition:us-east-1:111122223333:project/my-sdk-project/1656557051929"),
+	}
+
+	result, err := svc.PutProjectPolicy(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rekognition.ErrCodeAccessDeniedException:
+				fmt.Println(rekognition.ErrCodeAccessDeniedException, aerr.Error())
+			case rekognition.ErrCodeInternalServerError:
+				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
+			case rekognition.ErrCodeInvalidParameterException:
+				fmt.Println(rekognition.ErrCodeInvalidParameterException, aerr.Error())
+			case rekognition.ErrCodeInvalidPolicyRevisionIdException:
+				fmt.Println(rekognition.ErrCodeInvalidPolicyRevisionIdException, aerr.Error())
+			case rekognition.ErrCodeMalformedPolicyDocumentException:
+				fmt.Println(rekognition.ErrCodeMalformedPolicyDocumentException, aerr.Error())
+			case rekognition.ErrCodeResourceNotFoundException:
+				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			case rekognition.ErrCodeResourceAlreadyExistsException:
+				fmt.Println(rekognition.ErrCodeResourceAlreadyExistsException, aerr.Error())
+			case rekognition.ErrCodeThrottlingException:
+				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
+			case rekognition.ErrCodeServiceQuotaExceededException:
+				fmt.Println(rekognition.ErrCodeServiceQuotaExceededException, aerr.Error())
+			case rekognition.ErrCodeProvisionedThroughputExceededException:
+				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
+			case rekognition.ErrCodeLimitExceededException:
+				fmt.Println(rekognition.ErrCodeLimitExceededException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

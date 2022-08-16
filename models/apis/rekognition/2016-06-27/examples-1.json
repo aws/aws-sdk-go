@@ -54,6 +54,36 @@
         "title": "To compare two images"
       }
     ],
+    "CopyProjectVersion": [
+      {
+        "input": {
+          "DestinationProjectArn": "arn:aws:rekognition:us-east-1:555555555555:project/DestinationProject/1656705098765",
+          "KmsKeyId": "arn:1234abcd-12ab-34cd-56ef-1234567890ab",
+          "OutputConfig": {
+            "S3Bucket": "bucket-name",
+            "S3KeyPrefix": "path_to_folder"
+          },
+          "SourceProjectArn": "arn:aws:rekognition:us-east-1:111122223333:project/SourceProject/16565123456",
+          "SourceProjectVersionArn": "arn:aws:rekognition:us-east-1:111122223333:project/SourceProject/version/model_1/1656611123456",
+          "Tags": {
+            "key1": "val1"
+          },
+          "VersionName": "DestinationVersionName_cross_account"
+        },
+        "output": {
+          "ProjectVersionArn": "arn:aws:rekognition:us-east-1:555555555555:project/DestinationProject/version/DestinationVersionName_cross_account/16567050987651"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This operation copies a version of an Amazon Rekognition Custom Labels model from a source project to a destination project.",
+        "id": "copyprojectversion-1658203943815",
+        "title": "CopyProjectVersion"
+      }
+    ],
     "CreateCollection": [
       {
         "input": {
@@ -115,6 +145,26 @@
         "description": "This operation deletes one or more faces from a Rekognition collection.",
         "id": "to-delete-a-face-1482182799377",
         "title": "To delete a face"
+      }
+    ],
+    "DeleteProjectPolicy": [
+      {
+        "input": {
+          "PolicyName": "testPolicy1",
+          "PolicyRevisionId": "3b274c25e9203a56a99e00e3ff205fbc",
+          "ProjectArn": "arn:aws:rekognition:us-east-1:111122223333:project/SourceProject/1656557123456"
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This operation deletes a revision of an existing project policy from an Amazon Rekognition Custom Labels project.",
+        "id": "deleteprojectpolicy-1658204413810",
+        "title": "DeleteProjectPolicy"
       }
     ],
     "DetectFaces": [
@@ -530,6 +580,59 @@
         "description": "This operation lists the faces in a Rekognition collection.",
         "id": "to-list-the-faces-in-a-collection-1482181416530",
         "title": "To list the faces in a collection"
+      }
+    ],
+    "ListProjectPolicies": [
+      {
+        "input": {
+          "MaxResults": 5,
+          "NextToken": "",
+          "ProjectArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-sdk-project/1656557051929"
+        },
+        "output": {
+          "NextToken": "",
+          "ProjectPolicies": [
+            {
+              "CreationTimestamp": "2022-07-01T11:51:27.086000-07:00",
+              "LastUpdatedTimestamp": "2022-07-01T11:51:27.086000-07:00",
+              "PolicyDocument": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"Statemented1\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::111122223333:root\"},\"Action\":\"rekognition:CopyProjectVersion\",\"Resource\":\"*\"}]}",
+              "PolicyName": "testPolicy",
+              "PolicyRevisionId": "3b274c25e9203a56a99e00e3ff205fbc",
+              "ProjectArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-sdk-project/1656557051929"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This operation lists the project policies that are attached to an Amazon Rekognition Custom Labels project.",
+        "id": "listprojectpolicies-1658202290173",
+        "title": "ListProjectPolicies"
+      }
+    ],
+    "PutProjectPolicy": [
+      {
+        "input": {
+          "PolicyDocument": "'{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"ALLOW\",\"Principal\":{\"AWS\":\"principal\"},\"Action\":\"rekognition:CopyProjectVersion\",\"Resource\":\"arn:aws:rekognition:us-east-1:123456789012:project/my-sdk-project/version/DestinationVersionName/1627045542080\"}]}'",
+          "PolicyName": "SamplePolicy",
+          "PolicyRevisionId": "0123456789abcdef",
+          "ProjectArn": "arn:aws:rekognition:us-east-1:111122223333:project/my-sdk-project/1656557051929"
+        },
+        "output": {
+          "PolicyRevisionId": "0123456789abcdef"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This operation attaches a project policy to a Amazon Rekognition Custom Labels project in a trusting AWS account.",
+        "id": "putprojectpolicy-1658201727623",
+        "title": "PutProjectPolicy"
       }
     ],
     "SearchFaces": [
