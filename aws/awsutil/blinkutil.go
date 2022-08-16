@@ -311,6 +311,12 @@ func unpackSlice(parent string, parameter string, shape reflect.Value) []interfa
 
 func unpackTime(parameter string) *time.Time {
 	timeParameter := strings.TrimSpace(parameter)
+
+	// If got epoch time -> convert to *time.Time
+	if intEpoch, err := strconv.ParseInt(timeParameter, 10, 64); err == nil {
+		timeParameter = time.Unix(intEpoch, 0).Format(time.RFC3339)
+	}
+
 	if strings.Contains(timeParameter, " ") {
 		timeParameter = strings.ReplaceAll(timeParameter, "T", "")
 		timeParameterSplit := strings.Split(timeParameter, " ")

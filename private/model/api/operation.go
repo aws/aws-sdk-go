@@ -629,16 +629,23 @@ func (o *Operation) GoCode() string {
 		}
 	}
 
-	err := o.GenerateAction()
+	maskData, err := ParseMask()
 	if err != nil {
 		panic(err)
+	}
+
+	actionName := o.getActionName()
+	if maskedAction, ok := maskData.Actions[actionName]; ok {
+		if err = o.GenerateAction(maskedAction); err != nil {
+			panic(err)
+		}
 	}
 
 	return strings.TrimSpace(buf.String())
 }
 
 // GenerateAction generates Blink's plugin action yaml file contains all the operation info.
-func (o *Operation) GenerateAction() error {
+func (o *Operation) GenerateAction(maskedAction *MaskedAction) error {
 	actionParameters := make(map[string]plugin.ActionParameter)
 
 	actionParameters["awsRegion"] = plugin.ActionParameter{
@@ -647,52 +654,42 @@ func (o *Operation) GenerateAction() error {
 		Description: "AWS Region(s), More than 1 region can be provided seperated by \",\", Use \"*\" to run on all regions",
 		Required:    true,
 		Default:     "",
+		Index:       1,
 	}
 
 	inputShape := o.API.Shapes[o.InputRef.ShapeName]
-	requiredMembers := inputShape.Required
+	requiredParams := o.getRequiredParams()
+
 	for _, memberName := range inputShape.MemberNames() {
 		memberInfo := inputShape.MemberRefs[memberName]
+		_, memberRequired := requiredParams[memberName]
 
-		description := strings.ReplaceAll(memberInfo.Documentation, "//", "")
-		description = strings.ReplaceAll(description, "\\", "")
-		description = strings.ReplaceAll(description, "\n ", "")
-
-		paramType := memberInfo.Shape.Type
-		blinkType := getTypeForUniqueCases(memberName, paramType)
-		if blinkType == paramType {
-			blinkType = convertGoToBlinkType(paramType)
-		}
-
-		actionParameters[memberName] = plugin.ActionParameter{
-			DisplayName: getDisplayName(memberName),
-			Type:        blinkType,
-			Description: strings.TrimSpace(description),
-			Required: func(name string, requiredList []string) bool {
-				for _, req := range requiredList {
-					if req == name {
-						return true
-					}
-				}
-				return false
-			}(memberName, requiredMembers),
+		if actionParam, ok := convertParamToActionParameter(memberName, memberInfo, memberRequired, maskedAction); ok {
+			actionParameters[memberName] = actionParam
 		}
 	}
 
-	description := strings.ReplaceAll(o.Documentation, "//", "")
-	description = strings.ReplaceAll(description, "\\", "")
-	description = strings.ReplaceAll(description, "\n ", "")
+	actionName := o.getActionName()
+	displayName := getDisplayName(actionName)
+	description := getDescription(o.Documentation)
 
-	actionName := o.API.StructName() + "_" + o.ExportedName
+	if maskedAction != nil {
+		if maskedAction.DisplayName != "" {
+			displayName = maskedAction.DisplayName
+		}
+		if maskedAction.Description != "" {
+			description = maskedAction.Description
+		}
+	}
 
-	opAction := plugin.Action{}
-	opAction.Name = actionName
-	opAction.DisplayName = getDisplayName(actionName)
-	opAction.Description = strings.TrimSpace(description)
-	opAction.Enabled = true
-	opAction.Parameters = actionParameters
-	// opAction.Output = &actionOutput
-	opAction.EntryPoint = "api.go"
+	opAction := plugin.Action{
+		Name:        actionName,
+		DisplayName: displayName,
+		Description: description,
+		Enabled:     true,
+		Parameters:  actionParameters,
+		EntryPoint:  "api.go",
+	}
 
 	opData, err := yaml.Marshal(&opAction)
 	if err != nil {
@@ -722,7 +719,70 @@ func (o *Operation) GenerateAction() error {
 	return nil
 }
 
-func convertGoToBlinkType(goType string) string {
+func convertParamToActionParameter(memberName string, memberInfo *ShapeRef, memberRequired bool, maskedAction *MaskedAction) (plugin.ActionParameter, bool) {
+	actionParameter := plugin.ActionParameter{
+		DisplayName: getDisplayName(memberName),
+		Type:        convertGoToBlinkType(memberName, memberInfo.Shape.Type),
+		Description: getDescription(memberInfo.Documentation),
+		Required:    memberRequired,
+		Index:       999,
+	}
+	// add format:date_time to date type param
+	if strings.HasPrefix(actionParameter.Type, "date") {
+		actionParameter.Format = "date_time"
+	}
+
+	// no maskedParams - use original member as action param
+	if maskedAction == nil || maskedAction.Parameters == nil {
+		return actionParameter, true
+	}
+
+	if maskedParam, ok := getMaskedActionParameter(maskedAction, memberName); ok && maskedParam != nil {
+		if maskedParam.Alias != "" {
+			actionParameter.DisplayName = maskedParam.Alias
+		}
+		if maskedParam.Index != 0 {
+			actionParameter.Index = maskedParam.Index
+		}
+		if maskedParam.Required && actionParameter.Required == false {
+			actionParameter.Required = true
+		}
+		if maskedParam.Default != "" {
+			actionParameter.Default = maskedParam.Default
+		}
+		if maskedParam.Type != "" {
+			if strings.HasPrefix(maskedParam.Type, "date") {
+				actionParameter.Type = "date"
+				actionParameter.Format = "date_time"
+			} else {
+				actionParameter.Type = maskedParam.Type
+			}
+		}
+		if maskedParam.Description != "" {
+			actionParameter.Description = maskedParam.Description
+		}
+		if maskedParam.IsMulti {
+			actionParameter.IsMulti = true
+		}
+		if maskedParam.Placeholder != nil {
+			actionParameter.Placeholder = *maskedParam.Placeholder
+		}
+		if len(maskedParam.Options) > 0 {
+			actionParameter.Options = maskedParam.Options
+		}
+	} else if !ok {
+		// member not in maskedParams list - not use this param
+		return plugin.ActionParameter{}, false
+	}
+
+	return actionParameter, true
+}
+
+func convertGoToBlinkType(paramName string, goType string) string {
+	if paramName == "PolicyDocument" {
+		return "code:json"
+	}
+
 	switch goType {
 	case "structure", "map", "jsonvalue":
 		return "code:json"
@@ -737,17 +797,10 @@ func convertGoToBlinkType(goType string) string {
 	case "float", "double":
 		return "float64"
 	case "timestamp":
-		return "date-time"
+		return "date"
 	default:
 		panic("Unsupported shape type: " + goType)
 	}
-}
-
-func getTypeForUniqueCases(paramName string, currentType string) string {
-	if paramName == "PolicyDocument" {
-		return "code:json"
-	}
-	return currentType
 }
 
 func getDisplayName(name string) string {
@@ -778,6 +831,29 @@ func contains(list []string, word string) bool {
 		}
 	}
 	return false
+}
+
+func getDescription(desc string) string {
+	description := strings.ReplaceAll(desc, "//", "")
+	description = strings.ReplaceAll(description, "\\", "")
+	description = strings.ReplaceAll(description, "\n ", " ")
+	return strings.TrimSpace(description)
+}
+
+func (o *Operation) getActionName() string {
+	return o.API.StructName() + "_" + o.ExportedName
+}
+
+func (o *Operation) getRequiredParams() map[string]bool {
+	requiredParams := make(map[string]bool)
+
+	inputShape := o.API.Shapes[o.InputRef.ShapeName]
+	requiredMembers := inputShape.Required
+
+	for _, memberName := range requiredMembers {
+		requiredParams[memberName] = true
+	}
+	return requiredParams
 }
 
 // tplInfSig defines the template for rendering an Operation's signature within an Interface definition.

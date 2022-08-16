@@ -1,0 +1,432 @@
+actions:
+  # S3
+  S3_PutObject:
+    parameters:
+      Bucket:
+        index: 2
+      Key:
+        index: 3
+      # TODO: body not supported
+      Body:
+        index: 4
+      ACL:
+        type: dropdown
+        options:
+          - private
+          - public-read
+          - public-read-write
+          - authenticated-read
+          - aws-exec-read
+          - bucket-owner-read
+          - bucket-owner-full-control
+        index: 5
+      StorageClass:
+        type: dropdown
+        options:
+          - STANDARD
+          - REDUCED_REDUNDANCY
+          - STANDARD_IA
+          - ONEZONE_IA
+          - INTELLIGENT_TIERING
+          - GLACIER
+          - DEEP_ARCHIVE
+          - OUTPOSTS
+          - GLACIER_IR
+        index: 6
+  S3_ListObjects:
+  S3_GetObject:
+    parameters:
+      Bucket:
+        index: 2
+      Key:
+        index: 3
+      VersionId:
+        alias: Version ID
+        index: 4
+      IfModifiedSince:
+        index: 5
+  S3_PutPublicAccessBlock:
+  S3_CreateBucket:
+    parameters:
+      Bucket:
+        index: 2
+      ACL:
+        type: dropdown
+        options:
+          - private
+          - public-read
+          - public-read-write
+          - authenticated-read
+        index: 3
+      ObjectLockEnabledForBucket:
+        index: 4
+      CreateBucketConfiguration:
+        type: code:map
+        description: |-
+          The configuration information for the bucket.
+          
+          LocationConstraint -
+          Specifies the Region where the bucket will be created. If you don't specify a Region, the bucket is created in the US East (N. Virginia) Region (us-east-1).
+          
+          Input examples:
+          LocationConstraint=eu-west-1
+          LocationConstraint=us-east-1
+        index: 5
+  S3_DeleteBucket:
+  S3_GetBucketAcl:
+  S3_GetBucketEncryption:
+  S3_ListBuckets:
+  S3_PutBucketAcl:
+  S3_PutBucketEncryption:
+  S3_CopyObject:
+    parameters:
+      Bucket:
+        alias: Destination Bucket
+        index: 2
+      Key:
+        index: 3
+      CopySource:
+        alias: Source Bucket
+        index: 4
+      ACL:
+        type: dropdown
+        options:
+          - private
+          - public-read
+          - public-read-write
+          - authenticated-read
+          - aws-exec-read
+          - bucket-owner-read
+          - bucket-owner-full-control
+        index: 5
+      StorageClass:
+        type: dropdown
+        options:
+          - STANDARD
+          - REDUCED_REDUNDANCY
+          - STANDARD_IA
+          - ONEZONE_IA
+          - INTELLIGENT_TIERING
+          - GLACIER
+          - DEEP_ARCHIVE
+          - OUTPOSTS
+          - GLACIER_IR
+        index: 6
+  S3_HeadObject:
+    parameters:
+      Bucket:
+        index: 2
+      Key:
+        index: 3
+      VersionId:
+        alias: Version ID
+        index: 4
+      IfModifiedSince:
+        index: 5
+
+  # DynamoDB
+  DynamoDB_PutItem:
+  DynamoDB_CreateTable:
+    parameters:
+      TableName:
+        index: 2
+      AttributeDefinitions:
+        type: code:map
+        description: |-
+          An array of attributes that describe the key schema for the table and indexes. Attribute parameters -
+          AttributeName: A name for the attribute.
+          AttributeType: The data type for the attribute, where: S - type String ; N - type Number ; B - type Binary
+          Example:
+          [
+            {
+              AttributeName=ForumName,
+              AttributeType=S
+            },
+            {
+              AttributeName=Subject,
+              AttributeType=S
+            }
+          ]
+        default: "[]"
+        index: 3
+      KeySchema:
+        type: code:map
+        description: |-
+          Specifies the attributes that make up the primary key for a table or an index.
+          The attributes in KeySchema must also be defined in the AttributeDefinitions array. KeySchemaElement parameters -
+          AttributeName: A name for the attribute.
+          KeyType: he role that the key attribute will assume: HASH - partition key ; RANGE - sort key
+          Example:
+          [
+            {
+              AttributeName=ForumName,
+              KeyType=HASH
+            },
+            {
+              AttributeName=Subject,
+              KeyType=RANGE
+            }
+          ]
+        default: "[]"
+        index: 4
+      BillingMode:
+        type: dropdown
+        options:
+          - PROVISIONED
+          - PAY_PER_REQUEST
+        index: 5
+      ProvisionedThroughput:
+        type: code:map
+        description: |-
+          Represents the provisioned throughput settings for a specified table or index. The settings can be modified using the UpdateTable operation.
+          If you set BillingMode as PROVISIONED, you must specify this property. If you set BillingMode as PAY_PER_REQUEST, you cannot specify this property.
+          
+          - ReadCapacityUnits: The maximum number of strongly consistent reads consumed per second before DynamoDB returns a ThrottlingException.
+          - WriteCapacityUnits: The maximum number of writes consumed per second before DynamoDB returns a ThrottlingException.
+          
+          Example:
+          {
+            ReadCapacityUnits=5,
+            WriteCapacityUnits=5
+          }
+        index: 6
+  DynamoDB_DeleteTable:
+  DynamoDB_GetItem:
+    parameters:
+      TableName:
+        index: 2
+      Key:
+        alias: Attributes Keys
+        type: code:map
+        description: |-
+          A map of attribute names to AttributeValue objects, representing the primary key of the item to retrieve.
+          For the primary key, you must provide all of the attributes. For example, with a simple primary key, you only need to provide a value for the partition key.
+          For a composite primary key, you must provide values for both the partition key and the sort key.
+          
+          Input example:
+          [
+            {
+              ForumName=[S=Amazon],
+              Subject=[S=How do I update multiple items?]
+            }
+          ]
+        index: 3
+      ConsistentRead:
+        index: 4
+  DynamoDB_ListTables:
+  DynamoDB_Scan:
+
+  # EC2
+  EC2_TerminateInstances:
+  EC2_DescribeInstances:
+    parameters:
+      InstanceIds:
+        alias: Instance IDs
+        type: textarea
+        description: |-
+          The instance IDs.  Default: Describes all your instances.
+          
+          Input example:
+          [5f9adeaa-c94c-42c6-aeef-28a5376002cd, 999adeaa-c77c-42c6-aeef-28a537600234]
+        index: 2
+      Filters:
+        type: code:map
+        description: |-
+          The filters list.
+          A filter name and value pair that is used to return a more specific list of results from a describe operation.
+          Filters can be used to match a set of resources by specific criteria, such as tags, attributes, or IDs.
+
+          Input example:
+          [
+            {
+              Name=instance-type,
+              Values=m5.large
+            }
+          ]
+        index: 3
+      DryRun:
+        index: 4
+      MaxResults:
+        index: 5
+      NextToken:
+        index: 6
+  EC2_DescribeAvailabilityZones:
+  EC2_DescribeInstanceStatus:
+  EC2_DescribeSecurityGroups:
+  EC2_RebootInstances:
+    parameters:
+      InstanceIds:
+        alias: Instance IDs
+        type: textarea
+        description: |-
+          The instance IDs.  Default: Describes all your instances.
+          
+          Input example:
+          [5f9adeaa-c94c-42c6-aeef-28a5376002cd, 999adeaa-c77c-42c6-aeef-28a537600234]
+        index: 2
+      DryRun:
+        index: 3
+  EC2_CreateSecurityGroup:
+  EC2_DeleteSecurityGroup:
+  EC2_StartInstances:
+    parameters:
+      InstanceIds:
+        alias: Instance IDs
+        type: textarea
+        description: |-
+          The instance IDs.  Default: Describes all your instances.
+          
+          Input example:
+          [5f9adeaa-c94c-42c6-aeef-28a5376002cd, 999adeaa-c77c-42c6-aeef-28a537600234]
+        index: 2
+      AdditionalInfo:
+        index: 3
+      DryRun:
+        index: 4
+  EC2_StopInstances:
+  EC2_DeregisterImage:
+    parameters:
+      ImageId:
+        alias: Image ID
+      DryRun:
+  EC2_DescribeImages:
+  EC2_DeleteSnapshot:
+    parameters:
+      SnapshotId:
+        alias: Snapshot ID
+      DryRun:
+  EC2_DeleteVolume:
+    parameters:
+      VolumeId:
+        alias: Volume ID
+      DryRun:
+  EC2_ReleaseAddress:
+    parameters:
+      AllocationId:
+        alias: Allocation ID
+        index: 2
+      PublicIp:
+        alias: Public IP
+        index: 3
+      NetworkBorderGroup:
+        index: 4
+      DryRun:
+        index: 5
+  EC2_DescribeInstanceAttribute:
+  EC2_DescribeVolumes:
+
+  # EBS
+  EBS_CompleteSnapshot:
+  EBS_GetSnapshotBlock:
+  EBS_ListChangedBlocks:
+  EBS_ListSnapshotBlocks:
+  EBS_PutSnapshotBlock:
+  EBS_StartSnapshot:
+
+  # IAM
+  IAM_GenerateCredentialReport:
+  IAM_GetCredentialReport:
+  IAM_GetUser:
+  IAM_CreateLoginProfile:
+  IAM_CreateAccessKey:
+  IAM_AttachGroupPolicy:
+  IAM_ListUserTags:
+  IAM_CreatePolicy:
+  IAM_GetAccountSummary:
+  IAM_GetAccessKeyLastUsed:
+  IAM_AttachRolePolicy:
+  IAM_AddUserToGroup:
+  IAM_ListAttachedUserPolicies:
+  IAM_ListAccessKeys:
+  IAM_PutUserPolicy:
+  IAM_CreateUser:
+  IAM_ListAccountAliases:
+
+  # EKS
+  EKS_DescribeCluster:
+  EKS_ListClusters:
+  EKS_TagResource:
+  EKS_ListNodegroups:
+
+  # Secrets Manager
+  SecretsManager_GetSecretValue:
+
+  # CloudWatch + Logs
+  CloudWatchLogs_GetLogEvents:
+  CloudWatchLogs_GetQueryResults:
+  CloudWatch_GetMetricWidgetImage:
+  CloudWatchLogs_DescribeLogGroups:
+  CloudWatchLogs_StartQuery:
+  CloudWatchLogs_FilterLogEvents:
+  CloudWatchLogs_PutMetricFilter:
+    parameters:
+      LogGroupName:
+        placeholder: 'Example: my-log-group'
+        index: 2
+      FilterName:
+        placeholder: 'Example: my-metric-filter'
+        index: 3
+      FilterPattern:
+        type: textarea
+        description: |-
+          A filter pattern for extracting metric data out of ingested log events.
+          
+          Input example:
+          [ip, identity, user_id, timestamp, request, status_code, size]
+        index: 4
+      MetricTransformations:
+        type: code:map
+        description: |-
+          A collection of information that defines how metric data gets emitted.
+          
+          Input example:
+          [
+            {
+              metricValue=$size,
+              metricNamespace=MyApp,
+              metricName=Volume,
+              unit=Count,
+              dimensions=[Request=$request]
+            }
+          ]
+        index: 5
+
+  # Misc
+  Organizations_DescribeOrganization:
+  EC2_DescribeCustomerGateways:
+  EC2_DescribeNetworkAcls:
+  EC2_DescribeRouteTables:
+  EC2_DescribeSubnets:
+  EC2_DescribeTransitGateways:
+  EC2_DescribeVpcs:
+  EC2_DescribeKeyPairs:
+  ELB_DescribeLoadBalancers:
+  ELBV2_DescribeTargetGroups:
+  STS_AssumeRole:
+  PI_DescribeDimensionKeys:
+  STS_GetCallerIdentity:
+
+  # CloudTrail
+  CloudTrail_LookupEvents:
+    parameters:
+      LookupAttributes:
+        type: code:map
+        description: |-
+          Contains a list of lookup attributes. Currently the list can contain only one item.
+          
+          Input example:
+          {
+            AttributeKey=EventName,
+            AttributeValue=ConsoleLogin
+          }
+        index: 2
+      EventCategory:
+        index: 3
+      StartTime:
+        index: 4
+      EndTime:
+        index: 5
+      MaxResults:
+        index: 6
+      NextToken:
+        index: 7
