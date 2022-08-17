@@ -926,9 +926,33 @@
     "IpPreference": {
       "base": null,
       "refs": {
-        "AwsCloudMapServiceDiscovery$ipPreference": "<p>The IP version to use to control traffic within the mesh.</p>",
-        "DnsServiceDiscovery$ipPreference": "<p>The IP version to use to control traffic within the mesh.</p>",
+        "AwsCloudMapServiceDiscovery$ipPreference": "<p>The preferred IP version that this virtual node uses. Setting the IP preference on the virtual node only overrides the IP preference set for the mesh on this specific node.</p>",
+        "DnsServiceDiscovery$ipPreference": "<p>The preferred IP version that this virtual node uses. Setting the IP preference on the virtual node only overrides the IP preference set for the mesh on this specific node.</p>",
         "MeshServiceDiscovery$ipPreference": "<p>The IP version to use to control traffic within the mesh.</p>"
+      }
+    },
+    "JsonFormat": {
+      "base": null,
+      "refs": {
+        "LoggingFormat$json": "<p/>"
+      }
+    },
+    "JsonFormatRef": {
+      "base": "<p>An object that represents the key value pairs for the JSON.</p>",
+      "refs": {
+        "JsonFormat$member": null
+      }
+    },
+    "JsonKey": {
+      "base": null,
+      "refs": {
+        "JsonFormatRef$key": "<p>The specified key for the JSON.</p>"
+      }
+    },
+    "JsonValue": {
+      "base": null,
+      "refs": {
+        "JsonFormatRef$value": "<p>The specified value for the JSON.</p>"
       }
     },
     "LimitExceededException": {
@@ -1064,6 +1088,18 @@
         "Listeners$member": null
       }
     },
+    "ListenerPort": {
+      "base": null,
+      "refs": {
+        "GatewayRouteTarget$port": "<p>The port number of the gateway route target.</p>",
+        "GrpcGatewayRouteMatch$port": "<p>The port number to match from the request.</p>",
+        "GrpcRouteMatch$port": "<p>The port number to match on.</p>",
+        "HttpGatewayRouteMatch$port": "<p>The port number to match on.</p>",
+        "HttpRouteMatch$port": "<p>The port number to match on.</p>",
+        "TcpRouteMatch$port": "<p>The port number to match on.</p>",
+        "WeightedTarget$port": "<p>The targeted port of the weighted object.</p>"
+      }
+    },
     "ListenerTimeout": {
       "base": "<p>An object that represents timeouts for different protocols.</p>",
       "refs": {
@@ -1130,6 +1166,13 @@
       "base": "<p>An object that represents the logging information for a virtual node.</p>",
       "refs": {
         "VirtualNodeSpec$logging": "<p>The inbound and outbound access logging information for the virtual node.</p>"
+      }
+    },
+    "LoggingFormat": {
+      "base": "<p>An object that represents the format for the logs.</p>",
+      "refs": {
+        "FileAccessLog$format": "<p>The specified format for the logs. The format is either <code>json_format</code> or <code>text_format</code>.</p>",
+        "VirtualGatewayFileAccessLog$format": "<p>The specified format for the virtual gateway access logs. It can be either <code>json_format</code> or <code>text_format</code>.</p>"
       }
     },
     "Long": {
@@ -1581,7 +1624,7 @@
       "base": "<p>An object that represents the subject alternative names secured by the certificate.</p>",
       "refs": {
         "ListenerTlsValidationContext$subjectAlternativeNames": "<p>A reference to an object that represents the SANs for a listener's Transport Layer Security (TLS) validation context.</p>",
-        "TlsValidationContext$subjectAlternativeNames": "<p>A reference to an object that represents the SANs for a Transport Layer Security (TLS) validation context.</p>",
+        "TlsValidationContext$subjectAlternativeNames": "<p>A reference to an object that represents the SANs for a Transport Layer Security (TLS) validation context. If you don't specify SANs on the <i>terminating</i> mesh endpoint, the Envoy proxy for that node doesn't verify the SAN on a peer client certificate. If you don't specify SANs on the <i>originating</i> mesh endpoint, the SAN on the certificate provided by the terminating endpoint must match the mesh endpoint service discovery configuration. Since SPIRE vended certificates have a SPIFFE ID as a name, you must set the SAN since the name doesn't match the service discovery name.</p>",
         "VirtualGatewayListenerTlsValidationContext$subjectAlternativeNames": "<p>A reference to an object that represents the SANs for a virtual gateway listener's Transport Layer Security (TLS) validation context.</p>",
         "VirtualGatewayTlsValidationContext$subjectAlternativeNames": "<p>A reference to an object that represents the SANs for a virtual gateway's listener's Transport Layer Security (TLS) validation context.</p>"
       }
@@ -1672,11 +1715,23 @@
         "TcpRoute$action": "<p>The action to take if a match is determined.</p>"
       }
     },
+    "TcpRouteMatch": {
+      "base": "<p>An object representing the TCP route to match.</p>",
+      "refs": {
+        "TcpRoute$match": "<p>An object that represents the criteria for determining a request match.</p>"
+      }
+    },
     "TcpTimeout": {
       "base": "<p>An object that represents types of timeouts. </p>",
       "refs": {
         "ListenerTimeout$tcp": "<p>An object that represents types of timeouts. </p>",
         "TcpRoute$timeout": "<p>An object that represents types of timeouts. </p>"
+      }
+    },
+    "TextFormat": {
+      "base": null,
+      "refs": {
+        "LoggingFormat$text": "<p/>"
       }
     },
     "Timestamp": {

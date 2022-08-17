@@ -3,6 +3,7 @@
   "service": "<fullname>Lake Formation</fullname> <p>Defines the public endpoint for the Lake Formation service.</p>",
   "operations": {
     "AddLFTagsToResource": "<p>Attaches one or more LF-tags to an existing resource.</p>",
+    "AssumeDecoratedRoleWithSAML": "<p>Allows a caller to assume an IAM role decorated as the SAML user specified in the SAML assertion included in the request. This decoration allows Lake Formation to enforce access policies against the SAML users and groups. This API operation requires SAML federation setup in the caller’s account as it can only be called with valid SAML assertions. Lake Formation does not scope down the permission of the assumed role. All permissions attached to the role via the SAML federation setup will be included in the role session. </p> <p> This decorated role is expected to access data in Amazon S3 by getting temporary access from Lake Formation which is authorized via the virtual API <code>GetDataAccess</code>. Therefore, all SAML roles that can be assumed via <code>AssumeDecoratedRoleWithSAML</code> must at a minimum include <code>lakeformation:GetDataAccess</code> in their role policies. A typical IAM policy attached to such a role would look as follows: </p>",
     "BatchGrantPermissions": "<p>Batch operation to grant permissions to the principal.</p>",
     "BatchRevokePermissions": "<p>Batch operation to revoke permissions from the principal.</p>",
     "CancelTransaction": "<p>Attempts to cancel the specified transaction. Returns an exception if the transaction was previously committed.</p>",
@@ -10,7 +11,7 @@
     "CreateDataCellsFilter": "<p>Creates a data cell filter to allow one to grant access to certain columns on certain rows.</p>",
     "CreateLFTag": "<p>Creates an LF-tag with the specified name and values.</p>",
     "DeleteDataCellsFilter": "<p>Deletes a data cell filter.</p>",
-    "DeleteLFTag": "<p>Deletes the specified LF-tag key name. If the attribute key does not exist or the LF-tag does not exist, then the operation will not do anything. If the attribute key exists, then the operation checks if any resources are tagged with this attribute key, if yes, the API throws a 400 Exception with the message \"Delete not allowed\" as the LF-tag key is still attached with resources. You can consider untagging resources with this LF-tag key.</p>",
+    "DeleteLFTag": "<p>Deletes the specified LF-tag given a key name. If the input parameter tag key was not found, then the operation will throw an exception. When you delete an LF-tag, the <code>LFTagPolicy</code> attached to the LF-tag becomes invalid. If the deleted LF-tag was still assigned to any resource, the tag policy attach to the deleted LF-tag will no longer be applied to the resource.</p>",
     "DeleteObjectsOnCancel": "<p>For a specific governed table, provides a list of Amazon S3 objects that will be written during the current transaction and that can be automatically deleted if the transaction is canceled. Without this call, no Amazon S3 objects are automatically deleted when a transaction cancels. </p> <p> The Glue ETL library function <code>write_dynamic_frame.from_catalog()</code> includes an option to automatically call <code>DeleteObjectsOnCancel</code> before writes. For more information, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/transactions-data-operations.html#rolling-back-writes\">Rolling Back Amazon S3 Writes</a>. </p>",
     "DeregisterResource": "<p>Deregisters the resource as managed by the Data Catalog.</p> <p>When you deregister a path, Lake Formation removes the path from the inline policy attached to your service-linked role.</p>",
     "DescribeResource": "<p>Retrieves the current data access role for the given resource registered in Lake Formation.</p>",
@@ -56,6 +57,7 @@
     "AccessKeyIdString": {
       "base": null,
       "refs": {
+        "AssumeDecoratedRoleWithSAMLResponse$AccessKeyId": "<p>The access key ID for the temporary credentials. (The access key consists of an access key ID and a secret key).</p>",
         "GetTemporaryGluePartitionCredentialsResponse$AccessKeyId": "<p>The access key ID for the temporary credentials.</p>",
         "GetTemporaryGlueTableCredentialsResponse$AccessKeyId": "<p>The access key ID for the temporary credentials.</p>"
       }
@@ -84,6 +86,16 @@
     },
     "AlreadyExistsException": {
       "base": "<p>A resource to be created or added already exists.</p>",
+      "refs": {
+      }
+    },
+    "AssumeDecoratedRoleWithSAMLRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssumeDecoratedRoleWithSAMLResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -289,6 +301,7 @@
     "CredentialTimeoutDurationSecondInteger": {
       "base": null,
       "refs": {
+        "AssumeDecoratedRoleWithSAMLRequest$DurationSeconds": "<p>The time period, between 900 and 43,200 seconds, for the timeout of the temporary credentials.</p>",
         "GetTemporaryGluePartitionCredentialsRequest$DurationSeconds": "<p>The time period, between 900 and 21,600 seconds, for the timeout of the temporary credentials.</p>",
         "GetTemporaryGlueTableCredentialsRequest$DurationSeconds": "<p>The time period, between 900 and 21,600 seconds, for the timeout of the temporary credentials.</p>"
       }
@@ -489,6 +502,7 @@
     "ExpirationTimestamp": {
       "base": null,
       "refs": {
+        "AssumeDecoratedRoleWithSAMLResponse$Expiration": "<p>The date and time when the temporary credentials expire.</p>",
         "GetTemporaryGluePartitionCredentialsResponse$Expiration": "<p>The date and time when the temporary credentials expire.</p>",
         "GetTemporaryGlueTableCredentialsResponse$Expiration": "<p>The date and time when the temporary credentials expire.</p>"
       }
@@ -692,9 +706,16 @@
     "IAMRoleArn": {
       "base": null,
       "refs": {
+        "AssumeDecoratedRoleWithSAMLRequest$RoleArn": "<p>The role that represents an IAM principal whose scope down policy allows it to call credential vending APIs such as <code>GetTemporaryTableCredentials</code>. The caller must also have iam:PassRole permission on this role. </p>",
         "RegisterResourceRequest$RoleArn": "<p>The identifier for the role that registers the resource.</p>",
         "ResourceInfo$RoleArn": "<p>The IAM role that registered a resource.</p>",
         "UpdateResourceRequest$RoleArn": "<p>The new role to use for the given resource registered in Lake Formation.</p>"
+      }
+    },
+    "IAMSAMLProviderArn": {
+      "base": null,
+      "refs": {
+        "AssumeDecoratedRoleWithSAMLRequest$PrincipalArn": "<p>The Amazon Resource Name (ARN) of the SAML provider in IAM that describes the IdP.</p>"
       }
     },
     "Identifier": {
@@ -1253,6 +1274,12 @@
         "DataCellsFilter$RowFilter": "<p>A PartiQL predicate.</p>"
       }
     },
+    "SAMLAssertionString": {
+      "base": null,
+      "refs": {
+        "AssumeDecoratedRoleWithSAMLRequest$SAMLAssertion": "<p>A SAML assertion consisting of an assertion statement for the user who needs temporary credentials. This must match the SAML assertion that was issued to IAM. This must be Base64 encoded.</p>"
+      }
+    },
     "SearchDatabasesByLFTagsRequest": {
       "base": null,
       "refs": {
@@ -1276,6 +1303,7 @@
     "SecretAccessKeyString": {
       "base": null,
       "refs": {
+        "AssumeDecoratedRoleWithSAMLResponse$SecretAccessKey": "<p>The secret key for the temporary credentials. (The access key consists of an access key ID and a secret key).</p>",
         "GetTemporaryGluePartitionCredentialsResponse$SecretAccessKey": "<p>The secret key for the temporary credentials.</p>",
         "GetTemporaryGlueTableCredentialsResponse$SecretAccessKey": "<p>The secret key for the temporary credentials.</p>"
       }
@@ -1283,6 +1311,7 @@
     "SessionTokenString": {
       "base": null,
       "refs": {
+        "AssumeDecoratedRoleWithSAMLResponse$SessionToken": "<p>The session token for the temporary credentials.</p>",
         "GetTemporaryGluePartitionCredentialsResponse$SessionToken": "<p>The session token for the temporary credentials.</p>",
         "GetTemporaryGlueTableCredentialsResponse$SessionToken": "<p>The session token for the temporary credentials.</p>"
       }

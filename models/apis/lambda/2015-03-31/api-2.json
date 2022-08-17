@@ -1220,6 +1220,12 @@
         "SigningProfileVersionArns":{"shape":"SigningProfileVersionArns"}
       }
     },
+    "AmazonManagedKafkaEventSourceConfig":{
+      "type":"structure",
+      "members":{
+        "ConsumerGroupId":{"shape":"URI"}
+      }
+    },
     "Architecture":{
       "type":"string",
       "enum":[
@@ -1407,7 +1413,9 @@
         "Queues":{"shape":"Queues"},
         "SourceAccessConfigurations":{"shape":"SourceAccessConfigurations"},
         "SelfManagedEventSource":{"shape":"SelfManagedEventSource"},
-        "FunctionResponseTypes":{"shape":"FunctionResponseTypeList"}
+        "FunctionResponseTypes":{"shape":"FunctionResponseTypeList"},
+        "AmazonManagedKafkaEventSourceConfig":{"shape":"AmazonManagedKafkaEventSourceConfig"},
+        "SelfManagedKafkaEventSourceConfig":{"shape":"SelfManagedKafkaEventSourceConfig"}
       }
     },
     "CreateFunctionRequest":{
@@ -1827,7 +1835,9 @@
         "BisectBatchOnFunctionError":{"shape":"BisectBatchOnFunctionError"},
         "MaximumRetryAttempts":{"shape":"MaximumRetryAttemptsEventSourceMapping"},
         "TumblingWindowInSeconds":{"shape":"TumblingWindowInSeconds"},
-        "FunctionResponseTypes":{"shape":"FunctionResponseTypeList"}
+        "FunctionResponseTypes":{"shape":"FunctionResponseTypeList"},
+        "AmazonManagedKafkaEventSourceConfig":{"shape":"AmazonManagedKafkaEventSourceConfig"},
+        "SelfManagedKafkaEventSourceConfig":{"shape":"SelfManagedKafkaEventSourceConfig"}
       }
     },
     "EventSourceMappingsList":{
@@ -3583,6 +3593,12 @@
       "type":"structure",
       "members":{
         "Endpoints":{"shape":"Endpoints"}
+      }
+    },
+    "SelfManagedKafkaEventSourceConfig":{
+      "type":"structure",
+      "members":{
+        "ConsumerGroupId":{"shape":"URI"}
       }
     },
     "SensitiveString":{

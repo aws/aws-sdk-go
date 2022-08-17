@@ -462,7 +462,7 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 // CreateEventSourceMapping API operation for AWS Lambda.
 //
 // Creates a mapping between an event source and an Lambda function. Lambda
-// reads items from the event source and triggers the function.
+// reads items from the event source and invokes the function.
 //
 // For details about how to configure different event sources, see the following
 // topics.
@@ -479,7 +479,7 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 //
 //   - Apache Kafka (https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html)
 //
-// The following error handling options are only available for stream sources
+// The following error handling options are available only for stream sources
 // (DynamoDB and Kinesis):
 //
 //   - BisectBatchOnFunctionError - If the function returns an error, split
@@ -3151,7 +3151,8 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 // with timeout or keep-alive settings.
 //
 // This operation requires permission for the lambda:InvokeFunction (https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html)
-// action.
+// action. For details on how to set up permissions for cross-account invocations,
+// see Granting function access to other accounts (https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3714,7 +3715,7 @@ func (c *Lambda) ListEventSourceMappingsRequest(input *ListEventSourceMappingsIn
 
 // ListEventSourceMappings API operation for AWS Lambda.
 //
-// Lists event source mappings. Specify an EventSourceArn to only show event
+// Lists event source mappings. Specify an EventSourceArn to show only event
 // source mappings for a single event source.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6297,7 +6298,7 @@ func (c *Lambda) UpdateEventSourceMappingRequest(input *UpdateEventSourceMapping
 //
 //   - Apache Kafka (https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html)
 //
-// The following error handling options are only available for stream sources
+// The following error handling options are available only for stream sources
 // (DynamoDB and Kinesis):
 //
 //   - BisectBatchOnFunctionError - If the function returns an error, split
@@ -7495,6 +7496,55 @@ func (s *AllowedPublishers) SetSigningProfileVersionArns(v []*string) *AllowedPu
 	return s
 }
 
+// Specific configuration settings for an Amazon Managed Streaming for Apache
+// Kafka (Amazon MSK) event source.
+type AmazonManagedKafkaEventSourceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Kafka consumer group to join. The consumer group ID
+	// must be unique among all your Kafka event sources. After creating a Kafka
+	// event source mapping with the consumer group ID specified, you cannot update
+	// this value. For more information, see services-msk-consumer-group-id.
+	ConsumerGroupId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonManagedKafkaEventSourceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonManagedKafkaEventSourceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmazonManagedKafkaEventSourceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmazonManagedKafkaEventSourceConfig"}
+	if s.ConsumerGroupId != nil && len(*s.ConsumerGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConsumerGroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConsumerGroupId sets the ConsumerGroupId field's value.
+func (s *AmazonManagedKafkaEventSourceConfig) SetConsumerGroupId(v string) *AmazonManagedKafkaEventSourceConfig {
+	s.ConsumerGroupId = &v
+	return s
+}
+
 // Details about a Code signing configuration (https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html).
 type CodeSigningConfig struct {
 	_ struct{} `type:"structure"`
@@ -8133,6 +8183,10 @@ func (s *CreateCodeSigningConfigOutput) SetCodeSigningConfig(v *CodeSigningConfi
 type CreateEventSourceMappingInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specific configuration settings for an Amazon Managed Streaming for Apache
+	// Kafka (Amazon MSK) event source.
+	AmazonManagedKafkaEventSourceConfig *AmazonManagedKafkaEventSourceConfig `type:"structure"`
+
 	// The maximum number of records in each batch that Lambda pulls from your stream
 	// or queue and sends to your function. Lambda passes all of the records in
 	// the batch to the function in a single call, up to the payload limit for synchronous
@@ -8147,7 +8201,7 @@ type CreateEventSourceMappingInput struct {
 	//
 	//    * Amazon Managed Streaming for Apache Kafka - Default 100. Max 10,000.
 	//
-	//    * Self-Managed Apache Kafka - Default 100. Max 10,000.
+	//    * Self-managed Apache Kafka - Default 100. Max 10,000.
 	//
 	//    * Amazon MQ (ActiveMQ and RabbitMQ) - Default 100. Max 10,000.
 	BatchSize *int64 `min:"1" type:"integer"`
@@ -8219,7 +8273,7 @@ type CreateEventSourceMappingInput struct {
 
 	// (Streams only) Discard records after the specified number of retries. The
 	// default value is infinite (-1). When set to infinite (-1), failed records
-	// will be retried until the record expires.
+	// are retried until the record expires.
 	MaximumRetryAttempts *int64 `type:"integer"`
 
 	// (Streams only) The number of batches to process from each shard concurrently.
@@ -8228,8 +8282,11 @@ type CreateEventSourceMappingInput struct {
 	// (MQ) The name of the Amazon MQ broker destination queue to consume.
 	Queues []*string `min:"1" type:"list"`
 
-	// The Self-Managed Apache Kafka cluster to send records.
+	// The self-managed Apache Kafka cluster to receive records from.
 	SelfManagedEventSource *SelfManagedEventSource `type:"structure"`
+
+	// Specific configuration settings for a self-managed Apache Kafka event source.
+	SelfManagedKafkaEventSourceConfig *SelfManagedKafkaEventSourceConfig `type:"structure"`
 
 	// An array of authentication protocols or VPC components required to secure
 	// your event source.
@@ -8237,7 +8294,7 @@ type CreateEventSourceMappingInput struct {
 
 	// The position in a stream from which to start reading. Required for Amazon
 	// Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. AT_TIMESTAMP is
-	// only supported for Amazon Kinesis streams.
+	// supported only for Amazon Kinesis streams.
 	StartingPosition *string `type:"string" enum:"EventSourcePosition"`
 
 	// With StartingPosition set to AT_TIMESTAMP, the time from which to start reading.
@@ -8247,7 +8304,7 @@ type CreateEventSourceMappingInput struct {
 	Topics []*string `min:"1" type:"list"`
 
 	// (Streams only) The duration in seconds of a processing window. The range
-	// is between 1 second up to 900 seconds.
+	// is between 1 second and 900 seconds.
 	TumblingWindowInSeconds *int64 `type:"integer"`
 }
 
@@ -8296,9 +8353,19 @@ func (s *CreateEventSourceMappingInput) Validate() error {
 	if s.Topics != nil && len(s.Topics) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Topics", 1))
 	}
+	if s.AmazonManagedKafkaEventSourceConfig != nil {
+		if err := s.AmazonManagedKafkaEventSourceConfig.Validate(); err != nil {
+			invalidParams.AddNested("AmazonManagedKafkaEventSourceConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SelfManagedEventSource != nil {
 		if err := s.SelfManagedEventSource.Validate(); err != nil {
 			invalidParams.AddNested("SelfManagedEventSource", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SelfManagedKafkaEventSourceConfig != nil {
+		if err := s.SelfManagedKafkaEventSourceConfig.Validate(); err != nil {
+			invalidParams.AddNested("SelfManagedKafkaEventSourceConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.SourceAccessConfigurations != nil {
@@ -8316,6 +8383,12 @@ func (s *CreateEventSourceMappingInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAmazonManagedKafkaEventSourceConfig sets the AmazonManagedKafkaEventSourceConfig field's value.
+func (s *CreateEventSourceMappingInput) SetAmazonManagedKafkaEventSourceConfig(v *AmazonManagedKafkaEventSourceConfig) *CreateEventSourceMappingInput {
+	s.AmazonManagedKafkaEventSourceConfig = v
+	return s
 }
 
 // SetBatchSize sets the BatchSize field's value.
@@ -8399,6 +8472,12 @@ func (s *CreateEventSourceMappingInput) SetQueues(v []*string) *CreateEventSourc
 // SetSelfManagedEventSource sets the SelfManagedEventSource field's value.
 func (s *CreateEventSourceMappingInput) SetSelfManagedEventSource(v *SelfManagedEventSource) *CreateEventSourceMappingInput {
 	s.SelfManagedEventSource = v
+	return s
+}
+
+// SetSelfManagedKafkaEventSourceConfig sets the SelfManagedKafkaEventSourceConfig field's value.
+func (s *CreateEventSourceMappingInput) SetSelfManagedKafkaEventSourceConfig(v *SelfManagedKafkaEventSourceConfig) *CreateEventSourceMappingInput {
+	s.SelfManagedKafkaEventSourceConfig = v
 	return s
 }
 
@@ -10577,6 +10656,10 @@ func (s *EphemeralStorage) SetSize(v int64) *EphemeralStorage {
 type EventSourceMappingConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Specific configuration settings for an Amazon Managed Streaming for Apache
+	// Kafka (Amazon MSK) event source.
+	AmazonManagedKafkaEventSourceConfig *AmazonManagedKafkaEventSourceConfig `type:"structure"`
+
 	// The maximum number of records in each batch that Lambda pulls from your stream
 	// or queue and sends to your function. Lambda passes all of the records in
 	// the batch to the function in a single call, up to the payload limit for synchronous
@@ -10649,6 +10732,9 @@ type EventSourceMappingConfiguration struct {
 	// The self-managed Apache Kafka cluster for your event source.
 	SelfManagedEventSource *SelfManagedEventSource `type:"structure"`
 
+	// Specific configuration settings for a self-managed Apache Kafka event source.
+	SelfManagedKafkaEventSourceConfig *SelfManagedKafkaEventSourceConfig `type:"structure"`
+
 	// An array of the authentication protocol, VPC components, or virtual host
 	// to secure and define your event source.
 	SourceAccessConfigurations []*SourceAccessConfiguration `type:"list"`
@@ -10696,6 +10782,12 @@ func (s EventSourceMappingConfiguration) String() string {
 // value will be replaced with "sensitive".
 func (s EventSourceMappingConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetAmazonManagedKafkaEventSourceConfig sets the AmazonManagedKafkaEventSourceConfig field's value.
+func (s *EventSourceMappingConfiguration) SetAmazonManagedKafkaEventSourceConfig(v *AmazonManagedKafkaEventSourceConfig) *EventSourceMappingConfiguration {
+	s.AmazonManagedKafkaEventSourceConfig = v
+	return s
 }
 
 // SetBatchSize sets the BatchSize field's value.
@@ -10785,6 +10877,12 @@ func (s *EventSourceMappingConfiguration) SetQueues(v []*string) *EventSourceMap
 // SetSelfManagedEventSource sets the SelfManagedEventSource field's value.
 func (s *EventSourceMappingConfiguration) SetSelfManagedEventSource(v *SelfManagedEventSource) *EventSourceMappingConfiguration {
 	s.SelfManagedEventSource = v
+	return s
+}
+
+// SetSelfManagedKafkaEventSourceConfig sets the SelfManagedKafkaEventSourceConfig field's value.
+func (s *EventSourceMappingConfiguration) SetSelfManagedKafkaEventSourceConfig(v *SelfManagedKafkaEventSourceConfig) *EventSourceMappingConfiguration {
+	s.SelfManagedKafkaEventSourceConfig = v
 	return s
 }
 
@@ -18137,6 +18235,54 @@ func (s *SelfManagedEventSource) SetEndpoints(v map[string][]*string) *SelfManag
 	return s
 }
 
+// Specific configuration settings for a self-managed Apache Kafka event source.
+type SelfManagedKafkaEventSourceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Kafka consumer group to join. The consumer group ID
+	// must be unique among all your Kafka event sources. After creating a Kafka
+	// event source mapping with the consumer group ID specified, you cannot update
+	// this value. For more information, see services-msk-consumer-group-id.
+	ConsumerGroupId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SelfManagedKafkaEventSourceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SelfManagedKafkaEventSourceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SelfManagedKafkaEventSourceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SelfManagedKafkaEventSourceConfig"}
+	if s.ConsumerGroupId != nil && len(*s.ConsumerGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConsumerGroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConsumerGroupId sets the ConsumerGroupId field's value.
+func (s *SelfManagedKafkaEventSourceConfig) SetConsumerGroupId(v string) *SelfManagedKafkaEventSourceConfig {
+	s.ConsumerGroupId = &v
+	return s
+}
+
 // The Lambda service encountered an internal error.
 type ServiceException struct {
 	_            struct{}                  `type:"structure"`
@@ -18234,7 +18380,7 @@ type SourceAccessConfiguration struct {
 	//    broker. Lambda uses this RabbitMQ host as the event source. This property
 	//    cannot be specified in an UpdateEventSourceMapping API call.
 	//
-	//    * CLIENT_CERTIFICATE_TLS_AUTH - (Amazon MSK, Self-managed Apache Kafka)
+	//    * CLIENT_CERTIFICATE_TLS_AUTH - (Amazon MSK, self-managed Apache Kafka)
 	//    The Secrets Manager ARN of your secret key containing the certificate
 	//    chain (X.509 PEM), private key (PKCS#8 PEM), and private key password
 	//    (optional) used for mutual TLS authentication of your MSK/Apache Kafka
@@ -18982,7 +19128,7 @@ type UpdateEventSourceMappingInput struct {
 	//
 	//    * Amazon Managed Streaming for Apache Kafka - Default 100. Max 10,000.
 	//
-	//    * Self-Managed Apache Kafka - Default 100. Max 10,000.
+	//    * Self-managed Apache Kafka - Default 100. Max 10,000.
 	//
 	//    * Amazon MQ (ActiveMQ and RabbitMQ) - Default 100. Max 10,000.
 	BatchSize *int64 `min:"1" type:"integer"`
@@ -19041,7 +19187,7 @@ type UpdateEventSourceMappingInput struct {
 
 	// (Streams only) Discard records after the specified number of retries. The
 	// default value is infinite (-1). When set to infinite (-1), failed records
-	// will be retried until the record expires.
+	// are retried until the record expires.
 	MaximumRetryAttempts *int64 `type:"integer"`
 
 	// (Streams only) The number of batches to process from each shard concurrently.
@@ -19052,7 +19198,7 @@ type UpdateEventSourceMappingInput struct {
 	SourceAccessConfigurations []*SourceAccessConfiguration `type:"list"`
 
 	// (Streams only) The duration in seconds of a processing window. The range
-	// is between 1 second up to 900 seconds.
+	// is between 1 second and 900 seconds.
 	TumblingWindowInSeconds *int64 `type:"integer"`
 
 	// The identifier of the event source mapping.

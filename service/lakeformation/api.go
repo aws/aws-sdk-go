@@ -108,6 +108,109 @@ func (c *LakeFormation) AddLFTagsToResourceWithContext(ctx aws.Context, input *A
 	return out, req.Send()
 }
 
+const opAssumeDecoratedRoleWithSAML = "AssumeDecoratedRoleWithSAML"
+
+// AssumeDecoratedRoleWithSAMLRequest generates a "aws/request.Request" representing the
+// client's request for the AssumeDecoratedRoleWithSAML operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssumeDecoratedRoleWithSAML for more information on using the AssumeDecoratedRoleWithSAML
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssumeDecoratedRoleWithSAMLRequest method.
+//	req, resp := client.AssumeDecoratedRoleWithSAMLRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/AssumeDecoratedRoleWithSAML
+func (c *LakeFormation) AssumeDecoratedRoleWithSAMLRequest(input *AssumeDecoratedRoleWithSAMLInput) (req *request.Request, output *AssumeDecoratedRoleWithSAMLOutput) {
+	op := &request.Operation{
+		Name:       opAssumeDecoratedRoleWithSAML,
+		HTTPMethod: "POST",
+		HTTPPath:   "/AssumeDecoratedRoleWithSAML",
+	}
+
+	if input == nil {
+		input = &AssumeDecoratedRoleWithSAMLInput{}
+	}
+
+	output = &AssumeDecoratedRoleWithSAMLOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssumeDecoratedRoleWithSAML API operation for AWS Lake Formation.
+//
+// Allows a caller to assume an IAM role decorated as the SAML user specified
+// in the SAML assertion included in the request. This decoration allows Lake
+// Formation to enforce access policies against the SAML users and groups. This
+// API operation requires SAML federation setup in the caller’s account as
+// it can only be called with valid SAML assertions. Lake Formation does not
+// scope down the permission of the assumed role. All permissions attached to
+// the role via the SAML federation setup will be included in the role session.
+//
+// This decorated role is expected to access data in Amazon S3 by getting temporary
+// access from Lake Formation which is authorized via the virtual API GetDataAccess.
+// Therefore, all SAML roles that can be assumed via AssumeDecoratedRoleWithSAML
+// must at a minimum include lakeformation:GetDataAccess in their role policies.
+// A typical IAM policy attached to such a role would look as follows:
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation AssumeDecoratedRoleWithSAML for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/AssumeDecoratedRoleWithSAML
+func (c *LakeFormation) AssumeDecoratedRoleWithSAML(input *AssumeDecoratedRoleWithSAMLInput) (*AssumeDecoratedRoleWithSAMLOutput, error) {
+	req, out := c.AssumeDecoratedRoleWithSAMLRequest(input)
+	return out, req.Send()
+}
+
+// AssumeDecoratedRoleWithSAMLWithContext is the same as AssumeDecoratedRoleWithSAML with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssumeDecoratedRoleWithSAML for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) AssumeDecoratedRoleWithSAMLWithContext(ctx aws.Context, input *AssumeDecoratedRoleWithSAMLInput, opts ...request.Option) (*AssumeDecoratedRoleWithSAMLOutput, error) {
+	req, out := c.AssumeDecoratedRoleWithSAMLRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchGrantPermissions = "BatchGrantPermissions"
 
 // BatchGrantPermissionsRequest generates a "aws/request.Request" representing the
@@ -799,12 +902,11 @@ func (c *LakeFormation) DeleteLFTagRequest(input *DeleteLFTagInput) (req *reques
 
 // DeleteLFTag API operation for AWS Lake Formation.
 //
-// Deletes the specified LF-tag key name. If the attribute key does not exist
-// or the LF-tag does not exist, then the operation will not do anything. If
-// the attribute key exists, then the operation checks if any resources are
-// tagged with this attribute key, if yes, the API throws a 400 Exception with
-// the message "Delete not allowed" as the LF-tag key is still attached with
-// resources. You can consider untagging resources with this LF-tag key.
+// Deletes the specified LF-tag given a key name. If the input parameter tag
+// key was not found, then the operation will throw an exception. When you delete
+// an LF-tag, the LFTagPolicy attached to the LF-tag becomes invalid. If the
+// deleted LF-tag was still assigned to any resource, the tag policy attach
+// to the deleted LF-tag will no longer be applied to the resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5143,6 +5245,161 @@ func (s *AlreadyExistsException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type AssumeDecoratedRoleWithSAMLInput struct {
+	_ struct{} `type:"structure"`
+
+	// The time period, between 900 and 43,200 seconds, for the timeout of the temporary
+	// credentials.
+	DurationSeconds *int64 `min:"900" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the SAML provider in IAM that describes
+	// the IdP.
+	//
+	// PrincipalArn is a required field
+	PrincipalArn *string `type:"string" required:"true"`
+
+	// The role that represents an IAM principal whose scope down policy allows
+	// it to call credential vending APIs such as GetTemporaryTableCredentials.
+	// The caller must also have iam:PassRole permission on this role.
+	//
+	// RoleArn is a required field
+	RoleArn *string `type:"string" required:"true"`
+
+	// A SAML assertion consisting of an assertion statement for the user who needs
+	// temporary credentials. This must match the SAML assertion that was issued
+	// to IAM. This must be Base64 encoded.
+	//
+	// SAMLAssertion is a required field
+	SAMLAssertion *string `min:"4" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssumeDecoratedRoleWithSAMLInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssumeDecoratedRoleWithSAMLInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssumeDecoratedRoleWithSAMLInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssumeDecoratedRoleWithSAMLInput"}
+	if s.DurationSeconds != nil && *s.DurationSeconds < 900 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationSeconds", 900))
+	}
+	if s.PrincipalArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrincipalArn"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.SAMLAssertion == nil {
+		invalidParams.Add(request.NewErrParamRequired("SAMLAssertion"))
+	}
+	if s.SAMLAssertion != nil && len(*s.SAMLAssertion) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("SAMLAssertion", 4))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDurationSeconds sets the DurationSeconds field's value.
+func (s *AssumeDecoratedRoleWithSAMLInput) SetDurationSeconds(v int64) *AssumeDecoratedRoleWithSAMLInput {
+	s.DurationSeconds = &v
+	return s
+}
+
+// SetPrincipalArn sets the PrincipalArn field's value.
+func (s *AssumeDecoratedRoleWithSAMLInput) SetPrincipalArn(v string) *AssumeDecoratedRoleWithSAMLInput {
+	s.PrincipalArn = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *AssumeDecoratedRoleWithSAMLInput) SetRoleArn(v string) *AssumeDecoratedRoleWithSAMLInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSAMLAssertion sets the SAMLAssertion field's value.
+func (s *AssumeDecoratedRoleWithSAMLInput) SetSAMLAssertion(v string) *AssumeDecoratedRoleWithSAMLInput {
+	s.SAMLAssertion = &v
+	return s
+}
+
+type AssumeDecoratedRoleWithSAMLOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The access key ID for the temporary credentials. (The access key consists
+	// of an access key ID and a secret key).
+	AccessKeyId *string `type:"string"`
+
+	// The date and time when the temporary credentials expire.
+	Expiration *time.Time `type:"timestamp"`
+
+	// The secret key for the temporary credentials. (The access key consists of
+	// an access key ID and a secret key).
+	SecretAccessKey *string `type:"string"`
+
+	// The session token for the temporary credentials.
+	SessionToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssumeDecoratedRoleWithSAMLOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssumeDecoratedRoleWithSAMLOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessKeyId sets the AccessKeyId field's value.
+func (s *AssumeDecoratedRoleWithSAMLOutput) SetAccessKeyId(v string) *AssumeDecoratedRoleWithSAMLOutput {
+	s.AccessKeyId = &v
+	return s
+}
+
+// SetExpiration sets the Expiration field's value.
+func (s *AssumeDecoratedRoleWithSAMLOutput) SetExpiration(v time.Time) *AssumeDecoratedRoleWithSAMLOutput {
+	s.Expiration = &v
+	return s
+}
+
+// SetSecretAccessKey sets the SecretAccessKey field's value.
+func (s *AssumeDecoratedRoleWithSAMLOutput) SetSecretAccessKey(v string) *AssumeDecoratedRoleWithSAMLOutput {
+	s.SecretAccessKey = &v
+	return s
+}
+
+// SetSessionToken sets the SessionToken field's value.
+func (s *AssumeDecoratedRoleWithSAMLOutput) SetSessionToken(v string) *AssumeDecoratedRoleWithSAMLOutput {
+	s.SessionToken = &v
+	return s
 }
 
 // A structure used to include auditing information on the privileged API.

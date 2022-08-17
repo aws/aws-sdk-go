@@ -564,6 +564,12 @@
       "base": null,
       "refs": {
         "AggregatedUtterancesSummary$containsDataFromDeletedResources": "<p>Aggregated utterance data may contain utterances from versions of your bot that have since been deleted. When the aggregated contains this kind of data, this field is set to true.</p>",
+        "ConditionalSpecification$active": "<p>Determines whether a conditional branch is active. When <code>active</code> is false, the conditions are not evaluated.</p>",
+        "DialogAction$suppressNextMessage": "<p>When true the next message for the intent is not used.</p>",
+        "DialogCodeHookInvocationSetting$enableCodeHookInvocation": "<p>Indicates whether a Lambda function should be invoked for the dialog.</p>",
+        "DialogCodeHookInvocationSetting$active": "<p>Determines whether a dialog code hook is used when the intent is activated.</p>",
+        "ElicitationCodeHookInvocationSetting$enableCodeHookInvocation": "<p>Indicates whether a Lambda function should be invoked for the dialog.</p>",
+        "FulfillmentCodeHookSettings$active": "<p>Determines whether the fulfillment code hook is used. When <code>active</code> is false, the code hook doesn't run.</p>",
         "FulfillmentStartResponseSpecification$allowInterrupt": "<p>Determines whether the user can interrupt the start message while it is playing.</p>",
         "FulfillmentUpdateResponseSpecification$allowInterrupt": "<p>Determines whether the user can interrupt an update message while it is playing.</p>",
         "FulfillmentUpdatesSpecification$active": "<p>Determines whether fulfillment updates are sent to the user. When this field is true, updates are sent.</p> <p>If the <code>active</code> field is set to true, the <code>startResponse</code>, <code>updateResponse</code>, and <code>timeoutInSeconds</code> fields are required.</p>",
@@ -705,6 +711,18 @@
         "BotAliasLocaleSettings$codeHookSpecification": "<p>Specifies the Lambda function that should be used in the locale.</p>"
       }
     },
+    "Condition": {
+      "base": "<p>Provides an expression that evaluates to true or false. </p>",
+      "refs": {
+        "ConditionalBranch$condition": "<p>Contains the expression to evaluate. If the condition is true, the branch's actions are taken.</p>"
+      }
+    },
+    "ConditionExpression": {
+      "base": null,
+      "refs": {
+        "Condition$expressionString": "<p>The expression string that is evaluated. </p>"
+      }
+    },
     "ConditionKey": {
       "base": null,
       "refs": {
@@ -733,6 +751,36 @@
       "base": null,
       "refs": {
         "ConditionKeyValueMap$value": null
+      }
+    },
+    "ConditionalBranch": {
+      "base": "<p>A set of actions that Amazon Lex should run if the condition is matched.</p>",
+      "refs": {
+        "ConditionalBranches$member": null
+      }
+    },
+    "ConditionalBranches": {
+      "base": null,
+      "refs": {
+        "ConditionalSpecification$conditionalBranches": "<p>A list of conditional branches. A conditional branch is made up of a condition, a response and a next step. The response and next step are executed when the condition is true.</p>"
+      }
+    },
+    "ConditionalSpecification": {
+      "base": "<p>Provides a list of conditional branches. Branches are evaluated in the order that they are entered in the list. The first branch with a condition that evaluates to true is executed. The last branch in the list is the default branch. The default branch should not have any condition expression. The default branch is executed if no other branch has a matching condition.</p>",
+      "refs": {
+        "InitialResponseSetting$conditional": null,
+        "IntentClosingSetting$conditional": "<p>A list of conditional branches associated with the intent's closing response. These branches are executed when the <code>nextStep</code> attribute is set to <code>EvalutateConditional</code>.</p>",
+        "IntentConfirmationSetting$confirmationConditional": "<p>A list of conditional branches to evaluate after the intent is closed.</p>",
+        "IntentConfirmationSetting$declinationConditional": "<p>A list of conditional branches to evaluate after the intent is declined.</p>",
+        "IntentConfirmationSetting$failureConditional": null,
+        "PostDialogCodeHookInvocationSpecification$successConditional": "<p>A list of conditional branches to evaluate after the dialog code hook finishes successfully.</p>",
+        "PostDialogCodeHookInvocationSpecification$failureConditional": "<p>A list of conditional branches to evaluate after the dialog code hook throws an exception or returns with the <code>State</code> field of the <code>Intent</code> object set to <code>Failed</code>.</p>",
+        "PostDialogCodeHookInvocationSpecification$timeoutConditional": "<p>A list of conditional branches to evaluate if the code hook times out.</p>",
+        "PostFulfillmentStatusSpecification$successConditional": "<p>A list of conditional branches to evaluate after the fulfillment code hook finishes successfully.</p>",
+        "PostFulfillmentStatusSpecification$failureConditional": "<p>A list of conditional branches to evaluate after the fulfillment code hook throws an exception or returns with the <code>State</code> field of the <code>Intent</code> object set to <code>Failed</code>.</p>",
+        "PostFulfillmentStatusSpecification$timeoutConditional": "<p>A list of conditional branches to evaluate if the fulfillment code hook times out.</p>",
+        "SlotCaptureSetting$captureConditional": "<p>A list of conditional branches to evaluate after the slot value is captured.</p>",
+        "SlotCaptureSetting$failureConditional": "<p>A list of conditional branches to evaluate when the slot value isn't captured.</p>"
       }
     },
     "ConfidenceThreshold": {
@@ -937,6 +985,12 @@
       "base": "<p>The object used for specifying the data range that the customer wants Amazon Lex to read through in the input transcripts.</p>",
       "refs": {
         "LexTranscriptFilter$dateRangeFilter": "<p>The object that contains a date range filter that will be applied to the transcript. Specify this object if you want Amazon Lex to only read the files that are within the date range.</p>"
+      }
+    },
+    "DefaultConditionalBranch": {
+      "base": "<p>A set of actions that Amazon Lex should run if none of the other conditions are met.</p>",
+      "refs": {
+        "ConditionalSpecification$defaultBranch": "<p>The conditional branch that should be followed when the conditions for other branches are not satisfied. A conditional branch is made up of a condition, a response and a next step.</p>"
       }
     },
     "DeleteBotAliasRequest": {
@@ -1221,6 +1275,26 @@
         "UpdateSlotTypeResponse$description": "<p>The updated description of the slot type.</p>"
       }
     },
+    "DialogAction": {
+      "base": "<p> Defines the action that the bot executes at runtime when the conversation reaches this step.</p>",
+      "refs": {
+        "DialogState$dialogAction": null
+      }
+    },
+    "DialogActionType": {
+      "base": null,
+      "refs": {
+        "DialogAction$type": "<p>The action that the bot should execute. </p>"
+      }
+    },
+    "DialogCodeHookInvocationSetting": {
+      "base": "<p> Settings that specify the dialog code hook that is called by Amazon Lex at a step of the conversation. </p>",
+      "refs": {
+        "InitialResponseSetting$codeHook": null,
+        "IntentConfirmationSetting$codeHook": "<p>The <code>DialogCodeHookInvocationSetting</code> object associated with intent's confirmation step. The dialog code hook is triggered based on these invocation settings when the confirmation next step or declination next step or failure next step is <code>InvokeDialogCodeHook</code>. </p>",
+        "SlotCaptureSetting$codeHook": "<p>Code hook called after Amazon Lex successfully captures a slot value.</p>"
+      }
+    },
     "DialogCodeHookSettings": {
       "base": "<p>Settings that determine the Lambda function that Amazon Lex uses for processing user responses.</p>",
       "refs": {
@@ -1229,6 +1303,26 @@
         "DescribeIntentResponse$dialogCodeHook": "<p>The Lambda function called during each turn of a conversation with the intent.</p>",
         "UpdateIntentRequest$dialogCodeHook": "<p>The new Lambda function to use between each turn of the conversation with the bot.</p>",
         "UpdateIntentResponse$dialogCodeHook": "<p>The updated Lambda function called during each turn of the conversation with the user.</p>"
+      }
+    },
+    "DialogState": {
+      "base": "<p>The current state of the conversation with the user.</p>",
+      "refs": {
+        "ConditionalBranch$nextStep": "<p>The next step in the conversation.</p>",
+        "DefaultConditionalBranch$nextStep": "<p>The next step in the conversation.</p>",
+        "InitialResponseSetting$nextStep": "<p>The next step in the conversation.</p>",
+        "IntentClosingSetting$nextStep": "<p>Specifies the next step that the bot executes after playing the intent's closing response.</p>",
+        "IntentConfirmationSetting$confirmationNextStep": "<p>Specifies the next step that the bot executes when the customer confirms the intent.</p>",
+        "IntentConfirmationSetting$declinationNextStep": "<p>Specifies the next step that the bot executes when the customer declines the intent.</p>",
+        "IntentConfirmationSetting$failureNextStep": "<p>The next step to take in the conversation if the confirmation step fails.</p>",
+        "PostDialogCodeHookInvocationSpecification$successNextStep": "<p>Specifics the next step the bot runs after the dialog code hook finishes successfully. </p>",
+        "PostDialogCodeHookInvocationSpecification$failureNextStep": "<p>Specifies the next step the bot runs after the dialog code hook throws an exception or returns with the <code>State</code> field of the <code>Intent</code> object set to <code>Failed</code>.</p>",
+        "PostDialogCodeHookInvocationSpecification$timeoutNextStep": "<p>Specifies the next step that the bot runs when the code hook times out.</p>",
+        "PostFulfillmentStatusSpecification$successNextStep": "<p>Specifies the next step in the conversation that Amazon Lex invokes when the fulfillment code hook completes successfully.</p>",
+        "PostFulfillmentStatusSpecification$failureNextStep": "<p>Specifies the next step the bot runs after the fulfillment code hook throws an exception or returns with the <code>State</code> field of the <code>Intent</code> object set to <code>Failed</code>.</p>",
+        "PostFulfillmentStatusSpecification$timeoutNextStep": "<p>Specifies the next step that the bot runs when the fulfillment code hook times out.</p>",
+        "SlotCaptureSetting$captureNextStep": "<p>Specifies the next step that the bot runs when the slot value is captured before the code hook times out.</p>",
+        "SlotCaptureSetting$failureNextStep": "<p>Specifies the next step that the bot runs when the slot value code is not recognized.</p>"
       }
     },
     "DraftBotVersion": {
@@ -1280,6 +1374,13 @@
       "base": null,
       "refs": {
         "CreateResourcePolicyStatementRequest$effect": "<p>Determines whether the statement allows or denies access to the resource.</p>"
+      }
+    },
+    "ElicitationCodeHookInvocationSetting": {
+      "base": "<p>Settings that specify the dialog code hook that is called by Amazon Lex between eliciting slot values.</p>",
+      "refs": {
+        "IntentConfirmationSetting$elicitationCodeHook": "<p>The <code>DialogCodeHookInvocationSetting</code> used when the code hook is invoked during confirmation prompt retries.</p>",
+        "SlotCaptureSetting$elicitationCodeHook": "<p>Code hook called when Amazon Lex doesn't capture a slot value.</p>"
       }
     },
     "EncryptionSetting": {
@@ -1748,6 +1849,16 @@
         "ImportSummary$importedResourceId": "<p>The unique identifier that Amazon Lex assigned to the imported resource.</p>"
       }
     },
+    "InitialResponseSetting": {
+      "base": "<p>Configuration setting for a response sent to the user before Amazon Lex starts eliciting slots.</p>",
+      "refs": {
+        "CreateIntentRequest$initialResponseSetting": "<p>Configuration settings for the response that is sent to the user at the beginning of a conversation, before eliciting slot values.</p>",
+        "CreateIntentResponse$initialResponseSetting": "<p>Configuration settings for the response that is sent to the user at the beginning of a conversation, before eliciting slot values.</p>",
+        "DescribeIntentResponse$initialResponseSetting": "<p/>",
+        "UpdateIntentRequest$initialResponseSetting": "<p/>",
+        "UpdateIntentResponse$initialResponseSetting": "<p/>"
+      }
+    },
     "InputContext": {
       "base": "<p>The name of a context that must be active for an intent to be selected by Amazon Lex.</p>",
       "refs": {
@@ -1807,6 +1918,12 @@
       "base": null,
       "refs": {
         "ListIntentsRequest$filters": "<p>Provides the specification of a filter used to limit the intents in the response to only those that match the filter specification. You can only specify one filter and only one string to filter on.</p>"
+      }
+    },
+    "IntentOverride": {
+      "base": "<p>Override settings to configure the intent state.</p>",
+      "refs": {
+        "DialogState$intent": null
       }
     },
     "IntentSignature": {
@@ -2227,6 +2344,7 @@
         "BotImportSpecification$botName": "<p>The name that Amazon Lex should use for the bot.</p>",
         "BotSummary$botName": "<p>The name of the bot.</p>",
         "BotVersionSummary$botName": "<p>The name of the bot associated with the version.</p>",
+        "ConditionalBranch$name": "<p>The name of the branch. </p>",
         "CreateBotAliasRequest$botAliasName": "<p>The alias to create. The name must be unique for the bot.</p>",
         "CreateBotAliasResponse$botAliasName": "<p>The name specified for the bot alias.</p>",
         "CreateBotRequest$botName": "<p>The name of the bot. The bot name must be unique in the account that creates the bot.</p>",
@@ -2246,13 +2364,18 @@
         "DescribeIntentResponse$intentName": "<p>The name specified for the intent.</p>",
         "DescribeSlotResponse$slotName": "<p>The name specified for the slot.</p>",
         "DescribeSlotTypeResponse$slotTypeName": "<p>The name specified for the slot type.</p>",
+        "DialogAction$slotToElicit": "<p>If the dialog action is <code>ElicitSlot</code>, defines the slot to elicit from the user.</p>",
+        "DialogCodeHookInvocationSetting$invocationLabel": "<p>A label that indicates the dialog step from which the dialog code hook is happening.</p>",
+        "ElicitationCodeHookInvocationSetting$invocationLabel": "<p>A label that indicates the dialog step from which the dialog code hook is happening.</p>",
         "ImportSummary$importedResourceName": "<p>The name that you gave the imported resource.</p>",
         "InputContext$name": "<p>The name of the context.</p>",
+        "IntentOverride$name": "<p>The name of the intent. Only required when you're switching intents.</p>",
         "IntentSummary$intentName": "<p>The name of the intent.</p>",
         "OutputContext$name": "<p>The name of the output context.</p>",
         "RecommendedIntentSummary$intentName": "<p>The name of a recommended intent associated with the bot recommendation.</p>",
         "SlotSummary$slotName": "<p>The name given to the slot.</p>",
         "SlotTypeSummary$slotTypeName": "<p>The name of the slot type.</p>",
+        "SlotValueOverrideMap$key": null,
         "UpdateBotAliasRequest$botAliasName": "<p>The new name to assign to the bot alias.</p>",
         "UpdateBotAliasResponse$botAliasName": "<p>The updated name of the bot alias.</p>",
         "UpdateBotRequest$botName": "<p>The new name of the bot. The name must be unique in the account that creates the bot.</p>",
@@ -2303,6 +2426,13 @@
         "ListSlotTypesResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListSlotTypes</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListSlotTypes</code> operation request to get the next page of results.</p>",
         "ListSlotsRequest$nextToken": "<p>If the response from the <code>ListSlots</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
         "ListSlotsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListSlots</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListSlots</code> operation request to get the next page of results.</p>"
+      }
+    },
+    "NonEmptyString": {
+      "base": null,
+      "refs": {
+        "SlotValue$interpretedValue": "<p>The value that Amazon Lex determines for the slot. The actual value depends on the setting of the value selection strategy for the bot. You can choose to use the value entered by the user, or you can have Amazon Lex choose the first value in the <code>resolvedValues</code> list.</p>",
+        "StringMap$key": null
       }
     },
     "NumericalBotVersion": {
@@ -2399,6 +2529,12 @@
         "CreateResourcePolicyRequest$policy": "<p>A resource policy to add to the resource. The policy is a JSON structure that contains one or more statements that define the policy. The policy must follow the IAM syntax. For more information about the contents of a JSON policy document, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html\"> IAM JSON policy reference </a>. </p> <p>If the policy isn't valid, Amazon Lex returns a validation exception.</p>",
         "DescribeResourcePolicyResponse$policy": "<p>The JSON structure that contains the resource policy. For more information about the contents of a JSON policy document, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html\"> IAM JSON policy reference </a>.</p>",
         "UpdateResourcePolicyRequest$policy": "<p>A resource policy to add to the resource. The policy is a JSON structure that contains one or more statements that define the policy. The policy must follow the IAM syntax. For more information about the contents of a JSON policy document, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html\"> IAM JSON policy reference </a>. </p> <p>If the policy isn't valid, Amazon Lex returns a validation exception.</p>"
+      }
+    },
+    "PostDialogCodeHookInvocationSpecification": {
+      "base": "<p>Specifies next steps to run after the dialog code hook finishes.</p>",
+      "refs": {
+        "DialogCodeHookInvocationSetting$postCodeHookSpecification": "<p>Contains the responses and actions that Amazon Lex takes after the Lambda function is complete.</p>"
       }
     },
     "PostFulfillmentStatusSpecification": {
@@ -2517,11 +2653,21 @@
     "ResponseSpecification": {
       "base": "<p>Specifies a list of message groups that Amazon Lex uses to respond the user input.</p>",
       "refs": {
+        "ConditionalBranch$response": null,
+        "DefaultConditionalBranch$response": null,
+        "InitialResponseSetting$initialResponse": null,
         "IntentClosingSetting$closingResponse": "<p>The response that Amazon Lex sends to the user when the intent is complete.</p>",
         "IntentConfirmationSetting$declinationResponse": "<p>When the user answers \"no\" to the question defined in <code>promptSpecification</code>, Amazon Lex responds with this response to acknowledge that the intent was canceled. </p>",
+        "IntentConfirmationSetting$confirmationResponse": null,
+        "IntentConfirmationSetting$failureResponse": null,
+        "PostDialogCodeHookInvocationSpecification$successResponse": null,
+        "PostDialogCodeHookInvocationSpecification$failureResponse": null,
+        "PostDialogCodeHookInvocationSpecification$timeoutResponse": null,
         "PostFulfillmentStatusSpecification$successResponse": null,
         "PostFulfillmentStatusSpecification$failureResponse": null,
         "PostFulfillmentStatusSpecification$timeoutResponse": null,
+        "SlotCaptureSetting$captureResponse": null,
+        "SlotCaptureSetting$failureResponse": null,
         "WaitAndContinueSpecification$waitingResponse": "<p>The response that Amazon Lex sends to indicate that the bot is waiting for the conversation to continue.</p>",
         "WaitAndContinueSpecification$continueResponse": "<p>The response that Amazon Lex sends to indicate that the bot is ready to continue the conversation.</p>"
       }
@@ -2696,6 +2842,12 @@
         "DeleteSlotTypeRequest$skipResourceInUseCheck": "<p>By default, the <code>DeleteSlotType</code> operations throws a <code>ResourceInUseException</code> exception if you try to delete a slot type used by a slot. Set the <code>skipResourceInUseCheck</code> parameter to <code>true</code> to skip this check and remove the slot type even if a slot uses it.</p>"
       }
     },
+    "SlotCaptureSetting": {
+      "base": "<p>Settings used when Amazon Lex successfully captures a slot value from a user.</p>",
+      "refs": {
+        "SlotValueElicitationSetting$slotCaptureSetting": "<p>Specifies the settings that Amazon Lex uses when a slot value is successfully entered by a user.</p>"
+      }
+    },
     "SlotConstraint": {
       "base": null,
       "refs": {
@@ -2763,6 +2915,12 @@
       "base": "<p>Sets the priority that Amazon Lex should use when eliciting slot values from a user.</p>",
       "refs": {
         "SlotPrioritiesList$member": null
+      }
+    },
+    "SlotShape": {
+      "base": null,
+      "refs": {
+        "SlotValueOverride$shape": "<p>When the shape value is <code>List</code>, it indicates that the <code>values</code> field contains a list of slot values. When the value is <code>Scalar</code>, it indicates that the <code>value</code> field contains a single value.</p>"
       }
     },
     "SlotSortAttribute": {
@@ -2877,6 +3035,12 @@
         "UpdateSlotTypeResponse$slotTypeValues": "<p>The updated values that the slot type provides.</p>"
       }
     },
+    "SlotValue": {
+      "base": "<p>The value to set in a slot.</p>",
+      "refs": {
+        "SlotValueOverride$value": "<p>The current value of the slot.</p>"
+      }
+    },
     "SlotValueElicitationSetting": {
       "base": "<p>Settings that you can use for eliciting a slot value.</p>",
       "refs": {
@@ -2885,6 +3049,19 @@
         "DescribeSlotResponse$valueElicitationSetting": "<p>Prompts that Amazon Lex uses to elicit a value for the slot.</p>",
         "UpdateSlotRequest$valueElicitationSetting": "<p>A new set of prompts that Amazon Lex sends to the user to elicit a response the provides a value for the slot.</p>",
         "UpdateSlotResponse$valueElicitationSetting": "<p>The updated prompts that Amazon Lex sends to the user to elicit a response that provides a value for the slot.</p>"
+      }
+    },
+    "SlotValueOverride": {
+      "base": "<p>The slot values that Amazon Lex uses when it sets slot values in a dialog step.</p>",
+      "refs": {
+        "SlotValueOverrideMap$value": null,
+        "SlotValues$member": null
+      }
+    },
+    "SlotValueOverrideMap": {
+      "base": null,
+      "refs": {
+        "IntentOverride$slots": "<p>A map of all of the slot value overrides for the intent. The name of the slot maps to the value of the slot. Slots that are not included in the map aren't overridden.,</p>"
       }
     },
     "SlotValueRegexFilter": {
@@ -2907,6 +3084,12 @@
         "DescribeSlotTypeResponse$valueSelectionSetting": "<p>The strategy that Amazon Lex uses to choose a value from a list of possible values.</p>",
         "UpdateSlotTypeRequest$valueSelectionSetting": "<p>The strategy that Amazon Lex should use when deciding on a value from the list of slot type values.</p>",
         "UpdateSlotTypeResponse$valueSelectionSetting": "<p>The updated strategy that Amazon Lex uses to determine which value to select from the slot type.</p>"
+      }
+    },
+    "SlotValues": {
+      "base": null,
+      "refs": {
+        "SlotValueOverride$values": "<p>A list of one or more values that the user provided for the slot. For example, for a slot that elicits pizza toppings, the values might be \"pepperoni\" and \"pineapple.\"</p>"
       }
     },
     "SortOrder": {
@@ -2961,6 +3144,18 @@
       "base": null,
       "refs": {
         "StillWaitingResponseSpecification$timeoutInSeconds": "<p>If Amazon Lex waits longer than this length of time for a response, it will stop sending messages.</p>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "StringMap$value": null
+      }
+    },
+    "StringMap": {
+      "base": null,
+      "refs": {
+        "DialogState$sessionAttributes": "<p>Map of key/value pairs representing session-specific context information. It contains application information passed between Amazon Lex and a client application.</p>"
       }
     },
     "SynonymList": {

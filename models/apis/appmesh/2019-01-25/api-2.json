@@ -1649,6 +1649,7 @@
       "type":"structure",
       "required":["path"],
       "members":{
+        "format":{"shape":"LoggingFormat"},
         "path":{"shape":"FilePath"}
       }
     },
@@ -1763,6 +1764,7 @@
       "type":"structure",
       "required":["virtualService"],
       "members":{
+        "port":{"shape":"ListenerPort"},
         "virtualService":{"shape":"GatewayRouteVirtualService"}
       }
     },
@@ -1797,6 +1799,7 @@
       "members":{
         "hostname":{"shape":"GatewayRouteHostnameMatch"},
         "metadata":{"shape":"GrpcGatewayRouteMetadataList"},
+        "port":{"shape":"ListenerPort"},
         "serviceName":{"shape":"ServiceName"}
       }
     },
@@ -1887,6 +1890,7 @@
       "members":{
         "metadata":{"shape":"GrpcRouteMetadataList"},
         "methodName":{"shape":"MethodName"},
+        "port":{"shape":"ListenerPort"},
         "serviceName":{"shape":"ServiceName"}
       }
     },
@@ -2022,6 +2026,7 @@
         "hostname":{"shape":"GatewayRouteHostnameMatch"},
         "method":{"shape":"HttpMethod"},
         "path":{"shape":"HttpPathMatch"},
+        "port":{"shape":"ListenerPort"},
         "prefix":{"shape":"String"},
         "queryParameters":{"shape":"HttpQueryParameters"}
       }
@@ -2162,6 +2167,7 @@
         "headers":{"shape":"HttpRouteHeaders"},
         "method":{"shape":"HttpMethod"},
         "path":{"shape":"HttpPathMatch"},
+        "port":{"shape":"ListenerPort"},
         "prefix":{"shape":"String"},
         "queryParameters":{"shape":"HttpQueryParameters"},
         "scheme":{"shape":"HttpScheme"}
@@ -2199,6 +2205,31 @@
         "IPv4_ONLY",
         "IPv6_ONLY"
       ]
+    },
+    "JsonFormat":{
+      "type":"list",
+      "member":{"shape":"JsonFormatRef"}
+    },
+    "JsonFormatRef":{
+      "type":"structure",
+      "required":[
+        "key",
+        "value"
+      ],
+      "members":{
+        "key":{"shape":"JsonKey"},
+        "value":{"shape":"JsonValue"}
+      }
+    },
+    "JsonKey":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "JsonValue":{
+      "type":"string",
+      "max":100,
+      "min":1
     },
     "LimitExceededException":{
       "type":"structure",
@@ -2537,6 +2568,12 @@
         "tls":{"shape":"ListenerTls"}
       }
     },
+    "ListenerPort":{
+      "type":"integer",
+      "box":true,
+      "max":65535,
+      "min":1
+    },
     "ListenerTimeout":{
       "type":"structure",
       "members":{
@@ -2626,6 +2663,14 @@
       "members":{
         "accessLog":{"shape":"AccessLog"}
       }
+    },
+    "LoggingFormat":{
+      "type":"structure",
+      "members":{
+        "json":{"shape":"JsonFormat"},
+        "text":{"shape":"TextFormat"}
+      },
+      "union":true
     },
     "Long":{
       "type":"long",
@@ -3048,6 +3093,7 @@
       "required":["action"],
       "members":{
         "action":{"shape":"TcpRouteAction"},
+        "match":{"shape":"TcpRouteMatch"},
         "timeout":{"shape":"TcpTimeout"}
       }
     },
@@ -3058,11 +3104,22 @@
         "weightedTargets":{"shape":"WeightedTargets"}
       }
     },
+    "TcpRouteMatch":{
+      "type":"structure",
+      "members":{
+        "port":{"shape":"ListenerPort"}
+      }
+    },
     "TcpTimeout":{
       "type":"structure",
       "members":{
         "idle":{"shape":"Duration"}
       }
+    },
+    "TextFormat":{
+      "type":"string",
+      "max":1000,
+      "min":1
     },
     "Timestamp":{"type":"timestamp"},
     "TlsValidationContext":{
@@ -3486,6 +3543,7 @@
       "type":"structure",
       "required":["path"],
       "members":{
+        "format":{"shape":"LoggingFormat"},
         "path":{"shape":"FilePath"}
       }
     },
@@ -4038,6 +4096,7 @@
         "weight"
       ],
       "members":{
+        "port":{"shape":"ListenerPort"},
         "virtualNode":{"shape":"ResourceName"},
         "weight":{"shape":"PercentInt"}
       }

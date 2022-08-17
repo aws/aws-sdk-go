@@ -1,3 +1,20 @@
+Release v1.44.79 (2022-08-17)
+===
+
+### Service Client Updates
+* `service/appmesh`: Updates service API and documentation
+* `service/connectcampaigns`: Updates service API
+* `service/kendra`: Updates service API and documentation
+  * This release adds Zendesk connector (which allows you to specify Zendesk SAAS platform as data source), Proxy Support for Sharepoint and Confluence Server (which allows you to specify the proxy configuration if proxy is required to connect to your Sharepoint/Confluence Server as data source).
+* `service/lakeformation`: Updates service API and documentation
+* `service/lambda`: Updates service API and documentation
+  * Added support for customization of Consumer Group ID for MSK and Kafka Event Source Mappings.
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds support for Internet Protocol Version 6 (IPv6) for RDS Aurora database clusters.
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager.
+
 Release v1.44.78 (2022-08-16)
 ===
 

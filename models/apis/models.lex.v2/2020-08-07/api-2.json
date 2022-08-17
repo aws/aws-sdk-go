@@ -1815,6 +1815,18 @@
         "lambdaCodeHook":{"shape":"LambdaCodeHook"}
       }
     },
+    "Condition":{
+      "type":"structure",
+      "required":["expressionString"],
+      "members":{
+        "expressionString":{"shape":"ConditionExpression"}
+      }
+    },
+    "ConditionExpression":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "ConditionKey":{
       "type":"string",
       "max":1024,
@@ -1842,6 +1854,39 @@
       "type":"string",
       "max":1024,
       "min":1
+    },
+    "ConditionalBranch":{
+      "type":"structure",
+      "required":[
+        "name",
+        "condition",
+        "nextStep"
+      ],
+      "members":{
+        "name":{"shape":"Name"},
+        "condition":{"shape":"Condition"},
+        "nextStep":{"shape":"DialogState"},
+        "response":{"shape":"ResponseSpecification"}
+      }
+    },
+    "ConditionalBranches":{
+      "type":"list",
+      "member":{"shape":"ConditionalBranch"},
+      "max":4,
+      "min":1
+    },
+    "ConditionalSpecification":{
+      "type":"structure",
+      "required":[
+        "active",
+        "conditionalBranches",
+        "defaultBranch"
+      ],
+      "members":{
+        "active":{"shape":"BoxedBoolean"},
+        "conditionalBranches":{"shape":"ConditionalBranches"},
+        "defaultBranch":{"shape":"DefaultConditionalBranch"}
+      }
     },
     "ConfidenceThreshold":{
       "type":"double",
@@ -2066,7 +2111,8 @@
           "shape":"LocaleId",
           "location":"uri",
           "locationName":"localeId"
-        }
+        },
+        "initialResponseSetting":{"shape":"InitialResponseSetting"}
       }
     },
     "CreateIntentResponse":{
@@ -2087,7 +2133,8 @@
         "botId":{"shape":"Id"},
         "botVersion":{"shape":"DraftBotVersion"},
         "localeId":{"shape":"LocaleId"},
-        "creationDateTime":{"shape":"Timestamp"}
+        "creationDateTime":{"shape":"Timestamp"},
+        "initialResponseSetting":{"shape":"InitialResponseSetting"}
       }
     },
     "CreateResourcePolicyRequest":{
@@ -2326,6 +2373,13 @@
       "members":{
         "startDateTime":{"shape":"Timestamp"},
         "endDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "DefaultConditionalBranch":{
+      "type":"structure",
+      "members":{
+        "nextStep":{"shape":"DialogState"},
+        "response":{"shape":"ResponseSpecification"}
       }
     },
     "DeleteBotAliasRequest":{
@@ -3027,7 +3081,8 @@
         "botVersion":{"shape":"DraftBotVersion"},
         "localeId":{"shape":"LocaleId"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "initialResponseSetting":{"shape":"InitialResponseSetting"}
       }
     },
     "DescribeResourcePolicyRequest":{
@@ -3157,11 +3212,56 @@
       "max":200,
       "min":0
     },
+    "DialogAction":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "type":{"shape":"DialogActionType"},
+        "slotToElicit":{"shape":"Name"},
+        "suppressNextMessage":{"shape":"BoxedBoolean"}
+      }
+    },
+    "DialogActionType":{
+      "type":"string",
+      "enum":[
+        "ElicitIntent",
+        "StartIntent",
+        "ElicitSlot",
+        "EvaluateConditional",
+        "InvokeDialogCodeHook",
+        "ConfirmIntent",
+        "FulfillIntent",
+        "CloseIntent",
+        "EndConversation"
+      ]
+    },
+    "DialogCodeHookInvocationSetting":{
+      "type":"structure",
+      "required":[
+        "enableCodeHookInvocation",
+        "active",
+        "postCodeHookSpecification"
+      ],
+      "members":{
+        "enableCodeHookInvocation":{"shape":"BoxedBoolean"},
+        "active":{"shape":"BoxedBoolean"},
+        "invocationLabel":{"shape":"Name"},
+        "postCodeHookSpecification":{"shape":"PostDialogCodeHookInvocationSpecification"}
+      }
+    },
     "DialogCodeHookSettings":{
       "type":"structure",
       "required":["enabled"],
       "members":{
         "enabled":{"shape":"Boolean"}
+      }
+    },
+    "DialogState":{
+      "type":"structure",
+      "members":{
+        "dialogAction":{"shape":"DialogAction"},
+        "intent":{"shape":"IntentOverride"},
+        "sessionAttributes":{"shape":"StringMap"}
       }
     },
     "DraftBotVersion":{
@@ -3176,6 +3276,14 @@
         "Allow",
         "Deny"
       ]
+    },
+    "ElicitationCodeHookInvocationSetting":{
+      "type":"structure",
+      "required":["enableCodeHookInvocation"],
+      "members":{
+        "enableCodeHookInvocation":{"shape":"BoxedBoolean"},
+        "invocationLabel":{"shape":"Name"}
+      }
     },
     "EncryptionSetting":{
       "type":"structure",
@@ -3298,7 +3406,8 @@
       "members":{
         "enabled":{"shape":"Boolean"},
         "postFulfillmentStatusSpecification":{"shape":"PostFulfillmentStatusSpecification"},
-        "fulfillmentUpdatesSpecification":{"shape":"FulfillmentUpdatesSpecification"}
+        "fulfillmentUpdatesSpecification":{"shape":"FulfillmentUpdatesSpecification"},
+        "active":{"shape":"BoxedBoolean"}
       }
     },
     "FulfillmentStartResponseDelay":{
@@ -3491,6 +3600,15 @@
       "min":5,
       "pattern":"^([0-9a-zA-Z_])+$"
     },
+    "InitialResponseSetting":{
+      "type":"structure",
+      "members":{
+        "initialResponse":{"shape":"ResponseSpecification"},
+        "nextStep":{"shape":"DialogState"},
+        "conditional":{"shape":"ConditionalSpecification"},
+        "codeHook":{"shape":"DialogCodeHookInvocationSetting"}
+      }
+    },
     "InputContext":{
       "type":"structure",
       "required":["name"],
@@ -3506,22 +3624,30 @@
     },
     "IntentClosingSetting":{
       "type":"structure",
-      "required":["closingResponse"],
       "members":{
         "closingResponse":{"shape":"ResponseSpecification"},
-        "active":{"shape":"BoxedBoolean"}
+        "active":{"shape":"BoxedBoolean"},
+        "nextStep":{"shape":"DialogState"},
+        "conditional":{"shape":"ConditionalSpecification"}
       }
     },
     "IntentConfirmationSetting":{
       "type":"structure",
-      "required":[
-        "promptSpecification",
-        "declinationResponse"
-      ],
+      "required":["promptSpecification"],
       "members":{
         "promptSpecification":{"shape":"PromptSpecification"},
         "declinationResponse":{"shape":"ResponseSpecification"},
-        "active":{"shape":"BoxedBoolean"}
+        "active":{"shape":"BoxedBoolean"},
+        "confirmationResponse":{"shape":"ResponseSpecification"},
+        "confirmationNextStep":{"shape":"DialogState"},
+        "confirmationConditional":{"shape":"ConditionalSpecification"},
+        "declinationNextStep":{"shape":"DialogState"},
+        "declinationConditional":{"shape":"ConditionalSpecification"},
+        "failureResponse":{"shape":"ResponseSpecification"},
+        "failureNextStep":{"shape":"DialogState"},
+        "failureConditional":{"shape":"ConditionalSpecification"},
+        "codeHook":{"shape":"DialogCodeHookInvocationSetting"},
+        "elicitationCodeHook":{"shape":"ElicitationCodeHookInvocationSetting"}
       }
     },
     "IntentFilter":{
@@ -3553,6 +3679,13 @@
       "member":{"shape":"IntentFilter"},
       "max":1,
       "min":1
+    },
+    "IntentOverride":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"Name"},
+        "slots":{"shape":"SlotValueOverrideMap"}
+      }
     },
     "IntentSignature":{"type":"string"},
     "IntentSortAttribute":{
@@ -4163,6 +4296,10 @@
       "min":0
     },
     "NextToken":{"type":"string"},
+    "NonEmptyString":{
+      "type":"string",
+      "min":1
+    },
     "NumericalBotVersion":{
       "type":"string",
       "max":5,
@@ -4245,12 +4382,32 @@
       "type":"string",
       "min":2
     },
+    "PostDialogCodeHookInvocationSpecification":{
+      "type":"structure",
+      "members":{
+        "successResponse":{"shape":"ResponseSpecification"},
+        "successNextStep":{"shape":"DialogState"},
+        "successConditional":{"shape":"ConditionalSpecification"},
+        "failureResponse":{"shape":"ResponseSpecification"},
+        "failureNextStep":{"shape":"DialogState"},
+        "failureConditional":{"shape":"ConditionalSpecification"},
+        "timeoutResponse":{"shape":"ResponseSpecification"},
+        "timeoutNextStep":{"shape":"DialogState"},
+        "timeoutConditional":{"shape":"ConditionalSpecification"}
+      }
+    },
     "PostFulfillmentStatusSpecification":{
       "type":"structure",
       "members":{
         "successResponse":{"shape":"ResponseSpecification"},
         "failureResponse":{"shape":"ResponseSpecification"},
-        "timeoutResponse":{"shape":"ResponseSpecification"}
+        "timeoutResponse":{"shape":"ResponseSpecification"},
+        "successNextStep":{"shape":"DialogState"},
+        "successConditional":{"shape":"ConditionalSpecification"},
+        "failureNextStep":{"shape":"DialogState"},
+        "failureConditional":{"shape":"ConditionalSpecification"},
+        "timeoutNextStep":{"shape":"DialogState"},
+        "timeoutConditional":{"shape":"ConditionalSpecification"}
       }
     },
     "PreconditionFailedException":{
@@ -4537,6 +4694,19 @@
       "min":60
     },
     "SkipResourceInUseCheck":{"type":"boolean"},
+    "SlotCaptureSetting":{
+      "type":"structure",
+      "members":{
+        "captureResponse":{"shape":"ResponseSpecification"},
+        "captureNextStep":{"shape":"DialogState"},
+        "captureConditional":{"shape":"ConditionalSpecification"},
+        "failureResponse":{"shape":"ResponseSpecification"},
+        "failureNextStep":{"shape":"DialogState"},
+        "failureConditional":{"shape":"ConditionalSpecification"},
+        "codeHook":{"shape":"DialogCodeHookInvocationSetting"},
+        "elicitationCodeHook":{"shape":"ElicitationCodeHookInvocationSetting"}
+      }
+    },
     "SlotConstraint":{
       "type":"string",
       "enum":[
@@ -4613,6 +4783,13 @@
         "priority":{"shape":"PriorityValue"},
         "slotId":{"shape":"Id"}
       }
+    },
+    "SlotShape":{
+      "type":"string",
+      "enum":[
+        "Scalar",
+        "List"
+      ]
     },
     "SlotSortAttribute":{
       "type":"string",
@@ -4742,6 +4919,12 @@
       "max":10000,
       "min":1
     },
+    "SlotValue":{
+      "type":"structure",
+      "members":{
+        "interpretedValue":{"shape":"NonEmptyString"}
+      }
+    },
     "SlotValueElicitationSetting":{
       "type":"structure",
       "required":["slotConstraint"],
@@ -4750,8 +4933,22 @@
         "slotConstraint":{"shape":"SlotConstraint"},
         "promptSpecification":{"shape":"PromptSpecification"},
         "sampleUtterances":{"shape":"SampleUtterancesList"},
-        "waitAndContinueSpecification":{"shape":"WaitAndContinueSpecification"}
+        "waitAndContinueSpecification":{"shape":"WaitAndContinueSpecification"},
+        "slotCaptureSetting":{"shape":"SlotCaptureSetting"}
       }
+    },
+    "SlotValueOverride":{
+      "type":"structure",
+      "members":{
+        "shape":{"shape":"SlotShape"},
+        "value":{"shape":"SlotValue"},
+        "values":{"shape":"SlotValues"}
+      }
+    },
+    "SlotValueOverrideMap":{
+      "type":"map",
+      "key":{"shape":"Name"},
+      "value":{"shape":"SlotValueOverride"}
     },
     "SlotValueRegexFilter":{
       "type":"structure",
@@ -4775,6 +4972,10 @@
         "regexFilter":{"shape":"SlotValueRegexFilter"},
         "advancedRecognitionSetting":{"shape":"AdvancedRecognitionSetting"}
       }
+    },
+    "SlotValues":{
+      "type":"list",
+      "member":{"shape":"SlotValueOverride"}
     },
     "SortOrder":{
       "type":"string",
@@ -4871,6 +5072,12 @@
       "type":"integer",
       "max":900,
       "min":1
+    },
+    "String":{"type":"string"},
+    "StringMap":{
+      "type":"map",
+      "key":{"shape":"NonEmptyString"},
+      "value":{"shape":"String"}
     },
     "SynonymList":{
       "type":"list",
@@ -5253,7 +5460,8 @@
           "shape":"LocaleId",
           "location":"uri",
           "locationName":"localeId"
-        }
+        },
+        "initialResponseSetting":{"shape":"InitialResponseSetting"}
       }
     },
     "UpdateIntentResponse":{
@@ -5276,7 +5484,8 @@
         "botVersion":{"shape":"DraftBotVersion"},
         "localeId":{"shape":"LocaleId"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "initialResponseSetting":{"shape":"InitialResponseSetting"}
       }
     },
     "UpdateResourcePolicyRequest":{

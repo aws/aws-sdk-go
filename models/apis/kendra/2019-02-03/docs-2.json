@@ -784,10 +784,10 @@
     "DataSourceName": {
       "base": null,
       "refs": {
-        "CreateDataSourceRequest$Name": "<p>A unique name for the data source connector. A data source name can't be changed without deleting and recreating the data source connector.</p>",
+        "CreateDataSourceRequest$Name": "<p>A name for the data source connector.</p>",
         "DataSourceSummary$Name": "<p>The name of the data source.</p>",
-        "DescribeDataSourceResponse$Name": "<p>The name that you gave the data source when it was created.</p>",
-        "UpdateDataSourceRequest$Name": "<p>A new name for the data source connector. You must first delete the data source and re-create it to change the name of the data source.</p>"
+        "DescribeDataSourceResponse$Name": "<p>The name for the data source.</p>",
+        "UpdateDataSourceRequest$Name": "<p>A new name for the data source connector.</p>"
       }
     },
     "DataSourceStatus": {
@@ -908,13 +908,16 @@
         "AlfrescoConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Alfresco. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "BoxConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon VPC to connect to your Box. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "ConfluenceConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Confluence. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
+        "CreateDataSourceRequest$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your data source. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "DatabaseConfiguration$VpcConfiguration": null,
+        "DescribeDataSourceResponse$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your data source. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "FsxConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Amazon FSx. Your Amazon FSx instance must reside inside your VPC.</p>",
         "GitHubConfiguration$VpcConfiguration": "<p>Configuration information of an Amazon Virtual Private Cloud to connect to your GitHub. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "JiraConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Jira. Your Jira account must reside inside your VPC.</p>",
         "QuipConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud (VPC) to connect to your Quip. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "SharePointConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Microsoft SharePoint. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
-        "SlackConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Slack. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>"
+        "SlackConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Slack. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
+        "UpdateDataSourceRequest$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your data source. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>"
       }
     },
     "DatabaseConfiguration": {
@@ -1673,7 +1676,7 @@
     "FolderIdList": {
       "base": null,
       "refs": {
-        "QuipConfiguration$FolderIds": "<p>The identifiers of the Quip folders you want to index.</p>"
+        "QuipConfiguration$FolderIds": "<p>The identifiers of the Quip folders you want to index. You can find in your browser URL when you access your folder in Quip. For example, <i>https://quip-company.com/zlLuOVNSarTL/folder-name</i>.</p>"
       }
     },
     "FsxConfiguration": {
@@ -2574,6 +2577,8 @@
     "ProxyConfiguration": {
       "base": "<p>Provides the configuration information for a web proxy to connect to website hosts.</p>",
       "refs": {
+        "ConfluenceConfiguration$ProxyConfiguration": "<p>Configuration information to connect to your Confluence URL instance via a web proxy. You can use this option for Confluence Server.</p> <p>You must provide the website host name and port number. For example, the host name of <i>https://a.example.com/page1.html</i> is \"a.example.com\" and the port is 443, the standard port for HTTPS.</p> <p>Web proxy credentials are optional and you can use them to connect to a web proxy server that requires basic authentication of user name and password. To store web proxy credentials, you use a secret in Secrets Manager.</p> <p>It is recommended that you follow best security practices when configuring your web proxy. This includes setting up throttling, setting up logging and monitoring, and applying security patches on a regular basis. If you use your web proxy with multiple data sources, sync jobs that occur at the same time could strain the load on your proxy. It is recommended you prepare your proxy beforehand for any security and load requirements.</p>",
+        "SharePointConfiguration$ProxyConfiguration": "<p>Configuration information to connect to your Microsoft SharePoint site URLs via instance via a web proxy. You can use this option for SharePoint Server.</p> <p>You must provide the website host name and port number. For example, the host name of <i>https://a.example.com/page1.html</i> is \"a.example.com\" and the port is 443, the standard port for HTTPS.</p> <p>Web proxy credentials are optional and you can use them to connect to a web proxy server that requires basic authentication of user name and password. To store web proxy credentials, you use a secret in Secrets Manager.</p> <p>It is recommended that you follow best security practices when configuring your web proxy. This includes setting up throttling, setting up logging and monitoring, and applying security patches on a regular basis. If you use your web proxy with multiple data sources, sync jobs that occur at the same time could strain the load on your proxy. It is recommended you prepare your proxy beforehand for any security and load requirements.</p>",
         "WebCrawlerConfiguration$ProxyConfiguration": "<p>Configuration information required to connect to your internal websites via a web proxy.</p> <p>You must provide the website host name and port number. For example, the host name of https://a.example.com/page1.html is \"a.example.com\" and the port is 443, the standard port for HTTPS.</p> <p>Web proxy credentials are optional and you can use them to connect to a web proxy server that requires basic authentication. To store web proxy credentials, you use a secret in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a>.</p>"
       }
     },
@@ -2814,7 +2819,7 @@
     "S3ObjectKey": {
       "base": null,
       "refs": {
-        "AccessControlListConfiguration$KeyPath": "<p>Path to the Amazon Web Services S3 bucket that contains the ACL files.</p>",
+        "AccessControlListConfiguration$KeyPath": "<p>Path to the Amazon S3 bucket that contains the ACL files.</p>",
         "DocumentsMetadataConfiguration$S3Prefix": "<p>A prefix used to filter metadata configuration files in the Amazon Web Services S3 bucket. The S3 bucket might contain multiple metadata files. Use <code>S3Prefix</code> to include only the desired metadata files.</p>",
         "S3Path$Key": "<p>The name of the file.</p>"
       }
@@ -3385,6 +3390,18 @@
       "base": null,
       "refs": {
         "SlackConfiguration$TeamId": "<p>The identifier of the team in the Slack workspace. For example, <i>T0123456789</i>.</p> <p>You can find your team ID in the URL of the main page of your Slack workspace. When you log in to Slack via a browser, you are directed to the URL of the main page. For example, <i>https://app.slack.com/client/<b>T0123456789</b>/...</i>.</p>"
+      }
+    },
+    "Template": {
+      "base": "<p>The template schema used for the data source.</p> <p>The following links to the template schema for data sources where templates are supported:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-zendesk.html#zendesk-template-schema\">Zendesk template schema</a> </p> </li> </ul>",
+      "refs": {
+        "TemplateConfiguration$Template": "<p>The template schema used for the data source.</p> <p>The following links to the template schema for data sources where templates are supported:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-zendesk.html#zendesk-template-schema\">Zendesk template schema</a> </p> </li> </ul>"
+      }
+    },
+    "TemplateConfiguration": {
+      "base": "<p>Provides a template for the configuration information to connect to your data source.</p>",
+      "refs": {
+        "DataSourceConfiguration$TemplateConfiguration": "<p>Provides a template for the configuration information to connect to your data source.</p>"
       }
     },
     "TenantDomain": {

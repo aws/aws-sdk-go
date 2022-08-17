@@ -9666,6 +9666,262 @@ func (s *CodeHookSpecification) SetLambdaCodeHook(v *LambdaCodeHook) *CodeHookSp
 	return s
 }
 
+// Provides an expression that evaluates to true or false.
+type Condition struct {
+	_ struct{} `type:"structure"`
+
+	// The expression string that is evaluated.
+	//
+	// ExpressionString is a required field
+	ExpressionString *string `locationName:"expressionString" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Condition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Condition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Condition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Condition"}
+	if s.ExpressionString == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExpressionString"))
+	}
+	if s.ExpressionString != nil && len(*s.ExpressionString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExpressionString", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpressionString sets the ExpressionString field's value.
+func (s *Condition) SetExpressionString(v string) *Condition {
+	s.ExpressionString = &v
+	return s
+}
+
+// A set of actions that Amazon Lex should run if the condition is matched.
+type ConditionalBranch struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the expression to evaluate. If the condition is true, the branch's
+	// actions are taken.
+	//
+	// Condition is a required field
+	Condition *Condition `locationName:"condition" type:"structure" required:"true"`
+
+	// The name of the branch.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The next step in the conversation.
+	//
+	// NextStep is a required field
+	NextStep *DialogState `locationName:"nextStep" type:"structure" required:"true"`
+
+	// Specifies a list of message groups that Amazon Lex uses to respond the user
+	// input.
+	Response *ResponseSpecification `locationName:"response" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionalBranch) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionalBranch) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConditionalBranch) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConditionalBranch"}
+	if s.Condition == nil {
+		invalidParams.Add(request.NewErrParamRequired("Condition"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.NextStep == nil {
+		invalidParams.Add(request.NewErrParamRequired("NextStep"))
+	}
+	if s.Condition != nil {
+		if err := s.Condition.Validate(); err != nil {
+			invalidParams.AddNested("Condition", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NextStep != nil {
+		if err := s.NextStep.Validate(); err != nil {
+			invalidParams.AddNested("NextStep", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Response != nil {
+		if err := s.Response.Validate(); err != nil {
+			invalidParams.AddNested("Response", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCondition sets the Condition field's value.
+func (s *ConditionalBranch) SetCondition(v *Condition) *ConditionalBranch {
+	s.Condition = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ConditionalBranch) SetName(v string) *ConditionalBranch {
+	s.Name = &v
+	return s
+}
+
+// SetNextStep sets the NextStep field's value.
+func (s *ConditionalBranch) SetNextStep(v *DialogState) *ConditionalBranch {
+	s.NextStep = v
+	return s
+}
+
+// SetResponse sets the Response field's value.
+func (s *ConditionalBranch) SetResponse(v *ResponseSpecification) *ConditionalBranch {
+	s.Response = v
+	return s
+}
+
+// Provides a list of conditional branches. Branches are evaluated in the order
+// that they are entered in the list. The first branch with a condition that
+// evaluates to true is executed. The last branch in the list is the default
+// branch. The default branch should not have any condition expression. The
+// default branch is executed if no other branch has a matching condition.
+type ConditionalSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Determines whether a conditional branch is active. When active is false,
+	// the conditions are not evaluated.
+	//
+	// Active is a required field
+	Active *bool `locationName:"active" type:"boolean" required:"true"`
+
+	// A list of conditional branches. A conditional branch is made up of a condition,
+	// a response and a next step. The response and next step are executed when
+	// the condition is true.
+	//
+	// ConditionalBranches is a required field
+	ConditionalBranches []*ConditionalBranch `locationName:"conditionalBranches" min:"1" type:"list" required:"true"`
+
+	// The conditional branch that should be followed when the conditions for other
+	// branches are not satisfied. A conditional branch is made up of a condition,
+	// a response and a next step.
+	//
+	// DefaultBranch is a required field
+	DefaultBranch *DefaultConditionalBranch `locationName:"defaultBranch" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionalSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionalSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConditionalSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConditionalSpecification"}
+	if s.Active == nil {
+		invalidParams.Add(request.NewErrParamRequired("Active"))
+	}
+	if s.ConditionalBranches == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConditionalBranches"))
+	}
+	if s.ConditionalBranches != nil && len(s.ConditionalBranches) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConditionalBranches", 1))
+	}
+	if s.DefaultBranch == nil {
+		invalidParams.Add(request.NewErrParamRequired("DefaultBranch"))
+	}
+	if s.ConditionalBranches != nil {
+		for i, v := range s.ConditionalBranches {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ConditionalBranches", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DefaultBranch != nil {
+		if err := s.DefaultBranch.Validate(); err != nil {
+			invalidParams.AddNested("DefaultBranch", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActive sets the Active field's value.
+func (s *ConditionalSpecification) SetActive(v bool) *ConditionalSpecification {
+	s.Active = &v
+	return s
+}
+
+// SetConditionalBranches sets the ConditionalBranches field's value.
+func (s *ConditionalSpecification) SetConditionalBranches(v []*ConditionalBranch) *ConditionalSpecification {
+	s.ConditionalBranches = v
+	return s
+}
+
+// SetDefaultBranch sets the DefaultBranch field's value.
+func (s *ConditionalSpecification) SetDefaultBranch(v *DefaultConditionalBranch) *ConditionalSpecification {
+	s.DefaultBranch = v
+	return s
+}
+
 // The action that you tried to perform couldn't be completed because the resource
 // is in a conflicting state. For example, deleting a bot that is in the CREATING
 // state. Try your request again.
@@ -10962,6 +11218,10 @@ type CreateIntentInput struct {
 	// on the customer's behalf.
 	FulfillmentCodeHook *FulfillmentCodeHookSettings `locationName:"fulfillmentCodeHook" type:"structure"`
 
+	// Configuration settings for the response that is sent to the user at the beginning
+	// of a conversation, before eliciting slot values.
+	InitialResponseSetting *InitialResponseSetting `locationName:"initialResponseSetting" type:"structure"`
+
 	// A list of contexts that must be active for this intent to be considered by
 	// Amazon Lex.
 	//
@@ -11085,6 +11345,11 @@ func (s *CreateIntentInput) Validate() error {
 			invalidParams.AddNested("FulfillmentCodeHook", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.InitialResponseSetting != nil {
+		if err := s.InitialResponseSetting.Validate(); err != nil {
+			invalidParams.AddNested("InitialResponseSetting", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.InputContexts != nil {
 		for i, v := range s.InputContexts {
 			if v == nil {
@@ -11167,6 +11432,12 @@ func (s *CreateIntentInput) SetFulfillmentCodeHook(v *FulfillmentCodeHookSetting
 	return s
 }
 
+// SetInitialResponseSetting sets the InitialResponseSetting field's value.
+func (s *CreateIntentInput) SetInitialResponseSetting(v *InitialResponseSetting) *CreateIntentInput {
+	s.InitialResponseSetting = v
+	return s
+}
+
 // SetInputContexts sets the InputContexts field's value.
 func (s *CreateIntentInput) SetInputContexts(v []*InputContext) *CreateIntentInput {
 	s.InputContexts = v
@@ -11241,6 +11512,10 @@ type CreateIntentOutput struct {
 
 	// The fulfillment Lambda function specified for the intent.
 	FulfillmentCodeHook *FulfillmentCodeHookSettings `locationName:"fulfillmentCodeHook" type:"structure"`
+
+	// Configuration settings for the response that is sent to the user at the beginning
+	// of a conversation, before eliciting slot values.
+	InitialResponseSetting *InitialResponseSetting `locationName:"initialResponseSetting" type:"structure"`
 
 	// The list of input contexts specified for the intent.
 	InputContexts []*InputContext `locationName:"inputContexts" type:"list"`
@@ -11324,6 +11599,12 @@ func (s *CreateIntentOutput) SetDialogCodeHook(v *DialogCodeHookSettings) *Creat
 // SetFulfillmentCodeHook sets the FulfillmentCodeHook field's value.
 func (s *CreateIntentOutput) SetFulfillmentCodeHook(v *FulfillmentCodeHookSettings) *CreateIntentOutput {
 	s.FulfillmentCodeHook = v
+	return s
+}
+
+// SetInitialResponseSetting sets the InitialResponseSetting field's value.
+func (s *CreateIntentOutput) SetInitialResponseSetting(v *InitialResponseSetting) *CreateIntentOutput {
+	s.InitialResponseSetting = v
 	return s
 }
 
@@ -12748,6 +13029,69 @@ func (s *DateRangeFilter) SetEndDateTime(v time.Time) *DateRangeFilter {
 // SetStartDateTime sets the StartDateTime field's value.
 func (s *DateRangeFilter) SetStartDateTime(v time.Time) *DateRangeFilter {
 	s.StartDateTime = &v
+	return s
+}
+
+// A set of actions that Amazon Lex should run if none of the other conditions
+// are met.
+type DefaultConditionalBranch struct {
+	_ struct{} `type:"structure"`
+
+	// The next step in the conversation.
+	NextStep *DialogState `locationName:"nextStep" type:"structure"`
+
+	// Specifies a list of message groups that Amazon Lex uses to respond the user
+	// input.
+	Response *ResponseSpecification `locationName:"response" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultConditionalBranch) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultConditionalBranch) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultConditionalBranch) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultConditionalBranch"}
+	if s.NextStep != nil {
+		if err := s.NextStep.Validate(); err != nil {
+			invalidParams.AddNested("NextStep", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Response != nil {
+		if err := s.Response.Validate(); err != nil {
+			invalidParams.AddNested("Response", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextStep sets the NextStep field's value.
+func (s *DefaultConditionalBranch) SetNextStep(v *DialogState) *DefaultConditionalBranch {
+	s.NextStep = v
+	return s
+}
+
+// SetResponse sets the Response field's value.
+func (s *DefaultConditionalBranch) SetResponse(v *ResponseSpecification) *DefaultConditionalBranch {
+	s.Response = v
 	return s
 }
 
@@ -15920,6 +16264,10 @@ type DescribeIntentOutput struct {
 	// The Lambda function called when the intent is complete and ready for fulfillment.
 	FulfillmentCodeHook *FulfillmentCodeHookSettings `locationName:"fulfillmentCodeHook" type:"structure"`
 
+	// Configuration setting for a response sent to the user before Amazon Lex starts
+	// eliciting slots.
+	InitialResponseSetting *InitialResponseSetting `locationName:"initialResponseSetting" type:"structure"`
+
 	// A list of contexts that must be active for the intent to be considered for
 	// sending to the user.
 	InputContexts []*InputContext `locationName:"inputContexts" type:"list"`
@@ -16011,6 +16359,12 @@ func (s *DescribeIntentOutput) SetDialogCodeHook(v *DialogCodeHookSettings) *Des
 // SetFulfillmentCodeHook sets the FulfillmentCodeHook field's value.
 func (s *DescribeIntentOutput) SetFulfillmentCodeHook(v *FulfillmentCodeHookSettings) *DescribeIntentOutput {
 	s.FulfillmentCodeHook = v
+	return s
+}
+
+// SetInitialResponseSetting sets the InitialResponseSetting field's value.
+func (s *DescribeIntentOutput) SetInitialResponseSetting(v *InitialResponseSetting) *DescribeIntentOutput {
+	s.InitialResponseSetting = v
 	return s
 }
 
@@ -16687,6 +17041,170 @@ func (s *DescribeSlotTypeOutput) SetValueSelectionSetting(v *SlotValueSelectionS
 	return s
 }
 
+// Defines the action that the bot executes at runtime when the conversation
+// reaches this step.
+type DialogAction struct {
+	_ struct{} `type:"structure"`
+
+	// If the dialog action is ElicitSlot, defines the slot to elicit from the user.
+	SlotToElicit *string `locationName:"slotToElicit" min:"1" type:"string"`
+
+	// When true the next message for the intent is not used.
+	SuppressNextMessage *bool `locationName:"suppressNextMessage" type:"boolean"`
+
+	// The action that the bot should execute.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"DialogActionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DialogAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DialogAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DialogAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DialogAction"}
+	if s.SlotToElicit != nil && len(*s.SlotToElicit) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SlotToElicit", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSlotToElicit sets the SlotToElicit field's value.
+func (s *DialogAction) SetSlotToElicit(v string) *DialogAction {
+	s.SlotToElicit = &v
+	return s
+}
+
+// SetSuppressNextMessage sets the SuppressNextMessage field's value.
+func (s *DialogAction) SetSuppressNextMessage(v bool) *DialogAction {
+	s.SuppressNextMessage = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DialogAction) SetType(v string) *DialogAction {
+	s.Type = &v
+	return s
+}
+
+// Settings that specify the dialog code hook that is called by Amazon Lex at
+// a step of the conversation.
+type DialogCodeHookInvocationSetting struct {
+	_ struct{} `type:"structure"`
+
+	// Determines whether a dialog code hook is used when the intent is activated.
+	//
+	// Active is a required field
+	Active *bool `locationName:"active" type:"boolean" required:"true"`
+
+	// Indicates whether a Lambda function should be invoked for the dialog.
+	//
+	// EnableCodeHookInvocation is a required field
+	EnableCodeHookInvocation *bool `locationName:"enableCodeHookInvocation" type:"boolean" required:"true"`
+
+	// A label that indicates the dialog step from which the dialog code hook is
+	// happening.
+	InvocationLabel *string `locationName:"invocationLabel" min:"1" type:"string"`
+
+	// Contains the responses and actions that Amazon Lex takes after the Lambda
+	// function is complete.
+	//
+	// PostCodeHookSpecification is a required field
+	PostCodeHookSpecification *PostDialogCodeHookInvocationSpecification `locationName:"postCodeHookSpecification" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DialogCodeHookInvocationSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DialogCodeHookInvocationSetting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DialogCodeHookInvocationSetting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DialogCodeHookInvocationSetting"}
+	if s.Active == nil {
+		invalidParams.Add(request.NewErrParamRequired("Active"))
+	}
+	if s.EnableCodeHookInvocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnableCodeHookInvocation"))
+	}
+	if s.InvocationLabel != nil && len(*s.InvocationLabel) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InvocationLabel", 1))
+	}
+	if s.PostCodeHookSpecification == nil {
+		invalidParams.Add(request.NewErrParamRequired("PostCodeHookSpecification"))
+	}
+	if s.PostCodeHookSpecification != nil {
+		if err := s.PostCodeHookSpecification.Validate(); err != nil {
+			invalidParams.AddNested("PostCodeHookSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActive sets the Active field's value.
+func (s *DialogCodeHookInvocationSetting) SetActive(v bool) *DialogCodeHookInvocationSetting {
+	s.Active = &v
+	return s
+}
+
+// SetEnableCodeHookInvocation sets the EnableCodeHookInvocation field's value.
+func (s *DialogCodeHookInvocationSetting) SetEnableCodeHookInvocation(v bool) *DialogCodeHookInvocationSetting {
+	s.EnableCodeHookInvocation = &v
+	return s
+}
+
+// SetInvocationLabel sets the InvocationLabel field's value.
+func (s *DialogCodeHookInvocationSetting) SetInvocationLabel(v string) *DialogCodeHookInvocationSetting {
+	s.InvocationLabel = &v
+	return s
+}
+
+// SetPostCodeHookSpecification sets the PostCodeHookSpecification field's value.
+func (s *DialogCodeHookInvocationSetting) SetPostCodeHookSpecification(v *PostDialogCodeHookInvocationSpecification) *DialogCodeHookInvocationSetting {
+	s.PostCodeHookSpecification = v
+	return s
+}
+
 // Settings that determine the Lambda function that Amazon Lex uses for processing
 // user responses.
 type DialogCodeHookSettings struct {
@@ -16732,6 +17250,140 @@ func (s *DialogCodeHookSettings) Validate() error {
 // SetEnabled sets the Enabled field's value.
 func (s *DialogCodeHookSettings) SetEnabled(v bool) *DialogCodeHookSettings {
 	s.Enabled = &v
+	return s
+}
+
+// The current state of the conversation with the user.
+type DialogState struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the action that the bot executes at runtime when the conversation
+	// reaches this step.
+	DialogAction *DialogAction `locationName:"dialogAction" type:"structure"`
+
+	// Override settings to configure the intent state.
+	Intent *IntentOverride `locationName:"intent" type:"structure"`
+
+	// Map of key/value pairs representing session-specific context information.
+	// It contains application information passed between Amazon Lex and a client
+	// application.
+	SessionAttributes map[string]*string `locationName:"sessionAttributes" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DialogState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DialogState) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DialogState) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DialogState"}
+	if s.DialogAction != nil {
+		if err := s.DialogAction.Validate(); err != nil {
+			invalidParams.AddNested("DialogAction", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Intent != nil {
+		if err := s.Intent.Validate(); err != nil {
+			invalidParams.AddNested("Intent", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDialogAction sets the DialogAction field's value.
+func (s *DialogState) SetDialogAction(v *DialogAction) *DialogState {
+	s.DialogAction = v
+	return s
+}
+
+// SetIntent sets the Intent field's value.
+func (s *DialogState) SetIntent(v *IntentOverride) *DialogState {
+	s.Intent = v
+	return s
+}
+
+// SetSessionAttributes sets the SessionAttributes field's value.
+func (s *DialogState) SetSessionAttributes(v map[string]*string) *DialogState {
+	s.SessionAttributes = v
+	return s
+}
+
+// Settings that specify the dialog code hook that is called by Amazon Lex between
+// eliciting slot values.
+type ElicitationCodeHookInvocationSetting struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether a Lambda function should be invoked for the dialog.
+	//
+	// EnableCodeHookInvocation is a required field
+	EnableCodeHookInvocation *bool `locationName:"enableCodeHookInvocation" type:"boolean" required:"true"`
+
+	// A label that indicates the dialog step from which the dialog code hook is
+	// happening.
+	InvocationLabel *string `locationName:"invocationLabel" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ElicitationCodeHookInvocationSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ElicitationCodeHookInvocationSetting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ElicitationCodeHookInvocationSetting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ElicitationCodeHookInvocationSetting"}
+	if s.EnableCodeHookInvocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnableCodeHookInvocation"))
+	}
+	if s.InvocationLabel != nil && len(*s.InvocationLabel) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InvocationLabel", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnableCodeHookInvocation sets the EnableCodeHookInvocation field's value.
+func (s *ElicitationCodeHookInvocationSetting) SetEnableCodeHookInvocation(v bool) *ElicitationCodeHookInvocationSetting {
+	s.EnableCodeHookInvocation = &v
+	return s
+}
+
+// SetInvocationLabel sets the InvocationLabel field's value.
+func (s *ElicitationCodeHookInvocationSetting) SetInvocationLabel(v string) *ElicitationCodeHookInvocationSetting {
+	s.InvocationLabel = &v
 	return s
 }
 
@@ -17158,6 +17810,10 @@ func (s *ExternalSourceSetting) SetGrammarSlotTypeSetting(v *GrammarSlotTypeSett
 type FulfillmentCodeHookSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Determines whether the fulfillment code hook is used. When active is false,
+	// the code hook doesn't run.
+	Active *bool `locationName:"active" type:"boolean"`
+
 	// Indicates whether a Lambda function should be invoked to fulfill a specific
 	// intent.
 	//
@@ -17214,6 +17870,12 @@ func (s *FulfillmentCodeHookSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetActive sets the Active field's value.
+func (s *FulfillmentCodeHookSettings) SetActive(v bool) *FulfillmentCodeHookSettings {
+	s.Active = &v
+	return s
 }
 
 // SetEnabled sets the Enabled field's value.
@@ -18057,6 +18719,102 @@ func (s *ImportSummary) SetMergeStrategy(v string) *ImportSummary {
 	return s
 }
 
+// Configuration setting for a response sent to the user before Amazon Lex starts
+// eliciting slots.
+type InitialResponseSetting struct {
+	_ struct{} `type:"structure"`
+
+	// Settings that specify the dialog code hook that is called by Amazon Lex at
+	// a step of the conversation.
+	CodeHook *DialogCodeHookInvocationSetting `locationName:"codeHook" type:"structure"`
+
+	// Provides a list of conditional branches. Branches are evaluated in the order
+	// that they are entered in the list. The first branch with a condition that
+	// evaluates to true is executed. The last branch in the list is the default
+	// branch. The default branch should not have any condition expression. The
+	// default branch is executed if no other branch has a matching condition.
+	Conditional *ConditionalSpecification `locationName:"conditional" type:"structure"`
+
+	// Specifies a list of message groups that Amazon Lex uses to respond the user
+	// input.
+	InitialResponse *ResponseSpecification `locationName:"initialResponse" type:"structure"`
+
+	// The next step in the conversation.
+	NextStep *DialogState `locationName:"nextStep" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InitialResponseSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InitialResponseSetting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InitialResponseSetting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InitialResponseSetting"}
+	if s.CodeHook != nil {
+		if err := s.CodeHook.Validate(); err != nil {
+			invalidParams.AddNested("CodeHook", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Conditional != nil {
+		if err := s.Conditional.Validate(); err != nil {
+			invalidParams.AddNested("Conditional", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.InitialResponse != nil {
+		if err := s.InitialResponse.Validate(); err != nil {
+			invalidParams.AddNested("InitialResponse", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NextStep != nil {
+		if err := s.NextStep.Validate(); err != nil {
+			invalidParams.AddNested("NextStep", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCodeHook sets the CodeHook field's value.
+func (s *InitialResponseSetting) SetCodeHook(v *DialogCodeHookInvocationSetting) *InitialResponseSetting {
+	s.CodeHook = v
+	return s
+}
+
+// SetConditional sets the Conditional field's value.
+func (s *InitialResponseSetting) SetConditional(v *ConditionalSpecification) *InitialResponseSetting {
+	s.Conditional = v
+	return s
+}
+
+// SetInitialResponse sets the InitialResponse field's value.
+func (s *InitialResponseSetting) SetInitialResponse(v *ResponseSpecification) *InitialResponseSetting {
+	s.InitialResponse = v
+	return s
+}
+
+// SetNextStep sets the NextStep field's value.
+func (s *InitialResponseSetting) SetNextStep(v *DialogState) *InitialResponseSetting {
+	s.NextStep = v
+	return s
+}
+
 // The name of a context that must be active for an intent to be selected by
 // Amazon Lex.
 type InputContext struct {
@@ -18119,9 +18877,15 @@ type IntentClosingSetting struct {
 	Active *bool `locationName:"active" type:"boolean"`
 
 	// The response that Amazon Lex sends to the user when the intent is complete.
-	//
-	// ClosingResponse is a required field
-	ClosingResponse *ResponseSpecification `locationName:"closingResponse" type:"structure" required:"true"`
+	ClosingResponse *ResponseSpecification `locationName:"closingResponse" type:"structure"`
+
+	// A list of conditional branches associated with the intent's closing response.
+	// These branches are executed when the nextStep attribute is set to EvalutateConditional.
+	Conditional *ConditionalSpecification `locationName:"conditional" type:"structure"`
+
+	// Specifies the next step that the bot executes after playing the intent's
+	// closing response.
+	NextStep *DialogState `locationName:"nextStep" type:"structure"`
 }
 
 // String returns the string representation.
@@ -18145,12 +18909,19 @@ func (s IntentClosingSetting) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *IntentClosingSetting) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "IntentClosingSetting"}
-	if s.ClosingResponse == nil {
-		invalidParams.Add(request.NewErrParamRequired("ClosingResponse"))
-	}
 	if s.ClosingResponse != nil {
 		if err := s.ClosingResponse.Validate(); err != nil {
 			invalidParams.AddNested("ClosingResponse", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Conditional != nil {
+		if err := s.Conditional.Validate(); err != nil {
+			invalidParams.AddNested("Conditional", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NextStep != nil {
+		if err := s.NextStep.Validate(); err != nil {
+			invalidParams.AddNested("NextStep", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -18172,6 +18943,18 @@ func (s *IntentClosingSetting) SetClosingResponse(v *ResponseSpecification) *Int
 	return s
 }
 
+// SetConditional sets the Conditional field's value.
+func (s *IntentClosingSetting) SetConditional(v *ConditionalSpecification) *IntentClosingSetting {
+	s.Conditional = v
+	return s
+}
+
+// SetNextStep sets the NextStep field's value.
+func (s *IntentClosingSetting) SetNextStep(v *DialogState) *IntentClosingSetting {
+	s.NextStep = v
+	return s
+}
+
 // Provides a prompt for making sure that the user is ready for the intent to
 // be fulfilled.
 type IntentConfirmationSetting struct {
@@ -18182,12 +18965,52 @@ type IntentConfirmationSetting struct {
 	// active field isn't specified, the default is true.
 	Active *bool `locationName:"active" type:"boolean"`
 
+	// The DialogCodeHookInvocationSetting object associated with intent's confirmation
+	// step. The dialog code hook is triggered based on these invocation settings
+	// when the confirmation next step or declination next step or failure next
+	// step is InvokeDialogCodeHook.
+	CodeHook *DialogCodeHookInvocationSetting `locationName:"codeHook" type:"structure"`
+
+	// A list of conditional branches to evaluate after the intent is closed.
+	ConfirmationConditional *ConditionalSpecification `locationName:"confirmationConditional" type:"structure"`
+
+	// Specifies the next step that the bot executes when the customer confirms
+	// the intent.
+	ConfirmationNextStep *DialogState `locationName:"confirmationNextStep" type:"structure"`
+
+	// Specifies a list of message groups that Amazon Lex uses to respond the user
+	// input.
+	ConfirmationResponse *ResponseSpecification `locationName:"confirmationResponse" type:"structure"`
+
+	// A list of conditional branches to evaluate after the intent is declined.
+	DeclinationConditional *ConditionalSpecification `locationName:"declinationConditional" type:"structure"`
+
+	// Specifies the next step that the bot executes when the customer declines
+	// the intent.
+	DeclinationNextStep *DialogState `locationName:"declinationNextStep" type:"structure"`
+
 	// When the user answers "no" to the question defined in promptSpecification,
 	// Amazon Lex responds with this response to acknowledge that the intent was
 	// canceled.
-	//
-	// DeclinationResponse is a required field
-	DeclinationResponse *ResponseSpecification `locationName:"declinationResponse" type:"structure" required:"true"`
+	DeclinationResponse *ResponseSpecification `locationName:"declinationResponse" type:"structure"`
+
+	// The DialogCodeHookInvocationSetting used when the code hook is invoked during
+	// confirmation prompt retries.
+	ElicitationCodeHook *ElicitationCodeHookInvocationSetting `locationName:"elicitationCodeHook" type:"structure"`
+
+	// Provides a list of conditional branches. Branches are evaluated in the order
+	// that they are entered in the list. The first branch with a condition that
+	// evaluates to true is executed. The last branch in the list is the default
+	// branch. The default branch should not have any condition expression. The
+	// default branch is executed if no other branch has a matching condition.
+	FailureConditional *ConditionalSpecification `locationName:"failureConditional" type:"structure"`
+
+	// The next step to take in the conversation if the confirmation step fails.
+	FailureNextStep *DialogState `locationName:"failureNextStep" type:"structure"`
+
+	// Specifies a list of message groups that Amazon Lex uses to respond the user
+	// input.
+	FailureResponse *ResponseSpecification `locationName:"failureResponse" type:"structure"`
 
 	// Prompts the user to confirm the intent. This question should have a yes or
 	// no answer.
@@ -18223,15 +19046,62 @@ func (s IntentConfirmationSetting) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *IntentConfirmationSetting) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "IntentConfirmationSetting"}
-	if s.DeclinationResponse == nil {
-		invalidParams.Add(request.NewErrParamRequired("DeclinationResponse"))
-	}
 	if s.PromptSpecification == nil {
 		invalidParams.Add(request.NewErrParamRequired("PromptSpecification"))
+	}
+	if s.CodeHook != nil {
+		if err := s.CodeHook.Validate(); err != nil {
+			invalidParams.AddNested("CodeHook", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ConfirmationConditional != nil {
+		if err := s.ConfirmationConditional.Validate(); err != nil {
+			invalidParams.AddNested("ConfirmationConditional", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ConfirmationNextStep != nil {
+		if err := s.ConfirmationNextStep.Validate(); err != nil {
+			invalidParams.AddNested("ConfirmationNextStep", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ConfirmationResponse != nil {
+		if err := s.ConfirmationResponse.Validate(); err != nil {
+			invalidParams.AddNested("ConfirmationResponse", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DeclinationConditional != nil {
+		if err := s.DeclinationConditional.Validate(); err != nil {
+			invalidParams.AddNested("DeclinationConditional", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DeclinationNextStep != nil {
+		if err := s.DeclinationNextStep.Validate(); err != nil {
+			invalidParams.AddNested("DeclinationNextStep", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.DeclinationResponse != nil {
 		if err := s.DeclinationResponse.Validate(); err != nil {
 			invalidParams.AddNested("DeclinationResponse", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ElicitationCodeHook != nil {
+		if err := s.ElicitationCodeHook.Validate(); err != nil {
+			invalidParams.AddNested("ElicitationCodeHook", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FailureConditional != nil {
+		if err := s.FailureConditional.Validate(); err != nil {
+			invalidParams.AddNested("FailureConditional", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FailureNextStep != nil {
+		if err := s.FailureNextStep.Validate(); err != nil {
+			invalidParams.AddNested("FailureNextStep", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FailureResponse != nil {
+		if err := s.FailureResponse.Validate(); err != nil {
+			invalidParams.AddNested("FailureResponse", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.PromptSpecification != nil {
@@ -18252,9 +19122,69 @@ func (s *IntentConfirmationSetting) SetActive(v bool) *IntentConfirmationSetting
 	return s
 }
 
+// SetCodeHook sets the CodeHook field's value.
+func (s *IntentConfirmationSetting) SetCodeHook(v *DialogCodeHookInvocationSetting) *IntentConfirmationSetting {
+	s.CodeHook = v
+	return s
+}
+
+// SetConfirmationConditional sets the ConfirmationConditional field's value.
+func (s *IntentConfirmationSetting) SetConfirmationConditional(v *ConditionalSpecification) *IntentConfirmationSetting {
+	s.ConfirmationConditional = v
+	return s
+}
+
+// SetConfirmationNextStep sets the ConfirmationNextStep field's value.
+func (s *IntentConfirmationSetting) SetConfirmationNextStep(v *DialogState) *IntentConfirmationSetting {
+	s.ConfirmationNextStep = v
+	return s
+}
+
+// SetConfirmationResponse sets the ConfirmationResponse field's value.
+func (s *IntentConfirmationSetting) SetConfirmationResponse(v *ResponseSpecification) *IntentConfirmationSetting {
+	s.ConfirmationResponse = v
+	return s
+}
+
+// SetDeclinationConditional sets the DeclinationConditional field's value.
+func (s *IntentConfirmationSetting) SetDeclinationConditional(v *ConditionalSpecification) *IntentConfirmationSetting {
+	s.DeclinationConditional = v
+	return s
+}
+
+// SetDeclinationNextStep sets the DeclinationNextStep field's value.
+func (s *IntentConfirmationSetting) SetDeclinationNextStep(v *DialogState) *IntentConfirmationSetting {
+	s.DeclinationNextStep = v
+	return s
+}
+
 // SetDeclinationResponse sets the DeclinationResponse field's value.
 func (s *IntentConfirmationSetting) SetDeclinationResponse(v *ResponseSpecification) *IntentConfirmationSetting {
 	s.DeclinationResponse = v
+	return s
+}
+
+// SetElicitationCodeHook sets the ElicitationCodeHook field's value.
+func (s *IntentConfirmationSetting) SetElicitationCodeHook(v *ElicitationCodeHookInvocationSetting) *IntentConfirmationSetting {
+	s.ElicitationCodeHook = v
+	return s
+}
+
+// SetFailureConditional sets the FailureConditional field's value.
+func (s *IntentConfirmationSetting) SetFailureConditional(v *ConditionalSpecification) *IntentConfirmationSetting {
+	s.FailureConditional = v
+	return s
+}
+
+// SetFailureNextStep sets the FailureNextStep field's value.
+func (s *IntentConfirmationSetting) SetFailureNextStep(v *DialogState) *IntentConfirmationSetting {
+	s.FailureNextStep = v
+	return s
+}
+
+// SetFailureResponse sets the FailureResponse field's value.
+func (s *IntentConfirmationSetting) SetFailureResponse(v *ResponseSpecification) *IntentConfirmationSetting {
+	s.FailureResponse = v
 	return s
 }
 
@@ -18342,6 +19272,72 @@ func (s *IntentFilter) SetOperator(v string) *IntentFilter {
 // SetValues sets the Values field's value.
 func (s *IntentFilter) SetValues(v []*string) *IntentFilter {
 	s.Values = v
+	return s
+}
+
+// Override settings to configure the intent state.
+type IntentOverride struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the intent. Only required when you're switching intents.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// A map of all of the slot value overrides for the intent. The name of the
+	// slot maps to the value of the slot. Slots that are not included in the map
+	// aren't overridden.,
+	Slots map[string]*SlotValueOverride `locationName:"slots" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntentOverride) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntentOverride) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IntentOverride) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IntentOverride"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Slots != nil {
+		for i, v := range s.Slots {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Slots", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *IntentOverride) SetName(v string) *IntentOverride {
+	s.Name = &v
+	return s
+}
+
+// SetSlots sets the Slots field's value.
+func (s *IntentOverride) SetSlots(v map[string]*SlotValueOverride) *IntentOverride {
+	s.Slots = v
 	return s
 }
 
@@ -22018,19 +23014,212 @@ func (s *PlainTextMessage) SetValue(v string) *PlainTextMessage {
 	return s
 }
 
+// Specifies next steps to run after the dialog code hook finishes.
+type PostDialogCodeHookInvocationSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditional branches to evaluate after the dialog code hook throws
+	// an exception or returns with the State field of the Intent object set to
+	// Failed.
+	FailureConditional *ConditionalSpecification `locationName:"failureConditional" type:"structure"`
+
+	// Specifies the next step the bot runs after the dialog code hook throws an
+	// exception or returns with the State field of the Intent object set to Failed.
+	FailureNextStep *DialogState `locationName:"failureNextStep" type:"structure"`
+
+	// Specifies a list of message groups that Amazon Lex uses to respond the user
+	// input.
+	FailureResponse *ResponseSpecification `locationName:"failureResponse" type:"structure"`
+
+	// A list of conditional branches to evaluate after the dialog code hook finishes
+	// successfully.
+	SuccessConditional *ConditionalSpecification `locationName:"successConditional" type:"structure"`
+
+	// Specifics the next step the bot runs after the dialog code hook finishes
+	// successfully.
+	SuccessNextStep *DialogState `locationName:"successNextStep" type:"structure"`
+
+	// Specifies a list of message groups that Amazon Lex uses to respond the user
+	// input.
+	SuccessResponse *ResponseSpecification `locationName:"successResponse" type:"structure"`
+
+	// A list of conditional branches to evaluate if the code hook times out.
+	TimeoutConditional *ConditionalSpecification `locationName:"timeoutConditional" type:"structure"`
+
+	// Specifies the next step that the bot runs when the code hook times out.
+	TimeoutNextStep *DialogState `locationName:"timeoutNextStep" type:"structure"`
+
+	// Specifies a list of message groups that Amazon Lex uses to respond the user
+	// input.
+	TimeoutResponse *ResponseSpecification `locationName:"timeoutResponse" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostDialogCodeHookInvocationSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostDialogCodeHookInvocationSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PostDialogCodeHookInvocationSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PostDialogCodeHookInvocationSpecification"}
+	if s.FailureConditional != nil {
+		if err := s.FailureConditional.Validate(); err != nil {
+			invalidParams.AddNested("FailureConditional", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FailureNextStep != nil {
+		if err := s.FailureNextStep.Validate(); err != nil {
+			invalidParams.AddNested("FailureNextStep", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FailureResponse != nil {
+		if err := s.FailureResponse.Validate(); err != nil {
+			invalidParams.AddNested("FailureResponse", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SuccessConditional != nil {
+		if err := s.SuccessConditional.Validate(); err != nil {
+			invalidParams.AddNested("SuccessConditional", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SuccessNextStep != nil {
+		if err := s.SuccessNextStep.Validate(); err != nil {
+			invalidParams.AddNested("SuccessNextStep", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SuccessResponse != nil {
+		if err := s.SuccessResponse.Validate(); err != nil {
+			invalidParams.AddNested("SuccessResponse", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TimeoutConditional != nil {
+		if err := s.TimeoutConditional.Validate(); err != nil {
+			invalidParams.AddNested("TimeoutConditional", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TimeoutNextStep != nil {
+		if err := s.TimeoutNextStep.Validate(); err != nil {
+			invalidParams.AddNested("TimeoutNextStep", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TimeoutResponse != nil {
+		if err := s.TimeoutResponse.Validate(); err != nil {
+			invalidParams.AddNested("TimeoutResponse", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFailureConditional sets the FailureConditional field's value.
+func (s *PostDialogCodeHookInvocationSpecification) SetFailureConditional(v *ConditionalSpecification) *PostDialogCodeHookInvocationSpecification {
+	s.FailureConditional = v
+	return s
+}
+
+// SetFailureNextStep sets the FailureNextStep field's value.
+func (s *PostDialogCodeHookInvocationSpecification) SetFailureNextStep(v *DialogState) *PostDialogCodeHookInvocationSpecification {
+	s.FailureNextStep = v
+	return s
+}
+
+// SetFailureResponse sets the FailureResponse field's value.
+func (s *PostDialogCodeHookInvocationSpecification) SetFailureResponse(v *ResponseSpecification) *PostDialogCodeHookInvocationSpecification {
+	s.FailureResponse = v
+	return s
+}
+
+// SetSuccessConditional sets the SuccessConditional field's value.
+func (s *PostDialogCodeHookInvocationSpecification) SetSuccessConditional(v *ConditionalSpecification) *PostDialogCodeHookInvocationSpecification {
+	s.SuccessConditional = v
+	return s
+}
+
+// SetSuccessNextStep sets the SuccessNextStep field's value.
+func (s *PostDialogCodeHookInvocationSpecification) SetSuccessNextStep(v *DialogState) *PostDialogCodeHookInvocationSpecification {
+	s.SuccessNextStep = v
+	return s
+}
+
+// SetSuccessResponse sets the SuccessResponse field's value.
+func (s *PostDialogCodeHookInvocationSpecification) SetSuccessResponse(v *ResponseSpecification) *PostDialogCodeHookInvocationSpecification {
+	s.SuccessResponse = v
+	return s
+}
+
+// SetTimeoutConditional sets the TimeoutConditional field's value.
+func (s *PostDialogCodeHookInvocationSpecification) SetTimeoutConditional(v *ConditionalSpecification) *PostDialogCodeHookInvocationSpecification {
+	s.TimeoutConditional = v
+	return s
+}
+
+// SetTimeoutNextStep sets the TimeoutNextStep field's value.
+func (s *PostDialogCodeHookInvocationSpecification) SetTimeoutNextStep(v *DialogState) *PostDialogCodeHookInvocationSpecification {
+	s.TimeoutNextStep = v
+	return s
+}
+
+// SetTimeoutResponse sets the TimeoutResponse field's value.
+func (s *PostDialogCodeHookInvocationSpecification) SetTimeoutResponse(v *ResponseSpecification) *PostDialogCodeHookInvocationSpecification {
+	s.TimeoutResponse = v
+	return s
+}
+
 // Provides a setting that determines whether the post-fulfillment response
 // is sent to the user. For more information, see https://docs.aws.amazon.com/lexv2/latest/dg/streaming-progress.html#progress-complete
 // (https://docs.aws.amazon.com/lexv2/latest/dg/streaming-progress.html#progress-complete)
 type PostFulfillmentStatusSpecification struct {
 	_ struct{} `type:"structure"`
 
+	// A list of conditional branches to evaluate after the fulfillment code hook
+	// throws an exception or returns with the State field of the Intent object
+	// set to Failed.
+	FailureConditional *ConditionalSpecification `locationName:"failureConditional" type:"structure"`
+
+	// Specifies the next step the bot runs after the fulfillment code hook throws
+	// an exception or returns with the State field of the Intent object set to
+	// Failed.
+	FailureNextStep *DialogState `locationName:"failureNextStep" type:"structure"`
+
 	// Specifies a list of message groups that Amazon Lex uses to respond the user
 	// input.
 	FailureResponse *ResponseSpecification `locationName:"failureResponse" type:"structure"`
 
+	// A list of conditional branches to evaluate after the fulfillment code hook
+	// finishes successfully.
+	SuccessConditional *ConditionalSpecification `locationName:"successConditional" type:"structure"`
+
+	// Specifies the next step in the conversation that Amazon Lex invokes when
+	// the fulfillment code hook completes successfully.
+	SuccessNextStep *DialogState `locationName:"successNextStep" type:"structure"`
+
 	// Specifies a list of message groups that Amazon Lex uses to respond the user
 	// input.
 	SuccessResponse *ResponseSpecification `locationName:"successResponse" type:"structure"`
+
+	// A list of conditional branches to evaluate if the fulfillment code hook times
+	// out.
+	TimeoutConditional *ConditionalSpecification `locationName:"timeoutConditional" type:"structure"`
+
+	// Specifies the next step that the bot runs when the fulfillment code hook
+	// times out.
+	TimeoutNextStep *DialogState `locationName:"timeoutNextStep" type:"structure"`
 
 	// Specifies a list of message groups that Amazon Lex uses to respond the user
 	// input.
@@ -22058,14 +23247,44 @@ func (s PostFulfillmentStatusSpecification) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PostFulfillmentStatusSpecification) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PostFulfillmentStatusSpecification"}
+	if s.FailureConditional != nil {
+		if err := s.FailureConditional.Validate(); err != nil {
+			invalidParams.AddNested("FailureConditional", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FailureNextStep != nil {
+		if err := s.FailureNextStep.Validate(); err != nil {
+			invalidParams.AddNested("FailureNextStep", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.FailureResponse != nil {
 		if err := s.FailureResponse.Validate(); err != nil {
 			invalidParams.AddNested("FailureResponse", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SuccessConditional != nil {
+		if err := s.SuccessConditional.Validate(); err != nil {
+			invalidParams.AddNested("SuccessConditional", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SuccessNextStep != nil {
+		if err := s.SuccessNextStep.Validate(); err != nil {
+			invalidParams.AddNested("SuccessNextStep", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SuccessResponse != nil {
 		if err := s.SuccessResponse.Validate(); err != nil {
 			invalidParams.AddNested("SuccessResponse", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TimeoutConditional != nil {
+		if err := s.TimeoutConditional.Validate(); err != nil {
+			invalidParams.AddNested("TimeoutConditional", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TimeoutNextStep != nil {
+		if err := s.TimeoutNextStep.Validate(); err != nil {
+			invalidParams.AddNested("TimeoutNextStep", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.TimeoutResponse != nil {
@@ -22080,15 +23299,51 @@ func (s *PostFulfillmentStatusSpecification) Validate() error {
 	return nil
 }
 
+// SetFailureConditional sets the FailureConditional field's value.
+func (s *PostFulfillmentStatusSpecification) SetFailureConditional(v *ConditionalSpecification) *PostFulfillmentStatusSpecification {
+	s.FailureConditional = v
+	return s
+}
+
+// SetFailureNextStep sets the FailureNextStep field's value.
+func (s *PostFulfillmentStatusSpecification) SetFailureNextStep(v *DialogState) *PostFulfillmentStatusSpecification {
+	s.FailureNextStep = v
+	return s
+}
+
 // SetFailureResponse sets the FailureResponse field's value.
 func (s *PostFulfillmentStatusSpecification) SetFailureResponse(v *ResponseSpecification) *PostFulfillmentStatusSpecification {
 	s.FailureResponse = v
 	return s
 }
 
+// SetSuccessConditional sets the SuccessConditional field's value.
+func (s *PostFulfillmentStatusSpecification) SetSuccessConditional(v *ConditionalSpecification) *PostFulfillmentStatusSpecification {
+	s.SuccessConditional = v
+	return s
+}
+
+// SetSuccessNextStep sets the SuccessNextStep field's value.
+func (s *PostFulfillmentStatusSpecification) SetSuccessNextStep(v *DialogState) *PostFulfillmentStatusSpecification {
+	s.SuccessNextStep = v
+	return s
+}
+
 // SetSuccessResponse sets the SuccessResponse field's value.
 func (s *PostFulfillmentStatusSpecification) SetSuccessResponse(v *ResponseSpecification) *PostFulfillmentStatusSpecification {
 	s.SuccessResponse = v
+	return s
+}
+
+// SetTimeoutConditional sets the TimeoutConditional field's value.
+func (s *PostFulfillmentStatusSpecification) SetTimeoutConditional(v *ConditionalSpecification) *PostFulfillmentStatusSpecification {
+	s.TimeoutConditional = v
+	return s
+}
+
+// SetTimeoutNextStep sets the TimeoutNextStep field's value.
+func (s *PostFulfillmentStatusSpecification) SetTimeoutNextStep(v *DialogState) *PostFulfillmentStatusSpecification {
+	s.TimeoutNextStep = v
 	return s
 }
 
@@ -23306,6 +24561,155 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Settings used when Amazon Lex successfully captures a slot value from a user.
+type SlotCaptureSetting struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditional branches to evaluate after the slot value is captured.
+	CaptureConditional *ConditionalSpecification `locationName:"captureConditional" type:"structure"`
+
+	// Specifies the next step that the bot runs when the slot value is captured
+	// before the code hook times out.
+	CaptureNextStep *DialogState `locationName:"captureNextStep" type:"structure"`
+
+	// Specifies a list of message groups that Amazon Lex uses to respond the user
+	// input.
+	CaptureResponse *ResponseSpecification `locationName:"captureResponse" type:"structure"`
+
+	// Code hook called after Amazon Lex successfully captures a slot value.
+	CodeHook *DialogCodeHookInvocationSetting `locationName:"codeHook" type:"structure"`
+
+	// Code hook called when Amazon Lex doesn't capture a slot value.
+	ElicitationCodeHook *ElicitationCodeHookInvocationSetting `locationName:"elicitationCodeHook" type:"structure"`
+
+	// A list of conditional branches to evaluate when the slot value isn't captured.
+	FailureConditional *ConditionalSpecification `locationName:"failureConditional" type:"structure"`
+
+	// Specifies the next step that the bot runs when the slot value code is not
+	// recognized.
+	FailureNextStep *DialogState `locationName:"failureNextStep" type:"structure"`
+
+	// Specifies a list of message groups that Amazon Lex uses to respond the user
+	// input.
+	FailureResponse *ResponseSpecification `locationName:"failureResponse" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SlotCaptureSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SlotCaptureSetting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SlotCaptureSetting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SlotCaptureSetting"}
+	if s.CaptureConditional != nil {
+		if err := s.CaptureConditional.Validate(); err != nil {
+			invalidParams.AddNested("CaptureConditional", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CaptureNextStep != nil {
+		if err := s.CaptureNextStep.Validate(); err != nil {
+			invalidParams.AddNested("CaptureNextStep", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CaptureResponse != nil {
+		if err := s.CaptureResponse.Validate(); err != nil {
+			invalidParams.AddNested("CaptureResponse", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CodeHook != nil {
+		if err := s.CodeHook.Validate(); err != nil {
+			invalidParams.AddNested("CodeHook", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ElicitationCodeHook != nil {
+		if err := s.ElicitationCodeHook.Validate(); err != nil {
+			invalidParams.AddNested("ElicitationCodeHook", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FailureConditional != nil {
+		if err := s.FailureConditional.Validate(); err != nil {
+			invalidParams.AddNested("FailureConditional", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FailureNextStep != nil {
+		if err := s.FailureNextStep.Validate(); err != nil {
+			invalidParams.AddNested("FailureNextStep", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FailureResponse != nil {
+		if err := s.FailureResponse.Validate(); err != nil {
+			invalidParams.AddNested("FailureResponse", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCaptureConditional sets the CaptureConditional field's value.
+func (s *SlotCaptureSetting) SetCaptureConditional(v *ConditionalSpecification) *SlotCaptureSetting {
+	s.CaptureConditional = v
+	return s
+}
+
+// SetCaptureNextStep sets the CaptureNextStep field's value.
+func (s *SlotCaptureSetting) SetCaptureNextStep(v *DialogState) *SlotCaptureSetting {
+	s.CaptureNextStep = v
+	return s
+}
+
+// SetCaptureResponse sets the CaptureResponse field's value.
+func (s *SlotCaptureSetting) SetCaptureResponse(v *ResponseSpecification) *SlotCaptureSetting {
+	s.CaptureResponse = v
+	return s
+}
+
+// SetCodeHook sets the CodeHook field's value.
+func (s *SlotCaptureSetting) SetCodeHook(v *DialogCodeHookInvocationSetting) *SlotCaptureSetting {
+	s.CodeHook = v
+	return s
+}
+
+// SetElicitationCodeHook sets the ElicitationCodeHook field's value.
+func (s *SlotCaptureSetting) SetElicitationCodeHook(v *ElicitationCodeHookInvocationSetting) *SlotCaptureSetting {
+	s.ElicitationCodeHook = v
+	return s
+}
+
+// SetFailureConditional sets the FailureConditional field's value.
+func (s *SlotCaptureSetting) SetFailureConditional(v *ConditionalSpecification) *SlotCaptureSetting {
+	s.FailureConditional = v
+	return s
+}
+
+// SetFailureNextStep sets the FailureNextStep field's value.
+func (s *SlotCaptureSetting) SetFailureNextStep(v *DialogState) *SlotCaptureSetting {
+	s.FailureNextStep = v
+	return s
+}
+
+// SetFailureResponse sets the FailureResponse field's value.
+func (s *SlotCaptureSetting) SetFailureResponse(v *ResponseSpecification) *SlotCaptureSetting {
+	s.FailureResponse = v
+	return s
+}
+
 // Specifies the default value to use when a user doesn't provide a value for
 // a slot.
 type SlotDefaultValue struct {
@@ -24042,6 +25446,54 @@ func (s *SlotTypeValue) SetSynonyms(v []*SampleValue) *SlotTypeValue {
 	return s
 }
 
+// The value to set in a slot.
+type SlotValue struct {
+	_ struct{} `type:"structure"`
+
+	// The value that Amazon Lex determines for the slot. The actual value depends
+	// on the setting of the value selection strategy for the bot. You can choose
+	// to use the value entered by the user, or you can have Amazon Lex choose the
+	// first value in the resolvedValues list.
+	InterpretedValue *string `locationName:"interpretedValue" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SlotValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SlotValue) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SlotValue) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SlotValue"}
+	if s.InterpretedValue != nil && len(*s.InterpretedValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InterpretedValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInterpretedValue sets the InterpretedValue field's value.
+func (s *SlotValue) SetInterpretedValue(v string) *SlotValue {
+	s.InterpretedValue = &v
+	return s
+}
+
 // Settings that you can use for eliciting a slot value.
 type SlotValueElicitationSetting struct {
 	_ struct{} `type:"structure"`
@@ -24059,6 +25511,10 @@ type SlotValueElicitationSetting struct {
 	// This is optional. In most cases, Amazon Lex is capable of understanding user
 	// utterances.
 	SampleUtterances []*SampleUtterance `locationName:"sampleUtterances" type:"list"`
+
+	// Specifies the settings that Amazon Lex uses when a slot value is successfully
+	// entered by a user.
+	SlotCaptureSetting *SlotCaptureSetting `locationName:"slotCaptureSetting" type:"structure"`
 
 	// Specifies whether the slot is required or optional.
 	//
@@ -24114,6 +25570,11 @@ func (s *SlotValueElicitationSetting) Validate() error {
 			}
 		}
 	}
+	if s.SlotCaptureSetting != nil {
+		if err := s.SlotCaptureSetting.Validate(); err != nil {
+			invalidParams.AddNested("SlotCaptureSetting", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.WaitAndContinueSpecification != nil {
 		if err := s.WaitAndContinueSpecification.Validate(); err != nil {
 			invalidParams.AddNested("WaitAndContinueSpecification", err.(request.ErrInvalidParams))
@@ -24144,6 +25605,12 @@ func (s *SlotValueElicitationSetting) SetSampleUtterances(v []*SampleUtterance) 
 	return s
 }
 
+// SetSlotCaptureSetting sets the SlotCaptureSetting field's value.
+func (s *SlotValueElicitationSetting) SetSlotCaptureSetting(v *SlotCaptureSetting) *SlotValueElicitationSetting {
+	s.SlotCaptureSetting = v
+	return s
+}
+
 // SetSlotConstraint sets the SlotConstraint field's value.
 func (s *SlotValueElicitationSetting) SetSlotConstraint(v string) *SlotValueElicitationSetting {
 	s.SlotConstraint = &v
@@ -24153,6 +25620,86 @@ func (s *SlotValueElicitationSetting) SetSlotConstraint(v string) *SlotValueElic
 // SetWaitAndContinueSpecification sets the WaitAndContinueSpecification field's value.
 func (s *SlotValueElicitationSetting) SetWaitAndContinueSpecification(v *WaitAndContinueSpecification) *SlotValueElicitationSetting {
 	s.WaitAndContinueSpecification = v
+	return s
+}
+
+// The slot values that Amazon Lex uses when it sets slot values in a dialog
+// step.
+type SlotValueOverride struct {
+	_ struct{} `type:"structure"`
+
+	// When the shape value is List, it indicates that the values field contains
+	// a list of slot values. When the value is Scalar, it indicates that the value
+	// field contains a single value.
+	Shape *string `locationName:"shape" type:"string" enum:"SlotShape"`
+
+	// The current value of the slot.
+	Value *SlotValue `locationName:"value" type:"structure"`
+
+	// A list of one or more values that the user provided for the slot. For example,
+	// for a slot that elicits pizza toppings, the values might be "pepperoni" and
+	// "pineapple."
+	Values []*SlotValueOverride `locationName:"values" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SlotValueOverride) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SlotValueOverride) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SlotValueOverride) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SlotValueOverride"}
+	if s.Value != nil {
+		if err := s.Value.Validate(); err != nil {
+			invalidParams.AddNested("Value", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Values != nil {
+		for i, v := range s.Values {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Values", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetShape sets the Shape field's value.
+func (s *SlotValueOverride) SetShape(v string) *SlotValueOverride {
+	s.Shape = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *SlotValueOverride) SetValue(v *SlotValue) *SlotValueOverride {
+	s.Value = v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *SlotValueOverride) SetValues(v []*SlotValueOverride) *SlotValueOverride {
+	s.Values = v
 	return s
 }
 
@@ -26453,6 +28000,10 @@ type UpdateIntentInput struct {
 	// provided and the intent is ready for fulfillment.
 	FulfillmentCodeHook *FulfillmentCodeHookSettings `locationName:"fulfillmentCodeHook" type:"structure"`
 
+	// Configuration setting for a response sent to the user before Amazon Lex starts
+	// eliciting slots.
+	InitialResponseSetting *InitialResponseSetting `locationName:"initialResponseSetting" type:"structure"`
+
 	// A new list of contexts that must be active in order for Amazon Lex to consider
 	// the intent.
 	InputContexts []*InputContext `locationName:"inputContexts" type:"list"`
@@ -26558,6 +28109,11 @@ func (s *UpdateIntentInput) Validate() error {
 			invalidParams.AddNested("FulfillmentCodeHook", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.InitialResponseSetting != nil {
+		if err := s.InitialResponseSetting.Validate(); err != nil {
+			invalidParams.AddNested("InitialResponseSetting", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.InputContexts != nil {
 		for i, v := range s.InputContexts {
 			if v == nil {
@@ -26650,6 +28206,12 @@ func (s *UpdateIntentInput) SetFulfillmentCodeHook(v *FulfillmentCodeHookSetting
 	return s
 }
 
+// SetInitialResponseSetting sets the InitialResponseSetting field's value.
+func (s *UpdateIntentInput) SetInitialResponseSetting(v *InitialResponseSetting) *UpdateIntentInput {
+	s.InitialResponseSetting = v
+	return s
+}
+
 // SetInputContexts sets the InputContexts field's value.
 func (s *UpdateIntentInput) SetInputContexts(v []*InputContext) *UpdateIntentInput {
 	s.InputContexts = v
@@ -26737,6 +28299,10 @@ type UpdateIntentOutput struct {
 
 	// The updated Lambda function called when the intent is ready for fulfillment.
 	FulfillmentCodeHook *FulfillmentCodeHookSettings `locationName:"fulfillmentCodeHook" type:"structure"`
+
+	// Configuration setting for a response sent to the user before Amazon Lex starts
+	// eliciting slots.
+	InitialResponseSetting *InitialResponseSetting `locationName:"initialResponseSetting" type:"structure"`
 
 	// The updated list of contexts that must be active for the intent to be considered
 	// by Amazon Lex.
@@ -26831,6 +28397,12 @@ func (s *UpdateIntentOutput) SetDialogCodeHook(v *DialogCodeHookSettings) *Updat
 // SetFulfillmentCodeHook sets the FulfillmentCodeHook field's value.
 func (s *UpdateIntentOutput) SetFulfillmentCodeHook(v *FulfillmentCodeHookSettings) *UpdateIntentOutput {
 	s.FulfillmentCodeHook = v
+	return s
+}
+
+// SetInitialResponseSetting sets the InitialResponseSetting field's value.
+func (s *UpdateIntentOutput) SetInitialResponseSetting(v *InitialResponseSetting) *UpdateIntentOutput {
+	s.InitialResponseSetting = v
 	return s
 }
 
@@ -28343,6 +29915,50 @@ func CustomVocabularyStatus_Values() []string {
 }
 
 const (
+	// DialogActionTypeElicitIntent is a DialogActionType enum value
+	DialogActionTypeElicitIntent = "ElicitIntent"
+
+	// DialogActionTypeStartIntent is a DialogActionType enum value
+	DialogActionTypeStartIntent = "StartIntent"
+
+	// DialogActionTypeElicitSlot is a DialogActionType enum value
+	DialogActionTypeElicitSlot = "ElicitSlot"
+
+	// DialogActionTypeEvaluateConditional is a DialogActionType enum value
+	DialogActionTypeEvaluateConditional = "EvaluateConditional"
+
+	// DialogActionTypeInvokeDialogCodeHook is a DialogActionType enum value
+	DialogActionTypeInvokeDialogCodeHook = "InvokeDialogCodeHook"
+
+	// DialogActionTypeConfirmIntent is a DialogActionType enum value
+	DialogActionTypeConfirmIntent = "ConfirmIntent"
+
+	// DialogActionTypeFulfillIntent is a DialogActionType enum value
+	DialogActionTypeFulfillIntent = "FulfillIntent"
+
+	// DialogActionTypeCloseIntent is a DialogActionType enum value
+	DialogActionTypeCloseIntent = "CloseIntent"
+
+	// DialogActionTypeEndConversation is a DialogActionType enum value
+	DialogActionTypeEndConversation = "EndConversation"
+)
+
+// DialogActionType_Values returns all elements of the DialogActionType enum
+func DialogActionType_Values() []string {
+	return []string{
+		DialogActionTypeElicitIntent,
+		DialogActionTypeStartIntent,
+		DialogActionTypeElicitSlot,
+		DialogActionTypeEvaluateConditional,
+		DialogActionTypeInvokeDialogCodeHook,
+		DialogActionTypeConfirmIntent,
+		DialogActionTypeFulfillIntent,
+		DialogActionTypeCloseIntent,
+		DialogActionTypeEndConversation,
+	}
+}
+
+const (
 	// EffectAllow is a Effect enum value
 	EffectAllow = "Allow"
 
@@ -28675,6 +30291,22 @@ func SlotFilterOperator_Values() []string {
 	return []string{
 		SlotFilterOperatorCo,
 		SlotFilterOperatorEq,
+	}
+}
+
+const (
+	// SlotShapeScalar is a SlotShape enum value
+	SlotShapeScalar = "Scalar"
+
+	// SlotShapeList is a SlotShape enum value
+	SlotShapeList = "List"
+)
+
+// SlotShape_Values returns all elements of the SlotShape enum
+func SlotShape_Values() []string {
+	return []string{
+		SlotShapeScalar,
+		SlotShapeList,
 	}
 }
 
