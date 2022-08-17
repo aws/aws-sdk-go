@@ -77,6 +77,8 @@ type API struct {
 
 	// Set to true to strictly enforce usage of the serviceId for the package naming
 	StrictServiceId bool
+
+	AwsQueryCompatible map[string]AwsQueryCompatibleError
 }
 
 // A Metadata is the metadata about an API's definition.
@@ -96,6 +98,10 @@ type Metadata struct {
 	ServiceID           string
 
 	NoResolveEndpoint bool
+}
+
+type AwsQueryCompatibleError struct {
+	Code string `json:code`
 }
 
 // ProtocolSettings define how the SDK should handle requests in the context
@@ -325,6 +331,19 @@ var tplAPI = template.Must(template.New("api").Parse(`
 	{{- end }}
 {{- end }}
 `))
+
+func (a *API) AwsQueryCompatibleErrorCode(errorCode string) string {
+	mapping, ok := a.AwsQueryCompatible[errorCode]
+	if !ok {
+					return errorCode
+	}
+	mappedCode := mapping.Code
+	if mappedCode == "" {
+					return errorCode
+	}
+	return mappedCode
+}
+
 
 // AddImport adds the import path to the generated file's import.
 func (a *API) AddImport(v string) error {

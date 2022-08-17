@@ -93,3 +93,54 @@ func TestAPI_Setup_documentShapes(t *testing.T) {
 		t.Errorf("expect %s, got %v", expect, err)
 	}
 }
+
+func TestAPI_ErrorCode_WhenErrorInMapping(t *testing.T) {
+	expected := "AwsQuery.ErrorCode"
+	serviceError := "ServiceError"
+	api := API {
+		Metadata: Metadata{
+			ServiceFullName: "SQS",
+		},
+		AwsQueryCompatible: map[string]AwsQueryCompatibleError{
+			serviceError: {
+				Code: expected,
+			},
+		},
+	}
+	actual := api.AwsQueryCompatibleErrorCode(serviceError)
+	assertErrorCode(expected, actual, t)
+}
+
+func TestAPI_ErrorCode_WhenErrorNotInMapping(t *testing.T) {
+	expected := "SomeError"
+	api := API {
+		Metadata: Metadata{
+			ServiceFullName: "SQS",
+		},
+		AwsQueryCompatible: map[string]AwsQueryCompatibleError{
+			"ServiceError": {
+				Code: "AwsQuery.ErrorCode",
+			},
+		},
+	}
+	actual := api.AwsQueryCompatibleErrorCode(expected)
+	assertErrorCode(expected, actual, t)
+}
+
+func TestAPI_ErrorCode_WhenNoMappingFound(t *testing.T) {
+	expected := "SomeError"
+	api := API {
+		Metadata: Metadata{
+			ServiceFullName: "SQS",
+		},
+	}
+	actual := api.AwsQueryCompatibleErrorCode(expected)
+	assertErrorCode(expected, actual, t)
+}
+
+func assertErrorCode(expected string, actual string, t *testing.T) {
+	if actual != expected {
+		t.Errorf("Expected %s, got %s", expected, actual)
+	}
+}
+
