@@ -335,11 +335,11 @@ var tplAPI = template.Must(template.New("api").Parse(`
 func (a *API) AwsQueryCompatibleErrorCode(errorCode string) string {
 	mapping, ok := a.AwsQueryCompatible[errorCode]
 	if !ok {
-					return errorCode
+		return errorCode
 	}
 	mappedCode := mapping.Code
 	if mappedCode == "" {
-					return errorCode
+		return errorCode
 	}
 	return mappedCode
 }
