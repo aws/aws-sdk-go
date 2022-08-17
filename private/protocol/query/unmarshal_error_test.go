@@ -37,6 +37,27 @@ func TestUnmarshalError(t *testing.T) {
 			Code: "codeAbc", Msg: "msg123",
 			Status: 400, ReqID: "reqID123",
 		},
+		"ErrorResponse with spaces": {
+			Request: &request.Request{
+				HTTPResponse: &http.Response{
+					StatusCode: 400,
+					Header:     http.Header{},
+					Body: ioutil.NopCloser(strings.NewReader(
+						`<ErrorResponse>
+							<Error>
+								<Code>
+								codeAbc
+								</Code><Message>
+								msg123
+								</Message>
+							</Error>
+							<RequestId>reqID123</RequestId>
+						</ErrorResponse>`)),
+				},
+			},
+			Code: "codeAbc", Msg: "msg123",
+			Status: 400, ReqID: "reqID123",
+		},
 		"ServiceUnavailableException": {
 			Request: &request.Request{
 				HTTPResponse: &http.Response{

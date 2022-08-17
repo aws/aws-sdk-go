@@ -40,6 +40,30 @@ func TestUnmarshalError(t *testing.T) {
 			Code: "codeAbc", Msg: "msg123",
 			Status: 400, ReqID: "reqID123",
 		},
+		"ErrorResponse with spaces": {
+			Request: &request.Request{
+				HTTPResponse: &http.Response{
+					StatusCode: 400,
+					Header:     http.Header{},
+					Body: ioutil.NopCloser(strings.NewReader(
+						`<Response>
+							<Errors>
+								<Error>
+									<Code>
+									codeAbc
+									</Code>
+									<Message>
+									msg123
+									</Message>
+								</Error>
+							</Errors>
+							<RequestID>reqID123</RequestID>
+						</Response>`)),
+				},
+			},
+			Code: "codeAbc", Msg: "msg123",
+			Status: 400, ReqID: "reqID123",
+		},
 		"unknown tag": {
 			Request: &request.Request{
 				HTTPResponse: &http.Response{
