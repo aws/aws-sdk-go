@@ -6319,7 +6319,7 @@ func (s *AccessControlConfigurationSummary) SetId(v string) *AccessControlConfig
 type AccessControlListConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Path to the Amazon Web Services S3 bucket that contains the ACL files.
+	// Path to the Amazon S3 bucket that contains the ACL files.
 	KeyPath *string `min:"1" type:"string"`
 }
 
@@ -8961,6 +8961,25 @@ type ConfluenceConfiguration struct {
 	// Configuration information for indexing Confluence pages.
 	PageConfiguration *ConfluencePageConfiguration `type:"structure"`
 
+	// Configuration information to connect to your Confluence URL instance via
+	// a web proxy. You can use this option for Confluence Server.
+	//
+	// You must provide the website host name and port number. For example, the
+	// host name of https://a.example.com/page1.html is "a.example.com" and the
+	// port is 443, the standard port for HTTPS.
+	//
+	// Web proxy credentials are optional and you can use them to connect to a web
+	// proxy server that requires basic authentication of user name and password.
+	// To store web proxy credentials, you use a secret in Secrets Manager.
+	//
+	// It is recommended that you follow best security practices when configuring
+	// your web proxy. This includes setting up throttling, setting up logging and
+	// monitoring, and applying security patches on a regular basis. If you use
+	// your web proxy with multiple data sources, sync jobs that occur at the same
+	// time could strain the load on your proxy. It is recommended you prepare your
+	// proxy beforehand for any security and load requirements.
+	ProxyConfiguration *ProxyConfiguration `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
 	// the user name and password required to connect to the Confluence instance.
 	// If you use Confluence cloud, you use a generated API token as the password.
@@ -9040,6 +9059,11 @@ func (s *ConfluenceConfiguration) Validate() error {
 			invalidParams.AddNested("PageConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ProxyConfiguration != nil {
+		if err := s.ProxyConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ProxyConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SpaceConfiguration != nil {
 		if err := s.SpaceConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("SpaceConfiguration", err.(request.ErrInvalidParams))
@@ -9084,6 +9108,12 @@ func (s *ConfluenceConfiguration) SetInclusionPatterns(v []*string) *ConfluenceC
 // SetPageConfiguration sets the PageConfiguration field's value.
 func (s *ConfluenceConfiguration) SetPageConfiguration(v *ConfluencePageConfiguration) *ConfluenceConfiguration {
 	s.PageConfiguration = v
+	return s
+}
+
+// SetProxyConfiguration sets the ProxyConfiguration field's value.
+func (s *ConfluenceConfiguration) SetProxyConfiguration(v *ProxyConfiguration) *ConfluenceConfiguration {
+	s.ProxyConfiguration = v
 	return s
 }
 
@@ -9897,8 +9927,7 @@ type CreateDataSourceInput struct {
 	// documents in languages other than English (https://docs.aws.amazon.com/kendra/latest/dg/in-adding-languages.html).
 	LanguageCode *string `min:"2" type:"string"`
 
-	// A unique name for the data source connector. A data source name can't be
-	// changed without deleting and recreating the data source connector.
+	// A name for the data source connector.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -9930,6 +9959,10 @@ type CreateDataSourceInput struct {
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataSourceType"`
+
+	// Configuration information for an Amazon Virtual Private Cloud to connect
+	// to your data source. For more information, see Configuring a VPC (https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html).
+	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9992,6 +10025,11 @@ func (s *CreateDataSourceInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -10064,6 +10102,12 @@ func (s *CreateDataSourceInput) SetTags(v []*Tag) *CreateDataSourceInput {
 // SetType sets the Type field's value.
 func (s *CreateDataSourceInput) SetType(v string) *CreateDataSourceInput {
 	s.Type = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *CreateDataSourceInput) SetVpcConfiguration(v *DataSourceVpcConfiguration) *CreateDataSourceInput {
+	s.VpcConfiguration = v
 	return s
 }
 
@@ -11215,6 +11259,10 @@ type DataSourceConfiguration struct {
 	// Provides the configuration information to connect to Slack as your data source.
 	SlackConfiguration *SlackConfiguration `type:"structure"`
 
+	// Provides a template for the configuration information to connect to your
+	// data source.
+	TemplateConfiguration *TemplateConfiguration `type:"structure"`
+
 	// Provides the configuration information required for Amazon Kendra Web Crawler.
 	WebCrawlerConfiguration *WebCrawlerConfiguration `type:"structure"`
 
@@ -11423,6 +11471,12 @@ func (s *DataSourceConfiguration) SetSharePointConfiguration(v *SharePointConfig
 // SetSlackConfiguration sets the SlackConfiguration field's value.
 func (s *DataSourceConfiguration) SetSlackConfiguration(v *SlackConfiguration) *DataSourceConfiguration {
 	s.SlackConfiguration = v
+	return s
+}
+
+// SetTemplateConfiguration sets the TemplateConfiguration field's value.
+func (s *DataSourceConfiguration) SetTemplateConfiguration(v *TemplateConfiguration) *DataSourceConfiguration {
+	s.TemplateConfiguration = v
 	return s
 }
 
@@ -13096,7 +13150,7 @@ type DescribeDataSourceOutput struct {
 	// other than English (https://docs.aws.amazon.com/kendra/latest/dg/in-adding-languages.html).
 	LanguageCode *string `min:"2" type:"string"`
 
-	// The name that you gave the data source when it was created.
+	// The name for the data source.
 	Name *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the role that enables the data source to
@@ -13116,6 +13170,10 @@ type DescribeDataSourceOutput struct {
 
 	// The Unix timestamp of when the data source was last updated.
 	UpdatedAt *time.Time `type:"timestamp"`
+
+	// Configuration information for an Amazon Virtual Private Cloud to connect
+	// to your data source. For more information, see Configuring a VPC (https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html).
+	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13217,6 +13275,12 @@ func (s *DescribeDataSourceOutput) SetType(v string) *DescribeDataSourceOutput {
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *DescribeDataSourceOutput) SetUpdatedAt(v time.Time) *DescribeDataSourceOutput {
 	s.UpdatedAt = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *DescribeDataSourceOutput) SetVpcConfiguration(v *DataSourceVpcConfiguration) *DescribeDataSourceOutput {
+	s.VpcConfiguration = v
 	return s
 }
 
@@ -21761,7 +21825,8 @@ type QuipConfiguration struct {
 	// takes precedence, and the file isn't included in the index.
 	ExclusionPatterns []*string `type:"list"`
 
-	// The identifiers of the Quip folders you want to index.
+	// The identifiers of the Quip folders you want to index. You can find in your
+	// browser URL when you access your folder in Quip. For example, https://quip-company.com/zlLuOVNSarTL/folder-name.
 	FolderIds []*string `type:"list"`
 
 	// A list of regular expression patterns to include certain files in your Quip
@@ -24169,6 +24234,25 @@ type SharePointConfiguration struct {
 	// The regex applies to the display URL of the SharePoint document.
 	InclusionPatterns []*string `type:"list"`
 
+	// Configuration information to connect to your Microsoft SharePoint site URLs
+	// via instance via a web proxy. You can use this option for SharePoint Server.
+	//
+	// You must provide the website host name and port number. For example, the
+	// host name of https://a.example.com/page1.html is "a.example.com" and the
+	// port is 443, the standard port for HTTPS.
+	//
+	// Web proxy credentials are optional and you can use them to connect to a web
+	// proxy server that requires basic authentication of user name and password.
+	// To store web proxy credentials, you use a secret in Secrets Manager.
+	//
+	// It is recommended that you follow best security practices when configuring
+	// your web proxy. This includes setting up throttling, setting up logging and
+	// monitoring, and applying security patches on a regular basis. If you use
+	// your web proxy with multiple data sources, sync jobs that occur at the same
+	// time could strain the load on your proxy. It is recommended you prepare your
+	// proxy beforehand for any security and load requirements.
+	ProxyConfiguration *ProxyConfiguration `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
 	// the user name and password required to connect to the SharePoint instance.
 	// If you use SharePoint Server, you also need to provide the sever domain name
@@ -24260,6 +24344,11 @@ func (s *SharePointConfiguration) Validate() error {
 			}
 		}
 	}
+	if s.ProxyConfiguration != nil {
+		if err := s.ProxyConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ProxyConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SslCertificateS3Path != nil {
 		if err := s.SslCertificateS3Path.Validate(); err != nil {
 			invalidParams.AddNested("SslCertificateS3Path", err.(request.ErrInvalidParams))
@@ -24316,6 +24405,12 @@ func (s *SharePointConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMa
 // SetInclusionPatterns sets the InclusionPatterns field's value.
 func (s *SharePointConfiguration) SetInclusionPatterns(v []*string) *SharePointConfiguration {
 	s.InclusionPatterns = v
+	return s
+}
+
+// SetProxyConfiguration sets the ProxyConfiguration field's value.
+func (s *SharePointConfiguration) SetProxyConfiguration(v *ProxyConfiguration) *SharePointConfiguration {
+	s.ProxyConfiguration = v
 	return s
 }
 
@@ -25591,6 +25686,30 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Provides a template for the configuration information to connect to your
+// data source.
+type TemplateConfiguration struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateConfiguration) GoString() string {
+	return s.String()
+}
+
 // Provides information about text documents indexed in an index.
 type TextDocumentStatistics struct {
 	_ struct{} `type:"structure"`
@@ -26125,8 +26244,7 @@ type UpdateDataSourceInput struct {
 	// than English (https://docs.aws.amazon.com/kendra/latest/dg/in-adding-languages.html).
 	LanguageCode *string `min:"2" type:"string"`
 
-	// A new name for the data source connector. You must first delete the data
-	// source and re-create it to change the name of the data source.
+	// A new name for the data source connector.
 	Name *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of a role with permission to access the data
@@ -26135,6 +26253,10 @@ type UpdateDataSourceInput struct {
 
 	// The sync schedule you want to update for the data source connector.
 	Schedule *string `type:"string"`
+
+	// Configuration information for an Amazon Virtual Private Cloud to connect
+	// to your data source. For more information, see Configuring a VPC (https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html).
+	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26184,6 +26306,11 @@ func (s *UpdateDataSourceInput) Validate() error {
 	if s.CustomDocumentEnrichmentConfiguration != nil {
 		if err := s.CustomDocumentEnrichmentConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("CustomDocumentEnrichmentConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -26244,6 +26371,12 @@ func (s *UpdateDataSourceInput) SetRoleArn(v string) *UpdateDataSourceInput {
 // SetSchedule sets the Schedule field's value.
 func (s *UpdateDataSourceInput) SetSchedule(v string) *UpdateDataSourceInput {
 	s.Schedule = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *UpdateDataSourceInput) SetVpcConfiguration(v *DataSourceVpcConfiguration) *UpdateDataSourceInput {
+	s.VpcConfiguration = v
 	return s
 }
 
@@ -28263,6 +28396,9 @@ const (
 
 	// DataSourceTypeAlfresco is a DataSourceType enum value
 	DataSourceTypeAlfresco = "ALFRESCO"
+
+	// DataSourceTypeTemplate is a DataSourceType enum value
+	DataSourceTypeTemplate = "TEMPLATE"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -28286,6 +28422,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeJira,
 		DataSourceTypeGithub,
 		DataSourceTypeAlfresco,
+		DataSourceTypeTemplate,
 	}
 }
 

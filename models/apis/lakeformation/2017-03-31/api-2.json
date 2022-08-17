@@ -29,6 +29,22 @@
         {"shape":"ConcurrentModificationException"}
       ]
     },
+    "AssumeDecoratedRoleWithSAML":{
+      "name":"AssumeDecoratedRoleWithSAML",
+      "http":{
+        "method":"POST",
+        "requestUri":"/AssumeDecoratedRoleWithSAML"
+      },
+      "input":{"shape":"AssumeDecoratedRoleWithSAMLRequest"},
+      "output":{"shape":"AssumeDecoratedRoleWithSAMLResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "BatchGrantPermissions":{
       "name":"BatchGrantPermissions",
       "http":{
@@ -778,6 +794,29 @@
       },
       "exception":true
     },
+    "AssumeDecoratedRoleWithSAMLRequest":{
+      "type":"structure",
+      "required":[
+        "SAMLAssertion",
+        "RoleArn",
+        "PrincipalArn"
+      ],
+      "members":{
+        "SAMLAssertion":{"shape":"SAMLAssertionString"},
+        "RoleArn":{"shape":"IAMRoleArn"},
+        "PrincipalArn":{"shape":"IAMSAMLProviderArn"},
+        "DurationSeconds":{"shape":"CredentialTimeoutDurationSecondInteger"}
+      }
+    },
+    "AssumeDecoratedRoleWithSAMLResponse":{
+      "type":"structure",
+      "members":{
+        "AccessKeyId":{"shape":"AccessKeyIdString"},
+        "SecretAccessKey":{"shape":"SecretAccessKeyString"},
+        "SessionToken":{"shape":"SessionTokenString"},
+        "Expiration":{"shape":"ExpirationTimestamp"}
+      }
+    },
     "AuditContext":{
       "type":"structure",
       "members":{
@@ -1004,7 +1043,7 @@
     "DataLakePrincipalList":{
       "type":"list",
       "member":{"shape":"DataLakePrincipal"},
-      "max":10,
+      "max":30,
       "min":0
     },
     "DataLakePrincipalString":{
@@ -1507,6 +1546,10 @@
     "IAMRoleArn":{
       "type":"string",
       "pattern":"arn:aws:iam::[0-9]*:role/.*"
+    },
+    "IAMSAMLProviderArn":{
+      "type":"string",
+      "pattern":"arn:aws:iam::[0-9]*:saml-provider/.*"
     },
     "Identifier":{
       "type":"string",
@@ -2030,6 +2073,11 @@
         "FilterExpression":{"shape":"PredicateString"},
         "AllRowsWildcard":{"shape":"AllRowsWildcard"}
       }
+    },
+    "SAMLAssertionString":{
+      "type":"string",
+      "max":100000,
+      "min":4
     },
     "SearchDatabasesByLFTagsRequest":{
       "type":"structure",

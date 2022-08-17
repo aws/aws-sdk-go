@@ -102,6 +102,10 @@ func (c *SecretsManager) CancelRotateSecretRequest(input *CancelRotateSecretInpu
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
 //
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/secretsmanager-2017-10-17/CancelRotateSecret
 func (c *SecretsManager) CancelRotateSecret(input *CancelRotateSecretInput) (*CancelRotateSecretOutput, error) {
 	req, out := c.CancelRotateSecretRequest(input)
@@ -230,6 +234,10 @@ func (c *SecretsManager) CreateSecretRequest(input *CreateSecretInput) (req *req
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
 //
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
+//
 //   - LimitExceededException
 //     The request failed because it would exceed one of the Secrets Manager quotas.
 //
@@ -354,6 +362,10 @@ func (c *SecretsManager) DeleteResourcePolicyRequest(input *DeleteResourcePolicy
 //   - You tried to enable rotation on a secret that doesn't already have a
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
+//
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
 //
 //   - InvalidParameterException
 //     The parameter name or value is invalid.
@@ -484,6 +496,10 @@ func (c *SecretsManager) DeleteSecretRequest(input *DeleteSecretInput) (req *req
 //   - You tried to enable rotation on a secret that doesn't already have a
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
+//
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
 //
 //   - InternalServiceError
 //     An error occurred on the server side.
@@ -674,6 +690,10 @@ func (c *SecretsManager) GetRandomPasswordRequest(input *GetRandomPasswordInput)
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
 //
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
+//
 //   - InternalServiceError
 //     An error occurred on the server side.
 //
@@ -776,6 +796,10 @@ func (c *SecretsManager) GetResourcePolicyRequest(input *GetResourcePolicyInput)
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
 //
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
+//
 //   - InvalidParameterException
 //     The parameter name or value is invalid.
 //
@@ -851,6 +875,10 @@ func (c *SecretsManager) GetSecretValueRequest(input *GetSecretValueInput) (req 
 // Caching secrets improves speed and reduces your costs. For more information,
 // see Cache secrets for your applications (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieving-secrets.html).
 //
+// To retrieve the previous version of a secret, use VersionStage and specify
+// AWSPREVIOUS. To revert to the previous version of a secret, call UpdateSecretVersionStage
+// (https://docs.aws.amazon.com/cli/latest/reference/secretsmanager/update-secret-version-stage.html).
+//
 // Required permissions: secretsmanager:GetSecretValue. If the secret is encrypted
 // using a customer-managed key instead of the Amazon Web Services managed key
 // aws/secretsmanager, then you also need kms:Decrypt permissions for that key.
@@ -882,6 +910,10 @@ func (c *SecretsManager) GetSecretValueRequest(input *GetSecretValueInput) (req 
 //   - You tried to enable rotation on a secret that doesn't already have a
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
+//
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
 //
 //   - DecryptionFailure
 //     Secrets Manager can't decrypt the protected secret text using the provided
@@ -1310,6 +1342,10 @@ func (c *SecretsManager) PutResourcePolicyRequest(input *PutResourcePolicyInput)
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
 //
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
+//
 //   - PublicPolicyException
 //     The BlockPublicPolicy parameter is set to true, and the resource policy did
 //     not prevent broad access to the secret.
@@ -1434,6 +1470,10 @@ func (c *SecretsManager) PutSecretValueRequest(input *PutSecretValueInput) (req 
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
 //
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
+//
 //   - LimitExceededException
 //     The request failed because it would exceed one of the Secrets Manager quotas.
 //
@@ -1550,6 +1590,10 @@ func (c *SecretsManager) RemoveRegionsFromReplicationRequest(input *RemoveRegion
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
 //
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
+//
 //   - InvalidParameterException
 //     The parameter name or value is invalid.
 //
@@ -1649,6 +1693,10 @@ func (c *SecretsManager) ReplicateSecretToRegionsRequest(input *ReplicateSecretT
 //   - You tried to enable rotation on a secret that doesn't already have a
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
+//
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
 //
 //   - InvalidParameterException
 //     The parameter name or value is invalid.
@@ -1753,6 +1801,10 @@ func (c *SecretsManager) RestoreSecretRequest(input *RestoreSecretInput) (req *r
 //   - You tried to enable rotation on a secret that doesn't already have a
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
+//
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
 //
 //   - InternalServiceError
 //     An error occurred on the server side.
@@ -1891,6 +1943,10 @@ func (c *SecretsManager) RotateSecretRequest(input *RotateSecretInput) (req *req
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
 //
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/secretsmanager-2017-10-17/RotateSecret
 func (c *SecretsManager) RotateSecret(input *RotateSecretInput) (*RotateSecretOutput, error) {
 	req, out := c.RotateSecretRequest(input)
@@ -1988,6 +2044,10 @@ func (c *SecretsManager) StopReplicationToReplicaRequest(input *StopReplicationT
 //   - You tried to enable rotation on a secret that doesn't already have a
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
+//
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
 //
 //   - InvalidParameterException
 //     The parameter name or value is invalid.
@@ -2117,6 +2177,10 @@ func (c *SecretsManager) TagResourceRequest(input *TagResourceInput) (req *reque
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
 //
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
+//
 //   - InvalidParameterException
 //     The parameter name or value is invalid.
 //
@@ -2226,6 +2290,10 @@ func (c *SecretsManager) UntagResourceRequest(input *UntagResourceInput) (req *r
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
 //
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
+//
 //   - InvalidParameterException
 //     The parameter name or value is invalid.
 //
@@ -2319,17 +2387,6 @@ func (c *SecretsManager) UpdateSecretRequest(input *UpdateSecretInput) (req *req
 // an existing version, you can only create a new version. To remove a version,
 // remove all staging labels from it. See UpdateSecretVersionStage.
 //
-// If you don't specify an KMS encryption key, Secrets Manager uses the Amazon
-// Web Services managed key aws/secretsmanager. If this key doesn't already
-// exist in your account, then Secrets Manager creates it for you automatically.
-// All users and roles in the Amazon Web Services account automatically have
-// access to use aws/secretsmanager. Creating aws/secretsmanager can result
-// in a one-time significant delay in returning the result.
-//
-// If the secret is in a different Amazon Web Services account from the credentials
-// calling the API, then you can't use aws/secretsmanager to encrypt the secret,
-// and you must create and use a customer managed key.
-//
 // Required permissions: secretsmanager:UpdateSecret. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
@@ -2359,6 +2416,10 @@ func (c *SecretsManager) UpdateSecretRequest(input *UpdateSecretInput) (req *req
 //   - You tried to enable rotation on a secret that doesn't already have a
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
+//
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
 //
 //   - LimitExceededException
 //     The request failed because it would exceed one of the Secrets Manager quotas.
@@ -2503,6 +2564,10 @@ func (c *SecretsManager) UpdateSecretVersionStageRequest(input *UpdateSecretVers
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
 //
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
+//
 //   - LimitExceededException
 //     The request failed because it would exceed one of the Secrets Manager quotas.
 //
@@ -2623,6 +2688,10 @@ func (c *SecretsManager) ValidateResourcePolicyRequest(input *ValidateResourcePo
 //   - You tried to enable rotation on a secret that doesn't already have a
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
+//
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/secretsmanager-2017-10-17/ValidateResourcePolicy
 func (c *SecretsManager) ValidateResourcePolicy(input *ValidateResourcePolicyInput) (*ValidateResourcePolicyOutput, error) {
@@ -2797,7 +2866,9 @@ type CreateSecretInput struct {
 	ForceOverwriteReplicaSecret *bool `type:"boolean"`
 
 	// The ARN, key ID, or alias of the KMS key that Secrets Manager uses to encrypt
-	// the secret value in the secret.
+	// the secret value in the secret. An alias is always prefixed by alias/, for
+	// example alias/aws/secretsmanager. For more information, see About aliases
+	// (https://docs.aws.amazon.com/kms/latest/developerguide/alias-about.html).
 	//
 	// To use a KMS key in a different account, use the key ARN or the alias ARN.
 	//
@@ -3448,13 +3519,14 @@ type DescribeSecretOutput struct {
 	// The description of the secret.
 	Description *string `type:"string"`
 
-	// The ARN of the KMS key that Secrets Manager uses to encrypt the secret value.
-	// If the secret is encrypted with the Amazon Web Services managed key aws/secretsmanager,
-	// this field is omitted.
+	// The key ID or alias ARN of the KMS key that Secrets Manager uses to encrypt
+	// the secret value. If the secret is encrypted with the Amazon Web Services
+	// managed key aws/secretsmanager, this field is omitted. Secrets created using
+	// the console use an KMS key ID.
 	KmsKeyId *string `type:"string"`
 
-	// The last date that the secret value was retrieved. This value does not include
-	// the time. This field is omitted if the secret has never been retrieved.
+	// The date that the secret was last accessed in the Region. This field is omitted
+	// if the secret has never been retrieved in the Region.
 	LastAccessedDate *time.Time `type:"timestamp"`
 
 	// The last date and time that this secret was modified in any way.
@@ -3467,7 +3539,8 @@ type DescribeSecretOutput struct {
 	// The name of the secret.
 	Name *string `min:"1" type:"string"`
 
-	// The name of the service that created this secret.
+	// The ID of the service that created this secret. For more information, see
+	// Secrets managed by other Amazon Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
 	OwningService *string `min:"1" type:"string"`
 
 	// The Region the secret is in. If a secret is replicated to other Regions,
@@ -4436,6 +4509,10 @@ func (s *InvalidParameterException) RequestID() string {
 //   - You tried to enable rotation on a secret that doesn't already have a
 //     Lambda function ARN configured and you didn't include such an ARN as a
 //     parameter in this call.
+//
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
 type InvalidRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5675,7 +5752,8 @@ type ReplicationStatusType struct {
 	// Can be an ARN, Key ID, or Alias.
 	KmsKeyId *string `type:"string"`
 
-	// The date that you last accessed the secret in the Region.
+	// The date that the secret was last accessed in the Region. This field is omitted
+	// if the secret has never been retrieved in the Region.
 	LastAccessedDate *time.Time `type:"timestamp"`
 
 	// The Region where replication occurs.
@@ -6250,8 +6328,8 @@ type SecretListEntry struct {
 	// this field is omitted.
 	KmsKeyId *string `type:"string"`
 
-	// The last date that this secret was accessed. This value is truncated to midnight
-	// of the date and therefore shows only the date, not the time.
+	// The date that the secret was last accessed in the Region. This field is omitted
+	// if the secret has never been retrieved in the Region.
 	LastAccessedDate *time.Time `type:"timestamp"`
 
 	// The last date and time that this secret was modified in any way.
@@ -6840,9 +6918,19 @@ type UpdateSecretInput struct {
 	Description *string `type:"string"`
 
 	// The ARN, key ID, or alias of the KMS key that Secrets Manager uses to encrypt
-	// new secret versions as well as any existing versions the staging labels AWSCURRENT,
-	// AWSPENDING, or AWSPREVIOUS. For more information about versions and staging
-	// labels, see Concepts: Version (https://docs.aws.amazon.com/secretsmanager/latest/userguide/getting-started.html#term_version).
+	// new secret versions as well as any existing versions with the staging labels
+	// AWSCURRENT, AWSPENDING, or AWSPREVIOUS. For more information about versions
+	// and staging labels, see Concepts: Version (https://docs.aws.amazon.com/secretsmanager/latest/userguide/getting-started.html#term_version).
+	//
+	// A key alias is always prefixed by alias/, for example alias/aws/secretsmanager.
+	// For more information, see About aliases (https://docs.aws.amazon.com/kms/latest/developerguide/alias-about.html).
+	//
+	// If you set this to an empty string, Secrets Manager uses the Amazon Web Services
+	// managed key aws/secretsmanager. If this key doesn't already exist in your
+	// account, then Secrets Manager creates it for you automatically. All users
+	// and roles in the Amazon Web Services account automatically have access to
+	// use aws/secretsmanager. Creating aws/secretsmanager can result in a one-time
+	// significant delay in returning the result.
 	//
 	// You can only use the Amazon Web Services managed key aws/secretsmanager if
 	// you call this operation using credentials from the same Amazon Web Services

@@ -2960,7 +2960,8 @@
         "EnablePerformanceInsights":{"shape":"BooleanOptional"},
         "PerformanceInsightsKMSKeyId":{"shape":"String"},
         "PerformanceInsightsRetentionPeriod":{"shape":"IntegerOptional"},
-        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"}
+        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"},
+        "NetworkType":{"shape":"String"}
       }
     },
     "CreateDBClusterParameterGroupMessage":{
@@ -3451,7 +3452,8 @@
         "PerformanceInsightsEnabled":{"shape":"BooleanOptional"},
         "PerformanceInsightsKMSKeyId":{"shape":"String"},
         "PerformanceInsightsRetentionPeriod":{"shape":"IntegerOptional"},
-        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfigurationInfo"}
+        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfigurationInfo"},
+        "NetworkType":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -6361,7 +6363,8 @@
         "EnablePerformanceInsights":{"shape":"BooleanOptional"},
         "PerformanceInsightsKMSKeyId":{"shape":"String"},
         "PerformanceInsightsRetentionPeriod":{"shape":"IntegerOptional"},
-        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"}
+        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"},
+        "NetworkType":{"shape":"String"}
       }
     },
     "ModifyDBClusterParameterGroupMessage":{
@@ -7450,7 +7453,8 @@
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
         "Domain":{"shape":"String"},
         "DomainIAMRoleName":{"shape":"String"},
-        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"}
+        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"},
+        "NetworkType":{"shape":"String"}
       }
     },
     "RestoreDBClusterFromS3Result":{
@@ -7493,7 +7497,8 @@
         "StorageType":{"shape":"String"},
         "Iops":{"shape":"IntegerOptional"},
         "PubliclyAccessible":{"shape":"BooleanOptional"},
-        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"}
+        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"},
+        "NetworkType":{"shape":"String"}
       }
     },
     "RestoreDBClusterFromSnapshotResult":{
@@ -7534,7 +7539,8 @@
         "StorageType":{"shape":"String"},
         "PubliclyAccessible":{"shape":"BooleanOptional"},
         "Iops":{"shape":"IntegerOptional"},
-        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"}
+        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"},
+        "NetworkType":{"shape":"String"}
       }
     },
     "RestoreDBClusterToPointInTimeResult":{

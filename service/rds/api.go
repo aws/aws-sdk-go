@@ -525,6 +525,14 @@ func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityG
 //
 // For an overview of CIDR ranges, go to the Wikipedia Tutorial (http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 //
+// EC2-Classic was retired on August 15, 2022. If you haven't migrated from
+// EC2-Classic to a VPC, we recommend that you migrate as soon as possible.
+// For more information, see Migrate from EC2-Classic to a VPC (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html)
+// in the Amazon EC2 User Guide, the blog EC2-Classic Networking is Retiring
+// – Here’s How to Prepare (http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/),
+// and Moving a DB instance not in a VPC into a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Non-VPC2VPC.html)
+// in the Amazon RDS User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2477,6 +2485,14 @@ func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupInput) (r
 // A DB security group controls access to EC2-Classic DB instances that are
 // not in a VPC.
 //
+// EC2-Classic was retired on August 15, 2022. If you haven't migrated from
+// EC2-Classic to a VPC, we recommend that you migrate as soon as possible.
+// For more information, see Migrate from EC2-Classic to a VPC (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html)
+// in the Amazon EC2 User Guide, the blog EC2-Classic Networking is Retiring
+// – Here’s How to Prepare (http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/),
+// and Moving a DB instance not in a VPC into a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Non-VPC2VPC.html)
+// in the Amazon RDS User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2768,8 +2784,13 @@ func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput
 // you are notified of events generated from all RDS sources belonging to your
 // customer account.
 //
-// RDS event notification is only available for unencrypted SNS topics. If you
-// specify an encrypted SNS topic, event notifications aren't sent for the topic.
+// For more information about subscribing to an event for RDS DB engines, see
+// Subscribing to Amazon RDS event notification (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.Subscribing.html)
+// in the Amazon RDS User Guide.
+//
+// For more information about subscribing to an event for Aurora DB engines,
+// see Subscribing to Amazon RDS event notification (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Events.Subscribing.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3989,6 +4010,14 @@ func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupInput) (r
 // Deletes a DB security group.
 //
 // The specified DB security group must not be associated with any DB instances.
+//
+// EC2-Classic was retired on August 15, 2022. If you haven't migrated from
+// EC2-Classic to a VPC, we recommend that you migrate as soon as possible.
+// For more information, see Migrate from EC2-Classic to a VPC (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html)
+// in the Amazon EC2 User Guide, the blog EC2-Classic Networking is Retiring
+// – Here’s How to Prepare (http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/),
+// and Moving a DB instance not in a VPC into a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Non-VPC2VPC.html)
+// in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7150,6 +7179,14 @@ func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInp
 // Returns a list of DBSecurityGroup descriptions. If a DBSecurityGroupName
 // is specified, the list will contain only the descriptions of the specified
 // DB security group.
+//
+// EC2-Classic was retired on August 15, 2022. If you haven't migrated from
+// EC2-Classic to a VPC, we recommend that you migrate as soon as possible.
+// For more information, see Migrate from EC2-Classic to a VPC (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html)
+// in the Amazon EC2 User Guide, the blog EC2-Classic Networking is Retiring
+// – Here’s How to Prepare (http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/),
+// and Moving a DB instance not in a VPC into a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Non-VPC2VPC.html)
+// in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14027,6 +14064,14 @@ func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIn
 // CIDRIP, EC2SecurityGroupId for VPC, or (EC2SecurityGroupOwnerId and either
 // EC2SecurityGroupName or EC2SecurityGroupId).
 //
+// EC2-Classic was retired on August 15, 2022. If you haven't migrated from
+// EC2-Classic to a VPC, we recommend that you migrate as soon as possible.
+// For more information, see Migrate from EC2-Classic to a VPC (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html)
+// in the Amazon EC2 User Guide, the blog EC2-Classic Networking is Retiring
+// – Here’s How to Prepare (http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/),
+// and Moving a DB instance not in a VPC into a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Non-VPC2VPC.html)
+// in the Amazon RDS User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -18771,6 +18816,24 @@ type CreateDBClusterInput struct {
 	// Valid for: Multi-AZ DB clusters only
 	MonitoringRoleArn *string `type:"string"`
 
+	// The network type of the DB cluster.
+	//
+	// Valid values:
+	//
+	//    * IPV4
+	//
+	//    * DUAL
+	//
+	// The network type is determined by the DBSubnetGroup specified for the DB
+	// cluster. A DBSubnetGroup can support only the IPv4 protocol or the IPv4 and
+	// the IPv6 protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
+	NetworkType *string `type:"string"`
+
 	// A value that indicates that the DB cluster should be associated with the
 	// specified option group.
 	//
@@ -19220,6 +19283,12 @@ func (s *CreateDBClusterInput) SetMonitoringInterval(v int64) *CreateDBClusterIn
 // SetMonitoringRoleArn sets the MonitoringRoleArn field's value.
 func (s *CreateDBClusterInput) SetMonitoringRoleArn(v string) *CreateDBClusterInput {
 	s.MonitoringRoleArn = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *CreateDBClusterInput) SetNetworkType(v string) *CreateDBClusterInput {
+	s.NetworkType = &v
 	return s
 }
 
@@ -23342,6 +23411,24 @@ type DBCluster struct {
 	// Specifies whether the DB cluster has instances in multiple Availability Zones.
 	MultiAZ *bool `type:"boolean"`
 
+	// The network type of the DB instance.
+	//
+	// Valid values:
+	//
+	//    * IPV4
+	//
+	//    * DUAL
+	//
+	// The network type is determined by the DBSubnetGroup specified for the DB
+	// cluster. A DBSubnetGroup can support only the IPv4 protocol or the IPv4 and
+	// the IPv6 protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// This setting is only for Aurora DB clusters.
+	NetworkType *string `type:"string"`
+
 	// A value that specifies that changes to the DB cluster are pending. This element
 	// is only included when changes are pending. Specific changes are identified
 	// by subelements.
@@ -23777,6 +23864,12 @@ func (s *DBCluster) SetMonitoringRoleArn(v string) *DBCluster {
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *DBCluster) SetMultiAZ(v bool) *DBCluster {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *DBCluster) SetNetworkType(v string) *DBCluster {
+	s.NetworkType = &v
 	return s
 }
 
@@ -38234,6 +38327,24 @@ type ModifyDBClusterInput struct {
 	// Valid for: Multi-AZ DB clusters only
 	MonitoringRoleArn *string `type:"string"`
 
+	// The network type of the DB cluster.
+	//
+	// Valid values:
+	//
+	//    * IPV4
+	//
+	//    * DUAL
+	//
+	// The network type is determined by the DBSubnetGroup specified for the DB
+	// cluster. A DBSubnetGroup can support only the IPv4 protocol or the IPv4 and
+	// the IPv6 protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
+	NetworkType *string `type:"string"`
+
 	// The new DB cluster identifier for the DB cluster when renaming a DB cluster.
 	// This value is stored as a lowercase string.
 	//
@@ -38544,6 +38655,12 @@ func (s *ModifyDBClusterInput) SetMonitoringInterval(v int64) *ModifyDBClusterIn
 // SetMonitoringRoleArn sets the MonitoringRoleArn field's value.
 func (s *ModifyDBClusterInput) SetMonitoringRoleArn(v string) *ModifyDBClusterInput {
 	s.MonitoringRoleArn = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *ModifyDBClusterInput) SetNetworkType(v string) *ModifyDBClusterInput {
+	s.NetworkType = &v
 	return s
 }
 
@@ -44664,6 +44781,22 @@ type RestoreDBClusterFromS3Input struct {
 	// MasterUsername is a required field
 	MasterUsername *string `type:"string" required:"true"`
 
+	// The network type of the DB cluster.
+	//
+	// Valid values:
+	//
+	//    * IPV4
+	//
+	//    * DUAL
+	//
+	// The network type is determined by the DBSubnetGroup specified for the DB
+	// cluster. A DBSubnetGroup can support only the IPv4 protocol or the IPv4 and
+	// the IPv6 protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon Aurora User Guide.
+	NetworkType *string `type:"string"`
+
 	// A value that indicates that the restored DB cluster should be associated
 	// with the specified option group.
 	//
@@ -44928,6 +45061,12 @@ func (s *RestoreDBClusterFromS3Input) SetMasterUserPassword(v string) *RestoreDB
 // SetMasterUsername sets the MasterUsername field's value.
 func (s *RestoreDBClusterFromS3Input) SetMasterUsername(v string) *RestoreDBClusterFromS3Input {
 	s.MasterUsername = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *RestoreDBClusterFromS3Input) SetNetworkType(v string) *RestoreDBClusterFromS3Input {
+	s.NetworkType = &v
 	return s
 }
 
@@ -45314,6 +45453,24 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	KmsKeyId *string `type:"string"`
 
+	// The network type of the DB cluster.
+	//
+	// Valid values:
+	//
+	//    * IPV4
+	//
+	//    * DUAL
+	//
+	// The network type is determined by the DBSubnetGroup specified for the DB
+	// cluster. A DBSubnetGroup can support only the IPv4 protocol or the IPv4 and
+	// the IPv6 protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
+	NetworkType *string `type:"string"`
+
 	// The name of the option group to use for the restored DB cluster.
 	//
 	// DB clusters are associated with a default option group that can't be modified.
@@ -45556,6 +45713,12 @@ func (s *RestoreDBClusterFromSnapshotInput) SetIops(v int64) *RestoreDBClusterFr
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *RestoreDBClusterFromSnapshotInput) SetKmsKeyId(v string) *RestoreDBClusterFromSnapshotInput {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetNetworkType(v string) *RestoreDBClusterFromSnapshotInput {
+	s.NetworkType = &v
 	return s
 }
 
@@ -45850,6 +46013,24 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	KmsKeyId *string `type:"string"`
 
+	// The network type of the DB cluster.
+	//
+	// Valid values:
+	//
+	//    * IPV4
+	//
+	//    * DUAL
+	//
+	// The network type is determined by the DBSubnetGroup specified for the DB
+	// cluster. A DBSubnetGroup can support only the IPv4 protocol or the IPv4 and
+	// the IPv6 protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
+	NetworkType *string `type:"string"`
+
 	// The name of the option group for the new DB cluster.
 	//
 	// DB clusters are associated with a default option group that can't be modified.
@@ -46106,6 +46287,12 @@ func (s *RestoreDBClusterToPointInTimeInput) SetIops(v int64) *RestoreDBClusterT
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *RestoreDBClusterToPointInTimeInput) SetKmsKeyId(v string) *RestoreDBClusterToPointInTimeInput {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetNetworkType(v string) *RestoreDBClusterToPointInTimeInput {
+	s.NetworkType = &v
 	return s
 }
 

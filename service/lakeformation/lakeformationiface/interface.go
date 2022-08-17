@@ -64,6 +64,10 @@ type LakeFormationAPI interface {
 	AddLFTagsToResourceWithContext(aws.Context, *lakeformation.AddLFTagsToResourceInput, ...request.Option) (*lakeformation.AddLFTagsToResourceOutput, error)
 	AddLFTagsToResourceRequest(*lakeformation.AddLFTagsToResourceInput) (*request.Request, *lakeformation.AddLFTagsToResourceOutput)
 
+	AssumeDecoratedRoleWithSAML(*lakeformation.AssumeDecoratedRoleWithSAMLInput) (*lakeformation.AssumeDecoratedRoleWithSAMLOutput, error)
+	AssumeDecoratedRoleWithSAMLWithContext(aws.Context, *lakeformation.AssumeDecoratedRoleWithSAMLInput, ...request.Option) (*lakeformation.AssumeDecoratedRoleWithSAMLOutput, error)
+	AssumeDecoratedRoleWithSAMLRequest(*lakeformation.AssumeDecoratedRoleWithSAMLInput) (*request.Request, *lakeformation.AssumeDecoratedRoleWithSAMLOutput)
+
 	BatchGrantPermissions(*lakeformation.BatchGrantPermissionsInput) (*lakeformation.BatchGrantPermissionsOutput, error)
 	BatchGrantPermissionsWithContext(aws.Context, *lakeformation.BatchGrantPermissionsInput, ...request.Option) (*lakeformation.BatchGrantPermissionsOutput, error)
 	BatchGrantPermissionsRequest(*lakeformation.BatchGrantPermissionsInput) (*request.Request, *lakeformation.BatchGrantPermissionsOutput)
