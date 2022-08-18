@@ -345,3 +345,53 @@ func (s *QueueNameExists) StatusCode() int {
 func (s *QueueNameExists) RequestID() string {
 	return s.RespMetadata.RequestID
 }
+
+type UnmodelledException struct {
+	_ struct{} `type:"structure"`
+
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	code string
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &UnmodelledException{
+		RespMetadata: v,
+		code:         "AccessDenied",
+	}
+}
+func newErrorBackOffException(v protocol.ResponseMetadata) error {
+	return &UnmodelledException{
+		RespMetadata: v,
+		code:         "BackOff",
+	}
+}
+
+func (s *UnmodelledException) Code() string {
+	return s.code
+}
+
+func (s *UnmodelledException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+func (s *UnmodelledException) OrigErr() error {
+	return nil
+}
+
+func (s *UnmodelledException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+func (s *UnmodelledException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+func (s *UnmodelledException) RequestID() string {
+	return s.RespMetadata.RequestID
+}

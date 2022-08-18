@@ -25,6 +25,8 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AWS.SimpleQueueService.QueueDeletedRecently": newErrorQueueDeletedRecently,
-	"QueueNameExists": newErrorQueueNameExists,
+	"QueueDeletedRecently":  newErrorQueueDeletedRecently,
+	"QueueNameExists":       newErrorQueueNameExists,
+	"AccessDeniedException": newErrorAccessDeniedException,
+	"BackOffException":      newErrorBackOffException,
 }

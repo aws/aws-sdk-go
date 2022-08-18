@@ -332,6 +332,58 @@ var tplAPI = template.Must(template.New("api").Parse(`
 {{- end }}
 `))
 
+var tplUnmodelledAwsQueryCompatible = template.Must(
+	template.New("tplUnmodelledAwsQueryCompatible").Parse(`
+	{{- if $.AwsQueryCompatible }}
+		type UnmodelledException struct {
+			_ struct{}` + "`type:\"structure\"`" + `
+
+			RespMetadata protocol.ResponseMetadata` + "`json:\"-\" xml:\"-\"`" + `
+
+			Message_ *string` +  "`locationName:\"message\" type:\"string\"`" + `
+
+			code string
+		}
+	{{- end }}
+	{{- range $errorCode, $mapping := $.AwsQueryCompatible }}
+		{{- if $.IsUnmodelledErrorShape $errorCode $.ShapeListErrors }}
+			func newError{{ $errorCode }}(v protocol.ResponseMetadata) error {
+				return &UnmodelledException{
+					RespMetadata: v,
+					code: "{{ $mapping.Code }}",
+				}
+			}
+		{{- end }}
+{{- end}}
+
+	func (s *UnmodelledException) Code() string {
+		return s.code
+	}
+
+	func (s *UnmodelledException) Message() string {
+		if s.Message_ != nil {
+			return *s.Message_
+		}
+		return ""
+	}
+
+	func (s *UnmodelledException) OrigErr() error {
+		return nil
+	}
+
+	func (s *UnmodelledException) Error() string {
+		return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	}
+
+	func (s *UnmodelledException) StatusCode() int {
+		return s.RespMetadata.StatusCode
+	}
+
+	func (s *UnmodelledException) RequestID() string {
+		return s.RespMetadata.RequestID
+	}
+`))
+
 func (a *API) AwsQueryCompatibleErrorCode(errorCode string) string {
 	mapping, ok := a.AwsQueryCompatible[errorCode]
 	if !ok {
@@ -379,6 +431,11 @@ func (a *API) APIGoCode() string {
 
 	var buf bytes.Buffer
 	err := tplAPI.Execute(&buf, a)
+	if err != nil {
+		panic(err)
+	}
+
+	err = tplUnmodelledAwsQueryCompatible.Execute(&buf, a)
 	if err != nil {
 		panic(err)
 	}
@@ -949,11 +1006,29 @@ const (
 
 	var exceptionFromCode = map[string]func(protocol.ResponseMetadata)error {
 		{{- range $_, $s := $.ShapeListErrors }}
+			{{- if index $.AwsQueryCompatible $s.ShapeName }}
+			"{{ $s.ShapeName }}": newError{{ $s.ShapeName }},
+			{{- else }}
 			"{{ $s.ErrorName }}": newError{{ $s.ShapeName }},
+			{{- end}}
 		{{- end }}
+		{{- range $errorCode, $_ := $.AwsQueryCompatible }}
+			{{- if $.IsUnmodelledErrorShape $errorCode $.ShapeListErrors }}
+				"{{ $errorCode }}": newError{{ $errorCode }},
+			{{- end }}
+		{{- end}}
 	}
 {{- end }}
 `))
+
+func (a *API) IsUnmodelledErrorShape(errorCode string, shapes []*Shape) bool {
+	for _, s := range shapes {
+					if s.ShapeName == errorCode {
+									return false
+					}
+	}
+	return true
+}
 
 // APIErrorsGoCode returns the Go code for the errors.go file.
 func (a *API) APIErrorsGoCode() string {

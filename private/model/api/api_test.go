@@ -95,24 +95,6 @@ func TestAPI_Setup_documentShapes(t *testing.T) {
 }
 
 func TestAPI_ErrorCode_WhenErrorInMapping(t *testing.T) {
-	expected := "AwsQuery.ErrorCode"
-	serviceError := "ServiceError"
-	api := API {
-		Metadata: Metadata{
-			ServiceFullName: "SQS",
-		},
-		AwsQueryCompatible: map[string]AwsQueryCompatibleError{
-			serviceError: {
-				Code: expected,
-			},
-		},
-	}
-	actual := api.AwsQueryCompatibleErrorCode(serviceError)
-	assertErrorCode(expected, actual, t)
-}
-
-func TestAPI_ErrorCode_WhenErrorNotInMapping(t *testing.T) {
-	expected := "SomeError"
 	api := API {
 		Metadata: Metadata{
 			ServiceFullName: "SQS",
@@ -123,24 +105,36 @@ func TestAPI_ErrorCode_WhenErrorNotInMapping(t *testing.T) {
 			},
 		},
 	}
-	actual := api.AwsQueryCompatibleErrorCode(expected)
-	assertErrorCode(expected, actual, t)
+	if e, a := "AwsQuery.ErrorCode", api.AwsQueryCompatibleErrorCode("ServiceError"); e != a {
+		t.Errorf("expect %v code, got %v", e, a)
+	}
+}
+
+func TestAPI_ErrorCode_WhenErrorNotInMapping(t *testing.T) {
+	api := API {
+		Metadata: Metadata{
+			ServiceFullName: "SQS",
+		},
+		AwsQueryCompatible: map[string]AwsQueryCompatibleError{
+			"ServiceError": {
+				Code: "AwsQuery.ErrorCode",
+			},
+		},
+	}
+	if e, a := "SomeError", api.AwsQueryCompatibleErrorCode("SomeError"); e != a {
+		t.Errorf("expect %v code, got %v", e, a)
+	}
 }
 
 func TestAPI_ErrorCode_WhenNoMappingFound(t *testing.T) {
-	expected := "SomeError"
 	api := API {
 		Metadata: Metadata{
 			ServiceFullName: "SQS",
 		},
 	}
-	actual := api.AwsQueryCompatibleErrorCode(expected)
-	assertErrorCode(expected, actual, t)
-}
-
-func assertErrorCode(expected string, actual string, t *testing.T) {
-	if actual != expected {
-		t.Errorf("Expected %s, got %s", expected, actual)
+	if e, a := "SomeError", api.AwsQueryCompatibleErrorCode("SomeError"); e != a {
+		t.Errorf("expect %v code, got %v", e, a)
 	}
 }
+
 

@@ -69,6 +69,8 @@
  "String":{"type":"string"}
  },
  "awsQueryCompatible": {
-  "QueueDeletedRecently": {"code": "AWS.SimpleQueueService.QueueDeletedRecently" }
+  "QueueDeletedRecently": {"code": "AWS.SimpleQueueService.QueueDeletedRecently" },
+  "AccessDeniedException": { "code": "AccessDenied" },
+  "BackOffException": { "code": "BackOff" }
  }
 }
