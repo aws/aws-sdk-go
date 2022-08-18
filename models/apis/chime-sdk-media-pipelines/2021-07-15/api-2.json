@@ -30,6 +30,44 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "CreateMediaConcatenationPipeline":{
+      "name":"CreateMediaConcatenationPipeline",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sdk-media-concatenation-pipelines",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateMediaConcatenationPipelineRequest"},
+      "output":{"shape":"CreateMediaConcatenationPipelineResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "CreateMediaLiveConnectorPipeline":{
+      "name":"CreateMediaLiveConnectorPipeline",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sdk-media-live-connector-pipelines",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateMediaLiveConnectorPipelineRequest"},
+      "output":{"shape":"CreateMediaLiveConnectorPipelineResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "DeleteMediaCapturePipeline":{
       "name":"DeleteMediaCapturePipeline",
       "http":{
@@ -38,6 +76,24 @@
         "responseCode":204
       },
       "input":{"shape":"DeleteMediaCapturePipelineRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DeleteMediaPipeline":{
+      "name":"DeleteMediaPipeline",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/sdk-media-pipelines/{mediaPipelineId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteMediaPipelineRequest"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
@@ -67,6 +123,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "GetMediaPipeline":{
+      "name":"GetMediaPipeline",
+      "http":{
+        "method":"GET",
+        "requestUri":"/sdk-media-pipelines/{mediaPipelineId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetMediaPipelineRequest"},
+      "output":{"shape":"GetMediaPipelineResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "ListMediaCapturePipelines":{
       "name":"ListMediaCapturePipelines",
       "http":{
@@ -76,6 +151,25 @@
       },
       "input":{"shape":"ListMediaCapturePipelinesRequest"},
       "output":{"shape":"ListMediaCapturePipelinesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "ListMediaPipelines":{
+      "name":"ListMediaPipelines",
+      "http":{
+        "method":"GET",
+        "requestUri":"/sdk-media-pipelines",
+        "responseCode":200
+      },
+      "input":{"shape":"ListMediaPipelinesRequest"},
+      "output":{"shape":"ListMediaPipelinesResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
@@ -158,6 +252,34 @@
       "pattern":"^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$",
       "sensitive":true
     },
+    "ArtifactsConcatenationConfiguration":{
+      "type":"structure",
+      "required":[
+        "Audio",
+        "Video",
+        "Content",
+        "DataChannel",
+        "TranscriptionMessages",
+        "MeetingEvents",
+        "CompositedVideo"
+      ],
+      "members":{
+        "Audio":{"shape":"AudioConcatenationConfiguration"},
+        "Video":{"shape":"VideoConcatenationConfiguration"},
+        "Content":{"shape":"ContentConcatenationConfiguration"},
+        "DataChannel":{"shape":"DataChannelConcatenationConfiguration"},
+        "TranscriptionMessages":{"shape":"TranscriptionMessagesConcatenationConfiguration"},
+        "MeetingEvents":{"shape":"MeetingEventsConcatenationConfiguration"},
+        "CompositedVideo":{"shape":"CompositedVideoConcatenationConfiguration"}
+      }
+    },
+    "ArtifactsConcatenationState":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
     "ArtifactsConfiguration":{
       "type":"structure",
       "required":[
@@ -168,7 +290,8 @@
       "members":{
         "Audio":{"shape":"AudioArtifactsConfiguration"},
         "Video":{"shape":"VideoArtifactsConfiguration"},
-        "Content":{"shape":"ContentArtifactsConfiguration"}
+        "Content":{"shape":"ContentArtifactsConfiguration"},
+        "CompositedVideo":{"shape":"CompositedVideoArtifactsConfiguration"}
       }
     },
     "ArtifactsState":{
@@ -183,6 +306,10 @@
       "member":{"shape":"GuidString"},
       "min":1
     },
+    "AudioArtifactsConcatenationState":{
+      "type":"string",
+      "enum":["Enabled"]
+    },
     "AudioArtifactsConfiguration":{
       "type":"structure",
       "required":["MuxType"],
@@ -190,12 +317,31 @@
         "MuxType":{"shape":"AudioMuxType"}
       }
     },
+    "AudioChannelsOption":{
+      "type":"string",
+      "enum":[
+        "Stereo",
+        "Mono"
+      ]
+    },
+    "AudioConcatenationConfiguration":{
+      "type":"structure",
+      "required":["State"],
+      "members":{
+        "State":{"shape":"AudioArtifactsConcatenationState"}
+      }
+    },
     "AudioMuxType":{
       "type":"string",
       "enum":[
         "AudioOnly",
-        "AudioWithActiveSpeakerVideo"
+        "AudioWithActiveSpeakerVideo",
+        "AudioWithCompositedVideo"
       ]
+    },
+    "AudioSampleRateOption":{
+      "type":"string",
+      "pattern":"44100|48000"
     },
     "BadRequestException":{
       "type":"structure",
@@ -207,11 +353,31 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "ChimeSdkMeetingConcatenationConfiguration":{
+      "type":"structure",
+      "required":["ArtifactsConfiguration"],
+      "members":{
+        "ArtifactsConfiguration":{"shape":"ArtifactsConcatenationConfiguration"}
+      }
+    },
     "ChimeSdkMeetingConfiguration":{
       "type":"structure",
       "members":{
         "SourceConfiguration":{"shape":"SourceConfiguration"},
         "ArtifactsConfiguration":{"shape":"ArtifactsConfiguration"}
+      }
+    },
+    "ChimeSdkMeetingLiveConnectorConfiguration":{
+      "type":"structure",
+      "required":[
+        "Arn",
+        "MuxType"
+      ],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "MuxType":{"shape":"LiveConnectorMuxType"},
+        "CompositedVideo":{"shape":"CompositedVideoArtifactsConfiguration"},
+        "SourceConfiguration":{"shape":"SourceConfiguration"}
       }
     },
     "ClientRequestToken":{
@@ -221,6 +387,64 @@
       "pattern":"[-_a-zA-Z0-9]*",
       "sensitive":true
     },
+    "CompositedVideoArtifactsConfiguration":{
+      "type":"structure",
+      "required":["GridViewConfiguration"],
+      "members":{
+        "Layout":{"shape":"LayoutOption"},
+        "Resolution":{"shape":"ResolutionOption"},
+        "GridViewConfiguration":{"shape":"GridViewConfiguration"}
+      }
+    },
+    "CompositedVideoConcatenationConfiguration":{
+      "type":"structure",
+      "required":["State"],
+      "members":{
+        "State":{"shape":"ArtifactsConcatenationState"}
+      }
+    },
+    "ConcatenationSink":{
+      "type":"structure",
+      "required":[
+        "Type",
+        "S3BucketSinkConfiguration"
+      ],
+      "members":{
+        "Type":{"shape":"ConcatenationSinkType"},
+        "S3BucketSinkConfiguration":{"shape":"S3BucketSinkConfiguration"}
+      }
+    },
+    "ConcatenationSinkList":{
+      "type":"list",
+      "member":{"shape":"ConcatenationSink"},
+      "max":1,
+      "min":1
+    },
+    "ConcatenationSinkType":{
+      "type":"string",
+      "enum":["S3Bucket"]
+    },
+    "ConcatenationSource":{
+      "type":"structure",
+      "required":[
+        "Type",
+        "MediaCapturePipelineSourceConfiguration"
+      ],
+      "members":{
+        "Type":{"shape":"ConcatenationSourceType"},
+        "MediaCapturePipelineSourceConfiguration":{"shape":"MediaCapturePipelineSourceConfiguration"}
+      }
+    },
+    "ConcatenationSourceList":{
+      "type":"list",
+      "member":{"shape":"ConcatenationSource"},
+      "max":1,
+      "min":1
+    },
+    "ConcatenationSourceType":{
+      "type":"string",
+      "enum":["MediaCapturePipeline"]
+    },
     "ContentArtifactsConfiguration":{
       "type":"structure",
       "required":["State"],
@@ -229,9 +453,24 @@
         "MuxType":{"shape":"ContentMuxType"}
       }
     },
+    "ContentConcatenationConfiguration":{
+      "type":"structure",
+      "required":["State"],
+      "members":{
+        "State":{"shape":"ArtifactsConcatenationState"}
+      }
+    },
     "ContentMuxType":{
       "type":"string",
       "enum":["ContentOnly"]
+    },
+    "ContentShareLayoutOption":{
+      "type":"string",
+      "enum":[
+        "PresenterOnly",
+        "Horizontal",
+        "Vertical"
+      ]
     },
     "CreateMediaCapturePipelineRequest":{
       "type":"structure",
@@ -260,7 +499,69 @@
         "MediaCapturePipeline":{"shape":"MediaCapturePipeline"}
       }
     },
+    "CreateMediaConcatenationPipelineRequest":{
+      "type":"structure",
+      "required":[
+        "Sources",
+        "Sinks"
+      ],
+      "members":{
+        "Sources":{"shape":"ConcatenationSourceList"},
+        "Sinks":{"shape":"ConcatenationSinkList"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateMediaConcatenationPipelineResponse":{
+      "type":"structure",
+      "members":{
+        "MediaConcatenationPipeline":{"shape":"MediaConcatenationPipeline"}
+      }
+    },
+    "CreateMediaLiveConnectorPipelineRequest":{
+      "type":"structure",
+      "required":[
+        "Sources",
+        "Sinks"
+      ],
+      "members":{
+        "Sources":{"shape":"LiveConnectorSourceList"},
+        "Sinks":{"shape":"LiveConnectorSinkList"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateMediaLiveConnectorPipelineResponse":{
+      "type":"structure",
+      "members":{
+        "MediaLiveConnectorPipeline":{"shape":"MediaLiveConnectorPipeline"}
+      }
+    },
+    "DataChannelConcatenationConfiguration":{
+      "type":"structure",
+      "required":["State"],
+      "members":{
+        "State":{"shape":"ArtifactsConcatenationState"}
+      }
+    },
     "DeleteMediaCapturePipelineRequest":{
+      "type":"structure",
+      "required":["MediaPipelineId"],
+      "members":{
+        "MediaPipelineId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"mediaPipelineId"
+        }
+      }
+    },
+    "DeleteMediaPipelineRequest":{
       "type":"structure",
       "required":["MediaPipelineId"],
       "members":{
@@ -321,6 +622,31 @@
         "MediaCapturePipeline":{"shape":"MediaCapturePipeline"}
       }
     },
+    "GetMediaPipelineRequest":{
+      "type":"structure",
+      "required":["MediaPipelineId"],
+      "members":{
+        "MediaPipelineId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"mediaPipelineId"
+        }
+      }
+    },
+    "GetMediaPipelineResponse":{
+      "type":"structure",
+      "members":{
+        "MediaPipeline":{"shape":"MediaPipeline"}
+      }
+    },
+    "GridViewConfiguration":{
+      "type":"structure",
+      "required":["ContentShareLayout"],
+      "members":{
+        "ContentShareLayout":{"shape":"ContentShareLayoutOption"},
+        "PresenterOnlyConfiguration":{"shape":"PresenterOnlyConfiguration"}
+      }
+    },
     "GuidString":{
       "type":"string",
       "max":36,
@@ -330,6 +656,10 @@
     "Iso8601Timestamp":{
       "type":"timestamp",
       "timestampFormat":"iso8601"
+    },
+    "LayoutOption":{
+      "type":"string",
+      "enum":["GridView"]
     },
     "ListMediaCapturePipelinesRequest":{
       "type":"structure",
@@ -353,6 +683,28 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListMediaPipelinesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"ResultMax",
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListMediaPipelinesResponse":{
+      "type":"structure",
+      "members":{
+        "MediaPipelines":{"shape":"MediaPipelineList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["ResourceARN"],
@@ -370,6 +722,64 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "LiveConnectorMuxType":{
+      "type":"string",
+      "enum":[
+        "AudioWithCompositedVideo",
+        "AudioWithActiveSpeakerVideo"
+      ]
+    },
+    "LiveConnectorRTMPConfiguration":{
+      "type":"structure",
+      "required":["Url"],
+      "members":{
+        "Url":{"shape":"SensitiveString"},
+        "AudioChannels":{"shape":"AudioChannelsOption"},
+        "AudioSampleRate":{"shape":"AudioSampleRateOption"}
+      }
+    },
+    "LiveConnectorSinkConfiguration":{
+      "type":"structure",
+      "required":[
+        "SinkType",
+        "RTMPConfiguration"
+      ],
+      "members":{
+        "SinkType":{"shape":"LiveConnectorSinkType"},
+        "RTMPConfiguration":{"shape":"LiveConnectorRTMPConfiguration"}
+      }
+    },
+    "LiveConnectorSinkList":{
+      "type":"list",
+      "member":{"shape":"LiveConnectorSinkConfiguration"},
+      "max":1,
+      "min":1
+    },
+    "LiveConnectorSinkType":{
+      "type":"string",
+      "enum":["RTMP"]
+    },
+    "LiveConnectorSourceConfiguration":{
+      "type":"structure",
+      "required":[
+        "SourceType",
+        "ChimeSdkMeetingLiveConnectorConfiguration"
+      ],
+      "members":{
+        "SourceType":{"shape":"LiveConnectorSourceType"},
+        "ChimeSdkMeetingLiveConnectorConfiguration":{"shape":"ChimeSdkMeetingLiveConnectorConfiguration"}
+      }
+    },
+    "LiveConnectorSourceList":{
+      "type":"list",
+      "member":{"shape":"LiveConnectorSourceConfiguration"},
+      "max":1,
+      "min":1
+    },
+    "LiveConnectorSourceType":{
+      "type":"string",
+      "enum":["ChimeSdkMeeting"]
+    },
     "MediaCapturePipeline":{
       "type":"structure",
       "members":{
@@ -385,6 +795,17 @@
         "ChimeSdkMeetingConfiguration":{"shape":"ChimeSdkMeetingConfiguration"}
       }
     },
+    "MediaCapturePipelineSourceConfiguration":{
+      "type":"structure",
+      "required":[
+        "MediaPipelineArn",
+        "ChimeSdkMeetingConfiguration"
+      ],
+      "members":{
+        "MediaPipelineArn":{"shape":"Arn"},
+        "ChimeSdkMeetingConfiguration":{"shape":"ChimeSdkMeetingConcatenationConfiguration"}
+      }
+    },
     "MediaCapturePipelineSummary":{
       "type":"structure",
       "members":{
@@ -395,6 +816,42 @@
     "MediaCapturePipelineSummaryList":{
       "type":"list",
       "member":{"shape":"MediaCapturePipelineSummary"}
+    },
+    "MediaConcatenationPipeline":{
+      "type":"structure",
+      "members":{
+        "MediaPipelineId":{"shape":"GuidString"},
+        "MediaPipelineArn":{"shape":"AmazonResourceName"},
+        "Sources":{"shape":"ConcatenationSourceList"},
+        "Sinks":{"shape":"ConcatenationSinkList"},
+        "Status":{"shape":"MediaPipelineStatus"},
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
+    "MediaLiveConnectorPipeline":{
+      "type":"structure",
+      "members":{
+        "Sources":{"shape":"LiveConnectorSourceList"},
+        "Sinks":{"shape":"LiveConnectorSinkList"},
+        "MediaPipelineId":{"shape":"GuidString"},
+        "MediaPipelineArn":{"shape":"AmazonResourceName"},
+        "Status":{"shape":"MediaPipelineStatus"},
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
+    "MediaPipeline":{
+      "type":"structure",
+      "members":{
+        "MediaCapturePipeline":{"shape":"MediaCapturePipeline"},
+        "MediaLiveConnectorPipeline":{"shape":"MediaLiveConnectorPipeline"},
+        "MediaConcatenationPipeline":{"shape":"MediaConcatenationPipeline"}
+      }
+    },
+    "MediaPipelineList":{
+      "type":"list",
+      "member":{"shape":"MediaPipelineSummary"}
     },
     "MediaPipelineSinkType":{
       "type":"string",
@@ -414,6 +871,20 @@
         "Stopped"
       ]
     },
+    "MediaPipelineSummary":{
+      "type":"structure",
+      "members":{
+        "MediaPipelineId":{"shape":"GuidString"},
+        "MediaPipelineArn":{"shape":"AmazonResourceName"}
+      }
+    },
+    "MeetingEventsConcatenationConfiguration":{
+      "type":"structure",
+      "required":["State"],
+      "members":{
+        "State":{"shape":"ArtifactsConcatenationState"}
+      }
+    },
     "NotFoundException":{
       "type":"structure",
       "members":{
@@ -423,6 +894,28 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "PresenterOnlyConfiguration":{
+      "type":"structure",
+      "members":{
+        "PresenterPosition":{"shape":"PresenterPosition"}
+      }
+    },
+    "PresenterPosition":{
+      "type":"string",
+      "enum":[
+        "TopLeft",
+        "TopRight",
+        "BottomLeft",
+        "BottomRight"
+      ]
+    },
+    "ResolutionOption":{
+      "type":"string",
+      "enum":[
+        "HD",
+        "FHD"
+      ]
     },
     "ResourceLimitExceededException":{
       "type":"structure",
@@ -439,12 +932,25 @@
       "max":100,
       "min":1
     },
+    "S3BucketSinkConfiguration":{
+      "type":"structure",
+      "required":["Destination"],
+      "members":{
+        "Destination":{"shape":"Arn"}
+      }
+    },
     "SelectedVideoStreams":{
       "type":"structure",
       "members":{
         "AttendeeIds":{"shape":"AttendeeIdList"},
         "ExternalUserIds":{"shape":"ExternalUserIdList"}
       }
+    },
+    "SensitiveString":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "sensitive":true
     },
     "ServiceFailureException":{
       "type":"structure",
@@ -538,6 +1044,13 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
+    "TranscriptionMessagesConcatenationConfiguration":{
+      "type":"structure",
+      "required":["State"],
+      "members":{
+        "State":{"shape":"ArtifactsConcatenationState"}
+      }
+    },
     "UnauthorizedClientException":{
       "type":"structure",
       "members":{
@@ -570,6 +1083,13 @@
       "members":{
         "State":{"shape":"ArtifactsState"},
         "MuxType":{"shape":"VideoMuxType"}
+      }
+    },
+    "VideoConcatenationConfiguration":{
+      "type":"structure",
+      "required":["State"],
+      "members":{
+        "State":{"shape":"ArtifactsConcatenationState"}
       }
     },
     "VideoMuxType":{

@@ -1,3 +1,17 @@
+Release v1.44.80 (2022-08-18)
+===
+
+### Service Client Updates
+* `service/chime-sdk-media-pipelines`: Updates service API, documentation, and paginators
+* `service/cognito-idp`: Updates service API
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for importing data from S3 into a new DynamoDB table
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for VPN log options , a new feature allowing S2S VPN connections to send IKE activity logs to CloudWatch Logs
+* `service/monitoring`: Updates service API, documentation, and paginators
+  * Add support for managed Contributor Insights Rules
+* `service/networkmanager`: Updates service API and documentation
+
 Release v1.44.79 (2022-08-17)
 ===
 

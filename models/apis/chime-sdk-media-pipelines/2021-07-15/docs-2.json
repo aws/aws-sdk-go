@@ -1,33 +1,61 @@
 {
   "version": "2.0",
-  "service": "<p>The Amazon Chime SDK media pipeline APIs in this section allow software developers to create Amazon Chime SDK media pipelines and capture audio, video, events, and data messages from Amazon Chime SDK meetings. For more information about media pipleines, see <a href=\"https://docs.aws.amazon.com/chime/latest/APIReference/API_Operations_Amazon_Chime_SDK_Media_Pipelines.html\">Amzon Chime SDK media pipelines</a>. </p>",
+  "service": "<p>The Amazon Chime SDK media pipeline APIs in this section allow software developers to create Amazon Chime SDK media pipelines that capture, concatenate, or stream your Amazon Chime SDK meetings. For more information about media pipleines, see <a href=\"http://amazonaws.com/chime/latest/APIReference/API_Operations_Amazon_Chime_SDK_Media_Pipelines.html\">Amazon Chime SDK media pipelines</a>. </p>",
   "operations": {
-    "CreateMediaCapturePipeline": "<p>Creates a media capture pipeline.</p>",
-    "DeleteMediaCapturePipeline": "<p>Deletes the media capture pipeline.</p>",
-    "GetMediaCapturePipeline": "<p>Gets an existing media capture pipeline.</p>",
-    "ListMediaCapturePipelines": "<p>Returns a list of media capture pipelines.</p>",
-    "ListTagsForResource": "<p>Lists the tags applied to an Amazon Chime SDK media capture pipeline.</p>",
-    "TagResource": "<p>Applies the specified tags to the specified Amazon Chime SDK media capture pipeline.</p>",
-    "UntagResource": "<p>Removes the specified tags from the specified Amazon Chime SDK media capture pipeline.</p>"
+    "CreateMediaCapturePipeline": "<p>Creates a media pipeline.</p>",
+    "CreateMediaConcatenationPipeline": "<p>Creates a media concatenation pipeline.</p>",
+    "CreateMediaLiveConnectorPipeline": "<p>Creates a streaming media pipeline in an Amazon Chime SDK meeting.</p>",
+    "DeleteMediaCapturePipeline": "<p>Deletes the media pipeline.</p>",
+    "DeleteMediaPipeline": "<p>Deletes the media pipeline.</p>",
+    "GetMediaCapturePipeline": "<p>Gets an existing media pipeline.</p>",
+    "GetMediaPipeline": "<p>Gets an existing media pipeline.</p>",
+    "ListMediaCapturePipelines": "<p>Returns a list of media pipelines.</p>",
+    "ListMediaPipelines": "<p>Returns a list of media pipelines.</p>",
+    "ListTagsForResource": "<p>Lists the tags available for a media pipeline.</p>",
+    "TagResource": "<p>The ARN of the media pipeline that you want to tag. Consists of he pipeline's endpoint region, resource ID, and pipeline ID.</p>",
+    "UntagResource": "<p>Removes any tags from a media pipeline.</p>"
   },
   "shapes": {
     "AmazonResourceName": {
       "base": null,
       "refs": {
-        "ListTagsForResourceRequest$ResourceARN": "<p>The resource ARN.</p>",
-        "MediaCapturePipeline$MediaPipelineArn": "<p>The ARN of a media capture pipeline.</p>",
-        "MediaCapturePipelineSummary$MediaPipelineArn": "<p>The ARN of a media capture pipeline.</p>",
-        "TagResourceRequest$ResourceARN": "<p>The resource ARN.</p>",
-        "UntagResourceRequest$ResourceARN": "<p>The resource ARN.</p>"
+        "ListTagsForResourceRequest$ResourceARN": "<p>The ARN of the media pipeline associated with any tags. The ARN consists of the pipeline's region, resource ID, and pipeline ID.</p>",
+        "MediaCapturePipeline$MediaPipelineArn": "<p>The ARN of the media capture pipeline</p>",
+        "MediaCapturePipelineSummary$MediaPipelineArn": "<p>The ARN of the media pipeline in the summary.</p>",
+        "MediaConcatenationPipeline$MediaPipelineArn": "<p>The ARN of the media pipeline that you specify in the <code>SourceConfiguration</code> object.</p>",
+        "MediaLiveConnectorPipeline$MediaPipelineArn": "<p>The connector pipeline's ARN.</p>",
+        "MediaPipelineSummary$MediaPipelineArn": "<p>The ARN of the media pipeline in the summary.</p>",
+        "TagResourceRequest$ResourceARN": "<p>The ARN of the media pipeline associated with any tags. The ARN consists of the pipeline's endpoint region, resource ID, and pipeline ID.</p>",
+        "UntagResourceRequest$ResourceARN": "<p>The ARN of the pipeline that you want to untag.</p>"
       }
     },
     "Arn": {
       "base": null,
       "refs": {
+        "ChimeSdkMeetingLiveConnectorConfiguration$Arn": "<p>The configuration object's Chime SDK meeting ARN.</p>",
         "CreateMediaCapturePipelineRequest$SourceArn": "<p>ARN of the source from which the media artifacts are captured.</p>",
         "CreateMediaCapturePipelineRequest$SinkArn": "<p>The ARN of the sink type.</p>",
         "MediaCapturePipeline$SourceArn": "<p>ARN of the source from which the media artifacts are saved.</p>",
-        "MediaCapturePipeline$SinkArn": "<p>ARN of the destination to which the media artifacts are saved.</p>"
+        "MediaCapturePipeline$SinkArn": "<p>ARN of the destination to which the media artifacts are saved.</p>",
+        "MediaCapturePipelineSourceConfiguration$MediaPipelineArn": "<p>The media pipeline ARN in the configuration object of a media capture pipeline.</p>",
+        "S3BucketSinkConfiguration$Destination": "<p>The destination URL of the S3 bucket.</p>"
+      }
+    },
+    "ArtifactsConcatenationConfiguration": {
+      "base": "<p>The configuration for the artifacts concatenation.</p>",
+      "refs": {
+        "ChimeSdkMeetingConcatenationConfiguration$ArtifactsConfiguration": "<p>The configuration for the artifacts in an Amazon Chime SDK meeting concatenation.</p>"
+      }
+    },
+    "ArtifactsConcatenationState": {
+      "base": null,
+      "refs": {
+        "CompositedVideoConcatenationConfiguration$State": "<p>Enables or disables the configuration object.</p>",
+        "ContentConcatenationConfiguration$State": "<p>Enables or disables the configuration object.</p>",
+        "DataChannelConcatenationConfiguration$State": "<p>Enables or disables the configuration object.</p>",
+        "MeetingEventsConcatenationConfiguration$State": "<p>Enables or disables the configuration object.</p>",
+        "TranscriptionMessagesConcatenationConfiguration$State": "<p>Enables or disables the configuration object.</p>",
+        "VideoConcatenationConfiguration$State": "<p>Enables or disables the configuration object.</p>"
       }
     },
     "ArtifactsConfiguration": {
@@ -46,7 +74,13 @@
     "AttendeeIdList": {
       "base": null,
       "refs": {
-        "SelectedVideoStreams$AttendeeIds": "<p>The attendee IDs of the streams selected for a media capture pipeline. </p>"
+        "SelectedVideoStreams$AttendeeIds": "<p>The attendee IDs of the streams selected for a media pipeline. </p>"
+      }
+    },
+    "AudioArtifactsConcatenationState": {
+      "base": null,
+      "refs": {
+        "AudioConcatenationConfiguration$State": "<p>Enables the <i>name</i> object, where <i>name</i> is the name of the configuration object, such as <code>AudioConcatenation</code>.</p>"
       }
     },
     "AudioArtifactsConfiguration": {
@@ -55,10 +89,28 @@
         "ArtifactsConfiguration$Audio": "<p>The configuration for the audio artifacts.</p>"
       }
     },
+    "AudioChannelsOption": {
+      "base": null,
+      "refs": {
+        "LiveConnectorRTMPConfiguration$AudioChannels": "<p>The audio channels set for the RTMP configuration</p>"
+      }
+    },
+    "AudioConcatenationConfiguration": {
+      "base": "<p>The audio artifact concatenation configuration object.</p>",
+      "refs": {
+        "ArtifactsConcatenationConfiguration$Audio": "<p>The configuration for the audio artifacts concatenation.</p>"
+      }
+    },
     "AudioMuxType": {
       "base": null,
       "refs": {
         "AudioArtifactsConfiguration$MuxType": "<p>The MUX type of the audio artifact configuration object.</p>"
+      }
+    },
+    "AudioSampleRateOption": {
+      "base": null,
+      "refs": {
+        "LiveConnectorRTMPConfiguration$AudioSampleRate": "<p>The audio sample rate set for the RTMP configuration. Default: 48000.</p>"
       }
     },
     "BadRequestException": {
@@ -66,17 +118,82 @@
       "refs": {
       }
     },
-    "ChimeSdkMeetingConfiguration": {
-      "base": "<p>The configuration object of the Amazon Chime SDK meeting for a specified media capture pipeline. <code>SourceType</code> must be <code>ChimeSdkMeeting</code>.</p>",
+    "ChimeSdkMeetingConcatenationConfiguration": {
+      "base": "<p>The configuration object of the Amazon Chime SDK meeting concatenation for a specified media pipeline.</p>",
       "refs": {
-        "CreateMediaCapturePipelineRequest$ChimeSdkMeetingConfiguration": "<p>The configuration for a specified media capture pipeline. <code>SourceType</code> must be <code>ChimeSdkMeeting</code>.</p>",
-        "MediaCapturePipeline$ChimeSdkMeetingConfiguration": "<p>The configuration for a specified media capture pipeline. <code>SourceType</code> must be <code>ChimeSdkMeeting</code>.</p>"
+        "MediaCapturePipelineSourceConfiguration$ChimeSdkMeetingConfiguration": "<p>The meeting configuration settings in a media capture pipeline configuration object. </p>"
+      }
+    },
+    "ChimeSdkMeetingConfiguration": {
+      "base": "<p>The configuration object of the Amazon Chime SDK meeting for a specified media pipeline. <code>SourceType</code> must be <code>ChimeSdkMeeting</code>.</p>",
+      "refs": {
+        "CreateMediaCapturePipelineRequest$ChimeSdkMeetingConfiguration": "<p>The configuration for a specified media pipeline. <code>SourceType</code> must be <code>ChimeSdkMeeting</code>.</p>",
+        "MediaCapturePipeline$ChimeSdkMeetingConfiguration": "<p>The configuration for a specified media pipeline. <code>SourceType</code> must be <code>ChimeSdkMeeting</code>.</p>"
+      }
+    },
+    "ChimeSdkMeetingLiveConnectorConfiguration": {
+      "base": "<p>The media pipeline's configuration object.</p>",
+      "refs": {
+        "LiveConnectorSourceConfiguration$ChimeSdkMeetingLiveConnectorConfiguration": "<p>The configuration settings of the connector pipeline.</p>"
       }
     },
     "ClientRequestToken": {
       "base": null,
       "refs": {
-        "CreateMediaCapturePipelineRequest$ClientRequestToken": "<p>The token assigned to the client making the pipeline request.</p>"
+        "CreateMediaCapturePipelineRequest$ClientRequestToken": "<p>The unique identifier for the client request. The token makes the API request idempotent. Use a unique token for each media pipeline request.</p>",
+        "CreateMediaConcatenationPipelineRequest$ClientRequestToken": "<p>The unique identifier for the client request. The token makes the API request idempotent. Use a unique token for each media concatenation pipeline request.</p>",
+        "CreateMediaLiveConnectorPipelineRequest$ClientRequestToken": "<p>The token assigned to the client making the request.</p>"
+      }
+    },
+    "CompositedVideoArtifactsConfiguration": {
+      "base": "<p>Describes the configuration for the composited video artifacts.</p>",
+      "refs": {
+        "ArtifactsConfiguration$CompositedVideo": "<p>Enables video compositing.</p>",
+        "ChimeSdkMeetingLiveConnectorConfiguration$CompositedVideo": "<p>The media pipeline's composited video.</p>"
+      }
+    },
+    "CompositedVideoConcatenationConfiguration": {
+      "base": "<p>The composited video configuration object for a specified media pipeline. <code>SourceType</code> must be <code>ChimeSdkMeeting</code>.</p>",
+      "refs": {
+        "ArtifactsConcatenationConfiguration$CompositedVideo": "<p>The configuration for the composited video artifacts concatenation.</p>"
+      }
+    },
+    "ConcatenationSink": {
+      "base": "<p>The data sink of the configuration object.</p>",
+      "refs": {
+        "ConcatenationSinkList$member": null
+      }
+    },
+    "ConcatenationSinkList": {
+      "base": null,
+      "refs": {
+        "CreateMediaConcatenationPipelineRequest$Sinks": "<p>An object that specifies the data sinks for the media concatenation pipeline.</p>",
+        "MediaConcatenationPipeline$Sinks": "<p>The data sinks of the concatenation pipeline.</p>"
+      }
+    },
+    "ConcatenationSinkType": {
+      "base": null,
+      "refs": {
+        "ConcatenationSink$Type": "<p>The type of data sink in the configuration object.</p>"
+      }
+    },
+    "ConcatenationSource": {
+      "base": "<p>The source type and media pipeline configuration settings in a configuration object.</p>",
+      "refs": {
+        "ConcatenationSourceList$member": null
+      }
+    },
+    "ConcatenationSourceList": {
+      "base": null,
+      "refs": {
+        "CreateMediaConcatenationPipelineRequest$Sources": "<p>An object that specifies the sources for the media concatenation pipeline.</p>",
+        "MediaConcatenationPipeline$Sources": "<p>The data sources being concatnated.</p>"
+      }
+    },
+    "ConcatenationSourceType": {
+      "base": null,
+      "refs": {
+        "ConcatenationSource$Type": "<p>The type of concatenation source in a configuration object.</p>"
       }
     },
     "ContentArtifactsConfiguration": {
@@ -85,10 +202,22 @@
         "ArtifactsConfiguration$Content": "<p>The configuration for the content artifacts.</p>"
       }
     },
+    "ContentConcatenationConfiguration": {
+      "base": "<p>The composited content configuration object for a specified media pipeline. </p>",
+      "refs": {
+        "ArtifactsConcatenationConfiguration$Content": "<p>The configuration for the content artifacts concatenation.</p>"
+      }
+    },
     "ContentMuxType": {
       "base": null,
       "refs": {
         "ContentArtifactsConfiguration$MuxType": "<p>The MUX type of the artifact configuration.</p>"
+      }
+    },
+    "ContentShareLayoutOption": {
+      "base": null,
+      "refs": {
+        "GridViewConfiguration$ContentShareLayout": "<p>Defines the layout of the video tiles when content sharing is enabled.</p>"
       }
     },
     "CreateMediaCapturePipelineRequest": {
@@ -101,7 +230,38 @@
       "refs": {
       }
     },
+    "CreateMediaConcatenationPipelineRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMediaConcatenationPipelineResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMediaLiveConnectorPipelineRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMediaLiveConnectorPipelineResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DataChannelConcatenationConfiguration": {
+      "base": "<p>The content configuration object's data channel.</p>",
+      "refs": {
+        "ArtifactsConcatenationConfiguration$DataChannel": "<p>The configuration for the data channel artifacts concatenation.</p>"
+      }
+    },
     "DeleteMediaCapturePipelineRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMediaPipelineRequest": {
       "base": null,
       "refs": {
       }
@@ -122,7 +282,7 @@
     "ExternalUserIdList": {
       "base": null,
       "refs": {
-        "SelectedVideoStreams$ExternalUserIds": "<p>The external user IDs of the streams selected for a media capture pipeline.</p>"
+        "SelectedVideoStreams$ExternalUserIds": "<p>The external user IDs of the streams selected for a media pipeline.</p>"
       }
     },
     "ExternalUserIdType": {
@@ -146,21 +306,52 @@
       "refs": {
       }
     },
+    "GetMediaPipelineRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMediaPipelineResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GridViewConfiguration": {
+      "base": "<p>Specifies the type of grid layout.</p>",
+      "refs": {
+        "CompositedVideoArtifactsConfiguration$GridViewConfiguration": "<p>The <code>GridView</code> configuration setting.</p>"
+      }
+    },
     "GuidString": {
       "base": null,
       "refs": {
         "AttendeeIdList$member": null,
-        "DeleteMediaCapturePipelineRequest$MediaPipelineId": "<p>The ID of the media capture pipeline being deleted. </p>",
+        "DeleteMediaCapturePipelineRequest$MediaPipelineId": "<p>The ID of the media pipeline being deleted. </p>",
+        "DeleteMediaPipelineRequest$MediaPipelineId": "<p>The ID of the media pipeline to delete.</p>",
         "GetMediaCapturePipelineRequest$MediaPipelineId": "<p>The ID of the pipeline that you want to get.</p>",
-        "MediaCapturePipeline$MediaPipelineId": "<p>The ID of a media capture pipeline.</p>",
-        "MediaCapturePipelineSummary$MediaPipelineId": "<p>The ID of a media capture pipeline.</p>"
+        "GetMediaPipelineRequest$MediaPipelineId": "<p>The ID of the pipeline that you want to get.</p>",
+        "MediaCapturePipeline$MediaPipelineId": "<p>The ID of a media pipeline.</p>",
+        "MediaCapturePipelineSummary$MediaPipelineId": "<p>The ID of the media pipeline in the summary.</p>",
+        "MediaConcatenationPipeline$MediaPipelineId": "<p>The ID of the media pipeline being concatenated.</p>",
+        "MediaLiveConnectorPipeline$MediaPipelineId": "<p>The connector pipeline's ID.</p>",
+        "MediaPipelineSummary$MediaPipelineId": "<p>The ID of the media pipeline in the summary.</p>"
       }
     },
     "Iso8601Timestamp": {
       "base": null,
       "refs": {
-        "MediaCapturePipeline$CreatedTimestamp": "<p>The time at which the capture pipeline was created, in ISO 8601 format.</p>",
-        "MediaCapturePipeline$UpdatedTimestamp": "<p>The time at which the capture pipeline was updated, in ISO 8601 format.</p>"
+        "MediaCapturePipeline$CreatedTimestamp": "<p>The time at which the pipeline was created, in ISO 8601 format.</p>",
+        "MediaCapturePipeline$UpdatedTimestamp": "<p>The time at which the pipeline was updated, in ISO 8601 format.</p>",
+        "MediaConcatenationPipeline$CreatedTimestamp": "<p>The time at which the concatenation pipeline was created.</p>",
+        "MediaConcatenationPipeline$UpdatedTimestamp": "<p>The time at which the concatenation pipeline was last updated.</p>",
+        "MediaLiveConnectorPipeline$CreatedTimestamp": "<p>Thetime at which the connector pipeline was created.</p>",
+        "MediaLiveConnectorPipeline$UpdatedTimestamp": "<p>The time at which the connector pipeline was last updated.</p>"
+      }
+    },
+    "LayoutOption": {
+      "base": null,
+      "refs": {
+        "CompositedVideoArtifactsConfiguration$Layout": "<p>The layout setting, such as <code>GridView</code> in the configuration object.</p>"
       }
     },
     "ListMediaCapturePipelinesRequest": {
@@ -169,6 +360,16 @@
       }
     },
     "ListMediaCapturePipelinesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMediaPipelinesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMediaPipelinesResponse": {
       "base": null,
       "refs": {
       }
@@ -183,15 +384,72 @@
       "refs": {
       }
     },
-    "MediaCapturePipeline": {
-      "base": "<p>A media capture pipeline object consisting of an ID, source type, source ARN, a sink type, a sink ARN, and a configuration object.</p>",
+    "LiveConnectorMuxType": {
+      "base": null,
       "refs": {
-        "CreateMediaCapturePipelineResponse$MediaCapturePipeline": "<p>A media capture pipeline object, the ID, source type, source ARN, sink type, and sink ARN of a media capture pipeline object.</p>",
-        "GetMediaCapturePipelineResponse$MediaCapturePipeline": "<p>The media capture pipeline object.</p>"
+        "ChimeSdkMeetingLiveConnectorConfiguration$MuxType": "<p>The configuration object's multiplex type.</p>"
+      }
+    },
+    "LiveConnectorRTMPConfiguration": {
+      "base": "<p>The media pipeline's RTMP configuration object.</p>",
+      "refs": {
+        "LiveConnectorSinkConfiguration$RTMPConfiguration": "<p>The sink configuration's RTMP configuration setttings.</p>"
+      }
+    },
+    "LiveConnectorSinkConfiguration": {
+      "base": "<p>The media pipeline's sink configuration settings.</p>",
+      "refs": {
+        "LiveConnectorSinkList$member": null
+      }
+    },
+    "LiveConnectorSinkList": {
+      "base": null,
+      "refs": {
+        "CreateMediaLiveConnectorPipelineRequest$Sinks": "<p>The media pipeline's data sinks.</p>",
+        "MediaLiveConnectorPipeline$Sinks": "<p>The connector pipeline's data sinks.</p>"
+      }
+    },
+    "LiveConnectorSinkType": {
+      "base": null,
+      "refs": {
+        "LiveConnectorSinkConfiguration$SinkType": "<p>The sink configuration's sink type.</p>"
+      }
+    },
+    "LiveConnectorSourceConfiguration": {
+      "base": "<p>The data source configuration object of a streaming media pipeline.</p>",
+      "refs": {
+        "LiveConnectorSourceList$member": null
+      }
+    },
+    "LiveConnectorSourceList": {
+      "base": null,
+      "refs": {
+        "CreateMediaLiveConnectorPipelineRequest$Sources": "<p>The media pipeline's data sources.</p>",
+        "MediaLiveConnectorPipeline$Sources": "<p>The connector pipeline's data sources.</p>"
+      }
+    },
+    "LiveConnectorSourceType": {
+      "base": null,
+      "refs": {
+        "LiveConnectorSourceConfiguration$SourceType": "<p>The source configuration's media source type.</p>"
+      }
+    },
+    "MediaCapturePipeline": {
+      "base": "<p>A media pipeline object consisting of an ID, source type, source ARN, a sink type, a sink ARN, and a configuration object.</p>",
+      "refs": {
+        "CreateMediaCapturePipelineResponse$MediaCapturePipeline": "<p>A media pipeline object, the ID, source type, source ARN, sink type, and sink ARN of a media pipeline object.</p>",
+        "GetMediaCapturePipelineResponse$MediaCapturePipeline": "<p>The media pipeline object.</p>",
+        "MediaPipeline$MediaCapturePipeline": "<p>A pipeline that enables users to capture audio and video.</p>"
+      }
+    },
+    "MediaCapturePipelineSourceConfiguration": {
+      "base": "<p>The source configuration object of a media capture pipeline.</p>",
+      "refs": {
+        "ConcatenationSource$MediaCapturePipelineSourceConfiguration": "<p>The concatenation settings for the media pipeline in a configuration object.</p>"
       }
     },
     "MediaCapturePipelineSummary": {
-      "base": "<p>A summary of a media capture pipeline.</p>",
+      "base": "<p>The summary data of a media capture pipeline.</p>",
       "refs": {
         "MediaCapturePipelineSummaryList$member": null
       }
@@ -199,13 +457,39 @@
     "MediaCapturePipelineSummaryList": {
       "base": null,
       "refs": {
-        "ListMediaCapturePipelinesResponse$MediaCapturePipelines": "<p>The media capture pipeline objects in the list.</p>"
+        "ListMediaCapturePipelinesResponse$MediaCapturePipelines": "<p>The media pipeline objects in the list.</p>"
+      }
+    },
+    "MediaConcatenationPipeline": {
+      "base": "<p>Concatenates audio and video data from one or more data streams.</p>",
+      "refs": {
+        "CreateMediaConcatenationPipelineResponse$MediaConcatenationPipeline": "<p>A media concatenation pipeline object, the ID, source type, <code>MediaPipelineARN</code>, and sink of a media concatenation pipeline object.</p>",
+        "MediaPipeline$MediaConcatenationPipeline": "<p>The media concatenation pipeline in a media pipeline.</p>"
+      }
+    },
+    "MediaLiveConnectorPipeline": {
+      "base": "<p>The connector pipeline.</p>",
+      "refs": {
+        "CreateMediaLiveConnectorPipelineResponse$MediaLiveConnectorPipeline": "<p>The new media pipeline.</p>",
+        "MediaPipeline$MediaLiveConnectorPipeline": "<p>The connector pipeline of the media pipeline.</p>"
+      }
+    },
+    "MediaPipeline": {
+      "base": "<p>A pipeline consisting of a media capture, media concatenation, or live-streaming pipeline.</p>",
+      "refs": {
+        "GetMediaPipelineResponse$MediaPipeline": "<p>The media pipeline object.</p>"
+      }
+    },
+    "MediaPipelineList": {
+      "base": null,
+      "refs": {
+        "ListMediaPipelinesResponse$MediaPipelines": "<p>The media pipeline objects in the list.</p>"
       }
     },
     "MediaPipelineSinkType": {
       "base": null,
       "refs": {
-        "CreateMediaCapturePipelineRequest$SinkType": "<p>Destination type to which the media artifacts are saved. You must use an S3 bucket. </p>",
+        "CreateMediaCapturePipelineRequest$SinkType": "<p>Destination type to which the media artifacts are saved. You must use an S3 bucket.</p>",
         "MediaCapturePipeline$SinkType": "<p>Destination type to which the media artifacts are saved. You must use an S3 Bucket.</p>"
       }
     },
@@ -219,12 +503,44 @@
     "MediaPipelineStatus": {
       "base": null,
       "refs": {
-        "MediaCapturePipeline$Status": "<p>The status of the media capture pipeline.</p>"
+        "MediaCapturePipeline$Status": "<p>The status of the media pipeline.</p>",
+        "MediaConcatenationPipeline$Status": "<p>The status of the concatenation pipeline.</p>",
+        "MediaLiveConnectorPipeline$Status": "<p>The connector pipeline's status.</p>"
+      }
+    },
+    "MediaPipelineSummary": {
+      "base": "<p>The summary of the media pipeline.</p>",
+      "refs": {
+        "MediaPipelineList$member": null
+      }
+    },
+    "MeetingEventsConcatenationConfiguration": {
+      "base": "<p>The configuration object for an event concatenation pipeline.</p>",
+      "refs": {
+        "ArtifactsConcatenationConfiguration$MeetingEvents": "<p>The configuration for the meeting events artifacts concatenation.</p>"
       }
     },
     "NotFoundException": {
       "base": "<p>One or more of the resources in the request does not exist in the system.</p>",
       "refs": {
+      }
+    },
+    "PresenterOnlyConfiguration": {
+      "base": "<p>Defines the configuration for a presenter only video tile.</p>",
+      "refs": {
+        "GridViewConfiguration$PresenterOnlyConfiguration": "<p>Defines the configuration options for a presenter only video tile.</p>"
+      }
+    },
+    "PresenterPosition": {
+      "base": null,
+      "refs": {
+        "PresenterOnlyConfiguration$PresenterPosition": "<p>Defines the position of the presenter video tile. Default: <code>TopRight</code>.</p>"
+      }
+    },
+    "ResolutionOption": {
+      "base": null,
+      "refs": {
+        "CompositedVideoArtifactsConfiguration$Resolution": "<p>The video resolution setting in the configuration object. Default: HD at 1280 x 720. FHD resolution: 1920 x 1080.</p>"
       }
     },
     "ResourceLimitExceededException": {
@@ -235,13 +551,26 @@
     "ResultMax": {
       "base": null,
       "refs": {
-        "ListMediaCapturePipelinesRequest$MaxResults": "<p>The maximum number of results to return in a single call. Valid Range: 1 - 99.</p>"
+        "ListMediaCapturePipelinesRequest$MaxResults": "<p>The maximum number of results to return in a single call. Valid Range: 1 - 99.</p>",
+        "ListMediaPipelinesRequest$MaxResults": "<p>The maximum number of results to return in a single call. Valid Range: 1 - 99.</p>"
+      }
+    },
+    "S3BucketSinkConfiguration": {
+      "base": "<p>The configuration settings for the S3 bucket.</p>",
+      "refs": {
+        "ConcatenationSink$S3BucketSinkConfiguration": "<p>The configuration settings for an Amazon S3 bucket sink.</p>"
       }
     },
     "SelectedVideoStreams": {
-      "base": "<p>The video streams to capture for a specified media capture pipeline. The total number of video streams can't exceed 25.</p>",
+      "base": "<p>The video streams for a specified media pipeline. The total number of video streams can't exceed 25.</p>",
       "refs": {
-        "SourceConfiguration$SelectedVideoStreams": "<p>The selected video streams to capture for a specified media capture pipeline. The number of video streams can't exceed 25.</p>"
+        "SourceConfiguration$SelectedVideoStreams": "<p>The selected video streams for a specified media pipeline. The number of video streams can't exceed 25.</p>"
+      }
+    },
+    "SensitiveString": {
+      "base": null,
+      "refs": {
+        "LiveConnectorRTMPConfiguration$Url": "<p>The URL of the RTMP configuration.</p>"
       }
     },
     "ServiceFailureException": {
@@ -255,9 +584,10 @@
       }
     },
     "SourceConfiguration": {
-      "base": "<p>Source configuration for a specified media capture pipeline.</p>",
+      "base": "<p>Source configuration for a specified media pipeline.</p>",
       "refs": {
-        "ChimeSdkMeetingConfiguration$SourceConfiguration": "<p>The source configuration for a specified media capture pipline.</p>"
+        "ChimeSdkMeetingConfiguration$SourceConfiguration": "<p>The source configuration for a specified media pipline.</p>",
+        "ChimeSdkMeetingLiveConnectorConfiguration$SourceConfiguration": "<p>The source configuration settings of the media pipeline's configuration object.</p>"
       }
     },
     "String": {
@@ -269,6 +599,8 @@
         "ForbiddenException$RequestId": "<p>The request id associated with the call responsible for the exception.</p>",
         "ListMediaCapturePipelinesRequest$NextToken": "<p>The token used to retrieve the next page of results.</p>",
         "ListMediaCapturePipelinesResponse$NextToken": "<p>The token used to retrieve the next page of results. </p>",
+        "ListMediaPipelinesRequest$NextToken": "<p>The token used to retrieve the next page of results.</p>",
+        "ListMediaPipelinesResponse$NextToken": "<p>The token used to retrieve the next page of results. </p>",
         "NotFoundException$Message": null,
         "NotFoundException$RequestId": "<p>The request id associated with the call responsible for the exception.</p>",
         "ResourceLimitExceededException$Message": null,
@@ -284,7 +616,7 @@
       }
     },
     "Tag": {
-      "base": "<p>Describes a tag applied to a resource.</p>",
+      "base": "<p>A key/value pair that grants users access to meeting resources.</p>",
       "refs": {
         "TagList$member": null
       }
@@ -292,22 +624,24 @@
     "TagKey": {
       "base": null,
       "refs": {
-        "Tag$Key": "<p>The key of the tag.</p>",
+        "Tag$Key": "<p>The key half of a tag.</p>",
         "TagKeyList$member": null
       }
     },
     "TagKeyList": {
       "base": null,
       "refs": {
-        "UntagResourceRequest$TagKeys": "<p>The tag keys.</p>"
+        "UntagResourceRequest$TagKeys": "<p>The key/value pairs in the tag that you want to remove.</p>"
       }
     },
     "TagList": {
       "base": null,
       "refs": {
-        "CreateMediaCapturePipelineRequest$Tags": "<p>The list of tags.</p>",
-        "ListTagsForResourceResponse$Tags": "<p>The tag key-value pairs.</p>",
-        "TagResourceRequest$Tags": "<p>The tag key-value pairs.</p>"
+        "CreateMediaCapturePipelineRequest$Tags": "<p>The tag key-value pairs.</p>",
+        "CreateMediaConcatenationPipelineRequest$Tags": "<p>The tags associated with the media concatenation pipeline.</p>",
+        "CreateMediaLiveConnectorPipelineRequest$Tags": "<p>The tags associated with the media pipeline.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>The tags associated with the specified media pipeline.</p>",
+        "TagResourceRequest$Tags": "<p>The tags associated with the specified media pipeline.</p>"
       }
     },
     "TagResourceRequest": {
@@ -323,12 +657,18 @@
     "TagValue": {
       "base": null,
       "refs": {
-        "Tag$Value": "<p>The value of the tag.</p>"
+        "Tag$Value": "<p>The value half of a tag.</p>"
       }
     },
     "ThrottledClientException": {
       "base": "<p>The client exceeded its request rate limit.</p>",
       "refs": {
+      }
+    },
+    "TranscriptionMessagesConcatenationConfiguration": {
+      "base": "<p>The configuration object for concatenating transcription messages.</p>",
+      "refs": {
+        "ArtifactsConcatenationConfiguration$TranscriptionMessages": "<p>The configuration for the transcription messages artifacts concatenation.</p>"
       }
     },
     "UnauthorizedClientException": {
@@ -350,6 +690,12 @@
       "base": "<p>The video artifact configuration object.</p>",
       "refs": {
         "ArtifactsConfiguration$Video": "<p>The configuration for the video artifacts.</p>"
+      }
+    },
+    "VideoConcatenationConfiguration": {
+      "base": "<p>The configuration object of a video contacatentation pipeline.</p>",
+      "refs": {
+        "ArtifactsConcatenationConfiguration$Video": "<p>The configuration for the video artifacts concatenation.</p>"
       }
     },
     "VideoMuxType": {

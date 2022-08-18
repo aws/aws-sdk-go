@@ -18,6 +18,12 @@
     "DescribeAlarmsForMetric": {
       "result_key": "MetricAlarms"
     },
+    "DescribeAnomalyDetectors": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "AnomalyDetectors"
+    },
     "DescribeInsightRules": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -36,6 +42,11 @@
       "input_token": "NextToken",
       "output_token": "NextToken",
       "result_key": "DashboardEntries"
+    },
+    "ListManagedInsightRules": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
     },
     "ListMetricStreams": {
       "input_token": "NextToken",

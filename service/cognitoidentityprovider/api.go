@@ -34039,18 +34039,22 @@ func EventFilterType_Values() []string {
 }
 
 const (
-	// EventResponseTypeSuccess is a EventResponseType enum value
-	EventResponseTypeSuccess = "Success"
+	// EventResponseTypePass is a EventResponseType enum value
+	EventResponseTypePass = "Pass"
 
-	// EventResponseTypeFailure is a EventResponseType enum value
-	EventResponseTypeFailure = "Failure"
+	// EventResponseTypeFail is a EventResponseType enum value
+	EventResponseTypeFail = "Fail"
+
+	// EventResponseTypeInProgress is a EventResponseType enum value
+	EventResponseTypeInProgress = "InProgress"
 )
 
 // EventResponseType_Values returns all elements of the EventResponseType enum
 func EventResponseType_Values() []string {
 	return []string{
-		EventResponseTypeSuccess,
-		EventResponseTypeFailure,
+		EventResponseTypePass,
+		EventResponseTypeFail,
+		EventResponseTypeInProgress,
 	}
 }
 
@@ -34063,6 +34067,12 @@ const (
 
 	// EventTypeForgotPassword is a EventType enum value
 	EventTypeForgotPassword = "ForgotPassword"
+
+	// EventTypePasswordChange is a EventType enum value
+	EventTypePasswordChange = "PasswordChange"
+
+	// EventTypeResendCode is a EventType enum value
+	EventTypeResendCode = "ResendCode"
 )
 
 // EventType_Values returns all elements of the EventType enum
@@ -34071,6 +34081,8 @@ func EventType_Values() []string {
 		EventTypeSignIn,
 		EventTypeSignUp,
 		EventTypeForgotPassword,
+		EventTypePasswordChange,
+		EventTypeResendCode,
 	}
 }
 

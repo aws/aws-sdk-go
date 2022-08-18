@@ -4789,8 +4789,15 @@
       "type":"structure",
       "members":{
         "Peering":{"shape":"Peering"},
-        "TransitGatewayArn":{"shape":"TransitGatewayArn"}
+        "TransitGatewayArn":{"shape":"TransitGatewayArn"},
+        "TransitGatewayPeeringAttachmentId":{"shape":"TransitGatewayPeeringAttachmentId"}
       }
+    },
+    "TransitGatewayPeeringAttachmentId":{
+      "type":"string",
+      "max":50,
+      "min":0,
+      "pattern":"^tgw-attach-([0-9a-f]{8,17})$"
     },
     "TransitGatewayRegistration":{
       "type":"structure",

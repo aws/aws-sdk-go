@@ -264,6 +264,18 @@
       "endpointdiscovery":{
       }
     },
+    "DescribeImport":{
+      "name":"DescribeImport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeImportInput"},
+      "output":{"shape":"DescribeImportOutput"},
+      "errors":[
+        {"shape":"ImportNotFoundException"}
+      ]
+    },
     "DescribeKinesisStreamingDestination":{
       "name":"DescribeKinesisStreamingDestination",
       "http":{
@@ -441,6 +453,20 @@
       "endpointdiscovery":{
       }
     },
+    "ImportTable":{
+      "name":"ImportTable",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ImportTableInput"},
+      "output":{"shape":"ImportTableOutput"},
+      "errors":[
+        {"shape":"ResourceInUseException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ImportConflictException"}
+      ]
+    },
     "ListBackups":{
       "name":"ListBackups",
       "http":{
@@ -494,6 +520,18 @@
       ],
       "endpointdiscovery":{
       }
+    },
+    "ListImports":{
+      "name":"ListImports",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListImportsInput"},
+      "output":{"shape":"ListImportsOutput"},
+      "errors":[
+        {"shape":"LimitExceededException"}
+      ]
     },
     "ListTables":{
       "name":"ListTables",
@@ -1238,7 +1276,15 @@
       "max":36,
       "min":1
     },
-    "ClientToken":{"type":"string"},
+    "ClientToken":{
+      "type":"string",
+      "pattern":"^[^\\$]+$"
+    },
+    "CloudWatchLogGroupArn":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "Code":{"type":"string"},
     "ComparisonOperator":{
       "type":"string",
@@ -1467,6 +1513,31 @@
         "TableDescription":{"shape":"TableDescription"}
       }
     },
+    "CsvDelimiter":{
+      "type":"string",
+      "max":1,
+      "min":1,
+      "pattern":"[,;:|\\t ]"
+    },
+    "CsvHeader":{
+      "type":"string",
+      "max":65536,
+      "min":1,
+      "pattern":"[\\x20-\\x21\\x23-\\x2B\\x2D-\\x7E]*"
+    },
+    "CsvHeaderList":{
+      "type":"list",
+      "member":{"shape":"CsvHeader"},
+      "max":255,
+      "min":1
+    },
+    "CsvOptions":{
+      "type":"structure",
+      "members":{
+        "Delimiter":{"shape":"CsvDelimiter"},
+        "HeaderList":{"shape":"CsvHeaderList"}
+      }
+    },
     "Date":{"type":"timestamp"},
     "Delete":{
       "type":"structure",
@@ -1661,6 +1732,20 @@
         "ReplicaSettings":{"shape":"ReplicaSettingsDescriptionList"}
       }
     },
+    "DescribeImportInput":{
+      "type":"structure",
+      "required":["ImportArn"],
+      "members":{
+        "ImportArn":{"shape":"ImportArn"}
+      }
+    },
+    "DescribeImportOutput":{
+      "type":"structure",
+      "required":["ImportTableDescription"],
+      "members":{
+        "ImportTableDescription":{"shape":"ImportTableDescription"}
+      }
+    },
     "DescribeKinesisStreamingDestinationInput":{
       "type":"structure",
       "required":["TableName"],
@@ -1760,6 +1845,10 @@
     "Endpoints":{
       "type":"list",
       "member":{"shape":"Endpoint"}
+    },
+    "ErrorCount":{
+      "type":"long",
+      "min":0
     },
     "ErrorMessage":{"type":"string"},
     "ExceptionDescription":{"type":"string"},
@@ -2121,6 +2210,114 @@
       },
       "exception":true
     },
+    "ImportArn":{
+      "type":"string",
+      "max":1024,
+      "min":37
+    },
+    "ImportConflictException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "ImportEndTime":{"type":"timestamp"},
+    "ImportNextToken":{
+      "type":"string",
+      "max":1024,
+      "min":112,
+      "pattern":"([0-9a-f]{16})+"
+    },
+    "ImportNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "ImportStartTime":{"type":"timestamp"},
+    "ImportStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETED",
+        "CANCELLING",
+        "CANCELLED",
+        "FAILED"
+      ]
+    },
+    "ImportSummary":{
+      "type":"structure",
+      "members":{
+        "ImportArn":{"shape":"ImportArn"},
+        "ImportStatus":{"shape":"ImportStatus"},
+        "TableArn":{"shape":"TableArn"},
+        "S3BucketSource":{"shape":"S3BucketSource"},
+        "CloudWatchLogGroupArn":{"shape":"CloudWatchLogGroupArn"},
+        "InputFormat":{"shape":"InputFormat"},
+        "StartTime":{"shape":"ImportStartTime"},
+        "EndTime":{"shape":"ImportEndTime"}
+      }
+    },
+    "ImportSummaryList":{
+      "type":"list",
+      "member":{"shape":"ImportSummary"}
+    },
+    "ImportTableDescription":{
+      "type":"structure",
+      "members":{
+        "ImportArn":{"shape":"ImportArn"},
+        "ImportStatus":{"shape":"ImportStatus"},
+        "TableArn":{"shape":"TableArn"},
+        "TableId":{"shape":"TableId"},
+        "ClientToken":{"shape":"ClientToken"},
+        "S3BucketSource":{"shape":"S3BucketSource"},
+        "ErrorCount":{"shape":"ErrorCount"},
+        "CloudWatchLogGroupArn":{"shape":"CloudWatchLogGroupArn"},
+        "InputFormat":{"shape":"InputFormat"},
+        "InputFormatOptions":{"shape":"InputFormatOptions"},
+        "InputCompressionType":{"shape":"InputCompressionType"},
+        "TableCreationParameters":{"shape":"TableCreationParameters"},
+        "StartTime":{"shape":"ImportStartTime"},
+        "EndTime":{"shape":"ImportEndTime"},
+        "ProcessedSizeBytes":{"shape":"Long"},
+        "ProcessedItemCount":{"shape":"ProcessedItemCount"},
+        "ImportedItemCount":{"shape":"ImportedItemCount"},
+        "FailureCode":{"shape":"FailureCode"},
+        "FailureMessage":{"shape":"FailureMessage"}
+      }
+    },
+    "ImportTableInput":{
+      "type":"structure",
+      "required":[
+        "S3BucketSource",
+        "InputFormat",
+        "TableCreationParameters"
+      ],
+      "members":{
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "S3BucketSource":{"shape":"S3BucketSource"},
+        "InputFormat":{"shape":"InputFormat"},
+        "InputFormatOptions":{"shape":"InputFormatOptions"},
+        "InputCompressionType":{"shape":"InputCompressionType"},
+        "TableCreationParameters":{"shape":"TableCreationParameters"}
+      }
+    },
+    "ImportTableOutput":{
+      "type":"structure",
+      "required":["ImportTableDescription"],
+      "members":{
+        "ImportTableDescription":{"shape":"ImportTableDescription"}
+      }
+    },
+    "ImportedItemCount":{
+      "type":"long",
+      "min":0
+    },
     "IndexName":{
       "type":"string",
       "max":255,
@@ -2142,6 +2339,28 @@
         "DELETING",
         "ACTIVE"
       ]
+    },
+    "InputCompressionType":{
+      "type":"string",
+      "enum":[
+        "GZIP",
+        "ZSTD",
+        "NONE"
+      ]
+    },
+    "InputFormat":{
+      "type":"string",
+      "enum":[
+        "DYNAMODB_JSON",
+        "ION",
+        "CSV"
+      ]
+    },
+    "InputFormatOptions":{
+      "type":"structure",
+      "members":{
+        "Csv":{"shape":"CsvOptions"}
+      }
     },
     "Integer":{"type":"integer"},
     "IntegerObject":{"type":"integer"},
@@ -2394,6 +2613,26 @@
         "LastEvaluatedGlobalTableName":{"shape":"TableName"}
       }
     },
+    "ListImportsInput":{
+      "type":"structure",
+      "members":{
+        "TableArn":{"shape":"TableArn"},
+        "PageSize":{"shape":"ListImportsMaxLimit"},
+        "NextToken":{"shape":"ImportNextToken"}
+      }
+    },
+    "ListImportsMaxLimit":{
+      "type":"integer",
+      "max":25,
+      "min":1
+    },
+    "ListImportsOutput":{
+      "type":"structure",
+      "members":{
+        "ImportSummaryList":{"shape":"ImportSummaryList"},
+        "NextToken":{"shape":"ImportNextToken"}
+      }
+    },
     "ListTablesInput":{
       "type":"structure",
       "members":{
@@ -2575,6 +2814,10 @@
       "type":"list",
       "member":{"shape":"AttributeValue"},
       "min":1
+    },
+    "ProcessedItemCount":{
+      "type":"long",
+      "min":0
     },
     "Projection":{
       "type":"structure",
@@ -3053,9 +3296,28 @@
         "NONE"
       ]
     },
-    "S3Bucket":{"type":"string"},
-    "S3BucketOwner":{"type":"string"},
-    "S3Prefix":{"type":"string"},
+    "S3Bucket":{
+      "type":"string",
+      "max":255,
+      "pattern":"^[a-z0-9A-Z]+[\\.\\-\\w]*[a-z0-9A-Z]+$"
+    },
+    "S3BucketOwner":{
+      "type":"string",
+      "pattern":"[0-9]{12}"
+    },
+    "S3BucketSource":{
+      "type":"structure",
+      "required":["S3Bucket"],
+      "members":{
+        "S3BucketOwner":{"shape":"S3BucketOwner"},
+        "S3Bucket":{"shape":"S3Bucket"},
+        "S3KeyPrefix":{"shape":"S3Prefix"}
+      }
+    },
+    "S3Prefix":{
+      "type":"string",
+      "max":1024
+    },
     "S3SseAlgorithm":{
       "type":"string",
       "enum":[
@@ -3258,6 +3520,23 @@
       }
     },
     "TableCreationDateTime":{"type":"timestamp"},
+    "TableCreationParameters":{
+      "type":"structure",
+      "required":[
+        "TableName",
+        "AttributeDefinitions",
+        "KeySchema"
+      ],
+      "members":{
+        "TableName":{"shape":"TableName"},
+        "AttributeDefinitions":{"shape":"AttributeDefinitions"},
+        "KeySchema":{"shape":"KeySchema"},
+        "BillingMode":{"shape":"BillingMode"},
+        "ProvisionedThroughput":{"shape":"ProvisionedThroughput"},
+        "SSESpecification":{"shape":"SSESpecification"},
+        "GlobalSecondaryIndexes":{"shape":"GlobalSecondaryIndexList"}
+      }
+    },
     "TableDescription":{
       "type":"structure",
       "members":{

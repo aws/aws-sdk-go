@@ -8318,6 +8318,32 @@
         "locationName":"item"
       }
     },
+    "CloudWatchLogGroupArn":{"type":"string"},
+    "CloudWatchLogOptions":{
+      "type":"structure",
+      "members":{
+        "LogEnabled":{
+          "shape":"Boolean",
+          "locationName":"logEnabled"
+        },
+        "LogGroupArn":{
+          "shape":"String",
+          "locationName":"logGroupArn"
+        },
+        "LogOutputFormat":{
+          "shape":"String",
+          "locationName":"logOutputFormat"
+        }
+      }
+    },
+    "CloudWatchLogOptionsSpecification":{
+      "type":"structure",
+      "members":{
+        "LogEnabled":{"shape":"Boolean"},
+        "LogGroupArn":{"shape":"CloudWatchLogGroupArn"},
+        "LogOutputFormat":{"shape":"String"}
+      }
+    },
     "CoipAddressUsage":{
       "type":"structure",
       "members":{
@@ -28967,7 +28993,8 @@
           "shape":"IKEVersionsRequestList",
           "locationName":"IKEVersion"
         },
-        "StartupAction":{"shape":"String"}
+        "StartupAction":{"shape":"String"},
+        "LogOptions":{"shape":"VpnTunnelLogOptionsSpecification"}
       }
     },
     "MonitorInstancesRequest":{
@@ -38842,6 +38869,10 @@
         "StartupAction":{
           "shape":"String",
           "locationName":"startupAction"
+        },
+        "LogOptions":{
+          "shape":"VpnTunnelLogOptions",
+          "locationName":"logOptions"
         }
       }
     },
@@ -40527,6 +40558,21 @@
       "type":"string",
       "enum":["Static"]
     },
+    "VpnTunnelLogOptions":{
+      "type":"structure",
+      "members":{
+        "CloudWatchLogOptions":{
+          "shape":"CloudWatchLogOptions",
+          "locationName":"cloudWatchLogOptions"
+        }
+      }
+    },
+    "VpnTunnelLogOptionsSpecification":{
+      "type":"structure",
+      "members":{
+        "CloudWatchLogOptions":{"shape":"CloudWatchLogOptionsSpecification"}
+      }
+    },
     "VpnTunnelOptionsSpecification":{
       "type":"structure",
       "members":{
@@ -40568,7 +40614,8 @@
           "shape":"IKEVersionsRequestList",
           "locationName":"IKEVersion"
         },
-        "StartupAction":{"shape":"String"}
+        "StartupAction":{"shape":"String"},
+        "LogOptions":{"shape":"VpnTunnelLogOptionsSpecification"}
       }
     },
     "VpnTunnelOptionsSpecificationsList":{
