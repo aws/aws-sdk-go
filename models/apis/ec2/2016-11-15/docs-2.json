@@ -1716,6 +1716,8 @@
         "ClientLoginBannerOptions$Enabled": "<p>Enable or disable a customizable text banner that will be displayed on Amazon Web Services provided clients when a VPN session is established.</p> <p>Valid values: <code>true | false</code> </p> <p>Default value: <code>false</code> </p>",
         "ClientLoginBannerResponseOptions$Enabled": "<p>Current state of text banner feature.</p> <p>Valid values: <code>true | false</code> </p>",
         "ClientVpnEndpoint$SplitTunnel": "<p>Indicates whether split-tunnel is enabled in the Client VPN endpoint.</p> <p>For information about split-tunnel VPN endpoints, see <a href=\"https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/split-tunnel-vpn.html\">Split-Tunnel Client VPN endpoint</a> in the <i>Client VPN Administrator Guide</i>.</p>",
+        "CloudWatchLogOptions$LogEnabled": "<p>Status of VPN tunnel logging feature. Default value is <code>False</code>.</p> <p>Valid values: <code>True</code> | <code>False</code> </p>",
+        "CloudWatchLogOptionsSpecification$LogEnabled": "<p>Enable or disable VPN tunnel logging feature. Default value is <code>False</code>.</p> <p>Valid values: <code>True</code> | <code>False</code> </p>",
         "ConfirmProductInstanceRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ConfirmProductInstanceResult$Return": "<p>The return value of the request. Returns <code>true</code> if the specified product code is owned by the requester and associated with the specified instance.</p>",
         "ConnectionLogOptions$Enabled": "<p>Indicates whether connection logging is enabled.</p>",
@@ -3217,6 +3219,24 @@
         "ClientVpnEndpoint$SecurityGroupIds": "<p>The IDs of the security groups for the target network.</p>",
         "CreateClientVpnEndpointRequest$SecurityGroupIds": "<p>The IDs of one or more security groups to apply to the target network. You must also specify the ID of the VPC that contains the security groups.</p>",
         "ModifyClientVpnEndpointRequest$SecurityGroupIds": "<p>The IDs of one or more security groups to apply to the target network.</p>"
+      }
+    },
+    "CloudWatchLogGroupArn": {
+      "base": null,
+      "refs": {
+        "CloudWatchLogOptionsSpecification$LogGroupArn": "<p>The Amazon Resource Name (ARN) of the CloudWatch log group to send logs to.</p>"
+      }
+    },
+    "CloudWatchLogOptions": {
+      "base": "<p>Options for sending VPN tunnel logs to CloudWatch.</p>",
+      "refs": {
+        "VpnTunnelLogOptions$CloudWatchLogOptions": "<p>Options for sending VPN tunnel logs to CloudWatch.</p>"
+      }
+    },
+    "CloudWatchLogOptionsSpecification": {
+      "base": "<p>Options for sending VPN tunnel logs to CloudWatch.</p>",
+      "refs": {
+        "VpnTunnelLogOptionsSpecification$CloudWatchLogOptions": "<p>Options for sending VPN tunnel logs to CloudWatch.</p>"
       }
     },
     "CoipAddressUsage": {
@@ -16745,6 +16765,9 @@
         "ClientVpnRoute$Origin": "<p>Indicates how the route was associated with the Client VPN endpoint. <code>associate</code> indicates that the route was automatically added when the target network was associated with the Client VPN endpoint. <code>add-route</code> indicates that the route was manually added using the <b>CreateClientVpnRoute</b> action.</p>",
         "ClientVpnRoute$Description": "<p>A brief description of the route.</p>",
         "ClientVpnRouteStatus$Message": "<p>A message about the status of the Client VPN endpoint route, if applicable.</p>",
+        "CloudWatchLogOptions$LogGroupArn": "<p>The Amazon Resource Name (ARN) of the CloudWatch log group to send logs to.</p>",
+        "CloudWatchLogOptions$LogOutputFormat": "<p>Configured log format. Default format is <code>json</code>.</p> <p>Valid values: <code>json</code> | <code>text</code> </p>",
+        "CloudWatchLogOptionsSpecification$LogOutputFormat": "<p>Set log format. Default format is <code>json</code>.</p> <p>Valid values: <code>json</code> | <code>text</code> </p>",
         "CoipAddressUsage$AllocationId": "<p>The allocation ID of the address.</p>",
         "CoipAddressUsage$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "CoipAddressUsage$AwsService": "<p>The Amazon Web Services service.</p>",
@@ -20988,6 +21011,19 @@
       "base": null,
       "refs": {
         "VpnStaticRoute$Source": "<p>Indicates how the routes were provided.</p>"
+      }
+    },
+    "VpnTunnelLogOptions": {
+      "base": "<p>Options for logging VPN tunnel activity.</p>",
+      "refs": {
+        "TunnelOption$LogOptions": "<p>Options for logging VPN tunnel activity.</p>"
+      }
+    },
+    "VpnTunnelLogOptionsSpecification": {
+      "base": "<p>Options for logging VPN tunnel activity.</p>",
+      "refs": {
+        "ModifyVpnTunnelOptionsSpecification$LogOptions": "<p>Options for logging VPN tunnel activity.</p>",
+        "VpnTunnelOptionsSpecification$LogOptions": "<p>Options for logging VPN tunnel activity.</p>"
       }
     },
     "VpnTunnelOptionsSpecification": {

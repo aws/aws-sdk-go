@@ -22005,6 +22005,9 @@ type TransitGatewayPeering struct {
 
 	// The ARN of the transit gateway.
 	TransitGatewayArn *string `type:"string"`
+
+	// The ID of the transit gateway peering attachment.
+	TransitGatewayPeeringAttachmentId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -22034,6 +22037,12 @@ func (s *TransitGatewayPeering) SetPeering(v *Peering) *TransitGatewayPeering {
 // SetTransitGatewayArn sets the TransitGatewayArn field's value.
 func (s *TransitGatewayPeering) SetTransitGatewayArn(v string) *TransitGatewayPeering {
 	s.TransitGatewayArn = &v
+	return s
+}
+
+// SetTransitGatewayPeeringAttachmentId sets the TransitGatewayPeeringAttachmentId field's value.
+func (s *TransitGatewayPeering) SetTransitGatewayPeeringAttachmentId(v string) *TransitGatewayPeering {
+	s.TransitGatewayPeeringAttachmentId = &v
 	return s
 }
 

@@ -18,6 +18,7 @@
     "DescribeExport": "<p>Describes an existing table export.</p>",
     "DescribeGlobalTable": "<p>Returns information about the specified global table.</p> <note> <p>This operation only applies to <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V1.html\">Version 2017.11.29</a> of global tables. If you are using global tables <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V2.html\">Version 2019.11.21</a> you can use <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DescribeTable.html\">DescribeTable</a> instead.</p> </note>",
     "DescribeGlobalTableSettings": "<p>Describes Region-specific settings for a global table.</p> <note> <p>This operation only applies to <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V1.html\">Version 2017.11.29</a> of global tables.</p> </note>",
+    "DescribeImport": "<p> Represents the properties of the import. </p>",
     "DescribeKinesisStreamingDestination": "<p>Returns information about the status of Kinesis streaming.</p>",
     "DescribeLimits": "<p>Returns the current provisioned-capacity quotas for your Amazon Web Services account in a Region, both for the Region as a whole and for any one DynamoDB table that you create there.</p> <p>When you establish an Amazon Web Services account, the account has initial quotas on the maximum read capacity units and write capacity units that you can provision across all of your DynamoDB tables in a given Region. Also, there are per-table quotas that apply when you create a table there. For more information, see <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html\">Service, Account, and Table Quotas</a> page in the <i>Amazon DynamoDB Developer Guide</i>.</p> <p>Although you can increase these quotas by filing a case at <a href=\"https://console.aws.amazon.com/support/home#/\">Amazon Web Services Support Center</a>, obtaining the increase is not instantaneous. The <code>DescribeLimits</code> action lets you write code to compare the capacity you are currently using to those quotas imposed by your account so that you have enough time to apply for an increase before you hit a quota.</p> <p>For example, you could use one of the Amazon Web Services SDKs to do the following:</p> <ol> <li> <p>Call <code>DescribeLimits</code> for a particular Region to obtain your current account quotas on provisioned capacity there.</p> </li> <li> <p>Create a variable to hold the aggregate read capacity units provisioned for all your tables in that Region, and one to hold the aggregate write capacity units. Zero them both.</p> </li> <li> <p>Call <code>ListTables</code> to obtain a list of all your DynamoDB tables.</p> </li> <li> <p>For each table name listed by <code>ListTables</code>, do the following:</p> <ul> <li> <p>Call <code>DescribeTable</code> with the table name.</p> </li> <li> <p>Use the data returned by <code>DescribeTable</code> to add the read capacity units and write capacity units provisioned for the table itself to your variables.</p> </li> <li> <p>If the table has one or more global secondary indexes (GSIs), loop over these GSIs and add their provisioned capacity values to your variables as well.</p> </li> </ul> </li> <li> <p>Report the account quotas for that Region returned by <code>DescribeLimits</code>, along with the total current provisioned capacity levels you have calculated.</p> </li> </ol> <p>This will let you see whether you are getting close to your account-level quotas.</p> <p>The per-table quotas apply only when you are creating a new table. They restrict the sum of the provisioned capacity of the new table itself and all its global secondary indexes.</p> <p>For existing tables and their GSIs, DynamoDB doesn't let you increase provisioned capacity extremely rapidly, but the only quota that applies is that the aggregate provisioned capacity over all your tables and GSIs cannot exceed either of the per-account quotas.</p> <note> <p> <code>DescribeLimits</code> should only be called periodically. You can expect throttling errors if you call it more than once in a minute.</p> </note> <p>The <code>DescribeLimits</code> Request element has no content.</p>",
     "DescribeTable": "<p>Returns information about the table, including the current status of the table, when it was created, the primary key schema, and any indexes on the table.</p> <note> <p>If you issue a <code>DescribeTable</code> request immediately after a <code>CreateTable</code> request, DynamoDB might return a <code>ResourceNotFoundException</code>. This is because <code>DescribeTable</code> uses an eventually consistent query, and the metadata for your table might not be available at that moment. Wait for a few seconds, and then try the <code>DescribeTable</code> request again.</p> </note>",
@@ -29,10 +30,12 @@
     "ExecuteTransaction": "<p>This operation allows you to perform transactional reads or writes on data stored in DynamoDB, using PartiQL.</p> <note> <p>The entire transaction must consist of either read statements or write statements, you cannot mix both in one transaction. The EXISTS function is an exception and can be used to check the condition of specific attributes of the item in a similar manner to <code>ConditionCheck</code> in the <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html#transaction-apis-txwriteitems\">TransactWriteItems</a> API.</p> </note>",
     "ExportTableToPointInTime": "<p>Exports table data to an S3 bucket. The table must have point in time recovery enabled, and you can export data from any time within the point in time recovery window.</p>",
     "GetItem": "<p>The <code>GetItem</code> operation returns a set of attributes for the item with the given primary key. If there is no matching item, <code>GetItem</code> does not return any data and there will be no <code>Item</code> element in the response.</p> <p> <code>GetItem</code> provides an eventually consistent read by default. If your application requires a strongly consistent read, set <code>ConsistentRead</code> to <code>true</code>. Although a strongly consistent read might take more time than an eventually consistent read, it always returns the last updated value.</p>",
+    "ImportTable": "<p> Imports table data from an S3 bucket. </p>",
     "ListBackups": "<p>List backups associated with an Amazon Web Services account. To list backups for a given table, specify <code>TableName</code>. <code>ListBackups</code> returns a paginated list of results with at most 1 MB worth of items in a page. You can also specify a maximum number of entries to be returned in a page.</p> <p>In the request, start time is inclusive, but end time is exclusive. Note that these boundaries are for the time at which the original backup was requested.</p> <p>You can call <code>ListBackups</code> a maximum of five times per second.</p>",
     "ListContributorInsights": "<p>Returns a list of ContributorInsightsSummary for a table and all its global secondary indexes.</p>",
     "ListExports": "<p>Lists completed exports within the past 90 days.</p>",
     "ListGlobalTables": "<p>Lists all global tables that have a replica in the specified Region.</p> <note> <p>This operation only applies to <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V1.html\">Version 2017.11.29</a> of global tables.</p> </note>",
+    "ListImports": "<p> Lists completed imports within the past 90 days. </p>",
     "ListTables": "<p>Returns an array of table names associated with the current account and endpoint. The output from <code>ListTables</code> is paginated, with each page returning a maximum of 100 table names.</p>",
     "ListTagsOfResource": "<p>List all tags on an Amazon DynamoDB resource. You can call ListTagsOfResource up to 10 times per second, per account.</p> <p>For an overview on tagging DynamoDB resources, see <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html\">Tagging for DynamoDB</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>",
     "PutItem": "<p>Creates a new item, or replaces an old item with a new item. If an item that has the same primary key as the new item already exists in the specified table, the new item completely replaces the existing item. You can perform a conditional put operation (add a new item if one with the specified primary key doesn't exist), or replace an existing item if it has certain attribute values. You can return the item's attribute values in the same operation, using the <code>ReturnValues</code> parameter.</p> <p>When you add an item, the primary key attributes are the only required attributes. Attribute values cannot be null.</p> <p>Empty String and Binary attribute values are allowed. Attribute values of type String and Binary must have a length greater than zero if the attribute is used as a key attribute for a table or index. Set type attributes cannot be empty. </p> <p>Invalid Requests with empty values will be rejected with a <code>ValidationException</code> exception.</p> <note> <p>To prevent a new item from replacing an existing item, use a conditional expression that contains the <code>attribute_not_exists</code> function with the name of the attribute being used as the partition key for the table. Since every record must contain that attribute, the <code>attribute_not_exists</code> function will only succeed if no matching item exists.</p> </note> <p>For more information about <code>PutItem</code>, see <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html\">Working with Items</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>",
@@ -82,6 +85,7 @@
       "base": null,
       "refs": {
         "CreateTableInput$AttributeDefinitions": "<p>An array of attributes that describe the key schema for the table and indexes.</p>",
+        "TableCreationParameters$AttributeDefinitions": "<p> The attributes of the table created as part of the import operation. </p>",
         "TableDescription$AttributeDefinitions": "<p>An array of <code>AttributeDefinition</code> objects. Each of these objects describes one attribute in the table and index key schema.</p> <p>Each <code>AttributeDefinition</code> object in this array is composed of:</p> <ul> <li> <p> <code>AttributeName</code> - The name of the attribute.</p> </li> <li> <p> <code>AttributeType</code> - The data type for the attribute.</p> </li> </ul>",
         "UpdateTableInput$AttributeDefinitions": "<p>An array of attributes that describe the key schema for the table and indexes. If you are adding a new global secondary index to the table, <code>AttributeDefinitions</code> must include the key element(s) of the new index.</p>"
       }
@@ -420,6 +424,7 @@
         "RestoreTableFromBackupInput$BillingModeOverride": "<p>The billing mode of the restored table.</p>",
         "RestoreTableToPointInTimeInput$BillingModeOverride": "<p>The billing mode of the restored table.</p>",
         "SourceTableDetails$BillingMode": "<p>Controls how you are charged for read and write throughput and how you manage capacity. This setting can be changed later.</p> <ul> <li> <p> <code>PROVISIONED</code> - Sets the read/write capacity mode to <code>PROVISIONED</code>. We recommend using <code>PROVISIONED</code> for predictable workloads.</p> </li> <li> <p> <code>PAY_PER_REQUEST</code> - Sets the read/write capacity mode to <code>PAY_PER_REQUEST</code>. We recommend using <code>PAY_PER_REQUEST</code> for unpredictable workloads. </p> </li> </ul>",
+        "TableCreationParameters$BillingMode": "<p> The billing mode for provisioning the table created as part of the import operation. </p>",
         "UpdateGlobalTableSettingsInput$GlobalTableBillingMode": "<p>The billing mode of the global table. If <code>GlobalTableBillingMode</code> is not specified, the global table defaults to <code>PROVISIONED</code> capacity billing mode.</p> <ul> <li> <p> <code>PROVISIONED</code> - We recommend using <code>PROVISIONED</code> for predictable workloads. <code>PROVISIONED</code> sets the billing mode to <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.ProvisionedThroughput.Manual\">Provisioned Mode</a>.</p> </li> <li> <p> <code>PAY_PER_REQUEST</code> - We recommend using <code>PAY_PER_REQUEST</code> for unpredictable workloads. <code>PAY_PER_REQUEST</code> sets the billing mode to <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.OnDemand\">On-Demand Mode</a>. </p> </li> </ul>",
         "UpdateTableInput$BillingMode": "<p>Controls how you are charged for read and write throughput and how you manage capacity. When switching from pay-per-request to provisioned capacity, initial provisioned capacity values must be set. The initial provisioned capacity values are estimated based on the consumed read and write capacity of your table and global secondary indexes over the past 30 minutes.</p> <ul> <li> <p> <code>PROVISIONED</code> - We recommend using <code>PROVISIONED</code> for predictable workloads. <code>PROVISIONED</code> sets the billing mode to <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.ProvisionedThroughput.Manual\">Provisioned Mode</a>.</p> </li> <li> <p> <code>PAY_PER_REQUEST</code> - We recommend using <code>PAY_PER_REQUEST</code> for unpredictable workloads. <code>PAY_PER_REQUEST</code> sets the billing mode to <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.OnDemand\">On-Demand Mode</a>. </p> </li> </ul>"
       }
@@ -493,7 +498,16 @@
       "base": null,
       "refs": {
         "ExportDescription$ClientToken": "<p>The client token that was provided for the export task. A client token makes calls to <code>ExportTableToPointInTimeInput</code> idempotent, meaning that multiple identical calls have the same effect as one single call.</p>",
-        "ExportTableToPointInTimeInput$ClientToken": "<p>Providing a <code>ClientToken</code> makes the call to <code>ExportTableToPointInTimeInput</code> idempotent, meaning that multiple identical calls have the same effect as one single call.</p> <p>A client token is valid for 8 hours after the first request that uses it is completed. After 8 hours, any request with the same client token is treated as a new request. Do not resubmit the same request with the same client token for more than 8 hours, or the result might not be idempotent.</p> <p>If you submit a request with the same client token but a change in other parameters within the 8-hour idempotency window, DynamoDB returns an <code>IdempotentParameterMismatch</code> exception.</p>"
+        "ExportTableToPointInTimeInput$ClientToken": "<p>Providing a <code>ClientToken</code> makes the call to <code>ExportTableToPointInTimeInput</code> idempotent, meaning that multiple identical calls have the same effect as one single call.</p> <p>A client token is valid for 8 hours after the first request that uses it is completed. After 8 hours, any request with the same client token is treated as a new request. Do not resubmit the same request with the same client token for more than 8 hours, or the result might not be idempotent.</p> <p>If you submit a request with the same client token but a change in other parameters within the 8-hour idempotency window, DynamoDB returns an <code>ImportConflictException</code>.</p>",
+        "ImportTableDescription$ClientToken": "<p> The client token that was provided for the import task. Reusing the client token on retry makes a call to <code>ImportTable</code> idempotent. </p>",
+        "ImportTableInput$ClientToken": "<p>Providing a <code>ClientToken</code> makes the call to <code>ImportTableInput</code> idempotent, meaning that multiple identical calls have the same effect as one single call.</p> <p>A client token is valid for 8 hours after the first request that uses it is completed. After 8 hours, any request with the same client token is treated as a new request. Do not resubmit the same request with the same client token for more than 8 hours, or the result might not be idempotent.</p> <p>If you submit a request with the same client token but a change in other parameters within the 8-hour idempotency window, DynamoDB returns an <code>IdempotentParameterMismatch</code> exception.</p>"
+      }
+    },
+    "CloudWatchLogGroupArn": {
+      "base": null,
+      "refs": {
+        "ImportSummary$CloudWatchLogGroupArn": "<p> The Amazon Resource Number (ARN) of the Cloudwatch Log Group associated with this import task. </p>",
+        "ImportTableDescription$CloudWatchLogGroupArn": "<p> The Amazon Resource Number (ARN) of the Cloudwatch Log Group associated with the target table. </p>"
       }
     },
     "Code": {
@@ -701,6 +715,30 @@
       "refs": {
       }
     },
+    "CsvDelimiter": {
+      "base": null,
+      "refs": {
+        "CsvOptions$Delimiter": "<p> The delimiter used for separating items in the CSV file being imported. </p>"
+      }
+    },
+    "CsvHeader": {
+      "base": null,
+      "refs": {
+        "CsvHeaderList$member": null
+      }
+    },
+    "CsvHeaderList": {
+      "base": null,
+      "refs": {
+        "CsvOptions$HeaderList": "<p> List of the headers used to specify a common header for all source CSV files being imported. If this field is specified then the first line of each CSV file is treated as data instead of the header. If this field is not specified the the first line of each CSV file is treated as the header. </p>"
+      }
+    },
+    "CsvOptions": {
+      "base": "<p> Processing options for the CSV file being imported. </p>",
+      "refs": {
+        "InputFormatOptions$Csv": "<p> The options for imported source files in CSV format. The values are Delimiter and HeaderList. </p>"
+      }
+    },
     "Date": {
       "base": null,
       "refs": {
@@ -851,6 +889,16 @@
       "refs": {
       }
     },
+    "DescribeImportInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeImportOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeKinesisStreamingDestinationInput": {
       "base": null,
       "refs": {
@@ -932,6 +980,12 @@
         "DescribeEndpointsResponse$Endpoints": "<p>List of endpoints.</p>"
       }
     },
+    "ErrorCount": {
+      "base": null,
+      "refs": {
+        "ImportTableDescription$ErrorCount": "<p> The number of errors occurred on importing the source file into the target table. </p>"
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
@@ -946,6 +1000,8 @@
         "GlobalTableAlreadyExistsException$message": null,
         "GlobalTableNotFoundException$message": null,
         "IdempotentParameterMismatchException$Message": null,
+        "ImportConflictException$message": null,
+        "ImportNotFoundException$message": null,
         "IndexNotFoundException$message": null,
         "InternalServerError$message": "<p>The server encountered an internal error trying to fulfill the request.</p>",
         "InvalidExportTimeException$message": null,
@@ -1152,7 +1208,8 @@
     "FailureCode": {
       "base": null,
       "refs": {
-        "ExportDescription$FailureCode": "<p>Status code for the result of the failed export.</p>"
+        "ExportDescription$FailureCode": "<p>Status code for the result of the failed export.</p>",
+        "ImportTableDescription$FailureCode": "<p> The error code corresponding to the failure that the import job ran into during execution. </p>"
       }
     },
     "FailureException": {
@@ -1164,7 +1221,8 @@
     "FailureMessage": {
       "base": null,
       "refs": {
-        "ExportDescription$FailureMessage": "<p>Export failure reason description.</p>"
+        "ExportDescription$FailureMessage": "<p>Export failure reason description.</p>",
+        "ImportTableDescription$FailureMessage": "<p> The error message corresponding to the failure that the import job ran into during execution. </p>"
       }
     },
     "FilterConditionMap": {
@@ -1231,7 +1289,8 @@
       "refs": {
         "CreateTableInput$GlobalSecondaryIndexes": "<p>One or more global secondary indexes (the maximum is 20) to be created on the table. Each global secondary index in the array includes the following:</p> <ul> <li> <p> <code>IndexName</code> - The name of the global secondary index. Must be unique only for this table.</p> <p/> </li> <li> <p> <code>KeySchema</code> - Specifies the key schema for the global secondary index.</p> </li> <li> <p> <code>Projection</code> - Specifies attributes that are copied (projected) from the table into the index. These are in addition to the primary key attributes and index key attributes, which are automatically projected. Each attribute specification is composed of:</p> <ul> <li> <p> <code>ProjectionType</code> - One of the following:</p> <ul> <li> <p> <code>KEYS_ONLY</code> - Only the index and primary keys are projected into the index.</p> </li> <li> <p> <code>INCLUDE</code> - Only the specified table attributes are projected into the index. The list of projected attributes is in <code>NonKeyAttributes</code>.</p> </li> <li> <p> <code>ALL</code> - All of the table attributes are projected into the index.</p> </li> </ul> </li> <li> <p> <code>NonKeyAttributes</code> - A list of one or more non-key attribute names that are projected into the secondary index. The total count of attributes provided in <code>NonKeyAttributes</code>, summed across all of the secondary indexes, must not exceed 100. If you project the same attribute into two different indexes, this counts as two distinct attributes when determining the total.</p> </li> </ul> </li> <li> <p> <code>ProvisionedThroughput</code> - The provisioned throughput settings for the global secondary index, consisting of read and write capacity units.</p> </li> </ul>",
         "RestoreTableFromBackupInput$GlobalSecondaryIndexOverride": "<p>List of global secondary indexes for the restored table. The indexes provided should match existing secondary indexes. You can choose to exclude some or all of the indexes at the time of restore.</p>",
-        "RestoreTableToPointInTimeInput$GlobalSecondaryIndexOverride": "<p>List of global secondary indexes for the restored table. The indexes provided should match existing secondary indexes. You can choose to exclude some or all of the indexes at the time of restore.</p>"
+        "RestoreTableToPointInTimeInput$GlobalSecondaryIndexOverride": "<p>List of global secondary indexes for the restored table. The indexes provided should match existing secondary indexes. You can choose to exclude some or all of the indexes at the time of restore.</p>",
+        "TableCreationParameters$GlobalSecondaryIndexes": "<p> The Global Secondary Indexes (GSI) of the table to be created as part of the import operation. </p>"
       }
     },
     "GlobalSecondaryIndexUpdate": {
@@ -1311,6 +1370,87 @@
       "refs": {
       }
     },
+    "ImportArn": {
+      "base": null,
+      "refs": {
+        "DescribeImportInput$ImportArn": "<p> The Amazon Resource Name (ARN) associated with the table you're importing to. </p>",
+        "ImportSummary$ImportArn": "<p> The Amazon Resource Number (ARN) corresponding to the import request. </p>",
+        "ImportTableDescription$ImportArn": "<p> The Amazon Resource Number (ARN) corresponding to the import request. </p>"
+      }
+    },
+    "ImportConflictException": {
+      "base": "<p> There was a conflict when importing from the specified S3 source. This can occur when the current import conflicts with a previous import request that had the same client token. </p>",
+      "refs": {
+      }
+    },
+    "ImportEndTime": {
+      "base": null,
+      "refs": {
+        "ImportSummary$EndTime": "<p> The time at which this import task ended. (Does this include the successful complete creation of the table it was imported to?) </p>",
+        "ImportTableDescription$EndTime": "<p> The time at which the creation of the table associated with this import task completed. </p>"
+      }
+    },
+    "ImportNextToken": {
+      "base": null,
+      "refs": {
+        "ListImportsInput$NextToken": "<p> An optional string that, if supplied, must be copied from the output of a previous call to <code>ListImports</code>. When provided in this manner, the API fetches the next page of results. </p>",
+        "ListImportsOutput$NextToken": "<p> If this value is returned, there are additional results to be displayed. To retrieve them, call <code>ListImports</code> again, with <code>NextToken</code> set to this value. </p>"
+      }
+    },
+    "ImportNotFoundException": {
+      "base": "<p> The specified import was not found. </p>",
+      "refs": {
+      }
+    },
+    "ImportStartTime": {
+      "base": null,
+      "refs": {
+        "ImportSummary$StartTime": "<p> The time at which this import task began. </p>",
+        "ImportTableDescription$StartTime": "<p> The time when this import task started. </p>"
+      }
+    },
+    "ImportStatus": {
+      "base": null,
+      "refs": {
+        "ImportSummary$ImportStatus": "<p> The status of the import operation. </p>",
+        "ImportTableDescription$ImportStatus": "<p> The status of the import. </p>"
+      }
+    },
+    "ImportSummary": {
+      "base": "<p> Summary information about the source file for the import. </p>",
+      "refs": {
+        "ImportSummaryList$member": null
+      }
+    },
+    "ImportSummaryList": {
+      "base": null,
+      "refs": {
+        "ListImportsOutput$ImportSummaryList": "<p> A list of <code>ImportSummary</code> objects. </p>"
+      }
+    },
+    "ImportTableDescription": {
+      "base": "<p> Represents the properties of the table being imported into. </p>",
+      "refs": {
+        "DescribeImportOutput$ImportTableDescription": "<p> Represents the properties of the table created for the import, and parameters of the import. The import parameters include import status, how many items were processed, and how many errors were encountered. </p>",
+        "ImportTableOutput$ImportTableDescription": "<p> Represents the properties of the table created for the import, and parameters of the import. The import parameters include import status, how many items were processed, and how many errors were encountered. </p>"
+      }
+    },
+    "ImportTableInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ImportTableOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ImportedItemCount": {
+      "base": null,
+      "refs": {
+        "ImportTableDescription$ImportedItemCount": "<p> The number of items successfully imported into the new table. </p>"
+      }
+    },
     "IndexName": {
       "base": null,
       "refs": {
@@ -1352,6 +1492,28 @@
         "GlobalSecondaryIndexDescription$IndexStatus": "<p>The current state of the global secondary index:</p> <ul> <li> <p> <code>CREATING</code> - The index is being created.</p> </li> <li> <p> <code>UPDATING</code> - The index is being updated.</p> </li> <li> <p> <code>DELETING</code> - The index is being deleted.</p> </li> <li> <p> <code>ACTIVE</code> - The index is ready for use.</p> </li> </ul>",
         "ReplicaGlobalSecondaryIndexAutoScalingDescription$IndexStatus": "<p>The current state of the replica global secondary index:</p> <ul> <li> <p> <code>CREATING</code> - The index is being created.</p> </li> <li> <p> <code>UPDATING</code> - The index is being updated.</p> </li> <li> <p> <code>DELETING</code> - The index is being deleted.</p> </li> <li> <p> <code>ACTIVE</code> - The index is ready for use.</p> </li> </ul>",
         "ReplicaGlobalSecondaryIndexSettingsDescription$IndexStatus": "<p> The current status of the global secondary index:</p> <ul> <li> <p> <code>CREATING</code> - The global secondary index is being created.</p> </li> <li> <p> <code>UPDATING</code> - The global secondary index is being updated.</p> </li> <li> <p> <code>DELETING</code> - The global secondary index is being deleted.</p> </li> <li> <p> <code>ACTIVE</code> - The global secondary index is ready for use.</p> </li> </ul>"
+      }
+    },
+    "InputCompressionType": {
+      "base": null,
+      "refs": {
+        "ImportTableDescription$InputCompressionType": "<p> The compression options for the data that has been imported into the target table. The values are NONE, GZIP, or ZSTD. </p>",
+        "ImportTableInput$InputCompressionType": "<p> Type of compression to be used on the input coming from the imported table. </p>"
+      }
+    },
+    "InputFormat": {
+      "base": null,
+      "refs": {
+        "ImportSummary$InputFormat": "<p> The format of the source data. Valid values are <code>CSV</code>, <code>DYNAMODB_JSON</code> or <code>ION</code>.</p>",
+        "ImportTableDescription$InputFormat": "<p> The format of the source data going into the target table. </p>",
+        "ImportTableInput$InputFormat": "<p> The format of the source data. Valid values for <code>ImportFormat</code> are <code>CSV</code>, <code>DYNAMODB_JSON</code> or <code>ION</code>. </p>"
+      }
+    },
+    "InputFormatOptions": {
+      "base": "<p> The format options for the data that was imported into the target table. There is one value, CsvOption.</p>",
+      "refs": {
+        "ImportTableDescription$InputFormatOptions": "<p> The format options for the data that was imported into the target table. There is one value, CsvOption. </p>",
+        "ImportTableInput$InputFormatOptions": "<p> Additional properties that specify how the input is formatted, </p>"
       }
     },
     "Integer": {
@@ -1525,6 +1687,7 @@
         "LocalSecondaryIndexDescription$KeySchema": "<p>The complete key schema for the local secondary index, consisting of one or more pairs of attribute names and key types:</p> <ul> <li> <p> <code>HASH</code> - partition key</p> </li> <li> <p> <code>RANGE</code> - sort key</p> </li> </ul> <note> <p>The partition key of an item is also known as its <i>hash attribute</i>. The term \"hash attribute\" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values.</p> <p>The sort key of an item is also known as its <i>range attribute</i>. The term \"range attribute\" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value.</p> </note>",
         "LocalSecondaryIndexInfo$KeySchema": "<p>The complete key schema for a local secondary index, which consists of one or more pairs of attribute names and key types:</p> <ul> <li> <p> <code>HASH</code> - partition key</p> </li> <li> <p> <code>RANGE</code> - sort key</p> </li> </ul> <note> <p>The partition key of an item is also known as its <i>hash attribute</i>. The term \"hash attribute\" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values.</p> <p>The sort key of an item is also known as its <i>range attribute</i>. The term \"range attribute\" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value.</p> </note>",
         "SourceTableDetails$KeySchema": "<p>Schema of the table. </p>",
+        "TableCreationParameters$KeySchema": "<p> The primary key and option sort key of the table created as part of the import operation. </p>",
         "TableDescription$KeySchema": "<p>The primary key structure for the table. Each <code>KeySchemaElement</code> consists of:</p> <ul> <li> <p> <code>AttributeName</code> - The name of the attribute.</p> </li> <li> <p> <code>KeyType</code> - The role of the attribute:</p> <ul> <li> <p> <code>HASH</code> - partition key</p> </li> <li> <p> <code>RANGE</code> - sort key</p> </li> </ul> <note> <p>The partition key of an item is also known as its <i>hash attribute</i>. The term \"hash attribute\" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values.</p> <p>The sort key of an item is also known as its <i>range attribute</i>. The term \"range attribute\" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value.</p> </note> </li> </ul> <p>For more information about primary keys, see <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey\">Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>"
       }
     },
@@ -1644,6 +1807,22 @@
       "refs": {
       }
     },
+    "ListImportsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListImportsMaxLimit": {
+      "base": null,
+      "refs": {
+        "ListImportsInput$PageSize": "<p> The number of <code>ImportSummary </code>objects returned in a single page. </p>"
+      }
+    },
+    "ListImportsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTablesInput": {
       "base": "<p>Represents the input of a <code>ListTables</code> operation.</p>",
       "refs": {
@@ -1714,6 +1893,7 @@
         "Endpoint$CachePeriodInMinutes": "<p>Endpoint cache time to live (TTL) value.</p>",
         "GlobalSecondaryIndexDescription$IndexSizeBytes": "<p>The total size of the specified index, in bytes. DynamoDB updates this value approximately every six hours. Recent changes might not be reflected in this value.</p>",
         "GlobalSecondaryIndexDescription$ItemCount": "<p>The number of items in the specified index. DynamoDB updates this value approximately every six hours. Recent changes might not be reflected in this value.</p>",
+        "ImportTableDescription$ProcessedSizeBytes": "<p> The total size of data processed from the source file, in Bytes. </p>",
         "LocalSecondaryIndexDescription$IndexSizeBytes": "<p>The total size of the specified index, in bytes. DynamoDB updates this value approximately every six hours. Recent changes might not be reflected in this value.</p>",
         "LocalSecondaryIndexDescription$ItemCount": "<p>The number of items in the specified index. DynamoDB updates this value approximately every six hours. Recent changes might not be reflected in this value.</p>",
         "SourceTableDetails$TableSizeBytes": "<p>Size of the table in bytes. Note that this is an approximate value.</p>",
@@ -1878,6 +2058,12 @@
         "ParameterizedStatement$Parameters": "<p> The parameter values. </p>"
       }
     },
+    "ProcessedItemCount": {
+      "base": null,
+      "refs": {
+        "ImportTableDescription$ProcessedItemCount": "<p> The total number of items processed from the source file. </p>"
+      }
+    },
     "Projection": {
       "base": "<p>Represents attributes that are copied (projected) from the table into an index. These are in addition to the primary key attributes and index key attributes, which are automatically projected.</p>",
       "refs": {
@@ -1916,6 +2102,7 @@
         "RestoreTableFromBackupInput$ProvisionedThroughputOverride": "<p>Provisioned throughput settings for the restored table.</p>",
         "RestoreTableToPointInTimeInput$ProvisionedThroughputOverride": "<p>Provisioned throughput settings for the restored table.</p>",
         "SourceTableDetails$ProvisionedThroughput": "<p>Read IOPs and Write IOPS on the table when the backup was created.</p>",
+        "TableCreationParameters$ProvisionedThroughput": null,
         "UpdateGlobalSecondaryIndexAction$ProvisionedThroughput": "<p>Represents the provisioned throughput settings for the specified global secondary index.</p> <p>For current minimum and maximum provisioned throughput values, see <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html\">Service, Account, and Table Quotas</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>",
         "UpdateTableInput$ProvisionedThroughput": "<p>The new provisioned throughput settings for the specified table or index.</p>"
       }
@@ -2305,21 +2492,32 @@
       "base": null,
       "refs": {
         "ExportDescription$S3Bucket": "<p>The name of the Amazon S3 bucket containing the export.</p>",
-        "ExportTableToPointInTimeInput$S3Bucket": "<p>The name of the Amazon S3 bucket to export the snapshot to.</p>"
+        "ExportTableToPointInTimeInput$S3Bucket": "<p>The name of the Amazon S3 bucket to export the snapshot to.</p>",
+        "S3BucketSource$S3Bucket": "<p> The S3 bucket that is being imported from. </p>"
       }
     },
     "S3BucketOwner": {
       "base": null,
       "refs": {
         "ExportDescription$S3BucketOwner": "<p>The ID of the Amazon Web Services account that owns the bucket containing the export.</p>",
-        "ExportTableToPointInTimeInput$S3BucketOwner": "<p>The ID of the Amazon Web Services account that owns the bucket the export will be stored in.</p>"
+        "ExportTableToPointInTimeInput$S3BucketOwner": "<p>The ID of the Amazon Web Services account that owns the bucket the export will be stored in.</p>",
+        "S3BucketSource$S3BucketOwner": "<p> The account number of the S3 bucket that is being imported from. If the bucket is owned by the requester this is optional. </p>"
+      }
+    },
+    "S3BucketSource": {
+      "base": "<p> The S3 bucket that is being imported from. </p>",
+      "refs": {
+        "ImportSummary$S3BucketSource": "<p> The path and S3 bucket of the source file that is being imported. This includes the S3Bucket (required), S3KeyPrefix (optional) and S3BucketOwner (optional if the bucket is owned by the requester). </p>",
+        "ImportTableDescription$S3BucketSource": "<p> Values for the S3 bucket the source file is imported from. Includes bucket name (required), key prefix (optional) and bucket account owner ID (optional). </p>",
+        "ImportTableInput$S3BucketSource": "<p> The S3 bucket that provides the source for the import. </p>"
       }
     },
     "S3Prefix": {
       "base": null,
       "refs": {
         "ExportDescription$S3Prefix": "<p>The Amazon S3 bucket prefix used as the file name and path of the exported snapshot.</p>",
-        "ExportTableToPointInTimeInput$S3Prefix": "<p>The Amazon S3 bucket prefix to use as the file name and path of the exported snapshot.</p>"
+        "ExportTableToPointInTimeInput$S3Prefix": "<p>The Amazon S3 bucket prefix to use as the file name and path of the exported snapshot.</p>",
+        "S3BucketSource$S3KeyPrefix": "<p> The key prefix shared by all S3 Objects that are being imported. </p>"
       }
     },
     "S3SseAlgorithm": {
@@ -2355,6 +2553,7 @@
         "CreateTableInput$SSESpecification": "<p>Represents the settings used to enable server-side encryption.</p>",
         "RestoreTableFromBackupInput$SSESpecificationOverride": "<p>The new server-side encryption settings for the restored table.</p>",
         "RestoreTableToPointInTimeInput$SSESpecificationOverride": "<p>The new server-side encryption settings for the restored table.</p>",
+        "TableCreationParameters$SSESpecification": null,
         "UpdateTableInput$SSESpecification": "<p>The new server-side encryption settings for the specified table.</p>"
       }
     },
@@ -2459,7 +2658,7 @@
       "base": null,
       "refs": {
         "AutoScalingSettingsDescription$AutoScalingRoleArn": "<p>Role ARN used for configuring the auto scaling policy.</p>",
-        "BatchStatementError$Message": "<p> The error message associated with the PartiQL batch resposne. </p>",
+        "BatchStatementError$Message": "<p> The error message associated with the PartiQL batch response. </p>",
         "Endpoint$Address": "<p>IP address of the endpoint.</p>",
         "GlobalSecondaryIndexDescription$IndexArn": "<p>The Amazon Resource Name (ARN) that uniquely identifies the index.</p>",
         "KinesisDataStreamDestination$DestinationStatusDescription": "<p>The human-readable string that corresponds to the replica status.</p>",
@@ -2493,7 +2692,10 @@
         "BackupSummary$TableArn": "<p>ARN associated with the table.</p>",
         "ExportDescription$TableArn": "<p>The Amazon Resource Name (ARN) of the table that was exported.</p>",
         "ExportTableToPointInTimeInput$TableArn": "<p>The Amazon Resource Name (ARN) associated with the table to export.</p>",
+        "ImportSummary$TableArn": "<p> The Amazon Resource Number (ARN) of the table being imported into. </p>",
+        "ImportTableDescription$TableArn": "<p> The Amazon Resource Number (ARN) of the table being imported into. </p>",
         "ListExportsInput$TableArn": "<p>The Amazon Resource Name (ARN) associated with the exported table.</p>",
+        "ListImportsInput$TableArn": "<p> The Amazon Resource Name (ARN) associated with the table that was imported to. </p>",
         "RestoreSummary$SourceTableArn": "<p>The ARN of the source table of the backup that is being restored.</p>",
         "RestoreTableToPointInTimeInput$SourceTableArn": "<p>The DynamoDB table that will be restored. This value is an Amazon Resource Name (ARN).</p>",
         "SourceTableDetails$TableArn": "<p>ARN of the table for which backup was created. </p>"
@@ -2531,6 +2733,13 @@
         "SourceTableDetails$TableCreationDateTime": "<p>Time when the source table was created. </p>"
       }
     },
+    "TableCreationParameters": {
+      "base": "<p> The parameters for the table created as part of the import operation. </p>",
+      "refs": {
+        "ImportTableDescription$TableCreationParameters": "<p> The parameters for the new table that is being imported into. </p>",
+        "ImportTableInput$TableCreationParameters": "<p>Parameters for the table to import the data into. </p>"
+      }
+    },
     "TableDescription": {
       "base": "<p>Represents the properties of a table.</p>",
       "refs": {
@@ -2547,6 +2756,7 @@
       "refs": {
         "BackupSummary$TableId": "<p>Unique identifier for the table.</p>",
         "ExportDescription$TableId": "<p>Unique ID of the table that was exported.</p>",
+        "ImportTableDescription$TableId": "<p> The table id corresponding to the table created by import table process. </p>",
         "SourceTableDetails$TableId": "<p>Unique identifier for the table for which the backup was created. </p>",
         "TableDescription$TableId": "<p>Unique identifier for the table for which the backup was created. </p>"
       }
@@ -2606,6 +2816,7 @@
         "ScanInput$TableName": "<p>The name of the table containing the requested items; or, if you provide <code>IndexName</code>, the name of the table to which that index belongs.</p>",
         "SourceTableDetails$TableName": "<p>The name of the table for which the backup was created. </p>",
         "TableAutoScalingDescription$TableName": "<p>The name of the table.</p>",
+        "TableCreationParameters$TableName": "<p> The name of the table created as part of the import operation. </p>",
         "TableDescription$TableName": "<p>The name of the table.</p>",
         "TableNameList$member": null,
         "Update$TableName": "<p>Name of the table for the <code>UpdateItem</code> request.</p>",

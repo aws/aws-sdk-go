@@ -330,6 +330,23 @@
         {"shape":"InternalServiceFault"}
       ]
     },
+    "ListManagedInsightRules":{
+      "name":"ListManagedInsightRules",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListManagedInsightRulesInput"},
+      "output":{
+        "shape":"ListManagedInsightRulesOutput",
+        "resultWrapper":"ListManagedInsightRulesResult"
+      },
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"InvalidNextToken"}
+      ]
+    },
     "ListMetricStreams":{
       "name":"ListMetricStreams",
       "http":{
@@ -442,6 +459,22 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"MissingRequiredParameterException"},
         {"shape":"LimitExceededException"}
+      ]
+    },
+    "PutManagedInsightRules":{
+      "name":"PutManagedInsightRules",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutManagedInsightRulesInput"},
+      "output":{
+        "shape":"PutManagedInsightRulesOutput",
+        "resultWrapper":"PutManagedInsightRulesResult"
+      },
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingRequiredParameterException"}
       ]
     },
     "PutMetricAlarm":{
@@ -1359,7 +1392,8 @@
         "Name":{"shape":"InsightRuleName"},
         "State":{"shape":"InsightRuleState"},
         "Schema":{"shape":"InsightRuleSchema"},
-        "Definition":{"shape":"InsightRuleDefinition"}
+        "Definition":{"shape":"InsightRuleDefinition"},
+        "ManagedRule":{"shape":"InsightRuleIsManaged"}
       }
     },
     "InsightRuleAggregationStatistic":{"type":"string"},
@@ -1411,6 +1445,7 @@
       "min":1,
       "pattern":"[\\x00-\\x7F]+"
     },
+    "InsightRuleIsManaged":{"type":"boolean"},
     "InsightRuleMaxResults":{
       "type":"integer",
       "max":500,
@@ -1580,6 +1615,22 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListManagedInsightRulesInput":{
+      "type":"structure",
+      "required":["ResourceARN"],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"InsightRuleMaxResults"}
+      }
+    },
+    "ListManagedInsightRulesOutput":{
+      "type":"structure",
+      "members":{
+        "ManagedRules":{"shape":"ManagedRuleDescriptions"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListMetricStreamsInput":{
       "type":"structure",
       "members":{
@@ -1632,6 +1683,45 @@
       "members":{
         "Tags":{"shape":"TagList"}
       }
+    },
+    "ManagedRule":{
+      "type":"structure",
+      "required":[
+        "TemplateName",
+        "ResourceARN"
+      ],
+      "members":{
+        "TemplateName":{"shape":"TemplateName"},
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "ManagedRuleDescription":{
+      "type":"structure",
+      "members":{
+        "TemplateName":{"shape":"TemplateName"},
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "RuleState":{"shape":"ManagedRuleState"}
+      }
+    },
+    "ManagedRuleDescriptions":{
+      "type":"list",
+      "member":{"shape":"ManagedRuleDescription"}
+    },
+    "ManagedRuleState":{
+      "type":"structure",
+      "required":[
+        "RuleName",
+        "State"
+      ],
+      "members":{
+        "RuleName":{"shape":"InsightRuleName"},
+        "State":{"shape":"InsightRuleState"}
+      }
+    },
+    "ManagedRules":{
+      "type":"list",
+      "member":{"shape":"ManagedRule"}
     },
     "MaxRecords":{
       "type":"integer",
@@ -2029,6 +2119,19 @@
       "members":{
       }
     },
+    "PutManagedInsightRulesInput":{
+      "type":"structure",
+      "required":["ManagedRules"],
+      "members":{
+        "ManagedRules":{"shape":"ManagedRules"}
+      }
+    },
+    "PutManagedInsightRulesOutput":{
+      "type":"structure",
+      "members":{
+        "Failures":{"shape":"BatchFailures"}
+      }
+    },
     "PutMetricAlarmInput":{
       "type":"structure",
       "required":[
@@ -2348,6 +2451,12 @@
       "type":"string",
       "max":256,
       "min":0
+    },
+    "TemplateName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[0-9A-Za-z][\\-\\.\\_0-9A-Za-z]{0,126}[0-9A-Za-z]"
     },
     "Threshold":{"type":"double"},
     "Timestamp":{"type":"timestamp"},

@@ -64,13 +64,29 @@ type ChimeSDKMediaPipelinesAPI interface {
 	CreateMediaCapturePipelineWithContext(aws.Context, *chimesdkmediapipelines.CreateMediaCapturePipelineInput, ...request.Option) (*chimesdkmediapipelines.CreateMediaCapturePipelineOutput, error)
 	CreateMediaCapturePipelineRequest(*chimesdkmediapipelines.CreateMediaCapturePipelineInput) (*request.Request, *chimesdkmediapipelines.CreateMediaCapturePipelineOutput)
 
+	CreateMediaConcatenationPipeline(*chimesdkmediapipelines.CreateMediaConcatenationPipelineInput) (*chimesdkmediapipelines.CreateMediaConcatenationPipelineOutput, error)
+	CreateMediaConcatenationPipelineWithContext(aws.Context, *chimesdkmediapipelines.CreateMediaConcatenationPipelineInput, ...request.Option) (*chimesdkmediapipelines.CreateMediaConcatenationPipelineOutput, error)
+	CreateMediaConcatenationPipelineRequest(*chimesdkmediapipelines.CreateMediaConcatenationPipelineInput) (*request.Request, *chimesdkmediapipelines.CreateMediaConcatenationPipelineOutput)
+
+	CreateMediaLiveConnectorPipeline(*chimesdkmediapipelines.CreateMediaLiveConnectorPipelineInput) (*chimesdkmediapipelines.CreateMediaLiveConnectorPipelineOutput, error)
+	CreateMediaLiveConnectorPipelineWithContext(aws.Context, *chimesdkmediapipelines.CreateMediaLiveConnectorPipelineInput, ...request.Option) (*chimesdkmediapipelines.CreateMediaLiveConnectorPipelineOutput, error)
+	CreateMediaLiveConnectorPipelineRequest(*chimesdkmediapipelines.CreateMediaLiveConnectorPipelineInput) (*request.Request, *chimesdkmediapipelines.CreateMediaLiveConnectorPipelineOutput)
+
 	DeleteMediaCapturePipeline(*chimesdkmediapipelines.DeleteMediaCapturePipelineInput) (*chimesdkmediapipelines.DeleteMediaCapturePipelineOutput, error)
 	DeleteMediaCapturePipelineWithContext(aws.Context, *chimesdkmediapipelines.DeleteMediaCapturePipelineInput, ...request.Option) (*chimesdkmediapipelines.DeleteMediaCapturePipelineOutput, error)
 	DeleteMediaCapturePipelineRequest(*chimesdkmediapipelines.DeleteMediaCapturePipelineInput) (*request.Request, *chimesdkmediapipelines.DeleteMediaCapturePipelineOutput)
 
+	DeleteMediaPipeline(*chimesdkmediapipelines.DeleteMediaPipelineInput) (*chimesdkmediapipelines.DeleteMediaPipelineOutput, error)
+	DeleteMediaPipelineWithContext(aws.Context, *chimesdkmediapipelines.DeleteMediaPipelineInput, ...request.Option) (*chimesdkmediapipelines.DeleteMediaPipelineOutput, error)
+	DeleteMediaPipelineRequest(*chimesdkmediapipelines.DeleteMediaPipelineInput) (*request.Request, *chimesdkmediapipelines.DeleteMediaPipelineOutput)
+
 	GetMediaCapturePipeline(*chimesdkmediapipelines.GetMediaCapturePipelineInput) (*chimesdkmediapipelines.GetMediaCapturePipelineOutput, error)
 	GetMediaCapturePipelineWithContext(aws.Context, *chimesdkmediapipelines.GetMediaCapturePipelineInput, ...request.Option) (*chimesdkmediapipelines.GetMediaCapturePipelineOutput, error)
 	GetMediaCapturePipelineRequest(*chimesdkmediapipelines.GetMediaCapturePipelineInput) (*request.Request, *chimesdkmediapipelines.GetMediaCapturePipelineOutput)
+
+	GetMediaPipeline(*chimesdkmediapipelines.GetMediaPipelineInput) (*chimesdkmediapipelines.GetMediaPipelineOutput, error)
+	GetMediaPipelineWithContext(aws.Context, *chimesdkmediapipelines.GetMediaPipelineInput, ...request.Option) (*chimesdkmediapipelines.GetMediaPipelineOutput, error)
+	GetMediaPipelineRequest(*chimesdkmediapipelines.GetMediaPipelineInput) (*request.Request, *chimesdkmediapipelines.GetMediaPipelineOutput)
 
 	ListMediaCapturePipelines(*chimesdkmediapipelines.ListMediaCapturePipelinesInput) (*chimesdkmediapipelines.ListMediaCapturePipelinesOutput, error)
 	ListMediaCapturePipelinesWithContext(aws.Context, *chimesdkmediapipelines.ListMediaCapturePipelinesInput, ...request.Option) (*chimesdkmediapipelines.ListMediaCapturePipelinesOutput, error)
@@ -78,6 +94,13 @@ type ChimeSDKMediaPipelinesAPI interface {
 
 	ListMediaCapturePipelinesPages(*chimesdkmediapipelines.ListMediaCapturePipelinesInput, func(*chimesdkmediapipelines.ListMediaCapturePipelinesOutput, bool) bool) error
 	ListMediaCapturePipelinesPagesWithContext(aws.Context, *chimesdkmediapipelines.ListMediaCapturePipelinesInput, func(*chimesdkmediapipelines.ListMediaCapturePipelinesOutput, bool) bool, ...request.Option) error
+
+	ListMediaPipelines(*chimesdkmediapipelines.ListMediaPipelinesInput) (*chimesdkmediapipelines.ListMediaPipelinesOutput, error)
+	ListMediaPipelinesWithContext(aws.Context, *chimesdkmediapipelines.ListMediaPipelinesInput, ...request.Option) (*chimesdkmediapipelines.ListMediaPipelinesOutput, error)
+	ListMediaPipelinesRequest(*chimesdkmediapipelines.ListMediaPipelinesInput) (*request.Request, *chimesdkmediapipelines.ListMediaPipelinesOutput)
+
+	ListMediaPipelinesPages(*chimesdkmediapipelines.ListMediaPipelinesInput, func(*chimesdkmediapipelines.ListMediaPipelinesOutput, bool) bool) error
+	ListMediaPipelinesPagesWithContext(aws.Context, *chimesdkmediapipelines.ListMediaPipelinesInput, func(*chimesdkmediapipelines.ListMediaPipelinesOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*chimesdkmediapipelines.ListTagsForResourceInput) (*chimesdkmediapipelines.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *chimesdkmediapipelines.ListTagsForResourceInput, ...request.Option) (*chimesdkmediapipelines.ListTagsForResourceOutput, error)

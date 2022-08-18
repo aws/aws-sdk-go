@@ -857,6 +857,12 @@ func (c *CloudWatch) DescribeAnomalyDetectorsRequest(input *DescribeAnomalyDetec
 		Name:       opDescribeAnomalyDetectors,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -918,6 +924,57 @@ func (c *CloudWatch) DescribeAnomalyDetectorsWithContext(ctx aws.Context, input 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeAnomalyDetectorsPages iterates over the pages of a DescribeAnomalyDetectors operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeAnomalyDetectors method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeAnomalyDetectors operation.
+//	pageNum := 0
+//	err := client.DescribeAnomalyDetectorsPages(params,
+//	    func(page *cloudwatch.DescribeAnomalyDetectorsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CloudWatch) DescribeAnomalyDetectorsPages(input *DescribeAnomalyDetectorsInput, fn func(*DescribeAnomalyDetectorsOutput, bool) bool) error {
+	return c.DescribeAnomalyDetectorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeAnomalyDetectorsPagesWithContext same as DescribeAnomalyDetectorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatch) DescribeAnomalyDetectorsPagesWithContext(ctx aws.Context, input *DescribeAnomalyDetectorsInput, fn func(*DescribeAnomalyDetectorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeAnomalyDetectorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeAnomalyDetectorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeAnomalyDetectorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeInsightRules = "DescribeInsightRules"
@@ -2242,6 +2299,149 @@ func (c *CloudWatch) ListDashboardsPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opListManagedInsightRules = "ListManagedInsightRules"
+
+// ListManagedInsightRulesRequest generates a "aws/request.Request" representing the
+// client's request for the ListManagedInsightRules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListManagedInsightRules for more information on using the ListManagedInsightRules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListManagedInsightRulesRequest method.
+//	req, resp := client.ListManagedInsightRulesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/ListManagedInsightRules
+func (c *CloudWatch) ListManagedInsightRulesRequest(input *ListManagedInsightRulesInput) (req *request.Request, output *ListManagedInsightRulesOutput) {
+	op := &request.Operation{
+		Name:       opListManagedInsightRules,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListManagedInsightRulesInput{}
+	}
+
+	output = &ListManagedInsightRulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListManagedInsightRules API operation for Amazon CloudWatch.
+//
+// Returns a list that contains the number of managed Contributor Insights rules
+// in your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation ListManagedInsightRules for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//     The value of an input parameter is bad or out-of-range.
+//
+//   - ErrCodeMissingRequiredParameterException "MissingParameter"
+//     An input parameter that is required is missing.
+//
+//   - ErrCodeInvalidNextToken "InvalidNextToken"
+//     The next token specified is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/ListManagedInsightRules
+func (c *CloudWatch) ListManagedInsightRules(input *ListManagedInsightRulesInput) (*ListManagedInsightRulesOutput, error) {
+	req, out := c.ListManagedInsightRulesRequest(input)
+	return out, req.Send()
+}
+
+// ListManagedInsightRulesWithContext is the same as ListManagedInsightRules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListManagedInsightRules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatch) ListManagedInsightRulesWithContext(ctx aws.Context, input *ListManagedInsightRulesInput, opts ...request.Option) (*ListManagedInsightRulesOutput, error) {
+	req, out := c.ListManagedInsightRulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListManagedInsightRulesPages iterates over the pages of a ListManagedInsightRules operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListManagedInsightRules method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListManagedInsightRules operation.
+//	pageNum := 0
+//	err := client.ListManagedInsightRulesPages(params,
+//	    func(page *cloudwatch.ListManagedInsightRulesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CloudWatch) ListManagedInsightRulesPages(input *ListManagedInsightRulesInput, fn func(*ListManagedInsightRulesOutput, bool) bool) error {
+	return c.ListManagedInsightRulesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListManagedInsightRulesPagesWithContext same as ListManagedInsightRulesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatch) ListManagedInsightRulesPagesWithContext(ctx aws.Context, input *ListManagedInsightRulesInput, fn func(*ListManagedInsightRulesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListManagedInsightRulesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListManagedInsightRulesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListManagedInsightRulesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListMetricStreams = "ListMetricStreams"
 
 // ListMetricStreamsRequest generates a "aws/request.Request" representing the
@@ -3034,6 +3234,95 @@ func (c *CloudWatch) PutInsightRule(input *PutInsightRuleInput) (*PutInsightRule
 // for more information on using Contexts.
 func (c *CloudWatch) PutInsightRuleWithContext(ctx aws.Context, input *PutInsightRuleInput, opts ...request.Option) (*PutInsightRuleOutput, error) {
 	req, out := c.PutInsightRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutManagedInsightRules = "PutManagedInsightRules"
+
+// PutManagedInsightRulesRequest generates a "aws/request.Request" representing the
+// client's request for the PutManagedInsightRules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutManagedInsightRules for more information on using the PutManagedInsightRules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutManagedInsightRulesRequest method.
+//	req, resp := client.PutManagedInsightRulesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/PutManagedInsightRules
+func (c *CloudWatch) PutManagedInsightRulesRequest(input *PutManagedInsightRulesInput) (req *request.Request, output *PutManagedInsightRulesOutput) {
+	op := &request.Operation{
+		Name:       opPutManagedInsightRules,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutManagedInsightRulesInput{}
+	}
+
+	output = &PutManagedInsightRulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutManagedInsightRules API operation for Amazon CloudWatch.
+//
+// Creates a managed Contributor Insights rule for a specified Amazon Web Services
+// resource. When you enable a managed rule, you create a Contributor Insights
+// rule that collects data from Amazon Web Services services. You cannot edit
+// these rules with PutInsightRule. The rules can be enabled, disabled, and
+// deleted using EnableInsightRules, DisableInsightRules, and DeleteInsightRules.
+// If a previously created managed rule is currently disabled, a subsequent
+// call to this API will re-enable it. Use ListManagedInsightRules to describe
+// all available rules.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation PutManagedInsightRules for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//     The value of an input parameter is bad or out-of-range.
+//
+//   - ErrCodeMissingRequiredParameterException "MissingParameter"
+//     An input parameter that is required is missing.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/PutManagedInsightRules
+func (c *CloudWatch) PutManagedInsightRules(input *PutManagedInsightRulesInput) (*PutManagedInsightRulesOutput, error) {
+	req, out := c.PutManagedInsightRulesRequest(input)
+	return out, req.Send()
+}
+
+// PutManagedInsightRulesWithContext is the same as PutManagedInsightRules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutManagedInsightRules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatch) PutManagedInsightRulesWithContext(ctx aws.Context, input *PutManagedInsightRulesInput, opts ...request.Option) (*PutManagedInsightRulesOutput, error) {
+	req, out := c.PutManagedInsightRulesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7374,6 +7663,9 @@ type InsightRule struct {
 	// Definition is a required field
 	Definition *string `min:"1" type:"string" required:"true"`
 
+	// An optional built-in rule that Amazon Web Services manages.
+	ManagedRule *bool `type:"boolean"`
+
 	// The name of the rule.
 	//
 	// Name is a required field
@@ -7412,6 +7704,12 @@ func (s InsightRule) GoString() string {
 // SetDefinition sets the Definition field's value.
 func (s *InsightRule) SetDefinition(v string) *InsightRule {
 	s.Definition = &v
+	return s
+}
+
+// SetManagedRule sets the ManagedRule field's value.
+func (s *InsightRule) SetManagedRule(v bool) *InsightRule {
+	s.ManagedRule = &v
 	return s
 }
 
@@ -7798,6 +8096,121 @@ func (s *ListDashboardsOutput) SetNextToken(v string) *ListDashboardsOutput {
 	return s
 }
 
+type ListManagedInsightRulesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in one operation. If you omit this
+	// parameter, the default number is used. The default number is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Include this value to get the next set of rules if the value was returned
+	// by the previous operation.
+	NextToken *string `type:"string"`
+
+	// The ARN of an Amazon Web Services resource that has managed Contributor Insights
+	// rules.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedInsightRulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedInsightRulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListManagedInsightRulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListManagedInsightRulesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListManagedInsightRulesInput) SetMaxResults(v int64) *ListManagedInsightRulesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListManagedInsightRulesInput) SetNextToken(v string) *ListManagedInsightRulesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *ListManagedInsightRulesInput) SetResourceARN(v string) *ListManagedInsightRulesInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type ListManagedInsightRulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The managed rules that are available for the specified Amazon Web Services
+	// resource.
+	ManagedRules []*ManagedRuleDescription `type:"list"`
+
+	// Include this value to get the next set of rules if the value was returned
+	// by the previous operation.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedInsightRulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedInsightRulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetManagedRules sets the ManagedRules field's value.
+func (s *ListManagedInsightRulesOutput) SetManagedRules(v []*ManagedRuleDescription) *ListManagedInsightRulesOutput {
+	s.ManagedRules = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListManagedInsightRulesOutput) SetNextToken(v string) *ListManagedInsightRulesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListMetricStreamsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8121,6 +8534,205 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+// Contains the information that's required to enable a managed Contributor
+// Insights rule for an Amazon Web Services resource.
+type ManagedRule struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of an Amazon Web Services resource that has managed Contributor Insights
+	// rules.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// A list of key-value pairs that you can associate with a managed Contributor
+	// Insights rule. You can associate as many as 50 tags with a rule. Tags can
+	// help you organize and categorize your resources. You also can use them to
+	// scope user permissions by granting a user permission to access or change
+	// only the resources that have certain tag values. To associate tags with a
+	// rule, you must have the cloudwatch:TagResource permission in addition to
+	// the cloudwatch:PutInsightRule permission. If you are using this operation
+	// to update an existing Contributor Insights rule, any tags that you specify
+	// in this parameter are ignored. To change the tags of an existing rule, use
+	// TagResource.
+	Tags []*Tag `type:"list"`
+
+	// The template name for the managed Contributor Insights rule, as returned
+	// by ListManagedInsightRules.
+	//
+	// TemplateName is a required field
+	TemplateName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ManagedRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ManagedRule"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.TemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateName"))
+	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *ManagedRule) SetResourceARN(v string) *ManagedRule {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ManagedRule) SetTags(v []*Tag) *ManagedRule {
+	s.Tags = v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *ManagedRule) SetTemplateName(v string) *ManagedRule {
+	s.TemplateName = &v
+	return s
+}
+
+// Contains information about managed Contributor Insights rules, as returned
+// by ListManagedInsightRules.
+type ManagedRuleDescription struct {
+	_ struct{} `type:"structure"`
+
+	// If a managed rule is enabled, this is the ARN for the related Amazon Web
+	// Services resource.
+	ResourceARN *string `min:"1" type:"string"`
+
+	// Describes the state of a managed rule. If present, it contains information
+	// about the Contributor Insights rule that contains information about the related
+	// Amazon Web Services resource.
+	RuleState *ManagedRuleState `type:"structure"`
+
+	// The template name for the managed rule. Used to enable managed rules using
+	// PutManagedInsightRules.
+	TemplateName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleDescription) GoString() string {
+	return s.String()
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *ManagedRuleDescription) SetResourceARN(v string) *ManagedRuleDescription {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetRuleState sets the RuleState field's value.
+func (s *ManagedRuleDescription) SetRuleState(v *ManagedRuleState) *ManagedRuleDescription {
+	s.RuleState = v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *ManagedRuleDescription) SetTemplateName(v string) *ManagedRuleDescription {
+	s.TemplateName = &v
+	return s
+}
+
+// The status of a managed Contributor Insights rule.
+type ManagedRuleState struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Contributor Insights rule that contains data for the specified
+	// Amazon Web Services resource.
+	//
+	// RuleName is a required field
+	RuleName *string `min:"1" type:"string" required:"true"`
+
+	// Indicates whether the rule is enabled or disabled.
+	//
+	// State is a required field
+	State *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleState) GoString() string {
+	return s.String()
+}
+
+// SetRuleName sets the RuleName field's value.
+func (s *ManagedRuleState) SetRuleName(v string) *ManagedRuleState {
+	s.RuleName = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ManagedRuleState) SetState(v string) *ManagedRuleState {
+	s.State = &v
 	return s
 }
 
@@ -8865,7 +9477,7 @@ type MetricDatum struct {
 	// Array of numbers representing the values for the metric during the period.
 	// Each unique value is listed just once in this array, and the corresponding
 	// number in the Counts array specifies the number of times that value occurred
-	// during the period. You can include up to 500 unique values in each PutMetricData
+	// during the period. You can include up to 150 unique values in each PutMetricData
 	// action that specifies a Values array.
 	//
 	// Although the Values array accepts numbers of type Double, CloudWatch rejects
@@ -10200,6 +10812,93 @@ func (s PutInsightRuleOutput) String() string {
 // value will be replaced with "sensitive".
 func (s PutInsightRuleOutput) GoString() string {
 	return s.String()
+}
+
+type PutManagedInsightRulesInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of ManagedRules to enable.
+	//
+	// ManagedRules is a required field
+	ManagedRules []*ManagedRule `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutManagedInsightRulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutManagedInsightRulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutManagedInsightRulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutManagedInsightRulesInput"}
+	if s.ManagedRules == nil {
+		invalidParams.Add(request.NewErrParamRequired("ManagedRules"))
+	}
+	if s.ManagedRules != nil {
+		for i, v := range s.ManagedRules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ManagedRules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetManagedRules sets the ManagedRules field's value.
+func (s *PutManagedInsightRulesInput) SetManagedRules(v []*ManagedRule) *PutManagedInsightRulesInput {
+	s.ManagedRules = v
+	return s
+}
+
+type PutManagedInsightRulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array that lists the rules that could not be enabled.
+	Failures []*PartialFailure `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutManagedInsightRulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutManagedInsightRulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *PutManagedInsightRulesOutput) SetFailures(v []*PartialFailure) *PutManagedInsightRulesOutput {
+	s.Failures = v
+	return s
 }
 
 type PutMetricAlarmInput struct {

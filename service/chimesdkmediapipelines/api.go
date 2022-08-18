@@ -56,7 +56,7 @@ func (c *ChimeSDKMediaPipelines) CreateMediaCapturePipelineRequest(input *Create
 
 // CreateMediaCapturePipeline API operation for Amazon Chime SDK Media Pipelines.
 //
-// Creates a media capture pipeline.
+// Creates a media pipeline.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -110,6 +110,200 @@ func (c *ChimeSDKMediaPipelines) CreateMediaCapturePipelineWithContext(ctx aws.C
 	return out, req.Send()
 }
 
+const opCreateMediaConcatenationPipeline = "CreateMediaConcatenationPipeline"
+
+// CreateMediaConcatenationPipelineRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMediaConcatenationPipeline operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMediaConcatenationPipeline for more information on using the CreateMediaConcatenationPipeline
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateMediaConcatenationPipelineRequest method.
+//	req, resp := client.CreateMediaConcatenationPipelineRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/CreateMediaConcatenationPipeline
+func (c *ChimeSDKMediaPipelines) CreateMediaConcatenationPipelineRequest(input *CreateMediaConcatenationPipelineInput) (req *request.Request, output *CreateMediaConcatenationPipelineOutput) {
+	op := &request.Operation{
+		Name:       opCreateMediaConcatenationPipeline,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sdk-media-concatenation-pipelines",
+	}
+
+	if input == nil {
+		input = &CreateMediaConcatenationPipelineInput{}
+	}
+
+	output = &CreateMediaConcatenationPipelineOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateMediaConcatenationPipeline API operation for Amazon Chime SDK Media Pipelines.
+//
+// Creates a media concatenation pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation CreateMediaConcatenationPipeline for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/CreateMediaConcatenationPipeline
+func (c *ChimeSDKMediaPipelines) CreateMediaConcatenationPipeline(input *CreateMediaConcatenationPipelineInput) (*CreateMediaConcatenationPipelineOutput, error) {
+	req, out := c.CreateMediaConcatenationPipelineRequest(input)
+	return out, req.Send()
+}
+
+// CreateMediaConcatenationPipelineWithContext is the same as CreateMediaConcatenationPipeline with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMediaConcatenationPipeline for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) CreateMediaConcatenationPipelineWithContext(ctx aws.Context, input *CreateMediaConcatenationPipelineInput, opts ...request.Option) (*CreateMediaConcatenationPipelineOutput, error) {
+	req, out := c.CreateMediaConcatenationPipelineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateMediaLiveConnectorPipeline = "CreateMediaLiveConnectorPipeline"
+
+// CreateMediaLiveConnectorPipelineRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMediaLiveConnectorPipeline operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMediaLiveConnectorPipeline for more information on using the CreateMediaLiveConnectorPipeline
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateMediaLiveConnectorPipelineRequest method.
+//	req, resp := client.CreateMediaLiveConnectorPipelineRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/CreateMediaLiveConnectorPipeline
+func (c *ChimeSDKMediaPipelines) CreateMediaLiveConnectorPipelineRequest(input *CreateMediaLiveConnectorPipelineInput) (req *request.Request, output *CreateMediaLiveConnectorPipelineOutput) {
+	op := &request.Operation{
+		Name:       opCreateMediaLiveConnectorPipeline,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sdk-media-live-connector-pipelines",
+	}
+
+	if input == nil {
+		input = &CreateMediaLiveConnectorPipelineInput{}
+	}
+
+	output = &CreateMediaLiveConnectorPipelineOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateMediaLiveConnectorPipeline API operation for Amazon Chime SDK Media Pipelines.
+//
+// Creates a streaming media pipeline in an Amazon Chime SDK meeting.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation CreateMediaLiveConnectorPipeline for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/CreateMediaLiveConnectorPipeline
+func (c *ChimeSDKMediaPipelines) CreateMediaLiveConnectorPipeline(input *CreateMediaLiveConnectorPipelineInput) (*CreateMediaLiveConnectorPipelineOutput, error) {
+	req, out := c.CreateMediaLiveConnectorPipelineRequest(input)
+	return out, req.Send()
+}
+
+// CreateMediaLiveConnectorPipelineWithContext is the same as CreateMediaLiveConnectorPipeline with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMediaLiveConnectorPipeline for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) CreateMediaLiveConnectorPipelineWithContext(ctx aws.Context, input *CreateMediaLiveConnectorPipelineInput, opts ...request.Option) (*CreateMediaLiveConnectorPipelineOutput, error) {
+	req, out := c.CreateMediaLiveConnectorPipelineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteMediaCapturePipeline = "DeleteMediaCapturePipeline"
 
 // DeleteMediaCapturePipelineRequest generates a "aws/request.Request" representing the
@@ -154,7 +348,7 @@ func (c *ChimeSDKMediaPipelines) DeleteMediaCapturePipelineRequest(input *Delete
 
 // DeleteMediaCapturePipeline API operation for Amazon Chime SDK Media Pipelines.
 //
-// Deletes the media capture pipeline.
+// Deletes the media pipeline.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -208,6 +402,104 @@ func (c *ChimeSDKMediaPipelines) DeleteMediaCapturePipelineWithContext(ctx aws.C
 	return out, req.Send()
 }
 
+const opDeleteMediaPipeline = "DeleteMediaPipeline"
+
+// DeleteMediaPipelineRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMediaPipeline operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMediaPipeline for more information on using the DeleteMediaPipeline
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteMediaPipelineRequest method.
+//	req, resp := client.DeleteMediaPipelineRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/DeleteMediaPipeline
+func (c *ChimeSDKMediaPipelines) DeleteMediaPipelineRequest(input *DeleteMediaPipelineInput) (req *request.Request, output *DeleteMediaPipelineOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMediaPipeline,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/sdk-media-pipelines/{mediaPipelineId}",
+	}
+
+	if input == nil {
+		input = &DeleteMediaPipelineInput{}
+	}
+
+	output = &DeleteMediaPipelineOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteMediaPipeline API operation for Amazon Chime SDK Media Pipelines.
+//
+// Deletes the media pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation DeleteMediaPipeline for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/DeleteMediaPipeline
+func (c *ChimeSDKMediaPipelines) DeleteMediaPipeline(input *DeleteMediaPipelineInput) (*DeleteMediaPipelineOutput, error) {
+	req, out := c.DeleteMediaPipelineRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMediaPipelineWithContext is the same as DeleteMediaPipeline with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMediaPipeline for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) DeleteMediaPipelineWithContext(ctx aws.Context, input *DeleteMediaPipelineInput, opts ...request.Option) (*DeleteMediaPipelineOutput, error) {
+	req, out := c.DeleteMediaPipelineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetMediaCapturePipeline = "GetMediaCapturePipeline"
 
 // GetMediaCapturePipelineRequest generates a "aws/request.Request" representing the
@@ -251,7 +543,7 @@ func (c *ChimeSDKMediaPipelines) GetMediaCapturePipelineRequest(input *GetMediaC
 
 // GetMediaCapturePipeline API operation for Amazon Chime SDK Media Pipelines.
 //
-// Gets an existing media capture pipeline.
+// Gets an existing media pipeline.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -300,6 +592,103 @@ func (c *ChimeSDKMediaPipelines) GetMediaCapturePipeline(input *GetMediaCaptureP
 // for more information on using Contexts.
 func (c *ChimeSDKMediaPipelines) GetMediaCapturePipelineWithContext(ctx aws.Context, input *GetMediaCapturePipelineInput, opts ...request.Option) (*GetMediaCapturePipelineOutput, error) {
 	req, out := c.GetMediaCapturePipelineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMediaPipeline = "GetMediaPipeline"
+
+// GetMediaPipelineRequest generates a "aws/request.Request" representing the
+// client's request for the GetMediaPipeline operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMediaPipeline for more information on using the GetMediaPipeline
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetMediaPipelineRequest method.
+//	req, resp := client.GetMediaPipelineRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/GetMediaPipeline
+func (c *ChimeSDKMediaPipelines) GetMediaPipelineRequest(input *GetMediaPipelineInput) (req *request.Request, output *GetMediaPipelineOutput) {
+	op := &request.Operation{
+		Name:       opGetMediaPipeline,
+		HTTPMethod: "GET",
+		HTTPPath:   "/sdk-media-pipelines/{mediaPipelineId}",
+	}
+
+	if input == nil {
+		input = &GetMediaPipelineInput{}
+	}
+
+	output = &GetMediaPipelineOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMediaPipeline API operation for Amazon Chime SDK Media Pipelines.
+//
+// Gets an existing media pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation GetMediaPipeline for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/GetMediaPipeline
+func (c *ChimeSDKMediaPipelines) GetMediaPipeline(input *GetMediaPipelineInput) (*GetMediaPipelineOutput, error) {
+	req, out := c.GetMediaPipelineRequest(input)
+	return out, req.Send()
+}
+
+// GetMediaPipelineWithContext is the same as GetMediaPipeline with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMediaPipeline for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) GetMediaPipelineWithContext(ctx aws.Context, input *GetMediaPipelineInput, opts ...request.Option) (*GetMediaPipelineOutput, error) {
+	req, out := c.GetMediaPipelineRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -354,7 +743,7 @@ func (c *ChimeSDKMediaPipelines) ListMediaCapturePipelinesRequest(input *ListMed
 
 // ListMediaCapturePipelines API operation for Amazon Chime SDK Media Pipelines.
 //
-// Returns a list of media capture pipelines.
+// Returns a list of media pipelines.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -459,6 +848,160 @@ func (c *ChimeSDKMediaPipelines) ListMediaCapturePipelinesPagesWithContext(ctx a
 	return p.Err()
 }
 
+const opListMediaPipelines = "ListMediaPipelines"
+
+// ListMediaPipelinesRequest generates a "aws/request.Request" representing the
+// client's request for the ListMediaPipelines operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMediaPipelines for more information on using the ListMediaPipelines
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListMediaPipelinesRequest method.
+//	req, resp := client.ListMediaPipelinesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/ListMediaPipelines
+func (c *ChimeSDKMediaPipelines) ListMediaPipelinesRequest(input *ListMediaPipelinesInput) (req *request.Request, output *ListMediaPipelinesOutput) {
+	op := &request.Operation{
+		Name:       opListMediaPipelines,
+		HTTPMethod: "GET",
+		HTTPPath:   "/sdk-media-pipelines",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMediaPipelinesInput{}
+	}
+
+	output = &ListMediaPipelinesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMediaPipelines API operation for Amazon Chime SDK Media Pipelines.
+//
+// Returns a list of media pipelines.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation ListMediaPipelines for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/ListMediaPipelines
+func (c *ChimeSDKMediaPipelines) ListMediaPipelines(input *ListMediaPipelinesInput) (*ListMediaPipelinesOutput, error) {
+	req, out := c.ListMediaPipelinesRequest(input)
+	return out, req.Send()
+}
+
+// ListMediaPipelinesWithContext is the same as ListMediaPipelines with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMediaPipelines for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) ListMediaPipelinesWithContext(ctx aws.Context, input *ListMediaPipelinesInput, opts ...request.Option) (*ListMediaPipelinesOutput, error) {
+	req, out := c.ListMediaPipelinesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMediaPipelinesPages iterates over the pages of a ListMediaPipelines operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMediaPipelines method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListMediaPipelines operation.
+//	pageNum := 0
+//	err := client.ListMediaPipelinesPages(params,
+//	    func(page *chimesdkmediapipelines.ListMediaPipelinesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ChimeSDKMediaPipelines) ListMediaPipelinesPages(input *ListMediaPipelinesInput, fn func(*ListMediaPipelinesOutput, bool) bool) error {
+	return c.ListMediaPipelinesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMediaPipelinesPagesWithContext same as ListMediaPipelinesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) ListMediaPipelinesPagesWithContext(ctx aws.Context, input *ListMediaPipelinesInput, fn func(*ListMediaPipelinesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMediaPipelinesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMediaPipelinesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMediaPipelinesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -502,7 +1045,7 @@ func (c *ChimeSDKMediaPipelines) ListTagsForResourceRequest(input *ListTagsForRe
 
 // ListTagsForResource API operation for Amazon Chime SDK Media Pipelines.
 //
-// Lists the tags applied to an Amazon Chime SDK media capture pipeline.
+// Lists the tags available for a media pipeline.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -600,8 +1143,8 @@ func (c *ChimeSDKMediaPipelines) TagResourceRequest(input *TagResourceInput) (re
 
 // TagResource API operation for Amazon Chime SDK Media Pipelines.
 //
-// Applies the specified tags to the specified Amazon Chime SDK media capture
-// pipeline.
+// The ARN of the media pipeline that you want to tag. Consists of he pipeline's
+// endpoint region, resource ID, and pipeline ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -699,8 +1242,7 @@ func (c *ChimeSDKMediaPipelines) UntagResourceRequest(input *UntagResourceInput)
 
 // UntagResource API operation for Amazon Chime SDK Media Pipelines.
 //
-// Removes the specified tags from the specified Amazon Chime SDK media capture
-// pipeline.
+// Removes any tags from a media pipeline.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -754,6 +1296,172 @@ func (c *ChimeSDKMediaPipelines) UntagResourceWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+// The configuration for the artifacts concatenation.
+type ArtifactsConcatenationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for the audio artifacts concatenation.
+	//
+	// Audio is a required field
+	Audio *AudioConcatenationConfiguration `type:"structure" required:"true"`
+
+	// The configuration for the composited video artifacts concatenation.
+	//
+	// CompositedVideo is a required field
+	CompositedVideo *CompositedVideoConcatenationConfiguration `type:"structure" required:"true"`
+
+	// The configuration for the content artifacts concatenation.
+	//
+	// Content is a required field
+	Content *ContentConcatenationConfiguration `type:"structure" required:"true"`
+
+	// The configuration for the data channel artifacts concatenation.
+	//
+	// DataChannel is a required field
+	DataChannel *DataChannelConcatenationConfiguration `type:"structure" required:"true"`
+
+	// The configuration for the meeting events artifacts concatenation.
+	//
+	// MeetingEvents is a required field
+	MeetingEvents *MeetingEventsConcatenationConfiguration `type:"structure" required:"true"`
+
+	// The configuration for the transcription messages artifacts concatenation.
+	//
+	// TranscriptionMessages is a required field
+	TranscriptionMessages *TranscriptionMessagesConcatenationConfiguration `type:"structure" required:"true"`
+
+	// The configuration for the video artifacts concatenation.
+	//
+	// Video is a required field
+	Video *VideoConcatenationConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ArtifactsConcatenationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ArtifactsConcatenationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ArtifactsConcatenationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ArtifactsConcatenationConfiguration"}
+	if s.Audio == nil {
+		invalidParams.Add(request.NewErrParamRequired("Audio"))
+	}
+	if s.CompositedVideo == nil {
+		invalidParams.Add(request.NewErrParamRequired("CompositedVideo"))
+	}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.DataChannel == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataChannel"))
+	}
+	if s.MeetingEvents == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingEvents"))
+	}
+	if s.TranscriptionMessages == nil {
+		invalidParams.Add(request.NewErrParamRequired("TranscriptionMessages"))
+	}
+	if s.Video == nil {
+		invalidParams.Add(request.NewErrParamRequired("Video"))
+	}
+	if s.Audio != nil {
+		if err := s.Audio.Validate(); err != nil {
+			invalidParams.AddNested("Audio", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CompositedVideo != nil {
+		if err := s.CompositedVideo.Validate(); err != nil {
+			invalidParams.AddNested("CompositedVideo", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Content != nil {
+		if err := s.Content.Validate(); err != nil {
+			invalidParams.AddNested("Content", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DataChannel != nil {
+		if err := s.DataChannel.Validate(); err != nil {
+			invalidParams.AddNested("DataChannel", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MeetingEvents != nil {
+		if err := s.MeetingEvents.Validate(); err != nil {
+			invalidParams.AddNested("MeetingEvents", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TranscriptionMessages != nil {
+		if err := s.TranscriptionMessages.Validate(); err != nil {
+			invalidParams.AddNested("TranscriptionMessages", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Video != nil {
+		if err := s.Video.Validate(); err != nil {
+			invalidParams.AddNested("Video", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAudio sets the Audio field's value.
+func (s *ArtifactsConcatenationConfiguration) SetAudio(v *AudioConcatenationConfiguration) *ArtifactsConcatenationConfiguration {
+	s.Audio = v
+	return s
+}
+
+// SetCompositedVideo sets the CompositedVideo field's value.
+func (s *ArtifactsConcatenationConfiguration) SetCompositedVideo(v *CompositedVideoConcatenationConfiguration) *ArtifactsConcatenationConfiguration {
+	s.CompositedVideo = v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *ArtifactsConcatenationConfiguration) SetContent(v *ContentConcatenationConfiguration) *ArtifactsConcatenationConfiguration {
+	s.Content = v
+	return s
+}
+
+// SetDataChannel sets the DataChannel field's value.
+func (s *ArtifactsConcatenationConfiguration) SetDataChannel(v *DataChannelConcatenationConfiguration) *ArtifactsConcatenationConfiguration {
+	s.DataChannel = v
+	return s
+}
+
+// SetMeetingEvents sets the MeetingEvents field's value.
+func (s *ArtifactsConcatenationConfiguration) SetMeetingEvents(v *MeetingEventsConcatenationConfiguration) *ArtifactsConcatenationConfiguration {
+	s.MeetingEvents = v
+	return s
+}
+
+// SetTranscriptionMessages sets the TranscriptionMessages field's value.
+func (s *ArtifactsConcatenationConfiguration) SetTranscriptionMessages(v *TranscriptionMessagesConcatenationConfiguration) *ArtifactsConcatenationConfiguration {
+	s.TranscriptionMessages = v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *ArtifactsConcatenationConfiguration) SetVideo(v *VideoConcatenationConfiguration) *ArtifactsConcatenationConfiguration {
+	s.Video = v
+	return s
+}
+
 // The configuration for the artifacts.
 type ArtifactsConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -762,6 +1470,9 @@ type ArtifactsConfiguration struct {
 	//
 	// Audio is a required field
 	Audio *AudioArtifactsConfiguration `type:"structure" required:"true"`
+
+	// Enables video compositing.
+	CompositedVideo *CompositedVideoArtifactsConfiguration `type:"structure"`
 
 	// The configuration for the content artifacts.
 	//
@@ -809,6 +1520,11 @@ func (s *ArtifactsConfiguration) Validate() error {
 			invalidParams.AddNested("Audio", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.CompositedVideo != nil {
+		if err := s.CompositedVideo.Validate(); err != nil {
+			invalidParams.AddNested("CompositedVideo", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Content != nil {
 		if err := s.Content.Validate(); err != nil {
 			invalidParams.AddNested("Content", err.(request.ErrInvalidParams))
@@ -829,6 +1545,12 @@ func (s *ArtifactsConfiguration) Validate() error {
 // SetAudio sets the Audio field's value.
 func (s *ArtifactsConfiguration) SetAudio(v *AudioArtifactsConfiguration) *ArtifactsConfiguration {
 	s.Audio = v
+	return s
+}
+
+// SetCompositedVideo sets the CompositedVideo field's value.
+func (s *ArtifactsConfiguration) SetCompositedVideo(v *CompositedVideoArtifactsConfiguration) *ArtifactsConfiguration {
+	s.CompositedVideo = v
 	return s
 }
 
@@ -888,6 +1610,54 @@ func (s *AudioArtifactsConfiguration) Validate() error {
 // SetMuxType sets the MuxType field's value.
 func (s *AudioArtifactsConfiguration) SetMuxType(v string) *AudioArtifactsConfiguration {
 	s.MuxType = &v
+	return s
+}
+
+// The audio artifact concatenation configuration object.
+type AudioConcatenationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables the name object, where name is the name of the configuration object,
+	// such as AudioConcatenation.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"AudioArtifactsConcatenationState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioConcatenationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioConcatenationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AudioConcatenationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AudioConcatenationConfiguration"}
+	if s.State == nil {
+		invalidParams.Add(request.NewErrParamRequired("State"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetState sets the State field's value.
+func (s *AudioConcatenationConfiguration) SetState(v string) *AudioConcatenationConfiguration {
+	s.State = &v
 	return s
 }
 
@@ -960,15 +1730,68 @@ func (s *BadRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The configuration object of the Amazon Chime SDK meeting concatenation for
+// a specified media pipeline.
+type ChimeSdkMeetingConcatenationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for the artifacts in an Amazon Chime SDK meeting concatenation.
+	//
+	// ArtifactsConfiguration is a required field
+	ArtifactsConfiguration *ArtifactsConcatenationConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChimeSdkMeetingConcatenationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChimeSdkMeetingConcatenationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChimeSdkMeetingConcatenationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChimeSdkMeetingConcatenationConfiguration"}
+	if s.ArtifactsConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("ArtifactsConfiguration"))
+	}
+	if s.ArtifactsConfiguration != nil {
+		if err := s.ArtifactsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ArtifactsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArtifactsConfiguration sets the ArtifactsConfiguration field's value.
+func (s *ChimeSdkMeetingConcatenationConfiguration) SetArtifactsConfiguration(v *ArtifactsConcatenationConfiguration) *ChimeSdkMeetingConcatenationConfiguration {
+	s.ArtifactsConfiguration = v
+	return s
+}
+
 // The configuration object of the Amazon Chime SDK meeting for a specified
-// media capture pipeline. SourceType must be ChimeSdkMeeting.
+// media pipeline. SourceType must be ChimeSdkMeeting.
 type ChimeSdkMeetingConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The configuration for the artifacts in an Amazon Chime SDK meeting.
 	ArtifactsConfiguration *ArtifactsConfiguration `type:"structure"`
 
-	// The source configuration for a specified media capture pipline.
+	// The source configuration for a specified media pipline.
 	SourceConfiguration *SourceConfiguration `type:"structure"`
 }
 
@@ -1019,6 +1842,354 @@ func (s *ChimeSdkMeetingConfiguration) SetArtifactsConfiguration(v *ArtifactsCon
 // SetSourceConfiguration sets the SourceConfiguration field's value.
 func (s *ChimeSdkMeetingConfiguration) SetSourceConfiguration(v *SourceConfiguration) *ChimeSdkMeetingConfiguration {
 	s.SourceConfiguration = v
+	return s
+}
+
+// The media pipeline's configuration object.
+type ChimeSdkMeetingLiveConnectorConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration object's Chime SDK meeting ARN.
+	//
+	// Arn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ChimeSdkMeetingLiveConnectorConfiguration's
+	// String and GoString methods.
+	//
+	// Arn is a required field
+	Arn *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The media pipeline's composited video.
+	CompositedVideo *CompositedVideoArtifactsConfiguration `type:"structure"`
+
+	// The configuration object's multiplex type.
+	//
+	// MuxType is a required field
+	MuxType *string `type:"string" required:"true" enum:"LiveConnectorMuxType"`
+
+	// The source configuration settings of the media pipeline's configuration object.
+	SourceConfiguration *SourceConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChimeSdkMeetingLiveConnectorConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChimeSdkMeetingLiveConnectorConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChimeSdkMeetingLiveConnectorConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChimeSdkMeetingLiveConnectorConfiguration"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+	if s.MuxType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MuxType"))
+	}
+	if s.CompositedVideo != nil {
+		if err := s.CompositedVideo.Validate(); err != nil {
+			invalidParams.AddNested("CompositedVideo", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SourceConfiguration != nil {
+		if err := s.SourceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SourceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *ChimeSdkMeetingLiveConnectorConfiguration) SetArn(v string) *ChimeSdkMeetingLiveConnectorConfiguration {
+	s.Arn = &v
+	return s
+}
+
+// SetCompositedVideo sets the CompositedVideo field's value.
+func (s *ChimeSdkMeetingLiveConnectorConfiguration) SetCompositedVideo(v *CompositedVideoArtifactsConfiguration) *ChimeSdkMeetingLiveConnectorConfiguration {
+	s.CompositedVideo = v
+	return s
+}
+
+// SetMuxType sets the MuxType field's value.
+func (s *ChimeSdkMeetingLiveConnectorConfiguration) SetMuxType(v string) *ChimeSdkMeetingLiveConnectorConfiguration {
+	s.MuxType = &v
+	return s
+}
+
+// SetSourceConfiguration sets the SourceConfiguration field's value.
+func (s *ChimeSdkMeetingLiveConnectorConfiguration) SetSourceConfiguration(v *SourceConfiguration) *ChimeSdkMeetingLiveConnectorConfiguration {
+	s.SourceConfiguration = v
+	return s
+}
+
+// Describes the configuration for the composited video artifacts.
+type CompositedVideoArtifactsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The GridView configuration setting.
+	//
+	// GridViewConfiguration is a required field
+	GridViewConfiguration *GridViewConfiguration `type:"structure" required:"true"`
+
+	// The layout setting, such as GridView in the configuration object.
+	Layout *string `type:"string" enum:"LayoutOption"`
+
+	// The video resolution setting in the configuration object. Default: HD at
+	// 1280 x 720. FHD resolution: 1920 x 1080.
+	Resolution *string `type:"string" enum:"ResolutionOption"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompositedVideoArtifactsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompositedVideoArtifactsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CompositedVideoArtifactsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CompositedVideoArtifactsConfiguration"}
+	if s.GridViewConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("GridViewConfiguration"))
+	}
+	if s.GridViewConfiguration != nil {
+		if err := s.GridViewConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GridViewConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGridViewConfiguration sets the GridViewConfiguration field's value.
+func (s *CompositedVideoArtifactsConfiguration) SetGridViewConfiguration(v *GridViewConfiguration) *CompositedVideoArtifactsConfiguration {
+	s.GridViewConfiguration = v
+	return s
+}
+
+// SetLayout sets the Layout field's value.
+func (s *CompositedVideoArtifactsConfiguration) SetLayout(v string) *CompositedVideoArtifactsConfiguration {
+	s.Layout = &v
+	return s
+}
+
+// SetResolution sets the Resolution field's value.
+func (s *CompositedVideoArtifactsConfiguration) SetResolution(v string) *CompositedVideoArtifactsConfiguration {
+	s.Resolution = &v
+	return s
+}
+
+// The composited video configuration object for a specified media pipeline.
+// SourceType must be ChimeSdkMeeting.
+type CompositedVideoConcatenationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables the configuration object.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"ArtifactsConcatenationState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompositedVideoConcatenationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompositedVideoConcatenationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CompositedVideoConcatenationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CompositedVideoConcatenationConfiguration"}
+	if s.State == nil {
+		invalidParams.Add(request.NewErrParamRequired("State"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetState sets the State field's value.
+func (s *CompositedVideoConcatenationConfiguration) SetState(v string) *CompositedVideoConcatenationConfiguration {
+	s.State = &v
+	return s
+}
+
+// The data sink of the configuration object.
+type ConcatenationSink struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration settings for an Amazon S3 bucket sink.
+	//
+	// S3BucketSinkConfiguration is a required field
+	S3BucketSinkConfiguration *S3BucketSinkConfiguration `type:"structure" required:"true"`
+
+	// The type of data sink in the configuration object.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ConcatenationSinkType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConcatenationSink) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConcatenationSink) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConcatenationSink) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConcatenationSink"}
+	if s.S3BucketSinkConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3BucketSinkConfiguration"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.S3BucketSinkConfiguration != nil {
+		if err := s.S3BucketSinkConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("S3BucketSinkConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3BucketSinkConfiguration sets the S3BucketSinkConfiguration field's value.
+func (s *ConcatenationSink) SetS3BucketSinkConfiguration(v *S3BucketSinkConfiguration) *ConcatenationSink {
+	s.S3BucketSinkConfiguration = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ConcatenationSink) SetType(v string) *ConcatenationSink {
+	s.Type = &v
+	return s
+}
+
+// The source type and media pipeline configuration settings in a configuration
+// object.
+type ConcatenationSource struct {
+	_ struct{} `type:"structure"`
+
+	// The concatenation settings for the media pipeline in a configuration object.
+	//
+	// MediaCapturePipelineSourceConfiguration is a required field
+	MediaCapturePipelineSourceConfiguration *MediaCapturePipelineSourceConfiguration `type:"structure" required:"true"`
+
+	// The type of concatenation source in a configuration object.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ConcatenationSourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConcatenationSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConcatenationSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConcatenationSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConcatenationSource"}
+	if s.MediaCapturePipelineSourceConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaCapturePipelineSourceConfiguration"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.MediaCapturePipelineSourceConfiguration != nil {
+		if err := s.MediaCapturePipelineSourceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MediaCapturePipelineSourceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMediaCapturePipelineSourceConfiguration sets the MediaCapturePipelineSourceConfiguration field's value.
+func (s *ConcatenationSource) SetMediaCapturePipelineSourceConfiguration(v *MediaCapturePipelineSourceConfiguration) *ConcatenationSource {
+	s.MediaCapturePipelineSourceConfiguration = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ConcatenationSource) SetType(v string) *ConcatenationSource {
+	s.Type = &v
 	return s
 }
 
@@ -1078,14 +2249,61 @@ func (s *ContentArtifactsConfiguration) SetState(v string) *ContentArtifactsConf
 	return s
 }
 
+// The composited content configuration object for a specified media pipeline.
+type ContentConcatenationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables the configuration object.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"ArtifactsConcatenationState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentConcatenationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentConcatenationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContentConcatenationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContentConcatenationConfiguration"}
+	if s.State == nil {
+		invalidParams.Add(request.NewErrParamRequired("State"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetState sets the State field's value.
+func (s *ContentConcatenationConfiguration) SetState(v string) *ContentConcatenationConfiguration {
+	s.State = &v
+	return s
+}
+
 type CreateMediaCapturePipelineInput struct {
 	_ struct{} `type:"structure"`
 
-	// The configuration for a specified media capture pipeline. SourceType must
-	// be ChimeSdkMeeting.
+	// The configuration for a specified media pipeline. SourceType must be ChimeSdkMeeting.
 	ChimeSdkMeetingConfiguration *ChimeSdkMeetingConfiguration `type:"structure"`
 
-	// The token assigned to the client making the pipeline request.
+	// The unique identifier for the client request. The token makes the API request
+	// idempotent. Use a unique token for each media pipeline request.
 	//
 	// ClientRequestToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateMediaCapturePipelineInput's
@@ -1122,7 +2340,7 @@ type CreateMediaCapturePipelineInput struct {
 	// SourceType is a required field
 	SourceType *string `type:"string" required:"true" enum:"MediaPipelineSourceType"`
 
-	// The list of tags.
+	// The tag key-value pairs.
 	Tags []*Tag `min:"1" type:"list"`
 }
 
@@ -1238,8 +2456,8 @@ func (s *CreateMediaCapturePipelineInput) SetTags(v []*Tag) *CreateMediaCaptureP
 type CreateMediaCapturePipelineOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A media capture pipeline object, the ID, source type, source ARN, sink type,
-	// and sink ARN of a media capture pipeline object.
+	// A media pipeline object, the ID, source type, source ARN, sink type, and
+	// sink ARN of a media pipeline object.
 	MediaCapturePipeline *MediaCapturePipeline `type:"structure"`
 }
 
@@ -1267,10 +2485,369 @@ func (s *CreateMediaCapturePipelineOutput) SetMediaCapturePipeline(v *MediaCaptu
 	return s
 }
 
+type CreateMediaConcatenationPipelineInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the client request. The token makes the API request
+	// idempotent. Use a unique token for each media concatenation pipeline request.
+	//
+	// ClientRequestToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateMediaConcatenationPipelineInput's
+	// String and GoString methods.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// An object that specifies the data sinks for the media concatenation pipeline.
+	//
+	// Sinks is a required field
+	Sinks []*ConcatenationSink `min:"1" type:"list" required:"true"`
+
+	// An object that specifies the sources for the media concatenation pipeline.
+	//
+	// Sources is a required field
+	Sources []*ConcatenationSource `min:"1" type:"list" required:"true"`
+
+	// The tags associated with the media concatenation pipeline.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaConcatenationPipelineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaConcatenationPipelineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMediaConcatenationPipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMediaConcatenationPipelineInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.Sinks == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sinks"))
+	}
+	if s.Sinks != nil && len(s.Sinks) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Sinks", 1))
+	}
+	if s.Sources == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	}
+	if s.Sources != nil && len(s.Sources) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Sources", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Sinks != nil {
+		for i, v := range s.Sinks {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sinks", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Sources != nil {
+		for i, v := range s.Sources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateMediaConcatenationPipelineInput) SetClientRequestToken(v string) *CreateMediaConcatenationPipelineInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetSinks sets the Sinks field's value.
+func (s *CreateMediaConcatenationPipelineInput) SetSinks(v []*ConcatenationSink) *CreateMediaConcatenationPipelineInput {
+	s.Sinks = v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *CreateMediaConcatenationPipelineInput) SetSources(v []*ConcatenationSource) *CreateMediaConcatenationPipelineInput {
+	s.Sources = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMediaConcatenationPipelineInput) SetTags(v []*Tag) *CreateMediaConcatenationPipelineInput {
+	s.Tags = v
+	return s
+}
+
+type CreateMediaConcatenationPipelineOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A media concatenation pipeline object, the ID, source type, MediaPipelineARN,
+	// and sink of a media concatenation pipeline object.
+	MediaConcatenationPipeline *MediaConcatenationPipeline `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaConcatenationPipelineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaConcatenationPipelineOutput) GoString() string {
+	return s.String()
+}
+
+// SetMediaConcatenationPipeline sets the MediaConcatenationPipeline field's value.
+func (s *CreateMediaConcatenationPipelineOutput) SetMediaConcatenationPipeline(v *MediaConcatenationPipeline) *CreateMediaConcatenationPipelineOutput {
+	s.MediaConcatenationPipeline = v
+	return s
+}
+
+type CreateMediaLiveConnectorPipelineInput struct {
+	_ struct{} `type:"structure"`
+
+	// The token assigned to the client making the request.
+	//
+	// ClientRequestToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateMediaLiveConnectorPipelineInput's
+	// String and GoString methods.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The media pipeline's data sinks.
+	//
+	// Sinks is a required field
+	Sinks []*LiveConnectorSinkConfiguration `min:"1" type:"list" required:"true"`
+
+	// The media pipeline's data sources.
+	//
+	// Sources is a required field
+	Sources []*LiveConnectorSourceConfiguration `min:"1" type:"list" required:"true"`
+
+	// The tags associated with the media pipeline.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaLiveConnectorPipelineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaLiveConnectorPipelineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMediaLiveConnectorPipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMediaLiveConnectorPipelineInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.Sinks == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sinks"))
+	}
+	if s.Sinks != nil && len(s.Sinks) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Sinks", 1))
+	}
+	if s.Sources == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	}
+	if s.Sources != nil && len(s.Sources) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Sources", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Sinks != nil {
+		for i, v := range s.Sinks {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sinks", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Sources != nil {
+		for i, v := range s.Sources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateMediaLiveConnectorPipelineInput) SetClientRequestToken(v string) *CreateMediaLiveConnectorPipelineInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetSinks sets the Sinks field's value.
+func (s *CreateMediaLiveConnectorPipelineInput) SetSinks(v []*LiveConnectorSinkConfiguration) *CreateMediaLiveConnectorPipelineInput {
+	s.Sinks = v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *CreateMediaLiveConnectorPipelineInput) SetSources(v []*LiveConnectorSourceConfiguration) *CreateMediaLiveConnectorPipelineInput {
+	s.Sources = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMediaLiveConnectorPipelineInput) SetTags(v []*Tag) *CreateMediaLiveConnectorPipelineInput {
+	s.Tags = v
+	return s
+}
+
+type CreateMediaLiveConnectorPipelineOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The new media pipeline.
+	MediaLiveConnectorPipeline *MediaLiveConnectorPipeline `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaLiveConnectorPipelineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaLiveConnectorPipelineOutput) GoString() string {
+	return s.String()
+}
+
+// SetMediaLiveConnectorPipeline sets the MediaLiveConnectorPipeline field's value.
+func (s *CreateMediaLiveConnectorPipelineOutput) SetMediaLiveConnectorPipeline(v *MediaLiveConnectorPipeline) *CreateMediaLiveConnectorPipelineOutput {
+	s.MediaLiveConnectorPipeline = v
+	return s
+}
+
+// The content configuration object's data channel.
+type DataChannelConcatenationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables the configuration object.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"ArtifactsConcatenationState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataChannelConcatenationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataChannelConcatenationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataChannelConcatenationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataChannelConcatenationConfiguration"}
+	if s.State == nil {
+		invalidParams.Add(request.NewErrParamRequired("State"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetState sets the State field's value.
+func (s *DataChannelConcatenationConfiguration) SetState(v string) *DataChannelConcatenationConfiguration {
+	s.State = &v
+	return s
+}
+
 type DeleteMediaCapturePipelineInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the media capture pipeline being deleted.
+	// The ID of the media pipeline being deleted.
 	//
 	// MediaPipelineId is a required field
 	MediaPipelineId *string `location:"uri" locationName:"mediaPipelineId" min:"36" type:"string" required:"true"`
@@ -1335,6 +2912,77 @@ func (s DeleteMediaCapturePipelineOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteMediaCapturePipelineOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteMediaPipelineInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the media pipeline to delete.
+	//
+	// MediaPipelineId is a required field
+	MediaPipelineId *string `location:"uri" locationName:"mediaPipelineId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMediaPipelineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMediaPipelineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMediaPipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMediaPipelineInput"}
+	if s.MediaPipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaPipelineId"))
+	}
+	if s.MediaPipelineId != nil && len(*s.MediaPipelineId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MediaPipelineId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMediaPipelineId sets the MediaPipelineId field's value.
+func (s *DeleteMediaPipelineInput) SetMediaPipelineId(v string) *DeleteMediaPipelineInput {
+	s.MediaPipelineId = &v
+	return s
+}
+
+type DeleteMediaPipelineOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMediaPipelineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMediaPipelineOutput) GoString() string {
 	return s.String()
 }
 
@@ -1459,7 +3107,7 @@ func (s *GetMediaCapturePipelineInput) SetMediaPipelineId(v string) *GetMediaCap
 type GetMediaCapturePipelineOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The media capture pipeline object.
+	// The media pipeline object.
 	MediaCapturePipeline *MediaCapturePipeline `type:"structure"`
 }
 
@@ -1484,6 +3132,142 @@ func (s GetMediaCapturePipelineOutput) GoString() string {
 // SetMediaCapturePipeline sets the MediaCapturePipeline field's value.
 func (s *GetMediaCapturePipelineOutput) SetMediaCapturePipeline(v *MediaCapturePipeline) *GetMediaCapturePipelineOutput {
 	s.MediaCapturePipeline = v
+	return s
+}
+
+type GetMediaPipelineInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the pipeline that you want to get.
+	//
+	// MediaPipelineId is a required field
+	MediaPipelineId *string `location:"uri" locationName:"mediaPipelineId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMediaPipelineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMediaPipelineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMediaPipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMediaPipelineInput"}
+	if s.MediaPipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaPipelineId"))
+	}
+	if s.MediaPipelineId != nil && len(*s.MediaPipelineId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MediaPipelineId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMediaPipelineId sets the MediaPipelineId field's value.
+func (s *GetMediaPipelineInput) SetMediaPipelineId(v string) *GetMediaPipelineInput {
+	s.MediaPipelineId = &v
+	return s
+}
+
+type GetMediaPipelineOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The media pipeline object.
+	MediaPipeline *MediaPipeline `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMediaPipelineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMediaPipelineOutput) GoString() string {
+	return s.String()
+}
+
+// SetMediaPipeline sets the MediaPipeline field's value.
+func (s *GetMediaPipelineOutput) SetMediaPipeline(v *MediaPipeline) *GetMediaPipelineOutput {
+	s.MediaPipeline = v
+	return s
+}
+
+// Specifies the type of grid layout.
+type GridViewConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the layout of the video tiles when content sharing is enabled.
+	//
+	// ContentShareLayout is a required field
+	ContentShareLayout *string `type:"string" required:"true" enum:"ContentShareLayoutOption"`
+
+	// Defines the configuration options for a presenter only video tile.
+	PresenterOnlyConfiguration *PresenterOnlyConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GridViewConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GridViewConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GridViewConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GridViewConfiguration"}
+	if s.ContentShareLayout == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentShareLayout"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContentShareLayout sets the ContentShareLayout field's value.
+func (s *GridViewConfiguration) SetContentShareLayout(v string) *GridViewConfiguration {
+	s.ContentShareLayout = &v
+	return s
+}
+
+// SetPresenterOnlyConfiguration sets the PresenterOnlyConfiguration field's value.
+func (s *GridViewConfiguration) SetPresenterOnlyConfiguration(v *PresenterOnlyConfiguration) *GridViewConfiguration {
+	s.PresenterOnlyConfiguration = v
 	return s
 }
 
@@ -1544,7 +3328,7 @@ func (s *ListMediaCapturePipelinesInput) SetNextToken(v string) *ListMediaCaptur
 type ListMediaCapturePipelinesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The media capture pipeline objects in the list.
+	// The media pipeline objects in the list.
 	MediaCapturePipelines []*MediaCapturePipelineSummary `type:"list"`
 
 	// The token used to retrieve the next page of results.
@@ -1581,10 +3365,105 @@ func (s *ListMediaCapturePipelinesOutput) SetNextToken(v string) *ListMediaCaptu
 	return s
 }
 
+type ListMediaPipelinesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return in a single call. Valid Range: 1
+	// - 99.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token used to retrieve the next page of results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMediaPipelinesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMediaPipelinesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMediaPipelinesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMediaPipelinesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMediaPipelinesInput) SetMaxResults(v int64) *ListMediaPipelinesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMediaPipelinesInput) SetNextToken(v string) *ListMediaPipelinesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMediaPipelinesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The media pipeline objects in the list.
+	MediaPipelines []*MediaPipelineSummary `type:"list"`
+
+	// The token used to retrieve the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMediaPipelinesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMediaPipelinesOutput) GoString() string {
+	return s.String()
+}
+
+// SetMediaPipelines sets the MediaPipelines field's value.
+func (s *ListMediaPipelinesOutput) SetMediaPipelines(v []*MediaPipelineSummary) *ListMediaPipelinesOutput {
+	s.MediaPipelines = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMediaPipelinesOutput) SetNextToken(v string) *ListMediaPipelinesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The resource ARN.
+	// The ARN of the media pipeline associated with any tags. The ARN consists
+	// of the pipeline's region, resource ID, and pipeline ID.
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `location:"querystring" locationName:"arn" min:"1" type:"string" required:"true"`
@@ -1633,7 +3512,7 @@ func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The tag key-value pairs.
+	// The tags associated with the specified media pipeline.
 	Tags []*Tag `min:"1" type:"list"`
 }
 
@@ -1661,22 +3540,225 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
-// A media capture pipeline object consisting of an ID, source type, source
-// ARN, a sink type, a sink ARN, and a configuration object.
+// The media pipeline's RTMP configuration object.
+type LiveConnectorRTMPConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The audio channels set for the RTMP configuration
+	AudioChannels *string `type:"string" enum:"AudioChannelsOption"`
+
+	// The audio sample rate set for the RTMP configuration. Default: 48000.
+	AudioSampleRate *string `type:"string"`
+
+	// The URL of the RTMP configuration.
+	//
+	// Url is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by LiveConnectorRTMPConfiguration's
+	// String and GoString methods.
+	//
+	// Url is a required field
+	Url *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LiveConnectorRTMPConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LiveConnectorRTMPConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LiveConnectorRTMPConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LiveConnectorRTMPConfiguration"}
+	if s.Url == nil {
+		invalidParams.Add(request.NewErrParamRequired("Url"))
+	}
+	if s.Url != nil && len(*s.Url) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Url", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAudioChannels sets the AudioChannels field's value.
+func (s *LiveConnectorRTMPConfiguration) SetAudioChannels(v string) *LiveConnectorRTMPConfiguration {
+	s.AudioChannels = &v
+	return s
+}
+
+// SetAudioSampleRate sets the AudioSampleRate field's value.
+func (s *LiveConnectorRTMPConfiguration) SetAudioSampleRate(v string) *LiveConnectorRTMPConfiguration {
+	s.AudioSampleRate = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *LiveConnectorRTMPConfiguration) SetUrl(v string) *LiveConnectorRTMPConfiguration {
+	s.Url = &v
+	return s
+}
+
+// The media pipeline's sink configuration settings.
+type LiveConnectorSinkConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The sink configuration's RTMP configuration setttings.
+	//
+	// RTMPConfiguration is a required field
+	RTMPConfiguration *LiveConnectorRTMPConfiguration `type:"structure" required:"true"`
+
+	// The sink configuration's sink type.
+	//
+	// SinkType is a required field
+	SinkType *string `type:"string" required:"true" enum:"LiveConnectorSinkType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LiveConnectorSinkConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LiveConnectorSinkConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LiveConnectorSinkConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LiveConnectorSinkConfiguration"}
+	if s.RTMPConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("RTMPConfiguration"))
+	}
+	if s.SinkType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SinkType"))
+	}
+	if s.RTMPConfiguration != nil {
+		if err := s.RTMPConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RTMPConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRTMPConfiguration sets the RTMPConfiguration field's value.
+func (s *LiveConnectorSinkConfiguration) SetRTMPConfiguration(v *LiveConnectorRTMPConfiguration) *LiveConnectorSinkConfiguration {
+	s.RTMPConfiguration = v
+	return s
+}
+
+// SetSinkType sets the SinkType field's value.
+func (s *LiveConnectorSinkConfiguration) SetSinkType(v string) *LiveConnectorSinkConfiguration {
+	s.SinkType = &v
+	return s
+}
+
+// The data source configuration object of a streaming media pipeline.
+type LiveConnectorSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration settings of the connector pipeline.
+	//
+	// ChimeSdkMeetingLiveConnectorConfiguration is a required field
+	ChimeSdkMeetingLiveConnectorConfiguration *ChimeSdkMeetingLiveConnectorConfiguration `type:"structure" required:"true"`
+
+	// The source configuration's media source type.
+	//
+	// SourceType is a required field
+	SourceType *string `type:"string" required:"true" enum:"LiveConnectorSourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LiveConnectorSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LiveConnectorSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LiveConnectorSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LiveConnectorSourceConfiguration"}
+	if s.ChimeSdkMeetingLiveConnectorConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChimeSdkMeetingLiveConnectorConfiguration"))
+	}
+	if s.SourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceType"))
+	}
+	if s.ChimeSdkMeetingLiveConnectorConfiguration != nil {
+		if err := s.ChimeSdkMeetingLiveConnectorConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ChimeSdkMeetingLiveConnectorConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChimeSdkMeetingLiveConnectorConfiguration sets the ChimeSdkMeetingLiveConnectorConfiguration field's value.
+func (s *LiveConnectorSourceConfiguration) SetChimeSdkMeetingLiveConnectorConfiguration(v *ChimeSdkMeetingLiveConnectorConfiguration) *LiveConnectorSourceConfiguration {
+	s.ChimeSdkMeetingLiveConnectorConfiguration = v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *LiveConnectorSourceConfiguration) SetSourceType(v string) *LiveConnectorSourceConfiguration {
+	s.SourceType = &v
+	return s
+}
+
+// A media pipeline object consisting of an ID, source type, source ARN, a sink
+// type, a sink ARN, and a configuration object.
 type MediaCapturePipeline struct {
 	_ struct{} `type:"structure"`
 
-	// The configuration for a specified media capture pipeline. SourceType must
-	// be ChimeSdkMeeting.
+	// The configuration for a specified media pipeline. SourceType must be ChimeSdkMeeting.
 	ChimeSdkMeetingConfiguration *ChimeSdkMeetingConfiguration `type:"structure"`
 
-	// The time at which the capture pipeline was created, in ISO 8601 format.
+	// The time at which the pipeline was created, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// The ARN of a media capture pipeline.
+	// The ARN of the media capture pipeline
 	MediaPipelineArn *string `min:"1" type:"string"`
 
-	// The ID of a media capture pipeline.
+	// The ID of a media pipeline.
 	MediaPipelineId *string `min:"36" type:"string"`
 
 	// ARN of the destination to which the media artifacts are saved.
@@ -1700,10 +3782,10 @@ type MediaCapturePipeline struct {
 	// Source type from which media artifacts are saved. You must use ChimeMeeting.
 	SourceType *string `type:"string" enum:"MediaPipelineSourceType"`
 
-	// The status of the media capture pipeline.
+	// The status of the media pipeline.
 	Status *string `type:"string" enum:"MediaPipelineStatus"`
 
-	// The time at which the capture pipeline was updated, in ISO 8601 format.
+	// The time at which the pipeline was updated, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -1785,14 +3867,88 @@ func (s *MediaCapturePipeline) SetUpdatedTimestamp(v time.Time) *MediaCapturePip
 	return s
 }
 
-// A summary of a media capture pipeline.
+// The source configuration object of a media capture pipeline.
+type MediaCapturePipelineSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The meeting configuration settings in a media capture pipeline configuration
+	// object.
+	//
+	// ChimeSdkMeetingConfiguration is a required field
+	ChimeSdkMeetingConfiguration *ChimeSdkMeetingConcatenationConfiguration `type:"structure" required:"true"`
+
+	// The media pipeline ARN in the configuration object of a media capture pipeline.
+	//
+	// MediaPipelineArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MediaCapturePipelineSourceConfiguration's
+	// String and GoString methods.
+	//
+	// MediaPipelineArn is a required field
+	MediaPipelineArn *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaCapturePipelineSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaCapturePipelineSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MediaCapturePipelineSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MediaCapturePipelineSourceConfiguration"}
+	if s.ChimeSdkMeetingConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChimeSdkMeetingConfiguration"))
+	}
+	if s.MediaPipelineArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaPipelineArn"))
+	}
+	if s.MediaPipelineArn != nil && len(*s.MediaPipelineArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MediaPipelineArn", 1))
+	}
+	if s.ChimeSdkMeetingConfiguration != nil {
+		if err := s.ChimeSdkMeetingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ChimeSdkMeetingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChimeSdkMeetingConfiguration sets the ChimeSdkMeetingConfiguration field's value.
+func (s *MediaCapturePipelineSourceConfiguration) SetChimeSdkMeetingConfiguration(v *ChimeSdkMeetingConcatenationConfiguration) *MediaCapturePipelineSourceConfiguration {
+	s.ChimeSdkMeetingConfiguration = v
+	return s
+}
+
+// SetMediaPipelineArn sets the MediaPipelineArn field's value.
+func (s *MediaCapturePipelineSourceConfiguration) SetMediaPipelineArn(v string) *MediaCapturePipelineSourceConfiguration {
+	s.MediaPipelineArn = &v
+	return s
+}
+
+// The summary data of a media capture pipeline.
 type MediaCapturePipelineSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of a media capture pipeline.
+	// The ARN of the media pipeline in the summary.
 	MediaPipelineArn *string `min:"1" type:"string"`
 
-	// The ID of a media capture pipeline.
+	// The ID of the media pipeline in the summary.
 	MediaPipelineId *string `min:"36" type:"string"`
 }
 
@@ -1823,6 +3979,318 @@ func (s *MediaCapturePipelineSummary) SetMediaPipelineArn(v string) *MediaCaptur
 // SetMediaPipelineId sets the MediaPipelineId field's value.
 func (s *MediaCapturePipelineSummary) SetMediaPipelineId(v string) *MediaCapturePipelineSummary {
 	s.MediaPipelineId = &v
+	return s
+}
+
+// Concatenates audio and video data from one or more data streams.
+type MediaConcatenationPipeline struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the concatenation pipeline was created.
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The ARN of the media pipeline that you specify in the SourceConfiguration
+	// object.
+	MediaPipelineArn *string `min:"1" type:"string"`
+
+	// The ID of the media pipeline being concatenated.
+	MediaPipelineId *string `min:"36" type:"string"`
+
+	// The data sinks of the concatenation pipeline.
+	Sinks []*ConcatenationSink `min:"1" type:"list"`
+
+	// The data sources being concatnated.
+	Sources []*ConcatenationSource `min:"1" type:"list"`
+
+	// The status of the concatenation pipeline.
+	Status *string `type:"string" enum:"MediaPipelineStatus"`
+
+	// The time at which the concatenation pipeline was last updated.
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaConcatenationPipeline) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaConcatenationPipeline) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *MediaConcatenationPipeline) SetCreatedTimestamp(v time.Time) *MediaConcatenationPipeline {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetMediaPipelineArn sets the MediaPipelineArn field's value.
+func (s *MediaConcatenationPipeline) SetMediaPipelineArn(v string) *MediaConcatenationPipeline {
+	s.MediaPipelineArn = &v
+	return s
+}
+
+// SetMediaPipelineId sets the MediaPipelineId field's value.
+func (s *MediaConcatenationPipeline) SetMediaPipelineId(v string) *MediaConcatenationPipeline {
+	s.MediaPipelineId = &v
+	return s
+}
+
+// SetSinks sets the Sinks field's value.
+func (s *MediaConcatenationPipeline) SetSinks(v []*ConcatenationSink) *MediaConcatenationPipeline {
+	s.Sinks = v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *MediaConcatenationPipeline) SetSources(v []*ConcatenationSource) *MediaConcatenationPipeline {
+	s.Sources = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MediaConcatenationPipeline) SetStatus(v string) *MediaConcatenationPipeline {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *MediaConcatenationPipeline) SetUpdatedTimestamp(v time.Time) *MediaConcatenationPipeline {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
+// The connector pipeline.
+type MediaLiveConnectorPipeline struct {
+	_ struct{} `type:"structure"`
+
+	// Thetime at which the connector pipeline was created.
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The connector pipeline's ARN.
+	MediaPipelineArn *string `min:"1" type:"string"`
+
+	// The connector pipeline's ID.
+	MediaPipelineId *string `min:"36" type:"string"`
+
+	// The connector pipeline's data sinks.
+	Sinks []*LiveConnectorSinkConfiguration `min:"1" type:"list"`
+
+	// The connector pipeline's data sources.
+	Sources []*LiveConnectorSourceConfiguration `min:"1" type:"list"`
+
+	// The connector pipeline's status.
+	Status *string `type:"string" enum:"MediaPipelineStatus"`
+
+	// The time at which the connector pipeline was last updated.
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaLiveConnectorPipeline) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaLiveConnectorPipeline) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *MediaLiveConnectorPipeline) SetCreatedTimestamp(v time.Time) *MediaLiveConnectorPipeline {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetMediaPipelineArn sets the MediaPipelineArn field's value.
+func (s *MediaLiveConnectorPipeline) SetMediaPipelineArn(v string) *MediaLiveConnectorPipeline {
+	s.MediaPipelineArn = &v
+	return s
+}
+
+// SetMediaPipelineId sets the MediaPipelineId field's value.
+func (s *MediaLiveConnectorPipeline) SetMediaPipelineId(v string) *MediaLiveConnectorPipeline {
+	s.MediaPipelineId = &v
+	return s
+}
+
+// SetSinks sets the Sinks field's value.
+func (s *MediaLiveConnectorPipeline) SetSinks(v []*LiveConnectorSinkConfiguration) *MediaLiveConnectorPipeline {
+	s.Sinks = v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *MediaLiveConnectorPipeline) SetSources(v []*LiveConnectorSourceConfiguration) *MediaLiveConnectorPipeline {
+	s.Sources = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MediaLiveConnectorPipeline) SetStatus(v string) *MediaLiveConnectorPipeline {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *MediaLiveConnectorPipeline) SetUpdatedTimestamp(v time.Time) *MediaLiveConnectorPipeline {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
+// A pipeline consisting of a media capture, media concatenation, or live-streaming
+// pipeline.
+type MediaPipeline struct {
+	_ struct{} `type:"structure"`
+
+	// A pipeline that enables users to capture audio and video.
+	MediaCapturePipeline *MediaCapturePipeline `type:"structure"`
+
+	// The media concatenation pipeline in a media pipeline.
+	MediaConcatenationPipeline *MediaConcatenationPipeline `type:"structure"`
+
+	// The connector pipeline of the media pipeline.
+	MediaLiveConnectorPipeline *MediaLiveConnectorPipeline `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaPipeline) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaPipeline) GoString() string {
+	return s.String()
+}
+
+// SetMediaCapturePipeline sets the MediaCapturePipeline field's value.
+func (s *MediaPipeline) SetMediaCapturePipeline(v *MediaCapturePipeline) *MediaPipeline {
+	s.MediaCapturePipeline = v
+	return s
+}
+
+// SetMediaConcatenationPipeline sets the MediaConcatenationPipeline field's value.
+func (s *MediaPipeline) SetMediaConcatenationPipeline(v *MediaConcatenationPipeline) *MediaPipeline {
+	s.MediaConcatenationPipeline = v
+	return s
+}
+
+// SetMediaLiveConnectorPipeline sets the MediaLiveConnectorPipeline field's value.
+func (s *MediaPipeline) SetMediaLiveConnectorPipeline(v *MediaLiveConnectorPipeline) *MediaPipeline {
+	s.MediaLiveConnectorPipeline = v
+	return s
+}
+
+// The summary of the media pipeline.
+type MediaPipelineSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the media pipeline in the summary.
+	MediaPipelineArn *string `min:"1" type:"string"`
+
+	// The ID of the media pipeline in the summary.
+	MediaPipelineId *string `min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaPipelineSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaPipelineSummary) GoString() string {
+	return s.String()
+}
+
+// SetMediaPipelineArn sets the MediaPipelineArn field's value.
+func (s *MediaPipelineSummary) SetMediaPipelineArn(v string) *MediaPipelineSummary {
+	s.MediaPipelineArn = &v
+	return s
+}
+
+// SetMediaPipelineId sets the MediaPipelineId field's value.
+func (s *MediaPipelineSummary) SetMediaPipelineId(v string) *MediaPipelineSummary {
+	s.MediaPipelineId = &v
+	return s
+}
+
+// The configuration object for an event concatenation pipeline.
+type MeetingEventsConcatenationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables the configuration object.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"ArtifactsConcatenationState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MeetingEventsConcatenationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MeetingEventsConcatenationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MeetingEventsConcatenationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MeetingEventsConcatenationConfiguration"}
+	if s.State == nil {
+		invalidParams.Add(request.NewErrParamRequired("State"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetState sets the State field's value.
+func (s *MeetingEventsConcatenationConfiguration) SetState(v string) *MeetingEventsConcatenationConfiguration {
+	s.State = &v
 	return s
 }
 
@@ -1895,6 +4363,38 @@ func (s *NotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Defines the configuration for a presenter only video tile.
+type PresenterOnlyConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the position of the presenter video tile. Default: TopRight.
+	PresenterPosition *string `type:"string" enum:"PresenterPosition"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PresenterOnlyConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PresenterOnlyConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetPresenterPosition sets the PresenterPosition field's value.
+func (s *PresenterOnlyConfiguration) SetPresenterPosition(v string) *PresenterOnlyConfiguration {
+	s.PresenterPosition = &v
+	return s
+}
+
 // The request exceeds the resource limit.
 type ResourceLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -1964,15 +4464,69 @@ func (s *ResourceLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The video streams to capture for a specified media capture pipeline. The
-// total number of video streams can't exceed 25.
+// The configuration settings for the S3 bucket.
+type S3BucketSinkConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The destination URL of the S3 bucket.
+	//
+	// Destination is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by S3BucketSinkConfiguration's
+	// String and GoString methods.
+	//
+	// Destination is a required field
+	Destination *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3BucketSinkConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3BucketSinkConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3BucketSinkConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3BucketSinkConfiguration"}
+	if s.Destination == nil {
+		invalidParams.Add(request.NewErrParamRequired("Destination"))
+	}
+	if s.Destination != nil && len(*s.Destination) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Destination", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestination sets the Destination field's value.
+func (s *S3BucketSinkConfiguration) SetDestination(v string) *S3BucketSinkConfiguration {
+	s.Destination = &v
+	return s
+}
+
+// The video streams for a specified media pipeline. The total number of video
+// streams can't exceed 25.
 type SelectedVideoStreams struct {
 	_ struct{} `type:"structure"`
 
-	// The attendee IDs of the streams selected for a media capture pipeline.
+	// The attendee IDs of the streams selected for a media pipeline.
 	AttendeeIds []*string `min:"1" type:"list"`
 
-	// The external user IDs of the streams selected for a media capture pipeline.
+	// The external user IDs of the streams selected for a media pipeline.
 	ExternalUserIds []*string `min:"1" type:"list"`
 }
 
@@ -2160,12 +4714,12 @@ func (s *ServiceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Source configuration for a specified media capture pipeline.
+// Source configuration for a specified media pipeline.
 type SourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The selected video streams to capture for a specified media capture pipeline.
-	// The number of video streams can't exceed 25.
+	// The selected video streams for a specified media pipeline. The number of
+	// video streams can't exceed 25.
 	SelectedVideoStreams *SelectedVideoStreams `type:"structure"`
 }
 
@@ -2208,16 +4762,16 @@ func (s *SourceConfiguration) SetSelectedVideoStreams(v *SelectedVideoStreams) *
 	return s
 }
 
-// Describes a tag applied to a resource.
+// A key/value pair that grants users access to meeting resources.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
-	// The key of the tag.
+	// The key half of a tag.
 	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
-	// The value of the tag.
+	// The value half of a tag.
 	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
@@ -2275,12 +4829,13 @@ func (s *Tag) SetValue(v string) *Tag {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The resource ARN.
+	// The ARN of the media pipeline associated with any tags. The ARN consists
+	// of the pipeline's endpoint region, resource ID, and pipeline ID.
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 
-	// The tag key-value pairs.
+	// The tags associated with the specified media pipeline.
 	//
 	// Tags is a required field
 	Tags []*Tag `min:"1" type:"list" required:"true"`
@@ -2439,6 +4994,53 @@ func (s *ThrottledClientException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The configuration object for concatenating transcription messages.
+type TranscriptionMessagesConcatenationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables the configuration object.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"ArtifactsConcatenationState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TranscriptionMessagesConcatenationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TranscriptionMessagesConcatenationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TranscriptionMessagesConcatenationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TranscriptionMessagesConcatenationConfiguration"}
+	if s.State == nil {
+		invalidParams.Add(request.NewErrParamRequired("State"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetState sets the State field's value.
+func (s *TranscriptionMessagesConcatenationConfiguration) SetState(v string) *TranscriptionMessagesConcatenationConfiguration {
+	s.State = &v
+	return s
+}
+
 // The client is not currently authorized to make the request.
 type UnauthorizedClientException struct {
 	_            struct{}                  `type:"structure"`
@@ -2511,12 +5113,12 @@ func (s *UnauthorizedClientException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The resource ARN.
+	// The ARN of the pipeline that you want to untag.
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 
-	// The tag keys.
+	// The key/value pairs in the tag that you want to remove.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `min:"1" type:"list" required:"true"`
@@ -2652,6 +5254,69 @@ func (s *VideoArtifactsConfiguration) SetState(v string) *VideoArtifactsConfigur
 	return s
 }
 
+// The configuration object of a video contacatentation pipeline.
+type VideoConcatenationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables the configuration object.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"ArtifactsConcatenationState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoConcatenationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoConcatenationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VideoConcatenationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VideoConcatenationConfiguration"}
+	if s.State == nil {
+		invalidParams.Add(request.NewErrParamRequired("State"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetState sets the State field's value.
+func (s *VideoConcatenationConfiguration) SetState(v string) *VideoConcatenationConfiguration {
+	s.State = &v
+	return s
+}
+
+const (
+	// ArtifactsConcatenationStateEnabled is a ArtifactsConcatenationState enum value
+	ArtifactsConcatenationStateEnabled = "Enabled"
+
+	// ArtifactsConcatenationStateDisabled is a ArtifactsConcatenationState enum value
+	ArtifactsConcatenationStateDisabled = "Disabled"
+)
+
+// ArtifactsConcatenationState_Values returns all elements of the ArtifactsConcatenationState enum
+func ArtifactsConcatenationState_Values() []string {
+	return []string{
+		ArtifactsConcatenationStateEnabled,
+		ArtifactsConcatenationStateDisabled,
+	}
+}
+
 const (
 	// ArtifactsStateEnabled is a ArtifactsState enum value
 	ArtifactsStateEnabled = "Enabled"
@@ -2669,11 +5334,42 @@ func ArtifactsState_Values() []string {
 }
 
 const (
+	// AudioArtifactsConcatenationStateEnabled is a AudioArtifactsConcatenationState enum value
+	AudioArtifactsConcatenationStateEnabled = "Enabled"
+)
+
+// AudioArtifactsConcatenationState_Values returns all elements of the AudioArtifactsConcatenationState enum
+func AudioArtifactsConcatenationState_Values() []string {
+	return []string{
+		AudioArtifactsConcatenationStateEnabled,
+	}
+}
+
+const (
+	// AudioChannelsOptionStereo is a AudioChannelsOption enum value
+	AudioChannelsOptionStereo = "Stereo"
+
+	// AudioChannelsOptionMono is a AudioChannelsOption enum value
+	AudioChannelsOptionMono = "Mono"
+)
+
+// AudioChannelsOption_Values returns all elements of the AudioChannelsOption enum
+func AudioChannelsOption_Values() []string {
+	return []string{
+		AudioChannelsOptionStereo,
+		AudioChannelsOptionMono,
+	}
+}
+
+const (
 	// AudioMuxTypeAudioOnly is a AudioMuxType enum value
 	AudioMuxTypeAudioOnly = "AudioOnly"
 
 	// AudioMuxTypeAudioWithActiveSpeakerVideo is a AudioMuxType enum value
 	AudioMuxTypeAudioWithActiveSpeakerVideo = "AudioWithActiveSpeakerVideo"
+
+	// AudioMuxTypeAudioWithCompositedVideo is a AudioMuxType enum value
+	AudioMuxTypeAudioWithCompositedVideo = "AudioWithCompositedVideo"
 )
 
 // AudioMuxType_Values returns all elements of the AudioMuxType enum
@@ -2681,6 +5377,31 @@ func AudioMuxType_Values() []string {
 	return []string{
 		AudioMuxTypeAudioOnly,
 		AudioMuxTypeAudioWithActiveSpeakerVideo,
+		AudioMuxTypeAudioWithCompositedVideo,
+	}
+}
+
+const (
+	// ConcatenationSinkTypeS3bucket is a ConcatenationSinkType enum value
+	ConcatenationSinkTypeS3bucket = "S3Bucket"
+)
+
+// ConcatenationSinkType_Values returns all elements of the ConcatenationSinkType enum
+func ConcatenationSinkType_Values() []string {
+	return []string{
+		ConcatenationSinkTypeS3bucket,
+	}
+}
+
+const (
+	// ConcatenationSourceTypeMediaCapturePipeline is a ConcatenationSourceType enum value
+	ConcatenationSourceTypeMediaCapturePipeline = "MediaCapturePipeline"
+)
+
+// ConcatenationSourceType_Values returns all elements of the ConcatenationSourceType enum
+func ConcatenationSourceType_Values() []string {
+	return []string{
+		ConcatenationSourceTypeMediaCapturePipeline,
 	}
 }
 
@@ -2693,6 +5414,26 @@ const (
 func ContentMuxType_Values() []string {
 	return []string{
 		ContentMuxTypeContentOnly,
+	}
+}
+
+const (
+	// ContentShareLayoutOptionPresenterOnly is a ContentShareLayoutOption enum value
+	ContentShareLayoutOptionPresenterOnly = "PresenterOnly"
+
+	// ContentShareLayoutOptionHorizontal is a ContentShareLayoutOption enum value
+	ContentShareLayoutOptionHorizontal = "Horizontal"
+
+	// ContentShareLayoutOptionVertical is a ContentShareLayoutOption enum value
+	ContentShareLayoutOptionVertical = "Vertical"
+)
+
+// ContentShareLayoutOption_Values returns all elements of the ContentShareLayoutOption enum
+func ContentShareLayoutOption_Values() []string {
+	return []string{
+		ContentShareLayoutOptionPresenterOnly,
+		ContentShareLayoutOptionHorizontal,
+		ContentShareLayoutOptionVertical,
 	}
 }
 
@@ -2729,6 +5470,58 @@ func ErrorCode_Values() []string {
 		ErrorCodeServiceFailure,
 		ErrorCodeServiceUnavailable,
 		ErrorCodeThrottling,
+	}
+}
+
+const (
+	// LayoutOptionGridView is a LayoutOption enum value
+	LayoutOptionGridView = "GridView"
+)
+
+// LayoutOption_Values returns all elements of the LayoutOption enum
+func LayoutOption_Values() []string {
+	return []string{
+		LayoutOptionGridView,
+	}
+}
+
+const (
+	// LiveConnectorMuxTypeAudioWithCompositedVideo is a LiveConnectorMuxType enum value
+	LiveConnectorMuxTypeAudioWithCompositedVideo = "AudioWithCompositedVideo"
+
+	// LiveConnectorMuxTypeAudioWithActiveSpeakerVideo is a LiveConnectorMuxType enum value
+	LiveConnectorMuxTypeAudioWithActiveSpeakerVideo = "AudioWithActiveSpeakerVideo"
+)
+
+// LiveConnectorMuxType_Values returns all elements of the LiveConnectorMuxType enum
+func LiveConnectorMuxType_Values() []string {
+	return []string{
+		LiveConnectorMuxTypeAudioWithCompositedVideo,
+		LiveConnectorMuxTypeAudioWithActiveSpeakerVideo,
+	}
+}
+
+const (
+	// LiveConnectorSinkTypeRtmp is a LiveConnectorSinkType enum value
+	LiveConnectorSinkTypeRtmp = "RTMP"
+)
+
+// LiveConnectorSinkType_Values returns all elements of the LiveConnectorSinkType enum
+func LiveConnectorSinkType_Values() []string {
+	return []string{
+		LiveConnectorSinkTypeRtmp,
+	}
+}
+
+const (
+	// LiveConnectorSourceTypeChimeSdkMeeting is a LiveConnectorSourceType enum value
+	LiveConnectorSourceTypeChimeSdkMeeting = "ChimeSdkMeeting"
+)
+
+// LiveConnectorSourceType_Values returns all elements of the LiveConnectorSourceType enum
+func LiveConnectorSourceType_Values() []string {
+	return []string{
+		LiveConnectorSourceTypeChimeSdkMeeting,
 	}
 }
 
@@ -2781,6 +5574,46 @@ func MediaPipelineStatus_Values() []string {
 		MediaPipelineStatusFailed,
 		MediaPipelineStatusStopping,
 		MediaPipelineStatusStopped,
+	}
+}
+
+const (
+	// PresenterPositionTopLeft is a PresenterPosition enum value
+	PresenterPositionTopLeft = "TopLeft"
+
+	// PresenterPositionTopRight is a PresenterPosition enum value
+	PresenterPositionTopRight = "TopRight"
+
+	// PresenterPositionBottomLeft is a PresenterPosition enum value
+	PresenterPositionBottomLeft = "BottomLeft"
+
+	// PresenterPositionBottomRight is a PresenterPosition enum value
+	PresenterPositionBottomRight = "BottomRight"
+)
+
+// PresenterPosition_Values returns all elements of the PresenterPosition enum
+func PresenterPosition_Values() []string {
+	return []string{
+		PresenterPositionTopLeft,
+		PresenterPositionTopRight,
+		PresenterPositionBottomLeft,
+		PresenterPositionBottomRight,
+	}
+}
+
+const (
+	// ResolutionOptionHd is a ResolutionOption enum value
+	ResolutionOptionHd = "HD"
+
+	// ResolutionOptionFhd is a ResolutionOption enum value
+	ResolutionOptionFhd = "FHD"
+)
+
+// ResolutionOption_Values returns all elements of the ResolutionOption enum
+func ResolutionOption_Values() []string {
+	return []string{
+		ResolutionOptionHd,
+		ResolutionOptionFhd,
 	}
 }
 

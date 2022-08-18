@@ -2541,6 +2541,12 @@
         "GetTransitGatewayPeeringResponse$TransitGatewayPeering": "<p>Returns information about a transit gateway peering. </p>"
       }
     },
+    "TransitGatewayPeeringAttachmentId": {
+      "base": null,
+      "refs": {
+        "TransitGatewayPeering$TransitGatewayPeeringAttachmentId": "<p>The ID of the transit gateway peering attachment.</p>"
+      }
+    },
     "TransitGatewayRegistration": {
       "base": "<p>Describes the registration of a transit gateway to a global network.</p>",
       "refs": {
