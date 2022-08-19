@@ -384,7 +384,7 @@ var tplUnmodeledAwsQueryCompatible = template.Must(
 	}
 `))
 
-func (a *API) AwsQueryCompatibleErrorCode(errorCode string) string {
+func (a *API) AWSQueryCompatibleErrorCode(errorCode string) string {
 	mapping, ok := a.AWSQueryCompatible[errorCode]
 	if !ok {
 		return errorCode

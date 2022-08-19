@@ -105,7 +105,7 @@ func TestAPI_ErrorCode_WhenErrorInMapping(t *testing.T) {
 			},
 		},
 	}
-	if e, a := "AWSQuery.ErrorCode", api.AwsQueryCompatibleErrorCode("ServiceError"); e != a {
+	if e, a := "AWSQuery.ErrorCode", api.AWSQueryCompatibleErrorCode("ServiceError"); e != a {
 		t.Errorf("expect %v code, got %v", e, a)
 	}
 }
@@ -121,7 +121,7 @@ func TestAPI_ErrorCode_WhenErrorNotInMapping(t *testing.T) {
 			},
 		},
 	}
-	if e, a := "SomeError", api.AwsQueryCompatibleErrorCode("SomeError"); e != a {
+	if e, a := "SomeError", api.AWSQueryCompatibleErrorCode("SomeError"); e != a {
 		t.Errorf("expect %v code, got %v", e, a)
 	}
 }
@@ -132,7 +132,7 @@ func TestAPI_ErrorCode_WhenNoMappingFound(t *testing.T) {
 			ServiceFullName: "SQS",
 		},
 	}
-	if e, a := "SomeError", api.AwsQueryCompatibleErrorCode("SomeError"); e != a {
+	if e, a := "SomeError", api.AWSQueryCompatibleErrorCode("SomeError"); e != a {
 		t.Errorf("expect %v code, got %v", e, a)
 	}
 }
