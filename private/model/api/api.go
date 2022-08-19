@@ -78,7 +78,7 @@ type API struct {
 	// Set to true to strictly enforce usage of the serviceId for the package naming
 	StrictServiceId bool
 
-	AwsQueryCompatible map[string]AwsQueryCompatibleError
+	AWSQueryCompatible map[string]AWSQueryCompatibleError
 }
 
 // A Metadata is the metadata about an API's definition.
@@ -100,7 +100,7 @@ type Metadata struct {
 	NoResolveEndpoint bool
 }
 
-type AwsQueryCompatibleError struct {
+type AWSQueryCompatibleError struct {
 	Code string `json:code`
 }
 
@@ -332,10 +332,10 @@ var tplAPI = template.Must(template.New("api").Parse(`
 {{- end }}
 `))
 
-var tplUnmodelledAwsQueryCompatible = template.Must(
-	template.New("tplUnmodelledAwsQueryCompatible").Parse(`
-	{{- if $.AwsQueryCompatible }}
-		type UnmodelledException struct {
+var tplUnmodeledAwsQueryCompatible = template.Must(
+	template.New("tplUnmodeledAwsQueryCompatible").Parse(`
+	{{- if $.AWSQueryCompatible }}
+		type unmodeledAWSQueryException struct {
 			_ struct{}` + "`type:\"structure\"`" + `
 
 			RespMetadata protocol.ResponseMetadata` + "`json:\"-\" xml:\"-\"`" + `
@@ -345,10 +345,10 @@ var tplUnmodelledAwsQueryCompatible = template.Must(
 			code string
 		}
 	{{- end }}
-	{{- range $errorCode, $mapping := $.AwsQueryCompatible }}
-		{{- if $.IsUnmodelledErrorShape $errorCode $.ShapeListErrors }}
+	{{- range $errorCode, $mapping := $.AWSQueryCompatible }}
+		{{- if $.IsUnmodeledErrorShape $errorCode $.ShapeListErrors }}
 			func newError{{ $errorCode }}(v protocol.ResponseMetadata) error {
-				return &UnmodelledException{
+				return &unmodeledAWSQueryException{
 					RespMetadata: v,
 					code: "{{ $mapping.Code }}",
 				}
@@ -356,36 +356,36 @@ var tplUnmodelledAwsQueryCompatible = template.Must(
 		{{- end }}
 {{- end}}
 
-	func (s *UnmodelledException) Code() string {
+	func (s *unmodeledAWSQueryException) Code() string {
 		return s.code
 	}
 
-	func (s *UnmodelledException) Message() string {
+	func (s *unmodeledAWSQueryException) Message() string {
 		if s.Message_ != nil {
 			return *s.Message_
 		}
 		return ""
 	}
 
-	func (s *UnmodelledException) OrigErr() error {
+	func (s *unmodeledAWSQueryException) OrigErr() error {
 		return nil
 	}
 
-	func (s *UnmodelledException) Error() string {
+	func (s *unmodeledAWSQueryException) Error() string {
 		return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 	}
 
-	func (s *UnmodelledException) StatusCode() int {
+	func (s *unmodeledAWSQueryException) StatusCode() int {
 		return s.RespMetadata.StatusCode
 	}
 
-	func (s *UnmodelledException) RequestID() string {
+	func (s *unmodeledAWSQueryException) RequestID() string {
 		return s.RespMetadata.RequestID
 	}
 `))
 
 func (a *API) AwsQueryCompatibleErrorCode(errorCode string) string {
-	mapping, ok := a.AwsQueryCompatible[errorCode]
+	mapping, ok := a.AWSQueryCompatible[errorCode]
 	if !ok {
 		return errorCode
 	}
@@ -435,7 +435,7 @@ func (a *API) APIGoCode() string {
 		panic(err)
 	}
 
-	err = tplUnmodelledAwsQueryCompatible.Execute(&buf, a)
+	err = tplUnmodeledAwsQueryCompatible.Execute(&buf, a)
 	if err != nil {
 		panic(err)
 	}
@@ -1006,14 +1006,14 @@ const (
 
 	var exceptionFromCode = map[string]func(protocol.ResponseMetadata)error {
 		{{- range $_, $s := $.ShapeListErrors }}
-			{{- if index $.AwsQueryCompatible $s.ShapeName }}
+			{{- if index $.AWSQueryCompatible $s.ShapeName }}
 			"{{ $s.ShapeName }}": newError{{ $s.ShapeName }},
 			{{- else }}
 			"{{ $s.ErrorName }}": newError{{ $s.ShapeName }},
 			{{- end}}
 		{{- end }}
-		{{- range $errorCode, $_ := $.AwsQueryCompatible }}
-			{{- if $.IsUnmodelledErrorShape $errorCode $.ShapeListErrors }}
+		{{- range $errorCode, $_ := $.AWSQueryCompatible }}
+			{{- if $.IsUnmodeledErrorShape $errorCode $.ShapeListErrors }}
 				"{{ $errorCode }}": newError{{ $errorCode }},
 			{{- end }}
 		{{- end}}
@@ -1021,7 +1021,7 @@ const (
 {{- end }}
 `))
 
-func (a *API) IsUnmodelledErrorShape(errorCode string, shapes []*Shape) bool {
+func (a *API) IsUnmodeledErrorShape(errorCode string, shapes []*Shape) bool {
 	for _, s := range shapes {
 					if s.ShapeName == errorCode {
 									return false

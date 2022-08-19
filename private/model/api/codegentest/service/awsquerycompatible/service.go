@@ -13,7 +13,7 @@ import (
 )
 
 // AwsQueryCompatible provides the API operation methods for making requests to
-// AwsQuery Compatible Service. See this package's package overview docs
+// AWSQuery Compatible Service. See this package's package overview docs
 // for details on the service.
 //
 // AwsQueryCompatible methods are safe to use concurrently. It is not safe to
@@ -30,9 +30,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "AwsQueryCompatible" // Name of service.
+	ServiceName = "AWSQueryCompatible" // Name of service.
 	EndpointsID = "awsquerycompatible" // ID to lookup a service endpoint with.
-	ServiceID   = "AwsQueryCompatible" // ServiceID is a unique identifier of a specific service.
+	ServiceID   = "AWSQueryCompatible" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the AwsQueryCompatible client with a session.

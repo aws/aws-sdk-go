@@ -6,8 +6,8 @@
    "jsonVersion":"1.1",
     "protocol":"json",
    "serviceAbbreviation":"AwsQueryCompatible",
-   "serviceFullName":"AwsQuery Compatible Service",
-   "serviceId":"AwsQueryCompatible",
+   "serviceFullName":"AWSQuery Compatible Service",
+   "serviceId":"AWSQueryCompatible",
    "signatureVersion":"v4",
    "uid":"awsquerycompatible-2012-11-05",
    "xmlNamespace":"http://queue.amazonaws.com/doc/2012-11-05/"

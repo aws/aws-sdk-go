@@ -53,7 +53,7 @@ func (c *AwsQueryCompatible) CreateQueueRequest(input *CreateQueueInput) (req *r
 	return
 }
 
-// CreateQueue API operation for AwsQuery Compatible Service.
+// CreateQueue API operation for AWSQuery Compatible Service.
 //
 // Creates a new standard or FIFO queue. You can pass one or more attributes
 // in the request. Keep the following in mind:
@@ -105,7 +105,7 @@ func (c *AwsQueryCompatible) CreateQueueRequest(input *CreateQueueInput) (req *r
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AwsQuery Compatible Service's
+// See the AWS API reference guide for AWSQuery Compatible Service's
 // API operation CreateQueue for usage and error information.
 //
 // Returned Error Types:
@@ -346,7 +346,7 @@ func (s *QueueNameExists) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-type UnmodelledException struct {
+type unmodeledAWSQueryException struct {
 	_ struct{} `type:"structure"`
 
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -357,41 +357,41 @@ type UnmodelledException struct {
 }
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
-	return &UnmodelledException{
+	return &unmodeledAWSQueryException{
 		RespMetadata: v,
 		code:         "AccessDenied",
 	}
 }
 func newErrorBackOffException(v protocol.ResponseMetadata) error {
-	return &UnmodelledException{
+	return &unmodeledAWSQueryException{
 		RespMetadata: v,
 		code:         "BackOff",
 	}
 }
 
-func (s *UnmodelledException) Code() string {
+func (s *unmodeledAWSQueryException) Code() string {
 	return s.code
 }
 
-func (s *UnmodelledException) Message() string {
+func (s *unmodeledAWSQueryException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
 	return ""
 }
 
-func (s *UnmodelledException) OrigErr() error {
+func (s *unmodeledAWSQueryException) OrigErr() error {
 	return nil
 }
 
-func (s *UnmodelledException) Error() string {
+func (s *unmodeledAWSQueryException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
-func (s *UnmodelledException) StatusCode() int {
+func (s *unmodeledAWSQueryException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
-func (s *UnmodelledException) RequestID() string {
+func (s *unmodeledAWSQueryException) RequestID() string {
 	return s.RespMetadata.RequestID
 }

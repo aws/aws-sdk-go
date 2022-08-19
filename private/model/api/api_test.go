@@ -99,13 +99,13 @@ func TestAPI_ErrorCode_WhenErrorInMapping(t *testing.T) {
 		Metadata: Metadata{
 			ServiceFullName: "SQS",
 		},
-		AwsQueryCompatible: map[string]AwsQueryCompatibleError{
+		AWSQueryCompatible: map[string]AWSQueryCompatibleError{
 			"ServiceError": {
-				Code: "AwsQuery.ErrorCode",
+				Code: "AWSQuery.ErrorCode",
 			},
 		},
 	}
-	if e, a := "AwsQuery.ErrorCode", api.AwsQueryCompatibleErrorCode("ServiceError"); e != a {
+	if e, a := "AWSQuery.ErrorCode", api.AwsQueryCompatibleErrorCode("ServiceError"); e != a {
 		t.Errorf("expect %v code, got %v", e, a)
 	}
 }
@@ -115,9 +115,9 @@ func TestAPI_ErrorCode_WhenErrorNotInMapping(t *testing.T) {
 		Metadata: Metadata{
 			ServiceFullName: "SQS",
 		},
-		AwsQueryCompatible: map[string]AwsQueryCompatibleError{
+		AWSQueryCompatible: map[string]AWSQueryCompatibleError{
 			"ServiceError": {
-				Code: "AwsQuery.ErrorCode",
+				Code: "AWSQuery.ErrorCode",
 			},
 		},
 	}

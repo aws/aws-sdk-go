@@ -1,5 +1,5 @@
-//go:build go1.13 && codegen
-// +build go1.13,codegen
+//go:build go1.13
+// +build go1.13
 
 package awsquerycompatible
 
@@ -43,7 +43,7 @@ func TestAWSQuery(t *testing.T) {
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#AccessDeniedException", "message":"Some user-visible message"}`),
 			expectErrorCode: "AccessDenied",
 		},
-		"unmapped unmodelled error code": {
+		"unmapped unmodeled error code": {
 			statusCode:      400,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#SomeException", "message":"Some user-visible message"}`),
 			expectErrorCode: "SomeException",
