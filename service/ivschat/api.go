@@ -1395,7 +1395,10 @@ type CreateRoomInput struct {
 	Name *string `locationName:"name" type:"string"`
 
 	// Tags to attach to the resource. Array of maps, each of the form string:string
-	// (key:value).
+	// (key:value). See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS Chat has no constraints beyond what is documented
+	// there.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -2244,8 +2247,7 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Tags to attach to the resource. Array of maps, each of the form string:string
-	// (key:value).
+	// Tags attached to the resource, from the request.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
@@ -2475,7 +2477,10 @@ type RoomSummary struct {
 	// Room name. The value does not need to be unique.
 	Name *string `locationName:"name" type:"string"`
 
-	// Tags attached to the resource.
+	// Tags attached to the resource. See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS Chat has no constraints beyond what is documented
+	// there.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Time of the room’s last update. This is an ISO 8601 timestamp; note that
@@ -2732,7 +2737,10 @@ type TagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
-	// Array of tags to be added or updated.
+	// Array of tags to be added or updated. See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS Chat has no constraints beyond what is documented
+	// there.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
@@ -2889,7 +2897,10 @@ type UntagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
-	// Array of tags to be removed.
+	// Array of tags to be removed. See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS Chat has no constraints beyond what is documented
+	// there.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`

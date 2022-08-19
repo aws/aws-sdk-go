@@ -16,6 +16,7 @@
     "DescribeMetricSet": "<p>Describes a dataset.</p> <p>Amazon Lookout for Metrics API actions are eventually consistent. If you do a read operation on a resource immediately after creating or modifying it, use retries to allow time for the write operation to complete.</p>",
     "DetectMetricSetConfig": "<p>Detects an Amazon S3 dataset's file format, interval, and offset.</p>",
     "GetAnomalyGroup": "<p>Returns details about a group of anomalous metrics.</p>",
+    "GetDataQualityMetrics": "<p>Returns details about the requested data quality metrics.</p>",
     "GetFeedback": "<p>Get feedback for an anomaly group.</p>",
     "GetSampleData": "<p>Returns a selection of sample records from an Amazon S3 datasource.</p>",
     "ListAlerts": "<p>Lists the alerts attached to a detector.</p> <p>Amazon Lookout for Metrics API actions are eventually consistent. If you do a read operation on a resource immediately after creating or modifying it, use retries to allow time for the write operation to complete.</p>",
@@ -143,6 +144,18 @@
         "DescribeAnomalyDetectorResponse$AnomalyDetectorConfig": "<p>Contains information about the detector's configuration.</p>"
       }
     },
+    "AnomalyDetectorDataQualityMetric": {
+      "base": "<p>Aggregated details about the data quality metrics collected for the <code>AnomalyDetectorArn</code> provided in the <a>GetDataQualityMetrics</a> object.</p>",
+      "refs": {
+        "AnomalyDetectorDataQualityMetricList$member": null
+      }
+    },
+    "AnomalyDetectorDataQualityMetricList": {
+      "base": null,
+      "refs": {
+        "GetDataQualityMetricsResponse$AnomalyDetectorDataQualityMetricList": "<p>A list of the data quality metrics for the <code>AnomalyDetectorArn</code> that you requested.</p>"
+      }
+    },
     "AnomalyDetectorDescription": {
       "base": null,
       "refs": {
@@ -257,6 +270,8 @@
         "DescribeMetricSetResponse$AnomalyDetectorArn": "<p>The ARN of the detector that contains the dataset.</p>",
         "DetectMetricSetConfigRequest$AnomalyDetectorArn": "<p>An anomaly detector ARN.</p>",
         "GetAnomalyGroupRequest$AnomalyDetectorArn": "<p>The Amazon Resource Name (ARN) of the anomaly detector.</p>",
+        "GetDataQualityMetricsRequest$AnomalyDetectorArn": "<p>The Amazon Resource Name (ARN) of the anomaly detector that you want to investigate.</p>",
+        "GetDataQualityMetricsRequest$MetricSetArn": "<p>The Amazon Resource Name (ARN) of a specific data quality metric set.</p>",
         "GetFeedbackRequest$AnomalyDetectorArn": "<p>The Amazon Resource Name (ARN) of the anomaly detector.</p>",
         "LambdaConfiguration$RoleArn": "<p>The ARN of an IAM role that has permission to invoke the Lambda function.</p>",
         "LambdaConfiguration$LambdaArn": "<p>The ARN of the Lambda function.</p>",
@@ -266,6 +281,7 @@
         "ListAnomalyGroupTimeSeriesRequest$AnomalyDetectorArn": "<p>The Amazon Resource Name (ARN) of the anomaly detector.</p>",
         "ListMetricSetsRequest$AnomalyDetectorArn": "<p>The ARN of the anomaly detector containing the metrics sets to list.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The resource's Amazon Resource Name (ARN).</p>",
+        "MetricSetDataQualityMetric$MetricSetArn": "<p>The Amazon Resource Name (ARN) of the data quality metric array.</p>",
         "MetricSetSummary$MetricSetArn": "<p>The ARN of the dataset.</p>",
         "MetricSetSummary$AnomalyDetectorArn": "<p>The ARN of the detector to which the dataset belongs.</p>",
         "PutFeedbackRequest$AnomalyDetectorArn": "<p>The Amazon Resource Name (ARN) of the anomaly detector.</p>",
@@ -467,6 +483,30 @@
       "base": null,
       "refs": {
         "SampleRow$member": null
+      }
+    },
+    "DataQualityMetric": {
+      "base": "<p>An array that describes a data quality metric. Each <code>DataQualityMetric</code> object contains the data quality metric name, its value, a description of the metric, and the affected column.</p>",
+      "refs": {
+        "DataQualityMetricList$member": null
+      }
+    },
+    "DataQualityMetricDescription": {
+      "base": null,
+      "refs": {
+        "DataQualityMetric$MetricDescription": "<p>A description of the data quality metric.</p>"
+      }
+    },
+    "DataQualityMetricList": {
+      "base": null,
+      "refs": {
+        "MetricSetDataQualityMetric$DataQualityMetricList": "<p>The array of data quality metrics contained in the data quality metric set.</p>"
+      }
+    },
+    "DataQualityMetricType": {
+      "base": null,
+      "refs": {
+        "DataQualityMetric$MetricType": "<p>The name of the data quality metric.</p>"
       }
     },
     "DatabaseHost": {
@@ -696,6 +736,12 @@
         "DimensionFilter$DimensionValueList": "<p>The list of values for the dimension specified in DimensionName that you want to filter on.</p>"
       }
     },
+    "Double": {
+      "base": null,
+      "refs": {
+        "DataQualityMetric$MetricValue": "<p>The value of the data quality metric.</p>"
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
@@ -749,6 +795,16 @@
       }
     },
     "GetAnomalyGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataQualityMetricsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataQualityMetricsResponse": {
       "base": null,
       "refs": {
       }
@@ -1015,6 +1071,18 @@
         "AlertFilters$MetricList": "<p>The list of measures that you want to get alerts for.</p>"
       }
     },
+    "MetricSetDataQualityMetric": {
+      "base": "<p>An array of <code>DataQualityMetric</code> objects that describes one or more data quality metrics.</p>",
+      "refs": {
+        "MetricSetDataQualityMetricList$member": null
+      }
+    },
+    "MetricSetDataQualityMetricList": {
+      "base": null,
+      "refs": {
+        "AnomalyDetectorDataQualityMetric$MetricSetDataQualityMetricList": "<p>An array of <code>DataQualityMetricList</code> objects. Each object in the array contains information about a data quality metric.</p>"
+      }
+    },
     "MetricSetDescription": {
       "base": null,
       "refs": {
@@ -1107,9 +1175,9 @@
     "Offset": {
       "base": null,
       "refs": {
-        "CreateMetricSetRequest$Offset": "<p>After an interval ends, the amount of seconds that the detector waits before importing data. Offset is only supported for S3 and Redshift datasources.</p>",
-        "DescribeMetricSetResponse$Offset": "<p>The offset in seconds. Only supported for S3 and Redshift datasources.</p>",
-        "UpdateMetricSetRequest$Offset": "<p>After an interval ends, the amount of seconds that the detector waits before importing data. Offset is only supported for S3 and Redshift datasources.</p>"
+        "CreateMetricSetRequest$Offset": "<p>After an interval ends, the amount of seconds that the detector waits before importing data. Offset is only supported for S3, Redshift, Athena and datasources.</p>",
+        "DescribeMetricSetResponse$Offset": "<p>After an interval ends, the amount of seconds that the detector waits before importing data. Offset is only supported for S3, Redshift, Athena and datasources.</p>",
+        "UpdateMetricSetRequest$Offset": "<p>After an interval ends, the amount of seconds that the detector waits before importing data. Offset is only supported for S3, Redshift, Athena and datasources.</p>"
       }
     },
     "PoirotSecretManagerArn": {
@@ -1175,6 +1243,12 @@
       "base": "<p>Provides information about the Amazon Redshift database configuration.</p>",
       "refs": {
         "MetricSource$RedshiftSourceConfig": "<p>Details about an Amazon Redshift database datasource.</p>"
+      }
+    },
+    "RelatedColumnName": {
+      "base": null,
+      "refs": {
+        "DataQualityMetric$RelatedColumnName": "<p>The column that is being monitored.</p>"
       }
     },
     "RelationshipType": {
@@ -1410,6 +1484,7 @@
         "Alert$CreationTime": "<p>The time at which the alert was created.</p>",
         "AlertSummary$LastModificationTime": "<p>The time at which the alert was last modified.</p>",
         "AlertSummary$CreationTime": "<p>The time at which the alert was created.</p>",
+        "AnomalyDetectorDataQualityMetric$StartTimestamp": "<p>The start time for the data quality metrics collection.</p>",
         "AnomalyDetectorSummary$CreationTime": "<p>The time at which the detector was created.</p>",
         "AnomalyDetectorSummary$LastModificationTime": "<p>The time at which the detector was last modified.</p>",
         "DescribeAnomalyDetectorResponse$CreationTime": "<p>The time at which the detector was created.</p>",

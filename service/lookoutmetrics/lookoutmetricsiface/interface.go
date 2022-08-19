@@ -119,6 +119,10 @@ type LookoutMetricsAPI interface {
 	GetAnomalyGroupWithContext(aws.Context, *lookoutmetrics.GetAnomalyGroupInput, ...request.Option) (*lookoutmetrics.GetAnomalyGroupOutput, error)
 	GetAnomalyGroupRequest(*lookoutmetrics.GetAnomalyGroupInput) (*request.Request, *lookoutmetrics.GetAnomalyGroupOutput)
 
+	GetDataQualityMetrics(*lookoutmetrics.GetDataQualityMetricsInput) (*lookoutmetrics.GetDataQualityMetricsOutput, error)
+	GetDataQualityMetricsWithContext(aws.Context, *lookoutmetrics.GetDataQualityMetricsInput, ...request.Option) (*lookoutmetrics.GetDataQualityMetricsOutput, error)
+	GetDataQualityMetricsRequest(*lookoutmetrics.GetDataQualityMetricsInput) (*request.Request, *lookoutmetrics.GetDataQualityMetricsOutput)
+
 	GetFeedback(*lookoutmetrics.GetFeedbackInput) (*lookoutmetrics.GetFeedbackOutput, error)
 	GetFeedbackWithContext(aws.Context, *lookoutmetrics.GetFeedbackInput, ...request.Option) (*lookoutmetrics.GetFeedbackOutput, error)
 	GetFeedbackRequest(*lookoutmetrics.GetFeedbackInput) (*request.Request, *lookoutmetrics.GetFeedbackOutput)

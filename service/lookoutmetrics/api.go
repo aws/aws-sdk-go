@@ -1447,6 +1447,101 @@ func (c *LookoutMetrics) GetAnomalyGroupWithContext(ctx aws.Context, input *GetA
 	return out, req.Send()
 }
 
+const opGetDataQualityMetrics = "GetDataQualityMetrics"
+
+// GetDataQualityMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataQualityMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDataQualityMetrics for more information on using the GetDataQualityMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDataQualityMetricsRequest method.
+//	req, resp := client.GetDataQualityMetricsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutmetrics-2017-07-25/GetDataQualityMetrics
+func (c *LookoutMetrics) GetDataQualityMetricsRequest(input *GetDataQualityMetricsInput) (req *request.Request, output *GetDataQualityMetricsOutput) {
+	op := &request.Operation{
+		Name:       opGetDataQualityMetrics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetDataQualityMetrics",
+	}
+
+	if input == nil {
+		input = &GetDataQualityMetricsInput{}
+	}
+
+	output = &GetDataQualityMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDataQualityMetrics API operation for Amazon Lookout for Metrics.
+//
+// Returns details about the requested data quality metrics.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Metrics's
+// API operation GetDataQualityMetrics for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ARN of the resource and
+//     try again.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the AWS service.
+//     Check your input values and try again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - TooManyRequestsException
+//     The request was denied due to too many requests being submitted at the same
+//     time.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutmetrics-2017-07-25/GetDataQualityMetrics
+func (c *LookoutMetrics) GetDataQualityMetrics(input *GetDataQualityMetricsInput) (*GetDataQualityMetricsOutput, error) {
+	req, out := c.GetDataQualityMetricsRequest(input)
+	return out, req.Send()
+}
+
+// GetDataQualityMetricsWithContext is the same as GetDataQualityMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDataQualityMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutMetrics) GetDataQualityMetricsWithContext(ctx aws.Context, input *GetDataQualityMetricsInput, opts ...request.Option) (*GetDataQualityMetricsOutput, error) {
+	req, out := c.GetDataQualityMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetFeedback = "GetFeedback"
 
 // GetFeedbackRequest generates a "aws/request.Request" representing the
@@ -3824,6 +3919,49 @@ func (s *AnomalyDetectorConfigSummary) SetAnomalyDetectorFrequency(v string) *An
 	return s
 }
 
+// Aggregated details about the data quality metrics collected for the AnomalyDetectorArn
+// provided in the GetDataQualityMetrics object.
+type AnomalyDetectorDataQualityMetric struct {
+	_ struct{} `type:"structure"`
+
+	// An array of DataQualityMetricList objects. Each object in the array contains
+	// information about a data quality metric.
+	MetricSetDataQualityMetricList []*MetricSetDataQualityMetric `type:"list"`
+
+	// The start time for the data quality metrics collection.
+	StartTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalyDetectorDataQualityMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalyDetectorDataQualityMetric) GoString() string {
+	return s.String()
+}
+
+// SetMetricSetDataQualityMetricList sets the MetricSetDataQualityMetricList field's value.
+func (s *AnomalyDetectorDataQualityMetric) SetMetricSetDataQualityMetricList(v []*MetricSetDataQualityMetric) *AnomalyDetectorDataQualityMetric {
+	s.MetricSetDataQualityMetricList = v
+	return s
+}
+
+// SetStartTimestamp sets the StartTimestamp field's value.
+func (s *AnomalyDetectorDataQualityMetric) SetStartTimestamp(v time.Time) *AnomalyDetectorDataQualityMetric {
+	s.StartTimestamp = &v
+	return s
+}
+
 // Contains information about an an anomaly detector.
 type AnomalyDetectorSummary struct {
 	_ struct{} `type:"structure"`
@@ -5169,7 +5307,7 @@ type CreateMetricSetInput struct {
 	MetricSource *MetricSource `type:"structure" required:"true"`
 
 	// After an interval ends, the amount of seconds that the detector waits before
-	// importing data. Offset is only supported for S3 and Redshift datasources.
+	// importing data. Offset is only supported for S3, Redshift, Athena and datasources.
 	Offset *int64 `type:"integer"`
 
 	// A list of tags (https://docs.aws.amazon.com/lookoutmetrics/latest/dev/detectors-tags.html)
@@ -5430,6 +5568,67 @@ func (s *CsvFormatDescriptor) SetHeaderList(v []*string) *CsvFormatDescriptor {
 // SetQuoteSymbol sets the QuoteSymbol field's value.
 func (s *CsvFormatDescriptor) SetQuoteSymbol(v string) *CsvFormatDescriptor {
 	s.QuoteSymbol = &v
+	return s
+}
+
+// An array that describes a data quality metric. Each DataQualityMetric object
+// contains the data quality metric name, its value, a description of the metric,
+// and the affected column.
+type DataQualityMetric struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the data quality metric.
+	MetricDescription *string `min:"1" type:"string"`
+
+	// The name of the data quality metric.
+	MetricType *string `type:"string" enum:"DataQualityMetricType"`
+
+	// The value of the data quality metric.
+	MetricValue *float64 `type:"double"`
+
+	// The column that is being monitored.
+	RelatedColumnName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityMetric) GoString() string {
+	return s.String()
+}
+
+// SetMetricDescription sets the MetricDescription field's value.
+func (s *DataQualityMetric) SetMetricDescription(v string) *DataQualityMetric {
+	s.MetricDescription = &v
+	return s
+}
+
+// SetMetricType sets the MetricType field's value.
+func (s *DataQualityMetric) SetMetricType(v string) *DataQualityMetric {
+	s.MetricType = &v
+	return s
+}
+
+// SetMetricValue sets the MetricValue field's value.
+func (s *DataQualityMetric) SetMetricValue(v float64) *DataQualityMetric {
+	s.MetricValue = &v
+	return s
+}
+
+// SetRelatedColumnName sets the RelatedColumnName field's value.
+func (s *DataQualityMetric) SetRelatedColumnName(v string) *DataQualityMetric {
+	s.RelatedColumnName = &v
 	return s
 }
 
@@ -6071,7 +6270,8 @@ type DescribeMetricSetOutput struct {
 	// Contains information about the dataset's source data.
 	MetricSource *MetricSource `type:"structure"`
 
-	// The offset in seconds. Only supported for S3 and Redshift datasources.
+	// After an interval ends, the amount of seconds that the detector waits before
+	// importing data. Offset is only supported for S3, Redshift, Athena and datasources.
 	Offset *int64 `type:"integer"`
 
 	// Contains information about the column used for tracking time in your source
@@ -6961,6 +7161,92 @@ func (s GetAnomalyGroupOutput) GoString() string {
 // SetAnomalyGroup sets the AnomalyGroup field's value.
 func (s *GetAnomalyGroupOutput) SetAnomalyGroup(v *AnomalyGroup) *GetAnomalyGroupOutput {
 	s.AnomalyGroup = v
+	return s
+}
+
+type GetDataQualityMetricsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the anomaly detector that you want to investigate.
+	//
+	// AnomalyDetectorArn is a required field
+	AnomalyDetectorArn *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of a specific data quality metric set.
+	MetricSetArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityMetricsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDataQualityMetricsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDataQualityMetricsInput"}
+	if s.AnomalyDetectorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnomalyDetectorArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnomalyDetectorArn sets the AnomalyDetectorArn field's value.
+func (s *GetDataQualityMetricsInput) SetAnomalyDetectorArn(v string) *GetDataQualityMetricsInput {
+	s.AnomalyDetectorArn = &v
+	return s
+}
+
+// SetMetricSetArn sets the MetricSetArn field's value.
+func (s *GetDataQualityMetricsInput) SetMetricSetArn(v string) *GetDataQualityMetricsInput {
+	s.MetricSetArn = &v
+	return s
+}
+
+type GetDataQualityMetricsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the data quality metrics for the AnomalyDetectorArn that you requested.
+	AnomalyDetectorDataQualityMetricList []*AnomalyDetectorDataQualityMetric `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnomalyDetectorDataQualityMetricList sets the AnomalyDetectorDataQualityMetricList field's value.
+func (s *GetDataQualityMetricsOutput) SetAnomalyDetectorDataQualityMetricList(v []*AnomalyDetectorDataQualityMetric) *GetDataQualityMetricsOutput {
+	s.AnomalyDetectorDataQualityMetricList = v
 	return s
 }
 
@@ -8406,6 +8692,48 @@ func (s *MetricLevelImpact) SetMetricName(v string) *MetricLevelImpact {
 // SetNumTimeSeries sets the NumTimeSeries field's value.
 func (s *MetricLevelImpact) SetNumTimeSeries(v int64) *MetricLevelImpact {
 	s.NumTimeSeries = &v
+	return s
+}
+
+// An array of DataQualityMetric objects that describes one or more data quality
+// metrics.
+type MetricSetDataQualityMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The array of data quality metrics contained in the data quality metric set.
+	DataQualityMetricList []*DataQualityMetric `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the data quality metric array.
+	MetricSetArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricSetDataQualityMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricSetDataQualityMetric) GoString() string {
+	return s.String()
+}
+
+// SetDataQualityMetricList sets the DataQualityMetricList field's value.
+func (s *MetricSetDataQualityMetric) SetDataQualityMetricList(v []*DataQualityMetric) *MetricSetDataQualityMetric {
+	s.DataQualityMetricList = v
+	return s
+}
+
+// SetMetricSetArn sets the MetricSetArn field's value.
+func (s *MetricSetDataQualityMetric) SetMetricSetArn(v string) *MetricSetDataQualityMetric {
+	s.MetricSetArn = &v
 	return s
 }
 
@@ -9990,7 +10318,7 @@ type UpdateMetricSetInput struct {
 	MetricSource *MetricSource `type:"structure"`
 
 	// After an interval ends, the amount of seconds that the detector waits before
-	// importing data. Offset is only supported for S3 and Redshift datasources.
+	// importing data. Offset is only supported for S3, Redshift, Athena and datasources.
 	Offset *int64 `type:"integer"`
 
 	// The timestamp column.
@@ -10499,6 +10827,54 @@ func Confidence_Values() []string {
 		ConfidenceHigh,
 		ConfidenceLow,
 		ConfidenceNone,
+	}
+}
+
+const (
+	// DataQualityMetricTypeColumnCompleteness is a DataQualityMetricType enum value
+	DataQualityMetricTypeColumnCompleteness = "COLUMN_COMPLETENESS"
+
+	// DataQualityMetricTypeDimensionUniqueness is a DataQualityMetricType enum value
+	DataQualityMetricTypeDimensionUniqueness = "DIMENSION_UNIQUENESS"
+
+	// DataQualityMetricTypeTimeSeriesCount is a DataQualityMetricType enum value
+	DataQualityMetricTypeTimeSeriesCount = "TIME_SERIES_COUNT"
+
+	// DataQualityMetricTypeRowsProcessed is a DataQualityMetricType enum value
+	DataQualityMetricTypeRowsProcessed = "ROWS_PROCESSED"
+
+	// DataQualityMetricTypeRowsPartialCompliance is a DataQualityMetricType enum value
+	DataQualityMetricTypeRowsPartialCompliance = "ROWS_PARTIAL_COMPLIANCE"
+
+	// DataQualityMetricTypeInvalidRowsCompliance is a DataQualityMetricType enum value
+	DataQualityMetricTypeInvalidRowsCompliance = "INVALID_ROWS_COMPLIANCE"
+
+	// DataQualityMetricTypeBacktestTrainingDataStartTimeStamp is a DataQualityMetricType enum value
+	DataQualityMetricTypeBacktestTrainingDataStartTimeStamp = "BACKTEST_TRAINING_DATA_START_TIME_STAMP"
+
+	// DataQualityMetricTypeBacktestTrainingDataEndTimeStamp is a DataQualityMetricType enum value
+	DataQualityMetricTypeBacktestTrainingDataEndTimeStamp = "BACKTEST_TRAINING_DATA_END_TIME_STAMP"
+
+	// DataQualityMetricTypeBacktestInferenceDataStartTimeStamp is a DataQualityMetricType enum value
+	DataQualityMetricTypeBacktestInferenceDataStartTimeStamp = "BACKTEST_INFERENCE_DATA_START_TIME_STAMP"
+
+	// DataQualityMetricTypeBacktestInferenceDataEndTimeStamp is a DataQualityMetricType enum value
+	DataQualityMetricTypeBacktestInferenceDataEndTimeStamp = "BACKTEST_INFERENCE_DATA_END_TIME_STAMP"
+)
+
+// DataQualityMetricType_Values returns all elements of the DataQualityMetricType enum
+func DataQualityMetricType_Values() []string {
+	return []string{
+		DataQualityMetricTypeColumnCompleteness,
+		DataQualityMetricTypeDimensionUniqueness,
+		DataQualityMetricTypeTimeSeriesCount,
+		DataQualityMetricTypeRowsProcessed,
+		DataQualityMetricTypeRowsPartialCompliance,
+		DataQualityMetricTypeInvalidRowsCompliance,
+		DataQualityMetricTypeBacktestTrainingDataStartTimeStamp,
+		DataQualityMetricTypeBacktestTrainingDataEndTimeStamp,
+		DataQualityMetricTypeBacktestInferenceDataStartTimeStamp,
+		DataQualityMetricTypeBacktestInferenceDataEndTimeStamp,
 	}
 }
 
