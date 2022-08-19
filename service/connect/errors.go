@@ -17,7 +17,7 @@ const (
 	// ErrCodeContactFlowNotPublishedException for service response error code
 	// "ContactFlowNotPublishedException".
 	//
-	// The contact flow has not been published.
+	// The flow has not been published.
 	ErrCodeContactFlowNotPublishedException = "ContactFlowNotPublishedException"
 
 	// ErrCodeContactNotFoundException for service response error code
@@ -53,7 +53,7 @@ const (
 	// ErrCodeInvalidContactFlowException for service response error code
 	// "InvalidContactFlowException".
 	//
-	// The contact flow is not valid.
+	// The flow is not valid.
 	ErrCodeInvalidContactFlowException = "InvalidContactFlowException"
 
 	// ErrCodeInvalidContactFlowModuleException for service response error code
@@ -88,6 +88,8 @@ const (
 
 	// ErrCodePropertyValidationException for service response error code
 	// "PropertyValidationException".
+	//
+	// The property is not valid.
 	ErrCodePropertyValidationException = "PropertyValidationException"
 
 	// ErrCodeResourceConflictException for service response error code

@@ -745,7 +745,8 @@ func (c *Kendra) CreateDataSourceRequest(input *CreateDataSourceInput) (req *req
 
 // CreateDataSource API operation for AWSKendraFrontendService.
 //
-// Creates a data source that you want to use with an Amazon Kendra index.
+// Creates a data source connector that you want to use with an Amazon Kendra
+// index.
 //
 // You specify a name, data source connector type and description for your data
 // source. You also specify configuration information for the data source connector.
@@ -1433,10 +1434,10 @@ func (c *Kendra) DeleteDataSourceRequest(input *DeleteDataSourceInput) (req *req
 
 // DeleteDataSource API operation for AWSKendraFrontendService.
 //
-// Deletes an Amazon Kendra data source. An exception is not thrown if the data
-// source is already being deleted. While the data source is being deleted,
-// the Status field returned by a call to the DescribeDataSource API is set
-// to DELETING. For more information, see Deleting Data Sources (https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html).
+// Deletes an Amazon Kendra data source connector. An exception is not thrown
+// if the data source is already being deleted. While the data source is being
+// deleted, the Status field returned by a call to the DescribeDataSource API
+// is set to DELETING. For more information, see Deleting Data Sources (https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2172,7 +2173,7 @@ func (c *Kendra) DescribeDataSourceRequest(input *DescribeDataSourceInput) (req 
 
 // DescribeDataSource API operation for AWSKendraFrontendService.
 //
-// Gets information about an Amazon Kendra data source.
+// Gets information about an Amazon Kendra data source connector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3448,7 +3449,7 @@ func (c *Kendra) ListDataSourceSyncJobsRequest(input *ListDataSourceSyncJobsInpu
 
 // ListDataSourceSyncJobs API operation for AWSKendraFrontendService.
 //
-// Gets statistics about synchronizing Amazon Kendra with a data source.
+// Gets statistics about synchronizing a data source connector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3593,7 +3594,7 @@ func (c *Kendra) ListDataSourcesRequest(input *ListDataSourcesInput) (req *reque
 
 // ListDataSources API operation for AWSKendraFrontendService.
 //
-// Lists the data sources that you have created.
+// Lists the data source connectors that you have created.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5197,8 +5198,9 @@ func (c *Kendra) StartDataSourceSyncJobRequest(input *StartDataSourceSyncJobInpu
 
 // StartDataSourceSyncJob API operation for AWSKendraFrontendService.
 //
-// Starts a synchronization job for a data source. If a synchronization job
-// is already in progress, Amazon Kendra returns a ResourceInUseException exception.
+// Starts a synchronization job for a data source connector. If a synchronization
+// job is already in progress, Amazon Kendra returns a ResourceInUseException
+// exception.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5757,7 +5759,7 @@ func (c *Kendra) UpdateDataSourceRequest(input *UpdateDataSourceInput) (req *req
 
 // UpdateDataSource API operation for AWSKendraFrontendService.
 //
-// Updates an existing Amazon Kendra data source.
+// Updates an existing Amazon Kendra data source connector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6634,7 +6636,11 @@ type AlfrescoConfiguration struct {
 	SiteUrl *string `min:"1" type:"string" required:"true"`
 
 	// The path to the SSL certificate stored in an Amazon S3 bucket. You use this
-	// to connect to Alfresco.
+	// to connect to Alfresco if you require a secure SSL connection.
+	//
+	// You can simply generate a self-signed X509 certificate on any computer using
+	// OpenSSL. For an example of using OpenSSL to create an X509 certificate, see
+	// Create and sign an X509 certificate (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https-ssl.html).
 	//
 	// SslCertificateS3Path is a required field
 	SslCertificateS3Path *S3Path `type:"structure" required:"true"`
@@ -8939,6 +8945,11 @@ type ConfluenceConfiguration struct {
 	// pages.
 	AttachmentConfiguration *ConfluenceAttachmentConfiguration `type:"structure"`
 
+	// Whether you want to connect to Confluence using basic authentication of user
+	// name and password, or a personal access token. You can use a personal access
+	// token for Confluence Server.
+	AuthenticationType *string `type:"string" enum:"ConfluenceAuthenticationType"`
+
 	// Configuration information for indexing Confluence blogs.
 	BlogConfiguration *ConfluenceBlogConfiguration `type:"structure"`
 
@@ -8982,8 +8993,12 @@ type ConfluenceConfiguration struct {
 
 	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
 	// the user name and password required to connect to the Confluence instance.
-	// If you use Confluence cloud, you use a generated API token as the password.
+	// If you use Confluence Cloud, you use a generated API token as the password.
 	// For more information, see Using a Confluence data source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-confluence.html).
+	//
+	// You can also provide authentication credentials in the form of a personal
+	// access token. For more information, see Authentication for a Confluence data
+	// source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-confluence.html#confluence-authentication).
 	//
 	// SecretArn is a required field
 	SecretArn *string `min:"1" type:"string" required:"true"`
@@ -9084,6 +9099,12 @@ func (s *ConfluenceConfiguration) Validate() error {
 // SetAttachmentConfiguration sets the AttachmentConfiguration field's value.
 func (s *ConfluenceConfiguration) SetAttachmentConfiguration(v *ConfluenceAttachmentConfiguration) *ConfluenceConfiguration {
 	s.AttachmentConfiguration = v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *ConfluenceConfiguration) SetAuthenticationType(v string) *ConfluenceConfiguration {
+	s.AuthenticationType = &v
 	return s
 }
 
@@ -9933,7 +9954,8 @@ type CreateDataSourceInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of a role with permission to access the data
-	// source connector. For more information, see IAM Roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
+	// source and required resources. For more information, see IAM roles for Amazon
+	// Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
 	//
 	// You can't specify the RoleArn parameter when the Type parameter is set to
 	// CUSTOM. If you do, you receive a ValidationException exception.
@@ -12267,12 +12289,12 @@ func (s DeleteAccessControlConfigurationOutput) GoString() string {
 type DeleteDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the data source you want to delete.
+	// The identifier of the data source connector you want to delete.
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the index used with the data source.
+	// The identifier of the index used with the data source connector.
 	//
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
@@ -13049,12 +13071,12 @@ func (s *DescribeAccessControlConfigurationOutput) SetName(v string) *DescribeAc
 type DescribeDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the data source.
+	// The identifier of the data source connector.
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the index used with the data source.
+	// The identifier of the index used with the data source connector.
 	//
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
@@ -13115,12 +13137,12 @@ func (s *DescribeDataSourceInput) SetIndexId(v string) *DescribeDataSourceInput 
 type DescribeDataSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Configuration details for the data source. This shows how the data source
-	// is configured. The configuration options for a data source depend on the
-	// data source provider.
+	// Configuration details for the data source connector. This shows how the data
+	// source is configured. The configuration options for a data source depend
+	// on the data source provider.
 	Configuration *DataSourceConfiguration `type:"structure"`
 
-	// The Unix timestamp of when the data source was created.
+	// The Unix timestamp of when the data source connector was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// Configuration information for altering document metadata and content during
@@ -13131,17 +13153,17 @@ type DescribeDataSourceOutput struct {
 	// see Customizing document metadata during the ingestion process (https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html).
 	CustomDocumentEnrichmentConfiguration *CustomDocumentEnrichmentConfiguration `type:"structure"`
 
-	// The description for the data source.
+	// The description for the data source connector.
 	Description *string `type:"string"`
 
 	// When the Status field value is FAILED, the ErrorMessage field contains a
 	// description of the error that caused the data source to fail.
 	ErrorMessage *string `min:"1" type:"string"`
 
-	// The identifier of the data source.
+	// The identifier of the data source connector.
 	Id *string `min:"1" type:"string"`
 
-	// The identifier of the index that contains the data source.
+	// The identifier of the index used with the data source connector.
 	IndexId *string `min:"36" type:"string"`
 
 	// The code for a language. This shows a supported language for all documents
@@ -13150,25 +13172,25 @@ type DescribeDataSourceOutput struct {
 	// other than English (https://docs.aws.amazon.com/kendra/latest/dg/in-adding-languages.html).
 	LanguageCode *string `min:"2" type:"string"`
 
-	// The name for the data source.
+	// The name for the data source connector.
 	Name *string `min:"1" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the role that enables the data source to
-	// access its resources.
+	// The Amazon Resource Name (ARN) of the role with permission to access the
+	// data source and required resources.
 	RoleArn *string `type:"string"`
 
 	// The schedule for Amazon Kendra to update the index.
 	Schedule *string `type:"string"`
 
-	// The current status of the data source. When the status is ACTIVE the data
-	// source is ready to use. When the status is FAILED, the ErrorMessage field
-	// contains the reason that the data source failed.
+	// The current status of the data source connector. When the status is ACTIVE
+	// the data source is ready to use. When the status is FAILED, the ErrorMessage
+	// field contains the reason that the data source failed.
 	Status *string `type:"string" enum:"DataSourceStatus"`
 
-	// The type of the data source.
+	// The type of the data source. For example, SHAREPOINT.
 	Type *string `type:"string" enum:"DataSourceType"`
 
-	// The Unix timestamp of when the data source was last updated.
+	// The Unix timestamp of when the data source connector was last updated.
 	UpdatedAt *time.Time `type:"timestamp"`
 
 	// Configuration information for an Amazon Virtual Private Cloud to connect
@@ -19088,12 +19110,12 @@ func (s *ListAccessControlConfigurationsOutput) SetNextToken(v string) *ListAcce
 type ListDataSourceSyncJobsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the data source.
+	// The identifier of the data source connector.
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the index used with the data source.
+	// The identifier of the index used with the data source connector.
 	//
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
@@ -19112,8 +19134,8 @@ type ListDataSourceSyncJobsInput struct {
 	// to jobs between the specified dates.
 	StartTimeFilter *TimeRange `type:"structure"`
 
-	// When specified, only returns synchronization jobs with the Status field equal
-	// to the specified status.
+	// Only returns synchronization jobs with the Status field equal to the specified
+	// status.
 	StatusFilter *string `type:"string" enum:"DataSourceSyncJobStatus"`
 }
 
@@ -19202,7 +19224,7 @@ func (s *ListDataSourceSyncJobsInput) SetStatusFilter(v string) *ListDataSourceS
 type ListDataSourceSyncJobsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A history of synchronization jobs for the data source.
+	// A history of synchronization jobs for the data source connector.
 	History []*DataSourceSyncJob `type:"list"`
 
 	// If the response is truncated, Amazon Kendra returns this token that you can
@@ -19243,17 +19265,17 @@ func (s *ListDataSourceSyncJobsOutput) SetNextToken(v string) *ListDataSourceSyn
 type ListDataSourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the index used with one or more data sources.
+	// The identifier of the index used with one or more data source connectors.
 	//
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
 
-	// The maximum number of data sources to return.
+	// The maximum number of data source connectors to return.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If the previous response was incomplete (because there is more data to retrieve),
 	// Amazon Kendra returns a pagination token in the response. You can use this
-	// pagination token to retrieve the next set of data sources (DataSourceSummaryItems).
+	// pagination token to retrieve the next set of data source connectors (DataSourceSummaryItems).
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -19319,10 +19341,10 @@ type ListDataSourcesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// If the response is truncated, Amazon Kendra returns this token that you can
-	// use in the subsequent request to retrieve the next set of data sources.
+	// use in the subsequent request to retrieve the next set of data source connectors.
 	NextToken *string `min:"1" type:"string"`
 
-	// An array of summary information for one or more data sources.
+	// An array of summary information for one or more data source connector.
 	SummaryItems []*DataSourceSummary `type:"list"`
 }
 
@@ -20547,7 +20569,11 @@ type OnPremiseConfiguration struct {
 	OrganizationName *string `min:"1" type:"string" required:"true"`
 
 	// The path to the SSL certificate stored in an Amazon S3 bucket. You use this
-	// to connect to GitHub.
+	// to connect to GitHub if you require a secure SSL connection.
+	//
+	// You can simply generate a self-signed X509 certificate on any computer using
+	// OpenSSL. For an example of using OpenSSL to create an X509 certificate, see
+	// Create and sign an X509 certificate (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https-ssl.html).
 	//
 	// SslCertificateS3Path is a required field
 	SslCertificateS3Path *S3Path `type:"structure" required:"true"`
@@ -21813,7 +21839,8 @@ type QuipConfiguration struct {
 	// TRUE to index file comments.
 	CrawlFileComments *bool `type:"boolean"`
 
-	// The Quip site domain.
+	// The Quip site domain. For example, https://quip-company.quipdomain.com/browse.
+	// The domain in this example is "quipdomain".
 	//
 	// Domain is a required field
 	Domain *string `min:"1" type:"string" required:"true"`
@@ -21825,8 +21852,10 @@ type QuipConfiguration struct {
 	// takes precedence, and the file isn't included in the index.
 	ExclusionPatterns []*string `type:"list"`
 
-	// The identifiers of the Quip folders you want to index. You can find in your
-	// browser URL when you access your folder in Quip. For example, https://quip-company.com/zlLuOVNSarTL/folder-name.
+	// The identifiers of the Quip folders you want to index. You can find the folder
+	// ID in your browser URL when you access your folder in Quip. For example,
+	// https://quip-company.quipdomain.com/zlLuOVNSarTL/folder-name. The folder
+	// ID in this example is "zlLuOVNSarTL".
 	FolderIds []*string `type:"list"`
 
 	// A list of regular expression patterns to include certain files in your Quip
@@ -24272,10 +24301,14 @@ type SharePointConfiguration struct {
 	SharePointVersion *string `type:"string" required:"true" enum:"SharePointVersion"`
 
 	// The path to the SSL certificate stored in an Amazon S3 bucket. You use this
-	// to connect to SharePoint.
+	// to connect to SharePoint Server if you require a secure SSL connection.
+	//
+	// You can simply generate a self-signed X509 certificate on any computer using
+	// OpenSSL. For an example of using OpenSSL to create an X509 certificate, see
+	// Create and sign an X509 certificate (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https-ssl.html).
 	SslCertificateS3Path *S3Path `type:"structure"`
 
-	// The Microsoft SharePoint site URLs for the documents you want to indext.
+	// The Microsoft SharePoint site URLs for the documents you want to index.
 	//
 	// Urls is a required field
 	Urls []*string `min:"1" type:"list" required:"true"`
@@ -24987,12 +25020,12 @@ func (s *SqlConfiguration) SetQueryIdentifiersEnclosingOption(v string) *SqlConf
 type StartDataSourceSyncJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the data source to synchronize.
+	// The identifier of the data source connector to synchronize.
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the index that contains the data source.
+	// The identifier of the index used with the data source connector.
 	//
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
@@ -25148,12 +25181,13 @@ func (s *Status) SetFailureReason(v string) *Status {
 type StopDataSourceSyncJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the data source for which to stop the synchronization jobs.
+	// The identifier of the data source connector for which to stop the synchronization
+	// jobs.
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the index that contains the data source.
+	// The identifier of the index used with the data source connector.
 	//
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
@@ -26227,7 +26261,7 @@ type UpdateDataSourceInput struct {
 	// A new description for the data source connector.
 	Description *string `type:"string"`
 
-	// The identifier of the data source you want to update.
+	// The identifier of the data source connector you want to update.
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
@@ -26248,7 +26282,8 @@ type UpdateDataSourceInput struct {
 	Name *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of a role with permission to access the data
-	// source. For more information, see IAM Roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
+	// source and required resources. For more information, see IAM roles for Amazon
+	// Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
 	RoleArn *string `type:"string"`
 
 	// The sync schedule you want to update for the data source connector.
@@ -28107,6 +28142,22 @@ func ConfluenceAttachmentFieldName_Values() []string {
 		ConfluenceAttachmentFieldNameSpaceName,
 		ConfluenceAttachmentFieldNameUrl,
 		ConfluenceAttachmentFieldNameVersion,
+	}
+}
+
+const (
+	// ConfluenceAuthenticationTypeHttpBasic is a ConfluenceAuthenticationType enum value
+	ConfluenceAuthenticationTypeHttpBasic = "HTTP_BASIC"
+
+	// ConfluenceAuthenticationTypePat is a ConfluenceAuthenticationType enum value
+	ConfluenceAuthenticationTypePat = "PAT"
+)
+
+// ConfluenceAuthenticationType_Values returns all elements of the ConfluenceAuthenticationType enum
+func ConfluenceAuthenticationType_Values() []string {
+	return []string{
+		ConfluenceAuthenticationTypeHttpBasic,
+		ConfluenceAuthenticationTypePat,
 	}
 }
 

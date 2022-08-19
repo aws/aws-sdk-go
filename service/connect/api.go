@@ -657,8 +657,7 @@ func (c *Connect) AssociatePhoneNumberContactFlowRequest(input *AssociatePhoneNu
 
 // AssociatePhoneNumberContactFlow API operation for Amazon Connect Service.
 //
-// Associates a contact flow with a phone number claimed to your Amazon Connect
-// instance.
+// Associates a flow with a phone number claimed to your Amazon Connect instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1230,10 +1229,10 @@ func (c *Connect) CreateContactFlowRequest(input *CreateContactFlowInput) (req *
 
 // CreateContactFlow API operation for Amazon Connect Service.
 //
-// Creates a contact flow for the specified Amazon Connect instance.
+// Creates a flow for the specified Amazon Connect instance.
 //
-// You can also create and update contact flows using the Amazon Connect Flow
-// language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
+// You can also create and update flows using the Amazon Connect Flow language
+// (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1248,7 +1247,7 @@ func (c *Connect) CreateContactFlowRequest(input *CreateContactFlowInput) (req *
 //     The request is not valid.
 //
 //   - InvalidContactFlowException
-//     The contact flow is not valid.
+//     The flow is not valid.
 //
 //   - InvalidParameterException
 //     One or more of the specified parameters are not valid.
@@ -1333,7 +1332,7 @@ func (c *Connect) CreateContactFlowModuleRequest(input *CreateContactFlowModuleI
 
 // CreateContactFlowModule API operation for Amazon Connect Service.
 //
-// Creates a contact flow module for the specified Amazon Connect instance.
+// Creates a flow module for the specified Amazon Connect instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2136,6 +2135,7 @@ func (c *Connect) CreateTaskTemplateRequest(input *CreateTaskTemplateInput) (req
 // Returned Error Types:
 //
 //   - PropertyValidationException
+//     The property is not valid.
 //
 //   - InvalidParameterException
 //     One or more of the specified parameters are not valid.
@@ -2607,7 +2607,7 @@ func (c *Connect) DeleteContactFlowRequest(input *DeleteContactFlowInput) (req *
 
 // DeleteContactFlow API operation for Amazon Connect Service.
 //
-// Deletes a contact flow for the specified Amazon Connect instance.
+// Deletes a flow for the specified Amazon Connect instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2702,7 +2702,7 @@ func (c *Connect) DeleteContactFlowModuleRequest(input *DeleteContactFlowModuleI
 
 // DeleteContactFlowModule API operation for Amazon Connect Service.
 //
-// Deletes the specified contact flow module.
+// Deletes the specified flow module.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3922,10 +3922,10 @@ func (c *Connect) DescribeContactFlowRequest(input *DescribeContactFlowInput) (r
 
 // DescribeContactFlow API operation for Amazon Connect Service.
 //
-// Describes the specified contact flow.
+// Describes the specified flow.
 //
-// You can also create and update contact flows using the Amazon Connect Flow
-// language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
+// You can also create and update flows using the Amazon Connect Flow language
+// (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3946,7 +3946,7 @@ func (c *Connect) DescribeContactFlowRequest(input *DescribeContactFlowInput) (r
 //     The specified resource was not found.
 //
 //   - ContactFlowNotPublishedException
-//     The contact flow has not been published.
+//     The flow has not been published.
 //
 //   - ThrottlingException
 //     The throttling limit has been exceeded.
@@ -4019,7 +4019,7 @@ func (c *Connect) DescribeContactFlowModuleRequest(input *DescribeContactFlowMod
 
 // DescribeContactFlowModule API operation for Amazon Connect Service.
 //
-// Describes the specified contact flow module.
+// Describes the specified flow module.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5596,7 +5596,7 @@ func (c *Connect) DisassociateLambdaFunctionRequest(input *DisassociateLambdaFun
 // This API is in preview release for Amazon Connect and is subject to change.
 //
 // Remove the Lambda function from the dropdown options available in the relevant
-// contact flow blocks.
+// flow blocks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5783,8 +5783,8 @@ func (c *Connect) DisassociatePhoneNumberContactFlowRequest(input *DisassociateP
 
 // DisassociatePhoneNumberContactFlow API operation for Amazon Connect Service.
 //
-// Removes the contact flow association from a phone number claimed to your
-// Amazon Connect instance, if a contact flow association exists.
+// Removes the flow association from a phone number claimed to your Amazon Connect
+// instance, if a flow association exists.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7337,8 +7337,8 @@ func (c *Connect) ListContactFlowModulesRequest(input *ListContactFlowModulesInp
 
 // ListContactFlowModules API operation for Amazon Connect Service.
 //
-// Provides information about the contact flow modules for the specified Amazon
-// Connect instance.
+// Provides information about the flow modules for the specified Amazon Connect
+// instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7489,13 +7489,12 @@ func (c *Connect) ListContactFlowsRequest(input *ListContactFlowsInput) (req *re
 
 // ListContactFlows API operation for Amazon Connect Service.
 //
-// Provides information about the contact flows for the specified Amazon Connect
-// instance.
+// Provides information about the flows for the specified Amazon Connect instance.
 //
-// You can also create and update contact flows using the Amazon Connect Flow
-// language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
+// You can also create and update flows using the Amazon Connect Flow language
+// (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
 //
-// For more information about contact flows, see Contact Flows (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html)
+// For more information about flows, see Flows (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html)
 // in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8687,7 +8686,7 @@ func (c *Connect) ListLambdaFunctionsRequest(input *ListLambdaFunctionsInput) (r
 // This API is in preview release for Amazon Connect and is subject to change.
 //
 // Returns a paginated list of all Lambda functions that display in the dropdown
-// options in the relevant contact flow blocks.
+// options in the relevant flow blocks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11721,6 +11720,156 @@ func (c *Connect) SearchAvailablePhoneNumbersPagesWithContext(ctx aws.Context, i
 	return p.Err()
 }
 
+const opSearchSecurityProfiles = "SearchSecurityProfiles"
+
+// SearchSecurityProfilesRequest generates a "aws/request.Request" representing the
+// client's request for the SearchSecurityProfiles operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchSecurityProfiles for more information on using the SearchSecurityProfiles
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchSecurityProfilesRequest method.
+//	req, resp := client.SearchSecurityProfilesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchSecurityProfiles
+func (c *Connect) SearchSecurityProfilesRequest(input *SearchSecurityProfilesInput) (req *request.Request, output *SearchSecurityProfilesOutput) {
+	op := &request.Operation{
+		Name:       opSearchSecurityProfiles,
+		HTTPMethod: "POST",
+		HTTPPath:   "/search-security-profiles",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchSecurityProfilesInput{}
+	}
+
+	output = &SearchSecurityProfilesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchSecurityProfiles API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Searches security profiles in an Amazon Connect instance, with optional filtering.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchSecurityProfiles for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchSecurityProfiles
+func (c *Connect) SearchSecurityProfiles(input *SearchSecurityProfilesInput) (*SearchSecurityProfilesOutput, error) {
+	req, out := c.SearchSecurityProfilesRequest(input)
+	return out, req.Send()
+}
+
+// SearchSecurityProfilesWithContext is the same as SearchSecurityProfiles with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchSecurityProfiles for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchSecurityProfilesWithContext(ctx aws.Context, input *SearchSecurityProfilesInput, opts ...request.Option) (*SearchSecurityProfilesOutput, error) {
+	req, out := c.SearchSecurityProfilesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchSecurityProfilesPages iterates over the pages of a SearchSecurityProfiles operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchSecurityProfiles method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchSecurityProfiles operation.
+//	pageNum := 0
+//	err := client.SearchSecurityProfilesPages(params,
+//	    func(page *connect.SearchSecurityProfilesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) SearchSecurityProfilesPages(input *SearchSecurityProfilesInput, fn func(*SearchSecurityProfilesOutput, bool) bool) error {
+	return c.SearchSecurityProfilesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchSecurityProfilesPagesWithContext same as SearchSecurityProfilesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchSecurityProfilesPagesWithContext(ctx aws.Context, input *SearchSecurityProfilesInput, fn func(*SearchSecurityProfilesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchSecurityProfilesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchSecurityProfilesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchSecurityProfilesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opSearchUsers = "SearchUsers"
 
 // SearchUsersRequest generates a "aws/request.Request" representing the
@@ -12058,8 +12207,8 @@ func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *re
 
 // StartChatContact API operation for Amazon Connect Service.
 //
-// Initiates a contact flow to start a new chat for the customer. Response of
-// this API provides a token required to obtain credentials from the CreateParticipantConnection
+// Initiates a flow to start a new chat for the customer. Response of this API
+// provides a token required to obtain credentials from the CreateParticipantConnection
 // (https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html)
 // API in the Amazon Connect Participant Service.
 //
@@ -12374,13 +12523,13 @@ func (c *Connect) StartOutboundVoiceContactRequest(input *StartOutboundVoiceCont
 
 // StartOutboundVoiceContact API operation for Amazon Connect Service.
 //
-// Places an outbound call to a contact, and then initiates the contact flow.
-// It performs the actions in the contact flow that's specified (in ContactFlowId).
+// Places an outbound call to a contact, and then initiates the flow. It performs
+// the actions in the flow that's specified (in ContactFlowId).
 //
 // Agents do not initiate the outbound API, which means that they do not dial
-// the contact. If the contact flow places an outbound call to a contact, and
-// then puts the contact in queue, the call is then routed to the agent, like
-// any other inbound case.
+// the contact. If the flow places an outbound call to a contact, and then puts
+// the contact in queue, the call is then routed to the agent, like any other
+// inbound case.
 //
 // There is a 60-second dialing timeout for this operation. If the call is not
 // connected after 60 seconds, it fails.
@@ -12391,9 +12540,8 @@ func (c *Connect) StartOutboundVoiceContactRequest(input *StartOutboundVoiceCont
 // in the Amazon Connect Administrator Guide.
 //
 // Campaign calls are not allowed by default. Before you can make a call with
-// TrafficType = CAMPAIGN, you must submit a service quota increase request.
-// For more information, see Amazon Connect Service Quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
-// in the Amazon Connect Administrator Guide.
+// TrafficType = CAMPAIGN, you must submit a service quota increase request
+// to the quota Amazon Connect campaigns (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#outbound-communications-quotas).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12490,7 +12638,7 @@ func (c *Connect) StartTaskContactRequest(input *StartTaskContactInput) (req *re
 
 // StartTaskContact API operation for Amazon Connect Service.
 //
-// Initiates a contact flow to start a new task.
+// Initiates a flow to start a new task.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12964,9 +13112,10 @@ func (c *Connect) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 //
 // Adds the specified tags to the specified resource.
 //
-// The supported resource types are users, routing profiles, queues, quick connects,
-// contact flows, agent status, hours of operation, phone number, security profiles,
-// and task templates.
+// Some of the supported resource types are agents, routing profiles, queues,
+// quick connects, contact flows, agent statuses, hours of operation, phone
+// numbers, security profiles, and task templates. For a complete list, see
+// Tagging resources in Amazon Connect (https://docs.aws.amazon.com/connect/latest/adminguide/tagging.html).
 //
 // For sample policies that use tags, see Amazon Connect Identity-Based Policy
 // Examples (https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html)
@@ -13063,9 +13212,9 @@ func (c *Connect) TransferContactRequest(input *TransferContactInput) (req *requ
 //
 // Transfers contacts from one agent or queue to another agent or queue at any
 // point after a contact is created. You can transfer a contact to another queue
-// by providing the contact flow which orchestrates the contact to the destination
-// queue. This gives you more control over contact handling and helps you adhere
-// to the service level agreement (SLA) guaranteed to your customers.
+// by providing the flow which orchestrates the contact to the destination queue.
+// This gives you more control over contact handling and helps you adhere to
+// the service level agreement (SLA) guaranteed to your customers.
 //
 // Note the following requirements:
 //
@@ -13073,8 +13222,8 @@ func (c *Connect) TransferContactRequest(input *TransferContactInput) (req *requ
 //
 //   - Do not use both QueueId and UserId in the same call.
 //
-//   - The following contact flow types are supported: Inbound contact flow,
-//     Transfer to agent flow, and Transfer to queue flow.
+//   - The following flow types are supported: Inbound flow, Transfer to agent
+//     flow, and Transfer to queue flow.
 //
 //   - The TransferContact API can be called only on active contacts.
 //
@@ -13479,17 +13628,10 @@ func (c *Connect) UpdateContactAttributesRequest(input *UpdateContactAttributesI
 // identify abusive callers.
 //
 // Contact attributes are available in Amazon Connect for 24 months, and are
-// then deleted. For information about CTR retention and the maximum size of
-// the CTR attributes section, see Feature specifications (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits)
+// then deleted. For information about contact record retention and the maximum
+// size of the contact record attributes section, see Feature specifications
+// (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits)
 // in the Amazon Connect Administrator Guide.
-//
-// Important: You cannot use the operation to update attributes for contacts
-// that occurred prior to the release of the API, which was September 12, 2018.
-// You can update attributes only for contacts that started after the release
-// of the API. If you attempt to update attributes for a contact that occurred
-// prior to the release of the API, a 400 error is returned. This applies also
-// to queued callbacks that were initiated prior to the release of the API but
-// are still active in your instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13578,10 +13720,10 @@ func (c *Connect) UpdateContactFlowContentRequest(input *UpdateContactFlowConten
 
 // UpdateContactFlowContent API operation for Amazon Connect Service.
 //
-// Updates the specified contact flow.
+// Updates the specified flow.
 //
-// You can also create and update contact flows using the Amazon Connect Flow
-// language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
+// You can also create and update flows using the Amazon Connect Flow language
+// (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13596,7 +13738,7 @@ func (c *Connect) UpdateContactFlowContentRequest(input *UpdateContactFlowConten
 //     The request is not valid.
 //
 //   - InvalidContactFlowException
-//     The contact flow is not valid.
+//     The flow is not valid.
 //
 //   - InvalidParameterException
 //     One or more of the specified parameters are not valid.
@@ -13676,7 +13818,7 @@ func (c *Connect) UpdateContactFlowMetadataRequest(input *UpdateContactFlowMetad
 
 // UpdateContactFlowMetadata API operation for Amazon Connect Service.
 //
-// Updates metadata about specified contact flow.
+// Updates metadata about specified flow.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13771,7 +13913,7 @@ func (c *Connect) UpdateContactFlowModuleContentRequest(input *UpdateContactFlow
 
 // UpdateContactFlowModuleContent API operation for Amazon Connect Service.
 //
-// Updates specified contact flow module for the specified Amazon Connect instance.
+// Updates specified flow module for the specified Amazon Connect instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13866,7 +14008,7 @@ func (c *Connect) UpdateContactFlowModuleMetadataRequest(input *UpdateContactFlo
 
 // UpdateContactFlowModuleMetadata API operation for Amazon Connect Service.
 //
-// Updates metadata about specified contact flow module.
+// Updates metadata about specified flow module.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13964,10 +14106,10 @@ func (c *Connect) UpdateContactFlowNameRequest(input *UpdateContactFlowNameInput
 
 // UpdateContactFlowName API operation for Amazon Connect Service.
 //
-// The name of the contact flow.
+// The name of the flow.
 //
-// You can also create and update contact flows using the Amazon Connect Flow
-// language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
+// You can also create and update flows using the Amazon Connect Flow language
+// (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15681,6 +15823,7 @@ func (c *Connect) UpdateTaskTemplateRequest(input *UpdateTaskTemplateInput) (req
 // Returned Error Types:
 //
 //   - PropertyValidationException
+//     The property is not valid.
 //
 //   - InvalidParameterException
 //     One or more of the specified parameters are not valid.
@@ -16592,7 +16735,8 @@ type AgentStatus struct {
 	// The state of the agent status.
 	State *string `type:"string" enum:"AgentStatusState"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The type of agent status.
@@ -17385,7 +17529,7 @@ func (s AssociateLexBotOutput) GoString() string {
 type AssociatePhoneNumberContactFlowInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the contact flow.
+	// The identifier of the flow.
 	//
 	// ContactFlowId is a required field
 	ContactFlowId *string `type:"string" required:"true"`
@@ -18084,7 +18228,8 @@ type ClaimPhoneNumberInput struct {
 	// The description of the phone number.
 	PhoneNumberDescription *string `type:"string"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The Amazon Resource Name (ARN) for Amazon Connect instances that phone numbers
@@ -18228,7 +18373,8 @@ type ClaimedPhoneNumberSummary struct {
 	// The type of phone number.
 	PhoneNumberType *string `type:"string" enum:"PhoneNumberType"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The Amazon Resource Name (ARN) for Amazon Connect instances that phone numbers
@@ -18497,33 +18643,34 @@ func (s *ContactFilter) SetContactStates(v []*string) *ContactFilter {
 	return s
 }
 
-// Contains information about a contact flow.
+// Contains information about a flow.
 type ContactFlow struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the contact flow.
+	// The Amazon Resource Name (ARN) of the flow.
 	Arn *string `type:"string"`
 
-	// The content of the contact flow.
+	// The content of the flow.
 	Content *string `type:"string"`
 
-	// The description of the contact flow.
+	// The description of the flow.
 	Description *string `type:"string"`
 
-	// The identifier of the contact flow.
+	// The identifier of the flow.
 	Id *string `type:"string"`
 
-	// The name of the contact flow.
+	// The name of the flow.
 	Name *string `min:"1" type:"string"`
 
-	// The type of contact flow.
+	// The type of flow.
 	State *string `type:"string" enum:"ContactFlowState"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
-	// The type of the contact flow. For descriptions of the available types, see
-	// Choose a Contact Flow Type (https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types)
+	// The type of the flow. For descriptions of the available types, see Choose
+	// a flow type (https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types)
 	// in the Amazon Connect Administrator Guide.
 	Type *string `type:"string" enum:"ContactFlowType"`
 }
@@ -18594,32 +18741,33 @@ func (s *ContactFlow) SetType(v string) *ContactFlow {
 	return s
 }
 
-// Contains information about a contact flow module.
+// Contains information about a flow module.
 type ContactFlowModule struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN).
 	Arn *string `type:"string"`
 
-	// The content of the contact flow module.
+	// The content of the flow module.
 	Content *string `min:"1" type:"string"`
 
-	// The description of the contact flow module.
+	// The description of the flow module.
 	Description *string `type:"string"`
 
-	// The identifier of the contact flow module.
+	// The identifier of the flow module.
 	Id *string `min:"1" type:"string"`
 
-	// The name of the contact flow module.
+	// The name of the flow module.
 	Name *string `min:"1" type:"string"`
 
-	// The type of contact flow module.
+	// The type of flow module.
 	State *string `type:"string" enum:"ContactFlowModuleState"`
 
-	// The status of the contact flow module.
+	// The status of the flow module.
 	Status *string `type:"string" enum:"ContactFlowModuleStatus"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -18689,20 +18837,20 @@ func (s *ContactFlowModule) SetTags(v map[string]*string) *ContactFlowModule {
 	return s
 }
 
-// Contains summary information about a contact flow.
+// Contains summary information about a flow.
 type ContactFlowModuleSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the contact flow module.
+	// The Amazon Resource Name (ARN) of the flow module.
 	Arn *string `type:"string"`
 
-	// The identifier of the contact flow module.
+	// The identifier of the flow module.
 	Id *string `min:"1" type:"string"`
 
-	// The name of the contact flow module.
+	// The name of the flow module.
 	Name *string `min:"1" type:"string"`
 
-	// The type of contact flow module.
+	// The type of flow module.
 	State *string `type:"string" enum:"ContactFlowModuleState"`
 }
 
@@ -18748,7 +18896,7 @@ func (s *ContactFlowModuleSummary) SetState(v string) *ContactFlowModuleSummary 
 	return s
 }
 
-// The contact flow has not been published.
+// The flow has not been published.
 type ContactFlowNotPublishedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -18812,26 +18960,26 @@ func (s *ContactFlowNotPublishedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Contains summary information about a contact flow.
+// Contains summary information about a flow.
 //
-// You can also create and update contact flows using the Amazon Connect Flow
-// language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
+// You can also create and update flows using the Amazon Connect Flow language
+// (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
 type ContactFlowSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the contact flow.
+	// The Amazon Resource Name (ARN) of the flow.
 	Arn *string `type:"string"`
 
-	// The type of contact flow.
+	// The type of flow.
 	ContactFlowState *string `type:"string" enum:"ContactFlowState"`
 
-	// The type of contact flow.
+	// The type of flow.
 	ContactFlowType *string `type:"string" enum:"ContactFlowType"`
 
-	// The identifier of the contact flow.
+	// The identifier of the flow.
 	Id *string `type:"string"`
 
-	// The name of the contact flow.
+	// The name of the flow.
 	Name *string `min:"1" type:"string"`
 }
 
@@ -19029,7 +19177,8 @@ type CreateAgentStatusInput struct {
 	// State is a required field
 	State *string `type:"string" required:"true" enum:"AgentStatusState"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -19164,12 +19313,12 @@ func (s *CreateAgentStatusOutput) SetAgentStatusId(v string) *CreateAgentStatusO
 type CreateContactFlowInput struct {
 	_ struct{} `type:"structure"`
 
-	// The content of the contact flow.
+	// The content of the flow.
 	//
 	// Content is a required field
 	Content *string `type:"string" required:"true"`
 
-	// The description of the contact flow.
+	// The description of the flow.
 	Description *string `type:"string"`
 
 	// The identifier of the Amazon Connect instance.
@@ -19177,16 +19326,17 @@ type CreateContactFlowInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The name of the contact flow.
+	// The name of the flow.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
-	// The type of the contact flow. For descriptions of the available types, see
-	// Choose a Contact Flow Type (https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types)
+	// The type of the flow. For descriptions of the available types, see Choose
+	// a flow type (https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types)
 	// in the Amazon Connect Administrator Guide.
 	//
 	// Type is a required field
@@ -19285,12 +19435,12 @@ type CreateContactFlowModuleInput struct {
 	// of the request.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The content of the contact flow module.
+	// The content of the flow module.
 	//
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
 
-	// The description of the contact flow module.
+	// The description of the flow module.
 	Description *string `type:"string"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
@@ -19299,12 +19449,13 @@ type CreateContactFlowModuleInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The name of the contact flow module.
+	// The name of the flow module.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -19396,10 +19547,10 @@ func (s *CreateContactFlowModuleInput) SetTags(v map[string]*string) *CreateCont
 type CreateContactFlowModuleOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the contact flow module.
+	// The Amazon Resource Name (ARN) of the flow module.
 	Arn *string `type:"string"`
 
-	// The identifier of the contact flow module.
+	// The identifier of the flow module.
 	Id *string `min:"1" type:"string"`
 }
 
@@ -19436,10 +19587,10 @@ func (s *CreateContactFlowModuleOutput) SetId(v string) *CreateContactFlowModule
 type CreateContactFlowOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the contact flow.
+	// The Amazon Resource Name (ARN) of the flow.
 	ContactFlowArn *string `type:"string"`
 
-	// The identifier of the contact flow.
+	// The identifier of the flow.
 	ContactFlowId *string `type:"string"`
 }
 
@@ -19496,7 +19647,8 @@ type CreateHoursOfOperationInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The time zone of the hours of operation.
@@ -19805,6 +19957,9 @@ type CreateIntegrationAssociationInput struct {
 
 	// The Amazon Resource Name (ARN) of the integration.
 	//
+	// When integrating with Amazon Pinpoint, the Amazon Connect and Amazon Pinpoint
+	// instances must be in the same account.
+	//
 	// IntegrationArn is a required field
 	IntegrationArn *string `type:"string" required:"true"`
 
@@ -19825,7 +19980,8 @@ type CreateIntegrationAssociationInput struct {
 	// type.
 	SourceType *string `type:"string" enum:"SourceType"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -19992,7 +20148,8 @@ type CreateQueueInput struct {
 	// The quick connects available to agents who are working the queue.
 	QuickConnectIds []*string `min:"1" type:"list"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -20163,7 +20320,8 @@ type CreateQuickConnectInput struct {
 	// QuickConnectConfig is a required field
 	QuickConnectConfig *QuickConnectConfig `type:"structure" required:"true"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -20325,7 +20483,8 @@ type CreateRoutingProfileInput struct {
 	// the agent can make only outbound calls.
 	QueueConfigs []*RoutingProfileQueueConfig `min:"1" type:"list"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -20509,7 +20668,8 @@ type CreateSecurityProfileInput struct {
 	// SecurityProfileName is a required field
 	SecurityProfileName *string `type:"string" required:"true"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -20844,7 +21004,8 @@ type CreateUseCaseInput struct {
 	// IntegrationAssociationId is a required field
 	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The type of use case to associate to the integration association. Each integration
@@ -20982,7 +21143,8 @@ type CreateUserHierarchyGroupInput struct {
 	// at level one if the parent group ID is null.
 	ParentGroupId *string `type:"string"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -21137,7 +21299,8 @@ type CreateUserInput struct {
 	// SecurityProfileIds is a required field
 	SecurityProfileIds []*string `min:"1" type:"list" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The user name for the account. For instances not using SAML for identity
@@ -21344,7 +21507,8 @@ type CreateVocabularyInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"VocabularyLanguageCode"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// A unique name of the custom vocabulary.
@@ -21803,7 +21967,7 @@ func (s *DefaultVocabulary) SetVocabularyName(v string) *DefaultVocabulary {
 type DeleteContactFlowInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the contact flow.
+	// The identifier of the flow.
 	//
 	// ContactFlowId is a required field
 	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
@@ -21870,7 +22034,7 @@ func (s *DeleteContactFlowInput) SetInstanceId(v string) *DeleteContactFlowInput
 type DeleteContactFlowModuleInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the contact flow module.
+	// The identifier of the flow module.
 	//
 	// ContactFlowModuleId is a required field
 	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
@@ -23002,7 +23166,7 @@ func (s *DescribeAgentStatusOutput) SetAgentStatus(v *AgentStatus) *DescribeAgen
 type DescribeContactFlowInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the contact flow.
+	// The identifier of the flow.
 	//
 	// ContactFlowId is a required field
 	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
@@ -23068,7 +23232,7 @@ func (s *DescribeContactFlowInput) SetInstanceId(v string) *DescribeContactFlowI
 type DescribeContactFlowModuleInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the contact flow module.
+	// The identifier of the flow module.
 	//
 	// ContactFlowModuleId is a required field
 	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
@@ -23135,7 +23299,7 @@ func (s *DescribeContactFlowModuleInput) SetInstanceId(v string) *DescribeContac
 type DescribeContactFlowModuleOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the contact flow module.
+	// Information about the flow module.
 	ContactFlowModule *ContactFlowModule `type:"structure"`
 }
 
@@ -23166,7 +23330,7 @@ func (s *DescribeContactFlowModuleOutput) SetContactFlowModule(v *ContactFlowMod
 type DescribeContactFlowOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the contact flow.
+	// Information about the flow.
 	ContactFlow *ContactFlow `type:"structure"`
 }
 
@@ -26816,7 +26980,8 @@ type GetTaskTemplateOutput struct {
 	// then a task that refers to this template cannot be created.
 	Status *string `type:"string" enum:"TaskTemplateStatus"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -26935,7 +27100,8 @@ type HierarchyGroup struct {
 	// The name of the hierarchy group.
 	Name *string `type:"string"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -27691,7 +27857,8 @@ type HoursOfOperation struct {
 	// The name for the hours of operation.
 	Name *string `min:"1" type:"string"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The time zone for the hours of operation.
@@ -28553,14 +28720,14 @@ func (s *InternalServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The contact flow is not valid.
+// The flow is not valid.
 type InvalidContactFlowException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
-	// The problems with the contact flow. Please fix before trying again.
+	// The problems with the flow. Please fix before trying again.
 	Problems []*ProblemDetail `locationName:"problems" min:"1" type:"list"`
 }
 
@@ -29598,7 +29765,7 @@ func (s *ListBotsOutput) SetNextToken(v string) *ListBotsOutput {
 type ListContactFlowModulesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The state of the contact flow module.
+	// The state of the flow module.
 	ContactFlowModuleState *string `location:"querystring" locationName:"state" type:"string" enum:"ContactFlowModuleState"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
@@ -29679,7 +29846,7 @@ func (s *ListContactFlowModulesInput) SetNextToken(v string) *ListContactFlowMod
 type ListContactFlowModulesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the contact flow module.
+	// Information about the flow module.
 	ContactFlowModulesSummaryList []*ContactFlowModuleSummary `type:"list"`
 
 	// If there are additional results, this is the token for the next set of results.
@@ -29719,7 +29886,7 @@ func (s *ListContactFlowModulesOutput) SetNextToken(v string) *ListContactFlowMo
 type ListContactFlowsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The type of contact flow.
+	// The type of flow.
 	ContactFlowTypes []*string `location:"querystring" locationName:"contactFlowTypes" type:"list" enum:"ContactFlowType"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
@@ -29728,7 +29895,8 @@ type ListContactFlowsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return per page.
+	// The maximum number of results to return per page. The default MaxResult size
+	// is 100.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -29800,7 +29968,7 @@ func (s *ListContactFlowsInput) SetNextToken(v string) *ListContactFlowsInput {
 type ListContactFlowsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the contact flows.
+	// Information about the flows.
 	ContactFlowSummaryList []*ContactFlowSummary `type:"list"`
 
 	// If there are additional results, this is the token for the next set of results.
@@ -29939,7 +30107,7 @@ type ListContactReferencesOutput struct {
 	// This is always returned as null in the response.
 	NextToken *string `type:"string"`
 
-	// Information about the contact flows.
+	// Information about the flows.
 	ReferenceSummaryList []*ReferenceSummary `type:"list"`
 }
 
@@ -30109,7 +30277,8 @@ type ListHoursOfOperationsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return per page.
+	// The maximum number of results to return per page. The default MaxResult size
+	// is 100.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -30900,7 +31069,8 @@ type ListPhoneNumbersInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return per page.
+	// The maximum number of results to return per page. The default MaxResult size
+	// is 100.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -31246,7 +31416,8 @@ type ListPromptsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return per page.
+	// The maximum number of results to return per page. The default MaxResult size
+	// is 100.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -31358,7 +31529,8 @@ type ListQueueQuickConnectsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return per page.
+	// The maximum number of results to return per page. The default MaxResult size
+	// is 100.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -31487,7 +31659,8 @@ type ListQueuesInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return per page.
+	// The maximum number of results to return per page. The default MaxResult size
+	// is 100.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -31608,7 +31781,8 @@ type ListQuickConnectsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return per page.
+	// The maximum number of results to return per page. The default MaxResult size
+	// is 100.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -31731,7 +31905,8 @@ type ListRoutingProfileQueuesInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return per page.
+	// The maximum number of results to return per page. The default MaxResult size
+	// is 100.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -31860,7 +32035,8 @@ type ListRoutingProfilesInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return per page.
+	// The maximum number of results to return per page. The default MaxResult size
+	// is 100.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -32213,7 +32389,8 @@ type ListSecurityProfilesInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return per page.
+	// The maximum number of results to return per page. The default MaxResult size
+	// is 100.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -32678,7 +32855,8 @@ type ListUserHierarchyGroupsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return per page.
+	// The maximum number of results to return per page. The default MaxResult size
+	// is 100.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -32790,7 +32968,8 @@ type ListUsersInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return per page.
+	// The maximum number of results to return per page. The default MaxResult size
+	// is 100.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -33422,6 +33601,7 @@ func (s *PromptSummary) SetName(v string) *PromptSummary {
 	return s
 }
 
+// The property is not valid.
 type PropertyValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -33675,7 +33855,8 @@ type Queue struct {
 	// The status of the queue.
 	Status *string `type:"string" enum:"QueueStatus"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -33792,12 +33973,12 @@ func (s *QueueInfo) SetId(v string) *QueueInfo {
 	return s
 }
 
-// Contains information about a queue for a quick connect. The contact flow
-// must be of type Transfer to Queue.
+// Contains information about a queue for a quick connect. The flow must be
+// of type Transfer to Queue.
 type QueueQuickConnectConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the contact flow.
+	// The identifier of the flow.
 	//
 	// ContactFlowId is a required field
 	ContactFlowId *string `type:"string" required:"true"`
@@ -33973,7 +34154,8 @@ type QuickConnect struct {
 	// The identifier for the quick connect.
 	QuickConnectId *string `type:"string"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -34839,7 +35021,8 @@ type RoutingProfile struct {
 	// The identifier of the routing profile.
 	RoutingProfileId *string `type:"string"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -35475,6 +35658,148 @@ func (s *SearchAvailablePhoneNumbersOutput) SetNextToken(v string) *SearchAvaila
 	return s
 }
 
+type SearchSecurityProfilesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The search criteria to be used to return security profiles.
+	SearchCriteria *SecurityProfileSearchCriteria `type:"structure"`
+
+	// Filters to be applied to search results.
+	SearchFilter *SecurityProfilesSearchFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchSecurityProfilesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchSecurityProfilesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchSecurityProfilesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchSecurityProfilesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchSecurityProfilesInput) SetInstanceId(v string) *SearchSecurityProfilesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchSecurityProfilesInput) SetMaxResults(v int64) *SearchSecurityProfilesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchSecurityProfilesInput) SetNextToken(v string) *SearchSecurityProfilesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchCriteria sets the SearchCriteria field's value.
+func (s *SearchSecurityProfilesInput) SetSearchCriteria(v *SecurityProfileSearchCriteria) *SearchSecurityProfilesInput {
+	s.SearchCriteria = v
+	return s
+}
+
+// SetSearchFilter sets the SearchFilter field's value.
+func (s *SearchSecurityProfilesInput) SetSearchFilter(v *SecurityProfilesSearchFilter) *SearchSecurityProfilesInput {
+	s.SearchFilter = v
+	return s
+}
+
+type SearchSecurityProfilesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of security profiles which matched your search query.
+	ApproximateTotalCount *int64 `type:"long"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Information about the security profiles.
+	SecurityProfiles []*SecurityProfileSearchSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchSecurityProfilesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchSecurityProfilesOutput) GoString() string {
+	return s.String()
+}
+
+// SetApproximateTotalCount sets the ApproximateTotalCount field's value.
+func (s *SearchSecurityProfilesOutput) SetApproximateTotalCount(v int64) *SearchSecurityProfilesOutput {
+	s.ApproximateTotalCount = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchSecurityProfilesOutput) SetNextToken(v string) *SearchSecurityProfilesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSecurityProfiles sets the SecurityProfiles field's value.
+func (s *SearchSecurityProfilesOutput) SetSecurityProfiles(v []*SecurityProfileSearchSummary) *SearchSecurityProfilesOutput {
+	s.SecurityProfiles = v
+	return s
+}
+
 type SearchUsersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -35828,7 +36153,8 @@ type SecurityProfile struct {
 	// The name for the security profile.
 	SecurityProfileName *string `type:"string"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -35886,6 +36212,135 @@ func (s *SecurityProfile) SetTags(v map[string]*string) *SecurityProfile {
 	return s
 }
 
+// The search criteria to be used to return security profiles.
+type SecurityProfileSearchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditions which would be applied together with an AND condition.
+	AndConditions []*SecurityProfileSearchCriteria `type:"list"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions []*SecurityProfileSearchCriteria `type:"list"`
+
+	// A leaf node condition which can be used to specify a string condition, for
+	// example, username = 'abc'.
+	StringCondition *StringCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityProfileSearchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityProfileSearchCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAndConditions sets the AndConditions field's value.
+func (s *SecurityProfileSearchCriteria) SetAndConditions(v []*SecurityProfileSearchCriteria) *SecurityProfileSearchCriteria {
+	s.AndConditions = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *SecurityProfileSearchCriteria) SetOrConditions(v []*SecurityProfileSearchCriteria) *SecurityProfileSearchCriteria {
+	s.OrConditions = v
+	return s
+}
+
+// SetStringCondition sets the StringCondition field's value.
+func (s *SecurityProfileSearchCriteria) SetStringCondition(v *StringCondition) *SecurityProfileSearchCriteria {
+	s.StringCondition = v
+	return s
+}
+
+// Information about the returned security profiles.
+type SecurityProfileSearchSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the security profile.
+	Arn *string `type:"string"`
+
+	// The description of the security profile.
+	Description *string `type:"string"`
+
+	// The identifier of the security profile.
+	Id *string `type:"string"`
+
+	// The organization resource identifier.
+	OrganizationResourceId *string `min:"1" type:"string"`
+
+	// The name of the security profile.
+	SecurityProfileName *string `type:"string"`
+
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityProfileSearchSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityProfileSearchSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *SecurityProfileSearchSummary) SetArn(v string) *SecurityProfileSearchSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *SecurityProfileSearchSummary) SetDescription(v string) *SecurityProfileSearchSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *SecurityProfileSearchSummary) SetId(v string) *SecurityProfileSearchSummary {
+	s.Id = &v
+	return s
+}
+
+// SetOrganizationResourceId sets the OrganizationResourceId field's value.
+func (s *SecurityProfileSearchSummary) SetOrganizationResourceId(v string) *SecurityProfileSearchSummary {
+	s.OrganizationResourceId = &v
+	return s
+}
+
+// SetSecurityProfileName sets the SecurityProfileName field's value.
+func (s *SecurityProfileSearchSummary) SetSecurityProfileName(v string) *SecurityProfileSearchSummary {
+	s.SecurityProfileName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SecurityProfileSearchSummary) SetTags(v map[string]*string) *SecurityProfileSearchSummary {
+	s.Tags = v
+	return s
+}
+
 // Contains information about a security profile.
 type SecurityProfileSummary struct {
 	_ struct{} `type:"structure"`
@@ -35933,6 +36388,44 @@ func (s *SecurityProfileSummary) SetId(v string) *SecurityProfileSummary {
 // SetName sets the Name field's value.
 func (s *SecurityProfileSummary) SetName(v string) *SecurityProfileSummary {
 	s.Name = &v
+	return s
+}
+
+// Filters to be applied to search results.
+type SecurityProfilesSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An object that can be used to specify Tag conditions inside the SearchFilter.
+	// This accepts an OR of AND (List of List) input where:
+	//
+	//    * Top level list specifies conditions that need to be applied with OR
+	//    operator
+	//
+	//    * Inner list specifies conditions that need to be applied with AND operator.
+	TagFilter *ControlPlaneTagFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityProfilesSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityProfilesSearchFilter) GoString() string {
+	return s.String()
+}
+
+// SetTagFilter sets the TagFilter field's value.
+func (s *SecurityProfilesSearchFilter) SetTagFilter(v *ControlPlaneTagFilter) *SecurityProfilesSearchFilter {
+	s.TagFilter = v
 	return s
 }
 
@@ -36004,8 +36497,8 @@ type StartChatContactInput struct {
 	_ struct{} `type:"structure"`
 
 	// A custom key-value pair using an attribute map. The attributes are standard
-	// Amazon Connect attributes. They can be accessed in contact flows just like
-	// any other contact attributes.
+	// Amazon Connect attributes. They can be accessed in flows just like any other
+	// contact attributes.
 	//
 	// There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact.
 	// Attribute keys can include only alphanumeric, dash, and underscore characters.
@@ -36020,11 +36513,11 @@ type StartChatContactInput struct {
 	// of the request.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The identifier of the contact flow for initiating the chat. To see the ContactFlowId
+	// The identifier of the flow for initiating the chat. To see the ContactFlowId
 	// in the Amazon Connect console user interface, on the navigation menu go to
-	// Routing, Contact Flows. Choose the contact flow. On the contact flow page,
-	// under the name of the contact flow, choose Show additional flow information.
-	// The ContactFlowId is the last part of the ARN, shown here in bold:
+	// Routing, Contact Flows. Choose the flow. On the flow page, under the name
+	// of the flow, choose Show additional flow information. The ContactFlowId is
+	// the last part of the ARN, shown here in bold:
 	//
 	// arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
 	//
@@ -36461,8 +36954,8 @@ type StartOutboundVoiceContactInput struct {
 	AnswerMachineDetectionConfig *AnswerMachineDetectionConfig `type:"structure"`
 
 	// A custom key-value pair using an attribute map. The attributes are standard
-	// Amazon Connect attributes, and can be accessed in contact flows just like
-	// any other contact attributes.
+	// Amazon Connect attributes, and can be accessed in flows just like any other
+	// contact attributes.
 	//
 	// There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact.
 	// Attribute keys can include only alphanumeric, dash, and underscore characters.
@@ -36476,11 +36969,11 @@ type StartOutboundVoiceContactInput struct {
 	// is already started, the contact ID is returned.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The identifier of the contact flow for the outbound call. To see the ContactFlowId
+	// The identifier of the flow for the outbound call. To see the ContactFlowId
 	// in the Amazon Connect console user interface, on the navigation menu go to
-	// Routing, Contact Flows. Choose the contact flow. On the contact flow page,
-	// under the name of the contact flow, choose Show additional flow information.
-	// The ContactFlowId is the last part of the ARN, shown here in bold:
+	// Routing, Contact Flows. Choose the flow. On the flow page, under the name
+	// of the flow, choose Show additional flow information. The ContactFlowId is
+	// the last part of the ARN, shown here in bold:
 	//
 	// arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
 	//
@@ -36500,8 +36993,8 @@ type StartOutboundVoiceContactInput struct {
 
 	// The queue for the call. If you specify a queue, the phone displayed for caller
 	// ID is the phone number specified in the queue. If you do not specify a queue,
-	// the queue defined in the contact flow is used. If you do not specify a queue,
-	// you must specify a source phone number.
+	// the queue defined in the flow is used. If you do not specify a queue, you
+	// must specify a source phone number.
 	QueueId *string `type:"string"`
 
 	// The phone number associated with the Amazon Connect instance, in E.164 format.
@@ -36653,8 +37146,8 @@ type StartTaskContactInput struct {
 	_ struct{} `type:"structure"`
 
 	// A custom key-value pair using an attribute map. The attributes are standard
-	// Amazon Connect attributes, and can be accessed in contact flows just like
-	// any other contact attributes.
+	// Amazon Connect attributes, and can be accessed in flows just like any other
+	// contact attributes.
 	//
 	// There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact.
 	// Attribute keys can include only alphanumeric, dash, and underscore characters.
@@ -36664,11 +37157,11 @@ type StartTaskContactInput struct {
 	// of the request.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The identifier of the contact flow for initiating the tasks. To see the ContactFlowId
+	// The identifier of the flow for initiating the tasks. To see the ContactFlowId
 	// in the Amazon Connect console user interface, on the navigation menu go to
-	// Routing, Contact Flows. Choose the contact flow. On the contact flow page,
-	// under the name of the contact flow, choose Show additional flow information.
-	// The ContactFlowId is the last part of the ARN, shown here in bold:
+	// Routing, Contact Flows. Choose the flow. On the flow page, under the name
+	// of the flow, choose Show additional flow information. The ContactFlowId is
+	// the last part of the ARN, shown here in bold:
 	//
 	// arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
 	ContactFlowId *string `type:"string"`
@@ -36699,8 +37192,8 @@ type StartTaskContactInput struct {
 	References map[string]*Reference `type:"map"`
 
 	// The timestamp, in Unix Epoch seconds format, at which to start running the
-	// inbound contact flow. The scheduled time cannot be in the past. It must be
-	// within up to 6 days in future.
+	// inbound flow. The scheduled time cannot be in the past. It must be within
+	// up to 6 days in future.
 	ScheduledTime *time.Time `type:"timestamp"`
 
 	// A unique identifier for the task template.
@@ -37410,8 +37903,8 @@ type TagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
-	// One or more tags. For example, { "tags": {"key1":"value1", "key2":"value2"}
-	// }.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map" required:"true"`
@@ -38016,7 +38509,7 @@ type TransferContactInput struct {
 	// of the request.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The identifier of the contact flow.
+	// The identifier of the flow.
 	//
 	// ContactFlowId is a required field
 	ContactFlowId *string `type:"string" required:"true"`
@@ -38392,8 +38885,8 @@ func (s UpdateAgentStatusOutput) GoString() string {
 type UpdateContactAttributesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Connect attributes. These attributes can be accessed in contact
-	// flows just like any other contact attributes.
+	// The Amazon Connect attributes. These attributes can be accessed in flows
+	// just like any other contact attributes.
 	//
 	// You can have up to 32,768 UTF-8 bytes across all attributes for a contact.
 	// Attribute keys can include only alphanumeric, dash, and underscore characters.
@@ -38500,13 +38993,13 @@ func (s UpdateContactAttributesOutput) GoString() string {
 type UpdateContactFlowContentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the contact flow.
+	// The identifier of the flow.
 	//
 	// ContactFlowId is a required field
 	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
 
-	// The JSON string that represents contact flow’s content. For an example,
-	// see Example contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language-example.html)
+	// The JSON string that represents flow's content. For an example, see Example
+	// contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language-example.html)
 	// in the Amazon Connect Administrator Guide.
 	//
 	// Content is a required field
@@ -38604,15 +39097,15 @@ func (s UpdateContactFlowContentOutput) GoString() string {
 type UpdateContactFlowMetadataInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the contact flow.
+	// The identifier of the flow.
 	//
 	// ContactFlowId is a required field
 	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
 
-	// The state of contact flow.
+	// The state of flow.
 	ContactFlowState *string `type:"string" enum:"ContactFlowState"`
 
-	// The description of the contact flow.
+	// The description of the flow.
 	Description *string `type:"string"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
@@ -38621,7 +39114,7 @@ type UpdateContactFlowMetadataInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// TThe name of the contact flow.
+	// TThe name of the flow.
 	Name *string `min:"1" type:"string"`
 }
 
@@ -38723,12 +39216,12 @@ func (s UpdateContactFlowMetadataOutput) GoString() string {
 type UpdateContactFlowModuleContentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the contact flow module.
+	// The identifier of the flow module.
 	//
 	// ContactFlowModuleId is a required field
 	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
 
-	// The content of the contact flow module.
+	// The content of the flow module.
 	//
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
@@ -38829,12 +39322,12 @@ func (s UpdateContactFlowModuleContentOutput) GoString() string {
 type UpdateContactFlowModuleMetadataInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the contact flow module.
+	// The identifier of the flow module.
 	//
 	// ContactFlowModuleId is a required field
 	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
 
-	// The description of the contact flow module.
+	// The description of the flow module.
 	Description *string `type:"string"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
@@ -38843,10 +39336,10 @@ type UpdateContactFlowModuleMetadataInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The name of the contact flow module.
+	// The name of the flow module.
 	Name *string `min:"1" type:"string"`
 
-	// The state of contact flow module.
+	// The state of flow module.
 	State *string `type:"string" enum:"ContactFlowModuleState"`
 }
 
@@ -38948,12 +39441,12 @@ func (s UpdateContactFlowModuleMetadataOutput) GoString() string {
 type UpdateContactFlowNameInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the contact flow.
+	// The identifier of the flow.
 	//
 	// ContactFlowId is a required field
 	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
 
-	// The description of the contact flow.
+	// The description of the flow.
 	Description *string `type:"string"`
 
 	// The identifier of the Amazon Connect instance.
@@ -38961,7 +39454,7 @@ type UpdateContactFlowNameInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The name of the contact flow.
+	// The name of the flow.
 	Name *string `min:"1" type:"string"`
 }
 
@@ -39196,8 +39689,8 @@ type UpdateContactScheduleInput struct {
 	InstanceId *string `min:"1" type:"string" required:"true"`
 
 	// The timestamp, in Unix Epoch seconds format, at which to start running the
-	// inbound contact flow. The scheduled time cannot be in the past. It must be
-	// within up to 6 days in future.
+	// inbound flow. The scheduled time cannot be in the past. It must be within
+	// up to 6 days in future.
 	//
 	// ScheduledTime is a required field
 	ScheduledTime *time.Time `type:"timestamp" required:"true"`
@@ -42695,7 +43188,7 @@ func (s *UserPhoneConfig) SetPhoneType(v string) *UserPhoneConfig {
 type UserQuickConnectConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the contact flow.
+	// The identifier of the flow.
 	//
 	// ContactFlowId is a required field
 	ContactFlowId *string `type:"string" required:"true"`
@@ -42918,7 +43411,8 @@ type UserSearchSummary struct {
 	// The identifiers of the user's security profiles.
 	SecurityProfileIds []*string `min:"1" type:"list"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The name of the user.
@@ -43098,7 +43592,8 @@ type Vocabulary struct {
 	// State is a required field
 	State *string `type:"string" required:"true" enum:"VocabularyState"`
 
-	// The tags used to organize, track, or control access for this resource.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 

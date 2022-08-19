@@ -1,3 +1,13 @@
+Release v1.44.81 (2022-08-19)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/ivschat`: Updates service documentation
+* `service/kendra`: Updates service API and documentation
+  * This release adds support for a new authentication type - Personal Access Token (PAT) for confluence server.
+* `service/lookoutmetrics`: Updates service API and documentation
+
 Release v1.44.80 (2022-08-18)
 ===
 

@@ -1685,6 +1685,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "SearchSecurityProfiles":{
+      "name":"SearchSecurityProfiles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/search-security-profiles"
+      },
+      "input":{"shape":"SearchSecurityProfilesRequest"},
+      "output":{"shape":"SearchSecurityProfilesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "SearchUsers":{
       "name":"SearchUsers",
       "http":{
@@ -7318,6 +7334,28 @@
         "AvailableNumbersList":{"shape":"AvailableNumbersList"}
       }
     },
+    "SearchSecurityProfilesRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "NextToken":{"shape":"NextToken2500"},
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true
+        },
+        "SearchCriteria":{"shape":"SecurityProfileSearchCriteria"},
+        "SearchFilter":{"shape":"SecurityProfilesSearchFilter"}
+      }
+    },
+    "SearchSecurityProfilesResponse":{
+      "type":"structure",
+      "members":{
+        "SecurityProfiles":{"shape":"SecurityProfilesSearchSummaryList"},
+        "NextToken":{"shape":"NextToken2500"},
+        "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
+      }
+    },
     "SearchUsersRequest":{
       "type":"structure",
       "members":{
@@ -7402,6 +7440,29 @@
       "max":128,
       "min":1
     },
+    "SecurityProfileSearchConditionList":{
+      "type":"list",
+      "member":{"shape":"SecurityProfileSearchCriteria"}
+    },
+    "SecurityProfileSearchCriteria":{
+      "type":"structure",
+      "members":{
+        "OrConditions":{"shape":"SecurityProfileSearchConditionList"},
+        "AndConditions":{"shape":"SecurityProfileSearchConditionList"},
+        "StringCondition":{"shape":"StringCondition"}
+      }
+    },
+    "SecurityProfileSearchSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"SecurityProfileId"},
+        "OrganizationResourceId":{"shape":"InstanceId"},
+        "Arn":{"shape":"ARN"},
+        "SecurityProfileName":{"shape":"SecurityProfileName"},
+        "Description":{"shape":"SecurityProfileDescription"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
     "SecurityProfileSummary":{
       "type":"structure",
       "members":{
@@ -7413,6 +7474,16 @@
     "SecurityProfileSummaryList":{
       "type":"list",
       "member":{"shape":"SecurityProfileSummary"}
+    },
+    "SecurityProfilesSearchFilter":{
+      "type":"structure",
+      "members":{
+        "TagFilter":{"shape":"ControlPlaneTagFilter"}
+      }
+    },
+    "SecurityProfilesSearchSummaryList":{
+      "type":"list",
+      "member":{"shape":"SecurityProfileSearchSummary"}
     },
     "SecurityToken":{
       "type":"string",

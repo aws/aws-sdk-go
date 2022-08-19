@@ -246,6 +246,22 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "GetDataQualityMetrics":{
+      "name":"GetDataQualityMetrics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/GetDataQualityMetrics"
+      },
+      "input":{"shape":"GetDataQualityMetricsRequest"},
+      "output":{"shape":"GetDataQualityMetricsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetFeedback":{
       "name":"GetFeedback",
       "http":{
@@ -615,6 +631,17 @@
         "AnomalyDetectorFrequency":{"shape":"Frequency"}
       }
     },
+    "AnomalyDetectorDataQualityMetric":{
+      "type":"structure",
+      "members":{
+        "StartTimestamp":{"shape":"Timestamp"},
+        "MetricSetDataQualityMetricList":{"shape":"MetricSetDataQualityMetricList"}
+      }
+    },
+    "AnomalyDetectorDataQualityMetricList":{
+      "type":"list",
+      "member":{"shape":"AnomalyDetectorDataQualityMetric"}
+    },
     "AnomalyDetectorDescription":{
       "type":"string",
       "max":256,
@@ -960,6 +987,40 @@
       }
     },
     "DataItem":{"type":"string"},
+    "DataQualityMetric":{
+      "type":"structure",
+      "members":{
+        "MetricType":{"shape":"DataQualityMetricType"},
+        "MetricDescription":{"shape":"DataQualityMetricDescription"},
+        "RelatedColumnName":{"shape":"RelatedColumnName"},
+        "MetricValue":{"shape":"Double"}
+      }
+    },
+    "DataQualityMetricDescription":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "DataQualityMetricList":{
+      "type":"list",
+      "member":{"shape":"DataQualityMetric"}
+    },
+    "DataQualityMetricType":{
+      "type":"string",
+      "enum":[
+        "COLUMN_COMPLETENESS",
+        "DIMENSION_UNIQUENESS",
+        "TIME_SERIES_COUNT",
+        "ROWS_PROCESSED",
+        "ROWS_PARTIAL_COMPLIANCE",
+        "INVALID_ROWS_COMPLIANCE",
+        "BACKTEST_TRAINING_DATA_START_TIME_STAMP",
+        "BACKTEST_TRAINING_DATA_END_TIME_STAMP",
+        "BACKTEST_INFERENCE_DATA_START_TIME_STAMP",
+        "BACKTEST_INFERENCE_DATA_END_TIME_STAMP"
+      ]
+    },
     "DatabaseHost":{
       "type":"string",
       "max":253,
@@ -1232,6 +1293,7 @@
       "max":10,
       "min":1
     },
+    "Double":{"type":"double"},
     "ErrorMessage":{
       "type":"string",
       "max":256
@@ -1285,6 +1347,20 @@
       "type":"structure",
       "members":{
         "AnomalyGroup":{"shape":"AnomalyGroup"}
+      }
+    },
+    "GetDataQualityMetricsRequest":{
+      "type":"structure",
+      "required":["AnomalyDetectorArn"],
+      "members":{
+        "AnomalyDetectorArn":{"shape":"Arn"},
+        "MetricSetArn":{"shape":"Arn"}
+      }
+    },
+    "GetDataQualityMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "AnomalyDetectorDataQualityMetricList":{"shape":"AnomalyDetectorDataQualityMetricList"}
       }
     },
     "GetFeedbackRequest":{
@@ -1609,6 +1685,17 @@
       "max":5,
       "min":1
     },
+    "MetricSetDataQualityMetric":{
+      "type":"structure",
+      "members":{
+        "MetricSetArn":{"shape":"Arn"},
+        "DataQualityMetricList":{"shape":"DataQualityMetricList"}
+      }
+    },
+    "MetricSetDataQualityMetricList":{
+      "type":"list",
+      "member":{"shape":"MetricSetDataQualityMetric"}
+    },
     "MetricSetDescription":{
       "type":"string",
       "max":256,
@@ -1757,6 +1844,12 @@
         "RoleArn":{"shape":"Arn"},
         "VpcConfiguration":{"shape":"VpcConfiguration"}
       }
+    },
+    "RelatedColumnName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":".*\\S.*"
     },
     "RelationshipType":{
       "type":"string",

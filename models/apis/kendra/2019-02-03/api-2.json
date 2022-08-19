@@ -2582,6 +2582,13 @@
       },
       "type": "structure"
     },
+    "ConfluenceAuthenticationType": {
+      "enum": [
+        "HTTP_BASIC",
+        "PAT"
+      ],
+      "type": "string"
+    },
     "ConfluenceBlogConfiguration": {
       "members": {
         "BlogFieldMappings": {
@@ -2630,6 +2637,9 @@
       "members": {
         "AttachmentConfiguration": {
           "shape": "ConfluenceAttachmentConfiguration"
+        },
+        "AuthenticationType": {
+          "shape": "ConfluenceAuthenticationType"
         },
         "BlogConfiguration": {
           "shape": "ConfluenceBlogConfiguration"
