@@ -77,6 +77,9 @@ func (c *IoTSiteWise) AssociateAssetsRequest(input *AssociateAssetsInput) (req *
 //     The request isn't valid. This can occur if your request contains malformed
 //     JSON or unsupported characters. Check your request and try again.
 //
+//   - ResourceAlreadyExistsException
+//     The resource already exists.
+//
 //   - ResourceNotFoundException
 //     The requested resource can't be found.
 //

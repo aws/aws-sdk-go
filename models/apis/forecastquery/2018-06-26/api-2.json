@@ -28,6 +28,22 @@
         {"shape":"LimitExceededException"},
         {"shape":"InvalidNextTokenException"}
       ]
+    },
+    "QueryWhatIfForecast":{
+      "name":"QueryWhatIfForecast",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"QueryWhatIfForecastRequest"},
+      "output":{"shape":"QueryWhatIfForecastResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
     }
   },
   "shapes":{
@@ -89,6 +105,11 @@
       },
       "exception":true
     },
+    "LongArn":{
+      "type":"string",
+      "max":300,
+      "pattern":"arn:([a-z\\d-]+):forecast:.*:.*:.+"
+    },
     "NextToken":{
       "type":"string",
       "max":3000,
@@ -114,6 +135,26 @@
       }
     },
     "QueryForecastResponse":{
+      "type":"structure",
+      "members":{
+        "Forecast":{"shape":"Forecast"}
+      }
+    },
+    "QueryWhatIfForecastRequest":{
+      "type":"structure",
+      "required":[
+        "WhatIfForecastArn",
+        "Filters"
+      ],
+      "members":{
+        "WhatIfForecastArn":{"shape":"LongArn"},
+        "StartDate":{"shape":"DateTime"},
+        "EndDate":{"shape":"DateTime"},
+        "Filters":{"shape":"Filters"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "QueryWhatIfForecastResponse":{
       "type":"structure",
       "members":{
         "Forecast":{"shape":"Forecast"}

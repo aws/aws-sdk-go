@@ -57,6 +57,7 @@
     "SearchAssociatedTranscripts": "<p>Search for associated transcripts that meet the specified criteria.</p>",
     "StartBotRecommendation": "<p>Use this to provide your transcript data, and to start the bot recommendation process.</p>",
     "StartImport": "<p>Starts importing a bot, bot locale, or custom vocabulary from a zip archive that you uploaded to an S3 bucket.</p>",
+    "StopBotRecommendation": "<p>Stop an already running Bot Recommendation request.</p>",
     "TagResource": "<p>Adds the specified tags to the specified resource. If a tag key already exists, the existing value is replaced with the new value.</p>",
     "UntagResource": "<p>Removes tags from a bot, bot alias, or bot channel.</p>",
     "UpdateBot": "<p>Updates the configuration of an existing bot. </p>",
@@ -432,6 +433,7 @@
         "BotRecommendationSummary$botRecommendationStatus": "<p>The status of the bot recommendation.</p> <p>If the status is Failed, then the reasons for the failure are listed in the failureReasons field. </p>",
         "DescribeBotRecommendationResponse$botRecommendationStatus": "<p>The status of the bot recommendation. If the status is Failed, then the reasons for the failure are listed in the failureReasons field. </p>",
         "StartBotRecommendationResponse$botRecommendationStatus": "<p>The status of the bot recommendation.</p> <p>If the status is Failed, then the reasons for the failure are listed in the failureReasons field. </p>",
+        "StopBotRecommendationResponse$botRecommendationStatus": "<p>The status of the bot recommendation. If the status is Failed, then the reasons for the failure are listed in the failureReasons field.</p>",
         "UpdateBotRecommendationResponse$botRecommendationStatus": "<p>The status of the bot recommendation.</p> <p>If the status is Failed, then the reasons for the failure are listed in the failureReasons field. </p>"
       }
     },
@@ -1358,6 +1360,8 @@
         "ListRecommendedIntentsResponse$botVersion": "<p>The version of the bot that contains the intent.</p>",
         "StartBotRecommendationRequest$botVersion": "<p>The version of the bot containing the bot recommendation.</p>",
         "StartBotRecommendationResponse$botVersion": "<p>The version of the bot containing the bot recommendation.</p>",
+        "StopBotRecommendationRequest$botVersion": "<p>The version of the bot containing the bot recommendation.</p>",
+        "StopBotRecommendationResponse$botVersion": "<p>The version of the bot containing the recommendation that is being stopped.</p>",
         "UpdateBotLocaleRequest$botVersion": "<p>The version of the bot that contains the locale to be updated. The version can only be the <code>DRAFT</code> version.</p>",
         "UpdateBotLocaleResponse$botVersion": "<p>The version of the bot that contains the updated locale.</p>",
         "UpdateBotRecommendationRequest$botVersion": "<p>The version of the bot containing the bot recommendation to be updated.</p>",
@@ -1719,6 +1723,10 @@
         "StartBotRecommendationResponse$botRecommendationId": "<p>The identifier of the bot recommendation that you have created.</p>",
         "StartImportRequest$importId": "<p>The unique identifier for the import. It is included in the response from the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateUploadUrl.html\">CreateUploadUrl</a> operation.</p>",
         "StartImportResponse$importId": "<p>A unique identifier for the import.</p>",
+        "StopBotRecommendationRequest$botId": "<p>The unique identifier of the bot containing the bot recommendation to be stopped.</p>",
+        "StopBotRecommendationRequest$botRecommendationId": "<p>The unique identifier of the bot recommendation to be stopped.</p>",
+        "StopBotRecommendationResponse$botId": "<p>The unique identifier of the bot containing the bot recommendation that is being stopped.</p>",
+        "StopBotRecommendationResponse$botRecommendationId": "<p>The unique identifier of the bot recommendation that is being stopped.</p>",
         "UpdateBotAliasRequest$botId": "<p>The identifier of the bot with the updated alias.</p>",
         "UpdateBotAliasResponse$botId": "<p>The identifier of the bot with the updated alias.</p>",
         "UpdateBotLocaleRequest$botId": "<p>The unique identifier of the bot that contains the locale.</p>",
@@ -2230,6 +2238,8 @@
         "SearchAssociatedTranscriptsResponse$localeId": "<p>The identifier of the language and locale of the transcripts to search. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a> </p>",
         "StartBotRecommendationRequest$localeId": "<p>The identifier of the language and locale of the bot recommendation to start. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a> </p>",
         "StartBotRecommendationResponse$localeId": "<p>The identifier of the language and locale of the bot recommendation to start. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a> </p>",
+        "StopBotRecommendationRequest$localeId": "<p>The identifier of the language and locale of the bot recommendation to stop. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a> </p>",
+        "StopBotRecommendationResponse$localeId": "<p>The identifier of the language and locale of the bot response to stop. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a> </p>",
         "UpdateBotLocaleRequest$localeId": "<p>The identifier of the language and locale to update. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "UpdateBotLocaleResponse$localeId": "<p>The language and locale of the updated bot locale.</p>",
         "UpdateBotRecommendationRequest$localeId": "<p>The identifier of the language and locale of the bot recommendation to update. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a> </p>",
@@ -3144,6 +3154,16 @@
       "base": null,
       "refs": {
         "StillWaitingResponseSpecification$timeoutInSeconds": "<p>If Amazon Lex waits longer than this length of time for a response, it will stop sending messages.</p>"
+      }
+    },
+    "StopBotRecommendationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopBotRecommendationResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "String": {

@@ -944,6 +944,26 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "StopBotRecommendation":{
+      "name":"StopBotRecommendation",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}/stopbotrecommendation",
+        "responseCode":202
+      },
+      "input":{"shape":"StopBotRecommendationRequest"},
+      "output":{"shape":"StopBotRecommendationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -1545,7 +1565,9 @@
         "Downloading",
         "Updating",
         "Available",
-        "Failed"
+        "Failed",
+        "Stopping",
+        "Stopped"
       ]
     },
     "BotRecommendationSummary":{
@@ -5072,6 +5094,47 @@
       "type":"integer",
       "max":900,
       "min":1
+    },
+    "StopBotRecommendationRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "botRecommendationId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"DraftBotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "botRecommendationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botRecommendationId"
+        }
+      }
+    },
+    "StopBotRecommendationResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "botRecommendationStatus":{"shape":"BotRecommendationStatus"},
+        "botRecommendationId":{"shape":"Id"}
+      }
     },
     "String":{"type":"string"},
     "StringMap":{
