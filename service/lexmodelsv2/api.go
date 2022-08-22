@@ -6101,6 +6101,113 @@ func (c *LexModelsV2) StartImportWithContext(ctx aws.Context, input *StartImport
 	return out, req.Send()
 }
 
+const opStopBotRecommendation = "StopBotRecommendation"
+
+// StopBotRecommendationRequest generates a "aws/request.Request" representing the
+// client's request for the StopBotRecommendation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopBotRecommendation for more information on using the StopBotRecommendation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopBotRecommendationRequest method.
+//	req, resp := client.StopBotRecommendationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/StopBotRecommendation
+func (c *LexModelsV2) StopBotRecommendationRequest(input *StopBotRecommendationInput) (req *request.Request, output *StopBotRecommendationOutput) {
+	op := &request.Operation{
+		Name:       opStopBotRecommendation,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}/stopbotrecommendation",
+	}
+
+	if input == nil {
+		input = &StopBotRecommendationInput{}
+	}
+
+	output = &StopBotRecommendationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopBotRecommendation API operation for Amazon Lex Model Building V2.
+//
+// Stop an already running Bot Recommendation request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation StopBotRecommendation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+//   - ConflictException
+//     The action that you tried to perform couldn't be completed because the resource
+//     is in a conflicting state. For example, deleting a bot that is in the CREATING
+//     state. Try your request again.
+//
+//   - PreconditionFailedException
+//     Your request couldn't be completed because one or more request fields aren't
+//     valid. Check the fields in your request and try again.
+//
+//   - ConflictException
+//     The action that you tried to perform couldn't be completed because the resource
+//     is in a conflicting state. For example, deleting a bot that is in the CREATING
+//     state. Try your request again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/StopBotRecommendation
+func (c *LexModelsV2) StopBotRecommendation(input *StopBotRecommendationInput) (*StopBotRecommendationOutput, error) {
+	req, out := c.StopBotRecommendationRequest(input)
+	return out, req.Send()
+}
+
+// StopBotRecommendationWithContext is the same as StopBotRecommendation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopBotRecommendation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) StopBotRecommendationWithContext(ctx aws.Context, input *StopBotRecommendationInput, opts ...request.Option) (*StopBotRecommendationOutput, error) {
+	req, out := c.StopBotRecommendationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -26355,6 +26462,180 @@ func (s *StillWaitingResponseSpecification) SetTimeoutInSeconds(v int64) *StillW
 	return s
 }
 
+type StopBotRecommendationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the bot containing the bot recommendation to be
+	// stopped.
+	//
+	// BotId is a required field
+	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The unique identifier of the bot recommendation to be stopped.
+	//
+	// BotRecommendationId is a required field
+	BotRecommendationId *string `location:"uri" locationName:"botRecommendationId" min:"10" type:"string" required:"true"`
+
+	// The version of the bot containing the bot recommendation.
+	//
+	// BotVersion is a required field
+	BotVersion *string `location:"uri" locationName:"botVersion" min:"5" type:"string" required:"true"`
+
+	// The identifier of the language and locale of the bot recommendation to stop.
+	// The string must match one of the supported locales. For more information,
+	// see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html)
+	//
+	// LocaleId is a required field
+	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopBotRecommendationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopBotRecommendationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopBotRecommendationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopBotRecommendationInput"}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.BotRecommendationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotRecommendationId"))
+	}
+	if s.BotRecommendationId != nil && len(*s.BotRecommendationId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotRecommendationId", 10))
+	}
+	if s.BotVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotVersion"))
+	}
+	if s.BotVersion != nil && len(*s.BotVersion) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("BotVersion", 5))
+	}
+	if s.LocaleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocaleId"))
+	}
+	if s.LocaleId != nil && len(*s.LocaleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LocaleId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotId sets the BotId field's value.
+func (s *StopBotRecommendationInput) SetBotId(v string) *StopBotRecommendationInput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotRecommendationId sets the BotRecommendationId field's value.
+func (s *StopBotRecommendationInput) SetBotRecommendationId(v string) *StopBotRecommendationInput {
+	s.BotRecommendationId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *StopBotRecommendationInput) SetBotVersion(v string) *StopBotRecommendationInput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *StopBotRecommendationInput) SetLocaleId(v string) *StopBotRecommendationInput {
+	s.LocaleId = &v
+	return s
+}
+
+type StopBotRecommendationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the bot containing the bot recommendation that is
+	// being stopped.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// The unique identifier of the bot recommendation that is being stopped.
+	BotRecommendationId *string `locationName:"botRecommendationId" min:"10" type:"string"`
+
+	// The status of the bot recommendation. If the status is Failed, then the reasons
+	// for the failure are listed in the failureReasons field.
+	BotRecommendationStatus *string `locationName:"botRecommendationStatus" type:"string" enum:"BotRecommendationStatus"`
+
+	// The version of the bot containing the recommendation that is being stopped.
+	BotVersion *string `locationName:"botVersion" min:"5" type:"string"`
+
+	// The identifier of the language and locale of the bot response to stop. The
+	// string must match one of the supported locales. For more information, see
+	// Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html)
+	LocaleId *string `locationName:"localeId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopBotRecommendationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopBotRecommendationOutput) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *StopBotRecommendationOutput) SetBotId(v string) *StopBotRecommendationOutput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotRecommendationId sets the BotRecommendationId field's value.
+func (s *StopBotRecommendationOutput) SetBotRecommendationId(v string) *StopBotRecommendationOutput {
+	s.BotRecommendationId = &v
+	return s
+}
+
+// SetBotRecommendationStatus sets the BotRecommendationStatus field's value.
+func (s *StopBotRecommendationOutput) SetBotRecommendationStatus(v string) *StopBotRecommendationOutput {
+	s.BotRecommendationStatus = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *StopBotRecommendationOutput) SetBotVersion(v string) *StopBotRecommendationOutput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *StopBotRecommendationOutput) SetLocaleId(v string) *StopBotRecommendationOutput {
+	s.LocaleId = &v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -29787,6 +30068,12 @@ const (
 
 	// BotRecommendationStatusFailed is a BotRecommendationStatus enum value
 	BotRecommendationStatusFailed = "Failed"
+
+	// BotRecommendationStatusStopping is a BotRecommendationStatus enum value
+	BotRecommendationStatusStopping = "Stopping"
+
+	// BotRecommendationStatusStopped is a BotRecommendationStatus enum value
+	BotRecommendationStatusStopped = "Stopped"
 )
 
 // BotRecommendationStatus_Values returns all elements of the BotRecommendationStatus enum
@@ -29799,6 +30086,8 @@ func BotRecommendationStatus_Values() []string {
 		BotRecommendationStatusUpdating,
 		BotRecommendationStatusAvailable,
 		BotRecommendationStatusFailed,
+		BotRecommendationStatusStopping,
+		BotRecommendationStatusStopped,
 	}
 }
 

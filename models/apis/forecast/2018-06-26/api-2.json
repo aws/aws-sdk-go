@@ -187,6 +187,54 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "CreateWhatIfAnalysis":{
+      "name":"CreateWhatIfAnalysis",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateWhatIfAnalysisRequest"},
+      "output":{"shape":"CreateWhatIfAnalysisResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "CreateWhatIfForecast":{
+      "name":"CreateWhatIfForecast",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateWhatIfForecastRequest"},
+      "output":{"shape":"CreateWhatIfForecastResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "CreateWhatIfForecastExport":{
+      "name":"CreateWhatIfForecastExport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateWhatIfForecastExportRequest"},
+      "output":{"shape":"CreateWhatIfForecastExportResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "DeleteDataset":{
       "name":"DeleteDataset",
       "http":{
@@ -334,6 +382,48 @@
         "requestUri":"/"
       },
       "input":{"shape":"DeleteResourceTreeRequest"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteWhatIfAnalysis":{
+      "name":"DeleteWhatIfAnalysis",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteWhatIfAnalysisRequest"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteWhatIfForecast":{
+      "name":"DeleteWhatIfForecast",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteWhatIfForecastRequest"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteWhatIfForecastExport":{
+      "name":"DeleteWhatIfForecastExport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteWhatIfForecastExportRequest"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"},
@@ -489,6 +579,48 @@
       },
       "input":{"shape":"DescribePredictorBacktestExportJobRequest"},
       "output":{"shape":"DescribePredictorBacktestExportJobResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
+    "DescribeWhatIfAnalysis":{
+      "name":"DescribeWhatIfAnalysis",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeWhatIfAnalysisRequest"},
+      "output":{"shape":"DescribeWhatIfAnalysisResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
+    "DescribeWhatIfForecast":{
+      "name":"DescribeWhatIfForecast",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeWhatIfForecastRequest"},
+      "output":{"shape":"DescribeWhatIfForecastResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
+    "DescribeWhatIfForecastExport":{
+      "name":"DescribeWhatIfForecastExport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeWhatIfForecastExportRequest"},
+      "output":{"shape":"DescribeWhatIfForecastExportResponse"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"}
@@ -676,6 +808,48 @@
         {"shape":"InvalidInputException"}
       ]
     },
+    "ListWhatIfAnalyses":{
+      "name":"ListWhatIfAnalyses",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListWhatIfAnalysesRequest"},
+      "output":{"shape":"ListWhatIfAnalysesResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidInputException"}
+      ],
+      "idempotent":true
+    },
+    "ListWhatIfForecastExports":{
+      "name":"ListWhatIfForecastExports",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListWhatIfForecastExportsRequest"},
+      "output":{"shape":"ListWhatIfForecastExportsResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidInputException"}
+      ],
+      "idempotent":true
+    },
+    "ListWhatIfForecasts":{
+      "name":"ListWhatIfForecasts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListWhatIfForecastsRequest"},
+      "output":{"shape":"ListWhatIfForecastsResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidInputException"}
+      ],
+      "idempotent":true
+    },
     "ResumeResource":{
       "name":"ResumeResource",
       "http":{
@@ -749,6 +923,19 @@
     }
   },
   "shapes":{
+    "Action":{
+      "type":"structure",
+      "required":[
+        "AttributeName",
+        "Operation",
+        "Value"
+      ],
+      "members":{
+        "AttributeName":{"shape":"Name"},
+        "Operation":{"shape":"Operation"},
+        "Value":{"shape":"Double"}
+      }
+    },
     "AdditionalDataset":{
       "type":"structure",
       "required":["Name"],
@@ -766,7 +953,7 @@
     "Arn":{
       "type":"string",
       "max":256,
-      "pattern":"^[a-zA-Z0-9\\-\\_\\.\\/\\:]+$"
+      "pattern":"arn:([a-z\\d-]+):forecast:.*:.*:.+"
     },
     "ArnList":{
       "type":"list",
@@ -798,6 +985,11 @@
         "timestamp",
         "geolocation"
       ]
+    },
+    "AttributeValue":{
+      "type":"string",
+      "max":256,
+      "pattern":".+"
     },
     "AutoMLOverrideStrategy":{
       "type":"string",
@@ -840,6 +1032,15 @@
       "member":{"shape":"CategoricalParameterRange"},
       "max":20,
       "min":1
+    },
+    "Condition":{
+      "type":"string",
+      "enum":[
+        "EQUALS",
+        "NOT_EQUALS",
+        "LESS_THAN",
+        "GREATER_THAN"
+      ]
     },
     "Configuration":{
       "type":"map",
@@ -1117,6 +1318,66 @@
         "PredictorArn":{"shape":"Arn"}
       }
     },
+    "CreateWhatIfAnalysisRequest":{
+      "type":"structure",
+      "required":[
+        "WhatIfAnalysisName",
+        "ForecastArn"
+      ],
+      "members":{
+        "WhatIfAnalysisName":{"shape":"Name"},
+        "ForecastArn":{"shape":"Arn"},
+        "TimeSeriesSelector":{"shape":"TimeSeriesSelector"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CreateWhatIfAnalysisResponse":{
+      "type":"structure",
+      "members":{
+        "WhatIfAnalysisArn":{"shape":"Arn"}
+      }
+    },
+    "CreateWhatIfForecastExportRequest":{
+      "type":"structure",
+      "required":[
+        "WhatIfForecastExportName",
+        "WhatIfForecastArns",
+        "Destination"
+      ],
+      "members":{
+        "WhatIfForecastExportName":{"shape":"Name"},
+        "WhatIfForecastArns":{"shape":"WhatIfForecastArnListForExport"},
+        "Destination":{"shape":"DataDestination"},
+        "Tags":{"shape":"Tags"},
+        "Format":{"shape":"Format"}
+      }
+    },
+    "CreateWhatIfForecastExportResponse":{
+      "type":"structure",
+      "members":{
+        "WhatIfForecastExportArn":{"shape":"LongArn"}
+      }
+    },
+    "CreateWhatIfForecastRequest":{
+      "type":"structure",
+      "required":[
+        "WhatIfForecastName",
+        "WhatIfAnalysisArn"
+      ],
+      "members":{
+        "WhatIfForecastName":{"shape":"Name"},
+        "WhatIfAnalysisArn":{"shape":"Arn"},
+        "TimeSeriesTransformations":{"shape":"TimeSeriesTransformations"},
+        "TimeSeriesReplacementsDataSource":{"shape":"TimeSeriesReplacementsDataSource"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CreateWhatIfForecastResponse":{
+      "type":"structure",
+      "members":{
+        "WhatIfForecastArn":{"shape":"LongArn"}
+      }
+    },
     "DataConfig":{
       "type":"structure",
       "required":["DatasetGroupArn"],
@@ -1284,6 +1545,27 @@
       "required":["ResourceArn"],
       "members":{
         "ResourceArn":{"shape":"Arn"}
+      }
+    },
+    "DeleteWhatIfAnalysisRequest":{
+      "type":"structure",
+      "required":["WhatIfAnalysisArn"],
+      "members":{
+        "WhatIfAnalysisArn":{"shape":"Arn"}
+      }
+    },
+    "DeleteWhatIfForecastExportRequest":{
+      "type":"structure",
+      "required":["WhatIfForecastExportArn"],
+      "members":{
+        "WhatIfForecastExportArn":{"shape":"LongArn"}
+      }
+    },
+    "DeleteWhatIfForecastRequest":{
+      "type":"structure",
+      "required":["WhatIfForecastArn"],
+      "members":{
+        "WhatIfForecastArn":{"shape":"LongArn"}
       }
     },
     "DescribeAutoPredictorRequest":{
@@ -1555,6 +1837,72 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModificationTime":{"shape":"Timestamp"},
         "OptimizationMetric":{"shape":"OptimizationMetric"}
+      }
+    },
+    "DescribeWhatIfAnalysisRequest":{
+      "type":"structure",
+      "required":["WhatIfAnalysisArn"],
+      "members":{
+        "WhatIfAnalysisArn":{"shape":"Arn"}
+      }
+    },
+    "DescribeWhatIfAnalysisResponse":{
+      "type":"structure",
+      "members":{
+        "WhatIfAnalysisName":{"shape":"Name"},
+        "WhatIfAnalysisArn":{"shape":"Arn"},
+        "ForecastArn":{"shape":"Arn"},
+        "EstimatedTimeRemainingInMinutes":{"shape":"Long"},
+        "Status":{"shape":"String"},
+        "Message":{"shape":"ErrorMessage"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModificationTime":{"shape":"Timestamp"},
+        "TimeSeriesSelector":{"shape":"TimeSeriesSelector"}
+      }
+    },
+    "DescribeWhatIfForecastExportRequest":{
+      "type":"structure",
+      "required":["WhatIfForecastExportArn"],
+      "members":{
+        "WhatIfForecastExportArn":{"shape":"LongArn"}
+      }
+    },
+    "DescribeWhatIfForecastExportResponse":{
+      "type":"structure",
+      "members":{
+        "WhatIfForecastExportArn":{"shape":"LongArn"},
+        "WhatIfForecastExportName":{"shape":"Name"},
+        "WhatIfForecastArns":{"shape":"LongArnList"},
+        "Destination":{"shape":"DataDestination"},
+        "Message":{"shape":"Message"},
+        "Status":{"shape":"Status"},
+        "CreationTime":{"shape":"Timestamp"},
+        "EstimatedTimeRemainingInMinutes":{"shape":"Long"},
+        "LastModificationTime":{"shape":"Timestamp"},
+        "Format":{"shape":"Format"}
+      }
+    },
+    "DescribeWhatIfForecastRequest":{
+      "type":"structure",
+      "required":["WhatIfForecastArn"],
+      "members":{
+        "WhatIfForecastArn":{"shape":"LongArn"}
+      }
+    },
+    "DescribeWhatIfForecastResponse":{
+      "type":"structure",
+      "members":{
+        "WhatIfForecastName":{"shape":"Name"},
+        "WhatIfForecastArn":{"shape":"LongArn"},
+        "WhatIfAnalysisArn":{"shape":"Arn"},
+        "EstimatedTimeRemainingInMinutes":{"shape":"Long"},
+        "Status":{"shape":"String"},
+        "Message":{"shape":"ErrorMessage"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModificationTime":{"shape":"Timestamp"},
+        "TimeSeriesTransformations":{"shape":"TimeSeriesTransformations"},
+        "TimeSeriesReplacementsDataSource":{"shape":"TimeSeriesReplacementsDataSource"},
+        "ForecastTypes":{"shape":"ForecastTypes"}
       }
     },
     "Detail":{
@@ -2081,12 +2429,66 @@
         "Tags":{"shape":"Tags"}
       }
     },
+    "ListWhatIfAnalysesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "Filters":{"shape":"Filters"}
+      }
+    },
+    "ListWhatIfAnalysesResponse":{
+      "type":"structure",
+      "members":{
+        "WhatIfAnalyses":{"shape":"WhatIfAnalyses"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListWhatIfForecastExportsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "Filters":{"shape":"Filters"}
+      }
+    },
+    "ListWhatIfForecastExportsResponse":{
+      "type":"structure",
+      "members":{
+        "WhatIfForecastExports":{"shape":"WhatIfForecastExports"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListWhatIfForecastsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "Filters":{"shape":"Filters"}
+      }
+    },
+    "ListWhatIfForecastsResponse":{
+      "type":"structure",
+      "members":{
+        "WhatIfForecasts":{"shape":"WhatIfForecasts"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "LocalDateTime":{
       "type":"string",
       "max":19,
       "pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$"
     },
     "Long":{"type":"long"},
+    "LongArn":{
+      "type":"string",
+      "max":300,
+      "pattern":"arn:([a-z\\d-]+):forecast:.*:.*:.+"
+    },
+    "LongArnList":{
+      "type":"list",
+      "member":{"shape":"LongArn"}
+    },
     "MaxResults":{
       "type":"integer",
       "max":100,
@@ -2186,6 +2588,15 @@
       "max":3000,
       "min":1,
       "pattern":".+"
+    },
+    "Operation":{
+      "type":"string",
+      "enum":[
+        "ADD",
+        "SUBTRACT",
+        "MULTIPLY",
+        "DIVIDE"
+      ]
     },
     "OptimizationMetric":{
       "type":"string",
@@ -2529,6 +2940,25 @@
         "SPECIFIC"
       ]
     },
+    "TimeSeriesCondition":{
+      "type":"structure",
+      "required":[
+        "AttributeName",
+        "AttributeValue",
+        "Condition"
+      ],
+      "members":{
+        "AttributeName":{"shape":"Name"},
+        "AttributeValue":{"shape":"AttributeValue"},
+        "Condition":{"shape":"Condition"}
+      }
+    },
+    "TimeSeriesConditions":{
+      "type":"list",
+      "member":{"shape":"TimeSeriesCondition"},
+      "max":10,
+      "min":0
+    },
     "TimeSeriesGranularity":{
       "type":"string",
       "enum":[
@@ -2544,11 +2974,37 @@
         "Format":{"shape":"Format"}
       }
     },
+    "TimeSeriesReplacementsDataSource":{
+      "type":"structure",
+      "required":[
+        "S3Config",
+        "Schema"
+      ],
+      "members":{
+        "S3Config":{"shape":"S3Config"},
+        "Schema":{"shape":"Schema"},
+        "Format":{"shape":"Format"},
+        "TimestampFormat":{"shape":"TimestampFormat"}
+      }
+    },
     "TimeSeriesSelector":{
       "type":"structure",
       "members":{
         "TimeSeriesIdentifiers":{"shape":"TimeSeriesIdentifiers"}
       }
+    },
+    "TimeSeriesTransformation":{
+      "type":"structure",
+      "members":{
+        "Action":{"shape":"Action"},
+        "TimeSeriesConditions":{"shape":"TimeSeriesConditions"}
+      }
+    },
+    "TimeSeriesTransformations":{
+      "type":"list",
+      "member":{"shape":"TimeSeriesTransformation"},
+      "max":30,
+      "min":0
     },
     "TimeZone":{
       "type":"string",
@@ -2629,6 +3085,61 @@
     "WeightedQuantileLosses":{
       "type":"list",
       "member":{"shape":"WeightedQuantileLoss"}
+    },
+    "WhatIfAnalyses":{
+      "type":"list",
+      "member":{"shape":"WhatIfAnalysisSummary"}
+    },
+    "WhatIfAnalysisSummary":{
+      "type":"structure",
+      "members":{
+        "WhatIfAnalysisArn":{"shape":"Arn"},
+        "WhatIfAnalysisName":{"shape":"Name"},
+        "ForecastArn":{"shape":"Arn"},
+        "Status":{"shape":"Status"},
+        "Message":{"shape":"ErrorMessage"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModificationTime":{"shape":"Timestamp"}
+      }
+    },
+    "WhatIfForecastArnListForExport":{
+      "type":"list",
+      "member":{"shape":"LongArn"},
+      "max":50,
+      "min":1
+    },
+    "WhatIfForecastExportSummary":{
+      "type":"structure",
+      "members":{
+        "WhatIfForecastExportArn":{"shape":"LongArn"},
+        "WhatIfForecastArns":{"shape":"WhatIfForecastArnListForExport"},
+        "WhatIfForecastExportName":{"shape":"Name"},
+        "Destination":{"shape":"DataDestination"},
+        "Status":{"shape":"Status"},
+        "Message":{"shape":"ErrorMessage"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModificationTime":{"shape":"Timestamp"}
+      }
+    },
+    "WhatIfForecastExports":{
+      "type":"list",
+      "member":{"shape":"WhatIfForecastExportSummary"}
+    },
+    "WhatIfForecastSummary":{
+      "type":"structure",
+      "members":{
+        "WhatIfForecastArn":{"shape":"LongArn"},
+        "WhatIfForecastName":{"shape":"Name"},
+        "WhatIfAnalysisArn":{"shape":"Arn"},
+        "Status":{"shape":"Status"},
+        "Message":{"shape":"ErrorMessage"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModificationTime":{"shape":"Timestamp"}
+      }
+    },
+    "WhatIfForecasts":{
+      "type":"list",
+      "member":{"shape":"WhatIfForecastSummary"}
     },
     "WindowSummary":{
       "type":"structure",

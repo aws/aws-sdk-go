@@ -322,6 +322,10 @@ type LexModelsV2API interface {
 	StartImportWithContext(aws.Context, *lexmodelsv2.StartImportInput, ...request.Option) (*lexmodelsv2.StartImportOutput, error)
 	StartImportRequest(*lexmodelsv2.StartImportInput) (*request.Request, *lexmodelsv2.StartImportOutput)
 
+	StopBotRecommendation(*lexmodelsv2.StopBotRecommendationInput) (*lexmodelsv2.StopBotRecommendationOutput, error)
+	StopBotRecommendationWithContext(aws.Context, *lexmodelsv2.StopBotRecommendationInput, ...request.Option) (*lexmodelsv2.StopBotRecommendationOutput, error)
+	StopBotRecommendationRequest(*lexmodelsv2.StopBotRecommendationInput) (*request.Request, *lexmodelsv2.StopBotRecommendationOutput)
+
 	TagResource(*lexmodelsv2.TagResourceInput) (*lexmodelsv2.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *lexmodelsv2.TagResourceInput, ...request.Option) (*lexmodelsv2.TagResourceOutput, error)
 	TagResourceRequest(*lexmodelsv2.TagResourceInput) (*request.Request, *lexmodelsv2.TagResourceOutput)

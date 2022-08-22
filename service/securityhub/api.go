@@ -8223,7 +8223,7 @@ type AwsAutoScalingAutoScalingGroupDetails struct {
 	// it checks the health status of an EC2 instance that has come into service.
 	HealthCheckGracePeriod *int64 `type:"integer"`
 
-	// The service to use for the health checks.
+	// The service to use for the health checks. Valid values are EC2 or ELB.
 	HealthCheckType *string `type:"string"`
 
 	// The name of the launch configuration.
@@ -8413,7 +8413,8 @@ func (s *AwsAutoScalingAutoScalingGroupMixedInstancesPolicyDetails) SetLaunchTem
 type AwsAutoScalingAutoScalingGroupMixedInstancesPolicyInstancesDistributionDetails struct {
 	_ struct{} `type:"structure"`
 
-	// How to allocate instance types to fulfill On-Demand capacity.
+	// How to allocate instance types to fulfill On-Demand capacity. The valid value
+	// is prioritized.
 	OnDemandAllocationStrategy *string `type:"string"`
 
 	// The minimum amount of the Auto Scaling group's capacity that must be fulfilled
@@ -8424,7 +8425,14 @@ type AwsAutoScalingAutoScalingGroupMixedInstancesPolicyInstancesDistributionDeta
 	// beyond OnDemandBaseCapacity.
 	OnDemandPercentageAboveBaseCapacity *int64 `type:"integer"`
 
-	// How to allocate instances across Spot Instance pools.
+	// How to allocate instances across Spot Instance pools. Valid values are as
+	// follows:
+	//
+	//    * lowest-price
+	//
+	//    * capacity-optimized
+	//
+	//    * capacity-optimized-prioritized
 	SpotAllocationStrategy *string `type:"string"`
 
 	// The number of Spot Instance pools across which to allocate your Spot Instances.
@@ -8730,7 +8738,19 @@ type AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails struct {
 	// the snapshot.
 	VolumeSize *int64 `type:"integer"`
 
-	// The volume type.
+	// The volume type. Valid values are as follows:
+	//
+	//    * gp2
+	//
+	//    * gp3
+	//
+	//    * io1
+	//
+	//    * sc1
+	//
+	//    * st1
+	//
+	//    * standard
 	VolumeType *string `type:"string"`
 }
 
@@ -9078,6 +9098,892 @@ func (s *AwsAutoScalingLaunchConfigurationMetadataOptions) SetHttpPutResponseHop
 // SetHttpTokens sets the HttpTokens field's value.
 func (s *AwsAutoScalingLaunchConfigurationMetadataOptions) SetHttpTokens(v string) *AwsAutoScalingLaunchConfigurationMetadataOptions {
 	s.HttpTokens = &v
+	return s
+}
+
+// Provides a list of backup options for each resource type.
+type AwsBackupBackupPlanAdvancedBackupSettingsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the backup option for a selected resource. This option is only
+	// available for Windows Volume Shadow Copy Service (VSS) backup jobs. Valid
+	// values are as follows:
+	//
+	//    * Set to WindowsVSS: enabled to enable the WindowsVSS backup option and
+	//    create a Windows VSS backup.
+	//
+	//    * Set to WindowsVSS: disabled to create a regular backup. The WindowsVSS
+	//    option is not enabled by default.
+	BackupOptions map[string]*string `type:"map"`
+
+	// The name of a resource type. The only supported resource type is Amazon EC2
+	// instances with Windows VSS.
+	//
+	// The only valid value is EC2.
+	ResourceType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupPlanAdvancedBackupSettingsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupPlanAdvancedBackupSettingsDetails) GoString() string {
+	return s.String()
+}
+
+// SetBackupOptions sets the BackupOptions field's value.
+func (s *AwsBackupBackupPlanAdvancedBackupSettingsDetails) SetBackupOptions(v map[string]*string) *AwsBackupBackupPlanAdvancedBackupSettingsDetails {
+	s.BackupOptions = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *AwsBackupBackupPlanAdvancedBackupSettingsDetails) SetResourceType(v string) *AwsBackupBackupPlanAdvancedBackupSettingsDetails {
+	s.ResourceType = &v
+	return s
+}
+
+// Provides details about an Backup backup plan and an array of BackupRule objects,
+// each of which specifies a backup rule.
+type AwsBackupBackupPlanBackupPlanDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A list of backup options for each resource type.
+	AdvancedBackupSettings []*AwsBackupBackupPlanAdvancedBackupSettingsDetails `type:"list"`
+
+	// The display name of a backup plan.
+	BackupPlanName *string `type:"string"`
+
+	// An array of BackupRule objects, each of which specifies a scheduled task
+	// that is used to back up a selection of resources.
+	BackupPlanRule []*AwsBackupBackupPlanRuleDetails `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupPlanBackupPlanDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupPlanBackupPlanDetails) GoString() string {
+	return s.String()
+}
+
+// SetAdvancedBackupSettings sets the AdvancedBackupSettings field's value.
+func (s *AwsBackupBackupPlanBackupPlanDetails) SetAdvancedBackupSettings(v []*AwsBackupBackupPlanAdvancedBackupSettingsDetails) *AwsBackupBackupPlanBackupPlanDetails {
+	s.AdvancedBackupSettings = v
+	return s
+}
+
+// SetBackupPlanName sets the BackupPlanName field's value.
+func (s *AwsBackupBackupPlanBackupPlanDetails) SetBackupPlanName(v string) *AwsBackupBackupPlanBackupPlanDetails {
+	s.BackupPlanName = &v
+	return s
+}
+
+// SetBackupPlanRule sets the BackupPlanRule field's value.
+func (s *AwsBackupBackupPlanBackupPlanDetails) SetBackupPlanRule(v []*AwsBackupBackupPlanRuleDetails) *AwsBackupBackupPlanBackupPlanDetails {
+	s.BackupPlanRule = v
+	return s
+}
+
+// Provides details about an Backup backup plan and an array of BackupRule objects,
+// each of which specifies a backup rule.
+type AwsBackupBackupPlanDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Uniquely identifies the backup plan to be associated with the selection of
+	// resources.
+	BackupPlan *AwsBackupBackupPlanBackupPlanDetails `type:"structure"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies the backup plan.
+	BackupPlanArn *string `type:"string"`
+
+	// A unique ID for the backup plan.
+	BackupPlanId *string `type:"string"`
+
+	// Unique, randomly generated, Unicode, UTF-8 encoded strings. Version IDs cannot
+	// be edited.
+	VersionId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupPlanDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupPlanDetails) GoString() string {
+	return s.String()
+}
+
+// SetBackupPlan sets the BackupPlan field's value.
+func (s *AwsBackupBackupPlanDetails) SetBackupPlan(v *AwsBackupBackupPlanBackupPlanDetails) *AwsBackupBackupPlanDetails {
+	s.BackupPlan = v
+	return s
+}
+
+// SetBackupPlanArn sets the BackupPlanArn field's value.
+func (s *AwsBackupBackupPlanDetails) SetBackupPlanArn(v string) *AwsBackupBackupPlanDetails {
+	s.BackupPlanArn = &v
+	return s
+}
+
+// SetBackupPlanId sets the BackupPlanId field's value.
+func (s *AwsBackupBackupPlanDetails) SetBackupPlanId(v string) *AwsBackupBackupPlanDetails {
+	s.BackupPlanId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *AwsBackupBackupPlanDetails) SetVersionId(v string) *AwsBackupBackupPlanDetails {
+	s.VersionId = &v
+	return s
+}
+
+// Provides lifecycle details for the backup plan. A lifecycle defines when
+// a backup is transitioned to cold storage and when it expires.
+type AwsBackupBackupPlanLifecycleDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the number of days after creation that a recovery point is deleted.
+	// Must be greater than 90 days plus MoveToColdStorageAfterDays.
+	DeleteAfterDays *int64 `type:"long"`
+
+	// Specifies the number of days after creation that a recovery point is moved
+	// to cold storage.
+	MoveToColdStorageAfterDays *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupPlanLifecycleDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupPlanLifecycleDetails) GoString() string {
+	return s.String()
+}
+
+// SetDeleteAfterDays sets the DeleteAfterDays field's value.
+func (s *AwsBackupBackupPlanLifecycleDetails) SetDeleteAfterDays(v int64) *AwsBackupBackupPlanLifecycleDetails {
+	s.DeleteAfterDays = &v
+	return s
+}
+
+// SetMoveToColdStorageAfterDays sets the MoveToColdStorageAfterDays field's value.
+func (s *AwsBackupBackupPlanLifecycleDetails) SetMoveToColdStorageAfterDays(v int64) *AwsBackupBackupPlanLifecycleDetails {
+	s.MoveToColdStorageAfterDays = &v
+	return s
+}
+
+// An array of CopyAction objects, which contains the details of the copy operation.
+type AwsBackupBackupPlanRuleCopyActionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies the destination backup
+	// vault for the copied backup.
+	DestinationBackupVaultArn *string `type:"string"`
+
+	// Defines when a protected resource is transitioned to cold storage and when
+	// it expires. Backup transitions and expires backups automatically according
+	// to the lifecycle that you define. If you do not specify a lifecycle, Backup
+	// applies the lifecycle policy of the source backup to the destination backup.
+	//
+	// Backups transitioned to cold storage must be stored in cold storage for a
+	// minimum of 90 days.
+	Lifecycle *AwsBackupBackupPlanLifecycleDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupPlanRuleCopyActionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupPlanRuleCopyActionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetDestinationBackupVaultArn sets the DestinationBackupVaultArn field's value.
+func (s *AwsBackupBackupPlanRuleCopyActionsDetails) SetDestinationBackupVaultArn(v string) *AwsBackupBackupPlanRuleCopyActionsDetails {
+	s.DestinationBackupVaultArn = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *AwsBackupBackupPlanRuleCopyActionsDetails) SetLifecycle(v *AwsBackupBackupPlanLifecycleDetails) *AwsBackupBackupPlanRuleCopyActionsDetails {
+	s.Lifecycle = v
+	return s
+}
+
+// Provides details about an array of BackupRule objects, each of which specifies
+// a scheduled task that is used to back up a selection of resources.
+type AwsBackupBackupPlanRuleDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A value in minutes after a backup job is successfully started before it must
+	// be completed, or it is canceled by Backup.
+	CompletionWindowMinutes *int64 `type:"long"`
+
+	// An array of CopyAction objects, which contains the details of the copy operation.
+	CopyActions []*AwsBackupBackupPlanRuleCopyActionsDetails `type:"list"`
+
+	// Specifies whether Backup creates continuous backups capable of point-in-time
+	// restore (PITR).
+	EnableContinuousBackup *bool `type:"boolean"`
+
+	// Defines when a protected resource is transitioned to cold storage and when
+	// it expires. Backup transitions and expires backups automatically according
+	// to the lifecycle that you define. If you do not specify a lifecycle, Backup
+	// applies the lifecycle policy of the source backup to the destination backup.
+	//
+	// Backups transitioned to cold storage must be stored in cold storage for a
+	// minimum of 90 days.
+	Lifecycle *AwsBackupBackupPlanLifecycleDetails `type:"structure"`
+
+	// Uniquely identifies a rule that is used to schedule the backup of a selection
+	// of resources.
+	RuleId *string `type:"string"`
+
+	// A display name for a backup rule. Must contain 1 to 50 alphanumeric or '-_.'
+	// characters.
+	RuleName *string `type:"string"`
+
+	// A cron expression in UTC specifying when Backup initiates a backup job.
+	ScheduleExpression *string `type:"string"`
+
+	// A value in minutes after a backup is scheduled before a job will be canceled
+	// if it doesn't start successfully.
+	StartWindowMinutes *int64 `type:"long"`
+
+	// The name of a logical container where backups are stored. Backup vaults are
+	// identified by names that are unique to the Amazon Web Services account used
+	// to create them and the Amazon Web Services Region where they are created.
+	// They consist of letters, numbers, and hyphens.
+	TargetBackupVault *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupPlanRuleDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupPlanRuleDetails) GoString() string {
+	return s.String()
+}
+
+// SetCompletionWindowMinutes sets the CompletionWindowMinutes field's value.
+func (s *AwsBackupBackupPlanRuleDetails) SetCompletionWindowMinutes(v int64) *AwsBackupBackupPlanRuleDetails {
+	s.CompletionWindowMinutes = &v
+	return s
+}
+
+// SetCopyActions sets the CopyActions field's value.
+func (s *AwsBackupBackupPlanRuleDetails) SetCopyActions(v []*AwsBackupBackupPlanRuleCopyActionsDetails) *AwsBackupBackupPlanRuleDetails {
+	s.CopyActions = v
+	return s
+}
+
+// SetEnableContinuousBackup sets the EnableContinuousBackup field's value.
+func (s *AwsBackupBackupPlanRuleDetails) SetEnableContinuousBackup(v bool) *AwsBackupBackupPlanRuleDetails {
+	s.EnableContinuousBackup = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *AwsBackupBackupPlanRuleDetails) SetLifecycle(v *AwsBackupBackupPlanLifecycleDetails) *AwsBackupBackupPlanRuleDetails {
+	s.Lifecycle = v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *AwsBackupBackupPlanRuleDetails) SetRuleId(v string) *AwsBackupBackupPlanRuleDetails {
+	s.RuleId = &v
+	return s
+}
+
+// SetRuleName sets the RuleName field's value.
+func (s *AwsBackupBackupPlanRuleDetails) SetRuleName(v string) *AwsBackupBackupPlanRuleDetails {
+	s.RuleName = &v
+	return s
+}
+
+// SetScheduleExpression sets the ScheduleExpression field's value.
+func (s *AwsBackupBackupPlanRuleDetails) SetScheduleExpression(v string) *AwsBackupBackupPlanRuleDetails {
+	s.ScheduleExpression = &v
+	return s
+}
+
+// SetStartWindowMinutes sets the StartWindowMinutes field's value.
+func (s *AwsBackupBackupPlanRuleDetails) SetStartWindowMinutes(v int64) *AwsBackupBackupPlanRuleDetails {
+	s.StartWindowMinutes = &v
+	return s
+}
+
+// SetTargetBackupVault sets the TargetBackupVault field's value.
+func (s *AwsBackupBackupPlanRuleDetails) SetTargetBackupVault(v string) *AwsBackupBackupPlanRuleDetails {
+	s.TargetBackupVault = &v
+	return s
+}
+
+// Provides details about an Backup backup vault. In Backup, a backup vault
+// is a container that stores and organizes your backups.
+type AwsBackupBackupVaultDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A resource-based policy that is used to manage access permissions on the
+	// target backup vault.
+	AccessPolicy *string `type:"string"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies a backup vault.
+	BackupVaultArn *string `type:"string"`
+
+	// The name of a logical container where backups are stored. Backup vaults are
+	// identified by names that are unique to the Amazon Web Services account used
+	// to create them and the Amazon Web Services Region where they are created.
+	// They consist of lowercase letters, numbers, and hyphens.
+	BackupVaultName *string `type:"string"`
+
+	// The unique ARN associated with the server-side encryption key. You can specify
+	// a key to encrypt your backups from services that support full Backup management.
+	// If you do not specify a key, Backup creates an KMS key for you by default.
+	EncryptionKeyArn *string `type:"string"`
+
+	// The Amazon SNS event notifications for the specified backup vault.
+	Notifications *AwsBackupBackupVaultNotificationsDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupVaultDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupVaultDetails) GoString() string {
+	return s.String()
+}
+
+// SetAccessPolicy sets the AccessPolicy field's value.
+func (s *AwsBackupBackupVaultDetails) SetAccessPolicy(v string) *AwsBackupBackupVaultDetails {
+	s.AccessPolicy = &v
+	return s
+}
+
+// SetBackupVaultArn sets the BackupVaultArn field's value.
+func (s *AwsBackupBackupVaultDetails) SetBackupVaultArn(v string) *AwsBackupBackupVaultDetails {
+	s.BackupVaultArn = &v
+	return s
+}
+
+// SetBackupVaultName sets the BackupVaultName field's value.
+func (s *AwsBackupBackupVaultDetails) SetBackupVaultName(v string) *AwsBackupBackupVaultDetails {
+	s.BackupVaultName = &v
+	return s
+}
+
+// SetEncryptionKeyArn sets the EncryptionKeyArn field's value.
+func (s *AwsBackupBackupVaultDetails) SetEncryptionKeyArn(v string) *AwsBackupBackupVaultDetails {
+	s.EncryptionKeyArn = &v
+	return s
+}
+
+// SetNotifications sets the Notifications field's value.
+func (s *AwsBackupBackupVaultDetails) SetNotifications(v *AwsBackupBackupVaultNotificationsDetails) *AwsBackupBackupVaultDetails {
+	s.Notifications = v
+	return s
+}
+
+// Provides details about the Amazon SNS event notifications for the specified
+// backup vault.
+type AwsBackupBackupVaultNotificationsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// An array of events that indicate the status of jobs to back up resources
+	// to the backup vault. The following events are supported:
+	//
+	//    * BACKUP_JOB_STARTED | BACKUP_JOB_COMPLETED
+	//
+	//    * COPY_JOB_STARTED | COPY_JOB_SUCCESSFUL | COPY_JOB_FAILED
+	//
+	//    * RESTORE_JOB_STARTED | RESTORE_JOB_COMPLETED | RECOVERY_POINT_MODIFIED
+	//
+	//    * S3_BACKUP_OBJECT_FAILED | S3_RESTORE_OBJECT_FAILED
+	BackupVaultEvents []*string `type:"list"`
+
+	// An ARN that uniquely identifies the Amazon SNS topic for a backup vault’s
+	// events.
+	SnsTopicArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupVaultNotificationsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupBackupVaultNotificationsDetails) GoString() string {
+	return s.String()
+}
+
+// SetBackupVaultEvents sets the BackupVaultEvents field's value.
+func (s *AwsBackupBackupVaultNotificationsDetails) SetBackupVaultEvents(v []*string) *AwsBackupBackupVaultNotificationsDetails {
+	s.BackupVaultEvents = v
+	return s
+}
+
+// SetSnsTopicArn sets the SnsTopicArn field's value.
+func (s *AwsBackupBackupVaultNotificationsDetails) SetSnsTopicArn(v string) *AwsBackupBackupVaultNotificationsDetails {
+	s.SnsTopicArn = &v
+	return s
+}
+
+// Specifies how long in days before a recovery point transitions to cold storage
+// or is deleted.
+type AwsBackupRecoveryPointCalculatedLifecycleDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the number of days after creation that a recovery point is deleted.
+	// Must be greater than 90 days plus MoveToColdStorageAfterDays.
+	DeleteAt *string `type:"string"`
+
+	// Specifies the number of days after creation that a recovery point is moved
+	// to cold storage.
+	MoveToColdStorageAt *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupRecoveryPointCalculatedLifecycleDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupRecoveryPointCalculatedLifecycleDetails) GoString() string {
+	return s.String()
+}
+
+// SetDeleteAt sets the DeleteAt field's value.
+func (s *AwsBackupRecoveryPointCalculatedLifecycleDetails) SetDeleteAt(v string) *AwsBackupRecoveryPointCalculatedLifecycleDetails {
+	s.DeleteAt = &v
+	return s
+}
+
+// SetMoveToColdStorageAt sets the MoveToColdStorageAt field's value.
+func (s *AwsBackupRecoveryPointCalculatedLifecycleDetails) SetMoveToColdStorageAt(v string) *AwsBackupRecoveryPointCalculatedLifecycleDetails {
+	s.MoveToColdStorageAt = &v
+	return s
+}
+
+// Contains information about the backup plan and rule that Backup used to initiate
+// the recovery point backup.
+type AwsBackupRecoveryPointCreatedByDetails struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies a backup plan.
+	BackupPlanArn *string `type:"string"`
+
+	// Uniquely identifies a backup plan.
+	BackupPlanId *string `type:"string"`
+
+	// Unique, randomly generated, Unicode, UTF-8 encoded strings that are at most
+	// 1,024 bytes long. Version IDs cannot be edited.
+	BackupPlanVersion *string `type:"string"`
+
+	// Uniquely identifies a rule used to schedule the backup of a selection of
+	// resources.
+	BackupRuleId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupRecoveryPointCreatedByDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupRecoveryPointCreatedByDetails) GoString() string {
+	return s.String()
+}
+
+// SetBackupPlanArn sets the BackupPlanArn field's value.
+func (s *AwsBackupRecoveryPointCreatedByDetails) SetBackupPlanArn(v string) *AwsBackupRecoveryPointCreatedByDetails {
+	s.BackupPlanArn = &v
+	return s
+}
+
+// SetBackupPlanId sets the BackupPlanId field's value.
+func (s *AwsBackupRecoveryPointCreatedByDetails) SetBackupPlanId(v string) *AwsBackupRecoveryPointCreatedByDetails {
+	s.BackupPlanId = &v
+	return s
+}
+
+// SetBackupPlanVersion sets the BackupPlanVersion field's value.
+func (s *AwsBackupRecoveryPointCreatedByDetails) SetBackupPlanVersion(v string) *AwsBackupRecoveryPointCreatedByDetails {
+	s.BackupPlanVersion = &v
+	return s
+}
+
+// SetBackupRuleId sets the BackupRuleId field's value.
+func (s *AwsBackupRecoveryPointCreatedByDetails) SetBackupRuleId(v string) *AwsBackupRecoveryPointCreatedByDetails {
+	s.BackupRuleId = &v
+	return s
+}
+
+// Contains detailed information about the recovery points stored in an Backup
+// backup vault. A backup, or recovery point, represents the content of a resource
+// at a specified time.
+type AwsBackupRecoveryPointDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The size, in bytes, of a backup.
+	BackupSizeInBytes *int64 `type:"long"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies a backup vault.
+	BackupVaultArn *string `type:"string"`
+
+	// The name of a logical container where backups are stored. Backup vaults are
+	// identified by names that are unique to the Amazon Web Services account used
+	// to create them and the Amazon Web Services Region where they are created.
+	// They consist of lowercase letters, numbers, and hyphens.
+	BackupVaultName *string `type:"string"`
+
+	// A CalculatedLifecycle object containing DeleteAt and MoveToColdStorageAt
+	// timestamps.
+	CalculatedLifecycle *AwsBackupRecoveryPointCalculatedLifecycleDetails `type:"structure"`
+
+	// The date and time that a job to create a recovery point is completed, in
+	// Unix format and UTC. The value of CompletionDate is accurate to milliseconds.
+	// For example, the value 1516925490.087 represents Friday, January 26, 2018
+	// 12:11:30.087 AM.
+	CompletionDate *string `type:"string"`
+
+	// Contains identifying information about the creation of a recovery point,
+	// including the BackupPlanArn, BackupPlanId, BackupPlanVersion, and BackupRuleId
+	// of the backup plan that is used to create it.
+	CreatedBy *AwsBackupRecoveryPointCreatedByDetails `type:"structure"`
+
+	// The date and time a recovery point is created, in Unix format and UTC. The
+	// value of CreationDate is accurate to milliseconds. For example, the value
+	// 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
+	CreationDate *string `type:"string"`
+
+	// The ARN for the server-side encryption key that is used to protect your backups.
+	EncryptionKeyArn *string `type:"string"`
+
+	// Specifies the IAM role ARN used to create the target recovery point
+	IamRoleArn *string `type:"string"`
+
+	// A Boolean value that is returned as TRUE if the specified recovery point
+	// is encrypted, or FALSE if the recovery point is not encrypted.
+	IsEncrypted *bool `type:"boolean"`
+
+	// The date and time that a recovery point was last restored, in Unix format
+	// and UTC. The value of LastRestoreTime is accurate to milliseconds. For example,
+	// the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
+	// AM.
+	LastRestoreTime *string `type:"string"`
+
+	// The lifecycle defines when a protected resource is transitioned to cold storage
+	// and when it expires. Backup transitions and expires backups automatically
+	// according to the lifecycle that you define
+	Lifecycle *AwsBackupRecoveryPointLifecycleDetails `type:"structure"`
+
+	// An ARN that uniquely identifies a recovery point.
+	RecoveryPointArn *string `type:"string"`
+
+	// An ARN that uniquely identifies a resource. The format of the ARN depends
+	// on the resource type.
+	ResourceArn *string `type:"string"`
+
+	// The type of Amazon Web Services resource saved as a recovery point, such
+	// as an Amazon EBS volume or an Amazon RDS database.
+	ResourceType *string `type:"string"`
+
+	// The ARN for the backup vault where the recovery point was originally copied
+	// from. If the recovery point is restored to the same account, this value will
+	// be null.
+	SourceBackupVaultArn *string `type:"string"`
+
+	// A status code specifying the state of the recovery point. Valid values are
+	// as follows:
+	//
+	//    * COMPLETED
+	//
+	//    * DELETING
+	//
+	//    * EXPIRED
+	//
+	//    * PARTIAL
+	Status *string `type:"string"`
+
+	// A message explaining the reason of the recovery point deletion failure.
+	StatusMessage *string `type:"string"`
+
+	// Specifies the storage class of the recovery point. Valid values are as follows:
+	//
+	//    * COLD
+	//
+	//    * DELETED
+	//
+	//    * WARM
+	StorageClass *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupRecoveryPointDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupRecoveryPointDetails) GoString() string {
+	return s.String()
+}
+
+// SetBackupSizeInBytes sets the BackupSizeInBytes field's value.
+func (s *AwsBackupRecoveryPointDetails) SetBackupSizeInBytes(v int64) *AwsBackupRecoveryPointDetails {
+	s.BackupSizeInBytes = &v
+	return s
+}
+
+// SetBackupVaultArn sets the BackupVaultArn field's value.
+func (s *AwsBackupRecoveryPointDetails) SetBackupVaultArn(v string) *AwsBackupRecoveryPointDetails {
+	s.BackupVaultArn = &v
+	return s
+}
+
+// SetBackupVaultName sets the BackupVaultName field's value.
+func (s *AwsBackupRecoveryPointDetails) SetBackupVaultName(v string) *AwsBackupRecoveryPointDetails {
+	s.BackupVaultName = &v
+	return s
+}
+
+// SetCalculatedLifecycle sets the CalculatedLifecycle field's value.
+func (s *AwsBackupRecoveryPointDetails) SetCalculatedLifecycle(v *AwsBackupRecoveryPointCalculatedLifecycleDetails) *AwsBackupRecoveryPointDetails {
+	s.CalculatedLifecycle = v
+	return s
+}
+
+// SetCompletionDate sets the CompletionDate field's value.
+func (s *AwsBackupRecoveryPointDetails) SetCompletionDate(v string) *AwsBackupRecoveryPointDetails {
+	s.CompletionDate = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *AwsBackupRecoveryPointDetails) SetCreatedBy(v *AwsBackupRecoveryPointCreatedByDetails) *AwsBackupRecoveryPointDetails {
+	s.CreatedBy = v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *AwsBackupRecoveryPointDetails) SetCreationDate(v string) *AwsBackupRecoveryPointDetails {
+	s.CreationDate = &v
+	return s
+}
+
+// SetEncryptionKeyArn sets the EncryptionKeyArn field's value.
+func (s *AwsBackupRecoveryPointDetails) SetEncryptionKeyArn(v string) *AwsBackupRecoveryPointDetails {
+	s.EncryptionKeyArn = &v
+	return s
+}
+
+// SetIamRoleArn sets the IamRoleArn field's value.
+func (s *AwsBackupRecoveryPointDetails) SetIamRoleArn(v string) *AwsBackupRecoveryPointDetails {
+	s.IamRoleArn = &v
+	return s
+}
+
+// SetIsEncrypted sets the IsEncrypted field's value.
+func (s *AwsBackupRecoveryPointDetails) SetIsEncrypted(v bool) *AwsBackupRecoveryPointDetails {
+	s.IsEncrypted = &v
+	return s
+}
+
+// SetLastRestoreTime sets the LastRestoreTime field's value.
+func (s *AwsBackupRecoveryPointDetails) SetLastRestoreTime(v string) *AwsBackupRecoveryPointDetails {
+	s.LastRestoreTime = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *AwsBackupRecoveryPointDetails) SetLifecycle(v *AwsBackupRecoveryPointLifecycleDetails) *AwsBackupRecoveryPointDetails {
+	s.Lifecycle = v
+	return s
+}
+
+// SetRecoveryPointArn sets the RecoveryPointArn field's value.
+func (s *AwsBackupRecoveryPointDetails) SetRecoveryPointArn(v string) *AwsBackupRecoveryPointDetails {
+	s.RecoveryPointArn = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *AwsBackupRecoveryPointDetails) SetResourceArn(v string) *AwsBackupRecoveryPointDetails {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *AwsBackupRecoveryPointDetails) SetResourceType(v string) *AwsBackupRecoveryPointDetails {
+	s.ResourceType = &v
+	return s
+}
+
+// SetSourceBackupVaultArn sets the SourceBackupVaultArn field's value.
+func (s *AwsBackupRecoveryPointDetails) SetSourceBackupVaultArn(v string) *AwsBackupRecoveryPointDetails {
+	s.SourceBackupVaultArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsBackupRecoveryPointDetails) SetStatus(v string) *AwsBackupRecoveryPointDetails {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *AwsBackupRecoveryPointDetails) SetStatusMessage(v string) *AwsBackupRecoveryPointDetails {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetStorageClass sets the StorageClass field's value.
+func (s *AwsBackupRecoveryPointDetails) SetStorageClass(v string) *AwsBackupRecoveryPointDetails {
+	s.StorageClass = &v
+	return s
+}
+
+// Contains an array of Transition objects specifying how long in days before
+// a recovery point transitions to cold storage or is deleted.
+type AwsBackupRecoveryPointLifecycleDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the number of days after creation that a recovery point is deleted.
+	// Must be greater than 90 days plus MoveToColdStorageAfterDays.
+	DeleteAfterDays *int64 `type:"long"`
+
+	// Specifies the number of days after creation that a recovery point is moved
+	// to cold storage.
+	MoveToColdStorageAfterDays *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupRecoveryPointLifecycleDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsBackupRecoveryPointLifecycleDetails) GoString() string {
+	return s.String()
+}
+
+// SetDeleteAfterDays sets the DeleteAfterDays field's value.
+func (s *AwsBackupRecoveryPointLifecycleDetails) SetDeleteAfterDays(v int64) *AwsBackupRecoveryPointLifecycleDetails {
+	s.DeleteAfterDays = &v
+	return s
+}
+
+// SetMoveToColdStorageAfterDays sets the MoveToColdStorageAfterDays field's value.
+func (s *AwsBackupRecoveryPointLifecycleDetails) SetMoveToColdStorageAfterDays(v int64) *AwsBackupRecoveryPointLifecycleDetails {
+	s.MoveToColdStorageAfterDays = &v
 	return s
 }
 
@@ -9576,7 +10482,8 @@ type AwsCertificateManagerCertificateRenewalSummary struct {
 	// Valid values: PENDING_AUTO_RENEWAL | PENDING_VALIDATION | SUCCESS | FAILED
 	RenewalStatus *string `type:"string"`
 
-	// The reason that a renewal request was unsuccessful.
+	// The reason that a renewal request was unsuccessful. This attribute is used
+	// only when RenewalStatus is FAILED.
 	//
 	// Valid values: NO_AVAILABLE_CONTACTS | ADDITIONAL_VERIFICATION_REQUIRED |
 	// DOMAIN_NOT_ALLOWED | INVALID_PUBLIC_DOMAIN | DOMAIN_VALIDATION_DENIED | CAA_ERROR
@@ -12142,7 +13049,21 @@ type AwsDynamoDbTableDetails struct {
 	// The total size of the table in bytes.
 	TableSizeBytes *int64 `type:"long"`
 
-	// The current status of the table.
+	// The current status of the table. Valid values are as follows:
+	//
+	//    * ACTIVE
+	//
+	//    * ARCHIVED
+	//
+	//    * ARCHIVING
+	//
+	//    * CREATING
+	//
+	//    * DELETING
+	//
+	//    * INACCESSIBLE_ENCRYPTION_CREDENTIALS
+	//
+	//    * UPDATING
 	TableStatus *string `type:"string"`
 }
 
@@ -12295,6 +13216,14 @@ type AwsDynamoDbTableGlobalSecondaryIndex struct {
 	IndexSizeBytes *int64 `type:"long"`
 
 	// The current status of the index.
+	//
+	//    * ACTIVE
+	//
+	//    * CREATING
+	//
+	//    * DELETING
+	//
+	//    * UPDATING
 	IndexStatus *string `type:"string"`
 
 	// The number of items in the index.
@@ -12390,7 +13319,8 @@ type AwsDynamoDbTableKeySchema struct {
 	// The name of the key schema attribute.
 	AttributeName *string `type:"string"`
 
-	// The type of key used for the key schema attribute.
+	// The type of key used for the key schema attribute. Valid values are HASH
+	// or RANGE.
 	KeyType *string `type:"string"`
 }
 
@@ -12494,7 +13424,14 @@ type AwsDynamoDbTableProjection struct {
 	// provide the attribute name.
 	NonKeyAttributes []*string `type:"list"`
 
-	// The types of attributes that are projected into the index.
+	// The types of attributes that are projected into the index. Valid values are
+	// as follows:
+	//
+	//    * ALL
+	//
+	//    * INCLUDE
+	//
+	//    * KEYS_ONLY
 	ProjectionType *string `type:"string"`
 }
 
@@ -12657,7 +13594,17 @@ type AwsDynamoDbTableReplica struct {
 	// The name of the Region where the replica is located.
 	RegionName *string `type:"string"`
 
-	// The current status of the replica.
+	// The current status of the replica. Valid values are as follows:
+	//
+	//    * ACTIVE
+	//
+	//    * CREATING
+	//
+	//    * CREATION_FAILED
+	//
+	//    * DELETING
+	//
+	//    * UPDATING
 	ReplicaStatus *string `type:"string"`
 
 	// Detailed information about the replica status.
@@ -14216,7 +15163,7 @@ type AwsEc2SubnetDetails struct {
 	// The identifier of the Amazon Web Services account that owns the subnet.
 	OwnerId *string `type:"string"`
 
-	// The current state of the subnet.
+	// The current state of the subnet. Valid values are available or pending.
 	State *string `type:"string"`
 
 	// The ARN of the subnet.
@@ -14472,7 +15419,17 @@ type AwsEc2VolumeAttachment struct {
 	// The identifier of the EC2 instance.
 	InstanceId *string `type:"string"`
 
-	// The attachment state of the volume.
+	// The attachment state of the volume. Valid values are as follows:
+	//
+	//    * attaching
+	//
+	//    * attached
+	//
+	//    * busy
+	//
+	//    * detaching
+	//
+	//    * detached
 	Status *string `type:"string"`
 }
 
@@ -14548,7 +15505,19 @@ type AwsEc2VolumeDetails struct {
 	// The snapshot from which the volume was created.
 	SnapshotId *string `type:"string"`
 
-	// The volume state.
+	// The volume state. Valid values are as follows:
+	//
+	//    * available
+	//
+	//    * creating
+	//
+	//    * deleted
+	//
+	//    * deleting
+	//
+	//    * error
+	//
+	//    * in-use
 	Status *string `type:"string"`
 
 	// The ID of the volume.
@@ -14660,7 +15629,7 @@ type AwsEc2VpcDetails struct {
 	// Information about the IPv6 CIDR blocks associated with the VPC.
 	Ipv6CidrBlockAssociationSet []*Ipv6CidrBlockAssociation `type:"list"`
 
-	// The current state of the VPC.
+	// The current state of the VPC. Valid values are available or pending.
 	State *string `type:"string"`
 }
 
@@ -14738,7 +15707,17 @@ type AwsEc2VpcEndpointServiceDetails struct {
 	// The name of the service.
 	ServiceName *string `type:"string"`
 
-	// The current state of the service.
+	// The current state of the service. Valid values are as follows:
+	//
+	//    * Available
+	//
+	//    * Deleted
+	//
+	//    * Deleting
+	//
+	//    * Failed
+	//
+	//    * Pending
 	ServiceState *string `type:"string"`
 
 	// The types for the service.
@@ -15080,7 +16059,15 @@ type AwsEc2VpnConnectionDetails struct {
 	// The static routes that are associated with the VPN connection.
 	Routes []*AwsEc2VpnConnectionRoutesDetails `type:"list"`
 
-	// The current state of the VPN connection.
+	// The current state of the VPN connection. Valid values are as follows:
+	//
+	//    * available
+	//
+	//    * deleted
+	//
+	//    * deleting
+	//
+	//    * pending
 	State *string `type:"string"`
 
 	// The identifier of the transit gateway that is associated with the VPN connection.
@@ -15460,7 +16447,7 @@ type AwsEc2VpnConnectionVgwTelemetryDetails struct {
 	// interface.
 	OutsideIpAddress *string `type:"string"`
 
-	// The status of the VPN tunnel.
+	// The status of the VPN tunnel. Valid values are DOWN or UP.
 	Status *string `type:"string"`
 
 	// If an error occurs, a description of the error.
@@ -15525,7 +16512,13 @@ func (s *AwsEc2VpnConnectionVgwTelemetryDetails) SetStatusMessage(v string) *Aws
 type AwsEcrContainerImageDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The architecture of the image.
+	// The architecture of the image. Valid values are as follows:
+	//
+	//    * arm64
+	//
+	//    * i386
+	//
+	//    * x86_64
 	Architecture *string `type:"string"`
 
 	// The sha256 digest of the image manifest.
@@ -15613,7 +16606,8 @@ type AwsEcrRepositoryDetails struct {
 	// The image scanning configuration for a repository.
 	ImageScanningConfiguration *AwsEcrRepositoryImageScanningConfigurationDetails `type:"structure"`
 
-	// The tag mutability setting for the repository.
+	// The tag mutability setting for the repository. Valid values are IMMUTABLE
+	// or MUTABLE.
 	ImageTagMutability *string `type:"string"`
 
 	// Information about the lifecycle policy for the repository.
@@ -15758,10 +16752,10 @@ func (s *AwsEcrRepositoryLifecyclePolicyDetails) SetRegistryId(v string) *AwsEcr
 type AwsEcsClusterClusterSettingsDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the setting.
+	// The name of the setting. The valid value is containerInsights.
 	Name *string `type:"string"`
 
-	// The value of the setting.
+	// The value of the setting. Valid values are disabled or enabled.
 	Value *string `type:"string"`
 }
 
@@ -16995,6 +17989,15 @@ type AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails struct {
 
 	// The dependency condition of the dependent container. Indicates the required
 	// status of the dependent container before the current container can start.
+	// Valid values are as follows:
+	//
+	//    * COMPLETE
+	//
+	//    * HEALTHY
+	//
+	//    * SUCCESS
+	//
+	//    * START
 	Condition *string `type:"string"`
 
 	// The name of the dependent container.
@@ -17479,7 +18482,7 @@ func (s *AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails) SetValue(v 
 type AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The type of environment file.
+	// The type of environment file. The valid value is s3.
 	Type *string `type:"string"`
 
 	// The ARN of the S3 object that contains the environment variable file.
@@ -17574,7 +18577,7 @@ type AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails struct
 	//    * config-file-value. The value is either an S3 ARN or a file path.
 	Options map[string]*string `type:"map"`
 
-	// The log router to use.
+	// The log router to use. Valid values are fluentbit or fluentd.
 	Type *string `type:"string"`
 }
 
@@ -17687,11 +18690,29 @@ type AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails 
 	_ struct{} `type:"structure"`
 
 	// The Linux capabilities for the container that are added to the default configuration
-	// provided by Docker.
+	// provided by Docker. Valid values are as follows:
+	//
+	// Valid values: "ALL" | "AUDIT_CONTROL" |"AUDIT_WRITE" | "BLOCK_SUSPEND" |
+	// "CHOWN" | "DAC_OVERRIDE" | "DAC_READ_SEARCH" | "FOWNER" | "FSETID" | "IPC_LOCK"
+	// | "IPC_OWNER" | "KILL" | "LEASE" | "LINUX_IMMUTABLE" | "MAC_ADMIN" |"MAC_OVERRIDE"
+	// | "MKNOD" | "NET_ADMIN" | "NET_BIND_SERVICE" | "NET_BROADCAST" | "NET_RAW"
+	// | "SETFCAP" | "SETGID" | "SETPCAP" | "SETUID" | "SYS_ADMIN" | "SYS_BOOT"
+	// | "SYS_CHROOT" | "SYS_MODULE" | "SYS_NICE" | "SYS_PACCT" | "SYS_PTRACE" |
+	// "SYS_RAWIO" | "SYS_RESOURCE" | "SYS_TIME" | "SYS_TTY_CONFIG" | "SYSLOG" |
+	// "WAKE_ALARM"
 	Add []*string `type:"list"`
 
 	// The Linux capabilities for the container that are dropped from the default
 	// configuration provided by Docker.
+	//
+	// Valid values: "ALL" | "AUDIT_CONTROL" |"AUDIT_WRITE" | "BLOCK_SUSPEND" |
+	// "CHOWN" | "DAC_OVERRIDE" | "DAC_READ_SEARCH" | "FOWNER" | "FSETID" | "IPC_LOCK"
+	// | "IPC_OWNER" | "KILL" | "LEASE" | "LINUX_IMMUTABLE" | "MAC_ADMIN" |"MAC_OVERRIDE"
+	// | "MKNOD" | "NET_ADMIN" | "NET_BIND_SERVICE" | "NET_BROADCAST" | "NET_RAW"
+	// | "SETFCAP" | "SETGID" | "SETPCAP" | "SETUID" | "SYS_ADMIN" | "SYS_BOOT"
+	// | "SYS_CHROOT" | "SYS_MODULE" | "SYS_NICE" | "SYS_PACCT" | "SYS_PTRACE" |
+	// "SYS_RAWIO" | "SYS_RESOURCE" | "SYS_TIME" | "SYS_TTY_CONFIG" | "SYSLOG" |
+	// "WAKE_ALARM"
 	Drop []*string `type:"list"`
 }
 
@@ -17875,6 +18896,13 @@ type AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails struct 
 	ContainerPath *string `type:"string"`
 
 	// The list of tmpfs volume mount options.
+	//
+	// Valid values: "defaults" | "ro" | "rw" | "suid" | "nosuid" | "dev" | "nodev"
+	// |"exec" | "noexec" | "sync" | "async" | "dirsync" | "remount" | "mand" |
+	// "nomand" | "atime" | "noatime" | "diratime" | "nodiratime" | "bind" | "rbind"
+	// | "unbindable" | "runbindable" | "private" | "rprivate" | "shared" | "rshared"
+	// | "slave" | "rslave" | "relatime" | "norelatime" | "strictatime" | "nostrictatime"
+	// |"mode" | "uid" | "gid" | "nr_inodes" |"nr_blocks" | "mpol"
 	MountOptions []*string `type:"list"`
 
 	// The maximum size (in MiB) of the tmpfs volume.
@@ -17922,6 +18950,34 @@ type AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The log driver to use for the container.
+	//
+	// Valid values on Fargate are as follows:
+	//
+	//    * awsfirelens
+	//
+	//    * awslogs
+	//
+	//    * splunk
+	//
+	// Valid values on Amazon EC2 are as follows:
+	//
+	//    * awsfirelens
+	//
+	//    * awslogs
+	//
+	//    * fluentd
+	//
+	//    * gelf
+	//
+	//    * journald
+	//
+	//    * json-file
+	//
+	//    * logentries
+	//
+	//    * splunk
+	//
+	//    * syslog
 	LogDriver *string `type:"string"`
 
 	// The configuration options to send to the log driver. Requires version 1.19
@@ -18150,7 +19206,7 @@ func (s *AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails) S
 type AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The type of resource to assign to a container.
+	// The type of resource to assign to a container. Valid values are GPU or InferenceAccelerator.
 	Type *string `type:"string"`
 
 	// The value for the specified resource type.
@@ -18284,7 +19340,37 @@ type AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails struct {
 	// The hard limit for the ulimit type.
 	HardLimit *int64 `type:"integer"`
 
-	// The type of the ulimit.
+	// The type of the ulimit. Valid values are as follows:
+	//
+	//    * core
+	//
+	//    * cpu
+	//
+	//    * data
+	//
+	//    * fsize
+	//
+	//    * locks
+	//
+	//    * memlock
+	//
+	//    * msgqueue
+	//
+	//    * nice
+	//
+	//    * nofile
+	//
+	//    * nproc
+	//
+	//    * rss
+	//
+	//    * rtprio
+	//
+	//    * rttime
+	//
+	//    * sigpending
+	//
+	//    * stack
 	Name *string `type:"string"`
 
 	// The soft limit for the ulimit type.
@@ -18377,7 +19463,17 @@ type AwsEcsTaskDefinitionDetails struct {
 	// The container definitions that describe the containers that make up the task.
 	ContainerDefinitions []*AwsEcsTaskDefinitionContainerDefinitionsDetails `type:"list"`
 
-	// The number of CPU units used by the task.
+	// The number of CPU units used by the task.Valid values are as follows:
+	//
+	//    * 256 (.25 vCPU)
+	//
+	//    * 512 (.5 vCPU)
+	//
+	//    * 1024 (1 vCPU)
+	//
+	//    * 2048 (2 vCPU)
+	//
+	//    * 4096 (4 vCPU)
 	Cpu *string `type:"string"`
 
 	// The ARN of the task execution role that grants the container agent permission
@@ -18390,16 +19486,39 @@ type AwsEcsTaskDefinitionDetails struct {
 	// The Elastic Inference accelerators to use for the containers in the task.
 	InferenceAccelerators []*AwsEcsTaskDefinitionInferenceAcceleratorsDetails `type:"list"`
 
-	// The IPC resource namespace to use for the containers in the task.
+	// The inter-process communication (IPC) resource namespace to use for the containers
+	// in the task. Valid values are as follows:
+	//
+	//    * host
+	//
+	//    * none
+	//
+	//    * task
 	IpcMode *string `type:"string"`
 
 	// The amount (in MiB) of memory used by the task.
+	//
+	// For tasks that are hosted on Amazon EC2, you can provide a task-level memory
+	// value or a container-level memory value. For tasks that are hosted on Fargate,
+	// you must use one of the specified values (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size)
+	// in the Amazon Elastic Container Service Developer Guide , which determines
+	// your range of supported values for the Cpu and Memory parameters.
 	Memory *string `type:"string"`
 
-	// The Docker networking mode to use for the containers in the task.
+	// The Docker networking mode to use for the containers in the task. Valid values
+	// are as follows:
+	//
+	//    * awsvpc
+	//
+	//    * bridge
+	//
+	//    * host
+	//
+	//    * none
 	NetworkMode *string `type:"string"`
 
-	// The process namespace to use for the containers in the task.
+	// The process namespace to use for the containers in the task. Valid values
+	// are host or task.
 	PidMode *string `type:"string"`
 
 	// The placement constraint objects to use for tasks.
@@ -18776,7 +19895,7 @@ type AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails struct {
 	// The scope for the Docker volume that determines its lifecycle. Docker volumes
 	// that are scoped to a task are provisioned automatically when the task starts
 	// and destroyed when the task stops. Docker volumes that are shared persist
-	// after the task stops.
+	// after the task stops. Valid values are shared or task.
 	Scope *string `type:"string"`
 }
 
@@ -19401,7 +20520,19 @@ type AwsEksClusterDetails struct {
 	// The certificate authority data for the cluster.
 	CertificateAuthorityData *string `type:"string"`
 
-	// The status of the cluster.
+	// The status of the cluster. Valid values are as follows:
+	//
+	//    * ACTIVE
+	//
+	//    * CREATING
+	//
+	//    * DELETING
+	//
+	//    * FAILED
+	//
+	//    * PENDING
+	//
+	//    * UPDATING
 	ClusterStatus *string `type:"string"`
 
 	// The endpoint for the Amazon EKS API server.
@@ -19503,7 +20634,17 @@ type AwsEksClusterLoggingClusterLoggingDetails struct {
 	// Whether the logging types that are listed in Types are enabled.
 	Enabled *bool `type:"boolean"`
 
-	// A list of logging types.
+	// A list of logging types. Valid values are as follows:
+	//
+	//    * api
+	//
+	//    * audit
+	//
+	//    * authenticator
+	//
+	//    * controllerManager
+	//
+	//    * scheduler
 	Types []*string `type:"list"`
 }
 
@@ -19656,7 +20797,23 @@ type AwsElasticBeanstalkEnvironmentDetails struct {
 	// The name of the solution stack that is deployed with the environment.
 	SolutionStackName *string `type:"string"`
 
-	// The current operational status of the environment.
+	// The current operational status of the environment. Valid values are as follows:
+	//
+	//    * Aborting
+	//
+	//    * Launching
+	//
+	//    * LinkingFrom
+	//
+	//    * LinkingTo
+	//
+	//    * Ready
+	//
+	//    * Terminated
+	//
+	//    * Terminating
+	//
+	//    * Updating
 	Status *string `type:"string"`
 
 	// The tier of the environment.
@@ -19885,10 +21042,10 @@ func (s *AwsElasticBeanstalkEnvironmentOptionSetting) SetValue(v string) *AwsEla
 type AwsElasticBeanstalkEnvironmentTier struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the environment tier.
+	// The name of the environment tier. Valid values are WebServer or Worker.
 	Name *string `type:"string"`
 
-	// The type of environment tier.
+	// The type of environment tier. Valid values are Standard or SQS/HTTP.
 	Type *string `type:"string"`
 
 	// The version of the environment tier.
@@ -20146,14 +21303,22 @@ type AwsElasticsearchDomainElasticsearchClusterConfigDetails struct {
 	DedicatedMasterEnabled *bool `type:"boolean"`
 
 	// The hardware configuration of the computer that hosts the dedicated master
-	// node. For example, m3.medium.elasticsearch. If this attribute is specified,
+	// node. A sample value is m3.medium.elasticsearch. If this attribute is specified,
 	// then DedicatedMasterEnabled must be true.
+	//
+	// For a list of valid values, see Supported instance types in Amazon OpenSearch
+	// Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/supported-instance-types.html)
+	// in the Amazon OpenSearch Service Developer Guide.
 	DedicatedMasterType *string `type:"string"`
 
 	// The number of data nodes to use in the Elasticsearch domain.
 	InstanceCount *int64 `type:"integer"`
 
 	// The instance type for your data nodes. For example, m3.medium.elasticsearch.
+	//
+	// For a list of valid values, see Supported instance types in Amazon OpenSearch
+	// Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/supported-instance-types.html)
+	// in the Amazon OpenSearch Service Developer Guide.
 	InstanceType *string `type:"string"`
 
 	// Configuration options for zone awareness. Provided if ZoneAwarenessEnabled
@@ -20448,7 +21613,17 @@ type AwsElasticsearchDomainServiceSoftwareOptions struct {
 	// Whether a service software update is available for the domain.
 	UpdateAvailable *bool `type:"boolean"`
 
-	// The status of the service software update.
+	// The status of the service software update. Valid values are as follows:
+	//
+	//    * COMPLETED
+	//
+	//    * ELIGIBLE
+	//
+	//    * IN_PROGRESS
+	//
+	//    * NOT_ELIGIBLE
+	//
+	//    * PENDING_UPDATE
 	UpdateStatus *string `type:"string"`
 }
 
@@ -22967,7 +24142,17 @@ type AwsKmsKeyDetails struct {
 	// Whether the key has key rotation enabled.
 	KeyRotationStatus *bool `type:"boolean"`
 
-	// The state of the KMS key.
+	// The state of the KMS key. Valid values are as follows:
+	//
+	//    * Disabled
+	//
+	//    * Enabled
+	//
+	//    * PendingDeletion
+	//
+	//    * PendingImport
+	//
+	//    * Unavailable
 	KeyState *string `type:"string"`
 
 	// The source of the KMS key material.
@@ -24019,6 +25204,10 @@ type AwsOpenSearchServiceDomainClusterConfigDetails struct {
 	InstanceCount *int64 `type:"integer"`
 
 	// The instance type for your data nodes.
+	//
+	// For a list of valid values, see Supported instance types in Amazon OpenSearch
+	// Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/supported-instance-types.html)
+	// in the Amazon OpenSearch Service Developer Guide.
 	InstanceType *string `type:"string"`
 
 	// The number of UltraWarm instances.
@@ -24124,7 +25313,7 @@ type AwsOpenSearchServiceDomainClusterConfigZoneAwarenessConfigDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The number of Availability Zones that the domain uses. Valid values are 2
-	// and 3. The default is 2.
+	// or 3. The default is 2.
 	AvailabilityZoneCount *int64 `type:"integer"`
 }
 
@@ -24625,7 +25814,17 @@ type AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails struct {
 	// Whether a service software update is available for the domain.
 	UpdateAvailable *bool `type:"boolean"`
 
-	// The status of the service software update.
+	// The status of the service software update. Valid values are as follows:
+	//
+	//    * COMPLETED
+	//
+	//    * ELIGIBLE
+	//
+	//    * IN_PROGRESS
+	//
+	//    * NOT_ELIGIBLE
+	//
+	//    * PENDING_UPDATE
 	UpdateStatus *string `type:"string"`
 }
 
@@ -24745,7 +25944,14 @@ type AwsRdsDbClusterAssociatedRole struct {
 	// The ARN of the IAM role.
 	RoleArn *string `type:"string"`
 
-	// The status of the association between the IAM role and the DB cluster.
+	// The status of the association between the IAM role and the DB cluster. Valid
+	// values are as follows:
+	//
+	//    * ACTIVE
+	//
+	//    * INVALID
+	//
+	//    * PENDING
 	Status *string `type:"string"`
 }
 
@@ -24783,7 +25989,15 @@ func (s *AwsRdsDbClusterAssociatedRole) SetStatus(v string) *AwsRdsDbClusterAsso
 type AwsRdsDbClusterDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the database activity stream.
+	// The status of the database activity stream. Valid values are as follows:
+	//
+	//    * started
+	//
+	//    * starting
+	//
+	//    * stopped
+	//
+	//    * stopping
 	ActivityStreamStatus *string `type:"string"`
 
 	// For all database engines except Aurora, specifies the allocated storage size
@@ -24856,10 +26070,27 @@ type AwsRdsDbClusterDetails struct {
 	// The connection endpoint for the primary instance of the DB cluster.
 	Endpoint *string `type:"string"`
 
-	// The name of the database engine to use for this DB cluster.
+	// The name of the database engine to use for this DB cluster. Valid values
+	// are as follows:
+	//
+	//    * aurora
+	//
+	//    * aurora-mysql
+	//
+	//    * aurora-postgresql
 	Engine *string `type:"string"`
 
-	// The database engine mode of the DB cluster.
+	// The database engine mode of the DB cluster.Valid values are as follows:
+	//
+	//    * global
+	//
+	//    * multimaster
+	//
+	//    * parallelquery
+	//
+	//    * provisioned
+	//
+	//    * serverless
 	EngineMode *string `type:"string"`
 
 	// The version number of the database engine to use.
@@ -26514,7 +27745,7 @@ func (s *AwsRdsDbPendingModifiedValues) SetStorageType(v string) *AwsRdsDbPendin
 type AwsRdsDbProcessorFeature struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the processor feature.
+	// The name of the processor feature. Valid values are coreCount or threadsPerCore.
 	Name *string `type:"string"`
 
 	// The value of the processor feature.
@@ -26762,7 +27993,36 @@ type AwsRdsDbSnapshotDetails struct {
 	// Whether the DB snapshot is encrypted.
 	Encrypted *bool `type:"boolean"`
 
-	// The name of the database engine to use for this DB instance.
+	// The name of the database engine to use for this DB instance. Valid values
+	// are as follows:
+	//
+	//    * aurora
+	//
+	//    * aurora-mysql
+	//
+	//    * aurora-postgresql
+	//
+	//    * c
+	//
+	//    * mariadb
+	//
+	//    * mysql
+	//
+	//    * oracle-ee
+	//
+	//    * oracle-se
+	//
+	//    * oracle-se1
+	//
+	//    * oracle-se2
+	//
+	//    * sqlserver-ee
+	//
+	//    * sqlserver-ex
+	//
+	//    * sqlserver-se
+	//
+	//    * sqlserver-web
 	Engine *string `type:"string"`
 
 	// The version of the database engine.
@@ -26817,7 +28077,13 @@ type AwsRdsDbSnapshotDetails struct {
 	// The status of this DB snapshot.
 	Status *string `type:"string"`
 
-	// The storage type associated with the DB snapshot.
+	// The storage type associated with the DB snapshot. Valid values are as follows:
+	//
+	//    * gp2
+	//
+	//    * io1
+	//
+	//    * standard
 	StorageType *string `type:"string"`
 
 	// The ARN from the key store with which to associate the instance for TDE encryption.
@@ -29081,7 +30347,8 @@ type AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails struct {
 	// A tag filter.
 	Tag *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails `type:"structure"`
 
-	// Whether to use AND or OR to join the operands.
+	// Whether to use AND or OR to join the operands. Valid values are LifecycleAndOperator
+	// or LifecycleOrOperator.
 	Type *string `type:"string"`
 }
 
@@ -29137,7 +30404,7 @@ type AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails 
 	// A tag that is assigned to matching objects.
 	Tag *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails `type:"structure"`
 
-	// The type of filter value.
+	// The type of filter value. Valid values are LifecyclePrefixPredicate or LifecycleTagPredicate.
 	Type *string `type:"string"`
 }
 
@@ -29319,7 +30586,17 @@ type AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails struct {
 	// storage class. If you provide Days, you cannot provide Date.
 	Days *int64 `type:"integer"`
 
-	// The storage class to transition the object to.
+	// The storage class to transition the object to. Valid values are as follows:
+	//
+	//    * DEEP_ARCHIVE
+	//
+	//    * GLACIER
+	//
+	//    * INTELLIGENT_TIERING
+	//
+	//    * ONEZONE_IA
+	//
+	//    * STANDARD_IA
 	StorageClass *string `type:"string"`
 }
 
@@ -29368,7 +30645,7 @@ type AwsS3BucketBucketVersioningConfiguration struct {
 	// this attribute is not included.
 	IsMfaDeleteEnabled *bool `type:"boolean"`
 
-	// The versioning status of the S3 bucket.
+	// The versioning status of the S3 bucket. Valid values are Enabled or Suspended.
 	Status *string `type:"string"`
 }
 
@@ -29627,7 +30904,14 @@ type AwsS3BucketNotificationConfigurationDetail struct {
 	Filter *AwsS3BucketNotificationConfigurationFilter `type:"structure"`
 
 	// Indicates the type of notification. Notifications can be generated using
-	// Lambda functions, Amazon SQS queues or Amazon SNS topics.
+	// Lambda functions, Amazon SQS queues, or Amazon SNS topics, with corresponding
+	// valid values as follows:
+	//
+	//    * LambdaConfiguration
+	//
+	//    * QueueConfiguration
+	//
+	//    * TopicConfiguration
 	Type *string `type:"string"`
 }
 
@@ -29788,7 +31072,8 @@ type AwsS3BucketServerSideEncryptionByDefault struct {
 	// KMS key ID to use for the default encryption.
 	KMSMasterKeyID *string `type:"string"`
 
-	// Server-side encryption algorithm to use for the default encryption.
+	// Server-side encryption algorithm to use for the default encryption. Valid
+	// values are aws: kms or AES256.
 	SSEAlgorithm *string `type:"string"`
 }
 
@@ -29954,8 +31239,8 @@ type AwsS3BucketWebsiteConfigurationRedirectTo struct {
 	// The name of the host to redirect requests to.
 	Hostname *string `type:"string"`
 
-	// The protocol to use when redirecting requests. By default, uses the same
-	// protocol as the original request.
+	// The protocol to use when redirecting requests. By default, this field uses
+	// the same protocol as the original request. Valid values are http or https.
 	Protocol *string `type:"string"`
 }
 
@@ -30357,10 +31642,9 @@ func (s *AwsSecretsManagerSecretRotationRules) SetAutomaticallyAfterDays(v int64
 	return s
 }
 
-// Provides consistent format for the contents of the Security Hub-aggregated
-// findings. AwsSecurityFinding format enables you to share findings between
-// Amazon Web Services security services and third-party solutions, and security
-// standards checks.
+// Provides a consistent format for Security Hub findings. AwsSecurityFinding
+// format allows you to share findings between Amazon Web Services security
+// services and third-party solutions.
 //
 // A finding is a potential security issue generated either by Amazon Web Services
 // services or by the integrated third-party solutions and standards checks.
@@ -32258,7 +33542,19 @@ type AwsSsmComplianceSummary struct {
 	// UNSPECIFIED.
 	NonCompliantUnspecifiedCount *int64 `type:"integer"`
 
-	// The highest severity for the patches.
+	// The highest severity for the patches. Valid values are as follows:
+	//
+	//    * CRITICAL
+	//
+	//    * HIGH
+	//
+	//    * MEDIUM
+	//
+	//    * LOW
+	//
+	//    * INFORMATIONAL
+	//
+	//    * UNSPECIFIED
 	OverallSeverity *string `type:"string"`
 
 	// The identifier of the patch baseline. The patch baseline lists the patches
@@ -32270,9 +33566,7 @@ type AwsSsmComplianceSummary struct {
 	// compliance.
 	PatchGroup *string `type:"string"`
 
-	// The current patch compliance status.
-	//
-	// The possible status values are:
+	// The current patch compliance status. Valid values are as follows:
 	//
 	//    * COMPLIANT
 	//
@@ -32572,7 +33866,21 @@ type AwsWafRateBasedRuleMatchPredicate struct {
 	// those that match the predicate settings.
 	Negated *bool `type:"boolean"`
 
-	// The type of predicate.
+	// The type of predicate. Valid values are as follows:
+	//
+	//    * ByteMatch
+	//
+	//    * GeoMatch
+	//
+	//    * IPMatch
+	//
+	//    * RegexMatch
+	//
+	//    * SizeConstraint
+	//
+	//    * SqlInjectionMatch
+	//
+	//    * XssMatch
 	Type *string `type:"string"`
 }
 
@@ -32711,7 +34019,21 @@ type AwsWafRegionalRateBasedRuleMatchPredicate struct {
 	// those that match the predicate settings.
 	Negated *bool `type:"boolean"`
 
-	// The type of predicate.
+	// The type of predicate. Valid values are as follows:
+	//
+	//    * ByteMatch
+	//
+	//    * GeoMatch
+	//
+	//    * IPMatch
+	//
+	//    * RegexMatch
+	//
+	//    * SizeConstraint
+	//
+	//    * SqlInjectionMatch
+	//
+	//    * XssMatch
 	Type *string `type:"string"`
 }
 
@@ -33677,12 +34999,14 @@ type AwsXrayEncryptionConfigDetails struct {
 	// is KMS.
 	KeyId *string `type:"string"`
 
-	// The current status of the encryption configuration. When Status is UPDATING,
-	// X-Ray might use both the old and new encryption.
+	// The current status of the encryption configuration. Valid values are ACTIVE
+	// or UPDATING.
+	//
+	// When Status is equal to UPDATING, X-Ray might use both the old and new encryption.
 	Status *string `type:"string"`
 
 	// The type of encryption. KMS indicates that the encryption uses KMS keys.
-	// NONE indicates to use the default encryption.
+	// NONE indicates the default encryption.
 	Type *string `type:"string"`
 }
 
@@ -34251,24 +35575,27 @@ type BatchUpdateFindingsUnprocessedFinding struct {
 
 	// The code associated with the error. Possible values are:
 	//
-	//    * ConcurrentUpdateError - Another process or request attempted to update
-	//    the finding while this request was being processed
+	//    * ConcurrentUpdateError - Another request attempted to update the finding
+	//    while this request was being processed. This error may also occur if you
+	//    call BatchUpdateFindings (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateFindings.html)
+	//    and BatchImportFindings (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchImportFindings.html)
+	//    at the same time.
 	//
 	//    * DuplicatedFindingIdentifier - The request included two or more findings
-	//    with the same FindingIdentifier
+	//    with the same FindingIdentifier.
 	//
 	//    * FindingNotFound - The FindingIdentifier included in the request did
-	//    not match an existing finding
+	//    not match an existing finding.
 	//
 	//    * FindingSizeExceeded - The finding size was greater than the permissible
-	//    value of 240 KB
+	//    value of 240 KB.
 	//
 	//    * InternalFailure - An internal service failure occurred when updating
-	//    the finding
+	//    the finding.
 	//
 	//    * InvalidInput - The finding update contained an invalid value that did
 	//    not satisfy the Amazon Web Services Security Finding Format (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html)
-	//    syntax
+	//    syntax.
 	//
 	// ErrorCode is a required field
 	ErrorCode *string `type:"string" required:"true"`
@@ -39251,7 +40578,19 @@ type Ipv6CidrBlockAssociation struct {
 	// The association ID for the IPv6 CIDR block.
 	AssociationId *string `type:"string"`
 
-	// Information about the state of the CIDR block.
+	// Information about the state of the CIDR block. Valid values are as follows:
+	//
+	//    * associating
+	//
+	//    * associated
+	//
+	//    * disassociating
+	//
+	//    * disassociated
+	//
+	//    * failed
+	//
+	//    * failing
 	CidrBlockState *string `type:"string"`
 
 	// The IPv6 CIDR block.
@@ -41966,6 +43305,15 @@ type ResourceDetails struct {
 	// Provides details about a launch configuration.
 	AwsAutoScalingLaunchConfiguration *AwsAutoScalingLaunchConfigurationDetails `type:"structure"`
 
+	// Provides details about an Backup backup plan.
+	AwsBackupBackupPlan *AwsBackupBackupPlanDetails `type:"structure"`
+
+	// Provides details about an Backup backup vault.
+	AwsBackupBackupVault *AwsBackupBackupVaultDetails `type:"structure"`
+
+	// Provides details about an Backup backup, or recovery point.
+	AwsBackupRecoveryPoint *AwsBackupRecoveryPointDetails `type:"structure"`
+
 	// Provides details about an Certificate Manager certificate.
 	AwsCertificateManagerCertificate *AwsCertificateManagerCertificateDetails `type:"structure"`
 
@@ -42263,6 +43611,24 @@ func (s *ResourceDetails) SetAwsAutoScalingAutoScalingGroup(v *AwsAutoScalingAut
 // SetAwsAutoScalingLaunchConfiguration sets the AwsAutoScalingLaunchConfiguration field's value.
 func (s *ResourceDetails) SetAwsAutoScalingLaunchConfiguration(v *AwsAutoScalingLaunchConfigurationDetails) *ResourceDetails {
 	s.AwsAutoScalingLaunchConfiguration = v
+	return s
+}
+
+// SetAwsBackupBackupPlan sets the AwsBackupBackupPlan field's value.
+func (s *ResourceDetails) SetAwsBackupBackupPlan(v *AwsBackupBackupPlanDetails) *ResourceDetails {
+	s.AwsBackupBackupPlan = v
+	return s
+}
+
+// SetAwsBackupBackupVault sets the AwsBackupBackupVault field's value.
+func (s *ResourceDetails) SetAwsBackupBackupVault(v *AwsBackupBackupVaultDetails) *ResourceDetails {
+	s.AwsBackupBackupVault = v
+	return s
+}
+
+// SetAwsBackupRecoveryPoint sets the AwsBackupRecoveryPoint field's value.
+func (s *ResourceDetails) SetAwsBackupRecoveryPoint(v *AwsBackupRecoveryPointDetails) *ResourceDetails {
+	s.AwsBackupRecoveryPoint = v
 	return s
 }
 
@@ -43971,6 +45337,9 @@ type SoftwarePackage struct {
 	// The file system path to the package manager inventory file.
 	FilePath *string `type:"string"`
 
+	// The version of the software package in which the vulnerability has been resolved.
+	FixedInVersion *string `type:"string"`
+
 	// The name of the software package.
 	Name *string `type:"string"`
 
@@ -43979,6 +45348,10 @@ type SoftwarePackage struct {
 
 	// The release of the software package.
 	Release *string `type:"string"`
+
+	// Describes the actions a customer can take to resolve the vulnerability in
+	// the software package.
+	Remediation *string `type:"string"`
 
 	// The version of the software package.
 	Version *string `type:"string"`
@@ -44020,6 +45393,12 @@ func (s *SoftwarePackage) SetFilePath(v string) *SoftwarePackage {
 	return s
 }
 
+// SetFixedInVersion sets the FixedInVersion field's value.
+func (s *SoftwarePackage) SetFixedInVersion(v string) *SoftwarePackage {
+	s.FixedInVersion = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *SoftwarePackage) SetName(v string) *SoftwarePackage {
 	s.Name = &v
@@ -44035,6 +45414,12 @@ func (s *SoftwarePackage) SetPackageManager(v string) *SoftwarePackage {
 // SetRelease sets the Release field's value.
 func (s *SoftwarePackage) SetRelease(v string) *SoftwarePackage {
 	s.Release = &v
+	return s
+}
+
+// SetRemediation sets the Remediation field's value.
+func (s *SoftwarePackage) SetRemediation(v string) *SoftwarePackage {
+	s.Remediation = &v
 	return s
 }
 
@@ -45856,6 +47241,19 @@ type Vulnerability struct {
 	// CVSS scores from the advisory related to the vulnerability.
 	Cvss []*Cvss `type:"list"`
 
+	// Specifies if all vulnerable packages in a finding have a value for FixedInVersion
+	// and Remediation. This field is evaluated for each vulnerability Id based
+	// on the number of vulnerable packages that have a value for both FixedInVersion
+	// and Remediation. Valid values are as follows:
+	//
+	//    * YES if all vulnerable packages have a value for both FixedInVersion
+	//    and Remediation
+	//
+	//    * NO if no vulnerable packages have a value for FixedInVersion and Remediation
+	//
+	//    * PARTIAL otherwise
+	FixAvailable *string `type:"string" enum:"VulnerabilityFixAvailable"`
+
 	// The identifier of the vulnerability.
 	//
 	// Id is a required field
@@ -45913,6 +47311,12 @@ func (s *Vulnerability) Validate() error {
 // SetCvss sets the Cvss field's value.
 func (s *Vulnerability) SetCvss(v []*Cvss) *Vulnerability {
 	s.Cvss = v
+	return s
+}
+
+// SetFixAvailable sets the FixAvailable field's value.
+func (s *Vulnerability) SetFixAvailable(v string) *Vulnerability {
+	s.FixAvailable = &v
 	return s
 }
 
@@ -46785,6 +48189,26 @@ func VerificationState_Values() []string {
 		VerificationStateTruePositive,
 		VerificationStateFalsePositive,
 		VerificationStateBenignPositive,
+	}
+}
+
+const (
+	// VulnerabilityFixAvailableYes is a VulnerabilityFixAvailable enum value
+	VulnerabilityFixAvailableYes = "YES"
+
+	// VulnerabilityFixAvailableNo is a VulnerabilityFixAvailable enum value
+	VulnerabilityFixAvailableNo = "NO"
+
+	// VulnerabilityFixAvailablePartial is a VulnerabilityFixAvailable enum value
+	VulnerabilityFixAvailablePartial = "PARTIAL"
+)
+
+// VulnerabilityFixAvailable_Values returns all elements of the VulnerabilityFixAvailable enum
+func VulnerabilityFixAvailable_Values() []string {
+	return []string{
+		VulnerabilityFixAvailableYes,
+		VulnerabilityFixAvailableNo,
+		VulnerabilityFixAvailablePartial,
 	}
 }
 

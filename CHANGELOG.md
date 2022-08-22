@@ -1,3 +1,18 @@
+Release v1.44.82 (2022-08-22)
+===
+
+### Service Client Updates
+* `service/docdb`: Updates service documentation
+  * Update document for volume clone
+* `service/ec2`: Updates service API
+  * R6a instances are powered by 3rd generation AMD EPYC (Milan) processors delivering all-core turbo frequency of 3.6 GHz. C6id, M6id, and R6id instances are powered by 3rd generation Intel Xeon Scalable processor (Ice Lake) delivering all-core turbo frequency of 3.5 GHz.
+* `service/forecast`: Updates service API, documentation, and paginators
+* `service/forecastquery`: Updates service API and documentation
+* `service/iotsitewise`: Updates service API
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/securityhub`: Updates service API and documentation
+* `service/support-app`: Adds new service
+
 Release v1.44.81 (2022-08-19)
 ===
 

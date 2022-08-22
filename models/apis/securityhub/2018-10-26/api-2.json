@@ -1337,6 +1337,134 @@
         "HttpTokens":{"shape":"NonEmptyString"}
       }
     },
+    "AwsBackupBackupPlanAdvancedBackupSettingsDetails":{
+      "type":"structure",
+      "members":{
+        "BackupOptions":{"shape":"FieldMap"},
+        "ResourceType":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsBackupBackupPlanAdvancedBackupSettingsList":{
+      "type":"list",
+      "member":{"shape":"AwsBackupBackupPlanAdvancedBackupSettingsDetails"}
+    },
+    "AwsBackupBackupPlanBackupPlanDetails":{
+      "type":"structure",
+      "members":{
+        "BackupPlanName":{"shape":"NonEmptyString"},
+        "AdvancedBackupSettings":{"shape":"AwsBackupBackupPlanAdvancedBackupSettingsList"},
+        "BackupPlanRule":{"shape":"AwsBackupBackupPlanRuleList"}
+      }
+    },
+    "AwsBackupBackupPlanDetails":{
+      "type":"structure",
+      "members":{
+        "BackupPlan":{"shape":"AwsBackupBackupPlanBackupPlanDetails"},
+        "BackupPlanArn":{"shape":"NonEmptyString"},
+        "BackupPlanId":{"shape":"NonEmptyString"},
+        "VersionId":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsBackupBackupPlanLifecycleDetails":{
+      "type":"structure",
+      "members":{
+        "DeleteAfterDays":{"shape":"Long"},
+        "MoveToColdStorageAfterDays":{"shape":"Long"}
+      }
+    },
+    "AwsBackupBackupPlanRuleCopyActionsDetails":{
+      "type":"structure",
+      "members":{
+        "DestinationBackupVaultArn":{"shape":"NonEmptyString"},
+        "Lifecycle":{"shape":"AwsBackupBackupPlanLifecycleDetails"}
+      }
+    },
+    "AwsBackupBackupPlanRuleCopyActionsList":{
+      "type":"list",
+      "member":{"shape":"AwsBackupBackupPlanRuleCopyActionsDetails"}
+    },
+    "AwsBackupBackupPlanRuleDetails":{
+      "type":"structure",
+      "members":{
+        "TargetBackupVault":{"shape":"NonEmptyString"},
+        "StartWindowMinutes":{"shape":"Long"},
+        "ScheduleExpression":{"shape":"NonEmptyString"},
+        "RuleName":{"shape":"NonEmptyString"},
+        "RuleId":{"shape":"NonEmptyString"},
+        "EnableContinuousBackup":{"shape":"Boolean"},
+        "CompletionWindowMinutes":{"shape":"Long"},
+        "CopyActions":{"shape":"AwsBackupBackupPlanRuleCopyActionsList"},
+        "Lifecycle":{"shape":"AwsBackupBackupPlanLifecycleDetails"}
+      }
+    },
+    "AwsBackupBackupPlanRuleList":{
+      "type":"list",
+      "member":{"shape":"AwsBackupBackupPlanRuleDetails"}
+    },
+    "AwsBackupBackupVaultDetails":{
+      "type":"structure",
+      "members":{
+        "BackupVaultArn":{"shape":"NonEmptyString"},
+        "BackupVaultName":{"shape":"NonEmptyString"},
+        "EncryptionKeyArn":{"shape":"NonEmptyString"},
+        "Notifications":{"shape":"AwsBackupBackupVaultNotificationsDetails"},
+        "AccessPolicy":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsBackupBackupVaultNotificationsDetails":{
+      "type":"structure",
+      "members":{
+        "BackupVaultEvents":{"shape":"NonEmptyStringList"},
+        "SnsTopicArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsBackupRecoveryPointCalculatedLifecycleDetails":{
+      "type":"structure",
+      "members":{
+        "DeleteAt":{"shape":"NonEmptyString"},
+        "MoveToColdStorageAt":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsBackupRecoveryPointCreatedByDetails":{
+      "type":"structure",
+      "members":{
+        "BackupPlanArn":{"shape":"NonEmptyString"},
+        "BackupPlanId":{"shape":"NonEmptyString"},
+        "BackupPlanVersion":{"shape":"NonEmptyString"},
+        "BackupRuleId":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsBackupRecoveryPointDetails":{
+      "type":"structure",
+      "members":{
+        "BackupSizeInBytes":{"shape":"Long"},
+        "BackupVaultArn":{"shape":"NonEmptyString"},
+        "BackupVaultName":{"shape":"NonEmptyString"},
+        "CalculatedLifecycle":{"shape":"AwsBackupRecoveryPointCalculatedLifecycleDetails"},
+        "CompletionDate":{"shape":"NonEmptyString"},
+        "CreatedBy":{"shape":"AwsBackupRecoveryPointCreatedByDetails"},
+        "CreationDate":{"shape":"NonEmptyString"},
+        "EncryptionKeyArn":{"shape":"NonEmptyString"},
+        "IamRoleArn":{"shape":"NonEmptyString"},
+        "IsEncrypted":{"shape":"Boolean"},
+        "LastRestoreTime":{"shape":"NonEmptyString"},
+        "Lifecycle":{"shape":"AwsBackupRecoveryPointLifecycleDetails"},
+        "RecoveryPointArn":{"shape":"NonEmptyString"},
+        "ResourceArn":{"shape":"NonEmptyString"},
+        "ResourceType":{"shape":"NonEmptyString"},
+        "SourceBackupVaultArn":{"shape":"NonEmptyString"},
+        "Status":{"shape":"NonEmptyString"},
+        "StatusMessage":{"shape":"NonEmptyString"},
+        "StorageClass":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsBackupRecoveryPointLifecycleDetails":{
+      "type":"structure",
+      "members":{
+        "DeleteAfterDays":{"shape":"Long"},
+        "MoveToColdStorageAfterDays":{"shape":"Long"}
+      }
+    },
     "AwsCertificateManagerCertificateDetails":{
       "type":"structure",
       "members":{
@@ -6947,7 +7075,10 @@
         "AwsWafRegionalWebAcl":{"shape":"AwsWafRegionalWebAclDetails"},
         "AwsWafRule":{"shape":"AwsWafRuleDetails"},
         "AwsWafRuleGroup":{"shape":"AwsWafRuleGroupDetails"},
-        "AwsEcsTask":{"shape":"AwsEcsTaskDetails"}
+        "AwsEcsTask":{"shape":"AwsEcsTaskDetails"},
+        "AwsBackupBackupVault":{"shape":"AwsBackupBackupVaultDetails"},
+        "AwsBackupBackupPlan":{"shape":"AwsBackupBackupPlanDetails"},
+        "AwsBackupRecoveryPoint":{"shape":"AwsBackupRecoveryPointDetails"}
       }
     },
     "ResourceList":{
@@ -7233,7 +7364,9 @@
         "Release":{"shape":"NonEmptyString"},
         "Architecture":{"shape":"NonEmptyString"},
         "PackageManager":{"shape":"NonEmptyString"},
-        "FilePath":{"shape":"NonEmptyString"}
+        "FilePath":{"shape":"NonEmptyString"},
+        "FixedInVersion":{"shape":"NonEmptyString"},
+        "Remediation":{"shape":"NonEmptyString"}
       }
     },
     "SoftwarePackageList":{
@@ -7718,8 +7851,17 @@
         "Cvss":{"shape":"CvssList"},
         "RelatedVulnerabilities":{"shape":"StringList"},
         "Vendor":{"shape":"VulnerabilityVendor"},
-        "ReferenceUrls":{"shape":"StringList"}
+        "ReferenceUrls":{"shape":"StringList"},
+        "FixAvailable":{"shape":"VulnerabilityFixAvailable"}
       }
+    },
+    "VulnerabilityFixAvailable":{
+      "type":"string",
+      "enum":[
+        "YES",
+        "NO",
+        "PARTIAL"
+      ]
     },
     "VulnerabilityList":{
       "type":"list",
