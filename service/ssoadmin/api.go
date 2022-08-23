@@ -282,6 +282,9 @@ func (c *SSOAdmin) CreateAccountAssignmentRequest(input *CreateAccountAssignment
 // policies attached to roles in your accounts will not be updated automatically.
 // In this case, you must call ProvisionPermissionSet to make these updates.
 //
+// After a successful response, call DescribeAccountAssignmentCreationStatus
+// to describe the status of an assignment creation request.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -389,6 +392,9 @@ func (c *SSOAdmin) CreateInstanceAccessControlAttributeConfigurationRequest(inpu
 // add to your ABAC configuration during the enabling process. For more information
 // about ABAC, see Attribute-Based Access Control (/singlesignon/latest/userguide/abac.html)
 // in the Amazon Web Services SSO User Guide.
+//
+// After a successful response, call DescribeInstanceAccessControlAttributeConfiguration
+// to validate that InstanceAccessControlAttributeConfiguration was created.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -595,6 +601,9 @@ func (c *SSOAdmin) DeleteAccountAssignmentRequest(input *DeleteAccountAssignment
 //
 // Deletes a principal's access from a specified Amazon Web Services account
 // using a specified permission set.
+//
+// After a successful response, call DescribeAccountAssignmentCreationStatus
+// to describe the status of an assignment deletion request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

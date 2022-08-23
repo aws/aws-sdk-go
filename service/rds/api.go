@@ -15015,6 +15015,90 @@ func (c *RDS) StopDBInstanceAutomatedBackupsReplicationWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opSwitchoverReadReplica = "SwitchoverReadReplica"
+
+// SwitchoverReadReplicaRequest generates a "aws/request.Request" representing the
+// client's request for the SwitchoverReadReplica operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SwitchoverReadReplica for more information on using the SwitchoverReadReplica
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SwitchoverReadReplicaRequest method.
+//	req, resp := client.SwitchoverReadReplicaRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/SwitchoverReadReplica
+func (c *RDS) SwitchoverReadReplicaRequest(input *SwitchoverReadReplicaInput) (req *request.Request, output *SwitchoverReadReplicaOutput) {
+	op := &request.Operation{
+		Name:       opSwitchoverReadReplica,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SwitchoverReadReplicaInput{}
+	}
+
+	output = &SwitchoverReadReplicaOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SwitchoverReadReplica API operation for Amazon Relational Database Service.
+//
+// Switches over an Oracle standby database in an Oracle Data Guard environment,
+// making it the new primary database. Issue this command in the AWS Region
+// that hosts the current standby database.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation SwitchoverReadReplica for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeDBInstanceNotFoundFault "DBInstanceNotFound"
+//     DBInstanceIdentifier doesn't refer to an existing DB instance.
+//
+//   - ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
+//     The DB instance isn't in a valid state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/SwitchoverReadReplica
+func (c *RDS) SwitchoverReadReplica(input *SwitchoverReadReplicaInput) (*SwitchoverReadReplicaOutput, error) {
+	req, out := c.SwitchoverReadReplicaRequest(input)
+	return out, req.Send()
+}
+
+// SwitchoverReadReplicaWithContext is the same as SwitchoverReadReplica with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SwitchoverReadReplica for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) SwitchoverReadReplicaWithContext(ctx aws.Context, input *SwitchoverReadReplicaInput, opts ...request.Option) (*SwitchoverReadReplicaOutput, error) {
+	req, out := c.SwitchoverReadReplicaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Describes a quota for an Amazon Web Services account.
 //
 // The following are account quotas:
@@ -27283,6 +27367,17 @@ type DBSnapshot struct {
 	// Changes for the copy when the snapshot is copied.
 	SnapshotCreateTime *time.Time `type:"timestamp"`
 
+	// The timestamp of the most recent transaction applied to the database that
+	// you're backing up. Thus, if you restore a snapshot, SnapshotDatabaseTime
+	// is the most recent transaction in the restored DB instance. In contrast,
+	// originalSnapshotCreateTime specifies the system time that the snapshot completed.
+	//
+	// If you back up a read replica, you can determine the replica lag by comparing
+	// SnapshotDatabaseTime with originalSnapshotCreateTime. For example, if originalSnapshotCreateTime
+	// is two hours later than SnapshotDatabaseTime, then the replica lag is two
+	// hours. *** REVIEWERS 7/27: Switchover
+	SnapshotDatabaseTime *time.Time `type:"timestamp"`
+
 	// Specifies where manual snapshots are stored: Amazon Web Services Outposts
 	// or the Amazon Web Services Region.
 	SnapshotTarget *string `type:"string"`
@@ -27462,6 +27557,12 @@ func (s *DBSnapshot) SetProcessorFeatures(v []*ProcessorFeature) *DBSnapshot {
 // SetSnapshotCreateTime sets the SnapshotCreateTime field's value.
 func (s *DBSnapshot) SetSnapshotCreateTime(v time.Time) *DBSnapshot {
 	s.SnapshotCreateTime = &v
+	return s
+}
+
+// SetSnapshotDatabaseTime sets the SnapshotDatabaseTime field's value.
+func (s *DBSnapshot) SetSnapshotDatabaseTime(v time.Time) *DBSnapshot {
+	s.SnapshotDatabaseTime = &v
 	return s
 }
 
@@ -50224,6 +50325,93 @@ func (s *Subnet) SetSubnetOutpost(v *Outpost) *Subnet {
 // SetSubnetStatus sets the SubnetStatus field's value.
 func (s *Subnet) SetSubnetStatus(v string) *Subnet {
 	s.SubnetStatus = &v
+	return s
+}
+
+type SwitchoverReadReplicaInput struct {
+	_ struct{} `type:"structure"`
+
+	// The DB instance identifier of the current standby database. This value is
+	// stored as a lowercase string.
+	//
+	// Constraints:
+	//
+	//    * Must match the identiﬁer of an existing Oracle read replica DB instance.
+	//
+	// DBInstanceIdentifier is a required field
+	DBInstanceIdentifier *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverReadReplicaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverReadReplicaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SwitchoverReadReplicaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SwitchoverReadReplicaInput"}
+	if s.DBInstanceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBInstanceIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *SwitchoverReadReplicaInput) SetDBInstanceIdentifier(v string) *SwitchoverReadReplicaInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+type SwitchoverReadReplicaOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the details of an Amazon RDS DB instance.
+	//
+	// This data type is used as a response element in the operations CreateDBInstance,
+	// CreateDBInstanceReadReplica, DeleteDBInstance, DescribeDBInstances, ModifyDBInstance,
+	// PromoteReadReplica, RebootDBInstance, RestoreDBInstanceFromDBSnapshot, RestoreDBInstanceFromS3,
+	// RestoreDBInstanceToPointInTime, StartDBInstance, and StopDBInstance.
+	DBInstance *DBInstance `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverReadReplicaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverReadReplicaOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBInstance sets the DBInstance field's value.
+func (s *SwitchoverReadReplicaOutput) SetDBInstance(v *DBInstance) *SwitchoverReadReplicaOutput {
+	s.DBInstance = v
 	return s
 }
 

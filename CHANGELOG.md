@@ -1,3 +1,11 @@
+Release v1.44.83 (2022-08-23)
+===
+
+### Service Client Updates
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * RDS for Oracle supports Oracle Data Guard switchover and read replica backups.
+* `service/sso-admin`: Updates service documentation
+
 Release v1.44.82 (2022-08-22)
 ===
 
