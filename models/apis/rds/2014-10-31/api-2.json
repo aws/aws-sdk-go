@@ -2395,6 +2395,22 @@
         {"shape":"DBInstanceNotFoundFault"},
         {"shape":"InvalidDBInstanceStateFault"}
       ]
+    },
+    "SwitchoverReadReplica":{
+      "name":"SwitchoverReadReplica",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SwitchoverReadReplicaMessage"},
+      "output":{
+        "shape":"SwitchoverReadReplicaResult",
+        "resultWrapper":"SwitchoverReadReplicaResult"
+      },
+      "errors":[
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"InvalidDBInstanceStateFault"}
+      ]
     }
   },
   "shapes":{
@@ -4573,6 +4589,7 @@
         "DbiResourceId":{"shape":"String"},
         "TagList":{"shape":"TagList"},
         "OriginalSnapshotCreateTime":{"shape":"TStamp"},
+        "SnapshotDatabaseTime":{"shape":"TStamp"},
         "SnapshotTarget":{"shape":"String"}
       },
       "wrapper":true
@@ -8134,6 +8151,19 @@
       "member":{
         "shape":"Timezone",
         "locationName":"Timezone"
+      }
+    },
+    "SwitchoverReadReplicaMessage":{
+      "type":"structure",
+      "required":["DBInstanceIdentifier"],
+      "members":{
+        "DBInstanceIdentifier":{"shape":"String"}
+      }
+    },
+    "SwitchoverReadReplicaResult":{
+      "type":"structure",
+      "members":{
+        "DBInstance":{"shape":"DBInstance"}
       }
     },
     "TStamp":{"type":"timestamp"},

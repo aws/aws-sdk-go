@@ -3,6 +3,33 @@
 // Package ssoadmin provides the client and types for making API
 // requests to AWS Single Sign-On Admin.
 //
+// Amazon Web Services Single Sign On helps you securely create, or connect,
+// your workforce identities and manage their access centrally across Amazon
+// Web Services accounts and applications. Amazon Web Services SSO is the recommended
+// approach for workforce authentication and authorization in Amazon Web Services,
+// for organizations of any size and type.
+//
+// Although Amazon Web Services Single Sign-On was renamed, the sso and identitystore
+// API namespaces will continue to retain their original name for backward compatibility
+// purposes. For more information, see Amazon Web Services SSO rename (https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html#renamed).
+//
+// This reference guide provides information on single sign-on operations which
+// could be used for access management of Amazon Web Services accounts. For
+// information about Amazon Web Services SSO features, see the Amazon Web Services
+// SSO User Guide (https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html).
+//
+// Many operations in the Amazon Web Services SSO APIs rely on identifiers for
+// users and groups, known as principals. For more information about how to
+// work with principals and principal IDs in Amazon Web Services SSO, see the
+// Identity Store API Reference (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/welcome.html).
+//
+// Amazon Web Services provides SDKs that consist of libraries and sample code
+// for various programming languages and platforms (Java, Ruby, .Net, iOS, Android,
+// and more). The SDKs provide a convenient way to create programmatic access
+// to Amazon Web Services SSO and other Amazon Web Services services. For more
+// information about the Amazon Web Services SDKs, including how to download
+// and install them, see Tools for Amazon Web Services (http://aws.amazon.com/tools/).
+//
 // See https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20 for more information on this service.
 //
 // See ssoadmin package documentation for more information.
