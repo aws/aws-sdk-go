@@ -1916,7 +1916,8 @@
         "DeliveryS3KeyPrefix":{"shape":"DeliveryS3KeyPrefix"},
         "ConformancePackInputParameters":{"shape":"ConformancePackInputParameters"},
         "LastUpdateRequestedTime":{"shape":"Date"},
-        "CreatedBy":{"shape":"StringWithCharLimit256"}
+        "CreatedBy":{"shape":"StringWithCharLimit256"},
+        "TemplateSSMDocumentDetails":{"shape":"TemplateSSMDocumentDetails"}
       }
     },
     "ConformancePackDetailList":{
@@ -3965,7 +3966,8 @@
         "TemplateBody":{"shape":"TemplateBody"},
         "DeliveryS3Bucket":{"shape":"DeliveryS3Bucket"},
         "DeliveryS3KeyPrefix":{"shape":"DeliveryS3KeyPrefix"},
-        "ConformancePackInputParameters":{"shape":"ConformancePackInputParameters"}
+        "ConformancePackInputParameters":{"shape":"ConformancePackInputParameters"},
+        "TemplateSSMDocumentDetails":{"shape":"TemplateSSMDocumentDetails"}
       }
     },
     "PutConformancePackResponse":{
@@ -4668,6 +4670,14 @@
       "max":50,
       "min":0
     },
+    "SSMDocumentName":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_\\-.:/]{3,200}$"
+    },
+    "SSMDocumentVersion":{
+      "type":"string",
+      "pattern":"([$]LATEST|[$]DEFAULT|^[1-9][0-9]*$)"
+    },
     "SchemaVersionId":{
       "type":"string",
       "max":128,
@@ -4977,6 +4987,14 @@
       "max":1024,
       "min":1,
       "pattern":"s3://.*"
+    },
+    "TemplateSSMDocumentDetails":{
+      "type":"structure",
+      "required":["DocumentName"],
+      "members":{
+        "DocumentName":{"shape":"SSMDocumentName"},
+        "DocumentVersion":{"shape":"SSMDocumentVersion"}
+      }
     },
     "TooManyTagsException":{
       "type":"structure",

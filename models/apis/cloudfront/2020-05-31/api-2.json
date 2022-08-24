@@ -79,6 +79,9 @@
         {"shape":"DistributionAlreadyExists"},
         {"shape":"InvalidOrigin"},
         {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
+        {"shape":"IllegalOriginAccessConfiguration"},
+        {"shape":"TooManyDistributionsAssociatedToOriginAccessControl"},
         {"shape":"AccessDenied"},
         {"shape":"TooManyTrustedSigners"},
         {"shape":"TrustedSignerDoesNotExist"},
@@ -133,7 +136,8 @@
         {"shape":"TooManyKeyGroupsAssociatedToDistribution"},
         {"shape":"TrustedKeyGroupDoesNotExist"},
         {"shape":"NoSuchRealtimeLogConfig"},
-        {"shape":"RealtimeLogConfigOwnerMismatch"}
+        {"shape":"RealtimeLogConfigOwnerMismatch"},
+        {"shape":"InvalidDomainNameForOriginAccessControl"}
       ]
     },
     "CreateDistributionWithTags":{
@@ -150,6 +154,7 @@
         {"shape":"DistributionAlreadyExists"},
         {"shape":"InvalidOrigin"},
         {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
         {"shape":"AccessDenied"},
         {"shape":"TooManyTrustedSigners"},
         {"shape":"TrustedSignerDoesNotExist"},
@@ -205,7 +210,8 @@
         {"shape":"TooManyKeyGroupsAssociatedToDistribution"},
         {"shape":"TrustedKeyGroupDoesNotExist"},
         {"shape":"NoSuchRealtimeLogConfig"},
-        {"shape":"RealtimeLogConfigOwnerMismatch"}
+        {"shape":"RealtimeLogConfigOwnerMismatch"},
+        {"shape":"InvalidDomainNameForOriginAccessControl"}
       ]
     },
     "CreateFieldLevelEncryptionConfig":{
@@ -308,14 +314,30 @@
       "name":"CreateMonitoringSubscription2020_05_31",
       "http":{
         "method":"POST",
-        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription"
+        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription/"
       },
       "input":{"shape":"CreateMonitoringSubscriptionRequest"},
       "output":{"shape":"CreateMonitoringSubscriptionResult"},
       "errors":[
         {"shape":"AccessDenied"},
         {"shape":"NoSuchDistribution"},
+        {"shape":"MonitoringSubscriptionAlreadyExists"},
         {"shape":"UnsupportedOperation"}
+      ]
+    },
+    "CreateOriginAccessControl":{
+      "name":"CreateOriginAccessControl2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/origin-access-control",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateOriginAccessControlRequest"},
+      "output":{"shape":"CreateOriginAccessControlResult"},
+      "errors":[
+        {"shape":"OriginAccessControlAlreadyExists"},
+        {"shape":"TooManyOriginAccessControls"},
+        {"shape":"InvalidArgument"}
       ]
     },
     "CreateOriginRequestPolicy":{
@@ -406,6 +428,7 @@
         {"shape":"StreamingDistributionAlreadyExists"},
         {"shape":"InvalidOrigin"},
         {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
         {"shape":"AccessDenied"},
         {"shape":"TooManyTrustedSigners"},
         {"shape":"TrustedSignerDoesNotExist"},
@@ -430,6 +453,7 @@
         {"shape":"StreamingDistributionAlreadyExists"},
         {"shape":"InvalidOrigin"},
         {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
         {"shape":"AccessDenied"},
         {"shape":"TooManyTrustedSigners"},
         {"shape":"TrustedSignerDoesNotExist"},
@@ -557,14 +581,31 @@
       "name":"DeleteMonitoringSubscription2020_05_31",
       "http":{
         "method":"DELETE",
-        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription"
+        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription/"
       },
       "input":{"shape":"DeleteMonitoringSubscriptionRequest"},
       "output":{"shape":"DeleteMonitoringSubscriptionResult"},
       "errors":[
         {"shape":"AccessDenied"},
         {"shape":"NoSuchDistribution"},
+        {"shape":"NoSuchMonitoringSubscription"},
         {"shape":"UnsupportedOperation"}
+      ]
+    },
+    "DeleteOriginAccessControl":{
+      "name":"DeleteOriginAccessControl2020_05_31",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2020-05-31/origin-access-control/{Id}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteOriginAccessControlRequest"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"NoSuchOriginAccessControl"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"OriginAccessControlInUse"}
       ]
     },
     "DeleteOriginRequestPolicy":{
@@ -850,14 +891,41 @@
       "name":"GetMonitoringSubscription2020_05_31",
       "http":{
         "method":"GET",
-        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription"
+        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription/"
       },
       "input":{"shape":"GetMonitoringSubscriptionRequest"},
       "output":{"shape":"GetMonitoringSubscriptionResult"},
       "errors":[
         {"shape":"AccessDenied"},
         {"shape":"NoSuchDistribution"},
+        {"shape":"NoSuchMonitoringSubscription"},
         {"shape":"UnsupportedOperation"}
+      ]
+    },
+    "GetOriginAccessControl":{
+      "name":"GetOriginAccessControl2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/origin-access-control/{Id}"
+      },
+      "input":{"shape":"GetOriginAccessControlRequest"},
+      "output":{"shape":"GetOriginAccessControlResult"},
+      "errors":[
+        {"shape":"NoSuchOriginAccessControl"},
+        {"shape":"AccessDenied"}
+      ]
+    },
+    "GetOriginAccessControlConfig":{
+      "name":"GetOriginAccessControlConfig2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/origin-access-control/{Id}/config"
+      },
+      "input":{"shape":"GetOriginAccessControlConfigRequest"},
+      "output":{"shape":"GetOriginAccessControlConfigResult"},
+      "errors":[
+        {"shape":"NoSuchOriginAccessControl"},
+        {"shape":"AccessDenied"}
       ]
     },
     "GetOriginRequestPolicy":{
@@ -1181,6 +1249,18 @@
         {"shape":"InvalidArgument"}
       ]
     },
+    "ListOriginAccessControls":{
+      "name":"ListOriginAccessControls2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/origin-access-control"
+      },
+      "input":{"shape":"ListOriginAccessControlsRequest"},
+      "output":{"shape":"ListOriginAccessControlsResult"},
+      "errors":[
+        {"shape":"InvalidArgument"}
+      ]
+    },
     "ListOriginRequestPolicies":{
       "name":"ListOriginRequestPolicies2020_05_31",
       "http":{
@@ -1392,6 +1472,7 @@
         {"shape":"InvalidResponseCode"},
         {"shape":"InvalidArgument"},
         {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
         {"shape":"TooManyTrustedSigners"},
         {"shape":"TrustedSignerDoesNotExist"},
         {"shape":"InvalidViewerCertificate"},
@@ -1436,7 +1517,9 @@
         {"shape":"TooManyKeyGroupsAssociatedToDistribution"},
         {"shape":"TrustedKeyGroupDoesNotExist"},
         {"shape":"NoSuchRealtimeLogConfig"},
-        {"shape":"RealtimeLogConfigOwnerMismatch"}
+        {"shape":"RealtimeLogConfigOwnerMismatch"},
+        {"shape":"IllegalOriginAccessConfiguration"},
+        {"shape":"InvalidDomainNameForOriginAccessControl"}
       ]
     },
     "UpdateFieldLevelEncryptionConfig":{
@@ -1520,6 +1603,24 @@
         {"shape":"KeyGroupAlreadyExists"},
         {"shape":"InvalidArgument"},
         {"shape":"TooManyPublicKeysInKeyGroup"}
+      ]
+    },
+    "UpdateOriginAccessControl":{
+      "name":"UpdateOriginAccessControl2020_05_31",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2020-05-31/origin-access-control/{Id}/config"
+      },
+      "input":{"shape":"UpdateOriginAccessControlRequest"},
+      "output":{"shape":"UpdateOriginAccessControlResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"IllegalUpdate"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"OriginAccessControlAlreadyExists"},
+        {"shape":"NoSuchOriginAccessControl"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"InvalidArgument"}
       ]
     },
     "UpdateOriginRequestPolicy":{
@@ -1620,6 +1721,7 @@
         {"shape":"TooManyStreamingDistributionCNAMEs"},
         {"shape":"InvalidArgument"},
         {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
         {"shape":"TooManyTrustedSigners"},
         {"shape":"TrustedSignerDoesNotExist"},
         {"shape":"InconsistentQuantities"}
@@ -2438,6 +2540,35 @@
       },
       "payload":"MonitoringSubscription"
     },
+    "CreateOriginAccessControlRequest":{
+      "type":"structure",
+      "required":["OriginAccessControlConfig"],
+      "members":{
+        "OriginAccessControlConfig":{
+          "shape":"OriginAccessControlConfig",
+          "locationName":"OriginAccessControlConfig",
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+        }
+      },
+      "payload":"OriginAccessControlConfig"
+    },
+    "CreateOriginAccessControlResult":{
+      "type":"structure",
+      "members":{
+        "OriginAccessControl":{"shape":"OriginAccessControl"},
+        "Location":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"Location"
+        },
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"OriginAccessControl"
+    },
     "CreateOriginRequestPolicyRequest":{
       "type":"structure",
       "required":["OriginRequestPolicyConfig"],
@@ -2821,6 +2952,22 @@
     "DeleteMonitoringSubscriptionResult":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeleteOriginAccessControlRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
       }
     },
     "DeleteOriginRequestPolicyRequest":{
@@ -3869,6 +4016,52 @@
       },
       "payload":"MonitoringSubscription"
     },
+    "GetOriginAccessControlConfigRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetOriginAccessControlConfigResult":{
+      "type":"structure",
+      "members":{
+        "OriginAccessControlConfig":{"shape":"OriginAccessControlConfig"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"OriginAccessControlConfig"
+    },
+    "GetOriginAccessControlRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetOriginAccessControlResult":{
+      "type":"structure",
+      "members":{
+        "OriginAccessControl":{"shape":"OriginAccessControl"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"OriginAccessControl"
+    },
     "GetOriginRequestPolicyConfigRequest":{
       "type":"structure",
       "required":["Id"],
@@ -4114,6 +4307,14 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "IllegalOriginAccessConfiguration":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "IllegalUpdate":{
       "type":"structure",
       "members":{
@@ -4139,6 +4340,14 @@
       "exception":true
     },
     "InvalidDefaultRootObject":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "InvalidDomainNameForOriginAccessControl":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}
@@ -4219,6 +4428,14 @@
       "exception":true
     },
     "InvalidOrigin":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "InvalidOriginAccessControl":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}
@@ -4905,6 +5122,28 @@
       },
       "payload":"KeyGroupList"
     },
+    "ListOriginAccessControlsRequest":{
+      "type":"structure",
+      "members":{
+        "Marker":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        }
+      }
+    },
+    "ListOriginAccessControlsResult":{
+      "type":"structure",
+      "members":{
+        "OriginAccessControlList":{"shape":"OriginAccessControlList"}
+      },
+      "payload":"OriginAccessControlList"
+    },
     "ListOriginRequestPoliciesRequest":{
       "type":"structure",
       "members":{
@@ -5111,6 +5350,14 @@
         "RealtimeMetricsSubscriptionConfig":{"shape":"RealtimeMetricsSubscriptionConfig"}
       }
     },
+    "MonitoringSubscriptionAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "NoSuchCachePolicy":{
       "type":"structure",
       "members":{
@@ -5167,7 +5414,23 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "NoSuchMonitoringSubscription":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
     "NoSuchOrigin":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "NoSuchOriginAccessControl":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}
@@ -5238,7 +5501,108 @@
         "CustomOriginConfig":{"shape":"CustomOriginConfig"},
         "ConnectionAttempts":{"shape":"integer"},
         "ConnectionTimeout":{"shape":"integer"},
-        "OriginShield":{"shape":"OriginShield"}
+        "OriginShield":{"shape":"OriginShield"},
+        "OriginAccessControlId":{"shape":"string"}
+      }
+    },
+    "OriginAccessControl":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"string"},
+        "OriginAccessControlConfig":{"shape":"OriginAccessControlConfig"}
+      }
+    },
+    "OriginAccessControlAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "OriginAccessControlConfig":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Description",
+        "SigningProtocol",
+        "SigningBehavior",
+        "OriginAccessControlOriginType"
+      ],
+      "members":{
+        "Name":{"shape":"string"},
+        "Description":{"shape":"string"},
+        "SigningProtocol":{"shape":"OriginAccessControlSigningProtocols"},
+        "SigningBehavior":{"shape":"OriginAccessControlSigningBehaviors"},
+        "OriginAccessControlOriginType":{"shape":"OriginAccessControlOriginTypes"}
+      }
+    },
+    "OriginAccessControlInUse":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "OriginAccessControlList":{
+      "type":"structure",
+      "required":[
+        "Marker",
+        "MaxItems",
+        "IsTruncated",
+        "Quantity"
+      ],
+      "members":{
+        "Marker":{"shape":"string"},
+        "NextMarker":{"shape":"string"},
+        "MaxItems":{"shape":"integer"},
+        "IsTruncated":{"shape":"boolean"},
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"OriginAccessControlSummaryList"}
+      }
+    },
+    "OriginAccessControlOriginTypes":{
+      "type":"string",
+      "enum":["s3"]
+    },
+    "OriginAccessControlSigningBehaviors":{
+      "type":"string",
+      "enum":[
+        "never",
+        "always",
+        "no-override"
+      ]
+    },
+    "OriginAccessControlSigningProtocols":{
+      "type":"string",
+      "enum":["sigv4"]
+    },
+    "OriginAccessControlSummary":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Description",
+        "Name",
+        "SigningProtocol",
+        "SigningBehavior",
+        "OriginAccessControlOriginType"
+      ],
+      "members":{
+        "Id":{"shape":"string"},
+        "Description":{"shape":"string"},
+        "Name":{"shape":"string"},
+        "SigningProtocol":{"shape":"OriginAccessControlSigningProtocols"},
+        "SigningBehavior":{"shape":"OriginAccessControlSigningBehaviors"},
+        "OriginAccessControlOriginType":{"shape":"OriginAccessControlOriginTypes"}
+      }
+    },
+    "OriginAccessControlSummaryList":{
+      "type":"list",
+      "member":{
+        "shape":"OriginAccessControlSummary",
+        "locationName":"OriginAccessControlSummary"
       }
     },
     "OriginCustomHeader":{
@@ -5918,8 +6282,8 @@
         "Name":{"shape":"string"},
         "CorsConfig":{"shape":"ResponseHeadersPolicyCorsConfig"},
         "SecurityHeadersConfig":{"shape":"ResponseHeadersPolicySecurityHeadersConfig"},
-        "CustomHeadersConfig":{"shape":"ResponseHeadersPolicyCustomHeadersConfig"},
-        "ServerTimingHeadersConfig":{"shape":"ResponseHeadersPolicyServerTimingHeadersConfig"}
+        "ServerTimingHeadersConfig":{"shape":"ResponseHeadersPolicyServerTimingHeadersConfig"},
+        "CustomHeadersConfig":{"shape":"ResponseHeadersPolicyCustomHeadersConfig"}
       }
     },
     "ResponseHeadersPolicyContentSecurityPolicy":{
@@ -6545,6 +6909,14 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "TooManyDistributionsAssociatedToOriginAccessControl":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "TooManyDistributionsAssociatedToOriginRequestPolicy":{
       "type":"structure",
       "members":{
@@ -6698,6 +7070,14 @@
       "exception":true
     },
     "TooManyLambdaFunctionAssociations":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TooManyOriginAccessControls":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}
@@ -7148,6 +7528,43 @@
         }
       },
       "payload":"KeyGroup"
+    },
+    "UpdateOriginAccessControlRequest":{
+      "type":"structure",
+      "required":[
+        "OriginAccessControlConfig",
+        "Id"
+      ],
+      "members":{
+        "OriginAccessControlConfig":{
+          "shape":"OriginAccessControlConfig",
+          "locationName":"OriginAccessControlConfig",
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+        },
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      },
+      "payload":"OriginAccessControlConfig"
+    },
+    "UpdateOriginAccessControlResult":{
+      "type":"structure",
+      "members":{
+        "OriginAccessControl":{"shape":"OriginAccessControl"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"OriginAccessControl"
     },
     "UpdateOriginRequestPolicyRequest":{
       "type":"structure",

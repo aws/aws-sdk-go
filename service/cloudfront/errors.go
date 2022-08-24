@@ -120,6 +120,13 @@ const (
 	// with the specified cache behavior.
 	ErrCodeIllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior = "IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior"
 
+	// ErrCodeIllegalOriginAccessConfiguration for service response error code
+	// "IllegalOriginAccessConfiguration".
+	//
+	// An origin cannot contain both an origin access control (OAC) and an origin
+	// access identity (OAI).
+	ErrCodeIllegalOriginAccessConfiguration = "IllegalOriginAccessConfiguration"
+
 	// ErrCodeIllegalUpdate for service response error code
 	// "IllegalUpdate".
 	//
@@ -143,6 +150,13 @@ const (
 	//
 	// The default root object file name is too big or contains an invalid character.
 	ErrCodeInvalidDefaultRootObject = "InvalidDefaultRootObject"
+
+	// ErrCodeInvalidDomainNameForOriginAccessControl for service response error code
+	// "InvalidDomainNameForOriginAccessControl".
+	//
+	// An origin access control is associated with an origin whose domain name is
+	// not supported.
+	ErrCodeInvalidDomainNameForOriginAccessControl = "InvalidDomainNameForOriginAccessControl"
 
 	// ErrCodeInvalidErrorCode for service response error code
 	// "InvalidErrorCode".
@@ -207,6 +221,12 @@ const (
 	// The Amazon S3 origin server specified does not refer to a valid Amazon S3
 	// bucket.
 	ErrCodeInvalidOrigin = "InvalidOrigin"
+
+	// ErrCodeInvalidOriginAccessControl for service response error code
+	// "InvalidOriginAccessControl".
+	//
+	// The origin access control is not valid.
+	ErrCodeInvalidOriginAccessControl = "InvalidOriginAccessControl"
 
 	// ErrCodeInvalidOriginAccessIdentity for service response error code
 	// "InvalidOriginAccessIdentity".
@@ -301,6 +321,12 @@ const (
 	// header is set.
 	ErrCodeMissingBody = "MissingBody"
 
+	// ErrCodeMonitoringSubscriptionAlreadyExists for service response error code
+	// "MonitoringSubscriptionAlreadyExists".
+	//
+	// A monitoring subscription already exists for the specified distribution.
+	ErrCodeMonitoringSubscriptionAlreadyExists = "MonitoringSubscriptionAlreadyExists"
+
 	// ErrCodeNoSuchCachePolicy for service response error code
 	// "NoSuchCachePolicy".
 	//
@@ -343,11 +369,23 @@ const (
 	// The specified invalidation does not exist.
 	ErrCodeNoSuchInvalidation = "NoSuchInvalidation"
 
+	// ErrCodeNoSuchMonitoringSubscription for service response error code
+	// "NoSuchMonitoringSubscription".
+	//
+	// A monitoring subscription does not exist for the specified distribution.
+	ErrCodeNoSuchMonitoringSubscription = "NoSuchMonitoringSubscription"
+
 	// ErrCodeNoSuchOrigin for service response error code
 	// "NoSuchOrigin".
 	//
 	// No origin exists with the specified Origin Id.
 	ErrCodeNoSuchOrigin = "NoSuchOrigin"
+
+	// ErrCodeNoSuchOriginAccessControl for service response error code
+	// "NoSuchOriginAccessControl".
+	//
+	// The origin access control does not exist.
+	ErrCodeNoSuchOriginAccessControl = "NoSuchOriginAccessControl"
 
 	// ErrCodeNoSuchOriginRequestPolicy for service response error code
 	// "NoSuchOriginRequestPolicy".
@@ -384,6 +422,19 @@ const (
 	//
 	// The specified streaming distribution does not exist.
 	ErrCodeNoSuchStreamingDistribution = "NoSuchStreamingDistribution"
+
+	// ErrCodeOriginAccessControlAlreadyExists for service response error code
+	// "OriginAccessControlAlreadyExists".
+	//
+	// An origin access control with the specified parameters already exists.
+	ErrCodeOriginAccessControlAlreadyExists = "OriginAccessControlAlreadyExists"
+
+	// ErrCodeOriginAccessControlInUse for service response error code
+	// "OriginAccessControlInUse".
+	//
+	// Cannot delete the origin access control because it's in use by one or more
+	// distributions.
+	ErrCodeOriginAccessControlInUse = "OriginAccessControlInUse"
 
 	// ErrCodeOriginAccessIdentityAlreadyExists for service response error code
 	// "CloudFrontOriginAccessIdentityAlreadyExists".
@@ -604,6 +655,16 @@ const (
 	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
 	ErrCodeTooManyDistributionsAssociatedToKeyGroup = "TooManyDistributionsAssociatedToKeyGroup"
 
+	// ErrCodeTooManyDistributionsAssociatedToOriginAccessControl for service response error code
+	// "TooManyDistributionsAssociatedToOriginAccessControl".
+	//
+	// The maximum number of distributions have been associated with the specified
+	// origin access control.
+	//
+	// For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
+	ErrCodeTooManyDistributionsAssociatedToOriginAccessControl = "TooManyDistributionsAssociatedToOriginAccessControl"
+
 	// ErrCodeTooManyDistributionsAssociatedToOriginRequestPolicy for service response error code
 	// "TooManyDistributionsAssociatedToOriginRequestPolicy".
 	//
@@ -752,6 +813,16 @@ const (
 	// Your request contains more Lambda@Edge function associations than are allowed
 	// per distribution.
 	ErrCodeTooManyLambdaFunctionAssociations = "TooManyLambdaFunctionAssociations"
+
+	// ErrCodeTooManyOriginAccessControls for service response error code
+	// "TooManyOriginAccessControls".
+	//
+	// The number of origin access controls in your Amazon Web Services account
+	// exceeds the maximum allowed.
+	//
+	// For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
+	ErrCodeTooManyOriginAccessControls = "TooManyOriginAccessControls"
 
 	// ErrCodeTooManyOriginCustomHeaders for service response error code
 	// "TooManyOriginCustomHeaders".

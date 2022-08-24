@@ -1,3 +1,18 @@
+Release v1.44.84 (2022-08-24)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API and documentation
+  * Adds support for CloudFront origin access control (OAC), making it possible to restrict public access to S3 bucket origins in all AWS Regions, those with SSE-KMS, and more.
+* `service/config`: Updates service API and documentation
+* `service/iam`: Updates service documentation
+  * Documentation updates for AWS Identity and Access Management (IAM).
+* `service/ivs`: Updates service documentation
+* `service/quicksight`: Updates service API and documentation
+  * Added a new optional property DashboardVisual under ExperienceConfiguration parameter of GenerateEmbedUrlForAnonymousUser and GenerateEmbedUrlForRegisteredUser API operations. This supports embedding of specific visuals in QuickSight dashboards.
+* `service/transfer`: Updates service documentation
+  * Documentation updates for AWS Transfer Family
+
 Release v1.44.83 (2022-08-23)
 ===
 

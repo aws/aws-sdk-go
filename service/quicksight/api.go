@@ -6475,8 +6475,9 @@ func (c *QuickSight) GenerateEmbedUrlForAnonymousUserRequest(input *GenerateEmbe
 // GenerateEmbedUrlForAnonymousUser API operation for Amazon QuickSight.
 //
 // Generates an embed URL that you can use to embed an Amazon QuickSight dashboard
-// in your website, without having to register any reader users. Before you
-// use this action, make sure that you have configured the dashboards and permissions.
+// or visual in your website, without having to register any reader users. Before
+// you use this action, make sure that you have configured the dashboards and
+// permissions.
 //
 // The following rules apply to the generated URL:
 //
@@ -14186,6 +14187,65 @@ func (s *AnonymousUserDashboardEmbeddingConfiguration) SetInitialDashboardId(v s
 	return s
 }
 
+// The experience that you are embedding. You can use this object to generate
+// a url that embeds a visual into your application.
+type AnonymousUserDashboardVisualEmbeddingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The visual ID for the visual that you want the user to see. This ID is included
+	// in the output URL. When the URL in response is accessed, Amazon QuickSight
+	// renders this visual.
+	//
+	// The Amazon Resource Name (ARN) of the dashboard that the visual belongs to
+	// must be included in the AuthorizedResourceArns parameter. Otherwise, the
+	// request will fail with InvalidParameterValueException.
+	//
+	// InitialDashboardVisualId is a required field
+	InitialDashboardVisualId *DashboardVisualId `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnonymousUserDashboardVisualEmbeddingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnonymousUserDashboardVisualEmbeddingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnonymousUserDashboardVisualEmbeddingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnonymousUserDashboardVisualEmbeddingConfiguration"}
+	if s.InitialDashboardVisualId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InitialDashboardVisualId"))
+	}
+	if s.InitialDashboardVisualId != nil {
+		if err := s.InitialDashboardVisualId.Validate(); err != nil {
+			invalidParams.AddNested("InitialDashboardVisualId", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInitialDashboardVisualId sets the InitialDashboardVisualId field's value.
+func (s *AnonymousUserDashboardVisualEmbeddingConfiguration) SetInitialDashboardVisualId(v *DashboardVisualId) *AnonymousUserDashboardVisualEmbeddingConfiguration {
+	s.InitialDashboardVisualId = v
+	return s
+}
+
 // The type of experience you want to embed. For anonymous users, you can embed
 // Amazon QuickSight dashboards.
 type AnonymousUserEmbeddingExperienceConfiguration struct {
@@ -14193,6 +14253,9 @@ type AnonymousUserEmbeddingExperienceConfiguration struct {
 
 	// The type of embedding experience. In this case, Amazon QuickSight dashboards.
 	Dashboard *AnonymousUserDashboardEmbeddingConfiguration `type:"structure"`
+
+	// The type of embedding experience. In this case, Amazon QuickSight visuals.
+	DashboardVisual *AnonymousUserDashboardVisualEmbeddingConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14221,6 +14284,11 @@ func (s *AnonymousUserEmbeddingExperienceConfiguration) Validate() error {
 			invalidParams.AddNested("Dashboard", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DashboardVisual != nil {
+		if err := s.DashboardVisual.Validate(); err != nil {
+			invalidParams.AddNested("DashboardVisual", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14231,6 +14299,12 @@ func (s *AnonymousUserEmbeddingExperienceConfiguration) Validate() error {
 // SetDashboard sets the Dashboard field's value.
 func (s *AnonymousUserEmbeddingExperienceConfiguration) SetDashboard(v *AnonymousUserDashboardEmbeddingConfiguration) *AnonymousUserEmbeddingExperienceConfiguration {
 	s.Dashboard = v
+	return s
+}
+
+// SetDashboardVisual sets the DashboardVisual field's value.
+func (s *AnonymousUserEmbeddingExperienceConfiguration) SetDashboardVisual(v *AnonymousUserDashboardVisualEmbeddingConfiguration) *AnonymousUserEmbeddingExperienceConfiguration {
+	s.DashboardVisual = v
 	return s
 }
 
@@ -19852,6 +19926,109 @@ func (s *DashboardVersionSummary) SetStatus(v string) *DashboardVersionSummary {
 // SetVersionNumber sets the VersionNumber field's value.
 func (s *DashboardVersionSummary) SetVersionNumber(v int64) *DashboardVersionSummary {
 	s.VersionNumber = &v
+	return s
+}
+
+// A structure that contains the following elements:
+//
+//   - The DashboardId of the dashboard that has the visual that you want to
+//     embed.
+//
+//   - The SheetId of the sheet that has the visual that you want to embed.
+//
+//   - The VisualId of the visual that you want to embed.
+//
+// The DashboardId, SheetId, and VisualId can be found in the IDs for developers
+// section of the Embed visual pane of the visual's on-visual menu of the Amazon
+// QuickSight console. You can also get the DashboardId with a ListDashboards
+// API operation.
+type DashboardVisualId struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the dashboard that has the visual that you want to embed. The DashboardId
+	// can be found in the IDs for developers section of the Embed visual pane of
+	// the visual's on-visual menu of the Amazon QuickSight console. You can also
+	// get the DashboardId with a ListDashboards API operation.
+	//
+	// DashboardId is a required field
+	DashboardId *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the sheet that the has visual that you want to embed. The SheetId
+	// can be found in the IDs for developers section of the Embed visual pane of
+	// the visual's on-visual menu of the Amazon QuickSight console.
+	//
+	// SheetId is a required field
+	SheetId *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the visual that you want to embed. The VisualID can be found in
+	// the IDs for developers section of the Embed visual pane of the visual's on-visual
+	// menu of the Amazon QuickSight console.
+	//
+	// VisualId is a required field
+	VisualId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DashboardVisualId) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DashboardVisualId) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DashboardVisualId) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DashboardVisualId"}
+	if s.DashboardId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DashboardId"))
+	}
+	if s.DashboardId != nil && len(*s.DashboardId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DashboardId", 1))
+	}
+	if s.SheetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SheetId"))
+	}
+	if s.SheetId != nil && len(*s.SheetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SheetId", 1))
+	}
+	if s.VisualId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VisualId"))
+	}
+	if s.VisualId != nil && len(*s.VisualId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VisualId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDashboardId sets the DashboardId field's value.
+func (s *DashboardVisualId) SetDashboardId(v string) *DashboardVisualId {
+	s.DashboardId = &v
+	return s
+}
+
+// SetSheetId sets the SheetId field's value.
+func (s *DashboardVisualId) SetSheetId(v string) *DashboardVisualId {
+	s.SheetId = &v
+	return s
+}
+
+// SetVisualId sets the VisualId field's value.
+func (s *DashboardVisualId) SetVisualId(v string) *DashboardVisualId {
+	s.VisualId = &v
 	return s
 }
 
@@ -27674,7 +27851,8 @@ type GenerateEmbedUrlForRegisteredUserInput struct {
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The experience you are embedding. For registered users, you can embed Amazon
-	// QuickSight dashboards or the entire Amazon QuickSight console.
+	// QuickSight dashboards, Amazon QuickSight visuals, the Amazon QuickSight Q
+	// search bar, or the entire Amazon QuickSight console.
 	//
 	// ExperienceConfiguration is a required field
 	ExperienceConfiguration *RegisteredUserEmbeddingExperienceConfiguration `type:"structure" required:"true"`
@@ -27770,7 +27948,8 @@ func (s *GenerateEmbedUrlForRegisteredUserInput) SetUserArn(v string) *GenerateE
 type GenerateEmbedUrlForRegisteredUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The embed URL for the Amazon QuickSight dashboard or console.
+	// The embed URL for the Amazon QuickSight dashboard, visual, Q search bar,
+	// or console.
 	//
 	// EmbedUrl is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GenerateEmbedUrlForRegisteredUserOutput's
@@ -34335,6 +34514,65 @@ func (s *RegisteredUserDashboardEmbeddingConfiguration) SetInitialDashboardId(v 
 	return s
 }
 
+// The experience that you are embedding. You can use this object to generate
+// a url that embeds a visual into your application.
+type RegisteredUserDashboardVisualEmbeddingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The visual ID for the visual that you want the user to embed. This ID is
+	// included in the output URL. When the URL in response is accessed, Amazon
+	// QuickSight renders this visual.
+	//
+	// The Amazon Resource Name (ARN) of the dashboard that the visual belongs to
+	// must be included in the AuthorizedResourceArns parameter. Otherwise, the
+	// request will fail with InvalidParameterValueException.
+	//
+	// InitialDashboardVisualId is a required field
+	InitialDashboardVisualId *DashboardVisualId `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredUserDashboardVisualEmbeddingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredUserDashboardVisualEmbeddingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisteredUserDashboardVisualEmbeddingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisteredUserDashboardVisualEmbeddingConfiguration"}
+	if s.InitialDashboardVisualId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InitialDashboardVisualId"))
+	}
+	if s.InitialDashboardVisualId != nil {
+		if err := s.InitialDashboardVisualId.Validate(); err != nil {
+			invalidParams.AddNested("InitialDashboardVisualId", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInitialDashboardVisualId sets the InitialDashboardVisualId field's value.
+func (s *RegisteredUserDashboardVisualEmbeddingConfiguration) SetInitialDashboardVisualId(v *DashboardVisualId) *RegisteredUserDashboardVisualEmbeddingConfiguration {
+	s.InitialDashboardVisualId = v
+	return s
+}
+
 // The type of experience you want to embed. For registered users, you can embed
 // Amazon QuickSight dashboards or the Amazon QuickSight console.
 //
@@ -34346,6 +34584,9 @@ type RegisteredUserEmbeddingExperienceConfiguration struct {
 
 	// The configuration details for providing a dashboard embedding experience.
 	Dashboard *RegisteredUserDashboardEmbeddingConfiguration `type:"structure"`
+
+	// The type of embedding experience. In this case, Amazon QuickSight visuals.
+	DashboardVisual *RegisteredUserDashboardVisualEmbeddingConfiguration `type:"structure"`
 
 	// The configuration details for embedding the Q search bar.
 	//
@@ -34408,6 +34649,11 @@ func (s *RegisteredUserEmbeddingExperienceConfiguration) Validate() error {
 			invalidParams.AddNested("Dashboard", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DashboardVisual != nil {
+		if err := s.DashboardVisual.Validate(); err != nil {
+			invalidParams.AddNested("DashboardVisual", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.QSearchBar != nil {
 		if err := s.QSearchBar.Validate(); err != nil {
 			invalidParams.AddNested("QSearchBar", err.(request.ErrInvalidParams))
@@ -34428,6 +34674,12 @@ func (s *RegisteredUserEmbeddingExperienceConfiguration) Validate() error {
 // SetDashboard sets the Dashboard field's value.
 func (s *RegisteredUserEmbeddingExperienceConfiguration) SetDashboard(v *RegisteredUserDashboardEmbeddingConfiguration) *RegisteredUserEmbeddingExperienceConfiguration {
 	s.Dashboard = v
+	return s
+}
+
+// SetDashboardVisual sets the DashboardVisual field's value.
+func (s *RegisteredUserEmbeddingExperienceConfiguration) SetDashboardVisual(v *RegisteredUserDashboardVisualEmbeddingConfiguration) *RegisteredUserEmbeddingExperienceConfiguration {
+	s.DashboardVisual = v
 	return s
 }
 

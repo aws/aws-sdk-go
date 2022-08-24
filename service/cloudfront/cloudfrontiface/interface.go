@@ -104,6 +104,10 @@ type CloudFrontAPI interface {
 	CreateMonitoringSubscriptionWithContext(aws.Context, *cloudfront.CreateMonitoringSubscriptionInput, ...request.Option) (*cloudfront.CreateMonitoringSubscriptionOutput, error)
 	CreateMonitoringSubscriptionRequest(*cloudfront.CreateMonitoringSubscriptionInput) (*request.Request, *cloudfront.CreateMonitoringSubscriptionOutput)
 
+	CreateOriginAccessControl(*cloudfront.CreateOriginAccessControlInput) (*cloudfront.CreateOriginAccessControlOutput, error)
+	CreateOriginAccessControlWithContext(aws.Context, *cloudfront.CreateOriginAccessControlInput, ...request.Option) (*cloudfront.CreateOriginAccessControlOutput, error)
+	CreateOriginAccessControlRequest(*cloudfront.CreateOriginAccessControlInput) (*request.Request, *cloudfront.CreateOriginAccessControlOutput)
+
 	CreateOriginRequestPolicy(*cloudfront.CreateOriginRequestPolicyInput) (*cloudfront.CreateOriginRequestPolicyOutput, error)
 	CreateOriginRequestPolicyWithContext(aws.Context, *cloudfront.CreateOriginRequestPolicyInput, ...request.Option) (*cloudfront.CreateOriginRequestPolicyOutput, error)
 	CreateOriginRequestPolicyRequest(*cloudfront.CreateOriginRequestPolicyInput) (*request.Request, *cloudfront.CreateOriginRequestPolicyOutput)
@@ -159,6 +163,10 @@ type CloudFrontAPI interface {
 	DeleteMonitoringSubscription(*cloudfront.DeleteMonitoringSubscriptionInput) (*cloudfront.DeleteMonitoringSubscriptionOutput, error)
 	DeleteMonitoringSubscriptionWithContext(aws.Context, *cloudfront.DeleteMonitoringSubscriptionInput, ...request.Option) (*cloudfront.DeleteMonitoringSubscriptionOutput, error)
 	DeleteMonitoringSubscriptionRequest(*cloudfront.DeleteMonitoringSubscriptionInput) (*request.Request, *cloudfront.DeleteMonitoringSubscriptionOutput)
+
+	DeleteOriginAccessControl(*cloudfront.DeleteOriginAccessControlInput) (*cloudfront.DeleteOriginAccessControlOutput, error)
+	DeleteOriginAccessControlWithContext(aws.Context, *cloudfront.DeleteOriginAccessControlInput, ...request.Option) (*cloudfront.DeleteOriginAccessControlOutput, error)
+	DeleteOriginAccessControlRequest(*cloudfront.DeleteOriginAccessControlInput) (*request.Request, *cloudfront.DeleteOriginAccessControlOutput)
 
 	DeleteOriginRequestPolicy(*cloudfront.DeleteOriginRequestPolicyInput) (*cloudfront.DeleteOriginRequestPolicyOutput, error)
 	DeleteOriginRequestPolicyWithContext(aws.Context, *cloudfront.DeleteOriginRequestPolicyInput, ...request.Option) (*cloudfront.DeleteOriginRequestPolicyOutput, error)
@@ -243,6 +251,14 @@ type CloudFrontAPI interface {
 	GetMonitoringSubscription(*cloudfront.GetMonitoringSubscriptionInput) (*cloudfront.GetMonitoringSubscriptionOutput, error)
 	GetMonitoringSubscriptionWithContext(aws.Context, *cloudfront.GetMonitoringSubscriptionInput, ...request.Option) (*cloudfront.GetMonitoringSubscriptionOutput, error)
 	GetMonitoringSubscriptionRequest(*cloudfront.GetMonitoringSubscriptionInput) (*request.Request, *cloudfront.GetMonitoringSubscriptionOutput)
+
+	GetOriginAccessControl(*cloudfront.GetOriginAccessControlInput) (*cloudfront.GetOriginAccessControlOutput, error)
+	GetOriginAccessControlWithContext(aws.Context, *cloudfront.GetOriginAccessControlInput, ...request.Option) (*cloudfront.GetOriginAccessControlOutput, error)
+	GetOriginAccessControlRequest(*cloudfront.GetOriginAccessControlInput) (*request.Request, *cloudfront.GetOriginAccessControlOutput)
+
+	GetOriginAccessControlConfig(*cloudfront.GetOriginAccessControlConfigInput) (*cloudfront.GetOriginAccessControlConfigOutput, error)
+	GetOriginAccessControlConfigWithContext(aws.Context, *cloudfront.GetOriginAccessControlConfigInput, ...request.Option) (*cloudfront.GetOriginAccessControlConfigOutput, error)
+	GetOriginAccessControlConfigRequest(*cloudfront.GetOriginAccessControlConfigInput) (*request.Request, *cloudfront.GetOriginAccessControlConfigOutput)
 
 	GetOriginRequestPolicy(*cloudfront.GetOriginRequestPolicyInput) (*cloudfront.GetOriginRequestPolicyOutput, error)
 	GetOriginRequestPolicyWithContext(aws.Context, *cloudfront.GetOriginRequestPolicyInput, ...request.Option) (*cloudfront.GetOriginRequestPolicyOutput, error)
@@ -349,6 +365,10 @@ type CloudFrontAPI interface {
 	ListKeyGroupsWithContext(aws.Context, *cloudfront.ListKeyGroupsInput, ...request.Option) (*cloudfront.ListKeyGroupsOutput, error)
 	ListKeyGroupsRequest(*cloudfront.ListKeyGroupsInput) (*request.Request, *cloudfront.ListKeyGroupsOutput)
 
+	ListOriginAccessControls(*cloudfront.ListOriginAccessControlsInput) (*cloudfront.ListOriginAccessControlsOutput, error)
+	ListOriginAccessControlsWithContext(aws.Context, *cloudfront.ListOriginAccessControlsInput, ...request.Option) (*cloudfront.ListOriginAccessControlsOutput, error)
+	ListOriginAccessControlsRequest(*cloudfront.ListOriginAccessControlsInput) (*request.Request, *cloudfront.ListOriginAccessControlsOutput)
+
 	ListOriginRequestPolicies(*cloudfront.ListOriginRequestPoliciesInput) (*cloudfront.ListOriginRequestPoliciesOutput, error)
 	ListOriginRequestPoliciesWithContext(aws.Context, *cloudfront.ListOriginRequestPoliciesInput, ...request.Option) (*cloudfront.ListOriginRequestPoliciesOutput, error)
 	ListOriginRequestPoliciesRequest(*cloudfront.ListOriginRequestPoliciesInput) (*request.Request, *cloudfront.ListOriginRequestPoliciesOutput)
@@ -419,6 +439,10 @@ type CloudFrontAPI interface {
 	UpdateKeyGroup(*cloudfront.UpdateKeyGroupInput) (*cloudfront.UpdateKeyGroupOutput, error)
 	UpdateKeyGroupWithContext(aws.Context, *cloudfront.UpdateKeyGroupInput, ...request.Option) (*cloudfront.UpdateKeyGroupOutput, error)
 	UpdateKeyGroupRequest(*cloudfront.UpdateKeyGroupInput) (*request.Request, *cloudfront.UpdateKeyGroupOutput)
+
+	UpdateOriginAccessControl(*cloudfront.UpdateOriginAccessControlInput) (*cloudfront.UpdateOriginAccessControlOutput, error)
+	UpdateOriginAccessControlWithContext(aws.Context, *cloudfront.UpdateOriginAccessControlInput, ...request.Option) (*cloudfront.UpdateOriginAccessControlOutput, error)
+	UpdateOriginAccessControlRequest(*cloudfront.UpdateOriginAccessControlInput) (*request.Request, *cloudfront.UpdateOriginAccessControlOutput)
 
 	UpdateOriginRequestPolicy(*cloudfront.UpdateOriginRequestPolicyInput) (*cloudfront.UpdateOriginRequestPolicyOutput, error)
 	UpdateOriginRequestPolicyWithContext(aws.Context, *cloudfront.UpdateOriginRequestPolicyInput, ...request.Option) (*cloudfront.UpdateOriginRequestPolicyOutput, error)
