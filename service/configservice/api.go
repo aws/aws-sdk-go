@@ -1325,7 +1325,8 @@ func (c *ConfigService) DeleteRemediationConfigurationRequest(input *DeleteRemed
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
 //     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket.
+//     GetRole action or create a service-linked role. To read Amazon S3 bucket
+//     or call SSM:GetDocument.
 //
 //   - InvalidParameterValueException
 //     One or more of the specified parameters are invalid. Verify that your parameters
@@ -8830,7 +8831,8 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
 //     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket.
+//     GetRole action or create a service-linked role. To read Amazon S3 bucket
+//     or call SSM:GetDocument.
 //
 //   - NoAvailableConfigurationRecorderException
 //     There are no configuration recorders available to provide the role needed
@@ -9154,9 +9156,8 @@ func (c *ConfigService) PutConformancePackRequest(input *PutConformancePackInput
 // your account. The service-linked role is created only when the role does
 // not exist in your account.
 //
-// You must specify either the TemplateS3Uri or the TemplateBody parameter,
-// but not both. If you provide both Config uses the TemplateS3Uri parameter
-// and ignores the TemplateBody parameter.
+// You must specify one and only one of theTemplateS3Uri, TemplateBody or TemplateSSMDocumentDetails
+// parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9182,7 +9183,8 @@ func (c *ConfigService) PutConformancePackRequest(input *PutConformancePackInput
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
 //     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket.
+//     GetRole action or create a service-linked role. To read Amazon S3 bucket
+//     or call SSM:GetDocument.
 //
 //   - ConformancePackTemplateValidationException
 //     You have specified a template that is not valid or supported.
@@ -9728,7 +9730,8 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
 //     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket.
+//     GetRole action or create a service-linked role. To read Amazon S3 bucket
+//     or call SSM:GetDocument.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutOrganizationConfigRule
 func (c *ConfigService) PutOrganizationConfigRule(input *PutOrganizationConfigRuleInput) (*PutOrganizationConfigRuleOutput, error) {
@@ -9915,7 +9918,8 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
 //     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket.
+//     GetRole action or create a service-linked role. To read Amazon S3 bucket
+//     or call SSM:GetDocument.
 //
 //   - OrganizationConformancePackTemplateValidationException
 //     You have specified a template that is not valid or supported.
@@ -10037,7 +10041,8 @@ func (c *ConfigService) PutRemediationConfigurationsRequest(input *PutRemediatio
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
 //     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket.
+//     GetRole action or create a service-linked role. To read Amazon S3 bucket
+//     or call SSM:GetDocument.
 //
 //   - InvalidParameterValueException
 //     One or more of the specified parameters are invalid. Verify that your parameters
@@ -10144,7 +10149,8 @@ func (c *ConfigService) PutRemediationExceptionsRequest(input *PutRemediationExc
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
 //     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket.
+//     GetRole action or create a service-linked role. To read Amazon S3 bucket
+//     or call SSM:GetDocument.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutRemediationExceptions
 func (c *ConfigService) PutRemediationExceptions(input *PutRemediationExceptionsInput) (*PutRemediationExceptionsOutput, error) {
@@ -10263,7 +10269,8 @@ func (c *ConfigService) PutResourceConfigRequest(input *PutResourceConfigInput) 
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
 //     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket.
+//     GetRole action or create a service-linked role. To read Amazon S3 bucket
+//     or call SSM:GetDocument.
 //
 //   - NoRunningConfigurationRecorderException
 //     There is no configuration recorder running.
@@ -11107,7 +11114,8 @@ func (c *ConfigService) StartRemediationExecutionRequest(input *StartRemediation
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
 //     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket.
+//     GetRole action or create a service-linked role. To read Amazon S3 bucket
+//     or call SSM:GetDocument.
 //
 //   - NoSuchRemediationConfigurationException
 //     You specified an Config rule without a remediation configuration.
@@ -14391,7 +14399,7 @@ type ConformancePackDetail struct {
 	// ConformancePackName is a required field
 	ConformancePackName *string `min:"1" type:"string" required:"true"`
 
-	// Amazon Web Services service that created the conformance pack.
+	// The Amazon Web Services service that created the conformance pack.
 	CreatedBy *string `min:"1" type:"string"`
 
 	// The name of the Amazon S3 bucket where Config stores conformance pack templates.
@@ -14404,8 +14412,13 @@ type ConformancePackDetail struct {
 	// This field is optional.
 	DeliveryS3KeyPrefix *string `type:"string"`
 
-	// Last time when conformation pack update was requested.
+	// The last time a conformation pack update was requested.
 	LastUpdateRequestedTime *time.Time `type:"timestamp"`
+
+	// An object that contains the name or Amazon Resource Name (ARN) of the Amazon
+	// Web Services Systems Manager document (SSM document) and the version of the
+	// SSM document that is used to create a conformance pack.
+	TemplateSSMDocumentDetails *TemplateSSMDocumentDetails `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14471,6 +14484,12 @@ func (s *ConformancePackDetail) SetDeliveryS3KeyPrefix(v string) *ConformancePac
 // SetLastUpdateRequestedTime sets the LastUpdateRequestedTime field's value.
 func (s *ConformancePackDetail) SetLastUpdateRequestedTime(v time.Time) *ConformancePackDetail {
 	s.LastUpdateRequestedTime = &v
+	return s
+}
+
+// SetTemplateSSMDocumentDetails sets the TemplateSSMDocumentDetails field's value.
+func (s *ConformancePackDetail) SetTemplateSSMDocumentDetails(v *TemplateSSMDocumentDetails) *ConformancePackDetail {
+	s.TemplateSSMDocumentDetails = v
 	return s
 }
 
@@ -21703,7 +21722,8 @@ func (s *InsufficientDeliveryPolicyException) RequestID() string {
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
 //     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket.
+//     GetRole action or create a service-linked role. To read Amazon S3 bucket
+//     or call SSM:GetDocument.
 type InsufficientPermissionsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -27058,7 +27078,7 @@ type PutConformancePackInput struct {
 	// A list of ConformancePackInputParameter objects.
 	ConformancePackInputParameters []*ConformancePackInputParameter `type:"list"`
 
-	// Name of the conformance pack you want to create.
+	// The unique name of the conformance pack you want to deploy.
 	//
 	// ConformancePackName is a required field
 	ConformancePackName *string `min:"1" type:"string" required:"true"`
@@ -27073,20 +27093,26 @@ type PutConformancePackInput struct {
 	// This field is optional.
 	DeliveryS3KeyPrefix *string `type:"string"`
 
-	// A string containing full conformance pack template body. Structure containing
-	// the template body with a minimum length of 1 byte and a maximum length of
-	// 51,200 bytes.
+	// A string containing the full conformance pack template body. The structure
+	// containing the template body has a minimum length of 1 byte and a maximum
+	// length of 51,200 bytes.
 	//
 	// You can only use a YAML template with two resource types: Config rule (AWS::Config::ConfigRule)
-	// and a remediation action (AWS::Config::RemediationConfiguration).
+	// and remediation action (AWS::Config::RemediationConfiguration).
 	TemplateBody *string `min:"1" type:"string"`
 
-	// Location of file containing the template body (s3://bucketname/prefix). The
-	// uri must point to the conformance pack template (max size: 300 KB) that is
-	// located in an Amazon S3 bucket in the same region as the conformance pack.
+	// The location of the file containing the template body (s3://bucketname/prefix).
+	// The uri must point to a conformance pack template (max size: 300 KB) that
+	// is located in an Amazon S3 bucket in the same region as the conformance pack.
 	//
 	// You must have access to read Amazon S3 bucket.
 	TemplateS3Uri *string `min:"1" type:"string"`
+
+	// An object of type TemplateSSMDocumentDetails, which contains the name or
+	// the Amazon Resource Name (ARN) of the Amazon Web Services Systems Manager
+	// document (SSM document) and the version of the SSM document that is used
+	// to create a conformance pack.
+	TemplateSSMDocumentDetails *TemplateSSMDocumentDetails `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27132,6 +27158,11 @@ func (s *PutConformancePackInput) Validate() error {
 			}
 		}
 	}
+	if s.TemplateSSMDocumentDetails != nil {
+		if err := s.TemplateSSMDocumentDetails.Validate(); err != nil {
+			invalidParams.AddNested("TemplateSSMDocumentDetails", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -27172,6 +27203,12 @@ func (s *PutConformancePackInput) SetTemplateBody(v string) *PutConformancePackI
 // SetTemplateS3Uri sets the TemplateS3Uri field's value.
 func (s *PutConformancePackInput) SetTemplateS3Uri(v string) *PutConformancePackInput {
 	s.TemplateS3Uri = &v
+	return s
+}
+
+// SetTemplateSSMDocumentDetails sets the TemplateSSMDocumentDetails field's value.
+func (s *PutConformancePackInput) SetTemplateSSMDocumentDetails(v *TemplateSSMDocumentDetails) *PutConformancePackInput {
+	s.TemplateSSMDocumentDetails = v
 	return s
 }
 
@@ -31205,6 +31242,75 @@ func (s TagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+// This API allows you to create a conformance pack template with an Amazon
+// Web Services Systems Manager document (SSM document). To deploy a conformance
+// pack using an SSM document, you first create an SSM document with conformance
+// pack content, and then provide the DocumentName (and optionally DocumentVersion)
+// in the PutConformancePack API (https://docs.aws.amazon.com/config/latest/APIReference/API_PutConformancePack.html).
+//
+// The TemplateSSMDocumentDetails object contains the name of the SSM document
+// and the version of the SSM document.
+type TemplateSSMDocumentDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name or Amazon Resource Name (ARN) of the SSM document to use to create
+	// a conformance pack. If you use the Document Name, Config checks only your
+	// account and region for the SSM document. If you want to use an SSM document
+	// from another region or account, you must provide the ARN.
+	//
+	// DocumentName is a required field
+	DocumentName *string `type:"string" required:"true"`
+
+	// The version of the SSM document to use to create a conformance pack. By default,
+	// Config uses the latest version.
+	//
+	// This field is optional.
+	DocumentVersion *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateSSMDocumentDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateSSMDocumentDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TemplateSSMDocumentDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TemplateSSMDocumentDetails"}
+	if s.DocumentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocumentName sets the DocumentName field's value.
+func (s *TemplateSSMDocumentDetails) SetDocumentName(v string) *TemplateSSMDocumentDetails {
+	s.DocumentName = &v
+	return s
+}
+
+// SetDocumentVersion sets the DocumentVersion field's value.
+func (s *TemplateSSMDocumentDetails) SetDocumentVersion(v string) *TemplateSSMDocumentDetails {
+	s.DocumentVersion = &v
+	return s
 }
 
 // You have reached the limit of the number of tags you can use. You have more

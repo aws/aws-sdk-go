@@ -430,6 +430,20 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //   - ErrCodeInvalidOriginAccessIdentity "InvalidOriginAccessIdentity"
 //     The origin access identity is not valid or doesn't exist.
 //
+//   - ErrCodeInvalidOriginAccessControl "InvalidOriginAccessControl"
+//     The origin access control is not valid.
+//
+//   - ErrCodeIllegalOriginAccessConfiguration "IllegalOriginAccessConfiguration"
+//     An origin cannot contain both an origin access control (OAC) and an origin
+//     access identity (OAI).
+//
+//   - ErrCodeTooManyDistributionsAssociatedToOriginAccessControl "TooManyDistributionsAssociatedToOriginAccessControl"
+//     The maximum number of distributions have been associated with the specified
+//     origin access control.
+//
+//     For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
 //   - ErrCodeAccessDenied "AccessDenied"
 //     Access denied.
 //
@@ -631,6 +645,10 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //     The specified real-time log configuration belongs to a different Amazon Web
 //     Services account.
 //
+//   - ErrCodeInvalidDomainNameForOriginAccessControl "InvalidDomainNameForOriginAccessControl"
+//     An origin access control is associated with an origin whose domain name is
+//     not supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateDistribution
 func (c *CloudFront) CreateDistribution(input *CreateDistributionInput) (*CreateDistributionOutput, error) {
 	req, out := c.CreateDistributionRequest(input)
@@ -720,6 +738,9 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //
 //   - ErrCodeInvalidOriginAccessIdentity "InvalidOriginAccessIdentity"
 //     The origin access identity is not valid or doesn't exist.
+//
+//   - ErrCodeInvalidOriginAccessControl "InvalidOriginAccessControl"
+//     The origin access control is not valid.
 //
 //   - ErrCodeAccessDenied "AccessDenied"
 //     Access denied.
@@ -924,6 +945,10 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //   - ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
 //     The specified real-time log configuration belongs to a different Amazon Web
 //     Services account.
+//
+//   - ErrCodeInvalidDomainNameForOriginAccessControl "InvalidDomainNameForOriginAccessControl"
+//     An origin access control is associated with an origin whose domain name is
+//     not supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateDistributionWithTags
 func (c *CloudFront) CreateDistributionWithTags(input *CreateDistributionWithTagsInput) (*CreateDistributionWithTagsOutput, error) {
@@ -1492,7 +1517,7 @@ func (c *CloudFront) CreateMonitoringSubscriptionRequest(input *CreateMonitoring
 	op := &request.Operation{
 		Name:       opCreateMonitoringSubscription,
 		HTTPMethod: "POST",
-		HTTPPath:   "/2020-05-31/distributions/{DistributionId}/monitoring-subscription",
+		HTTPPath:   "/2020-05-31/distributions/{DistributionId}/monitoring-subscription/",
 	}
 
 	if input == nil {
@@ -1528,6 +1553,9 @@ func (c *CloudFront) CreateMonitoringSubscriptionRequest(input *CreateMonitoring
 //   - ErrCodeNoSuchDistribution "NoSuchDistribution"
 //     The specified distribution does not exist.
 //
+//   - ErrCodeMonitoringSubscriptionAlreadyExists "MonitoringSubscriptionAlreadyExists"
+//     A monitoring subscription already exists for the specified distribution.
+//
 //   - ErrCodeUnsupportedOperation "UnsupportedOperation"
 //     This operation is not supported in this region.
 //
@@ -1548,6 +1576,105 @@ func (c *CloudFront) CreateMonitoringSubscription(input *CreateMonitoringSubscri
 // for more information on using Contexts.
 func (c *CloudFront) CreateMonitoringSubscriptionWithContext(ctx aws.Context, input *CreateMonitoringSubscriptionInput, opts ...request.Option) (*CreateMonitoringSubscriptionOutput, error) {
 	req, out := c.CreateMonitoringSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateOriginAccessControl = "CreateOriginAccessControl2020_05_31"
+
+// CreateOriginAccessControlRequest generates a "aws/request.Request" representing the
+// client's request for the CreateOriginAccessControl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateOriginAccessControl for more information on using the CreateOriginAccessControl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateOriginAccessControlRequest method.
+//	req, resp := client.CreateOriginAccessControlRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateOriginAccessControl
+func (c *CloudFront) CreateOriginAccessControlRequest(input *CreateOriginAccessControlInput) (req *request.Request, output *CreateOriginAccessControlOutput) {
+	op := &request.Operation{
+		Name:       opCreateOriginAccessControl,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2020-05-31/origin-access-control",
+	}
+
+	if input == nil {
+		input = &CreateOriginAccessControlInput{}
+	}
+
+	output = &CreateOriginAccessControlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateOriginAccessControl API operation for Amazon CloudFront.
+//
+// Creates a new origin access control in CloudFront. After you create an origin
+// access control, you can add it to an origin in a CloudFront distribution
+// so that CloudFront sends authenticated (signed) requests to the origin.
+//
+// For an Amazon S3 origin, this makes it possible to block public access to
+// the Amazon S3 bucket so that viewers (users) can access the content in the
+// bucket only through CloudFront.
+//
+// For more information about using a CloudFront origin access control, see
+// Restricting access to an Amazon S3 origin (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html)
+// in the Amazon CloudFront Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation CreateOriginAccessControl for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeOriginAccessControlAlreadyExists "OriginAccessControlAlreadyExists"
+//     An origin access control with the specified parameters already exists.
+//
+//   - ErrCodeTooManyOriginAccessControls "TooManyOriginAccessControls"
+//     The number of origin access controls in your Amazon Web Services account
+//     exceeds the maximum allowed.
+//
+//     For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeInvalidArgument "InvalidArgument"
+//     An argument is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateOriginAccessControl
+func (c *CloudFront) CreateOriginAccessControl(input *CreateOriginAccessControlInput) (*CreateOriginAccessControlOutput, error) {
+	req, out := c.CreateOriginAccessControlRequest(input)
+	return out, req.Send()
+}
+
+// CreateOriginAccessControlWithContext is the same as CreateOriginAccessControl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateOriginAccessControl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) CreateOriginAccessControlWithContext(ctx aws.Context, input *CreateOriginAccessControlInput, opts ...request.Option) (*CreateOriginAccessControlOutput, error) {
+	req, out := c.CreateOriginAccessControlRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2064,6 +2191,9 @@ func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDi
 //   - ErrCodeInvalidOriginAccessIdentity "InvalidOriginAccessIdentity"
 //     The origin access identity is not valid or doesn't exist.
 //
+//   - ErrCodeInvalidOriginAccessControl "InvalidOriginAccessControl"
+//     The origin access control is not valid.
+//
 //   - ErrCodeAccessDenied "AccessDenied"
 //     Access denied.
 //
@@ -2182,6 +2312,9 @@ func (c *CloudFront) CreateStreamingDistributionWithTagsRequest(input *CreateStr
 //
 //   - ErrCodeInvalidOriginAccessIdentity "InvalidOriginAccessIdentity"
 //     The origin access identity is not valid or doesn't exist.
+//
+//   - ErrCodeInvalidOriginAccessControl "InvalidOriginAccessControl"
+//     The origin access control is not valid.
 //
 //   - ErrCodeAccessDenied "AccessDenied"
 //     Access denied.
@@ -2931,7 +3064,7 @@ func (c *CloudFront) DeleteMonitoringSubscriptionRequest(input *DeleteMonitoring
 	op := &request.Operation{
 		Name:       opDeleteMonitoringSubscription,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/2020-05-31/distributions/{DistributionId}/monitoring-subscription",
+		HTTPPath:   "/2020-05-31/distributions/{DistributionId}/monitoring-subscription/",
 	}
 
 	if input == nil {
@@ -2963,6 +3096,9 @@ func (c *CloudFront) DeleteMonitoringSubscriptionRequest(input *DeleteMonitoring
 //   - ErrCodeNoSuchDistribution "NoSuchDistribution"
 //     The specified distribution does not exist.
 //
+//   - ErrCodeNoSuchMonitoringSubscription "NoSuchMonitoringSubscription"
+//     A monitoring subscription does not exist for the specified distribution.
+//
 //   - ErrCodeUnsupportedOperation "UnsupportedOperation"
 //     This operation is not supported in this region.
 //
@@ -2983,6 +3119,103 @@ func (c *CloudFront) DeleteMonitoringSubscription(input *DeleteMonitoringSubscri
 // for more information on using Contexts.
 func (c *CloudFront) DeleteMonitoringSubscriptionWithContext(ctx aws.Context, input *DeleteMonitoringSubscriptionInput, opts ...request.Option) (*DeleteMonitoringSubscriptionOutput, error) {
 	req, out := c.DeleteMonitoringSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteOriginAccessControl = "DeleteOriginAccessControl2020_05_31"
+
+// DeleteOriginAccessControlRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteOriginAccessControl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteOriginAccessControl for more information on using the DeleteOriginAccessControl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteOriginAccessControlRequest method.
+//	req, resp := client.DeleteOriginAccessControlRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteOriginAccessControl
+func (c *CloudFront) DeleteOriginAccessControlRequest(input *DeleteOriginAccessControlInput) (req *request.Request, output *DeleteOriginAccessControlOutput) {
+	op := &request.Operation{
+		Name:       opDeleteOriginAccessControl,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2020-05-31/origin-access-control/{Id}",
+	}
+
+	if input == nil {
+		input = &DeleteOriginAccessControlInput{}
+	}
+
+	output = &DeleteOriginAccessControlOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteOriginAccessControl API operation for Amazon CloudFront.
+//
+// Deletes a CloudFront origin access control.
+//
+// You cannot delete an origin access control if it's in use. First, update
+// all distributions to remove the origin access control from all origins, then
+// delete the origin access control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation DeleteOriginAccessControl for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeAccessDenied "AccessDenied"
+//     Access denied.
+//
+//   - ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
+//     The If-Match version is missing or not valid.
+//
+//   - ErrCodeNoSuchOriginAccessControl "NoSuchOriginAccessControl"
+//     The origin access control does not exist.
+//
+//   - ErrCodePreconditionFailed "PreconditionFailed"
+//     The precondition in one or more of the request fields evaluated to false.
+//
+//   - ErrCodeOriginAccessControlInUse "OriginAccessControlInUse"
+//     Cannot delete the origin access control because it's in use by one or more
+//     distributions.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteOriginAccessControl
+func (c *CloudFront) DeleteOriginAccessControl(input *DeleteOriginAccessControlInput) (*DeleteOriginAccessControlOutput, error) {
+	req, out := c.DeleteOriginAccessControlRequest(input)
+	return out, req.Send()
+}
+
+// DeleteOriginAccessControlWithContext is the same as DeleteOriginAccessControl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteOriginAccessControl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) DeleteOriginAccessControlWithContext(ctx aws.Context, input *DeleteOriginAccessControlInput, opts ...request.Option) (*DeleteOriginAccessControlOutput, error) {
+	req, out := c.DeleteOriginAccessControlRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4807,7 +5040,7 @@ func (c *CloudFront) GetMonitoringSubscriptionRequest(input *GetMonitoringSubscr
 	op := &request.Operation{
 		Name:       opGetMonitoringSubscription,
 		HTTPMethod: "GET",
-		HTTPPath:   "/2020-05-31/distributions/{DistributionId}/monitoring-subscription",
+		HTTPPath:   "/2020-05-31/distributions/{DistributionId}/monitoring-subscription/",
 	}
 
 	if input == nil {
@@ -4839,6 +5072,9 @@ func (c *CloudFront) GetMonitoringSubscriptionRequest(input *GetMonitoringSubscr
 //   - ErrCodeNoSuchDistribution "NoSuchDistribution"
 //     The specified distribution does not exist.
 //
+//   - ErrCodeNoSuchMonitoringSubscription "NoSuchMonitoringSubscription"
+//     A monitoring subscription does not exist for the specified distribution.
+//
 //   - ErrCodeUnsupportedOperation "UnsupportedOperation"
 //     This operation is not supported in this region.
 //
@@ -4859,6 +5095,170 @@ func (c *CloudFront) GetMonitoringSubscription(input *GetMonitoringSubscriptionI
 // for more information on using Contexts.
 func (c *CloudFront) GetMonitoringSubscriptionWithContext(ctx aws.Context, input *GetMonitoringSubscriptionInput, opts ...request.Option) (*GetMonitoringSubscriptionOutput, error) {
 	req, out := c.GetMonitoringSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetOriginAccessControl = "GetOriginAccessControl2020_05_31"
+
+// GetOriginAccessControlRequest generates a "aws/request.Request" representing the
+// client's request for the GetOriginAccessControl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetOriginAccessControl for more information on using the GetOriginAccessControl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetOriginAccessControlRequest method.
+//	req, resp := client.GetOriginAccessControlRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetOriginAccessControl
+func (c *CloudFront) GetOriginAccessControlRequest(input *GetOriginAccessControlInput) (req *request.Request, output *GetOriginAccessControlOutput) {
+	op := &request.Operation{
+		Name:       opGetOriginAccessControl,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/origin-access-control/{Id}",
+	}
+
+	if input == nil {
+		input = &GetOriginAccessControlInput{}
+	}
+
+	output = &GetOriginAccessControlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetOriginAccessControl API operation for Amazon CloudFront.
+//
+// Gets a CloudFront origin access control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetOriginAccessControl for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeNoSuchOriginAccessControl "NoSuchOriginAccessControl"
+//     The origin access control does not exist.
+//
+//   - ErrCodeAccessDenied "AccessDenied"
+//     Access denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetOriginAccessControl
+func (c *CloudFront) GetOriginAccessControl(input *GetOriginAccessControlInput) (*GetOriginAccessControlOutput, error) {
+	req, out := c.GetOriginAccessControlRequest(input)
+	return out, req.Send()
+}
+
+// GetOriginAccessControlWithContext is the same as GetOriginAccessControl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetOriginAccessControl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) GetOriginAccessControlWithContext(ctx aws.Context, input *GetOriginAccessControlInput, opts ...request.Option) (*GetOriginAccessControlOutput, error) {
+	req, out := c.GetOriginAccessControlRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetOriginAccessControlConfig = "GetOriginAccessControlConfig2020_05_31"
+
+// GetOriginAccessControlConfigRequest generates a "aws/request.Request" representing the
+// client's request for the GetOriginAccessControlConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetOriginAccessControlConfig for more information on using the GetOriginAccessControlConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetOriginAccessControlConfigRequest method.
+//	req, resp := client.GetOriginAccessControlConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetOriginAccessControlConfig
+func (c *CloudFront) GetOriginAccessControlConfigRequest(input *GetOriginAccessControlConfigInput) (req *request.Request, output *GetOriginAccessControlConfigOutput) {
+	op := &request.Operation{
+		Name:       opGetOriginAccessControlConfig,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/origin-access-control/{Id}/config",
+	}
+
+	if input == nil {
+		input = &GetOriginAccessControlConfigInput{}
+	}
+
+	output = &GetOriginAccessControlConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetOriginAccessControlConfig API operation for Amazon CloudFront.
+//
+// Gets a CloudFront origin access control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetOriginAccessControlConfig for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeNoSuchOriginAccessControl "NoSuchOriginAccessControl"
+//     The origin access control does not exist.
+//
+//   - ErrCodeAccessDenied "AccessDenied"
+//     Access denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetOriginAccessControlConfig
+func (c *CloudFront) GetOriginAccessControlConfig(input *GetOriginAccessControlConfigInput) (*GetOriginAccessControlConfigOutput, error) {
+	req, out := c.GetOriginAccessControlConfigRequest(input)
+	return out, req.Send()
+}
+
+// GetOriginAccessControlConfigWithContext is the same as GetOriginAccessControlConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetOriginAccessControlConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) GetOriginAccessControlConfigWithContext(ctx aws.Context, input *GetOriginAccessControlConfigInput, opts ...request.Option) (*GetOriginAccessControlConfigOutput, error) {
+	req, out := c.GetOriginAccessControlConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7128,6 +7528,91 @@ func (c *CloudFront) ListKeyGroupsWithContext(ctx aws.Context, input *ListKeyGro
 	return out, req.Send()
 }
 
+const opListOriginAccessControls = "ListOriginAccessControls2020_05_31"
+
+// ListOriginAccessControlsRequest generates a "aws/request.Request" representing the
+// client's request for the ListOriginAccessControls operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListOriginAccessControls for more information on using the ListOriginAccessControls
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListOriginAccessControlsRequest method.
+//	req, resp := client.ListOriginAccessControlsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListOriginAccessControls
+func (c *CloudFront) ListOriginAccessControlsRequest(input *ListOriginAccessControlsInput) (req *request.Request, output *ListOriginAccessControlsOutput) {
+	op := &request.Operation{
+		Name:       opListOriginAccessControls,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/origin-access-control",
+	}
+
+	if input == nil {
+		input = &ListOriginAccessControlsInput{}
+	}
+
+	output = &ListOriginAccessControlsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListOriginAccessControls API operation for Amazon CloudFront.
+//
+// Gets the list of CloudFront origin access controls in this Amazon Web Services
+// account.
+//
+// You can optionally specify the maximum number of items to receive in the
+// response. If the total number of items in the list exceeds the maximum that
+// you specify, or the default maximum, the response is paginated. To get the
+// next page of items, send another request that specifies the NextMarker value
+// from the current response as the Marker value in the next request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation ListOriginAccessControls for usage and error information.
+//
+// Returned Error Codes:
+//   - ErrCodeInvalidArgument "InvalidArgument"
+//     An argument is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListOriginAccessControls
+func (c *CloudFront) ListOriginAccessControls(input *ListOriginAccessControlsInput) (*ListOriginAccessControlsOutput, error) {
+	req, out := c.ListOriginAccessControlsRequest(input)
+	return out, req.Send()
+}
+
+// ListOriginAccessControlsWithContext is the same as ListOriginAccessControls with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOriginAccessControls for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) ListOriginAccessControlsWithContext(ctx aws.Context, input *ListOriginAccessControlsInput, opts ...request.Option) (*ListOriginAccessControlsOutput, error) {
+	req, out := c.ListOriginAccessControlsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListOriginRequestPolicies = "ListOriginRequestPolicies2020_05_31"
 
 // ListOriginRequestPoliciesRequest generates a "aws/request.Request" representing the
@@ -8481,6 +8966,9 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   - ErrCodeInvalidOriginAccessIdentity "InvalidOriginAccessIdentity"
 //     The origin access identity is not valid or doesn't exist.
 //
+//   - ErrCodeInvalidOriginAccessControl "InvalidOriginAccessControl"
+//     The origin access control is not valid.
+//
 //   - ErrCodeTooManyTrustedSigners "TooManyTrustedSigners"
 //     Your request contains more trusted signers than are allowed per distribution.
 //
@@ -8647,6 +9135,14 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   - ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
 //     The specified real-time log configuration belongs to a different Amazon Web
 //     Services account.
+//
+//   - ErrCodeIllegalOriginAccessConfiguration "IllegalOriginAccessConfiguration"
+//     An origin cannot contain both an origin access control (OAC) and an origin
+//     access identity (OAI).
+//
+//   - ErrCodeInvalidDomainNameForOriginAccessControl "InvalidDomainNameForOriginAccessControl"
+//     An origin access control is associated with an origin whose domain name is
+//     not supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateDistribution
 func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (*UpdateDistributionOutput, error) {
@@ -9101,6 +9597,103 @@ func (c *CloudFront) UpdateKeyGroup(input *UpdateKeyGroupInput) (*UpdateKeyGroup
 // for more information on using Contexts.
 func (c *CloudFront) UpdateKeyGroupWithContext(ctx aws.Context, input *UpdateKeyGroupInput, opts ...request.Option) (*UpdateKeyGroupOutput, error) {
 	req, out := c.UpdateKeyGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateOriginAccessControl = "UpdateOriginAccessControl2020_05_31"
+
+// UpdateOriginAccessControlRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateOriginAccessControl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateOriginAccessControl for more information on using the UpdateOriginAccessControl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateOriginAccessControlRequest method.
+//	req, resp := client.UpdateOriginAccessControlRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateOriginAccessControl
+func (c *CloudFront) UpdateOriginAccessControlRequest(input *UpdateOriginAccessControlInput) (req *request.Request, output *UpdateOriginAccessControlOutput) {
+	op := &request.Operation{
+		Name:       opUpdateOriginAccessControl,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2020-05-31/origin-access-control/{Id}/config",
+	}
+
+	if input == nil {
+		input = &UpdateOriginAccessControlInput{}
+	}
+
+	output = &UpdateOriginAccessControlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateOriginAccessControl API operation for Amazon CloudFront.
+//
+// Updates a CloudFront origin access control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation UpdateOriginAccessControl for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeAccessDenied "AccessDenied"
+//     Access denied.
+//
+//   - ErrCodeIllegalUpdate "IllegalUpdate"
+//     The update contains modifications that are not allowed.
+//
+//   - ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
+//     The If-Match version is missing or not valid.
+//
+//   - ErrCodeOriginAccessControlAlreadyExists "OriginAccessControlAlreadyExists"
+//     An origin access control with the specified parameters already exists.
+//
+//   - ErrCodeNoSuchOriginAccessControl "NoSuchOriginAccessControl"
+//     The origin access control does not exist.
+//
+//   - ErrCodePreconditionFailed "PreconditionFailed"
+//     The precondition in one or more of the request fields evaluated to false.
+//
+//   - ErrCodeInvalidArgument "InvalidArgument"
+//     An argument is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateOriginAccessControl
+func (c *CloudFront) UpdateOriginAccessControl(input *UpdateOriginAccessControlInput) (*UpdateOriginAccessControlOutput, error) {
+	req, out := c.UpdateOriginAccessControlRequest(input)
+	return out, req.Send()
+}
+
+// UpdateOriginAccessControlWithContext is the same as UpdateOriginAccessControl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateOriginAccessControl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) UpdateOriginAccessControlWithContext(ctx aws.Context, input *UpdateOriginAccessControlInput, opts ...request.Option) (*UpdateOriginAccessControlOutput, error) {
+	req, out := c.UpdateOriginAccessControlRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9644,6 +10237,9 @@ func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDi
 //
 //   - ErrCodeInvalidOriginAccessIdentity "InvalidOriginAccessIdentity"
 //     The origin access identity is not valid or doesn't exist.
+//
+//   - ErrCodeInvalidOriginAccessControl "InvalidOriginAccessControl"
+//     The origin access control is not valid.
 //
 //   - ErrCodeTooManyTrustedSigners "TooManyTrustedSigners"
 //     Your request contains more trusted signers than are allowed per distribution.
@@ -12819,6 +13415,106 @@ func (s *CreateMonitoringSubscriptionOutput) SetMonitoringSubscription(v *Monito
 	return s
 }
 
+type CreateOriginAccessControlInput struct {
+	_ struct{} `locationName:"CreateOriginAccessControlRequest" type:"structure" payload:"OriginAccessControlConfig"`
+
+	// Contains the origin access control.
+	//
+	// OriginAccessControlConfig is a required field
+	OriginAccessControlConfig *OriginAccessControlConfig `locationName:"OriginAccessControlConfig" type:"structure" required:"true" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOriginAccessControlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOriginAccessControlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateOriginAccessControlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateOriginAccessControlInput"}
+	if s.OriginAccessControlConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OriginAccessControlConfig"))
+	}
+	if s.OriginAccessControlConfig != nil {
+		if err := s.OriginAccessControlConfig.Validate(); err != nil {
+			invalidParams.AddNested("OriginAccessControlConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOriginAccessControlConfig sets the OriginAccessControlConfig field's value.
+func (s *CreateOriginAccessControlInput) SetOriginAccessControlConfig(v *OriginAccessControlConfig) *CreateOriginAccessControlInput {
+	s.OriginAccessControlConfig = v
+	return s
+}
+
+type CreateOriginAccessControlOutput struct {
+	_ struct{} `type:"structure" payload:"OriginAccessControl"`
+
+	// The version identifier for the current version of the origin access control.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The URL of the origin access control.
+	Location *string `location:"header" locationName:"Location" type:"string"`
+
+	// Contains an origin access control.
+	OriginAccessControl *OriginAccessControl `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOriginAccessControlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateOriginAccessControlOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *CreateOriginAccessControlOutput) SetETag(v string) *CreateOriginAccessControlOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateOriginAccessControlOutput) SetLocation(v string) *CreateOriginAccessControlOutput {
+	s.Location = &v
+	return s
+}
+
+// SetOriginAccessControl sets the OriginAccessControl field's value.
+func (s *CreateOriginAccessControlOutput) SetOriginAccessControl(v *OriginAccessControl) *CreateOriginAccessControlOutput {
+	s.OriginAccessControl = v
+	return s
+}
+
 type CreateOriginRequestPolicyInput struct {
 	_ struct{} `locationName:"CreateOriginRequestPolicyRequest" type:"structure" payload:"OriginRequestPolicyConfig"`
 
@@ -14939,6 +15635,87 @@ func (s DeleteMonitoringSubscriptionOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteMonitoringSubscriptionOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteOriginAccessControlInput struct {
+	_ struct{} `locationName:"DeleteOriginAccessControlRequest" type:"structure"`
+
+	// The unique identifier of the origin access control that you are deleting.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The current version (ETag value) of the origin access control that you are
+	// deleting.
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteOriginAccessControlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteOriginAccessControlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteOriginAccessControlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteOriginAccessControlInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteOriginAccessControlInput) SetId(v string) *DeleteOriginAccessControlInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *DeleteOriginAccessControlInput) SetIfMatch(v string) *DeleteOriginAccessControlInput {
+	s.IfMatch = &v
+	return s
+}
+
+type DeleteOriginAccessControlOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteOriginAccessControlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteOriginAccessControlOutput) GoString() string {
 	return s.String()
 }
 
@@ -19388,6 +20165,184 @@ func (s *GetMonitoringSubscriptionOutput) SetMonitoringSubscription(v *Monitorin
 	return s
 }
 
+type GetOriginAccessControlConfigInput struct {
+	_ struct{} `locationName:"GetOriginAccessControlConfigRequest" type:"structure"`
+
+	// The unique identifier of the origin access control.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOriginAccessControlConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOriginAccessControlConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetOriginAccessControlConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetOriginAccessControlConfigInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetOriginAccessControlConfigInput) SetId(v string) *GetOriginAccessControlConfigInput {
+	s.Id = &v
+	return s
+}
+
+type GetOriginAccessControlConfigOutput struct {
+	_ struct{} `type:"structure" payload:"OriginAccessControlConfig"`
+
+	// The version identifier for the current version of the origin access control.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// Contains an origin access control.
+	OriginAccessControlConfig *OriginAccessControlConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOriginAccessControlConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOriginAccessControlConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetOriginAccessControlConfigOutput) SetETag(v string) *GetOriginAccessControlConfigOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetOriginAccessControlConfig sets the OriginAccessControlConfig field's value.
+func (s *GetOriginAccessControlConfigOutput) SetOriginAccessControlConfig(v *OriginAccessControlConfig) *GetOriginAccessControlConfigOutput {
+	s.OriginAccessControlConfig = v
+	return s
+}
+
+type GetOriginAccessControlInput struct {
+	_ struct{} `locationName:"GetOriginAccessControlRequest" type:"structure"`
+
+	// The unique identifier of the origin access control.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOriginAccessControlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOriginAccessControlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetOriginAccessControlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetOriginAccessControlInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetOriginAccessControlInput) SetId(v string) *GetOriginAccessControlInput {
+	s.Id = &v
+	return s
+}
+
+type GetOriginAccessControlOutput struct {
+	_ struct{} `type:"structure" payload:"OriginAccessControl"`
+
+	// The version identifier for the current version of the origin access control.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// Contains an origin access control.
+	OriginAccessControl *OriginAccessControl `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOriginAccessControlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOriginAccessControlOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetOriginAccessControlOutput) SetETag(v string) *GetOriginAccessControlOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetOriginAccessControl sets the OriginAccessControl field's value.
+func (s *GetOriginAccessControlOutput) SetOriginAccessControl(v *OriginAccessControl) *GetOriginAccessControlOutput {
+	s.OriginAccessControl = v
+	return s
+}
+
 type GetOriginRequestPolicyConfigInput struct {
 	_ struct{} `locationName:"GetOriginRequestPolicyConfigRequest" type:"structure"`
 
@@ -22494,6 +23449,80 @@ func (s *ListKeyGroupsOutput) SetKeyGroupList(v *KeyGroupList) *ListKeyGroupsOut
 	return s
 }
 
+type ListOriginAccessControlsInput struct {
+	_ struct{} `locationName:"ListOriginAccessControlsRequest" type:"structure"`
+
+	// Use this field when paginating results to indicate where to begin in your
+	// list of origin access controls. The response includes the items in the list
+	// that occur after the marker. To get the next page of the list, set this field's
+	// value to the value of NextMarker from the current page's response.
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	// The maximum number of origin access controls that you want in the response.
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOriginAccessControlsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOriginAccessControlsInput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListOriginAccessControlsInput) SetMarker(v string) *ListOriginAccessControlsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListOriginAccessControlsInput) SetMaxItems(v int64) *ListOriginAccessControlsInput {
+	s.MaxItems = &v
+	return s
+}
+
+type ListOriginAccessControlsOutput struct {
+	_ struct{} `type:"structure" payload:"OriginAccessControlList"`
+
+	// A list of origin access controls.
+	OriginAccessControlList *OriginAccessControlList `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOriginAccessControlsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOriginAccessControlsOutput) GoString() string {
+	return s.String()
+}
+
+// SetOriginAccessControlList sets the OriginAccessControlList field's value.
+func (s *ListOriginAccessControlsOutput) SetOriginAccessControlList(v *OriginAccessControlList) *ListOriginAccessControlsOutput {
+	s.OriginAccessControlList = v
+	return s
+}
+
 type ListOriginRequestPoliciesInput struct {
 	_ struct{} `locationName:"ListOriginRequestPoliciesRequest" type:"structure"`
 
@@ -23202,6 +24231,12 @@ type Origin struct {
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
+	// The unique identifier of an origin access control for this origin.
+	//
+	// For more information, see Restricting access to an Amazon S3 origin (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html)
+	// in the Amazon CloudFront Developer Guide.
+	OriginAccessControlId *string `type:"string"`
+
 	// An optional path that CloudFront appends to the origin domain name when CloudFront
 	// requests content from the origin.
 	//
@@ -23313,6 +24348,12 @@ func (s *Origin) SetId(v string) *Origin {
 	return s
 }
 
+// SetOriginAccessControlId sets the OriginAccessControlId field's value.
+func (s *Origin) SetOriginAccessControlId(v string) *Origin {
+	s.OriginAccessControlId = &v
+	return s
+}
+
 // SetOriginPath sets the OriginPath field's value.
 func (s *Origin) SetOriginPath(v string) *Origin {
 	s.OriginPath = &v
@@ -23328,6 +24369,367 @@ func (s *Origin) SetOriginShield(v *OriginShield) *Origin {
 // SetS3OriginConfig sets the S3OriginConfig field's value.
 func (s *Origin) SetS3OriginConfig(v *S3OriginConfig) *Origin {
 	s.S3OriginConfig = v
+	return s
+}
+
+// A CloudFront origin access control.
+type OriginAccessControl struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the origin access control.
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
+
+	// The origin access control.
+	OriginAccessControlConfig *OriginAccessControlConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OriginAccessControl) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OriginAccessControl) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *OriginAccessControl) SetId(v string) *OriginAccessControl {
+	s.Id = &v
+	return s
+}
+
+// SetOriginAccessControlConfig sets the OriginAccessControlConfig field's value.
+func (s *OriginAccessControl) SetOriginAccessControlConfig(v *OriginAccessControlConfig) *OriginAccessControl {
+	s.OriginAccessControlConfig = v
+	return s
+}
+
+// A CloudFront origin access control.
+type OriginAccessControlConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the origin access control.
+	//
+	// Description is a required field
+	Description *string `type:"string" required:"true"`
+
+	// A name to identify the origin access control.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The type of origin that this origin access control is for. The only valid
+	// value is s3.
+	//
+	// OriginAccessControlOriginType is a required field
+	OriginAccessControlOriginType *string `type:"string" required:"true" enum:"OriginAccessControlOriginTypes"`
+
+	// Specifies which requests CloudFront signs (adds authentication information
+	// to). Specify always for the most common use case. For more information, see
+	// origin access control advanced settings (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-advanced-settings)
+	// in the Amazon CloudFront Developer Guide.
+	//
+	// This field can have one of the following values:
+	//
+	//    * always – CloudFront signs all origin requests, overwriting the Authorization
+	//    header from the viewer request if one exists.
+	//
+	//    * never – CloudFront doesn't sign any origin requests. This value turns
+	//    off origin access control for all origins in all distributions that use
+	//    this origin access control.
+	//
+	//    * no-override – If the viewer request doesn't contain the Authorization
+	//    header, then CloudFront signs the origin request. If the viewer request
+	//    contains the Authorization header, then CloudFront doesn't sign the origin
+	//    request and instead passes along the Authorization header from the viewer
+	//    request. WARNING: To pass along the Authorization header from the viewer
+	//    request, you must add the Authorization header to an origin request policy
+	//    (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html)
+	//    for all cache behaviors that use origins associated with this origin access
+	//    control.
+	//
+	// SigningBehavior is a required field
+	SigningBehavior *string `type:"string" required:"true" enum:"OriginAccessControlSigningBehaviors"`
+
+	// The signing protocol of the origin access control, which determines how CloudFront
+	// signs (authenticates) requests. The only valid value is sigv4.
+	//
+	// SigningProtocol is a required field
+	SigningProtocol *string `type:"string" required:"true" enum:"OriginAccessControlSigningProtocols"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OriginAccessControlConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OriginAccessControlConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OriginAccessControlConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OriginAccessControlConfig"}
+	if s.Description == nil {
+		invalidParams.Add(request.NewErrParamRequired("Description"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.OriginAccessControlOriginType == nil {
+		invalidParams.Add(request.NewErrParamRequired("OriginAccessControlOriginType"))
+	}
+	if s.SigningBehavior == nil {
+		invalidParams.Add(request.NewErrParamRequired("SigningBehavior"))
+	}
+	if s.SigningProtocol == nil {
+		invalidParams.Add(request.NewErrParamRequired("SigningProtocol"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *OriginAccessControlConfig) SetDescription(v string) *OriginAccessControlConfig {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *OriginAccessControlConfig) SetName(v string) *OriginAccessControlConfig {
+	s.Name = &v
+	return s
+}
+
+// SetOriginAccessControlOriginType sets the OriginAccessControlOriginType field's value.
+func (s *OriginAccessControlConfig) SetOriginAccessControlOriginType(v string) *OriginAccessControlConfig {
+	s.OriginAccessControlOriginType = &v
+	return s
+}
+
+// SetSigningBehavior sets the SigningBehavior field's value.
+func (s *OriginAccessControlConfig) SetSigningBehavior(v string) *OriginAccessControlConfig {
+	s.SigningBehavior = &v
+	return s
+}
+
+// SetSigningProtocol sets the SigningProtocol field's value.
+func (s *OriginAccessControlConfig) SetSigningProtocol(v string) *OriginAccessControlConfig {
+	s.SigningProtocol = &v
+	return s
+}
+
+// A list of CloudFront origin access controls.
+type OriginAccessControlList struct {
+	_ struct{} `type:"structure"`
+
+	// If there are more items in the list than are in this response, this value
+	// is true.
+	//
+	// IsTruncated is a required field
+	IsTruncated *bool `type:"boolean" required:"true"`
+
+	// Contains the origin access controls in the list.
+	Items []*OriginAccessControlSummary `locationNameList:"OriginAccessControlSummary" type:"list"`
+
+	// The value of the Marker field that was provided in the request.
+	//
+	// Marker is a required field
+	Marker *string `type:"string" required:"true"`
+
+	// The maximum number of origin access controls requested.
+	//
+	// MaxItems is a required field
+	MaxItems *int64 `type:"integer" required:"true"`
+
+	// If there are more items in the list than are in this response, this element
+	// is present. It contains the value to use in the Marker field of another request
+	// to continue listing origin access controls.
+	NextMarker *string `type:"string"`
+
+	// The number of origin access controls returned in the response.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OriginAccessControlList) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OriginAccessControlList) GoString() string {
+	return s.String()
+}
+
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *OriginAccessControlList) SetIsTruncated(v bool) *OriginAccessControlList {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *OriginAccessControlList) SetItems(v []*OriginAccessControlSummary) *OriginAccessControlList {
+	s.Items = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *OriginAccessControlList) SetMarker(v string) *OriginAccessControlList {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *OriginAccessControlList) SetMaxItems(v int64) *OriginAccessControlList {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *OriginAccessControlList) SetNextMarker(v string) *OriginAccessControlList {
+	s.NextMarker = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *OriginAccessControlList) SetQuantity(v int64) *OriginAccessControlList {
+	s.Quantity = &v
+	return s
+}
+
+// A CloudFront origin access control.
+type OriginAccessControlSummary struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the origin access control.
+	//
+	// Description is a required field
+	Description *string `type:"string" required:"true"`
+
+	// The unique identifier of the origin access control.
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
+
+	// A unique name that identifies the origin access control.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The type of origin that this origin access control is for. The only valid
+	// value is s3.
+	//
+	// OriginAccessControlOriginType is a required field
+	OriginAccessControlOriginType *string `type:"string" required:"true" enum:"OriginAccessControlOriginTypes"`
+
+	// A value that specifies which requests CloudFront signs (adds authentication
+	// information to). This field can have one of the following values:
+	//
+	//    * never – CloudFront doesn't sign any origin requests.
+	//
+	//    * always – CloudFront signs all origin requests, overwriting the Authorization
+	//    header from the viewer request if necessary.
+	//
+	//    * no-override – If the viewer request doesn't contain the Authorization
+	//    header, CloudFront signs the origin request. If the viewer request contains
+	//    the Authorization header, CloudFront doesn't sign the origin request,
+	//    but instead passes along the Authorization header that it received in
+	//    the viewer request.
+	//
+	// SigningBehavior is a required field
+	SigningBehavior *string `type:"string" required:"true" enum:"OriginAccessControlSigningBehaviors"`
+
+	// The signing protocol of the origin access control. The signing protocol determines
+	// how CloudFront signs (authenticates) requests. The only valid value is sigv4.
+	//
+	// SigningProtocol is a required field
+	SigningProtocol *string `type:"string" required:"true" enum:"OriginAccessControlSigningProtocols"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OriginAccessControlSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OriginAccessControlSummary) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *OriginAccessControlSummary) SetDescription(v string) *OriginAccessControlSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *OriginAccessControlSummary) SetId(v string) *OriginAccessControlSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *OriginAccessControlSummary) SetName(v string) *OriginAccessControlSummary {
+	s.Name = &v
+	return s
+}
+
+// SetOriginAccessControlOriginType sets the OriginAccessControlOriginType field's value.
+func (s *OriginAccessControlSummary) SetOriginAccessControlOriginType(v string) *OriginAccessControlSummary {
+	s.OriginAccessControlOriginType = &v
+	return s
+}
+
+// SetSigningBehavior sets the SigningBehavior field's value.
+func (s *OriginAccessControlSummary) SetSigningBehavior(v string) *OriginAccessControlSummary {
+	s.SigningBehavior = &v
+	return s
+}
+
+// SetSigningProtocol sets the SigningProtocol field's value.
+func (s *OriginAccessControlSummary) SetSigningProtocol(v string) *OriginAccessControlSummary {
+	s.SigningProtocol = &v
 	return s
 }
 
@@ -30113,6 +31515,124 @@ func (s *UpdateKeyGroupOutput) SetKeyGroup(v *KeyGroup) *UpdateKeyGroupOutput {
 	return s
 }
 
+type UpdateOriginAccessControlInput struct {
+	_ struct{} `locationName:"UpdateOriginAccessControlRequest" type:"structure" payload:"OriginAccessControlConfig"`
+
+	// The unique identifier of the origin access control that you are updating.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The current version (ETag value) of the origin access control that you are
+	// updating.
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
+
+	// An origin access control.
+	//
+	// OriginAccessControlConfig is a required field
+	OriginAccessControlConfig *OriginAccessControlConfig `locationName:"OriginAccessControlConfig" type:"structure" required:"true" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOriginAccessControlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOriginAccessControlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateOriginAccessControlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateOriginAccessControlInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.OriginAccessControlConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OriginAccessControlConfig"))
+	}
+	if s.OriginAccessControlConfig != nil {
+		if err := s.OriginAccessControlConfig.Validate(); err != nil {
+			invalidParams.AddNested("OriginAccessControlConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateOriginAccessControlInput) SetId(v string) *UpdateOriginAccessControlInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *UpdateOriginAccessControlInput) SetIfMatch(v string) *UpdateOriginAccessControlInput {
+	s.IfMatch = &v
+	return s
+}
+
+// SetOriginAccessControlConfig sets the OriginAccessControlConfig field's value.
+func (s *UpdateOriginAccessControlInput) SetOriginAccessControlConfig(v *OriginAccessControlConfig) *UpdateOriginAccessControlInput {
+	s.OriginAccessControlConfig = v
+	return s
+}
+
+type UpdateOriginAccessControlOutput struct {
+	_ struct{} `type:"structure" payload:"OriginAccessControl"`
+
+	// The new version of the origin access control after it has been updated.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The origin access control after it has been updated.
+	OriginAccessControl *OriginAccessControl `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOriginAccessControlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOriginAccessControlOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *UpdateOriginAccessControlOutput) SetETag(v string) *UpdateOriginAccessControlOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetOriginAccessControl sets the OriginAccessControl field's value.
+func (s *UpdateOriginAccessControlOutput) SetOriginAccessControl(v *OriginAccessControl) *UpdateOriginAccessControlOutput {
+	s.OriginAccessControl = v
+	return s
+}
+
 type UpdateOriginRequestPolicyInput struct {
 	_ struct{} `locationName:"UpdateOriginRequestPolicyRequest" type:"structure" payload:"OriginRequestPolicyConfig"`
 
@@ -31250,6 +32770,50 @@ func MinimumProtocolVersion_Values() []string {
 		MinimumProtocolVersionTlsv122018,
 		MinimumProtocolVersionTlsv122019,
 		MinimumProtocolVersionTlsv122021,
+	}
+}
+
+const (
+	// OriginAccessControlOriginTypesS3 is a OriginAccessControlOriginTypes enum value
+	OriginAccessControlOriginTypesS3 = "s3"
+)
+
+// OriginAccessControlOriginTypes_Values returns all elements of the OriginAccessControlOriginTypes enum
+func OriginAccessControlOriginTypes_Values() []string {
+	return []string{
+		OriginAccessControlOriginTypesS3,
+	}
+}
+
+const (
+	// OriginAccessControlSigningBehaviorsNever is a OriginAccessControlSigningBehaviors enum value
+	OriginAccessControlSigningBehaviorsNever = "never"
+
+	// OriginAccessControlSigningBehaviorsAlways is a OriginAccessControlSigningBehaviors enum value
+	OriginAccessControlSigningBehaviorsAlways = "always"
+
+	// OriginAccessControlSigningBehaviorsNoOverride is a OriginAccessControlSigningBehaviors enum value
+	OriginAccessControlSigningBehaviorsNoOverride = "no-override"
+)
+
+// OriginAccessControlSigningBehaviors_Values returns all elements of the OriginAccessControlSigningBehaviors enum
+func OriginAccessControlSigningBehaviors_Values() []string {
+	return []string{
+		OriginAccessControlSigningBehaviorsNever,
+		OriginAccessControlSigningBehaviorsAlways,
+		OriginAccessControlSigningBehaviorsNoOverride,
+	}
+}
+
+const (
+	// OriginAccessControlSigningProtocolsSigv4 is a OriginAccessControlSigningProtocols enum value
+	OriginAccessControlSigningProtocolsSigv4 = "sigv4"
+)
+
+// OriginAccessControlSigningProtocols_Values returns all elements of the OriginAccessControlSigningProtocols enum
+func OriginAccessControlSigningProtocols_Values() []string {
+	return []string{
+		OriginAccessControlSigningProtocolsSigv4,
 	}
 }
 

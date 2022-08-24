@@ -13,6 +13,7 @@
     "CreateInvalidation": "<p>Create a new invalidation. </p>",
     "CreateKeyGroup": "<p>Creates a key group that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">CloudFront signed URLs and signed cookies</a>.</p> <p>To create a key group, you must specify at least one public key for the key group. After you create a key group, you can reference it from one or more cache behaviors. When you reference a key group in a cache behavior, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with a private key whose corresponding public key is in the key group. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving private content</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreateMonitoringSubscription": "<p>Enables additional CloudWatch metrics for the specified CloudFront distribution. The additional metrics incur an additional cost.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/viewing-cloudfront-metrics.html#monitoring-console.distributions-additional\">Viewing additional CloudFront distribution metrics</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+    "CreateOriginAccessControl": "<p>Creates a new origin access control in CloudFront. After you create an origin access control, you can add it to an origin in a CloudFront distribution so that CloudFront sends authenticated (signed) requests to the origin.</p> <p>For an Amazon S3 origin, this makes it possible to block public access to the Amazon S3 bucket so that viewers (users) can access the content in the bucket only through CloudFront.</p> <p>For more information about using a CloudFront origin access control, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html\">Restricting access to an Amazon S3 origin</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreateOriginRequestPolicy": "<p>Creates an origin request policy.</p> <p>After you create an origin request policy, you can attach it to one or more cache behaviors. When it’s attached to a cache behavior, the origin request policy determines the values that CloudFront includes in requests that it sends to the origin. Each request that CloudFront sends to the origin includes the following:</p> <ul> <li> <p>The request body and the URL path (without the domain name) from the viewer request.</p> </li> <li> <p>The headers that CloudFront automatically includes in every origin request, including <code>Host</code>, <code>User-Agent</code>, and <code>X-Amz-Cf-Id</code>.</p> </li> <li> <p>All HTTP headers, cookies, and URL query strings that are specified in the cache policy or the origin request policy. These can include items from the viewer request and, in the case of headers, additional ones that are added by CloudFront.</p> </li> </ul> <p>CloudFront sends a request when it can’t find a valid object in its cache that matches the request. If you want to send values to the origin and also include them in the cache key, use <code>CachePolicy</code>.</p> <p>For more information about origin request policies, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html\">Controlling origin requests</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreatePublicKey": "<p>Uploads a public key to CloudFront that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">signed URLs and signed cookies</a>, or with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html\">field-level encryption</a>.</p>",
     "CreateRealtimeLogConfig": "<p>Creates a real-time log configuration.</p> <p>After you create a real-time log configuration, you can attach it to one or more cache behaviors to send real-time log data to the specified Amazon Kinesis data stream.</p> <p>For more information about real-time log configurations, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html\">Real-time logs</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
@@ -27,6 +28,7 @@
     "DeleteFunction": "<p>Deletes a CloudFront function.</p> <p>You cannot delete a function if it’s associated with a cache behavior. First, update your distributions to remove the function association from all cache behaviors, then delete the function.</p> <p>To delete a function, you must provide the function’s name and version (<code>ETag</code> value). To get these values, you can use <code>ListFunctions</code> and <code>DescribeFunction</code>.</p>",
     "DeleteKeyGroup": "<p>Deletes a key group.</p> <p>You cannot delete a key group that is referenced in a cache behavior. First update your distributions to remove the key group from all cache behaviors, then delete the key group.</p> <p>To delete a key group, you must provide the key group’s identifier and version. To get these values, use <code>ListKeyGroups</code> followed by <code>GetKeyGroup</code> or <code>GetKeyGroupConfig</code>.</p>",
     "DeleteMonitoringSubscription": "<p>Disables additional CloudWatch metrics for the specified CloudFront distribution.</p>",
+    "DeleteOriginAccessControl": "<p>Deletes a CloudFront origin access control.</p> <p>You cannot delete an origin access control if it's in use. First, update all distributions to remove the origin access control from all origins, then delete the origin access control.</p>",
     "DeleteOriginRequestPolicy": "<p>Deletes an origin request policy.</p> <p>You cannot delete an origin request policy if it’s attached to any cache behaviors. First update your distributions to remove the origin request policy from all cache behaviors, then delete the origin request policy.</p> <p>To delete an origin request policy, you must provide the policy’s identifier and version. To get the identifier, you can use <code>ListOriginRequestPolicies</code> or <code>GetOriginRequestPolicy</code>.</p>",
     "DeletePublicKey": "<p>Remove a public key you previously added to CloudFront.</p>",
     "DeleteRealtimeLogConfig": "<p>Deletes a real-time log configuration.</p> <p>You cannot delete a real-time log configuration if it’s attached to a cache behavior. First update your distributions to remove the real-time log configuration from all cache behaviors, then delete the real-time log configuration.</p> <p>To delete a real-time log configuration, you can provide the configuration’s name or its Amazon Resource Name (ARN). You must provide at least one. If you provide both, CloudFront uses the name to identify the real-time log configuration to delete.</p>",
@@ -48,6 +50,8 @@
     "GetKeyGroup": "<p>Gets a key group, including the date and time when the key group was last modified.</p> <p>To get a key group, you must provide the key group’s identifier. If the key group is referenced in a distribution’s cache behavior, you can get the key group’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the key group is not referenced in a cache behavior, you can get the identifier using <code>ListKeyGroups</code>.</p>",
     "GetKeyGroupConfig": "<p>Gets a key group configuration.</p> <p>To get a key group configuration, you must provide the key group’s identifier. If the key group is referenced in a distribution’s cache behavior, you can get the key group’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the key group is not referenced in a cache behavior, you can get the identifier using <code>ListKeyGroups</code>.</p>",
     "GetMonitoringSubscription": "<p>Gets information about whether additional CloudWatch metrics are enabled for the specified CloudFront distribution.</p>",
+    "GetOriginAccessControl": "<p>Gets a CloudFront origin access control.</p>",
+    "GetOriginAccessControlConfig": "<p>Gets a CloudFront origin access control.</p>",
     "GetOriginRequestPolicy": "<p>Gets an origin request policy, including the following metadata:</p> <ul> <li> <p>The policy’s identifier.</p> </li> <li> <p>The date and time when the policy was last modified.</p> </li> </ul> <p>To get an origin request policy, you must provide the policy’s identifier. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",
     "GetOriginRequestPolicyConfig": "<p>Gets an origin request policy configuration.</p> <p>To get an origin request policy configuration, you must provide the policy’s identifier. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",
     "GetPublicKey": "<p>Gets a public key.</p>",
@@ -72,6 +76,7 @@
     "ListFunctions": "<p>Gets a list of all CloudFront functions in your Amazon Web Services account.</p> <p>You can optionally apply a filter to return only the functions that are in the specified stage, either <code>DEVELOPMENT</code> or <code>LIVE</code>.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListInvalidations": "<p>Lists invalidation batches. </p>",
     "ListKeyGroups": "<p>Gets a list of key groups.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
+    "ListOriginAccessControls": "<p>Gets the list of CloudFront origin access controls in this Amazon Web Services account.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send another request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the next request.</p>",
     "ListOriginRequestPolicies": "<p>Gets a list of origin request policies.</p> <p>You can optionally apply a filter to return only the managed policies created by Amazon Web Services, or only the custom policies created in your Amazon Web Services account.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListPublicKeys": "<p>List all public keys that have been added to CloudFront for this account.</p>",
     "ListRealtimeLogConfigs": "<p>Gets a list of real-time log configurations.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request. </p>",
@@ -89,6 +94,7 @@
     "UpdateFieldLevelEncryptionProfile": "<p>Update a field-level encryption profile. </p>",
     "UpdateFunction": "<p>Updates a CloudFront function.</p> <p>You can update a function’s code or the comment that describes the function. You cannot update a function’s name.</p> <p>To update a function, you provide the function’s name and version (<code>ETag</code> value) along with the updated function code. To get the name and version, you can use <code>ListFunctions</code> and <code>DescribeFunction</code>.</p>",
     "UpdateKeyGroup": "<p>Updates a key group.</p> <p>When you update a key group, all the fields are updated with the values provided in the request. You cannot update some fields independent of others. To update a key group:</p> <ol> <li> <p>Get the current key group with <code>GetKeyGroup</code> or <code>GetKeyGroupConfig</code>.</p> </li> <li> <p>Locally modify the fields in the key group that you want to update. For example, add or remove public key IDs.</p> </li> <li> <p>Call <code>UpdateKeyGroup</code> with the entire key group object, including the fields that you modified and those that you didn’t.</p> </li> </ol>",
+    "UpdateOriginAccessControl": "<p>Updates a CloudFront origin access control.</p>",
     "UpdateOriginRequestPolicy": "<p>Updates an origin request policy configuration.</p> <p>When you update an origin request policy configuration, all the fields are updated with the values provided in the request. You cannot update some fields independent of others. To update an origin request policy configuration:</p> <ol> <li> <p>Use <code>GetOriginRequestPolicyConfig</code> to get the current configuration.</p> </li> <li> <p>Locally modify the fields in the origin request policy configuration that you want to update.</p> </li> <li> <p>Call <code>UpdateOriginRequestPolicy</code> by providing the entire origin request policy configuration, including the fields that you modified and those that you didn’t.</p> </li> </ol>",
     "UpdatePublicKey": "<p>Update public key information. Note that the only value you can change is the comment.</p>",
     "UpdateRealtimeLogConfig": "<p>Updates a real-time log configuration.</p> <p>When you update a real-time log configuration, all the parameters are updated with the values provided in the request. You cannot update some parameters independent of others. To update a real-time log configuration:</p> <ol> <li> <p>Call <code>GetRealtimeLogConfig</code> to get the current real-time log configuration.</p> </li> <li> <p>Locally modify the parameters in the real-time log configuration that you want to update.</p> </li> <li> <p>Call this API (<code>UpdateRealtimeLogConfig</code>) by providing the entire real-time log configuration, including the parameters that you modified and those that you didn’t.</p> </li> </ol> <p>You cannot update a real-time log configuration’s <code>Name</code> or <code>ARN</code>.</p>",
@@ -533,6 +539,16 @@
       "refs": {
       }
     },
+    "CreateOriginAccessControlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateOriginAccessControlResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateOriginRequestPolicyRequest": {
       "base": null,
       "refs": {
@@ -672,6 +688,11 @@
       }
     },
     "DeleteMonitoringSubscriptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteOriginAccessControlRequest": {
       "base": null,
       "refs": {
       }
@@ -1237,6 +1258,26 @@
       "refs": {
       }
     },
+    "GetOriginAccessControlConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetOriginAccessControlConfigResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetOriginAccessControlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetOriginAccessControlResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetOriginRequestPolicyConfigRequest": {
       "base": null,
       "refs": {
@@ -1364,6 +1405,11 @@
       "refs": {
       }
     },
+    "IllegalOriginAccessConfiguration": {
+      "base": "<p>An origin cannot contain both an origin access control (OAC) and an origin access identity (OAI).</p>",
+      "refs": {
+      }
+    },
     "IllegalUpdate": {
       "base": "<p>The update contains modifications that are not allowed.</p>",
       "refs": {
@@ -1381,6 +1427,11 @@
     },
     "InvalidDefaultRootObject": {
       "base": "<p>The default root object file name is too big or contains an invalid character.</p>",
+      "refs": {
+      }
+    },
+    "InvalidDomainNameForOriginAccessControl": {
+      "base": "<p>An origin access control is associated with an origin whose domain name is not supported.</p>",
       "refs": {
       }
     },
@@ -1431,6 +1482,11 @@
     },
     "InvalidOrigin": {
       "base": "<p>The Amazon S3 origin server specified does not refer to a valid Amazon S3 bucket.</p>",
+      "refs": {
+      }
+    },
+    "InvalidOriginAccessControl": {
+      "base": "<p>The origin access control is not valid.</p>",
       "refs": {
       }
     },
@@ -1779,6 +1835,16 @@
       "refs": {
       }
     },
+    "ListOriginAccessControlsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListOriginAccessControlsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListOriginRequestPoliciesRequest": {
       "base": null,
       "refs": {
@@ -1883,6 +1949,11 @@
         "GetMonitoringSubscriptionResult$MonitoringSubscription": "<p>A monitoring subscription. This structure contains information about whether additional CloudWatch metrics are enabled for a given CloudFront distribution.</p>"
       }
     },
+    "MonitoringSubscriptionAlreadyExists": {
+      "base": "<p>A monitoring subscription already exists for the specified distribution.</p>",
+      "refs": {
+      }
+    },
     "NoSuchCachePolicy": {
       "base": "<p>The cache policy does not exist.</p>",
       "refs": {
@@ -1918,8 +1989,18 @@
       "refs": {
       }
     },
+    "NoSuchMonitoringSubscription": {
+      "base": "<p>A monitoring subscription does not exist for the specified distribution.</p>",
+      "refs": {
+      }
+    },
     "NoSuchOrigin": {
       "base": "<p>No origin exists with the specified <code>Origin Id</code>. </p>",
+      "refs": {
+      }
+    },
+    "NoSuchOriginAccessControl": {
+      "base": "<p>The origin access control does not exist.</p>",
       "refs": {
       }
     },
@@ -1957,6 +2038,72 @@
       "base": "<p>An origin.</p> <p>An origin is the location where content is stored, and from which CloudFront gets content to serve to viewers. To specify an origin:</p> <ul> <li> <p>Use <code>S3OriginConfig</code> to specify an Amazon S3 bucket that is not configured with static website hosting.</p> </li> <li> <p>Use <code>CustomOriginConfig</code> to specify all other kinds of origins, including:</p> <ul> <li> <p>An Amazon S3 bucket that is configured with static website hosting</p> </li> <li> <p>An Elastic Load Balancing load balancer</p> </li> <li> <p>An AWS Elemental MediaPackage endpoint</p> </li> <li> <p>An AWS Elemental MediaStore container</p> </li> <li> <p>Any other HTTP server, running on an Amazon EC2 instance or any other kind of host</p> </li> </ul> </li> </ul> <p>For the current maximum number of origins that you can specify per distribution, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html#limits-web-distributions\">General Quotas on Web Distributions</a> in the <i>Amazon CloudFront Developer Guide</i> (quotas were formerly referred to as limits).</p>",
       "refs": {
         "OriginList$member": null
+      }
+    },
+    "OriginAccessControl": {
+      "base": "<p>A CloudFront origin access control.</p>",
+      "refs": {
+        "CreateOriginAccessControlResult$OriginAccessControl": "<p>Contains an origin access control.</p>",
+        "GetOriginAccessControlResult$OriginAccessControl": "<p>Contains an origin access control.</p>",
+        "UpdateOriginAccessControlResult$OriginAccessControl": "<p>The origin access control after it has been updated.</p>"
+      }
+    },
+    "OriginAccessControlAlreadyExists": {
+      "base": "<p>An origin access control with the specified parameters already exists.</p>",
+      "refs": {
+      }
+    },
+    "OriginAccessControlConfig": {
+      "base": "<p>A CloudFront origin access control.</p>",
+      "refs": {
+        "CreateOriginAccessControlRequest$OriginAccessControlConfig": "<p>Contains the origin access control.</p>",
+        "GetOriginAccessControlConfigResult$OriginAccessControlConfig": "<p>Contains an origin access control.</p>",
+        "OriginAccessControl$OriginAccessControlConfig": "<p>The origin access control.</p>",
+        "UpdateOriginAccessControlRequest$OriginAccessControlConfig": "<p>An origin access control.</p>"
+      }
+    },
+    "OriginAccessControlInUse": {
+      "base": "<p>Cannot delete the origin access control because it's in use by one or more distributions.</p>",
+      "refs": {
+      }
+    },
+    "OriginAccessControlList": {
+      "base": "<p>A list of CloudFront origin access controls.</p>",
+      "refs": {
+        "ListOriginAccessControlsResult$OriginAccessControlList": "<p>A list of origin access controls.</p>"
+      }
+    },
+    "OriginAccessControlOriginTypes": {
+      "base": null,
+      "refs": {
+        "OriginAccessControlConfig$OriginAccessControlOriginType": "<p>The type of origin that this origin access control is for. The only valid value is <code>s3</code>.</p>",
+        "OriginAccessControlSummary$OriginAccessControlOriginType": "<p>The type of origin that this origin access control is for. The only valid value is <code>s3</code>.</p>"
+      }
+    },
+    "OriginAccessControlSigningBehaviors": {
+      "base": null,
+      "refs": {
+        "OriginAccessControlConfig$SigningBehavior": "<p>Specifies which requests CloudFront signs (adds authentication information to). Specify <code>always</code> for the most common use case. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-advanced-settings\">origin access control advanced settings</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>This field can have one of the following values:</p> <ul> <li> <p> <code>always</code> – CloudFront signs all origin requests, overwriting the <code>Authorization</code> header from the viewer request if one exists.</p> </li> <li> <p> <code>never</code> – CloudFront doesn't sign any origin requests. This value turns off origin access control for all origins in all distributions that use this origin access control.</p> </li> <li> <p> <code>no-override</code> – If the viewer request doesn't contain the <code>Authorization</code> header, then CloudFront signs the origin request. If the viewer request contains the <code>Authorization</code> header, then CloudFront doesn't sign the origin request and instead passes along the <code>Authorization</code> header from the viewer request. <b>WARNING: To pass along the <code>Authorization</code> header from the viewer request, you <i>must</i> add the <code>Authorization</code> header to an <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html\">origin request policy</a> for all cache behaviors that use origins associated with this origin access control.</b> </p> </li> </ul>",
+        "OriginAccessControlSummary$SigningBehavior": "<p>A value that specifies which requests CloudFront signs (adds authentication information to). This field can have one of the following values:</p> <ul> <li> <p> <code>never</code> – CloudFront doesn't sign any origin requests.</p> </li> <li> <p> <code>always</code> – CloudFront signs all origin requests, overwriting the <code>Authorization</code> header from the viewer request if necessary.</p> </li> <li> <p> <code>no-override</code> – If the viewer request doesn't contain the <code>Authorization</code> header, CloudFront signs the origin request. If the viewer request contains the <code>Authorization</code> header, CloudFront doesn't sign the origin request, but instead passes along the <code>Authorization</code> header that it received in the viewer request.</p> </li> </ul>"
+      }
+    },
+    "OriginAccessControlSigningProtocols": {
+      "base": null,
+      "refs": {
+        "OriginAccessControlConfig$SigningProtocol": "<p>The signing protocol of the origin access control, which determines how CloudFront signs (authenticates) requests. The only valid value is <code>sigv4</code>.</p>",
+        "OriginAccessControlSummary$SigningProtocol": "<p>The signing protocol of the origin access control. The signing protocol determines how CloudFront signs (authenticates) requests. The only valid value is <code>sigv4</code>.</p>"
+      }
+    },
+    "OriginAccessControlSummary": {
+      "base": "<p>A CloudFront origin access control.</p>",
+      "refs": {
+        "OriginAccessControlSummaryList$member": null
+      }
+    },
+    "OriginAccessControlSummaryList": {
+      "base": null,
+      "refs": {
+        "OriginAccessControlList$Items": "<p>Contains the origin access controls in the list.</p>"
       }
     },
     "OriginCustomHeader": {
@@ -2779,6 +2926,11 @@
       "refs": {
       }
     },
+    "TooManyDistributionsAssociatedToOriginAccessControl": {
+      "base": "<p>The maximum number of distributions have been associated with the specified origin access control.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+      }
+    },
     "TooManyDistributionsAssociatedToOriginRequestPolicy": {
       "base": "<p>The maximum number of distributions have been associated with the specified origin request policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
       "refs": {
@@ -2876,6 +3028,11 @@
     },
     "TooManyLambdaFunctionAssociations": {
       "base": "<p>Your request contains more Lambda@Edge function associations than are allowed per distribution.</p>",
+      "refs": {
+      }
+    },
+    "TooManyOriginAccessControls": {
+      "base": "<p>The number of origin access controls in your Amazon Web Services account exceeds the maximum allowed.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
       "refs": {
       }
     },
@@ -3061,6 +3218,16 @@
       "refs": {
       }
     },
+    "UpdateOriginAccessControlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateOriginAccessControlResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateOriginRequestPolicyRequest": {
       "base": null,
       "refs": {
@@ -3153,6 +3320,7 @@
         "LambdaFunctionAssociation$IncludeBody": "<p>A flag that allows a Lambda@Edge function to have read access to the body content. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-include-body-access.html\">Accessing the Request Body by Choosing the Include Body Option</a> in the Amazon CloudFront Developer Guide.</p>",
         "LoggingConfig$Enabled": "<p>Specifies whether you want CloudFront to save access logs to an Amazon S3 bucket. If you don't want to enable logging when you create a distribution or if you want to disable logging for an existing distribution, specify <code>false</code> for <code>Enabled</code>, and specify empty <code>Bucket</code> and <code>Prefix</code> elements. If you specify <code>false</code> for <code>Enabled</code> but you specify values for <code>Bucket</code>, <code>prefix</code>, and <code>IncludeCookies</code>, the values are automatically deleted.</p>",
         "LoggingConfig$IncludeCookies": "<p>Specifies whether you want CloudFront to include cookies in access logs, specify <code>true</code> for <code>IncludeCookies</code>. If you choose to include cookies in logs, CloudFront logs all cookies regardless of how you configure the cache behaviors for this distribution. If you don't want to include cookies when you create a distribution or if you want to disable include cookies for an existing distribution, specify <code>false</code> for <code>IncludeCookies</code>.</p>",
+        "OriginAccessControlList$IsTruncated": "<p>If there are more items in the list than are in this response, this value is <code>true</code>.</p>",
         "OriginShield$Enabled": "<p>A flag that specifies whether Origin Shield is enabled.</p> <p>When it’s enabled, CloudFront routes all requests through Origin Shield, which can help protect your origin. When it’s disabled, CloudFront might send requests directly to your origin from multiple edge locations or regional edge caches.</p>",
         "ParametersInCacheKeyAndForwardedToOrigin$EnableAcceptEncodingGzip": "<p>A flag that can affect whether the <code>Accept-Encoding</code> HTTP header is included in the cache key and included in requests that CloudFront sends to the origin.</p> <p>This field is related to the <code>EnableAcceptEncodingBrotli</code> field. If one or both of these fields is <code>true</code> <i>and</i> the viewer request includes the <code>Accept-Encoding</code> header, then CloudFront does the following:</p> <ul> <li> <p>Normalizes the value of the viewer’s <code>Accept-Encoding</code> header</p> </li> <li> <p>Includes the normalized header in the cache key</p> </li> <li> <p>Includes the normalized header in the request to the origin, if a request is necessary</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-policy-compressed-objects\">Compression support</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you set this value to <code>true</code>, and this cache behavior also has an origin request policy attached, do not include the <code>Accept-Encoding</code> header in the origin request policy. CloudFront always includes the <code>Accept-Encoding</code> header in origin requests when the value of this field is <code>true</code>, so including this header in an origin request policy has no effect.</p> <p>If both of these fields are <code>false</code>, then CloudFront treats the <code>Accept-Encoding</code> header the same as any other HTTP header in the viewer request. By default, it’s not included in the cache key and it’s not included in origin requests. In this case, you can manually add <code>Accept-Encoding</code> to the headers whitelist like any other HTTP header.</p>",
         "ParametersInCacheKeyAndForwardedToOrigin$EnableAcceptEncodingBrotli": "<p>A flag that can affect whether the <code>Accept-Encoding</code> HTTP header is included in the cache key and included in requests that CloudFront sends to the origin.</p> <p>This field is related to the <code>EnableAcceptEncodingGzip</code> field. If one or both of these fields is <code>true</code> <i>and</i> the viewer request includes the <code>Accept-Encoding</code> header, then CloudFront does the following:</p> <ul> <li> <p>Normalizes the value of the viewer’s <code>Accept-Encoding</code> header</p> </li> <li> <p>Includes the normalized header in the cache key</p> </li> <li> <p>Includes the normalized header in the request to the origin, if a request is necessary</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-policy-compressed-objects\">Compression support</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you set this value to <code>true</code>, and this cache behavior also has an origin request policy attached, do not include the <code>Accept-Encoding</code> header in the origin request policy. CloudFront always includes the <code>Accept-Encoding</code> header in origin requests when the value of this field is <code>true</code>, so including this header in an origin request policy has no effect.</p> <p>If both of these fields are <code>false</code>, then CloudFront treats the <code>Accept-Encoding</code> header the same as any other HTTP header in the viewer request. By default, it’s not included in the cache key and it’s not included in origin requests. In this case, you can manually add <code>Accept-Encoding</code> to the headers whitelist like any other HTTP header.</p>",
@@ -3235,6 +3403,8 @@
         "LambdaFunctionAssociations$Quantity": "<p>The number of Lambda@Edge function associations for this cache behavior.</p>",
         "Origin$ConnectionAttempts": "<p>The number of times that CloudFront attempts to connect to the origin. The minimum number is 1, the maximum is 3, and the default (if you don’t specify otherwise) is 3.</p> <p>For a custom origin (including an Amazon S3 bucket that’s configured with static website hosting), this value also specifies the number of times that CloudFront attempts to get a response from the origin, in the case of an <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginResponseTimeout\">Origin Response Timeout</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#origin-connection-attempts\">Origin Connection Attempts</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "Origin$ConnectionTimeout": "<p>The number of seconds that CloudFront waits when trying to establish a connection to the origin. The minimum timeout is 1 second, the maximum is 10 seconds, and the default (if you don’t specify otherwise) is 10 seconds.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#origin-connection-timeout\">Origin Connection Timeout</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "OriginAccessControlList$MaxItems": "<p>The maximum number of origin access controls requested.</p>",
+        "OriginAccessControlList$Quantity": "<p>The number of origin access controls returned in the response.</p>",
         "OriginGroupMembers$Quantity": "<p>The number of origins in an origin group.</p>",
         "OriginGroups$Quantity": "<p>The number of origin groups.</p>",
         "OriginRequestPolicyList$MaxItems": "<p>The maximum number of origin request policies requested.</p>",
@@ -3362,6 +3532,8 @@
         "CreateKeyGroupResult$Location": "<p>The URL of the key group.</p>",
         "CreateKeyGroupResult$ETag": "<p>The identifier for this version of the key group.</p>",
         "CreateMonitoringSubscriptionRequest$DistributionId": "<p>The ID of the distribution that you are enabling metrics for.</p>",
+        "CreateOriginAccessControlResult$Location": "<p>The URL of the origin access control.</p>",
+        "CreateOriginAccessControlResult$ETag": "<p>The version identifier for the current version of the origin access control.</p>",
         "CreateOriginRequestPolicyResult$Location": "<p>The fully qualified URI of the origin request policy just created.</p>",
         "CreateOriginRequestPolicyResult$ETag": "<p>The current version of the origin request policy.</p>",
         "CreatePublicKeyResult$Location": "<p>The URL of the public key.</p>",
@@ -3396,6 +3568,8 @@
         "DeleteKeyGroupRequest$Id": "<p>The identifier of the key group that you are deleting. To get the identifier, use <code>ListKeyGroups</code>.</p>",
         "DeleteKeyGroupRequest$IfMatch": "<p>The version of the key group that you are deleting. The version is the key group’s <code>ETag</code> value. To get the <code>ETag</code>, use <code>GetKeyGroup</code> or <code>GetKeyGroupConfig</code>.</p>",
         "DeleteMonitoringSubscriptionRequest$DistributionId": "<p>The ID of the distribution that you are disabling metrics for.</p>",
+        "DeleteOriginAccessControlRequest$Id": "<p>The unique identifier of the origin access control that you are deleting.</p>",
+        "DeleteOriginAccessControlRequest$IfMatch": "<p>The current version (<code>ETag</code> value) of the origin access control that you are deleting.</p>",
         "DeleteOriginRequestPolicyRequest$Id": "<p>The unique identifier for the origin request policy that you are deleting. To get the identifier, you can use <code>ListOriginRequestPolicies</code>.</p>",
         "DeleteOriginRequestPolicyRequest$IfMatch": "<p>The version of the origin request policy that you are deleting. The version is the origin request policy’s <code>ETag</code> value, which you can get using <code>ListOriginRequestPolicies</code>, <code>GetOriginRequestPolicy</code>, or <code>GetOriginRequestPolicyConfig</code>.</p>",
         "DeletePublicKeyRequest$Id": "<p>The ID of the public key you want to remove from CloudFront.</p>",
@@ -3490,6 +3664,10 @@
         "GetKeyGroupRequest$Id": "<p>The identifier of the key group that you are getting. To get the identifier, use <code>ListKeyGroups</code>.</p>",
         "GetKeyGroupResult$ETag": "<p>The identifier for this version of the key group.</p>",
         "GetMonitoringSubscriptionRequest$DistributionId": "<p>The ID of the distribution that you are getting metrics information for.</p>",
+        "GetOriginAccessControlConfigRequest$Id": "<p>The unique identifier of the origin access control.</p>",
+        "GetOriginAccessControlConfigResult$ETag": "<p>The version identifier for the current version of the origin access control.</p>",
+        "GetOriginAccessControlRequest$Id": "<p>The unique identifier of the origin access control.</p>",
+        "GetOriginAccessControlResult$ETag": "<p>The version identifier for the current version of the origin access control.</p>",
         "GetOriginRequestPolicyConfigRequest$Id": "<p>The unique identifier for the origin request policy. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",
         "GetOriginRequestPolicyConfigResult$ETag": "<p>The current version of the origin request policy.</p>",
         "GetOriginRequestPolicyRequest$Id": "<p>The unique identifier for the origin request policy. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",
@@ -3511,10 +3689,12 @@
         "HeaderList$member": null,
         "IllegalDelete$Message": null,
         "IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior$Message": null,
+        "IllegalOriginAccessConfiguration$Message": null,
         "IllegalUpdate$Message": null,
         "InconsistentQuantities$Message": null,
         "InvalidArgument$Message": null,
         "InvalidDefaultRootObject$Message": null,
+        "InvalidDomainNameForOriginAccessControl$Message": null,
         "InvalidErrorCode$Message": null,
         "InvalidForwardCookies$Message": null,
         "InvalidFunctionAssociation$Message": null,
@@ -3525,6 +3705,7 @@
         "InvalidLocationCode$Message": null,
         "InvalidMinimumProtocolVersion$Message": null,
         "InvalidOrigin$Message": null,
+        "InvalidOriginAccessControl$Message": null,
         "InvalidOriginAccessIdentity$Message": null,
         "InvalidOriginKeepaliveTimeout$Message": null,
         "InvalidOriginReadTimeout$Message": null,
@@ -3590,6 +3771,8 @@
         "ListInvalidationsRequest$MaxItems": "<p>The maximum number of invalidation batches that you want in the response body.</p>",
         "ListKeyGroupsRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of key groups. The response includes key groups in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response.</p>",
         "ListKeyGroupsRequest$MaxItems": "<p>The maximum number of key groups that you want in the response.</p>",
+        "ListOriginAccessControlsRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of origin access controls. The response includes the items in the list that occur after the marker. To get the next page of the list, set this field's value to the value of <code>NextMarker</code> from the current page's response.</p>",
+        "ListOriginAccessControlsRequest$MaxItems": "<p>The maximum number of origin access controls that you want in the response.</p>",
         "ListOriginRequestPoliciesRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of origin request policies. The response includes origin request policies in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response.</p>",
         "ListOriginRequestPoliciesRequest$MaxItems": "<p>The maximum number of origin request policies that you want in the response.</p>",
         "ListPublicKeysRequest$Marker": "<p>Use this when paginating results to indicate where to begin in your list of public keys. The results include public keys in the list that occur after the marker. To get the next page of results, set the <code>Marker</code> to the value of the <code>NextMarker</code> from the current page's response (which is also the ID of the last public key on that page). </p>",
@@ -3604,6 +3787,7 @@
         "LoggingConfig$Bucket": "<p>The Amazon S3 bucket to store the access logs in, for example, <code>myawslogbucket.s3.amazonaws.com</code>.</p>",
         "LoggingConfig$Prefix": "<p>An optional string that you want CloudFront to prefix to the access log <code>filenames</code> for this distribution, for example, <code>myprefix/</code>. If you want to enable logging, but you don't want to specify a prefix, you still must include an empty <code>Prefix</code> element in the <code>Logging</code> element.</p>",
         "MissingBody$Message": null,
+        "MonitoringSubscriptionAlreadyExists$Message": null,
         "NoSuchCachePolicy$Message": null,
         "NoSuchCloudFrontOriginAccessIdentity$Message": null,
         "NoSuchDistribution$Message": null,
@@ -3611,7 +3795,9 @@
         "NoSuchFieldLevelEncryptionProfile$Message": null,
         "NoSuchFunctionExists$Message": null,
         "NoSuchInvalidation$Message": null,
+        "NoSuchMonitoringSubscription$Message": null,
         "NoSuchOrigin$Message": null,
+        "NoSuchOriginAccessControl$Message": null,
         "NoSuchOriginRequestPolicy$Message": null,
         "NoSuchPublicKey$Message": null,
         "NoSuchRealtimeLogConfig$Message": null,
@@ -3621,6 +3807,17 @@
         "Origin$Id": "<p>A unique identifier for the origin. This value must be unique within the distribution.</p> <p>Use this value to specify the <code>TargetOriginId</code> in a <code>CacheBehavior</code> or <code>DefaultCacheBehavior</code>.</p>",
         "Origin$DomainName": "<p>The domain name for the origin.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesDomainName\">Origin Domain Name</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "Origin$OriginPath": "<p>An optional path that CloudFront appends to the origin domain name when CloudFront requests content from the origin.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginPath\">Origin Path</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "Origin$OriginAccessControlId": "<p>The unique identifier of an origin access control for this origin.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html\">Restricting access to an Amazon S3 origin</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "OriginAccessControl$Id": "<p>The unique identifier of the origin access control.</p>",
+        "OriginAccessControlAlreadyExists$Message": null,
+        "OriginAccessControlConfig$Name": "<p>A name to identify the origin access control.</p>",
+        "OriginAccessControlConfig$Description": "<p>A description of the origin access control.</p>",
+        "OriginAccessControlInUse$Message": null,
+        "OriginAccessControlList$Marker": "<p>The value of the <code>Marker</code> field that was provided in the request.</p>",
+        "OriginAccessControlList$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value to use in the <code>Marker</code> field of another request to continue listing origin access controls.</p>",
+        "OriginAccessControlSummary$Id": "<p>The unique identifier of the origin access control.</p>",
+        "OriginAccessControlSummary$Description": "<p>A description of the origin access control.</p>",
+        "OriginAccessControlSummary$Name": "<p>A unique name that identifies the origin access control.</p>",
         "OriginCustomHeader$HeaderName": "<p>The name of a header that you want CloudFront to send to your origin. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/forward-custom-headers.html\">Adding Custom Headers to Origin Requests</a> in the <i> Amazon CloudFront Developer Guide</i>.</p>",
         "OriginGroup$Id": "<p>The origin group's ID.</p>",
         "OriginGroupMember$OriginId": "<p>The ID for an origin in an origin group.</p>",
@@ -3709,6 +3906,7 @@
         "TooManyDistributionsAssociatedToCachePolicy$Message": null,
         "TooManyDistributionsAssociatedToFieldLevelEncryptionConfig$Message": null,
         "TooManyDistributionsAssociatedToKeyGroup$Message": null,
+        "TooManyDistributionsAssociatedToOriginAccessControl$Message": null,
         "TooManyDistributionsAssociatedToOriginRequestPolicy$Message": null,
         "TooManyDistributionsAssociatedToResponseHeadersPolicy$Message": null,
         "TooManyDistributionsWithFunctionAssociations$Message": null,
@@ -3729,6 +3927,7 @@
         "TooManyKeyGroups$Message": null,
         "TooManyKeyGroupsAssociatedToDistribution$Message": null,
         "TooManyLambdaFunctionAssociations$Message": null,
+        "TooManyOriginAccessControls$Message": null,
         "TooManyOriginCustomHeaders$Message": null,
         "TooManyOriginGroupsPerDistribution$Message": null,
         "TooManyOriginRequestPolicies$Message": null,
@@ -3768,6 +3967,9 @@
         "UpdateKeyGroupRequest$Id": "<p>The identifier of the key group that you are updating.</p>",
         "UpdateKeyGroupRequest$IfMatch": "<p>The version of the key group that you are updating. The version is the key group’s <code>ETag</code> value.</p>",
         "UpdateKeyGroupResult$ETag": "<p>The identifier for this version of the key group.</p>",
+        "UpdateOriginAccessControlRequest$Id": "<p>The unique identifier of the origin access control that you are updating.</p>",
+        "UpdateOriginAccessControlRequest$IfMatch": "<p>The current version (<code>ETag</code> value) of the origin access control that you are updating.</p>",
+        "UpdateOriginAccessControlResult$ETag": "<p>The new version of the origin access control after it has been updated.</p>",
         "UpdateOriginRequestPolicyRequest$Id": "<p>The unique identifier for the origin request policy that you are updating. The identifier is returned in a cache behavior’s <code>OriginRequestPolicyId</code> field in the response to <code>GetDistributionConfig</code>.</p>",
         "UpdateOriginRequestPolicyRequest$IfMatch": "<p>The version of the origin request policy that you are updating. The version is returned in the origin request policy’s <code>ETag</code> field in the response to <code>GetOriginRequestPolicyConfig</code>.</p>",
         "UpdateOriginRequestPolicyResult$ETag": "<p>The current version of the origin request policy.</p>",

@@ -2327,10 +2327,18 @@
         "InitialDashboardId":{"shape":"RestrictiveResourceId"}
       }
     },
+    "AnonymousUserDashboardVisualEmbeddingConfiguration":{
+      "type":"structure",
+      "required":["InitialDashboardVisualId"],
+      "members":{
+        "InitialDashboardVisualId":{"shape":"DashboardVisualId"}
+      }
+    },
     "AnonymousUserEmbeddingExperienceConfiguration":{
       "type":"structure",
       "members":{
-        "Dashboard":{"shape":"AnonymousUserDashboardEmbeddingConfiguration"}
+        "Dashboard":{"shape":"AnonymousUserDashboardEmbeddingConfiguration"},
+        "DashboardVisual":{"shape":"AnonymousUserDashboardVisualEmbeddingConfiguration"}
       }
     },
     "Arn":{"type":"string"},
@@ -3499,6 +3507,19 @@
       "type":"list",
       "member":{"shape":"DashboardVersionSummary"},
       "max":100
+    },
+    "DashboardVisualId":{
+      "type":"structure",
+      "required":[
+        "DashboardId",
+        "SheetId",
+        "VisualId"
+      ],
+      "members":{
+        "DashboardId":{"shape":"RestrictiveResourceId"},
+        "SheetId":{"shape":"RestrictiveResourceId"},
+        "VisualId":{"shape":"RestrictiveResourceId"}
+      }
     },
     "DataColorPalette":{
       "type":"structure",
@@ -7347,12 +7368,20 @@
         "InitialDashboardId":{"shape":"RestrictiveResourceId"}
       }
     },
+    "RegisteredUserDashboardVisualEmbeddingConfiguration":{
+      "type":"structure",
+      "required":["InitialDashboardVisualId"],
+      "members":{
+        "InitialDashboardVisualId":{"shape":"DashboardVisualId"}
+      }
+    },
     "RegisteredUserEmbeddingExperienceConfiguration":{
       "type":"structure",
       "members":{
         "Dashboard":{"shape":"RegisteredUserDashboardEmbeddingConfiguration"},
         "QuickSightConsole":{"shape":"RegisteredUserQuickSightConsoleEmbeddingConfiguration"},
-        "QSearchBar":{"shape":"RegisteredUserQSearchBarEmbeddingConfiguration"}
+        "QSearchBar":{"shape":"RegisteredUserQSearchBarEmbeddingConfiguration"},
+        "DashboardVisual":{"shape":"RegisteredUserDashboardVisualEmbeddingConfiguration"}
       }
     },
     "RegisteredUserQSearchBarEmbeddingConfiguration":{
