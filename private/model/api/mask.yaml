@@ -347,6 +347,8 @@ actions:
   EKS_ListClusters:
   EKS_TagResource:
   EKS_ListNodegroups:
+  EKS_DescribeNodegroup:
+  EKS_UpdateNodegroupConfig:
 
   # Secrets Manager
   SecretsManager_GetSecretValue:
@@ -405,6 +407,9 @@ actions:
   STS_AssumeRole:
   PI_DescribeDimensionKeys:
   STS_GetCallerIdentity:
+  ACM_GetAccountConfiguration:
+  AccessAnalyzer_ApplyArchiveRule:
+  Pricing_GetProducts:
 
   # CloudTrail
   CloudTrail_LookupEvents:
