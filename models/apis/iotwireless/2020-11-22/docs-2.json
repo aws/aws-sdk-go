@@ -272,6 +272,30 @@
         "SidewalkDeviceMetadata$BatteryLevel": "<p>Sidewalk device battery level.</p>"
       }
     },
+    "Beaconing": {
+      "base": "<p>Beaconing parameters for configuring the wireless gateways.</p>",
+      "refs": {
+        "LoRaWANGateway$Beaconing": "<p>Beaconing object information, which consists of the data rate and frequency parameters.</p>"
+      }
+    },
+    "BeaconingDataRate": {
+      "base": null,
+      "refs": {
+        "Beaconing$DataRate": "<p>The data rate for gateways that are sending the beacons.</p>"
+      }
+    },
+    "BeaconingFrequencies": {
+      "base": null,
+      "refs": {
+        "Beaconing$Frequencies": "<p>The frequency list for the gateways to send the beacons.</p>"
+      }
+    },
+    "BeaconingFrequency": {
+      "base": null,
+      "refs": {
+        "BeaconingFrequencies$member": null
+      }
+    },
     "CancelMulticastGroupSessionRequest": {
       "base": null,
       "refs": {
@@ -851,6 +875,18 @@
         "LoRaWANGatewayMetadata$Rssi": "<p>The RSSI value.</p>"
       }
     },
+    "DownlinkFrequency": {
+      "base": null,
+      "refs": {
+        "GatewayListItem$DownlinkFrequency": "<p>The frequency to use for the gateways when sending a downlink message to the wireless device.</p>"
+      }
+    },
+    "DownlinkMode": {
+      "base": null,
+      "refs": {
+        "ParticipatingGateways$DownlinkMode": "<p>Indicates whether to send the downlink message in sequential mode or concurrent mode, or to use only the chosen gateways from the previous uplink message transmission.</p>"
+      }
+    },
     "DownlinkQueueMessage": {
       "base": "<p>The message in the downlink queue.</p>",
       "refs": {
@@ -934,17 +970,17 @@
     "EventNotificationTopicStatus": {
       "base": null,
       "refs": {
-        "ConnectionStatusEventConfiguration$WirelessGatewayIdEventTopic": "<p>Enum to denote whether the wireless gateway ID connection status event topic is enabled or disabled.</p>",
-        "DeviceRegistrationStateEventConfiguration$WirelessDeviceIdEventTopic": "<p>Enum to denote whether the wireless device id device registration state event topic is enabled or disabled.</p>",
-        "JoinEventConfiguration$WirelessDeviceIdEventTopic": "<p>Enum to denote whether the wireless device id join event topic is enabled or disabled.</p>",
-        "LoRaWANConnectionStatusEventNotificationConfigurations$GatewayEuiEventTopic": "<p>Enum to denote whether the gateway EUI connection status event topic is enabled or disabled.</p>",
-        "LoRaWANConnectionStatusResourceTypeEventConfiguration$WirelessGatewayEventTopic": "<p>Enum to denote whether the wireless gateway connection status event topic is enabled or disabled.</p>",
-        "LoRaWANJoinEventNotificationConfigurations$DevEuiEventTopic": "<p>Enum to denote whether the Dev EUI join event topic is enabled or disabled.</p>",
-        "LoRaWANJoinResourceTypeEventConfiguration$WirelessDeviceEventTopic": "<p>Enum to denote whether the wireless device join event topic is enabled or disabled.</p>",
-        "MessageDeliveryStatusEventConfiguration$WirelessDeviceIdEventTopic": "<p>Enum to denote whether the wireless device id device registration state event topic is enabled or disabled.</p>",
-        "ProximityEventConfiguration$WirelessDeviceIdEventTopic": "<p>Enum to denote whether the wireless device id proximity event topic is enabled or disabled.</p>",
-        "SidewalkEventNotificationConfigurations$AmazonIdEventTopic": "<p>Enum to denote whether amazon id event topic is enabled or disabled.</p>",
-        "SidewalkResourceTypeEventConfiguration$WirelessDeviceEventTopic": "<p>Enum to denote whether the wireless device join event topic is enabled or disabled.</p>"
+        "ConnectionStatusEventConfiguration$WirelessGatewayIdEventTopic": "<p>Denotes whether the wireless gateway ID connection status event topic is enabled or disabled.</p>",
+        "DeviceRegistrationStateEventConfiguration$WirelessDeviceIdEventTopic": "<p>Denotes whether the wireless device ID device registration state event topic is enabled or disabled.</p>",
+        "JoinEventConfiguration$WirelessDeviceIdEventTopic": "<p>Denotes whether the wireless device ID join event topic is enabled or disabled.</p>",
+        "LoRaWANConnectionStatusEventNotificationConfigurations$GatewayEuiEventTopic": "<p>Denotes whether the gateway EUI connection status event topic is enabled or disabled.</p>",
+        "LoRaWANConnectionStatusResourceTypeEventConfiguration$WirelessGatewayEventTopic": "<p>Denotes whether the wireless gateway connection status event topic is enabled or disabled.</p>",
+        "LoRaWANJoinEventNotificationConfigurations$DevEuiEventTopic": "<p>Denotes whether the Dev EUI join event topic is enabled or disabled.</p>",
+        "LoRaWANJoinResourceTypeEventConfiguration$WirelessDeviceEventTopic": "<p>Denotes whether the wireless device join event topic is enabled or disabled.</p>",
+        "MessageDeliveryStatusEventConfiguration$WirelessDeviceIdEventTopic": "<p>Denotes whether the wireless device ID device registration state event topic is enabled or disabled.</p>",
+        "ProximityEventConfiguration$WirelessDeviceIdEventTopic": "<p>Denotes whether the wireless device ID proximity event topic is enabled or disabled.</p>",
+        "SidewalkEventNotificationConfigurations$AmazonIdEventTopic": "<p>Denotes whether the Amazon ID event topic is enabled or disabled.</p>",
+        "SidewalkResourceTypeEventConfiguration$WirelessDeviceEventTopic": "<p>Denotes whether the wireless device join event topic is enabled or disabled.</p>"
       }
     },
     "Expression": {
@@ -1091,6 +1127,18 @@
       "refs": {
         "LoRaWANGateway$GatewayEui": "<p>The gateway's EUI value.</p>",
         "LoRaWANGatewayMetadata$GatewayEui": "<p>The gateway's EUI value.</p>"
+      }
+    },
+    "GatewayList": {
+      "base": null,
+      "refs": {
+        "ParticipatingGateways$GatewayList": "<p>The list of gateways that you want to use for sending the downlink data traffic.</p>"
+      }
+    },
+    "GatewayListItem": {
+      "base": "<p>Gateway list item object that specifies the frequency and list of gateways for which the downlink message should be sent.</p>",
+      "refs": {
+        "GatewayList$member": null
       }
     },
     "GenAppKey": {
@@ -2079,6 +2127,12 @@
         "LoRaWANGatewayVersion$PackageVersion": "<p>The version of the wireless gateway firmware.</p>"
       }
     },
+    "ParticipatingGateways": {
+      "base": "<p>Specify the list of gateways to which you want to send downlink data traffic when the wireless device is running in class B or class C mode.</p>",
+      "refs": {
+        "LoRaWANSendDataToDevice$ParticipatingGateways": "<p>Choose the gateways that you want to use for the downlink data traffic when the wireless device is running in class B or class C mode.</p>"
+      }
+    },
     "PartnerAccountArn": {
       "base": null,
       "refs": {
@@ -2798,6 +2852,12 @@
         "UpdateNetworkAnalyzerConfigurationRequest$TraceContent": null
       }
     },
+    "TransmissionInterval": {
+      "base": null,
+      "refs": {
+        "ParticipatingGateways$TransmissionInterval": "<p>The duration of time for which AWS IoT Core for LoRaWAN will wait before transmitting the payload to the next gateway.</p>"
+      }
+    },
     "TransmitMode": {
       "base": null,
       "refs": {
@@ -3151,6 +3211,7 @@
         "DeleteWirelessGatewayTaskRequest$Id": "<p>The ID of the resource to delete.</p>",
         "DisassociateWirelessGatewayFromCertificateRequest$Id": "<p>The ID of the resource to update.</p>",
         "DisassociateWirelessGatewayFromThingRequest$Id": "<p>The ID of the resource to update.</p>",
+        "GatewayListItem$GatewayId": "<p>The ID of the wireless gateways that you want to add to the list of gateways when sending downlink messages.</p>",
         "GetWirelessGatewayCertificateRequest$Id": "<p>The ID of the resource to get.</p>",
         "GetWirelessGatewayFirmwareInformationRequest$Id": "<p>The ID of the resource to get.</p>",
         "GetWirelessGatewayResponse$Id": "<p>The ID of the wireless gateway.</p>",

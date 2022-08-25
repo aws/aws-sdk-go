@@ -1871,6 +1871,29 @@
         "critical"
       ]
     },
+    "Beaconing":{
+      "type":"structure",
+      "members":{
+        "DataRate":{"shape":"BeaconingDataRate"},
+        "Frequencies":{"shape":"BeaconingFrequencies"}
+      }
+    },
+    "BeaconingDataRate":{
+      "type":"integer",
+      "max":15,
+      "min":0
+    },
+    "BeaconingFrequencies":{
+      "type":"list",
+      "member":{"shape":"BeaconingFrequency"},
+      "max":10,
+      "min":0
+    },
+    "BeaconingFrequency":{
+      "type":"integer",
+      "max":1000000000,
+      "min":100000000
+    },
     "CancelMulticastGroupSessionRequest":{
       "type":"structure",
       "required":["Id"],
@@ -2642,6 +2665,19 @@
       "max":256
     },
     "Double":{"type":"double"},
+    "DownlinkFrequency":{
+      "type":"integer",
+      "max":1000000000,
+      "min":100000000
+    },
+    "DownlinkMode":{
+      "type":"string",
+      "enum":[
+        "SEQUENTIAL",
+        "CONCURRENT",
+        "USING_UPLINK_GATEWAY"
+      ]
+    },
     "DownlinkQueueMessage":{
       "type":"structure",
       "members":{
@@ -2842,6 +2878,21 @@
     "GatewayEui":{
       "type":"string",
       "pattern":"^(([0-9A-Fa-f]{2}-){7}|([0-9A-Fa-f]{2}:){7}|([0-9A-Fa-f]{2}\\s){7}|([0-9A-Fa-f]{2}){7})([0-9A-Fa-f]{2})$"
+    },
+    "GatewayList":{
+      "type":"list",
+      "member":{"shape":"GatewayListItem"}
+    },
+    "GatewayListItem":{
+      "type":"structure",
+      "required":[
+        "GatewayId",
+        "DownlinkFrequency"
+      ],
+      "members":{
+        "GatewayId":{"shape":"WirelessGatewayId"},
+        "DownlinkFrequency":{"shape":"DownlinkFrequency"}
+      }
     },
     "GenAppKey":{
       "type":"string",
@@ -3897,7 +3948,8 @@
         "RfRegion":{"shape":"RfRegion"},
         "JoinEuiFilters":{"shape":"JoinEuiFilters"},
         "NetIdFilters":{"shape":"NetIdFilters"},
-        "SubBands":{"shape":"SubBands"}
+        "SubBands":{"shape":"SubBands"},
+        "Beaconing":{"shape":"Beaconing"}
       }
     },
     "LoRaWANGatewayCurrentVersion":{
@@ -4002,7 +4054,8 @@
     "LoRaWANSendDataToDevice":{
       "type":"structure",
       "members":{
-        "FPort":{"shape":"FPort"}
+        "FPort":{"shape":"FPort"},
+        "ParticipatingGateways":{"shape":"ParticipatingGateways"}
       }
     },
     "LoRaWANServiceProfile":{
@@ -4236,6 +4289,19 @@
       "type":"string",
       "max":32,
       "min":1
+    },
+    "ParticipatingGateways":{
+      "type":"structure",
+      "required":[
+        "DownlinkMode",
+        "GatewayList",
+        "TransmissionInterval"
+      ],
+      "members":{
+        "DownlinkMode":{"shape":"DownlinkMode"},
+        "GatewayList":{"shape":"GatewayList"},
+        "TransmissionInterval":{"shape":"TransmissionInterval"}
+      }
     },
     "PartnerAccountArn":{"type":"string"},
     "PartnerAccountId":{
@@ -4922,6 +4988,11 @@
         "WirelessDeviceFrameInfo":{"shape":"WirelessDeviceFrameInfo"},
         "LogLevel":{"shape":"LogLevel"}
       }
+    },
+    "TransmissionInterval":{
+      "type":"integer",
+      "max":604800,
+      "min":1
     },
     "TransmitMode":{
       "type":"integer",

@@ -5360,6 +5360,10 @@ type DescribeDeviceOutput struct {
 	// The device's description.
 	Description *string `type:"string"`
 
+	// A device's aggregated status. Including the device's connection status, provisioning
+	// status, and lease status.
+	DeviceAggregatedStatus *string `type:"string" enum:"DeviceAggregatedStatus"`
+
 	// The device's connection status.
 	DeviceConnectionStatus *string `type:"string" enum:"DeviceConnectionStatus"`
 
@@ -5368,6 +5372,9 @@ type DescribeDeviceOutput struct {
 
 	// The most recent beta software release.
 	LatestAlternateSoftware *string `min:"1" type:"string"`
+
+	// A device's latest job. Includes the target image version, and the job status.
+	LatestDeviceJob *LatestDeviceJob `type:"structure"`
 
 	// The latest software version available for the device.
 	LatestSoftware *string `min:"1" type:"string"`
@@ -5454,6 +5461,12 @@ func (s *DescribeDeviceOutput) SetDescription(v string) *DescribeDeviceOutput {
 	return s
 }
 
+// SetDeviceAggregatedStatus sets the DeviceAggregatedStatus field's value.
+func (s *DescribeDeviceOutput) SetDeviceAggregatedStatus(v string) *DescribeDeviceOutput {
+	s.DeviceAggregatedStatus = &v
+	return s
+}
+
 // SetDeviceConnectionStatus sets the DeviceConnectionStatus field's value.
 func (s *DescribeDeviceOutput) SetDeviceConnectionStatus(v string) *DescribeDeviceOutput {
 	s.DeviceConnectionStatus = &v
@@ -5469,6 +5482,12 @@ func (s *DescribeDeviceOutput) SetDeviceId(v string) *DescribeDeviceOutput {
 // SetLatestAlternateSoftware sets the LatestAlternateSoftware field's value.
 func (s *DescribeDeviceOutput) SetLatestAlternateSoftware(v string) *DescribeDeviceOutput {
 	s.LatestAlternateSoftware = &v
+	return s
+}
+
+// SetLatestDeviceJob sets the LatestDeviceJob field's value.
+func (s *DescribeDeviceOutput) SetLatestDeviceJob(v *LatestDeviceJob) *DescribeDeviceOutput {
+	s.LatestDeviceJob = v
 	return s
 }
 
@@ -6519,11 +6538,25 @@ type Device struct {
 	// When the device was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
+	// A device's current software.
+	CurrentSoftware *string `min:"1" type:"string"`
+
+	// A description for the device.
+	Description *string `type:"string"`
+
+	// A device's aggregated status. Including the device's connection status, provisioning
+	// status, and lease status.
+	DeviceAggregatedStatus *string `type:"string" enum:"DeviceAggregatedStatus"`
+
 	// The device's ID.
 	DeviceId *string `min:"1" type:"string"`
 
 	// When the device was updated.
 	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// A device's latest job. Includes the target image version, and the update
+	// job status.
+	LatestDeviceJob *LatestDeviceJob `type:"structure"`
 
 	// The device's lease expiration time.
 	LeaseExpirationTime *time.Time `type:"timestamp"`
@@ -6533,6 +6566,12 @@ type Device struct {
 
 	// The device's provisioning status.
 	ProvisioningStatus *string `type:"string" enum:"DeviceStatus"`
+
+	// The device's tags.
+	Tags map[string]*string `type:"map"`
+
+	// The device's type.
+	Type *string `type:"string" enum:"DeviceType"`
 }
 
 // String returns the string representation.
@@ -6565,6 +6604,24 @@ func (s *Device) SetCreatedTime(v time.Time) *Device {
 	return s
 }
 
+// SetCurrentSoftware sets the CurrentSoftware field's value.
+func (s *Device) SetCurrentSoftware(v string) *Device {
+	s.CurrentSoftware = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Device) SetDescription(v string) *Device {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceAggregatedStatus sets the DeviceAggregatedStatus field's value.
+func (s *Device) SetDeviceAggregatedStatus(v string) *Device {
+	s.DeviceAggregatedStatus = &v
+	return s
+}
+
 // SetDeviceId sets the DeviceId field's value.
 func (s *Device) SetDeviceId(v string) *Device {
 	s.DeviceId = &v
@@ -6574,6 +6631,12 @@ func (s *Device) SetDeviceId(v string) *Device {
 // SetLastUpdatedTime sets the LastUpdatedTime field's value.
 func (s *Device) SetLastUpdatedTime(v time.Time) *Device {
 	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetLatestDeviceJob sets the LatestDeviceJob field's value.
+func (s *Device) SetLatestDeviceJob(v *LatestDeviceJob) *Device {
+	s.LatestDeviceJob = v
 	return s
 }
 
@@ -6592,6 +6655,18 @@ func (s *Device) SetName(v string) *Device {
 // SetProvisioningStatus sets the ProvisioningStatus field's value.
 func (s *Device) SetProvisioningStatus(v string) *Device {
 	s.ProvisioningStatus = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Device) SetTags(v map[string]*string) *Device {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Device) SetType(v string) *Device {
+	s.Type = &v
 	return s
 }
 
@@ -6981,6 +7056,47 @@ func (s *JobResourceTags) SetTags(v map[string]*string) *JobResourceTags {
 	return s
 }
 
+// Returns information about the latest device job.
+type LatestDeviceJob struct {
+	_ struct{} `type:"structure"`
+
+	// The target version of the device software.
+	ImageVersion *string `min:"1" type:"string"`
+
+	// Status of the latest device job.
+	Status *string `type:"string" enum:"UpdateProgress"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LatestDeviceJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LatestDeviceJob) GoString() string {
+	return s.String()
+}
+
+// SetImageVersion sets the ImageVersion field's value.
+func (s *LatestDeviceJob) SetImageVersion(v string) *LatestDeviceJob {
+	s.ImageVersion = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *LatestDeviceJob) SetStatus(v string) *LatestDeviceJob {
+	s.Status = &v
+	return s
+}
+
 type ListApplicationInstanceDependenciesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7322,12 +7438,25 @@ func (s *ListApplicationInstancesOutput) SetNextToken(v string) *ListApplication
 type ListDevicesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// Filter based on a device's status.
+	DeviceAggregatedStatusFilter *string `location:"querystring" locationName:"DeviceAggregatedStatusFilter" type:"string" enum:"DeviceAggregatedStatus"`
+
 	// The maximum number of devices to return in one page of results.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" type:"integer"`
+
+	// Filter based on device's name. Prefixes supported.
+	NameFilter *string `location:"querystring" locationName:"NameFilter" type:"string"`
 
 	// Specify the pagination token from a previous request to retrieve the next
 	// page of results.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
+
+	// The target column to be sorted on. Default column sort is CREATED_TIME.
+	SortBy *string `location:"querystring" locationName:"SortBy" type:"string" enum:"ListDevicesSortBy"`
+
+	// The sorting order for the returned list. SortOrder is DESCENDING by default
+	// based on CREATED_TIME. Otherwise, SortOrder is ASCENDING.
+	SortOrder *string `location:"querystring" locationName:"SortOrder" type:"string" enum:"SortOrder"`
 }
 
 // String returns the string representation.
@@ -7361,15 +7490,39 @@ func (s *ListDevicesInput) Validate() error {
 	return nil
 }
 
+// SetDeviceAggregatedStatusFilter sets the DeviceAggregatedStatusFilter field's value.
+func (s *ListDevicesInput) SetDeviceAggregatedStatusFilter(v string) *ListDevicesInput {
+	s.DeviceAggregatedStatusFilter = &v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListDevicesInput) SetMaxResults(v int64) *ListDevicesInput {
 	s.MaxResults = &v
 	return s
 }
 
+// SetNameFilter sets the NameFilter field's value.
+func (s *ListDevicesInput) SetNameFilter(v string) *ListDevicesInput {
+	s.NameFilter = &v
+	return s
+}
+
 // SetNextToken sets the NextToken field's value.
 func (s *ListDevicesInput) SetNextToken(v string) *ListDevicesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListDevicesInput) SetSortBy(v string) *ListDevicesInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListDevicesInput) SetSortOrder(v string) *ListDevicesInput {
+	s.SortOrder = &v
 	return s
 }
 
@@ -10681,6 +10834,50 @@ func ConnectionType_Values() []string {
 }
 
 const (
+	// DeviceAggregatedStatusError is a DeviceAggregatedStatus enum value
+	DeviceAggregatedStatusError = "ERROR"
+
+	// DeviceAggregatedStatusAwaitingProvisioning is a DeviceAggregatedStatus enum value
+	DeviceAggregatedStatusAwaitingProvisioning = "AWAITING_PROVISIONING"
+
+	// DeviceAggregatedStatusPending is a DeviceAggregatedStatus enum value
+	DeviceAggregatedStatusPending = "PENDING"
+
+	// DeviceAggregatedStatusFailed is a DeviceAggregatedStatus enum value
+	DeviceAggregatedStatusFailed = "FAILED"
+
+	// DeviceAggregatedStatusDeleting is a DeviceAggregatedStatus enum value
+	DeviceAggregatedStatusDeleting = "DELETING"
+
+	// DeviceAggregatedStatusOnline is a DeviceAggregatedStatus enum value
+	DeviceAggregatedStatusOnline = "ONLINE"
+
+	// DeviceAggregatedStatusOffline is a DeviceAggregatedStatus enum value
+	DeviceAggregatedStatusOffline = "OFFLINE"
+
+	// DeviceAggregatedStatusLeaseExpired is a DeviceAggregatedStatus enum value
+	DeviceAggregatedStatusLeaseExpired = "LEASE_EXPIRED"
+
+	// DeviceAggregatedStatusUpdateNeeded is a DeviceAggregatedStatus enum value
+	DeviceAggregatedStatusUpdateNeeded = "UPDATE_NEEDED"
+)
+
+// DeviceAggregatedStatus_Values returns all elements of the DeviceAggregatedStatus enum
+func DeviceAggregatedStatus_Values() []string {
+	return []string{
+		DeviceAggregatedStatusError,
+		DeviceAggregatedStatusAwaitingProvisioning,
+		DeviceAggregatedStatusPending,
+		DeviceAggregatedStatusFailed,
+		DeviceAggregatedStatusDeleting,
+		DeviceAggregatedStatusOnline,
+		DeviceAggregatedStatusOffline,
+		DeviceAggregatedStatusLeaseExpired,
+		DeviceAggregatedStatusUpdateNeeded,
+	}
+}
+
+const (
 	// DeviceBrandAwsPanorama is a DeviceBrand enum value
 	DeviceBrandAwsPanorama = "AWS_PANORAMA"
 
@@ -10793,6 +10990,30 @@ const (
 func JobType_Values() []string {
 	return []string{
 		JobTypeOta,
+	}
+}
+
+const (
+	// ListDevicesSortByDeviceId is a ListDevicesSortBy enum value
+	ListDevicesSortByDeviceId = "DEVICE_ID"
+
+	// ListDevicesSortByCreatedTime is a ListDevicesSortBy enum value
+	ListDevicesSortByCreatedTime = "CREATED_TIME"
+
+	// ListDevicesSortByName is a ListDevicesSortBy enum value
+	ListDevicesSortByName = "NAME"
+
+	// ListDevicesSortByDeviceAggregatedStatus is a ListDevicesSortBy enum value
+	ListDevicesSortByDeviceAggregatedStatus = "DEVICE_AGGREGATED_STATUS"
+)
+
+// ListDevicesSortBy_Values returns all elements of the ListDevicesSortBy enum
+func ListDevicesSortBy_Values() []string {
+	return []string{
+		ListDevicesSortByDeviceId,
+		ListDevicesSortByCreatedTime,
+		ListDevicesSortByName,
+		ListDevicesSortByDeviceAggregatedStatus,
 	}
 }
 
@@ -10965,6 +11186,22 @@ func PortType_Values() []string {
 		PortTypeInt32,
 		PortTypeFloat32,
 		PortTypeMedia,
+	}
+}
+
+const (
+	// SortOrderAscending is a SortOrder enum value
+	SortOrderAscending = "ASCENDING"
+
+	// SortOrderDescending is a SortOrder enum value
+	SortOrderDescending = "DESCENDING"
+)
+
+// SortOrder_Values returns all elements of the SortOrder enum
+func SortOrder_Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
 	}
 }
 

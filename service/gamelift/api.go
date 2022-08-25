@@ -31613,6 +31613,102 @@ const (
 
 	// EC2InstanceTypeM5a24xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeM5a24xlarge = "m5a.24xlarge"
+
+	// EC2InstanceTypeC5dLarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5dLarge = "c5d.large"
+
+	// EC2InstanceTypeC5dXlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5dXlarge = "c5d.xlarge"
+
+	// EC2InstanceTypeC5d2xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5d2xlarge = "c5d.2xlarge"
+
+	// EC2InstanceTypeC5d4xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5d4xlarge = "c5d.4xlarge"
+
+	// EC2InstanceTypeC5d9xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5d9xlarge = "c5d.9xlarge"
+
+	// EC2InstanceTypeC5d12xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5d12xlarge = "c5d.12xlarge"
+
+	// EC2InstanceTypeC5d18xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5d18xlarge = "c5d.18xlarge"
+
+	// EC2InstanceTypeC5d24xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5d24xlarge = "c5d.24xlarge"
+
+	// EC2InstanceTypeC6aLarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6aLarge = "c6a.large"
+
+	// EC2InstanceTypeC6aXlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6aXlarge = "c6a.xlarge"
+
+	// EC2InstanceTypeC6a2xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6a2xlarge = "c6a.2xlarge"
+
+	// EC2InstanceTypeC6a4xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6a4xlarge = "c6a.4xlarge"
+
+	// EC2InstanceTypeC6a8xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6a8xlarge = "c6a.8xlarge"
+
+	// EC2InstanceTypeC6a12xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6a12xlarge = "c6a.12xlarge"
+
+	// EC2InstanceTypeC6a16xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6a16xlarge = "c6a.16xlarge"
+
+	// EC2InstanceTypeC6a24xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6a24xlarge = "c6a.24xlarge"
+
+	// EC2InstanceTypeC6iLarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6iLarge = "c6i.large"
+
+	// EC2InstanceTypeC6iXlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6iXlarge = "c6i.xlarge"
+
+	// EC2InstanceTypeC6i2xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6i2xlarge = "c6i.2xlarge"
+
+	// EC2InstanceTypeC6i4xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6i4xlarge = "c6i.4xlarge"
+
+	// EC2InstanceTypeC6i8xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6i8xlarge = "c6i.8xlarge"
+
+	// EC2InstanceTypeC6i12xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6i12xlarge = "c6i.12xlarge"
+
+	// EC2InstanceTypeC6i16xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6i16xlarge = "c6i.16xlarge"
+
+	// EC2InstanceTypeC6i24xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC6i24xlarge = "c6i.24xlarge"
+
+	// EC2InstanceTypeR5dLarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5dLarge = "r5d.large"
+
+	// EC2InstanceTypeR5dXlarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5dXlarge = "r5d.xlarge"
+
+	// EC2InstanceTypeR5d2xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5d2xlarge = "r5d.2xlarge"
+
+	// EC2InstanceTypeR5d4xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5d4xlarge = "r5d.4xlarge"
+
+	// EC2InstanceTypeR5d8xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5d8xlarge = "r5d.8xlarge"
+
+	// EC2InstanceTypeR5d12xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5d12xlarge = "r5d.12xlarge"
+
+	// EC2InstanceTypeR5d16xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5d16xlarge = "r5d.16xlarge"
+
+	// EC2InstanceTypeR5d24xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5d24xlarge = "r5d.24xlarge"
 )
 
 // EC2InstanceType_Values returns all elements of the EC2InstanceType enum
@@ -31700,6 +31796,38 @@ func EC2InstanceType_Values() []string {
 		EC2InstanceTypeM5a12xlarge,
 		EC2InstanceTypeM5a16xlarge,
 		EC2InstanceTypeM5a24xlarge,
+		EC2InstanceTypeC5dLarge,
+		EC2InstanceTypeC5dXlarge,
+		EC2InstanceTypeC5d2xlarge,
+		EC2InstanceTypeC5d4xlarge,
+		EC2InstanceTypeC5d9xlarge,
+		EC2InstanceTypeC5d12xlarge,
+		EC2InstanceTypeC5d18xlarge,
+		EC2InstanceTypeC5d24xlarge,
+		EC2InstanceTypeC6aLarge,
+		EC2InstanceTypeC6aXlarge,
+		EC2InstanceTypeC6a2xlarge,
+		EC2InstanceTypeC6a4xlarge,
+		EC2InstanceTypeC6a8xlarge,
+		EC2InstanceTypeC6a12xlarge,
+		EC2InstanceTypeC6a16xlarge,
+		EC2InstanceTypeC6a24xlarge,
+		EC2InstanceTypeC6iLarge,
+		EC2InstanceTypeC6iXlarge,
+		EC2InstanceTypeC6i2xlarge,
+		EC2InstanceTypeC6i4xlarge,
+		EC2InstanceTypeC6i8xlarge,
+		EC2InstanceTypeC6i12xlarge,
+		EC2InstanceTypeC6i16xlarge,
+		EC2InstanceTypeC6i24xlarge,
+		EC2InstanceTypeR5dLarge,
+		EC2InstanceTypeR5dXlarge,
+		EC2InstanceTypeR5d2xlarge,
+		EC2InstanceTypeR5d4xlarge,
+		EC2InstanceTypeR5d8xlarge,
+		EC2InstanceTypeR5d12xlarge,
+		EC2InstanceTypeR5d16xlarge,
+		EC2InstanceTypeR5d24xlarge,
 	}
 }
 
