@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/aws/aws-sdk-go/aws/defaults"
 	"io/ioutil"
 	"math/rand"
 	"net/http"
@@ -14,6 +13,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/aws/aws-sdk-go/aws/defaults"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -1969,6 +1970,10 @@ func (p *AWSPlugin) TestCredentials(credentialsMap map[string]*connections.Conne
 		AreCredentialsValid:   true,
 		RawValidationResponse: []byte("Credentials are valid!"),
 	}, nil
+}
+
+func (p *AWSPlugin) HealthStatus() (*plugin.HealthStatusResponse, error) {
+	return &plugin.HealthStatusResponse{InUse: false}, nil
 }
 
 func NewAWSPlugin(rootPluginDirectory string) (*AWSPlugin, error) {
