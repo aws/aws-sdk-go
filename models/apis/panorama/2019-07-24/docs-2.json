@@ -241,7 +241,8 @@
     "CurrentSoftware": {
       "base": null,
       "refs": {
-        "DescribeDeviceResponse$CurrentSoftware": "<p>The device's current software version.</p>"
+        "DescribeDeviceResponse$CurrentSoftware": "<p>The device's current software version.</p>",
+        "Device$CurrentSoftware": "<p>A device's current software.</p>"
       }
     },
     "DefaultGateway": {
@@ -390,6 +391,7 @@
         "DescribeDeviceResponse$Description": "<p>The device's description.</p>",
         "DescribeNodeFromTemplateJobResponse$NodeDescription": "<p>The node's description.</p>",
         "DescribeNodeResponse$Description": "<p>The node's description.</p>",
+        "Device$Description": "<p>A description for the device.</p>",
         "Node$Description": "<p>The node's description.</p>",
         "NodeInputPort$Description": "<p>The input port's description.</p>",
         "NodeOutputPort$Description": "<p>The output port's description.</p>",
@@ -401,6 +403,14 @@
       "base": "<p>A device.</p>",
       "refs": {
         "DeviceList$member": null
+      }
+    },
+    "DeviceAggregatedStatus": {
+      "base": null,
+      "refs": {
+        "DescribeDeviceResponse$DeviceAggregatedStatus": "<p>A device's aggregated status. Including the device's connection status, provisioning status, and lease status.</p>",
+        "Device$DeviceAggregatedStatus": "<p>A device's aggregated status. Including the device's connection status, provisioning status, and lease status.</p>",
+        "ListDevicesRequest$DeviceAggregatedStatusFilter": "<p>Filter based on a device's status.</p>"
       }
     },
     "DeviceArn": {
@@ -503,7 +513,8 @@
       "base": null,
       "refs": {
         "DescribeDeviceJobResponse$DeviceType": "<p>The device's type.</p>",
-        "DescribeDeviceResponse$Type": "<p>The device's type.</p>"
+        "DescribeDeviceResponse$Type": "<p>The device's type.</p>",
+        "Device$Type": "<p>The device's type.</p>"
       }
     },
     "Dns": {
@@ -542,6 +553,7 @@
       "base": null,
       "refs": {
         "DescribeDeviceJobResponse$ImageVersion": "<p>For an OTA job, the target version of the device software.</p>",
+        "LatestDeviceJob$ImageVersion": "<p>The target version of the device software.</p>",
         "OTAJobConfig$ImageVersion": "<p>The target version of the device software.</p>"
       }
     },
@@ -648,6 +660,13 @@
         "DescribeDeviceResponse$LatestAlternateSoftware": "<p>The most recent beta software release.</p>"
       }
     },
+    "LatestDeviceJob": {
+      "base": "<p>Returns information about the latest device job.</p>",
+      "refs": {
+        "DescribeDeviceResponse$LatestDeviceJob": "<p>A device's latest job. Includes the target image version, and the job status.</p>",
+        "Device$LatestDeviceJob": "<p>A device's latest job. Includes the target image version, and the update job status.</p>"
+      }
+    },
     "LatestSoftware": {
       "base": null,
       "refs": {
@@ -709,6 +728,12 @@
     "ListDevicesResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "ListDevicesSortBy": {
+      "base": null,
+      "refs": {
+        "ListDevicesRequest$SortBy": "<p>The target column to be sorted on. Default column sort is CREATED_TIME.</p>"
       }
     },
     "ListNodeFromTemplateJobsRequest": {
@@ -818,6 +843,12 @@
         "ListNodesRequest$MaxResults": "<p>The maximum number of nodes to return in one page of results.</p>",
         "ListPackageImportJobsRequest$MaxResults": "<p>The maximum number of package import jobs to return in one page of results.</p>",
         "ListPackagesRequest$MaxResults": "<p>The maximum number of packages to return in one page of results.</p>"
+      }
+    },
+    "NameFilter": {
+      "base": null,
+      "refs": {
+        "ListDevicesRequest$NameFilter": "<p>Filter based on device's name. Prefixes supported.</p>"
       }
     },
     "NetworkConnectionStatus": {
@@ -1332,6 +1363,12 @@
       "refs": {
       }
     },
+    "SortOrder": {
+      "base": null,
+      "refs": {
+        "ListDevicesRequest$SortOrder": "<p>The sorting order for the returned list. SortOrder is DESCENDING by default based on CREATED_TIME. Otherwise, SortOrder is ASCENDING.</p>"
+      }
+    },
     "StaticIpConnectionInfo": {
       "base": "<p>A static IP configuration.</p>",
       "refs": {
@@ -1400,6 +1437,7 @@
         "DescribeApplicationInstanceResponse$Tags": "<p>The application instance's tags.</p>",
         "DescribeDeviceResponse$Tags": "<p>The device's tags.</p>",
         "DescribePackageResponse$Tags": "<p>The package's tags.</p>",
+        "Device$Tags": "<p>The device's tags.</p>",
         "JobResourceTags$Tags": "<p>The job's tags.</p>",
         "ListTagsForResourceResponse$Tags": "<p>A list of tags.</p>",
         "PackageListItem$Tags": "<p>The package's tags.</p>",
@@ -1502,7 +1540,8 @@
     "UpdateProgress": {
       "base": null,
       "refs": {
-        "DescribeDeviceJobResponse$Status": "<p>The job's status.</p>"
+        "DescribeDeviceJobResponse$Status": "<p>The job's status.</p>",
+        "LatestDeviceJob$Status": "<p>Status of the latest device job.</p>"
       }
     },
     "ValidationException": {

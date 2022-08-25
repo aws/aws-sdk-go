@@ -998,9 +998,11 @@
         "CurrentNetworkingStatus":{"shape":"NetworkStatus"},
         "CurrentSoftware":{"shape":"CurrentSoftware"},
         "Description":{"shape":"Description"},
+        "DeviceAggregatedStatus":{"shape":"DeviceAggregatedStatus"},
         "DeviceConnectionStatus":{"shape":"DeviceConnectionStatus"},
         "DeviceId":{"shape":"DeviceId"},
         "LatestAlternateSoftware":{"shape":"LatestAlternateSoftware"},
+        "LatestDeviceJob":{"shape":"LatestDeviceJob"},
         "LatestSoftware":{"shape":"LatestSoftware"},
         "LeaseExpirationTime":{"shape":"LeaseExpirationTime"},
         "Name":{"shape":"DeviceName"},
@@ -1233,12 +1235,32 @@
       "members":{
         "Brand":{"shape":"DeviceBrand"},
         "CreatedTime":{"shape":"CreatedTime"},
+        "CurrentSoftware":{"shape":"CurrentSoftware"},
+        "Description":{"shape":"Description"},
+        "DeviceAggregatedStatus":{"shape":"DeviceAggregatedStatus"},
         "DeviceId":{"shape":"DeviceId"},
         "LastUpdatedTime":{"shape":"LastUpdatedTime"},
+        "LatestDeviceJob":{"shape":"LatestDeviceJob"},
         "LeaseExpirationTime":{"shape":"LeaseExpirationTime"},
         "Name":{"shape":"DeviceName"},
-        "ProvisioningStatus":{"shape":"DeviceStatus"}
+        "ProvisioningStatus":{"shape":"DeviceStatus"},
+        "Tags":{"shape":"TagMap"},
+        "Type":{"shape":"DeviceType"}
       }
+    },
+    "DeviceAggregatedStatus":{
+      "type":"string",
+      "enum":[
+        "ERROR",
+        "AWAITING_PROVISIONING",
+        "PENDING",
+        "FAILED",
+        "DELETING",
+        "ONLINE",
+        "OFFLINE",
+        "LEASE_EXPIRED",
+        "UPDATE_NEEDED"
+      ]
     },
     "DeviceArn":{
       "type":"string",
@@ -1444,6 +1466,13 @@
       "max":255,
       "min":1
     },
+    "LatestDeviceJob":{
+      "type":"structure",
+      "members":{
+        "ImageVersion":{"shape":"ImageVersion"},
+        "Status":{"shape":"UpdateProgress"}
+      }
+    },
     "LatestSoftware":{
       "type":"string",
       "max":255,
@@ -1568,15 +1597,35 @@
     "ListDevicesRequest":{
       "type":"structure",
       "members":{
+        "DeviceAggregatedStatusFilter":{
+          "shape":"DeviceAggregatedStatus",
+          "location":"querystring",
+          "locationName":"DeviceAggregatedStatusFilter"
+        },
         "MaxResults":{
           "shape":"MaxSize25",
           "location":"querystring",
           "locationName":"MaxResults"
         },
+        "NameFilter":{
+          "shape":"NameFilter",
+          "location":"querystring",
+          "locationName":"NameFilter"
+        },
         "NextToken":{
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"NextToken"
+        },
+        "SortBy":{
+          "shape":"ListDevicesSortBy",
+          "location":"querystring",
+          "locationName":"SortBy"
+        },
+        "SortOrder":{
+          "shape":"SortOrder",
+          "location":"querystring",
+          "locationName":"SortOrder"
         }
       }
     },
@@ -1587,6 +1636,15 @@
         "Devices":{"shape":"DeviceList"},
         "NextToken":{"shape":"NextToken"}
       }
+    },
+    "ListDevicesSortBy":{
+      "type":"string",
+      "enum":[
+        "DEVICE_ID",
+        "CREATED_TIME",
+        "NAME",
+        "DEVICE_AGGREGATED_STATUS"
+      ]
     },
     "ListNodeFromTemplateJobsRequest":{
       "type":"structure",
@@ -1759,6 +1817,7 @@
       "max":25,
       "min":0
     },
+    "NameFilter":{"type":"string"},
     "NetworkConnectionStatus":{
       "type":"string",
       "enum":[
@@ -2317,6 +2376,13 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASCENDING",
+        "DESCENDING"
+      ]
     },
     "StaticIpConnectionInfo":{
       "type":"structure",

@@ -1,3 +1,15 @@
+Release v1.44.85 (2022-08-25)
+===
+
+### Service Client Updates
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/gamelift`: Updates service API
+  * This release adds support for eight EC2 local zones as fleet locations; Atlanta, Chicago, Dallas, Denver, Houston, Kansas City (us-east-1-mci-1a), Los Angeles, and Phoenix. It also adds support for C5d, C6a, C6i, and R5d EC2 instance families.
+* `service/iotwireless`: Updates service API and documentation
+* `service/ivschat`: Updates service documentation
+* `service/panorama`: Updates service API and documentation
+* `service/sso-oidc`: Updates service API and documentation
+
 Release v1.44.84 (2022-08-24)
 ===
 

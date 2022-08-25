@@ -10506,6 +10506,47 @@ func (s AssociateWirelessGatewayWithThingOutput) GoString() string {
 	return s.String()
 }
 
+// Beaconing parameters for configuring the wireless gateways.
+type Beaconing struct {
+	_ struct{} `type:"structure"`
+
+	// The data rate for gateways that are sending the beacons.
+	DataRate *int64 `type:"integer"`
+
+	// The frequency list for the gateways to send the beacons.
+	Frequencies []*int64 `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Beaconing) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Beaconing) GoString() string {
+	return s.String()
+}
+
+// SetDataRate sets the DataRate field's value.
+func (s *Beaconing) SetDataRate(v int64) *Beaconing {
+	s.DataRate = &v
+	return s
+}
+
+// SetFrequencies sets the Frequencies field's value.
+func (s *Beaconing) SetFrequencies(v []*int64) *Beaconing {
+	s.Frequencies = v
+	return s
+}
+
 type CancelMulticastGroupSessionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -10700,8 +10741,8 @@ type ConnectionStatusEventConfiguration struct {
 	// related event topics.
 	LoRaWAN *LoRaWANConnectionStatusEventNotificationConfigurations `type:"structure"`
 
-	// Enum to denote whether the wireless gateway ID connection status event topic
-	// is enabled or disabled.
+	// Denotes whether the wireless gateway ID connection status event topic is
+	// enabled or disabled.
 	WirelessGatewayIdEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
 
@@ -13169,8 +13210,8 @@ type DeviceRegistrationStateEventConfiguration struct {
 	// Sidewalk related event topics.
 	Sidewalk *SidewalkEventNotificationConfigurations `type:"structure"`
 
-	// Enum to denote whether the wireless device id device registration state event
-	// topic is enabled or disabled.
+	// Denotes whether the wireless device ID device registration state event topic
+	// is enabled or disabled.
 	WirelessDeviceIdEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
 
@@ -14120,6 +14161,73 @@ func (s *FuotaTask) SetId(v string) *FuotaTask {
 // SetName sets the Name field's value.
 func (s *FuotaTask) SetName(v string) *FuotaTask {
 	s.Name = &v
+	return s
+}
+
+// Gateway list item object that specifies the frequency and list of gateways
+// for which the downlink message should be sent.
+type GatewayListItem struct {
+	_ struct{} `type:"structure"`
+
+	// The frequency to use for the gateways when sending a downlink message to
+	// the wireless device.
+	//
+	// DownlinkFrequency is a required field
+	DownlinkFrequency *int64 `min:"1e+08" type:"integer" required:"true"`
+
+	// The ID of the wireless gateways that you want to add to the list of gateways
+	// when sending downlink messages.
+	//
+	// GatewayId is a required field
+	GatewayId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GatewayListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GatewayListItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GatewayListItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GatewayListItem"}
+	if s.DownlinkFrequency == nil {
+		invalidParams.Add(request.NewErrParamRequired("DownlinkFrequency"))
+	}
+	if s.DownlinkFrequency != nil && *s.DownlinkFrequency < 1e+08 {
+		invalidParams.Add(request.NewErrParamMinValue("DownlinkFrequency", 1e+08))
+	}
+	if s.GatewayId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDownlinkFrequency sets the DownlinkFrequency field's value.
+func (s *GatewayListItem) SetDownlinkFrequency(v int64) *GatewayListItem {
+	s.DownlinkFrequency = &v
+	return s
+}
+
+// SetGatewayId sets the GatewayId field's value.
+func (s *GatewayListItem) SetGatewayId(v string) *GatewayListItem {
+	s.GatewayId = &v
 	return s
 }
 
@@ -16784,8 +16892,7 @@ type JoinEventConfiguration struct {
 	// event topics.
 	LoRaWAN *LoRaWANJoinEventNotificationConfigurations `type:"structure"`
 
-	// Enum to denote whether the wireless device id join event topic is enabled
-	// or disabled.
+	// Denotes whether the wireless device ID join event topic is enabled or disabled.
 	WirelessDeviceIdEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
 
@@ -18247,7 +18354,7 @@ func (s *ListWirelessGatewaysOutput) SetWirelessGatewayList(v []*WirelessGateway
 type LoRaWANConnectionStatusEventNotificationConfigurations struct {
 	_ struct{} `type:"structure"`
 
-	// Enum to denote whether the gateway EUI connection status event topic is enabled
+	// Denotes whether the gateway EUI connection status event topic is enabled
 	// or disabled.
 	GatewayEuiEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
@@ -18280,8 +18387,8 @@ func (s *LoRaWANConnectionStatusEventNotificationConfigurations) SetGatewayEuiEv
 type LoRaWANConnectionStatusResourceTypeEventConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Enum to denote whether the wireless gateway connection status event topic
-	// is enabled or disabled.
+	// Denotes whether the wireless gateway connection status event topic is enabled
+	// or disabled.
 	WirelessGatewayEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
 
@@ -18787,6 +18894,10 @@ func (s *LoRaWANFuotaTaskGetInfo) SetStartTime(v time.Time) *LoRaWANFuotaTaskGet
 type LoRaWANGateway struct {
 	_ struct{} `type:"structure"`
 
+	// Beaconing object information, which consists of the data rate and frequency
+	// parameters.
+	Beaconing *Beaconing `type:"structure"`
+
 	// The gateway's EUI value.
 	GatewayEui *string `type:"string"`
 
@@ -18820,6 +18931,12 @@ func (s LoRaWANGateway) String() string {
 // value will be replaced with "sensitive".
 func (s LoRaWANGateway) GoString() string {
 	return s.String()
+}
+
+// SetBeaconing sets the Beaconing field's value.
+func (s *LoRaWANGateway) SetBeaconing(v *Beaconing) *LoRaWANGateway {
+	s.Beaconing = v
+	return s
 }
 
 // SetGatewayEui sets the GatewayEui field's value.
@@ -19201,7 +19318,7 @@ func (s *LoRaWANGetServiceProfileInfo) SetUlRatePolicy(v string) *LoRaWANGetServ
 type LoRaWANJoinEventNotificationConfigurations struct {
 	_ struct{} `type:"structure"`
 
-	// Enum to denote whether the Dev EUI join event topic is enabled or disabled.
+	// Denotes whether the Dev EUI join event topic is enabled or disabled.
 	DevEuiEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
 
@@ -19233,8 +19350,7 @@ func (s *LoRaWANJoinEventNotificationConfigurations) SetDevEuiEventTopic(v strin
 type LoRaWANJoinResourceTypeEventConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Enum to denote whether the wireless device join event topic is enabled or
-	// disabled.
+	// Denotes whether the wireless device join event topic is enabled or disabled.
 	WirelessDeviceEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
 
@@ -19522,6 +19638,10 @@ type LoRaWANSendDataToDevice struct {
 
 	// The Fport value.
 	FPort *int64 `min:"1" type:"integer"`
+
+	// Choose the gateways that you want to use for the downlink data traffic when
+	// the wireless device is running in class B or class C mode.
+	ParticipatingGateways *ParticipatingGateways `type:"structure"`
 }
 
 // String returns the string representation.
@@ -19548,6 +19668,11 @@ func (s *LoRaWANSendDataToDevice) Validate() error {
 	if s.FPort != nil && *s.FPort < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("FPort", 1))
 	}
+	if s.ParticipatingGateways != nil {
+		if err := s.ParticipatingGateways.Validate(); err != nil {
+			invalidParams.AddNested("ParticipatingGateways", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -19558,6 +19683,12 @@ func (s *LoRaWANSendDataToDevice) Validate() error {
 // SetFPort sets the FPort field's value.
 func (s *LoRaWANSendDataToDevice) SetFPort(v int64) *LoRaWANSendDataToDevice {
 	s.FPort = &v
+	return s
+}
+
+// SetParticipatingGateways sets the ParticipatingGateways field's value.
+func (s *LoRaWANSendDataToDevice) SetParticipatingGateways(v *ParticipatingGateways) *LoRaWANSendDataToDevice {
+	s.ParticipatingGateways = v
 	return s
 }
 
@@ -19861,8 +19992,8 @@ type MessageDeliveryStatusEventConfiguration struct {
 	// object for Sidewalk-related event topics.
 	Sidewalk *SidewalkEventNotificationConfigurations `type:"structure"`
 
-	// Enum to denote whether the wireless device id device registration state event
-	// topic is enabled or disabled.
+	// Denotes whether the wireless device ID device registration state event topic
+	// is enabled or disabled.
 	WirelessDeviceIdEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
 
@@ -20200,6 +20331,98 @@ func (s *OtaaV11) SetNwkKey(v string) *OtaaV11 {
 	return s
 }
 
+// Specify the list of gateways to which you want to send downlink data traffic
+// when the wireless device is running in class B or class C mode.
+type ParticipatingGateways struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether to send the downlink message in sequential mode or concurrent
+	// mode, or to use only the chosen gateways from the previous uplink message
+	// transmission.
+	//
+	// DownlinkMode is a required field
+	DownlinkMode *string `type:"string" required:"true" enum:"DownlinkMode"`
+
+	// The list of gateways that you want to use for sending the downlink data traffic.
+	//
+	// GatewayList is a required field
+	GatewayList []*GatewayListItem `type:"list" required:"true"`
+
+	// The duration of time for which AWS IoT Core for LoRaWAN will wait before
+	// transmitting the payload to the next gateway.
+	//
+	// TransmissionInterval is a required field
+	TransmissionInterval *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipatingGateways) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipatingGateways) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParticipatingGateways) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParticipatingGateways"}
+	if s.DownlinkMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("DownlinkMode"))
+	}
+	if s.GatewayList == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayList"))
+	}
+	if s.TransmissionInterval == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransmissionInterval"))
+	}
+	if s.TransmissionInterval != nil && *s.TransmissionInterval < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TransmissionInterval", 1))
+	}
+	if s.GatewayList != nil {
+		for i, v := range s.GatewayList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GatewayList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDownlinkMode sets the DownlinkMode field's value.
+func (s *ParticipatingGateways) SetDownlinkMode(v string) *ParticipatingGateways {
+	s.DownlinkMode = &v
+	return s
+}
+
+// SetGatewayList sets the GatewayList field's value.
+func (s *ParticipatingGateways) SetGatewayList(v []*GatewayListItem) *ParticipatingGateways {
+	s.GatewayList = v
+	return s
+}
+
+// SetTransmissionInterval sets the TransmissionInterval field's value.
+func (s *ParticipatingGateways) SetTransmissionInterval(v int64) *ParticipatingGateways {
+	s.TransmissionInterval = &v
+	return s
+}
+
 // The wrapper for a position configuration.
 type PositionConfigurationItem struct {
 	_ struct{} `type:"structure"`
@@ -20417,8 +20640,8 @@ type ProximityEventConfiguration struct {
 	// event topics.
 	Sidewalk *SidewalkEventNotificationConfigurations `type:"structure"`
 
-	// Enum to denote whether the wireless device id proximity event topic is enabled
-	// or disabled.
+	// Denotes whether the wireless device ID proximity event topic is enabled or
+	// disabled.
 	WirelessDeviceIdEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
 
@@ -21639,7 +21862,7 @@ func (s *SidewalkDeviceMetadata) SetRssi(v int64) *SidewalkDeviceMetadata {
 type SidewalkEventNotificationConfigurations struct {
 	_ struct{} `type:"structure"`
 
-	// Enum to denote whether amazon id event topic is enabled or disabled.
+	// Denotes whether the Amazon ID event topic is enabled or disabled.
 	AmazonIdEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
 
@@ -21731,8 +21954,7 @@ func (s *SidewalkListDevice) SetSidewalkManufacturingSn(v string) *SidewalkListD
 type SidewalkResourceTypeEventConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Enum to denote whether the wireless device join event topic is enabled or
-	// disabled.
+	// Denotes whether the wireless device join event topic is enabled or disabled.
 	WirelessDeviceEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
 
@@ -24879,6 +25101,26 @@ func DlClass_Values() []string {
 	return []string{
 		DlClassClassB,
 		DlClassClassC,
+	}
+}
+
+const (
+	// DownlinkModeSequential is a DownlinkMode enum value
+	DownlinkModeSequential = "SEQUENTIAL"
+
+	// DownlinkModeConcurrent is a DownlinkMode enum value
+	DownlinkModeConcurrent = "CONCURRENT"
+
+	// DownlinkModeUsingUplinkGateway is a DownlinkMode enum value
+	DownlinkModeUsingUplinkGateway = "USING_UPLINK_GATEWAY"
+)
+
+// DownlinkMode_Values returns all elements of the DownlinkMode enum
+func DownlinkMode_Values() []string {
+	return []string{
+		DownlinkModeSequential,
+		DownlinkModeConcurrent,
+		DownlinkModeUsingUplinkGateway,
 	}
 }
 
