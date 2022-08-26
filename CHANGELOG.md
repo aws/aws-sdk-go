@@ -1,3 +1,10 @@
+Release v1.44.86 (2022-08-26)
+===
+
+### Service Client Updates
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Removes support for RDS Custom from DBInstanceClass in ModifyDBInstance
+
 Release v1.44.85 (2022-08-25)
 ===
 
