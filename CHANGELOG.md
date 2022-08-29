@@ -1,3 +1,10 @@
+Release v1.44.87 (2022-08-29)
+===
+
+### Service Client Updates
+* `service/fsx`: Updates service documentation
+* `service/voice-id`: Updates service API and documentation
+
 Release v1.44.86 (2022-08-26)
 ===
 

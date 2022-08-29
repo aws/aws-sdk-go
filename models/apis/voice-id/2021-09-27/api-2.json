@@ -46,7 +46,8 @@
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "idempotent":true
     },
     "DeleteFraudster":{
       "name":"DeleteFraudster",
@@ -265,6 +266,7 @@
       "input":{"shape":"OptOutSpeakerRequest"},
       "output":{"shape":"OptOutSpeakerResponse"},
       "errors":[
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
@@ -721,7 +723,10 @@
     },
     "FraudDetectionReason":{
       "type":"string",
-      "enum":["KNOWN_FRAUDSTER"]
+      "enum":[
+        "KNOWN_FRAUDSTER",
+        "VOICE_SPOOFING"
+      ]
     },
     "FraudDetectionReasons":{
       "type":"list",
@@ -743,9 +748,13 @@
     },
     "FraudRiskDetails":{
       "type":"structure",
-      "required":["KnownFraudsterRisk"],
+      "required":[
+        "KnownFraudsterRisk",
+        "VoiceSpoofingRisk"
+      ],
       "members":{
-        "KnownFraudsterRisk":{"shape":"KnownFraudsterRisk"}
+        "KnownFraudsterRisk":{"shape":"KnownFraudsterRisk"},
+        "VoiceSpoofingRisk":{"shape":"VoiceSpoofingRisk"}
       }
     },
     "Fraudster":{
@@ -1345,6 +1354,13 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "VoiceSpoofingRisk":{
+      "type":"structure",
+      "required":["RiskScore"],
+      "members":{
+        "RiskScore":{"shape":"Score"}
+      }
     }
   }
 }
