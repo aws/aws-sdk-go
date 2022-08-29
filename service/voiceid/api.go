@@ -1770,6 +1770,11 @@ func (c *VoiceID) OptOutSpeakerRequest(input *OptOutSpeakerInput) (req *request.
 //
 // Returned Error Types:
 //
+//   - ServiceQuotaExceededException
+//     The request exceeded the service quota. Refer to Voice ID Service Quotas
+//     (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#voiceid-quotas)
+//     and try your request again.
+//
 //   - ResourceNotFoundException
 //     The specified resource cannot be found. Check the ResourceType and error
 //     message for more details.
@@ -2632,7 +2637,7 @@ type CreateDomainInput struct {
 	// Web Services SDK populates this field.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// A brief description of this domain.
+	// A brief description of the domain.
 	//
 	// Description is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateDomainInput's
@@ -3663,7 +3668,7 @@ type DomainSummary struct {
 	// Details about the most recent server-side encryption configuration update.
 	// When the server-side encryption configuration is changed, dependency on the
 	// old KMS key is removed through an asynchronous process. When this update
-	// is complete, the domain’s data can only be accessed using the new KMS key.
+	// is complete, the domain's data can only be accessed using the new KMS key.
 	ServerSideEncryptionUpdateDetails *ServerSideEncryptionUpdateDetails `type:"structure"`
 
 	// The timestamp showing the domain's last update.
@@ -4093,11 +4098,12 @@ type FraudDetectionResult struct {
 	FraudDetectionResultId *string `min:"22" type:"string"`
 
 	// The reason speaker was flagged by the fraud detection system. This is only
-	// be populated if fraud detection Decision is HIGH_RISK, and only has one possible
-	// value: KNOWN_FRAUDSTER.
+	// be populated if fraud detection Decision is HIGH_RISK, and the following
+	// possible values: KNOWN_FRAUDSTER and VOICE_SPOOFING.
 	Reasons []*string `type:"list" enum:"FraudDetectionReason"`
 
-	// Details about each risk analyzed for this speaker.
+	// Details about each risk analyzed for this speaker. Currently, this contains
+	// KnownFraudsterRisk and VoiceSpoofingRisk details.
 	RiskDetails *FraudRiskDetails `type:"structure"`
 }
 
@@ -4170,6 +4176,11 @@ type FraudRiskDetails struct {
 	//
 	// KnownFraudsterRisk is a required field
 	KnownFraudsterRisk *KnownFraudsterRisk `type:"structure" required:"true"`
+
+	// The details resulting from 'Voice Spoofing Risk' analysis of the speaker.
+	//
+	// VoiceSpoofingRisk is a required field
+	VoiceSpoofingRisk *VoiceSpoofingRisk `type:"structure" required:"true"`
 }
 
 // String returns the string representation.
@@ -4193,6 +4204,12 @@ func (s FraudRiskDetails) GoString() string {
 // SetKnownFraudsterRisk sets the KnownFraudsterRisk field's value.
 func (s *FraudRiskDetails) SetKnownFraudsterRisk(v *KnownFraudsterRisk) *FraudRiskDetails {
 	s.KnownFraudsterRisk = v
+	return s
+}
+
+// SetVoiceSpoofingRisk sets the VoiceSpoofingRisk field's value.
+func (s *FraudRiskDetails) SetVoiceSpoofingRisk(v *VoiceSpoofingRisk) *FraudRiskDetails {
+	s.VoiceSpoofingRisk = v
 	return s
 }
 
@@ -4293,7 +4310,7 @@ type FraudsterRegistrationJob struct {
 	JobStatus *string `type:"string" enum:"FraudsterRegistrationJobStatus"`
 
 	// The output data config containing the S3 location where you want Voice ID
-	// to write your job output file; you must also include a KMS key iD in order
+	// to write your job output file; you must also include a KMS key ID in order
 	// to encrypt the file.
 	OutputDataConfig *OutputDataConfig `type:"structure"`
 
@@ -4416,7 +4433,7 @@ type FraudsterRegistrationJobSummary struct {
 	// The service-generated identifier for the fraudster registration job.
 	JobId *string `min:"22" type:"string"`
 
-	// The client-provied name for the fraudster registration job.
+	// The client-provided name for the fraudster registration job.
 	//
 	// JobName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by FraudsterRegistrationJobSummary's
@@ -4691,9 +4708,7 @@ func (s *KnownFraudsterRisk) SetRiskScore(v int64) *KnownFraudsterRisk {
 type ListDomainsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results that are returned per call. You can use NextToken
-	// to obtain further pages of results. The default is 100; the maximum allowed
-	// page size is also 100.
+	// The maximum number of domains to list per API call.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If NextToken is returned, there are more results available. The value of
@@ -5347,8 +5362,8 @@ func (s *OptOutSpeakerOutput) SetSpeaker(v *Speaker) *OptOutSpeakerOutput {
 type OutputDataConfig struct {
 	_ struct{} `type:"structure"`
 
-	// the identifier of the KMS key you want Voice ID to use to encrypt the output
-	// file of the fraudster registration job.
+	// The identifier of the KMS key you want Voice ID to use to encrypt the output
+	// file of a speaker enrollment job/fraudster registration job.
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// The S3 path of the folder where Voice ID writes the job output file. It has
@@ -5527,7 +5542,8 @@ func (s *ResourceNotFoundException) RequestID() string {
 type ServerSideEncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the KMS key you want Voice ID to use to encrypt your data.
+	// The identifier of the KMS key to use to encrypt data stored by Voice ID.
+	// Voice ID doesn't support asymmetric customer managed keys.
 	//
 	// KmsKeyId is a required field
 	KmsKeyId *string `min:"1" type:"string" required:"true"`
@@ -6321,7 +6337,7 @@ type StartSpeakerEnrollmentJobInput struct {
 	// to access customer's buckets to read the input manifest file and write the
 	// job output file. Refer to Batch enrollment using audio data from prior calls
 	// (https://docs.aws.amazon.com/connect/latest/adminguide/voiceid-batch-enrollment.html)
-	// documentation for the permissions needed in this role.
+	// for the permissions needed in this role.
 	//
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
@@ -6492,13 +6508,13 @@ func (s *StartSpeakerEnrollmentJobOutput) SetJob(v *SpeakerEnrollmentJob) *Start
 	return s
 }
 
-// A tag that can be assigned to a Voice ID resource.
+// The tags used to organize, track, or control access for this resource. For
+// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// The first part of a key:value pair that forms a tag associated with a given
-	// resource. For example, in the tag ‘Department’:’Sales’, the key is
-	// 'Department'.
+	// resource. For example, in the tag 'Department':'Sales', the key is 'Department'.
 	//
 	// Key is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Tag's
@@ -6508,8 +6524,7 @@ type Tag struct {
 	Key *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The second part of a key:value pair that forms a tag associated with a given
-	// resource. For example, in the tag ‘Department’:’Sales’, the value
-	// is 'Sales'.
+	// resource. For example, in the tag 'Department':'Sales', the value is 'Sales'.
 	//
 	// Value is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Tag's
@@ -6818,7 +6833,7 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateDomainInput struct {
 	_ struct{} `type:"structure"`
 
-	// A brief description about this domain.
+	// A brief description of the domain.
 	//
 	// Description is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateDomainInput's
@@ -6840,9 +6855,11 @@ type UpdateDomainInput struct {
 	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The configuration, containing the KMS key identifier, to be used by Voice
-	// ID for the server-side encryption of your data. Note that all the existing
-	// data in the domain are still encrypted using the existing key, only the data
-	// added to domain after updating the key is encrypted using the new key.
+	// ID for the server-side encryption of your data. Changing the domain's associated
+	// KMS key immediately triggers an asynchronous process to remove dependency
+	// on the old KMS key, such that the domain's data can only be accessed using
+	// the new KMS key. The domain's ServerSideEncryptionUpdateDetails contains
+	// the details for this process.
 	//
 	// ServerSideEncryptionConfiguration is a required field
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure" required:"true"`
@@ -7019,6 +7036,40 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The details resulting from 'Voice Spoofing Risk' analysis of the speaker.
+type VoiceSpoofingRisk struct {
+	_ struct{} `type:"structure"`
+
+	// The score indicating the likelihood of speaker’s voice being spoofed.
+	//
+	// RiskScore is a required field
+	RiskScore *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceSpoofingRisk) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceSpoofingRisk) GoString() string {
+	return s.String()
+}
+
+// SetRiskScore sets the RiskScore field's value.
+func (s *VoiceSpoofingRisk) SetRiskScore(v int64) *VoiceSpoofingRisk {
+	s.RiskScore = &v
+	return s
+}
+
 const (
 	// AuthenticationDecisionAccept is a AuthenticationDecision enum value
 	AuthenticationDecisionAccept = "ACCEPT"
@@ -7186,12 +7237,16 @@ func FraudDetectionDecision_Values() []string {
 const (
 	// FraudDetectionReasonKnownFraudster is a FraudDetectionReason enum value
 	FraudDetectionReasonKnownFraudster = "KNOWN_FRAUDSTER"
+
+	// FraudDetectionReasonVoiceSpoofing is a FraudDetectionReason enum value
+	FraudDetectionReasonVoiceSpoofing = "VOICE_SPOOFING"
 )
 
 // FraudDetectionReason_Values returns all elements of the FraudDetectionReason enum
 func FraudDetectionReason_Values() []string {
 	return []string{
 		FraudDetectionReasonKnownFraudster,
+		FraudDetectionReasonVoiceSpoofing,
 	}
 }
 
