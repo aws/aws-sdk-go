@@ -222,6 +222,206 @@ func (c *LookoutEquipment) CreateInferenceSchedulerWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opCreateLabel = "CreateLabel"
+
+// CreateLabelRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLabel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLabel for more information on using the CreateLabel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateLabelRequest method.
+//	req, resp := client.CreateLabelRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/CreateLabel
+func (c *LookoutEquipment) CreateLabelRequest(input *CreateLabelInput) (req *request.Request, output *CreateLabelOutput) {
+	op := &request.Operation{
+		Name:       opCreateLabel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLabelInput{}
+	}
+
+	output = &CreateLabelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLabel API operation for Amazon Lookout for Equipment.
+//
+// Creates a label for an event.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation CreateLabel for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related AWS service that's being utilized.
+//
+//   - ResourceNotFoundException
+//     The resource requested could not be found. Verify the resource ID and retry
+//     your request.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ServiceQuotaExceededException
+//     Resource limitations have been exceeded.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/CreateLabel
+func (c *LookoutEquipment) CreateLabel(input *CreateLabelInput) (*CreateLabelOutput, error) {
+	req, out := c.CreateLabelRequest(input)
+	return out, req.Send()
+}
+
+// CreateLabelWithContext is the same as CreateLabel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLabel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) CreateLabelWithContext(ctx aws.Context, input *CreateLabelInput, opts ...request.Option) (*CreateLabelOutput, error) {
+	req, out := c.CreateLabelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateLabelGroup = "CreateLabelGroup"
+
+// CreateLabelGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLabelGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLabelGroup for more information on using the CreateLabelGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateLabelGroupRequest method.
+//	req, resp := client.CreateLabelGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/CreateLabelGroup
+func (c *LookoutEquipment) CreateLabelGroupRequest(input *CreateLabelGroupInput) (req *request.Request, output *CreateLabelGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreateLabelGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLabelGroupInput{}
+	}
+
+	output = &CreateLabelGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLabelGroup API operation for Amazon Lookout for Equipment.
+//
+// Creates a group of labels.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation CreateLabelGroup for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related AWS service that's being utilized.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ServiceQuotaExceededException
+//     Resource limitations have been exceeded.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/CreateLabelGroup
+func (c *LookoutEquipment) CreateLabelGroup(input *CreateLabelGroupInput) (*CreateLabelGroupOutput, error) {
+	req, out := c.CreateLabelGroupRequest(input)
+	return out, req.Send()
+}
+
+// CreateLabelGroupWithContext is the same as CreateLabelGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLabelGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) CreateLabelGroupWithContext(ctx aws.Context, input *CreateLabelGroupInput, opts ...request.Option) (*CreateLabelGroupOutput, error) {
+	req, out := c.CreateLabelGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateModel = "CreateModel"
 
 // CreateModelRequest generates a "aws/request.Request" representing the
@@ -531,6 +731,198 @@ func (c *LookoutEquipment) DeleteInferenceScheduler(input *DeleteInferenceSchedu
 // for more information on using Contexts.
 func (c *LookoutEquipment) DeleteInferenceSchedulerWithContext(ctx aws.Context, input *DeleteInferenceSchedulerInput, opts ...request.Option) (*DeleteInferenceSchedulerOutput, error) {
 	req, out := c.DeleteInferenceSchedulerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteLabel = "DeleteLabel"
+
+// DeleteLabelRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteLabel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteLabel for more information on using the DeleteLabel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteLabelRequest method.
+//	req, resp := client.DeleteLabelRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DeleteLabel
+func (c *LookoutEquipment) DeleteLabelRequest(input *DeleteLabelInput) (req *request.Request, output *DeleteLabelOutput) {
+	op := &request.Operation{
+		Name:       opDeleteLabel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteLabelInput{}
+	}
+
+	output = &DeleteLabelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteLabel API operation for Amazon Lookout for Equipment.
+//
+// Deletes a label.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation DeleteLabel for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource requested could not be found. Verify the resource ID and retry
+//     your request.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DeleteLabel
+func (c *LookoutEquipment) DeleteLabel(input *DeleteLabelInput) (*DeleteLabelOutput, error) {
+	req, out := c.DeleteLabelRequest(input)
+	return out, req.Send()
+}
+
+// DeleteLabelWithContext is the same as DeleteLabel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteLabel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) DeleteLabelWithContext(ctx aws.Context, input *DeleteLabelInput, opts ...request.Option) (*DeleteLabelOutput, error) {
+	req, out := c.DeleteLabelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteLabelGroup = "DeleteLabelGroup"
+
+// DeleteLabelGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteLabelGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteLabelGroup for more information on using the DeleteLabelGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteLabelGroupRequest method.
+//	req, resp := client.DeleteLabelGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DeleteLabelGroup
+func (c *LookoutEquipment) DeleteLabelGroupRequest(input *DeleteLabelGroupInput) (req *request.Request, output *DeleteLabelGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteLabelGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteLabelGroupInput{}
+	}
+
+	output = &DeleteLabelGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteLabelGroup API operation for Amazon Lookout for Equipment.
+//
+// Deletes a group of labels.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation DeleteLabelGroup for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource requested could not be found. Verify the resource ID and retry
+//     your request.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DeleteLabelGroup
+func (c *LookoutEquipment) DeleteLabelGroup(input *DeleteLabelGroupInput) (*DeleteLabelGroupOutput, error) {
+	req, out := c.DeleteLabelGroupRequest(input)
+	return out, req.Send()
+}
+
+// DeleteLabelGroupWithContext is the same as DeleteLabelGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteLabelGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) DeleteLabelGroupWithContext(ctx aws.Context, input *DeleteLabelGroupInput, opts ...request.Option) (*DeleteLabelGroupOutput, error) {
+	req, out := c.DeleteLabelGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -917,6 +1309,196 @@ func (c *LookoutEquipment) DescribeInferenceScheduler(input *DescribeInferenceSc
 // for more information on using Contexts.
 func (c *LookoutEquipment) DescribeInferenceSchedulerWithContext(ctx aws.Context, input *DescribeInferenceSchedulerInput, opts ...request.Option) (*DescribeInferenceSchedulerOutput, error) {
 	req, out := c.DescribeInferenceSchedulerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeLabel = "DescribeLabel"
+
+// DescribeLabelRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLabel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLabel for more information on using the DescribeLabel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeLabelRequest method.
+//	req, resp := client.DescribeLabelRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DescribeLabel
+func (c *LookoutEquipment) DescribeLabelRequest(input *DescribeLabelInput) (req *request.Request, output *DescribeLabelOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLabel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLabelInput{}
+	}
+
+	output = &DescribeLabelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLabel API operation for Amazon Lookout for Equipment.
+//
+// Returns the name of the label.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation DescribeLabel for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related AWS service that's being utilized.
+//
+//   - ResourceNotFoundException
+//     The resource requested could not be found. Verify the resource ID and retry
+//     your request.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DescribeLabel
+func (c *LookoutEquipment) DescribeLabel(input *DescribeLabelInput) (*DescribeLabelOutput, error) {
+	req, out := c.DescribeLabelRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLabelWithContext is the same as DescribeLabel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLabel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) DescribeLabelWithContext(ctx aws.Context, input *DescribeLabelInput, opts ...request.Option) (*DescribeLabelOutput, error) {
+	req, out := c.DescribeLabelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeLabelGroup = "DescribeLabelGroup"
+
+// DescribeLabelGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLabelGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLabelGroup for more information on using the DescribeLabelGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeLabelGroupRequest method.
+//	req, resp := client.DescribeLabelGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DescribeLabelGroup
+func (c *LookoutEquipment) DescribeLabelGroupRequest(input *DescribeLabelGroupInput) (req *request.Request, output *DescribeLabelGroupOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLabelGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLabelGroupInput{}
+	}
+
+	output = &DescribeLabelGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLabelGroup API operation for Amazon Lookout for Equipment.
+//
+// Returns information about the label group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation DescribeLabelGroup for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related AWS service that's being utilized.
+//
+//   - ResourceNotFoundException
+//     The resource requested could not be found. Verify the resource ID and retry
+//     your request.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DescribeLabelGroup
+func (c *LookoutEquipment) DescribeLabelGroup(input *DescribeLabelGroupInput) (*DescribeLabelGroupOutput, error) {
+	req, out := c.DescribeLabelGroupRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLabelGroupWithContext is the same as DescribeLabelGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLabelGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) DescribeLabelGroupWithContext(ctx aws.Context, input *DescribeLabelGroupInput, opts ...request.Option) (*DescribeLabelGroupOutput, error) {
+	req, out := c.DescribeLabelGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1765,6 +2347,302 @@ func (c *LookoutEquipment) ListInferenceSchedulersPagesWithContext(ctx aws.Conte
 
 	for p.Next() {
 		if !fn(p.Page().(*ListInferenceSchedulersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListLabelGroups = "ListLabelGroups"
+
+// ListLabelGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListLabelGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLabelGroups for more information on using the ListLabelGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListLabelGroupsRequest method.
+//	req, resp := client.ListLabelGroupsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/ListLabelGroups
+func (c *LookoutEquipment) ListLabelGroupsRequest(input *ListLabelGroupsInput) (req *request.Request, output *ListLabelGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListLabelGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListLabelGroupsInput{}
+	}
+
+	output = &ListLabelGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLabelGroups API operation for Amazon Lookout for Equipment.
+//
+// Returns a list of the label groups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation ListLabelGroups for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related AWS service that's being utilized.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/ListLabelGroups
+func (c *LookoutEquipment) ListLabelGroups(input *ListLabelGroupsInput) (*ListLabelGroupsOutput, error) {
+	req, out := c.ListLabelGroupsRequest(input)
+	return out, req.Send()
+}
+
+// ListLabelGroupsWithContext is the same as ListLabelGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLabelGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) ListLabelGroupsWithContext(ctx aws.Context, input *ListLabelGroupsInput, opts ...request.Option) (*ListLabelGroupsOutput, error) {
+	req, out := c.ListLabelGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListLabelGroupsPages iterates over the pages of a ListLabelGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListLabelGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListLabelGroups operation.
+//	pageNum := 0
+//	err := client.ListLabelGroupsPages(params,
+//	    func(page *lookoutequipment.ListLabelGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LookoutEquipment) ListLabelGroupsPages(input *ListLabelGroupsInput, fn func(*ListLabelGroupsOutput, bool) bool) error {
+	return c.ListLabelGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListLabelGroupsPagesWithContext same as ListLabelGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) ListLabelGroupsPagesWithContext(ctx aws.Context, input *ListLabelGroupsInput, fn func(*ListLabelGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListLabelGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListLabelGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListLabelGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListLabels = "ListLabels"
+
+// ListLabelsRequest generates a "aws/request.Request" representing the
+// client's request for the ListLabels operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLabels for more information on using the ListLabels
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListLabelsRequest method.
+//	req, resp := client.ListLabelsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/ListLabels
+func (c *LookoutEquipment) ListLabelsRequest(input *ListLabelsInput) (req *request.Request, output *ListLabelsOutput) {
+	op := &request.Operation{
+		Name:       opListLabels,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListLabelsInput{}
+	}
+
+	output = &ListLabelsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLabels API operation for Amazon Lookout for Equipment.
+//
+// Provides a list of labels.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation ListLabels for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related AWS service that's being utilized.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/ListLabels
+func (c *LookoutEquipment) ListLabels(input *ListLabelsInput) (*ListLabelsOutput, error) {
+	req, out := c.ListLabelsRequest(input)
+	return out, req.Send()
+}
+
+// ListLabelsWithContext is the same as ListLabels with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLabels for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) ListLabelsWithContext(ctx aws.Context, input *ListLabelsInput, opts ...request.Option) (*ListLabelsOutput, error) {
+	req, out := c.ListLabelsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListLabelsPages iterates over the pages of a ListLabels operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListLabels method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListLabels operation.
+//	pageNum := 0
+//	err := client.ListLabelsPages(params,
+//	    func(page *lookoutequipment.ListLabelsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LookoutEquipment) ListLabelsPages(input *ListLabelsInput, fn func(*ListLabelsOutput, bool) bool) error {
+	return c.ListLabelsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListLabelsPagesWithContext same as ListLabelsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) ListLabelsPagesWithContext(ctx aws.Context, input *ListLabelsInput, fn func(*ListLabelsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListLabelsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListLabelsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListLabelsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2771,6 +3649,106 @@ func (c *LookoutEquipment) UpdateInferenceSchedulerWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opUpdateLabelGroup = "UpdateLabelGroup"
+
+// UpdateLabelGroupRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLabelGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLabelGroup for more information on using the UpdateLabelGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateLabelGroupRequest method.
+//	req, resp := client.UpdateLabelGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/UpdateLabelGroup
+func (c *LookoutEquipment) UpdateLabelGroupRequest(input *UpdateLabelGroupInput) (req *request.Request, output *UpdateLabelGroupOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLabelGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLabelGroupInput{}
+	}
+
+	output = &UpdateLabelGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLabelGroup API operation for Amazon Lookout for Equipment.
+//
+// Updates the label group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation UpdateLabelGroup for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ResourceNotFoundException
+//     The resource requested could not be found. Verify the resource ID and retry
+//     your request.
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related AWS service that's being utilized.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     The request could not be completed because you do not have access to the
+//     resource.
+//
+//   - InternalServerException
+//     Processing of the request has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/UpdateLabelGroup
+func (c *LookoutEquipment) UpdateLabelGroup(input *UpdateLabelGroupInput) (*UpdateLabelGroupOutput, error) {
+	req, out := c.UpdateLabelGroupRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLabelGroupWithContext is the same as UpdateLabelGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLabelGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) UpdateLabelGroupWithContext(ctx aws.Context, input *UpdateLabelGroupInput, opts ...request.Option) (*UpdateLabelGroupOutput, error) {
+	req, out := c.UpdateLabelGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // The request could not be completed because you do not have access to the
 // resource.
 type AccessDeniedException struct {
@@ -3150,14 +4128,16 @@ type CreateInferenceSchedulerInput struct {
 	// token, Amazon Lookout for Equipment generates one.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// A period of time (in minutes) by which inference on the data is delayed after
-	// the data starts. For instance, if you select an offset delay time of five
-	// minutes, inference will not begin on the data until the first data measurement
-	// after the five minute mark. For example, if five minutes is selected, the
-	// inference scheduler will wake up at the configured frequency with the additional
-	// five minute delay time to check the customer S3 bucket. The customer can
-	// upload data at the same frequency and they don't need to stop and restart
-	// the scheduler when uploading new data.
+	// The interval (in minutes) of planned delay at the start of each inference
+	// segment. For example, if inference is set to run every ten minutes, the delay
+	// is set to five minutes and the time is 09:08. The inference scheduler will
+	// wake up at the configured interval (which, without a delay configured, would
+	// be 09:10) plus the additional five minute delay time (so 09:15) to check
+	// your Amazon S3 bucket. The delay provides a buffer for you to upload data
+	// at the same frequency, so that you don't have to stop and restart the scheduler
+	// when uploading new data.
+	//
+	// For more information, see Understanding the inference process (https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/understanding-inference-process.html).
 	DataDelayOffsetInMinutes *int64 `type:"long"`
 
 	// Specifies configuration information for the input data for the inference
@@ -3172,12 +4152,13 @@ type CreateInferenceSchedulerInput struct {
 	// DataOutputConfiguration is a required field
 	DataOutputConfiguration *InferenceOutputConfiguration `type:"structure" required:"true"`
 
-	// How often data is uploaded to the source S3 bucket for the input data. The
-	// value chosen is the length of time between data uploads. For instance, if
-	// you select 5 minutes, Amazon Lookout for Equipment will upload the real-time
+	// How often data is uploaded to the source Amazon S3 bucket for the input data.
+	// The value chosen is the length of time between data uploads. For instance,
+	// if you select 5 minutes, Amazon Lookout for Equipment will upload the real-time
 	// data to the source bucket once every 5 minutes. This frequency also determines
-	// how often Amazon Lookout for Equipment starts a scheduled inference on your
-	// data. In this example, it starts once every 5 minutes.
+	// how often Amazon Lookout for Equipment runs inference on your data.
+	//
+	// For more information, see Understanding the inference process (https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/understanding-inference-process.html).
 	//
 	// DataUploadFrequency is a required field
 	DataUploadFrequency *string `type:"string" required:"true" enum:"DataUploadFrequency"`
@@ -3394,6 +4375,332 @@ func (s *CreateInferenceSchedulerOutput) SetInferenceSchedulerName(v string) *Cr
 // SetStatus sets the Status field's value.
 func (s *CreateInferenceSchedulerOutput) SetStatus(v string) *CreateInferenceSchedulerOutput {
 	s.Status = &v
+	return s
+}
+
+type CreateLabelGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the request to create a label group. If you do not
+	// set the client request token, Lookout for Equipment generates one.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The acceptable fault codes (indicating the type of anomaly associated with
+	// the label) that can be used with this label group.
+	//
+	// Data in this field will be retained for service usage. Follow best practices
+	// for the security of your data.
+	FaultCodes []*string `type:"list"`
+
+	// Names a group of labels.
+	//
+	// Data in this field will be retained for service usage. Follow best practices
+	// for the security of your data.
+	//
+	// LabelGroupName is a required field
+	LabelGroupName *string `min:"1" type:"string" required:"true"`
+
+	// Tags that provide metadata about the label group you are creating.
+	//
+	// Data in this field will be retained for service usage. Follow best practices
+	// for the security of your data.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLabelGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLabelGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLabelGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLabelGroupInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.LabelGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("LabelGroupName"))
+	}
+	if s.LabelGroupName != nil && len(*s.LabelGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelGroupName", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateLabelGroupInput) SetClientToken(v string) *CreateLabelGroupInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetFaultCodes sets the FaultCodes field's value.
+func (s *CreateLabelGroupInput) SetFaultCodes(v []*string) *CreateLabelGroupInput {
+	s.FaultCodes = v
+	return s
+}
+
+// SetLabelGroupName sets the LabelGroupName field's value.
+func (s *CreateLabelGroupInput) SetLabelGroupName(v string) *CreateLabelGroupInput {
+	s.LabelGroupName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLabelGroupInput) SetTags(v []*Tag) *CreateLabelGroupInput {
+	s.Tags = v
+	return s
+}
+
+type CreateLabelGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the label group that you have created.
+	LabelGroupArn *string `min:"20" type:"string"`
+
+	// The name of the label group that you have created. Data in this field will
+	// be retained for service usage. Follow best practices for the security of
+	// your data.
+	LabelGroupName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLabelGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLabelGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetLabelGroupArn sets the LabelGroupArn field's value.
+func (s *CreateLabelGroupOutput) SetLabelGroupArn(v string) *CreateLabelGroupOutput {
+	s.LabelGroupArn = &v
+	return s
+}
+
+// SetLabelGroupName sets the LabelGroupName field's value.
+func (s *CreateLabelGroupOutput) SetLabelGroupName(v string) *CreateLabelGroupOutput {
+	s.LabelGroupName = &v
+	return s
+}
+
+type CreateLabelInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the request to create a label. If you do not set
+	// the client request token, Lookout for Equipment generates one.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The end time of the labeled event.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `type:"timestamp" required:"true"`
+
+	// Indicates that a label pertains to a particular piece of equipment.
+	//
+	// Data in this field will be retained for service usage. Follow best practices
+	// for the security of your data.
+	Equipment *string `min:"1" type:"string"`
+
+	// Provides additional information about the label. The fault code must be defined
+	// in the FaultCodes attribute of the label group.
+	//
+	// Data in this field will be retained for service usage. Follow best practices
+	// for the security of your data.
+	FaultCode *string `min:"1" type:"string"`
+
+	// The name of a group of labels.
+	//
+	// Data in this field will be retained for service usage. Follow best practices
+	// for the security of your data.
+	//
+	// LabelGroupName is a required field
+	LabelGroupName *string `min:"1" type:"string" required:"true"`
+
+	// Metadata providing additional information about the label.
+	//
+	// Data in this field will be retained for service usage. Follow best practices
+	// for the security of your data.
+	Notes *string `min:"1" type:"string"`
+
+	// Indicates whether a labeled event represents an anomaly.
+	//
+	// Rating is a required field
+	Rating *string `type:"string" required:"true" enum:"LabelRating"`
+
+	// The start time of the labeled event.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLabelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLabelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLabelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLabelInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.Equipment != nil && len(*s.Equipment) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Equipment", 1))
+	}
+	if s.FaultCode != nil && len(*s.FaultCode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FaultCode", 1))
+	}
+	if s.LabelGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("LabelGroupName"))
+	}
+	if s.LabelGroupName != nil && len(*s.LabelGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelGroupName", 1))
+	}
+	if s.Notes != nil && len(*s.Notes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Notes", 1))
+	}
+	if s.Rating == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rating"))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateLabelInput) SetClientToken(v string) *CreateLabelInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *CreateLabelInput) SetEndTime(v time.Time) *CreateLabelInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetEquipment sets the Equipment field's value.
+func (s *CreateLabelInput) SetEquipment(v string) *CreateLabelInput {
+	s.Equipment = &v
+	return s
+}
+
+// SetFaultCode sets the FaultCode field's value.
+func (s *CreateLabelInput) SetFaultCode(v string) *CreateLabelInput {
+	s.FaultCode = &v
+	return s
+}
+
+// SetLabelGroupName sets the LabelGroupName field's value.
+func (s *CreateLabelInput) SetLabelGroupName(v string) *CreateLabelInput {
+	s.LabelGroupName = &v
+	return s
+}
+
+// SetNotes sets the Notes field's value.
+func (s *CreateLabelInput) SetNotes(v string) *CreateLabelInput {
+	s.Notes = &v
+	return s
+}
+
+// SetRating sets the Rating field's value.
+func (s *CreateLabelInput) SetRating(v string) *CreateLabelInput {
+	s.Rating = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *CreateLabelInput) SetStartTime(v time.Time) *CreateLabelInput {
+	s.StartTime = &v
+	return s
+}
+
+type CreateLabelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the label that you have created.
+	LabelId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLabelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLabelOutput) GoString() string {
+	return s.String()
+}
+
+// SetLabelId sets the LabelId field's value.
+func (s *CreateLabelOutput) SetLabelId(v string) *CreateLabelOutput {
+	s.LabelId = &v
 	return s
 }
 
@@ -4097,6 +5404,166 @@ func (s DeleteInferenceSchedulerOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteLabelGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the label group that you want to delete. Data in this field will
+	// be retained for service usage. Follow best practices for the security of
+	// your data.
+	//
+	// LabelGroupName is a required field
+	LabelGroupName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLabelGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLabelGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLabelGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLabelGroupInput"}
+	if s.LabelGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("LabelGroupName"))
+	}
+	if s.LabelGroupName != nil && len(*s.LabelGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelGroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLabelGroupName sets the LabelGroupName field's value.
+func (s *DeleteLabelGroupInput) SetLabelGroupName(v string) *DeleteLabelGroupInput {
+	s.LabelGroupName = &v
+	return s
+}
+
+type DeleteLabelGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLabelGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLabelGroupOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteLabelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the label group that contains the label that you want to delete.
+	// Data in this field will be retained for service usage. Follow best practices
+	// for the security of your data.
+	//
+	// LabelGroupName is a required field
+	LabelGroupName *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the label that you want to delete.
+	//
+	// LabelId is a required field
+	LabelId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLabelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLabelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLabelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLabelInput"}
+	if s.LabelGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("LabelGroupName"))
+	}
+	if s.LabelGroupName != nil && len(*s.LabelGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelGroupName", 1))
+	}
+	if s.LabelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LabelId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLabelGroupName sets the LabelGroupName field's value.
+func (s *DeleteLabelInput) SetLabelGroupName(v string) *DeleteLabelInput {
+	s.LabelGroupName = &v
+	return s
+}
+
+// SetLabelId sets the LabelId field's value.
+func (s *DeleteLabelInput) SetLabelId(v string) *DeleteLabelInput {
+	s.LabelId = &v
+	return s
+}
+
+type DeleteLabelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLabelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLabelOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteModelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4646,6 +6113,10 @@ type DescribeInferenceSchedulerOutput struct {
 	// The name of the inference scheduler being described.
 	InferenceSchedulerName *string `min:"1" type:"string"`
 
+	// Indicates whether the latest execution for the inference scheduler was Anomalous
+	// (anomalous events found) or Normal (no anomalous events found).
+	LatestInferenceResult *string `type:"string" enum:"LatestInferenceResult"`
+
 	// The Amazon Resource Name (ARN) of the ML model of the inference scheduler
 	// being described.
 	ModelArn *string `min:"20" type:"string"`
@@ -4729,6 +6200,12 @@ func (s *DescribeInferenceSchedulerOutput) SetInferenceSchedulerName(v string) *
 	return s
 }
 
+// SetLatestInferenceResult sets the LatestInferenceResult field's value.
+func (s *DescribeInferenceSchedulerOutput) SetLatestInferenceResult(v string) *DescribeInferenceSchedulerOutput {
+	s.LatestInferenceResult = &v
+	return s
+}
+
 // SetModelArn sets the ModelArn field's value.
 func (s *DescribeInferenceSchedulerOutput) SetModelArn(v string) *DescribeInferenceSchedulerOutput {
 	s.ModelArn = &v
@@ -4762,6 +6239,304 @@ func (s *DescribeInferenceSchedulerOutput) SetStatus(v string) *DescribeInferenc
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *DescribeInferenceSchedulerOutput) SetUpdatedAt(v time.Time) *DescribeInferenceSchedulerOutput {
 	s.UpdatedAt = &v
+	return s
+}
+
+type DescribeLabelGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the name of the label group.
+	//
+	// LabelGroupName is a required field
+	LabelGroupName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLabelGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLabelGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLabelGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLabelGroupInput"}
+	if s.LabelGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("LabelGroupName"))
+	}
+	if s.LabelGroupName != nil && len(*s.LabelGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelGroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLabelGroupName sets the LabelGroupName field's value.
+func (s *DescribeLabelGroupInput) SetLabelGroupName(v string) *DescribeLabelGroupInput {
+	s.LabelGroupName = &v
+	return s
+}
+
+type DescribeLabelGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the label group was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// Codes indicating the type of anomaly associated with the labels in the lagbel
+	// group.
+	FaultCodes []*string `type:"list"`
+
+	// The ARN of the label group.
+	LabelGroupArn *string `min:"20" type:"string"`
+
+	// The name of the label group.
+	LabelGroupName *string `min:"1" type:"string"`
+
+	// The time at which the label group was updated.
+	UpdatedAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLabelGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLabelGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *DescribeLabelGroupOutput) SetCreatedAt(v time.Time) *DescribeLabelGroupOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetFaultCodes sets the FaultCodes field's value.
+func (s *DescribeLabelGroupOutput) SetFaultCodes(v []*string) *DescribeLabelGroupOutput {
+	s.FaultCodes = v
+	return s
+}
+
+// SetLabelGroupArn sets the LabelGroupArn field's value.
+func (s *DescribeLabelGroupOutput) SetLabelGroupArn(v string) *DescribeLabelGroupOutput {
+	s.LabelGroupArn = &v
+	return s
+}
+
+// SetLabelGroupName sets the LabelGroupName field's value.
+func (s *DescribeLabelGroupOutput) SetLabelGroupName(v string) *DescribeLabelGroupOutput {
+	s.LabelGroupName = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *DescribeLabelGroupOutput) SetUpdatedAt(v time.Time) *DescribeLabelGroupOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+type DescribeLabelInput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the name of the group containing the label.
+	//
+	// LabelGroupName is a required field
+	LabelGroupName *string `min:"1" type:"string" required:"true"`
+
+	// Returns the ID of the label.
+	//
+	// LabelId is a required field
+	LabelId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLabelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLabelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLabelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLabelInput"}
+	if s.LabelGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("LabelGroupName"))
+	}
+	if s.LabelGroupName != nil && len(*s.LabelGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelGroupName", 1))
+	}
+	if s.LabelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LabelId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLabelGroupName sets the LabelGroupName field's value.
+func (s *DescribeLabelInput) SetLabelGroupName(v string) *DescribeLabelInput {
+	s.LabelGroupName = &v
+	return s
+}
+
+// SetLabelId sets the LabelId field's value.
+func (s *DescribeLabelInput) SetLabelId(v string) *DescribeLabelInput {
+	s.LabelId = &v
+	return s
+}
+
+type DescribeLabelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the label was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The end time of the requested label.
+	EndTime *time.Time `type:"timestamp"`
+
+	// Indicates that a label pertains to a particular piece of equipment.
+	Equipment *string `min:"1" type:"string"`
+
+	// Indicates the type of anomaly associated with the label.
+	//
+	// Data in this field will be retained for service usage. Follow best practices
+	// for the security of your data.
+	FaultCode *string `min:"1" type:"string"`
+
+	// The ARN of the requested label group.
+	LabelGroupArn *string `min:"20" type:"string"`
+
+	// The name of the requested label group.
+	LabelGroupName *string `min:"1" type:"string"`
+
+	// The ID of the requested label.
+	LabelId *string `type:"string"`
+
+	// Metadata providing additional information about the label.
+	//
+	// Data in this field will be retained for service usage. Follow best practices
+	// for the security of your data.
+	Notes *string `min:"1" type:"string"`
+
+	// Indicates whether a labeled event represents an anomaly.
+	Rating *string `type:"string" enum:"LabelRating"`
+
+	// The start time of the requested label.
+	StartTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLabelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLabelOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *DescribeLabelOutput) SetCreatedAt(v time.Time) *DescribeLabelOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *DescribeLabelOutput) SetEndTime(v time.Time) *DescribeLabelOutput {
+	s.EndTime = &v
+	return s
+}
+
+// SetEquipment sets the Equipment field's value.
+func (s *DescribeLabelOutput) SetEquipment(v string) *DescribeLabelOutput {
+	s.Equipment = &v
+	return s
+}
+
+// SetFaultCode sets the FaultCode field's value.
+func (s *DescribeLabelOutput) SetFaultCode(v string) *DescribeLabelOutput {
+	s.FaultCode = &v
+	return s
+}
+
+// SetLabelGroupArn sets the LabelGroupArn field's value.
+func (s *DescribeLabelOutput) SetLabelGroupArn(v string) *DescribeLabelOutput {
+	s.LabelGroupArn = &v
+	return s
+}
+
+// SetLabelGroupName sets the LabelGroupName field's value.
+func (s *DescribeLabelOutput) SetLabelGroupName(v string) *DescribeLabelOutput {
+	s.LabelGroupName = &v
+	return s
+}
+
+// SetLabelId sets the LabelId field's value.
+func (s *DescribeLabelOutput) SetLabelId(v string) *DescribeLabelOutput {
+	s.LabelId = &v
+	return s
+}
+
+// SetNotes sets the Notes field's value.
+func (s *DescribeLabelOutput) SetNotes(v string) *DescribeLabelOutput {
+	s.Notes = &v
+	return s
+}
+
+// SetRating sets the Rating field's value.
+func (s *DescribeLabelOutput) SetRating(v string) *DescribeLabelOutput {
+	s.Rating = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *DescribeLabelOutput) SetStartTime(v time.Time) *DescribeLabelOutput {
+	s.StartTime = &v
 	return s
 }
 
@@ -5630,6 +7405,10 @@ type InferenceSchedulerSummary struct {
 	// The name of the inference scheduler.
 	InferenceSchedulerName *string `min:"1" type:"string"`
 
+	// Indicates whether the latest execution for the inference scheduler was Anomalous
+	// (anomalous events found) or Normal (no anomalous events found).
+	LatestInferenceResult *string `type:"string" enum:"LatestInferenceResult"`
+
 	// The Amazon Resource Name (ARN) of the ML model used by the inference scheduler.
 	ModelArn *string `min:"20" type:"string"`
 
@@ -5679,6 +7458,12 @@ func (s *InferenceSchedulerSummary) SetInferenceSchedulerArn(v string) *Inferenc
 // SetInferenceSchedulerName sets the InferenceSchedulerName field's value.
 func (s *InferenceSchedulerSummary) SetInferenceSchedulerName(v string) *InferenceSchedulerSummary {
 	s.InferenceSchedulerName = &v
+	return s
+}
+
+// SetLatestInferenceResult sets the LatestInferenceResult field's value.
+func (s *InferenceSchedulerSummary) SetLatestInferenceResult(v string) *InferenceSchedulerSummary {
+	s.LatestInferenceResult = &v
 	return s
 }
 
@@ -6044,15 +7829,182 @@ func (s *InvalidSensorData) SetTotalNumberOfInvalidValues(v int64) *InvalidSenso
 	return s
 }
 
+// Contains information about the label group.
+type LabelGroupSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the label group was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The ARN of the label group.
+	LabelGroupArn *string `min:"20" type:"string"`
+
+	// The name of the label group.
+	LabelGroupName *string `min:"1" type:"string"`
+
+	// The time at which the label group was updated.
+	UpdatedAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelGroupSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelGroupSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *LabelGroupSummary) SetCreatedAt(v time.Time) *LabelGroupSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetLabelGroupArn sets the LabelGroupArn field's value.
+func (s *LabelGroupSummary) SetLabelGroupArn(v string) *LabelGroupSummary {
+	s.LabelGroupArn = &v
+	return s
+}
+
+// SetLabelGroupName sets the LabelGroupName field's value.
+func (s *LabelGroupSummary) SetLabelGroupName(v string) *LabelGroupSummary {
+	s.LabelGroupName = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *LabelGroupSummary) SetUpdatedAt(v time.Time) *LabelGroupSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
+// Information about the label.
+type LabelSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the label was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The timestamp indicating the end of the label.
+	EndTime *time.Time `type:"timestamp"`
+
+	// Indicates that a label pertains to a particular piece of equipment.
+	Equipment *string `min:"1" type:"string"`
+
+	// Indicates the type of anomaly associated with the label.
+	//
+	// Data in this field will be retained for service usage. Follow best practices
+	// for the security of your data.
+	FaultCode *string `min:"1" type:"string"`
+
+	// The ARN of the label group.
+	LabelGroupArn *string `min:"20" type:"string"`
+
+	// The name of the label group.
+	LabelGroupName *string `min:"1" type:"string"`
+
+	// The ID of the label.
+	LabelId *string `type:"string"`
+
+	// Indicates whether a labeled event represents an anomaly.
+	Rating *string `type:"string" enum:"LabelRating"`
+
+	// The timestamp indicating the start of the label.
+	StartTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *LabelSummary) SetCreatedAt(v time.Time) *LabelSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *LabelSummary) SetEndTime(v time.Time) *LabelSummary {
+	s.EndTime = &v
+	return s
+}
+
+// SetEquipment sets the Equipment field's value.
+func (s *LabelSummary) SetEquipment(v string) *LabelSummary {
+	s.Equipment = &v
+	return s
+}
+
+// SetFaultCode sets the FaultCode field's value.
+func (s *LabelSummary) SetFaultCode(v string) *LabelSummary {
+	s.FaultCode = &v
+	return s
+}
+
+// SetLabelGroupArn sets the LabelGroupArn field's value.
+func (s *LabelSummary) SetLabelGroupArn(v string) *LabelSummary {
+	s.LabelGroupArn = &v
+	return s
+}
+
+// SetLabelGroupName sets the LabelGroupName field's value.
+func (s *LabelSummary) SetLabelGroupName(v string) *LabelSummary {
+	s.LabelGroupName = &v
+	return s
+}
+
+// SetLabelId sets the LabelId field's value.
+func (s *LabelSummary) SetLabelId(v string) *LabelSummary {
+	s.LabelId = &v
+	return s
+}
+
+// SetRating sets the Rating field's value.
+func (s *LabelSummary) SetRating(v string) *LabelSummary {
+	s.Rating = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *LabelSummary) SetStartTime(v time.Time) *LabelSummary {
+	s.StartTime = &v
+	return s
+}
+
 // Contains the configuration information for the S3 location being used to
 // hold label data.
 type LabelsInputConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the label group to be used for label data.
+	LabelGroupName *string `min:"1" type:"string"`
+
 	// Contains location information for the S3 location being used for label data.
-	//
-	// S3InputConfiguration is a required field
-	S3InputConfiguration *LabelsS3InputConfiguration `type:"structure" required:"true"`
+	S3InputConfiguration *LabelsS3InputConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6076,8 +8028,8 @@ func (s LabelsInputConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *LabelsInputConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "LabelsInputConfiguration"}
-	if s.S3InputConfiguration == nil {
-		invalidParams.Add(request.NewErrParamRequired("S3InputConfiguration"))
+	if s.LabelGroupName != nil && len(*s.LabelGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelGroupName", 1))
 	}
 	if s.S3InputConfiguration != nil {
 		if err := s.S3InputConfiguration.Validate(); err != nil {
@@ -6089,6 +8041,12 @@ func (s *LabelsInputConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLabelGroupName sets the LabelGroupName field's value.
+func (s *LabelsInputConfiguration) SetLabelGroupName(v string) *LabelsInputConfiguration {
+	s.LabelGroupName = &v
+	return s
 }
 
 // SetS3InputConfiguration sets the S3InputConfiguration field's value.
@@ -6442,13 +8400,13 @@ type ListInferenceEventsInput struct {
 	// InferenceSchedulerName is a required field
 	InferenceSchedulerName *string `min:"1" type:"string" required:"true"`
 
-	// Lookout for Equipment will return all the inference events with end time
-	// equal to or less than the end time given.
+	// Returns all the inference events with an end start time equal to or greater
+	// than less than the end time given
 	//
 	// IntervalEndTime is a required field
 	IntervalEndTime *time.Time `type:"timestamp" required:"true"`
 
-	// Lookout for Equipment will return all the inference events with start time
+	// Lookout for Equipment will return all the inference events with an end time
 	// equal to or greater than the start time given.
 	//
 	// IntervalStartTime is a required field
@@ -6837,6 +8795,267 @@ func (s *ListInferenceSchedulersOutput) SetInferenceSchedulerSummaries(v []*Infe
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListInferenceSchedulersOutput) SetNextToken(v string) *ListInferenceSchedulersOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLabelGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The beginning of the name of the label groups to be listed.
+	LabelGroupNameBeginsWith *string `min:"1" type:"string"`
+
+	// Specifies the maximum number of label groups to list.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// An opaque pagination token indicating where to continue the listing of label
+	// groups.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLabelGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLabelGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLabelGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLabelGroupsInput"}
+	if s.LabelGroupNameBeginsWith != nil && len(*s.LabelGroupNameBeginsWith) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelGroupNameBeginsWith", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLabelGroupNameBeginsWith sets the LabelGroupNameBeginsWith field's value.
+func (s *ListLabelGroupsInput) SetLabelGroupNameBeginsWith(v string) *ListLabelGroupsInput {
+	s.LabelGroupNameBeginsWith = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLabelGroupsInput) SetMaxResults(v int64) *ListLabelGroupsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLabelGroupsInput) SetNextToken(v string) *ListLabelGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLabelGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A summary of the label groups.
+	LabelGroupSummaries []*LabelGroupSummary `type:"list"`
+
+	// An opaque pagination token indicating where to continue the listing of label
+	// groups.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLabelGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLabelGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLabelGroupSummaries sets the LabelGroupSummaries field's value.
+func (s *ListLabelGroupsOutput) SetLabelGroupSummaries(v []*LabelGroupSummary) *ListLabelGroupsOutput {
+	s.LabelGroupSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLabelGroupsOutput) SetNextToken(v string) *ListLabelGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLabelsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the labels that pertain to a particular piece of equipment.
+	Equipment *string `min:"1" type:"string"`
+
+	// Returns labels with a particular fault code.
+	FaultCode *string `min:"1" type:"string"`
+
+	// Returns all labels with a start time earlier than the end time given.
+	IntervalEndTime *time.Time `type:"timestamp"`
+
+	// Returns all the labels with a end time equal to or later than the start time
+	// given.
+	IntervalStartTime *time.Time `type:"timestamp"`
+
+	// Retruns the name of the label group.
+	//
+	// LabelGroupName is a required field
+	LabelGroupName *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the maximum number of labels to list.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// An opaque pagination token indicating where to continue the listing of label
+	// groups.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLabelsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLabelsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLabelsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLabelsInput"}
+	if s.Equipment != nil && len(*s.Equipment) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Equipment", 1))
+	}
+	if s.FaultCode != nil && len(*s.FaultCode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FaultCode", 1))
+	}
+	if s.LabelGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("LabelGroupName"))
+	}
+	if s.LabelGroupName != nil && len(*s.LabelGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelGroupName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEquipment sets the Equipment field's value.
+func (s *ListLabelsInput) SetEquipment(v string) *ListLabelsInput {
+	s.Equipment = &v
+	return s
+}
+
+// SetFaultCode sets the FaultCode field's value.
+func (s *ListLabelsInput) SetFaultCode(v string) *ListLabelsInput {
+	s.FaultCode = &v
+	return s
+}
+
+// SetIntervalEndTime sets the IntervalEndTime field's value.
+func (s *ListLabelsInput) SetIntervalEndTime(v time.Time) *ListLabelsInput {
+	s.IntervalEndTime = &v
+	return s
+}
+
+// SetIntervalStartTime sets the IntervalStartTime field's value.
+func (s *ListLabelsInput) SetIntervalStartTime(v time.Time) *ListLabelsInput {
+	s.IntervalStartTime = &v
+	return s
+}
+
+// SetLabelGroupName sets the LabelGroupName field's value.
+func (s *ListLabelsInput) SetLabelGroupName(v string) *ListLabelsInput {
+	s.LabelGroupName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLabelsInput) SetMaxResults(v int64) *ListLabelsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLabelsInput) SetNextToken(v string) *ListLabelsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLabelsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A summary of the items in the label group.
+	LabelSummaries []*LabelSummary `type:"list"`
+
+	// An opaque pagination token indicating where to continue the listing of datasets.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLabelsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLabelsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLabelSummaries sets the LabelSummaries field's value.
+func (s *ListLabelsOutput) SetLabelSummaries(v []*LabelSummary) *ListLabelsOutput {
+	s.LabelSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLabelsOutput) SetNextToken(v string) *ListLabelsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -8640,6 +10859,89 @@ func (s UpdateInferenceSchedulerOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateLabelGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// Updates the code indicating the type of anomaly associated with the label.
+	//
+	// Data in this field will be retained for service usage. Follow best practices
+	// for the security of your data.
+	FaultCodes []*string `type:"list"`
+
+	// The name of the label group to be updated.
+	//
+	// LabelGroupName is a required field
+	LabelGroupName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLabelGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLabelGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLabelGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLabelGroupInput"}
+	if s.LabelGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("LabelGroupName"))
+	}
+	if s.LabelGroupName != nil && len(*s.LabelGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelGroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFaultCodes sets the FaultCodes field's value.
+func (s *UpdateLabelGroupInput) SetFaultCodes(v []*string) *UpdateLabelGroupInput {
+	s.FaultCodes = v
+	return s
+}
+
+// SetLabelGroupName sets the LabelGroupName field's value.
+func (s *UpdateLabelGroupInput) SetLabelGroupName(v string) *UpdateLabelGroupInput {
+	s.LabelGroupName = &v
+	return s
+}
+
+type UpdateLabelGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLabelGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLabelGroupOutput) GoString() string {
+	return s.String()
+}
+
 // The input fails to satisfy constraints specified by Amazon Lookout for Equipment
 // or a related AWS service that's being utilized.
 type ValidationException struct {
@@ -8814,6 +11116,42 @@ func IngestionJobStatus_Values() []string {
 		IngestionJobStatusInProgress,
 		IngestionJobStatusSuccess,
 		IngestionJobStatusFailed,
+	}
+}
+
+const (
+	// LabelRatingAnomaly is a LabelRating enum value
+	LabelRatingAnomaly = "ANOMALY"
+
+	// LabelRatingNoAnomaly is a LabelRating enum value
+	LabelRatingNoAnomaly = "NO_ANOMALY"
+
+	// LabelRatingNeutral is a LabelRating enum value
+	LabelRatingNeutral = "NEUTRAL"
+)
+
+// LabelRating_Values returns all elements of the LabelRating enum
+func LabelRating_Values() []string {
+	return []string{
+		LabelRatingAnomaly,
+		LabelRatingNoAnomaly,
+		LabelRatingNeutral,
+	}
+}
+
+const (
+	// LatestInferenceResultAnomalous is a LatestInferenceResult enum value
+	LatestInferenceResultAnomalous = "ANOMALOUS"
+
+	// LatestInferenceResultNormal is a LatestInferenceResult enum value
+	LatestInferenceResultNormal = "NORMAL"
+)
+
+// LatestInferenceResult_Values returns all elements of the LatestInferenceResult enum
+func LatestInferenceResult_Values() []string {
+	return []string{
+		LatestInferenceResultAnomalous,
+		LatestInferenceResultNormal,
 	}
 }
 

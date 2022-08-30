@@ -48,6 +48,41 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CreateLabel":{
+      "name":"CreateLabel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLabelRequest"},
+      "output":{"shape":"CreateLabelResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "CreateLabelGroup":{
+      "name":"CreateLabelGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLabelGroupRequest"},
+      "output":{"shape":"CreateLabelGroupResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateModel":{
       "name":"CreateModel",
       "http":{
@@ -95,6 +130,36 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteLabel":{
+      "name":"DeleteLabel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteLabelRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "DeleteLabelGroup":{
+      "name":"DeleteLabelGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteLabelGroupRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
       ]
     },
     "DeleteModel":{
@@ -152,6 +217,38 @@
       },
       "input":{"shape":"DescribeInferenceSchedulerRequest"},
       "output":{"shape":"DescribeInferenceSchedulerResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeLabel":{
+      "name":"DescribeLabel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLabelRequest"},
+      "output":{"shape":"DescribeLabelResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeLabelGroup":{
+      "name":"DescribeLabelGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLabelGroupRequest"},
+      "output":{"shape":"DescribeLabelGroupResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
@@ -246,6 +343,36 @@
       },
       "input":{"shape":"ListInferenceSchedulersRequest"},
       "output":{"shape":"ListInferenceSchedulersResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListLabelGroups":{
+      "name":"ListLabelGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListLabelGroupsRequest"},
+      "output":{"shape":"ListLabelGroupsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListLabels":{
+      "name":"ListLabels",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListLabelsRequest"},
+      "output":{"shape":"ListLabelsResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
@@ -400,6 +527,22 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "UpdateLabelGroup":{
+      "name":"UpdateLabelGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLabelGroupRequest"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
     }
   },
   "shapes":{
@@ -430,6 +573,12 @@
         "Status":{"shape":"StatisticalIssueStatus"},
         "NumberOfCategory":{"shape":"Integer"}
       }
+    },
+    "Comments":{
+      "type":"string",
+      "max":2560,
+      "min":1,
+      "pattern":"[\\P{M}\\p{M}]{1,2560}"
     },
     "ComponentName":{
       "type":"string",
@@ -520,6 +669,58 @@
         "InferenceSchedulerArn":{"shape":"InferenceSchedulerArn"},
         "InferenceSchedulerName":{"shape":"InferenceSchedulerName"},
         "Status":{"shape":"InferenceSchedulerStatus"}
+      }
+    },
+    "CreateLabelGroupRequest":{
+      "type":"structure",
+      "required":[
+        "LabelGroupName",
+        "ClientToken"
+      ],
+      "members":{
+        "LabelGroupName":{"shape":"LabelGroupName"},
+        "FaultCodes":{"shape":"FaultCodes"},
+        "ClientToken":{
+          "shape":"IdempotenceToken",
+          "idempotencyToken":true
+        },
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateLabelGroupResponse":{
+      "type":"structure",
+      "members":{
+        "LabelGroupName":{"shape":"LabelGroupName"},
+        "LabelGroupArn":{"shape":"LabelGroupArn"}
+      }
+    },
+    "CreateLabelRequest":{
+      "type":"structure",
+      "required":[
+        "LabelGroupName",
+        "StartTime",
+        "EndTime",
+        "Rating",
+        "ClientToken"
+      ],
+      "members":{
+        "LabelGroupName":{"shape":"LabelGroupName"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "Rating":{"shape":"LabelRating"},
+        "FaultCode":{"shape":"FaultCode"},
+        "Notes":{"shape":"Comments"},
+        "Equipment":{"shape":"Equipment"},
+        "ClientToken":{
+          "shape":"IdempotenceToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateLabelResponse":{
+      "type":"structure",
+      "members":{
+        "LabelId":{"shape":"LabelId"}
       }
     },
     "CreateModelRequest":{
@@ -674,6 +875,24 @@
         "InferenceSchedulerName":{"shape":"InferenceSchedulerIdentifier"}
       }
     },
+    "DeleteLabelGroupRequest":{
+      "type":"structure",
+      "required":["LabelGroupName"],
+      "members":{
+        "LabelGroupName":{"shape":"LabelGroupName"}
+      }
+    },
+    "DeleteLabelRequest":{
+      "type":"structure",
+      "required":[
+        "LabelGroupName",
+        "LabelId"
+      ],
+      "members":{
+        "LabelGroupName":{"shape":"LabelGroupName"},
+        "LabelId":{"shape":"LabelId"}
+      }
+    },
     "DeleteModelRequest":{
       "type":"structure",
       "required":["ModelName"],
@@ -756,7 +975,51 @@
         "DataInputConfiguration":{"shape":"InferenceInputConfiguration"},
         "DataOutputConfiguration":{"shape":"InferenceOutputConfiguration"},
         "RoleArn":{"shape":"IamRoleArn"},
-        "ServerSideKmsKeyId":{"shape":"KmsKeyArn"}
+        "ServerSideKmsKeyId":{"shape":"KmsKeyArn"},
+        "LatestInferenceResult":{"shape":"LatestInferenceResult"}
+      }
+    },
+    "DescribeLabelGroupRequest":{
+      "type":"structure",
+      "required":["LabelGroupName"],
+      "members":{
+        "LabelGroupName":{"shape":"LabelGroupName"}
+      }
+    },
+    "DescribeLabelGroupResponse":{
+      "type":"structure",
+      "members":{
+        "LabelGroupName":{"shape":"LabelGroupName"},
+        "LabelGroupArn":{"shape":"LabelGroupArn"},
+        "FaultCodes":{"shape":"FaultCodes"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "UpdatedAt":{"shape":"Timestamp"}
+      }
+    },
+    "DescribeLabelRequest":{
+      "type":"structure",
+      "required":[
+        "LabelGroupName",
+        "LabelId"
+      ],
+      "members":{
+        "LabelGroupName":{"shape":"LabelGroupName"},
+        "LabelId":{"shape":"LabelId"}
+      }
+    },
+    "DescribeLabelResponse":{
+      "type":"structure",
+      "members":{
+        "LabelGroupName":{"shape":"LabelGroupName"},
+        "LabelGroupArn":{"shape":"LabelGroupArn"},
+        "LabelId":{"shape":"LabelId"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "Rating":{"shape":"LabelRating"},
+        "FaultCode":{"shape":"FaultCode"},
+        "Notes":{"shape":"Comments"},
+        "Equipment":{"shape":"Equipment"},
+        "CreatedAt":{"shape":"Timestamp"}
       }
     },
     "DescribeModelRequest":{
@@ -805,8 +1068,26 @@
         "TotalNumberOfDuplicateTimestamps":{"shape":"Integer"}
       }
     },
+    "Equipment":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"[\\P{M}\\p{M}]{1,200}"
+    },
     "EventDurationInSeconds":{
       "type":"long",
+      "min":0
+    },
+    "FaultCode":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"[\\P{M}\\p{M}]{1,100}"
+    },
+    "FaultCodes":{
+      "type":"list",
+      "member":{"shape":"FaultCode"},
+      "max":50,
       "min":0
     },
     "FileNameTimestampFormat":{
@@ -949,7 +1230,8 @@
         "InferenceSchedulerArn":{"shape":"InferenceSchedulerArn"},
         "Status":{"shape":"InferenceSchedulerStatus"},
         "DataDelayOffsetInMinutes":{"shape":"DataDelayOffsetInMinutes"},
-        "DataUploadFrequency":{"shape":"DataUploadFrequency"}
+        "DataUploadFrequency":{"shape":"DataUploadFrequency"},
+        "LatestInferenceResult":{"shape":"LatestInferenceResult"}
       }
     },
     "IngestedFilesSummary":{
@@ -1041,11 +1323,67 @@
       "min":1,
       "pattern":"arn:aws[a-z\\-]*:kms:[a-z0-9\\-]*:\\d{12}:[\\w\\-\\/]+"
     },
+    "LabelGroupArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\\-]*:[0-9]{12}:label-group\\/.+"
+    },
+    "LabelGroupName":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^[0-9a-zA-Z_-]{1,200}$"
+    },
+    "LabelGroupSummaries":{
+      "type":"list",
+      "member":{"shape":"LabelGroupSummary"}
+    },
+    "LabelGroupSummary":{
+      "type":"structure",
+      "members":{
+        "LabelGroupName":{"shape":"LabelGroupName"},
+        "LabelGroupArn":{"shape":"LabelGroupArn"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "UpdatedAt":{"shape":"Timestamp"}
+      }
+    },
+    "LabelId":{
+      "type":"string",
+      "max":32,
+      "pattern":"[A-Fa-f0-9]{0,32}"
+    },
+    "LabelRating":{
+      "type":"string",
+      "enum":[
+        "ANOMALY",
+        "NO_ANOMALY",
+        "NEUTRAL"
+      ]
+    },
+    "LabelSummaries":{
+      "type":"list",
+      "member":{"shape":"LabelSummary"}
+    },
+    "LabelSummary":{
+      "type":"structure",
+      "members":{
+        "LabelGroupName":{"shape":"LabelGroupName"},
+        "LabelId":{"shape":"LabelId"},
+        "LabelGroupArn":{"shape":"LabelGroupArn"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "Rating":{"shape":"LabelRating"},
+        "FaultCode":{"shape":"FaultCode"},
+        "Equipment":{"shape":"Equipment"},
+        "CreatedAt":{"shape":"Timestamp"}
+      }
+    },
     "LabelsInputConfiguration":{
       "type":"structure",
-      "required":["S3InputConfiguration"],
       "members":{
-        "S3InputConfiguration":{"shape":"LabelsS3InputConfiguration"}
+        "S3InputConfiguration":{"shape":"LabelsS3InputConfiguration"},
+        "LabelGroupName":{"shape":"LabelGroupName"}
       }
     },
     "LabelsS3InputConfiguration":{
@@ -1064,6 +1402,13 @@
         "NumberOfLargeTimestampGaps":{"shape":"Integer"},
         "MaxTimestampGapInDays":{"shape":"Integer"}
       }
+    },
+    "LatestInferenceResult":{
+      "type":"string",
+      "enum":[
+        "ANOMALOUS",
+        "NORMAL"
+      ]
     },
     "ListDataIngestionJobsRequest":{
       "type":"structure",
@@ -1151,6 +1496,41 @@
       "members":{
         "NextToken":{"shape":"NextToken"},
         "InferenceSchedulerSummaries":{"shape":"InferenceSchedulerSummaries"}
+      }
+    },
+    "ListLabelGroupsRequest":{
+      "type":"structure",
+      "members":{
+        "LabelGroupNameBeginsWith":{"shape":"LabelGroupName"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListLabelGroupsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "LabelGroupSummaries":{"shape":"LabelGroupSummaries"}
+      }
+    },
+    "ListLabelsRequest":{
+      "type":"structure",
+      "required":["LabelGroupName"],
+      "members":{
+        "LabelGroupName":{"shape":"LabelGroupName"},
+        "IntervalStartTime":{"shape":"Timestamp"},
+        "IntervalEndTime":{"shape":"Timestamp"},
+        "FaultCode":{"shape":"FaultCode"},
+        "Equipment":{"shape":"Equipment"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListLabelsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "LabelSummaries":{"shape":"LabelSummaries"}
       }
     },
     "ListModelsRequest":{
@@ -1566,6 +1946,14 @@
         "DataInputConfiguration":{"shape":"InferenceInputConfiguration"},
         "DataOutputConfiguration":{"shape":"InferenceOutputConfiguration"},
         "RoleArn":{"shape":"IamRoleArn"}
+      }
+    },
+    "UpdateLabelGroupRequest":{
+      "type":"structure",
+      "required":["LabelGroupName"],
+      "members":{
+        "LabelGroupName":{"shape":"LabelGroupName"},
+        "FaultCodes":{"shape":"FaultCodes"}
       }
     },
     "ValidationException":{

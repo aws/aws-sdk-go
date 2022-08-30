@@ -68,6 +68,10 @@ type Macie2API interface {
 	BatchGetCustomDataIdentifiersWithContext(aws.Context, *macie2.BatchGetCustomDataIdentifiersInput, ...request.Option) (*macie2.BatchGetCustomDataIdentifiersOutput, error)
 	BatchGetCustomDataIdentifiersRequest(*macie2.BatchGetCustomDataIdentifiersInput) (*request.Request, *macie2.BatchGetCustomDataIdentifiersOutput)
 
+	CreateAllowList(*macie2.CreateAllowListInput) (*macie2.CreateAllowListOutput, error)
+	CreateAllowListWithContext(aws.Context, *macie2.CreateAllowListInput, ...request.Option) (*macie2.CreateAllowListOutput, error)
+	CreateAllowListRequest(*macie2.CreateAllowListInput) (*request.Request, *macie2.CreateAllowListOutput)
+
 	CreateClassificationJob(*macie2.CreateClassificationJobInput) (*macie2.CreateClassificationJobOutput, error)
 	CreateClassificationJobWithContext(aws.Context, *macie2.CreateClassificationJobInput, ...request.Option) (*macie2.CreateClassificationJobOutput, error)
 	CreateClassificationJobRequest(*macie2.CreateClassificationJobInput) (*request.Request, *macie2.CreateClassificationJobOutput)
@@ -95,6 +99,10 @@ type Macie2API interface {
 	DeclineInvitations(*macie2.DeclineInvitationsInput) (*macie2.DeclineInvitationsOutput, error)
 	DeclineInvitationsWithContext(aws.Context, *macie2.DeclineInvitationsInput, ...request.Option) (*macie2.DeclineInvitationsOutput, error)
 	DeclineInvitationsRequest(*macie2.DeclineInvitationsInput) (*request.Request, *macie2.DeclineInvitationsOutput)
+
+	DeleteAllowList(*macie2.DeleteAllowListInput) (*macie2.DeleteAllowListOutput, error)
+	DeleteAllowListWithContext(aws.Context, *macie2.DeleteAllowListInput, ...request.Option) (*macie2.DeleteAllowListOutput, error)
+	DeleteAllowListRequest(*macie2.DeleteAllowListInput) (*request.Request, *macie2.DeleteAllowListOutput)
 
 	DeleteCustomDataIdentifier(*macie2.DeleteCustomDataIdentifierInput) (*macie2.DeleteCustomDataIdentifierOutput, error)
 	DeleteCustomDataIdentifierWithContext(aws.Context, *macie2.DeleteCustomDataIdentifierInput, ...request.Option) (*macie2.DeleteCustomDataIdentifierOutput, error)
@@ -158,6 +166,10 @@ type Macie2API interface {
 	GetAdministratorAccount(*macie2.GetAdministratorAccountInput) (*macie2.GetAdministratorAccountOutput, error)
 	GetAdministratorAccountWithContext(aws.Context, *macie2.GetAdministratorAccountInput, ...request.Option) (*macie2.GetAdministratorAccountOutput, error)
 	GetAdministratorAccountRequest(*macie2.GetAdministratorAccountInput) (*request.Request, *macie2.GetAdministratorAccountOutput)
+
+	GetAllowList(*macie2.GetAllowListInput) (*macie2.GetAllowListOutput, error)
+	GetAllowListWithContext(aws.Context, *macie2.GetAllowListInput, ...request.Option) (*macie2.GetAllowListOutput, error)
+	GetAllowListRequest(*macie2.GetAllowListInput) (*request.Request, *macie2.GetAllowListOutput)
 
 	GetBucketStatistics(*macie2.GetBucketStatisticsInput) (*macie2.GetBucketStatisticsOutput, error)
 	GetBucketStatisticsWithContext(aws.Context, *macie2.GetBucketStatisticsInput, ...request.Option) (*macie2.GetBucketStatisticsOutput, error)
@@ -225,6 +237,10 @@ type Macie2API interface {
 	GetUsageTotals(*macie2.GetUsageTotalsInput) (*macie2.GetUsageTotalsOutput, error)
 	GetUsageTotalsWithContext(aws.Context, *macie2.GetUsageTotalsInput, ...request.Option) (*macie2.GetUsageTotalsOutput, error)
 	GetUsageTotalsRequest(*macie2.GetUsageTotalsInput) (*request.Request, *macie2.GetUsageTotalsOutput)
+
+	ListAllowLists(*macie2.ListAllowListsInput) (*macie2.ListAllowListsOutput, error)
+	ListAllowListsWithContext(aws.Context, *macie2.ListAllowListsInput, ...request.Option) (*macie2.ListAllowListsOutput, error)
+	ListAllowListsRequest(*macie2.ListAllowListsInput) (*request.Request, *macie2.ListAllowListsOutput)
 
 	ListClassificationJobs(*macie2.ListClassificationJobsInput) (*macie2.ListClassificationJobsOutput, error)
 	ListClassificationJobsWithContext(aws.Context, *macie2.ListClassificationJobsInput, ...request.Option) (*macie2.ListClassificationJobsOutput, error)
@@ -309,6 +325,10 @@ type Macie2API interface {
 	UntagResource(*macie2.UntagResourceInput) (*macie2.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *macie2.UntagResourceInput, ...request.Option) (*macie2.UntagResourceOutput, error)
 	UntagResourceRequest(*macie2.UntagResourceInput) (*request.Request, *macie2.UntagResourceOutput)
+
+	UpdateAllowList(*macie2.UpdateAllowListInput) (*macie2.UpdateAllowListOutput, error)
+	UpdateAllowListWithContext(aws.Context, *macie2.UpdateAllowListInput, ...request.Option) (*macie2.UpdateAllowListOutput, error)
+	UpdateAllowListRequest(*macie2.UpdateAllowListInput) (*request.Request, *macie2.UpdateAllowListOutput)
 
 	UpdateClassificationJob(*macie2.UpdateClassificationJobInput) (*macie2.UpdateClassificationJobOutput, error)
 	UpdateClassificationJobWithContext(aws.Context, *macie2.UpdateClassificationJobInput, ...request.Option) (*macie2.UpdateClassificationJobOutput, error)

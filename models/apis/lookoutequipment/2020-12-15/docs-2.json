@@ -4,19 +4,27 @@
   "operations": {
     "CreateDataset": "<p>Creates a container for a collection of data being ingested for analysis. The dataset contains the metadata describing where the data is and what the data actually looks like. In other words, it contains the location of the data source, the data schema, and other information. A dataset also contains any tags associated with the ingested data. </p>",
     "CreateInferenceScheduler": "<p> Creates a scheduled inference. Scheduling an inference is setting up a continuous real-time inference plan to analyze new measurement data. When setting up the schedule, you provide an S3 bucket location for the input data, assign it a delimiter between separate entries in the data, set an offset delay if desired, and set the frequency of inferencing. You must also provide an S3 bucket location for the output data. </p>",
+    "CreateLabel": "<p> Creates a label for an event. </p>",
+    "CreateLabelGroup": "<p> Creates a group of labels. </p>",
     "CreateModel": "<p>Creates an ML model for data inference. </p> <p>A machine-learning (ML) model is a mathematical model that finds patterns in your data. In Amazon Lookout for Equipment, the model learns the patterns of normal behavior and detects abnormal behavior that could be potential equipment failure (or maintenance events). The models are made by analyzing normal data and abnormalities in machine behavior that have already occurred.</p> <p>Your model is trained using a portion of the data from your dataset and uses that data to learn patterns of normal behavior and abnormal patterns that lead to equipment failure. Another portion of the data is used to evaluate the model's accuracy. </p>",
     "DeleteDataset": "<p> Deletes a dataset and associated artifacts. The operation will check to see if any inference scheduler or data ingestion job is currently using the dataset, and if there isn't, the dataset, its metadata, and any associated data stored in S3 will be deleted. This does not affect any models that used this dataset for training and evaluation, but does prevent it from being used in the future. </p>",
     "DeleteInferenceScheduler": "<p>Deletes an inference scheduler that has been set up. Already processed output results are not affected. </p>",
+    "DeleteLabel": "<p> Deletes a label. </p>",
+    "DeleteLabelGroup": "<p> Deletes a group of labels. </p>",
     "DeleteModel": "<p>Deletes an ML model currently available for Amazon Lookout for Equipment. This will prevent it from being used with an inference scheduler, even one that is already set up. </p>",
     "DescribeDataIngestionJob": "<p>Provides information on a specific data ingestion job such as creation time, dataset ARN, and status.</p>",
     "DescribeDataset": "<p>Provides a JSON description of the data in each time series dataset, including names, column names, and data types.</p>",
     "DescribeInferenceScheduler": "<p> Specifies information about the inference scheduler being used, including name, model, status, and associated metadata </p>",
+    "DescribeLabel": "<p> Returns the name of the label. </p>",
+    "DescribeLabelGroup": "<p> Returns information about the label group. </p>",
     "DescribeModel": "<p>Provides a JSON containing the overall information about a specific ML model, including model name and ARN, dataset, training and evaluation information, status, and so on. </p>",
     "ListDataIngestionJobs": "<p>Provides a list of all data ingestion jobs, including dataset name and ARN, S3 location of the input data, status, and so on. </p>",
     "ListDatasets": "<p>Lists all datasets currently available in your account, filtering on the dataset name. </p>",
     "ListInferenceEvents": "<p> Lists all inference events that have been found for the specified inference scheduler. </p>",
     "ListInferenceExecutions": "<p> Lists all inference executions that have been performed by the specified inference scheduler. </p>",
     "ListInferenceSchedulers": "<p>Retrieves a list of all inference schedulers currently available for your account. </p>",
+    "ListLabelGroups": "<p> Returns a list of the label groups. </p>",
+    "ListLabels": "<p> Provides a list of labels. </p>",
     "ListModels": "<p>Generates a list of all models in the account, including model name and ARN, dataset, and status. </p>",
     "ListSensorStatistics": "<p> Lists statistics about the data collected for each of the sensors that have been successfully ingested in the particular dataset. Can also be used to retreive Sensor Statistics for a previous ingestion job. </p>",
     "ListTagsForResource": "<p>Lists all the tags for a specified resource, including key and value. </p>",
@@ -25,7 +33,8 @@
     "StopInferenceScheduler": "<p>Stops an inference scheduler. </p>",
     "TagResource": "<p>Associates a given tag to a resource in your account. A tag is a key-value pair which can be added to an Amazon Lookout for Equipment resource as metadata. Tags can be used for organizing your resources as well as helping you to search and filter by tag. Multiple tags can be added to a resource, either when you create it, or later. Up to 50 tags can be associated with each resource. </p>",
     "UntagResource": "<p>Removes a specific tag from a given resource. The tag is specified by its key. </p>",
-    "UpdateInferenceScheduler": "<p>Updates an inference scheduler. </p>"
+    "UpdateInferenceScheduler": "<p>Updates an inference scheduler. </p>",
+    "UpdateLabelGroup": "<p> Updates the label group. </p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -67,6 +76,13 @@
       "base": "<p> Entity that comprises information on categorical values in data. </p>",
       "refs": {
         "SensorStatisticsSummary$CategoricalValues": "<p> Parameter that describes potential risk about whether data associated with the sensor is categorical. </p>"
+      }
+    },
+    "Comments": {
+      "base": null,
+      "refs": {
+        "CreateLabelRequest$Notes": "<p> Metadata providing additional information about the label. </p> <p>Data in this field will be retained for service usage. Follow best practices for the security of your data.</p>",
+        "DescribeLabelResponse$Notes": "<p>Metadata providing additional information about the label.</p> <p>Data in this field will be retained for service usage. Follow best practices for the security of your data.</p>"
       }
     },
     "ComponentName": {
@@ -115,6 +131,26 @@
       "refs": {
       }
     },
+    "CreateLabelGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLabelGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLabelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLabelResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateModelRequest": {
       "base": null,
       "refs": {
@@ -128,7 +164,7 @@
     "DataDelayOffsetInMinutes": {
       "base": null,
       "refs": {
-        "CreateInferenceSchedulerRequest$DataDelayOffsetInMinutes": "<p>A period of time (in minutes) by which inference on the data is delayed after the data starts. For instance, if you select an offset delay time of five minutes, inference will not begin on the data until the first data measurement after the five minute mark. For example, if five minutes is selected, the inference scheduler will wake up at the configured frequency with the additional five minute delay time to check the customer S3 bucket. The customer can upload data at the same frequency and they don't need to stop and restart the scheduler when uploading new data. </p>",
+        "CreateInferenceSchedulerRequest$DataDelayOffsetInMinutes": "<p>The interval (in minutes) of planned delay at the start of each inference segment. For example, if inference is set to run every ten minutes, the delay is set to five minutes and the time is 09:08. The inference scheduler will wake up at the configured interval (which, without a delay configured, would be 09:10) plus the additional five minute delay time (so 09:15) to check your Amazon S3 bucket. The delay provides a buffer for you to upload data at the same frequency, so that you don't have to stop and restart the scheduler when uploading new data.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/understanding-inference-process.html\">Understanding the inference process</a>.</p>",
         "DescribeInferenceSchedulerResponse$DataDelayOffsetInMinutes": "<p> A period of time (in minutes) by which inference on the data is delayed after the data starts. For instance, if you select an offset delay time of five minutes, inference will not begin on the data until the first data measurement after the five minute mark. For example, if five minutes is selected, the inference scheduler will wake up at the configured frequency with the additional five minute delay time to check the customer S3 bucket. The customer can upload data at the same frequency and they don't need to stop and restart the scheduler when uploading new data.</p>",
         "InferenceSchedulerSummary$DataDelayOffsetInMinutes": "<p>A period of time (in minutes) by which inference on the data is delayed after the data starts. For instance, if an offset delay time of five minutes was selected, inference will not begin on the data until the first data measurement after the five minute mark. For example, if five minutes is selected, the inference scheduler will wake up at the configured frequency with the additional five minute delay time to check the customer S3 bucket. The customer can upload data at the same frequency and they don't need to stop and restart the scheduler when uploading new data. </p>",
         "UpdateInferenceSchedulerRequest$DataDelayOffsetInMinutes": "<p> A period of time (in minutes) by which inference on the data is delayed after the data starts. For instance, if you select an offset delay time of five minutes, inference will not begin on the data until the first data measurement after the five minute mark. For example, if five minutes is selected, the inference scheduler will wake up at the configured frequency with the additional five minute delay time to check the customer S3 bucket. The customer can upload data at the same frequency and they don't need to stop and restart the scheduler when uploading new data.</p>"
@@ -169,7 +205,7 @@
     "DataUploadFrequency": {
       "base": null,
       "refs": {
-        "CreateInferenceSchedulerRequest$DataUploadFrequency": "<p> How often data is uploaded to the source S3 bucket for the input data. The value chosen is the length of time between data uploads. For instance, if you select 5 minutes, Amazon Lookout for Equipment will upload the real-time data to the source bucket once every 5 minutes. This frequency also determines how often Amazon Lookout for Equipment starts a scheduled inference on your data. In this example, it starts once every 5 minutes. </p>",
+        "CreateInferenceSchedulerRequest$DataUploadFrequency": "<p> How often data is uploaded to the source Amazon S3 bucket for the input data. The value chosen is the length of time between data uploads. For instance, if you select 5 minutes, Amazon Lookout for Equipment will upload the real-time data to the source bucket once every 5 minutes. This frequency also determines how often Amazon Lookout for Equipment runs inference on your data.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/understanding-inference-process.html\">Understanding the inference process</a>.</p>",
         "DescribeInferenceSchedulerResponse$DataUploadFrequency": "<p>Specifies how often data is uploaded to the source S3 bucket for the input data. This value is the length of time between data uploads. For instance, if you select 5 minutes, Amazon Lookout for Equipment will upload the real-time data to the source bucket once every 5 minutes. This frequency also determines how often Amazon Lookout for Equipment starts a scheduled inference on your data. In this example, it starts once every 5 minutes. </p>",
         "InferenceSchedulerSummary$DataUploadFrequency": "<p>How often data is uploaded to the source S3 bucket for the input data. This value is the length of time between data uploads. For instance, if you select 5 minutes, Amazon Lookout for Equipment will upload the real-time data to the source bucket once every 5 minutes. This frequency also determines how often Amazon Lookout for Equipment starts a scheduled inference on your data. In this example, it starts once every 5 minutes. </p>",
         "UpdateInferenceSchedulerRequest$DataUploadFrequency": "<p>How often data is uploaded to the source S3 bucket for the input data. The value chosen is the length of time between data uploads. For instance, if you select 5 minutes, Amazon Lookout for Equipment will upload the real-time data to the source bucket once every 5 minutes. This frequency also determines how often Amazon Lookout for Equipment starts a scheduled inference on your data. In this example, it starts once every 5 minutes. </p>"
@@ -249,6 +285,16 @@
       "refs": {
       }
     },
+    "DeleteLabelGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLabelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteModelRequest": {
       "base": null,
       "refs": {
@@ -284,6 +330,26 @@
       "refs": {
       }
     },
+    "DescribeLabelGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeLabelGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeLabelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeLabelResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeModelRequest": {
       "base": null,
       "refs": {
@@ -300,10 +366,37 @@
         "DataQualitySummary$DuplicateTimestamps": "<p> Parameter that gives information about duplicate timestamps in the input data. </p>"
       }
     },
+    "Equipment": {
+      "base": null,
+      "refs": {
+        "CreateLabelRequest$Equipment": "<p> Indicates that a label pertains to a particular piece of equipment. </p> <p>Data in this field will be retained for service usage. Follow best practices for the security of your data.</p>",
+        "DescribeLabelResponse$Equipment": "<p> Indicates that a label pertains to a particular piece of equipment. </p>",
+        "LabelSummary$Equipment": "<p> Indicates that a label pertains to a particular piece of equipment. </p>",
+        "ListLabelsRequest$Equipment": "<p> Lists the labels that pertain to a particular piece of equipment. </p>"
+      }
+    },
     "EventDurationInSeconds": {
       "base": null,
       "refs": {
         "InferenceEventSummary$EventDurationInSeconds": "<p> Indicates the size of an inference event in seconds. </p>"
+      }
+    },
+    "FaultCode": {
+      "base": null,
+      "refs": {
+        "CreateLabelRequest$FaultCode": "<p> Provides additional information about the label. The fault code must be defined in the FaultCodes attribute of the label group.</p> <p>Data in this field will be retained for service usage. Follow best practices for the security of your data. </p>",
+        "DescribeLabelResponse$FaultCode": "<p> Indicates the type of anomaly associated with the label. </p> <p>Data in this field will be retained for service usage. Follow best practices for the security of your data.</p>",
+        "FaultCodes$member": null,
+        "LabelSummary$FaultCode": "<p> Indicates the type of anomaly associated with the label. </p> <p>Data in this field will be retained for service usage. Follow best practices for the security of your data.</p>",
+        "ListLabelsRequest$FaultCode": "<p> Returns labels with a particular fault code. </p>"
+      }
+    },
+    "FaultCodes": {
+      "base": null,
+      "refs": {
+        "CreateLabelGroupRequest$FaultCodes": "<p> The acceptable fault codes (indicating the type of anomaly associated with the label) that can be used with this label group.</p> <p>Data in this field will be retained for service usage. Follow best practices for the security of your data.</p>",
+        "DescribeLabelGroupResponse$FaultCodes": "<p> Codes indicating the type of anomaly associated with the labels in the lagbel group. </p>",
+        "UpdateLabelGroupRequest$FaultCodes": "<p> Updates the code indicating the type of anomaly associated with the label. </p> <p>Data in this field will be retained for service usage. Follow best practices for the security of your data.</p>"
       }
     },
     "FileNameTimestampFormat": {
@@ -336,6 +429,8 @@
       "refs": {
         "CreateDatasetRequest$ClientToken": "<p> A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one. </p>",
         "CreateInferenceSchedulerRequest$ClientToken": "<p> A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one. </p>",
+        "CreateLabelGroupRequest$ClientToken": "<p> A unique identifier for the request to create a label group. If you do not set the client request token, Lookout for Equipment generates one. </p>",
+        "CreateLabelRequest$ClientToken": "<p> A unique identifier for the request to create a label. If you do not set the client request token, Lookout for Equipment generates one. </p>",
         "CreateModelRequest$ClientToken": "<p>A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one. </p>",
         "StartDataIngestionJobRequest$ClientToken": "<p> A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one. </p>"
       }
@@ -566,6 +661,78 @@
         "DescribeModelResponse$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt model data by Amazon Lookout for Equipment. </p>"
       }
     },
+    "LabelGroupArn": {
+      "base": null,
+      "refs": {
+        "CreateLabelGroupResponse$LabelGroupArn": "<p> The ARN of the label group that you have created. </p>",
+        "DescribeLabelGroupResponse$LabelGroupArn": "<p> The ARN of the label group. </p>",
+        "DescribeLabelResponse$LabelGroupArn": "<p> The ARN of the requested label group. </p>",
+        "LabelGroupSummary$LabelGroupArn": "<p> The ARN of the label group. </p>",
+        "LabelSummary$LabelGroupArn": "<p> The ARN of the label group. </p>"
+      }
+    },
+    "LabelGroupName": {
+      "base": null,
+      "refs": {
+        "CreateLabelGroupRequest$LabelGroupName": "<p> Names a group of labels.</p> <p>Data in this field will be retained for service usage. Follow best practices for the security of your data. </p>",
+        "CreateLabelGroupResponse$LabelGroupName": "<p> The name of the label group that you have created. Data in this field will be retained for service usage. Follow best practices for the security of your data. </p>",
+        "CreateLabelRequest$LabelGroupName": "<p> The name of a group of labels. </p> <p>Data in this field will be retained for service usage. Follow best practices for the security of your data. </p>",
+        "DeleteLabelGroupRequest$LabelGroupName": "<p> The name of the label group that you want to delete. Data in this field will be retained for service usage. Follow best practices for the security of your data. </p>",
+        "DeleteLabelRequest$LabelGroupName": "<p> The name of the label group that contains the label that you want to delete. Data in this field will be retained for service usage. Follow best practices for the security of your data. </p>",
+        "DescribeLabelGroupRequest$LabelGroupName": "<p> Returns the name of the label group. </p>",
+        "DescribeLabelGroupResponse$LabelGroupName": "<p> The name of the label group. </p>",
+        "DescribeLabelRequest$LabelGroupName": "<p> Returns the name of the group containing the label. </p>",
+        "DescribeLabelResponse$LabelGroupName": "<p> The name of the requested label group. </p>",
+        "LabelGroupSummary$LabelGroupName": "<p> The name of the label group. </p>",
+        "LabelSummary$LabelGroupName": "<p> The name of the label group. </p>",
+        "LabelsInputConfiguration$LabelGroupName": "<p> The name of the label group to be used for label data. </p>",
+        "ListLabelGroupsRequest$LabelGroupNameBeginsWith": "<p> The beginning of the name of the label groups to be listed. </p>",
+        "ListLabelsRequest$LabelGroupName": "<p> Retruns the name of the label group. </p>",
+        "UpdateLabelGroupRequest$LabelGroupName": "<p> The name of the label group to be updated. </p>"
+      }
+    },
+    "LabelGroupSummaries": {
+      "base": null,
+      "refs": {
+        "ListLabelGroupsResponse$LabelGroupSummaries": "<p> A summary of the label groups. </p>"
+      }
+    },
+    "LabelGroupSummary": {
+      "base": "<p> Contains information about the label group. </p>",
+      "refs": {
+        "LabelGroupSummaries$member": null
+      }
+    },
+    "LabelId": {
+      "base": null,
+      "refs": {
+        "CreateLabelResponse$LabelId": "<p> The ID of the label that you have created. </p>",
+        "DeleteLabelRequest$LabelId": "<p> The ID of the label that you want to delete. </p>",
+        "DescribeLabelRequest$LabelId": "<p> Returns the ID of the label. </p>",
+        "DescribeLabelResponse$LabelId": "<p> The ID of the requested label. </p>",
+        "LabelSummary$LabelId": "<p> The ID of the label. </p>"
+      }
+    },
+    "LabelRating": {
+      "base": null,
+      "refs": {
+        "CreateLabelRequest$Rating": "<p> Indicates whether a labeled event represents an anomaly. </p>",
+        "DescribeLabelResponse$Rating": "<p> Indicates whether a labeled event represents an anomaly. </p>",
+        "LabelSummary$Rating": "<p> Indicates whether a labeled event represents an anomaly. </p>"
+      }
+    },
+    "LabelSummaries": {
+      "base": null,
+      "refs": {
+        "ListLabelsResponse$LabelSummaries": "<p> A summary of the items in the label group. </p>"
+      }
+    },
+    "LabelSummary": {
+      "base": "<p> Information about the label. </p>",
+      "refs": {
+        "LabelSummaries$member": null
+      }
+    },
     "LabelsInputConfiguration": {
       "base": "<p>Contains the configuration information for the S3 location being used to hold label data. </p>",
       "refs": {
@@ -583,6 +750,13 @@
       "base": "<p> Entity that comprises information on large gaps between consecutive timestamps in data. </p>",
       "refs": {
         "SensorStatisticsSummary$LargeTimestampGaps": "<p> Parameter that describes potential risk about whether data associated with the sensor contains one or more large gaps between consecutive timestamps. </p>"
+      }
+    },
+    "LatestInferenceResult": {
+      "base": null,
+      "refs": {
+        "DescribeInferenceSchedulerResponse$LatestInferenceResult": "<p>Indicates whether the latest execution for the inference scheduler was Anomalous (anomalous events found) or Normal (no anomalous events found).</p>",
+        "InferenceSchedulerSummary$LatestInferenceResult": "<p>Indicates whether the latest execution for the inference scheduler was Anomalous (anomalous events found) or Normal (no anomalous events found).</p>"
       }
     },
     "ListDataIngestionJobsRequest": {
@@ -635,6 +809,26 @@
       "refs": {
       }
     },
+    "ListLabelGroupsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLabelGroupsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLabelsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLabelsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListModelsRequest": {
       "base": null,
       "refs": {
@@ -679,8 +873,10 @@
         "ListInferenceEventsRequest$MaxResults": "<p>Specifies the maximum number of inference events to list. </p>",
         "ListInferenceExecutionsRequest$MaxResults": "<p>Specifies the maximum number of inference executions to list. </p>",
         "ListInferenceSchedulersRequest$MaxResults": "<p> Specifies the maximum number of inference schedulers to list. </p>",
+        "ListLabelGroupsRequest$MaxResults": "<p> Specifies the maximum number of label groups to list. </p>",
+        "ListLabelsRequest$MaxResults": "<p> Specifies the maximum number of labels to list. </p>",
         "ListModelsRequest$MaxResults": "<p> Specifies the maximum number of ML models to list. </p>",
-        "ListSensorStatisticsRequest$MaxResults": "<p> Specifies the maximum number of sensors for which to retrieve statistics. </p>"
+        "ListSensorStatisticsRequest$MaxResults": "<p>Specifies the maximum number of sensors for which to retrieve statistics. </p>"
       }
     },
     "MissingCompleteSensorData": {
@@ -784,7 +980,7 @@
     "NextToken": {
       "base": null,
       "refs": {
-        "ListDataIngestionJobsRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of data ingestion jobs. </p>",
+        "ListDataIngestionJobsRequest$NextToken": "<p>An opaque pagination token indicating where to continue the listing of data ingestion jobs. </p>",
         "ListDataIngestionJobsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of data ingestion jobs. </p>",
         "ListDatasetsRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of datasets. </p>",
         "ListDatasetsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of datasets. </p>",
@@ -794,10 +990,14 @@
         "ListInferenceExecutionsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of inference executions. </p>",
         "ListInferenceSchedulersRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of inference schedulers. </p>",
         "ListInferenceSchedulersResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of inference schedulers. </p>",
+        "ListLabelGroupsRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of label groups. </p>",
+        "ListLabelGroupsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of label groups. </p>",
+        "ListLabelsRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of label groups. </p>",
+        "ListLabelsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of datasets. </p>",
         "ListModelsRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of ML models. </p>",
         "ListModelsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of ML models. </p>",
-        "ListSensorStatisticsRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of sensor statistics. </p>",
-        "ListSensorStatisticsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of sensor statistics. </p>"
+        "ListSensorStatisticsRequest$NextToken": "<p>An opaque pagination token indicating where to continue the listing of sensor statistics. </p>",
+        "ListSensorStatisticsResponse$NextToken": "<p>An opaque pagination token indicating where to continue the listing of sensor statistics. </p>"
       }
     },
     "OffCondition": {
@@ -853,7 +1053,7 @@
     "SensorStatisticsSummaries": {
       "base": null,
       "refs": {
-        "ListSensorStatisticsResponse$SensorStatisticsSummaries": "<p> Provides ingestion-based statistics regarding the specified sensor with respect to various validation types, such as whether data exists, the number and percentage of missing values, and the number and percentage of duplicate timestamps. </p>"
+        "ListSensorStatisticsResponse$SensorStatisticsSummaries": "<p>Provides ingestion-based statistics regarding the specified sensor with respect to various validation types, such as whether data exists, the number and percentage of missing values, and the number and percentage of duplicate timestamps. </p>"
       }
     },
     "SensorStatisticsSummary": {
@@ -936,6 +1136,7 @@
       "refs": {
         "CreateDatasetRequest$Tags": "<p>Any tags associated with the ingested data described in the dataset. </p>",
         "CreateInferenceSchedulerRequest$Tags": "<p>Any tags associated with the inference scheduler. </p>",
+        "CreateLabelGroupRequest$Tags": "<p> Tags that provide metadata about the label group you are creating. </p> <p>Data in this field will be retained for service usage. Follow best practices for the security of your data.</p>",
         "CreateModelRequest$Tags": "<p> Any tags associated with the ML model being created. </p>",
         "ListTagsForResourceResponse$Tags": "<p> Any tags associated with the resource. </p>",
         "TagResourceRequest$Tags": "<p>The tag or tags to be associated with a specific resource. Both the tag key and value are specified. </p>"
@@ -977,6 +1178,8 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "CreateLabelRequest$StartTime": "<p> The start time of the labeled event. </p>",
+        "CreateLabelRequest$EndTime": "<p> The end time of the labeled event. </p>",
         "CreateModelRequest$TrainingDataStartTime": "<p>Indicates the time reference in the dataset that should be used to begin the subset of training data for the ML model. </p>",
         "CreateModelRequest$TrainingDataEndTime": "<p>Indicates the time reference in the dataset that should be used to end the subset of training data for the ML model. </p>",
         "CreateModelRequest$EvaluationDataStartTime": "<p>Indicates the time reference in the dataset that should be used to begin the subset of evaluation data for the ML model. </p>",
@@ -991,6 +1194,11 @@
         "DescribeDatasetResponse$DataEndTime": "<p> Indicates the latest timestamp corresponding to data that was successfully ingested during the most recent ingestion of this particular dataset. </p>",
         "DescribeInferenceSchedulerResponse$CreatedAt": "<p>Specifies the time at which the inference scheduler was created. </p>",
         "DescribeInferenceSchedulerResponse$UpdatedAt": "<p>Specifies the time at which the inference scheduler was last updated, if it was. </p>",
+        "DescribeLabelGroupResponse$CreatedAt": "<p> The time at which the label group was created. </p>",
+        "DescribeLabelGroupResponse$UpdatedAt": "<p> The time at which the label group was updated. </p>",
+        "DescribeLabelResponse$StartTime": "<p> The start time of the requested label. </p>",
+        "DescribeLabelResponse$EndTime": "<p> The end time of the requested label. </p>",
+        "DescribeLabelResponse$CreatedAt": "<p> The time at which the label was created. </p>",
         "DescribeModelResponse$TrainingDataStartTime": "<p> Indicates the time reference in the dataset that was used to begin the subset of training data for the ML model. </p>",
         "DescribeModelResponse$TrainingDataEndTime": "<p> Indicates the time reference in the dataset that was used to end the subset of training data for the ML model. </p>",
         "DescribeModelResponse$EvaluationDataStartTime": "<p> Indicates the time reference in the dataset that was used to begin the subset of evaluation data for the ML model. </p>",
@@ -1004,10 +1212,17 @@
         "InferenceExecutionSummary$ScheduledStartTime": "<p>Indicates the start time at which the inference scheduler began the specific inference execution. </p>",
         "InferenceExecutionSummary$DataStartTime": "<p>Indicates the time reference in the dataset at which the inference execution began. </p>",
         "InferenceExecutionSummary$DataEndTime": "<p>Indicates the time reference in the dataset at which the inference execution stopped. </p>",
-        "ListInferenceEventsRequest$IntervalStartTime": "<p> Lookout for Equipment will return all the inference events with start time equal to or greater than the start time given.</p>",
-        "ListInferenceEventsRequest$IntervalEndTime": "<p>Lookout for Equipment will return all the inference events with end time equal to or less than the end time given.</p>",
+        "LabelGroupSummary$CreatedAt": "<p> The time at which the label group was created. </p>",
+        "LabelGroupSummary$UpdatedAt": "<p> The time at which the label group was updated. </p>",
+        "LabelSummary$StartTime": "<p> The timestamp indicating the start of the label. </p>",
+        "LabelSummary$EndTime": "<p> The timestamp indicating the end of the label. </p>",
+        "LabelSummary$CreatedAt": "<p> The time at which the label was created. </p>",
+        "ListInferenceEventsRequest$IntervalStartTime": "<p> Lookout for Equipment will return all the inference events with an end time equal to or greater than the start time given.</p>",
+        "ListInferenceEventsRequest$IntervalEndTime": "<p>Returns all the inference events with an end start time equal to or greater than less than the end time given</p>",
         "ListInferenceExecutionsRequest$DataStartTimeAfter": "<p>The time reference in the inferenced dataset after which Amazon Lookout for Equipment started the inference execution. </p>",
         "ListInferenceExecutionsRequest$DataEndTimeBefore": "<p>The time reference in the inferenced dataset before which Amazon Lookout for Equipment stopped the inference execution. </p>",
+        "ListLabelsRequest$IntervalStartTime": "<p> Returns all the labels with a end time equal to or later than the start time given. </p>",
+        "ListLabelsRequest$IntervalEndTime": "<p> Returns all labels with a start time earlier than the end time given. </p>",
         "ModelSummary$CreatedAt": "<p>The time at which the specific model was created. </p>",
         "SensorStatisticsSummary$DataStartTime": "<p> Indicates the time reference to indicate the beginning of valid data associated with the sensor that the statistics belong to. </p>",
         "SensorStatisticsSummary$DataEndTime": "<p> Indicates the time reference to indicate the end of valid data associated with the sensor that the statistics belong to. </p>"
@@ -1030,6 +1245,11 @@
       }
     },
     "UpdateInferenceSchedulerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLabelGroupRequest": {
       "base": null,
       "refs": {
       }

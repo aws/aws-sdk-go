@@ -1184,8 +1184,7 @@ func (c *GreengrassV2) GetComponentRequest(input *GetComponentInput) (req *reque
 
 // GetComponent API operation for AWS IoT Greengrass V2.
 //
-// Gets the recipe for a version of a component. Core devices can call this
-// operation to identify the artifacts and requirements to install a component.
+// Gets the recipe for a version of a component.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1485,6 +1484,9 @@ func (c *GreengrassV2) GetCoreDeviceRequest(input *GetCoreDeviceInput) (req *req
 //
 //   - At a regular interval that you can configure (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-nucleus-component.html#greengrass-nucleus-component-configuration-fss),
 //     which defaults to 24 hours
+//
+//   - For IoT Greengrass Core v2.7.0, the core device sends status updates
+//     upon local deployment and cloud deployment
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2238,6 +2240,9 @@ func (c *GreengrassV2) ListCoreDevicesRequest(input *ListCoreDevicesInput) (req 
 //   - At a regular interval that you can configure (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-nucleus-component.html#greengrass-nucleus-component-configuration-fss),
 //     which defaults to 24 hours
 //
+//   - For IoT Greengrass Core v2.7.0, the core device sends status updates
+//     upon local deployment and cloud deployment
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2685,8 +2690,9 @@ func (c *GreengrassV2) ListInstalledComponentsRequest(input *ListInstalledCompon
 // ListInstalledComponents API operation for AWS IoT Greengrass V2.
 //
 // Retrieves a paginated list of the components that a Greengrass core device
-// runs. This list doesn't include components that are deployed from local deployments
-// or components that are deployed as dependencies of other components.
+// runs. By default, this list doesn't include components that are deployed
+// as dependencies of other components. To include dependencies in the response,
+// set the topologyFilter parameter to ALL.
 //
 // IoT Greengrass relies on individual devices to send status updates to the
 // Amazon Web Services Cloud. If the IoT Greengrass Core software isn't running
@@ -2705,6 +2711,9 @@ func (c *GreengrassV2) ListInstalledComponentsRequest(input *ListInstalledCompon
 //
 //   - At a regular interval that you can configure (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-nucleus-component.html#greengrass-nucleus-component-configuration-fss),
 //     which defaults to 24 hours
+//
+//   - For IoT Greengrass Core v2.7.0, the core device sends status updates
+//     upon local deployment and cloud deployment
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4356,7 +4365,7 @@ type ComponentPlatform struct {
 	_ struct{} `type:"structure"`
 
 	// A dictionary of attributes for the platform. The IoT Greengrass Core software
-	// defines the os and platform by default. You can specify additional platform
+	// defines the os and architecture by default. You can specify additional platform
 	// attributes for a core device when you deploy the Greengrass nucleus component.
 	// For more information, see the Greengrass nucleus component (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-nucleus-component.html)
 	// in the IoT Greengrass V2 Developer Guide.
@@ -6824,6 +6833,14 @@ type InstalledComponent struct {
 	// Whether or not the component is a root component.
 	IsRoot *bool `locationName:"isRoot" type:"boolean"`
 
+	// The status of how current the data is.
+	//
+	// This response is based off of component state changes. The status reflects
+	// component disruptions and deployments. If a component only sees a configuration
+	// update during a deployment, it might not undergo a state change and this
+	// status would not be updated.
+	LastStatusChangeTimestamp *time.Time `locationName:"lastStatusChangeTimestamp" type:"timestamp"`
+
 	// The lifecycle state of the component.
 	LifecycleState *string `locationName:"lifecycleState" type:"string" enum:"InstalledComponentLifecycleState"`
 
@@ -6864,6 +6881,12 @@ func (s *InstalledComponent) SetComponentVersion(v string) *InstalledComponent {
 // SetIsRoot sets the IsRoot field's value.
 func (s *InstalledComponent) SetIsRoot(v bool) *InstalledComponent {
 	s.IsRoot = &v
+	return s
+}
+
+// SetLastStatusChangeTimestamp sets the LastStatusChangeTimestamp field's value.
+func (s *InstalledComponent) SetLastStatusChangeTimestamp(v time.Time) *InstalledComponent {
+	s.LastStatusChangeTimestamp = &v
 	return s
 }
 
@@ -7797,7 +7820,7 @@ type LambdaFunctionRecipeSource struct {
 	// to import. You can't use version aliases like $LATEST.
 	//
 	// LambdaArn is a required field
-	LambdaArn *string `locationName:"lambdaArn" type:"string" required:"true"`
+	LambdaArn *string `locationName:"lambdaArn" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -7829,6 +7852,9 @@ func (s *LambdaFunctionRecipeSource) Validate() error {
 	}
 	if s.LambdaArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("LambdaArn"))
+	}
+	if s.LambdaArn != nil && len(*s.LambdaArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaArn", 1))
 	}
 	if s.ComponentDependencies != nil {
 		for i, v := range s.ComponentDependencies {
@@ -8739,6 +8765,18 @@ type ListInstalledComponentsInput struct {
 
 	// The token to be used for the next set of paginated results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The filter for the list of components. Choose from the following options:
+	//
+	//    * ALL – The list includes all components installed on the core device.
+	//
+	//    * ROOT – The list includes only root components, which are components
+	//    that you specify in a deployment. When you choose this option, the list
+	//    doesn't include components that the core device installs as dependencies
+	//    of other components.
+	//
+	// Default: ROOT
+	TopologyFilter *string `location:"querystring" locationName:"topologyFilter" type:"string" enum:"InstalledComponentTopologyFilter"`
 }
 
 // String returns the string representation.
@@ -8796,10 +8834,20 @@ func (s *ListInstalledComponentsInput) SetNextToken(v string) *ListInstalledComp
 	return s
 }
 
+// SetTopologyFilter sets the TopologyFilter field's value.
+func (s *ListInstalledComponentsInput) SetTopologyFilter(v string) *ListInstalledComponentsInput {
+	s.TopologyFilter = &v
+	return s
+}
+
 type ListInstalledComponentsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list that summarizes each component on the core device.
+	//
+	// Accuracy of the lastStatusChangeTimestamp response depends on Greengrass
+	// nucleus v2.7.0. It performs best on Greengrass nucleus v2.7.0 and can be
+	// inaccurate on earlier versions.
 	InstalledComponents []*InstalledComponent `locationName:"installedComponents" type:"list"`
 
 	// The token for the next set of results, or null if there are no additional
@@ -10083,6 +10131,22 @@ func InstalledComponentLifecycleState_Values() []string {
 		InstalledComponentLifecycleStateErrored,
 		InstalledComponentLifecycleStateBroken,
 		InstalledComponentLifecycleStateFinished,
+	}
+}
+
+const (
+	// InstalledComponentTopologyFilterAll is a InstalledComponentTopologyFilter enum value
+	InstalledComponentTopologyFilterAll = "ALL"
+
+	// InstalledComponentTopologyFilterRoot is a InstalledComponentTopologyFilter enum value
+	InstalledComponentTopologyFilterRoot = "ROOT"
+)
+
+// InstalledComponentTopologyFilter_Values returns all elements of the InstalledComponentTopologyFilter enum
+func InstalledComponentTopologyFilter_Values() []string {
+	return []string{
+		InstalledComponentTopologyFilterAll,
+		InstalledComponentTopologyFilterRoot,
 	}
 }
 
