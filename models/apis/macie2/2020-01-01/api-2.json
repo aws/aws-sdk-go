@@ -85,6 +85,43 @@
         }
       ]
     },
+    "CreateAllowList": {
+      "name": "CreateAllowList",
+      "http": {
+        "method": "POST",
+        "requestUri": "/allow-lists",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateAllowListRequest"
+      },
+      "output": {
+        "shape": "CreateAllowListResponse"
+      },
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "CreateClassificationJob": {
       "name": "CreateClassificationJob",
       "http": {
@@ -341,6 +378,37 @@
         },
         {
           "shape": "ConflictException"
+        }
+      ]
+    },
+    "DeleteAllowList": {
+      "name": "DeleteAllowList",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/allow-lists/{id}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteAllowListRequest"
+      },
+      "output": {
+        "shape": "DeleteAllowListResponse"
+      },
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
         }
       ]
     },
@@ -896,6 +964,37 @@
         },
         {
           "shape": "ConflictException"
+        }
+      ]
+    },
+    "GetAllowList": {
+      "name": "GetAllowList",
+      "http": {
+        "method": "GET",
+        "requestUri": "/allow-lists/{id}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetAllowListRequest"
+      },
+      "output": {
+        "shape": "GetAllowListResponse"
+      },
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
         }
       ]
     },
@@ -1470,6 +1569,34 @@
         }
       ]
     },
+    "ListAllowLists": {
+      "name": "ListAllowLists",
+      "http": {
+        "method": "GET",
+        "requestUri": "/allow-lists",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListAllowListsRequest"
+      },
+      "output": {
+        "shape": "ListAllowListsResponse"
+      },
+      "errors": [
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ]
+    },
     "ListClassificationJobs": {
       "name": "ListClassificationJobs",
       "http": {
@@ -1937,6 +2064,37 @@
       },
       "errors": []
     },
+    "UpdateAllowList": {
+      "name": "UpdateAllowList",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/allow-lists/{id}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateAllowListRequest"
+      },
+      "output": {
+        "shape": "UpdateAllowListResponse"
+      },
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ]
+    },
     "UpdateClassificationJob": {
       "name": "UpdateClassificationJob",
       "http": {
@@ -2247,6 +2405,77 @@
         "ENABLED",
         "DISABLING_IN_PROGRESS"
       ]
+    },
+    "AllowListCriteria": {
+      "type": "structure",
+      "members": {
+        "regex": {
+          "shape": "__stringMin1Max512PatternSS",
+          "locationName": "regex"
+        },
+        "s3WordsList": {
+          "shape": "S3WordsList",
+          "locationName": "s3WordsList"
+        }
+      }
+    },
+    "AllowListStatus": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "shape": "AllowListStatusCode",
+          "locationName": "code"
+        },
+        "description": {
+          "shape": "__stringMin1Max1024PatternSS",
+          "locationName": "description"
+        }
+      },
+      "required": [
+        "code"
+      ]
+    },
+    "AllowListStatusCode": {
+      "type": "string",
+      "enum": [
+        "OK",
+        "S3_OBJECT_NOT_FOUND",
+        "S3_USER_ACCESS_DENIED",
+        "S3_OBJECT_ACCESS_DENIED",
+        "S3_THROTTLED",
+        "S3_OBJECT_OVERSIZE",
+        "S3_OBJECT_EMPTY",
+        "UNKNOWN_ERROR"
+      ]
+    },
+    "AllowListSummary": {
+      "type": "structure",
+      "members": {
+        "arn": {
+          "shape": "__stringMin71Max89PatternArnAwsAwsCnAwsUsGovMacie2AZ19920D12AllowListAZ0922",
+          "locationName": "arn"
+        },
+        "createdAt": {
+          "shape": "__timestampIso8601",
+          "locationName": "createdAt"
+        },
+        "description": {
+          "shape": "__stringMin1Max512PatternSS",
+          "locationName": "description"
+        },
+        "id": {
+          "shape": "__stringMin22Max22PatternAZ0922",
+          "locationName": "id"
+        },
+        "name": {
+          "shape": "__stringMin1Max128Pattern",
+          "locationName": "name"
+        },
+        "updatedAt": {
+          "shape": "__timestampIso8601",
+          "locationName": "updatedAt"
+        }
+      }
     },
     "AllowsUnencryptedObjectUploads": {
       "type": "string",
@@ -2830,9 +3059,57 @@
         "httpStatusCode": 409
       }
     },
+    "CreateAllowListRequest": {
+      "type": "structure",
+      "members": {
+        "clientToken": {
+          "shape": "__string",
+          "locationName": "clientToken",
+          "idempotencyToken": true
+        },
+        "criteria": {
+          "shape": "AllowListCriteria",
+          "locationName": "criteria"
+        },
+        "description": {
+          "shape": "__stringMin1Max512PatternSS",
+          "locationName": "description"
+        },
+        "name": {
+          "shape": "__stringMin1Max128Pattern",
+          "locationName": "name"
+        },
+        "tags": {
+          "shape": "TagMap",
+          "locationName": "tags"
+        }
+      },
+      "required": [
+        "criteria",
+        "clientToken",
+        "name"
+      ]
+    },
+    "CreateAllowListResponse": {
+      "type": "structure",
+      "members": {
+        "arn": {
+          "shape": "__stringMin71Max89PatternArnAwsAwsCnAwsUsGovMacie2AZ19920D12AllowListAZ0922",
+          "locationName": "arn"
+        },
+        "id": {
+          "shape": "__stringMin22Max22PatternAZ0922",
+          "locationName": "id"
+        }
+      }
+    },
     "CreateClassificationJobRequest": {
       "type": "structure",
       "members": {
+        "allowListIds": {
+          "shape": "__listOf__string",
+          "locationName": "allowListIds"
+        },
         "clientToken": {
           "shape": "__string",
           "locationName": "clientToken",
@@ -3280,6 +3557,28 @@
         "shape": "DefaultDetection"
       }
     },
+    "DeleteAllowListRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "id"
+        },
+        "ignoreJobChecks": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "ignoreJobChecks"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "DeleteAllowListResponse": {
+      "type": "structure",
+      "members": {}
+    },
     "DeleteCustomDataIdentifierRequest": {
       "type": "structure",
       "members": {
@@ -3402,6 +3701,10 @@
     "DescribeClassificationJobResponse": {
       "type": "structure",
       "members": {
+        "allowListIds": {
+          "shape": "__listOf__string",
+          "locationName": "allowListIds"
+        },
         "clientToken": {
           "shape": "__string",
           "locationName": "clientToken",
@@ -3891,6 +4194,60 @@
         "administrator": {
           "shape": "Invitation",
           "locationName": "administrator"
+        }
+      }
+    },
+    "GetAllowListRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "id"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "GetAllowListResponse": {
+      "type": "structure",
+      "members": {
+        "arn": {
+          "shape": "__stringMin71Max89PatternArnAwsAwsCnAwsUsGovMacie2AZ19920D12AllowListAZ0922",
+          "locationName": "arn"
+        },
+        "createdAt": {
+          "shape": "__timestampIso8601",
+          "locationName": "createdAt"
+        },
+        "criteria": {
+          "shape": "AllowListCriteria",
+          "locationName": "criteria"
+        },
+        "description": {
+          "shape": "__stringMin1Max512PatternSS",
+          "locationName": "description"
+        },
+        "id": {
+          "shape": "__stringMin22Max22PatternAZ0922",
+          "locationName": "id"
+        },
+        "name": {
+          "shape": "__stringMin1Max128Pattern",
+          "locationName": "name"
+        },
+        "status": {
+          "shape": "AllowListStatus",
+          "locationName": "status"
+        },
+        "tags": {
+          "shape": "TagMap",
+          "locationName": "tags"
+        },
+        "updatedAt": {
+          "shape": "__timestampIso8601",
+          "locationName": "updatedAt"
         }
       }
     },
@@ -4743,6 +5100,34 @@
         "NONE",
         "ERROR"
       ]
+    },
+    "ListAllowListsRequest": {
+      "type": "structure",
+      "members": {
+        "maxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "nextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListAllowListsResponse": {
+      "type": "structure",
+      "members": {
+        "allowLists": {
+          "shape": "__listOfAllowListSummary",
+          "locationName": "allowLists"
+        },
+        "nextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
     },
     "ListClassificationJobsRequest": {
       "type": "structure",
@@ -5667,6 +6052,23 @@
         }
       }
     },
+    "S3WordsList": {
+      "type": "structure",
+      "members": {
+        "bucketName": {
+          "shape": "__stringMin3Max255PatternAZaZ093255",
+          "locationName": "bucketName"
+        },
+        "objectKey": {
+          "shape": "__stringMin1Max1024PatternSS",
+          "locationName": "objectKey"
+        }
+      },
+      "required": [
+        "bucketName",
+        "objectKey"
+      ]
+    },
     "ScopeFilterKey": {
       "type": "string",
       "enum": [
@@ -6360,6 +6762,46 @@
       "type": "structure",
       "members": {}
     },
+    "UpdateAllowListRequest": {
+      "type": "structure",
+      "members": {
+        "criteria": {
+          "shape": "AllowListCriteria",
+          "locationName": "criteria"
+        },
+        "description": {
+          "shape": "__stringMin1Max512PatternSS",
+          "locationName": "description"
+        },
+        "id": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "id"
+        },
+        "name": {
+          "shape": "__stringMin1Max128Pattern",
+          "locationName": "name"
+        }
+      },
+      "required": [
+        "id",
+        "criteria",
+        "name"
+      ]
+    },
+    "UpdateAllowListResponse": {
+      "type": "structure",
+      "members": {
+        "arn": {
+          "shape": "__stringMin71Max89PatternArnAwsAwsCnAwsUsGovMacie2AZ19920D12AllowListAZ0922",
+          "locationName": "arn"
+        },
+        "id": {
+          "shape": "__stringMin22Max22PatternAZ0922",
+          "locationName": "id"
+        }
+      }
+    },
     "UpdateClassificationJobRequest": {
       "type": "structure",
       "members": {
@@ -6746,6 +7188,12 @@
         "shape": "AdminAccount"
       }
     },
+    "__listOfAllowListSummary": {
+      "type": "list",
+      "member": {
+        "shape": "AllowListSummary"
+      }
+    },
     "__listOfBatchGetCustomDataIdentifierSummary": {
       "type": "list",
       "member": {
@@ -6927,15 +7375,51 @@
     "__string": {
       "type": "string"
     },
+    "__stringMin1Max1024PatternSS": {
+      "type": "string",
+      "min": 1,
+      "max": 1024,
+      "pattern": "^[\\s\\S]+$"
+    },
     "__stringMin1Max128": {
       "type": "string",
       "min": 1,
       "max": 128
     },
+    "__stringMin1Max128Pattern": {
+      "type": "string",
+      "min": 1,
+      "max": 128,
+      "pattern": "^.+$"
+    },
     "__stringMin1Max2048": {
       "type": "string",
       "min": 1,
       "max": 2048
+    },
+    "__stringMin1Max512PatternSS": {
+      "type": "string",
+      "min": 1,
+      "max": 512,
+      "pattern": "^[\\s\\S]+$"
+    },
+    "__stringMin22Max22PatternAZ0922": {
+      "type": "string",
+      "min": 22,
+      "max": 22,
+      "pattern": "^[a-z0-9]{22}$"
+    },
+    "__stringMin3Max255PatternAZaZ093255": {
+      "type": "string",
+      "min": 3,
+      "max": 255,
+      "pattern": "^[A-Za-z0-9.\\-_]{3,255}$"
+    },
+    "__stringMin71Max89PatternArnAwsAwsCnAwsUsGovMacie2AZ19920D12AllowListAZ0922": {
+      "type": "string",
+      "min": 71,
+      "max": 89,
+      "pattern": "^arn:(aws|aws-cn|aws-us-gov):macie2:[a-z1-9-]{9,20}:\\d{12}:allow-list\\/[a-z0-9]{22}$"
     },
     "__timestampIso8601": {
       "type": "timestamp",

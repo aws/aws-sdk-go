@@ -161,7 +161,7 @@ func (c *SSOAdmin) AttachManagedPolicyToPermissionSetRequest(input *AttachManage
 
 // AttachManagedPolicyToPermissionSet API operation for AWS Single Sign-On Admin.
 //
-// Attaches an Amazon Web Services managed policy ARN to a permission set.
+// Attaches an AWS managed policy ARN to a permission set.
 //
 // If the permission set is already referenced by one or more account assignments,
 // you will need to call ProvisionPermissionSet after this operation. Calling
@@ -269,18 +269,18 @@ func (c *SSOAdmin) CreateAccountAssignmentRequest(input *CreateAccountAssignment
 
 // CreateAccountAssignment API operation for AWS Single Sign-On Admin.
 //
-// Assigns access to a principal for a specified Amazon Web Services account
-// using a specified permission set.
+// Assigns access to a principal for a specified AWS account using a specified
+// permission set.
 //
-// The term principal here refers to a user or group that is defined in Amazon
-// Web Services SSO.
+// The term principal here refers to a user or group that is defined in IAM
+// Identity Center.
 //
 // As part of a successful CreateAccountAssignment call, the specified permission
 // set will automatically be provisioned to the account in the form of an IAM
-// policy. That policy is attached to the IAM role created in Amazon Web Services
-// SSO. If the permission set is subsequently updated, the corresponding IAM
-// policies attached to roles in your accounts will not be updated automatically.
-// In this case, you must call ProvisionPermissionSet to make these updates.
+// policy. That policy is attached to the IAM role created in IAM Identity Center.
+// If the permission set is subsequently updated, the corresponding IAM policies
+// attached to roles in your accounts will not be updated automatically. In
+// this case, you must call ProvisionPermissionSet to make these updates.
 //
 // After a successful response, call DescribeAccountAssignmentCreationStatus
 // to describe the status of an assignment creation request.
@@ -388,10 +388,10 @@ func (c *SSOAdmin) CreateInstanceAccessControlAttributeConfigurationRequest(inpu
 // CreateInstanceAccessControlAttributeConfiguration API operation for AWS Single Sign-On Admin.
 //
 // Enables the attributes-based access control (ABAC) feature for the specified
-// Amazon Web Services SSO instance. You can also specify new attributes to
-// add to your ABAC configuration during the enabling process. For more information
+// IAM Identity Center instance. You can also specify new attributes to add
+// to your ABAC configuration during the enabling process. For more information
 // about ABAC, see Attribute-Based Access Control (/singlesignon/latest/userguide/abac.html)
-// in the Amazon Web Services SSO User Guide.
+// in the IAM Identity Center User Guide.
 //
 // After a successful response, call DescribeInstanceAccessControlAttributeConfiguration
 // to validate that InstanceAccessControlAttributeConfiguration was created.
@@ -493,10 +493,9 @@ func (c *SSOAdmin) CreatePermissionSetRequest(input *CreatePermissionSetInput) (
 
 // CreatePermissionSet API operation for AWS Single Sign-On Admin.
 //
-// Creates a permission set within a specified Amazon Web Services SSO instance.
+// Creates a permission set within a specified IAM Identity Center instance.
 //
-// To grant users and groups access to Amazon Web Services account resources,
-// use CreateAccountAssignment .
+// To grant users and groups access to AWS account resources, use CreateAccountAssignment .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -599,8 +598,8 @@ func (c *SSOAdmin) DeleteAccountAssignmentRequest(input *DeleteAccountAssignment
 
 // DeleteAccountAssignment API operation for AWS Single Sign-On Admin.
 //
-// Deletes a principal's access from a specified Amazon Web Services account
-// using a specified permission set.
+// Deletes a principal's access from a specified AWS account using a specified
+// permission set.
 //
 // After a successful response, call DescribeAccountAssignmentCreationStatus
 // to describe the status of an assignment deletion request.
@@ -804,12 +803,12 @@ func (c *SSOAdmin) DeleteInstanceAccessControlAttributeConfigurationRequest(inpu
 // DeleteInstanceAccessControlAttributeConfiguration API operation for AWS Single Sign-On Admin.
 //
 // Disables the attributes-based access control (ABAC) feature for the specified
-// Amazon Web Services SSO instance and deletes all of the attribute mappings
-// that have been configured. Once deleted, any attributes that are received
-// from an identity source and any custom attributes you have previously configured
+// IAM Identity Center instance and deletes all of the attribute mappings that
+// have been configured. Once deleted, any attributes that are received from
+// an identity source and any custom attributes you have previously configured
 // will not be passed. For more information about ABAC, see Attribute-Based
-// Access Control (/singlesignon/latest/userguide/abac.html) in the Amazon Web
-// Services SSO User Guide.
+// Access Control (/singlesignon/latest/userguide/abac.html) in the IAM Identity
+// Center User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1288,12 +1287,12 @@ func (c *SSOAdmin) DescribeInstanceAccessControlAttributeConfigurationRequest(in
 
 // DescribeInstanceAccessControlAttributeConfiguration API operation for AWS Single Sign-On Admin.
 //
-// Returns the list of Amazon Web Services SSO identity store attributes that
-// have been configured to work with attributes-based access control (ABAC)
-// for the specified Amazon Web Services SSO instance. This will not return
-// attributes configured and sent by an external identity provider. For more
-// information about ABAC, see Attribute-Based Access Control (/singlesignon/latest/userguide/abac.html)
-// in the Amazon Web Services SSO User Guide.
+// Returns the list of IAM Identity Center identity store attributes that have
+// been configured to work with attributes-based access control (ABAC) for the
+// specified IAM Identity Center instance. This will not return attributes configured
+// and sent by an external identity provider. For more information about ABAC,
+// see Attribute-Based Access Control (/singlesignon/latest/userguide/abac.html)
+// in the IAM Identity Center User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1673,8 +1672,8 @@ func (c *SSOAdmin) DetachManagedPolicyFromPermissionSetRequest(input *DetachMana
 
 // DetachManagedPolicyFromPermissionSet API operation for AWS Single Sign-On Admin.
 //
-// Detaches the attached Amazon Web Services managed policy ARN from the specified
-// permission set.
+// Detaches the attached AWS managed policy ARN from the specified permission
+// set.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1965,8 +1964,8 @@ func (c *SSOAdmin) ListAccountAssignmentCreationStatusRequest(input *ListAccount
 
 // ListAccountAssignmentCreationStatus API operation for AWS Single Sign-On Admin.
 //
-// Lists the status of the Amazon Web Services account assignment creation requests
-// for a specified Amazon Web Services SSO instance.
+// Lists the status of the AWS account assignment creation requests for a specified
+// IAM Identity Center instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2116,8 +2115,8 @@ func (c *SSOAdmin) ListAccountAssignmentDeletionStatusRequest(input *ListAccount
 
 // ListAccountAssignmentDeletionStatus API operation for AWS Single Sign-On Admin.
 //
-// Lists the status of the Amazon Web Services account assignment deletion requests
-// for a specified Amazon Web Services SSO instance.
+// Lists the status of the AWS account assignment deletion requests for a specified
+// IAM Identity Center instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2267,8 +2266,8 @@ func (c *SSOAdmin) ListAccountAssignmentsRequest(input *ListAccountAssignmentsIn
 
 // ListAccountAssignments API operation for AWS Single Sign-On Admin.
 //
-// Lists the assignee of the specified Amazon Web Services account with the
-// specified permission set.
+// Lists the assignee of the specified AWS account with the specified permission
+// set.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2418,8 +2417,7 @@ func (c *SSOAdmin) ListAccountsForProvisionedPermissionSetRequest(input *ListAcc
 
 // ListAccountsForProvisionedPermissionSet API operation for AWS Single Sign-On Admin.
 //
-// Lists all the Amazon Web Services accounts where the specified permission
-// set is provisioned.
+// Lists all the AWS accounts where the specified permission set is provisioned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2719,7 +2717,7 @@ func (c *SSOAdmin) ListInstancesRequest(input *ListInstancesInput) (req *request
 
 // ListInstances API operation for AWS Single Sign-On Admin.
 //
-// Lists the Amazon Web Services SSO instances that the caller has access to.
+// Lists the IAM Identity Center instances that the caller has access to.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2866,8 +2864,7 @@ func (c *SSOAdmin) ListManagedPoliciesInPermissionSetRequest(input *ListManagedP
 
 // ListManagedPoliciesInPermissionSet API operation for AWS Single Sign-On Admin.
 //
-// Lists the Amazon Web Services managed policy that is attached to a specified
-// permission set.
+// Lists the AWS managed policy that is attached to a specified permission set.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3018,7 +3015,7 @@ func (c *SSOAdmin) ListPermissionSetProvisioningStatusRequest(input *ListPermiss
 // ListPermissionSetProvisioningStatus API operation for AWS Single Sign-On Admin.
 //
 // Lists the status of the permission set provisioning requests for a specified
-// Amazon Web Services SSO instance.
+// IAM Identity Center instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3168,7 +3165,7 @@ func (c *SSOAdmin) ListPermissionSetsRequest(input *ListPermissionSetsInput) (re
 
 // ListPermissionSets API operation for AWS Single Sign-On Admin.
 //
-// Lists the PermissionSets in an Amazon Web Services SSO instance.
+// Lists the PermissionSets in an IAM Identity Center instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3318,8 +3315,7 @@ func (c *SSOAdmin) ListPermissionSetsProvisionedToAccountRequest(input *ListPerm
 
 // ListPermissionSetsProvisionedToAccount API operation for AWS Single Sign-On Admin.
 //
-// Lists all the permission sets that are provisioned to a specified Amazon
-// Web Services account.
+// Lists all the permission sets that are provisioned to a specified AWS account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3822,8 +3818,8 @@ func (c *SSOAdmin) PutPermissionsBoundaryToPermissionSetRequest(input *PutPermis
 
 // PutPermissionsBoundaryToPermissionSet API operation for AWS Single Sign-On Admin.
 //
-// Attaches an Amazon Web Services managed or customer managed policy to the
-// specified PermissionSet as a permissions boundary.
+// Attaches an AWS managed or customer managed policy to the specified PermissionSet
+// as a permissions boundary.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4127,15 +4123,15 @@ func (c *SSOAdmin) UpdateInstanceAccessControlAttributeConfigurationRequest(inpu
 
 // UpdateInstanceAccessControlAttributeConfiguration API operation for AWS Single Sign-On Admin.
 //
-// Updates the Amazon Web Services SSO identity store attributes that you can
-// use with the Amazon Web Services SSO instance for attributes-based access
-// control (ABAC). When using an external identity provider as an identity source,
-// you can pass attributes through the SAML assertion as an alternative to configuring
-// attributes from the Amazon Web Services SSO identity store. If a SAML assertion
-// passes any of these attributes, Amazon Web Services SSO replaces the attribute
-// value with the value from the Amazon Web Services SSO identity store. For
-// more information about ABAC, see Attribute-Based Access Control (/singlesignon/latest/userguide/abac.html)
-// in the Amazon Web Services SSO User Guide.
+// Updates the IAM Identity Center identity store attributes that you can use
+// with the IAM Identity Center instance for attributes-based access control
+// (ABAC). When using an external identity provider as an identity source, you
+// can pass attributes through the SAML assertion as an alternative to configuring
+// attributes from the IAM Identity Center identity store. If a SAML assertion
+// passes any of these attributes, IAM Identity Center replaces the attribute
+// value with the value from the IAM Identity Center identity store. For more
+// information about ABAC, see Attribute-Based Access Control (/singlesignon/latest/userguide/abac.html)
+// in the IAM Identity Center User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4291,18 +4287,18 @@ func (c *SSOAdmin) UpdatePermissionSetWithContext(ctx aws.Context, input *Update
 	return out, req.Send()
 }
 
-// These are Amazon Web Services SSO identity store attributes that you can
-// configure for use in attributes-based access control (ABAC). You can create
-// permissions policies that determine who can access your Amazon Web Services
-// resources based upon the configured attribute values. When you enable ABAC
-// and specify AccessControlAttributes, Amazon Web Services SSO passes the attribute
-// values of the authenticated user into IAM for use in policy evaluation.
+// These are IAM Identity Center identity store attributes that you can configure
+// for use in attributes-based access control (ABAC). You can create permissions
+// policies that determine who can access your AWS resources based upon the
+// configured attribute values. When you enable ABAC and specify AccessControlAttributes,
+// IAM Identity Center passes the attribute values of the authenticated user
+// into IAM for use in policy evaluation.
 type AccessControlAttribute struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the attribute associated with your identities in your identity
 	// source. This is used to map a specified attribute in your identity source
-	// with an attribute in Amazon Web Services SSO.
+	// with an attribute in IAM Identity Center.
 	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
@@ -4369,12 +4365,12 @@ func (s *AccessControlAttribute) SetValue(v *AccessControlAttributeValue) *Acces
 
 // The value used for mapping a specified attribute to an identity source. For
 // more information, see Attribute mappings (https://docs.aws.amazon.com/singlesignon/latest/userguide/attributemappingsconcept.html)
-// in the Amazon Web Services SSO User Guide.
+// in the IAM Identity Center User Guide.
 type AccessControlAttributeValue struct {
 	_ struct{} `type:"structure"`
 
-	// The identity source to use when mapping a specified attribute to Amazon Web
-	// Services SSO.
+	// The identity source to use when mapping a specified attribute to IAM Identity
+	// Center.
 	//
 	// Source is a required field
 	Source []*string `min:"1" type:"list" required:"true"`
@@ -4485,25 +4481,25 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 // The assignment that indicates a principal's limited access to a specified
-// Amazon Web Services account with a specified permission set.
+// AWS account with a specified permission set.
 //
-// The term principal here refers to a user or group that is defined in Amazon
-// Web Services SSO.
+// The term principal here refers to a user or group that is defined in IAM
+// Identity Center.
 type AccountAssignment struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Web Services account.
+	// The identifier of the AWS account.
 	AccountId *string `min:"12" type:"string"`
 
 	// The ARN of the permission set. For more information about ARNs, see Amazon
-	// Resource Names (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// Resource Names (ARNs) and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	PermissionSetArn *string `min:"10" type:"string"`
 
-	// An identifier for an object in Amazon Web Services SSO, such as a user or
-	// group. PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6).
-	// For more information about PrincipalIds in Amazon Web Services SSO, see the
-	// Amazon Web Services SSO Identity Store API Reference (/singlesignon/latest/IdentityStoreAPIReference/welcome.html).
+	// An identifier for an object in IAM Identity Center, such as a user or group.
+	// PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6).
+	// For more information about PrincipalIds in IAM Identity Center, see the IAM
+	// Identity Center Identity Store API Reference (/singlesignon/latest/IdentityStoreAPIReference/welcome.html).
 	PrincipalId *string `min:"1" type:"string"`
 
 	// The entity type for which the assignment will be created.
@@ -4564,14 +4560,14 @@ type AccountAssignmentOperationStatus struct {
 	FailureReason *string `type:"string"`
 
 	// The ARN of the permission set. For more information about ARNs, see Amazon
-	// Resource Names (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// Resource Names (ARNs) and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	PermissionSetArn *string `min:"10" type:"string"`
 
-	// An identifier for an object in Amazon Web Services SSO, such as a user or
-	// group. PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6).
-	// For more information about PrincipalIds in Amazon Web Services SSO, see the
-	// Amazon Web Services SSO Identity Store API Reference (/singlesignon/latest/IdentityStoreAPIReference/welcome.html).
+	// An identifier for an object in IAM Identity Center, such as a user or group.
+	// PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6).
+	// For more information about PrincipalIds in IAM Identity Center, see the IAM
+	// Identity Center Identity Store API Reference (/singlesignon/latest/IdentityStoreAPIReference/welcome.html).
 	PrincipalId *string `min:"1" type:"string"`
 
 	// The entity type for which the assignment will be created.
@@ -4584,8 +4580,8 @@ type AccountAssignmentOperationStatus struct {
 	// The status of the permission set provisioning process.
 	Status *string `type:"string" enum:"StatusValues"`
 
-	// TargetID is an Amazon Web Services account identifier, typically a 10-12
-	// digit string (For example, 123456789012).
+	// TargetID is an AWS account identifier, typically a 10-12 digit string (For
+	// example, 123456789012).
 	TargetId *string `min:"12" type:"string"`
 
 	// The entity type for which the assignment will be created.
@@ -4719,14 +4715,14 @@ type AttachCustomerManagedPolicyReferenceToPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the name and path of a customer managed policy. You must have an
-	// IAM policy that matches the name and path in each Amazon Web Services account
-	// where you want to deploy your permission set.
+	// IAM policy that matches the name and path in each AWS account where you want
+	// to deploy your permission set.
 	//
 	// CustomerManagedPolicyReference is a required field
 	CustomerManagedPolicyReference *CustomerManagedPolicyReference `type:"structure" required:"true"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -4828,16 +4824,15 @@ func (s AttachCustomerManagedPolicyReferenceToPermissionSetOutput) GoString() st
 type AttachManagedPolicyToPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
 
-	// The Amazon Web Services managed policy ARN to be attached to a permission
-	// set.
+	// The AWS managed policy ARN to be attached to a permission set.
 	//
 	// ManagedPolicyArn is a required field
 	ManagedPolicyArn *string `min:"20" type:"string" required:"true"`
@@ -4934,17 +4929,16 @@ func (s AttachManagedPolicyToPermissionSetOutput) GoString() string {
 	return s.String()
 }
 
-// A structure that stores the details of the Amazon Web Services managed policy.
+// A structure that stores the details of the AWS managed policy.
 type AttachedManagedPolicy struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services managed policy. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces
-	// (/general/latest/gr/aws-arns-and-namespaces.html) in the Amazon Web Services
-	// General Reference.
+	// The ARN of the AWS managed policy. For more information about ARNs, see Amazon
+	// Resource Names (ARNs) and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	Arn *string `min:"20" type:"string"`
 
-	// The name of the Amazon Web Services managed policy.
+	// The name of the AWS managed policy.
 	Name *string `min:"1" type:"string"`
 }
 
@@ -5048,10 +5042,10 @@ func (s *ConflictException) RequestID() string {
 type CreateAccountAssignmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -5062,10 +5056,10 @@ type CreateAccountAssignmentInput struct {
 	// PermissionSetArn is a required field
 	PermissionSetArn *string `min:"10" type:"string" required:"true"`
 
-	// An identifier for an object in Amazon Web Services SSO, such as a user or
-	// group. PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6).
-	// For more information about PrincipalIds in Amazon Web Services SSO, see the
-	// Amazon Web Services SSO Identity Store API Reference (/singlesignon/latest/IdentityStoreAPIReference/welcome.html).
+	// An identifier for an object in IAM Identity Center, such as a user or group.
+	// PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6).
+	// For more information about PrincipalIds in IAM Identity Center, see the IAM
+	// Identity Center Identity Store API Reference (/singlesignon/latest/IdentityStoreAPIReference/welcome.html).
 	//
 	// PrincipalId is a required field
 	PrincipalId *string `min:"1" type:"string" required:"true"`
@@ -5075,8 +5069,8 @@ type CreateAccountAssignmentInput struct {
 	// PrincipalType is a required field
 	PrincipalType *string `type:"string" required:"true" enum:"PrincipalType"`
 
-	// TargetID is an Amazon Web Services account identifier, typically a 10-12
-	// digit string (For example, 123456789012).
+	// TargetID is an AWS account identifier, typically a 10-12 digit string (For
+	// example, 123456789012).
 	//
 	// TargetId is a required field
 	TargetId *string `min:"12" type:"string" required:"true"`
@@ -5215,19 +5209,19 @@ func (s *CreateAccountAssignmentOutput) SetAccountAssignmentCreationStatus(v *Ac
 type CreateInstanceAccessControlAttributeConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the Amazon Web Services SSO identity store attributes to add to
-	// your ABAC configuration. When using an external identity provider as an identity
+	// Specifies the IAM Identity Center identity store attributes to add to your
+	// ABAC configuration. When using an external identity provider as an identity
 	// source, you can pass attributes through the SAML assertion. Doing so provides
-	// an alternative to configuring attributes from the Amazon Web Services SSO
-	// identity store. If a SAML assertion passes any of these attributes, Amazon
-	// Web Services SSO will replace the attribute value with the value from the
-	// Amazon Web Services SSO identity store.
+	// an alternative to configuring attributes from the IAM Identity Center identity
+	// store. If a SAML assertion passes any of these attributes, IAM Identity Center
+	// will replace the attribute value with the value from the IAM Identity Center
+	// identity store.
 	//
 	// InstanceAccessControlAttributeConfiguration is a required field
 	InstanceAccessControlAttributeConfiguration *InstanceAccessControlAttributeConfiguration `type:"structure" required:"true"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -5315,10 +5309,10 @@ type CreatePermissionSetInput struct {
 	// The description of the PermissionSet.
 	Description *string `min:"1" type:"string"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -5438,7 +5432,7 @@ func (s *CreatePermissionSetInput) SetTags(v []*Tag) *CreatePermissionSetInput {
 type CreatePermissionSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Defines the level of access on an Amazon Web Services account.
+	// Defines the level of access on an AWS account.
 	PermissionSet *PermissionSet `type:"structure"`
 }
 
@@ -5467,8 +5461,8 @@ func (s *CreatePermissionSetOutput) SetPermissionSet(v *PermissionSet) *CreatePe
 }
 
 // Specifies the name and path of a customer managed policy. You must have an
-// IAM policy that matches the name and path in each Amazon Web Services account
-// where you want to deploy your permission set.
+// IAM policy that matches the name and path in each AWS account where you want
+// to deploy your permission set.
 type CustomerManagedPolicyReference struct {
 	_ struct{} `type:"structure"`
 
@@ -5481,7 +5475,7 @@ type CustomerManagedPolicyReference struct {
 	// The path to the IAM policy that you have configured in each account where
 	// you want to deploy your permission set. The default is /. For more information,
 	// see Friendly names and paths (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-friendly-names)
-	// in the Identity and Access Management User Guide.
+	// in the IAM User Guide.
 	Path *string `min:"1" type:"string"`
 }
 
@@ -5537,10 +5531,10 @@ func (s *CustomerManagedPolicyReference) SetPath(v string) *CustomerManagedPolic
 type DeleteAccountAssignmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -5550,10 +5544,10 @@ type DeleteAccountAssignmentInput struct {
 	// PermissionSetArn is a required field
 	PermissionSetArn *string `min:"10" type:"string" required:"true"`
 
-	// An identifier for an object in Amazon Web Services SSO, such as a user or
-	// group. PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6).
-	// For more information about PrincipalIds in Amazon Web Services SSO, see the
-	// Amazon Web Services SSO Identity Store API Reference (/singlesignon/latest/IdentityStoreAPIReference/welcome.html).
+	// An identifier for an object in IAM Identity Center, such as a user or group.
+	// PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6).
+	// For more information about PrincipalIds in IAM Identity Center, see the IAM
+	// Identity Center Identity Store API Reference (/singlesignon/latest/IdentityStoreAPIReference/welcome.html).
 	//
 	// PrincipalId is a required field
 	PrincipalId *string `min:"1" type:"string" required:"true"`
@@ -5563,8 +5557,8 @@ type DeleteAccountAssignmentInput struct {
 	// PrincipalType is a required field
 	PrincipalType *string `type:"string" required:"true" enum:"PrincipalType"`
 
-	// TargetID is an Amazon Web Services account identifier, typically a 10-12
-	// digit string (For example, 123456789012).
+	// TargetID is an AWS account identifier, typically a 10-12 digit string (For
+	// example, 123456789012).
 	//
 	// TargetId is a required field
 	TargetId *string `min:"12" type:"string" required:"true"`
@@ -5703,10 +5697,10 @@ func (s *DeleteAccountAssignmentOutput) SetAccountAssignmentDeletionStatus(v *Ac
 type DeleteInlinePolicyFromPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -5794,8 +5788,8 @@ func (s DeleteInlinePolicyFromPermissionSetOutput) GoString() string {
 type DeleteInstanceAccessControlAttributeConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -5866,10 +5860,10 @@ func (s DeleteInstanceAccessControlAttributeConfigurationOutput) GoString() stri
 type DeletePermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -5957,8 +5951,8 @@ func (s DeletePermissionSetOutput) GoString() string {
 type DeletePermissionsBoundaryFromPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6051,10 +6045,10 @@ type DescribeAccountAssignmentCreationStatusInput struct {
 	// AccountAssignmentCreationRequestId is a required field
 	AccountAssignmentCreationRequestId *string `min:"36" type:"string" required:"true"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6151,10 +6145,10 @@ type DescribeAccountAssignmentDeletionStatusInput struct {
 	// AccountAssignmentDeletionRequestId is a required field
 	AccountAssignmentDeletionRequestId *string `min:"36" type:"string" required:"true"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6246,8 +6240,8 @@ func (s *DescribeAccountAssignmentDeletionStatusOutput) SetAccountAssignmentDele
 type DescribeInstanceAccessControlAttributeConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6296,7 +6290,7 @@ func (s *DescribeInstanceAccessControlAttributeConfigurationInput) SetInstanceAr
 type DescribeInstanceAccessControlAttributeConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Gets the list of Amazon Web Services SSO identity store attributes that have
+	// Gets the list of IAM Identity Center identity store attributes that have
 	// been added to your ABAC configuration.
 	InstanceAccessControlAttributeConfiguration *InstanceAccessControlAttributeConfiguration `type:"structure"`
 
@@ -6346,10 +6340,10 @@ func (s *DescribeInstanceAccessControlAttributeConfigurationOutput) SetStatusRea
 type DescribePermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6415,7 +6409,7 @@ func (s *DescribePermissionSetInput) SetPermissionSetArn(v string) *DescribePerm
 type DescribePermissionSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the level of access on an Amazon Web Services account.
+	// Describes the level of access on an AWS account.
 	PermissionSet *PermissionSet `type:"structure"`
 }
 
@@ -6446,10 +6440,10 @@ func (s *DescribePermissionSetOutput) SetPermissionSet(v *PermissionSet) *Descri
 type DescribePermissionSetProvisioningStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6548,14 +6542,14 @@ type DetachCustomerManagedPolicyReferenceFromPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the name and path of a customer managed policy. You must have an
-	// IAM policy that matches the name and path in each Amazon Web Services account
-	// where you want to deploy your permission set.
+	// IAM policy that matches the name and path in each AWS account where you want
+	// to deploy your permission set.
 	//
 	// CustomerManagedPolicyReference is a required field
 	CustomerManagedPolicyReference *CustomerManagedPolicyReference `type:"structure" required:"true"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6657,16 +6651,15 @@ func (s DetachCustomerManagedPolicyReferenceFromPermissionSetOutput) GoString() 
 type DetachManagedPolicyFromPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
 
-	// The Amazon Web Services managed policy ARN to be detached from a permission
-	// set.
+	// The AWS managed policy ARN to be detached from a permission set.
 	//
 	// ManagedPolicyArn is a required field
 	ManagedPolicyArn *string `min:"20" type:"string" required:"true"`
@@ -6766,10 +6759,10 @@ func (s DetachManagedPolicyFromPermissionSetOutput) GoString() string {
 type GetInlinePolicyForPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6866,8 +6859,8 @@ func (s *GetInlinePolicyForPermissionSetOutput) SetInlinePolicy(v string) *GetIn
 type GetPermissionsBoundaryForPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6966,8 +6959,8 @@ func (s *GetPermissionsBoundaryForPermissionSetOutput) SetPermissionsBoundary(v 
 type InstanceAccessControlAttributeConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Lists the attributes that are configured for ABAC in the specified Amazon
-	// Web Services SSO instance.
+	// Lists the attributes that are configured for ABAC in the specified IAM Identity
+	// Center instance.
 	//
 	// AccessControlAttributes is a required field
 	AccessControlAttributes []*AccessControlAttribute `type:"list" required:"true"`
@@ -7020,18 +7013,18 @@ func (s *InstanceAccessControlAttributeConfiguration) SetAccessControlAttributes
 	return s
 }
 
-// Provides information about the Amazon Web Services SSO instance.
+// Provides information about the IAM Identity Center instance.
 type InstanceMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the identity store that is connected to the Amazon Web
-	// Services SSO instance.
+	// The identifier of the identity store that is connected to the IAM Identity
+	// Center instance.
 	IdentityStoreId *string `min:"1" type:"string"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	InstanceArn *string `min:"10" type:"string"`
 }
 
@@ -7136,10 +7129,10 @@ type ListAccountAssignmentCreationStatusInput struct {
 	// Filters results based on the passed attribute value.
 	Filter *OperationStatusFilter `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -7260,10 +7253,10 @@ type ListAccountAssignmentDeletionStatusInput struct {
 	// Filters results based on the passed attribute value.
 	Filter *OperationStatusFilter `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -7381,16 +7374,15 @@ func (s *ListAccountAssignmentDeletionStatusOutput) SetNextToken(v string) *List
 type ListAccountAssignmentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Web Services account from which to list the
-	// assignments.
+	// The identifier of the AWS account from which to list the assignments.
 	//
 	// AccountId is a required field
 	AccountId *string `min:"12" type:"string" required:"true"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -7490,8 +7482,7 @@ func (s *ListAccountAssignmentsInput) SetPermissionSetArn(v string) *ListAccount
 type ListAccountAssignmentsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of assignments that match the input Amazon Web Services account
-	// and permission set.
+	// The list of assignments that match the input AWS account and permission set.
 	AccountAssignments []*AccountAssignment `type:"list"`
 
 	// The pagination token for the list API. Initially the value is null. Use the
@@ -7532,10 +7523,10 @@ func (s *ListAccountAssignmentsOutput) SetNextToken(v string) *ListAccountAssign
 type ListAccountsForProvisionedPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -7547,13 +7538,13 @@ type ListAccountsForProvisionedPermissionSetInput struct {
 	// output of previous API calls to make subsequent calls.
 	NextToken *string `type:"string"`
 
-	// The ARN of the PermissionSet from which the associated Amazon Web Services
-	// accounts will be listed.
+	// The ARN of the PermissionSet from which the associated AWS accounts will
+	// be listed.
 	//
 	// PermissionSetArn is a required field
 	PermissionSetArn *string `min:"10" type:"string" required:"true"`
 
-	// The permission set provisioning status for an Amazon Web Services account.
+	// The permission set provisioning status for an AWS account.
 	ProvisioningStatus *string `type:"string" enum:"ProvisioningStatus"`
 }
 
@@ -7633,7 +7624,7 @@ func (s *ListAccountsForProvisionedPermissionSetInput) SetProvisioningStatus(v s
 type ListAccountsForProvisionedPermissionSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of Amazon Web Services AccountIds.
+	// The list of AWS AccountIds.
 	AccountIds []*string `type:"list"`
 
 	// The pagination token for the list API. Initially the value is null. Use the
@@ -7674,8 +7665,8 @@ func (s *ListAccountsForProvisionedPermissionSetOutput) SetNextToken(v string) *
 type ListCustomerManagedPolicyReferencesInPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -7859,7 +7850,7 @@ func (s *ListInstancesInput) SetNextToken(v string) *ListInstancesInput {
 type ListInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Lists the Amazon Web Services SSO instances that the caller has access to.
+	// Lists the IAM Identity Center instances that the caller has access to.
 	Instances []*InstanceMetadata `type:"list"`
 
 	// The pagination token for the list API. Initially the value is null. Use the
@@ -7900,10 +7891,10 @@ func (s *ListInstancesOutput) SetNextToken(v string) *ListInstancesOutput {
 type ListManagedPoliciesInPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -8035,10 +8026,10 @@ type ListPermissionSetProvisioningStatusInput struct {
 	// Filters results based on the passed attribute value.
 	Filter *OperationStatusFilter `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -8156,10 +8147,10 @@ func (s *ListPermissionSetProvisioningStatusOutput) SetPermissionSetsProvisionin
 type ListPermissionSetsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -8234,7 +8225,7 @@ type ListPermissionSetsOutput struct {
 	// output of previous API calls to make subsequent calls.
 	NextToken *string `type:"string"`
 
-	// Defines the level of access on an Amazon Web Services account.
+	// Defines the level of access on an AWS account.
 	PermissionSets []*string `type:"list"`
 }
 
@@ -8271,16 +8262,15 @@ func (s *ListPermissionSetsOutput) SetPermissionSets(v []*string) *ListPermissio
 type ListPermissionSetsProvisionedToAccountInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Web Services account from which to list the
-	// assignments.
+	// The identifier of the AWS account from which to list the assignments.
 	//
 	// AccountId is a required field
 	AccountId *string `min:"12" type:"string" required:"true"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -8376,7 +8366,7 @@ type ListPermissionSetsProvisionedToAccountOutput struct {
 	// output of previous API calls to make subsequent calls.
 	NextToken *string `type:"string"`
 
-	// Defines the level of access that an Amazon Web Services account has.
+	// Defines the level of access that an AWS account has.
 	PermissionSets []*string `type:"list"`
 }
 
@@ -8413,10 +8403,10 @@ func (s *ListPermissionSetsProvisionedToAccountOutput) SetPermissionSets(v []*st
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -8576,8 +8566,8 @@ type PermissionSet struct {
 	Name *string `min:"1" type:"string"`
 
 	// The ARN of the permission set. For more information about ARNs, see Amazon
-	// Resource Names (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// Resource Names (ARNs) and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	PermissionSetArn *string `min:"10" type:"string"`
 
 	// Used to redirect users within the application during the federation authentication
@@ -8648,8 +8638,7 @@ func (s *PermissionSet) SetSessionDuration(v string) *PermissionSet {
 type PermissionSetProvisioningStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Web Services account from which to list the
-	// assignments.
+	// The identifier of the AWS account from which to list the assignments.
 	AccountId *string `min:"12" type:"string"`
 
 	// The date that the permission set was created.
@@ -8659,9 +8648,8 @@ type PermissionSetProvisioningStatus struct {
 	FailureReason *string `type:"string"`
 
 	// The ARN of the permission set that is being provisioned. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) and Amazon Web Services Service
-	// Namespaces (/general/latest/gr/aws-arns-and-namespaces.html) in the Amazon
-	// Web Services General Reference.
+	// about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	PermissionSetArn *string `min:"10" type:"string"`
 
 	// The identifier for tracking the request operation that is generated by the
@@ -8777,29 +8765,28 @@ func (s *PermissionSetProvisioningStatusMetadata) SetStatus(v string) *Permissio
 	return s
 }
 
-// Specifies the configuration of the Amazon Web Services managed or customer
-// managed policy that you want to set as a permissions boundary. Specify either
-// CustomerManagedPolicyReference to use the name and path of a customer managed
-// policy, or ManagedPolicyArn to use the ARN of an Amazon Web Services managed
-// policy. A permissions boundary represents the maximum permissions that any
-// policy can grant your role. For more information, see Permissions boundaries
-// for IAM entities (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html)
-// in the Identity and Access Management User Guide.
+// Specifies the configuration of the AWS managed or customer managed policy
+// that you want to set as a permissions boundary. Specify either CustomerManagedPolicyReference
+// to use the name and path of a customer managed policy, or ManagedPolicyArn
+// to use the ARN of an AWS managed policy. A permissions boundary represents
+// the maximum permissions that any policy can grant your role. For more information,
+// see Permissions boundaries for IAM entities (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html)
+// in the IAM User Guide.
 //
 // Policies used as permissions boundaries don't provide permissions. You must
 // also attach an IAM policy to the role. To learn how the effective permissions
 // for a role are evaluated, see IAM JSON policy evaluation logic (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html)
-// in the Identity and Access Management User Guide.
+// in the IAM User Guide.
 type PermissionsBoundary struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the name and path of a customer managed policy. You must have an
-	// IAM policy that matches the name and path in each Amazon Web Services account
-	// where you want to deploy your permission set.
+	// IAM policy that matches the name and path in each AWS account where you want
+	// to deploy your permission set.
 	CustomerManagedPolicyReference *CustomerManagedPolicyReference `type:"structure"`
 
-	// The Amazon Web Services managed policy ARN that you want to attach to a permission
-	// set as a permissions boundary.
+	// The AWS managed policy ARN that you want to attach to a permission set as
+	// a permissions boundary.
 	ManagedPolicyArn *string `min:"20" type:"string"`
 }
 
@@ -8854,10 +8841,10 @@ func (s *PermissionsBoundary) SetManagedPolicyArn(v string) *PermissionsBoundary
 type ProvisionPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -8867,8 +8854,8 @@ type ProvisionPermissionSetInput struct {
 	// PermissionSetArn is a required field
 	PermissionSetArn *string `min:"10" type:"string" required:"true"`
 
-	// TargetID is an Amazon Web Services account identifier, typically a 10-12
-	// digit string (For example, 123456789012).
+	// TargetID is an AWS account identifier, typically a 10-12 digit string (For
+	// example, 123456789012).
 	TargetId *string `min:"12" type:"string"`
 
 	// The entity type for which the assignment will be created.
@@ -8986,10 +8973,10 @@ type PutInlinePolicyToPermissionSetInput struct {
 	// InlinePolicy is a required field
 	InlinePolicy *string `min:"1" type:"string" required:"true"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -9089,8 +9076,8 @@ func (s PutInlinePolicyToPermissionSetOutput) GoString() string {
 type PutPermissionsBoundaryToPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -9325,7 +9312,7 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 
 // A set of key-value pairs that are used to manage the resource. Tags can only
 // be applied to permission sets and cannot be applied to corresponding roles
-// that Amazon Web Services SSO creates in Amazon Web Services accounts.
+// that IAM Identity Center creates in AWS accounts.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -9392,10 +9379,10 @@ func (s *Tag) SetValue(v string) *Tag {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -9572,10 +9559,10 @@ func (s *ThrottlingException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -9685,8 +9672,8 @@ type UpdateInstanceAccessControlAttributeConfigurationInput struct {
 	// InstanceAccessControlAttributeConfiguration is a required field
 	InstanceAccessControlAttributeConfiguration *InstanceAccessControlAttributeConfiguration `type:"structure" required:"true"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -9774,10 +9761,10 @@ type UpdatePermissionSetInput struct {
 	// The description of the PermissionSet.
 	Description *string `min:"1" type:"string"`
 
-	// The ARN of the Amazon Web Services SSO instance under which the operation
-	// will be executed. For more information about ARNs, see Amazon Resource Names
-	// (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
+	// The ARN of the IAM Identity Center instance under which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`

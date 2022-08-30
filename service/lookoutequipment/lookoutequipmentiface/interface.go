@@ -68,6 +68,14 @@ type LookoutEquipmentAPI interface {
 	CreateInferenceSchedulerWithContext(aws.Context, *lookoutequipment.CreateInferenceSchedulerInput, ...request.Option) (*lookoutequipment.CreateInferenceSchedulerOutput, error)
 	CreateInferenceSchedulerRequest(*lookoutequipment.CreateInferenceSchedulerInput) (*request.Request, *lookoutequipment.CreateInferenceSchedulerOutput)
 
+	CreateLabel(*lookoutequipment.CreateLabelInput) (*lookoutequipment.CreateLabelOutput, error)
+	CreateLabelWithContext(aws.Context, *lookoutequipment.CreateLabelInput, ...request.Option) (*lookoutequipment.CreateLabelOutput, error)
+	CreateLabelRequest(*lookoutequipment.CreateLabelInput) (*request.Request, *lookoutequipment.CreateLabelOutput)
+
+	CreateLabelGroup(*lookoutequipment.CreateLabelGroupInput) (*lookoutequipment.CreateLabelGroupOutput, error)
+	CreateLabelGroupWithContext(aws.Context, *lookoutequipment.CreateLabelGroupInput, ...request.Option) (*lookoutequipment.CreateLabelGroupOutput, error)
+	CreateLabelGroupRequest(*lookoutequipment.CreateLabelGroupInput) (*request.Request, *lookoutequipment.CreateLabelGroupOutput)
+
 	CreateModel(*lookoutequipment.CreateModelInput) (*lookoutequipment.CreateModelOutput, error)
 	CreateModelWithContext(aws.Context, *lookoutequipment.CreateModelInput, ...request.Option) (*lookoutequipment.CreateModelOutput, error)
 	CreateModelRequest(*lookoutequipment.CreateModelInput) (*request.Request, *lookoutequipment.CreateModelOutput)
@@ -79,6 +87,14 @@ type LookoutEquipmentAPI interface {
 	DeleteInferenceScheduler(*lookoutequipment.DeleteInferenceSchedulerInput) (*lookoutequipment.DeleteInferenceSchedulerOutput, error)
 	DeleteInferenceSchedulerWithContext(aws.Context, *lookoutequipment.DeleteInferenceSchedulerInput, ...request.Option) (*lookoutequipment.DeleteInferenceSchedulerOutput, error)
 	DeleteInferenceSchedulerRequest(*lookoutequipment.DeleteInferenceSchedulerInput) (*request.Request, *lookoutequipment.DeleteInferenceSchedulerOutput)
+
+	DeleteLabel(*lookoutequipment.DeleteLabelInput) (*lookoutequipment.DeleteLabelOutput, error)
+	DeleteLabelWithContext(aws.Context, *lookoutequipment.DeleteLabelInput, ...request.Option) (*lookoutequipment.DeleteLabelOutput, error)
+	DeleteLabelRequest(*lookoutequipment.DeleteLabelInput) (*request.Request, *lookoutequipment.DeleteLabelOutput)
+
+	DeleteLabelGroup(*lookoutequipment.DeleteLabelGroupInput) (*lookoutequipment.DeleteLabelGroupOutput, error)
+	DeleteLabelGroupWithContext(aws.Context, *lookoutequipment.DeleteLabelGroupInput, ...request.Option) (*lookoutequipment.DeleteLabelGroupOutput, error)
+	DeleteLabelGroupRequest(*lookoutequipment.DeleteLabelGroupInput) (*request.Request, *lookoutequipment.DeleteLabelGroupOutput)
 
 	DeleteModel(*lookoutequipment.DeleteModelInput) (*lookoutequipment.DeleteModelOutput, error)
 	DeleteModelWithContext(aws.Context, *lookoutequipment.DeleteModelInput, ...request.Option) (*lookoutequipment.DeleteModelOutput, error)
@@ -95,6 +111,14 @@ type LookoutEquipmentAPI interface {
 	DescribeInferenceScheduler(*lookoutequipment.DescribeInferenceSchedulerInput) (*lookoutequipment.DescribeInferenceSchedulerOutput, error)
 	DescribeInferenceSchedulerWithContext(aws.Context, *lookoutequipment.DescribeInferenceSchedulerInput, ...request.Option) (*lookoutequipment.DescribeInferenceSchedulerOutput, error)
 	DescribeInferenceSchedulerRequest(*lookoutequipment.DescribeInferenceSchedulerInput) (*request.Request, *lookoutequipment.DescribeInferenceSchedulerOutput)
+
+	DescribeLabel(*lookoutequipment.DescribeLabelInput) (*lookoutequipment.DescribeLabelOutput, error)
+	DescribeLabelWithContext(aws.Context, *lookoutequipment.DescribeLabelInput, ...request.Option) (*lookoutequipment.DescribeLabelOutput, error)
+	DescribeLabelRequest(*lookoutequipment.DescribeLabelInput) (*request.Request, *lookoutequipment.DescribeLabelOutput)
+
+	DescribeLabelGroup(*lookoutequipment.DescribeLabelGroupInput) (*lookoutequipment.DescribeLabelGroupOutput, error)
+	DescribeLabelGroupWithContext(aws.Context, *lookoutequipment.DescribeLabelGroupInput, ...request.Option) (*lookoutequipment.DescribeLabelGroupOutput, error)
+	DescribeLabelGroupRequest(*lookoutequipment.DescribeLabelGroupInput) (*request.Request, *lookoutequipment.DescribeLabelGroupOutput)
 
 	DescribeModel(*lookoutequipment.DescribeModelInput) (*lookoutequipment.DescribeModelOutput, error)
 	DescribeModelWithContext(aws.Context, *lookoutequipment.DescribeModelInput, ...request.Option) (*lookoutequipment.DescribeModelOutput, error)
@@ -134,6 +158,20 @@ type LookoutEquipmentAPI interface {
 
 	ListInferenceSchedulersPages(*lookoutequipment.ListInferenceSchedulersInput, func(*lookoutequipment.ListInferenceSchedulersOutput, bool) bool) error
 	ListInferenceSchedulersPagesWithContext(aws.Context, *lookoutequipment.ListInferenceSchedulersInput, func(*lookoutequipment.ListInferenceSchedulersOutput, bool) bool, ...request.Option) error
+
+	ListLabelGroups(*lookoutequipment.ListLabelGroupsInput) (*lookoutequipment.ListLabelGroupsOutput, error)
+	ListLabelGroupsWithContext(aws.Context, *lookoutequipment.ListLabelGroupsInput, ...request.Option) (*lookoutequipment.ListLabelGroupsOutput, error)
+	ListLabelGroupsRequest(*lookoutequipment.ListLabelGroupsInput) (*request.Request, *lookoutequipment.ListLabelGroupsOutput)
+
+	ListLabelGroupsPages(*lookoutequipment.ListLabelGroupsInput, func(*lookoutequipment.ListLabelGroupsOutput, bool) bool) error
+	ListLabelGroupsPagesWithContext(aws.Context, *lookoutequipment.ListLabelGroupsInput, func(*lookoutequipment.ListLabelGroupsOutput, bool) bool, ...request.Option) error
+
+	ListLabels(*lookoutequipment.ListLabelsInput) (*lookoutequipment.ListLabelsOutput, error)
+	ListLabelsWithContext(aws.Context, *lookoutequipment.ListLabelsInput, ...request.Option) (*lookoutequipment.ListLabelsOutput, error)
+	ListLabelsRequest(*lookoutequipment.ListLabelsInput) (*request.Request, *lookoutequipment.ListLabelsOutput)
+
+	ListLabelsPages(*lookoutequipment.ListLabelsInput, func(*lookoutequipment.ListLabelsOutput, bool) bool) error
+	ListLabelsPagesWithContext(aws.Context, *lookoutequipment.ListLabelsInput, func(*lookoutequipment.ListLabelsOutput, bool) bool, ...request.Option) error
 
 	ListModels(*lookoutequipment.ListModelsInput) (*lookoutequipment.ListModelsOutput, error)
 	ListModelsWithContext(aws.Context, *lookoutequipment.ListModelsInput, ...request.Option) (*lookoutequipment.ListModelsOutput, error)
@@ -176,6 +214,10 @@ type LookoutEquipmentAPI interface {
 	UpdateInferenceScheduler(*lookoutequipment.UpdateInferenceSchedulerInput) (*lookoutequipment.UpdateInferenceSchedulerOutput, error)
 	UpdateInferenceSchedulerWithContext(aws.Context, *lookoutequipment.UpdateInferenceSchedulerInput, ...request.Option) (*lookoutequipment.UpdateInferenceSchedulerOutput, error)
 	UpdateInferenceSchedulerRequest(*lookoutequipment.UpdateInferenceSchedulerInput) (*request.Request, *lookoutequipment.UpdateInferenceSchedulerOutput)
+
+	UpdateLabelGroup(*lookoutequipment.UpdateLabelGroupInput) (*lookoutequipment.UpdateLabelGroupOutput, error)
+	UpdateLabelGroupWithContext(aws.Context, *lookoutequipment.UpdateLabelGroupInput, ...request.Option) (*lookoutequipment.UpdateLabelGroupOutput, error)
+	UpdateLabelGroupRequest(*lookoutequipment.UpdateLabelGroupInput) (*request.Request, *lookoutequipment.UpdateLabelGroupOutput)
 }
 
 var _ LookoutEquipmentAPI = (*lookoutequipment.LookoutEquipment)(nil)

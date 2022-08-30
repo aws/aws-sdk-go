@@ -1,3 +1,15 @@
+Release v1.44.88 (2022-08-30)
+===
+
+### Service Client Updates
+* `service/greengrassv2`: Updates service API and documentation
+* `service/identitystore`: Updates service documentation
+* `service/lookoutequipment`: Updates service API, documentation, and paginators
+* `service/macie2`: Updates service API and documentation
+* `service/sso`: Updates service documentation
+  * Documentation updates for the AWS IAM Identity Center Portal CLI Reference.
+* `service/sso-admin`: Updates service documentation
+
 Release v1.44.87 (2022-08-29)
 ===
 

@@ -873,7 +873,7 @@
       "required":["targetArn"],
       "members":{
         "targetArn":{"shape":"TargetARN"},
-        "deploymentName":{"shape":"NonEmptyString"},
+        "deploymentName":{"shape":"DeploymentNameString"},
         "components":{"shape":"ComponentDeploymentSpecifications"},
         "iotJobConfiguration":{"shape":"DeploymentIoTJobConfiguration"},
         "deploymentPolicies":{"shape":"DeploymentPolicies"},
@@ -996,6 +996,11 @@
       "member":{"shape":"Deployment"}
     },
     "DeploymentName":{"type":"string"},
+    "DeploymentNameString":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "DeploymentPolicies":{
       "type":"structure",
       "members":{
@@ -1289,7 +1294,8 @@
         "componentVersion":{"shape":"ComponentVersionString"},
         "lifecycleState":{"shape":"InstalledComponentLifecycleState"},
         "lifecycleStateDetails":{"shape":"LifecycleStateDetails"},
-        "isRoot":{"shape":"IsRoot"}
+        "isRoot":{"shape":"IsRoot"},
+        "lastStatusChangeTimestamp":{"shape":"Timestamp"}
       }
     },
     "InstalledComponentLifecycleState":{
@@ -1308,6 +1314,13 @@
     "InstalledComponentList":{
       "type":"list",
       "member":{"shape":"InstalledComponent"}
+    },
+    "InstalledComponentTopologyFilter":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "ROOT"
+      ]
     },
     "InternalServerException":{
       "type":"structure",
@@ -1557,15 +1570,11 @@
         "rw"
       ]
     },
-    "LambdaFunctionARNWithVersionNumber":{
-      "type":"string",
-      "pattern":"arn:[^:]*:lambda:[^:]+:[0-9]+:function:[a-zA-Z0-9-_]+:[0-9]+"
-    },
     "LambdaFunctionRecipeSource":{
       "type":"structure",
       "required":["lambdaArn"],
       "members":{
-        "lambdaArn":{"shape":"LambdaFunctionARNWithVersionNumber"},
+        "lambdaArn":{"shape":"NonEmptyString"},
         "componentName":{"shape":"ComponentNameString"},
         "componentVersion":{"shape":"ComponentVersionString"},
         "componentPlatforms":{"shape":"ComponentPlatformList"},
@@ -1829,6 +1838,12 @@
           "box":true,
           "location":"querystring",
           "locationName":"nextToken"
+        },
+        "topologyFilter":{
+          "shape":"InstalledComponentTopologyFilter",
+          "box":true,
+          "location":"querystring",
+          "locationName":"topologyFilter"
         }
       }
     },

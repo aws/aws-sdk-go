@@ -223,6 +223,110 @@ func (c *Macie2) BatchGetCustomDataIdentifiersWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opCreateAllowList = "CreateAllowList"
+
+// CreateAllowListRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAllowList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAllowList for more information on using the CreateAllowList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateAllowListRequest method.
+//	req, resp := client.CreateAllowListRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/CreateAllowList
+func (c *Macie2) CreateAllowListRequest(input *CreateAllowListInput) (req *request.Request, output *CreateAllowListOutput) {
+	op := &request.Operation{
+		Name:       opCreateAllowList,
+		HTTPMethod: "POST",
+		HTTPPath:   "/allow-lists",
+	}
+
+	if input == nil {
+		input = &CreateAllowListInput{}
+	}
+
+	output = &CreateAllowListOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAllowList API operation for Amazon Macie 2.
+//
+// Creates and defines the settings for an allow list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation CreateAllowList for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - ServiceQuotaExceededException
+//     Provides information about an error that occurred due to one or more service
+//     quotas for an account.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+//   - ResourceNotFoundException
+//     Provides information about an error that occurred because a specified resource
+//     wasn't found.
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+//   - ConflictException
+//     Provides information about an error that occurred due to a versioning conflict
+//     for a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/CreateAllowList
+func (c *Macie2) CreateAllowList(input *CreateAllowListInput) (*CreateAllowListOutput, error) {
+	req, out := c.CreateAllowListRequest(input)
+	return out, req.Send()
+}
+
+// CreateAllowListWithContext is the same as CreateAllowList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAllowList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) CreateAllowListWithContext(ctx aws.Context, input *CreateAllowListInput, opts ...request.Option) (*CreateAllowListOutput, error) {
+	req, out := c.CreateAllowListRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateClassificationJob = "CreateClassificationJob"
 
 // CreateClassificationJobRequest generates a "aws/request.Request" representing the
@@ -948,6 +1052,103 @@ func (c *Macie2) DeclineInvitations(input *DeclineInvitationsInput) (*DeclineInv
 // for more information on using Contexts.
 func (c *Macie2) DeclineInvitationsWithContext(ctx aws.Context, input *DeclineInvitationsInput, opts ...request.Option) (*DeclineInvitationsOutput, error) {
 	req, out := c.DeclineInvitationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAllowList = "DeleteAllowList"
+
+// DeleteAllowListRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAllowList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAllowList for more information on using the DeleteAllowList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAllowListRequest method.
+//	req, resp := client.DeleteAllowListRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DeleteAllowList
+func (c *Macie2) DeleteAllowListRequest(input *DeleteAllowListInput) (req *request.Request, output *DeleteAllowListOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAllowList,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/allow-lists/{id}",
+	}
+
+	if input == nil {
+		input = &DeleteAllowListInput{}
+	}
+
+	output = &DeleteAllowListOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAllowList API operation for Amazon Macie 2.
+//
+// Deletes an allow list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation DeleteAllowList for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Provides information about an error that occurred because a specified resource
+//     wasn't found.
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DeleteAllowList
+func (c *Macie2) DeleteAllowList(input *DeleteAllowListInput) (*DeleteAllowListOutput, error) {
+	req, out := c.DeleteAllowListRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAllowListWithContext is the same as DeleteAllowList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAllowList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) DeleteAllowListWithContext(ctx aws.Context, input *DeleteAllowListInput, opts ...request.Option) (*DeleteAllowListOutput, error) {
+	req, out := c.DeleteAllowListRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2591,6 +2792,102 @@ func (c *Macie2) GetAdministratorAccountWithContext(ctx aws.Context, input *GetA
 	return out, req.Send()
 }
 
+const opGetAllowList = "GetAllowList"
+
+// GetAllowListRequest generates a "aws/request.Request" representing the
+// client's request for the GetAllowList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAllowList for more information on using the GetAllowList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAllowListRequest method.
+//	req, resp := client.GetAllowListRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetAllowList
+func (c *Macie2) GetAllowListRequest(input *GetAllowListInput) (req *request.Request, output *GetAllowListOutput) {
+	op := &request.Operation{
+		Name:       opGetAllowList,
+		HTTPMethod: "GET",
+		HTTPPath:   "/allow-lists/{id}",
+	}
+
+	if input == nil {
+		input = &GetAllowListInput{}
+	}
+
+	output = &GetAllowListOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAllowList API operation for Amazon Macie 2.
+//
+// Retrieves the settings and status of an allow list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation GetAllowList for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Provides information about an error that occurred because a specified resource
+//     wasn't found.
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetAllowList
+func (c *Macie2) GetAllowList(input *GetAllowListInput) (*GetAllowListOutput, error) {
+	req, out := c.GetAllowListRequest(input)
+	return out, req.Send()
+}
+
+// GetAllowListWithContext is the same as GetAllowList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAllowList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) GetAllowListWithContext(ctx aws.Context, input *GetAllowListInput, opts ...request.Option) (*GetAllowListOutput, error) {
+	req, out := c.GetAllowListRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetBucketStatistics = "GetBucketStatistics"
 
 // GetBucketStatisticsRequest generates a "aws/request.Request" representing the
@@ -3785,8 +4082,8 @@ func (c *Macie2) GetRevealConfigurationRequest(input *GetRevealConfigurationInpu
 
 // GetRevealConfiguration API operation for Amazon Macie 2.
 //
-// Retrieves the status and configuration settings for retrieving (revealing)
-// occurrences of sensitive data reported by findings.
+// Retrieves the status and configuration settings for retrieving occurrences
+// of sensitive data reported by findings.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3878,7 +4175,7 @@ func (c *Macie2) GetSensitiveDataOccurrencesRequest(input *GetSensitiveDataOccur
 
 // GetSensitiveDataOccurrences API operation for Amazon Macie 2.
 //
-// Retrieves (reveals) occurrences of sensitive data reported by a finding.
+// Retrieves occurrences of sensitive data reported by a finding.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3978,8 +4275,7 @@ func (c *Macie2) GetSensitiveDataOccurrencesAvailabilityRequest(input *GetSensit
 
 // GetSensitiveDataOccurrencesAvailability API operation for Amazon Macie 2.
 //
-// Checks whether occurrences of sensitive data can be retrieved (revealed)
-// for a finding.
+// Checks whether occurrences of sensitive data can be retrieved for a finding.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4288,6 +4584,98 @@ func (c *Macie2) GetUsageTotals(input *GetUsageTotalsInput) (*GetUsageTotalsOutp
 // for more information on using Contexts.
 func (c *Macie2) GetUsageTotalsWithContext(ctx aws.Context, input *GetUsageTotalsInput, opts ...request.Option) (*GetUsageTotalsOutput, error) {
 	req, out := c.GetUsageTotalsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListAllowLists = "ListAllowLists"
+
+// ListAllowListsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAllowLists operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAllowLists for more information on using the ListAllowLists
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAllowListsRequest method.
+//	req, resp := client.ListAllowListsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListAllowLists
+func (c *Macie2) ListAllowListsRequest(input *ListAllowListsInput) (req *request.Request, output *ListAllowListsOutput) {
+	op := &request.Operation{
+		Name:       opListAllowLists,
+		HTTPMethod: "GET",
+		HTTPPath:   "/allow-lists",
+	}
+
+	if input == nil {
+		input = &ListAllowListsInput{}
+	}
+
+	output = &ListAllowListsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAllowLists API operation for Amazon Macie 2.
+//
+// Retrieves a subset of information about all the allow lists for an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation ListAllowLists for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListAllowLists
+func (c *Macie2) ListAllowLists(input *ListAllowListsInput) (*ListAllowListsOutput, error) {
+	req, out := c.ListAllowListsRequest(input)
+	return out, req.Send()
+}
+
+// ListAllowListsWithContext is the same as ListAllowLists with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAllowLists for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListAllowListsWithContext(ctx aws.Context, input *ListAllowListsInput, opts ...request.Option) (*ListAllowListsOutput, error) {
+	req, out := c.ListAllowListsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5541,8 +5929,8 @@ func (c *Macie2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 
 // ListTagsForResource API operation for Amazon Macie 2.
 //
-// Retrieves the tags (keys and values) that are associated with a classification
-// job, custom data identifier, findings filter, or member account.
+// Retrieves the tags (keys and values) that are associated with an Amazon Macie
+// resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5989,8 +6377,7 @@ func (c *Macie2) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 // TagResource API operation for Amazon Macie 2.
 //
 // Adds or updates one or more tags (keys and values) that are associated with
-// a classification job, custom data identifier, findings filter, or member
-// account.
+// an Amazon Macie resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6168,8 +6555,7 @@ func (c *Macie2) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 
 // UntagResource API operation for Amazon Macie 2.
 //
-// Removes one or more tags (keys and values) from a classification job, custom
-// data identifier, findings filter, or member account.
+// Removes one or more tags (keys and values) from an Amazon Macie resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6194,6 +6580,102 @@ func (c *Macie2) UntagResource(input *UntagResourceInput) (*UntagResourceOutput,
 // for more information on using Contexts.
 func (c *Macie2) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateAllowList = "UpdateAllowList"
+
+// UpdateAllowListRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAllowList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAllowList for more information on using the UpdateAllowList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateAllowListRequest method.
+//	req, resp := client.UpdateAllowListRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateAllowList
+func (c *Macie2) UpdateAllowListRequest(input *UpdateAllowListInput) (req *request.Request, output *UpdateAllowListOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAllowList,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/allow-lists/{id}",
+	}
+
+	if input == nil {
+		input = &UpdateAllowListInput{}
+	}
+
+	output = &UpdateAllowListOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAllowList API operation for Amazon Macie 2.
+//
+// Updates the settings for an allow list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation UpdateAllowList for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Provides information about an error that occurred because a specified resource
+//     wasn't found.
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateAllowList
+func (c *Macie2) UpdateAllowList(input *UpdateAllowListInput) (*UpdateAllowListOutput, error) {
+	req, out := c.UpdateAllowListRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAllowListWithContext is the same as UpdateAllowList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAllowList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) UpdateAllowListWithContext(ctx aws.Context, input *UpdateAllowListInput, opts ...request.Option) (*UpdateAllowListOutput, error) {
+	req, out := c.UpdateAllowListRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6768,8 +7250,8 @@ func (c *Macie2) UpdateRevealConfigurationRequest(input *UpdateRevealConfigurati
 
 // UpdateRevealConfiguration API operation for Amazon Macie 2.
 //
-// Updates the status and configuration settings for retrieving (revealing)
-// occurrences of sensitive data reported by findings.
+// Updates the status and configuration settings for retrieving occurrences
+// of sensitive data reported by findings.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7145,6 +7627,180 @@ func (s *AdminAccount) SetAccountId(v string) *AdminAccount {
 // SetStatus sets the Status field's value.
 func (s *AdminAccount) SetStatus(v string) *AdminAccount {
 	s.Status = &v
+	return s
+}
+
+// Specifies the criteria for an allow list. The criteria must specify a regular
+// expression (regex) or an S3 object (s3WordsList). It can't specify both.
+type AllowListCriteria struct {
+	_ struct{} `type:"structure"`
+
+	Regex *string `locationName:"regex" min:"1" type:"string"`
+
+	// Provides information about an S3 object that lists specific text to ignore.
+	S3WordsList *S3WordsList `locationName:"s3WordsList" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AllowListCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AllowListCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AllowListCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AllowListCriteria"}
+	if s.Regex != nil && len(*s.Regex) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Regex", 1))
+	}
+	if s.S3WordsList != nil {
+		if err := s.S3WordsList.Validate(); err != nil {
+			invalidParams.AddNested("S3WordsList", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRegex sets the Regex field's value.
+func (s *AllowListCriteria) SetRegex(v string) *AllowListCriteria {
+	s.Regex = &v
+	return s
+}
+
+// SetS3WordsList sets the S3WordsList field's value.
+func (s *AllowListCriteria) SetS3WordsList(v *S3WordsList) *AllowListCriteria {
+	s.S3WordsList = v
+	return s
+}
+
+// Provides information about the current status of an allow list, which indicates
+// whether Amazon Macie can access and use the list's criteria.
+type AllowListStatus struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the current status of an allow list. Depending on the type of criteria
+	// that the list specifies, possible values are:
+	//
+	// Code is a required field
+	Code *string `locationName:"code" type:"string" required:"true" enum:"AllowListStatusCode"`
+
+	Description *string `locationName:"description" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AllowListStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AllowListStatus) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *AllowListStatus) SetCode(v string) *AllowListStatus {
+	s.Code = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AllowListStatus) SetDescription(v string) *AllowListStatus {
+	s.Description = &v
+	return s
+}
+
+// Provides a subset of information about an allow list.
+type AllowListSummary struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" min:"71" type:"string"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	Id *string `locationName:"id" min:"22" type:"string"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AllowListSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AllowListSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AllowListSummary) SetArn(v string) *AllowListSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *AllowListSummary) SetCreatedAt(v time.Time) *AllowListSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AllowListSummary) SetDescription(v string) *AllowListSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AllowListSummary) SetId(v string) *AllowListSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AllowListSummary) SetName(v string) *AllowListSummary {
+	s.Name = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *AllowListSummary) SetUpdatedAt(v time.Time) *AllowListSummary {
+	s.UpdatedAt = &v
 	return s
 }
 
@@ -8715,12 +9371,154 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Specifies the settings for an allow list. When Amazon Macie processes the
+// request, Macie tests the list's criteria. If the criteria specify a regular
+// expression that Macie can't compile or an S3 object that Macie can't retrieve
+// or parse, an error occurs.
+type CreateAllowListInput struct {
+	_ struct{} `type:"structure"`
+
+	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
+
+	// Specifies the criteria for an allow list. The criteria must specify a regular
+	// expression (regex) or an S3 object (s3WordsList). It can't specify both.
+	//
+	// Criteria is a required field
+	Criteria *AllowListCriteria `locationName:"criteria" type:"structure" required:"true"`
+
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// A string-to-string map of key-value pairs that specifies the tags (keys and
+	// values) for an Amazon Macie resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAllowListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAllowListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAllowListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAllowListInput"}
+	if s.Criteria == nil {
+		invalidParams.Add(request.NewErrParamRequired("Criteria"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Criteria != nil {
+		if err := s.Criteria.Validate(); err != nil {
+			invalidParams.AddNested("Criteria", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateAllowListInput) SetClientToken(v string) *CreateAllowListInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCriteria sets the Criteria field's value.
+func (s *CreateAllowListInput) SetCriteria(v *AllowListCriteria) *CreateAllowListInput {
+	s.Criteria = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateAllowListInput) SetDescription(v string) *CreateAllowListInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateAllowListInput) SetName(v string) *CreateAllowListInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAllowListInput) SetTags(v map[string]*string) *CreateAllowListInput {
+	s.Tags = v
+	return s
+}
+
+// Provides information about an allow list that was created in response to
+// a request.
+type CreateAllowListOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" min:"71" type:"string"`
+
+	Id *string `locationName:"id" min:"22" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAllowListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAllowListOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateAllowListOutput) SetArn(v string) *CreateAllowListOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateAllowListOutput) SetId(v string) *CreateAllowListOutput {
+	s.Id = &v
+	return s
+}
+
 // Specifies the scope, schedule, and other settings for a classification job.
 // You can't change any settings for a classification job after you create it.
 // This helps ensure that you have an immutable history of sensitive data findings
 // and discovery results for data privacy and protection audits or investigations.
 type CreateClassificationJobInput struct {
 	_ struct{} `type:"structure"`
+
+	AllowListIds []*string `locationName:"allowListIds" type:"list"`
 
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
@@ -8760,8 +9558,7 @@ type CreateClassificationJobInput struct {
 	ScheduleFrequency *JobScheduleFrequency `locationName:"scheduleFrequency" type:"structure"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
-	// values) for a classification job, custom data identifier, findings filter,
-	// or member account.
+	// values) for an Amazon Macie resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -8805,6 +9602,12 @@ func (s *CreateClassificationJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAllowListIds sets the AllowListIds field's value.
+func (s *CreateClassificationJobInput) SetAllowListIds(v []*string) *CreateClassificationJobInput {
+	s.AllowListIds = v
+	return s
 }
 
 // SetClientToken sets the ClientToken field's value.
@@ -8958,8 +9761,7 @@ type CreateCustomDataIdentifierInput struct {
 	SeverityLevels []*SeverityLevel `locationName:"severityLevels" type:"list"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
-	// values) for a classification job, custom data identifier, findings filter,
-	// or member account.
+	// values) for an Amazon Macie resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -9120,8 +9922,7 @@ type CreateFindingsFilterInput struct {
 	Position *int64 `locationName:"position" type:"integer"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
-	// values) for a classification job, custom data identifier, findings filter,
-	// or member account.
+	// values) for an Amazon Macie resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -9354,8 +10155,7 @@ type CreateMemberInput struct {
 	Account *AccountDetail `locationName:"account" type:"structure" required:"true"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
-	// values) for a classification job, custom data identifier, findings filter,
-	// or member account.
+	// values) for an Amazon Macie resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -9770,9 +10570,7 @@ type CustomDetection struct {
 
 	// Specifies the location of 1-15 occurrences of sensitive data that was detected
 	// by a managed data identifier or a custom data identifier and produced a sensitive
-	// data finding. Depending on the file or storage format of the affected S3
-	// object, you can optionally retrieve (reveal) sample occurrences of the sensitive
-	// data that was detected.
+	// data finding.
 	Occurrences *Occurrences `locationName:"occurrences" type:"structure"`
 }
 
@@ -9929,9 +10727,7 @@ type DefaultDetection struct {
 
 	// Specifies the location of 1-15 occurrences of sensitive data that was detected
 	// by a managed data identifier or a custom data identifier and produced a sensitive
-	// data finding. Depending on the file or storage format of the affected S3
-	// object, you can optionally retrieve (reveal) sample occurrences of the sensitive
-	// data that was detected.
+	// data finding.
 	Occurrences *Occurrences `locationName:"occurrences" type:"structure"`
 
 	Type *string `locationName:"type" type:"string"`
@@ -9971,6 +10767,83 @@ func (s *DefaultDetection) SetOccurrences(v *Occurrences) *DefaultDetection {
 func (s *DefaultDetection) SetType(v string) *DefaultDetection {
 	s.Type = &v
 	return s
+}
+
+type DeleteAllowListInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
+
+	IgnoreJobChecks *string `location:"querystring" locationName:"ignoreJobChecks" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAllowListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAllowListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAllowListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAllowListInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteAllowListInput) SetId(v string) *DeleteAllowListInput {
+	s.Id = &v
+	return s
+}
+
+// SetIgnoreJobChecks sets the IgnoreJobChecks field's value.
+func (s *DeleteAllowListInput) SetIgnoreJobChecks(v string) *DeleteAllowListInput {
+	s.IgnoreJobChecks = &v
+	return s
+}
+
+type DeleteAllowListOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAllowListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAllowListOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteCustomDataIdentifierInput struct {
@@ -10411,6 +11284,8 @@ func (s *DescribeClassificationJobInput) SetJobId(v string) *DescribeClassificat
 type DescribeClassificationJobOutput struct {
 	_ struct{} `type:"structure"`
 
+	AllowListIds []*string `locationName:"allowListIds" type:"list"`
+
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
@@ -10464,8 +11339,7 @@ type DescribeClassificationJobOutput struct {
 	Statistics *Statistics `locationName:"statistics" type:"structure"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
-	// values) for a classification job, custom data identifier, findings filter,
-	// or member account.
+	// values) for an Amazon Macie resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Provides information about when a classification job was paused. For a one-time
@@ -10494,6 +11368,12 @@ func (s DescribeClassificationJobOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribeClassificationJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetAllowListIds sets the AllowListIds field's value.
+func (s *DescribeClassificationJobOutput) SetAllowListIds(v []*string) *DescribeClassificationJobOutput {
+	s.AllowListIds = v
+	return s
 }
 
 // SetClientToken sets the ClientToken field's value.
@@ -11019,8 +11899,8 @@ type EnableMacieInput struct {
 
 	// The frequency with which Amazon Macie publishes updates to policy findings
 	// for an account. This includes publishing updates to Security Hub and Amazon
-	// EventBridge (formerly called Amazon CloudWatch Events). For more information,
-	// see Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
+	// EventBridge (formerly Amazon CloudWatch Events). For more information, see
+	// Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
 	// in the Amazon Macie User Guide. Valid values are:
 	FindingPublishingFrequency *string `locationName:"findingPublishingFrequency" type:"string" enum:"FindingPublishingFrequency"`
 
@@ -11600,8 +12480,7 @@ type FindingsFilterListItem struct {
 	Name *string `locationName:"name" type:"string"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
-	// values) for a classification job, custom data identifier, findings filter,
-	// or member account.
+	// values) for an Amazon Macie resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -11706,6 +12585,154 @@ func (s GetAdministratorAccountOutput) GoString() string {
 // SetAdministrator sets the Administrator field's value.
 func (s *GetAdministratorAccountOutput) SetAdministrator(v *Invitation) *GetAdministratorAccountOutput {
 	s.Administrator = v
+	return s
+}
+
+type GetAllowListInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAllowListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAllowListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAllowListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAllowListInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetAllowListInput) SetId(v string) *GetAllowListInput {
+	s.Id = &v
+	return s
+}
+
+// Provides information about the settings and status of an allow list.
+type GetAllowListOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" min:"71" type:"string"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Specifies the criteria for an allow list. The criteria must specify a regular
+	// expression (regex) or an S3 object (s3WordsList). It can't specify both.
+	Criteria *AllowListCriteria `locationName:"criteria" type:"structure"`
+
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	Id *string `locationName:"id" min:"22" type:"string"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Provides information about the current status of an allow list, which indicates
+	// whether Amazon Macie can access and use the list's criteria.
+	Status *AllowListStatus `locationName:"status" type:"structure"`
+
+	// A string-to-string map of key-value pairs that specifies the tags (keys and
+	// values) for an Amazon Macie resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAllowListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAllowListOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetAllowListOutput) SetArn(v string) *GetAllowListOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetAllowListOutput) SetCreatedAt(v time.Time) *GetAllowListOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCriteria sets the Criteria field's value.
+func (s *GetAllowListOutput) SetCriteria(v *AllowListCriteria) *GetAllowListOutput {
+	s.Criteria = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetAllowListOutput) SetDescription(v string) *GetAllowListOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetAllowListOutput) SetId(v string) *GetAllowListOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetAllowListOutput) SetName(v string) *GetAllowListOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetAllowListOutput) SetStatus(v *AllowListStatus) *GetAllowListOutput {
+	s.Status = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetAllowListOutput) SetTags(v map[string]*string) *GetAllowListOutput {
+	s.Tags = v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *GetAllowListOutput) SetUpdatedAt(v time.Time) *GetAllowListOutput {
+	s.UpdatedAt = &v
 	return s
 }
 
@@ -12038,8 +13065,7 @@ type GetCustomDataIdentifierOutput struct {
 	SeverityLevels []*SeverityLevel `locationName:"severityLevels" type:"list"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
-	// values) for a classification job, custom data identifier, findings filter,
-	// or member account.
+	// values) for an Amazon Macie resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -12311,8 +13337,7 @@ type GetFindingsFilterOutput struct {
 	Position *int64 `locationName:"position" type:"integer"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
-	// values) for a classification job, custom data identifier, findings filter,
-	// or member account.
+	// values) for an Amazon Macie resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -12611,8 +13636,8 @@ type GetMacieSessionOutput struct {
 
 	// The frequency with which Amazon Macie publishes updates to policy findings
 	// for an account. This includes publishing updates to Security Hub and Amazon
-	// EventBridge (formerly called Amazon CloudWatch Events). For more information,
-	// see Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
+	// EventBridge (formerly Amazon CloudWatch Events). For more information, see
+	// Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
 	// in the Amazon Macie User Guide. Valid values are:
 	FindingPublishingFrequency *string `locationName:"findingPublishingFrequency" type:"string" enum:"FindingPublishingFrequency"`
 
@@ -12797,8 +13822,7 @@ type GetMemberOutput struct {
 	RelationshipStatus *string `locationName:"relationshipStatus" type:"string" enum:"RelationshipStatus"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
-	// values) for a classification job, custom data identifier, findings filter,
-	// or member account.
+	// values) for an Amazon Macie resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
@@ -12907,9 +13931,9 @@ type GetRevealConfigurationOutput struct {
 	// Specifies the configuration settings for retrieving occurrences of sensitive
 	// data reported by findings, and the status of the configuration for an Amazon
 	// Macie account. When you enable the configuration for the first time, your
-	// request must specify an AWS Key Management Service (AWS KMS) key. Otherwise,
-	// an error occurs. Macie uses the specified key to encrypt the sensitive data
-	// that you retrieve.
+	// request must specify an Key Management Service (KMS) key. Otherwise, an error
+	// occurs. Macie uses the specified key to encrypt the sensitive data that you
+	// retrieve.
 	Configuration *RevealConfiguration `locationName:"configuration" type:"structure"`
 }
 
@@ -14143,6 +15167,96 @@ func (s *LastRunErrorStatus) SetCode(v string) *LastRunErrorStatus {
 	return s
 }
 
+type ListAllowListsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAllowListsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAllowListsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAllowListsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAllowListsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAllowListsInput) SetMaxResults(v int64) *ListAllowListsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAllowListsInput) SetNextToken(v string) *ListAllowListsInput {
+	s.NextToken = &v
+	return s
+}
+
+// Provides the results of a request for information about allow lists.
+type ListAllowListsOutput struct {
+	_ struct{} `type:"structure"`
+
+	AllowLists []*AllowListSummary `locationName:"allowLists" type:"list"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAllowListsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAllowListsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAllowLists sets the AllowLists field's value.
+func (s *ListAllowListsOutput) SetAllowLists(v []*AllowListSummary) *ListAllowListsOutput {
+	s.AllowLists = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAllowListsOutput) SetNextToken(v string) *ListAllowListsOutput {
+	s.NextToken = &v
+	return s
+}
+
 // Specifies criteria for filtering, sorting, and paginating the results of
 // a request for information about classification jobs.
 type ListClassificationJobsInput struct {
@@ -15044,14 +16158,12 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 }
 
 // Provides information about the tags (keys and values) that are associated
-// with a classification job, custom data identifier, findings filter, or member
-// account.
+// with an Amazon Macie resource.
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
-	// values) for a classification job, custom data identifier, findings filter,
-	// or member account.
+	// values) for an Amazon Macie resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -15335,8 +16447,7 @@ type Member struct {
 	RelationshipStatus *string `locationName:"relationshipStatus" type:"string" enum:"RelationshipStatus"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
-	// values) for a classification job, custom data identifier, findings filter,
-	// or member account.
+	// values) for an Amazon Macie resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
@@ -15564,9 +16675,7 @@ func (s *ObjectLevelStatistics) SetTotal(v int64) *ObjectLevelStatistics {
 
 // Specifies the location of 1-15 occurrences of sensitive data that was detected
 // by a managed data identifier or a custom data identifier and produced a sensitive
-// data finding. Depending on the file or storage format of the affected S3
-// object, you can optionally retrieve (reveal) sample occurrences of the sensitive
-// data that was detected.
+// data finding.
 type Occurrences struct {
 	_ struct{} `type:"structure"`
 
@@ -16153,16 +17262,16 @@ func (s *ResourcesAffected) SetS3Object(v *S3Object) *ResourcesAffected {
 // Specifies the configuration settings for retrieving occurrences of sensitive
 // data reported by findings, and the status of the configuration for an Amazon
 // Macie account. When you enable the configuration for the first time, your
-// request must specify an AWS Key Management Service (AWS KMS) key. Otherwise,
-// an error occurs. Macie uses the specified key to encrypt the sensitive data
-// that you retrieve.
+// request must specify an Key Management Service (KMS) key. Otherwise, an error
+// occurs. Macie uses the specified key to encrypt the sensitive data that you
+// retrieve.
 type RevealConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
 
-	// The status of the configuration for the Amazon Macie account. In a request,
-	// valid values are:
+	// The status of the configuration for retrieving occurrences of sensitive data
+	// reported by findings. Valid values are:
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"RevealStatus"`
@@ -16719,6 +17828,69 @@ func (s *S3Object) SetTags(v []*KeyValuePair) *S3Object {
 // SetVersionId sets the VersionId field's value.
 func (s *S3Object) SetVersionId(v string) *S3Object {
 	s.VersionId = &v
+	return s
+}
+
+// Provides information about an S3 object that lists specific text to ignore.
+type S3WordsList struct {
+	_ struct{} `type:"structure"`
+
+	// BucketName is a required field
+	BucketName *string `locationName:"bucketName" min:"3" type:"string" required:"true"`
+
+	// ObjectKey is a required field
+	ObjectKey *string `locationName:"objectKey" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3WordsList) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3WordsList) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3WordsList) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3WordsList"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+	if s.ObjectKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("ObjectKey"))
+	}
+	if s.ObjectKey != nil && len(*s.ObjectKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ObjectKey", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *S3WordsList) SetBucketName(v string) *S3WordsList {
+	s.BucketName = &v
+	return s
+}
+
+// SetObjectKey sets the ObjectKey field's value.
+func (s *S3WordsList) SetObjectKey(v string) *S3WordsList {
+	s.ObjectKey = &v
 	return s
 }
 
@@ -17956,8 +19128,7 @@ func (s *TagCriterionPairForJob) SetValue(v string) *TagCriterionPairForJob {
 	return s
 }
 
-// Specifies the tags (keys and values) to associate with a classification job,
-// custom data identifier, findings filter, or member account.
+// Specifies the tags (keys and values) to associate with an Amazon Macie resource.
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17965,8 +19136,7 @@ type TagResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
-	// values) for a classification job, custom data identifier, findings filter,
-	// or member account.
+	// values) for an Amazon Macie resource.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
@@ -18021,7 +19191,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 	return s
 }
 
-// The request succeeded. The specified tags were added to the resource.
+// The request succeeded. The specified tags were added or updated for the resource.
 type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -18517,6 +19687,143 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Changes the settings for an allow list. If you change the list's criteria,
+// Amazon Macie tests the new criteria when it processes your request. If the
+// criteria specify a regular expression that Macie can't compile or an S3 object
+// that Macie can't retrieve or parse, an error occurs.
+type UpdateAllowListInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the criteria for an allow list. The criteria must specify a regular
+	// expression (regex) or an S3 object (s3WordsList). It can't specify both.
+	//
+	// Criteria is a required field
+	Criteria *AllowListCriteria `locationName:"criteria" type:"structure" required:"true"`
+
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
+
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAllowListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAllowListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAllowListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAllowListInput"}
+	if s.Criteria == nil {
+		invalidParams.Add(request.NewErrParamRequired("Criteria"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Criteria != nil {
+		if err := s.Criteria.Validate(); err != nil {
+			invalidParams.AddNested("Criteria", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCriteria sets the Criteria field's value.
+func (s *UpdateAllowListInput) SetCriteria(v *AllowListCriteria) *UpdateAllowListInput {
+	s.Criteria = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateAllowListInput) SetDescription(v string) *UpdateAllowListInput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateAllowListInput) SetId(v string) *UpdateAllowListInput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateAllowListInput) SetName(v string) *UpdateAllowListInput {
+	s.Name = &v
+	return s
+}
+
+// Provides information about an allow list whose settings were changed in response
+// to a request.
+type UpdateAllowListOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" min:"71" type:"string"`
+
+	Id *string `locationName:"id" min:"22" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAllowListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAllowListOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateAllowListOutput) SetArn(v string) *UpdateAllowListOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateAllowListOutput) SetId(v string) *UpdateAllowListOutput {
+	s.Id = &v
+	return s
+}
+
 // Changes the status of a classification job. For more information about pausing,
 // resuming, or cancelling jobs, see Managing sensitive data discovery jobs
 // (https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-manage.html)
@@ -18751,8 +20058,8 @@ type UpdateMacieSessionInput struct {
 
 	// The frequency with which Amazon Macie publishes updates to policy findings
 	// for an account. This includes publishing updates to Security Hub and Amazon
-	// EventBridge (formerly called Amazon CloudWatch Events). For more information,
-	// see Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
+	// EventBridge (formerly Amazon CloudWatch Events). For more information, see
+	// Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
 	// in the Amazon Macie User Guide. Valid values are:
 	FindingPublishingFrequency *string `locationName:"findingPublishingFrequency" type:"string" enum:"FindingPublishingFrequency"`
 
@@ -18973,9 +20280,9 @@ type UpdateRevealConfigurationInput struct {
 	// Specifies the configuration settings for retrieving occurrences of sensitive
 	// data reported by findings, and the status of the configuration for an Amazon
 	// Macie account. When you enable the configuration for the first time, your
-	// request must specify an AWS Key Management Service (AWS KMS) key. Otherwise,
-	// an error occurs. Macie uses the specified key to encrypt the sensitive data
-	// that you retrieve.
+	// request must specify an Key Management Service (KMS) key. Otherwise, an error
+	// occurs. Macie uses the specified key to encrypt the sensitive data that you
+	// retrieve.
 	//
 	// Configuration is a required field
 	Configuration *RevealConfiguration `locationName:"configuration" type:"structure" required:"true"`
@@ -19032,9 +20339,9 @@ type UpdateRevealConfigurationOutput struct {
 	// Specifies the configuration settings for retrieving occurrences of sensitive
 	// data reported by findings, and the status of the configuration for an Amazon
 	// Macie account. When you enable the configuration for the first time, your
-	// request must specify an AWS Key Management Service (AWS KMS) key. Otherwise,
-	// an error occurs. Macie uses the specified key to encrypt the sensitive data
-	// that you retrieve.
+	// request must specify an Key Management Service (KMS) key. Otherwise, an error
+	// occurs. Macie uses the specified key to encrypt the sensitive data that you
+	// retrieve.
 	Configuration *RevealConfiguration `locationName:"configuration" type:"structure"`
 }
 
@@ -19633,6 +20940,48 @@ func AdminStatus_Values() []string {
 	}
 }
 
+// Indicates the current status of an allow list. Depending on the type of criteria
+// that the list specifies, possible values are:
+const (
+	// AllowListStatusCodeOk is a AllowListStatusCode enum value
+	AllowListStatusCodeOk = "OK"
+
+	// AllowListStatusCodeS3ObjectNotFound is a AllowListStatusCode enum value
+	AllowListStatusCodeS3ObjectNotFound = "S3_OBJECT_NOT_FOUND"
+
+	// AllowListStatusCodeS3UserAccessDenied is a AllowListStatusCode enum value
+	AllowListStatusCodeS3UserAccessDenied = "S3_USER_ACCESS_DENIED"
+
+	// AllowListStatusCodeS3ObjectAccessDenied is a AllowListStatusCode enum value
+	AllowListStatusCodeS3ObjectAccessDenied = "S3_OBJECT_ACCESS_DENIED"
+
+	// AllowListStatusCodeS3Throttled is a AllowListStatusCode enum value
+	AllowListStatusCodeS3Throttled = "S3_THROTTLED"
+
+	// AllowListStatusCodeS3ObjectOversize is a AllowListStatusCode enum value
+	AllowListStatusCodeS3ObjectOversize = "S3_OBJECT_OVERSIZE"
+
+	// AllowListStatusCodeS3ObjectEmpty is a AllowListStatusCode enum value
+	AllowListStatusCodeS3ObjectEmpty = "S3_OBJECT_EMPTY"
+
+	// AllowListStatusCodeUnknownError is a AllowListStatusCode enum value
+	AllowListStatusCodeUnknownError = "UNKNOWN_ERROR"
+)
+
+// AllowListStatusCode_Values returns all elements of the AllowListStatusCode enum
+func AllowListStatusCode_Values() []string {
+	return []string{
+		AllowListStatusCodeOk,
+		AllowListStatusCodeS3ObjectNotFound,
+		AllowListStatusCodeS3UserAccessDenied,
+		AllowListStatusCodeS3ObjectAccessDenied,
+		AllowListStatusCodeS3Throttled,
+		AllowListStatusCodeS3ObjectOversize,
+		AllowListStatusCodeS3ObjectEmpty,
+		AllowListStatusCodeUnknownError,
+	}
+}
+
 const (
 	// AllowsUnencryptedObjectUploadsTrue is a AllowsUnencryptedObjectUploads enum value
 	AllowsUnencryptedObjectUploadsTrue = "TRUE"
@@ -19853,8 +21202,8 @@ func FindingCategory_Values() []string {
 
 // The frequency with which Amazon Macie publishes updates to policy findings
 // for an account. This includes publishing updates to Security Hub and Amazon
-// EventBridge (formerly called Amazon CloudWatch Events). For more information,
-// see Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
+// EventBridge (formerly Amazon CloudWatch Events). For more information, see
+// Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
 // in the Amazon Macie User Guide. Valid values are:
 const (
 	// FindingPublishingFrequencyFifteenMinutes is a FindingPublishingFrequency enum value
@@ -20333,8 +21682,8 @@ func RevealRequestStatus_Values() []string {
 	}
 }
 
-// The status of the configuration for the Amazon Macie account. In a request,
-// valid values are:
+// The status of the configuration for retrieving occurrences of sensitive data
+// reported by findings. Valid values are:
 const (
 	// RevealStatusEnabled is a RevealStatus enum value
 	RevealStatusEnabled = "ENABLED"
