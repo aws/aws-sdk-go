@@ -50,8 +50,8 @@
     "GetKeyGroup": "<p>Gets a key group, including the date and time when the key group was last modified.</p> <p>To get a key group, you must provide the key group’s identifier. If the key group is referenced in a distribution’s cache behavior, you can get the key group’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the key group is not referenced in a cache behavior, you can get the identifier using <code>ListKeyGroups</code>.</p>",
     "GetKeyGroupConfig": "<p>Gets a key group configuration.</p> <p>To get a key group configuration, you must provide the key group’s identifier. If the key group is referenced in a distribution’s cache behavior, you can get the key group’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the key group is not referenced in a cache behavior, you can get the identifier using <code>ListKeyGroups</code>.</p>",
     "GetMonitoringSubscription": "<p>Gets information about whether additional CloudWatch metrics are enabled for the specified CloudFront distribution.</p>",
-    "GetOriginAccessControl": "<p>Gets a CloudFront origin access control.</p>",
-    "GetOriginAccessControlConfig": "<p>Gets a CloudFront origin access control.</p>",
+    "GetOriginAccessControl": "<p>Gets a CloudFront origin access control, including its unique identifier.</p>",
+    "GetOriginAccessControlConfig": "<p>Gets a CloudFront origin access control configuration.</p>",
     "GetOriginRequestPolicy": "<p>Gets an origin request policy, including the following metadata:</p> <ul> <li> <p>The policy’s identifier.</p> </li> <li> <p>The date and time when the policy was last modified.</p> </li> </ul> <p>To get an origin request policy, you must provide the policy’s identifier. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",
     "GetOriginRequestPolicyConfig": "<p>Gets an origin request policy configuration.</p> <p>To get an origin request policy configuration, you must provide the policy’s identifier. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",
     "GetPublicKey": "<p>Gets a public key.</p>",
@@ -2041,10 +2041,10 @@
       }
     },
     "OriginAccessControl": {
-      "base": "<p>A CloudFront origin access control.</p>",
+      "base": "<p>A CloudFront origin access control, including its unique identifier.</p>",
       "refs": {
         "CreateOriginAccessControlResult$OriginAccessControl": "<p>Contains an origin access control.</p>",
-        "GetOriginAccessControlResult$OriginAccessControl": "<p>Contains an origin access control.</p>",
+        "GetOriginAccessControlResult$OriginAccessControl": "<p>Contains an origin access control, including its unique identifier.</p>",
         "UpdateOriginAccessControlResult$OriginAccessControl": "<p>The origin access control after it has been updated.</p>"
       }
     },
@@ -2054,10 +2054,10 @@
       }
     },
     "OriginAccessControlConfig": {
-      "base": "<p>A CloudFront origin access control.</p>",
+      "base": "<p>A CloudFront origin access control configuration.</p>",
       "refs": {
         "CreateOriginAccessControlRequest$OriginAccessControlConfig": "<p>Contains the origin access control.</p>",
-        "GetOriginAccessControlConfigResult$OriginAccessControlConfig": "<p>Contains an origin access control.</p>",
+        "GetOriginAccessControlConfigResult$OriginAccessControlConfig": "<p>Contains an origin access control configuration.</p>",
         "OriginAccessControl$OriginAccessControlConfig": "<p>The origin access control.</p>",
         "UpdateOriginAccessControlRequest$OriginAccessControlConfig": "<p>An origin access control.</p>"
       }
@@ -2083,7 +2083,7 @@
     "OriginAccessControlSigningBehaviors": {
       "base": null,
       "refs": {
-        "OriginAccessControlConfig$SigningBehavior": "<p>Specifies which requests CloudFront signs (adds authentication information to). Specify <code>always</code> for the most common use case. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-advanced-settings\">origin access control advanced settings</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>This field can have one of the following values:</p> <ul> <li> <p> <code>always</code> – CloudFront signs all origin requests, overwriting the <code>Authorization</code> header from the viewer request if one exists.</p> </li> <li> <p> <code>never</code> – CloudFront doesn't sign any origin requests. This value turns off origin access control for all origins in all distributions that use this origin access control.</p> </li> <li> <p> <code>no-override</code> – If the viewer request doesn't contain the <code>Authorization</code> header, then CloudFront signs the origin request. If the viewer request contains the <code>Authorization</code> header, then CloudFront doesn't sign the origin request and instead passes along the <code>Authorization</code> header from the viewer request. <b>WARNING: To pass along the <code>Authorization</code> header from the viewer request, you <i>must</i> add the <code>Authorization</code> header to an <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html\">origin request policy</a> for all cache behaviors that use origins associated with this origin access control.</b> </p> </li> </ul>",
+        "OriginAccessControlConfig$SigningBehavior": "<p>Specifies which requests CloudFront signs (adds authentication information to). Specify <code>always</code> for the most common use case. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-advanced-settings\">origin access control advanced settings</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>This field can have one of the following values:</p> <ul> <li> <p> <code>always</code> – CloudFront signs all origin requests, overwriting the <code>Authorization</code> header from the viewer request if one exists.</p> </li> <li> <p> <code>never</code> – CloudFront doesn't sign any origin requests. This value turns off origin access control for all origins in all distributions that use this origin access control.</p> </li> <li> <p> <code>no-override</code> – If the viewer request doesn't contain the <code>Authorization</code> header, then CloudFront signs the origin request. If the viewer request contains the <code>Authorization</code> header, then CloudFront doesn't sign the origin request and instead passes along the <code>Authorization</code> header from the viewer request. <b>WARNING: To pass along the <code>Authorization</code> header from the viewer request, you <i>must</i> add the <code>Authorization</code> header to a <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html\">cache policy</a> for all cache behaviors that use origins associated with this origin access control.</b> </p> </li> </ul>",
         "OriginAccessControlSummary$SigningBehavior": "<p>A value that specifies which requests CloudFront signs (adds authentication information to). This field can have one of the following values:</p> <ul> <li> <p> <code>never</code> – CloudFront doesn't sign any origin requests.</p> </li> <li> <p> <code>always</code> – CloudFront signs all origin requests, overwriting the <code>Authorization</code> header from the viewer request if necessary.</p> </li> <li> <p> <code>no-override</code> – If the viewer request doesn't contain the <code>Authorization</code> header, CloudFront signs the origin request. If the viewer request contains the <code>Authorization</code> header, CloudFront doesn't sign the origin request, but instead passes along the <code>Authorization</code> header that it received in the viewer request.</p> </li> </ul>"
       }
     },

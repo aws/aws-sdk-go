@@ -589,6 +589,13 @@
         "ThumbnailConfiguration$recordingMode": "<p>Thumbnail recording mode. Default: <code>INTERVAL</code>.</p>"
       }
     },
+    "RecordingReconnectWindowSeconds": {
+      "base": null,
+      "refs": {
+        "CreateRecordingConfigurationRequest$recordingReconnectWindowSeconds": "<p>If a broadcast disconnects and then reconnects within the specified interval, the multiple streams will be considered a single broadcast and merged together. Default: 0.</p>",
+        "RecordingConfiguration$recordingReconnectWindowSeconds": "<p>If a broadcast disconnects and then reconnects within the specified interval, the multiple streams will be considered a single broadcast and merged together. Default: 0.</p>"
+      }
+    },
     "ResourceArn": {
       "base": null,
       "refs": {

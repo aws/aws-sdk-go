@@ -3595,6 +3595,11 @@ type CreateRecordingConfigurationInput struct {
 	// Recording-configuration name. The value does not need to be unique.
 	Name *string `locationName:"name" type:"string"`
 
+	// If a broadcast disconnects and then reconnects within the specified interval,
+	// the multiple streams will be considered a single broadcast and merged together.
+	// Default: 0.
+	RecordingReconnectWindowSeconds *int64 `locationName:"recordingReconnectWindowSeconds" type:"integer"`
+
 	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
 	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// for more information, including restrictions that apply to tags and "Tag
@@ -3658,6 +3663,12 @@ func (s *CreateRecordingConfigurationInput) SetDestinationConfiguration(v *Desti
 // SetName sets the Name field's value.
 func (s *CreateRecordingConfigurationInput) SetName(v string) *CreateRecordingConfigurationInput {
 	s.Name = &v
+	return s
+}
+
+// SetRecordingReconnectWindowSeconds sets the RecordingReconnectWindowSeconds field's value.
+func (s *CreateRecordingConfigurationInput) SetRecordingReconnectWindowSeconds(v int64) *CreateRecordingConfigurationInput {
+	s.RecordingReconnectWindowSeconds = &v
 	return s
 }
 
@@ -5844,6 +5855,11 @@ type RecordingConfiguration struct {
 	// Recording-configuration name. The value does not need to be unique.
 	Name *string `locationName:"name" type:"string"`
 
+	// If a broadcast disconnects and then reconnects within the specified interval,
+	// the multiple streams will be considered a single broadcast and merged together.
+	// Default: 0.
+	RecordingReconnectWindowSeconds *int64 `locationName:"recordingReconnectWindowSeconds" type:"integer"`
+
 	// Indicates the current state of the recording configuration. When the state
 	// is ACTIVE, the configuration is ready for recording a channel stream.
 	//
@@ -5896,6 +5912,12 @@ func (s *RecordingConfiguration) SetDestinationConfiguration(v *DestinationConfi
 // SetName sets the Name field's value.
 func (s *RecordingConfiguration) SetName(v string) *RecordingConfiguration {
 	s.Name = &v
+	return s
+}
+
+// SetRecordingReconnectWindowSeconds sets the RecordingReconnectWindowSeconds field's value.
+func (s *RecordingConfiguration) SetRecordingReconnectWindowSeconds(v int64) *RecordingConfiguration {
+	s.RecordingReconnectWindowSeconds = &v
 	return s
 }
 

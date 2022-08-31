@@ -1,3 +1,16 @@
+Release v1.44.89 (2022-08-31)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service documentation
+  * Update API documentation for CloudFront origin access control (OAC)
+* `service/identitystore`: Updates service API, documentation, and paginators
+* `service/iotthingsgraph`: Updates service API and documentation
+* `service/ivs`: Updates service API and documentation
+* `service/rds-data`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker Inference Recommender now accepts Inference Recommender fields: Domain, Task, Framework, SamplePayloadUrl, SupportedContentTypes, SupportedInstanceTypes, directly in our CreateInferenceRecommendationsJob API through ContainerConfig
+
 Release v1.44.88 (2022-08-30)
 ===
 

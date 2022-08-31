@@ -621,6 +621,7 @@
       "members":{
         "destinationConfiguration":{"shape":"DestinationConfiguration"},
         "name":{"shape":"RecordingConfigurationName"},
+        "recordingReconnectWindowSeconds":{"shape":"RecordingReconnectWindowSeconds"},
         "tags":{"shape":"Tags"},
         "thumbnailConfiguration":{"shape":"ThumbnailConfiguration"}
       }
@@ -1011,6 +1012,7 @@
         "arn":{"shape":"RecordingConfigurationArn"},
         "destinationConfiguration":{"shape":"DestinationConfiguration"},
         "name":{"shape":"RecordingConfigurationName"},
+        "recordingReconnectWindowSeconds":{"shape":"RecordingReconnectWindowSeconds"},
         "state":{"shape":"RecordingConfigurationState"},
         "tags":{"shape":"Tags"},
         "thumbnailConfiguration":{"shape":"ThumbnailConfiguration"}
@@ -1061,6 +1063,11 @@
         "DISABLED",
         "INTERVAL"
       ]
+    },
+    "RecordingReconnectWindowSeconds":{
+      "type":"integer",
+      "max":300,
+      "min":0
     },
     "ResourceArn":{
       "type":"string",
