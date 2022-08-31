@@ -3689,7 +3689,7 @@ func (c *SageMaker) CreatePresignedDomainUrlRequest(input *CreatePresignedDomain
 // Domain's Amazon Elastic File System (EFS) volume. This operation can only
 // be called when the authentication mode equals IAM.
 //
-// The IAM role or user used to call this API defines the permissions to access
+// The IAM role or user passed to this API defines the permissions to access
 // the app. Once the presigned URL is created, no additional permission is required
 // to access this URL. IAM authorization policies for this API are also enforced
 // for every HTTP request and WebSocket frame that attempts to connect to the
@@ -4554,10 +4554,10 @@ func (c *SageMaker) CreateUserProfileRequest(input *CreateUserProfileInput) (req
 // domain, and is the main way to reference a "person" for the purposes of sharing,
 // reporting, and other user-oriented features. This entity is created when
 // a user onboards to Amazon SageMaker Studio. If an administrator invites a
-// person by email or imports them from SSO, a user profile is automatically
-// created. A user profile is the primary holder of settings for an individual
-// user and has a reference to the user's private Amazon Elastic File System
-// (EFS) home directory.
+// person by email or imports them from Amazon Web Services SSO, a user profile
+// is automatically created. A user profile is the primary holder of settings
+// for an individual user and has a reference to the user's private Amazon Elastic
+// File System (EFS) home directory.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5599,9 +5599,9 @@ func (c *SageMaker) DeleteDomainRequest(input *DeleteDomainInput) (req *request.
 // DeleteDomain API operation for Amazon SageMaker Service.
 //
 // Used to delete a domain. If you onboarded with IAM mode, you will need to
-// delete your domain to onboard again using SSO. Use with caution. All of the
-// members of the domain will lose access to their EFS volume, including data,
-// notebooks, and other artifacts.
+// delete your domain to onboard again using Amazon Web Services SSO. Use with
+// caution. All of the members of the domain will lose access to their EFS volume,
+// including data, notebooks, and other artifacts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -28126,9 +28126,9 @@ type AutoMLJobCompletionCriteria struct {
 	// The maximum number of times a training job is allowed to run.
 	MaxCandidates *int64 `min:"1" type:"integer"`
 
-	// The maximum time, in seconds, that each training job is allowed to run as
-	// part of a hyperparameter tuning job. For more information, see the used by
-	// the action.
+	// The maximum time, in seconds, that each training job executed inside hyperparameter
+	// tuning is allowed to run as part of a hyperparameter tuning job. For more
+	// information, see the used by the action.
 	MaxRuntimePerTrainingJobInSeconds *int64 `min:"1" type:"integer"`
 }
 
@@ -39716,15 +39716,16 @@ type CreateUserProfileInput struct {
 	DomainId *string `type:"string" required:"true"`
 
 	// A specifier for the type of value specified in SingleSignOnUserValue. Currently,
-	// the only supported value is "UserName". If the Domain's AuthMode is SSO,
-	// this field is required. If the Domain's AuthMode is not SSO, this field cannot
-	// be specified.
+	// the only supported value is "UserName". If the Domain's AuthMode is Amazon
+	// Web Services SSO, this field is required. If the Domain's AuthMode is not
+	// Amazon Web Services SSO, this field cannot be specified.
 	SingleSignOnUserIdentifier *string `type:"string"`
 
 	// The username of the associated Amazon Web Services Single Sign-On User for
-	// this UserProfile. If the Domain's AuthMode is SSO, this field is required,
-	// and must match a valid username of a user in your directory. If the Domain's
-	// AuthMode is not SSO, this field cannot be specified.
+	// this UserProfile. If the Domain's AuthMode is Amazon Web Services SSO, this
+	// field is required, and must match a valid username of a user in your directory.
+	// If the Domain's AuthMode is not Amazon Web Services SSO, this field cannot
+	// be specified.
 	SingleSignOnUserValue *string `type:"string"`
 
 	// Each tag consists of a key and an optional value. Tag keys must be unique
@@ -47113,7 +47114,7 @@ type DescribeDomainOutput struct {
 	// apps and the RStudioServerPro app.
 	SecurityGroupIdForDomainBoundary *string `type:"string"`
 
-	// The SSO managed application instance ID.
+	// The Amazon Web Services SSO managed application instance ID.
 	SingleSignOnManagedApplicationInstanceId *string `type:"string"`
 
 	// The status.
@@ -54409,10 +54410,10 @@ type DescribeUserProfileOutput struct {
 	// The last modified time.
 	LastModifiedTime *time.Time `type:"timestamp"`
 
-	// The SSO user identifier.
+	// The Amazon Web Services SSO user identifier.
 	SingleSignOnUserIdentifier *string `type:"string"`
 
-	// The SSO user value.
+	// The Amazon Web Services SSO user value.
 	SingleSignOnUserValue *string `type:"string"`
 
 	// The status.
@@ -61446,7 +61447,7 @@ type HyperParameterTrainingJobDefinition struct {
 	// The configuration for the hyperparameter tuning resources, including the
 	// compute instances and storage volumes, used for training jobs launched by
 	// the tuning job. By default, storage volumes hold model artifacts and incremental
-	// states. Choose File for TrainingInputMode in the AlgorithmSpecificationparameter
+	// states. Choose File for TrainingInputMode in the AlgorithmSpecification parameter
 	// to additionally store training data in the storage volume (optional).
 	HyperParameterTuningResourceConfig *HyperParameterTuningResourceConfig `type:"structure"`
 
@@ -62439,7 +62440,7 @@ type HyperParameterTuningResourceConfig struct {
 	// The AllocationStrategy controls the order in which multiple configurations
 	// provided in InstanceConfigs are used.
 	//
-	// If you only want to use a single InstanceConfig inside the HyperParameterTuningResourceConfig
+	// If you only want to use a single instance configuration inside the HyperParameterTuningResourceConfig
 	// API, do not provide a value for InstanceConfigs. Instead, use InstanceType,
 	// VolumeSizeInGB and InstanceCount. If you use InstanceConfigs, do not provide
 	// values for InstanceType, VolumeSizeInGB or InstanceCount.
@@ -62455,15 +62456,15 @@ type HyperParameterTuningResourceConfig struct {
 	// for more information.
 	InstanceType *string `type:"string" enum:"TrainingInstanceType"`
 
-	// A key used by AWS Key Management Service to encrypt data on the storage volume
-	// attached to the compute instances used to run the training job. You can use
-	// either of the following formats to specify a key.
+	// A key used by Amazon Web Services Key Management Service to encrypt data
+	// on the storage volume attached to the compute instances used to run the training
+	// job. You can use either of the following formats to specify a key.
 	//
 	// KMS Key ID:
 	//
 	// "1234abcd-12ab-34cd-56ef-1234567890ab"
 	//
-	// Amazon Resource Name (ARN) of a AWS KMS key:
+	// Amazon Resource Name (ARN) of a KMS key:
 	//
 	// "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
 	//
@@ -62471,9 +62472,9 @@ type HyperParameterTuningResourceConfig struct {
 	// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html)
 	// storage volumes. If you choose one of these instance types, you cannot request
 	// a VolumeKmsKeyId. For a list of instance types that use local storage, see
-	// instance store volumes (https://aws.amazon.com/releasenotes/host-instance-storage-volumes-table/).
-	// For more information about AWS Key Management Service, see AWS KMS encryption
-	// (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security-kms-permissions.html)
+	// instance store volumes (http://aws.amazon.com/releasenotes/host-instance-storage-volumes-table/).
+	// For more information about Amazon Web Services Key Management Service, see
+	// KMS encryption (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security-kms-permissions.html)
 	// for more information.
 	VolumeKmsKeyId *string `type:"string"`
 
@@ -62485,7 +62486,7 @@ type HyperParameterTuningResourceConfig struct {
 	// Some instance types have a fixed total local storage size. If you select
 	// one of these instances for training, VolumeSizeInGB cannot be greater than
 	// this total size. For a list of instance types with local instance storage
-	// and their sizes, see instance store volumes (https://aws.amazon.com/releasenotes/host-instance-storage-volumes-table/).
+	// and their sizes, see instance store volumes (http://aws.amazon.com/releasenotes/host-instance-storage-volumes-table/).
 	//
 	// SageMaker supports only the General Purpose SSD (gp2) (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)
 	// storage volume type.
@@ -84691,9 +84692,117 @@ func (s *RecommendationJobCompiledOutputConfig) SetS3OutputUri(v string) *Recomm
 	return s
 }
 
+// Specifies mandatory fields for running an Inference Recommender job directly
+// in the CreateInferenceRecommendationsJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateInferenceRecommendationsJob.html)
+// API. The fields specified in ContainerConfig override the corresponding fields
+// in the model package. Use ContainerConfig if you want to specify these fields
+// for the recommendation job but don't want to edit them in your model package.
+type RecommendationJobContainerConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The machine learning domain of the model and its components.
+	//
+	// Valid Values: COMPUTER_VISION | NATURAL_LANGUAGE_PROCESSING | MACHINE_LEARNING
+	Domain *string `type:"string"`
+
+	// The machine learning framework of the container image.
+	//
+	// Valid Values: TENSORFLOW | PYTORCH | XGBOOST | SAGEMAKER-SCIKIT-LEARN
+	Framework *string `type:"string"`
+
+	// The framework version of the container image.
+	FrameworkVersion *string `type:"string"`
+
+	// The name of a pre-trained machine learning model benchmarked by Amazon SageMaker
+	// Inference Recommender that matches your model.
+	//
+	// Valid Values: efficientnetb7 | unet | xgboost | faster-rcnn-resnet101 | nasnetlarge
+	// | vgg16 | inception-v3 | mask-rcnn | sagemaker-scikit-learn | densenet201-gluon
+	// | resnet18v2-gluon | xception | densenet201 | yolov4 | resnet152 | bert-base-cased
+	// | xceptionV1-keras | resnet50 | retinanet
+	NearestModelName *string `type:"string"`
+
+	// Specifies the SamplePayloadUrl and all other sample payload-related fields.
+	PayloadConfig *RecommendationJobPayloadConfig `type:"structure"`
+
+	// A list of the instance types that are used to generate inferences in real-time.
+	SupportedInstanceTypes []*string `type:"list"`
+
+	// The machine learning task that the model accomplishes.
+	//
+	// Valid Values: IMAGE_CLASSIFICATION | OBJECT_DETECTION | TEXT_GENERATION |
+	// IMAGE_SEGMENTATION | FILL_MASK | CLASSIFICATION | REGRESSION | OTHER
+	Task *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobContainerConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobContainerConfig) GoString() string {
+	return s.String()
+}
+
+// SetDomain sets the Domain field's value.
+func (s *RecommendationJobContainerConfig) SetDomain(v string) *RecommendationJobContainerConfig {
+	s.Domain = &v
+	return s
+}
+
+// SetFramework sets the Framework field's value.
+func (s *RecommendationJobContainerConfig) SetFramework(v string) *RecommendationJobContainerConfig {
+	s.Framework = &v
+	return s
+}
+
+// SetFrameworkVersion sets the FrameworkVersion field's value.
+func (s *RecommendationJobContainerConfig) SetFrameworkVersion(v string) *RecommendationJobContainerConfig {
+	s.FrameworkVersion = &v
+	return s
+}
+
+// SetNearestModelName sets the NearestModelName field's value.
+func (s *RecommendationJobContainerConfig) SetNearestModelName(v string) *RecommendationJobContainerConfig {
+	s.NearestModelName = &v
+	return s
+}
+
+// SetPayloadConfig sets the PayloadConfig field's value.
+func (s *RecommendationJobContainerConfig) SetPayloadConfig(v *RecommendationJobPayloadConfig) *RecommendationJobContainerConfig {
+	s.PayloadConfig = v
+	return s
+}
+
+// SetSupportedInstanceTypes sets the SupportedInstanceTypes field's value.
+func (s *RecommendationJobContainerConfig) SetSupportedInstanceTypes(v []*string) *RecommendationJobContainerConfig {
+	s.SupportedInstanceTypes = v
+	return s
+}
+
+// SetTask sets the Task field's value.
+func (s *RecommendationJobContainerConfig) SetTask(v string) *RecommendationJobContainerConfig {
+	s.Task = &v
+	return s
+}
+
 // The input configuration of the recommendation job.
 type RecommendationJobInputConfig struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies mandatory fields for running an Inference Recommender job. The
+	// fields specified in ContainerConfig override the corresponding fields in
+	// the model package.
+	ContainerConfig *RecommendationJobContainerConfig `type:"structure"`
 
 	// Specifies the endpoint configuration to use for a job.
 	EndpointConfigurations []*EndpointInputConfiguration `min:"1" type:"list"`
@@ -84799,6 +84908,12 @@ func (s *RecommendationJobInputConfig) Validate() error {
 	return nil
 }
 
+// SetContainerConfig sets the ContainerConfig field's value.
+func (s *RecommendationJobInputConfig) SetContainerConfig(v *RecommendationJobContainerConfig) *RecommendationJobInputConfig {
+	s.ContainerConfig = v
+	return s
+}
+
 // SetEndpointConfigurations sets the EndpointConfigurations field's value.
 func (s *RecommendationJobInputConfig) SetEndpointConfigurations(v []*EndpointInputConfiguration) *RecommendationJobInputConfig {
 	s.EndpointConfigurations = v
@@ -84890,6 +85005,49 @@ func (s *RecommendationJobOutputConfig) SetCompiledOutputConfig(v *Recommendatio
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *RecommendationJobOutputConfig) SetKmsKeyId(v string) *RecommendationJobOutputConfig {
 	s.KmsKeyId = &v
+	return s
+}
+
+// The configuration for the payload for a recommendation job.
+type RecommendationJobPayloadConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Simple Storage Service (Amazon S3) path where the sample payload
+	// is stored. This path must point to a single gzip compressed tar archive (.tar.gz
+	// suffix).
+	SamplePayloadUrl *string `type:"string"`
+
+	// The supported MIME types for the input data.
+	SupportedContentTypes []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobPayloadConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobPayloadConfig) GoString() string {
+	return s.String()
+}
+
+// SetSamplePayloadUrl sets the SamplePayloadUrl field's value.
+func (s *RecommendationJobPayloadConfig) SetSamplePayloadUrl(v string) *RecommendationJobPayloadConfig {
+	s.SamplePayloadUrl = &v
+	return s
+}
+
+// SetSupportedContentTypes sets the SupportedContentTypes field's value.
+func (s *RecommendationJobPayloadConfig) SetSupportedContentTypes(v []*string) *RecommendationJobPayloadConfig {
+	s.SupportedContentTypes = v
 	return s
 }
 
@@ -85780,18 +85938,25 @@ type ResourceConfig struct {
 	// want to store the training data in the ML storage volume, choose File as
 	// the TrainingInputMode in the algorithm specification.
 	//
-	// You must specify sufficient ML storage for your scenario.
+	// When using an ML instance with NVMe SSD volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html#nvme-ssd-volumes),
+	// SageMaker doesn't provision Amazon EBS General Purpose SSD (gp2) storage.
+	// Available storage is fixed to the NVMe-type instance's storage capacity.
+	// SageMaker configures storage paths for training datasets, checkpoints, model
+	// artifacts, and outputs to use the entire capacity of the instance storage.
+	// For example, ML instance families with the NVMe-type instance storage include
+	// ml.p4d, ml.g4dn, and ml.g5.
 	//
-	// SageMaker supports only the General Purpose SSD (gp2) ML storage volume type.
+	// When using an ML instance with the EBS-only storage option and without instance
+	// storage, you must define the size of EBS volume through VolumeSizeInGB in
+	// the ResourceConfig API. For example, ML instance families that use EBS volumes
+	// include ml.c5 and ml.p2.
 	//
-	// Certain Nitro-based instances include local storage with a fixed total size,
-	// dependent on the instance type. When using these instances for training,
-	// SageMaker mounts the local instance storage instead of Amazon EBS gp2 storage.
-	// You can't request a VolumeSizeInGB greater than the total size of the local
-	// instance storage.
+	// To look up instance types and their instance storage types and volumes, see
+	// Amazon EC2 Instance Types (http://aws.amazon.com/ec2/instance-types/).
 	//
-	// For a list of instance types that support local instance storage, including
-	// the total size per instance type, see Instance Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes).
+	// To find the default local paths defined by the SageMaker training platform,
+	// see Amazon SageMaker Training Storage Folders for Training Datasets, Checkpoints,
+	// Model Artifacts, and Outputs (https://docs.aws.amazon.com/sagemaker/latest/dg/model-train-storage.html).
 	//
 	// VolumeSizeInGB is a required field
 	VolumeSizeInGB *int64 `min:"1" type:"integer" required:"true"`
@@ -89339,7 +89504,7 @@ type StoppingCondition struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum length of time, in seconds, that a training or compilation job
-	// can run.
+	// can run before it is stopped.
 	//
 	// For compilation jobs, if the job does not complete during this time, a TimeOut
 	// error is generated. We recommend starting with 900 seconds and increasing
@@ -89349,6 +89514,10 @@ type StoppingCondition struct {
 	// ends the job. When RetryStrategy is specified in the job request, MaxRuntimeInSeconds
 	// specifies the maximum time for all of the attempts in total, not each individual
 	// attempt. The default value is 1 day. The maximum value is 28 days.
+	//
+	// The maximum time that a TrainingJob can run in total, including any time
+	// spent publishing metrics or archiving and uploading models after it has been
+	// stopped, is 30 days.
 	MaxRuntimeInSeconds *int64 `min:"1" type:"integer"`
 
 	// The maximum length of time, in seconds, that a managed Spot training job

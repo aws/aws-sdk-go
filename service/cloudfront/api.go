@@ -5143,7 +5143,7 @@ func (c *CloudFront) GetOriginAccessControlRequest(input *GetOriginAccessControl
 
 // GetOriginAccessControl API operation for Amazon CloudFront.
 //
-// Gets a CloudFront origin access control.
+// Gets a CloudFront origin access control, including its unique identifier.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5225,7 +5225,7 @@ func (c *CloudFront) GetOriginAccessControlConfigRequest(input *GetOriginAccessC
 
 // GetOriginAccessControlConfig API operation for Amazon CloudFront.
 //
-// Gets a CloudFront origin access control.
+// Gets a CloudFront origin access control configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20220,7 +20220,7 @@ type GetOriginAccessControlConfigOutput struct {
 	// The version identifier for the current version of the origin access control.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	// Contains an origin access control.
+	// Contains an origin access control configuration.
 	OriginAccessControlConfig *OriginAccessControlConfig `type:"structure"`
 }
 
@@ -20309,7 +20309,7 @@ type GetOriginAccessControlOutput struct {
 	// The version identifier for the current version of the origin access control.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	// Contains an origin access control.
+	// Contains an origin access control, including its unique identifier.
 	OriginAccessControl *OriginAccessControl `type:"structure"`
 }
 
@@ -24372,7 +24372,7 @@ func (s *Origin) SetS3OriginConfig(v *S3OriginConfig) *Origin {
 	return s
 }
 
-// A CloudFront origin access control.
+// A CloudFront origin access control, including its unique identifier.
 type OriginAccessControl struct {
 	_ struct{} `type:"structure"`
 
@@ -24415,7 +24415,7 @@ func (s *OriginAccessControl) SetOriginAccessControlConfig(v *OriginAccessContro
 	return s
 }
 
-// A CloudFront origin access control.
+// A CloudFront origin access control configuration.
 type OriginAccessControlConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -24454,8 +24454,7 @@ type OriginAccessControlConfig struct {
 	//    contains the Authorization header, then CloudFront doesn't sign the origin
 	//    request and instead passes along the Authorization header from the viewer
 	//    request. WARNING: To pass along the Authorization header from the viewer
-	//    request, you must add the Authorization header to an origin request policy
-	//    (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html)
+	//    request, you must add the Authorization header to a cache policy (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html)
 	//    for all cache behaviors that use origins associated with this origin access
 	//    control.
 	//

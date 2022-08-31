@@ -148,11 +148,11 @@
     "ArrayValue":{
       "type":"structure",
       "members":{
-        "arrayValues":{"shape":"ArrayOfArray"},
         "booleanValues":{"shape":"BooleanArray"},
-        "doubleValues":{"shape":"DoubleArray"},
         "longValues":{"shape":"LongArray"},
-        "stringValues":{"shape":"StringArray"}
+        "doubleValues":{"shape":"DoubleArray"},
+        "stringValues":{"shape":"StringArray"},
+        "arrayValues":{"shape":"ArrayOfArray"}
       },
       "union":true
     },
@@ -179,12 +179,12 @@
         "sql"
       ],
       "members":{
-        "database":{"shape":"DbName"},
-        "parameterSets":{"shape":"SqlParameterSets"},
         "resourceArn":{"shape":"Arn"},
-        "schema":{"shape":"DbName"},
         "secretArn":{"shape":"Arn"},
         "sql":{"shape":"SqlStatement"},
+        "database":{"shape":"DbName"},
+        "schema":{"shape":"DbName"},
+        "parameterSets":{"shape":"SqlParameterSets"},
         "transactionId":{"shape":"Id"}
       }
     },
@@ -201,10 +201,10 @@
         "secretArn"
       ],
       "members":{
-        "database":{"shape":"DbName"},
         "resourceArn":{"shape":"Arn"},
-        "schema":{"shape":"DbName"},
-        "secretArn":{"shape":"Arn"}
+        "secretArn":{"shape":"Arn"},
+        "database":{"shape":"DbName"},
+        "schema":{"shape":"DbName"}
       }
     },
     "BeginTransactionResponse":{
@@ -242,20 +242,20 @@
     "ColumnMetadata":{
       "type":"structure",
       "members":{
-        "arrayBaseColumnType":{"shape":"Integer"},
-        "isAutoIncrement":{"shape":"Boolean"},
-        "isCaseSensitive":{"shape":"Boolean"},
-        "isCurrency":{"shape":"Boolean"},
-        "isSigned":{"shape":"Boolean"},
-        "label":{"shape":"String"},
         "name":{"shape":"String"},
+        "type":{"shape":"Integer"},
+        "typeName":{"shape":"String"},
+        "label":{"shape":"String"},
+        "schemaName":{"shape":"String"},
+        "tableName":{"shape":"String"},
+        "isAutoIncrement":{"shape":"Boolean"},
+        "isSigned":{"shape":"Boolean"},
+        "isCurrency":{"shape":"Boolean"},
+        "isCaseSensitive":{"shape":"Boolean"},
         "nullable":{"shape":"Integer"},
         "precision":{"shape":"Integer"},
         "scale":{"shape":"Integer"},
-        "schemaName":{"shape":"String"},
-        "tableName":{"shape":"String"},
-        "type":{"shape":"Integer"},
-        "typeName":{"shape":"String"}
+        "arrayBaseColumnType":{"shape":"Integer"}
       }
     },
     "CommitTransactionRequest":{
@@ -297,16 +297,16 @@
     "ExecuteSqlRequest":{
       "type":"structure",
       "required":[
-        "awsSecretStoreArn",
         "dbClusterOrInstanceArn",
+        "awsSecretStoreArn",
         "sqlStatements"
       ],
       "members":{
-        "awsSecretStoreArn":{"shape":"Arn"},
-        "database":{"shape":"DbName"},
         "dbClusterOrInstanceArn":{"shape":"Arn"},
-        "schema":{"shape":"DbName"},
-        "sqlStatements":{"shape":"SqlStatement"}
+        "awsSecretStoreArn":{"shape":"Arn"},
+        "sqlStatements":{"shape":"SqlStatement"},
+        "database":{"shape":"DbName"},
+        "schema":{"shape":"DbName"}
       }
     },
     "ExecuteSqlResponse":{
@@ -323,39 +323,39 @@
         "sql"
       ],
       "members":{
-        "continueAfterTimeout":{"shape":"Boolean"},
-        "database":{"shape":"DbName"},
-        "formatRecordsAs":{"shape":"RecordsFormatType"},
-        "includeResultMetadata":{"shape":"Boolean"},
-        "parameters":{"shape":"SqlParametersList"},
         "resourceArn":{"shape":"Arn"},
-        "resultSetOptions":{"shape":"ResultSetOptions"},
-        "schema":{"shape":"DbName"},
         "secretArn":{"shape":"Arn"},
         "sql":{"shape":"SqlStatement"},
-        "transactionId":{"shape":"Id"}
+        "database":{"shape":"DbName"},
+        "schema":{"shape":"DbName"},
+        "parameters":{"shape":"SqlParametersList"},
+        "transactionId":{"shape":"Id"},
+        "includeResultMetadata":{"shape":"Boolean"},
+        "continueAfterTimeout":{"shape":"Boolean"},
+        "resultSetOptions":{"shape":"ResultSetOptions"},
+        "formatRecordsAs":{"shape":"RecordsFormatType"}
       }
     },
     "ExecuteStatementResponse":{
       "type":"structure",
       "members":{
+        "records":{"shape":"SqlRecords"},
         "columnMetadata":{"shape":"Metadata"},
-        "formattedRecords":{"shape":"FormattedSqlRecords"},
-        "generatedFields":{"shape":"FieldList"},
         "numberOfRecordsUpdated":{"shape":"RecordsUpdated"},
-        "records":{"shape":"SqlRecords"}
+        "generatedFields":{"shape":"FieldList"},
+        "formattedRecords":{"shape":"FormattedSqlRecords"}
       }
     },
     "Field":{
       "type":"structure",
       "members":{
-        "arrayValue":{"shape":"ArrayValue"},
-        "blobValue":{"shape":"Blob"},
-        "booleanValue":{"shape":"BoxedBoolean"},
-        "doubleValue":{"shape":"BoxedDouble"},
         "isNull":{"shape":"BoxedBoolean"},
+        "booleanValue":{"shape":"BoxedBoolean"},
         "longValue":{"shape":"BoxedLong"},
-        "stringValue":{"shape":"String"}
+        "doubleValue":{"shape":"BoxedDouble"},
+        "stringValue":{"shape":"String"},
+        "blobValue":{"shape":"Blob"},
+        "arrayValue":{"shape":"ArrayValue"}
       },
       "union":true
     },
@@ -438,8 +438,8 @@
     "ResultFrame":{
       "type":"structure",
       "members":{
-        "records":{"shape":"Records"},
-        "resultSetMetadata":{"shape":"ResultSetMetadata"}
+        "resultSetMetadata":{"shape":"ResultSetMetadata"},
+        "records":{"shape":"Records"}
       }
     },
     "ResultSetMetadata":{
@@ -491,8 +491,8 @@
       "type":"structure",
       "members":{
         "name":{"shape":"ParameterName"},
-        "typeHint":{"shape":"TypeHint"},
-        "value":{"shape":"Field"}
+        "value":{"shape":"Field"},
+        "typeHint":{"shape":"TypeHint"}
       }
     },
     "SqlParameterSets":{
@@ -515,8 +515,8 @@
     "SqlStatementResult":{
       "type":"structure",
       "members":{
-        "numberOfRecordsUpdated":{"shape":"RecordsUpdated"},
-        "resultFrame":{"shape":"ResultFrame"}
+        "resultFrame":{"shape":"ResultFrame"},
+        "numberOfRecordsUpdated":{"shape":"RecordsUpdated"}
       }
     },
     "SqlStatementResults":{
@@ -526,8 +526,8 @@
     "StatementTimeoutException":{
       "type":"structure",
       "members":{
-        "dbConnectionId":{"shape":"Long"},
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"ErrorMessage"},
+        "dbConnectionId":{"shape":"Long"}
       },
       "error":{
         "httpStatusCode":400,
@@ -575,15 +575,15 @@
     "Value":{
       "type":"structure",
       "members":{
-        "arrayValues":{"shape":"ArrayValueList"},
-        "bigIntValue":{"shape":"BoxedLong"},
-        "bitValue":{"shape":"BoxedBoolean"},
-        "blobValue":{"shape":"Blob"},
-        "doubleValue":{"shape":"BoxedDouble"},
-        "intValue":{"shape":"BoxedInteger"},
         "isNull":{"shape":"BoxedBoolean"},
+        "bitValue":{"shape":"BoxedBoolean"},
+        "bigIntValue":{"shape":"BoxedLong"},
+        "intValue":{"shape":"BoxedInteger"},
+        "doubleValue":{"shape":"BoxedDouble"},
         "realValue":{"shape":"BoxedFloat"},
         "stringValue":{"shape":"String"},
+        "blobValue":{"shape":"Blob"},
+        "arrayValues":{"shape":"ArrayValueList"},
         "structValue":{"shape":"StructValue"}
       },
       "union":true

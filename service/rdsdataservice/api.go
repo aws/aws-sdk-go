@@ -168,13 +168,15 @@ func (c *RDSDataService) BeginTransactionRequest(input *BeginTransactionInput) (
 //
 // Starts a SQL transaction.
 //
-//	<important> <p>A transaction can run for a maximum of 24 hours. A transaction
-//	is terminated and rolled back automatically after 24 hours.</p> <p>A transaction
-//	times out if no calls use its transaction ID in three minutes. If a transaction
-//	times out before it's committed, it's rolled back automatically.</p> <p>DDL
-//	statements inside a transaction cause an implicit commit. We recommend
-//	that you run each DDL statement in a separate <code>ExecuteStatement</code>
-//	call with <code>continueAfterTimeout</code> enabled.</p> </important>
+// A transaction can run for a maximum of 24 hours. A transaction is terminated
+// and rolled back automatically after 24 hours.
+//
+// A transaction times out if no calls use its transaction ID in three minutes.
+// If a transaction times out before it's committed, it's rolled back automatically.
+//
+// DDL statements inside a transaction cause an implicit commit. We recommend
+// that you run each DDL statement in a separate ExecuteStatement call with
+// continueAfterTimeout enabled.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2472,9 +2474,9 @@ func (s *SqlParameter) SetValue(v *Field) *SqlParameter {
 
 // The result of a SQL statement.
 //
-//	<important> <p>This data structure is only used with the deprecated <code>ExecuteSql</code>
+//	<note> <p>This data structure is only used with the deprecated <code>ExecuteSql</code>
 //	operation. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code>
-//	operation instead.</p> </important>
+//	operation instead.</p> </note>
 type SqlStatementResult struct {
 	_ struct{} `type:"structure"`
 
@@ -2652,9 +2654,9 @@ func (s *UpdateResult) SetGeneratedFields(v []*Field) *UpdateResult {
 
 // Contains the value of a column.
 //
-//	<important> <p>This data structure is only used with the deprecated <code>ExecuteSql</code>
+//	<note> <p>This data structure is only used with the deprecated <code>ExecuteSql</code>
 //	operation. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code>
-//	operation instead.</p> </important>
+//	operation instead.</p> </note>
 type Value struct {
 	_ struct{} `type:"structure"`
 
