@@ -1,3 +1,12 @@
+Release v1.44.90 (2022-09-01)
+===
+
+### Service Client Updates
+* `service/codeguru-reviewer`: Updates service documentation
+* `service/controltower`: Adds new service
+* `service/route53`: Updates service documentation
+  * Documentation updates for Amazon Route 53.
+
 Release v1.44.89 (2022-08-31)
 ===
 
