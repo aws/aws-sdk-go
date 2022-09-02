@@ -80,6 +80,12 @@
         "CmafPackageCreateOrUpdateParameters$Encryption" : null
       }
     },
+    "CmafEncryptionMethod" : {
+      "base" : "The encryption method to use.",
+      "refs" : {
+        "CmafEncryption$EncryptionMethod" : null
+      }
+    },
     "CmafPackage" : {
       "base" : "A Common Media Application Format (CMAF) packaging configuration.",
       "refs" : {

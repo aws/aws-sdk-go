@@ -2638,6 +2638,11 @@
       "value":{"shape":"StringType"},
       "sensitive":true
     },
+    "AuthSessionValidityType":{
+      "type":"integer",
+      "max":15,
+      "min":3
+    },
     "AuthenticationResultType":{
       "type":"structure",
       "members":{
@@ -3025,7 +3030,8 @@
         "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"},
         "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"},
         "EnableTokenRevocation":{"shape":"WrappedBooleanType"},
-        "EnablePropagateAdditionalUserContextData":{"shape":"WrappedBooleanType"}
+        "EnablePropagateAdditionalUserContextData":{"shape":"WrappedBooleanType"},
+        "AuthSessionValidity":{"shape":"AuthSessionValidityType"}
       }
     },
     "CreateUserPoolClientResponse":{
@@ -5195,7 +5201,8 @@
         "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"},
         "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"},
         "EnableTokenRevocation":{"shape":"WrappedBooleanType"},
-        "EnablePropagateAdditionalUserContextData":{"shape":"WrappedBooleanType"}
+        "EnablePropagateAdditionalUserContextData":{"shape":"WrappedBooleanType"},
+        "AuthSessionValidity":{"shape":"AuthSessionValidityType"}
       }
     },
     "UpdateUserPoolClientResponse":{
@@ -5405,7 +5412,8 @@
         "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"},
         "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"},
         "EnableTokenRevocation":{"shape":"WrappedBooleanType"},
-        "EnablePropagateAdditionalUserContextData":{"shape":"WrappedBooleanType"}
+        "EnablePropagateAdditionalUserContextData":{"shape":"WrappedBooleanType"},
+        "AuthSessionValidity":{"shape":"AuthSessionValidityType"}
       }
     },
     "UserPoolDescriptionType":{

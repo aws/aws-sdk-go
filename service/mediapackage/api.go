@@ -1978,6 +1978,9 @@ type CmafEncryption struct {
 	// a value, then MediaPackage creates the constant initialization vector (IV).
 	ConstantInitializationVector *string `locationName:"constantInitializationVector" type:"string"`
 
+	// The encryption method to use.
+	EncryptionMethod *string `locationName:"encryptionMethod" type:"string" enum:"CmafEncryptionMethod"`
+
 	// Time (in seconds) between each encryption key rotation.
 	KeyRotationIntervalSeconds *int64 `locationName:"keyRotationIntervalSeconds" type:"integer"`
 
@@ -2027,6 +2030,12 @@ func (s *CmafEncryption) Validate() error {
 // SetConstantInitializationVector sets the ConstantInitializationVector field's value.
 func (s *CmafEncryption) SetConstantInitializationVector(v string) *CmafEncryption {
 	s.ConstantInitializationVector = &v
+	return s
+}
+
+// SetEncryptionMethod sets the EncryptionMethod field's value.
+func (s *CmafEncryption) SetEncryptionMethod(v string) *CmafEncryption {
+	s.EncryptionMethod = &v
 	return s
 }
 
@@ -7025,6 +7034,23 @@ func AdsOnDeliveryRestrictions_Values() []string {
 		AdsOnDeliveryRestrictionsRestricted,
 		AdsOnDeliveryRestrictionsUnrestricted,
 		AdsOnDeliveryRestrictionsBoth,
+	}
+}
+
+// The encryption method to use.
+const (
+	// CmafEncryptionMethodSampleAes is a CmafEncryptionMethod enum value
+	CmafEncryptionMethodSampleAes = "SAMPLE_AES"
+
+	// CmafEncryptionMethodAesCtr is a CmafEncryptionMethod enum value
+	CmafEncryptionMethodAesCtr = "AES_CTR"
+)
+
+// CmafEncryptionMethod_Values returns all elements of the CmafEncryptionMethod enum
+func CmafEncryptionMethod_Values() []string {
+	return []string{
+		CmafEncryptionMethodSampleAes,
+		CmafEncryptionMethodAesCtr,
 	}
 }
 

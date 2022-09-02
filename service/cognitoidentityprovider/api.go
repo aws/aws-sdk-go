@@ -18232,6 +18232,12 @@ type CreateUserPoolClientInput struct {
 	// same Region.
 	AnalyticsConfiguration *AnalyticsConfigurationType `type:"structure"`
 
+	// Amazon Cognito creates a session token for each API request in an authentication
+	// flow. AuthSessionValidity is the duration, in minutes, of that session token.
+	// Your user pool native user must respond to each authentication challenge
+	// before the session expires.
+	AuthSessionValidity *int64 `min:"3" type:"integer"`
+
 	// A list of allowed redirect (callback) URLs for the IdPs.
 	//
 	// A redirect URI must:
@@ -18430,6 +18436,9 @@ func (s *CreateUserPoolClientInput) Validate() error {
 	if s.AccessTokenValidity != nil && *s.AccessTokenValidity < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("AccessTokenValidity", 1))
 	}
+	if s.AuthSessionValidity != nil && *s.AuthSessionValidity < 3 {
+		invalidParams.Add(request.NewErrParamMinValue("AuthSessionValidity", 3))
+	}
 	if s.ClientName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ClientName"))
 	}
@@ -18487,6 +18496,12 @@ func (s *CreateUserPoolClientInput) SetAllowedOAuthScopes(v []*string) *CreateUs
 // SetAnalyticsConfiguration sets the AnalyticsConfiguration field's value.
 func (s *CreateUserPoolClientInput) SetAnalyticsConfiguration(v *AnalyticsConfigurationType) *CreateUserPoolClientInput {
 	s.AnalyticsConfiguration = v
+	return s
+}
+
+// SetAuthSessionValidity sets the AuthSessionValidity field's value.
+func (s *CreateUserPoolClientInput) SetAuthSessionValidity(v int64) *CreateUserPoolClientInput {
+	s.AuthSessionValidity = &v
 	return s
 }
 
@@ -18775,14 +18790,10 @@ type CreateUserPoolInput struct {
 	// messages from your user pool.
 	EmailConfiguration *EmailConfigurationType `type:"structure"`
 
-	// A string representing the email verification message. EmailVerificationMessage
-	// is allowed only if EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
-	// is DEVELOPER.
+	// This parameter is no longer used. See VerificationMessageTemplateType (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html).
 	EmailVerificationMessage *string `min:"6" type:"string"`
 
-	// A string representing the email verification subject. EmailVerificationSubject
-	// is allowed only if EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
-	// is DEVELOPER.
+	// This parameter is no longer used. See VerificationMessageTemplateType (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html).
 	EmailVerificationSubject *string `min:"1" type:"string"`
 
 	// The Lambda trigger configuration information for the new user pool.
@@ -18823,7 +18834,7 @@ type CreateUserPoolInput struct {
 	// Services account.
 	SmsConfiguration *SmsConfigurationType `type:"structure"`
 
-	// A string representing the SMS verification message.
+	// This parameter is no longer used. See VerificationMessageTemplateType (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html).
 	SmsVerificationMessage *string `min:"6" type:"string"`
 
 	// The settings for updates to user attributes. These settings include the property
@@ -20661,28 +20672,46 @@ func (s *DescribeUserPoolOutput) SetUserPool(v *UserPoolType) *DescribeUserPoolO
 	return s
 }
 
-// The device-remembering configuration for a user pool. A null value indicates
-// that you have deactivated device remembering in your user pool.
+// The device-remembering configuration for a user pool. A DescribeUserPool
+// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPool.html)
+// request returns a null value for this object when the user pool isn't configured
+// to remember devices. When device remembering is active, you can remember
+// a user's device with a ConfirmDevice (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmDevice.html)
+// API request. Additionally. when the property DeviceOnlyRememberedOnUserPrompt
+// is true, you must follow ConfirmDevice with an UpdateDeviceStatus (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateDeviceStatus.html)
+// API request that sets the user's device to remembered or not_remembered.
 //
-// When you provide a value for any DeviceConfiguration field, you activate
-// the Amazon Cognito device-remembering feature.
+// To sign in with a remembered device, include DEVICE_KEY in the authentication
+// parameters in your user's InitiateAuth (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html)
+// request. If your app doesn't include a DEVICE_KEY parameter, the response
+// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html#API_InitiateAuth_ResponseSyntax)
+// from Amazon Cognito includes newly-generated DEVICE_KEY and DEVICE_GROUP_KEY
+// values under NewDeviceMetadata. Store these values to use in future device-authentication
+// requests.
+//
+// When you provide a value for any property of DeviceConfiguration, you activate
+// the device remembering for the user pool.
 type DeviceConfigurationType struct {
 	_ struct{} `type:"structure"`
 
-	// When true, device authentication can replace SMS and time-based one-time
-	// password (TOTP) factors for multi-factor authentication (MFA).
+	// When true, a remembered device can sign in with device authentication instead
+	// of SMS and time-based one-time password (TOTP) factors for multi-factor authentication
+	// (MFA).
 	//
-	// Regardless of the value of this field, users that sign in with new devices
-	// that have not been confirmed or remembered must provide a second factor if
-	// your user pool requires MFA.
+	// Whether or not ChallengeRequiredOnNewDevice is true, users who sign in with
+	// devices that have not been confirmed or remembered must still provide a second
+	// factor in a user pool that requires MFA.
 	ChallengeRequiredOnNewDevice *bool `type:"boolean"`
 
-	// When true, Amazon Cognito doesn't remember newly-confirmed devices. Users
-	// who want to authenticate with their device can instead opt in to remembering
-	// their device. To collect a choice from your user, create an input prompt
-	// in your app and return the value that the user chooses in an UpdateDeviceStatus
+	// When true, Amazon Cognito doesn't automatically remember a user's device
+	// when your app sends a ConfirmDevice (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmDevice.html)
+	// API request. In your app, create a prompt for your user to choose whether
+	// they want to remember their device. Return the user's choice in an UpdateDeviceStatus
 	// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateDeviceStatus.html)
 	// API request.
+	//
+	// When DeviceOnlyRememberedOnUserPrompt is false, Amazon Cognito immediately
+	// remembers devices that you register in a ConfirmDevice API request.
 	DeviceOnlyRememberedOnUserPrompt *bool `type:"boolean"`
 }
 
@@ -30644,6 +30673,12 @@ type UpdateUserPoolClientInput struct {
 	// events to Amazon Pinpoint projects within that same Region.
 	AnalyticsConfiguration *AnalyticsConfigurationType `type:"structure"`
 
+	// Amazon Cognito creates a session token for each API request in an authentication
+	// flow. AuthSessionValidity is the duration, in minutes, of that session token.
+	// Your user pool native user must respond to each authentication challenge
+	// before the session expires.
+	AuthSessionValidity *int64 `min:"3" type:"integer"`
+
 	// A list of allowed redirect (callback) URLs for the IdPs.
 	//
 	// A redirect URI must:
@@ -30822,6 +30857,9 @@ func (s *UpdateUserPoolClientInput) Validate() error {
 	if s.AccessTokenValidity != nil && *s.AccessTokenValidity < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("AccessTokenValidity", 1))
 	}
+	if s.AuthSessionValidity != nil && *s.AuthSessionValidity < 3 {
+		invalidParams.Add(request.NewErrParamMinValue("AuthSessionValidity", 3))
+	}
 	if s.ClientId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ClientId"))
 	}
@@ -30882,6 +30920,12 @@ func (s *UpdateUserPoolClientInput) SetAllowedOAuthScopes(v []*string) *UpdateUs
 // SetAnalyticsConfiguration sets the AnalyticsConfiguration field's value.
 func (s *UpdateUserPoolClientInput) SetAnalyticsConfiguration(v *AnalyticsConfigurationType) *UpdateUserPoolClientInput {
 	s.AnalyticsConfiguration = v
+	return s
+}
+
+// SetAuthSessionValidity sets the AuthSessionValidity field's value.
+func (s *UpdateUserPoolClientInput) SetAuthSessionValidity(v int64) *UpdateUserPoolClientInput {
+	s.AuthSessionValidity = &v
 	return s
 }
 
@@ -31174,10 +31218,10 @@ type UpdateUserPoolInput struct {
 	// email invitation and verification messages from your user pool.
 	EmailConfiguration *EmailConfigurationType `type:"structure"`
 
-	// The contents of the email verification message.
+	// This parameter is no longer used. See VerificationMessageTemplateType (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html).
 	EmailVerificationMessage *string `min:"6" type:"string"`
 
-	// The subject of the email verification message.
+	// This parameter is no longer used. See VerificationMessageTemplateType (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html).
 	EmailVerificationSubject *string `min:"1" type:"string"`
 
 	// The Lambda configuration information from the request to update the user
@@ -31211,7 +31255,7 @@ type UpdateUserPoolInput struct {
 	// Services account.
 	SmsConfiguration *SmsConfigurationType `type:"structure"`
 
-	// A container with information about the SMS verification message.
+	// This parameter is no longer used. See VerificationMessageTemplateType (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html).
 	SmsVerificationMessage *string `min:"6" type:"string"`
 
 	// The settings for updates to user attributes. These settings include the property
@@ -32197,6 +32241,12 @@ type UserPoolClientType struct {
 	// Region where the user pool resides.
 	AnalyticsConfiguration *AnalyticsConfigurationType `type:"structure"`
 
+	// Amazon Cognito creates a session token for each API request in an authentication
+	// flow. AuthSessionValidity is the duration, in minutes, of that session token.
+	// Your user pool native user must respond to each authentication challenge
+	// before the session expires.
+	AuthSessionValidity *int64 `min:"3" type:"integer"`
+
 	// A list of allowed redirect (callback) URLs for the IdPs.
 	//
 	// A redirect URI must:
@@ -32414,6 +32464,12 @@ func (s *UserPoolClientType) SetAllowedOAuthScopes(v []*string) *UserPoolClientT
 // SetAnalyticsConfiguration sets the AnalyticsConfiguration field's value.
 func (s *UserPoolClientType) SetAnalyticsConfiguration(v *AnalyticsConfigurationType) *UserPoolClientType {
 	s.AnalyticsConfiguration = v
+	return s
+}
+
+// SetAuthSessionValidity sets the AuthSessionValidity field's value.
+func (s *UserPoolClientType) SetAuthSessionValidity(v int64) *UserPoolClientType {
+	s.AuthSessionValidity = &v
 	return s
 }
 
@@ -32774,10 +32830,10 @@ type UserPoolType struct {
 	// in CloudTrail for information about problems with user pool email configuration.
 	EmailConfigurationFailure *string `type:"string"`
 
-	// The contents of the email verification message.
+	// This parameter is no longer used. See VerificationMessageTemplateType (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html).
 	EmailVerificationMessage *string `min:"6" type:"string"`
 
-	// The subject of the email verification message.
+	// This parameter is no longer used. See VerificationMessageTemplateType (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html).
 	EmailVerificationSubject *string `min:"1" type:"string"`
 
 	// A number estimating the size of the user pool.
@@ -32843,7 +32899,7 @@ type UserPoolType struct {
 	// see Moving out of the SMS sandbox (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox-moving-to-production.html).
 	SmsConfigurationFailure *string `type:"string"`
 
-	// The contents of the SMS verification message.
+	// This parameter is no longer used. See VerificationMessageTemplateType (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html).
 	SmsVerificationMessage *string `min:"6" type:"string"`
 
 	// The status of a user pool.
