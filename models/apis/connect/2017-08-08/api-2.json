@@ -1685,6 +1685,38 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "SearchQueues":{
+      "name":"SearchQueues",
+      "http":{
+        "method":"POST",
+        "requestUri":"/search-queues"
+      },
+      "input":{"shape":"SearchQueuesRequest"},
+      "output":{"shape":"SearchQueuesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "SearchRoutingProfiles":{
+      "name":"SearchRoutingProfiles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/search-routing-profiles"
+      },
+      "input":{"shape":"SearchRoutingProfilesRequest"},
+      "output":{"shape":"SearchRoutingProfilesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "SearchSecurityProfiles":{
       "name":"SearchSecurityProfiles",
       "http":{
@@ -6312,6 +6344,7 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "Long":{"type":"long"},
     "MaxResult10":{
       "type":"integer",
       "max":10,
@@ -6935,6 +6968,29 @@
         "Arn":{"shape":"ARN"}
       }
     },
+    "QueueSearchConditionList":{
+      "type":"list",
+      "member":{"shape":"QueueSearchCriteria"}
+    },
+    "QueueSearchCriteria":{
+      "type":"structure",
+      "members":{
+        "OrConditions":{"shape":"QueueSearchConditionList"},
+        "AndConditions":{"shape":"QueueSearchConditionList"},
+        "StringCondition":{"shape":"StringCondition"},
+        "QueueTypeCondition":{"shape":"SearchableQueueType"}
+      }
+    },
+    "QueueSearchFilter":{
+      "type":"structure",
+      "members":{
+        "TagFilter":{"shape":"ControlPlaneTagFilter"}
+      }
+    },
+    "QueueSearchSummaryList":{
+      "type":"list",
+      "member":{"shape":"Queue"}
+    },
     "QueueStatus":{
       "type":"string",
       "enum":[
@@ -7200,7 +7256,9 @@
         "Description":{"shape":"RoutingProfileDescription"},
         "MediaConcurrencies":{"shape":"MediaConcurrencies"},
         "DefaultOutboundQueueId":{"shape":"QueueId"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "NumberOfAssociatedQueues":{"shape":"Long"},
+        "NumberOfAssociatedUsers":{"shape":"Long"}
       }
     },
     "RoutingProfileDescription":{
@@ -7209,6 +7267,10 @@
       "min":1
     },
     "RoutingProfileId":{"type":"string"},
+    "RoutingProfileList":{
+      "type":"list",
+      "member":{"shape":"RoutingProfile"}
+    },
     "RoutingProfileName":{
       "type":"string",
       "max":127,
@@ -7284,6 +7346,24 @@
         "Arn":{"shape":"ARN"}
       }
     },
+    "RoutingProfileSearchConditionList":{
+      "type":"list",
+      "member":{"shape":"RoutingProfileSearchCriteria"}
+    },
+    "RoutingProfileSearchCriteria":{
+      "type":"structure",
+      "members":{
+        "OrConditions":{"shape":"RoutingProfileSearchConditionList"},
+        "AndConditions":{"shape":"RoutingProfileSearchConditionList"},
+        "StringCondition":{"shape":"StringCondition"}
+      }
+    },
+    "RoutingProfileSearchFilter":{
+      "type":"structure",
+      "members":{
+        "TagFilter":{"shape":"ControlPlaneTagFilter"}
+      }
+    },
     "RoutingProfileSummary":{
       "type":"structure",
       "members":{
@@ -7332,6 +7412,50 @@
       "members":{
         "NextToken":{"shape":"LargeNextToken"},
         "AvailableNumbersList":{"shape":"AvailableNumbersList"}
+      }
+    },
+    "SearchQueuesRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "NextToken":{"shape":"NextToken2500"},
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true
+        },
+        "SearchFilter":{"shape":"QueueSearchFilter"},
+        "SearchCriteria":{"shape":"QueueSearchCriteria"}
+      }
+    },
+    "SearchQueuesResponse":{
+      "type":"structure",
+      "members":{
+        "Queues":{"shape":"QueueSearchSummaryList"},
+        "NextToken":{"shape":"NextToken2500"},
+        "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
+      }
+    },
+    "SearchRoutingProfilesRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "NextToken":{"shape":"NextToken2500"},
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true
+        },
+        "SearchFilter":{"shape":"RoutingProfileSearchFilter"},
+        "SearchCriteria":{"shape":"RoutingProfileSearchCriteria"}
+      }
+    },
+    "SearchRoutingProfilesResponse":{
+      "type":"structure",
+      "members":{
+        "RoutingProfiles":{"shape":"RoutingProfileList"},
+        "NextToken":{"shape":"NextToken2500"},
+        "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
       }
     },
     "SearchSecurityProfilesRequest":{
@@ -7399,6 +7523,10 @@
         "VocabularySummaryList":{"shape":"VocabularySummaryList"},
         "NextToken":{"shape":"VocabularyNextToken"}
       }
+    },
+    "SearchableQueueType":{
+      "type":"string",
+      "enum":["STANDARD"]
     },
     "SecurityKey":{
       "type":"structure",

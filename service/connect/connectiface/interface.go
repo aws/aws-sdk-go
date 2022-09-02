@@ -575,6 +575,20 @@ type ConnectAPI interface {
 	SearchAvailablePhoneNumbersPages(*connect.SearchAvailablePhoneNumbersInput, func(*connect.SearchAvailablePhoneNumbersOutput, bool) bool) error
 	SearchAvailablePhoneNumbersPagesWithContext(aws.Context, *connect.SearchAvailablePhoneNumbersInput, func(*connect.SearchAvailablePhoneNumbersOutput, bool) bool, ...request.Option) error
 
+	SearchQueues(*connect.SearchQueuesInput) (*connect.SearchQueuesOutput, error)
+	SearchQueuesWithContext(aws.Context, *connect.SearchQueuesInput, ...request.Option) (*connect.SearchQueuesOutput, error)
+	SearchQueuesRequest(*connect.SearchQueuesInput) (*request.Request, *connect.SearchQueuesOutput)
+
+	SearchQueuesPages(*connect.SearchQueuesInput, func(*connect.SearchQueuesOutput, bool) bool) error
+	SearchQueuesPagesWithContext(aws.Context, *connect.SearchQueuesInput, func(*connect.SearchQueuesOutput, bool) bool, ...request.Option) error
+
+	SearchRoutingProfiles(*connect.SearchRoutingProfilesInput) (*connect.SearchRoutingProfilesOutput, error)
+	SearchRoutingProfilesWithContext(aws.Context, *connect.SearchRoutingProfilesInput, ...request.Option) (*connect.SearchRoutingProfilesOutput, error)
+	SearchRoutingProfilesRequest(*connect.SearchRoutingProfilesInput) (*request.Request, *connect.SearchRoutingProfilesOutput)
+
+	SearchRoutingProfilesPages(*connect.SearchRoutingProfilesInput, func(*connect.SearchRoutingProfilesOutput, bool) bool) error
+	SearchRoutingProfilesPagesWithContext(aws.Context, *connect.SearchRoutingProfilesInput, func(*connect.SearchRoutingProfilesOutput, bool) bool, ...request.Option) error
+
 	SearchSecurityProfiles(*connect.SearchSecurityProfilesInput) (*connect.SearchSecurityProfilesOutput, error)
 	SearchSecurityProfilesWithContext(aws.Context, *connect.SearchSecurityProfilesInput, ...request.Option) (*connect.SearchSecurityProfilesOutput, error)
 	SearchSecurityProfilesRequest(*connect.SearchSecurityProfilesInput) (*request.Request, *connect.SearchSecurityProfilesOutput)

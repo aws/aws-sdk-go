@@ -194,6 +194,24 @@
       "output_token": "NextToken",
       "result_key": "AvailableNumbersList"
     },
+    "SearchQueues": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "non_aggregate_keys": [
+        "ApproximateTotalCount"
+      ],
+      "output_token": "NextToken",
+      "result_key": "Queues"
+    },
+    "SearchRoutingProfiles": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "non_aggregate_keys": [
+        "ApproximateTotalCount"
+      ],
+      "output_token": "NextToken",
+      "result_key": "RoutingProfiles"
+    },
     "SearchSecurityProfiles": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

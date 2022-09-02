@@ -41,7 +41,7 @@
     "DeleteUserHierarchyGroup": "<p>Deletes an existing user hierarchy group. It must not be associated with any agents or have any active child groups.</p>",
     "DeleteVocabulary": "<p>Deletes the vocabulary that has the given identifier.</p>",
     "DescribeAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes an agent status.</p>",
-    "DescribeContact": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the specified contact. </p> <important> <p>Contact information remains available in Amazon Connect for 24 months, and then it is deleted.</p> </important>",
+    "DescribeContact": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the specified contact. </p> <important> <p>Contact information remains available in Amazon Connect for 24 months, and then it is deleted.</p> <p>Only data from November 12, 2021, and later is returned by this API.</p> </important>",
     "DescribeContactFlow": "<p>Describes the specified flow.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
     "DescribeContactFlowModule": "<p>Describes the specified flow module.</p>",
     "DescribeHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the hours of operation.</p>",
@@ -74,7 +74,7 @@
     "GetTaskTemplate": "<p>Gets details about a specific task template in the specified Amazon Connect instance.</p>",
     "ListAgentStatuses": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Lists agent statuses.</p>",
     "ListApprovedOrigins": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all approved origins associated with the instance.</p>",
-    "ListBots": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>For the specified version of Amazon Lex, returns a paginated list of all the Amazon Lex bots currently associated with the instance. </p>",
+    "ListBots": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>For the specified version of Amazon Lex, returns a paginated list of all the Amazon Lex bots currently associated with the instance. Use this API to returns both Amazon Lex V1 and V2 bots.</p>",
     "ListContactFlowModules": "<p>Provides information about the flow modules for the specified Amazon Connect instance.</p>",
     "ListContactFlows": "<p>Provides information about the flows for the specified Amazon Connect instance.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p> <p>For more information about flows, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html\">Flows</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListContactReferences": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>For the specified <code>referenceTypes</code>, returns a list of references associated with the contact. </p>",
@@ -85,7 +85,7 @@
     "ListInstances": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Return a list of instances which are in active state, creation-in-progress state, and failed state. Instances that aren't successfully created (they are in a failed state) are returned only for 24 hours after the CreateInstance API was invoked.</p>",
     "ListIntegrationAssociations": "<p>Provides summary information about the Amazon Web Services resource associations for the specified Amazon Connect instance.</p>",
     "ListLambdaFunctions": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all Lambda functions that display in the dropdown options in the relevant flow blocks.</p>",
-    "ListLexBots": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all the Amazon Lex bots currently associated with the instance.</p>",
+    "ListLexBots": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all the Amazon Lex V1 bots currently associated with the instance. To return both Amazon Lex V1 and V2 bots, use the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ListBots.html\">ListBots</a> API. </p>",
     "ListPhoneNumbers": "<p>Provides information about the phone numbers for the specified Amazon Connect instance. </p> <p>For more information about phone numbers, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html\">Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListPhoneNumbersV2": "<p>Lists phone numbers claimed to your Amazon Connect instance. </p> <p>For more information about phone numbers, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html\">Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListPrompts": "<p>Provides information about the prompts for the specified Amazon Connect instance.</p>",
@@ -106,6 +106,8 @@
     "ReleasePhoneNumber": "<p>Releases a phone number previously claimed to an Amazon Connect instance.</p>",
     "ResumeContactRecording": "<p>When a contact is being recorded, and the recording has been suspended using SuspendContactRecording, this API resumes recording the call.</p> <p>Only voice recordings are supported at this time.</p>",
     "SearchAvailablePhoneNumbers": "<p>Searches for available phone numbers that you can claim to your Amazon Connect instance.</p>",
+    "SearchQueues": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Searches queues in an Amazon Connect instance, with optional filtering.</p>",
+    "SearchRoutingProfiles": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Searches routing profiles in an Amazon Connect instance, with optional filtering.</p>",
     "SearchSecurityProfiles": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Searches security profiles in an Amazon Connect instance, with optional filtering.</p>",
     "SearchUsers": "<p>Searches users in an Amazon Connect instance, with optional filtering.</p>",
     "SearchVocabularies": "<p>Searches for vocabularies within a specific Amazon Connect instance using <code>State</code>, <code>NameStartsWith</code>, and <code>LanguageCode</code>.</p>",
@@ -390,6 +392,8 @@
     "ApproximateTotalCount": {
       "base": null,
       "refs": {
+        "SearchQueuesResponse$ApproximateTotalCount": "<p>The total number of queues which matched your search query.</p>",
+        "SearchRoutingProfilesResponse$ApproximateTotalCount": "<p>The total number of routing profiles which matched your search query.</p>",
         "SearchSecurityProfilesResponse$ApproximateTotalCount": "<p>The total number of security profiles which matched your search query.</p>",
         "SearchUsersResponse$ApproximateTotalCount": "<p>The total number of users who matched your search query.</p>"
       }
@@ -813,7 +817,7 @@
         "ContactFlow$Name": "<p>The name of the flow.</p>",
         "ContactFlowSummary$Name": "<p>The name of the flow.</p>",
         "CreateContactFlowRequest$Name": "<p>The name of the flow.</p>",
-        "UpdateContactFlowMetadataRequest$Name": "<p>TThe name of the flow.</p>",
+        "UpdateContactFlowMetadataRequest$Name": "<p>The name of the flow.</p>",
         "UpdateContactFlowNameRequest$Name": "<p>The name of the flow.</p>"
       }
     },
@@ -924,6 +928,8 @@
     "ControlPlaneTagFilter": {
       "base": "<p>An object that can be used to specify Tag conditions inside the <code>SearchFilter</code>. This accepts an <code>OR</code> of <code>AND</code> (List of List) input where: </p> <ul> <li> <p>Top level list specifies conditions that need to be applied with <code>OR</code> operator</p> </li> <li> <p>Inner list specifies conditions that need to be applied with <code>AND</code> operator.</p> </li> </ul>",
       "refs": {
+        "QueueSearchFilter$TagFilter": null,
+        "RoutingProfileSearchFilter$TagFilter": null,
         "SecurityProfilesSearchFilter$TagFilter": null,
         "UserSearchFilter$TagFilter": null
       }
@@ -2018,6 +2024,8 @@
         "PutUserStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ResumeContactRecordingRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "RoutingProfile$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "SearchQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "SearchRoutingProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "SearchSecurityProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "SearchUsersRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "SearchVocabulariesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -2591,6 +2599,13 @@
       "refs": {
       }
     },
+    "Long": {
+      "base": null,
+      "refs": {
+        "RoutingProfile$NumberOfAssociatedQueues": "<p>The number of associated queues in routing profile.</p>",
+        "RoutingProfile$NumberOfAssociatedUsers": "<p>The number of associated users in routing profile.</p>"
+      }
+    },
     "MaxResult10": {
       "base": null,
       "refs": {
@@ -2611,6 +2626,8 @@
         "ListRoutingProfileQueuesRequest$MaxResults": "<p>The maximum number of results to return per page. The default MaxResult size is 100.</p>",
         "ListTaskTemplatesRequest$MaxResults": "<p>The maximum number of results to return per page.</p> <important> <p>It is not expected that you set this.</p> </important>",
         "ListUseCasesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "SearchQueuesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "SearchRoutingProfilesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "SearchSecurityProfilesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "SearchUsersRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "SearchVocabulariesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>"
@@ -2776,6 +2793,10 @@
     "NextToken2500": {
       "base": null,
       "refs": {
+        "SearchQueuesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "SearchQueuesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "SearchRoutingProfilesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "SearchRoutingProfilesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "SearchSecurityProfilesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "SearchSecurityProfilesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "SearchUsersRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
@@ -2863,9 +2884,9 @@
     "PermissionsList": {
       "base": null,
       "refs": {
-        "CreateSecurityProfileRequest$Permissions": "<p>Permissions assigned to the security profile.</p>",
-        "ListSecurityProfilePermissionsResponse$Permissions": "<p>The permissions granted to the security profile.</p>",
-        "UpdateSecurityProfileRequest$Permissions": "<p>The permissions granted to a security profile.</p>"
+        "CreateSecurityProfileRequest$Permissions": "<p>Permissions assigned to the security profile. For a list of valid permissions, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html\">List of security profile permissions</a>. </p>",
+        "ListSecurityProfilePermissionsResponse$Permissions": "<p>The permissions granted to the security profile. For a complete list of valid permissions, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html\">List of security profile permissions</a>.</p>",
+        "UpdateSecurityProfileRequest$Permissions": "<p>The permissions granted to a security profile. For a list of valid permissions, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html\">List of security profile permissions</a>.</p>"
       }
     },
     "PhoneNumber": {
@@ -3083,7 +3104,8 @@
     "Queue": {
       "base": "<p>Contains information about a queue.</p>",
       "refs": {
-        "DescribeQueueResponse$Queue": "<p>The name of the queue.</p>"
+        "DescribeQueueResponse$Queue": "<p>The name of the queue.</p>",
+        "QueueSearchSummaryList$member": null
       }
     },
     "QueueDescription": {
@@ -3154,6 +3176,32 @@
       "refs": {
         "AgentContactReference$Queue": null,
         "Dimensions$Queue": "<p>Information about the queue for which metrics are returned.</p>"
+      }
+    },
+    "QueueSearchConditionList": {
+      "base": null,
+      "refs": {
+        "QueueSearchCriteria$OrConditions": "<p>A list of conditions which would be applied together with an OR condition.</p>",
+        "QueueSearchCriteria$AndConditions": "<p>A list of conditions which would be applied together with an AND condition.</p>"
+      }
+    },
+    "QueueSearchCriteria": {
+      "base": "<p>The search criteria to be used to return queues.</p>",
+      "refs": {
+        "QueueSearchConditionList$member": null,
+        "SearchQueuesRequest$SearchCriteria": "<p>The search criteria to be used to return queues.</p>"
+      }
+    },
+    "QueueSearchFilter": {
+      "base": "<p>Filters to be applied to search results.</p>",
+      "refs": {
+        "SearchQueuesRequest$SearchFilter": "<p>Filters to be applied to search results.</p>"
+      }
+    },
+    "QueueSearchSummaryList": {
+      "base": null,
+      "refs": {
+        "SearchQueuesResponse$Queues": "<p>Information about the queues.</p>"
       }
     },
     "QueueStatus": {
@@ -3398,7 +3446,8 @@
     "RoutingProfile": {
       "base": "<p>Contains information about a routing profile.</p>",
       "refs": {
-        "DescribeRoutingProfileResponse$RoutingProfile": "<p>The routing profile.</p>"
+        "DescribeRoutingProfileResponse$RoutingProfile": "<p>The routing profile.</p>",
+        "RoutingProfileList$member": null
       }
     },
     "RoutingProfileDescription": {
@@ -3428,6 +3477,12 @@
         "UpdateUserRoutingProfileRequest$RoutingProfileId": "<p>The identifier of the routing profile for the user.</p>",
         "User$RoutingProfileId": "<p>The identifier of the routing profile for the user.</p>",
         "UserSearchSummary$RoutingProfileId": "<p>The identifier of the user's routing profile.</p>"
+      }
+    },
+    "RoutingProfileList": {
+      "base": null,
+      "refs": {
+        "SearchRoutingProfilesResponse$RoutingProfiles": "<p>Information about the routing profiles.</p>"
       }
     },
     "RoutingProfileName": {
@@ -3484,6 +3539,26 @@
         "UserData$RoutingProfile": "<p>Information about the routing profile that is assigned to the user.</p>"
       }
     },
+    "RoutingProfileSearchConditionList": {
+      "base": null,
+      "refs": {
+        "RoutingProfileSearchCriteria$OrConditions": "<p>A list of conditions which would be applied together with an OR condition.</p>",
+        "RoutingProfileSearchCriteria$AndConditions": "<p>A list of conditions which would be applied together with an AND condition.</p>"
+      }
+    },
+    "RoutingProfileSearchCriteria": {
+      "base": "<p>The search criteria to be used to return routing profiles.</p>",
+      "refs": {
+        "RoutingProfileSearchConditionList$member": null,
+        "SearchRoutingProfilesRequest$SearchCriteria": "<p>The search criteria to be used to return routing profiles.</p>"
+      }
+    },
+    "RoutingProfileSearchFilter": {
+      "base": "<p>Filters to be applied to search results.</p>",
+      "refs": {
+        "SearchRoutingProfilesRequest$SearchFilter": "<p>Filters to be applied to search results.</p>"
+      }
+    },
     "RoutingProfileSummary": {
       "base": "<p>Contains summary information about a routing profile.</p>",
       "refs": {
@@ -3508,6 +3583,26 @@
       }
     },
     "SearchAvailablePhoneNumbersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchQueuesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchQueuesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchRoutingProfilesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchRoutingProfilesResponse": {
       "base": null,
       "refs": {
       }
@@ -3540,6 +3635,12 @@
     "SearchVocabulariesResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "SearchableQueueType": {
+      "base": null,
+      "refs": {
+        "QueueSearchCriteria$QueueTypeCondition": "<p>The type of queue.</p>"
       }
     },
     "SecurityKey": {
@@ -3809,6 +3910,8 @@
     "StringCondition": {
       "base": "<p>A leaf node condition which can be used to specify a string condition, for example, <code>username = 'abc'</code>. </p>",
       "refs": {
+        "QueueSearchCriteria$StringCondition": null,
+        "RoutingProfileSearchCriteria$StringCondition": null,
         "SecurityProfileSearchCriteria$StringCondition": null,
         "UserSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p>"
       }
@@ -4486,7 +4589,7 @@
       }
     },
     "UserSearchCriteria": {
-      "base": "<p>The search criteria to be used to return users.</p>",
+      "base": "<p>The search criteria to be used to return users.</p> <note> <p>The <code>Username</code>, <code>Firstname</code>, and <code>Lastname</code> fields support \"contains\" queries with a minimum of 2 characters and a maximum of 25 characters. Any queries with character lengths outside of this range result in empty results. </p> </note>",
       "refs": {
         "SearchUsersRequest$SearchCriteria": null,
         "UserSearchConditionList$member": null

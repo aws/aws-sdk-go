@@ -3833,6 +3833,8 @@ func (c *Connect) DescribeContactRequest(input *DescribeContactInput) (req *requ
 // Contact information remains available in Amazon Connect for 24 months, and
 // then it is deleted.
 //
+// Only data from November 12, 2021, and later is returned by this API.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7192,7 +7194,8 @@ func (c *Connect) ListBotsRequest(input *ListBotsInput) (req *request.Request, o
 // This API is in preview release for Amazon Connect and is subject to change.
 //
 // For the specified version of Amazon Lex, returns a paginated list of all
-// the Amazon Lex bots currently associated with the instance.
+// the Amazon Lex bots currently associated with the instance. Use this API
+// to returns both Amazon Lex V1 and V2 bots.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8836,8 +8839,10 @@ func (c *Connect) ListLexBotsRequest(input *ListLexBotsInput) (req *request.Requ
 //
 // This API is in preview release for Amazon Connect and is subject to change.
 //
-// Returns a paginated list of all the Amazon Lex bots currently associated
-// with the instance.
+// Returns a paginated list of all the Amazon Lex V1 bots currently associated
+// with the instance. To return both Amazon Lex V1 and V2 bots, use the ListBots
+// (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListBots.html)
+// API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11713,6 +11718,306 @@ func (c *Connect) SearchAvailablePhoneNumbersPagesWithContext(ctx aws.Context, i
 
 	for p.Next() {
 		if !fn(p.Page().(*SearchAvailablePhoneNumbersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opSearchQueues = "SearchQueues"
+
+// SearchQueuesRequest generates a "aws/request.Request" representing the
+// client's request for the SearchQueues operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchQueues for more information on using the SearchQueues
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchQueuesRequest method.
+//	req, resp := client.SearchQueuesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchQueues
+func (c *Connect) SearchQueuesRequest(input *SearchQueuesInput) (req *request.Request, output *SearchQueuesOutput) {
+	op := &request.Operation{
+		Name:       opSearchQueues,
+		HTTPMethod: "POST",
+		HTTPPath:   "/search-queues",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchQueuesInput{}
+	}
+
+	output = &SearchQueuesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchQueues API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Searches queues in an Amazon Connect instance, with optional filtering.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchQueues for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchQueues
+func (c *Connect) SearchQueues(input *SearchQueuesInput) (*SearchQueuesOutput, error) {
+	req, out := c.SearchQueuesRequest(input)
+	return out, req.Send()
+}
+
+// SearchQueuesWithContext is the same as SearchQueues with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchQueues for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchQueuesWithContext(ctx aws.Context, input *SearchQueuesInput, opts ...request.Option) (*SearchQueuesOutput, error) {
+	req, out := c.SearchQueuesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchQueuesPages iterates over the pages of a SearchQueues operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchQueues method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchQueues operation.
+//	pageNum := 0
+//	err := client.SearchQueuesPages(params,
+//	    func(page *connect.SearchQueuesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) SearchQueuesPages(input *SearchQueuesInput, fn func(*SearchQueuesOutput, bool) bool) error {
+	return c.SearchQueuesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchQueuesPagesWithContext same as SearchQueuesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchQueuesPagesWithContext(ctx aws.Context, input *SearchQueuesInput, fn func(*SearchQueuesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchQueuesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchQueuesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchQueuesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opSearchRoutingProfiles = "SearchRoutingProfiles"
+
+// SearchRoutingProfilesRequest generates a "aws/request.Request" representing the
+// client's request for the SearchRoutingProfiles operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchRoutingProfiles for more information on using the SearchRoutingProfiles
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchRoutingProfilesRequest method.
+//	req, resp := client.SearchRoutingProfilesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchRoutingProfiles
+func (c *Connect) SearchRoutingProfilesRequest(input *SearchRoutingProfilesInput) (req *request.Request, output *SearchRoutingProfilesOutput) {
+	op := &request.Operation{
+		Name:       opSearchRoutingProfiles,
+		HTTPMethod: "POST",
+		HTTPPath:   "/search-routing-profiles",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchRoutingProfilesInput{}
+	}
+
+	output = &SearchRoutingProfilesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchRoutingProfiles API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Searches routing profiles in an Amazon Connect instance, with optional filtering.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchRoutingProfiles for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchRoutingProfiles
+func (c *Connect) SearchRoutingProfiles(input *SearchRoutingProfilesInput) (*SearchRoutingProfilesOutput, error) {
+	req, out := c.SearchRoutingProfilesRequest(input)
+	return out, req.Send()
+}
+
+// SearchRoutingProfilesWithContext is the same as SearchRoutingProfiles with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchRoutingProfiles for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchRoutingProfilesWithContext(ctx aws.Context, input *SearchRoutingProfilesInput, opts ...request.Option) (*SearchRoutingProfilesOutput, error) {
+	req, out := c.SearchRoutingProfilesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchRoutingProfilesPages iterates over the pages of a SearchRoutingProfiles operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchRoutingProfiles method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchRoutingProfiles operation.
+//	pageNum := 0
+//	err := client.SearchRoutingProfilesPages(params,
+//	    func(page *connect.SearchRoutingProfilesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) SearchRoutingProfilesPages(input *SearchRoutingProfilesInput, fn func(*SearchRoutingProfilesOutput, bool) bool) error {
+	return c.SearchRoutingProfilesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchRoutingProfilesPagesWithContext same as SearchRoutingProfilesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchRoutingProfilesPagesWithContext(ctx aws.Context, input *SearchRoutingProfilesInput, fn func(*SearchRoutingProfilesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchRoutingProfilesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchRoutingProfilesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchRoutingProfilesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -20660,7 +20965,8 @@ type CreateSecurityProfileInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// Permissions assigned to the security profile.
+	// Permissions assigned to the security profile. For a list of valid permissions,
+	// see List of security profile permissions (https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html).
 	Permissions []*string `type:"list"`
 
 	// The name of the security profile.
@@ -32346,7 +32652,8 @@ type ListSecurityProfilePermissionsOutput struct {
 	// If there are additional results, this is the token for the next set of results.
 	NextToken *string `type:"string"`
 
-	// The permissions granted to the security profile.
+	// The permissions granted to the security profile. For a complete list of valid
+	// permissions, see List of security profile permissions (https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html).
 	Permissions []*string `type:"list"`
 }
 
@@ -34076,6 +34383,104 @@ func (s *QueueReference) SetId(v string) *QueueReference {
 	return s
 }
 
+// The search criteria to be used to return queues.
+type QueueSearchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditions which would be applied together with an AND condition.
+	AndConditions []*QueueSearchCriteria `type:"list"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions []*QueueSearchCriteria `type:"list"`
+
+	// The type of queue.
+	QueueTypeCondition *string `type:"string" enum:"SearchableQueueType"`
+
+	// A leaf node condition which can be used to specify a string condition, for
+	// example, username = 'abc'.
+	StringCondition *StringCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueueSearchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueueSearchCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAndConditions sets the AndConditions field's value.
+func (s *QueueSearchCriteria) SetAndConditions(v []*QueueSearchCriteria) *QueueSearchCriteria {
+	s.AndConditions = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *QueueSearchCriteria) SetOrConditions(v []*QueueSearchCriteria) *QueueSearchCriteria {
+	s.OrConditions = v
+	return s
+}
+
+// SetQueueTypeCondition sets the QueueTypeCondition field's value.
+func (s *QueueSearchCriteria) SetQueueTypeCondition(v string) *QueueSearchCriteria {
+	s.QueueTypeCondition = &v
+	return s
+}
+
+// SetStringCondition sets the StringCondition field's value.
+func (s *QueueSearchCriteria) SetStringCondition(v *StringCondition) *QueueSearchCriteria {
+	s.StringCondition = v
+	return s
+}
+
+// Filters to be applied to search results.
+type QueueSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An object that can be used to specify Tag conditions inside the SearchFilter.
+	// This accepts an OR of AND (List of List) input where:
+	//
+	//    * Top level list specifies conditions that need to be applied with OR
+	//    operator
+	//
+	//    * Inner list specifies conditions that need to be applied with AND operator.
+	TagFilter *ControlPlaneTagFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueueSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueueSearchFilter) GoString() string {
+	return s.String()
+}
+
+// SetTagFilter sets the TagFilter field's value.
+func (s *QueueSearchFilter) SetTagFilter(v *ControlPlaneTagFilter) *QueueSearchFilter {
+	s.TagFilter = v
+	return s
+}
+
 // Contains summary information about a queue.
 type QueueSummary struct {
 	_ struct{} `type:"structure"`
@@ -35015,6 +35420,12 @@ type RoutingProfile struct {
 	// The name of the routing profile.
 	Name *string `min:"1" type:"string"`
 
+	// The number of associated queues in routing profile.
+	NumberOfAssociatedQueues *int64 `type:"long"`
+
+	// The number of associated users in routing profile.
+	NumberOfAssociatedUsers *int64 `type:"long"`
+
 	// The Amazon Resource Name (ARN) of the routing profile.
 	RoutingProfileArn *string `type:"string"`
 
@@ -35071,6 +35482,18 @@ func (s *RoutingProfile) SetMediaConcurrencies(v []*MediaConcurrency) *RoutingPr
 // SetName sets the Name field's value.
 func (s *RoutingProfile) SetName(v string) *RoutingProfile {
 	s.Name = &v
+	return s
+}
+
+// SetNumberOfAssociatedQueues sets the NumberOfAssociatedQueues field's value.
+func (s *RoutingProfile) SetNumberOfAssociatedQueues(v int64) *RoutingProfile {
+	s.NumberOfAssociatedQueues = &v
+	return s
+}
+
+// SetNumberOfAssociatedUsers sets the NumberOfAssociatedUsers field's value.
+func (s *RoutingProfile) SetNumberOfAssociatedUsers(v int64) *RoutingProfile {
+	s.NumberOfAssociatedUsers = &v
 	return s
 }
 
@@ -35376,6 +35799,95 @@ func (s *RoutingProfileReference) SetId(v string) *RoutingProfileReference {
 	return s
 }
 
+// The search criteria to be used to return routing profiles.
+type RoutingProfileSearchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditions which would be applied together with an AND condition.
+	AndConditions []*RoutingProfileSearchCriteria `type:"list"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions []*RoutingProfileSearchCriteria `type:"list"`
+
+	// A leaf node condition which can be used to specify a string condition, for
+	// example, username = 'abc'.
+	StringCondition *StringCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RoutingProfileSearchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RoutingProfileSearchCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAndConditions sets the AndConditions field's value.
+func (s *RoutingProfileSearchCriteria) SetAndConditions(v []*RoutingProfileSearchCriteria) *RoutingProfileSearchCriteria {
+	s.AndConditions = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *RoutingProfileSearchCriteria) SetOrConditions(v []*RoutingProfileSearchCriteria) *RoutingProfileSearchCriteria {
+	s.OrConditions = v
+	return s
+}
+
+// SetStringCondition sets the StringCondition field's value.
+func (s *RoutingProfileSearchCriteria) SetStringCondition(v *StringCondition) *RoutingProfileSearchCriteria {
+	s.StringCondition = v
+	return s
+}
+
+// Filters to be applied to search results.
+type RoutingProfileSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An object that can be used to specify Tag conditions inside the SearchFilter.
+	// This accepts an OR of AND (List of List) input where:
+	//
+	//    * Top level list specifies conditions that need to be applied with OR
+	//    operator
+	//
+	//    * Inner list specifies conditions that need to be applied with AND operator.
+	TagFilter *ControlPlaneTagFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RoutingProfileSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RoutingProfileSearchFilter) GoString() string {
+	return s.String()
+}
+
+// SetTagFilter sets the TagFilter field's value.
+func (s *RoutingProfileSearchFilter) SetTagFilter(v *ControlPlaneTagFilter) *RoutingProfileSearchFilter {
+	s.TagFilter = v
+	return s
+}
+
 // Contains summary information about a routing profile.
 type RoutingProfileSummary struct {
 	_ struct{} `type:"structure"`
@@ -35658,6 +36170,290 @@ func (s *SearchAvailablePhoneNumbersOutput) SetNextToken(v string) *SearchAvaila
 	return s
 }
 
+type SearchQueuesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The search criteria to be used to return queues.
+	SearchCriteria *QueueSearchCriteria `type:"structure"`
+
+	// Filters to be applied to search results.
+	SearchFilter *QueueSearchFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchQueuesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchQueuesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchQueuesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchQueuesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchQueuesInput) SetInstanceId(v string) *SearchQueuesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchQueuesInput) SetMaxResults(v int64) *SearchQueuesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchQueuesInput) SetNextToken(v string) *SearchQueuesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchCriteria sets the SearchCriteria field's value.
+func (s *SearchQueuesInput) SetSearchCriteria(v *QueueSearchCriteria) *SearchQueuesInput {
+	s.SearchCriteria = v
+	return s
+}
+
+// SetSearchFilter sets the SearchFilter field's value.
+func (s *SearchQueuesInput) SetSearchFilter(v *QueueSearchFilter) *SearchQueuesInput {
+	s.SearchFilter = v
+	return s
+}
+
+type SearchQueuesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of queues which matched your search query.
+	ApproximateTotalCount *int64 `type:"long"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Information about the queues.
+	Queues []*Queue `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchQueuesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchQueuesOutput) GoString() string {
+	return s.String()
+}
+
+// SetApproximateTotalCount sets the ApproximateTotalCount field's value.
+func (s *SearchQueuesOutput) SetApproximateTotalCount(v int64) *SearchQueuesOutput {
+	s.ApproximateTotalCount = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchQueuesOutput) SetNextToken(v string) *SearchQueuesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetQueues sets the Queues field's value.
+func (s *SearchQueuesOutput) SetQueues(v []*Queue) *SearchQueuesOutput {
+	s.Queues = v
+	return s
+}
+
+type SearchRoutingProfilesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The search criteria to be used to return routing profiles.
+	SearchCriteria *RoutingProfileSearchCriteria `type:"structure"`
+
+	// Filters to be applied to search results.
+	SearchFilter *RoutingProfileSearchFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchRoutingProfilesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchRoutingProfilesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchRoutingProfilesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchRoutingProfilesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchRoutingProfilesInput) SetInstanceId(v string) *SearchRoutingProfilesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchRoutingProfilesInput) SetMaxResults(v int64) *SearchRoutingProfilesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchRoutingProfilesInput) SetNextToken(v string) *SearchRoutingProfilesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchCriteria sets the SearchCriteria field's value.
+func (s *SearchRoutingProfilesInput) SetSearchCriteria(v *RoutingProfileSearchCriteria) *SearchRoutingProfilesInput {
+	s.SearchCriteria = v
+	return s
+}
+
+// SetSearchFilter sets the SearchFilter field's value.
+func (s *SearchRoutingProfilesInput) SetSearchFilter(v *RoutingProfileSearchFilter) *SearchRoutingProfilesInput {
+	s.SearchFilter = v
+	return s
+}
+
+type SearchRoutingProfilesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of routing profiles which matched your search query.
+	ApproximateTotalCount *int64 `type:"long"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Information about the routing profiles.
+	RoutingProfiles []*RoutingProfile `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchRoutingProfilesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchRoutingProfilesOutput) GoString() string {
+	return s.String()
+}
+
+// SetApproximateTotalCount sets the ApproximateTotalCount field's value.
+func (s *SearchRoutingProfilesOutput) SetApproximateTotalCount(v int64) *SearchRoutingProfilesOutput {
+	s.ApproximateTotalCount = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchRoutingProfilesOutput) SetNextToken(v string) *SearchRoutingProfilesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRoutingProfiles sets the RoutingProfiles field's value.
+func (s *SearchRoutingProfilesOutput) SetRoutingProfiles(v []*RoutingProfile) *SearchRoutingProfilesOutput {
+	s.RoutingProfiles = v
+	return s
+}
+
 type SearchSecurityProfilesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -35815,6 +36611,10 @@ type SearchUsersInput struct {
 	NextToken *string `min:"1" type:"string"`
 
 	// The search criteria to be used to return users.
+	//
+	// The Username, Firstname, and Lastname fields support "contains" queries with
+	// a minimum of 2 characters and a maximum of 25 characters. Any queries with
+	// character lengths outside of this range result in empty results.
 	SearchCriteria *UserSearchCriteria `type:"structure"`
 
 	// Filters to be applied to search results.
@@ -39114,7 +39914,7 @@ type UpdateContactFlowMetadataInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// TThe name of the flow.
+	// The name of the flow.
 	Name *string `min:"1" type:"string"`
 }
 
@@ -41465,7 +42265,8 @@ type UpdateSecurityProfileInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The permissions granted to a security profile.
+	// The permissions granted to a security profile. For a list of valid permissions,
+	// see List of security profile permissions (https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html).
 	Permissions []*string `type:"list"`
 
 	// The identifier for the security profle.
@@ -43287,6 +44088,10 @@ func (s *UserReference) SetId(v string) *UserReference {
 }
 
 // The search criteria to be used to return users.
+//
+// The Username, Firstname, and Lastname fields support "contains" queries with
+// a minimum of 2 characters and a maximum of 25 characters. Any queries with
+// character lengths outside of this range result in empty results.
 type UserSearchCriteria struct {
 	_ struct{} `type:"structure"`
 
@@ -45623,6 +46428,18 @@ func ResourceType_Values() []string {
 		ResourceTypeHierarchyLevel,
 		ResourceTypeHierarchyGroup,
 		ResourceTypeUser,
+	}
+}
+
+const (
+	// SearchableQueueTypeStandard is a SearchableQueueType enum value
+	SearchableQueueTypeStandard = "STANDARD"
+)
+
+// SearchableQueueType_Values returns all elements of the SearchableQueueType enum
+func SearchableQueueType_Values() []string {
+	return []string{
+		SearchableQueueTypeStandard,
 	}
 }
 

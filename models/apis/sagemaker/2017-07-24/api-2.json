@@ -8257,13 +8257,15 @@
       "type":"structure",
       "members":{
         "SecurityGroupIds":{"shape":"DomainSecurityGroupIds"},
-        "RStudioServerProDomainSettings":{"shape":"RStudioServerProDomainSettings"}
+        "RStudioServerProDomainSettings":{"shape":"RStudioServerProDomainSettings"},
+        "ExecutionRoleIdentityConfig":{"shape":"ExecutionRoleIdentityConfig"}
       }
     },
     "DomainSettingsForUpdate":{
       "type":"structure",
       "members":{
-        "RStudioServerProDomainSettingsForUpdate":{"shape":"RStudioServerProDomainSettingsForUpdate"}
+        "RStudioServerProDomainSettingsForUpdate":{"shape":"RStudioServerProDomainSettingsForUpdate"},
+        "ExecutionRoleIdentityConfig":{"shape":"ExecutionRoleIdentityConfig"}
       }
     },
     "DomainStatus":{
@@ -8783,6 +8785,13 @@
       "type":"string",
       "max":1024,
       "pattern":"[\\S\\s]*"
+    },
+    "ExecutionRoleIdentityConfig":{
+      "type":"string",
+      "enum":[
+        "USER_PROFILE_NAME",
+        "DISABLED"
+      ]
     },
     "ExecutionStatus":{
       "type":"string",

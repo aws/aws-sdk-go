@@ -55487,6 +55487,10 @@ func (s *DomainDetails) SetUrl(v string) *DomainDetails {
 type DomainSettings struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration for attaching a SageMaker user profile name to the execution
+	// role as a sts:SourceIdentity key (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html).
+	ExecutionRoleIdentityConfig *string `type:"string" enum:"ExecutionRoleIdentityConfig"`
+
 	// A collection of settings that configure the RStudioServerPro Domain-level
 	// app.
 	RStudioServerProDomainSettings *RStudioServerProDomainSettings `type:"structure"`
@@ -55529,6 +55533,12 @@ func (s *DomainSettings) Validate() error {
 	return nil
 }
 
+// SetExecutionRoleIdentityConfig sets the ExecutionRoleIdentityConfig field's value.
+func (s *DomainSettings) SetExecutionRoleIdentityConfig(v string) *DomainSettings {
+	s.ExecutionRoleIdentityConfig = &v
+	return s
+}
+
 // SetRStudioServerProDomainSettings sets the RStudioServerProDomainSettings field's value.
 func (s *DomainSettings) SetRStudioServerProDomainSettings(v *RStudioServerProDomainSettings) *DomainSettings {
 	s.RStudioServerProDomainSettings = v
@@ -55544,6 +55554,12 @@ func (s *DomainSettings) SetSecurityGroupIds(v []*string) *DomainSettings {
 // A collection of Domain configuration settings to update.
 type DomainSettingsForUpdate struct {
 	_ struct{} `type:"structure"`
+
+	// The configuration for attaching a SageMaker user profile name to the execution
+	// role as a sts:SourceIdentity key (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html).
+	// This configuration can only be modified if there are no apps in the InService
+	// or Pending state.
+	ExecutionRoleIdentityConfig *string `type:"string" enum:"ExecutionRoleIdentityConfig"`
 
 	// A collection of RStudioServerPro Domain-level app settings to update.
 	RStudioServerProDomainSettingsForUpdate *RStudioServerProDomainSettingsForUpdate `type:"structure"`
@@ -55580,6 +55596,12 @@ func (s *DomainSettingsForUpdate) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetExecutionRoleIdentityConfig sets the ExecutionRoleIdentityConfig field's value.
+func (s *DomainSettingsForUpdate) SetExecutionRoleIdentityConfig(v string) *DomainSettingsForUpdate {
+	s.ExecutionRoleIdentityConfig = &v
+	return s
 }
 
 // SetRStudioServerProDomainSettingsForUpdate sets the RStudioServerProDomainSettingsForUpdate field's value.
@@ -99190,6 +99212,22 @@ func EndpointStatus_Values() []string {
 		EndpointStatusInService,
 		EndpointStatusDeleting,
 		EndpointStatusFailed,
+	}
+}
+
+const (
+	// ExecutionRoleIdentityConfigUserProfileName is a ExecutionRoleIdentityConfig enum value
+	ExecutionRoleIdentityConfigUserProfileName = "USER_PROFILE_NAME"
+
+	// ExecutionRoleIdentityConfigDisabled is a ExecutionRoleIdentityConfig enum value
+	ExecutionRoleIdentityConfigDisabled = "DISABLED"
+)
+
+// ExecutionRoleIdentityConfig_Values returns all elements of the ExecutionRoleIdentityConfig enum
+func ExecutionRoleIdentityConfig_Values() []string {
+	return []string{
+		ExecutionRoleIdentityConfigUserProfileName,
+		ExecutionRoleIdentityConfigDisabled,
 	}
 }
 

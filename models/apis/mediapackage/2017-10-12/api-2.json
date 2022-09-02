@@ -721,6 +721,10 @@
           "locationName": "constantInitializationVector",
           "shape": "__string"
         },
+        "EncryptionMethod": {
+          "locationName": "encryptionMethod",
+          "shape": "CmafEncryptionMethod"
+        },
         "KeyRotationIntervalSeconds": {
           "locationName": "keyRotationIntervalSeconds",
           "shape": "__integer"
@@ -734,6 +738,13 @@
         "SpekeKeyProvider"
       ],
       "type": "structure"
+    },
+    "CmafEncryptionMethod": {
+      "enum": [
+        "SAMPLE_AES",
+        "AES_CTR"
+      ],
+      "type": "string"
     },
     "CmafPackage": {
       "members": {

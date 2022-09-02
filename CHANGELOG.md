@@ -1,3 +1,14 @@
+Release v1.44.91 (2022-09-02)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/mediapackage`: Updates service API and documentation
+  * Added support for AES_CTR encryption to CMAF origin endpoints
+* `service/sagemaker`: Updates service API and documentation
+  * This release enables administrators to attribute user activity and API calls from Studio notebooks, Data Wrangler and Canvas to specific users even when users share the same execution IAM role.  ExecutionRoleIdentityConfig at Sagemaker domain level enables this feature.
+
 Release v1.44.90 (2022-09-01)
 ===
 
