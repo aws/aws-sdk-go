@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>The AWS Single Sign-On (SSO) Identity Store service provides a single place to retrieve all of your identities (users and groups). For more information about AWS, see the <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html\">AWS Single Sign-On User Guide</a>.</p>",
+  "service": "<p>The Identity Store service used by AWS IAM Identity Center (successor to AWS Single Sign-On) provides a single place to retrieve all of your identities (users and groups). For more information, see the <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html\">IAM Identity Center User Guide</a>.</p> <pre><code> &lt;note&gt; &lt;p&gt;Although AWS Single Sign-On was renamed, the &lt;code&gt;sso&lt;/code&gt; and &lt;code&gt;identitystore&lt;/code&gt; API namespaces will continue to retain their original name for backward compatibility purposes. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html#renamed&quot;&gt;IAM Identity Center rename&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt; &lt;p&gt;This reference guide describes the identity store operations that you can call programatically and includes detailed information on data types and errors.&lt;/p&gt; </code></pre>",
   "operations": {
     "CreateGroup": "<p>Creates a group within the specified identity store.</p>",
     "CreateGroupMembership": "<p>Creates a relationship between a member and a group. The following identifiers must be specified: <code>GroupId</code>, <code>IdentityStoreId</code>, and <code>MemberId</code>.</p>",
@@ -9,16 +9,16 @@
     "DeleteGroupMembership": "<p>Delete a membership within a group given <code>MembershipId</code>.</p>",
     "DeleteUser": "<p>Deletes a user within an identity store given <code>UserId</code>.</p>",
     "DescribeGroup": "<p>Retrieves the group metadata and attributes from <code>GroupId</code> in an identity store.</p>",
-    "DescribeGroupMembership": "<p>Retrieves membership metadata and attributes from <code>MembershipId</code> in a group.</p>",
+    "DescribeGroupMembership": "<p>Retrieves membership metadata and attributes from <code>MembershipId</code> in an identity store.</p>",
     "DescribeUser": "<p>Retrieves the user metadata and attributes from the <code>UserId</code> in an identity store.</p>",
     "GetGroupId": "<p>Retrieves <code>GroupId</code> in an identity store.</p>",
-    "GetGroupMembershipId": "<p>Retrieves the <code>MembershipId</code> in a group.</p>",
+    "GetGroupMembershipId": "<p>Retrieves the <code>MembershipId</code> in an identity store.</p>",
     "GetUserId": "<p>Retrieves the <code>UserId</code> in an identity store.</p>",
-    "IsMemberInGroups": "<p>Returns if a member exists in specified groups.</p>",
+    "IsMemberInGroups": "<p>Checks the user's membership in all requested groups and returns if the member exists in all queried groups.</p>",
     "ListGroupMemberships": "<p>For the specified group in the specified identity store, returns the list of all <code>GroupMembership</code> objects and returns results in paginated form.</p>",
     "ListGroupMembershipsForMember": "<p>For the specified member in the specified identity store, returns the list of all <code>GroupMembership</code> objects and returns results in paginated form.</p>",
-    "ListGroups": "<p> <i>Filtering for a group by the group <code>DisplayName</code> attribute is deprecated. Instead, use the <code>GetGroupId</code> API action.</i> </p> <p>Lists all groups in the identity store. Returns a paginated list of complete <code>Group</code> objects.</p>",
-    "ListUsers": "<p> <i>Filtering for a user by the <code>UserName</code> attribute is deprecated. Instead, use the <code>GetUserId</code> API action.</i> </p> <p>Lists all users in the identity store. Returns a paginated list of complete <code>User</code> objects.</p>",
+    "ListGroups": "<p>Lists the attribute name and value of the group that you specified in the search. We only support <code>DisplayName</code> as a valid filter attribute path currently, and filter is required. This API returns minimum attributes, including <code>GroupId</code> and group <code>DisplayName</code> in the response.</p>",
+    "ListUsers": "<p>Lists the attribute name and value of the user that you specified in the search. We only support <code>UserName</code> as a valid filter attribute path currently, and filter is required. This API returns minimum attributes, including <code>UserId</code> and <code>UserName</code> in the response.</p>",
     "UpdateGroup": "<p>For the specified group in the specified identity store, updates the group metadata and attributes.</p>",
     "UpdateUser": "<p>For the specified user in the specified identity store, updates the user metadata and attributes.</p>"
   },
@@ -43,10 +43,10 @@
       }
     },
     "AlternateIdentifier": {
-      "base": "<p>A unique identifier for the group value that is not the group's primary identifier. This value can be an identifier from an external identity provider (IdP) that is associated with the group or a unique attribute. For example, a unique <code>GroupDisplayName</code>.</p>",
+      "base": "<p>A unique identifier for a user or group that is not the its primary identifier. This value can be an identifier from an external identity provider (IdP) that is associated with the group or a unique attribute. For example, a unique <code>GroupDisplayName</code>.</p>",
       "refs": {
-        "GetGroupIdRequest$AlternateIdentifier": "<p>A unique identifier for the group value that is not the group's primary identifier. This value can be an identifier from an external identity provider (IdP) that is associated with the group or a unique attribute. For example, a unique <code>GroupDisplayName</code>.</p>",
-        "GetUserIdRequest$AlternateIdentifier": "<p>Any unique attribute associated with a user that is not the <code>UserId</code>.</p>"
+        "GetGroupIdRequest$AlternateIdentifier": "<p>A unique identifier for an identity resource that is not the primary identifier. This value can be an identifier from an external identity provider (IdP) that is associated with the group or a unique attribute. For example, a unique <code>GroupDisplayName</code>.</p>",
+        "GetUserIdRequest$AlternateIdentifier": "<p>A unique identifier for an identity resource that is not the primary identifier.</p>"
       }
     },
     "AttributeOperation": {
@@ -71,10 +71,10 @@
       }
     },
     "AttributeValue": {
-      "base": "<p>The value of the attribute.</p>",
+      "base": "<p>The value of the attribute. This is a <code>Document</code> type. This type is not supported by Java V1, Go V1, and older versions of the AWS CLI.</p>",
       "refs": {
-        "AttributeOperation$AttributeValue": "<p>The value of the attribute.</p>",
-        "UniqueAttribute$AttributeValue": "<p>The value of the attribute.</p>"
+        "AttributeOperation$AttributeValue": "<p>The value of the attribute. This is a <code>Document</code> type. This type is not supported by Java V1, Go V1, and older versions of the AWS CLI.</p>",
+        "UniqueAttribute$AttributeValue": "<p>The value of the attribute. This is a <code>Document</code> type. This type is not supported by Java V1, Go V1, and older versions of the AWS CLI.</p>"
       }
     },
     "ConflictException": {
@@ -241,8 +241,8 @@
     "Filters": {
       "base": null,
       "refs": {
-        "ListGroupsRequest$Filters": "<p>A list of <code>Filter</code> objects that is used in the <code>ListUsers</code> and <code>ListGroups</code> requests.</p>",
-        "ListUsersRequest$Filters": "<p>A list of <code>Filter</code> objects that is used in the <code>ListUsers</code> and <code>ListGroups</code> requests.</p>"
+        "ListGroupsRequest$Filters": "<p>A list of <code>Filter</code> objects, which is used in the <code>ListUsers</code> and <code>ListGroups</code> requests.</p>",
+        "ListUsersRequest$Filters": "<p>A list of <code>Filter</code> objects, which is used in the <code>ListUsers</code> and <code>ListGroups</code> requests. </p>"
       }
     },
     "GetGroupIdRequest": {
@@ -310,7 +310,7 @@
     "GroupMembershipExistenceResults": {
       "base": null,
       "refs": {
-        "IsMemberInGroupsResponse$Results": "<p>An object containing results of batch <code>IsMemberInGroups</code> call.</p>"
+        "IsMemberInGroupsResponse$Results": "<p>A list containing the results of membership existence checks.</p>"
       }
     },
     "GroupMemberships": {
@@ -421,7 +421,7 @@
       "base": null,
       "refs": {
         "ListGroupMembershipsForMemberRequest$MaxResults": "<p>The maximum number of results to be returned per request. This parameter is used in the <code>ListUsers</code> and <code>ListGroups</code> requests to specify how many results to return in one page. The length limit is 50 characters.</p>",
-        "ListGroupMembershipsRequest$MaxResults": "<p>The maximum number of results to be returned per request. This parameter is used in the <code>ListUsers</code> and <code>ListGroups</code> requests to specify how many results to return in one page. The length limit is 50 characters.</p>",
+        "ListGroupMembershipsRequest$MaxResults": "<p>The maximum number of results to be returned per request. This parameter is used in all <code>List</code> requests to specify how many results to return in one page.</p>",
         "ListGroupsRequest$MaxResults": "<p>The maximum number of results to be returned per request. This parameter is used in the <code>ListUsers</code> and <code>ListGroups</code> requests to specify how many results to return in one page. The length limit is 50 characters.</p>",
         "ListUsersRequest$MaxResults": "<p>The maximum number of results to be returned per request. This parameter is used in the <code>ListUsers</code> and <code>ListGroups</code> requests to specify how many results to return in one page. The length limit is 50 characters.</p>"
       }
@@ -439,7 +439,7 @@
       }
     },
     "Name": {
-      "base": "<p>The name of the user.</p>",
+      "base": "<p>The full name of the user.</p>",
       "refs": {
         "CreateUserRequest$Name": "<p>An object containing the user's name.</p>",
         "DescribeUserResponse$Name": "<p>The name of the user.</p>",
@@ -449,10 +449,10 @@
     "NextToken": {
       "base": null,
       "refs": {
-        "ListGroupMembershipsForMemberRequest$NextToken": "<p>The pagination token used for the <code>ListUsers</code>, <code>ListGroups</code> and <code>ListGroupMemberships</code> API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page.</p>",
-        "ListGroupMembershipsForMemberResponse$NextToken": "<p>The pagination token used for the <code>ListUsers</code>, <code>ListGroups</code> and <code>ListGroupMemberships</code> API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page. </p>",
+        "ListGroupMembershipsForMemberRequest$NextToken": "<p>The pagination token used for the <code>ListUsers</code>, <code>ListGroups</code>, and <code>ListGroupMemberships</code> API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page.</p>",
+        "ListGroupMembershipsForMemberResponse$NextToken": "<p>The pagination token used for the <code>ListUsers</code>, <code>ListGroups</code>, and <code>ListGroupMemberships</code> API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page. </p>",
         "ListGroupMembershipsRequest$NextToken": "<p>The pagination token used for the <code>ListUsers</code>, <code>ListGroups</code> and <code>ListGroupMemberships</code> API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page.</p>",
-        "ListGroupMembershipsResponse$NextToken": "<p>The pagination token used for the <code>ListUsers</code>, <code>ListGroups</code> and <code>ListGroupMemberships</code> API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page.</p>",
+        "ListGroupMembershipsResponse$NextToken": "<p>The pagination token used for the <code>ListUsers</code>, <code>ListGroups</code>, and <code>ListGroupMemberships</code> API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page.</p>",
         "ListGroupsRequest$NextToken": "<p>The pagination token used for the <code>ListUsers</code> and <code>ListGroups</code> API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page.</p>",
         "ListGroupsResponse$NextToken": "<p>The pagination token used for the <code>ListUsers</code> and <code>ListGroups</code> API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it1 is used in the API request to search for the next page.</p>",
         "ListUsersRequest$NextToken": "<p>The pagination token used for the <code>ListUsers</code> and <code>ListGroups</code> API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page.</p>",
@@ -489,14 +489,14 @@
       "base": null,
       "refs": {
         "CreateGroupMembershipRequest$GroupId": "<p>The identifier for a group in the identity store.</p>",
-        "CreateGroupMembershipResponse$MembershipId": "<p>The identifier for a <code>GroupMembership</code> in the identity store.</p>",
+        "CreateGroupMembershipResponse$MembershipId": "<p>The identifier for a newly created <code>GroupMembership</code> in an identity store.</p>",
         "CreateGroupResponse$GroupId": "<p>The identifier of the newly created group in the identity store.</p>",
         "CreateUserResponse$UserId": "<p>The identifier of the newly created user in the identity store.</p>",
-        "DeleteGroupMembershipRequest$MembershipId": "<p>The identifier for a <code>GroupMembership</code> in the identity store.</p>",
+        "DeleteGroupMembershipRequest$MembershipId": "<p>The identifier for a <code>GroupMembership</code> in an identity store.</p>",
         "DeleteGroupRequest$GroupId": "<p>The identifier for a group in the identity store.</p>",
         "DeleteUserRequest$UserId": "<p>The identifier for a user in the identity store.</p>",
-        "DescribeGroupMembershipRequest$MembershipId": "<p>The identifier for a <code>GroupMembership</code> in the identity store.</p>",
-        "DescribeGroupMembershipResponse$MembershipId": "<p>The identifier for a <code>GroupMembership</code> in the identity store.</p>",
+        "DescribeGroupMembershipRequest$MembershipId": "<p>The identifier for a <code>GroupMembership</code> in an identity store.</p>",
+        "DescribeGroupMembershipResponse$MembershipId": "<p>The identifier for a <code>GroupMembership</code> in an identity store.</p>",
         "DescribeGroupMembershipResponse$GroupId": "<p>The identifier for a group in the identity store.</p>",
         "DescribeGroupRequest$GroupId": "<p>The identifier for a group in the identity store.</p>",
         "DescribeGroupResponse$GroupId": "<p>The identifier for a group in the identity store.</p>",
@@ -504,11 +504,11 @@
         "DescribeUserResponse$UserId": "<p>The identifier for a user in the identity store.</p>",
         "GetGroupIdResponse$GroupId": "<p>The identifier for a group in the identity store.</p>",
         "GetGroupMembershipIdRequest$GroupId": "<p>The identifier for a group in the identity store.</p>",
-        "GetGroupMembershipIdResponse$MembershipId": "<p>The identifier for a <code>GroupMembership</code> in the identity store.</p>",
+        "GetGroupMembershipIdResponse$MembershipId": "<p>The identifier for a <code>GroupMembership</code> in an identity store.</p>",
         "GetUserIdResponse$UserId": "<p>The identifier for a user in the identity store.</p>",
         "Group$GroupId": "<p>The identifier for a group in the identity store.</p>",
         "GroupIds$member": null,
-        "GroupMembership$MembershipId": "<p>The identifier for a <code>GroupMembership</code> object in the identity store.</p>",
+        "GroupMembership$MembershipId": "<p>The identifier for a <code>GroupMembership</code> object in an identity store.</p>",
         "GroupMembership$GroupId": "<p>The identifier for a group in the identity store.</p>",
         "GroupMembershipExistenceResult$GroupId": "<p>The identifier for a group in the identity store.</p>",
         "ListGroupMembershipsRequest$GroupId": "<p>The identifier for a group in the identity store.</p>",
@@ -540,10 +540,10 @@
     "SensitiveBooleanType": {
       "base": null,
       "refs": {
-        "Address$Primary": "<p>A boolean representing whether this is the primary address for the associated resource.</p>",
-        "Email$Primary": "<p>A boolean representing whether this is the primary email for the associated resource.</p>",
+        "Address$Primary": "<p>A Boolean value representing whether this is the primary address for the associated resource.</p>",
+        "Email$Primary": "<p>A Boolean value representing whether this is the primary email address for the associated resource.</p>",
         "GroupMembershipExistenceResult$MembershipExists": "<p>Indicates whether a membership relation exists or not.</p>",
-        "PhoneNumber$Primary": "<p>A boolean representing whether this is the primary phone number for the associated resource.</p>"
+        "PhoneNumber$Primary": "<p>A Boolean value representing whether this is the primary phone number for the associated resource.</p>"
       }
     },
     "SensitiveStringType": {
@@ -590,7 +590,7 @@
         "User$NickName": "<p>A string containing an alternate name for the user.</p>",
         "User$ProfileUrl": "<p>A string containing a URL that may be associated with the user.</p>",
         "User$UserType": "<p>A string indicating the user's type. Possible values depend on each customer's specific needs, so they are left unspecified.</p>",
-        "User$Title": "<p>A string containing the user's title. Possible values depend on each customer's specific needs, so they are left unspecified</p>",
+        "User$Title": "<p>A string containing the user's title. Possible values depend on each customer's specific needs, so they are left unspecified.</p>",
         "User$PreferredLanguage": "<p>A string containing the preferred language of the user. For example, \"American English\" or \"en-us.\"</p>",
         "User$Locale": "<p>A string containing the user's geographical region or location.</p>",
         "User$Timezone": "<p>A string containing the user's time zone.</p>"
@@ -641,9 +641,9 @@
     "UserName": {
       "base": null,
       "refs": {
-        "CreateUserRequest$UserName": "<p>A unique string used to identify the user. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers, and punctuation. The characters &lt;&gt;;:% are excluded. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store.</p>",
-        "DescribeUserResponse$UserName": "<p>The user’s username value. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers, and punctuation. The characters <code>&lt;&gt;;:%</code> are excluded. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store.</p>",
-        "User$UserName": "<p>The user’s user name value. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers, and punctuation. The characters <code>&lt;&gt;;:%</code> are excluded. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store.</p>"
+        "CreateUserRequest$UserName": "<p>A unique string used to identify the user. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers, and punctuation. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store.</p>",
+        "DescribeUserResponse$UserName": "<p>A unique string used to identify the user. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers, and punctuation. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store.</p>",
+        "User$UserName": "<p>A unique string used to identify the user. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers, and punctuation. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store.</p>"
       }
     },
     "Users": {

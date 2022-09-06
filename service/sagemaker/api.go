@@ -62192,6 +62192,193 @@ func (s *HyperParameterTuningJobObjective) SetType(v string) *HyperParameterTuni
 	return s
 }
 
+// An entity having characteristics over which a user can search for a hyperparameter
+// tuning job.
+type HyperParameterTuningJobSearchEntity struct {
+	_ struct{} `type:"structure"`
+
+	// The container for the summary information about a training job.
+	BestTrainingJob *HyperParameterTrainingJobSummary `type:"structure"`
+
+	// The time that a hyperparameter tuning job was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The error that was created when a hyperparameter tuning job failed.
+	FailureReason *string `type:"string"`
+
+	// The time that a hyperparameter tuning job ended.
+	HyperParameterTuningEndTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of a hyperparameter tuning job.
+	HyperParameterTuningJobArn *string `type:"string"`
+
+	// Configures a hyperparameter tuning job.
+	HyperParameterTuningJobConfig *HyperParameterTuningJobConfig `type:"structure"`
+
+	// The name of a hyperparameter tuning job.
+	HyperParameterTuningJobName *string `min:"1" type:"string"`
+
+	// The status of a hyperparameter tuning job.
+	HyperParameterTuningJobStatus *string `type:"string" enum:"HyperParameterTuningJobStatus"`
+
+	// The time that a hyperparameter tuning job was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// Specifies the number of training jobs that this hyperparameter tuning job
+	// launched, categorized by the status of their objective metric. The objective
+	// metric status shows whether the final objective metric for the training job
+	// has been evaluated by the tuning job and used in the hyperparameter tuning
+	// process.
+	ObjectiveStatusCounters *ObjectiveStatusCounters `type:"structure"`
+
+	// The container for the summary information about a training job.
+	OverallBestTrainingJob *HyperParameterTrainingJobSummary `type:"structure"`
+
+	// The tags associated with a hyperparameter tuning job. For more information
+	// see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	Tags []*Tag `type:"list"`
+
+	// Defines the training jobs launched by a hyperparameter tuning job.
+	TrainingJobDefinition *HyperParameterTrainingJobDefinition `type:"structure"`
+
+	// The job definitions included in a hyperparameter tuning job.
+	TrainingJobDefinitions []*HyperParameterTrainingJobDefinition `min:"1" type:"list"`
+
+	// The numbers of training jobs launched by a hyperparameter tuning job, categorized
+	// by status.
+	TrainingJobStatusCounters *TrainingJobStatusCounters `type:"structure"`
+
+	// Specifies the configuration for a hyperparameter tuning job that uses one
+	// or more previous hyperparameter tuning jobs as a starting point. The results
+	// of previous tuning jobs are used to inform which combinations of hyperparameters
+	// to search over in the new tuning job.
+	//
+	// All training jobs launched by the new hyperparameter tuning job are evaluated
+	// by using the objective metric, and the training job that performs the best
+	// is compared to the best training jobs from the parent tuning jobs. From these,
+	// the training job that performs the best as measured by the objective metric
+	// is returned as the overall best training job.
+	//
+	// All training jobs launched by parent hyperparameter tuning jobs and the new
+	// hyperparameter tuning jobs count against the limit of training jobs for the
+	// tuning job.
+	WarmStartConfig *HyperParameterTuningJobWarmStartConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HyperParameterTuningJobSearchEntity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HyperParameterTuningJobSearchEntity) GoString() string {
+	return s.String()
+}
+
+// SetBestTrainingJob sets the BestTrainingJob field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetBestTrainingJob(v *HyperParameterTrainingJobSummary) *HyperParameterTuningJobSearchEntity {
+	s.BestTrainingJob = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetCreationTime(v time.Time) *HyperParameterTuningJobSearchEntity {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetFailureReason(v string) *HyperParameterTuningJobSearchEntity {
+	s.FailureReason = &v
+	return s
+}
+
+// SetHyperParameterTuningEndTime sets the HyperParameterTuningEndTime field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetHyperParameterTuningEndTime(v time.Time) *HyperParameterTuningJobSearchEntity {
+	s.HyperParameterTuningEndTime = &v
+	return s
+}
+
+// SetHyperParameterTuningJobArn sets the HyperParameterTuningJobArn field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetHyperParameterTuningJobArn(v string) *HyperParameterTuningJobSearchEntity {
+	s.HyperParameterTuningJobArn = &v
+	return s
+}
+
+// SetHyperParameterTuningJobConfig sets the HyperParameterTuningJobConfig field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetHyperParameterTuningJobConfig(v *HyperParameterTuningJobConfig) *HyperParameterTuningJobSearchEntity {
+	s.HyperParameterTuningJobConfig = v
+	return s
+}
+
+// SetHyperParameterTuningJobName sets the HyperParameterTuningJobName field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetHyperParameterTuningJobName(v string) *HyperParameterTuningJobSearchEntity {
+	s.HyperParameterTuningJobName = &v
+	return s
+}
+
+// SetHyperParameterTuningJobStatus sets the HyperParameterTuningJobStatus field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetHyperParameterTuningJobStatus(v string) *HyperParameterTuningJobSearchEntity {
+	s.HyperParameterTuningJobStatus = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetLastModifiedTime(v time.Time) *HyperParameterTuningJobSearchEntity {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetObjectiveStatusCounters sets the ObjectiveStatusCounters field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetObjectiveStatusCounters(v *ObjectiveStatusCounters) *HyperParameterTuningJobSearchEntity {
+	s.ObjectiveStatusCounters = v
+	return s
+}
+
+// SetOverallBestTrainingJob sets the OverallBestTrainingJob field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetOverallBestTrainingJob(v *HyperParameterTrainingJobSummary) *HyperParameterTuningJobSearchEntity {
+	s.OverallBestTrainingJob = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetTags(v []*Tag) *HyperParameterTuningJobSearchEntity {
+	s.Tags = v
+	return s
+}
+
+// SetTrainingJobDefinition sets the TrainingJobDefinition field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetTrainingJobDefinition(v *HyperParameterTrainingJobDefinition) *HyperParameterTuningJobSearchEntity {
+	s.TrainingJobDefinition = v
+	return s
+}
+
+// SetTrainingJobDefinitions sets the TrainingJobDefinitions field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetTrainingJobDefinitions(v []*HyperParameterTrainingJobDefinition) *HyperParameterTuningJobSearchEntity {
+	s.TrainingJobDefinitions = v
+	return s
+}
+
+// SetTrainingJobStatusCounters sets the TrainingJobStatusCounters field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetTrainingJobStatusCounters(v *TrainingJobStatusCounters) *HyperParameterTuningJobSearchEntity {
+	s.TrainingJobStatusCounters = v
+	return s
+}
+
+// SetWarmStartConfig sets the WarmStartConfig field's value.
+func (s *HyperParameterTuningJobSearchEntity) SetWarmStartConfig(v *HyperParameterTuningJobWarmStartConfig) *HyperParameterTuningJobSearchEntity {
+	s.WarmStartConfig = v
+	return s
+}
+
 // Provides summary information about a hyperparameter tuning job.
 type HyperParameterTuningJobSummary struct {
 	_ struct{} `type:"structure"`
@@ -87170,6 +87357,9 @@ type SearchRecord struct {
 	// The feature metadata used to search through the features.
 	FeatureMetadata *FeatureMetadata `type:"structure"`
 
+	// The properties of a hyperparameter tuning job.
+	HyperParameterTuningJob *HyperParameterTuningJobSearchEntity `type:"structure"`
+
 	// A versioned model that can be deployed for SageMaker inference.
 	ModelPackage *ModelPackage `type:"structure"`
 
@@ -87234,6 +87424,12 @@ func (s *SearchRecord) SetFeatureGroup(v *FeatureGroup) *SearchRecord {
 // SetFeatureMetadata sets the FeatureMetadata field's value.
 func (s *SearchRecord) SetFeatureMetadata(v *FeatureMetadata) *SearchRecord {
 	s.FeatureMetadata = v
+	return s
+}
+
+// SetHyperParameterTuningJob sets the HyperParameterTuningJob field's value.
+func (s *SearchRecord) SetHyperParameterTuningJob(v *HyperParameterTuningJobSearchEntity) *SearchRecord {
+	s.HyperParameterTuningJob = v
 	return s
 }
 
@@ -101931,6 +102127,9 @@ const (
 
 	// ResourceTypeFeatureMetadata is a ResourceType enum value
 	ResourceTypeFeatureMetadata = "FeatureMetadata"
+
+	// ResourceTypeHyperParameterTuningJob is a ResourceType enum value
+	ResourceTypeHyperParameterTuningJob = "HyperParameterTuningJob"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -101948,6 +102147,7 @@ func ResourceType_Values() []string {
 		ResourceTypeFeatureGroup,
 		ResourceTypeProject,
 		ResourceTypeFeatureMetadata,
+		ResourceTypeHyperParameterTuningJob,
 	}
 }
 

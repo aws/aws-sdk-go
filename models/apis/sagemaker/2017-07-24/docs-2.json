@@ -4487,6 +4487,7 @@
         "FeatureGroup$FailureReason": "<p>The reason that the <code>FeatureGroup</code> failed to be replicated in the <code>OfflineStore</code>. This is failure may be due to a failure to create a <code>FeatureGroup</code> in or delete a <code>FeatureGroup</code> from the <code>OfflineStore</code>.</p>",
         "FlowDefinitionSummary$FailureReason": "<p>The reason why the flow definition creation failed. A failure reason is returned only when the flow definition status is <code>Failed</code>.</p>",
         "HyperParameterTrainingJobSummary$FailureReason": "<p>The reason that the training job failed. </p>",
+        "HyperParameterTuningJobSearchEntity$FailureReason": "<p>The error that was created when a hyperparameter tuning job failed.</p>",
         "Image$FailureReason": "<p>When a create, update, or delete operation fails, the reason for the failure.</p>",
         "ImageVersion$FailureReason": "<p>When a create or delete operation fails, the reason for the failure.</p>",
         "InferenceRecommendationsJob$FailureReason": "<p>If the job fails, provides information why the job failed.</p>",
@@ -5076,7 +5077,8 @@
       "refs": {
         "CreateHyperParameterTuningJobRequest$TrainingJobDefinition": "<p>The <a>HyperParameterTrainingJobDefinition</a> object that describes the training jobs that this tuning job launches, including static hyperparameters, input data configuration, output data configuration, resource configuration, and stopping condition.</p>",
         "DescribeHyperParameterTuningJobResponse$TrainingJobDefinition": "<p>The <a>HyperParameterTrainingJobDefinition</a> object that specifies the definition of the training jobs that this tuning job launches.</p>",
-        "HyperParameterTrainingJobDefinitions$member": null
+        "HyperParameterTrainingJobDefinitions$member": null,
+        "HyperParameterTuningJobSearchEntity$TrainingJobDefinition": null
       }
     },
     "HyperParameterTrainingJobDefinitionName": {
@@ -5090,7 +5092,8 @@
       "base": null,
       "refs": {
         "CreateHyperParameterTuningJobRequest$TrainingJobDefinitions": "<p>A list of the <a>HyperParameterTrainingJobDefinition</a> objects launched for this tuning job.</p>",
-        "DescribeHyperParameterTuningJobResponse$TrainingJobDefinitions": "<p>A list of the <a>HyperParameterTrainingJobDefinition</a> objects launched for this tuning job.</p>"
+        "DescribeHyperParameterTuningJobResponse$TrainingJobDefinitions": "<p>A list of the <a>HyperParameterTrainingJobDefinition</a> objects launched for this tuning job.</p>",
+        "HyperParameterTuningJobSearchEntity$TrainingJobDefinitions": "<p>The job definitions included in a hyperparameter tuning job.</p>"
       }
     },
     "HyperParameterTrainingJobSummaries": {
@@ -5104,7 +5107,9 @@
       "refs": {
         "DescribeHyperParameterTuningJobResponse$BestTrainingJob": "<p>A <a>TrainingJobSummary</a> object that describes the training job that completed with the best current <a>HyperParameterTuningJobObjective</a>.</p>",
         "DescribeHyperParameterTuningJobResponse$OverallBestTrainingJob": "<p>If the hyperparameter tuning job is an warm start tuning job with a <code>WarmStartType</code> of <code>IDENTICAL_DATA_AND_ALGORITHM</code>, this is the <a>TrainingJobSummary</a> for the training job with the best objective metric value of all training jobs launched by this tuning job and all parent jobs specified for the warm start tuning job.</p>",
-        "HyperParameterTrainingJobSummaries$member": null
+        "HyperParameterTrainingJobSummaries$member": null,
+        "HyperParameterTuningJobSearchEntity$BestTrainingJob": null,
+        "HyperParameterTuningJobSearchEntity$OverallBestTrainingJob": null
       }
     },
     "HyperParameterTuningAllocationStrategy": {
@@ -5131,6 +5136,7 @@
         "CreateHyperParameterTuningJobResponse$HyperParameterTuningJobArn": "<p>The Amazon Resource Name (ARN) of the tuning job. SageMaker assigns an ARN to a hyperparameter tuning job when you create it.</p>",
         "DescribeHyperParameterTuningJobResponse$HyperParameterTuningJobArn": "<p>The Amazon Resource Name (ARN) of the tuning job.</p>",
         "DescribeTrainingJobResponse$TuningJobArn": "<p>The Amazon Resource Name (ARN) of the associated hyperparameter tuning job if the training job was launched by a hyperparameter tuning job.</p>",
+        "HyperParameterTuningJobSearchEntity$HyperParameterTuningJobArn": "<p>The Amazon Resource Name (ARN) of a hyperparameter tuning job.</p>",
         "HyperParameterTuningJobSummary$HyperParameterTuningJobArn": "<p>The Amazon Resource Name (ARN) of the tuning job.</p>",
         "TrainingJob$TuningJobArn": "<p>The Amazon Resource Name (ARN) of the associated hyperparameter tuning job if the training job was launched by a hyperparameter tuning job.</p>",
         "TuningJobStepMetaData$Arn": "<p>The Amazon Resource Name (ARN) of the tuning job that was run by this step execution.</p>"
@@ -5140,7 +5146,8 @@
       "base": "<p>Configures a hyperparameter tuning job.</p>",
       "refs": {
         "CreateHyperParameterTuningJobRequest$HyperParameterTuningJobConfig": "<p>The <a>HyperParameterTuningJobConfig</a> object that describes the tuning job, including the search strategy, the objective metric used to evaluate training jobs, ranges of parameters to search, and resource limits for the tuning job. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-how-it-works.html\">How Hyperparameter Tuning Works</a>.</p>",
-        "DescribeHyperParameterTuningJobResponse$HyperParameterTuningJobConfig": "<p>The <a>HyperParameterTuningJobConfig</a> object that specifies the configuration of the tuning job.</p>"
+        "DescribeHyperParameterTuningJobResponse$HyperParameterTuningJobConfig": "<p>The <a>HyperParameterTuningJobConfig</a> object that specifies the configuration of the tuning job.</p>",
+        "HyperParameterTuningJobSearchEntity$HyperParameterTuningJobConfig": null
       }
     },
     "HyperParameterTuningJobName": {
@@ -5150,6 +5157,7 @@
         "DescribeHyperParameterTuningJobRequest$HyperParameterTuningJobName": "<p>The name of the tuning job.</p>",
         "DescribeHyperParameterTuningJobResponse$HyperParameterTuningJobName": "<p>The name of the tuning job.</p>",
         "HyperParameterTrainingJobSummary$TuningJobName": "<p>The HyperParameter tuning job that launched the training job.</p>",
+        "HyperParameterTuningJobSearchEntity$HyperParameterTuningJobName": "<p>The name of a hyperparameter tuning job.</p>",
         "HyperParameterTuningJobSummary$HyperParameterTuningJobName": "<p>The name of the tuning job.</p>",
         "ListTrainingJobsForHyperParameterTuningJobRequest$HyperParameterTuningJobName": "<p>The name of the tuning job whose training jobs you want to list.</p>",
         "ParentHyperParameterTuningJob$HyperParameterTuningJobName": "<p>The name of the hyperparameter tuning job to be used as a starting point for a new hyperparameter tuning job.</p>",
@@ -5177,6 +5185,12 @@
         "TrainingSpecification$SupportedTuningJobObjectiveMetrics": "<p>A list of the metrics that the algorithm emits that can be used as the objective metric in a hyperparameter tuning job.</p>"
       }
     },
+    "HyperParameterTuningJobSearchEntity": {
+      "base": "<p>An entity having characteristics over which a user can search for a hyperparameter tuning job.</p>",
+      "refs": {
+        "SearchRecord$HyperParameterTuningJob": "<p>The properties of a hyperparameter tuning job.</p>"
+      }
+    },
     "HyperParameterTuningJobSortByOptions": {
       "base": null,
       "refs": {
@@ -5187,6 +5201,7 @@
       "base": null,
       "refs": {
         "DescribeHyperParameterTuningJobResponse$HyperParameterTuningJobStatus": "<p>The status of the tuning job: InProgress, Completed, Failed, Stopping, or Stopped.</p>",
+        "HyperParameterTuningJobSearchEntity$HyperParameterTuningJobStatus": "<p>The status of a hyperparameter tuning job.</p>",
         "HyperParameterTuningJobSummary$HyperParameterTuningJobStatus": "<p>The status of the tuning job.</p>",
         "ListHyperParameterTuningJobsRequest$StatusEquals": "<p>A filter that returns only tuning jobs with the specified status.</p>"
       }
@@ -5214,7 +5229,8 @@
       "base": "<p>Specifies the configuration for a hyperparameter tuning job that uses one or more previous hyperparameter tuning jobs as a starting point. The results of previous tuning jobs are used to inform which combinations of hyperparameters to search over in the new tuning job.</p> <p>All training jobs launched by the new hyperparameter tuning job are evaluated by using the objective metric, and the training job that performs the best is compared to the best training jobs from the parent tuning jobs. From these, the training job that performs the best as measured by the objective metric is returned as the overall best training job.</p> <note> <p>All training jobs launched by parent hyperparameter tuning jobs and the new hyperparameter tuning jobs count against the limit of training jobs for the tuning job.</p> </note>",
       "refs": {
         "CreateHyperParameterTuningJobRequest$WarmStartConfig": "<p>Specifies the configuration for starting the hyperparameter tuning job using one or more previous tuning jobs as a starting point. The results of previous tuning jobs are used to inform which combinations of hyperparameters to search over in the new tuning job.</p> <p>All training jobs launched by the new hyperparameter tuning job are evaluated by using the objective metric. If you specify <code>IDENTICAL_DATA_AND_ALGORITHM</code> as the <code>WarmStartType</code> value for the warm start configuration, the training job that performs the best in the new tuning job is compared to the best training jobs from the parent tuning jobs. From these, the training job that performs the best as measured by the objective metric is returned as the overall best training job.</p> <note> <p>All training jobs launched by parent hyperparameter tuning jobs and the new hyperparameter tuning jobs count against the limit of training jobs for the tuning job.</p> </note>",
-        "DescribeHyperParameterTuningJobResponse$WarmStartConfig": "<p>The configuration for starting the hyperparameter parameter tuning job using one or more previous tuning jobs as a starting point. The results of previous tuning jobs are used to inform which combinations of hyperparameters to search over in the new tuning job.</p>"
+        "DescribeHyperParameterTuningJobResponse$WarmStartConfig": "<p>The configuration for starting the hyperparameter parameter tuning job using one or more previous tuning jobs as a starting point. The results of previous tuning jobs are used to inform which combinations of hyperparameters to search over in the new tuning job.</p>",
+        "HyperParameterTuningJobSearchEntity$WarmStartConfig": null
       }
     },
     "HyperParameterTuningJobWarmStartType": {
@@ -8251,6 +8267,7 @@
       "base": "<p>Specifies the number of training jobs that this hyperparameter tuning job launched, categorized by the status of their objective metric. The objective metric status shows whether the final objective metric for the training job has been evaluated by the tuning job and used in the hyperparameter tuning process.</p>",
       "refs": {
         "DescribeHyperParameterTuningJobResponse$ObjectiveStatusCounters": "<p>The <a>ObjectiveStatusCounters</a> object that specifies the number of training jobs, categorized by the status of their final objective metric, that this tuning job launched.</p>",
+        "HyperParameterTuningJobSearchEntity$ObjectiveStatusCounters": null,
         "HyperParameterTuningJobSummary$ObjectiveStatusCounters": "<p>The <a>ObjectiveStatusCounters</a> object that specifies the numbers of training jobs, categorized by objective metric status, that this tuning job launched.</p>"
       }
     },
@@ -10811,6 +10828,7 @@
         "Endpoint$Tags": "<p>A list of the tags associated with the endpoint. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging Amazon Web Services resources</a> in the <i>Amazon Web Services General Reference Guide</i>.</p>",
         "Experiment$Tags": "<p>The list of tags that are associated with the experiment. You can use <a>Search</a> API to search on the tags.</p>",
         "FeatureGroup$Tags": "<p>Tags used to define a <code>FeatureGroup</code>.</p>",
+        "HyperParameterTuningJobSearchEntity$Tags": "<p>The tags associated with a hyperparameter tuning job. For more information see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging Amazon Web Services resources</a>.</p>",
         "ListTagsOutput$Tags": "<p>An array of <code>Tag</code> objects, each with a tag key and a value.</p>",
         "ModelPackage$Tags": "<p>A list of the tags associated with the model package. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging Amazon Web Services resources</a> in the <i>Amazon Web Services General Reference Guide</i>.</p>",
         "ModelPackageGroup$Tags": "<p>A list of the tags associated with the model group. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging Amazon Web Services resources</a> in the <i>Amazon Web Services General Reference Guide</i>.</p>",
@@ -11111,6 +11129,9 @@
         "HyperParameterTrainingJobSummary$CreationTime": "<p>The date and time that the training job was created.</p>",
         "HyperParameterTrainingJobSummary$TrainingStartTime": "<p>The date and time that the training job started.</p>",
         "HyperParameterTrainingJobSummary$TrainingEndTime": "<p>Specifies the time when the training job ends on training instances. You are billed for the time interval between the value of <code>TrainingStartTime</code> and this time. For successful jobs and stopped jobs, this is the time after model artifacts are uploaded. For failed jobs, this is the time when SageMaker detects a job failure.</p>",
+        "HyperParameterTuningJobSearchEntity$CreationTime": "<p>The time that a hyperparameter tuning job was created.</p>",
+        "HyperParameterTuningJobSearchEntity$HyperParameterTuningEndTime": "<p>The time that a hyperparameter tuning job ended.</p>",
+        "HyperParameterTuningJobSearchEntity$LastModifiedTime": "<p>The time that a hyperparameter tuning job was last modified.</p>",
         "HyperParameterTuningJobSummary$CreationTime": "<p>The date and time that the tuning job was created.</p>",
         "HyperParameterTuningJobSummary$HyperParameterTuningEndTime": "<p>The date and time that the tuning job ended.</p>",
         "HyperParameterTuningJobSummary$LastModifiedTime": "<p>The date and time that the tuning job was modified.</p>",
@@ -11473,6 +11494,7 @@
       "base": "<p>The numbers of training jobs launched by a hyperparameter tuning job, categorized by status.</p>",
       "refs": {
         "DescribeHyperParameterTuningJobResponse$TrainingJobStatusCounters": "<p>The <a>TrainingJobStatusCounters</a> object that specifies the number of training jobs, categorized by status, that this tuning job launched.</p>",
+        "HyperParameterTuningJobSearchEntity$TrainingJobStatusCounters": null,
         "HyperParameterTuningJobSummary$TrainingJobStatusCounters": "<p>The <a>TrainingJobStatusCounters</a> object that specifies the numbers of training jobs, categorized by status, that this tuning job launched.</p>"
       }
     },

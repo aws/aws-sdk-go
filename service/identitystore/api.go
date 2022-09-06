@@ -776,7 +776,8 @@ func (c *IdentityStore) DescribeGroupMembershipRequest(input *DescribeGroupMembe
 
 // DescribeGroupMembership API operation for AWS SSO Identity Store.
 //
-// Retrieves membership metadata and attributes from MembershipId in a group.
+// Retrieves membership metadata and attributes from MembershipId in an identity
+// store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1056,7 +1057,7 @@ func (c *IdentityStore) GetGroupMembershipIdRequest(input *GetGroupMembershipIdI
 
 // GetGroupMembershipId API operation for AWS SSO Identity Store.
 //
-// Retrieves the MembershipId in a group.
+// Retrieves the MembershipId in an identity store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1242,7 +1243,8 @@ func (c *IdentityStore) IsMemberInGroupsRequest(input *IsMemberInGroupsInput) (r
 
 // IsMemberInGroups API operation for AWS SSO Identity Store.
 //
-// Returns if a member exists in specified groups.
+// Checks the user's membership in all requested groups and returns if the member
+// exists in all queried groups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1643,11 +1645,10 @@ func (c *IdentityStore) ListGroupsRequest(input *ListGroupsInput) (req *request.
 
 // ListGroups API operation for AWS SSO Identity Store.
 //
-// Filtering for a group by the group DisplayName attribute is deprecated. Instead,
-// use the GetGroupId API action.
-//
-// Lists all groups in the identity store. Returns a paginated list of complete
-// Group objects.
+// Lists the attribute name and value of the group that you specified in the
+// search. We only support DisplayName as a valid filter attribute path currently,
+// and filter is required. This API returns minimum attributes, including GroupId
+// and group DisplayName in the response.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1797,11 +1798,10 @@ func (c *IdentityStore) ListUsersRequest(input *ListUsersInput) (req *request.Re
 
 // ListUsers API operation for AWS SSO Identity Store.
 //
-// Filtering for a user by the UserName attribute is deprecated. Instead, use
-// the GetUserId API action.
-//
-// Lists all users in the identity store. Returns a paginated list of complete
-// User objects.
+// Lists the attribute name and value of the user that you specified in the
+// search. We only support UserName as a valid filter attribute path currently,
+// and filter is required. This API returns minimum attributes, including UserId
+// and UserName in the response.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2219,8 +2219,8 @@ type Address struct {
 	// String and GoString methods.
 	PostalCode *string `min:"1" type:"string" sensitive:"true"`
 
-	// A boolean representing whether this is the primary address for the associated
-	// resource.
+	// A Boolean value representing whether this is the primary address for the
+	// associated resource.
 	//
 	// Primary is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Address's
@@ -2346,7 +2346,7 @@ func (s *Address) SetType(v string) *Address {
 	return s
 }
 
-// A unique identifier for the group value that is not the group's primary identifier.
+// A unique identifier for a user or group that is not the its primary identifier.
 // This value can be an identifier from an external identity provider (IdP)
 // that is associated with the group or a unique attribute. For example, a unique
 // GroupDisplayName.
@@ -2709,7 +2709,7 @@ type CreateGroupMembershipOutput struct {
 	// IdentityStoreId is a required field
 	IdentityStoreId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier for a GroupMembership in the identity store.
+	// The identifier for a newly created GroupMembership in an identity store.
 	//
 	// MembershipId is a required field
 	MembershipId *string `min:"1" type:"string" required:"true"`
@@ -2864,9 +2864,8 @@ type CreateUserInput struct {
 
 	// A unique string used to identify the user. The length limit is 128 characters.
 	// This value can consist of letters, accented characters, symbols, numbers,
-	// and punctuation. The characters <>;:% are excluded. This value is specified
-	// at the time the user is created and stored as an attribute of the user object
-	// in the identity store.
+	// and punctuation. This value is specified at the time the user is created
+	// and stored as an attribute of the user object in the identity store.
 	//
 	// UserName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateUserInput's
@@ -3189,7 +3188,7 @@ type DeleteGroupMembershipInput struct {
 	// IdentityStoreId is a required field
 	IdentityStoreId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier for a GroupMembership in the identity store.
+	// The identifier for a GroupMembership in an identity store.
 	//
 	// MembershipId is a required field
 	MembershipId *string `min:"1" type:"string" required:"true"`
@@ -3456,7 +3455,7 @@ type DescribeGroupMembershipInput struct {
 	// IdentityStoreId is a required field
 	IdentityStoreId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier for a GroupMembership in the identity store.
+	// The identifier for a GroupMembership in an identity store.
 	//
 	// MembershipId is a required field
 	MembershipId *string `min:"1" type:"string" required:"true"`
@@ -3532,7 +3531,7 @@ type DescribeGroupMembershipOutput struct {
 	// MemberId is a required field
 	MemberId *MemberId `type:"structure" required:"true"`
 
-	// The identifier for a GroupMembership in the identity store.
+	// The identifier for a GroupMembership in an identity store.
 	//
 	// MembershipId is a required field
 	MembershipId *string `min:"1" type:"string" required:"true"`
@@ -3812,11 +3811,10 @@ type DescribeUserOutput struct {
 	// UserId is a required field
 	UserId *string `min:"1" type:"string" required:"true"`
 
-	// The user’s username value. The length limit is 128 characters. This value
-	// can consist of letters, accented characters, symbols, numbers, and punctuation.
-	// The characters <>;:% are excluded. This value is specified at the time the
-	// user is created and stored as an attribute of the user object in the identity
-	// store.
+	// A unique string used to identify the user. The length limit is 128 characters.
+	// This value can consist of letters, accented characters, symbols, numbers,
+	// and punctuation. This value is specified at the time the user is created
+	// and stored as an attribute of the user object in the identity store.
 	//
 	// UserName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeUserOutput's
@@ -3949,8 +3947,8 @@ func (s *DescribeUserOutput) SetUserType(v string) *DescribeUserOutput {
 type Email struct {
 	_ struct{} `type:"structure"`
 
-	// A boolean representing whether this is the primary email for the associated
-	// resource.
+	// A Boolean value representing whether this is the primary email address for
+	// the associated resource.
 	//
 	// Primary is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Email's
@@ -4178,7 +4176,7 @@ func (s *Filter) SetAttributeValue(v string) *Filter {
 type GetGroupIdInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier for the group value that is not the group's primary identifier.
+	// A unique identifier for an identity resource that is not the primary identifier.
 	// This value can be an identifier from an external identity provider (IdP)
 	// that is associated with the group or a unique attribute. For example, a unique
 	// GroupDisplayName.
@@ -4385,7 +4383,7 @@ type GetGroupMembershipIdOutput struct {
 	// IdentityStoreId is a required field
 	IdentityStoreId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier for a GroupMembership in the identity store.
+	// The identifier for a GroupMembership in an identity store.
 	//
 	// MembershipId is a required field
 	MembershipId *string `min:"1" type:"string" required:"true"`
@@ -4424,7 +4422,7 @@ func (s *GetGroupMembershipIdOutput) SetMembershipId(v string) *GetGroupMembersh
 type GetUserIdInput struct {
 	_ struct{} `type:"structure"`
 
-	// Any unique attribute associated with a user that is not the UserId.
+	// A unique identifier for an identity resource that is not the primary identifier.
 	//
 	// AlternateIdentifier is a required field
 	AlternateIdentifier *AlternateIdentifier `type:"structure" required:"true"`
@@ -4637,7 +4635,7 @@ type GroupMembership struct {
 	// member of the group.
 	MemberId *MemberId `type:"structure"`
 
-	// The identifier for a GroupMembership object in the identity store.
+	// The identifier for a GroupMembership object in an identity store.
 	MembershipId *string `min:"1" type:"string"`
 }
 
@@ -4901,7 +4899,7 @@ func (s *IsMemberInGroupsInput) SetMemberId(v *MemberId) *IsMemberInGroupsInput 
 type IsMemberInGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An object containing results of batch IsMemberInGroups call.
+	// A list containing the results of membership existence checks.
 	//
 	// Results is a required field
 	Results []*GroupMembershipExistenceResult `type:"list" required:"true"`
@@ -4951,7 +4949,7 @@ type ListGroupMembershipsForMemberInput struct {
 	// MemberId is a required field
 	MemberId *MemberId `type:"structure" required:"true"`
 
-	// The pagination token used for the ListUsers, ListGroups and ListGroupMemberships
+	// The pagination token used for the ListUsers, ListGroups, and ListGroupMemberships
 	// API operations. This value is generated by the identity store service. It
 	// is returned in the API response if the total results are more than the size
 	// of one page. This token is also returned when it is used in the API request
@@ -5039,7 +5037,7 @@ type ListGroupMembershipsForMemberOutput struct {
 	// GroupMemberships is a required field
 	GroupMemberships []*GroupMembership `type:"list" required:"true"`
 
-	// The pagination token used for the ListUsers, ListGroups and ListGroupMemberships
+	// The pagination token used for the ListUsers, ListGroups, and ListGroupMemberships
 	// API operations. This value is generated by the identity store service. It
 	// is returned in the API response if the total results are more than the size
 	// of one page. This token is also returned when it is used in the API request
@@ -5091,8 +5089,8 @@ type ListGroupMembershipsInput struct {
 	IdentityStoreId *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of results to be returned per request. This parameter
-	// is used in the ListUsers and ListGroups requests to specify how many results
-	// to return in one page. The length limit is 50 characters.
+	// is used in all List requests to specify how many results to return in one
+	// page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The pagination token used for the ListUsers, ListGroups and ListGroupMemberships
@@ -5181,7 +5179,7 @@ type ListGroupMembershipsOutput struct {
 	// GroupMemberships is a required field
 	GroupMemberships []*GroupMembership `type:"list" required:"true"`
 
-	// The pagination token used for the ListUsers, ListGroups and ListGroupMemberships
+	// The pagination token used for the ListUsers, ListGroups, and ListGroupMemberships
 	// API operations. This value is generated by the identity store service. It
 	// is returned in the API response if the total results are more than the size
 	// of one page. This token is also returned when it is used in the API request
@@ -5222,7 +5220,7 @@ func (s *ListGroupMembershipsOutput) SetNextToken(v string) *ListGroupMembership
 type ListGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of Filter objects that is used in the ListUsers and ListGroups requests.
+	// A list of Filter objects, which is used in the ListUsers and ListGroups requests.
 	//
 	// Deprecated: Using filters with ListGroups API is deprecated, please use GetGroupId API instead.
 	Filters []*Filter `deprecated:"true" type:"list"`
@@ -5371,7 +5369,7 @@ func (s *ListGroupsOutput) SetNextToken(v string) *ListGroupsOutput {
 type ListUsersInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of Filter objects that is used in the ListUsers and ListGroups requests.
+	// A list of Filter objects, which is used in the ListUsers and ListGroups requests.
 	//
 	// Deprecated: Using filters with ListUsers API is deprecated, please use GetGroupId API instead.
 	Filters []*Filter `deprecated:"true" type:"list"`
@@ -5562,7 +5560,7 @@ func (s *MemberId) SetUserId(v string) *MemberId {
 	return s
 }
 
-// The name of the user.
+// The full name of the user.
 type Name struct {
 	_ struct{} `type:"structure"`
 
@@ -5695,8 +5693,8 @@ func (s *Name) SetMiddleName(v string) *Name {
 type PhoneNumber struct {
 	_ struct{} `type:"structure"`
 
-	// A boolean representing whether this is the primary phone number for the associated
-	// resource.
+	// A Boolean value representing whether this is the primary phone number for
+	// the associated resource.
 	//
 	// Primary is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PhoneNumber's
@@ -6299,7 +6297,7 @@ type User struct {
 	Timezone *string `min:"1" type:"string" sensitive:"true"`
 
 	// A string containing the user's title. Possible values depend on each customer's
-	// specific needs, so they are left unspecified
+	// specific needs, so they are left unspecified.
 	//
 	// Title is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by User's
@@ -6311,11 +6309,10 @@ type User struct {
 	// UserId is a required field
 	UserId *string `min:"1" type:"string" required:"true"`
 
-	// The user’s user name value. The length limit is 128 characters. This value
-	// can consist of letters, accented characters, symbols, numbers, and punctuation.
-	// The characters <>;:% are excluded. This value is specified at the time the
-	// user is created and stored as an attribute of the user object in the identity
-	// store.
+	// A unique string used to identify the user. The length limit is 128 characters.
+	// This value can consist of letters, accented characters, symbols, numbers,
+	// and punctuation. This value is specified at the time the user is created
+	// and stored as an attribute of the user object in the identity store.
 	//
 	// UserName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by User's
