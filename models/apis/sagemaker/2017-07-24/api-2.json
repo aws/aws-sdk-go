@@ -9717,6 +9717,27 @@
       "type":"list",
       "member":{"shape":"HyperParameterTuningJobObjective"}
     },
+    "HyperParameterTuningJobSearchEntity":{
+      "type":"structure",
+      "members":{
+        "HyperParameterTuningJobName":{"shape":"HyperParameterTuningJobName"},
+        "HyperParameterTuningJobArn":{"shape":"HyperParameterTuningJobArn"},
+        "HyperParameterTuningJobConfig":{"shape":"HyperParameterTuningJobConfig"},
+        "TrainingJobDefinition":{"shape":"HyperParameterTrainingJobDefinition"},
+        "TrainingJobDefinitions":{"shape":"HyperParameterTrainingJobDefinitions"},
+        "HyperParameterTuningJobStatus":{"shape":"HyperParameterTuningJobStatus"},
+        "CreationTime":{"shape":"Timestamp"},
+        "HyperParameterTuningEndTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "TrainingJobStatusCounters":{"shape":"TrainingJobStatusCounters"},
+        "ObjectiveStatusCounters":{"shape":"ObjectiveStatusCounters"},
+        "BestTrainingJob":{"shape":"HyperParameterTrainingJobSummary"},
+        "OverallBestTrainingJob":{"shape":"HyperParameterTrainingJobSummary"},
+        "WarmStartConfig":{"shape":"HyperParameterTuningJobWarmStartConfig"},
+        "FailureReason":{"shape":"FailureReason"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "HyperParameterTuningJobSortByOptions":{
       "type":"string",
       "enum":[
@@ -15001,7 +15022,8 @@
         "PipelineExecution",
         "FeatureGroup",
         "Project",
-        "FeatureMetadata"
+        "FeatureMetadata",
+        "HyperParameterTuningJob"
       ]
     },
     "ResponseMIMEType":{
@@ -15196,7 +15218,8 @@
         "PipelineExecution":{"shape":"PipelineExecution"},
         "FeatureGroup":{"shape":"FeatureGroup"},
         "Project":{"shape":"Project"},
-        "FeatureMetadata":{"shape":"FeatureMetadata"}
+        "FeatureMetadata":{"shape":"FeatureMetadata"},
+        "HyperParameterTuningJob":{"shape":"HyperParameterTuningJobSearchEntity"}
       }
     },
     "SearchRequest":{

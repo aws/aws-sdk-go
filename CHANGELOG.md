@@ -1,3 +1,11 @@
+Release v1.44.92 (2022-09-06)
+===
+
+### Service Client Updates
+* `service/identitystore`: Updates service documentation
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds HyperParameterTuningJob type in Search API.
+
 Release v1.44.91 (2022-09-02)
 ===
 
