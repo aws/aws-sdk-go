@@ -5108,8 +5108,24 @@ type CreateAddonInput struct {
 	// ClusterName is a required field
 	ClusterName *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// How to resolve parameter value conflicts when migrating an existing add-on
-	// to an Amazon EKS add-on.
+	// How to resolve field value conflicts for an Amazon EKS add-on. Conflicts
+	// are handled based on the value you choose:
+	//
+	//    * None – If the self-managed version of the add-on is installed on your
+	//    cluster, Amazon EKS doesn't change the value. Creation of the add-on might
+	//    fail.
+	//
+	//    * Overwrite – If the self-managed version of the add-on is installed
+	//    on your cluster and the Amazon EKS default value is different than the
+	//    existing value, Amazon EKS changes the value to the Amazon EKS default
+	//    value.
+	//
+	//    * Preserve – Not supported. You can set this value when updating an
+	//    add-on though. For more information, see UpdateAddon (https://docs.aws.amazon.com/eks/latest/APIReference/API_UpdateAddon.html).
+	//
+	// If you don't currently have the self-managed version of the add-on installed
+	// on your cluster, the Amazon EKS add-on is installed. Amazon EKS sets all
+	// values to default values, regardless of the option that you specify.
 	ResolveConflicts *string `locationName:"resolveConflicts" type:"string" enum:"ResolveConflicts"`
 
 	// The Amazon Resource Name (ARN) of an existing IAM role to bind to the add-on's
@@ -8005,7 +8021,7 @@ func (s *KubernetesNetworkConfigResponse) SetServiceIpv6Cidr(v string) *Kubernet
 }
 
 // An object representing a node group launch template specification. The launch
-// template cannot include SubnetId (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html),
+// template can't include SubnetId (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html),
 // IamInstanceProfile (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_IamInstanceProfile.html),
 // RequestSpotInstances (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotInstances.html),
 // HibernationOptions (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_HibernationOptionsRequest.html),
@@ -8016,18 +8032,32 @@ func (s *KubernetesNetworkConfigResponse) SetServiceIpv6Cidr(v string) *Kubernet
 // templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)
 // in the Amazon EKS User Guide.
 //
-// Specify either name or id, but not both.
+// You must specify either the launch template ID or the launch template name
+// in the request, but not both.
 type LaunchTemplateSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the launch template.
+	//
+	// You must specify either the launch template ID or the launch template name
+	// in the request, but not both.
 	Id *string `locationName:"id" type:"string"`
 
 	// The name of the launch template.
+	//
+	// You must specify either the launch template name or the launch template ID
+	// in the request, but not both.
 	Name *string `locationName:"name" type:"string"`
 
-	// The version of the launch template to use. If no version is specified, then
-	// the template's default version is used.
+	// The launch template version number, $Latest, or $Default.
+	//
+	// If the value is $Latest, Amazon EKS uses the latest version of the launch
+	// template.
+	//
+	// If the value is $Default, Amazon EKS uses the default version of the launch
+	// template.
+	//
+	// Default: The default version of the launch template.
 	Version *string `locationName:"version" type:"string"`
 }
 
@@ -10897,8 +10927,18 @@ type UpdateAddonInput struct {
 	// ClusterName is a required field
 	ClusterName *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// How to resolve parameter value conflicts when applying the new version of
-	// the add-on to the cluster.
+	// How to resolve field value conflicts for an Amazon EKS add-on if you've changed
+	// a value from the Amazon EKS default value. Conflicts are handled based on
+	// the option you choose:
+	//
+	//    * None – Amazon EKS doesn't change the value. The update might fail.
+	//
+	//    * Overwrite – Amazon EKS overwrites the changed value back to the Amazon
+	//    EKS default value.
+	//
+	//    * Preserve – Amazon EKS preserves the value. If you choose this option,
+	//    we recommend that you test any field and value changes on a non-production
+	//    cluster before updating the add-on on your production cluster.
 	ResolveConflicts *string `locationName:"resolveConflicts" type:"string" enum:"ResolveConflicts"`
 
 	// The Amazon Resource Name (ARN) of an existing IAM role to bind to the add-on's
@@ -12033,6 +12073,9 @@ const (
 
 	// AddonStatusDegraded is a AddonStatus enum value
 	AddonStatusDegraded = "DEGRADED"
+
+	// AddonStatusUpdateFailed is a AddonStatus enum value
+	AddonStatusUpdateFailed = "UPDATE_FAILED"
 )
 
 // AddonStatus_Values returns all elements of the AddonStatus enum
@@ -12045,6 +12088,7 @@ func AddonStatus_Values() []string {
 		AddonStatusDeleting,
 		AddonStatusDeleteFailed,
 		AddonStatusDegraded,
+		AddonStatusUpdateFailed,
 	}
 }
 
@@ -12434,6 +12478,9 @@ const (
 
 	// ResolveConflictsNone is a ResolveConflicts enum value
 	ResolveConflictsNone = "NONE"
+
+	// ResolveConflictsPreserve is a ResolveConflicts enum value
+	ResolveConflictsPreserve = "PRESERVE"
 )
 
 // ResolveConflicts_Values returns all elements of the ResolveConflicts enum
@@ -12441,6 +12488,7 @@ func ResolveConflicts_Values() []string {
 	return []string{
 		ResolveConflictsOverwrite,
 		ResolveConflictsNone,
+		ResolveConflictsPreserve,
 	}
 }
 

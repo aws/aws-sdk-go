@@ -9052,6 +9052,12 @@
         "ProductionVariant$AcceleratorType": "<p>The size of the Elastic Inference (EI) instance to use for the production variant. EI instances provide on-demand GPU computing for inference. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html\">Using Elastic Inference in Amazon SageMaker</a>.</p>"
       }
     },
+    "ProductionVariantContainerStartupHealthCheckTimeoutInSeconds": {
+      "base": null,
+      "refs": {
+        "ProductionVariant$ContainerStartupHealthCheckTimeoutInSeconds": "<p>The timeout value, in seconds, for the customer inference container to pass health check by SageMaker Hosting. For more information on health check, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-inference-code.html#your-algorithms-inference-algo-ping-requests\">How Your Container Should Respond to Health Check (Ping) Requests</a>.</p>"
+      }
+    },
     "ProductionVariantCoreDumpConfig": {
       "base": "<p>Specifies configuration for a core dump from the model container when the process crashes.</p>",
       "refs": {
@@ -9073,6 +9079,12 @@
       "refs": {
         "CreateEndpointConfigInput$ProductionVariants": "<p>An list of <code>ProductionVariant</code> objects, one for each model that you want to host at this endpoint.</p>",
         "DescribeEndpointConfigOutput$ProductionVariants": "<p>An array of <code>ProductionVariant</code> objects, one for each model that you want to host at this endpoint.</p>"
+      }
+    },
+    "ProductionVariantModelDataDownloadTimeoutInSeconds": {
+      "base": null,
+      "refs": {
+        "ProductionVariant$ModelDataDownloadTimeoutInSeconds": "<p>The timeout value, in seconds, to download and extract customer model artifact from Amazon S3 to individual inference instance associated with this production variant.</p>"
       }
     },
     "ProductionVariantServerlessConfig": {
@@ -9109,6 +9121,12 @@
       "refs": {
         "DescribeEndpointOutput$ProductionVariants": "<p> An array of <a>ProductionVariantSummary</a> objects, one for each model hosted behind this endpoint. </p>",
         "Endpoint$ProductionVariants": "<p>A list of the production variants hosted on the endpoint. Each production variant is a model.</p>"
+      }
+    },
+    "ProductionVariantVolumeSizeInGB": {
+      "base": null,
+      "refs": {
+        "ProductionVariant$VolumeSizeInGB": "<p>The size, in GB, of the ML storage volume attached to individual inference instance associated with the production variant. Currenly only Amazon EBS gp2 storage volumes are supported.</p>"
       }
     },
     "ProfilerConfig": {

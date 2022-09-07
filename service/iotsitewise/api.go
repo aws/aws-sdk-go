@@ -1408,10 +1408,6 @@ func (c *IoTSiteWise) CreateBulkImportJobRequest(input *CreateBulkImportJobInput
 
 // CreateBulkImportJob API operation for AWS IoT SiteWise.
 //
-// This API operation is in preview release for IoT SiteWise and is subject
-// to change. We recommend that you use this operation only with test data,
-// and not in production environments.
-//
 // Defines a job to ingest data to IoT SiteWise from Amazon S3. For more information,
 // see Create a bulk import job (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/CreateBulkImportJob.html)
 // in the Amazon Simple Storage Service User Guide.
@@ -3163,10 +3159,6 @@ func (c *IoTSiteWise) DescribeBulkImportJobRequest(input *DescribeBulkImportJobI
 }
 
 // DescribeBulkImportJob API operation for AWS IoT SiteWise.
-//
-// This API operation is in preview release for IoT SiteWise and is subject
-// to change. We recommend that you use this operation only with test data,
-// and not in production environments.
 //
 // Retrieves information about a bulk import job request. For more information,
 // see Describe a bulk import job (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/DescribeBulkImportJob.html)
@@ -5753,13 +5745,9 @@ func (c *IoTSiteWise) ListBulkImportJobsRequest(input *ListBulkImportJobsInput) 
 
 // ListBulkImportJobs API operation for AWS IoT SiteWise.
 //
-// This API operation is in preview release for IoT SiteWise and is subject
-// to change. We recommend that you use this operation only with test data,
-// and not in production environments.
-//
 // Retrieves a paginated list of bulk import job requests. For more information,
 // see List bulk import jobs (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/ListBulkImportJobs.html)
-// in the Amazon Simple Storage Service User Guide.
+// in the IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12726,7 +12714,7 @@ type CreateAssetInput struct {
 	// AssetModelId is a required field
 	AssetModelId *string `locationName:"assetModelId" min:"36" type:"string" required:"true"`
 
-	// A unique, friendly name for the asset.
+	// A friendly name for the asset.
 	//
 	// AssetName is a required field
 	AssetName *string `locationName:"assetName" min:"1" type:"string" required:"true"`
@@ -24042,7 +24030,7 @@ type UpdateAssetInput struct {
 	// AssetId is a required field
 	AssetId *string `location:"uri" locationName:"assetId" min:"36" type:"string" required:"true"`
 
-	// A unique, friendly name for the asset.
+	// A friendly name for the asset.
 	//
 	// AssetName is a required field
 	AssetName *string `locationName:"assetName" min:"1" type:"string" required:"true"`
@@ -24390,6 +24378,11 @@ type UpdateAssetPropertyInput struct {
 	//
 	// If you omit this parameter, the notification state is set to DISABLED.
 	PropertyNotificationState *string `locationName:"propertyNotificationState" type:"string" enum:"PropertyNotificationState"`
+
+	// The unit of measure (such as Newtons or RPM) of the asset property. If you
+	// don't specify a value for this parameter, the service uses the value of the
+	// assetModelProperty in the asset model.
+	PropertyUnit *string `locationName:"propertyUnit" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -24431,6 +24424,9 @@ func (s *UpdateAssetPropertyInput) Validate() error {
 	if s.PropertyId != nil && len(*s.PropertyId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("PropertyId", 36))
 	}
+	if s.PropertyUnit != nil && len(*s.PropertyUnit) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyUnit", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -24465,6 +24461,12 @@ func (s *UpdateAssetPropertyInput) SetPropertyId(v string) *UpdateAssetPropertyI
 // SetPropertyNotificationState sets the PropertyNotificationState field's value.
 func (s *UpdateAssetPropertyInput) SetPropertyNotificationState(v string) *UpdateAssetPropertyInput {
 	s.PropertyNotificationState = &v
+	return s
+}
+
+// SetPropertyUnit sets the PropertyUnit field's value.
+func (s *UpdateAssetPropertyInput) SetPropertyUnit(v string) *UpdateAssetPropertyInput {
+	s.PropertyUnit = &v
 	return s
 }
 

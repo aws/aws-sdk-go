@@ -5001,7 +5001,8 @@
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
-        }
+        },
+        "propertyUnit":{"shape":"PropertyUnit"}
       }
     },
     "UpdateAssetRequest":{

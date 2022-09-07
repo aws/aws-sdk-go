@@ -75,15 +75,15 @@ func (c *DataExchange) CancelJobRequest(input *CancelJobInput) (req *request.Req
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
+//
 //   - ValidationException
 //     The request was invalid.
 //
 //   - InternalServerException
 //     An exception occurred with the service.
-//
-//   - ConflictException
-//     The request couldn't be completed because it conflicted with the current
-//     state of the resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CancelJob
 func (c *DataExchange) CancelJob(input *CancelJobInput) (*CancelJobOutput, error) {
@@ -161,20 +161,20 @@ func (c *DataExchange) CreateDataSetRequest(input *CreateDataSetInput) (req *req
 //
 // Returned Error Types:
 //
+//   - ServiceLimitExceededException
+//     The request has exceeded the quotas imposed by the service.
+//
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
+//
+//   - AccessDeniedException
+//     Access to the resource is denied.
 //
 //   - ValidationException
 //     The request was invalid.
 //
 //   - InternalServerException
 //     An exception occurred with the service.
-//
-//   - ServiceLimitExceededException
-//     The request has exceeded the quotas imposed by the service.
-//
-//   - AccessDeniedException
-//     Access to the resource is denied.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateDataSet
 func (c *DataExchange) CreateDataSet(input *CreateDataSetInput) (*CreateDataSetOutput, error) {
@@ -252,20 +252,20 @@ func (c *DataExchange) CreateEventActionRequest(input *CreateEventActionInput) (
 //
 // Returned Error Types:
 //
+//   - ServiceLimitExceededException
+//     The request has exceeded the quotas imposed by the service.
+//
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
+//
+//   - AccessDeniedException
+//     Access to the resource is denied.
 //
 //   - ValidationException
 //     The request was invalid.
 //
 //   - InternalServerException
 //     An exception occurred with the service.
-//
-//   - ServiceLimitExceededException
-//     The request has exceeded the quotas imposed by the service.
-//
-//   - AccessDeniedException
-//     Access to the resource is denied.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateEventAction
 func (c *DataExchange) CreateEventAction(input *CreateEventActionInput) (*CreateEventActionOutput, error) {
@@ -349,18 +349,18 @@ func (c *DataExchange) CreateJobRequest(input *CreateJobInput) (req *request.Req
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
-//   - ValidationException
-//     The request was invalid.
-//
-//   - InternalServerException
-//     An exception occurred with the service.
-//
 //   - AccessDeniedException
 //     Access to the resource is denied.
 //
 //   - ConflictException
 //     The request couldn't be completed because it conflicted with the current
 //     state of the resource.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateJob
 func (c *DataExchange) CreateJob(input *CreateJobInput) (*CreateJobOutput, error) {
@@ -444,14 +444,14 @@ func (c *DataExchange) CreateRevisionRequest(input *CreateRevisionInput) (req *r
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
 //   - ValidationException
 //     The request was invalid.
 //
 //   - InternalServerException
 //     An exception occurred with the service.
-//
-//   - AccessDeniedException
-//     Access to the resource is denied.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateRevision
 func (c *DataExchange) CreateRevision(input *CreateRevisionInput) (*CreateRevisionOutput, error) {
@@ -530,24 +530,24 @@ func (c *DataExchange) DeleteAssetRequest(input *DeleteAssetInput) (req *request
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     The request was invalid.
-//
-//   - InternalServerException
-//     An exception occurred with the service.
-//
-//   - AccessDeniedException
-//     Access to the resource is denied.
-//
 //   - ResourceNotFoundException
 //     The resource couldn't be found.
 //
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
 //   - ConflictException
 //     The request couldn't be completed because it conflicted with the current
 //     state of the resource.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/DeleteAsset
 func (c *DataExchange) DeleteAsset(input *DeleteAssetInput) (*DeleteAssetOutput, error) {
@@ -626,24 +626,24 @@ func (c *DataExchange) DeleteDataSetRequest(input *DeleteDataSetInput) (req *req
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     The request was invalid.
-//
-//   - InternalServerException
-//     An exception occurred with the service.
-//
-//   - AccessDeniedException
-//     Access to the resource is denied.
-//
 //   - ResourceNotFoundException
 //     The resource couldn't be found.
 //
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
 //   - ConflictException
 //     The request couldn't be completed because it conflicted with the current
 //     state of the resource.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/DeleteDataSet
 func (c *DataExchange) DeleteDataSet(input *DeleteDataSetInput) (*DeleteDataSetOutput, error) {
@@ -811,24 +811,24 @@ func (c *DataExchange) DeleteRevisionRequest(input *DeleteRevisionInput) (req *r
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     The request was invalid.
-//
-//   - InternalServerException
-//     An exception occurred with the service.
-//
-//   - AccessDeniedException
-//     Access to the resource is denied.
-//
 //   - ResourceNotFoundException
 //     The resource couldn't be found.
 //
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
 //   - ConflictException
 //     The request couldn't be completed because it conflicted with the current
 //     state of the resource.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/DeleteRevision
 func (c *DataExchange) DeleteRevision(input *DeleteRevisionInput) (*DeleteRevisionOutput, error) {
@@ -2050,7 +2050,7 @@ func (c *DataExchange) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 	op := &request.Operation{
 		Name:       opListTagsForResource,
 		HTTPMethod: "GET",
-		HTTPPath:   "/tags/{resource-arn}",
+		HTTPPath:   "/tags/{ResourceArn}",
 	}
 
 	if input == nil {
@@ -2148,24 +2148,24 @@ func (c *DataExchange) RevokeRevisionRequest(input *RevokeRevisionInput) (req *r
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     The request was invalid.
-//
-//   - InternalServerException
-//     An exception occurred with the service.
-//
-//   - AccessDeniedException
-//     Access to the resource is denied.
-//
 //   - ResourceNotFoundException
 //     The resource couldn't be found.
 //
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
 //   - ConflictException
 //     The request couldn't be completed because it conflicted with the current
 //     state of the resource.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/RevokeRevision
 func (c *DataExchange) RevokeRevision(input *RevokeRevisionInput) (*RevokeRevisionOutput, error) {
@@ -2252,14 +2252,14 @@ func (c *DataExchange) SendApiAssetRequest(input *SendApiAssetInput) (req *reque
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
 //   - ValidationException
 //     The request was invalid.
 //
 //   - InternalServerException
 //     An exception occurred with the service.
-//
-//   - AccessDeniedException
-//     Access to the resource is denied.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/SendApiAsset
 func (c *DataExchange) SendApiAsset(input *SendApiAssetInput) (*SendApiAssetOutput, error) {
@@ -2338,24 +2338,24 @@ func (c *DataExchange) StartJobRequest(input *StartJobInput) (req *request.Reque
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     The request was invalid.
-//
-//   - InternalServerException
-//     An exception occurred with the service.
-//
-//   - AccessDeniedException
-//     Access to the resource is denied.
-//
 //   - ResourceNotFoundException
 //     The resource couldn't be found.
 //
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
 //   - ConflictException
 //     The request couldn't be completed because it conflicted with the current
 //     state of the resource.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/StartJob
 func (c *DataExchange) StartJob(input *StartJobInput) (*StartJobOutput, error) {
@@ -2408,7 +2408,7 @@ func (c *DataExchange) TagResourceRequest(input *TagResourceInput) (req *request
 	op := &request.Operation{
 		Name:       opTagResource,
 		HTTPMethod: "POST",
-		HTTPPath:   "/tags/{resource-arn}",
+		HTTPPath:   "/tags/{ResourceArn}",
 	}
 
 	if input == nil {
@@ -2482,7 +2482,7 @@ func (c *DataExchange) UntagResourceRequest(input *UntagResourceInput) (req *req
 	op := &request.Operation{
 		Name:       opUntagResource,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/tags/{resource-arn}",
+		HTTPPath:   "/tags/{ResourceArn}",
 	}
 
 	if input == nil {
@@ -2581,24 +2581,24 @@ func (c *DataExchange) UpdateAssetRequest(input *UpdateAssetInput) (req *request
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     The request was invalid.
-//
-//   - InternalServerException
-//     An exception occurred with the service.
-//
-//   - AccessDeniedException
-//     Access to the resource is denied.
-//
 //   - ResourceNotFoundException
 //     The resource couldn't be found.
 //
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
 //   - ConflictException
 //     The request couldn't be completed because it conflicted with the current
 //     state of the resource.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UpdateAsset
 func (c *DataExchange) UpdateAsset(input *UpdateAssetInput) (*UpdateAssetOutput, error) {
@@ -2682,14 +2682,14 @@ func (c *DataExchange) UpdateDataSetRequest(input *UpdateDataSetInput) (req *req
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
 //   - ValidationException
 //     The request was invalid.
 //
 //   - InternalServerException
 //     An exception occurred with the service.
-//
-//   - AccessDeniedException
-//     Access to the resource is denied.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UpdateDataSet
 func (c *DataExchange) UpdateDataSet(input *UpdateDataSetInput) (*UpdateDataSetOutput, error) {
@@ -2773,14 +2773,14 @@ func (c *DataExchange) UpdateEventActionRequest(input *UpdateEventActionInput) (
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
 //   - ValidationException
 //     The request was invalid.
 //
 //   - InternalServerException
 //     An exception occurred with the service.
-//
-//   - AccessDeniedException
-//     Access to the resource is denied.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UpdateEventAction
 func (c *DataExchange) UpdateEventAction(input *UpdateEventActionInput) (*UpdateEventActionOutput, error) {
@@ -2858,24 +2858,24 @@ func (c *DataExchange) UpdateRevisionRequest(input *UpdateRevisionInput) (req *r
 //
 // Returned Error Types:
 //
-//   - ValidationException
-//     The request was invalid.
-//
-//   - InternalServerException
-//     An exception occurred with the service.
-//
-//   - AccessDeniedException
-//     Access to the resource is denied.
-//
 //   - ResourceNotFoundException
 //     The resource couldn't be found.
 //
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
 //   - ConflictException
 //     The request couldn't be completed because it conflicted with the current
 //     state of the resource.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UpdateRevision
 func (c *DataExchange) UpdateRevision(input *UpdateRevisionInput) (*UpdateRevisionOutput, error) {
@@ -3567,6 +3567,8 @@ func (s *AutoExportRevisionToS3RequestDetails) SetRevisionDestination(v *AutoExp
 type CancelJobInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a job.
+	//
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"JobId" type:"string" required:"true"`
 }
@@ -3706,7 +3708,6 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A request to create a data set that contains one or more revisions.
 type CreateDataSetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3797,39 +3798,41 @@ func (s *CreateDataSetInput) SetTags(v map[string]*string) *CreateDataSetInput {
 type CreateDataSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the data set.
 	Arn *string `type:"string"`
 
 	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the data set was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A description of a resource.
+	// The description for the data set.
 	Description *string `type:"string"`
 
-	// A unique identifier.
+	// The unique identifier for the data set.
 	Id *string `type:"string"`
 
-	// The name of the model.
+	// The name of the data set.
 	Name *string `type:"string"`
 
 	// A property that defines the data set as OWNED by the account (for providers)
-	// or ENTITLED to the account (for subscribers). When an owned data set is published
-	// in a product, AWS Data Exchange creates a copy of the data set. Subscribers
-	// can access that copy of the data set as an entitled data set.
+	// or ENTITLED to the account (for subscribers).
 	Origin *string `type:"string" enum:"Origin"`
 
-	// Information about the origin of the data set.
+	// If the origin of this data set is ENTITLED, includes the details for the
+	// product on AWS Marketplace.
 	OriginDetails *OriginDetails `type:"structure"`
 
-	// A unique identifier.
+	// The data set ID of the owned data set corresponding to the entitled data
+	// set being viewed. This parameter is returned when a data set owner is viewing
+	// the entitled copy of its owned data set.
 	SourceId *string `type:"string"`
 
+	// The tags for the data set.
 	Tags map[string]*string `type:"map"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the data set was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -3917,7 +3920,6 @@ func (s *CreateDataSetOutput) SetUpdatedAt(v time.Time) *CreateDataSetOutput {
 	return s
 }
 
-// A request to create an event action.
 type CreateEventActionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3994,19 +3996,19 @@ type CreateEventActionOutput struct {
 	// What occurs after a certain event.
 	Action *Action `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the event action.
 	Arn *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the event action was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// What occurs to start an action.
 	Event *Event `type:"structure"`
 
-	// A unique identifier.
+	// The unique identifier for the event action.
 	Id *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the event action was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -4064,11 +4066,6 @@ func (s *CreateEventActionOutput) SetUpdatedAt(v time.Time) *CreateEventActionOu
 	return s
 }
 
-// The CreateJob request. AWS Data Exchange Jobs are asynchronous import or
-// export operations used to create or copy assets. A data set owner can both
-// import and export assets. A subscriber with an entitlement to a data set
-// can only export. Jobs are deleted 90 days after they are created. Created
-// jobs must be started with the StartJob operation.
 type CreateJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4137,25 +4134,28 @@ func (s *CreateJobInput) SetType(v string) *CreateJobInput {
 type CreateJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the job.
 	Arn *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the job was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// Details for the response.
+	// Details about the job.
 	Details *ResponseDetails `type:"structure"`
 
+	// The errors associated with jobs.
 	Errors []*JobError `type:"list"`
 
-	// A unique identifier.
+	// The unique identifier for the job.
 	Id *string `type:"string"`
 
+	// The state of the job.
 	State *string `type:"string" enum:"State"`
 
+	// The job type.
 	Type *string `type:"string" enum:"Type"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the job was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -4225,16 +4225,14 @@ func (s *CreateJobOutput) SetUpdatedAt(v time.Time) *CreateJobOutput {
 	return s
 }
 
-// Creates a revision for a data set. When they're created, revisions are not
-// published to products, and therefore are not available to subscribers. To
-// publish a revision to a data set in a product, the revision must first be
-// finalized.
 type CreateRevisionInput struct {
 	_ struct{} `type:"structure"`
 
 	// An optional comment about the revision.
 	Comment *string `type:"string"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
@@ -4300,35 +4298,49 @@ func (s *CreateRevisionInput) SetTags(v map[string]*string) *CreateRevisionInput
 type CreateRevisionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the revision.
 	Arn *string `type:"string"`
 
+	// An optional comment about the revision.
 	Comment *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The unique identifier for the data set associated with this revision.
 	DataSetId *string `type:"string"`
 
+	// To publish a revision to a data set in a product, the revision must first
+	// be finalized. Finalizing a revision tells AWS Data Exchange that your changes
+	// to the assets in the revision are complete. After it's in this read-only
+	// state, you can publish the revision to your products. Finalized revisions
+	// can be published through the AWS Data Exchange console or the AWS Marketplace
+	// Catalog API, using the StartChangeSet AWS Marketplace Catalog API action.
+	// When using the API, revisions are uniquely identified by their ARN.
 	Finalized *bool `type:"boolean"`
 
-	// A unique identifier.
+	// The unique identifier for the revision.
 	Id *string `type:"string"`
 
+	// A required comment to inform subscribers of the reason their access to the
+	// revision was revoked.
 	RevocationComment *string `min:"10" type:"string"`
 
+	// A status indicating that subscribers' access to the revision was revoked.
 	Revoked *bool `type:"boolean"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was revoked, in ISO 8601 format.
 	RevokedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The revision ID of the owned revision corresponding to the entitled revision
+	// being viewed. This parameter is returned when a revision owner is viewing
+	// the entitled copy of its owned revision.
 	SourceId *string `type:"string"`
 
+	// The tags for the revision.
 	Tags map[string]*string `type:"map"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -4558,12 +4570,18 @@ func (s *DataSetEntry) SetUpdatedAt(v time.Time) *DataSetEntry {
 type DeleteAssetInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for an asset.
+	//
 	// AssetId is a required field
 	AssetId *string `location:"uri" locationName:"AssetId" type:"string" required:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 }
@@ -4657,6 +4675,8 @@ func (s DeleteAssetOutput) GoString() string {
 type DeleteDataSetInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 }
@@ -4726,6 +4746,8 @@ func (s DeleteDataSetOutput) GoString() string {
 type DeleteEventActionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for the event action.
+	//
 	// EventActionId is a required field
 	EventActionId *string `location:"uri" locationName:"EventActionId" type:"string" required:"true"`
 }
@@ -4795,9 +4817,13 @@ func (s DeleteEventActionOutput) GoString() string {
 type DeleteRevisionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 }
@@ -5517,7 +5543,7 @@ func (s *ExportRevisionsToS3ResponseDetails) SetRevisionDestinations(v []*Revisi
 
 // Encryption configuration of the export job. Includes the encryption type
 // in addition to the AWS KMS key. The KMS key is only necessary if you chose
-// the KMS encryption. type.
+// the KMS encryption type.
 type ExportServerSideEncryption struct {
 	_ struct{} `type:"structure"`
 
@@ -5579,12 +5605,18 @@ func (s *ExportServerSideEncryption) SetType(v string) *ExportServerSideEncrypti
 type GetAssetInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for an asset.
+	//
 	// AssetId is a required field
 	AssetId *string `location:"uri" locationName:"AssetId" type:"string" required:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 }
@@ -5656,7 +5688,7 @@ func (s *GetAssetInput) SetRevisionId(v string) *GetAssetInput {
 type GetAssetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the asset.
 	Arn *string `type:"string"`
 
 	// Information about the asset.
@@ -5665,13 +5697,13 @@ type GetAssetOutput struct {
 	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the asset was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The unique identifier for the data set associated with this asset.
 	DataSetId *string `type:"string"`
 
-	// A unique identifier.
+	// The unique identifier for the asset.
 	Id *string `type:"string"`
 
 	// The name of the asset. When importing from Amazon S3, the S3 object key is
@@ -5681,13 +5713,15 @@ type GetAssetOutput struct {
 	// the datashare name is used as the asset name.
 	Name *string `type:"string"`
 
-	// A unique identifier.
+	// The unique identifier for the revision associated with this asset.
 	RevisionId *string `type:"string"`
 
-	// A unique identifier.
+	// The asset ID of the owned asset corresponding to the entitled asset being
+	// viewed. This parameter is returned when an asset owner is viewing the entitled
+	// copy of its owned asset.
 	SourceId *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the asset was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -5772,6 +5806,8 @@ func (s *GetAssetOutput) SetUpdatedAt(v time.Time) *GetAssetOutput {
 type GetDataSetInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 }
@@ -5819,39 +5855,41 @@ func (s *GetDataSetInput) SetDataSetId(v string) *GetDataSetInput {
 type GetDataSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the data set.
 	Arn *string `type:"string"`
 
 	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the data set was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A description of a resource.
+	// The description for the data set.
 	Description *string `type:"string"`
 
-	// A unique identifier.
+	// The unique identifier for the data set.
 	Id *string `type:"string"`
 
-	// The name of the model.
+	// The name of the data set.
 	Name *string `type:"string"`
 
 	// A property that defines the data set as OWNED by the account (for providers)
-	// or ENTITLED to the account (for subscribers). When an owned data set is published
-	// in a product, AWS Data Exchange creates a copy of the data set. Subscribers
-	// can access that copy of the data set as an entitled data set.
+	// or ENTITLED to the account (for subscribers).
 	Origin *string `type:"string" enum:"Origin"`
 
-	// Information about the origin of the data set.
+	// If the origin of this data set is ENTITLED, includes the details for the
+	// product on AWS Marketplace.
 	OriginDetails *OriginDetails `type:"structure"`
 
-	// A unique identifier.
+	// The data set ID of the owned data set corresponding to the entitled data
+	// set being viewed. This parameter is returned when a data set owner is viewing
+	// the entitled copy of its owned data set.
 	SourceId *string `type:"string"`
 
+	// The tags for the data set.
 	Tags map[string]*string `type:"map"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the data set was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -5942,6 +5980,8 @@ func (s *GetDataSetOutput) SetUpdatedAt(v time.Time) *GetDataSetOutput {
 type GetEventActionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for the event action.
+	//
 	// EventActionId is a required field
 	EventActionId *string `location:"uri" locationName:"EventActionId" type:"string" required:"true"`
 }
@@ -5992,19 +6032,19 @@ type GetEventActionOutput struct {
 	// What occurs after a certain event.
 	Action *Action `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the event action.
 	Arn *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the event action was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// What occurs to start an action.
 	Event *Event `type:"structure"`
 
-	// A unique identifier.
+	// The unique identifier for the event action.
 	Id *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the event action was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -6065,6 +6105,8 @@ func (s *GetEventActionOutput) SetUpdatedAt(v time.Time) *GetEventActionOutput {
 type GetJobInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a job.
+	//
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"JobId" type:"string" required:"true"`
 }
@@ -6112,25 +6154,28 @@ func (s *GetJobInput) SetJobId(v string) *GetJobInput {
 type GetJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the job.
 	Arn *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the job was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// Details for the response.
+	// Details about the job.
 	Details *ResponseDetails `type:"structure"`
 
+	// The errors associated with jobs.
 	Errors []*JobError `type:"list"`
 
-	// A unique identifier.
+	// The unique identifier for the job.
 	Id *string `type:"string"`
 
+	// The state of the job.
 	State *string `type:"string" enum:"State"`
 
+	// The job type.
 	Type *string `type:"string" enum:"Type"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the job was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -6203,9 +6248,13 @@ func (s *GetJobOutput) SetUpdatedAt(v time.Time) *GetJobOutput {
 type GetRevisionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 }
@@ -6265,35 +6314,49 @@ func (s *GetRevisionInput) SetRevisionId(v string) *GetRevisionInput {
 type GetRevisionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the revision.
 	Arn *string `type:"string"`
 
+	// An optional comment about the revision.
 	Comment *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The unique identifier for the data set associated with this revision.
 	DataSetId *string `type:"string"`
 
+	// To publish a revision to a data set in a product, the revision must first
+	// be finalized. Finalizing a revision tells AWS Data Exchange that your changes
+	// to the assets in the revision are complete. After it's in this read-only
+	// state, you can publish the revision to your products. Finalized revisions
+	// can be published through the AWS Data Exchange console or the AWS Marketplace
+	// Catalog API, using the StartChangeSet AWS Marketplace Catalog API action.
+	// When using the API, revisions are uniquely identified by their ARN.
 	Finalized *bool `type:"boolean"`
 
-	// A unique identifier.
+	// The unique identifier for the revision.
 	Id *string `type:"string"`
 
+	// A required comment to inform subscribers of the reason their access to the
+	// revision was revoked.
 	RevocationComment *string `min:"10" type:"string"`
 
+	// A status indicating that subscribers' access to the revision was revoked.
 	Revoked *bool `type:"boolean"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was revoked, in ISO 8601 format.
 	RevokedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The revision ID of the owned revision corresponding to the entitled revision
+	// being viewed. This parameter is returned when a revision owner is viewing
+	// the entitled copy of its owned revision.
 	SourceId *string `type:"string"`
 
+	// The tags for the revision.
 	Tags map[string]*string `type:"map"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -7447,11 +7510,16 @@ func (s *JobError) SetResourceType(v string) *JobError {
 type ListDataSetRevisionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The maximum number of results returned by a single call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -7517,6 +7585,7 @@ type ListDataSetRevisionsOutput struct {
 	// results.
 	NextToken *string `type:"string"`
 
+	// The asset objects listed by the request.
 	Revisions []*RevisionEntry `type:"list"`
 }
 
@@ -7553,10 +7622,15 @@ func (s *ListDataSetRevisionsOutput) SetRevisions(v []*RevisionEntry) *ListDataS
 type ListDataSetsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of results returned by a single call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// A property that defines the data set as OWNED by the account (for providers)
+	// or ENTITLED to the account (for subscribers).
 	Origin *string `location:"querystring" locationName:"origin" type:"string"`
 }
 
@@ -7612,6 +7686,7 @@ func (s *ListDataSetsInput) SetOrigin(v string) *ListDataSetsInput {
 type ListDataSetsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The data set objects listed by the request.
 	DataSets []*DataSetEntry `type:"list"`
 
 	// The token value retrieved from a previous call to access the next page of
@@ -7652,10 +7727,14 @@ func (s *ListDataSetsOutput) SetNextToken(v string) *ListDataSetsOutput {
 type ListEventActionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for the event source.
 	EventSourceId *string `location:"querystring" locationName:"eventSourceId" type:"string"`
 
+	// The maximum number of results returned by a single call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -7711,6 +7790,7 @@ func (s *ListEventActionsInput) SetNextToken(v string) *ListEventActionsInput {
 type ListEventActionsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The event action objects listed by the request.
 	EventActions []*EventActionEntry `type:"list"`
 
 	// The token value retrieved from a previous call to access the next page of
@@ -7751,12 +7831,17 @@ func (s *ListEventActionsOutput) SetNextToken(v string) *ListEventActionsOutput 
 type ListJobsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a data set.
 	DataSetId *string `location:"querystring" locationName:"dataSetId" type:"string"`
 
+	// The maximum number of results returned by a single call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// The unique identifier for a revision.
 	RevisionId *string `location:"querystring" locationName:"revisionId" type:"string"`
 }
 
@@ -7818,6 +7903,7 @@ func (s *ListJobsInput) SetRevisionId(v string) *ListJobsInput {
 type ListJobsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The jobs listed by the request.
 	Jobs []*JobEntry `type:"list"`
 
 	// The token value retrieved from a previous call to access the next page of
@@ -7858,13 +7944,20 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 type ListRevisionAssetsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The maximum number of results returned by a single call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 }
@@ -7939,6 +8032,7 @@ func (s *ListRevisionAssetsInput) SetRevisionId(v string) *ListRevisionAssetsInp
 type ListRevisionAssetsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The asset objects listed by the request.
 	Assets []*AssetEntry `type:"list"`
 
 	// The token value retrieved from a previous call to access the next page of
@@ -7979,8 +8073,10 @@ func (s *ListRevisionAssetsOutput) SetNextToken(v string) *ListRevisionAssetsOut
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	//
 	// ResourceArn is a required field
-	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
+	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -8026,6 +8122,7 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A label that consists of a customer-defined key and an optional value.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -8181,16 +8278,16 @@ type RequestDetails struct {
 	// Details about the export to Amazon S3 request.
 	ExportRevisionsToS3 *ExportRevisionsToS3RequestDetails `type:"structure"`
 
-	// Information about the import asset from API Gateway API request.
+	// Details about the import from signed URL request.
 	ImportAssetFromApiGatewayApi *ImportAssetFromApiGatewayApiRequestDetails `type:"structure"`
 
-	// Details about the import from signed URL request.
+	// Details about the import from Amazon S3 request.
 	ImportAssetFromSignedUrl *ImportAssetFromSignedUrlRequestDetails `type:"structure"`
 
 	// Details from an import from Amazon Redshift datashare request.
 	ImportAssetsFromRedshiftDataShares *ImportAssetsFromRedshiftDataSharesRequestDetails `type:"structure"`
 
-	// Details about the import from Amazon S3 request.
+	// Information about the import asset from API Gateway API request.
 	ImportAssetsFromS3 *ImportAssetsFromS3RequestDetails `type:"structure"`
 }
 
@@ -8553,12 +8650,10 @@ type RevisionEntry struct {
 	// To publish a revision to a data set in a product, the revision must first
 	// be finalized. Finalizing a revision tells AWS Data Exchange that your changes
 	// to the assets in the revision are complete. After it's in this read-only
-	// state, you can publish the revision to your products.
-	//
-	// Finalized revisions can be published through the AWS Data Exchange console
-	// or the AWS Marketplace Catalog API, using the StartChangeSet AWS Marketplace
-	// Catalog API action. When using the API, revisions are uniquely identified
-	// by their ARN.
+	// state, you can publish the revision to your products. Finalized revisions
+	// can be published through the AWS Data Exchange console or the AWS Marketplace
+	// Catalog API, using the StartChangeSet AWS Marketplace Catalog API action.
+	// When using the API, revisions are uniquely identified by their ARN.
 	Finalized *bool `type:"boolean"`
 
 	// The unique identifier for the revision.
@@ -8718,13 +8813,16 @@ func (s *RevisionPublished) SetDataSetId(v string) *RevisionPublished {
 	return s
 }
 
-// The request sent to revoke the revision.
 type RevokeRevisionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 
@@ -8802,33 +8900,46 @@ func (s *RevokeRevisionInput) SetRevocationComment(v string) *RevokeRevisionInpu
 type RevokeRevisionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the revision.
 	Arn *string `type:"string"`
 
+	// An optional comment about the revision.
 	Comment *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The unique identifier for the data set associated with this revision.
 	DataSetId *string `type:"string"`
 
+	// To publish a revision to a data set in a product, the revision must first
+	// be finalized. Finalizing a revision tells AWS Data Exchange that changes
+	// to the assets in the revision are complete. After it's in this read-only
+	// state, you can publish the revision to your products. Finalized revisions
+	// can be published through the AWS Data Exchange console or the AWS Marketplace
+	// Catalog API, using the StartChangeSet AWS Marketplace Catalog API action.
+	// When using the API, revisions are uniquely identified by their ARN.
 	Finalized *bool `type:"boolean"`
 
-	// A unique identifier.
+	// The unique identifier for the revision.
 	Id *string `type:"string"`
 
+	// A required comment to inform subscribers of the reason their access to the
+	// revision was revoked.
 	RevocationComment *string `min:"10" type:"string"`
 
+	// A status indicating that subscribers' access to the revision was revoked.
 	Revoked *bool `type:"boolean"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was revoked, in ISO 8601 format.
 	RevokedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The revision ID of the owned revision corresponding to the entitled revision
+	// being viewed. This parameter is returned when a revision owner is viewing
+	// the entitled copy of its owned revision.
 	SourceId *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -8953,22 +9064,38 @@ func (s *S3SnapshotAsset) SetSize(v float64) *S3SnapshotAsset {
 type SendApiAssetInput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
+	// Asset ID value for the API request.
+	//
 	// AssetId is a required field
 	AssetId *string `location:"header" locationName:"x-amzn-dataexchange-asset-id" type:"string" required:"true"`
 
+	// The request body.
 	Body *string `type:"string"`
 
+	// Data set ID value for the API request.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"header" locationName:"x-amzn-dataexchange-data-set-id" type:"string" required:"true"`
 
+	// HTTP method value for the API request. Alternatively, you can use the appropriate
+	// verb in your request.
 	Method *string `location:"header" locationName:"x-amzn-dataexchange-http-method" type:"string"`
 
+	// URI path value for the API request. Alternatively, you can set the URI path
+	// directly by invoking /v1/{pathValue}.
 	Path *string `location:"header" locationName:"x-amzn-dataexchange-path" type:"string"`
 
+	// Attach query string parameters to the end of the URI (for example, /v1/examplePath?exampleParam=exampleValue).
 	QueryStringParameters map[string]*string `location:"querystring" type:"map"`
 
+	// Any header value prefixed with x-amzn-dataexchange-header- will have that
+	// stripped before sending the Asset API request. Use this when you want to
+	// override a header that AWS Data Exchange uses. Alternatively, you can use
+	// the header without a prefix to the HTTP request.
 	RequestHeaders map[string]*string `location:"headers" locationName:"x-amzn-dataexchange-header-" type:"map"`
 
+	// Revision ID value for the API request.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"header" locationName:"x-amzn-dataexchange-revision-id" type:"string" required:"true"`
 }
@@ -9058,7 +9185,6 @@ func (s *SendApiAssetInput) SetRevisionId(v string) *SendApiAssetInput {
 	return s
 }
 
-// The details of the send API asset response.
 type SendApiAssetOutput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
@@ -9108,10 +9234,13 @@ type ServiceLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The name of the limit that was reached.
 	LimitName *string `type:"string" enum:"LimitName"`
 
+	// The value of the exceeded limit.
 	LimitValue *float64 `type:"double"`
 
+	// The request has exceeded the quotas imposed by the service.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -9174,6 +9303,8 @@ func (s *ServiceLimitExceededException) RequestID() string {
 type StartJobInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier for a job.
+	//
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"JobId" type:"string" required:"true"`
 }
@@ -9243,9 +9374,13 @@ func (s StartJobOutput) GoString() string {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	//
 	// ResourceArn is a required field
-	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
+	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 
+	// A label that consists of a customer-defined key and an optional value.
+	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
@@ -9389,9 +9524,13 @@ func (s *ThrottlingException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	//
 	// ResourceArn is a required field
-	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
+	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 
+	// The key tags.
+	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
@@ -9467,13 +9606,16 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// The request to update an asset.
 type UpdateAssetInput struct {
 	_ struct{} `type:"structure"`
 
+	// The unique identifier for an asset.
+	//
 	// AssetId is a required field
 	AssetId *string `location:"uri" locationName:"AssetId" type:"string" required:"true"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
@@ -9486,6 +9628,8 @@ type UpdateAssetInput struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 }
@@ -9566,7 +9710,7 @@ func (s *UpdateAssetInput) SetRevisionId(v string) *UpdateAssetInput {
 type UpdateAssetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the asset.
 	Arn *string `type:"string"`
 
 	// Information about the asset.
@@ -9575,13 +9719,13 @@ type UpdateAssetOutput struct {
 	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the asset was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The unique identifier for the data set associated with this asset.
 	DataSetId *string `type:"string"`
 
-	// A unique identifier.
+	// The unique identifier for the asset.
 	Id *string `type:"string"`
 
 	// The name of the asset. When importing from Amazon S3, the S3 object key is
@@ -9591,13 +9735,15 @@ type UpdateAssetOutput struct {
 	// the datashare name is used as the asset name.
 	Name *string `type:"string"`
 
-	// A unique identifier.
+	// The unique identifier for the revision associated with this asset.
 	RevisionId *string `type:"string"`
 
-	// A unique identifier.
+	// The asset ID of the owned asset corresponding to the entitled asset being
+	// viewed. This parameter is returned when an asset owner is viewing the entitled
+	// copy of its owned asset.
 	SourceId *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the asset was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -9679,10 +9825,11 @@ func (s *UpdateAssetOutput) SetUpdatedAt(v time.Time) *UpdateAssetOutput {
 	return s
 }
 
-// The request to update a data set.
 type UpdateDataSetInput struct {
 	_ struct{} `type:"structure"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
@@ -9748,37 +9895,38 @@ func (s *UpdateDataSetInput) SetName(v string) *UpdateDataSetInput {
 type UpdateDataSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the data set.
 	Arn *string `type:"string"`
 
 	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the data set was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A description of a resource.
+	// The description for the data set.
 	Description *string `type:"string"`
 
-	// A unique identifier.
+	// The unique identifier for the data set.
 	Id *string `type:"string"`
 
-	// The name of the model.
+	// The name of the data set.
 	Name *string `type:"string"`
 
 	// A property that defines the data set as OWNED by the account (for providers)
-	// or ENTITLED to the account (for subscribers). When an owned data set is published
-	// in a product, AWS Data Exchange creates a copy of the data set. Subscribers
-	// can access that copy of the data set as an entitled data set.
+	// or ENTITLED to the account (for subscribers).
 	Origin *string `type:"string" enum:"Origin"`
 
-	// Information about the origin of the data set.
+	// If the origin of this data set is ENTITLED, includes the details for the
+	// product on AWS Marketplace.
 	OriginDetails *OriginDetails `type:"structure"`
 
-	// A unique identifier.
+	// The data set ID of the owned data set corresponding to the entitled data
+	// set being viewed. This parameter is returned when a data set owner is viewing
+	// the entitled copy of its owned data set.
 	SourceId *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the data set was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -9860,13 +10008,14 @@ func (s *UpdateDataSetOutput) SetUpdatedAt(v time.Time) *UpdateDataSetOutput {
 	return s
 }
 
-// The request to update an event action.
 type UpdateEventActionInput struct {
 	_ struct{} `type:"structure"`
 
 	// What occurs after a certain event.
 	Action *Action `type:"structure"`
 
+	// The unique identifier for the event action.
+	//
 	// EventActionId is a required field
 	EventActionId *string `location:"uri" locationName:"EventActionId" type:"string" required:"true"`
 }
@@ -9928,19 +10077,19 @@ type UpdateEventActionOutput struct {
 	// What occurs after a certain event.
 	Action *Action `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the event action.
 	Arn *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the event action was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// What occurs to start an action.
 	Event *Event `type:"structure"`
 
-	// A unique identifier.
+	// The unique identifier for the event action.
 	Id *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the event action was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -9998,13 +10147,14 @@ func (s *UpdateEventActionOutput) SetUpdatedAt(v time.Time) *UpdateEventActionOu
 	return s
 }
 
-// The request to update a revision.
 type UpdateRevisionInput struct {
 	_ struct{} `type:"structure"`
 
 	// An optional comment about the revision.
 	Comment *string `type:"string"`
 
+	// The unique identifier for a data set.
+	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
@@ -10013,6 +10163,8 @@ type UpdateRevisionInput struct {
 	// publish the revision to your products.
 	Finalized *bool `type:"boolean"`
 
+	// The unique identifier for a revision.
+	//
 	// RevisionId is a required field
 	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
 }
@@ -10084,33 +10236,46 @@ func (s *UpdateRevisionInput) SetRevisionId(v string) *UpdateRevisionInput {
 type UpdateRevisionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	// The ARN for the revision.
 	Arn *string `type:"string"`
 
+	// An optional comment about the revision.
 	Comment *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The unique identifier for the data set associated with this revision.
 	DataSetId *string `type:"string"`
 
+	// To publish a revision to a data set in a product, the revision must first
+	// be finalized. Finalizing a revision tells AWS Data Exchange that changes
+	// to the assets in the revision are complete. After it's in this read-only
+	// state, you can publish the revision to your products. Finalized revisions
+	// can be published through the AWS Data Exchange console or the AWS Marketplace
+	// Catalog API, using the StartChangeSet AWS Marketplace Catalog API action.
+	// When using the API, revisions are uniquely identified by their ARN.
 	Finalized *bool `type:"boolean"`
 
-	// A unique identifier.
+	// The unique identifier for the revision.
 	Id *string `type:"string"`
 
+	// A required comment to inform subscribers of the reason their access to the
+	// revision was revoked.
 	RevocationComment *string `min:"10" type:"string"`
 
+	// A status indicating that subscribers' access to the revision was revoked.
 	Revoked *bool `type:"boolean"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was revoked, in ISO 8601 format.
 	RevokedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// A unique identifier.
+	// The revision ID of the owned revision corresponding to the entitled revision
+	// being viewed. This parameter is returned when a revision owner is viewing
+	// the entitled copy of its owned revision.
 	SourceId *string `type:"string"`
 
-	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	// The date and time that the revision was last updated, in ISO 8601 format.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -10203,7 +10368,7 @@ type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The message that informs you about what the exception was.
+	// The unique identifier for the resource that couldn't be found.
 	ExceptionCause *string `type:"string" enum:"ExceptionCause"`
 
 	// The message that informs you about what was invalid about the request.
@@ -10266,7 +10431,6 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The type of asset that is added to a data set.
 const (
 	// AssetTypeS3Snapshot is a AssetType enum value
 	AssetTypeS3Snapshot = "S3_SNAPSHOT"
@@ -10339,7 +10503,6 @@ func ExceptionCause_Values() []string {
 	}
 }
 
-// The name of the limit that was reached.
 const (
 	// JobErrorLimitNameAssetsperrevision is a JobErrorLimitName enum value
 	JobErrorLimitNameAssetsperrevision = "Assets per revision"
@@ -10360,7 +10523,6 @@ func JobErrorLimitName_Values() []string {
 	}
 }
 
-// The types of resource which the job error can apply to.
 const (
 	// JobErrorResourceTypesRevision is a JobErrorResourceTypes enum value
 	JobErrorResourceTypesRevision = "REVISION"
@@ -10477,10 +10639,6 @@ func LimitName_Values() []string {
 	}
 }
 
-// A property that defines the data set as OWNED by the account (for providers)
-// or ENTITLED to the account (for subscribers). When an owned data set is published
-// in a product, AWS Data Exchange creates a copy of the data set. Subscribers
-// can access that copy of the data set as an entitled data set.
 const (
 	// OriginOwned is a Origin enum value
 	OriginOwned = "OWNED"
@@ -10537,7 +10695,6 @@ func ResourceType_Values() []string {
 	}
 }
 
-// The types of encryption supported in export jobs to Amazon S3.
 const (
 	// ServerSideEncryptionTypesAwsKms is a ServerSideEncryptionTypes enum value
 	ServerSideEncryptionTypesAwsKms = "aws:kms"

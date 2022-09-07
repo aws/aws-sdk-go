@@ -1124,6 +1124,99 @@ func (c *SNS) DeleteTopicWithContext(ctx aws.Context, input *DeleteTopicInput, o
 	return out, req.Send()
 }
 
+const opGetDataProtectionPolicy = "GetDataProtectionPolicy"
+
+// GetDataProtectionPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataProtectionPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDataProtectionPolicy for more information on using the GetDataProtectionPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDataProtectionPolicyRequest method.
+//	req, resp := client.GetDataProtectionPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/GetDataProtectionPolicy
+func (c *SNS) GetDataProtectionPolicyRequest(input *GetDataProtectionPolicyInput) (req *request.Request, output *GetDataProtectionPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetDataProtectionPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetDataProtectionPolicyInput{}
+	}
+
+	output = &GetDataProtectionPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDataProtectionPolicy API operation for Amazon Simple Notification Service.
+//
+// Retrieves the specified inline DataProtectionPolicy document that is stored
+// in the specified Amazon SNS topic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Notification Service's
+// API operation GetDataProtectionPolicy for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeInvalidParameterException "InvalidParameter"
+//     Indicates that a request parameter does not comply with the associated constraints.
+//
+//   - ErrCodeInternalErrorException "InternalError"
+//     Indicates an internal service error.
+//
+//   - ErrCodeNotFoundException "NotFound"
+//     Indicates that the requested resource does not exist.
+//
+//   - ErrCodeAuthorizationErrorException "AuthorizationError"
+//     Indicates that the user has been denied access to the requested resource.
+//
+//   - ErrCodeInvalidSecurityException "InvalidSecurity"
+//     The credential signature isn't valid. You must use an HTTPS endpoint and
+//     sign your request using Signature Version 4.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/GetDataProtectionPolicy
+func (c *SNS) GetDataProtectionPolicy(input *GetDataProtectionPolicyInput) (*GetDataProtectionPolicyOutput, error) {
+	req, out := c.GetDataProtectionPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetDataProtectionPolicyWithContext is the same as GetDataProtectionPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDataProtectionPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SNS) GetDataProtectionPolicyWithContext(ctx aws.Context, input *GetDataProtectionPolicyInput, opts ...request.Option) (*GetDataProtectionPolicyOutput, error) {
+	req, out := c.GetDataProtectionPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetEndpointAttributes = "GetEndpointAttributes"
 
 // GetEndpointAttributesRequest generates a "aws/request.Request" representing the
@@ -3204,6 +3297,9 @@ func (c *SNS) PublishRequest(input *PublishInput) (req *request.Request, output 
 //     The credential signature isn't valid. You must use an HTTPS endpoint and
 //     sign your request using Signature Version 4.
 //
+//   - ErrCodeValidationException "ValidationException"
+//     Indicates that a parameter in the request is invalid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/Publish
 func (c *SNS) Publish(input *PublishInput) (*PublishOutput, error) {
 	req, out := c.PublishRequest(input)
@@ -3373,6 +3469,9 @@ func (c *SNS) PublishBatchRequest(input *PublishBatchInput) (req *request.Reques
 //     The credential signature isn't valid. You must use an HTTPS endpoint and
 //     sign your request using Signature Version 4.
 //
+//   - ErrCodeValidationException "ValidationException"
+//     Indicates that a parameter in the request is invalid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/PublishBatch
 func (c *SNS) PublishBatch(input *PublishBatchInput) (*PublishBatchOutput, error) {
 	req, out := c.PublishBatchRequest(input)
@@ -3390,6 +3489,100 @@ func (c *SNS) PublishBatch(input *PublishBatchInput) (*PublishBatchOutput, error
 // for more information on using Contexts.
 func (c *SNS) PublishBatchWithContext(ctx aws.Context, input *PublishBatchInput, opts ...request.Option) (*PublishBatchOutput, error) {
 	req, out := c.PublishBatchRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutDataProtectionPolicy = "PutDataProtectionPolicy"
+
+// PutDataProtectionPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutDataProtectionPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutDataProtectionPolicy for more information on using the PutDataProtectionPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutDataProtectionPolicyRequest method.
+//	req, resp := client.PutDataProtectionPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/PutDataProtectionPolicy
+func (c *SNS) PutDataProtectionPolicyRequest(input *PutDataProtectionPolicyInput) (req *request.Request, output *PutDataProtectionPolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutDataProtectionPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutDataProtectionPolicyInput{}
+	}
+
+	output = &PutDataProtectionPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutDataProtectionPolicy API operation for Amazon Simple Notification Service.
+//
+// Adds or updates an inline policy document that is stored in the specified
+// Amazon SNS topic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Notification Service's
+// API operation PutDataProtectionPolicy for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeInvalidParameterException "InvalidParameter"
+//     Indicates that a request parameter does not comply with the associated constraints.
+//
+//   - ErrCodeInternalErrorException "InternalError"
+//     Indicates an internal service error.
+//
+//   - ErrCodeNotFoundException "NotFound"
+//     Indicates that the requested resource does not exist.
+//
+//   - ErrCodeAuthorizationErrorException "AuthorizationError"
+//     Indicates that the user has been denied access to the requested resource.
+//
+//   - ErrCodeInvalidSecurityException "InvalidSecurity"
+//     The credential signature isn't valid. You must use an HTTPS endpoint and
+//     sign your request using Signature Version 4.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/PutDataProtectionPolicy
+func (c *SNS) PutDataProtectionPolicy(input *PutDataProtectionPolicyInput) (*PutDataProtectionPolicyOutput, error) {
+	req, out := c.PutDataProtectionPolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutDataProtectionPolicyWithContext is the same as PutDataProtectionPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutDataProtectionPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SNS) PutDataProtectionPolicyWithContext(ctx aws.Context, input *PutDataProtectionPolicyInput, opts ...request.Option) (*PutDataProtectionPolicyOutput, error) {
+	req, out := c.PutDataProtectionPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5215,6 +5408,15 @@ type CreateTopicInput struct {
 	//    parameter for the Publish action.
 	Attributes map[string]*string `type:"map"`
 
+	// The body of the policy document you want to use for this topic.
+	//
+	// You can only add one policy per topic.
+	//
+	// The policy must be in JSON string format.
+	//
+	// Length Constraints: Maximum length of 30,720.
+	DataProtectionPolicy *string `type:"string"`
+
 	// The name of the topic you want to create.
 	//
 	// Constraints: Topic names must be made up of only uppercase and lowercase
@@ -5277,6 +5479,12 @@ func (s *CreateTopicInput) Validate() error {
 // SetAttributes sets the Attributes field's value.
 func (s *CreateTopicInput) SetAttributes(v map[string]*string) *CreateTopicInput {
 	s.Attributes = v
+	return s
+}
+
+// SetDataProtectionPolicy sets the DataProtectionPolicy field's value.
+func (s *CreateTopicInput) SetDataProtectionPolicy(v string) *CreateTopicInput {
+	s.DataProtectionPolicy = &v
 	return s
 }
 
@@ -5636,6 +5844,86 @@ func (s *Endpoint) SetAttributes(v map[string]*string) *Endpoint {
 // SetEndpointArn sets the EndpointArn field's value.
 func (s *Endpoint) SetEndpointArn(v string) *Endpoint {
 	s.EndpointArn = &v
+	return s
+}
+
+type GetDataProtectionPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the topic whose DataProtectionPolicy you want to get.
+	//
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataProtectionPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataProtectionPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDataProtectionPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDataProtectionPolicyInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetDataProtectionPolicyInput) SetResourceArn(v string) *GetDataProtectionPolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type GetDataProtectionPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Retrieves the DataProtectionPolicy in JSON string format.
+	DataProtectionPolicy *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataProtectionPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataProtectionPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataProtectionPolicy sets the DataProtectionPolicy field's value.
+func (s *GetDataProtectionPolicyOutput) SetDataProtectionPolicy(v string) *GetDataProtectionPolicyOutput {
+	s.DataProtectionPolicy = &v
 	return s
 }
 
@@ -7861,6 +8149,95 @@ func (s *PublishOutput) SetMessageId(v string) *PublishOutput {
 func (s *PublishOutput) SetSequenceNumber(v string) *PublishOutput {
 	s.SequenceNumber = &v
 	return s
+}
+
+type PutDataProtectionPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The JSON serialization of the topic's DataProtectionPolicy.
+	//
+	// The DataProtectionPolicy must be in JSON string format.
+	//
+	// Length Constraints: Maximum length of 30,720.
+	//
+	// DataProtectionPolicy is a required field
+	DataProtectionPolicy *string `type:"string" required:"true"`
+
+	// The ARN of the topic whose DataProtectionPolicy you want to add or update.
+	//
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutDataProtectionPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutDataProtectionPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutDataProtectionPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutDataProtectionPolicyInput"}
+	if s.DataProtectionPolicy == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataProtectionPolicy"))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataProtectionPolicy sets the DataProtectionPolicy field's value.
+func (s *PutDataProtectionPolicyInput) SetDataProtectionPolicy(v string) *PutDataProtectionPolicyInput {
+	s.DataProtectionPolicy = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *PutDataProtectionPolicyInput) SetResourceArn(v string) *PutDataProtectionPolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type PutDataProtectionPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutDataProtectionPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutDataProtectionPolicyOutput) GoString() string {
+	return s.String()
 }
 
 // Input for RemovePermission action.

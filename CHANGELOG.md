@@ -1,3 +1,19 @@
+Release v1.44.93 (2022-09-07)
+===
+
+### Service Client Updates
+* `service/dataexchange`: Updates service API, documentation, waiters, paginators, and examples
+* `service/ec2`: Updates service API
+  * Documentation updates for Amazon EC2.
+* `service/eks`: Updates service API and documentation
+* `service/fsx`: Updates service documentation
+* `service/inspector2`: Updates service API and documentation
+* `service/iotsitewise`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker Hosting now allows customization on ML instance storage volume size, model data download timeout and inference container startup ping health check timeout for each ProductionVariant in CreateEndpointConfig API.
+* `service/sns`: Updates service API and documentation
+  * Amazon SNS introduces the Data Protection Policy APIs, which enable customers to attach a data protection policy to an SNS topic. This allows topic owners to enable the new message data protection feature to audit and block sensitive data that is exchanged through their topics.
+
 Release v1.44.92 (2022-09-06)
 ===
 

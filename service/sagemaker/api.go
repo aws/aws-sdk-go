@@ -82777,6 +82777,11 @@ type ProductionVariant struct {
 	// more information, see Using Elastic Inference in Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).
 	AcceleratorType *string `type:"string" enum:"ProductionVariantAcceleratorType"`
 
+	// The timeout value, in seconds, for the customer inference container to pass
+	// health check by SageMaker Hosting. For more information on health check,
+	// see How Your Container Should Respond to Health Check (Ping) Requests (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-inference-code.html#your-algorithms-inference-algo-ping-requests).
+	ContainerStartupHealthCheckTimeoutInSeconds *int64 `min:"60" type:"integer"`
+
 	// Specifies configuration for a core dump from the model container when the
 	// process crashes.
 	CoreDumpConfig *ProductionVariantCoreDumpConfig `type:"structure"`
@@ -82793,6 +82798,11 @@ type ProductionVariant struct {
 	// The ML compute instance type.
 	InstanceType *string `type:"string" enum:"ProductionVariantInstanceType"`
 
+	// The timeout value, in seconds, to download and extract customer model artifact
+	// from Amazon S3 to individual inference instance associated with this production
+	// variant.
+	ModelDataDownloadTimeoutInSeconds *int64 `min:"60" type:"integer"`
+
 	// The name of the model that you want to host. This is the name that you specified
 	// when creating the model.
 	//
@@ -82807,6 +82817,11 @@ type ProductionVariant struct {
 	//
 	// VariantName is a required field
 	VariantName *string `type:"string" required:"true"`
+
+	// The size, in GB, of the ML storage volume attached to individual inference
+	// instance associated with the production variant. Currenly only Amazon EBS
+	// gp2 storage volumes are supported.
+	VolumeSizeInGB *int64 `min:"1" type:"integer"`
 }
 
 // String returns the string representation.
@@ -82830,14 +82845,23 @@ func (s ProductionVariant) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ProductionVariant) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ProductionVariant"}
+	if s.ContainerStartupHealthCheckTimeoutInSeconds != nil && *s.ContainerStartupHealthCheckTimeoutInSeconds < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("ContainerStartupHealthCheckTimeoutInSeconds", 60))
+	}
 	if s.InitialInstanceCount != nil && *s.InitialInstanceCount < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("InitialInstanceCount", 1))
+	}
+	if s.ModelDataDownloadTimeoutInSeconds != nil && *s.ModelDataDownloadTimeoutInSeconds < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("ModelDataDownloadTimeoutInSeconds", 60))
 	}
 	if s.ModelName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelName"))
 	}
 	if s.VariantName == nil {
 		invalidParams.Add(request.NewErrParamRequired("VariantName"))
+	}
+	if s.VolumeSizeInGB != nil && *s.VolumeSizeInGB < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("VolumeSizeInGB", 1))
 	}
 	if s.CoreDumpConfig != nil {
 		if err := s.CoreDumpConfig.Validate(); err != nil {
@@ -82859,6 +82883,12 @@ func (s *ProductionVariant) Validate() error {
 // SetAcceleratorType sets the AcceleratorType field's value.
 func (s *ProductionVariant) SetAcceleratorType(v string) *ProductionVariant {
 	s.AcceleratorType = &v
+	return s
+}
+
+// SetContainerStartupHealthCheckTimeoutInSeconds sets the ContainerStartupHealthCheckTimeoutInSeconds field's value.
+func (s *ProductionVariant) SetContainerStartupHealthCheckTimeoutInSeconds(v int64) *ProductionVariant {
+	s.ContainerStartupHealthCheckTimeoutInSeconds = &v
 	return s
 }
 
@@ -82886,6 +82916,12 @@ func (s *ProductionVariant) SetInstanceType(v string) *ProductionVariant {
 	return s
 }
 
+// SetModelDataDownloadTimeoutInSeconds sets the ModelDataDownloadTimeoutInSeconds field's value.
+func (s *ProductionVariant) SetModelDataDownloadTimeoutInSeconds(v int64) *ProductionVariant {
+	s.ModelDataDownloadTimeoutInSeconds = &v
+	return s
+}
+
 // SetModelName sets the ModelName field's value.
 func (s *ProductionVariant) SetModelName(v string) *ProductionVariant {
 	s.ModelName = &v
@@ -82901,6 +82937,12 @@ func (s *ProductionVariant) SetServerlessConfig(v *ProductionVariantServerlessCo
 // SetVariantName sets the VariantName field's value.
 func (s *ProductionVariant) SetVariantName(v string) *ProductionVariant {
 	s.VariantName = &v
+	return s
+}
+
+// SetVolumeSizeInGB sets the VolumeSizeInGB field's value.
+func (s *ProductionVariant) SetVolumeSizeInGB(v int64) *ProductionVariant {
+	s.VolumeSizeInGB = &v
 	return s
 }
 
