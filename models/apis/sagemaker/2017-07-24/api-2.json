@@ -14138,7 +14138,10 @@
         "InitialVariantWeight":{"shape":"VariantWeight"},
         "AcceleratorType":{"shape":"ProductionVariantAcceleratorType"},
         "CoreDumpConfig":{"shape":"ProductionVariantCoreDumpConfig"},
-        "ServerlessConfig":{"shape":"ProductionVariantServerlessConfig"}
+        "ServerlessConfig":{"shape":"ProductionVariantServerlessConfig"},
+        "VolumeSizeInGB":{"shape":"ProductionVariantVolumeSizeInGB"},
+        "ModelDataDownloadTimeoutInSeconds":{"shape":"ProductionVariantModelDataDownloadTimeoutInSeconds"},
+        "ContainerStartupHealthCheckTimeoutInSeconds":{"shape":"ProductionVariantContainerStartupHealthCheckTimeoutInSeconds"}
       }
     },
     "ProductionVariantAcceleratorType":{
@@ -14151,6 +14154,11 @@
         "ml.eia2.large",
         "ml.eia2.xlarge"
       ]
+    },
+    "ProductionVariantContainerStartupHealthCheckTimeoutInSeconds":{
+      "type":"integer",
+      "max":3600,
+      "min":60
     },
     "ProductionVariantCoreDumpConfig":{
       "type":"structure",
@@ -14255,6 +14263,11 @@
       "max":10,
       "min":1
     },
+    "ProductionVariantModelDataDownloadTimeoutInSeconds":{
+      "type":"integer",
+      "max":3600,
+      "min":60
+    },
     "ProductionVariantServerlessConfig":{
       "type":"structure",
       "required":[
@@ -14299,6 +14312,11 @@
     "ProductionVariantSummaryList":{
       "type":"list",
       "member":{"shape":"ProductionVariantSummary"},
+      "min":1
+    },
+    "ProductionVariantVolumeSizeInGB":{
+      "type":"integer",
+      "max":512,
       "min":1
     },
     "ProfilerConfig":{

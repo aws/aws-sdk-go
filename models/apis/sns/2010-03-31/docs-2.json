@@ -13,6 +13,7 @@
     "DeletePlatformApplication": "<p>Deletes a platform application object for one of the supported push notification services, such as APNS and GCM (Firebase Cloud Messaging). For more information, see <a href=\"https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p>",
     "DeleteSMSSandboxPhoneNumber": "<p>Deletes an Amazon Web Services account's verified or pending phone number from the SMS sandbox.</p> <p>When you start using Amazon SNS to send SMS messages, your Amazon Web Services account is in the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for you to try Amazon SNS features without risking your reputation as an SMS sender. While your Amazon Web Services account is in the SMS sandbox, you can use all of the features of Amazon SNS. However, you can send SMS messages only to verified destination phone numbers. For more information, including how to move out of the sandbox to send messages without restrictions, see <a href=\"https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html\">SMS sandbox</a> in the <i>Amazon SNS Developer Guide</i>.</p>",
     "DeleteTopic": "<p>Deletes a topic and all its subscriptions. Deleting a topic might prevent some messages previously sent to the topic from being delivered to subscribers. This action is idempotent, so deleting a topic that does not exist does not result in an error.</p>",
+    "GetDataProtectionPolicy": "<p>Retrieves the specified inline <code>DataProtectionPolicy</code> document that is stored in the specified Amazon SNS topic. </p>",
     "GetEndpointAttributes": "<p>Retrieves the endpoint attributes for a device on one of the supported push notification services, such as GCM (Firebase Cloud Messaging) and APNS. For more information, see <a href=\"https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p>",
     "GetPlatformApplicationAttributes": "<p>Retrieves the attributes of the platform application object for the supported push notification services, such as APNS and GCM (Firebase Cloud Messaging). For more information, see <a href=\"https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p>",
     "GetSMSAttributes": "<p>Returns the settings for sending SMS messages from your Amazon Web Services account.</p> <p>These settings are set with the <code>SetSMSAttributes</code> action.</p>",
@@ -31,6 +32,7 @@
     "OptInPhoneNumber": "<p>Use this request to opt in a phone number that is opted out, which enables you to resume sending SMS messages to the number.</p> <p>You can opt in a phone number only once every 30 days.</p>",
     "Publish": "<p>Sends a message to an Amazon SNS topic, a text message (SMS message) directly to a phone number, or a message to a mobile platform endpoint (when you specify the <code>TargetArn</code>).</p> <p>If you send a message to a topic, Amazon SNS delivers the message to each endpoint that is subscribed to the topic. The format of the message depends on the notification protocol for each subscribed endpoint.</p> <p>When a <code>messageId</code> is returned, the message is saved and Amazon SNS immediately delivers it to subscribers.</p> <p>To use the <code>Publish</code> action for publishing a message to a mobile endpoint, such as an app on a Kindle device or mobile phone, you must specify the EndpointArn for the TargetArn parameter. The EndpointArn is returned when making a call with the <code>CreatePlatformEndpoint</code> action. </p> <p>For more information about formatting messages, see <a href=\"https://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-custommessage.html\">Send Custom Platform-Specific Payloads in Messages to Mobile Devices</a>. </p> <important> <p>You can publish messages only to topics and endpoints in the same Amazon Web Services Region.</p> </important>",
     "PublishBatch": "<p>Publishes up to ten messages to the specified topic. This is a batch version of <code>Publish</code>. For FIFO topics, multiple messages within a single batch are published in the order they are sent, and messages are deduplicated within the batch and across batches for 5 minutes.</p> <p>The result of publishing each message is reported individually in the response. Because the batch request can result in a combination of successful and unsuccessful actions, you should check for batch errors even when the call returns an HTTP status code of <code>200</code>.</p> <p>The maximum allowed individual message size and the maximum total payload size (the sum of the individual lengths of all of the batched messages) are both 256 KB (262,144 bytes). </p> <p>Some actions take lists of parameters. These lists are specified using the <code>param.n</code> notation. Values of <code>n</code> are integers starting from 1. For example, a parameter list with two elements looks like this: </p> <p>&amp;AttributeName.1=first</p> <p>&amp;AttributeName.2=second</p> <p>If you send a batch message to a topic, Amazon SNS publishes the batch message to each endpoint that is subscribed to the topic. The format of the batch message depends on the notification protocol for each subscribed endpoint.</p> <p>When a <code>messageId</code> is returned, the batch message is saved and Amazon SNS immediately delivers the message to subscribers.</p>",
+    "PutDataProtectionPolicy": "<p>Adds or updates an inline policy document that is stored in the specified Amazon SNS topic.</p>",
     "RemovePermission": "<p>Removes a statement from a topic's access control policy.</p>",
     "SetEndpointAttributes": "<p>Sets the attributes for an endpoint for a device on one of the supported push notification services, such as GCM (Firebase Cloud Messaging) and APNS. For more information, see <a href=\"https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p>",
     "SetPlatformApplicationAttributes": "<p>Sets the attributes of the platform application object for the supported push notification services, such as APNS and GCM (Firebase Cloud Messaging). For more information, see <a href=\"https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. For information on configuring attributes for message delivery status, see <a href=\"https://docs.aws.amazon.com/sns/latest/dg/sns-msg-status.html\">Using Amazon SNS Application Attributes for Message Delivery Status</a>. </p>",
@@ -210,6 +212,16 @@
     },
     "FilterPolicyLimitExceededException": {
       "base": "<p>Indicates that the number of filter polices in your Amazon Web Services account exceeds the limit. To add more filter polices, submit an Amazon SNS Limit Increase case in the Amazon Web Services Support Center.</p>",
+      "refs": {
+      }
+    },
+    "GetDataProtectionPolicyInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataProtectionPolicyResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -616,6 +628,11 @@
       "refs": {
       }
     },
+    "PutDataProtectionPolicyInput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RemovePermissionInput": {
       "base": "<p>Input for RemovePermission action.</p>",
       "refs": {
@@ -923,6 +940,9 @@
     "attributeValue": {
       "base": null,
       "refs": {
+        "CreateTopicInput$DataProtectionPolicy": "<p>The body of the policy document you want to use for this topic.</p> <p>You can only add one policy per topic.</p> <p>The policy must be in JSON string format.</p> <p>Length Constraints: Maximum length of 30,720.</p>",
+        "GetDataProtectionPolicyResponse$DataProtectionPolicy": "<p>Retrieves the <code>DataProtectionPolicy</code> in JSON string format.</p>",
+        "PutDataProtectionPolicyInput$DataProtectionPolicy": "<p>The JSON serialization of the topic's <code>DataProtectionPolicy</code>.</p> <p>The <code>DataProtectionPolicy</code> must be in JSON string format.</p> <p>Length Constraints: Maximum length of 30,720.</p>",
         "SetSubscriptionAttributesInput$AttributeValue": "<p>The new value for the attribute in JSON format.</p>",
         "SetTopicAttributesInput$AttributeValue": "<p>The new value for the attribute.</p>",
         "SubscriptionAttributesMap$value": null,
@@ -1078,10 +1098,12 @@
         "ConfirmSubscriptionInput$TopicArn": "<p>The ARN of the topic for which you wish to confirm a subscription.</p>",
         "CreateTopicResponse$TopicArn": "<p>The Amazon Resource Name (ARN) assigned to the created topic.</p>",
         "DeleteTopicInput$TopicArn": "<p>The ARN of the topic you want to delete.</p>",
+        "GetDataProtectionPolicyInput$ResourceArn": "<p>The ARN of the topic whose <code>DataProtectionPolicy</code> you want to get.</p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the Amazon Web Services General Reference.</p>",
         "GetTopicAttributesInput$TopicArn": "<p>The ARN of the topic whose properties you want to get.</p>",
         "ListSubscriptionsByTopicInput$TopicArn": "<p>The ARN of the topic for which you wish to find subscriptions.</p>",
         "PublishBatchInput$TopicArn": "<p>The Amazon resource name (ARN) of the topic you want to batch publish to.</p>",
         "PublishInput$TopicArn": "<p>The topic you want to publish to.</p> <p>If you don't specify a value for the <code>TopicArn</code> parameter, you must specify a value for the <code>PhoneNumber</code> or <code>TargetArn</code> parameters.</p>",
+        "PutDataProtectionPolicyInput$ResourceArn": "<p>The ARN of the topic whose <code>DataProtectionPolicy</code> you want to add or update.</p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the Amazon Web Services General Reference.</p>",
         "RemovePermissionInput$TopicArn": "<p>The ARN of the topic whose access control policy you wish to modify.</p>",
         "SetTopicAttributesInput$TopicArn": "<p>The ARN of the topic to modify.</p>",
         "SubscribeInput$TopicArn": "<p>The ARN of the topic you want to subscribe to.</p>",

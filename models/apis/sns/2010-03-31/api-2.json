@@ -205,6 +205,25 @@
         {"shape":"ConcurrentAccessException"}
       ]
     },
+    "GetDataProtectionPolicy":{
+      "name":"GetDataProtectionPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDataProtectionPolicyInput"},
+      "output":{
+        "shape":"GetDataProtectionPolicyResponse",
+        "resultWrapper":"GetDataProtectionPolicyResult"
+      },
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"InvalidSecurityException"}
+      ]
+    },
     "GetEndpointAttributes":{
       "name":"GetEndpointAttributes",
       "http":{
@@ -518,7 +537,8 @@
         {"shape":"KMSOptInRequired"},
         {"shape":"KMSThrottlingException"},
         {"shape":"KMSAccessDeniedException"},
-        {"shape":"InvalidSecurityException"}
+        {"shape":"InvalidSecurityException"},
+        {"shape":"ValidationException"}
       ]
     },
     "PublishBatch":{
@@ -551,6 +571,22 @@
         {"shape":"KMSOptInRequired"},
         {"shape":"KMSThrottlingException"},
         {"shape":"KMSAccessDeniedException"},
+        {"shape":"InvalidSecurityException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "PutDataProtectionPolicy":{
+      "name":"PutDataProtectionPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutDataProtectionPolicyInput"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AuthorizationErrorException"},
         {"shape":"InvalidSecurityException"}
       ]
     },
@@ -923,7 +959,8 @@
       "members":{
         "Name":{"shape":"topicName"},
         "Attributes":{"shape":"TopicAttributesMap"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "DataProtectionPolicy":{"shape":"attributeValue"}
       }
     },
     "CreateTopicResponse":{
@@ -1011,6 +1048,19 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "GetDataProtectionPolicyInput":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"topicARN"}
+      }
+    },
+    "GetDataProtectionPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "DataProtectionPolicy":{"shape":"attributeValue"}
+      }
     },
     "GetEndpointAttributesInput":{
       "type":"structure",
@@ -1582,6 +1632,17 @@
       "members":{
         "MessageId":{"shape":"messageId"},
         "SequenceNumber":{"shape":"String"}
+      }
+    },
+    "PutDataProtectionPolicyInput":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "DataProtectionPolicy"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"topicARN"},
+        "DataProtectionPolicy":{"shape":"attributeValue"}
       }
     },
     "RemovePermissionInput":{

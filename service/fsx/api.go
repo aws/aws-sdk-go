@@ -8092,9 +8092,13 @@ type CreateOntapVolumeConfiguration struct {
 	// JunctionPath is a required field
 	JunctionPath *string `min:"1" type:"string" required:"true"`
 
-	// The security style for the volume. If a volume's security style is not specified,
-	// it is automatically set to the root volume's security style. Specify one
-	// of the following values:
+	// Specifies the security style for the volume. If a volume's security style
+	// is not specified, it is automatically set to the root volume's security style.
+	// The security style determines the type of permissions that FSx for ONTAP
+	// uses to control data access. For more information, see Volume security style
+	// (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-volumes.html#volume-security-style)
+	// in the Amazon FSx for NetApp ONTAP User Guide. Specify one of the following
+	// values:
 	//
 	//    * UNIX if the file system is managed by a UNIX administrator, the majority
 	//    of users are NFS clients, and an application accessing the data uses a
@@ -12591,8 +12595,7 @@ type FileSystem struct {
 	// The Domain Name System (DNS) name for the file system.
 	DNSName *string `min:"16" type:"string"`
 
-	// A structure providing details of any failures that occurred when creating
-	// a file system.
+	// A structure providing details of any failures that occurred.
 	FailureDetails *FileSystemFailureDetails `type:"structure"`
 
 	// The system-generated, unique 17-digit ID of the file system.
@@ -12936,12 +12939,11 @@ func (s *FileSystemEndpoints) SetManagement(v *FileSystemEndpoint) *FileSystemEn
 	return s
 }
 
-// A structure providing details of any failures that occurred when creating
-// a file system.
+// A structure providing details of any failures that occurred.
 type FileSystemFailureDetails struct {
 	_ struct{} `type:"structure"`
 
-	// A message describing any failures that occurred during file system creation.
+	// A message describing any failures that occurred.
 	Message *string `min:"1" type:"string"`
 }
 

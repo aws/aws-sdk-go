@@ -874,6 +874,12 @@
         "FindingTypeAggregation$sortBy": "<p>The value to sort results by.</p>"
       }
     },
+    "FixAvailable": {
+      "base": null,
+      "refs": {
+        "Finding$fixAvailable": "<p>Details on whether a fix is available through a version update. This value can be <code>YES</code>, <code>NO</code>, or <code>PARTIAL</code>. A <code>PARTIAL</code> fix means that some, but not all, of the packages identified in the finding have fixes available through updated versions.</p>"
+      }
+    },
     "FreeTrialAccountInfo": {
       "base": "<p>Information about the Amazon Inspector free trial for an account.</p>",
       "refs": {
@@ -1823,6 +1829,7 @@
         "FilterCriteria$findingArn": "<p>Details on the finding ARNs used to filter findings.</p>",
         "FilterCriteria$findingStatus": "<p>Details on the finding status types used to filter findings.</p>",
         "FilterCriteria$findingType": "<p>Details on the finding types used to filter findings.</p>",
+        "FilterCriteria$fixAvailable": "<p>Details on whether a fix is available through a version update. This value can be <code>YES</code>, <code>NO</code>, or <code>PARTIAL</code>. A <code>PARTIAL</code> fix means that some, but not all, of the packages identified in the finding have fixes available through updated versions.</p>",
         "FilterCriteria$networkProtocol": "<p>Details on the ingress source addresses used to filter findings.</p>",
         "FilterCriteria$relatedVulnerabilities": "<p>Details on the related vulnerabilities used to filter findings.</p>",
         "FilterCriteria$resourceId": "<p>Details on the resource IDs used to filter findings.</p>",
@@ -2060,6 +2067,12 @@
       "base": null,
       "refs": {
         "PackageVulnerabilityDetails$vulnerablePackages": "<p>The packages impacted by this vulnerability.</p>"
+      }
+    },
+    "VulnerablePackageRemediation": {
+      "base": null,
+      "refs": {
+        "VulnerablePackage$remediation": "<p>The code to run in your environment to update packages with a fix available.</p>"
       }
     }
   }

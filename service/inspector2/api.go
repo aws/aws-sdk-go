@@ -7662,6 +7662,12 @@ type FilterCriteria struct {
 	// Details on the date and time a finding was first seen used to filter findings.
 	FirstObservedAt []*DateFilter `locationName:"firstObservedAt" min:"1" type:"list"`
 
+	// Details on whether a fix is available through a version update. This value
+	// can be YES, NO, or PARTIAL. A PARTIAL fix means that some, but not all, of
+	// the packages identified in the finding have fixes available through updated
+	// versions.
+	FixAvailable []*StringFilter `locationName:"fixAvailable" min:"1" type:"list"`
+
 	// The Amazon Inspector score to filter on.
 	InspectorScore []*NumberFilter `locationName:"inspectorScore" min:"1" type:"list"`
 
@@ -7777,6 +7783,9 @@ func (s *FilterCriteria) Validate() error {
 	}
 	if s.FirstObservedAt != nil && len(s.FirstObservedAt) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FirstObservedAt", 1))
+	}
+	if s.FixAvailable != nil && len(s.FixAvailable) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FixAvailable", 1))
 	}
 	if s.InspectorScore != nil && len(s.InspectorScore) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InspectorScore", 1))
@@ -7960,6 +7969,16 @@ func (s *FilterCriteria) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FindingType", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.FixAvailable != nil {
+		for i, v := range s.FixAvailable {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FixAvailable", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -8176,6 +8195,12 @@ func (s *FilterCriteria) SetFirstObservedAt(v []*DateFilter) *FilterCriteria {
 	return s
 }
 
+// SetFixAvailable sets the FixAvailable field's value.
+func (s *FilterCriteria) SetFixAvailable(v []*StringFilter) *FilterCriteria {
+	s.FixAvailable = v
+	return s
+}
+
 // SetInspectorScore sets the InspectorScore field's value.
 func (s *FilterCriteria) SetInspectorScore(v []*NumberFilter) *FilterCriteria {
 	s.InspectorScore = v
@@ -8290,6 +8315,12 @@ type Finding struct {
 	// FirstObservedAt is a required field
 	FirstObservedAt *time.Time `locationName:"firstObservedAt" type:"timestamp" required:"true"`
 
+	// Details on whether a fix is available through a version update. This value
+	// can be YES, NO, or PARTIAL. A PARTIAL fix means that some, but not all, of
+	// the packages identified in the finding have fixes available through updated
+	// versions.
+	FixAvailable *string `locationName:"fixAvailable" type:"string" enum:"FixAvailable"`
+
 	// The Amazon Inspector score given to the finding.
 	InspectorScore *float64 `locationName:"inspectorScore" type:"double"`
 
@@ -8378,6 +8409,12 @@ func (s *Finding) SetFindingArn(v string) *Finding {
 // SetFirstObservedAt sets the FirstObservedAt field's value.
 func (s *Finding) SetFirstObservedAt(v time.Time) *Finding {
 	s.FirstObservedAt = &v
+	return s
+}
+
+// SetFixAvailable sets the FixAvailable field's value.
+func (s *Finding) SetFixAvailable(v string) *Finding {
+	s.FixAvailable = &v
 	return s
 }
 
@@ -11004,9 +11041,7 @@ type PackageVulnerabilityDetails struct {
 	VulnerabilityId *string `locationName:"vulnerabilityId" min:"1" type:"string" required:"true"`
 
 	// The packages impacted by this vulnerability.
-	//
-	// VulnerablePackages is a required field
-	VulnerablePackages []*VulnerablePackage `locationName:"vulnerablePackages" type:"list" required:"true"`
+	VulnerablePackages []*VulnerablePackage `locationName:"vulnerablePackages" type:"list"`
 }
 
 // String returns the string representation.
@@ -13110,6 +13145,9 @@ type VulnerablePackage struct {
 	// The release of the vulnerable package.
 	Release *string `locationName:"release" min:"1" type:"string"`
 
+	// The code to run in your environment to update packages with a fix available.
+	Remediation *string `locationName:"remediation" min:"1" type:"string"`
+
 	// The source layer hash of the vulnerable package.
 	SourceLayerHash *string `locationName:"sourceLayerHash" min:"71" type:"string"`
 
@@ -13176,6 +13214,12 @@ func (s *VulnerablePackage) SetPackageManager(v string) *VulnerablePackage {
 // SetRelease sets the Release field's value.
 func (s *VulnerablePackage) SetRelease(v string) *VulnerablePackage {
 	s.Release = &v
+	return s
+}
+
+// SetRemediation sets the Remediation field's value.
+func (s *VulnerablePackage) SetRemediation(v string) *VulnerablePackage {
+	s.Remediation = &v
 	return s
 }
 
@@ -13672,6 +13716,26 @@ func FindingTypeSortBy_Values() []string {
 }
 
 const (
+	// FixAvailableYes is a FixAvailable enum value
+	FixAvailableYes = "YES"
+
+	// FixAvailableNo is a FixAvailable enum value
+	FixAvailableNo = "NO"
+
+	// FixAvailablePartial is a FixAvailable enum value
+	FixAvailablePartial = "PARTIAL"
+)
+
+// FixAvailable_Values returns all elements of the FixAvailable enum
+func FixAvailable_Values() []string {
+	return []string{
+		FixAvailableYes,
+		FixAvailableNo,
+		FixAvailablePartial,
+	}
+}
+
+const (
 	// FreeTrialInfoErrorCodeAccessDenied is a FreeTrialInfoErrorCode enum value
 	FreeTrialInfoErrorCodeAccessDenied = "ACCESS_DENIED"
 
@@ -14133,6 +14197,12 @@ const (
 
 	// ScanStatusReasonPendingDisable is a ScanStatusReason enum value
 	ScanStatusReasonPendingDisable = "PENDING_DISABLE"
+
+	// ScanStatusReasonNoInventory is a ScanStatusReason enum value
+	ScanStatusReasonNoInventory = "NO_INVENTORY"
+
+	// ScanStatusReasonStaleInventory is a ScanStatusReason enum value
+	ScanStatusReasonStaleInventory = "STALE_INVENTORY"
 )
 
 // ScanStatusReason_Values returns all elements of the ScanStatusReason enum
@@ -14152,6 +14222,8 @@ func ScanStatusReason_Values() []string {
 		ScanStatusReasonScanFrequencyScanOnPush,
 		ScanStatusReasonEc2InstanceStopped,
 		ScanStatusReasonPendingDisable,
+		ScanStatusReasonNoInventory,
+		ScanStatusReasonStaleInventory,
 	}
 }
 

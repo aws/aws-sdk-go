@@ -700,7 +700,10 @@
       "required":["ami"],
       "members":{
         "accountId":{"shape":"AccountId"},
-        "affectedInstances":{"shape":"Long"},
+        "affectedInstances":{
+          "shape":"Long",
+          "box":true
+        },
         "ami":{"shape":"AmiId"},
         "severityCounts":{"shape":"SeverityCounts"}
       }
@@ -744,8 +747,14 @@
         "ecr"
       ],
       "members":{
-        "ec2":{"shape":"Boolean"},
-        "ecr":{"shape":"Boolean"}
+        "ec2":{
+          "shape":"Boolean",
+          "box":true
+        },
+        "ecr":{
+          "shape":"Boolean",
+          "box":true
+        }
       }
     },
     "AwsEc2InstanceDetails":{
@@ -864,10 +873,7 @@
         "failedAccounts":{"shape":"FreeTrialInfoErrorList"}
       }
     },
-    "Boolean":{
-      "type":"boolean",
-      "box":true
-    },
+    "Boolean":{"type":"boolean"},
     "CancelFindingsReportRequest":{
       "type":"structure",
       "required":["reportId"],
@@ -910,7 +916,10 @@
     "Counts":{
       "type":"structure",
       "members":{
-        "count":{"shape":"AggCounts"},
+        "count":{
+          "shape":"AggCounts",
+          "default":0
+        },
         "groupKey":{"shape":"GroupKey"}
       }
     },
@@ -1068,7 +1077,10 @@
         "version"
       ],
       "members":{
-        "baseScore":{"shape":"Double"},
+        "baseScore":{
+          "shape":"Double",
+          "box":true
+        },
         "scoringVector":{"shape":"NonEmptyString"},
         "source":{"shape":"NonEmptyString"},
         "version":{"shape":"NonEmptyString"}
@@ -1100,7 +1112,10 @@
       "members":{
         "adjustments":{"shape":"CvssScoreAdjustmentList"},
         "cvssSource":{"shape":"NonEmptyString"},
-        "score":{"shape":"Double"},
+        "score":{
+          "shape":"Double",
+          "box":true
+        },
         "scoreSource":{"shape":"NonEmptyString"},
         "scoringVector":{"shape":"NonEmptyString"},
         "version":{"shape":"NonEmptyString"}
@@ -1174,7 +1189,10 @@
       "type":"structure",
       "members":{
         "autoEnable":{"shape":"AutoEnable"},
-        "maxAccountLimitReached":{"shape":"Boolean"}
+        "maxAccountLimitReached":{
+          "shape":"Boolean",
+          "box":true
+        }
       }
     },
     "Destination":{
@@ -1238,10 +1256,7 @@
         "accountId":{"shape":"AccountId"}
       }
     },
-    "Double":{
-      "type":"double",
-      "box":true
-    },
+    "Double":{"type":"double"},
     "Ec2InstanceAggregation":{
       "type":"structure",
       "members":{
@@ -1261,7 +1276,10 @@
         "ami":{"shape":"AmiId"},
         "instanceId":{"shape":"NonEmptyString"},
         "instanceTags":{"shape":"TagMap"},
-        "networkFindings":{"shape":"Long"},
+        "networkFindings":{
+          "shape":"Long",
+          "box":true
+        },
         "operatingSystem":{"shape":"String"},
         "severityCounts":{"shape":"SeverityCounts"}
       }
@@ -1507,6 +1525,7 @@
         "findingStatus":{"shape":"StringFilterList"},
         "findingType":{"shape":"StringFilterList"},
         "firstObservedAt":{"shape":"DateFilterList"},
+        "fixAvailable":{"shape":"StringFilterList"},
         "inspectorScore":{"shape":"NumberFilterList"},
         "lastObservedAt":{"shape":"DateFilterList"},
         "networkProtocol":{"shape":"StringFilterList"},
@@ -1562,7 +1581,11 @@
         "description":{"shape":"FindingDescription"},
         "findingArn":{"shape":"FindingArn"},
         "firstObservedAt":{"shape":"DateTimeTimestamp"},
-        "inspectorScore":{"shape":"Double"},
+        "fixAvailable":{"shape":"FixAvailable"},
+        "inspectorScore":{
+          "shape":"Double",
+          "box":true
+        },
         "inspectorScoreDetails":{"shape":"InspectorScoreDetails"},
         "lastObservedAt":{"shape":"DateTimeTimestamp"},
         "networkReachabilityDetails":{"shape":"NetworkReachabilityDetails"},
@@ -1634,6 +1657,14 @@
         "CRITICAL",
         "HIGH",
         "ALL"
+      ]
+    },
+    "FixAvailable":{
+      "type":"string",
+      "enum":[
+        "YES",
+        "NO",
+        "PARTIAL"
       ]
     },
     "FreeTrialAccountInfo":{
@@ -1820,10 +1851,7 @@
         "adjustedCvss":{"shape":"CvssScoreDetails"}
       }
     },
-    "Integer":{
-      "type":"integer",
-      "box":true
-    },
+    "Integer":{"type":"integer"},
     "InternalServerException":{
       "type":"structure",
       "required":["message"],
@@ -1831,6 +1859,7 @@
         "message":{"shape":"String"},
         "retryAfterSeconds":{
           "shape":"Integer",
+          "box":true,
           "location":"header",
           "locationName":"Retry-After"
         }
@@ -1861,14 +1890,16 @@
     },
     "ListAccountPermissionsMaxResults":{
       "type":"integer",
-      "box":true,
       "max":1024,
       "min":1
     },
     "ListAccountPermissionsRequest":{
       "type":"structure",
       "members":{
-        "maxResults":{"shape":"ListAccountPermissionsMaxResults"},
+        "maxResults":{
+          "shape":"ListAccountPermissionsMaxResults",
+          "box":true
+        },
         "nextToken":{"shape":"NextToken"},
         "service":{"shape":"Service"}
       }
@@ -1883,7 +1914,6 @@
     },
     "ListCoverageMaxResults":{
       "type":"integer",
-      "box":true,
       "max":200,
       "min":1
     },
@@ -1891,7 +1921,10 @@
       "type":"structure",
       "members":{
         "filterCriteria":{"shape":"CoverageFilterCriteria"},
-        "maxResults":{"shape":"ListCoverageMaxResults"},
+        "maxResults":{
+          "shape":"ListCoverageMaxResults",
+          "box":true
+        },
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -1916,13 +1949,19 @@
       "members":{
         "countsByGroup":{"shape":"CountsList"},
         "nextToken":{"shape":"NextToken"},
-        "totalCounts":{"shape":"Long"}
+        "totalCounts":{
+          "shape":"Long",
+          "box":true
+        }
       }
     },
     "ListDelegatedAdminAccountsRequest":{
       "type":"structure",
       "members":{
-        "maxResults":{"shape":"ListDelegatedAdminMaxResults"},
+        "maxResults":{
+          "shape":"ListDelegatedAdminMaxResults",
+          "box":true
+        },
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -1935,13 +1974,11 @@
     },
     "ListDelegatedAdminMaxResults":{
       "type":"integer",
-      "box":true,
       "max":5,
       "min":1
     },
     "ListFilterMaxResults":{
       "type":"integer",
-      "box":true,
       "max":100,
       "min":1
     },
@@ -1950,7 +1987,10 @@
       "members":{
         "action":{"shape":"FilterAction"},
         "arns":{"shape":"FilterArnList"},
-        "maxResults":{"shape":"ListFilterMaxResults"},
+        "maxResults":{
+          "shape":"ListFilterMaxResults",
+          "box":true
+        },
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -1964,7 +2004,6 @@
     },
     "ListFindingAggregationsMaxResults":{
       "type":"integer",
-      "box":true,
       "max":100,
       "min":1
     },
@@ -1975,7 +2014,10 @@
         "accountIds":{"shape":"StringFilterList"},
         "aggregationRequest":{"shape":"AggregationRequest"},
         "aggregationType":{"shape":"AggregationType"},
-        "maxResults":{"shape":"ListFindingAggregationsMaxResults"},
+        "maxResults":{
+          "shape":"ListFindingAggregationsMaxResults",
+          "box":true
+        },
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -1990,7 +2032,6 @@
     },
     "ListFindingsMaxResults":{
       "type":"integer",
-      "box":true,
       "max":100,
       "min":1
     },
@@ -1998,7 +2039,10 @@
       "type":"structure",
       "members":{
         "filterCriteria":{"shape":"FilterCriteria"},
-        "maxResults":{"shape":"ListFindingsMaxResults"},
+        "maxResults":{
+          "shape":"ListFindingsMaxResults",
+          "box":true
+        },
         "nextToken":{"shape":"NextToken"},
         "sortCriteria":{"shape":"SortCriteria"}
       }
@@ -2012,16 +2056,21 @@
     },
     "ListMembersMaxResults":{
       "type":"integer",
-      "box":true,
       "max":50,
       "min":1
     },
     "ListMembersRequest":{
       "type":"structure",
       "members":{
-        "maxResults":{"shape":"ListMembersMaxResults"},
+        "maxResults":{
+          "shape":"ListMembersMaxResults",
+          "box":true
+        },
         "nextToken":{"shape":"NextToken"},
-        "onlyAssociated":{"shape":"Boolean"}
+        "onlyAssociated":{
+          "shape":"Boolean",
+          "box":true
+        }
       }
     },
     "ListMembersResponse":{
@@ -2050,7 +2099,6 @@
     },
     "ListUsageTotalsMaxResults":{
       "type":"integer",
-      "box":true,
       "max":500,
       "min":1
     },
@@ -2062,7 +2110,10 @@
       "type":"structure",
       "members":{
         "accountIds":{"shape":"UsageAccountIdList"},
-        "maxResults":{"shape":"ListUsageTotalsMaxResults"},
+        "maxResults":{
+          "shape":"ListUsageTotalsMaxResults",
+          "box":true
+        },
         "nextToken":{"shape":"ListUsageTotalsNextToken"}
       }
     },
@@ -2073,10 +2124,7 @@
         "totals":{"shape":"UsageTotalList"}
       }
     },
-    "Long":{
-      "type":"long",
-      "box":true
-    },
+    "Long":{"type":"long"},
     "MapComparison":{
       "type":"string",
       "enum":["EQUALS"]
@@ -2174,8 +2222,14 @@
     "NumberFilter":{
       "type":"structure",
       "members":{
-        "lowerInclusive":{"shape":"Double"},
-        "upperInclusive":{"shape":"Double"}
+        "lowerInclusive":{
+          "shape":"Double",
+          "box":true
+        },
+        "upperInclusive":{
+          "shape":"Double",
+          "box":true
+        }
       }
     },
     "NumberFilterList":{
@@ -2287,8 +2341,7 @@
       "type":"structure",
       "required":[
         "source",
-        "vulnerabilityId",
-        "vulnerablePackages"
+        "vulnerabilityId"
       ],
       "members":{
         "cvss":{"shape":"CvssScoreList"},
@@ -2327,7 +2380,6 @@
     },
     "Port":{
       "type":"integer",
-      "box":true,
       "max":65535,
       "min":0
     },
@@ -2338,15 +2390,27 @@
         "end"
       ],
       "members":{
-        "begin":{"shape":"Port"},
-        "end":{"shape":"Port"}
+        "begin":{
+          "shape":"Port",
+          "box":true
+        },
+        "end":{
+          "shape":"Port",
+          "box":true
+        }
       }
     },
     "PortRangeFilter":{
       "type":"structure",
       "members":{
-        "beginInclusive":{"shape":"Port"},
-        "endInclusive":{"shape":"Port"}
+        "beginInclusive":{
+          "shape":"Port",
+          "box":true
+        },
+        "endInclusive":{
+          "shape":"Port",
+          "box":true
+        }
       }
     },
     "PortRangeFilterList":{
@@ -2420,7 +2484,10 @@
       "required":["repository"],
       "members":{
         "accountId":{"shape":"AccountId"},
-        "affectedImages":{"shape":"Long"},
+        "affectedImages":{
+          "shape":"Long",
+          "box":true
+        },
         "repository":{"shape":"NonEmptyString"},
         "severityCounts":{"shape":"SeverityCounts"}
       }
@@ -2559,7 +2626,9 @@
         "SCAN_FREQUENCY_MANUAL",
         "SCAN_FREQUENCY_SCAN_ON_PUSH",
         "EC2_INSTANCE_STOPPED",
-        "PENDING_DISABLE"
+        "PENDING_DISABLE",
+        "NO_INVENTORY",
+        "STALE_INVENTORY"
       ]
     },
     "ScanType":{
@@ -2606,10 +2675,22 @@
     "SeverityCounts":{
       "type":"structure",
       "members":{
-        "all":{"shape":"Long"},
-        "critical":{"shape":"Long"},
-        "high":{"shape":"Long"},
-        "medium":{"shape":"Long"}
+        "all":{
+          "shape":"Long",
+          "box":true
+        },
+        "critical":{
+          "shape":"Long",
+          "box":true
+        },
+        "high":{
+          "shape":"Long",
+          "box":true
+        },
+        "medium":{
+          "shape":"Long",
+          "box":true
+        }
       }
     },
     "SortCriteria":{
@@ -2888,8 +2969,14 @@
       "type":"structure",
       "members":{
         "currency":{"shape":"Currency"},
-        "estimatedMonthlyCost":{"shape":"MonthlyCostEstimate"},
-        "total":{"shape":"UsageValue"},
+        "estimatedMonthlyCost":{
+          "shape":"MonthlyCostEstimate",
+          "default":0
+        },
+        "total":{
+          "shape":"UsageValue",
+          "default":0
+        },
         "type":{"shape":"UsageType"}
       }
     },
@@ -2987,12 +3074,16 @@
       ],
       "members":{
         "arch":{"shape":"PackageArchitecture"},
-        "epoch":{"shape":"PackageEpoch"},
+        "epoch":{
+          "shape":"PackageEpoch",
+          "default":0
+        },
         "filePath":{"shape":"FilePath"},
         "fixedInVersion":{"shape":"PackageVersion"},
         "name":{"shape":"PackageName"},
         "packageManager":{"shape":"PackageManager"},
         "release":{"shape":"PackageRelease"},
+        "remediation":{"shape":"VulnerablePackageRemediation"},
         "sourceLayerHash":{"shape":"SourceLayerHash"},
         "version":{"shape":"PackageVersion"}
       }
@@ -3000,6 +3091,11 @@
     "VulnerablePackageList":{
       "type":"list",
       "member":{"shape":"VulnerablePackage"}
+    },
+    "VulnerablePackageRemediation":{
+      "type":"string",
+      "max":1024,
+      "min":1
     }
   }
 }
