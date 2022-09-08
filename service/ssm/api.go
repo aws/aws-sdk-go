@@ -641,6 +641,9 @@ func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *requ
 //   - InvalidTargetMaps
 //     TargetMap parameter isn't valid.
 //
+//   - InvalidTag
+//     The specified tag key or value is not valid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CreateAssociation
 func (c *SSM) CreateAssociation(input *CreateAssociationInput) (*CreateAssociationOutput, error) {
 	req, out := c.CreateAssociationRequest(input)
@@ -21371,6 +21374,13 @@ type CreateAssociationInput struct {
 	// By default, all associations use AUTO mode.
 	SyncCompliance *string `type:"string" enum:"AssociationSyncCompliance"`
 
+	// Adds or overwrites one or more tags for a State Manager association. Tags
+	// are metadata that you can assign to your Amazon Web Services resources. Tags
+	// enable you to categorize your resources in different ways, for example, by
+	// purpose, owner, or environment. Each tag consists of a key and an optional
+	// value, both of which you define.
+	Tags []*Tag `type:"list"`
+
 	// A location is a combination of Amazon Web Services Regions and Amazon Web
 	// Services accounts where you want to run the association. Use this action
 	// to create an association in multiple Regions and multiple accounts.
@@ -21435,6 +21445,16 @@ func (s *CreateAssociationInput) Validate() error {
 	if s.OutputLocation != nil {
 		if err := s.OutputLocation.Validate(); err != nil {
 			invalidParams.AddNested("OutputLocation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.TargetLocations != nil {
@@ -21554,6 +21574,12 @@ func (s *CreateAssociationInput) SetSyncCompliance(v string) *CreateAssociationI
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateAssociationInput) SetTags(v []*Tag) *CreateAssociationInput {
+	s.Tags = v
+	return s
+}
+
 // SetTargetLocations sets the TargetLocations field's value.
 func (s *CreateAssociationInput) SetTargetLocations(v []*TargetLocation) *CreateAssociationInput {
 	s.TargetLocations = v
@@ -21645,7 +21671,7 @@ type CreateDocumentInput struct {
 	// You can't use the following strings as document name prefixes. These are
 	// reserved by Amazon Web Services for use as document name prefixes:
 	//
-	//    * aws-
+	//    * aws
 	//
 	//    * amazon
 	//
@@ -25793,8 +25819,8 @@ type DescribeInstanceInformationInput struct {
 	_ struct{} `type:"structure"`
 
 	// One or more filters. Use a filter to return a more specific list of managed
-	// nodes. You can filter based on tags applied to EC2 instances. Use this Filters
-	// data type instead of InstanceInformationFilterList, which is deprecated.
+	// nodes. You can filter based on tags applied to your managed nodes. Use this
+	// Filters data type instead of InstanceInformationFilterList, which is deprecated.
 	Filters []*InstanceInformationStringFilter `type:"list"`
 
 	// This is a legacy method. We recommend that you don't use this method. Instead,
@@ -35136,10 +35162,10 @@ type InstanceInformationStringFilter struct {
 
 	// The filter key name to describe your managed nodes. For example:
 	//
-	// "InstanceIds"|"AgentVersion"|"PingStatus"|"PlatformTypes"|"ActivationIds"|"IamRole"|"ResourceType"|"AssociationStatus"|"Tag
-	// Key"
+	// "InstanceIds" | "AgentVersion" | "PingStatus" | "PlatformTypes" | "ActivationIds"
+	// | "IamRole" | "ResourceType" | "AssociationStatus" | "tag-key" | "tag:{keyname}
 	//
-	// Tag key isn't a valid filter. You must specify either tag-key or tag:keyname
+	// Tag Key isn't a valid filter. You must specify either tag-key or tag:{keyname}
 	// and a string. Here are some valid examples: tag-key, tag:123, tag:al!, tag:Windows.
 	// Here are some invalid examples: tag-keys, Tag Key, tag:, tagKey, abc:keyname.
 	//
@@ -38525,6 +38551,70 @@ func (s *InvalidSchedule) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidSchedule) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The specified tag key or value is not valid.
+type InvalidTag struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidTag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidTag) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidTag(v protocol.ResponseMetadata) error {
+	return &InvalidTag{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidTag) Code() string {
+	return "InvalidTag"
+}
+
+// Message returns the exception's message.
+func (s *InvalidTag) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidTag) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidTag) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidTag) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidTag) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -51973,6 +52063,11 @@ type SendCommandInput struct {
 	// The ARN of the Identity and Access Management (IAM) service role to use to
 	// publish Amazon Simple Notification Service (Amazon SNS) notifications for
 	// Run Command commands.
+	//
+	// This role must provide the sns:Publish permission for your notification topic.
+	// For information about creating and using this service role, see Monitoring
+	// Systems Manager status changes using Amazon SNS notifications (https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-sns-notifications.html)
+	// in the Amazon Web Services Systems Manager User Guide.
 	ServiceRoleArn *string `type:"string"`
 
 	// An array of search criteria that targets managed nodes using a Key,Value
@@ -53377,8 +53472,10 @@ type StartSessionOutput struct {
 	// session-id represents the ID of a Session Manager session, such as 1a2b3c4dEXAMPLE.
 	StreamUrl *string `type:"string"`
 
-	// An encrypted token value containing session and caller information. Used
-	// to authenticate the connection to the managed node.
+	// An encrypted token value containing session and caller information. This
+	// token is used to authenticate the connection to the managed node, and is
+	// valid only long enough to ensure the connection is successful. Never share
+	// your session's token.
 	TokenValue *string `type:"string"`
 }
 
@@ -60138,6 +60235,9 @@ const (
 
 	// ResourceTypeForTaggingAutomation is a ResourceTypeForTagging enum value
 	ResourceTypeForTaggingAutomation = "Automation"
+
+	// ResourceTypeForTaggingAssociation is a ResourceTypeForTagging enum value
+	ResourceTypeForTaggingAssociation = "Association"
 )
 
 // ResourceTypeForTagging_Values returns all elements of the ResourceTypeForTagging enum
@@ -60151,6 +60251,7 @@ func ResourceTypeForTagging_Values() []string {
 		ResourceTypeForTaggingOpsItem,
 		ResourceTypeForTaggingOpsMetadata,
 		ResourceTypeForTaggingAutomation,
+		ResourceTypeForTaggingAssociation,
 	}
 }
 

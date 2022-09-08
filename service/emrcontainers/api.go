@@ -1977,7 +1977,7 @@ func (s *ContainerProvider) SetType(v string) *ContainerProvider {
 type CreateManagedEndpointInput struct {
 	_ struct{} `type:"structure"`
 
-	// The certificate ARN provided by users for the managed endpoint. This fiedd
+	// The certificate ARN provided by users for the managed endpoint. This field
 	// is under deprecation and will be removed in future releases.
 	//
 	// Deprecated: Customer provided certificate-arn is deprecated and would be removed in future.
@@ -3100,6 +3100,9 @@ func (s *InternalServerException) RequestID() string {
 type JobDriver struct {
 	_ struct{} `type:"structure"`
 
+	// The job driver for job type.
+	SparkSqlJobDriver *SparkSqlJobDriver `locationName:"sparkSqlJobDriver" type:"structure"`
+
 	// The job driver parameters specified for spark submit.
 	SparkSubmitJobDriver *SparkSubmitJobDriver `locationName:"sparkSubmitJobDriver" type:"structure"`
 }
@@ -3125,6 +3128,11 @@ func (s JobDriver) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *JobDriver) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "JobDriver"}
+	if s.SparkSqlJobDriver != nil {
+		if err := s.SparkSqlJobDriver.Validate(); err != nil {
+			invalidParams.AddNested("SparkSqlJobDriver", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SparkSubmitJobDriver != nil {
 		if err := s.SparkSubmitJobDriver.Validate(); err != nil {
 			invalidParams.AddNested("SparkSubmitJobDriver", err.(request.ErrInvalidParams))
@@ -3135,6 +3143,12 @@ func (s *JobDriver) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetSparkSqlJobDriver sets the SparkSqlJobDriver field's value.
+func (s *JobDriver) SetSparkSqlJobDriver(v *SparkSqlJobDriver) *JobDriver {
+	s.SparkSqlJobDriver = v
+	return s
 }
 
 // SetSparkSubmitJobDriver sets the SparkSubmitJobDriver field's value.
@@ -4011,6 +4025,71 @@ func (s *S3MonitoringConfiguration) Validate() error {
 // SetLogUri sets the LogUri field's value.
 func (s *S3MonitoringConfiguration) SetLogUri(v string) *S3MonitoringConfiguration {
 	s.LogUri = &v
+	return s
+}
+
+// The job driver for job type.
+type SparkSqlJobDriver struct {
+	_ struct{} `type:"structure"`
+
+	// The SQL file to be executed.
+	//
+	// EntryPoint is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SparkSqlJobDriver's
+	// String and GoString methods.
+	EntryPoint *string `locationName:"entryPoint" min:"1" type:"string" sensitive:"true"`
+
+	// The Spark parameters to be included in the Spark SQL command.
+	//
+	// SparkSqlParameters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SparkSqlJobDriver's
+	// String and GoString methods.
+	SparkSqlParameters *string `locationName:"sparkSqlParameters" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SparkSqlJobDriver) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SparkSqlJobDriver) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SparkSqlJobDriver) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SparkSqlJobDriver"}
+	if s.EntryPoint != nil && len(*s.EntryPoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntryPoint", 1))
+	}
+	if s.SparkSqlParameters != nil && len(*s.SparkSqlParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SparkSqlParameters", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntryPoint sets the EntryPoint field's value.
+func (s *SparkSqlJobDriver) SetEntryPoint(v string) *SparkSqlJobDriver {
+	s.EntryPoint = &v
+	return s
+}
+
+// SetSparkSqlParameters sets the SparkSqlParameters field's value.
+func (s *SparkSqlJobDriver) SetSparkSqlParameters(v string) *SparkSqlJobDriver {
+	s.SparkSqlParameters = &v
 	return s
 }
 

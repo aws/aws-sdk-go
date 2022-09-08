@@ -9193,6 +9193,7 @@
         "DryRun":{"shape":"Boolean"},
         "ClientToken":{"shape":"String"},
         "DeliverLogsPermissionArn":{"shape":"String"},
+        "DeliverCrossAccountRole":{"shape":"String"},
         "LogGroupName":{"shape":"String"},
         "ResourceIds":{
           "shape":"FlowLogResourceIds",
@@ -19808,6 +19809,10 @@
           "shape":"String",
           "locationName":"deliverLogsPermissionArn"
         },
+        "DeliverCrossAccountRole":{
+          "shape":"String",
+          "locationName":"deliverCrossAccountRole"
+        },
         "DeliverLogsStatus":{
           "shape":"String",
           "locationName":"deliverLogsStatus"
@@ -27465,7 +27470,8 @@
       "type":"string",
       "enum":[
         "cloud-watch-logs",
-        "s3"
+        "s3",
+        "kinesis-data-firehose"
       ]
     },
     "Long":{"type":"long"},

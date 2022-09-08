@@ -511,6 +511,12 @@ const (
 	// The schedule is invalid. Verify your cron or rate expression and try again.
 	ErrCodeInvalidSchedule = "InvalidSchedule"
 
+	// ErrCodeInvalidTag for service response error code
+	// "InvalidTag".
+	//
+	// The specified tag key or value is not valid.
+	ErrCodeInvalidTag = "InvalidTag"
+
 	// ErrCodeInvalidTarget for service response error code
 	// "InvalidTarget".
 	//
@@ -943,6 +949,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidResultAttributeException":                newErrorInvalidResultAttributeException,
 	"InvalidRole":                                    newErrorInvalidRole,
 	"InvalidSchedule":                                newErrorInvalidSchedule,
+	"InvalidTag":                                     newErrorInvalidTag,
 	"InvalidTarget":                                  newErrorInvalidTarget,
 	"InvalidTargetMaps":                              newErrorInvalidTargetMaps,
 	"InvalidTypeNameException":                       newErrorInvalidTypeNameException,

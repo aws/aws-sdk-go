@@ -423,6 +423,7 @@
         "HeaderList$member": null,
         "ItemizedMetricStats$MetricName": "<p>The name of the measure.</p>",
         "Metric$MetricName": "<p>The name of the metric.</p>",
+        "MetricSetDimensionFilter$Name": "<p>The dimension that you want to filter on.</p>",
         "TimestampColumn$ColumnName": "<p>The name of the timestamp column.</p>"
       }
     },
@@ -715,7 +716,8 @@
       "refs": {
         "DimensionNameValue$DimensionValue": "<p>The value of the dimension.</p>",
         "DimensionValueContribution$DimensionValue": "<p>The value of the dimension.</p>",
-        "DimensionValueList$member": null
+        "DimensionValueList$member": null,
+        "Filter$DimensionValue": "<p>The value that you want to include in the filter.</p>"
       }
     },
     "DimensionValueContribution": {
@@ -771,6 +773,24 @@
       "refs": {
         "S3SourceConfig$FileFormatDescriptor": "<p>Contains information about a source file's formatting.</p>",
         "SampleDataS3SourceConfig$FileFormatDescriptor": null
+      }
+    },
+    "Filter": {
+      "base": "<p>Describes a filter for choosing a subset of dimension values. Each filter consists of the dimension that you want to include and the condition statement. The condition statement is specified in the <code>FilterOperation</code> object.</p>",
+      "refs": {
+        "FilterList$member": null
+      }
+    },
+    "FilterList": {
+      "base": null,
+      "refs": {
+        "MetricSetDimensionFilter$FilterList": "<p>The list of filters that you are applying.</p>"
+      }
+    },
+    "FilterOperation": {
+      "base": null,
+      "refs": {
+        "Filter$FilterOperation": "<p>The condition to apply.</p>"
       }
     },
     "FlowName": {
@@ -1090,6 +1110,20 @@
         "DescribeMetricSetResponse$MetricSetDescription": "<p>The dataset's description.</p>",
         "MetricSetSummary$MetricSetDescription": "<p>The description of the dataset.</p>",
         "UpdateMetricSetRequest$MetricSetDescription": "<p>The dataset's description.</p>"
+      }
+    },
+    "MetricSetDimensionFilter": {
+      "base": "<p>Describes a list of filters for choosing a subset of dimension values. Each filter consists of the dimension and one of its values that you want to include. When multiple dimensions or values are specified, the dimensions are joined with an AND operation and the values are joined with an OR operation. </p>",
+      "refs": {
+        "MetricSetDimensionFilterList$member": null
+      }
+    },
+    "MetricSetDimensionFilterList": {
+      "base": null,
+      "refs": {
+        "CreateMetricSetRequest$DimensionFilterList": "<p>A list of filters that specify which data is kept for anomaly detection.</p>",
+        "DescribeMetricSetResponse$DimensionFilterList": "<p>The dimensions and their values that were used to filter the dataset.</p>",
+        "UpdateMetricSetRequest$DimensionFilterList": "<p>Describes a list of filters for choosing specific dimensions and specific values. Each filter consists of the dimension and one of its values that you want to include. When multiple dimensions or values are specified, the dimensions are joined with an AND operation and the values are joined with an OR operation.</p>"
       }
     },
     "MetricSetName": {

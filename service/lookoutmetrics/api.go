@@ -5282,6 +5282,9 @@ type CreateMetricSetInput struct {
 	// AnomalyDetectorArn is a required field
 	AnomalyDetectorArn *string `type:"string" required:"true"`
 
+	// A list of filters that specify which data is kept for anomaly detection.
+	DimensionFilterList []*MetricSetDimensionFilter `type:"list"`
+
 	// A list of the fields you want to treat as dimensions.
 	DimensionList []*string `min:"1" type:"list"`
 
@@ -5370,6 +5373,16 @@ func (s *CreateMetricSetInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.DimensionFilterList != nil {
+		for i, v := range s.DimensionFilterList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DimensionFilterList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.MetricList != nil {
 		for i, v := range s.MetricList {
 			if v == nil {
@@ -5400,6 +5413,12 @@ func (s *CreateMetricSetInput) Validate() error {
 // SetAnomalyDetectorArn sets the AnomalyDetectorArn field's value.
 func (s *CreateMetricSetInput) SetAnomalyDetectorArn(v string) *CreateMetricSetInput {
 	s.AnomalyDetectorArn = &v
+	return s
+}
+
+// SetDimensionFilterList sets the DimensionFilterList field's value.
+func (s *CreateMetricSetInput) SetDimensionFilterList(v []*MetricSetDimensionFilter) *CreateMetricSetInput {
+	s.DimensionFilterList = v
 	return s
 }
 
@@ -6246,6 +6265,9 @@ type DescribeMetricSetOutput struct {
 	// The time at which the dataset was created.
 	CreationTime *time.Time `type:"timestamp"`
 
+	// The dimensions and their values that were used to filter the dataset.
+	DimensionFilterList []*MetricSetDimensionFilter `type:"list"`
+
 	// A list of the dimensions chosen for analysis.
 	DimensionList []*string `min:"1" type:"list"`
 
@@ -6309,6 +6331,12 @@ func (s *DescribeMetricSetOutput) SetAnomalyDetectorArn(v string) *DescribeMetri
 // SetCreationTime sets the CreationTime field's value.
 func (s *DescribeMetricSetOutput) SetCreationTime(v time.Time) *DescribeMetricSetOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetDimensionFilterList sets the DimensionFilterList field's value.
+func (s *DescribeMetricSetOutput) SetDimensionFilterList(v []*MetricSetDimensionFilter) *DescribeMetricSetOutput {
+	s.DimensionFilterList = v
 	return s
 }
 
@@ -7070,6 +7098,49 @@ func (s *FileFormatDescriptor) SetCsvFormatDescriptor(v *CsvFormatDescriptor) *F
 // SetJsonFormatDescriptor sets the JsonFormatDescriptor field's value.
 func (s *FileFormatDescriptor) SetJsonFormatDescriptor(v *JsonFormatDescriptor) *FileFormatDescriptor {
 	s.JsonFormatDescriptor = v
+	return s
+}
+
+// Describes a filter for choosing a subset of dimension values. Each filter
+// consists of the dimension that you want to include and the condition statement.
+// The condition statement is specified in the FilterOperation object.
+type Filter struct {
+	_ struct{} `type:"structure"`
+
+	// The value that you want to include in the filter.
+	DimensionValue *string `type:"string"`
+
+	// The condition to apply.
+	FilterOperation *string `type:"string" enum:"FilterOperation"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Filter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Filter) GoString() string {
+	return s.String()
+}
+
+// SetDimensionValue sets the DimensionValue field's value.
+func (s *Filter) SetDimensionValue(v string) *Filter {
+	s.DimensionValue = &v
+	return s
+}
+
+// SetFilterOperation sets the FilterOperation field's value.
+func (s *Filter) SetFilterOperation(v string) *Filter {
+	s.FilterOperation = &v
 	return s
 }
 
@@ -8737,6 +8808,66 @@ func (s *MetricSetDataQualityMetric) SetMetricSetArn(v string) *MetricSetDataQua
 	return s
 }
 
+// Describes a list of filters for choosing a subset of dimension values. Each
+// filter consists of the dimension and one of its values that you want to include.
+// When multiple dimensions or values are specified, the dimensions are joined
+// with an AND operation and the values are joined with an OR operation.
+type MetricSetDimensionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The list of filters that you are applying.
+	FilterList []*Filter `min:"1" type:"list"`
+
+	// The dimension that you want to filter on.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricSetDimensionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricSetDimensionFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetricSetDimensionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetricSetDimensionFilter"}
+	if s.FilterList != nil && len(s.FilterList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterList", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterList sets the FilterList field's value.
+func (s *MetricSetDimensionFilter) SetFilterList(v []*Filter) *MetricSetDimensionFilter {
+	s.FilterList = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *MetricSetDimensionFilter) SetName(v string) *MetricSetDimensionFilter {
+	s.Name = &v
+	return s
+}
+
 // Contains information about a dataset.
 type MetricSetSummary struct {
 	_ struct{} `type:"structure"`
@@ -10297,6 +10428,13 @@ func (s *UpdateAnomalyDetectorOutput) SetAnomalyDetectorArn(v string) *UpdateAno
 type UpdateMetricSetInput struct {
 	_ struct{} `type:"structure"`
 
+	// Describes a list of filters for choosing specific dimensions and specific
+	// values. Each filter consists of the dimension and one of its values that
+	// you want to include. When multiple dimensions or values are specified, the
+	// dimensions are joined with an AND operation and the values are joined with
+	// an OR operation.
+	DimensionFilterList []*MetricSetDimensionFilter `type:"list"`
+
 	// The dimension list.
 	DimensionList []*string `min:"1" type:"list"`
 
@@ -10358,6 +10496,16 @@ func (s *UpdateMetricSetInput) Validate() error {
 	if s.MetricSetDescription != nil && len(*s.MetricSetDescription) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MetricSetDescription", 1))
 	}
+	if s.DimensionFilterList != nil {
+		for i, v := range s.DimensionFilterList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DimensionFilterList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.MetricList != nil {
 		for i, v := range s.MetricList {
 			if v == nil {
@@ -10383,6 +10531,12 @@ func (s *UpdateMetricSetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDimensionFilterList sets the DimensionFilterList field's value.
+func (s *UpdateMetricSetInput) SetDimensionFilterList(v []*MetricSetDimensionFilter) *UpdateMetricSetInput {
+	s.DimensionFilterList = v
+	return s
 }
 
 // SetDimensionList sets the DimensionList field's value.
@@ -10875,6 +11029,18 @@ func DataQualityMetricType_Values() []string {
 		DataQualityMetricTypeBacktestTrainingDataEndTimeStamp,
 		DataQualityMetricTypeBacktestInferenceDataStartTimeStamp,
 		DataQualityMetricTypeBacktestInferenceDataEndTimeStamp,
+	}
+}
+
+const (
+	// FilterOperationEquals is a FilterOperation enum value
+	FilterOperationEquals = "EQUALS"
+)
+
+// FilterOperation_Values returns all elements of the FilterOperation enum
+func FilterOperation_Values() []string {
+	return []string{
+		FilterOperationEquals,
 	}
 }
 

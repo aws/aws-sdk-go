@@ -3708,7 +3708,8 @@
         "CompletionCriteria":{"shape":"AutoMLJobCompletionCriteria"},
         "SecurityConfig":{"shape":"AutoMLSecurityConfig"},
         "DataSplitConfig":{"shape":"AutoMLDataSplitConfig"},
-        "CandidateGenerationConfig":{"shape":"AutoMLCandidateGenerationConfig"}
+        "CandidateGenerationConfig":{"shape":"AutoMLCandidateGenerationConfig"},
+        "Mode":{"shape":"AutoMLMode"}
       }
     },
     "AutoMLJobName":{
@@ -3821,6 +3822,14 @@
         "Recall",
         "RecallMacro",
         "LogLoss"
+      ]
+    },
+    "AutoMLMode":{
+      "type":"string",
+      "enum":[
+        "AUTO",
+        "ENSEMBLING",
+        "HYPERPARAMETER_TUNING"
       ]
     },
     "AutoMLNameContains":{

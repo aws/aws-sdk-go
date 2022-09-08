@@ -23,7 +23,7 @@
       "base": null,
       "refs": {
         "Certificate$certificateArn": "<p>The ARN of the certificate generated for managed endpoint.</p>",
-        "CreateManagedEndpointRequest$certificateArn": "<p>The certificate ARN provided by users for the managed endpoint. This fiedd is under deprecation and will be removed in future releases.</p>",
+        "CreateManagedEndpointRequest$certificateArn": "<p>The certificate ARN provided by users for the managed endpoint. This field is under deprecation and will be removed in future releases.</p>",
         "Endpoint$certificateArn": "<p>The certificate ARN of the endpoint. This field is under deprecation and will be removed in future.</p>"
       }
     },
@@ -265,6 +265,7 @@
     "EntryPointPath": {
       "base": null,
       "refs": {
+        "SparkSqlJobDriver$entryPoint": "<p>The SQL file to be executed.</p>",
         "SparkSubmitJobDriver$entryPoint": "<p>The entry point of job application.</p>"
       }
     },
@@ -499,6 +500,18 @@
       "base": null,
       "refs": {
         "Configuration$properties": "<p>A set of properties specified within a configuration classification.</p>"
+      }
+    },
+    "SparkSqlJobDriver": {
+      "base": "<p>The job driver for job type.</p>",
+      "refs": {
+        "JobDriver$sparkSqlJobDriver": "<p>The job driver for job type.</p>"
+      }
+    },
+    "SparkSqlParameters": {
+      "base": null,
+      "refs": {
+        "SparkSqlJobDriver$sparkSqlParameters": "<p>The Spark parameters to be included in the Spark SQL command.</p>"
       }
     },
     "SparkSubmitJobDriver": {

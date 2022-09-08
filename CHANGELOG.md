@@ -1,3 +1,20 @@
+Release v1.44.94 (2022-09-08)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds support to send VPC Flow Logs to kinesis-data-firehose as new destination type
+* `service/emr-containers`: Updates service API and documentation
+* `service/lookoutmetrics`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * This change exposes API settings which allow Dolby Atmos and Dolby Vision to be used when running a channel using Elemental Media Live
+* `service/route53`: Updates service API and documentation
+  * Amazon Route 53 now supports the Middle East (UAE) Region (me-central-1) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds Mode to AutoMLJobConfig.
+* `service/ssm`: Updates service API and documentation
+  * This release adds support for Systems Manager State Manager Association tagging.
+
 Release v1.44.93 (2022-09-07)
 ===
 
