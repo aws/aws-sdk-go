@@ -6681,6 +6681,9 @@ type AudioCodecSettings struct {
 	// Ac3 Settings
 	Ac3Settings *Ac3Settings `locationName:"ac3Settings" type:"structure"`
 
+	// Eac3 Atmos Settings
+	Eac3AtmosSettings *Eac3AtmosSettings `locationName:"eac3AtmosSettings" type:"structure"`
+
 	// Eac3 Settings
 	Eac3Settings *Eac3Settings `locationName:"eac3Settings" type:"structure"`
 
@@ -6720,6 +6723,11 @@ func (s *AudioCodecSettings) Validate() error {
 			invalidParams.AddNested("Ac3Settings", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Eac3AtmosSettings != nil {
+		if err := s.Eac3AtmosSettings.Validate(); err != nil {
+			invalidParams.AddNested("Eac3AtmosSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Eac3Settings != nil {
 		if err := s.Eac3Settings.Validate(); err != nil {
 			invalidParams.AddNested("Eac3Settings", err.(request.ErrInvalidParams))
@@ -6741,6 +6749,12 @@ func (s *AudioCodecSettings) SetAacSettings(v *AacSettings) *AudioCodecSettings 
 // SetAc3Settings sets the Ac3Settings field's value.
 func (s *AudioCodecSettings) SetAc3Settings(v *Ac3Settings) *AudioCodecSettings {
 	s.Ac3Settings = v
+	return s
+}
+
+// SetEac3AtmosSettings sets the Eac3AtmosSettings field's value.
+func (s *AudioCodecSettings) SetEac3AtmosSettings(v *Eac3AtmosSettings) *AudioCodecSettings {
+	s.Eac3AtmosSettings = v
 	return s
 }
 
@@ -13753,6 +13767,29 @@ func (s *DescribeScheduleOutput) SetScheduleActions(v []*ScheduleAction) *Descri
 	return s
 }
 
+// Dolby Vision Profile 8.1 Settings
+type DolbyVision81Settings struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DolbyVision81Settings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DolbyVision81Settings) GoString() string {
+	return s.String()
+}
+
 // DVB Network Information Table (NIT)
 type DvbNitSettings struct {
 	_ struct{} `type:"structure"`
@@ -14260,6 +14297,111 @@ func (s *DvbTdtSettings) Validate() error {
 // SetRepInterval sets the RepInterval field's value.
 func (s *DvbTdtSettings) SetRepInterval(v int64) *DvbTdtSettings {
 	s.RepInterval = &v
+	return s
+}
+
+// Eac3 Atmos Settings
+type Eac3AtmosSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Average bitrate in bits/second. Valid bitrates depend on the coding mode.//
+	// * @affectsRightSizing true
+	Bitrate *float64 `locationName:"bitrate" type:"double"`
+
+	// Dolby Digital Plus with Dolby Atmos coding mode. Determines number of channels.
+	CodingMode *string `locationName:"codingMode" type:"string" enum:"Eac3AtmosCodingMode"`
+
+	// Sets the dialnorm for the output. Default 23.
+	Dialnorm *int64 `locationName:"dialnorm" min:"1" type:"integer"`
+
+	// Sets the Dolby dynamic range compression profile.
+	DrcLine *string `locationName:"drcLine" type:"string" enum:"Eac3AtmosDrcLine"`
+
+	// Sets the profile for heavy Dolby dynamic range compression, ensures that
+	// the instantaneous signal peaks do not exceed specified levels.
+	DrcRf *string `locationName:"drcRf" type:"string" enum:"Eac3AtmosDrcRf"`
+
+	// Height dimensional trim. Sets the maximum amount to attenuate the height
+	// channels when the downstream player isn??t configured to handle Dolby Digital
+	// Plus with Dolby Atmos and must remix the channels.
+	HeightTrim *float64 `locationName:"heightTrim" type:"double"`
+
+	// Surround dimensional trim. Sets the maximum amount to attenuate the surround
+	// channels when the downstream player isn't configured to handle Dolby Digital
+	// Plus with Dolby Atmos and must remix the channels.
+	SurroundTrim *float64 `locationName:"surroundTrim" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Eac3AtmosSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Eac3AtmosSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Eac3AtmosSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Eac3AtmosSettings"}
+	if s.Dialnorm != nil && *s.Dialnorm < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Dialnorm", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBitrate sets the Bitrate field's value.
+func (s *Eac3AtmosSettings) SetBitrate(v float64) *Eac3AtmosSettings {
+	s.Bitrate = &v
+	return s
+}
+
+// SetCodingMode sets the CodingMode field's value.
+func (s *Eac3AtmosSettings) SetCodingMode(v string) *Eac3AtmosSettings {
+	s.CodingMode = &v
+	return s
+}
+
+// SetDialnorm sets the Dialnorm field's value.
+func (s *Eac3AtmosSettings) SetDialnorm(v int64) *Eac3AtmosSettings {
+	s.Dialnorm = &v
+	return s
+}
+
+// SetDrcLine sets the DrcLine field's value.
+func (s *Eac3AtmosSettings) SetDrcLine(v string) *Eac3AtmosSettings {
+	s.DrcLine = &v
+	return s
+}
+
+// SetDrcRf sets the DrcRf field's value.
+func (s *Eac3AtmosSettings) SetDrcRf(v string) *Eac3AtmosSettings {
+	s.DrcRf = &v
+	return s
+}
+
+// SetHeightTrim sets the HeightTrim field's value.
+func (s *Eac3AtmosSettings) SetHeightTrim(v float64) *Eac3AtmosSettings {
+	s.HeightTrim = &v
+	return s
+}
+
+// SetSurroundTrim sets the SurroundTrim field's value.
+func (s *Eac3AtmosSettings) SetSurroundTrim(v float64) *Eac3AtmosSettings {
+	s.SurroundTrim = &v
 	return s
 }
 
@@ -16414,6 +16556,9 @@ type H265ColorSpaceSettings struct {
 	// Passthrough applies no color space conversion to the output
 	ColorSpacePassthroughSettings *ColorSpacePassthroughSettings `locationName:"colorSpacePassthroughSettings" type:"structure"`
 
+	// Dolby Vision Profile 8.1 Settings
+	DolbyVision81Settings *DolbyVision81Settings `locationName:"dolbyVision81Settings" type:"structure"`
+
 	// Hdr10 Settings
 	Hdr10Settings *Hdr10Settings `locationName:"hdr10Settings" type:"structure"`
 
@@ -16445,6 +16590,12 @@ func (s H265ColorSpaceSettings) GoString() string {
 // SetColorSpacePassthroughSettings sets the ColorSpacePassthroughSettings field's value.
 func (s *H265ColorSpaceSettings) SetColorSpacePassthroughSettings(v *ColorSpacePassthroughSettings) *H265ColorSpaceSettings {
 	s.ColorSpacePassthroughSettings = v
+	return s
+}
+
+// SetDolbyVision81Settings sets the DolbyVision81Settings field's value.
+func (s *H265ColorSpaceSettings) SetDolbyVision81Settings(v *DolbyVision81Settings) *H265ColorSpaceSettings {
+	s.DolbyVision81Settings = v
 	return s
 }
 
@@ -32465,6 +32616,93 @@ func DvbSubOcrLanguage_Values() []string {
 		DvbSubOcrLanguageNld,
 		DvbSubOcrLanguagePor,
 		DvbSubOcrLanguageSpa,
+	}
+}
+
+// Eac3 Atmos Coding Mode
+const (
+	// Eac3AtmosCodingModeCodingMode514 is a Eac3AtmosCodingMode enum value
+	Eac3AtmosCodingModeCodingMode514 = "CODING_MODE_5_1_4"
+
+	// Eac3AtmosCodingModeCodingMode714 is a Eac3AtmosCodingMode enum value
+	Eac3AtmosCodingModeCodingMode714 = "CODING_MODE_7_1_4"
+
+	// Eac3AtmosCodingModeCodingMode916 is a Eac3AtmosCodingMode enum value
+	Eac3AtmosCodingModeCodingMode916 = "CODING_MODE_9_1_6"
+)
+
+// Eac3AtmosCodingMode_Values returns all elements of the Eac3AtmosCodingMode enum
+func Eac3AtmosCodingMode_Values() []string {
+	return []string{
+		Eac3AtmosCodingModeCodingMode514,
+		Eac3AtmosCodingModeCodingMode714,
+		Eac3AtmosCodingModeCodingMode916,
+	}
+}
+
+// Eac3 Atmos Drc Line
+const (
+	// Eac3AtmosDrcLineFilmLight is a Eac3AtmosDrcLine enum value
+	Eac3AtmosDrcLineFilmLight = "FILM_LIGHT"
+
+	// Eac3AtmosDrcLineFilmStandard is a Eac3AtmosDrcLine enum value
+	Eac3AtmosDrcLineFilmStandard = "FILM_STANDARD"
+
+	// Eac3AtmosDrcLineMusicLight is a Eac3AtmosDrcLine enum value
+	Eac3AtmosDrcLineMusicLight = "MUSIC_LIGHT"
+
+	// Eac3AtmosDrcLineMusicStandard is a Eac3AtmosDrcLine enum value
+	Eac3AtmosDrcLineMusicStandard = "MUSIC_STANDARD"
+
+	// Eac3AtmosDrcLineNone is a Eac3AtmosDrcLine enum value
+	Eac3AtmosDrcLineNone = "NONE"
+
+	// Eac3AtmosDrcLineSpeech is a Eac3AtmosDrcLine enum value
+	Eac3AtmosDrcLineSpeech = "SPEECH"
+)
+
+// Eac3AtmosDrcLine_Values returns all elements of the Eac3AtmosDrcLine enum
+func Eac3AtmosDrcLine_Values() []string {
+	return []string{
+		Eac3AtmosDrcLineFilmLight,
+		Eac3AtmosDrcLineFilmStandard,
+		Eac3AtmosDrcLineMusicLight,
+		Eac3AtmosDrcLineMusicStandard,
+		Eac3AtmosDrcLineNone,
+		Eac3AtmosDrcLineSpeech,
+	}
+}
+
+// Eac3 Atmos Drc Rf
+const (
+	// Eac3AtmosDrcRfFilmLight is a Eac3AtmosDrcRf enum value
+	Eac3AtmosDrcRfFilmLight = "FILM_LIGHT"
+
+	// Eac3AtmosDrcRfFilmStandard is a Eac3AtmosDrcRf enum value
+	Eac3AtmosDrcRfFilmStandard = "FILM_STANDARD"
+
+	// Eac3AtmosDrcRfMusicLight is a Eac3AtmosDrcRf enum value
+	Eac3AtmosDrcRfMusicLight = "MUSIC_LIGHT"
+
+	// Eac3AtmosDrcRfMusicStandard is a Eac3AtmosDrcRf enum value
+	Eac3AtmosDrcRfMusicStandard = "MUSIC_STANDARD"
+
+	// Eac3AtmosDrcRfNone is a Eac3AtmosDrcRf enum value
+	Eac3AtmosDrcRfNone = "NONE"
+
+	// Eac3AtmosDrcRfSpeech is a Eac3AtmosDrcRf enum value
+	Eac3AtmosDrcRfSpeech = "SPEECH"
+)
+
+// Eac3AtmosDrcRf_Values returns all elements of the Eac3AtmosDrcRf enum
+func Eac3AtmosDrcRf_Values() []string {
+	return []string{
+		Eac3AtmosDrcRfFilmLight,
+		Eac3AtmosDrcRfFilmStandard,
+		Eac3AtmosDrcRfMusicLight,
+		Eac3AtmosDrcRfMusicStandard,
+		Eac3AtmosDrcRfNone,
+		Eac3AtmosDrcRfSpeech,
 	}
 }
 

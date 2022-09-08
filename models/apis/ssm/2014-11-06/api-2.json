@@ -106,7 +106,8 @@
         {"shape":"InvalidParameters"},
         {"shape":"InvalidTarget"},
         {"shape":"InvalidSchedule"},
-        {"shape":"InvalidTargetMaps"}
+        {"shape":"InvalidTargetMaps"},
+        {"shape":"InvalidTag"}
       ]
     },
     "CreateAssociationBatch":{
@@ -3378,6 +3379,10 @@
         "TargetMaps":{
           "shape":"TargetMaps",
           "box":true
+        },
+        "Tags":{
+          "shape":"TagList",
+          "box":true
         }
       }
     },
@@ -6081,6 +6086,13 @@
       "exception":true
     },
     "InvalidSchedule":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "InvalidTag":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"}
@@ -9263,7 +9275,8 @@
         "PatchBaseline",
         "OpsItem",
         "OpsMetadata",
-        "Automation"
+        "Automation",
+        "Association"
       ]
     },
     "ResponseCode":{"type":"integer"},

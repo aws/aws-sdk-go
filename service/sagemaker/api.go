@@ -4134,6 +4134,10 @@ func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req
 //     the estimation of model parameters during training. Hyperparameters can
 //     be tuned to optimize this learning process. For a list of hyperparameters
 //     for each training algorithm provided by SageMaker, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).
+//     You must not include any security-sensitive information, such as account
+//     access IDs, secrets, and tokens, in the dictionary for configuring hyperparameters.
+//     SageMaker rejects the training job request and returns an exception error
+//     for detected credentials, if such user input is found.
 //
 //   - InputDataConfig - Describes the training dataset and the Amazon S3,
 //     EFS, or FSx location where it is stored.
@@ -28203,6 +28207,27 @@ type AutoMLJobConfig struct {
 	// Type: AutoMLDataSplitConfig
 	DataSplitConfig *AutoMLDataSplitConfig `type:"structure"`
 
+	// The method that Autopilot uses to train the data. You can either specify
+	// the mode manually or let Autopilot choose for you based on the dataset size
+	// by selecting AUTO. In AUTO mode, Autopilot chooses ENSEMBLING for datasets
+	// smaller than 100 MB, and HYPERPARAMETER_TUNING for larger ones.
+	//
+	// The ENSEMBLING mode uses a multi-stack ensemble model to predict classification
+	// and regression tasks directly from your dataset. This machine learning mode
+	// combines several base models to produce an optimal predictive model. It then
+	// uses a stacking ensemble method to combine predictions from contributing
+	// members. A multi-stack ensemble model can provide better performance over
+	// a single model by combining the predictive capabilities of multiple models.
+	// See Autopilot algorithm support (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-model-support-validation.html#autopilot-algorithm-suppprt)
+	// for a list of algorithms supported by ENSEMBLING mode.
+	//
+	// The HYPERPARAMETER_TUNING (HPO) mode uses the best hyperparameters to train
+	// the best version of a model. HPO will automatically select an algorithm for
+	// the type of problem you want to solve. Then HPO finds the best hyperparameters
+	// according to your objective metric. See Autopilot algorithm support (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-model-support-validation.html#autopilot-algorithm-suppprt)
+	// for a list of algorithms supported by HYPERPARAMETER_TUNING mode.
+	Mode *string `type:"string" enum:"AutoMLMode"`
+
 	// The security configuration for traffic encryption or Amazon VPC settings.
 	SecurityConfig *AutoMLSecurityConfig `type:"structure"`
 }
@@ -28260,6 +28285,12 @@ func (s *AutoMLJobConfig) SetCompletionCriteria(v *AutoMLJobCompletionCriteria) 
 // SetDataSplitConfig sets the DataSplitConfig field's value.
 func (s *AutoMLJobConfig) SetDataSplitConfig(v *AutoMLDataSplitConfig) *AutoMLJobConfig {
 	s.DataSplitConfig = v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *AutoMLJobConfig) SetMode(v string) *AutoMLJobConfig {
+	s.Mode = &v
 	return s
 }
 
@@ -38653,6 +38684,11 @@ type CreateTrainingJobInput struct {
 	// You can specify a maximum of 100 hyperparameters. Each hyperparameter is
 	// a key-value pair. Each key and value is limited to 256 characters, as specified
 	// by the Length Constraint.
+	//
+	// You must not include any security-sensitive information, such as account
+	// access IDs, secrets, and tokens, in the dictionary for configuring hyperparameters.
+	// SageMaker rejects the training job request and returns an exception error
+	// for detected credentials, if such user input is found.
 	HyperParameters map[string]*string `type:"map"`
 
 	// An array of Channel objects. Each channel is a named input source. InputDataConfig
@@ -82777,9 +82813,9 @@ type ProductionVariant struct {
 	// more information, see Using Elastic Inference in Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).
 	AcceleratorType *string `type:"string" enum:"ProductionVariantAcceleratorType"`
 
-	// The timeout value, in seconds, for the customer inference container to pass
-	// health check by SageMaker Hosting. For more information on health check,
-	// see How Your Container Should Respond to Health Check (Ping) Requests (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-inference-code.html#your-algorithms-inference-algo-ping-requests).
+	// The timeout value, in seconds, for your inference container to pass health
+	// check by SageMaker Hosting. For more information about health check, see
+	// How Your Container Should Respond to Health Check (Ping) Requests (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-inference-code.html#your-algorithms-inference-algo-ping-requests).
 	ContainerStartupHealthCheckTimeoutInSeconds *int64 `min:"60" type:"integer"`
 
 	// Specifies configuration for a core dump from the model container when the
@@ -82798,9 +82834,9 @@ type ProductionVariant struct {
 	// The ML compute instance type.
 	InstanceType *string `type:"string" enum:"ProductionVariantInstanceType"`
 
-	// The timeout value, in seconds, to download and extract customer model artifact
-	// from Amazon S3 to individual inference instance associated with this production
-	// variant.
+	// The timeout value, in seconds, to download and extract the model that you
+	// want to host from Amazon S3 to the individual inference instance associated
+	// with this production variant.
 	ModelDataDownloadTimeoutInSeconds *int64 `min:"60" type:"integer"`
 
 	// The name of the model that you want to host. This is the name that you specified
@@ -98778,6 +98814,26 @@ func AutoMLMetricExtendedEnum_Values() []string {
 		AutoMLMetricExtendedEnumRecall,
 		AutoMLMetricExtendedEnumRecallMacro,
 		AutoMLMetricExtendedEnumLogLoss,
+	}
+}
+
+const (
+	// AutoMLModeAuto is a AutoMLMode enum value
+	AutoMLModeAuto = "AUTO"
+
+	// AutoMLModeEnsembling is a AutoMLMode enum value
+	AutoMLModeEnsembling = "ENSEMBLING"
+
+	// AutoMLModeHyperparameterTuning is a AutoMLMode enum value
+	AutoMLModeHyperparameterTuning = "HYPERPARAMETER_TUNING"
+)
+
+// AutoMLMode_Values returns all elements of the AutoMLMode enum
+func AutoMLMode_Values() []string {
+	return []string{
+		AutoMLModeAuto,
+		AutoMLModeEnsembling,
+		AutoMLModeHyperparameterTuning,
 	}
 }
 

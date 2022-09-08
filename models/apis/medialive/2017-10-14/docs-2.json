@@ -712,6 +712,12 @@
         "InputDeviceSummary$DeviceUpdateStatus": "The status of software on the input device."
       }
     },
+    "DolbyVision81Settings": {
+      "base": "Dolby Vision Profile 8.1 Settings",
+      "refs": {
+        "H265ColorSpaceSettings$DolbyVision81Settings": null
+      }
+    },
     "DvbNitSettings": {
       "base": "DVB Network Information Table (NIT)",
       "refs": {
@@ -788,6 +794,30 @@
       "base": "DVB Time and Date Table (SDT)",
       "refs": {
         "M2tsSettings$DvbTdtSettings": "Inserts DVB Time and Date Table (TDT) at the specified table repetition interval."
+      }
+    },
+    "Eac3AtmosCodingMode": {
+      "base": "Eac3 Atmos Coding Mode",
+      "refs": {
+        "Eac3AtmosSettings$CodingMode": "Dolby Digital Plus with Dolby Atmos coding mode. Determines number of channels."
+      }
+    },
+    "Eac3AtmosDrcLine": {
+      "base": "Eac3 Atmos Drc Line",
+      "refs": {
+        "Eac3AtmosSettings$DrcLine": "Sets the Dolby dynamic range compression profile."
+      }
+    },
+    "Eac3AtmosDrcRf": {
+      "base": "Eac3 Atmos Drc Rf",
+      "refs": {
+        "Eac3AtmosSettings$DrcRf": "Sets the profile for heavy Dolby dynamic range compression, ensures that the instantaneous signal peaks do not exceed specified levels."
+      }
+    },
+    "Eac3AtmosSettings": {
+      "base": "Eac3 Atmos Settings",
+      "refs": {
+        "AudioCodecSettings$Eac3AtmosSettings": null
       }
     },
     "Eac3AttenuationControl": {
@@ -3453,6 +3483,9 @@
         "AacSettings$Bitrate": "Average bitrate in bits/second. Valid values depend on rate control mode and profile.",
         "AacSettings$SampleRate": "Sample rate in Hz. Valid values depend on rate control mode and profile.",
         "Ac3Settings$Bitrate": "Average bitrate in bits/second. Valid bitrates depend on the coding mode.",
+        "Eac3AtmosSettings$Bitrate": "Average bitrate in bits/second. Valid bitrates depend on the coding mode.\n//  * @affectsRightSizing true",
+        "Eac3AtmosSettings$HeightTrim": "Height dimensional trim. Sets the maximum amount to attenuate the height channels when the downstream player isn??t configured to handle Dolby Digital Plus with Dolby Atmos and must remix the channels.",
+        "Eac3AtmosSettings$SurroundTrim": "Surround dimensional trim. Sets the maximum amount to attenuate the surround channels when the downstream player isn't configured to handle Dolby Digital Plus with Dolby Atmos and must remix the channels.",
         "Eac3Settings$Bitrate": "Average bitrate in bits/second. Valid bitrates depend on the coding mode.",
         "Eac3Settings$LoRoCenterMixLevel": "Left only/Right only center mix level. Only used for 3/2 coding mode.",
         "Eac3Settings$LoRoSurroundMixLevel": "Left only/Right only surround mix level. Only used for 3/2 coding mode.",
@@ -3856,6 +3889,7 @@
       "base": null,
       "refs": {
         "Ac3Settings$Dialnorm": "Sets the dialnorm for the output. If excluded and input audio is Dolby Digital, dialnorm will be passed through.",
+        "Eac3AtmosSettings$Dialnorm": "Sets the dialnorm for the output. Default 23.",
         "Eac3Settings$Dialnorm": "Sets the dialnorm for the output. If blank and input audio is Dolby Digital Plus, dialnorm will be passed through."
       }
     },
@@ -4399,7 +4433,6 @@
         "CreateMultiplexProgram$ProgramName": "Name of multiplex program.",
         "CreateMultiplexProgram$RequestId": "Unique request ID. This prevents retries from creating multiple\nresources.\n",
         "CreatePartnerInput$RequestId": "Unique identifier of the request to ensure the request is handled\nexactly once in case of retries.\n",
-        "DescribeAnywhereSettings$ClusterName": "The name of the cluster that is the instance provider for the channel",
         "DvbSubDestinationSettings$FontSize": "When set to auto fontSize will scale depending on the size of the output.  Giving a positive integer will specify the exact font size in points.  All burn-in and DVB-Sub font settings must match.",
         "EbuTtDDestinationSettings$FontFamily": "Specifies the font family to include in the font data attached to the EBU-TT captions. Valid only if styleControl is set to include. If you leave this field empty, the font family is set to \"monospaced\". (If styleControl is set to exclude, the font family is always set to \"monospaced\".)\n\nYou specify only the font family. All other style information (color, bold, position and so on) is copied from the input captions. The size is always set to 100% to allow the downstream player to choose the size.\n\n- Enter a list of font families, as a comma-separated list of font names, in order of preference. The name can be a font family (such as \u201cArial\u201d), or a generic font family (such as \u201cserif\u201d), or \u201cdefault\u201d (to let the downstream player choose the font).\n- Leave blank to set the family to \u201cmonospace\u201d.",
         "FixedModeScheduleActionStartSettings$Time": "Start time for the action to start in the channel. (Not the time for the action to be added to the schedule: actions are always added to the schedule immediately.) UTC format: yyyy-mm-ddThh:mm:ss.nnnZ. All the letters are digits (for example, mm might be 01) except for the two constants \"T\" for time and \"Z\" for \"UTC format\".",

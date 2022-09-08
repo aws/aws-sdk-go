@@ -966,7 +966,8 @@
         "MetricSetFrequency":{"shape":"Frequency"},
         "MetricSource":{"shape":"MetricSource"},
         "Timezone":{"shape":"Timezone"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "DimensionFilterList":{"shape":"MetricSetDimensionFilterList"}
       }
     },
     "CreateMetricSetResponse":{
@@ -1158,7 +1159,8 @@
         "DimensionList":{"shape":"DimensionList"},
         "MetricSetFrequency":{"shape":"Frequency"},
         "Timezone":{"shape":"Timezone"},
-        "MetricSource":{"shape":"MetricSource"}
+        "MetricSource":{"shape":"MetricSource"},
+        "DimensionFilterList":{"shape":"MetricSetDimensionFilterList"}
       }
     },
     "DetectMetricSetConfigRequest":{
@@ -1317,6 +1319,22 @@
         "CsvFormatDescriptor":{"shape":"CsvFormatDescriptor"},
         "JsonFormatDescriptor":{"shape":"JsonFormatDescriptor"}
       }
+    },
+    "Filter":{
+      "type":"structure",
+      "members":{
+        "DimensionValue":{"shape":"DimensionValue"},
+        "FilterOperation":{"shape":"FilterOperation"}
+      }
+    },
+    "FilterList":{
+      "type":"list",
+      "member":{"shape":"Filter"},
+      "min":1
+    },
+    "FilterOperation":{
+      "type":"string",
+      "enum":["EQUALS"]
     },
     "FlowName":{
       "type":"string",
@@ -1701,6 +1719,17 @@
       "max":256,
       "min":1,
       "pattern":".*\\S.*"
+    },
+    "MetricSetDimensionFilter":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ColumnName"},
+        "FilterList":{"shape":"FilterList"}
+      }
+    },
+    "MetricSetDimensionFilterList":{
+      "type":"list",
+      "member":{"shape":"MetricSetDimensionFilter"}
     },
     "MetricSetName":{
       "type":"string",
@@ -2171,7 +2200,8 @@
         "TimestampColumn":{"shape":"TimestampColumn"},
         "DimensionList":{"shape":"DimensionList"},
         "MetricSetFrequency":{"shape":"Frequency"},
-        "MetricSource":{"shape":"MetricSource"}
+        "MetricSource":{"shape":"MetricSource"},
+        "DimensionFilterList":{"shape":"MetricSetDimensionFilterList"}
       }
     },
     "UpdateMetricSetResponse":{
