@@ -92,6 +92,10 @@ type CloudTrailAPI interface {
 	DescribeTrailsWithContext(aws.Context, *cloudtrail.DescribeTrailsInput, ...request.Option) (*cloudtrail.DescribeTrailsOutput, error)
 	DescribeTrailsRequest(*cloudtrail.DescribeTrailsInput) (*request.Request, *cloudtrail.DescribeTrailsOutput)
 
+	GetChannel(*cloudtrail.GetChannelInput) (*cloudtrail.GetChannelOutput, error)
+	GetChannelWithContext(aws.Context, *cloudtrail.GetChannelInput, ...request.Option) (*cloudtrail.GetChannelOutput, error)
+	GetChannelRequest(*cloudtrail.GetChannelInput) (*request.Request, *cloudtrail.GetChannelOutput)
+
 	GetEventDataStore(*cloudtrail.GetEventDataStoreInput) (*cloudtrail.GetEventDataStoreOutput, error)
 	GetEventDataStoreWithContext(aws.Context, *cloudtrail.GetEventDataStoreInput, ...request.Option) (*cloudtrail.GetEventDataStoreOutput, error)
 	GetEventDataStoreRequest(*cloudtrail.GetEventDataStoreInput) (*request.Request, *cloudtrail.GetEventDataStoreOutput)
@@ -118,6 +122,13 @@ type CloudTrailAPI interface {
 	GetTrailStatus(*cloudtrail.GetTrailStatusInput) (*cloudtrail.GetTrailStatusOutput, error)
 	GetTrailStatusWithContext(aws.Context, *cloudtrail.GetTrailStatusInput, ...request.Option) (*cloudtrail.GetTrailStatusOutput, error)
 	GetTrailStatusRequest(*cloudtrail.GetTrailStatusInput) (*request.Request, *cloudtrail.GetTrailStatusOutput)
+
+	ListChannels(*cloudtrail.ListChannelsInput) (*cloudtrail.ListChannelsOutput, error)
+	ListChannelsWithContext(aws.Context, *cloudtrail.ListChannelsInput, ...request.Option) (*cloudtrail.ListChannelsOutput, error)
+	ListChannelsRequest(*cloudtrail.ListChannelsInput) (*request.Request, *cloudtrail.ListChannelsOutput)
+
+	ListChannelsPages(*cloudtrail.ListChannelsInput, func(*cloudtrail.ListChannelsOutput, bool) bool) error
+	ListChannelsPagesWithContext(aws.Context, *cloudtrail.ListChannelsInput, func(*cloudtrail.ListChannelsOutput, bool) bool, ...request.Option) error
 
 	ListEventDataStores(*cloudtrail.ListEventDataStoresInput) (*cloudtrail.ListEventDataStoresOutput, error)
 	ListEventDataStoresWithContext(aws.Context, *cloudtrail.ListEventDataStoresInput, ...request.Option) (*cloudtrail.ListEventDataStoresOutput, error)

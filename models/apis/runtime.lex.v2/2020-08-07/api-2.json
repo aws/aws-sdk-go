@@ -379,7 +379,8 @@
       "members":{
         "type":{"shape":"DialogActionType"},
         "slotToElicit":{"shape":"NonEmptyString"},
-        "slotElicitationStyle":{"shape":"StyleType"}
+        "slotElicitationStyle":{"shape":"StyleType"},
+        "subSlotToElicit":{"shape":"ElicitSubSlot"}
       }
     },
     "DialogActionType":{
@@ -402,6 +403,14 @@
       "event":true
     },
     "Double":{"type":"double"},
+    "ElicitSubSlot":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"NonEmptyString"},
+        "subSlotToElicit":{"shape":"ElicitSubSlot"}
+      }
+    },
     "EpochMillis":{"type":"long"},
     "EventId":{
       "type":"string",
@@ -826,9 +835,9 @@
     },
     "RuntimeHintDetails":{
       "type":"structure",
-      "required":["runtimeHintValues"],
       "members":{
-        "runtimeHintValues":{"shape":"RuntimeHintValuesList"}
+        "runtimeHintValues":{"shape":"RuntimeHintValuesList"},
+        "subSlotHints":{"shape":"SlotHintsSlotMap"}
       }
     },
     "RuntimeHintPhrase":{
@@ -905,7 +914,8 @@
       "type":"string",
       "enum":[
         "Scalar",
-        "List"
+        "List",
+        "Composite"
       ]
     },
     "Slot":{
@@ -913,7 +923,8 @@
       "members":{
         "value":{"shape":"Value"},
         "shape":{"shape":"Shape"},
-        "values":{"shape":"Values"}
+        "values":{"shape":"Values"},
+        "subSlots":{"shape":"Slots"}
       }
     },
     "SlotHintsIntentMap":{

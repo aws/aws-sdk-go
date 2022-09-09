@@ -9773,6 +9773,59 @@ func (s *CodeHookSpecification) SetLambdaCodeHook(v *LambdaCodeHook) *CodeHookSp
 	return s
 }
 
+// A composite slot is a combination of two or more slots that capture multiple
+// pieces of information in a single user input.
+type CompositeSlotTypeSetting struct {
+	_ struct{} `type:"structure"`
+
+	// Subslots in the composite slot.
+	SubSlots []*SubSlotTypeComposition `locationName:"subSlots" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompositeSlotTypeSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompositeSlotTypeSetting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CompositeSlotTypeSetting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CompositeSlotTypeSetting"}
+	if s.SubSlots != nil {
+		for i, v := range s.SubSlots {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SubSlots", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSubSlots sets the SubSlots field's value.
+func (s *CompositeSlotTypeSetting) SetSubSlots(v []*SubSlotTypeComposition) *CompositeSlotTypeSetting {
+	s.SubSlots = v
+	return s
+}
+
 // Provides an expression that evaluates to true or false.
 type Condition struct {
 	_ struct{} `type:"structure"`
@@ -12144,6 +12197,10 @@ type CreateSlotInput struct {
 	// type determines the values that can be entered into the slot.
 	SlotTypeId *string `locationName:"slotTypeId" min:"1" type:"string"`
 
+	// Specifications for the constituent sub slots and the expression for the composite
+	// slot.
+	SubSlotSetting *SubSlotSetting `locationName:"subSlotSetting" type:"structure"`
+
 	// Specifies prompts that Amazon Lex sends to the user to elicit a response
 	// that provides the value for the slot.
 	//
@@ -12213,6 +12270,11 @@ func (s *CreateSlotInput) Validate() error {
 			invalidParams.AddNested("ObfuscationSetting", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SubSlotSetting != nil {
+		if err := s.SubSlotSetting.Validate(); err != nil {
+			invalidParams.AddNested("SubSlotSetting", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ValueElicitationSetting != nil {
 		if err := s.ValueElicitationSetting.Validate(); err != nil {
 			invalidParams.AddNested("ValueElicitationSetting", err.(request.ErrInvalidParams))
@@ -12279,6 +12341,12 @@ func (s *CreateSlotInput) SetSlotTypeId(v string) *CreateSlotInput {
 	return s
 }
 
+// SetSubSlotSetting sets the SubSlotSetting field's value.
+func (s *CreateSlotInput) SetSubSlotSetting(v *SubSlotSetting) *CreateSlotInput {
+	s.SubSlotSetting = v
+	return s
+}
+
 // SetValueElicitationSetting sets the ValueElicitationSetting field's value.
 func (s *CreateSlotInput) SetValueElicitationSetting(v *SlotValueElicitationSetting) *CreateSlotInput {
 	s.ValueElicitationSetting = v
@@ -12322,6 +12390,10 @@ type CreateSlotOutput struct {
 
 	// The unique identifier of the slot type associated with this slot.
 	SlotTypeId *string `locationName:"slotTypeId" min:"1" type:"string"`
+
+	// Specifications for the constituent sub slots and the expression for the composite
+	// slot.
+	SubSlotSetting *SubSlotSetting `locationName:"subSlotSetting" type:"structure"`
 
 	// The value elicitation settings specified for the slot.
 	ValueElicitationSetting *SlotValueElicitationSetting `locationName:"valueElicitationSetting" type:"structure"`
@@ -12411,6 +12483,12 @@ func (s *CreateSlotOutput) SetSlotTypeId(v string) *CreateSlotOutput {
 	return s
 }
 
+// SetSubSlotSetting sets the SubSlotSetting field's value.
+func (s *CreateSlotOutput) SetSubSlotSetting(v *SubSlotSetting) *CreateSlotOutput {
+	s.SubSlotSetting = v
+	return s
+}
+
 // SetValueElicitationSetting sets the ValueElicitationSetting field's value.
 func (s *CreateSlotOutput) SetValueElicitationSetting(v *SlotValueElicitationSetting) *CreateSlotOutput {
 	s.ValueElicitationSetting = v
@@ -12429,6 +12507,9 @@ type CreateSlotTypeInput struct {
 	//
 	// BotVersion is a required field
 	BotVersion *string `location:"uri" locationName:"botVersion" min:"5" type:"string" required:"true"`
+
+	// Specifications for a composite slot type.
+	CompositeSlotTypeSetting *CompositeSlotTypeSetting `locationName:"compositeSlotTypeSetting" type:"structure"`
 
 	// A description of the slot type. Use the description to help identify the
 	// slot type in lists.
@@ -12526,6 +12607,11 @@ func (s *CreateSlotTypeInput) Validate() error {
 	if s.SlotTypeValues != nil && len(s.SlotTypeValues) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SlotTypeValues", 1))
 	}
+	if s.CompositeSlotTypeSetting != nil {
+		if err := s.CompositeSlotTypeSetting.Validate(); err != nil {
+			invalidParams.AddNested("CompositeSlotTypeSetting", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ExternalSourceSetting != nil {
 		if err := s.ExternalSourceSetting.Validate(); err != nil {
 			invalidParams.AddNested("ExternalSourceSetting", err.(request.ErrInvalidParams))
@@ -12562,6 +12648,12 @@ func (s *CreateSlotTypeInput) SetBotId(v string) *CreateSlotTypeInput {
 // SetBotVersion sets the BotVersion field's value.
 func (s *CreateSlotTypeInput) SetBotVersion(v string) *CreateSlotTypeInput {
 	s.BotVersion = &v
+	return s
+}
+
+// SetCompositeSlotTypeSetting sets the CompositeSlotTypeSetting field's value.
+func (s *CreateSlotTypeInput) SetCompositeSlotTypeSetting(v *CompositeSlotTypeSetting) *CreateSlotTypeInput {
+	s.CompositeSlotTypeSetting = v
 	return s
 }
 
@@ -12615,6 +12707,9 @@ type CreateSlotTypeOutput struct {
 
 	// The version of the bot associated with the slot type.
 	BotVersion *string `locationName:"botVersion" min:"5" type:"string"`
+
+	// Specifications for a composite slot type.
+	CompositeSlotTypeSetting *CompositeSlotTypeSetting `locationName:"compositeSlotTypeSetting" type:"structure"`
 
 	// A timestamp of the date and time that the slot type was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
@@ -12673,6 +12768,12 @@ func (s *CreateSlotTypeOutput) SetBotId(v string) *CreateSlotTypeOutput {
 // SetBotVersion sets the BotVersion field's value.
 func (s *CreateSlotTypeOutput) SetBotVersion(v string) *CreateSlotTypeOutput {
 	s.BotVersion = &v
+	return s
+}
+
+// SetCompositeSlotTypeSetting sets the CompositeSlotTypeSetting field's value.
+func (s *CreateSlotTypeOutput) SetCompositeSlotTypeSetting(v *CompositeSlotTypeSetting) *CreateSlotTypeOutput {
+	s.CompositeSlotTypeSetting = v
 	return s
 }
 
@@ -16814,6 +16915,10 @@ type DescribeSlotOutput struct {
 	// slot.
 	SlotTypeId *string `locationName:"slotTypeId" min:"1" type:"string"`
 
+	// Specifications for the constituent sub slots and the expression for the composite
+	// slot.
+	SubSlotSetting *SubSlotSetting `locationName:"subSlotSetting" type:"structure"`
+
 	// Prompts that Amazon Lex uses to elicit a value for the slot.
 	ValueElicitationSetting *SlotValueElicitationSetting `locationName:"valueElicitationSetting" type:"structure"`
 }
@@ -16905,6 +17010,12 @@ func (s *DescribeSlotOutput) SetSlotName(v string) *DescribeSlotOutput {
 // SetSlotTypeId sets the SlotTypeId field's value.
 func (s *DescribeSlotOutput) SetSlotTypeId(v string) *DescribeSlotOutput {
 	s.SlotTypeId = &v
+	return s
+}
+
+// SetSubSlotSetting sets the SubSlotSetting field's value.
+func (s *DescribeSlotOutput) SetSubSlotSetting(v *SubSlotSetting) *DescribeSlotOutput {
+	s.SubSlotSetting = v
 	return s
 }
 
@@ -17025,6 +17136,9 @@ type DescribeSlotTypeOutput struct {
 	// The version of the bot associated with the slot type.
 	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
 
+	// Specifications for a composite slot type.
+	CompositeSlotTypeSetting *CompositeSlotTypeSetting `locationName:"compositeSlotTypeSetting" type:"structure"`
+
 	// A timestamp of the date and time that the slot type was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
 
@@ -17085,6 +17199,12 @@ func (s *DescribeSlotTypeOutput) SetBotId(v string) *DescribeSlotTypeOutput {
 // SetBotVersion sets the BotVersion field's value.
 func (s *DescribeSlotTypeOutput) SetBotVersion(v string) *DescribeSlotTypeOutput {
 	s.BotVersion = &v
+	return s
+}
+
+// SetCompositeSlotTypeSetting sets the CompositeSlotTypeSetting field's value.
+func (s *DescribeSlotTypeOutput) SetCompositeSlotTypeSetting(v *CompositeSlotTypeSetting) *DescribeSlotTypeOutput {
+	s.CompositeSlotTypeSetting = v
 	return s
 }
 
@@ -25601,7 +25721,8 @@ func (s *SlotValue) SetInterpretedValue(v string) *SlotValue {
 	return s
 }
 
-// Settings that you can use for eliciting a slot value.
+// Specifies the elicitation setting details for constituent sub slots of a
+// composite slot.
 type SlotValueElicitationSetting struct {
 	_ struct{} `type:"structure"`
 
@@ -25954,6 +26075,76 @@ func (s *SlotValueSelectionSetting) SetRegexFilter(v *SlotValueRegexFilter) *Slo
 // SetResolutionStrategy sets the ResolutionStrategy field's value.
 func (s *SlotValueSelectionSetting) SetResolutionStrategy(v string) *SlotValueSelectionSetting {
 	s.ResolutionStrategy = &v
+	return s
+}
+
+// Subslot specifications.
+type Specifications struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier assigned to the slot type.
+	//
+	// SlotTypeId is a required field
+	SlotTypeId *string `locationName:"slotTypeId" min:"1" type:"string" required:"true"`
+
+	// Specifies the elicitation setting details for constituent sub slots of a
+	// composite slot.
+	//
+	// ValueElicitationSetting is a required field
+	ValueElicitationSetting *SubSlotValueElicitationSetting `locationName:"valueElicitationSetting" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Specifications) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Specifications) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Specifications) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Specifications"}
+	if s.SlotTypeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SlotTypeId"))
+	}
+	if s.SlotTypeId != nil && len(*s.SlotTypeId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SlotTypeId", 1))
+	}
+	if s.ValueElicitationSetting == nil {
+		invalidParams.Add(request.NewErrParamRequired("ValueElicitationSetting"))
+	}
+	if s.ValueElicitationSetting != nil {
+		if err := s.ValueElicitationSetting.Validate(); err != nil {
+			invalidParams.AddNested("ValueElicitationSetting", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSlotTypeId sets the SlotTypeId field's value.
+func (s *Specifications) SetSlotTypeId(v string) *Specifications {
+	s.SlotTypeId = &v
+	return s
+}
+
+// SetValueElicitationSetting sets the ValueElicitationSetting field's value.
+func (s *Specifications) SetValueElicitationSetting(v *SubSlotValueElicitationSetting) *Specifications {
+	s.ValueElicitationSetting = v
 	return s
 }
 
@@ -26633,6 +26824,251 @@ func (s *StopBotRecommendationOutput) SetBotVersion(v string) *StopBotRecommenda
 // SetLocaleId sets the LocaleId field's value.
 func (s *StopBotRecommendationOutput) SetLocaleId(v string) *StopBotRecommendationOutput {
 	s.LocaleId = &v
+	return s
+}
+
+// Specifications for the constituent sub slots and the expression for the composite
+// slot.
+type SubSlotSetting struct {
+	_ struct{} `type:"structure"`
+
+	// The expression text for defining the constituent sub slots in the composite
+	// slot using logical AND and OR operators.
+	Expression *string `locationName:"expression" type:"string"`
+
+	// Specifications for the constituent sub slots of a composite slot.
+	SlotSpecifications map[string]*Specifications `locationName:"slotSpecifications" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubSlotSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubSlotSetting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SubSlotSetting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SubSlotSetting"}
+	if s.SlotSpecifications != nil {
+		for i, v := range s.SlotSpecifications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SlotSpecifications", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpression sets the Expression field's value.
+func (s *SubSlotSetting) SetExpression(v string) *SubSlotSetting {
+	s.Expression = &v
+	return s
+}
+
+// SetSlotSpecifications sets the SlotSpecifications field's value.
+func (s *SubSlotSetting) SetSlotSpecifications(v map[string]*Specifications) *SubSlotSetting {
+	s.SlotSpecifications = v
+	return s
+}
+
+// Subslot type composition.
+type SubSlotTypeComposition struct {
+	_ struct{} `type:"structure"`
+
+	// Name of a constituent sub slot inside a composite slot.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The unique identifier assigned to a slot type. This refers to either a built-in
+	// slot type or the unique slotTypeId of a custom slot type.
+	//
+	// SlotTypeId is a required field
+	SlotTypeId *string `locationName:"slotTypeId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubSlotTypeComposition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubSlotTypeComposition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SubSlotTypeComposition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SubSlotTypeComposition"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SlotTypeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SlotTypeId"))
+	}
+	if s.SlotTypeId != nil && len(*s.SlotTypeId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SlotTypeId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *SubSlotTypeComposition) SetName(v string) *SubSlotTypeComposition {
+	s.Name = &v
+	return s
+}
+
+// SetSlotTypeId sets the SlotTypeId field's value.
+func (s *SubSlotTypeComposition) SetSlotTypeId(v string) *SubSlotTypeComposition {
+	s.SlotTypeId = &v
+	return s
+}
+
+// Subslot elicitation settings.
+//
+// DefaultValueSpecification is a list of default values for a constituent sub
+// slot in a composite slot. Default values are used when Amazon Lex hasn't
+// determined a value for a slot. You can specify default values from context
+// variables, session attributes, and defined values. This is similar to DefaultValueSpecification
+// for slots.
+//
+// PromptSpecification is the prompt that Amazon Lex uses to elicit the sub
+// slot value from the user. This is similar to PromptSpecification for slots.
+type SubSlotValueElicitationSetting struct {
+	_ struct{} `type:"structure"`
+
+	// Defines a list of values that Amazon Lex should use as the default value
+	// for a slot.
+	DefaultValueSpecification *SlotDefaultValueSpecification `locationName:"defaultValueSpecification" type:"structure"`
+
+	// Specifies a list of message groups that Amazon Lex sends to a user to elicit
+	// a response.
+	//
+	// PromptSpecification is a required field
+	PromptSpecification *PromptSpecification `locationName:"promptSpecification" type:"structure" required:"true"`
+
+	// If you know a specific pattern that users might respond to an Amazon Lex
+	// request for a sub slot value, you can provide those utterances to improve
+	// accuracy. This is optional. In most cases Amazon Lex is capable of understanding
+	// user utterances. This is similar to SampleUtterances for slots.
+	SampleUtterances []*SampleUtterance `locationName:"sampleUtterances" type:"list"`
+
+	// Specifies the prompts that Amazon Lex uses while a bot is waiting for customer
+	// input.
+	WaitAndContinueSpecification *WaitAndContinueSpecification `locationName:"waitAndContinueSpecification" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubSlotValueElicitationSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubSlotValueElicitationSetting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SubSlotValueElicitationSetting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SubSlotValueElicitationSetting"}
+	if s.PromptSpecification == nil {
+		invalidParams.Add(request.NewErrParamRequired("PromptSpecification"))
+	}
+	if s.DefaultValueSpecification != nil {
+		if err := s.DefaultValueSpecification.Validate(); err != nil {
+			invalidParams.AddNested("DefaultValueSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PromptSpecification != nil {
+		if err := s.PromptSpecification.Validate(); err != nil {
+			invalidParams.AddNested("PromptSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SampleUtterances != nil {
+		for i, v := range s.SampleUtterances {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SampleUtterances", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.WaitAndContinueSpecification != nil {
+		if err := s.WaitAndContinueSpecification.Validate(); err != nil {
+			invalidParams.AddNested("WaitAndContinueSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultValueSpecification sets the DefaultValueSpecification field's value.
+func (s *SubSlotValueElicitationSetting) SetDefaultValueSpecification(v *SlotDefaultValueSpecification) *SubSlotValueElicitationSetting {
+	s.DefaultValueSpecification = v
+	return s
+}
+
+// SetPromptSpecification sets the PromptSpecification field's value.
+func (s *SubSlotValueElicitationSetting) SetPromptSpecification(v *PromptSpecification) *SubSlotValueElicitationSetting {
+	s.PromptSpecification = v
+	return s
+}
+
+// SetSampleUtterances sets the SampleUtterances field's value.
+func (s *SubSlotValueElicitationSetting) SetSampleUtterances(v []*SampleUtterance) *SubSlotValueElicitationSetting {
+	s.SampleUtterances = v
+	return s
+}
+
+// SetWaitAndContinueSpecification sets the WaitAndContinueSpecification field's value.
+func (s *SubSlotValueElicitationSetting) SetWaitAndContinueSpecification(v *WaitAndContinueSpecification) *SubSlotValueElicitationSetting {
+	s.WaitAndContinueSpecification = v
 	return s
 }
 
@@ -28943,6 +29379,10 @@ type UpdateSlotInput struct {
 	// The unique identifier of the new slot type to associate with this slot.
 	SlotTypeId *string `locationName:"slotTypeId" min:"1" type:"string"`
 
+	// Specifications for the constituent sub slots and the expression for the composite
+	// slot.
+	SubSlotSetting *SubSlotSetting `locationName:"subSlotSetting" type:"structure"`
+
 	// A new set of prompts that Amazon Lex sends to the user to elicit a response
 	// the provides a value for the slot.
 	//
@@ -29018,6 +29458,11 @@ func (s *UpdateSlotInput) Validate() error {
 			invalidParams.AddNested("ObfuscationSetting", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SubSlotSetting != nil {
+		if err := s.SubSlotSetting.Validate(); err != nil {
+			invalidParams.AddNested("SubSlotSetting", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ValueElicitationSetting != nil {
 		if err := s.ValueElicitationSetting.Validate(); err != nil {
 			invalidParams.AddNested("ValueElicitationSetting", err.(request.ErrInvalidParams))
@@ -29090,6 +29535,12 @@ func (s *UpdateSlotInput) SetSlotTypeId(v string) *UpdateSlotInput {
 	return s
 }
 
+// SetSubSlotSetting sets the SubSlotSetting field's value.
+func (s *UpdateSlotInput) SetSubSlotSetting(v *SubSlotSetting) *UpdateSlotInput {
+	s.SubSlotSetting = v
+	return s
+}
+
 // SetValueElicitationSetting sets the ValueElicitationSetting field's value.
 func (s *UpdateSlotInput) SetValueElicitationSetting(v *SlotValueElicitationSetting) *UpdateSlotInput {
 	s.ValueElicitationSetting = v
@@ -29136,6 +29587,10 @@ type UpdateSlotOutput struct {
 
 	// The updated identifier of the slot type that provides values for the slot.
 	SlotTypeId *string `locationName:"slotTypeId" min:"1" type:"string"`
+
+	// Specifications for the constituent sub slots and the expression for the composite
+	// slot.
+	SubSlotSetting *SubSlotSetting `locationName:"subSlotSetting" type:"structure"`
 
 	// The updated prompts that Amazon Lex sends to the user to elicit a response
 	// that provides a value for the slot.
@@ -29232,6 +29687,12 @@ func (s *UpdateSlotOutput) SetSlotTypeId(v string) *UpdateSlotOutput {
 	return s
 }
 
+// SetSubSlotSetting sets the SubSlotSetting field's value.
+func (s *UpdateSlotOutput) SetSubSlotSetting(v *SubSlotSetting) *UpdateSlotOutput {
+	s.SubSlotSetting = v
+	return s
+}
+
 // SetValueElicitationSetting sets the ValueElicitationSetting field's value.
 func (s *UpdateSlotOutput) SetValueElicitationSetting(v *SlotValueElicitationSetting) *UpdateSlotOutput {
 	s.ValueElicitationSetting = v
@@ -29250,6 +29711,9 @@ type UpdateSlotTypeInput struct {
 	//
 	// BotVersion is a required field
 	BotVersion *string `location:"uri" locationName:"botVersion" min:"5" type:"string" required:"true"`
+
+	// Specifications for a composite slot type.
+	CompositeSlotTypeSetting *CompositeSlotTypeSetting `locationName:"compositeSlotTypeSetting" type:"structure"`
 
 	// The new description of the slot type.
 	Description *string `locationName:"description" type:"string"`
@@ -29341,6 +29805,11 @@ func (s *UpdateSlotTypeInput) Validate() error {
 	if s.SlotTypeValues != nil && len(s.SlotTypeValues) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SlotTypeValues", 1))
 	}
+	if s.CompositeSlotTypeSetting != nil {
+		if err := s.CompositeSlotTypeSetting.Validate(); err != nil {
+			invalidParams.AddNested("CompositeSlotTypeSetting", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ExternalSourceSetting != nil {
 		if err := s.ExternalSourceSetting.Validate(); err != nil {
 			invalidParams.AddNested("ExternalSourceSetting", err.(request.ErrInvalidParams))
@@ -29377,6 +29846,12 @@ func (s *UpdateSlotTypeInput) SetBotId(v string) *UpdateSlotTypeInput {
 // SetBotVersion sets the BotVersion field's value.
 func (s *UpdateSlotTypeInput) SetBotVersion(v string) *UpdateSlotTypeInput {
 	s.BotVersion = &v
+	return s
+}
+
+// SetCompositeSlotTypeSetting sets the CompositeSlotTypeSetting field's value.
+func (s *UpdateSlotTypeInput) SetCompositeSlotTypeSetting(v *CompositeSlotTypeSetting) *UpdateSlotTypeInput {
+	s.CompositeSlotTypeSetting = v
 	return s
 }
 
@@ -29436,6 +29911,9 @@ type UpdateSlotTypeOutput struct {
 
 	// The version of the bot that contains the slot type. This is always DRAFT.
 	BotVersion *string `locationName:"botVersion" min:"5" type:"string"`
+
+	// Specifications for a composite slot type.
+	CompositeSlotTypeSetting *CompositeSlotTypeSetting `locationName:"compositeSlotTypeSetting" type:"structure"`
 
 	// The timestamp of the date and time that the slot type was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
@@ -29497,6 +29975,12 @@ func (s *UpdateSlotTypeOutput) SetBotId(v string) *UpdateSlotTypeOutput {
 // SetBotVersion sets the BotVersion field's value.
 func (s *UpdateSlotTypeOutput) SetBotVersion(v string) *UpdateSlotTypeOutput {
 	s.BotVersion = &v
+	return s
+}
+
+// SetCompositeSlotTypeSetting sets the CompositeSlotTypeSetting field's value.
+func (s *UpdateSlotTypeOutput) SetCompositeSlotTypeSetting(v *CompositeSlotTypeSetting) *UpdateSlotTypeOutput {
+	s.CompositeSlotTypeSetting = v
 	return s
 }
 
@@ -30624,6 +31108,9 @@ const (
 
 	// SlotTypeCategoryExternalGrammar is a SlotTypeCategory enum value
 	SlotTypeCategoryExternalGrammar = "ExternalGrammar"
+
+	// SlotTypeCategoryComposite is a SlotTypeCategory enum value
+	SlotTypeCategoryComposite = "Composite"
 )
 
 // SlotTypeCategory_Values returns all elements of the SlotTypeCategory enum
@@ -30632,6 +31119,7 @@ func SlotTypeCategory_Values() []string {
 		SlotTypeCategoryCustom,
 		SlotTypeCategoryExtended,
 		SlotTypeCategoryExternalGrammar,
+		SlotTypeCategoryComposite,
 	}
 }
 
@@ -30689,6 +31177,9 @@ const (
 
 	// SlotValueResolutionStrategyTopResolution is a SlotValueResolutionStrategy enum value
 	SlotValueResolutionStrategyTopResolution = "TopResolution"
+
+	// SlotValueResolutionStrategyConcatenation is a SlotValueResolutionStrategy enum value
+	SlotValueResolutionStrategyConcatenation = "Concatenation"
 )
 
 // SlotValueResolutionStrategy_Values returns all elements of the SlotValueResolutionStrategy enum
@@ -30696,6 +31187,7 @@ func SlotValueResolutionStrategy_Values() []string {
 	return []string{
 		SlotValueResolutionStrategyOriginalValue,
 		SlotValueResolutionStrategyTopResolution,
+		SlotValueResolutionStrategyConcatenation,
 	}
 }
 

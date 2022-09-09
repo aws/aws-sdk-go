@@ -624,6 +624,8 @@
         "CreateSlotResponse$slotTypeId": "<p>The unique identifier of the slot type associated with this slot.</p>",
         "DescribeSlotResponse$slotTypeId": "<p>The identifier of the slot type that determines the values entered into the slot.</p>",
         "SlotSummary$slotTypeId": "<p>The unique identifier for the slot type that defines the values for the slot.</p>",
+        "Specifications$slotTypeId": "<p>The unique identifier assigned to the slot type.</p>",
+        "SubSlotTypeComposition$slotTypeId": "<p>The unique identifier assigned to a slot type. This refers to either a built-in slot type or the unique slotTypeId of a custom slot type.</p>",
         "UpdateSlotRequest$slotTypeId": "<p>The unique identifier of the new slot type to associate with this slot. </p>",
         "UpdateSlotResponse$slotTypeId": "<p>The updated identifier of the slot type that provides values for the slot.</p>"
       }
@@ -711,6 +713,16 @@
       "base": "<p>Contains information about code hooks that Amazon Lex calls during a conversation.</p>",
       "refs": {
         "BotAliasLocaleSettings$codeHookSpecification": "<p>Specifies the Lambda function that should be used in the locale.</p>"
+      }
+    },
+    "CompositeSlotTypeSetting": {
+      "base": "<p>A composite slot is a combination of two or more slots that capture multiple pieces of information in a single user input.</p>",
+      "refs": {
+        "CreateSlotTypeRequest$compositeSlotTypeSetting": "<p>Specifications for a composite slot type.</p>",
+        "CreateSlotTypeResponse$compositeSlotTypeSetting": "<p>Specifications for a composite slot type.</p>",
+        "DescribeSlotTypeResponse$compositeSlotTypeSetting": "<p>Specifications for a composite slot type.</p>",
+        "UpdateSlotTypeRequest$compositeSlotTypeSetting": "<p>Specifications for a composite slot type.</p>",
+        "UpdateSlotTypeResponse$compositeSlotTypeSetting": "<p>Specifications for a composite slot type.</p>"
       }
     },
     "Condition": {
@@ -2386,6 +2398,8 @@
         "SlotSummary$slotName": "<p>The name given to the slot.</p>",
         "SlotTypeSummary$slotTypeName": "<p>The name of the slot type.</p>",
         "SlotValueOverrideMap$key": null,
+        "SubSlotSpecificationMap$key": null,
+        "SubSlotTypeComposition$name": "<p>Name of a constituent sub slot inside a composite slot.</p>",
         "UpdateBotAliasRequest$botAliasName": "<p>The new name to assign to the bot alias.</p>",
         "UpdateBotAliasResponse$botAliasName": "<p>The updated name of the bot alias.</p>",
         "UpdateBotRequest$botName": "<p>The new name of the bot. The name must be unique in the account that creates the bot.</p>",
@@ -2602,7 +2616,8 @@
       "refs": {
         "IntentConfirmationSetting$promptSpecification": "<p>Prompts the user to confirm the intent. This question should have a yes or no answer.</p> <p>Amazon Lex uses this prompt to ensure that the user acknowledges that the intent is ready for fulfillment. For example, with the <code>OrderPizza</code> intent, you might want to confirm that the order is correct before placing it. For other intents, such as intents that simply respond to user questions, you might not need to ask the user for confirmation before providing the information. </p>",
         "SlotSummary$valueElicitationPromptSpecification": "<p>Prompts that are sent to the user to elicit a value for the slot.</p>",
-        "SlotValueElicitationSetting$promptSpecification": "<p>The prompt that Amazon Lex uses to elicit the slot value from the user.</p>"
+        "SlotValueElicitationSetting$promptSpecification": "<p>The prompt that Amazon Lex uses to elicit the slot value from the user.</p>",
+        "SubSlotValueElicitationSetting$promptSpecification": null
       }
     },
     "QueryFilterString": {
@@ -2777,6 +2792,7 @@
         "CreateIntentResponse$sampleUtterances": "<p>The sample utterances specified for the intent.</p>",
         "DescribeIntentResponse$sampleUtterances": "<p>User utterances that trigger this intent.</p>",
         "SlotValueElicitationSetting$sampleUtterances": "<p>If you know a specific pattern that users might respond to an Amazon Lex request for a slot value, you can provide those utterances to improve accuracy. This is optional. In most cases, Amazon Lex is capable of understanding user utterances.</p>",
+        "SubSlotValueElicitationSetting$sampleUtterances": "<p>If you know a specific pattern that users might respond to an Amazon Lex request for a sub slot value, you can provide those utterances to improve accuracy. This is optional. In most cases Amazon Lex is capable of understanding user utterances. This is similar to <code>SampleUtterances</code> for slots.</p>",
         "UpdateIntentRequest$sampleUtterances": "<p>New utterances used to invoke the intent.</p>",
         "UpdateIntentResponse$sampleUtterances": "<p>The updated list of sample utterances for the intent.</p>"
       }
@@ -2880,7 +2896,8 @@
     "SlotDefaultValueSpecification": {
       "base": "<p>Defines a list of values that Amazon Lex should use as the default value for a slot.</p>",
       "refs": {
-        "SlotValueElicitationSetting$defaultValueSpecification": "<p>A list of default values for a slot. Default values are used when Amazon Lex hasn't determined a value for a slot. You can specify default values from context variables, session attributes, and defined values.</p>"
+        "SlotValueElicitationSetting$defaultValueSpecification": "<p>A list of default values for a slot. Default values are used when Amazon Lex hasn't determined a value for a slot. You can specify default values from context variables, session attributes, and defined values.</p>",
+        "SubSlotValueElicitationSetting$defaultValueSpecification": null
       }
     },
     "SlotDefaultValueString": {
@@ -3052,7 +3069,7 @@
       }
     },
     "SlotValueElicitationSetting": {
-      "base": "<p>Settings that you can use for eliciting a slot value.</p>",
+      "base": "<p>Specifies the elicitation setting details for constituent sub slots of a composite slot.</p>",
       "refs": {
         "CreateSlotRequest$valueElicitationSetting": "<p>Specifies prompts that Amazon Lex sends to the user to elicit a response that provides the value for the slot. </p>",
         "CreateSlotResponse$valueElicitationSetting": "<p>The value elicitation settings specified for the slot.</p>",
@@ -3118,6 +3135,12 @@
         "SlotTypeSortBy$order": "<p>The order to sort the list. You can say ascending or descending.</p>"
       }
     },
+    "Specifications": {
+      "base": "<p>Subslot specifications.</p>",
+      "refs": {
+        "SubSlotSpecificationMap$value": null
+      }
+    },
     "StartBotRecommendationRequest": {
       "base": null,
       "refs": {
@@ -3176,6 +3199,46 @@
       "base": null,
       "refs": {
         "DialogState$sessionAttributes": "<p>Map of key/value pairs representing session-specific context information. It contains application information passed between Amazon Lex and a client application.</p>"
+      }
+    },
+    "SubSlotExpression": {
+      "base": null,
+      "refs": {
+        "SubSlotSetting$expression": "<p>The expression text for defining the constituent sub slots in the composite slot using logical AND and OR operators.</p>"
+      }
+    },
+    "SubSlotSetting": {
+      "base": "<p>Specifications for the constituent sub slots and the expression for the composite slot.</p>",
+      "refs": {
+        "CreateSlotRequest$subSlotSetting": "<p>Specifications for the constituent sub slots and the expression for the composite slot.</p>",
+        "CreateSlotResponse$subSlotSetting": "<p>Specifications for the constituent sub slots and the expression for the composite slot.</p>",
+        "DescribeSlotResponse$subSlotSetting": "<p>Specifications for the constituent sub slots and the expression for the composite slot.</p>",
+        "UpdateSlotRequest$subSlotSetting": "<p>Specifications for the constituent sub slots and the expression for the composite slot.</p>",
+        "UpdateSlotResponse$subSlotSetting": "<p>Specifications for the constituent sub slots and the expression for the composite slot.</p>"
+      }
+    },
+    "SubSlotSpecificationMap": {
+      "base": null,
+      "refs": {
+        "SubSlotSetting$slotSpecifications": "<p>Specifications for the constituent sub slots of a composite slot.</p>"
+      }
+    },
+    "SubSlotTypeComposition": {
+      "base": "<p>Subslot type composition.</p>",
+      "refs": {
+        "SubSlotTypeList$member": null
+      }
+    },
+    "SubSlotTypeList": {
+      "base": null,
+      "refs": {
+        "CompositeSlotTypeSetting$subSlots": "<p>Subslots in the composite slot.</p>"
+      }
+    },
+    "SubSlotValueElicitationSetting": {
+      "base": "<p>Subslot elicitation settings.</p> <p> <code>DefaultValueSpecification</code> is a list of default values for a constituent sub slot in a composite slot. Default values are used when Amazon Lex hasn't determined a value for a slot. You can specify default values from context variables, session attributes, and defined values. This is similar to <code>DefaultValueSpecification</code> for slots.</p> <p> <code>PromptSpecification</code> is the prompt that Amazon Lex uses to elicit the sub slot value from the user. This is similar to <code>PromptSpecification</code> for slots.</p>",
+      "refs": {
+        "Specifications$valueElicitationSetting": "<p>Specifies the elicitation setting details for constituent sub slots of a composite slot.</p>"
       }
     },
     "SynonymList": {
@@ -3520,7 +3583,8 @@
     "WaitAndContinueSpecification": {
       "base": "<p>Specifies the prompts that Amazon Lex uses while a bot is waiting for customer input. </p>",
       "refs": {
-        "SlotValueElicitationSetting$waitAndContinueSpecification": null
+        "SlotValueElicitationSetting$waitAndContinueSpecification": null,
+        "SubSlotValueElicitationSetting$waitAndContinueSpecification": null
       }
     }
   }
