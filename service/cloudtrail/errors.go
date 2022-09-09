@@ -26,6 +26,19 @@ const (
 	// and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 	ErrCodeAccessNotEnabledException = "CloudTrailAccessNotEnabledException"
 
+	// ErrCodeChannelARNInvalidException for service response error code
+	// "ChannelARNInvalidException".
+	//
+	// The specified channel ARN is not valid or does not map to a channel in your
+	// account.
+	ErrCodeChannelARNInvalidException = "ChannelARNInvalidException"
+
+	// ErrCodeChannelNotFoundException for service response error code
+	// "ChannelNotFoundException".
+	//
+	// The specified channel was not found.
+	ErrCodeChannelNotFoundException = "ChannelNotFoundException"
+
 	// ErrCodeCloudTrailInvalidClientTokenIdException for service response error code
 	// "CloudTrailInvalidClientTokenIdException".
 	//
@@ -444,6 +457,8 @@ const (
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"CloudTrailARNInvalidException":                          newErrorARNInvalidException,
 	"CloudTrailAccessNotEnabledException":                    newErrorAccessNotEnabledException,
+	"ChannelARNInvalidException":                             newErrorChannelARNInvalidException,
+	"ChannelNotFoundException":                               newErrorChannelNotFoundException,
 	"CloudTrailInvalidClientTokenIdException":                newErrorCloudTrailInvalidClientTokenIdException,
 	"CloudWatchLogsDeliveryUnavailableException":             newErrorCloudWatchLogsDeliveryUnavailableException,
 	"ConflictException":                                      newErrorConflictException,

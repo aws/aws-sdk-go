@@ -1672,6 +1672,10 @@ type ConfigurationEvent struct {
 	SessionState *SessionState `locationName:"sessionState" type:"structure"`
 
 	// A list of messages to send to the user.
+	//
+	// If you set the welcomeMessage field, you must also set the DialogAction (https://docs.aws.amazon.com/lexv2/latest/dg/API_runtime_DialogAction.html)
+	// structure's type (https://docs.aws.amazon.com/lexv2/latest/dg/API_runtime_DialogAction.html#lexv2-Type-runtime_DialogAction-type)
+	// field.
 	WelcomeMessages []*Message `locationName:"welcomeMessages" type:"list"`
 }
 
@@ -2214,6 +2218,10 @@ type DialogAction struct {
 	// The name of the slot that should be elicited from the user.
 	SlotToElicit *string `locationName:"slotToElicit" min:"1" type:"string"`
 
+	// The name of the constituent sub slot of the composite slot specified in slotToElicit
+	// that should be elicited from the user.
+	SubSlotToElicit *ElicitSubSlot `locationName:"subSlotToElicit" type:"structure"`
+
 	// The next action that the bot should take in its interaction with the user.
 	// The possible values are:
 	//
@@ -2226,6 +2234,8 @@ type DialogAction struct {
 	//    "Place the order?"
 	//
 	//    * Delegate - The next action is determined by Amazon Lex V2.
+	//
+	//    * ElicitIntent - The next action is to elicit an intent from the user.
 	//
 	//    * ElicitSlot - The next action is to elicit a slot value from the user.
 	//
@@ -2260,6 +2270,11 @@ func (s *DialogAction) Validate() error {
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
+	if s.SubSlotToElicit != nil {
+		if err := s.SubSlotToElicit.Validate(); err != nil {
+			invalidParams.AddNested("SubSlotToElicit", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2276,6 +2291,12 @@ func (s *DialogAction) SetSlotElicitationStyle(v string) *DialogAction {
 // SetSlotToElicit sets the SlotToElicit field's value.
 func (s *DialogAction) SetSlotToElicit(v string) *DialogAction {
 	s.SlotToElicit = &v
+	return s
+}
+
+// SetSubSlotToElicit sets the SubSlotToElicit field's value.
+func (s *DialogAction) SetSubSlotToElicit(v *ElicitSubSlot) *DialogAction {
+	s.SubSlotToElicit = v
 	return s
 }
 
@@ -2357,6 +2378,71 @@ func (s *DisconnectionEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eve
 	}
 	msg.Payload = buf.Bytes()
 	return msg, err
+}
+
+// The specific constituent sub slot of the composite slot to elicit in dialog
+// action.
+type ElicitSubSlot struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the slot that should be elicited from the user.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The field is not supported.
+	SubSlotToElicit *ElicitSubSlot `locationName:"subSlotToElicit" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ElicitSubSlot) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ElicitSubSlot) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ElicitSubSlot) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ElicitSubSlot"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SubSlotToElicit != nil {
+		if err := s.SubSlotToElicit.Validate(); err != nil {
+			invalidParams.AddNested("SubSlotToElicit", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ElicitSubSlot) SetName(v string) *ElicitSubSlot {
+	s.Name = &v
+	return s
+}
+
+// SetSubSlotToElicit sets the SubSlotToElicit field's value.
+func (s *ElicitSubSlot) SetSubSlotToElicit(v *ElicitSubSlot) *ElicitSubSlot {
+	s.SubSlotToElicit = v
+	return s
 }
 
 type GetSessionInput struct {
@@ -4223,9 +4309,14 @@ type RuntimeHintDetails struct {
 
 	// One or more strings that Amazon Lex V2 should look for in the input to the
 	// bot. Each phrase is given preference when deciding on slot values.
-	//
-	// RuntimeHintValues is a required field
-	RuntimeHintValues []*RuntimeHintValue `locationName:"runtimeHintValues" min:"1" type:"list" required:"true"`
+	RuntimeHintValues []*RuntimeHintValue `locationName:"runtimeHintValues" min:"1" type:"list"`
+
+	// A map of constituent sub slot names inside a composite slot in the intent
+	// and the phrases that should be added for each sub slot. Inside each composite
+	// slot hints, this structure provides a mechanism to add granular sub slot
+	// phrases. Only sub slot hints are supported for composite slots. The intent
+	// name, composite slot name and the constituent sub slot names must exist.
+	SubSlotHints map[string]*RuntimeHintDetails `locationName:"subSlotHints" type:"map"`
 }
 
 // String returns the string representation.
@@ -4249,6 +4340,12 @@ func (s RuntimeHintDetails) GoString() string {
 // SetRuntimeHintValues sets the RuntimeHintValues field's value.
 func (s *RuntimeHintDetails) SetRuntimeHintValues(v []*RuntimeHintValue) *RuntimeHintDetails {
 	s.RuntimeHintValues = v
+	return s
+}
+
+// SetSubSlotHints sets the SubSlotHints field's value.
+func (s *RuntimeHintDetails) SetSubSlotHints(v map[string]*RuntimeHintDetails) *RuntimeHintDetails {
+	s.SubSlotHints = v
 	return s
 }
 
@@ -4296,7 +4393,8 @@ func (s *RuntimeHintValue) SetPhrase(v string) *RuntimeHintValue {
 // Before you can use runtime hints with an existing bot, you must first rebuild
 // the bot.
 //
-// For more information, see Using hints to improve accuracy (https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.xml).
+// For more information, see Using runtime hints to improve recognition of slot
+// values (https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.html).
 type RuntimeHints struct {
 	_ struct{} `type:"structure"`
 
@@ -4305,7 +4403,7 @@ type RuntimeHints struct {
 	//
 	// The first level of the slotHints map is the name of the intent. The second
 	// level is the name of the slot within the intent. For more information, see
-	// Using hints to improve accuracy (https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.xml).
+	// Using hints to improve accuracy (https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.html).
 	//
 	// The intent name and slot name must exist.
 	SlotHints map[string]map[string]*RuntimeHintDetails `locationName:"slotHints" type:"map"`
@@ -4569,6 +4667,9 @@ type Slot struct {
 	// field contains a single value.
 	Shape *string `locationName:"shape" type:"string" enum:"Shape"`
 
+	// The constituent sub slots of a composite slot.
+	SubSlots map[string]*Slot `locationName:"subSlots" type:"map"`
+
 	// The current value of the slot.
 	Value *Value `locationName:"value" type:"structure"`
 
@@ -4624,6 +4725,12 @@ func (s *Slot) Validate() error {
 // SetShape sets the Shape field's value.
 func (s *Slot) SetShape(v string) *Slot {
 	s.Shape = &v
+	return s
+}
+
+// SetSubSlots sets the SubSlots field's value.
+func (s *Slot) SetSubSlots(v map[string]*Slot) *Slot {
+	s.SubSlots = v
 	return s
 }
 
@@ -5729,6 +5836,9 @@ const (
 
 	// ShapeList is a Shape enum value
 	ShapeList = "List"
+
+	// ShapeComposite is a Shape enum value
+	ShapeComposite = "Composite"
 )
 
 // Shape_Values returns all elements of the Shape enum
@@ -5736,6 +5846,7 @@ func Shape_Values() []string {
 	return []string{
 		ShapeScalar,
 		ShapeList,
+		ShapeComposite,
 	}
 }
 

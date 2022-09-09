@@ -195,6 +195,22 @@
       ],
       "idempotent":true
     },
+    "GetChannel":{
+      "name":"GetChannel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetChannelRequest"},
+      "output":{"shape":"GetChannelResponse"},
+      "errors":[
+        {"shape":"ChannelARNInvalidException"},
+        {"shape":"ChannelNotFoundException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnsupportedOperationException"}
+      ],
+      "idempotent":true
+    },
     "GetEventDataStore":{
       "name":"GetEventDataStore",
       "http":{
@@ -294,6 +310,21 @@
         {"shape":"InvalidTrailNameException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"}
+      ],
+      "idempotent":true
+    },
+    "ListChannels":{
+      "name":"ListChannels",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListChannelsRequest"},
+      "output":{"shape":"ListChannelsResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnsupportedOperationException"}
       ],
       "idempotent":true
     },
@@ -686,6 +717,41 @@
         "QueryStatus":{"shape":"QueryStatus"}
       }
     },
+    "Channel":{
+      "type":"structure",
+      "members":{
+        "ChannelArn":{"shape":"ChannelArn"},
+        "Name":{"shape":"ChannelName"}
+      }
+    },
+    "ChannelARNInvalidException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "ChannelArn":{
+      "type":"string",
+      "max":256,
+      "min":3,
+      "pattern":"^[a-zA-Z0-9._/\\-:]+$"
+    },
+    "ChannelName":{
+      "type":"string",
+      "max":128,
+      "min":3,
+      "pattern":"^[a-zA-Z0-9._\\-]+$"
+    },
+    "ChannelNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "Channels":{
+      "type":"list",
+      "member":{"shape":"Channel"}
+    },
     "CloudTrailARNInvalidException":{
       "type":"structure",
       "members":{
@@ -861,6 +927,30 @@
         "trailList":{"shape":"TrailList"}
       }
     },
+    "Destination":{
+      "type":"structure",
+      "required":[
+        "Type",
+        "Location"
+      ],
+      "members":{
+        "Type":{"shape":"DestinationType"},
+        "Location":{"shape":"Location"}
+      }
+    },
+    "DestinationType":{
+      "type":"string",
+      "enum":[
+        "EVENT_DATA_STORE",
+        "AWS_SERVICE"
+      ]
+    },
+    "Destinations":{
+      "type":"list",
+      "member":{"shape":"Destination"},
+      "max":200,
+      "min":1
+    },
     "ErrorMessage":{
       "type":"string",
       "max":1000,
@@ -1006,6 +1096,23 @@
     "ExcludeManagementEventSources":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "GetChannelRequest":{
+      "type":"structure",
+      "required":["Channel"],
+      "members":{
+        "Channel":{"shape":"ChannelArn"}
+      }
+    },
+    "GetChannelResponse":{
+      "type":"structure",
+      "members":{
+        "ChannelArn":{"shape":"ChannelArn"},
+        "Name":{"shape":"ChannelName"},
+        "Source":{"shape":"Source"},
+        "SourceConfig":{"shape":"SourceConfig"},
+        "Destinations":{"shape":"Destinations"}
+      }
     },
     "GetEventDataStoreRequest":{
       "type":"structure",
@@ -1340,6 +1447,25 @@
       },
       "exception":true
     },
+    "ListChannelsMaxResultsCount":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "ListChannelsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"ListChannelsMaxResultsCount"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListChannelsResponse":{
+      "type":"structure",
+      "members":{
+        "Channels":{"shape":"Channels"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListEventDataStoresMaxResultsCount":{
       "type":"integer",
       "max":1000,
@@ -1425,6 +1551,12 @@
         "Trails":{"shape":"Trails"},
         "NextToken":{"shape":"String"}
       }
+    },
+    "Location":{
+      "type":"string",
+      "max":1024,
+      "min":3,
+      "pattern":"^[a-zA-Z0-9._/\\-:]+$"
     },
     "Long":{"type":"long"},
     "LookupAttribute":{
@@ -1759,6 +1891,19 @@
       "max":1000,
       "min":0,
       "pattern":".*"
+    },
+    "Source":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":".*"
+    },
+    "SourceConfig":{
+      "type":"structure",
+      "members":{
+        "ApplyToAllRegions":{"shape":"Boolean"},
+        "AdvancedEventSelectors":{"shape":"AdvancedEventSelectors"}
+      }
     },
     "StartLoggingRequest":{
       "type":"structure",

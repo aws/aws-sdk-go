@@ -225,7 +225,7 @@
     "DialogActionType": {
       "base": null,
       "refs": {
-        "DialogAction$type": "<p>The next action that the bot should take in its interaction with the user. The possible values are:</p> <ul> <li> <p> <code>Close</code> - Indicates that there will not be a response from the user. For example, the statement \"Your order has been placed\" does not require a response.</p> </li> <li> <p> <code>ConfirmIntent</code> - The next action is asking the user if the intent is complete and ready to be fulfilled. This is a yes/no question such as \"Place the order?\"</p> </li> <li> <p> <code>Delegate</code> - The next action is determined by Amazon Lex V2.</p> </li> <li> <p> <code>ElicitSlot</code> - The next action is to elicit a slot value from the user.</p> </li> </ul>"
+        "DialogAction$type": "<p>The next action that the bot should take in its interaction with the user. The possible values are:</p> <ul> <li> <p> <code>Close</code> - Indicates that there will not be a response from the user. For example, the statement \"Your order has been placed\" does not require a response.</p> </li> <li> <p> <code>ConfirmIntent</code> - The next action is asking the user if the intent is complete and ready to be fulfilled. This is a yes/no question such as \"Place the order?\"</p> </li> <li> <p> <code>Delegate</code> - The next action is determined by Amazon Lex V2.</p> </li> <li> <p> <code>ElicitIntent</code> - The next action is to elicit an intent from the user.</p> </li> <li> <p> <code>ElicitSlot</code> - The next action is to elicit a slot value from the user.</p> </li> </ul>"
       }
     },
     "DisconnectionEvent": {
@@ -242,6 +242,13 @@
         "SentimentScore$negative": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>NEGATIVE</code> sentiment.</p>",
         "SentimentScore$neutral": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>NEUTRAL</code> sentiment.</p>",
         "SentimentScore$mixed": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>MIXED</code> sentiment.</p>"
+      }
+    },
+    "ElicitSubSlot": {
+      "base": "<p>The specific constituent sub slot of the composite slot to elicit in dialog action.</p>",
+      "refs": {
+        "DialogAction$subSlotToElicit": "<p>The name of the constituent sub slot of the composite slot specified in slotToElicit that should be elicited from the user.</p>",
+        "ElicitSubSlot$subSlotToElicit": "<p>The field is not supported.</p>"
       }
     },
     "EpochMillis": {
@@ -367,7 +374,7 @@
     "Messages": {
       "base": null,
       "refs": {
-        "ConfigurationEvent$welcomeMessages": "<p>A list of messages to send to the user.</p>",
+        "ConfigurationEvent$welcomeMessages": "<p>A list of messages to send to the user.</p> <p>If you set the <code>welcomeMessage</code> field, you must also set the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_runtime_DialogAction.html\"> <code>DialogAction</code> </a> structure's <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_runtime_DialogAction.html#lexv2-Type-runtime_DialogAction-type\"> <code>type</code> </a> field.</p>",
         "GetSessionResponse$messages": "<p>A list of messages that were last sent to the user. The messages are ordered based on the order that your returned the messages from your Lambda function or the order that messages are defined in the bot. </p>",
         "PutSessionRequest$messages": "<p>A list of messages to send to the user. Messages are sent in the order that they are defined in the list.</p>",
         "RecognizeTextResponse$messages": "<p>A list of messages last sent to the user. The messages are ordered based on the order that you returned the messages from your Lambda function or the order that the messages are defined in the bot.</p>",
@@ -388,6 +395,7 @@
         "AudioResponseEvent$contentType": "<p>The encoding of the audio chunk. This is the same as the encoding configure in the <code>contentType</code> field of the <code>ConfigurationEvent</code>.</p>",
         "ConfigurationEvent$responseContentType": "<p>The message that Amazon Lex V2 returns in the response can be either text or speech based on the <code>responseContentType</code> value.</p> <ul> <li> <p>If the value is <code>text/plain;charset=utf-8</code>, Amazon Lex V2 returns text in the response.</p> </li> <li> <p>If the value begins with <code>audio/</code>, Amazon Lex V2 returns speech in the response. Amazon Lex V2 uses Amazon Polly to generate the speech using the configuration that you specified in the <code>requestContentType</code> parameter. For example, if you specify <code>audio/mpeg</code> as the value, Amazon Lex V2 returns speech in the MPEG format.</p> </li> <li> <p>If the value is <code>audio/pcm</code>, the speech returned is audio/pcm in 16-bit, little-endian format.</p> </li> <li> <p>The following are the accepted values:</p> <ul> <li> <p>audio/mpeg</p> </li> <li> <p>audio/ogg</p> </li> <li> <p>audio/pcm</p> </li> <li> <p>audio/* (defaults to mpeg)</p> </li> <li> <p>text/plain; charset=utf-8</p> </li> </ul> </li> </ul>",
         "DialogAction$slotToElicit": "<p>The name of the slot that should be elicited from the user.</p>",
+        "ElicitSubSlot$name": "<p>The name of the slot that should be elicited from the user.</p>",
         "GetSessionResponse$sessionId": "<p>The identifier of the returned session.</p>",
         "Intent$name": "<p>The name of the intent.</p>",
         "PutSessionRequest$responseContentType": "<p>The message that Amazon Lex V2 returns in the response can be either text or speech depending on the value of this parameter. </p> <ul> <li> <p>If the value is <code>text/plain; charset=utf-8</code>, Amazon Lex V2 returns text in the response.</p> </li> </ul>",
@@ -497,7 +505,7 @@
       }
     },
     "RuntimeHints": {
-      "base": "<p>You can provide Amazon Lex V2 with hints to the phrases that a customer is likely to use for a slot. When a slot with hints is resolved, the phrases in the runtime hints are preferred in the resolution. You can provide hints for a maximum of 100 intents. You can provide a maximum of 100 slots.</p> <p>Before you can use runtime hints with an existing bot, you must first rebuild the bot.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.xml\">Using hints to improve accuracy</a>.</p>",
+      "base": "<p>You can provide Amazon Lex V2 with hints to the phrases that a customer is likely to use for a slot. When a slot with hints is resolved, the phrases in the runtime hints are preferred in the resolution. You can provide hints for a maximum of 100 intents. You can provide a maximum of 100 slots.</p> <p>Before you can use runtime hints with an existing bot, you must first rebuild the bot.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.html\">Using runtime hints to improve recognition of slot values</a>.</p>",
       "refs": {
         "SessionState$runtimeHints": "<p>Hints for phrases that a customer is likely to use for a slot. Amazon Lex V2 uses the hints to help determine the correct value of a slot.</p>"
       }
@@ -570,19 +578,21 @@
     "SlotHintsIntentMap": {
       "base": null,
       "refs": {
-        "RuntimeHints$slotHints": "<p>A list of the slots in the intent that should have runtime hints added, and the phrases that should be added for each slot.</p> <p>The first level of the <code>slotHints</code> map is the name of the intent. The second level is the name of the slot within the intent. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.xml\">Using hints to improve accuracy</a>.</p> <p>The intent name and slot name must exist.</p>"
+        "RuntimeHints$slotHints": "<p>A list of the slots in the intent that should have runtime hints added, and the phrases that should be added for each slot.</p> <p>The first level of the <code>slotHints</code> map is the name of the intent. The second level is the name of the slot within the intent. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.html\">Using hints to improve accuracy</a>.</p> <p>The intent name and slot name must exist.</p>"
       }
     },
     "SlotHintsSlotMap": {
       "base": null,
       "refs": {
+        "RuntimeHintDetails$subSlotHints": "<p>A map of constituent sub slot names inside a composite slot in the intent and the phrases that should be added for each sub slot. Inside each composite slot hints, this structure provides a mechanism to add granular sub slot phrases. Only sub slot hints are supported for composite slots. The intent name, composite slot name and the constituent sub slot names must exist.</p>",
         "SlotHintsIntentMap$value": null
       }
     },
     "Slots": {
       "base": null,
       "refs": {
-        "Intent$slots": "<p>A map of all of the slots for the intent. The name of the slot maps to the value of the slot. If a slot has not been filled, the value is null.</p>"
+        "Intent$slots": "<p>A map of all of the slots for the intent. The name of the slot maps to the value of the slot. If a slot has not been filled, the value is null.</p>",
+        "Slot$subSlots": "<p>The constituent sub slots of a composite slot.</p>"
       }
     },
     "StartConversationRequest": {

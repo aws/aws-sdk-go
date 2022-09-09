@@ -1,3 +1,15 @@
+Release v1.44.95 (2022-09-09)
+===
+
+### Service Client Updates
+* `service/cloudtrail`: Updates service API, documentation, and paginators
+  * This release adds CloudTrail getChannel and listChannels APIs to allow customer to view the ServiceLinkedChannel configurations.
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/pi`: Updates service API
+* `service/redshift`: Updates service documentation
+  * This release updates documentation for AQUA features and other description updates.
+* `service/runtime.lex.v2`: Updates service API and documentation
+
 Release v1.44.94 (2022-09-08)
 ===
 
