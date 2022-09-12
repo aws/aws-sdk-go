@@ -3993,7 +3993,7 @@ type Addon struct {
 	// The date and time that the add-on was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// An object that represents the health of the add-on.
+	// An object representing the health of the add-on.
 	Health *AddonHealth `locationName:"health" type:"structure"`
 
 	// The date and time that the add-on was last modified.
@@ -4095,7 +4095,7 @@ func (s *Addon) SetTags(v map[string]*string) *Addon {
 type AddonHealth struct {
 	_ struct{} `type:"structure"`
 
-	// An object that represents the add-on's health issues.
+	// An object representing the health issues for an add-on.
 	Issues []*AddonIssue `locationName:"issues" type:"list"`
 }
 
@@ -4130,8 +4130,8 @@ type AddonInfo struct {
 	// The name of the add-on.
 	AddonName *string `locationName:"addonName" type:"string"`
 
-	// An object that represents information about available add-on versions and
-	// compatible Kubernetes versions.
+	// An object representing information about available add-on versions and compatible
+	// Kubernetes versions.
 	AddonVersions []*AddonVersionInfo `locationName:"addonVersions" type:"list"`
 
 	// The type of the add-on.
@@ -4234,7 +4234,7 @@ type AddonVersionInfo struct {
 	// The architectures that the version supports.
 	Architecture []*string `locationName:"architecture" type:"list"`
 
-	// An object that represents the compatibilities of a version.
+	// An object representing the compatibilities of a version.
 	Compatibilities []*Compatibility `locationName:"compatibilities" type:"list"`
 }
 
@@ -4389,7 +4389,7 @@ type AssociateIdentityProviderConfigInput struct {
 	// ClusterName is a required field
 	ClusterName *string `location:"uri" locationName:"name" type:"string" required:"true"`
 
-	// An object that represents an OpenID Connect (OIDC) identity provider configuration.
+	// An object representing an OpenID Connect (OIDC) identity provider configuration.
 	//
 	// Oidc is a required field
 	Oidc *OidcIdentityProviderConfigRequest `locationName:"oidc" type:"structure" required:"true"`
@@ -4742,6 +4742,16 @@ type Cluster struct {
 	// The endpoint for your Kubernetes API server.
 	Endpoint *string `locationName:"endpoint" type:"string"`
 
+	// An object representing the health of your local Amazon EKS cluster on an
+	// Amazon Web Services Outpost. This object isn't available for clusters on
+	// the Amazon Web Services cloud.
+	Health *ClusterHealth `locationName:"health" type:"structure"`
+
+	// The ID of your local Amazon EKS cluster on an Amazon Web Services Outpost.
+	// This property isn't available for an Amazon EKS cluster on the Amazon Web
+	// Services cloud.
+	Id *string `locationName:"id" type:"string"`
+
 	// The identity provider information for the cluster.
 	Identity *Identity `locationName:"identity" type:"structure"`
 
@@ -4753,6 +4763,11 @@ type Cluster struct {
 
 	// The name of the cluster.
 	Name *string `locationName:"name" type:"string"`
+
+	// An object representing the configuration of your local Amazon EKS cluster
+	// on an Amazon Web Services Outpost. This object isn't available for clusters
+	// on the Amazon Web Services cloud.
+	OutpostConfig *OutpostConfigResponse `locationName:"outpostConfig" type:"structure"`
 
 	// The platform version of your Amazon EKS cluster. For more information, see
 	// Platform Versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html)
@@ -4844,6 +4859,18 @@ func (s *Cluster) SetEndpoint(v string) *Cluster {
 	return s
 }
 
+// SetHealth sets the Health field's value.
+func (s *Cluster) SetHealth(v *ClusterHealth) *Cluster {
+	s.Health = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Cluster) SetId(v string) *Cluster {
+	s.Id = &v
+	return s
+}
+
 // SetIdentity sets the Identity field's value.
 func (s *Cluster) SetIdentity(v *Identity) *Cluster {
 	s.Identity = v
@@ -4865,6 +4892,12 @@ func (s *Cluster) SetLogging(v *Logging) *Cluster {
 // SetName sets the Name field's value.
 func (s *Cluster) SetName(v string) *Cluster {
 	s.Name = &v
+	return s
+}
+
+// SetOutpostConfig sets the OutpostConfig field's value.
+func (s *Cluster) SetOutpostConfig(v *OutpostConfigResponse) *Cluster {
+	s.OutpostConfig = v
 	return s
 }
 
@@ -4901,6 +4934,93 @@ func (s *Cluster) SetTags(v map[string]*string) *Cluster {
 // SetVersion sets the Version field's value.
 func (s *Cluster) SetVersion(v string) *Cluster {
 	s.Version = &v
+	return s
+}
+
+// An object representing the health of your local Amazon EKS cluster on an
+// Amazon Web Services Outpost. You can't use this API with an Amazon EKS cluster
+// on the Amazon Web Services cloud.
+type ClusterHealth struct {
+	_ struct{} `type:"structure"`
+
+	// An object representing the health issues of your local Amazon EKS cluster
+	// on an Amazon Web Services Outpost.
+	Issues []*ClusterIssue `locationName:"issues" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterHealth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterHealth) GoString() string {
+	return s.String()
+}
+
+// SetIssues sets the Issues field's value.
+func (s *ClusterHealth) SetIssues(v []*ClusterIssue) *ClusterHealth {
+	s.Issues = v
+	return s
+}
+
+// An issue with your local Amazon EKS cluster on an Amazon Web Services Outpost.
+// You can't use this API with an Amazon EKS cluster on the Amazon Web Services
+// cloud.
+type ClusterIssue struct {
+	_ struct{} `type:"structure"`
+
+	// The error code of the issue.
+	Code *string `locationName:"code" type:"string" enum:"ClusterIssueCode"`
+
+	// A description of the issue.
+	Message *string `locationName:"message" type:"string"`
+
+	// The resource IDs that the issue relates to.
+	ResourceIds []*string `locationName:"resourceIds" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterIssue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterIssue) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ClusterIssue) SetCode(v string) *ClusterIssue {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ClusterIssue) SetMessage(v string) *ClusterIssue {
+	s.Message = &v
+	return s
+}
+
+// SetResourceIds sets the ResourceIds field's value.
+func (s *ClusterIssue) SetResourceIds(v []*string) *ClusterIssue {
+	s.ResourceIds = v
 	return s
 }
 
@@ -5292,6 +5412,14 @@ type CreateClusterInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// An object representing the configuration of your local Amazon EKS cluster
+	// on an Amazon Web Services Outpost. Before creating a local cluster on an
+	// Outpost, review Creating an Amazon EKS cluster on an Amazon Web Services
+	// Outpost (https://docs.aws.amazon.com/eks/latest/userguide/create-cluster-outpost.html)
+	// in the Amazon EKS User Guide. This object isn't available for creating Amazon
+	// EKS clusters on the Amazon Web Services cloud.
+	OutpostConfig *OutpostConfigRequest `locationName:"outpostConfig" type:"structure"`
+
 	// The VPC configuration that's used by the cluster control plane. Amazon EKS
 	// VPC resources have specific requirements to work properly with Kubernetes.
 	// For more information, see Cluster VPC Considerations (https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)
@@ -5317,7 +5445,9 @@ type CreateClusterInput struct {
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
 	// The desired Kubernetes version for your cluster. If you don't specify a value
-	// here, the latest version available in Amazon EKS is used.
+	// here, the default version available in Amazon EKS is used.
+	//
+	// The default version might not be the latest version available.
 	Version *string `locationName:"version" type:"string"`
 }
 
@@ -5357,6 +5487,11 @@ func (s *CreateClusterInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.OutpostConfig != nil {
+		if err := s.OutpostConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutpostConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5391,6 +5526,12 @@ func (s *CreateClusterInput) SetLogging(v *Logging) *CreateClusterInput {
 // SetName sets the Name field's value.
 func (s *CreateClusterInput) SetName(v string) *CreateClusterInput {
 	s.Name = &v
+	return s
+}
+
+// SetOutpostConfig sets the OutpostConfig field's value.
+func (s *CreateClusterInput) SetOutpostConfig(v *OutpostConfigRequest) *CreateClusterInput {
+	s.OutpostConfig = v
 	return s
 }
 
@@ -6819,7 +6960,7 @@ type DescribeIdentityProviderConfigInput struct {
 	// ClusterName is a required field
 	ClusterName *string `location:"uri" locationName:"name" type:"string" required:"true"`
 
-	// An object that represents an identity provider configuration.
+	// An object representing an identity provider configuration.
 	//
 	// IdentityProviderConfig is a required field
 	IdentityProviderConfig *IdentityProviderConfig `locationName:"identityProviderConfig" type:"structure" required:"true"`
@@ -7137,7 +7278,7 @@ type DisassociateIdentityProviderConfigInput struct {
 	// ClusterName is a required field
 	ClusterName *string `location:"uri" locationName:"name" type:"string" required:"true"`
 
-	// An object that represents an identity provider configuration.
+	// An object representing an identity provider configuration.
 	//
 	// IdentityProviderConfig is a required field
 	IdentityProviderConfig *IdentityProviderConfig `locationName:"identityProviderConfig" type:"structure" required:"true"`
@@ -7596,7 +7737,7 @@ func (s *IdentityProviderConfig) SetType(v string) *IdentityProviderConfig {
 type IdentityProviderConfigResponse struct {
 	_ struct{} `type:"structure"`
 
-	// An object that represents an OpenID Connect (OIDC) identity provider configuration.
+	// An object representing an OpenID Connect (OIDC) identity provider configuration.
 	Oidc *OidcIdentityProviderConfig `locationName:"oidc" type:"structure"`
 }
 
@@ -9593,8 +9734,8 @@ func (s *OIDC) SetIssuer(v string) *OIDC {
 	return s
 }
 
-// An object that represents the configuration for an OpenID Connect (OIDC)
-// identity provider.
+// An object representing the configuration for an OpenID Connect (OIDC) identity
+// provider.
 type OidcIdentityProviderConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -9874,6 +10015,137 @@ func (s *OidcIdentityProviderConfigRequest) SetUsernameClaim(v string) *OidcIden
 // SetUsernamePrefix sets the UsernamePrefix field's value.
 func (s *OidcIdentityProviderConfigRequest) SetUsernamePrefix(v string) *OidcIdentityProviderConfigRequest {
 	s.UsernamePrefix = &v
+	return s
+}
+
+// The configuration of your local Amazon EKS cluster on an Amazon Web Services
+// Outpost. Before creating a cluster on an Outpost, review Creating a local
+// Amazon EKS cluster on an Amazon Web Services Outpost (https://docs.aws.amazon.com/eks/latest/userguide/create-cluster-outpost.html)
+// in the Amazon EKS User Guide. This API isn't available for Amazon EKS clusters
+// on the Amazon Web Services cloud.
+type OutpostConfigRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon EC2 instance type that you want to use for your local Amazon EKS
+	// cluster on Outposts. The instance type that you specify is used for all Kubernetes
+	// control plane instances. The instance type can't be changed after cluster
+	// creation.
+	//
+	// Choose an instance type based on the number of nodes that your cluster will
+	// have. If your cluster will have:
+	//
+	//    * 1–20 nodes, then we recommend specifying a large instance type.
+	//
+	//    * 21–100 nodes, then we recommend specifying an xlarge instance type.
+	//
+	//    * 101–250 nodes, then we recommend specifying a 2xlarge instance type.
+	//
+	// For a list of the available Amazon EC2 instance types, see Compute and storage
+	// in Outposts rack features (http://aws.amazon.com/outposts/rack/features/).
+	// The control plane is not automatically scaled by Amazon EKS.
+	//
+	// ControlPlaneInstanceType is a required field
+	ControlPlaneInstanceType *string `locationName:"controlPlaneInstanceType" type:"string" required:"true"`
+
+	// The ARN of the Outpost that you want to use for your local Amazon EKS cluster
+	// on Outposts. Only a single Outpost ARN is supported.
+	//
+	// OutpostArns is a required field
+	OutpostArns []*string `locationName:"outpostArns" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutpostConfigRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutpostConfigRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OutpostConfigRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OutpostConfigRequest"}
+	if s.ControlPlaneInstanceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ControlPlaneInstanceType"))
+	}
+	if s.OutpostArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutpostArns"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetControlPlaneInstanceType sets the ControlPlaneInstanceType field's value.
+func (s *OutpostConfigRequest) SetControlPlaneInstanceType(v string) *OutpostConfigRequest {
+	s.ControlPlaneInstanceType = &v
+	return s
+}
+
+// SetOutpostArns sets the OutpostArns field's value.
+func (s *OutpostConfigRequest) SetOutpostArns(v []*string) *OutpostConfigRequest {
+	s.OutpostArns = v
+	return s
+}
+
+// An object representing the configuration of your local Amazon EKS cluster
+// on an Amazon Web Services Outpost. This API isn't available for Amazon EKS
+// clusters on the Amazon Web Services cloud.
+type OutpostConfigResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon EC2 instance type used for the control plane. The instance type
+	// is the same for all control plane instances.
+	//
+	// ControlPlaneInstanceType is a required field
+	ControlPlaneInstanceType *string `locationName:"controlPlaneInstanceType" type:"string" required:"true"`
+
+	// The ARN of the Outpost that you specified for use with your local Amazon
+	// EKS cluster on Outposts.
+	//
+	// OutpostArns is a required field
+	OutpostArns []*string `locationName:"outpostArns" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutpostConfigResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutpostConfigResponse) GoString() string {
+	return s.String()
+}
+
+// SetControlPlaneInstanceType sets the ControlPlaneInstanceType field's value.
+func (s *OutpostConfigResponse) SetControlPlaneInstanceType(v string) *OutpostConfigResponse {
+	s.ControlPlaneInstanceType = &v
+	return s
+}
+
+// SetOutpostArns sets the OutpostArns field's value.
+func (s *OutpostConfigResponse) SetOutpostArns(v []*string) *OutpostConfigResponse {
+	s.OutpostArns = v
 	return s
 }
 
@@ -12105,6 +12377,38 @@ func CapacityTypes_Values() []string {
 	return []string{
 		CapacityTypesOnDemand,
 		CapacityTypesSpot,
+	}
+}
+
+const (
+	// ClusterIssueCodeAccessDenied is a ClusterIssueCode enum value
+	ClusterIssueCodeAccessDenied = "AccessDenied"
+
+	// ClusterIssueCodeClusterUnreachable is a ClusterIssueCode enum value
+	ClusterIssueCodeClusterUnreachable = "ClusterUnreachable"
+
+	// ClusterIssueCodeConfigurationConflict is a ClusterIssueCode enum value
+	ClusterIssueCodeConfigurationConflict = "ConfigurationConflict"
+
+	// ClusterIssueCodeInternalFailure is a ClusterIssueCode enum value
+	ClusterIssueCodeInternalFailure = "InternalFailure"
+
+	// ClusterIssueCodeResourceLimitExceeded is a ClusterIssueCode enum value
+	ClusterIssueCodeResourceLimitExceeded = "ResourceLimitExceeded"
+
+	// ClusterIssueCodeResourceNotFound is a ClusterIssueCode enum value
+	ClusterIssueCodeResourceNotFound = "ResourceNotFound"
+)
+
+// ClusterIssueCode_Values returns all elements of the ClusterIssueCode enum
+func ClusterIssueCode_Values() []string {
+	return []string{
+		ClusterIssueCodeAccessDenied,
+		ClusterIssueCodeClusterUnreachable,
+		ClusterIssueCodeConfigurationConflict,
+		ClusterIssueCodeInternalFailure,
+		ClusterIssueCodeResourceLimitExceeded,
+		ClusterIssueCodeResourceNotFound,
 	}
 }
 

@@ -61,7 +61,7 @@
     "AddonHealth": {
       "base": "<p>The health of the add-on.</p>",
       "refs": {
-        "Addon$health": "<p>An object that represents the health of the add-on.</p>"
+        "Addon$health": "<p>An object representing the health of the add-on.</p>"
       }
     },
     "AddonInfo": {
@@ -85,7 +85,7 @@
     "AddonIssueList": {
       "base": null,
       "refs": {
-        "AddonHealth$issues": "<p>An object that represents the add-on's health issues.</p>"
+        "AddonHealth$issues": "<p>An object representing the health issues for an add-on.</p>"
       }
     },
     "AddonStatus": {
@@ -103,7 +103,7 @@
     "AddonVersionInfoList": {
       "base": null,
       "refs": {
-        "AddonInfo$addonVersions": "<p>An object that represents information about available add-on versions and compatible Kubernetes versions.</p>"
+        "AddonInfo$addonVersions": "<p>An object representing information about available add-on versions and compatible Kubernetes versions.</p>"
       }
     },
     "Addons": {
@@ -208,6 +208,30 @@
         "RegisterClusterResponse$cluster": null
       }
     },
+    "ClusterHealth": {
+      "base": "<p>An object representing the health of your local Amazon EKS cluster on an Amazon Web Services Outpost. You can't use this API with an Amazon EKS cluster on the Amazon Web Services cloud. </p>",
+      "refs": {
+        "Cluster$health": "<p>An object representing the health of your local Amazon EKS cluster on an Amazon Web Services Outpost. This object isn't available for clusters on the Amazon Web Services cloud.</p>"
+      }
+    },
+    "ClusterIssue": {
+      "base": "<p>An issue with your local Amazon EKS cluster on an Amazon Web Services Outpost. You can't use this API with an Amazon EKS cluster on the Amazon Web Services cloud.</p>",
+      "refs": {
+        "ClusterIssueList$member": null
+      }
+    },
+    "ClusterIssueCode": {
+      "base": null,
+      "refs": {
+        "ClusterIssue$code": "<p>The error code of the issue.</p>"
+      }
+    },
+    "ClusterIssueList": {
+      "base": null,
+      "refs": {
+        "ClusterHealth$issues": "<p>An object representing the health issues of your local Amazon EKS cluster on an Amazon Web Services Outpost.</p>"
+      }
+    },
     "ClusterName": {
       "base": null,
       "refs": {
@@ -230,7 +254,7 @@
     "Compatibilities": {
       "base": null,
       "refs": {
-        "AddonVersionInfo$compatibilities": "<p>An object that represents the compatibilities of a version.</p>"
+        "AddonVersionInfo$compatibilities": "<p>An object representing the compatibilities of a version.</p>"
       }
     },
     "Compatibility": {
@@ -513,8 +537,8 @@
     "IdentityProviderConfig": {
       "base": "<p>An object representing an identity provider configuration.</p>",
       "refs": {
-        "DescribeIdentityProviderConfigRequest$identityProviderConfig": "<p>An object that represents an identity provider configuration.</p>",
-        "DisassociateIdentityProviderConfigRequest$identityProviderConfig": "<p>An object that represents an identity provider configuration.</p>",
+        "DescribeIdentityProviderConfigRequest$identityProviderConfig": "<p>An object representing an identity provider configuration.</p>",
+        "DisassociateIdentityProviderConfigRequest$identityProviderConfig": "<p>An object representing an identity provider configuration.</p>",
         "IdentityProviderConfigs$member": null
       }
     },
@@ -783,15 +807,27 @@
       }
     },
     "OidcIdentityProviderConfig": {
-      "base": "<p>An object that represents the configuration for an OpenID Connect (OIDC) identity provider. </p>",
+      "base": "<p>An object representing the configuration for an OpenID Connect (OIDC) identity provider. </p>",
       "refs": {
-        "IdentityProviderConfigResponse$oidc": "<p>An object that represents an OpenID Connect (OIDC) identity provider configuration.</p>"
+        "IdentityProviderConfigResponse$oidc": "<p>An object representing an OpenID Connect (OIDC) identity provider configuration.</p>"
       }
     },
     "OidcIdentityProviderConfigRequest": {
       "base": "<p>An object representing an OpenID Connect (OIDC) configuration. Before associating an OIDC identity provider to your cluster, review the considerations in <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/authenticate-oidc-identity-provider.html\">Authenticating users for your cluster from an OpenID Connect identity provider</a> in the <i>Amazon EKS User Guide</i>.</p>",
       "refs": {
-        "AssociateIdentityProviderConfigRequest$oidc": "<p>An object that represents an OpenID Connect (OIDC) identity provider configuration.</p>"
+        "AssociateIdentityProviderConfigRequest$oidc": "<p>An object representing an OpenID Connect (OIDC) identity provider configuration.</p>"
+      }
+    },
+    "OutpostConfigRequest": {
+      "base": "<p>The configuration of your local Amazon EKS cluster on an Amazon Web Services Outpost. Before creating a cluster on an Outpost, review <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/create-cluster-outpost.html\">Creating a local Amazon EKS cluster on an Amazon Web Services Outpost</a> in the <i>Amazon EKS User Guide</i>. This API isn't available for Amazon EKS clusters on the Amazon Web Services cloud.</p>",
+      "refs": {
+        "CreateClusterRequest$outpostConfig": "<p>An object representing the configuration of your local Amazon EKS cluster on an Amazon Web Services Outpost. Before creating a local cluster on an Outpost, review <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/create-cluster-outpost.html\">Creating an Amazon EKS cluster on an Amazon Web Services Outpost</a> in the <i>Amazon EKS User Guide</i>. This object isn't available for creating Amazon EKS clusters on the Amazon Web Services cloud.</p>"
+      }
+    },
+    "OutpostConfigResponse": {
+      "base": "<p>An object representing the configuration of your local Amazon EKS cluster on an Amazon Web Services Outpost. This API isn't available for Amazon EKS clusters on the Amazon Web Services cloud.</p>",
+      "refs": {
+        "Cluster$outpostConfig": "<p>An object representing the configuration of your local Amazon EKS cluster on an Amazon Web Services Outpost. This object isn't available for clusters on the Amazon Web Services cloud.</p>"
       }
     },
     "PercentCapacity": {
@@ -897,6 +933,8 @@
         "Cluster$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to Amazon Web Services API operations on your behalf.</p>",
         "Cluster$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "Cluster$platformVersion": "<p>The platform version of your Amazon EKS cluster. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html\">Platform Versions</a> in the <i> <i>Amazon EKS User Guide</i> </i>.</p>",
+        "Cluster$id": "<p>The ID of your local Amazon EKS cluster on an Amazon Web Services Outpost. This property isn't available for an Amazon EKS cluster on the Amazon Web Services cloud.</p>",
+        "ClusterIssue$message": "<p>A description of the issue.</p>",
         "Compatibility$clusterVersion": "<p>The supported Kubernetes version of the cluster.</p>",
         "ConnectorConfigRequest$roleArn": "<p>The Amazon Resource Name (ARN) of the role that is authorized to request the connector configuration.</p>",
         "ConnectorConfigResponse$activationId": "<p>A unique ID associated with the cluster for registration purposes.</p>",
@@ -906,7 +944,7 @@
         "CreateAddonRequest$addonName": "<p>The name of the add-on. The name must match one of the names returned by <a href=\"https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html\"> <code>DescribeAddonVersions</code> </a>.</p>",
         "CreateAddonRequest$addonVersion": "<p>The version of the add-on. The version must match one of the versions returned by <a href=\"https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html\"> <code>DescribeAddonVersions</code> </a>.</p>",
         "CreateAddonRequest$clientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
-        "CreateClusterRequest$version": "<p>The desired Kubernetes version for your cluster. If you don't specify a value here, the latest version available in Amazon EKS is used.</p>",
+        "CreateClusterRequest$version": "<p>The desired Kubernetes version for your cluster. If you don't specify a value here, the default version available in Amazon EKS is used.</p> <note> <p>The default version might not be the latest version available.</p> </note>",
         "CreateClusterRequest$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to Amazon Web Services API operations on your behalf. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html\">Amazon EKS Service IAM Role</a> in the <i> <i>Amazon EKS User Guide</i> </i>.</p>",
         "CreateClusterRequest$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateFargateProfileRequest$fargateProfileName": "<p>The name of the Fargate profile.</p>",
@@ -1014,6 +1052,8 @@
         "OidcIdentityProviderConfigRequest$usernamePrefix": "<p>The prefix that is prepended to username claims to prevent clashes with existing names. If you do not provide this field, and <code>username</code> is a value other than <code>email</code>, the prefix defaults to <code>issuerurl#</code>. You can use the value <code>-</code> to disable all prefixing.</p>",
         "OidcIdentityProviderConfigRequest$groupsClaim": "<p>The JWT claim that the provider uses to return your groups.</p>",
         "OidcIdentityProviderConfigRequest$groupsPrefix": "<p>The prefix that is prepended to group claims to prevent clashes with existing names (such as <code>system:</code> groups). For example, the value<code> oidc:</code> will create group names like <code>oidc:engineering</code> and <code>oidc:infra</code>.</p>",
+        "OutpostConfigRequest$controlPlaneInstanceType": "<p>The Amazon EC2 instance type that you want to use for your local Amazon EKS cluster on Outposts. The instance type that you specify is used for all Kubernetes control plane instances. The instance type can't be changed after cluster creation.</p> <p>Choose an instance type based on the number of nodes that your cluster will have. If your cluster will have:</p> <ul> <li> <p>1–20 nodes, then we recommend specifying a <code>large</code> instance type.</p> </li> <li> <p>21–100 nodes, then we recommend specifying an <code>xlarge</code> instance type.</p> </li> <li> <p>101–250 nodes, then we recommend specifying a <code>2xlarge</code> instance type.</p> </li> </ul> <p>For a list of the available Amazon EC2 instance types, see Compute and storage in <a href=\"http://aws.amazon.com/outposts/rack/features/\">Outposts rack features</a>. The control plane is not automatically scaled by Amazon EKS.</p>",
+        "OutpostConfigResponse$controlPlaneInstanceType": "<p>The Amazon EC2 instance type used for the control plane. The instance type is the same for all control plane instances.</p>",
         "Provider$keyArn": "<p>Amazon Resource Name (ARN) or alias of the KMS key. The KMS key must be symmetric, created in the same region as the cluster, and if the KMS key was created in a different account, the user must have access to the KMS key. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html\">Allowing Users in Other Accounts to Use a KMS key</a> in the <i>Key Management Service Developer Guide</i>.</p>",
         "RegisterClusterRequest$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "RemoteAccessConfig$ec2SshKey": "<p>The Amazon EC2 SSH key that provides access for SSH communication with the nodes in the managed node group. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Amazon EC2 key pairs and Linux instances</a> in the <i>Amazon Elastic Compute Cloud User Guide for Linux Instances</i>.</p>",
@@ -1069,6 +1109,7 @@
       "refs": {
         "AddonIssue$resourceIds": "<p>The resource IDs of the issue.</p>",
         "AddonVersionInfo$architecture": "<p>The architectures that the version supports.</p>",
+        "ClusterIssue$resourceIds": "<p>The resource IDs that the issue relates to.</p>",
         "Compatibility$platformVersions": "<p>The supported compute platform.</p>",
         "CreateFargateProfileRequest$subnets": "<p>The IDs of subnets to launch your pods into. At this time, pods running on Fargate are not assigned public IP addresses, so only private subnets (with no direct route to an Internet Gateway) are accepted for this parameter.</p>",
         "CreateNodegroupRequest$subnets": "<p>The subnets to use for the Auto Scaling group that is created for your node group. If you specify <code>launchTemplate</code>, then don't specify <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html\"> <code>SubnetId</code> </a> in your launch template, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html\">Launch template support</a> in the <i>Amazon EKS User Guide</i>.</p>",
@@ -1084,6 +1125,8 @@
         "ListUpdatesResponse$updateIds": "<p>A list of all the updates for the specified cluster and Region.</p>",
         "Nodegroup$instanceTypes": "<p>If the node group wasn't deployed with a launch template, then this is the instance type that is associated with the node group. If the node group was deployed with a launch template, then this is <code>null</code>.</p>",
         "Nodegroup$subnets": "<p>The subnets that were specified for the Auto Scaling group that is associated with your node group.</p>",
+        "OutpostConfigRequest$outpostArns": "<p>The ARN of the Outpost that you want to use for your local Amazon EKS cluster on Outposts. Only a single Outpost ARN is supported.</p>",
+        "OutpostConfigResponse$outpostArns": "<p>The ARN of the Outpost that you specified for use with your local Amazon EKS cluster on Outposts.</p>",
         "RemoteAccessConfig$sourceSecurityGroups": "<p>The security groups that are allowed SSH access (port 22) to the nodes. If you specify an Amazon EC2 SSH key but do not specify a source security group when you create a managed node group, then port 22 on the nodes is opened to the internet (0.0.0.0/0). For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html\">Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
         "UnsupportedAvailabilityZoneException$validZones": "<p>The supported Availability Zones for your account. Choose subnets in these Availability Zones for your cluster.</p>",
         "VpcConfigRequest$subnetIds": "<p>Specify subnets for your Amazon EKS nodes. Amazon EKS creates cross-account elastic network interfaces in these subnets to allow communication between your nodes and the Kubernetes control plane.</p>",
