@@ -7089,7 +7089,8 @@ func (s *AssociatePersonasToEntitiesOutput) SetFailedEntityList(v []*FailedEntit
 	return s
 }
 
-// Provides filtering the query results based on document attributes.
+// Provides filtering the query results based on document attributes or metadata
+// fields.
 //
 // When you use the AndAllFilters or OrAllFilters, filters you can use 2 layers
 // under the first attribute filter. For example, you can use:
@@ -7112,31 +7113,31 @@ type AttributeFilter struct {
 	// Performs a logical AND operation on all supplied filters.
 	AndAllFilters []*AttributeFilter `type:"list"`
 
-	// Returns true when a document contains all of the specified document attributes.
-	// This filter is only applicable to StringListValue metadata.
+	// Returns true when a document contains all of the specified document attributes
+	// or metadata fields. This filter is only applicable to StringListValue metadata.
 	ContainsAll *DocumentAttribute `type:"structure"`
 
-	// Returns true when a document contains any of the specified document attributes.
-	// This filter is only applicable to StringListValue metadata.
+	// Returns true when a document contains any of the specified document attributes
+	// or metadata fields. This filter is only applicable to StringListValue metadata.
 	ContainsAny *DocumentAttribute `type:"structure"`
 
-	// Performs an equals operation on two document attributes.
+	// Performs an equals operation on two document attributes or metadata fields.
 	EqualsTo *DocumentAttribute `type:"structure"`
 
-	// Performs a greater than operation on two document attributes. Use with a
-	// document attribute of type Date or Long.
+	// Performs a greater than operation on two document attributes or metadata
+	// fields. Use with a document attribute of type Date or Long.
 	GreaterThan *DocumentAttribute `type:"structure"`
 
-	// Performs a greater or equals than operation on two document attributes. Use
-	// with a document attribute of type Date or Long.
+	// Performs a greater or equals than operation on two document attributes or
+	// metadata fields. Use with a document attribute of type Date or Long.
 	GreaterThanOrEquals *DocumentAttribute `type:"structure"`
 
-	// Performs a less than operation on two document attributes. Use with a document
-	// attribute of type Date or Long.
+	// Performs a less than operation on two document attributes or metadata fields.
+	// Use with a document attribute of type Date or Long.
 	LessThan *DocumentAttribute `type:"structure"`
 
-	// Performs a less than or equals operation on two document attributes. Use
-	// with a document attribute of type Date or Long.
+	// Performs a less than or equals operation on two document attributes or metadata
+	// fields. Use with a document attribute of type Date or Long.
 	LessThanOrEquals *DocumentAttribute `type:"structure"`
 
 	// Performs a logical NOT operation on all supplied filters.
@@ -29255,6 +29256,9 @@ const (
 
 	// SharePointVersionSharepointOnline is a SharePointVersion enum value
 	SharePointVersionSharepointOnline = "SHAREPOINT_ONLINE"
+
+	// SharePointVersionSharepoint2019 is a SharePointVersion enum value
+	SharePointVersionSharepoint2019 = "SHAREPOINT_2019"
 )
 
 // SharePointVersion_Values returns all elements of the SharePointVersion enum
@@ -29263,6 +29267,7 @@ func SharePointVersion_Values() []string {
 		SharePointVersionSharepoint2013,
 		SharePointVersionSharepoint2016,
 		SharePointVersionSharepointOnline,
+		SharePointVersionSharepoint2019,
 	}
 }
 

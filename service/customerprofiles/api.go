@@ -56,8 +56,8 @@ func (c *CustomerProfiles) AddProfileKeyRequest(input *AddProfileKeyInput) (req 
 
 // AddProfileKey API operation for Amazon Connect Customer Profiles.
 //
-// Associates a new key value with a specific profile, such as a Contact Trace
-// Record (CTR) ContactId.
+// Associates a new key value with a specific profile, such as a Contact Record
+// ContactId.
 //
 // A profile object can have a single unique key and any number of additional
 // keys that can be used to identify the profile that it belongs to.
@@ -2902,6 +2902,9 @@ func (c *CustomerProfiles) PutIntegrationRequest(input *PutIntegrationInput) (re
 //
 // An integration can belong to only one domain.
 //
+// To add or remove tags on an existing Integration, see TagResource (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_TagResource.html)/
+// UntagResource (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UntagResource.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2993,10 +2996,10 @@ func (c *CustomerProfiles) PutProfileObjectRequest(input *PutProfileObjectInput)
 //
 // Adds additional objects to customer profiles of a given ObjectType.
 //
-// When adding a specific profile object, like a Contact Trace Record (CTR),
-// an inferred profile can get created if it is not mapped to an existing profile.
-// The resulting profile will only have a phone number populated in the standard
-// ProfileObject. Any additional CTRs with the same phone number will be mapped
+// When adding a specific profile object, like a Contact Record, an inferred
+// profile can get created if it is not mapped to an existing profile. The resulting
+// profile will only have a phone number populated in the standard ProfileObject.
+// Any additional Contact Records with the same phone number will be mapped
 // to the same inferred profile.
 //
 // When a ProfileObject is created and if a ProfileObjectType already exists
@@ -3095,6 +3098,9 @@ func (c *CustomerProfiles) PutProfileObjectTypeRequest(input *PutProfileObjectTy
 // PutProfileObjectType API operation for Amazon Connect Customer Profiles.
 //
 // Defines a ProfileObjectType.
+//
+// To add or remove tags on an existing ObjectType, see TagResource (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_TagResource.html)/UntagResource
+// (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UntagResource.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3479,6 +3485,9 @@ func (c *CustomerProfiles) UpdateDomainRequest(input *UpdateDomainInput) (req *r
 // To prevent cross-service impersonation when you call this API, see Cross-service
 // confused deputy prevention (https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html)
 // for sample policies that you should apply.
+//
+// To add or remove tags on an existing Domain, see TagResource (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_TagResource.html)/UntagResource
+// (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UntagResource.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7254,6 +7263,11 @@ type GetIntegrationOutput struct {
 	// DomainName is a required field
 	DomainName *string `min:"1" type:"string" required:"true"`
 
+	// Boolean to indicate if the Flow associated with the Integration is created
+	// via Appflow console or with ObjectTypeName equals _unstructured via API/CLI
+	// in flowDefinition
+	IsUnstructured *bool `type:"boolean"`
+
 	// The timestamp of when the domain was most recently edited.
 	//
 	// LastUpdatedAt is a required field
@@ -7308,6 +7322,12 @@ func (s *GetIntegrationOutput) SetCreatedAt(v time.Time) *GetIntegrationOutput {
 // SetDomainName sets the DomainName field's value.
 func (s *GetIntegrationOutput) SetDomainName(v string) *GetIntegrationOutput {
 	s.DomainName = &v
+	return s
+}
+
+// SetIsUnstructured sets the IsUnstructured field's value.
+func (s *GetIntegrationOutput) SetIsUnstructured(v bool) *GetIntegrationOutput {
+	s.IsUnstructured = &v
 	return s
 }
 
@@ -8920,6 +8940,11 @@ type ListIntegrationItem struct {
 	// DomainName is a required field
 	DomainName *string `min:"1" type:"string" required:"true"`
 
+	// Boolean to indicate if the Flow associated with the Integration is created
+	// via Appflow console or with ObjectTypeName equals _unstructured via API/CLI
+	// in flowDefinition
+	IsUnstructured *bool `type:"boolean"`
+
 	// The timestamp of when the domain was most recently edited.
 	//
 	// LastUpdatedAt is a required field
@@ -8974,6 +8999,12 @@ func (s *ListIntegrationItem) SetCreatedAt(v time.Time) *ListIntegrationItem {
 // SetDomainName sets the DomainName field's value.
 func (s *ListIntegrationItem) SetDomainName(v string) *ListIntegrationItem {
 	s.DomainName = &v
+	return s
+}
+
+// SetIsUnstructured sets the IsUnstructured field's value.
+func (s *ListIntegrationItem) SetIsUnstructured(v bool) *ListIntegrationItem {
+	s.IsUnstructured = &v
 	return s
 }
 
@@ -10914,6 +10945,11 @@ type PutIntegrationOutput struct {
 	// DomainName is a required field
 	DomainName *string `min:"1" type:"string" required:"true"`
 
+	// Boolean to indicate if the Flow associated with the Integration is created
+	// via Appflow console or with ObjectTypeName equals _unstructured via API/CLI
+	// in flowDefinition
+	IsUnstructured *bool `type:"boolean"`
+
 	// The timestamp of when the domain was most recently edited.
 	//
 	// LastUpdatedAt is a required field
@@ -10968,6 +11004,12 @@ func (s *PutIntegrationOutput) SetCreatedAt(v time.Time) *PutIntegrationOutput {
 // SetDomainName sets the DomainName field's value.
 func (s *PutIntegrationOutput) SetDomainName(v string) *PutIntegrationOutput {
 	s.DomainName = &v
+	return s
+}
+
+// SetIsUnstructured sets the IsUnstructured field's value.
+func (s *PutIntegrationOutput) SetIsUnstructured(v bool) *PutIntegrationOutput {
+	s.IsUnstructured = &v
 	return s
 }
 

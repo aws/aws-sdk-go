@@ -500,7 +500,6 @@
       "base": null,
       "refs": {
         "DataReplicationInfo$etaDateTime": "<p>An estimate of when the data replication will be completed.</p>",
-        "DataReplicationInfo$lagDuration": "<p>Data replication lag duration.</p>",
         "DataReplicationInitiation$nextAttemptDateTime": "<p>The date and time of the next attempt to initiate data replication.</p>",
         "DataReplicationInitiation$startDateTime": "<p>The date and time of the current attempt to initiate data replication.</p>",
         "DescribeJobsRequestFilters$fromDate": "<p>The start date in a date range query.</p>",
@@ -511,7 +510,6 @@
         "Job$endDateTime": "<p>The date and time of when the Job ended.</p>",
         "JobLog$logDateTime": "<p>The date and time the log was taken.</p>",
         "LifeCycle$addedToServiceDateTime": "<p>The date and time of when the Source Server was added to the service.</p>",
-        "LifeCycle$elapsedReplicationDuration": "<p>The amount of time that the Source Server has been replicating for.</p>",
         "LifeCycle$firstByteDateTime": "<p>The date and time of the first byte that was replicated from the Source Server.</p>",
         "LifeCycle$lastSeenByServiceDateTime": "<p>The date and time this Source Server was last seen by the service.</p>",
         "LifeCycleLastLaunchInitiated$apiCallDateTime": "<p>The date and time the last Source Server launch was initiated.</p>",
@@ -528,6 +526,13 @@
         "RecoverySnapshot$expectedTimestamp": "<p>The timestamp of when we expect the snapshot to be taken.</p>",
         "RecoverySnapshot$timestamp": "<p>The actual timestamp that the snapshot was taken.</p>",
         "SourceProperties$lastUpdatedDateTime": "<p>The date and time the Source Properties were last updated on.</p>"
+      }
+    },
+    "ISO8601DurationString": {
+      "base": null,
+      "refs": {
+        "DataReplicationInfo$lagDuration": "<p>Data replication lag duration.</p>",
+        "LifeCycle$elapsedReplicationDuration": "<p>The amount of time that the Source Server has been replicating for.</p>"
       }
     },
     "IdentificationHints": {

@@ -104,6 +104,10 @@ type TransferAPI interface {
 	DeleteConnectorWithContext(aws.Context, *transfer.DeleteConnectorInput, ...request.Option) (*transfer.DeleteConnectorOutput, error)
 	DeleteConnectorRequest(*transfer.DeleteConnectorInput) (*request.Request, *transfer.DeleteConnectorOutput)
 
+	DeleteHostKey(*transfer.DeleteHostKeyInput) (*transfer.DeleteHostKeyOutput, error)
+	DeleteHostKeyWithContext(aws.Context, *transfer.DeleteHostKeyInput, ...request.Option) (*transfer.DeleteHostKeyOutput, error)
+	DeleteHostKeyRequest(*transfer.DeleteHostKeyInput) (*request.Request, *transfer.DeleteHostKeyOutput)
+
 	DeleteProfile(*transfer.DeleteProfileInput) (*transfer.DeleteProfileOutput, error)
 	DeleteProfileWithContext(aws.Context, *transfer.DeleteProfileInput, ...request.Option) (*transfer.DeleteProfileOutput, error)
 	DeleteProfileRequest(*transfer.DeleteProfileInput) (*request.Request, *transfer.DeleteProfileOutput)
@@ -144,6 +148,10 @@ type TransferAPI interface {
 	DescribeExecutionWithContext(aws.Context, *transfer.DescribeExecutionInput, ...request.Option) (*transfer.DescribeExecutionOutput, error)
 	DescribeExecutionRequest(*transfer.DescribeExecutionInput) (*request.Request, *transfer.DescribeExecutionOutput)
 
+	DescribeHostKey(*transfer.DescribeHostKeyInput) (*transfer.DescribeHostKeyOutput, error)
+	DescribeHostKeyWithContext(aws.Context, *transfer.DescribeHostKeyInput, ...request.Option) (*transfer.DescribeHostKeyOutput, error)
+	DescribeHostKeyRequest(*transfer.DescribeHostKeyInput) (*request.Request, *transfer.DescribeHostKeyOutput)
+
 	DescribeProfile(*transfer.DescribeProfileInput) (*transfer.DescribeProfileOutput, error)
 	DescribeProfileWithContext(aws.Context, *transfer.DescribeProfileInput, ...request.Option) (*transfer.DescribeProfileOutput, error)
 	DescribeProfileRequest(*transfer.DescribeProfileInput) (*request.Request, *transfer.DescribeProfileOutput)
@@ -167,6 +175,10 @@ type TransferAPI interface {
 	ImportCertificate(*transfer.ImportCertificateInput) (*transfer.ImportCertificateOutput, error)
 	ImportCertificateWithContext(aws.Context, *transfer.ImportCertificateInput, ...request.Option) (*transfer.ImportCertificateOutput, error)
 	ImportCertificateRequest(*transfer.ImportCertificateInput) (*request.Request, *transfer.ImportCertificateOutput)
+
+	ImportHostKey(*transfer.ImportHostKeyInput) (*transfer.ImportHostKeyOutput, error)
+	ImportHostKeyWithContext(aws.Context, *transfer.ImportHostKeyInput, ...request.Option) (*transfer.ImportHostKeyOutput, error)
+	ImportHostKeyRequest(*transfer.ImportHostKeyInput) (*request.Request, *transfer.ImportHostKeyOutput)
 
 	ImportSshPublicKey(*transfer.ImportSshPublicKeyInput) (*transfer.ImportSshPublicKeyOutput, error)
 	ImportSshPublicKeyWithContext(aws.Context, *transfer.ImportSshPublicKeyInput, ...request.Option) (*transfer.ImportSshPublicKeyOutput, error)
@@ -206,6 +218,10 @@ type TransferAPI interface {
 
 	ListExecutionsPages(*transfer.ListExecutionsInput, func(*transfer.ListExecutionsOutput, bool) bool) error
 	ListExecutionsPagesWithContext(aws.Context, *transfer.ListExecutionsInput, func(*transfer.ListExecutionsOutput, bool) bool, ...request.Option) error
+
+	ListHostKeys(*transfer.ListHostKeysInput) (*transfer.ListHostKeysOutput, error)
+	ListHostKeysWithContext(aws.Context, *transfer.ListHostKeysInput, ...request.Option) (*transfer.ListHostKeysOutput, error)
+	ListHostKeysRequest(*transfer.ListHostKeysInput) (*request.Request, *transfer.ListHostKeysOutput)
 
 	ListProfiles(*transfer.ListProfilesInput) (*transfer.ListProfilesOutput, error)
 	ListProfilesWithContext(aws.Context, *transfer.ListProfilesInput, ...request.Option) (*transfer.ListProfilesOutput, error)
@@ -292,6 +308,10 @@ type TransferAPI interface {
 	UpdateConnector(*transfer.UpdateConnectorInput) (*transfer.UpdateConnectorOutput, error)
 	UpdateConnectorWithContext(aws.Context, *transfer.UpdateConnectorInput, ...request.Option) (*transfer.UpdateConnectorOutput, error)
 	UpdateConnectorRequest(*transfer.UpdateConnectorInput) (*request.Request, *transfer.UpdateConnectorOutput)
+
+	UpdateHostKey(*transfer.UpdateHostKeyInput) (*transfer.UpdateHostKeyOutput, error)
+	UpdateHostKeyWithContext(aws.Context, *transfer.UpdateHostKeyInput, ...request.Option) (*transfer.UpdateHostKeyOutput, error)
+	UpdateHostKeyRequest(*transfer.UpdateHostKeyInput) (*request.Request, *transfer.UpdateHostKeyOutput)
 
 	UpdateProfile(*transfer.UpdateProfileInput) (*transfer.UpdateProfileOutput, error)
 	UpdateProfileWithContext(aws.Context, *transfer.UpdateProfileInput, ...request.Option) (*transfer.UpdateProfileOutput, error)

@@ -4346,7 +4346,7 @@ type DataReplicationInfo struct {
 	EtaDateTime *string `locationName:"etaDateTime" min:"19" type:"string"`
 
 	// Data replication lag duration.
-	LagDuration *string `locationName:"lagDuration" min:"19" type:"string"`
+	LagDuration *string `locationName:"lagDuration" min:"1" type:"string"`
 
 	// The disks that should be replicated.
 	ReplicatedDisks []*DataReplicationInfoReplicatedDisk `locationName:"replicatedDisks" type:"list"`
@@ -6913,7 +6913,7 @@ type LifeCycle struct {
 	AddedToServiceDateTime *string `locationName:"addedToServiceDateTime" min:"19" type:"string"`
 
 	// The amount of time that the Source Server has been replicating for.
-	ElapsedReplicationDuration *string `locationName:"elapsedReplicationDuration" min:"19" type:"string"`
+	ElapsedReplicationDuration *string `locationName:"elapsedReplicationDuration" min:"1" type:"string"`
 
 	// The date and time of the first byte that was replicated from the Source Server.
 	FirstByteDateTime *string `locationName:"firstByteDateTime" min:"19" type:"string"`

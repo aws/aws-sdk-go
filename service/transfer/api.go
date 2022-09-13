@@ -1072,6 +1072,101 @@ func (c *Transfer) DeleteConnectorWithContext(ctx aws.Context, input *DeleteConn
 	return out, req.Send()
 }
 
+const opDeleteHostKey = "DeleteHostKey"
+
+// DeleteHostKeyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteHostKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteHostKey for more information on using the DeleteHostKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteHostKeyRequest method.
+//	req, resp := client.DeleteHostKeyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteHostKey
+func (c *Transfer) DeleteHostKeyRequest(input *DeleteHostKeyInput) (req *request.Request, output *DeleteHostKeyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteHostKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteHostKeyInput{}
+	}
+
+	output = &DeleteHostKeyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteHostKey API operation for AWS Transfer Family.
+//
+// Deletes the host key that's specified in the HoskKeyId parameter.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DeleteHostKey for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//     Family service.
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteHostKey
+func (c *Transfer) DeleteHostKey(input *DeleteHostKeyInput) (*DeleteHostKeyOutput, error) {
+	req, out := c.DeleteHostKeyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteHostKeyWithContext is the same as DeleteHostKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteHostKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DeleteHostKeyWithContext(ctx aws.Context, input *DeleteHostKeyInput, opts ...request.Option) (*DeleteHostKeyOutput, error) {
+	req, out := c.DeleteHostKeyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteProfile = "DeleteProfile"
 
 // DeleteProfileRequest generates a "aws/request.Request" representing the
@@ -2008,6 +2103,98 @@ func (c *Transfer) DescribeExecutionWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+const opDescribeHostKey = "DescribeHostKey"
+
+// DescribeHostKeyRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeHostKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeHostKey for more information on using the DescribeHostKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeHostKeyRequest method.
+//	req, resp := client.DescribeHostKeyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeHostKey
+func (c *Transfer) DescribeHostKeyRequest(input *DescribeHostKeyInput) (req *request.Request, output *DescribeHostKeyOutput) {
+	op := &request.Operation{
+		Name:       opDescribeHostKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeHostKeyInput{}
+	}
+
+	output = &DescribeHostKeyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeHostKey API operation for AWS Transfer Family.
+//
+// Returns the details of the host key that's specified by the HostKeyId and
+// ServerId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DescribeHostKey for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//     Family service.
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeHostKey
+func (c *Transfer) DescribeHostKey(input *DescribeHostKeyInput) (*DescribeHostKeyOutput, error) {
+	req, out := c.DescribeHostKeyRequest(input)
+	return out, req.Send()
+}
+
+// DescribeHostKeyWithContext is the same as DescribeHostKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeHostKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DescribeHostKeyWithContext(ctx aws.Context, input *DescribeHostKeyInput, opts ...request.Option) (*DescribeHostKeyOutput, error) {
+	req, out := c.DescribeHostKeyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeProfile = "DescribeProfile"
 
 // DescribeProfileRequest generates a "aws/request.Request" representing the
@@ -2561,6 +2748,103 @@ func (c *Transfer) ImportCertificate(input *ImportCertificateInput) (*ImportCert
 // for more information on using Contexts.
 func (c *Transfer) ImportCertificateWithContext(ctx aws.Context, input *ImportCertificateInput, opts ...request.Option) (*ImportCertificateOutput, error) {
 	req, out := c.ImportCertificateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opImportHostKey = "ImportHostKey"
+
+// ImportHostKeyRequest generates a "aws/request.Request" representing the
+// client's request for the ImportHostKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ImportHostKey for more information on using the ImportHostKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ImportHostKeyRequest method.
+//	req, resp := client.ImportHostKeyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ImportHostKey
+func (c *Transfer) ImportHostKeyRequest(input *ImportHostKeyInput) (req *request.Request, output *ImportHostKeyOutput) {
+	op := &request.Operation{
+		Name:       opImportHostKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ImportHostKeyInput{}
+	}
+
+	output = &ImportHostKeyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ImportHostKey API operation for AWS Transfer Family.
+//
+// Adds a host key to the server specified by the ServerId parameter.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation ImportHostKey for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//     Family service.
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - ResourceExistsException
+//     The requested resource does not exist.
+//
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ImportHostKey
+func (c *Transfer) ImportHostKey(input *ImportHostKeyInput) (*ImportHostKeyOutput, error) {
+	req, out := c.ImportHostKeyRequest(input)
+	return out, req.Send()
+}
+
+// ImportHostKeyWithContext is the same as ImportHostKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ImportHostKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ImportHostKeyWithContext(ctx aws.Context, input *ImportHostKeyInput, opts ...request.Option) (*ImportHostKeyOutput, error) {
+	req, out := c.ImportHostKeyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3429,6 +3713,100 @@ func (c *Transfer) ListExecutionsPagesWithContext(ctx aws.Context, input *ListEx
 	}
 
 	return p.Err()
+}
+
+const opListHostKeys = "ListHostKeys"
+
+// ListHostKeysRequest generates a "aws/request.Request" representing the
+// client's request for the ListHostKeys operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListHostKeys for more information on using the ListHostKeys
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListHostKeysRequest method.
+//	req, resp := client.ListHostKeysRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListHostKeys
+func (c *Transfer) ListHostKeysRequest(input *ListHostKeysInput) (req *request.Request, output *ListHostKeysOutput) {
+	op := &request.Operation{
+		Name:       opListHostKeys,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListHostKeysInput{}
+	}
+
+	output = &ListHostKeysOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListHostKeys API operation for AWS Transfer Family.
+//
+// Returns a list of host keys for the server specified by the ServerId paramter.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation ListHostKeys for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//     Family service.
+//
+//   - InvalidNextTokenException
+//     The NextToken parameter that was passed is invalid.
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListHostKeys
+func (c *Transfer) ListHostKeys(input *ListHostKeysInput) (*ListHostKeysOutput, error) {
+	req, out := c.ListHostKeysRequest(input)
+	return out, req.Send()
+}
+
+// ListHostKeysWithContext is the same as ListHostKeys with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListHostKeys for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListHostKeysWithContext(ctx aws.Context, input *ListHostKeysInput, opts ...request.Option) (*ListHostKeysOutput, error) {
+	req, out := c.ListHostKeysRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListProfiles = "ListProfiles"
@@ -5413,6 +5791,101 @@ func (c *Transfer) UpdateConnector(input *UpdateConnectorInput) (*UpdateConnecto
 // for more information on using Contexts.
 func (c *Transfer) UpdateConnectorWithContext(ctx aws.Context, input *UpdateConnectorInput, opts ...request.Option) (*UpdateConnectorOutput, error) {
 	req, out := c.UpdateConnectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateHostKey = "UpdateHostKey"
+
+// UpdateHostKeyRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateHostKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateHostKey for more information on using the UpdateHostKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateHostKeyRequest method.
+//	req, resp := client.UpdateHostKeyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateHostKey
+func (c *Transfer) UpdateHostKeyRequest(input *UpdateHostKeyInput) (req *request.Request, output *UpdateHostKeyOutput) {
+	op := &request.Operation{
+		Name:       opUpdateHostKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateHostKeyInput{}
+	}
+
+	output = &UpdateHostKeyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateHostKey API operation for AWS Transfer Family.
+//
+// Updates the description for the host key specified by the specified by the
+// ServerId and HostKeyId parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation UpdateHostKey for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//     Family service.
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateHostKey
+func (c *Transfer) UpdateHostKey(input *UpdateHostKeyInput) (*UpdateHostKeyOutput, error) {
+	req, out := c.UpdateHostKeyRequest(input)
+	return out, req.Send()
+}
+
+// UpdateHostKeyWithContext is the same as UpdateHostKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateHostKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) UpdateHostKeyWithContext(ctx aws.Context, input *UpdateHostKeyInput, opts ...request.Option) (*UpdateHostKeyOutput, error) {
+	req, out := c.UpdateHostKeyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8079,6 +8552,94 @@ func (s DeleteConnectorOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteHostKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the host key that you are deleting.
+	//
+	// HostKeyId is a required field
+	HostKeyId *string `min:"25" type:"string" required:"true"`
+
+	// Provide the ID of the server that contains the host key that you are deleting.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteHostKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteHostKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteHostKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteHostKeyInput"}
+	if s.HostKeyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostKeyId"))
+	}
+	if s.HostKeyId != nil && len(*s.HostKeyId) < 25 {
+		invalidParams.Add(request.NewErrParamMinLen("HostKeyId", 25))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHostKeyId sets the HostKeyId field's value.
+func (s *DeleteHostKeyInput) SetHostKeyId(v string) *DeleteHostKeyInput {
+	s.HostKeyId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *DeleteHostKeyInput) SetServerId(v string) *DeleteHostKeyInput {
+	s.ServerId = &v
+	return s
+}
+
+type DeleteHostKeyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteHostKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteHostKeyOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9033,6 +9594,105 @@ func (s *DescribeExecutionOutput) SetExecution(v *DescribedExecution) *DescribeE
 // SetWorkflowId sets the WorkflowId field's value.
 func (s *DescribeExecutionOutput) SetWorkflowId(v string) *DescribeExecutionOutput {
 	s.WorkflowId = &v
+	return s
+}
+
+type DescribeHostKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Provide the ID of the host key that you want described.
+	//
+	// HostKeyId is a required field
+	HostKeyId *string `min:"25" type:"string" required:"true"`
+
+	// Provide the ID of the server that contains the host key that you want described.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeHostKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeHostKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeHostKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeHostKeyInput"}
+	if s.HostKeyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostKeyId"))
+	}
+	if s.HostKeyId != nil && len(*s.HostKeyId) < 25 {
+		invalidParams.Add(request.NewErrParamMinLen("HostKeyId", 25))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHostKeyId sets the HostKeyId field's value.
+func (s *DescribeHostKeyInput) SetHostKeyId(v string) *DescribeHostKeyInput {
+	s.HostKeyId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *DescribeHostKeyInput) SetServerId(v string) *DescribeHostKeyInput {
+	s.ServerId = &v
+	return s
+}
+
+type DescribeHostKeyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the details for the specified host key.
+	//
+	// HostKey is a required field
+	HostKey *DescribedHostKey `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeHostKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeHostKeyOutput) GoString() string {
+	return s.String()
+}
+
+// SetHostKey sets the HostKey field's value.
+func (s *DescribeHostKeyOutput) SetHostKey(v *DescribedHostKey) *DescribeHostKeyOutput {
+	s.HostKey = v
 	return s
 }
 
@@ -10097,6 +10757,106 @@ func (s *DescribedExecution) SetServiceMetadata(v *ServiceMetadata) *DescribedEx
 // SetStatus sets the Status field's value.
 func (s *DescribedExecution) SetStatus(v string) *DescribedExecution {
 	s.Status = &v
+	return s
+}
+
+// The details for a server host key.
+type DescribedHostKey struct {
+	_ struct{} `type:"structure"`
+
+	// The unique Amazon Resource Name (ARN) for the host key.
+	//
+	// Arn is a required field
+	Arn *string `min:"20" type:"string" required:"true"`
+
+	// The date on which the host key was added to the server.
+	DateImported *time.Time `type:"timestamp"`
+
+	// The text description for this host key.
+	Description *string `type:"string"`
+
+	// The public key fingerprint, which is a short sequence of bytes used to identify
+	// the longer public key.
+	HostKeyFingerprint *string `type:"string"`
+
+	// A unique identifier for the host key.
+	HostKeyId *string `min:"25" type:"string"`
+
+	// Key-value pairs that can be used to group and search for host keys.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The encryption algorithm used for the host key. The Type is one of the following
+	// values:
+	//
+	//    * ssh-rsa
+	//
+	//    * ssh-ed25519
+	//
+	//    * ecdsa-sha2-nistp256
+	//
+	//    * ecdsa-sha2-nistp384
+	//
+	//    * ecdsa-sha2-nistp521
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribedHostKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribedHostKey) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribedHostKey) SetArn(v string) *DescribedHostKey {
+	s.Arn = &v
+	return s
+}
+
+// SetDateImported sets the DateImported field's value.
+func (s *DescribedHostKey) SetDateImported(v time.Time) *DescribedHostKey {
+	s.DateImported = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribedHostKey) SetDescription(v string) *DescribedHostKey {
+	s.Description = &v
+	return s
+}
+
+// SetHostKeyFingerprint sets the HostKeyFingerprint field's value.
+func (s *DescribedHostKey) SetHostKeyFingerprint(v string) *DescribedHostKey {
+	s.HostKeyFingerprint = &v
+	return s
+}
+
+// SetHostKeyId sets the HostKeyId field's value.
+func (s *DescribedHostKey) SetHostKeyId(v string) *DescribedHostKey {
+	s.HostKeyId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribedHostKey) SetTags(v []*Tag) *DescribedHostKey {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DescribedHostKey) SetType(v string) *DescribedHostKey {
+	s.Type = &v
 	return s
 }
 
@@ -11515,6 +12275,150 @@ func (s *ImportCertificateOutput) SetCertificateId(v string) *ImportCertificateO
 	return s
 }
 
+type ImportHostKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Enter a text description to identify this host key.
+	Description *string `type:"string"`
+
+	// The public key portion of an SSH key pair.
+	//
+	// Transfer Family accepts RSA, ECDSA, and ED25519 keys.
+	//
+	// HostKeyBody is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ImportHostKeyInput's
+	// String and GoString methods.
+	//
+	// HostKeyBody is a required field
+	HostKeyBody *string `type:"string" required:"true" sensitive:"true"`
+
+	// Provide the ID of the server that contains the host key that you are importing.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+
+	// Key-value pairs that can be used to group and search for host keys.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportHostKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportHostKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportHostKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportHostKeyInput"}
+	if s.HostKeyBody == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostKeyBody"))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *ImportHostKeyInput) SetDescription(v string) *ImportHostKeyInput {
+	s.Description = &v
+	return s
+}
+
+// SetHostKeyBody sets the HostKeyBody field's value.
+func (s *ImportHostKeyInput) SetHostKeyBody(v string) *ImportHostKeyInput {
+	s.HostKeyBody = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *ImportHostKeyInput) SetServerId(v string) *ImportHostKeyInput {
+	s.ServerId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ImportHostKeyInput) SetTags(v []*Tag) *ImportHostKeyInput {
+	s.Tags = v
+	return s
+}
+
+type ImportHostKeyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the host key ID for the imported key.
+	//
+	// HostKeyId is a required field
+	HostKeyId *string `min:"25" type:"string" required:"true"`
+
+	// Returns the server ID that contains the imported key.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportHostKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportHostKeyOutput) GoString() string {
+	return s.String()
+}
+
+// SetHostKeyId sets the HostKeyId field's value.
+func (s *ImportHostKeyOutput) SetHostKeyId(v string) *ImportHostKeyOutput {
+	s.HostKeyId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *ImportHostKeyOutput) SetServerId(v string) *ImportHostKeyOutput {
+	s.ServerId = &v
+	return s
+}
+
 type ImportSshPublicKeyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12517,6 +13421,136 @@ func (s *ListExecutionsOutput) SetNextToken(v string) *ListExecutionsOutput {
 // SetWorkflowId sets the WorkflowId field's value.
 func (s *ListExecutionsOutput) SetWorkflowId(v string) *ListExecutionsOutput {
 	s.WorkflowId = &v
+	return s
+}
+
+type ListHostKeysInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of host keys to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// When there are additional results that were not returned, a NextToken parameter
+	// is returned. You can use that value for a subsequent call to ListHostKeys
+	// to continue listing results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Provide the ID of the server that contains the host keys that you want to
+	// view.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListHostKeysInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListHostKeysInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListHostKeysInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListHostKeysInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListHostKeysInput) SetMaxResults(v int64) *ListHostKeysInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListHostKeysInput) SetNextToken(v string) *ListHostKeysInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *ListHostKeysInput) SetServerId(v string) *ListHostKeysInput {
+	s.ServerId = &v
+	return s
+}
+
+type ListHostKeysOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns an array, where each item contains the details of a host key.
+	//
+	// HostKeys is a required field
+	HostKeys []*ListedHostKey `type:"list" required:"true"`
+
+	// Returns a token that you can use to call ListHostKeys again and receive additional
+	// results, if there are any.
+	NextToken *string `min:"1" type:"string"`
+
+	// Returns the server ID that contains the listed host keys.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListHostKeysOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListHostKeysOutput) GoString() string {
+	return s.String()
+}
+
+// SetHostKeys sets the HostKeys field's value.
+func (s *ListHostKeysOutput) SetHostKeys(v []*ListedHostKey) *ListHostKeysOutput {
+	s.HostKeys = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListHostKeysOutput) SetNextToken(v string) *ListHostKeysOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *ListHostKeysOutput) SetServerId(v string) *ListHostKeysOutput {
+	s.ServerId = &v
 	return s
 }
 
@@ -13587,6 +14621,97 @@ func (s *ListedExecution) SetServiceMetadata(v *ServiceMetadata) *ListedExecutio
 // SetStatus sets the Status field's value.
 func (s *ListedExecution) SetStatus(v string) *ListedExecution {
 	s.Status = &v
+	return s
+}
+
+// Returns properties of the host key that is specified.
+type ListedHostKey struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the unique Amazon Resource Name (ARN) of the host key.
+	//
+	// Arn is a required field
+	Arn *string `min:"20" type:"string" required:"true"`
+
+	// The date on which the host key was added to the server.
+	DateImported *time.Time `type:"timestamp"`
+
+	// The current description for the host key. You can change it by calling the
+	// UpdateHostKey operation and providing a new description.
+	Description *string `type:"string"`
+
+	// The public key fingerprint, which is a short sequence of bytes used to identify
+	// the longer public key.
+	Fingerprint *string `type:"string"`
+
+	HostKeyId *string `min:"25" type:"string"`
+
+	// The encryption algorithm used for the host key. The Type is one of the following
+	// values:
+	//
+	//    * ssh-rsa
+	//
+	//    * ssh-ed25519
+	//
+	//    * ecdsa-sha2-nistp256
+	//
+	//    * ecdsa-sha2-nistp384
+	//
+	//    * ecdsa-sha2-nistp521
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListedHostKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListedHostKey) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ListedHostKey) SetArn(v string) *ListedHostKey {
+	s.Arn = &v
+	return s
+}
+
+// SetDateImported sets the DateImported field's value.
+func (s *ListedHostKey) SetDateImported(v time.Time) *ListedHostKey {
+	s.DateImported = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ListedHostKey) SetDescription(v string) *ListedHostKey {
+	s.Description = &v
+	return s
+}
+
+// SetFingerprint sets the Fingerprint field's value.
+func (s *ListedHostKey) SetFingerprint(v string) *ListedHostKey {
+	s.Fingerprint = &v
+	return s
+}
+
+// SetHostKeyId sets the HostKeyId field's value.
+func (s *ListedHostKey) SetHostKeyId(v string) *ListedHostKey {
+	s.HostKeyId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListedHostKey) SetType(v string) *ListedHostKey {
+	s.Type = &v
 	return s
 }
 
@@ -16306,6 +17431,130 @@ func (s UpdateConnectorOutput) GoString() string {
 // SetConnectorId sets the ConnectorId field's value.
 func (s *UpdateConnectorOutput) SetConnectorId(v string) *UpdateConnectorOutput {
 	s.ConnectorId = &v
+	return s
+}
+
+type UpdateHostKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Provide an updated description for the host key.
+	//
+	// Description is a required field
+	Description *string `type:"string" required:"true"`
+
+	// Provide the ID of the host key that you are updating.
+	//
+	// HostKeyId is a required field
+	HostKeyId *string `min:"25" type:"string" required:"true"`
+
+	// Provide the ID of the server that contains the host key that you are updating.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateHostKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateHostKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateHostKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateHostKeyInput"}
+	if s.Description == nil {
+		invalidParams.Add(request.NewErrParamRequired("Description"))
+	}
+	if s.HostKeyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostKeyId"))
+	}
+	if s.HostKeyId != nil && len(*s.HostKeyId) < 25 {
+		invalidParams.Add(request.NewErrParamMinLen("HostKeyId", 25))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateHostKeyInput) SetDescription(v string) *UpdateHostKeyInput {
+	s.Description = &v
+	return s
+}
+
+// SetHostKeyId sets the HostKeyId field's value.
+func (s *UpdateHostKeyInput) SetHostKeyId(v string) *UpdateHostKeyInput {
+	s.HostKeyId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *UpdateHostKeyInput) SetServerId(v string) *UpdateHostKeyInput {
+	s.ServerId = &v
+	return s
+}
+
+type UpdateHostKeyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the host key ID for the updated host key.
+	//
+	// HostKeyId is a required field
+	HostKeyId *string `min:"25" type:"string" required:"true"`
+
+	// Returns the server ID for the server that contains the updated host key.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateHostKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateHostKeyOutput) GoString() string {
+	return s.String()
+}
+
+// SetHostKeyId sets the HostKeyId field's value.
+func (s *UpdateHostKeyOutput) SetHostKeyId(v string) *UpdateHostKeyOutput {
+	s.HostKeyId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *UpdateHostKeyOutput) SetServerId(v string) *UpdateHostKeyOutput {
+	s.ServerId = &v
 	return s
 }
 

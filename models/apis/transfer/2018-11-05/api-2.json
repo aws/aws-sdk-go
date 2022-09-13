@@ -184,6 +184,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DeleteHostKey":{
+      "name":"DeleteHostKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteHostKeyRequest"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DeleteProfile":{
       "name":"DeleteProfile",
       "http":{
@@ -332,6 +347,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DescribeHostKey":{
+      "name":"DescribeHostKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeHostKeyRequest"},
+      "output":{"shape":"DescribeHostKeyResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DescribeProfile":{
       "name":"DescribeProfile",
       "http":{
@@ -420,6 +450,23 @@
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ImportHostKey":{
+      "name":"ImportHostKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ImportHostKeyRequest"},
+      "output":{"shape":"ImportHostKeyResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ImportSshPublicKey":{
@@ -511,6 +558,22 @@
       },
       "input":{"shape":"ListExecutionsRequest"},
       "output":{"shape":"ListExecutionsResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListHostKeys":{
+      "name":"ListHostKeys",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListHostKeysRequest"},
+      "output":{"shape":"ListHostKeysResponse"},
       "errors":[
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
@@ -778,6 +841,22 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceExistsException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UpdateHostKey":{
+      "name":"UpdateHostKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateHostKeyRequest"},
+      "output":{"shape":"UpdateHostKeyResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "UpdateProfile":{
@@ -1222,6 +1301,17 @@
         "ConnectorId":{"shape":"ConnectorId"}
       }
     },
+    "DeleteHostKeyRequest":{
+      "type":"structure",
+      "required":[
+        "ServerId",
+        "HostKeyId"
+      ],
+      "members":{
+        "ServerId":{"shape":"ServerId"},
+        "HostKeyId":{"shape":"HostKeyId"}
+      }
+    },
     "DeleteProfileRequest":{
       "type":"structure",
       "required":["ProfileId"],
@@ -1362,6 +1452,24 @@
       "members":{
         "WorkflowId":{"shape":"WorkflowId"},
         "Execution":{"shape":"DescribedExecution"}
+      }
+    },
+    "DescribeHostKeyRequest":{
+      "type":"structure",
+      "required":[
+        "ServerId",
+        "HostKeyId"
+      ],
+      "members":{
+        "ServerId":{"shape":"ServerId"},
+        "HostKeyId":{"shape":"HostKeyId"}
+      }
+    },
+    "DescribeHostKeyResponse":{
+      "type":"structure",
+      "required":["HostKey"],
+      "members":{
+        "HostKey":{"shape":"DescribedHostKey"}
       }
     },
     "DescribeProfileRequest":{
@@ -1514,6 +1622,19 @@
         "PosixProfile":{"shape":"PosixProfile"},
         "Status":{"shape":"ExecutionStatus"},
         "Results":{"shape":"ExecutionResults"}
+      }
+    },
+    "DescribedHostKey":{
+      "type":"structure",
+      "required":["Arn"],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "HostKeyId":{"shape":"HostKeyId"},
+        "HostKeyFingerprint":{"shape":"HostKeyFingerprint"},
+        "Description":{"shape":"HostKeyDescription"},
+        "Type":{"shape":"HostKeyType"},
+        "DateImported":{"shape":"DateImported"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "DescribedProfile":{
@@ -1783,7 +1904,20 @@
       "max":4096,
       "sensitive":true
     },
+    "HostKeyDescription":{
+      "type":"string",
+      "max":200,
+      "min":0,
+      "pattern":"^[\\p{Print}]*$"
+    },
     "HostKeyFingerprint":{"type":"string"},
+    "HostKeyId":{
+      "type":"string",
+      "max":25,
+      "min":25,
+      "pattern":"^hostkey-[0-9a-f]{17}$"
+    },
+    "HostKeyType":{"type":"string"},
     "IdentityProviderDetails":{
       "type":"structure",
       "members":{
@@ -1824,6 +1958,30 @@
       "required":["CertificateId"],
       "members":{
         "CertificateId":{"shape":"CertificateId"}
+      }
+    },
+    "ImportHostKeyRequest":{
+      "type":"structure",
+      "required":[
+        "ServerId",
+        "HostKeyBody"
+      ],
+      "members":{
+        "ServerId":{"shape":"ServerId"},
+        "HostKeyBody":{"shape":"HostKey"},
+        "Description":{"shape":"HostKeyDescription"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "ImportHostKeyResponse":{
+      "type":"structure",
+      "required":[
+        "ServerId",
+        "HostKeyId"
+      ],
+      "members":{
+        "ServerId":{"shape":"ServerId"},
+        "HostKeyId":{"shape":"HostKeyId"}
       }
     },
     "ImportSshPublicKeyRequest":{
@@ -1971,6 +2129,27 @@
         "NextToken":{"shape":"NextToken"},
         "WorkflowId":{"shape":"WorkflowId"},
         "Executions":{"shape":"ListedExecutions"}
+      }
+    },
+    "ListHostKeysRequest":{
+      "type":"structure",
+      "required":["ServerId"],
+      "members":{
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "ServerId":{"shape":"ServerId"}
+      }
+    },
+    "ListHostKeysResponse":{
+      "type":"structure",
+      "required":[
+        "ServerId",
+        "HostKeys"
+      ],
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "ServerId":{"shape":"ServerId"},
+        "HostKeys":{"shape":"ListedHostKeys"}
       }
     },
     "ListProfilesRequest":{
@@ -2142,6 +2321,22 @@
     "ListedExecutions":{
       "type":"list",
       "member":{"shape":"ListedExecution"}
+    },
+    "ListedHostKey":{
+      "type":"structure",
+      "required":["Arn"],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "HostKeyId":{"shape":"HostKeyId"},
+        "Fingerprint":{"shape":"HostKeyFingerprint"},
+        "Description":{"shape":"HostKeyDescription"},
+        "Type":{"shape":"HostKeyType"},
+        "DateImported":{"shape":"DateImported"}
+      }
+    },
+    "ListedHostKeys":{
+      "type":"list",
+      "member":{"shape":"ListedHostKey"}
     },
     "ListedProfile":{
       "type":"structure",
@@ -2846,6 +3041,30 @@
       "required":["ConnectorId"],
       "members":{
         "ConnectorId":{"shape":"ConnectorId"}
+      }
+    },
+    "UpdateHostKeyRequest":{
+      "type":"structure",
+      "required":[
+        "ServerId",
+        "HostKeyId",
+        "Description"
+      ],
+      "members":{
+        "ServerId":{"shape":"ServerId"},
+        "HostKeyId":{"shape":"HostKeyId"},
+        "Description":{"shape":"HostKeyDescription"}
+      }
+    },
+    "UpdateHostKeyResponse":{
+      "type":"structure",
+      "required":[
+        "ServerId",
+        "HostKeyId"
+      ],
+      "members":{
+        "ServerId":{"shape":"ServerId"},
+        "HostKeyId":{"shape":"HostKeyId"}
       }
     },
     "UpdateProfileRequest":{

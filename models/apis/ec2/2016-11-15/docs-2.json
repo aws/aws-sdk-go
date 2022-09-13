@@ -73,7 +73,7 @@
     "CreateKeyPair": "<p>Creates an ED25519 or 2048-bit RSA key pair with the specified name and in the specified PEM or PPK format. Amazon EC2 stores the public key and displays the private key for you to save to a file. The private key is returned as an unencrypted PEM encoded PKCS#1 private key or an unencrypted PPK formatted private key for use with PuTTY. If a key with the specified name already exists, Amazon EC2 returns an error.</p> <p>The key pair returned to you is available only in the Amazon Web Services Region in which you create it. If you prefer, you can create your own key pair using a third-party tool and upload it to any Region using <a>ImportKeyPair</a>.</p> <p>You can have up to 5,000 key pairs per Amazon Web Services Region.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Amazon EC2 key pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateLaunchTemplate": "<p>Creates a launch template.</p> <p>A launch template contains the parameters to launch an instance. When you launch an instance using <a>RunInstances</a>, you can specify a launch template instead of providing the launch parameters in the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html\">Launch an instance from a launch template</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>If you want to clone an existing launch template as the basis for creating a new launch template, you can use the Amazon EC2 console. The API, SDKs, and CLI do not support cloning a template. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#create-launch-template-from-existing-launch-template\">Create a launch template from an existing launch template</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateLaunchTemplateVersion": "<p>Creates a new version of a launch template. You can specify an existing version of launch template from which to base the new version.</p> <p>Launch template versions are numbered in the order in which they are created. You cannot specify, change, or replace the numbering of launch template versions.</p> <p>Launch templates are immutable; after you create a launch template, you can't modify it. Instead, you can create a new version of the launch template that includes any changes you require.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#manage-launch-template-versions\">Modify a launch template (manage launch template versions)</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-    "CreateLocalGatewayRoute": "<p>Creates a static route for the specified local gateway route table.</p>",
+    "CreateLocalGatewayRoute": "<p>Creates a static route for the specified local gateway route table. You must specify one of the following targets: </p> <ul> <li> <p> <code>LocalGatewayVirtualInterfaceGroupId</code> </p> </li> <li> <p> <code>NetworkInterfaceId</code> </p> </li> </ul>",
     "CreateLocalGatewayRouteTableVpcAssociation": "<p>Associates the specified VPC with the specified local gateway route table.</p>",
     "CreateManagedPrefixList": "<p>Creates a managed prefix list. You can specify one or more entries for the prefix list. Each entry consists of a CIDR block and an optional description.</p>",
     "CreateNatGateway": "<p>Creates a NAT gateway in the specified subnet. This action creates a network interface in the specified subnet with a private IP address from the IP address range of the subnet. You can create either a public NAT gateway or a private NAT gateway.</p> <p>With a public NAT gateway, internet-bound traffic from a private subnet can be routed to the NAT gateway, so that instances in a private subnet can connect to the internet.</p> <p>With a private NAT gateway, private communication is routed across VPCs and on-premises networks through a transit gateway or virtual private gateway. Common use cases include running large workloads behind a small pool of allowlisted IPv4 addresses, preserving private IPv4 addresses, and communicating between overlapping networks.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html\">NAT gateways</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
@@ -441,6 +441,7 @@
     "ModifyIpamResourceCidr": "<p>Modify a resource CIDR. You can use this action to transfer resource CIDRs between scopes and ignore resource CIDRs that you do not want to manage. If set to false, the resource will not be tracked for overlap, it cannot be auto-imported into a pool, and it will be removed from any pool it has an allocation in.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/move-resource-ipam.html\">Move resource CIDRs between scopes</a> and <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/change-monitoring-state-ipam.html\">Change the monitoring state of resource CIDRs</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>",
     "ModifyIpamScope": "<p>Modify an IPAM scope.</p>",
     "ModifyLaunchTemplate": "<p>Modifies a launch template. You can specify which version of the launch template to set as the default version. When launching an instance, the default version applies when a launch template version is not specified.</p>",
+    "ModifyLocalGatewayRoute": "<p>Modifies the specified local gateway route.</p>",
     "ModifyManagedPrefixList": "<p>Modifies the specified managed prefix list.</p> <p>Adding or removing entries in a prefix list creates a new version of the prefix list. Changing the name of the prefix list does not affect the version.</p> <p>If you specify a current version number that does not match the true current version number, the request fails.</p>",
     "ModifyNetworkInterfaceAttribute": "<p>Modifies the specified network interface attribute. You can specify only one attribute at a time. You can use this action to attach and detach security groups from an existing EC2 instance.</p>",
     "ModifyPrivateDnsNameOptions": "<p>Modifies the options for instance hostnames for the specified instance.</p>",
@@ -2234,6 +2235,7 @@
         "ModifyIpamResourceCidrRequest$Monitored": "<p>Determines if the resource is monitored by IPAM. If a resource is monitored, the resource is discovered by IPAM and you can view details about the resource’s CIDR.</p>",
         "ModifyIpamScopeRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyLaunchTemplateRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ModifyLocalGatewayRouteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyManagedPrefixListRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyNetworkInterfaceAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyPrivateDnsNameOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -3260,6 +3262,7 @@
     "CoipPoolId": {
       "base": null,
       "refs": {
+        "LocalGatewayRoute$CoipPoolId": "<p>The ID of the customer-owned address pool.</p>",
         "ModifySubnetAttributeRequest$CustomerOwnedIpv4Pool": "<p>The customer-owned IPv4 address pool associated with the subnet.</p> <p>You must set this value when you specify <code>true</code> for <code>MapCustomerOwnedIpOnLaunch</code>.</p>",
         "Subnet$CustomerOwnedIpv4Pool": "<p>The customer-owned IPv4 address pool associated with the subnet.</p>"
       }
@@ -12119,7 +12122,8 @@
       "refs": {
         "CreateLocalGatewayRouteResult$Route": "<p>Information about the route.</p>",
         "DeleteLocalGatewayRouteResult$Route": "<p>Information about the route.</p>",
-        "LocalGatewayRouteList$member": null
+        "LocalGatewayRouteList$member": null,
+        "ModifyLocalGatewayRouteResult$Route": null
       }
     },
     "LocalGatewayRouteList": {
@@ -12144,6 +12148,12 @@
       "base": null,
       "refs": {
         "DescribeLocalGatewayRouteTablesRequest$LocalGatewayRouteTableIds": "<p>The IDs of the local gateway route tables.</p>"
+      }
+    },
+    "LocalGatewayRouteTableMode": {
+      "base": null,
+      "refs": {
+        "LocalGatewayRouteTable$Mode": "<p>The mode of the local gateway route table.</p>"
       }
     },
     "LocalGatewayRouteTableSet": {
@@ -12220,6 +12230,7 @@
         "DeleteLocalGatewayRouteRequest$LocalGatewayRouteTableId": "<p>The ID of the local gateway route table.</p>",
         "LocalGatewayRoute$LocalGatewayRouteTableId": "<p>The ID of the local gateway route table.</p>",
         "LocalGatewayRouteTableIdSet$member": null,
+        "ModifyLocalGatewayRouteRequest$LocalGatewayRouteTableId": "<p>The ID of the local gateway route table.</p>",
         "SearchLocalGatewayRoutesRequest$LocalGatewayRouteTableId": "<p>The ID of the local gateway route table.</p>"
       }
     },
@@ -12792,6 +12803,16 @@
       }
     },
     "ModifyLaunchTemplateResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyLocalGatewayRouteRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyLocalGatewayRouteResult": {
       "base": null,
       "refs": {
       }
@@ -13501,6 +13522,7 @@
         "AssociateTrunkInterfaceRequest$BranchInterfaceId": "<p>The ID of the branch network interface.</p>",
         "AssociateTrunkInterfaceRequest$TrunkInterfaceId": "<p>The ID of the trunk network interface.</p>",
         "AttachNetworkInterfaceRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "CreateLocalGatewayRouteRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "CreateNetworkInterfacePermissionRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "CreateRouteRequest$NetworkInterfaceId": "<p>The ID of a network interface.</p>",
         "CreateTrafficMirrorSessionRequest$NetworkInterfaceId": "<p>The ID of the source network interface.</p>",
@@ -13510,6 +13532,8 @@
         "InstanceNetworkInterfaceSpecification$NetworkInterfaceId": "<p>The ID of the network interface.</p> <p>If you are creating a Spot Fleet, omit this parameter because you can’t specify a network interface ID in a launch specification.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "LocalGatewayRoute$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "ModifyLocalGatewayRouteRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "ModifyNetworkInterfaceAttributeRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "NetworkInterfaceIdList$member": null,
         "ReplaceRouteRequest$NetworkInterfaceId": "<p>The ID of a network interface.</p>",
@@ -17722,6 +17746,7 @@
         "ModifyIpamScopeRequest$Description": "<p>The description of the scope you want to modify.</p>",
         "ModifyLaunchTemplateRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p> <p>Constraint: Maximum 128 ASCII characters.</p>",
         "ModifyLaunchTemplateRequest$DefaultVersion": "<p>The version number of the launch template to set as the default version.</p>",
+        "ModifyLocalGatewayRouteRequest$DestinationCidrBlock": "<p>The CIDR block used for destination matches. The value that you provide must match the CIDR of an existing route in the table.</p>",
         "ModifyManagedPrefixListRequest$PrefixListName": "<p>A name for the prefix list.</p>",
         "ModifyReservedInstancesRequest$ClientToken": "<p>A unique, case-sensitive token you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "ModifyReservedInstancesResult$ReservedInstancesModificationId": "<p>The ID for the modification.</p>",
@@ -18521,6 +18546,7 @@
         "LaunchTemplateInstanceNetworkInterfaceSpecification$SubnetId": "<p>The ID of the subnet for the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$SubnetId": "<p>The ID of the subnet for the network interface.</p>",
         "LaunchTemplateOverrides$SubnetId": "<p>The ID of the subnet in which to launch the instances.</p>",
+        "LocalGatewayRoute$SubnetId": "<p>The ID of the subnet.</p>",
         "ModifySubnetAttributeRequest$SubnetId": "<p>The ID of the subnet.</p>",
         "RequestSpotLaunchSpecification$SubnetId": "<p>The ID of the subnet in which to launch the instance.</p>",
         "RunInstancesRequest$SubnetId": "<p>[EC2-VPC] The ID of the subnet to launch the instance into.</p> <p>If you specify a network interface, you must specify any subnets as part of the network interface.</p>",

@@ -655,6 +655,10 @@
       },
       "exception":true
     },
+    "AppConfigResourceId":{
+      "type":"string",
+      "pattern":"[a-z0-9]{4,7}"
+    },
     "Arn":{
       "type":"string",
       "max":2048,
@@ -814,6 +818,7 @@
       "type":"structure",
       "required":["name"],
       "members":{
+        "appConfigResource":{"shape":"ProjectAppConfigResourceConfig"},
         "dataDelivery":{"shape":"ProjectDataDeliveryConfig"},
         "description":{"shape":"Description"},
         "name":{"shape":"ProjectName"},
@@ -2025,6 +2030,7 @@
       "members":{
         "activeExperimentCount":{"shape":"Long"},
         "activeLaunchCount":{"shape":"Long"},
+        "appConfigResource":{"shape":"ProjectAppConfigResource"},
         "arn":{"shape":"ProjectArn"},
         "createdTime":{"shape":"Timestamp"},
         "dataDelivery":{"shape":"ProjectDataDelivery"},
@@ -2036,6 +2042,26 @@
         "name":{"shape":"ProjectName"},
         "status":{"shape":"ProjectStatus"},
         "tags":{"shape":"TagMap"}
+      }
+    },
+    "ProjectAppConfigResource":{
+      "type":"structure",
+      "required":[
+        "applicationId",
+        "configurationProfileId",
+        "environmentId"
+      ],
+      "members":{
+        "applicationId":{"shape":"AppConfigResourceId"},
+        "configurationProfileId":{"shape":"AppConfigResourceId"},
+        "environmentId":{"shape":"AppConfigResourceId"}
+      }
+    },
+    "ProjectAppConfigResourceConfig":{
+      "type":"structure",
+      "members":{
+        "applicationId":{"shape":"AppConfigResourceId"},
+        "environmentId":{"shape":"AppConfigResourceId"}
       }
     },
     "ProjectArn":{
@@ -2765,6 +2791,7 @@
       "type":"structure",
       "required":["project"],
       "members":{
+        "appConfigResource":{"shape":"ProjectAppConfigResourceConfig"},
         "description":{"shape":"Description"},
         "project":{
           "shape":"ProjectRef",
