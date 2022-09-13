@@ -1343,7 +1343,8 @@
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"},
         "ObjectTypeNames":{"shape":"ObjectTypeNames"},
-        "WorkflowId":{"shape":"string1To255"}
+        "WorkflowId":{"shape":"string1To255"},
+        "IsUnstructured":{"shape":"optionalBoolean"}
       }
     },
     "GetMatchesRequest":{
@@ -1720,7 +1721,8 @@
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"},
         "ObjectTypeNames":{"shape":"ObjectTypeNames"},
-        "WorkflowId":{"shape":"string1To255"}
+        "WorkflowId":{"shape":"string1To255"},
+        "IsUnstructured":{"shape":"optionalBoolean"}
       }
     },
     "ListIntegrationsRequest":{
@@ -2191,7 +2193,8 @@
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"},
         "ObjectTypeNames":{"shape":"ObjectTypeNames"},
-        "WorkflowId":{"shape":"string1To255"}
+        "WorkflowId":{"shape":"string1To255"},
+        "IsUnstructured":{"shape":"optionalBoolean"}
       }
     },
     "PutProfileObjectRequest":{

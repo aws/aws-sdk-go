@@ -3923,6 +3923,15 @@
       "input":{"shape":"ModifyLaunchTemplateRequest"},
       "output":{"shape":"ModifyLaunchTemplateResult"}
     },
+    "ModifyLocalGatewayRoute":{
+      "name":"ModifyLocalGatewayRoute",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyLocalGatewayRouteRequest"},
+      "output":{"shape":"ModifyLocalGatewayRouteResult"}
+    },
     "ModifyManagedPrefixList":{
       "name":"ModifyManagedPrefixList",
       "http":{
@@ -4800,7 +4809,9 @@
         "t4",
         "m60",
         "radeon-pro-v520",
-        "vu9p"
+        "vu9p",
+        "inferentia",
+        "k520"
       ]
     },
     "AcceleratorNameSet":{
@@ -9564,14 +9575,14 @@
       "type":"structure",
       "required":[
         "DestinationCidrBlock",
-        "LocalGatewayRouteTableId",
-        "LocalGatewayVirtualInterfaceGroupId"
+        "LocalGatewayRouteTableId"
       ],
       "members":{
         "DestinationCidrBlock":{"shape":"String"},
         "LocalGatewayRouteTableId":{"shape":"LocalGatewayRoutetableId"},
         "LocalGatewayVirtualInterfaceGroupId":{"shape":"LocalGatewayVirtualInterfaceGroupId"},
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "NetworkInterfaceId":{"shape":"NetworkInterfaceId"}
       }
     },
     "CreateLocalGatewayRouteResult":{
@@ -27153,6 +27164,18 @@
         "OwnerId":{
           "shape":"String",
           "locationName":"ownerId"
+        },
+        "SubnetId":{
+          "shape":"SubnetId",
+          "locationName":"subnetId"
+        },
+        "CoipPoolId":{
+          "shape":"CoipPoolId",
+          "locationName":"coipPoolId"
+        },
+        "NetworkInterfaceId":{
+          "shape":"NetworkInterfaceId",
+          "locationName":"networkInterfaceId"
         }
       }
     },
@@ -27203,6 +27226,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "Mode":{
+          "shape":"LocalGatewayRouteTableMode",
+          "locationName":"mode"
         }
       }
     },
@@ -27212,6 +27239,13 @@
         "shape":"LocalGatewayRoutetableId",
         "locationName":"item"
       }
+    },
+    "LocalGatewayRouteTableMode":{
+      "type":"string",
+      "enum":[
+        "direct-vpc-routing",
+        "coip"
+      ]
     },
     "LocalGatewayRouteTableSet":{
       "type":"list",
@@ -28278,6 +28312,29 @@
         "LaunchTemplate":{
           "shape":"LaunchTemplate",
           "locationName":"launchTemplate"
+        }
+      }
+    },
+    "ModifyLocalGatewayRouteRequest":{
+      "type":"structure",
+      "required":[
+        "DestinationCidrBlock",
+        "LocalGatewayRouteTableId",
+        "NetworkInterfaceId"
+      ],
+      "members":{
+        "DestinationCidrBlock":{"shape":"String"},
+        "LocalGatewayRouteTableId":{"shape":"LocalGatewayRoutetableId"},
+        "NetworkInterfaceId":{"shape":"NetworkInterfaceId"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifyLocalGatewayRouteResult":{
+      "type":"structure",
+      "members":{
+        "Route":{
+          "shape":"LocalGatewayRoute",
+          "locationName":"route"
         }
       }
     },

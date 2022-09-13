@@ -13,6 +13,7 @@
     "DeleteAgreement": "<p>Delete the agreement that's specified in the provided <code>AgreementId</code>.</p>",
     "DeleteCertificate": "<p>Deletes the certificate that's specified in the <code>CertificateId</code> parameter.</p>",
     "DeleteConnector": "<p>Deletes the agreement that's specified in the provided <code>ConnectorId</code>.</p>",
+    "DeleteHostKey": "<p>Deletes the host key that's specified in the <code>HoskKeyId</code> parameter.</p>",
     "DeleteProfile": "<p>Deletes the profile that's specified in the <code>ProfileId</code> parameter.</p>",
     "DeleteServer": "<p>Deletes the file transfer protocol-enabled server that you specify.</p> <p>No response returns from this operation.</p>",
     "DeleteSshPublicKey": "<p>Deletes a user's Secure Shell (SSH) public key.</p>",
@@ -23,18 +24,21 @@
     "DescribeCertificate": "<p>Describes the certificate that's identified by the <code>CertificateId</code>.</p>",
     "DescribeConnector": "<p>Describes the connector that's identified by the <code>ConnectorId.</code> </p>",
     "DescribeExecution": "<p>You can use <code>DescribeExecution</code> to check the details of the execution of the specified workflow.</p>",
+    "DescribeHostKey": "<p>Returns the details of the host key that's specified by the <code>HostKeyId</code> and <code>ServerId</code>.</p>",
     "DescribeProfile": "<p>Returns the details of the profile that's specified by the <code>ProfileId</code>.</p>",
     "DescribeSecurityPolicy": "<p>Describes the security policy that is attached to your file transfer protocol-enabled server. The response contains a description of the security policy's properties. For more information about security policies, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/security-policies.html\">Working with security policies</a>.</p>",
     "DescribeServer": "<p>Describes a file transfer protocol-enabled server that you specify by passing the <code>ServerId</code> parameter.</p> <p>The response contains a description of a server's properties. When you set <code>EndpointType</code> to VPC, the response will contain the <code>EndpointDetails</code>.</p>",
     "DescribeUser": "<p>Describes the user assigned to the specific file transfer protocol-enabled server, as identified by its <code>ServerId</code> property.</p> <p>The response from this call returns the properties of the user associated with the <code>ServerId</code> value that was specified.</p>",
     "DescribeWorkflow": "<p>Describes the specified workflow.</p>",
     "ImportCertificate": "<p>Imports the signing and encryption certificates that you need to create local (AS2) profiles and partner profiles.</p>",
+    "ImportHostKey": "<p>Adds a host key to the server specified by the <code>ServerId</code> parameter.</p>",
     "ImportSshPublicKey": "<p>Adds a Secure Shell (SSH) public key to a user account identified by a <code>UserName</code> value assigned to the specific file transfer protocol-enabled server, identified by <code>ServerId</code>.</p> <p>The response returns the <code>UserName</code> value, the <code>ServerId</code> value, and the name of the <code>SshPublicKeyId</code>.</p>",
     "ListAccesses": "<p>Lists the details for all the accesses you have on your server.</p>",
     "ListAgreements": "<p>Returns a list of the agreements for the server that's identified by the <code>ServerId</code> that you supply. If you want to limit the results to a certain number, supply a value for the <code>MaxResults</code> parameter. If you ran the command previously and received a value for <code>NextToken</code>, you can supply that value to continue listing agreements from where you left off.</p>",
     "ListCertificates": "<p>Returns a list of the current certificates that have been imported into Transfer Family. If you want to limit the results to a certain number, supply a value for the <code>MaxResults</code> parameter. If you ran the command previously and received a value for the <code>NextToken</code> parameter, you can supply that value to continue listing certificates from where you left off.</p>",
     "ListConnectors": "<p>Lists the connectors for the specified Region.</p>",
     "ListExecutions": "<p>Lists all executions for the specified workflow.</p>",
+    "ListHostKeys": "<p>Returns a list of host keys for the server specified by the <code>ServerId</code> paramter.</p>",
     "ListProfiles": "<p>Returns a list of the profiles for your system. If you want to limit the results to a certain number, supply a value for the <code>MaxResults</code> parameter. If you ran the command previously and received a value for <code>NextToken</code>, you can supply that value to continue listing profiles from where you left off.</p>",
     "ListSecurityPolicies": "<p>Lists the security policies that are attached to your file transfer protocol-enabled servers.</p>",
     "ListServers": "<p>Lists the file transfer protocol-enabled servers that are associated with your Amazon Web Services account.</p>",
@@ -52,6 +56,7 @@
     "UpdateAgreement": "<p>Updates some of the parameters for an existing agreement. Provide the <code>AgreementId</code> and the <code>ServerId</code> for the agreement that you want to update, along with the new values for the parameters to update.</p>",
     "UpdateCertificate": "<p>Updates the active and inactive dates for a certificate.</p>",
     "UpdateConnector": "<p>Updates some of the parameters for an existing connector. Provide the <code>ConnectorId</code> for the connector that you want to update, along with the new values for the parameters to update.</p>",
+    "UpdateHostKey": "<p>Updates the description for the host key specified by the specified by the <code>ServerId</code> and <code>HostKeyId</code> parameters.</p>",
     "UpdateProfile": "<p>Updates some of the parameters for an existing profile. Provide the <code>ProfileId</code> for the profile that you want to update, along with the new values for the parameters to update.</p>",
     "UpdateServer": "<p>Updates the file transfer protocol-enabled server's properties after that server has been created.</p> <p>The <code>UpdateServer</code> call returns the <code>ServerId</code> of the server you updated.</p>",
     "UpdateUser": "<p>Assigns new properties to a user. Parameters you pass modify any or all of the following: the home directory, role, and policy for the <code>UserName</code> and <code>ServerId</code> you specify.</p> <p>The response returns the <code>ServerId</code> and the <code>UserName</code> for the updated user.</p>"
@@ -101,6 +106,7 @@
         "DescribedAgreement$Arn": "<p>The unique Amazon Resource Name (ARN) for the agreement.</p>",
         "DescribedCertificate$Arn": "<p>The unique Amazon Resource Name (ARN) for the certificate.</p>",
         "DescribedConnector$Arn": "<p>The unique Amazon Resource Name (ARN) for the connector.</p>",
+        "DescribedHostKey$Arn": "<p>The unique Amazon Resource Name (ARN) for the host key.</p>",
         "DescribedProfile$Arn": "<p>The unique Amazon Resource Name (ARN) for the profile.</p>",
         "DescribedServer$Arn": "<p>Specifies the unique Amazon Resource Name (ARN) of the server.</p>",
         "DescribedUser$Arn": "<p>Specifies the unique Amazon Resource Name (ARN) for the user that was requested to be described.</p>",
@@ -110,6 +116,7 @@
         "ListedAgreement$Arn": "<p>The Amazon Resource Name (ARN) of the specified agreement.</p>",
         "ListedCertificate$Arn": "<p>The Amazon Resource Name (ARN) of the specified certificate.</p>",
         "ListedConnector$Arn": "<p>The Amazon Resource Name (ARN) of the specified connector.</p>",
+        "ListedHostKey$Arn": "<p>Specifies the unique Amazon Resource Name (ARN) of the host key.</p>",
         "ListedProfile$Arn": "<p>The Amazon Resource Name (ARN) of the specified profile.</p>",
         "ListedServer$Arn": "<p>Specifies the unique Amazon Resource Name (ARN) for a server to be listed.</p>",
         "ListedUser$Arn": "<p>Provides the unique Amazon Resource Name (ARN) for the user that you want to learn about.</p>",
@@ -365,6 +372,8 @@
     "DateImported": {
       "base": null,
       "refs": {
+        "DescribedHostKey$DateImported": "<p>The date on which the host key was added to the server.</p>",
+        "ListedHostKey$DateImported": "<p>The date on which the host key was added to the server.</p>",
         "SshPublicKey$DateImported": "<p>Specifies the date that the public key was added to the user account.</p>"
       }
     },
@@ -384,6 +393,11 @@
       }
     },
     "DeleteConnectorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteHostKeyRequest": {
       "base": null,
       "refs": {
       }
@@ -469,6 +483,16 @@
       "refs": {
       }
     },
+    "DescribeHostKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeHostKeyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeProfileRequest": {
       "base": null,
       "refs": {
@@ -547,6 +571,12 @@
       "base": "<p>The details for an execution object.</p>",
       "refs": {
         "DescribeExecutionResponse$Execution": "<p>The structure that contains the details of the workflow' execution.</p>"
+      }
+    },
+    "DescribedHostKey": {
+      "base": "<p>The details for a server host key.</p>",
+      "refs": {
+        "DescribeHostKeyResponse$HostKey": "<p>Returns the details for the specified host key.</p>"
       }
     },
     "DescribedProfile": {
@@ -795,13 +825,44 @@
       "base": null,
       "refs": {
         "CreateServerRequest$HostKey": "<p>The RSA, ECDSA, or ED25519 private key to use for your server.</p> <p>Use the following command to generate an RSA 2048 bit key with no passphrase:</p> <p> <code>ssh-keygen -t rsa -b 2048 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Use a minimum value of 2048 for the <code>-b</code> option. You can create a stronger key by using 3072 or 4096.</p> <p>Use the following command to generate an ECDSA 256 bit key with no passphrase:</p> <p> <code>ssh-keygen -t ecdsa -b 256 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Valid values for the <code>-b</code> option for ECDSA are 256, 384, and 521.</p> <p>Use the following command to generate an ED25519 key with no passphrase:</p> <p> <code>ssh-keygen -t ed25519 -N \"\" -f my-new-server-key</code>.</p> <p>For all of these commands, you can replace <i>my-new-server-key</i> with a string of your choice.</p> <important> <p>If you aren't planning to migrate existing users from an existing SFTP-enabled server to a new server, don't update the host key. Accidentally changing a server's host key can be disruptive.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key\">Change the host key for your SFTP-enabled server</a> in the <i>Transfer Family User Guide</i>.</p>",
+        "ImportHostKeyRequest$HostKeyBody": "<p>The public key portion of an SSH key pair.</p> <p>Transfer Family accepts RSA, ECDSA, and ED25519 keys.</p>",
         "UpdateServerRequest$HostKey": "<p>The RSA, ECDSA, or ED25519 private key to use for your server.</p> <p>Use the following command to generate an RSA 2048 bit key with no passphrase:</p> <p> <code>ssh-keygen -t rsa -b 2048 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Use a minimum value of 2048 for the <code>-b</code> option. You can create a stronger key by using 3072 or 4096.</p> <p>Use the following command to generate an ECDSA 256 bit key with no passphrase:</p> <p> <code>ssh-keygen -t ecdsa -b 256 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Valid values for the <code>-b</code> option for ECDSA are 256, 384, and 521.</p> <p>Use the following command to generate an ED25519 key with no passphrase:</p> <p> <code>ssh-keygen -t ed25519 -N \"\" -f my-new-server-key</code>.</p> <p>For all of these commands, you can replace <i>my-new-server-key</i> with a string of your choice.</p> <important> <p>If you aren't planning to migrate existing users from an existing SFTP-enabled server to a new server, don't update the host key. Accidentally changing a server's host key can be disruptive.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key\">Change the host key for your SFTP-enabled server</a> in the <i>Transfer Family User Guide</i>.</p>"
+      }
+    },
+    "HostKeyDescription": {
+      "base": null,
+      "refs": {
+        "DescribedHostKey$Description": "<p>The text description for this host key.</p>",
+        "ImportHostKeyRequest$Description": "<p>Enter a text description to identify this host key.</p>",
+        "ListedHostKey$Description": "<p>The current description for the host key. You can change it by calling the <code>UpdateHostKey</code> operation and providing a new description.</p>",
+        "UpdateHostKeyRequest$Description": "<p>Provide an updated description for the host key.</p>"
       }
     },
     "HostKeyFingerprint": {
       "base": null,
       "refs": {
-        "DescribedServer$HostKeyFingerprint": "<p>Specifies the Base64-encoded SHA256 fingerprint of the server's host key. This value is equivalent to the output of the <code>ssh-keygen -l -f my-new-server-key</code> command.</p>"
+        "DescribedHostKey$HostKeyFingerprint": "<p>The public key fingerprint, which is a short sequence of bytes used to identify the longer public key.</p>",
+        "DescribedServer$HostKeyFingerprint": "<p>Specifies the Base64-encoded SHA256 fingerprint of the server's host key. This value is equivalent to the output of the <code>ssh-keygen -l -f my-new-server-key</code> command.</p>",
+        "ListedHostKey$Fingerprint": "<p>The public key fingerprint, which is a short sequence of bytes used to identify the longer public key.</p>"
+      }
+    },
+    "HostKeyId": {
+      "base": null,
+      "refs": {
+        "DeleteHostKeyRequest$HostKeyId": "<p>The ID of the host key that you are deleting.</p>",
+        "DescribeHostKeyRequest$HostKeyId": "<p>Provide the ID of the host key that you want described.</p>",
+        "DescribedHostKey$HostKeyId": "<p>A unique identifier for the host key.</p>",
+        "ImportHostKeyResponse$HostKeyId": "<p>Returns the host key ID for the imported key.</p>",
+        "ListedHostKey$HostKeyId": "<p/>",
+        "UpdateHostKeyRequest$HostKeyId": "<p>Provide the ID of the host key that you are updating.</p>",
+        "UpdateHostKeyResponse$HostKeyId": "<p>Returns the host key ID for the updated host key.</p>"
+      }
+    },
+    "HostKeyType": {
+      "base": null,
+      "refs": {
+        "DescribedHostKey$Type": "<p>The encryption algorithm used for the host key. The <code>Type</code> is one of the following values:</p> <ul> <li> <p>ssh-rsa</p> </li> <li> <p>ssh-ed25519</p> </li> <li> <p>ecdsa-sha2-nistp256 </p> </li> <li> <p>ecdsa-sha2-nistp384</p> </li> <li> <p>ecdsa-sha2-nistp521</p> </li> </ul>",
+        "ListedHostKey$Type": "<p>The encryption algorithm used for the host key. The <code>Type</code> is one of the following values:</p> <ul> <li> <p>ssh-rsa</p> </li> <li> <p>ssh-ed25519</p> </li> <li> <p>ecdsa-sha2-nistp256 </p> </li> <li> <p>ecdsa-sha2-nistp384</p> </li> <li> <p>ecdsa-sha2-nistp521</p> </li> </ul>"
       }
     },
     "IdentityProviderDetails": {
@@ -826,6 +887,16 @@
       }
     },
     "ImportCertificateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ImportHostKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ImportHostKeyResponse": {
       "base": null,
       "refs": {
       }
@@ -907,6 +978,16 @@
       }
     },
     "ListExecutionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListHostKeysRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListHostKeysResponse": {
       "base": null,
       "refs": {
       }
@@ -1031,6 +1112,18 @@
         "ListExecutionsResponse$Executions": "<p>Returns the details for each execution.</p> <ul> <li> <p> <b>NextToken</b>: returned from a call to several APIs, you can use pass it to a subsequent command to continue listing additional executions.</p> </li> <li> <p> <b>StartTime</b>: timestamp indicating when the execution began.</p> </li> <li> <p> <b>Executions</b>: details of the execution, including the execution ID, initial file location, and Service metadata.</p> </li> <li> <p> <b>Status</b>: one of the following values: <code>IN_PROGRESS</code>, <code>COMPLETED</code>, <code>EXCEPTION</code>, <code>HANDLING_EXEPTION</code>. </p> </li> </ul>"
       }
     },
+    "ListedHostKey": {
+      "base": "<p>Returns properties of the host key that is specified.</p>",
+      "refs": {
+        "ListedHostKeys$member": null
+      }
+    },
+    "ListedHostKeys": {
+      "base": null,
+      "refs": {
+        "ListHostKeysResponse$HostKeys": "<p>Returns an array, where each item contains the details of a host key.</p>"
+      }
+    },
     "ListedProfile": {
       "base": "<p>Returns the properties of the profile that was specified.</p>",
       "refs": {
@@ -1111,6 +1204,7 @@
         "ListCertificatesRequest$MaxResults": "<p>The maximum number of certificates to return.</p>",
         "ListConnectorsRequest$MaxResults": "<p>The maximum number of connectors to return.</p>",
         "ListExecutionsRequest$MaxResults": "<p>Specifies the maximum number of executions to return.</p>",
+        "ListHostKeysRequest$MaxResults": "<p>The maximum number of host keys to return.</p>",
         "ListProfilesRequest$MaxResults": "<p>The maximum number of profiles to return.</p>",
         "ListSecurityPoliciesRequest$MaxResults": "<p>Specifies the number of security policies to return as a response to the <code>ListSecurityPolicies</code> query.</p>",
         "ListServersRequest$MaxResults": "<p>Specifies the number of servers to return as a response to the <code>ListServers</code> query.</p>",
@@ -1162,6 +1256,8 @@
         "ListConnectorsResponse$NextToken": "<p>Returns a token that you can use to call <code>ListConnectors</code> again and receive additional results, if there are any.</p>",
         "ListExecutionsRequest$NextToken": "<p> <code>ListExecutions</code> returns the <code>NextToken</code> parameter in the output. You can then pass the <code>NextToken</code> parameter in a subsequent command to continue listing additional executions.</p> <p> This is useful for pagination, for instance. If you have 100 executions for a workflow, you might only want to list first 10. If so, call the API by specifying the <code>max-results</code>: </p> <p> <code>aws transfer list-executions --max-results 10</code> </p> <p> This returns details for the first 10 executions, as well as the pointer (<code>NextToken</code>) to the eleventh execution. You can now call the API again, supplying the <code>NextToken</code> value you received: </p> <p> <code>aws transfer list-executions --max-results 10 --next-token $somePointerReturnedFromPreviousListResult</code> </p> <p> This call returns the next 10 executions, the 11th through the 20th. You can then repeat the call until the details for all 100 executions have been returned. </p>",
         "ListExecutionsResponse$NextToken": "<p> <code>ListExecutions</code> returns the <code>NextToken</code> parameter in the output. You can then pass the <code>NextToken</code> parameter in a subsequent command to continue listing additional executions.</p>",
+        "ListHostKeysRequest$NextToken": "<p>When there are additional results that were not returned, a <code>NextToken</code> parameter is returned. You can use that value for a subsequent call to <code>ListHostKeys</code> to continue listing results.</p>",
+        "ListHostKeysResponse$NextToken": "<p>Returns a token that you can use to call <code>ListHostKeys</code> again and receive additional results, if there are any.</p>",
         "ListProfilesRequest$NextToken": "<p>When there are additional results that were not returned, a <code>NextToken</code> parameter is returned. You can use that value for a subsequent call to <code>ListProfiles</code> to continue listing results.</p>",
         "ListProfilesResponse$NextToken": "<p>Returns a token that you can use to call <code>ListProfiles</code> again and receive additional results, if there are any.</p>",
         "ListSecurityPoliciesRequest$NextToken": "<p>When additional results are obtained from the <code>ListSecurityPolicies</code> command, a <code>NextToken</code> parameter is returned in the output. You can then pass the <code>NextToken</code> parameter in a subsequent command to continue listing additional security policies.</p>",
@@ -1505,22 +1601,28 @@
         "CreateUserResponse$ServerId": "<p>The ID of the server that the user is attached to.</p>",
         "DeleteAccessRequest$ServerId": "<p>A system-assigned unique identifier for a server that has this user assigned.</p>",
         "DeleteAgreementRequest$ServerId": "<p>The server ID associated with the agreement that you are deleting.</p>",
+        "DeleteHostKeyRequest$ServerId": "<p>Provide the ID of the server that contains the host key that you are deleting.</p>",
         "DeleteServerRequest$ServerId": "<p>A unique system-assigned identifier for a server instance.</p>",
         "DeleteSshPublicKeyRequest$ServerId": "<p>A system-assigned unique identifier for a file transfer protocol-enabled server instance that has the user assigned to it.</p>",
         "DeleteUserRequest$ServerId": "<p>A system-assigned unique identifier for a server instance that has the user assigned to it.</p>",
         "DescribeAccessRequest$ServerId": "<p>A system-assigned unique identifier for a server that has this access assigned.</p>",
         "DescribeAccessResponse$ServerId": "<p>A system-assigned unique identifier for a server that has this access assigned.</p>",
         "DescribeAgreementRequest$ServerId": "<p>The server ID that's associated with the agreement.</p>",
+        "DescribeHostKeyRequest$ServerId": "<p>Provide the ID of the server that contains the host key that you want described.</p>",
         "DescribeServerRequest$ServerId": "<p>A system-assigned unique identifier for a server.</p>",
         "DescribeUserRequest$ServerId": "<p>A system-assigned unique identifier for a server that has this user assigned.</p>",
         "DescribeUserResponse$ServerId": "<p>A system-assigned unique identifier for a server that has this user assigned.</p>",
         "DescribedAgreement$ServerId": "<p>A system-assigned unique identifier for a server instance. This identifier indicates the specific server that the agreement uses.</p>",
         "DescribedServer$ServerId": "<p>Specifies the unique system-assigned identifier for a server that you instantiate.</p>",
+        "ImportHostKeyRequest$ServerId": "<p>Provide the ID of the server that contains the host key that you are importing.</p>",
+        "ImportHostKeyResponse$ServerId": "<p>Returns the server ID that contains the imported key.</p>",
         "ImportSshPublicKeyRequest$ServerId": "<p>A system-assigned unique identifier for a server.</p>",
         "ImportSshPublicKeyResponse$ServerId": "<p>A system-assigned unique identifier for a server.</p>",
         "ListAccessesRequest$ServerId": "<p>A system-assigned unique identifier for a server that has users assigned to it.</p>",
         "ListAccessesResponse$ServerId": "<p>A system-assigned unique identifier for a server that has users assigned to it.</p>",
         "ListAgreementsRequest$ServerId": "<p>The identifier of the server for which you want a list of agreements.</p>",
+        "ListHostKeysRequest$ServerId": "<p>Provide the ID of the server that contains the host keys that you want to view.</p>",
+        "ListHostKeysResponse$ServerId": "<p>Returns the server ID that contains the listed host keys.</p>",
         "ListUsersRequest$ServerId": "<p>A system-assigned unique identifier for a server that has users assigned to it.</p>",
         "ListUsersResponse$ServerId": "<p>A system-assigned unique identifier for a server that the users are assigned to.</p>",
         "ListedAgreement$ServerId": "<p>The unique identifier for the agreement.</p>",
@@ -1531,6 +1633,8 @@
         "UpdateAccessRequest$ServerId": "<p>A system-assigned unique identifier for a server instance. This is the specific server that you added your user to.</p>",
         "UpdateAccessResponse$ServerId": "<p>The ID of the server that the user is attached to.</p>",
         "UpdateAgreementRequest$ServerId": "<p>A system-assigned unique identifier for a server instance. This is the specific server that the agreement uses.</p>",
+        "UpdateHostKeyRequest$ServerId": "<p>Provide the ID of the server that contains the host key that you are updating.</p>",
+        "UpdateHostKeyResponse$ServerId": "<p>Returns the server ID for the server that contains the updated host key.</p>",
         "UpdateServerRequest$ServerId": "<p>A system-assigned unique identifier for a server instance that the user account is assigned to.</p>",
         "UpdateServerResponse$ServerId": "<p>A system-assigned unique identifier for a server that the user account is assigned to.</p>",
         "UpdateUserRequest$ServerId": "<p>A system-assigned unique identifier for a server instance that the user account is assigned to.</p>",
@@ -1723,11 +1827,13 @@
         "DescribedAgreement$Tags": "<p>Key-value pairs that can be used to group and search for agreements.</p>",
         "DescribedCertificate$Tags": "<p>Key-value pairs that can be used to group and search for certificates.</p>",
         "DescribedConnector$Tags": "<p>Key-value pairs that can be used to group and search for connectors.</p>",
+        "DescribedHostKey$Tags": "<p>Key-value pairs that can be used to group and search for host keys.</p>",
         "DescribedProfile$Tags": "<p>Key-value pairs that can be used to group and search for profiles.</p>",
         "DescribedServer$Tags": "<p>Specifies the key-value pairs that you can use to search for and group servers that were assigned to the server that was described.</p>",
         "DescribedUser$Tags": "<p>Specifies the key-value pairs for the user requested. Tag can be used to search for and group users for a variety of purposes.</p>",
         "DescribedWorkflow$Tags": "<p>Key-value pairs that can be used to group and search for workflows. Tags are metadata attached to workflows for any purpose.</p>",
         "ImportCertificateRequest$Tags": "<p>Key-value pairs that can be used to group and search for certificates.</p>",
+        "ImportHostKeyRequest$Tags": "<p>Key-value pairs that can be used to group and search for host keys.</p>",
         "ListTagsForResourceResponse$Tags": "<p>Key-value pairs that are assigned to a resource, usually for the purpose of grouping and searching for items. Tags are metadata that you define.</p>",
         "TagResourceRequest$Tags": "<p>Key-value pairs assigned to ARNs that you can use to group and search for resources by type. You can attach this metadata to user accounts for any purpose.</p>"
       }
@@ -1800,6 +1906,16 @@
       }
     },
     "UpdateConnectorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateHostKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateHostKeyResponse": {
       "base": null,
       "refs": {
       }

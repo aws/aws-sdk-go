@@ -1,3 +1,17 @@
+Release v1.44.97 (2022-09-13)
+===
+
+### Service Client Updates
+* `service/customer-profiles`: Updates service API and documentation
+* `service/drs`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Two new features for local gateway route tables: support for static routes targeting Elastic Network Interfaces and direct VPC routing.
+* `service/evidently`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * This release enables our customer to choose the option of Sharepoint 2019 for the on-premise Sharepoint connector.
+* `service/transfer`: Updates service API and documentation
+  * This release introduces the ability to have multiple server host keys for any of your Transfer Family servers that use the SFTP protocol.
+
 Release v1.44.96 (2022-09-12)
 ===
 

@@ -569,10 +569,10 @@ func (c *CloudWatchEvidently) CreateSegmentRequest(input *CreateSegmentInput) (r
 //
 // Using a segment in an experiment limits that experiment to evaluate only
 // the users who match the segment criteria. Using one or more segments in a
-// launch allow you to define different traffic splits for the different audience
+// launch allows you to define different traffic splits for the different audience
 // segments.
 //
-//	<p>For more information about segment pattern syntax, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Evidently-segments-syntax.html">
+//	<p>For more information about segment pattern syntax, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Evidently-segments.html#CloudWatch-Evidently-segments-syntax.html">
 //	Segment rule pattern syntax</a>.</p> <p>The pattern that you define for
 //	a segment is matched against the value of <code>evaluationContext</code>,
 //	which is passed into Evidently in the <a href="https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_EvaluateFeature.html">EvaluateFeature</a>
@@ -1344,7 +1344,11 @@ func (c *CloudWatchEvidently) GetExperimentResultsRequest(input *GetExperimentRe
 //
 // Retrieves the results of a running or completed experiment. No results are
 // available until there have been 100 events for each variation and at least
-// 10 minutes have passed since the start of the experiment.
+// 10 minutes have passed since the start of the experiment. To increase the
+// statistical power, Evidently performs an additional offline p-value analysis
+// at the end of the experiment. Offline p-value analysis can detect statistical
+// significance in some cases where the anytime p-values used during the experiment
+// do not find statistical significance.
 //
 // Experiment results are available up to 63 days after the start of the experiment.
 // They are not available after that because of CloudWatch data retention policies.
@@ -4877,6 +4881,20 @@ func (s *CreateLaunchOutput) SetLaunch(v *Launch) *CreateLaunchOutput {
 type CreateProjectInput struct {
 	_ struct{} `type:"structure"`
 
+	// Use this parameter if the project will use client-side evaluation powered
+	// by AppConfig. Client-side evaluation allows your application to assign variations
+	// to user sessions locally instead of by calling the EvaluateFeature (https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_EvaluateFeature.html)
+	// operation. This mitigates the latency and availability risks that come with
+	// an API call. For more information, see Client-side evaluation - powered by
+	// AppConfig. (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Evidently-client-side-evaluation.html)
+	//
+	// This parameter is a structure that contains information about the AppConfig
+	// application and environment that will be used as for client-side evaluation.
+	//
+	// To create a project that uses client-side evaluation, you must have the evidently:ExportProjectAsConfiguration
+	// permission.
+	AppConfigResource *ProjectAppConfigResourceConfig `locationName:"appConfigResource" type:"structure"`
+
 	// A structure that contains information about where Evidently is to store evaluation
 	// events for longer term storage, if you choose to do so. If you choose not
 	// to store these events, Evidently deletes them after using them to produce
@@ -4943,6 +4961,12 @@ func (s *CreateProjectInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAppConfigResource sets the AppConfigResource field's value.
+func (s *CreateProjectInput) SetAppConfigResource(v *ProjectAppConfigResourceConfig) *CreateProjectInput {
+	s.AppConfigResource = v
+	return s
 }
 
 // SetDataDelivery sets the DataDelivery field's value.
@@ -5014,7 +5038,7 @@ type CreateSegmentInput struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The pattern to use for the segment. For more information about pattern syntax,
-	// see Segment rule pattern syntax (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Evidently-segments-syntax.html).
+	// see Segment rule pattern syntax (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Evidently-segments.html#CloudWatch-Evidently-segments-syntax.html).
 	//
 	// Pattern is a required field
 	Pattern *string `locationName:"pattern" min:"1" type:"string" required:"true"`
@@ -9138,6 +9162,10 @@ type Project struct {
 	// The number of ongoing launches currently in the project.
 	ActiveLaunchCount *int64 `locationName:"activeLaunchCount" type:"long"`
 
+	// This structure defines the configuration of how your application integrates
+	// with AppConfig to run client-side evaluation.
+	AppConfigResource *ProjectAppConfigResource `locationName:"appConfigResource" type:"structure"`
+
 	// The name or ARN of the project.
 	//
 	// Arn is a required field
@@ -9215,6 +9243,12 @@ func (s *Project) SetActiveLaunchCount(v int64) *Project {
 	return s
 }
 
+// SetAppConfigResource sets the AppConfigResource field's value.
+func (s *Project) SetAppConfigResource(v *ProjectAppConfigResource) *Project {
+	s.AppConfigResource = v
+	return s
+}
+
 // SetArn sets the Arn field's value.
 func (s *Project) SetArn(v string) *Project {
 	s.Arn = &v
@@ -9278,6 +9312,115 @@ func (s *Project) SetStatus(v string) *Project {
 // SetTags sets the Tags field's value.
 func (s *Project) SetTags(v map[string]*string) *Project {
 	s.Tags = v
+	return s
+}
+
+// This is a structure that defines the configuration of how your application
+// integrates with AppConfig to run client-side evaluation.
+type ProjectAppConfigResource struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the AppConfig application to use for client-side evaluation.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `locationName:"applicationId" type:"string" required:"true"`
+
+	// The ID of the AppConfig profile to use for client-side evaluation.
+	//
+	// ConfigurationProfileId is a required field
+	ConfigurationProfileId *string `locationName:"configurationProfileId" type:"string" required:"true"`
+
+	// The ID of the AppConfig environment to use for client-side evaluation. This
+	// must be an environment that is within the application that you specify for
+	// applicationId.
+	//
+	// EnvironmentId is a required field
+	EnvironmentId *string `locationName:"environmentId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProjectAppConfigResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProjectAppConfigResource) GoString() string {
+	return s.String()
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *ProjectAppConfigResource) SetApplicationId(v string) *ProjectAppConfigResource {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetConfigurationProfileId sets the ConfigurationProfileId field's value.
+func (s *ProjectAppConfigResource) SetConfigurationProfileId(v string) *ProjectAppConfigResource {
+	s.ConfigurationProfileId = &v
+	return s
+}
+
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *ProjectAppConfigResource) SetEnvironmentId(v string) *ProjectAppConfigResource {
+	s.EnvironmentId = &v
+	return s
+}
+
+// Use this parameter to configure client-side evaluation for your project.
+// Client-side evaluation allows your application to assign variations to user
+// sessions locally instead of by calling the EvaluateFeature (https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_EvaluateFeature.html)
+// operation to assign the variations. This mitigates the latency and availability
+// risks that come with an API call.
+//
+// ProjectAppConfigResource is a structure that defines the configuration of
+// how your application integrates with AppConfig to run client-side evaluation.
+type ProjectAppConfigResourceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the AppConfig application to use for client-side evaluation.
+	ApplicationId *string `locationName:"applicationId" type:"string"`
+
+	// The ID of the AppConfig environment to use for client-side evaluation. This
+	// must be an environment that is within the application that you specify for
+	// applicationId.
+	EnvironmentId *string `locationName:"environmentId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProjectAppConfigResourceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProjectAppConfigResourceConfig) GoString() string {
+	return s.String()
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *ProjectAppConfigResourceConfig) SetApplicationId(v string) *ProjectAppConfigResourceConfig {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *ProjectAppConfigResourceConfig) SetEnvironmentId(v string) *ProjectAppConfigResourceConfig {
+	s.EnvironmentId = &v
 	return s
 }
 
@@ -10270,6 +10413,10 @@ type Segment struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// The pattern that defines the attributes to use to evalute whether a user
+	// session will be in the segment. For more information about the pattern syntax,
+	// see Segment rule pattern syntax (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Evidently-segments.html).
+	//
 	// Pattern is a required field
 	Pattern *string `locationName:"pattern" min:"1" type:"string" required:"true"`
 
@@ -12195,6 +12342,16 @@ func (s *UpdateProjectDataDeliveryOutput) SetProject(v *Project) *UpdateProjectD
 type UpdateProjectInput struct {
 	_ struct{} `type:"structure"`
 
+	// Use this parameter if the project will use client-side evaluation powered
+	// by AppConfig. Client-side evaluation allows your application to assign variations
+	// to user sessions locally instead of by calling the EvaluateFeature (https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_EvaluateFeature.html)
+	// operation. This mitigates the latency and availability risks that come with
+	// an API call. allows you to
+	//
+	// This parameter is a structure that contains information about the AppConfig
+	// application that will be used for client-side evaluation.
+	AppConfigResource *ProjectAppConfigResourceConfig `locationName:"appConfigResource" type:"structure"`
+
 	// An optional description of the project.
 	Description *string `locationName:"description" type:"string"`
 
@@ -12236,6 +12393,12 @@ func (s *UpdateProjectInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAppConfigResource sets the AppConfigResource field's value.
+func (s *UpdateProjectInput) SetAppConfigResource(v *ProjectAppConfigResourceConfig) *UpdateProjectInput {
+	s.AppConfigResource = v
+	return s
 }
 
 // SetDescription sets the Description field's value.
