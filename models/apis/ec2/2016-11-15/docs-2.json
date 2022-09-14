@@ -55,6 +55,8 @@
     "CreateCarrierGateway": "<p>Creates a carrier gateway. For more information about carrier gateways, see <a href=\"https://docs.aws.amazon.com/wavelength/latest/developerguide/how-wavelengths-work.html#wavelength-carrier-gateway\">Carrier gateways</a> in the <i>Amazon Web Services Wavelength Developer Guide</i>.</p>",
     "CreateClientVpnEndpoint": "<p>Creates a Client VPN endpoint. A Client VPN endpoint is the resource you create and configure to enable and manage client VPN sessions. It is the destination endpoint at which all client VPN sessions are terminated.</p>",
     "CreateClientVpnRoute": "<p>Adds a route to a network to a Client VPN endpoint. Each Client VPN endpoint has a route table that describes the available destination network routes. Each route in the route table specifies the path for traﬃc to speciﬁc resources or networks.</p>",
+    "CreateCoipCidr": "<p> Creates a range of customer-owned IP addresses. </p>",
+    "CreateCoipPool": "<p> Creates a pool of customer-owned IP (CoIP) addresses. </p>",
     "CreateCustomerGateway": "<p>Provides information to Amazon Web Services about your customer gateway device. The customer gateway device is the appliance at your end of the VPN connection. You must provide the IP address of the customer gateway device’s external interface. The IP address must be static and can be behind a device performing network address translation (NAT).</p> <p>For devices that use Border Gateway Protocol (BGP), you can also provide the device's BGP Autonomous System Number (ASN). You can use an existing ASN assigned to your network. If you don't have an ASN already, you can use a private ASN. For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/cgw-options.html\">Customer gateway options for your Site-to-Site VPN connection</a> in the <i>Amazon Web Services Site-to-Site VPN User Guide</i>.</p> <p>To create more than one customer gateway with the same VPN type, IP address, and BGP ASN, specify a unique device name for each customer gateway. An identical request returns information about the existing customer gateway; it doesn't create a new customer gateway.</p>",
     "CreateDefaultSubnet": "<p>Creates a default subnet with a size <code>/20</code> IPv4 CIDR block in the specified Availability Zone in your default VPC. You can have only one default subnet per Availability Zone. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-subnet\">Creating a default subnet</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateDefaultVpc": "<p>Creates a default VPC with a size <code>/16</code> IPv4 CIDR block and a default subnet in each Availability Zone. For more information about the components of a default VPC, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html\">Default VPC and default subnets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>. You cannot specify the components of the default VPC yourself.</p> <p>If you deleted your previous default VPC, you can create a default VPC. You cannot have more than one default VPC per Region.</p> <p>If your account supports EC2-Classic, you cannot use this action to create a default VPC in a Region that supports EC2-Classic. If you want a default VPC in a Region that supports EC2-Classic, see \"I really want a default VPC for my existing EC2 account. Is that possible?\" in the <a href=\"http://aws.amazon.com/vpc/faqs/#Default_VPCs\">Default VPCs FAQ</a>.</p> <note> <p>We are retiring EC2-Classic. We recommend that you migrate from EC2-Classic to a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html\">Migrate from EC2-Classic to a VPC</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </note>",
@@ -74,6 +76,8 @@
     "CreateLaunchTemplate": "<p>Creates a launch template.</p> <p>A launch template contains the parameters to launch an instance. When you launch an instance using <a>RunInstances</a>, you can specify a launch template instead of providing the launch parameters in the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html\">Launch an instance from a launch template</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>If you want to clone an existing launch template as the basis for creating a new launch template, you can use the Amazon EC2 console. The API, SDKs, and CLI do not support cloning a template. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#create-launch-template-from-existing-launch-template\">Create a launch template from an existing launch template</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateLaunchTemplateVersion": "<p>Creates a new version of a launch template. You can specify an existing version of launch template from which to base the new version.</p> <p>Launch template versions are numbered in the order in which they are created. You cannot specify, change, or replace the numbering of launch template versions.</p> <p>Launch templates are immutable; after you create a launch template, you can't modify it. Instead, you can create a new version of the launch template that includes any changes you require.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#manage-launch-template-versions\">Modify a launch template (manage launch template versions)</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateLocalGatewayRoute": "<p>Creates a static route for the specified local gateway route table. You must specify one of the following targets: </p> <ul> <li> <p> <code>LocalGatewayVirtualInterfaceGroupId</code> </p> </li> <li> <p> <code>NetworkInterfaceId</code> </p> </li> </ul>",
+    "CreateLocalGatewayRouteTable": "<p> Creates a local gateway route table. </p>",
+    "CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociation": "<p> Creates a local gateway route table virtual interface group association. </p>",
     "CreateLocalGatewayRouteTableVpcAssociation": "<p>Associates the specified VPC with the specified local gateway route table.</p>",
     "CreateManagedPrefixList": "<p>Creates a managed prefix list. You can specify one or more entries for the prefix list. Each entry consists of a CIDR block and an optional description.</p>",
     "CreateNatGateway": "<p>Creates a NAT gateway in the specified subnet. This action creates a network interface in the specified subnet with a private IP address from the IP address range of the subnet. You can create either a public NAT gateway or a private NAT gateway.</p> <p>With a public NAT gateway, internet-bound traffic from a private subnet can be routed to the NAT gateway, so that instances in a private subnet can connect to the internet.</p> <p>With a private NAT gateway, private communication is routed across VPCs and on-premises networks through a transit gateway or virtual private gateway. Common use cases include running large workloads behind a small pool of allowlisted IPv4 addresses, preserving private IPv4 addresses, and communicating between overlapping networks.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html\">NAT gateways</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
@@ -125,6 +129,8 @@
     "DeleteCarrierGateway": "<p>Deletes a carrier gateway.</p> <important> <p>If you do not delete the route that contains the carrier gateway as the Target, the route is a blackhole route. For information about how to delete a route, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DeleteRoute.html\">DeleteRoute</a>.</p> </important>",
     "DeleteClientVpnEndpoint": "<p>Deletes the specified Client VPN endpoint. You must disassociate all target networks before you can delete a Client VPN endpoint.</p>",
     "DeleteClientVpnRoute": "<p>Deletes a route from a Client VPN endpoint. You can only delete routes that you manually added using the <b>CreateClientVpnRoute</b> action. You cannot delete routes that were automatically added when associating a subnet. To remove routes that have been automatically added, disassociate the target subnet from the Client VPN endpoint.</p>",
+    "DeleteCoipCidr": "<p> Deletes a range of customer-owned IP addresses. </p>",
+    "DeleteCoipPool": "<p>Deletes a pool of customer-owned IP (CoIP) addresses. </p>",
     "DeleteCustomerGateway": "<p>Deletes the specified customer gateway. You must delete the VPN connection before you can delete the customer gateway.</p>",
     "DeleteDhcpOptions": "<p>Deletes the specified set of DHCP options. You must disassociate the set of DHCP options before you can delete it. You can disassociate the set of DHCP options by associating either a new set of options or the default set of options with the VPC.</p>",
     "DeleteEgressOnlyInternetGateway": "<p>Deletes an egress-only internet gateway.</p>",
@@ -140,6 +146,8 @@
     "DeleteLaunchTemplate": "<p>Deletes a launch template. Deleting a launch template deletes all of its versions.</p>",
     "DeleteLaunchTemplateVersions": "<p>Deletes one or more versions of a launch template. You cannot delete the default version of a launch template; you must first assign a different version as the default. If the default version is the only version for the launch template, you must delete the entire launch template using <a>DeleteLaunchTemplate</a>.</p>",
     "DeleteLocalGatewayRoute": "<p>Deletes the specified route from the specified local gateway route table.</p>",
+    "DeleteLocalGatewayRouteTable": "<p> Deletes a local gateway route table. </p>",
+    "DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociation": "<p> Deletes a local gateway route table virtual interface group association. </p>",
     "DeleteLocalGatewayRouteTableVpcAssociation": "<p>Deletes the specified association between a VPC and local gateway route table.</p>",
     "DeleteManagedPrefixList": "<p>Deletes the specified managed prefix list. You must first remove all references to the prefix list in your resources.</p>",
     "DeleteNatGateway": "<p>Deletes the specified NAT gateway. Deleting a public NAT gateway disassociates its Elastic IP address, but does not release the address from your account. Deleting a NAT gateway does not delete any NAT gateway routes in your route tables.</p>",
@@ -1736,6 +1744,8 @@
         "CreateClientVpnEndpointRequest$SplitTunnel": "<p>Indicates whether split-tunnel is enabled on the Client VPN endpoint.</p> <p>By default, split-tunnel on a VPN endpoint is disabled.</p> <p>For information about split-tunnel VPN endpoints, see <a href=\"https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/split-tunnel-vpn.html\">Split-tunnel Client VPN endpoint</a> in the <i>Client VPN Administrator Guide</i>.</p>",
         "CreateClientVpnEndpointRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateClientVpnRouteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "CreateCoipCidrRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "CreateCoipPoolRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateCustomerGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateDefaultSubnetRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateDefaultSubnetRequest$Ipv6Native": "<p>Indicates whether to create an IPv6 only subnet. If you already have a default subnet for this Availability Zone, you must delete it before you can create an IPv6 only subnet.</p>",
@@ -1760,6 +1770,8 @@
         "CreateLaunchTemplateRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateLaunchTemplateVersionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateLocalGatewayRouteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "CreateLocalGatewayRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateLocalGatewayRouteTableVpcAssociationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateManagedPrefixListRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateNatGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1819,6 +1831,8 @@
         "DeleteCarrierGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteClientVpnEndpointRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteClientVpnRouteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DeleteCoipCidrRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DeleteCoipPoolRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteCustomerGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteDhcpOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteEgressOnlyInternetGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1839,6 +1853,8 @@
         "DeleteLaunchTemplateRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteLaunchTemplateVersionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteLocalGatewayRouteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DeleteLocalGatewayRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteLocalGatewayRouteTableVpcAssociationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteManagedPrefixListRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteNatGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -3253,10 +3269,19 @@
         "GetCoipPoolUsageResult$CoipAddressUsages": "<p>Information about the address usage.</p>"
       }
     },
+    "CoipCidr": {
+      "base": "<p> Information about a customer-owned IP address range. </p>",
+      "refs": {
+        "CreateCoipCidrResult$CoipCidr": "<p> Information about a range of customer-owned IP addresses. </p>",
+        "DeleteCoipCidrResult$CoipCidr": "<p> Information about a range of customer-owned IP addresses. </p>"
+      }
+    },
     "CoipPool": {
       "base": "<p>Describes a customer-owned address pool.</p>",
       "refs": {
-        "CoipPoolSet$member": null
+        "CoipPoolSet$member": null,
+        "CreateCoipPoolResult$CoipPool": null,
+        "DeleteCoipPoolResult$CoipPool": null
       }
     },
     "CoipPoolId": {
@@ -3521,6 +3546,26 @@
       "refs": {
       }
     },
+    "CreateCoipCidrRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCoipCidrResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCoipPoolRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCoipPoolResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateCustomerGatewayRequest": {
       "base": "<p>Contains the parameters for CreateCustomerGateway.</p>",
       "refs": {
@@ -3726,6 +3771,26 @@
       }
     },
     "CreateLocalGatewayRouteResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLocalGatewayRouteTableRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLocalGatewayRouteTableResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationResult": {
       "base": null,
       "refs": {
       }
@@ -4503,6 +4568,26 @@
       "refs": {
       }
     },
+    "DeleteCoipCidrRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCoipCidrResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCoipPoolRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCoipPoolResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteCustomerGatewayRequest": {
       "base": "<p>Contains the parameters for DeleteCustomerGateway.</p>",
       "refs": {
@@ -4689,6 +4774,26 @@
       }
     },
     "DeleteLocalGatewayRouteResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLocalGatewayRouteTableRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLocalGatewayRouteTableResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationResult": {
       "base": null,
       "refs": {
       }
@@ -11221,8 +11326,12 @@
     "Ipv4PoolCoipId": {
       "base": null,
       "refs": {
+        "CoipCidr$CoipPoolId": "<p> The ID of the address pool. </p>",
         "CoipPool$PoolId": "<p>The ID of the address pool.</p>",
         "CoipPoolIdSet$member": null,
+        "CreateCoipCidrRequest$CoipPoolId": "<p> The ID of the address pool. </p>",
+        "DeleteCoipCidrRequest$CoipPoolId": "<p> The ID of the customer-owned address pool. </p>",
+        "DeleteCoipPoolRequest$CoipPoolId": "<p>The ID of the CoIP pool that you want to delete. </p>",
         "GetCoipPoolUsageRequest$PoolId": "<p>The ID of the address pool.</p>"
       }
     },
@@ -12092,6 +12201,7 @@
     "LocalGatewayId": {
       "base": null,
       "refs": {
+        "CreateLocalGatewayRouteTableRequest$LocalGatewayId": "<p> The ID of the local gateway. </p>",
         "CreateRouteRequest$LocalGatewayId": "<p>The ID of the local gateway.</p>",
         "LocalGateway$LocalGatewayId": "<p>The ID of the local gateway.</p>",
         "LocalGatewayIdSet$member": null,
@@ -12141,6 +12251,8 @@
     "LocalGatewayRouteTable": {
       "base": "<p>Describes a local gateway route table.</p>",
       "refs": {
+        "CreateLocalGatewayRouteTableResult$LocalGatewayRouteTable": null,
+        "DeleteLocalGatewayRouteTableResult$LocalGatewayRouteTable": null,
         "LocalGatewayRouteTableSet$member": null
       }
     },
@@ -12153,6 +12265,7 @@
     "LocalGatewayRouteTableMode": {
       "base": null,
       "refs": {
+        "CreateLocalGatewayRouteTableRequest$Mode": "<p> The mode of the local gateway route table. </p>",
         "LocalGatewayRouteTable$Mode": "<p>The mode of the local gateway route table.</p>"
       }
     },
@@ -12165,12 +12278,15 @@
     "LocalGatewayRouteTableVirtualInterfaceGroupAssociation": {
       "base": "<p>Describes an association between a local gateway route table and a virtual interface group.</p>",
       "refs": {
+        "CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationResult$LocalGatewayRouteTableVirtualInterfaceGroupAssociation": null,
+        "DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationResult$LocalGatewayRouteTableVirtualInterfaceGroupAssociation": null,
         "LocalGatewayRouteTableVirtualInterfaceGroupAssociationSet$member": null
       }
     },
     "LocalGatewayRouteTableVirtualInterfaceGroupAssociationId": {
       "base": null,
       "refs": {
+        "DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationRequest$LocalGatewayRouteTableVirtualInterfaceGroupAssociationId": "<p> The ID of the local gateway route table virtual interface group association. </p>",
         "LocalGatewayRouteTableVirtualInterfaceGroupAssociation$LocalGatewayRouteTableVirtualInterfaceGroupAssociationId": "<p>The ID of the association.</p>",
         "LocalGatewayRouteTableVirtualInterfaceGroupAssociationIdSet$member": null
       }
@@ -12225,9 +12341,12 @@
       "base": null,
       "refs": {
         "CoipPool$LocalGatewayRouteTableId": "<p>The ID of the local gateway route table.</p>",
+        "CreateCoipPoolRequest$LocalGatewayRouteTableId": "<p> The ID of the local gateway route table. </p>",
         "CreateLocalGatewayRouteRequest$LocalGatewayRouteTableId": "<p>The ID of the local gateway route table.</p>",
+        "CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationRequest$LocalGatewayRouteTableId": "<p> The ID of the local gateway route table. </p>",
         "CreateLocalGatewayRouteTableVpcAssociationRequest$LocalGatewayRouteTableId": "<p>The ID of the local gateway route table.</p>",
         "DeleteLocalGatewayRouteRequest$LocalGatewayRouteTableId": "<p>The ID of the local gateway route table.</p>",
+        "DeleteLocalGatewayRouteTableRequest$LocalGatewayRouteTableId": "<p> The ID of the local gateway route table. </p>",
         "LocalGatewayRoute$LocalGatewayRouteTableId": "<p>The ID of the local gateway route table.</p>",
         "LocalGatewayRouteTableIdSet$member": null,
         "ModifyLocalGatewayRouteRequest$LocalGatewayRouteTableId": "<p>The ID of the local gateway route table.</p>",
@@ -12256,10 +12375,12 @@
       "base": null,
       "refs": {
         "CreateLocalGatewayRouteRequest$LocalGatewayVirtualInterfaceGroupId": "<p>The ID of the virtual interface group.</p>",
+        "CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationRequest$LocalGatewayVirtualInterfaceGroupId": "<p> The ID of the local gateway route table virtual interface group association. </p>",
         "LocalGatewayRoute$LocalGatewayVirtualInterfaceGroupId": "<p>The ID of the virtual interface group.</p>",
         "LocalGatewayRouteTableVirtualInterfaceGroupAssociation$LocalGatewayVirtualInterfaceGroupId": "<p>The ID of the virtual interface group.</p>",
         "LocalGatewayVirtualInterfaceGroup$LocalGatewayVirtualInterfaceGroupId": "<p>The ID of the virtual interface group.</p>",
-        "LocalGatewayVirtualInterfaceGroupIdSet$member": null
+        "LocalGatewayVirtualInterfaceGroupIdSet$member": null,
+        "ModifyLocalGatewayRouteRequest$LocalGatewayVirtualInterfaceGroupId": "<p> The ID of the virtual interface group. </p>"
       }
     },
     "LocalGatewayVirtualInterfaceGroupIdSet": {
@@ -16509,7 +16630,8 @@
       "base": "<p>Describes a state change.</p>",
       "refs": {
         "Image$StateReason": "<p>The reason for the state change.</p>",
-        "Instance$StateReason": "<p>The reason for the most recent state transition.</p>"
+        "Instance$StateReason": "<p>The reason for the most recent state transition.</p>",
+        "LocalGatewayRouteTable$StateReason": null
       }
     },
     "StaticSourcesSupportValue": {
@@ -16796,6 +16918,8 @@
         "CoipAddressUsage$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "CoipAddressUsage$AwsService": "<p>The Amazon Web Services service.</p>",
         "CoipAddressUsage$CoIp": "<p>The customer-owned IP address.</p>",
+        "CoipCidr$Cidr": "<p> An address range in a customer-owned IP address space. </p>",
+        "CoipCidr$LocalGatewayRouteTableId": "<p> The ID of the local gateway route table. </p>",
         "ConfirmProductInstanceRequest$ProductCode": "<p>The product code. This must be a product code that you own.</p>",
         "ConfirmProductInstanceResult$OwnerId": "<p>The Amazon Web Services account ID of the instance owner. This is only present if the product code is attached to the instance.</p>",
         "ConnectionLogOptions$CloudwatchLogGroup": "<p>The name of the CloudWatch Logs log group. Required if connection logging is enabled.</p>",
@@ -16846,6 +16970,7 @@
         "CreateClientVpnRouteRequest$DestinationCidrBlock": "<p>The IPv4 address range, in CIDR notation, of the route destination. For example:</p> <ul> <li> <p>To add a route for Internet access, enter <code>0.0.0.0/0</code> </p> </li> <li> <p>To add a route for a peered VPC, enter the peered VPC's IPv4 CIDR range</p> </li> <li> <p>To add a route for an on-premises network, enter the Amazon Web Services Site-to-Site VPN connection's IPv4 CIDR range</p> </li> <li> <p>To add a route for the local network, enter the client CIDR range</p> </li> </ul>",
         "CreateClientVpnRouteRequest$Description": "<p>A brief description of the route.</p>",
         "CreateClientVpnRouteRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to ensure idempotency</a>.</p>",
+        "CreateCoipCidrRequest$Cidr": "<p> A customer-owned IP address range to create. </p>",
         "CreateCustomerGatewayRequest$PublicIp": "<p> <i>This member has been deprecated.</i> The Internet-routable IP address for the customer gateway's outside interface. The address must be static.</p>",
         "CreateCustomerGatewayRequest$CertificateArn": "<p>The Amazon Resource Name (ARN) for the customer gateway certificate.</p>",
         "CreateCustomerGatewayRequest$DeviceName": "<p>A name for the customer gateway device.</p> <p>Length Constraints: Up to 255 characters.</p>",
@@ -16983,6 +17108,7 @@
         "CustomerGateway$Type": "<p>The type of VPN connection the customer gateway supports (<code>ipsec.1</code>).</p>",
         "CustomerGateway$DeviceName": "<p>The name of customer gateway device.</p>",
         "DeleteClientVpnRouteRequest$DestinationCidrBlock": "<p>The IPv4 address range, in CIDR notation, of the route to be deleted.</p>",
+        "DeleteCoipCidrRequest$Cidr": "<p> A customer-owned IP address range that you want to delete. </p>",
         "DeleteFleetError$Message": "<p>The description for the error code.</p>",
         "DeleteLaunchTemplateVersionsResponseErrorItem$LaunchTemplateId": "<p>The ID of the launch template.</p>",
         "DeleteLaunchTemplateVersionsResponseErrorItem$LaunchTemplateName": "<p>The name of the launch template.</p>",
@@ -18769,6 +18895,7 @@
         "CreateCapacityReservationRequest$TagSpecifications": "<p>The tags to apply to the Capacity Reservation during launch.</p>",
         "CreateCarrierGatewayRequest$TagSpecifications": "<p>The tags to associate with the carrier gateway.</p>",
         "CreateClientVpnEndpointRequest$TagSpecifications": "<p>The tags to apply to the Client VPN endpoint during creation.</p>",
+        "CreateCoipPoolRequest$TagSpecifications": "<p> The tags to assign to the CoIP address pool. </p>",
         "CreateCustomerGatewayRequest$TagSpecifications": "<p>The tags to apply to the customer gateway.</p>",
         "CreateDhcpOptionsRequest$TagSpecifications": "<p>The tags to assign to the DHCP option.</p>",
         "CreateEgressOnlyInternetGatewayRequest$TagSpecifications": "<p>The tags to assign to the egress-only internet gateway.</p>",
@@ -18784,6 +18911,8 @@
         "CreateIpamScopeRequest$TagSpecifications": "<p>The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p>",
         "CreateKeyPairRequest$TagSpecifications": "<p>The tags to apply to the new key pair.</p>",
         "CreateLaunchTemplateRequest$TagSpecifications": "<p>The tags to apply to the launch template on creation. To tag the launch template, the resource type must be <code>launch-template</code>.</p> <note> <p>To specify the tags for the resources that are created when an instance is launched, you must use the <code>TagSpecifications</code> parameter in the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestLaunchTemplateData.html\">launch template data</a> structure.</p> </note>",
+        "CreateLocalGatewayRouteTableRequest$TagSpecifications": "<p> The tags assigned to the local gateway route table. </p>",
+        "CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationRequest$TagSpecifications": "<p> The tags assigned to the local gateway route table virtual interface group association. </p>",
         "CreateLocalGatewayRouteTableVpcAssociationRequest$TagSpecifications": "<p>The tags to assign to the local gateway route table VPC association.</p>",
         "CreateManagedPrefixListRequest$TagSpecifications": "<p>The tags to apply to the prefix list during creation.</p>",
         "CreateNatGatewayRequest$TagSpecifications": "<p>The tags to assign to the NAT gateway.</p>",
