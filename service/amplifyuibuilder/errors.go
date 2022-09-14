@@ -39,6 +39,12 @@ const (
 	// are the maximum number of service resources or operations for your Amazon
 	// Web Services account.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
+
+	// ErrCodeUnauthorizedException for service response error code
+	// "UnauthorizedException".
+	//
+	// You don't have permission to perform this operation.
+	ErrCodeUnauthorizedException = "UnauthorizedException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
@@ -47,4 +53,5 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceConflictException":     newErrorResourceConflictException,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,
 	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
+	"UnauthorizedException":         newErrorUnauthorizedException,
 }

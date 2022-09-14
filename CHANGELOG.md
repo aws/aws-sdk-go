@@ -1,3 +1,11 @@
+Release v1.44.98 (2022-09-14)
+===
+
+### Service Client Updates
+* `service/amplifyuibuilder`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service API and documentation
+  * This update introduces API operations to manage and create local gateway route tables, CoIP pools, and VIF group associations.
+
 Release v1.44.97 (2022-09-13)
 ===
 

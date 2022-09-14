@@ -3,18 +3,26 @@
   "service": "<p>The Amplify UI Builder API provides a programmatic interface for creating and configuring user interface (UI) component libraries and themes for use in your Amplify applications. You can then connect these UI components to an application's backend Amazon Web Services resources.</p> <p>You can also use the Amplify Studio visual designer to create UI components and model data for an app. For more information, see <a href=\"https://docs.amplify.aws/console/adminui/intro\">Introduction</a> in the <i>Amplify Docs</i>.</p> <p>The Amplify Framework is a comprehensive set of SDKs, libraries, tools, and documentation for client app development. For more information, see the <a href=\"https://docs.amplify.aws/\">Amplify Framework</a>. For more information about deploying an Amplify application to Amazon Web Services, see the <a href=\"https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html\">Amplify User Guide</a>.</p>",
   "operations": {
     "CreateComponent": "<p>Creates a new component for an Amplify app.</p>",
+    "CreateForm": "<p>Creates a new form for an Amplify app.</p>",
     "CreateTheme": "<p>Creates a theme to apply to the components in an Amplify app.</p>",
     "DeleteComponent": "<p>Deletes a component from an Amplify app.</p>",
+    "DeleteForm": "<p>Deletes a form from an Amplify app.</p>",
     "DeleteTheme": "<p>Deletes a theme from an Amplify app.</p>",
     "ExchangeCodeForToken": "<p>Exchanges an access code for a token.</p>",
     "ExportComponents": "<p>Exports component configurations to code that is ready to integrate into an Amplify app.</p>",
+    "ExportForms": "<p>Exports form configurations to code that is ready to integrate into an Amplify app.</p>",
     "ExportThemes": "<p>Exports theme configurations to code that is ready to integrate into an Amplify app.</p>",
     "GetComponent": "<p>Returns an existing component for an Amplify app.</p>",
+    "GetForm": "<p>Returns an existing form for an Amplify app.</p>",
+    "GetMetadata": "<p>Returns existing metadata for an Amplify app.</p>",
     "GetTheme": "<p>Returns an existing theme for an Amplify app.</p>",
     "ListComponents": "<p>Retrieves a list of components for a specified Amplify app and backend environment.</p>",
+    "ListForms": "<p>Retrieves a list of forms for a specified Amplify app and backend environment.</p>",
     "ListThemes": "<p>Retrieves a list of themes for a specified Amplify app and backend environment.</p>",
+    "PutMetadataFlag": "<p>Stores the metadata information about a feature on a form or view.</p>",
     "RefreshToken": "<p>Refreshes a previously issued access token that might have expired.</p>",
     "UpdateComponent": "<p>Updates an existing component.</p>",
+    "UpdateForm": "<p>Updates an existing form.</p>",
     "UpdateTheme": "<p>Updates an existing theme.</p>"
   },
   "shapes": {
@@ -27,7 +35,12 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "ComponentProperty$configured": "<p>Specifies whether the user configured the property in Amplify Studio after importing it.</p>"
+        "ComponentProperty$configured": "<p>Specifies whether the user configured the property in Amplify Studio after importing it.</p>",
+        "FieldConfig$excluded": "<p>Specifies whether to hide a field.</p>",
+        "FieldInputConfig$defaultChecked": "<p>Specifies whether a field has a default value.</p>",
+        "FieldInputConfig$readOnly": "<p>Specifies a read only field.</p>",
+        "FieldInputConfig$required": "<p>Specifies a field that requires input.</p>",
+        "FormButton$excluded": "<p>Specifies whether the button is visible on the form.</p>"
       }
     },
     "Component": {
@@ -235,6 +248,22 @@
       "refs": {
       }
     },
+    "CreateFormData": {
+      "base": "<p>Represents all of the information that is required to create a form.</p>",
+      "refs": {
+        "CreateFormRequest$formToCreate": "<p>Represents the configuration of the form to create.</p>"
+      }
+    },
+    "CreateFormRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFormResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateThemeData": {
       "base": "<p>Represents all of the information that is required to create a theme.</p>",
       "refs": {
@@ -252,6 +281,11 @@
       }
     },
     "DeleteComponentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteFormRequest": {
       "base": null,
       "refs": {
       }
@@ -287,6 +321,16 @@
       "refs": {
       }
     },
+    "ExportFormsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportFormsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ExportThemesRequest": {
       "base": null,
       "refs": {
@@ -295,6 +339,78 @@
     "ExportThemesResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "FeaturesMap": {
+      "base": null,
+      "refs": {
+        "GetMetadataResponse$features": "<p>Represents the configuration settings for the features metadata.</p>"
+      }
+    },
+    "FieldConfig": {
+      "base": "<p>Describes the configuration information for a field in a table.</p>",
+      "refs": {
+        "FieldsMap$value": null
+      }
+    },
+    "FieldInputConfig": {
+      "base": "<p>Describes the configuration for the default input values to display for a field.</p>",
+      "refs": {
+        "FieldConfig$inputType": "<p>Describes the configuration for the default input value to display for a field.</p>"
+      }
+    },
+    "FieldPosition": {
+      "base": "<p>Describes the field position.</p>",
+      "refs": {
+        "FieldConfig$position": "<p>Specifies the field position.</p>",
+        "FormButton$position": "<p>The position of the button.</p>",
+        "SectionalElement$position": "<p>Specifies the position of the text in a field for a <code>Text</code> sectional element.</p>"
+      }
+    },
+    "FieldValidationConfiguration": {
+      "base": "<p>Describes the validation configuration for a field.</p>",
+      "refs": {
+        "ValidationsList$member": null
+      }
+    },
+    "FieldsMap": {
+      "base": null,
+      "refs": {
+        "CreateFormData$fields": "<p>The configuration information for the form's fields.</p>",
+        "Form$fields": "<p>Stores the information about the form's fields.</p>",
+        "UpdateFormData$fields": "<p>The configuration information for the form's fields.</p>"
+      }
+    },
+    "FixedPosition": {
+      "base": null,
+      "refs": {
+        "FieldPosition$fixed": "<p>The field position is fixed and doesn't change in relation to other fields.</p>"
+      }
+    },
+    "Float": {
+      "base": null,
+      "refs": {
+        "FieldInputConfig$maxValue": "<p>The maximum value to display for the field.</p>",
+        "FieldInputConfig$minValue": "<p>The minimum value to display for the field.</p>",
+        "FieldInputConfig$step": "<p>The stepping increment for a numeric value in a field.</p>"
+      }
+    },
+    "Form": {
+      "base": "<p>Contains the configuration settings for a <code>Form</code> user interface (UI) element for an Amplify app. A form is a component you can add to your project by specifying a data source as the default configuration for the form.</p>",
+      "refs": {
+        "CreateFormResponse$entity": "<p>Describes the configuration of the new form.</p>",
+        "FormList$member": null,
+        "GetFormResponse$form": "<p>Represents the configuration settings for the form.</p>",
+        "UpdateFormResponse$entity": "<p>Describes the configuration of the updated form.</p>"
+      }
+    },
+    "FormActionType": {
+      "base": null,
+      "refs": {
+        "CreateFormData$formActionType": "<p>Specifies whether to perform a create or update action on the form.</p>",
+        "Form$formActionType": "<p>The operation to perform on the specified form.</p>",
+        "FormSummary$formActionType": "<p>The type of operation to perform on the form.</p>",
+        "UpdateFormData$formActionType": "<p>Specifies whether to perform a create or update action on the form.</p>"
       }
     },
     "FormBindingElement": {
@@ -309,12 +425,119 @@
         "ComponentProperty$bindings": "<p>The information to bind the component property to form data.</p>"
       }
     },
+    "FormButton": {
+      "base": "<p>Describes the configuration for a button UI element that is a part of a form.</p>",
+      "refs": {
+        "FormCTA$cancel": "<p>Displays a cancel button.</p>",
+        "FormCTA$clear": "<p>Displays a clear button.</p>",
+        "FormCTA$submit": "<p>Displays a submit button.</p>"
+      }
+    },
+    "FormButtonsPosition": {
+      "base": null,
+      "refs": {
+        "FormCTA$position": "<p>The position of the button.</p>"
+      }
+    },
+    "FormCTA": {
+      "base": "<p>Describes the call to action button configuration for the form..</p>",
+      "refs": {
+        "CreateFormData$cta": "<p>The <code>FormCTA</code> object that stores the call to action configuration for the form.</p>",
+        "Form$cta": "<p>Stores the call to action configuration for the form.</p>",
+        "UpdateFormData$cta": "<p>The <code>FormCTA</code> object that stores the call to action configuration for the form.</p>"
+      }
+    },
+    "FormDataSourceType": {
+      "base": null,
+      "refs": {
+        "FormDataTypeConfig$dataSourceType": "<p>The data source type, either an Amplify DataStore model or a custom data type.</p>"
+      }
+    },
+    "FormDataTypeConfig": {
+      "base": "<p>Describes the data type configuration for the data source associated with a form.</p>",
+      "refs": {
+        "CreateFormData$dataType": "<p>The type of data source to use to create the form.</p>",
+        "Form$dataType": "<p>The type of data source to use to create the form.</p>",
+        "FormSummary$dataType": "<p>The form's data source type.</p>",
+        "UpdateFormData$dataType": "<p>The type of data source to use to create the form.</p>"
+      }
+    },
+    "FormInputValueProperty": {
+      "base": "<p>Describes the configuration for an input field on a form. Use <code>FormInputValueProperty</code> to specify the values to render or bind by default.</p>",
+      "refs": {
+        "ValueMapping$displayValue": "<p>The value to display for the complex object.</p>",
+        "ValueMapping$value": "<p>The complex object.</p>"
+      }
+    },
+    "FormList": {
+      "base": null,
+      "refs": {
+        "ExportFormsResponse$entities": "<p>Represents the configuration of the exported forms.</p>"
+      }
+    },
+    "FormName": {
+      "base": null,
+      "refs": {
+        "CreateFormData$name": "<p>The name of the form.</p>",
+        "Form$name": "<p>The name of the form.</p>",
+        "FormSummary$name": "<p>The name of the form.</p>",
+        "UpdateFormData$name": "<p>The name of the form.</p>"
+      }
+    },
+    "FormStyle": {
+      "base": "<p>Describes the configuration for the form's style.</p>",
+      "refs": {
+        "CreateFormData$style": "<p>The configuration for the form's style.</p>",
+        "Form$style": "<p>Stores the configuration for the form's style.</p>",
+        "UpdateFormData$style": "<p>The configuration for the form's style.</p>"
+      }
+    },
+    "FormStyleConfig": {
+      "base": "<p>Describes the configuration settings for the form's style properties.</p>",
+      "refs": {
+        "FormStyle$horizontalGap": "<p>The spacing for the horizontal gap.</p>",
+        "FormStyle$outerPadding": "<p>The size of the outer padding for the form.</p>",
+        "FormStyle$verticalGap": "<p>The spacing for the vertical gap.</p>"
+      }
+    },
+    "FormSummary": {
+      "base": "<p>Describes the basic information about a form.</p>",
+      "refs": {
+        "FormSummaryList$member": null
+      }
+    },
+    "FormSummaryList": {
+      "base": null,
+      "refs": {
+        "ListFormsResponse$entities": "<p>The list of forms for the Amplify app.</p>"
+      }
+    },
     "GetComponentRequest": {
       "base": null,
       "refs": {
       }
     },
     "GetComponentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFormRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFormResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMetadataResponse": {
       "base": null,
       "refs": {
       }
@@ -339,7 +562,9 @@
       "base": null,
       "refs": {
         "ExchangeCodeForTokenResponse$expiresIn": "<p>The date and time when the new access token expires.</p>",
-        "RefreshTokenResponse$expiresIn": "<p>The date and time when the new access token expires.</p>"
+        "NumValues$member": null,
+        "RefreshTokenResponse$expiresIn": "<p>The date and time when the new access token expires.</p>",
+        "SectionalElement$level": "<p>Specifies the size of the font for a <code>Heading</code> sectional element. Valid values are <code>1 | 2 | 3 | 4 | 5 | 6</code>.</p>"
       }
     },
     "InternalServerException": {
@@ -368,6 +593,22 @@
       "refs": {
       }
     },
+    "ListFormsLimit": {
+      "base": null,
+      "refs": {
+        "ListFormsRequest$maxResults": "<p>The maximum number of forms to retrieve.</p>"
+      }
+    },
+    "ListFormsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFormsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListThemesLimit": {
       "base": null,
       "refs": {
@@ -390,6 +631,12 @@
         "ActionParameters$state": "<p>A key-value pair that specifies the state property name and its initial value.</p>"
       }
     },
+    "NumValues": {
+      "base": null,
+      "refs": {
+        "FieldValidationConfiguration$numValues": "<p>The validation to perform on a number value.</p>"
+      }
+    },
     "Predicate": {
       "base": "<p>Stores information for generating Amplify DataStore queries. Use a <code>Predicate</code> to retrieve a subset of the data in a collection.</p>",
       "refs": {
@@ -403,6 +650,17 @@
         "ComponentBindingPropertiesValueProperties$predicates": "<p>A list of predicates for binding a component's properties to data.</p>",
         "Predicate$and": "<p>A list of predicates to combine logically.</p>",
         "Predicate$or": "<p>A list of predicates to combine logically.</p>"
+      }
+    },
+    "PutMetadataFlagBody": {
+      "base": "<p>Stores the metadata information about a feature on a form or view.</p>",
+      "refs": {
+        "PutMetadataFlagRequest$body": "<p>The metadata information to store.</p>"
+      }
+    },
+    "PutMetadataFlagRequest": {
+      "base": null,
+      "refs": {
       }
     },
     "RefreshTokenRequest": {
@@ -429,6 +687,20 @@
     "ResourceNotFoundException": {
       "base": "<p>The requested resource does not exist, or access was denied.</p>",
       "refs": {
+      }
+    },
+    "SectionalElement": {
+      "base": "<p>Stores the configuration information for a visual helper element for a form. A sectional element can be a header, a text block, or a divider. These elements are static and not associated with any data.</p>",
+      "refs": {
+        "SectionalElementMap$value": null
+      }
+    },
+    "SectionalElementMap": {
+      "base": null,
+      "refs": {
+        "CreateFormData$sectionalElements": "<p>The configuration information for the visual helper elements for the form. These elements are not associated with any data.</p>",
+        "Form$sectionalElements": "<p>Stores the visual helper elements for the form that are not associated with any data.</p>",
+        "UpdateFormData$sectionalElements": "<p>The configuration information for the visual helper elements for the form. These elements are not associated with any data.</p>"
       }
     },
     "SensitiveString": {
@@ -464,6 +736,12 @@
         "ComponentDataConfiguration$sort": "<p>Describes how to sort the component's properties.</p>"
       }
     },
+    "StrValues": {
+      "base": null,
+      "refs": {
+        "FieldValidationConfiguration$strValues": "<p>The validation to perform on a string value.</p>"
+      }
+    },
     "String": {
       "base": null,
       "refs": {
@@ -480,6 +758,7 @@
         "ComponentBindingPropertiesValueProperties$field": "<p>The field to bind the data to.</p>",
         "ComponentBindingPropertiesValueProperties$key": "<p>The storage key for an Amazon S3 bucket.</p>",
         "ComponentBindingPropertiesValueProperties$model": "<p>An Amplify DataStore model.</p>",
+        "ComponentBindingPropertiesValueProperties$slotName": "<p>The name of a component slot.</p>",
         "ComponentBindingPropertiesValueProperties$userAttribute": "<p>An authenticated user attribute.</p>",
         "ComponentChild$componentType": "<p>The type of the child component. </p>",
         "ComponentChild$name": "<p>The name of the child component.</p>",
@@ -518,11 +797,17 @@
         "CreateComponentRequest$appId": "<p>The unique ID of the Amplify app to associate with the component.</p>",
         "CreateComponentRequest$clientToken": "<p>The unique client token.</p>",
         "CreateComponentRequest$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
+        "CreateFormData$schemaVersion": "<p>The schema version of the form.</p>",
+        "CreateFormRequest$appId": "<p>The unique ID of the Amplify app to associate with the form.</p>",
+        "CreateFormRequest$clientToken": "<p>The unique client token.</p>",
+        "CreateFormRequest$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
         "CreateThemeRequest$appId": "<p>The unique ID of the Amplify app associated with the theme.</p>",
         "CreateThemeRequest$clientToken": "<p>The unique client token.</p>",
         "CreateThemeRequest$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
         "DeleteComponentRequest$appId": "<p>The unique ID of the Amplify app associated with the component to delete.</p>",
         "DeleteComponentRequest$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
+        "DeleteFormRequest$appId": "<p>The unique ID of the Amplify app associated with the form to delete.</p>",
+        "DeleteFormRequest$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
         "DeleteThemeRequest$appId": "<p>The unique ID of the Amplify app associated with the theme to delete.</p>",
         "DeleteThemeRequest$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
         "ExchangeCodeForTokenRequestBody$redirectUri": "<p>The location of the application that will receive the access code.</p>",
@@ -530,15 +815,48 @@
         "ExportComponentsRequest$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
         "ExportComponentsRequest$nextToken": "<p>The token to request the next page of results.</p>",
         "ExportComponentsResponse$nextToken": "<p>The pagination token that's included if more results are available.</p>",
+        "ExportFormsRequest$appId": "<p>The unique ID of the Amplify app to export forms to.</p>",
+        "ExportFormsRequest$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
+        "ExportFormsRequest$nextToken": "<p>The token to request the next page of results.</p>",
+        "ExportFormsResponse$nextToken": "<p>The pagination token that's included if more results are available.</p>",
         "ExportThemesRequest$appId": "<p>The unique ID of the Amplify app to export the themes to.</p>",
         "ExportThemesRequest$environmentName": "<p>The name of the backend environment that is part of the Amplify app.</p>",
         "ExportThemesRequest$nextToken": "<p>The token to request the next page of results.</p>",
         "ExportThemesResponse$nextToken": "<p>The pagination token that's included if more results are available.</p>",
+        "FeaturesMap$key": null,
+        "FeaturesMap$value": null,
+        "FieldConfig$label": "<p>The label for the field.</p>",
+        "FieldInputConfig$defaultCountryCode": "<p>The default country code for a phone number.</p>",
+        "FieldInputConfig$defaultValue": "<p>The default value for the field.</p>",
+        "FieldInputConfig$descriptiveText": "<p>The text to display to describe the field.</p>",
+        "FieldInputConfig$name": "<p>The name of the field.</p>",
+        "FieldInputConfig$placeholder": "<p>The text to display as a placeholder for the field.</p>",
+        "FieldInputConfig$type": "<p>The input type for the field. </p>",
+        "FieldInputConfig$value": "<p>The value for the field.</p>",
+        "FieldPosition$below": "<p>The field position is below the field specified by the string.</p>",
+        "FieldPosition$rightOf": "<p>The field position is to the right of the field specified by the string.</p>",
+        "FieldValidationConfiguration$type": "<p>The validation to perform on an object type.<code/> </p>",
+        "FieldValidationConfiguration$validationMessage": "<p>The validation message to display.</p>",
+        "FieldsMap$key": null,
+        "Form$appId": "<p>The unique ID of the Amplify app associated with the form.</p>",
+        "Form$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
+        "Form$schemaVersion": "<p>The schema version of the form when it was imported.</p>",
         "FormBindingElement$element": "<p>The name of the component to retrieve a value from.</p>",
         "FormBindingElement$property": "<p>The property to retrieve a value from.</p>",
         "FormBindings$key": null,
+        "FormButton$children": "<p>Describes the button's properties.</p>",
+        "FormDataTypeConfig$dataTypeName": "<p>The unique name of the data type you are using as the data source for the form.</p>",
+        "FormInputValueProperty$value": "<p>The value to assign to the input field.</p>",
+        "FormStyleConfig$tokenReference": "<p>A reference to a design token to use to bind the form's style properties to an existing theme.</p>",
+        "FormStyleConfig$value": "<p>The value of the style setting.</p>",
+        "FormSummary$appId": "<p>The unique ID for the app associated with the form summary.</p>",
+        "FormSummary$environmentName": "<p>The name of the backend environment that is part of the Amplify app.</p>",
         "GetComponentRequest$appId": "<p>The unique ID of the Amplify app.</p>",
         "GetComponentRequest$environmentName": "<p>The name of the backend environment that is part of the Amplify app.</p>",
+        "GetFormRequest$appId": "<p>The unique ID of the Amplify app.</p>",
+        "GetFormRequest$environmentName": "<p>The name of the backend environment that is part of the Amplify app.</p>",
+        "GetMetadataRequest$appId": "<p>The unique ID of the Amplify app.</p>",
+        "GetMetadataRequest$environmentName": "<p>The name of the backend environment that is part of the Amplify app.</p>",
         "GetThemeRequest$appId": "<p>The unique ID of the Amplify app.</p>",
         "GetThemeRequest$environmentName": "<p>The name of the backend environment that is part of the Amplify app.</p>",
         "IdentifierList$member": null,
@@ -548,6 +866,10 @@
         "ListComponentsRequest$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
         "ListComponentsRequest$nextToken": "<p>The token to request the next page of results.</p>",
         "ListComponentsResponse$nextToken": "<p>The pagination token that's included if more results are available.</p>",
+        "ListFormsRequest$appId": "<p>The unique ID for the Amplify app.</p>",
+        "ListFormsRequest$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
+        "ListFormsRequest$nextToken": "<p>The token to request the next page of results.</p>",
+        "ListFormsResponse$nextToken": "<p>The pagination token that's included if more results are available.</p>",
         "ListThemesRequest$appId": "<p>The unique ID for the Amplify app.</p>",
         "ListThemesRequest$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
         "ListThemesRequest$nextToken": "<p>The token to request the next page of results.</p>",
@@ -557,21 +879,35 @@
         "Predicate$field": "<p>The field to query.</p>",
         "Predicate$operand": "<p>The value to use when performing the evaluation.</p>",
         "Predicate$operator": "<p>The operator to use to perform the evaluation.</p>",
+        "PutMetadataFlagBody$newValue": "<p>The new information to store.</p>",
+        "PutMetadataFlagRequest$appId": "<p>The unique ID for the Amplify app.</p>",
+        "PutMetadataFlagRequest$environmentName": "<p>The name of the backend environment that is part of the Amplify app.</p>",
+        "PutMetadataFlagRequest$featureName": "<p>The name of the feature associated with the metadata.</p>",
         "ResourceConflictException$message": null,
         "ResourceNotFoundException$message": null,
+        "SectionalElement$orientation": "<p>Specifies the orientation for a <code>Divider</code> sectional element. Valid values are <code>horizontal</code> or <code>vertical</code>.</p>",
+        "SectionalElement$text": "<p>The text for a <code>Text</code> sectional element.</p>",
+        "SectionalElement$type": "<p>The type of sectional element. Valid values are <code>Heading</code>, <code>Text</code>, and <code>Divider</code>.</p>",
+        "SectionalElementMap$key": null,
         "ServiceQuotaExceededException$message": null,
         "SortProperty$field": "<p>The field to perform the sort on.</p>",
+        "StrValues$member": null,
         "Theme$appId": "<p>The unique ID for the Amplify app associated with the theme.</p>",
         "Theme$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
         "ThemeSummary$appId": "<p>The unique ID for the app associated with the theme summary.</p>",
         "ThemeSummary$environmentName": "<p>The name of the backend environment that is part of the Amplify app.</p>",
         "ThemeValue$value": "<p>The value of a theme property.</p>",
         "ThemeValues$key": "<p>The name of the property.</p>",
+        "UnauthorizedException$message": null,
         "UpdateComponentData$schemaVersion": "<p>The schema version of the component when it was imported.</p>",
         "UpdateComponentData$sourceId": "<p>The unique ID of the component in its original source system, such as Figma.</p>",
         "UpdateComponentRequest$appId": "<p>The unique ID for the Amplify app.</p>",
         "UpdateComponentRequest$clientToken": "<p>The unique client token.</p>",
         "UpdateComponentRequest$environmentName": "<p>The name of the backend environment that is part of the Amplify app.</p>",
+        "UpdateFormData$schemaVersion": "<p>The schema version of the form.</p>",
+        "UpdateFormRequest$appId": "<p>The unique ID for the Amplify app.</p>",
+        "UpdateFormRequest$clientToken": "<p>The unique client token.</p>",
+        "UpdateFormRequest$environmentName": "<p>The name of the backend environment that is part of the Amplify app.</p>",
         "UpdateThemeRequest$appId": "<p>The unique ID for the Amplify app.</p>",
         "UpdateThemeRequest$clientToken": "<p>The unique client token.</p>",
         "UpdateThemeRequest$environmentName": "<p>The name of the backend environment that is part of the Amplify app.</p>"
@@ -603,7 +939,9 @@
       "refs": {
         "Component$tags": "<p>One or more key-value pairs to use when tagging the component.</p>",
         "CreateComponentData$tags": "<p>One or more key-value pairs to use when tagging the component data.</p>",
+        "CreateFormData$tags": "<p>One or more key-value pairs to use when tagging the form data.</p>",
         "CreateThemeData$tags": "<p>One or more key-value pairs to use when tagging the theme data.</p>",
+        "Form$tags": "<p>One or more key-value pairs to use when tagging the form.</p>",
         "Theme$tags": "<p>One or more key-value pairs to use when tagging the theme.</p>"
       }
     },
@@ -674,6 +1012,11 @@
         "RefreshTokenRequest$provider": "<p>The third-party provider for the token. The only valid value is <code>figma</code>.</p>"
       }
     },
+    "UnauthorizedException": {
+      "base": "<p>You don't have permission to perform this operation.</p>",
+      "refs": {
+      }
+    },
     "UpdateComponentData": {
       "base": "<p>Updates and saves all of the information about a component, based on component ID.</p>",
       "refs": {
@@ -686,6 +1029,22 @@
       }
     },
     "UpdateComponentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFormData": {
+      "base": "<p>Updates and saves all of the information about a form, based on form ID.</p>",
+      "refs": {
+        "UpdateFormRequest$updatedForm": "<p>The request accepts the following data in JSON format.</p>"
+      }
+    },
+    "UpdateFormRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFormResponse": {
       "base": null,
       "refs": {
       }
@@ -712,15 +1071,44 @@
         "Component$id": "<p>The unique ID of the component.</p>",
         "ComponentSummary$id": "<p>The unique ID of the component.</p>",
         "DeleteComponentRequest$id": "<p>The unique ID of the component to delete.</p>",
+        "DeleteFormRequest$id": "<p>The unique ID of the form to delete.</p>",
         "DeleteThemeRequest$id": "<p>The unique ID of the theme to delete.</p>",
+        "Form$id": "<p>The unique ID of the form.</p>",
+        "FormSummary$id": "<p>The ID of the form.</p>",
         "GetComponentRequest$id": "<p>The unique ID of the component.</p>",
+        "GetFormRequest$id": "<p>The unique ID of the form.</p>",
         "GetThemeRequest$id": "<p>The unique ID for the theme.</p>",
         "Theme$id": "<p>The ID for the theme.</p>",
         "ThemeSummary$id": "<p>The ID of the theme.</p>",
         "UpdateComponentData$id": "<p>The unique ID of the component to update.</p>",
         "UpdateComponentRequest$id": "<p>The unique ID for the component.</p>",
+        "UpdateFormRequest$id": "<p>The unique ID for the form.</p>",
         "UpdateThemeData$id": "<p>The unique ID of the theme to update.</p>",
         "UpdateThemeRequest$id": "<p>The unique ID for the theme.</p>"
+      }
+    },
+    "ValidationsList": {
+      "base": null,
+      "refs": {
+        "FieldConfig$validations": "<p>The validations to perform on the value in the field.</p>"
+      }
+    },
+    "ValueMapping": {
+      "base": "<p>Associates a complex object with a display value. Use <code>ValueMapping</code> to store how to represent complex objects when they are displayed.</p>",
+      "refs": {
+        "ValueMappingList$member": null
+      }
+    },
+    "ValueMappingList": {
+      "base": null,
+      "refs": {
+        "ValueMappings$values": "<p>The value and display value pairs.</p>"
+      }
+    },
+    "ValueMappings": {
+      "base": "<p>Represents the data binding configuration for a value map.</p>",
+      "refs": {
+        "FieldInputConfig$valueMappings": "<p>The information to use to customize the input fields with data at runtime.</p>"
       }
     }
   }
