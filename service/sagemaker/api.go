@@ -553,10 +553,10 @@ func (c *SageMaker) CreateAppRequest(input *CreateAppInput) (req *request.Reques
 
 // CreateApp API operation for Amazon SageMaker Service.
 //
-// Creates a running app for the specified UserProfile. Supported apps are JupyterServer
-// and KernelGateway. This operation is automatically invoked by Amazon SageMaker
-// Studio upon access to the associated Domain, and when new kernel configurations
-// are selected by the user. A user may have multiple Apps active simultaneously.
+// Creates a running app for the specified UserProfile. This operation is automatically
+// invoked by Amazon SageMaker Studio upon access to the associated Domain,
+// and when new kernel configurations are selected by the user. A user may have
+// multiple Apps active simultaneously.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -31657,8 +31657,7 @@ type CreateAppInput struct {
 	// AppName is a required field
 	AppName *string `type:"string" required:"true"`
 
-	// The type of app. Supported apps are JupyterServer and KernelGateway. TensorBoard
-	// is not supported.
+	// The type of app.
 	//
 	// AppType is a required field
 	AppType *string `type:"string" required:"true" enum:"AppType"`
@@ -60295,7 +60294,8 @@ type HumanTaskConfig struct {
 
 	// Defines the maximum number of data objects that can be labeled by human workers
 	// at the same time. Also referred to as batch size. Each object may have more
-	// than one worker at one time. The default value is 1000 objects.
+	// than one worker at one time. The default value is 1000 objects. To increase
+	// the maximum value to 5000 objects, contact Amazon Web Services Support.
 	MaxConcurrentTaskCount *int64 `min:"1" type:"integer"`
 
 	// The number of human workers that will label an object.
@@ -62043,17 +62043,21 @@ type HyperParameterTuningJobConfig struct {
 	ResourceLimits *ResourceLimits `type:"structure" required:"true"`
 
 	// Specifies how hyperparameter tuning chooses the combinations of hyperparameter
-	// values to use for the training job it launches. To use the Bayesian search
-	// strategy, set this to Bayesian. To randomly search, set it to Random. For
-	// information about search strategies, see How Hyperparameter Tuning Works
-	// (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-how-it-works.html).
+	// values to use for the training job it launches. For information about search
+	// strategies, see How Hyperparameter Tuning Works (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-how-it-works.html).
 	//
 	// Strategy is a required field
 	Strategy *string `type:"string" required:"true" enum:"HyperParameterTuningJobStrategyType"`
 
+	// The configuration for the Hyperband optimization strategy. This parameter
+	// should be provided only if Hyperband is selected as the strategy for HyperParameterTuningJobConfig.
+	StrategyConfig *HyperParameterTuningJobStrategyConfig `type:"structure"`
+
 	// Specifies whether to use early stopping for training jobs launched by the
-	// hyperparameter tuning job. This can be one of the following values (the default
-	// value is OFF):
+	// hyperparameter tuning job. Because the Hyperband strategy has its own advanced
+	// internal early stopping mechanism, TrainingJobEarlyStoppingType must be OFF
+	// to use Hyperband. This parameter can take on one of the following values
+	// (the default value is OFF):
 	//
 	// OFF
 	//
@@ -62113,6 +62117,11 @@ func (s *HyperParameterTuningJobConfig) Validate() error {
 			invalidParams.AddNested("ResourceLimits", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.StrategyConfig != nil {
+		if err := s.StrategyConfig.Validate(); err != nil {
+			invalidParams.AddNested("StrategyConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TuningJobCompletionCriteria != nil {
 		if err := s.TuningJobCompletionCriteria.Validate(); err != nil {
 			invalidParams.AddNested("TuningJobCompletionCriteria", err.(request.ErrInvalidParams))
@@ -62146,6 +62155,12 @@ func (s *HyperParameterTuningJobConfig) SetResourceLimits(v *ResourceLimits) *Hy
 // SetStrategy sets the Strategy field's value.
 func (s *HyperParameterTuningJobConfig) SetStrategy(v string) *HyperParameterTuningJobConfig {
 	s.Strategy = &v
+	return s
+}
+
+// SetStrategyConfig sets the StrategyConfig field's value.
+func (s *HyperParameterTuningJobConfig) SetStrategyConfig(v *HyperParameterTuningJobStrategyConfig) *HyperParameterTuningJobConfig {
+	s.StrategyConfig = v
 	return s
 }
 
@@ -62415,6 +62430,59 @@ func (s *HyperParameterTuningJobSearchEntity) SetWarmStartConfig(v *HyperParamet
 	return s
 }
 
+// The configuration for a training job launched by a hyperparameter tuning
+// job. Choose Bayesian for Bayesian optimization, and Random for random search
+// optimization. For more advanced use cases, use Hyperband, which evaluates
+// objective metrics for training jobs after every epoch. For more information
+// about strategies, see How Hyperparameter Tuning Works (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-how-it-works.html).
+type HyperParameterTuningJobStrategyConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for the object that specifies the Hyperband strategy. This
+	// parameter is only supported for the Hyperband selection for Strategy within
+	// the HyperParameterTuningJobConfig API.
+	HyperbandStrategyConfig *HyperbandStrategyConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HyperParameterTuningJobStrategyConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HyperParameterTuningJobStrategyConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HyperParameterTuningJobStrategyConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HyperParameterTuningJobStrategyConfig"}
+	if s.HyperbandStrategyConfig != nil {
+		if err := s.HyperbandStrategyConfig.Validate(); err != nil {
+			invalidParams.AddNested("HyperbandStrategyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHyperbandStrategyConfig sets the HyperbandStrategyConfig field's value.
+func (s *HyperParameterTuningJobStrategyConfig) SetHyperbandStrategyConfig(v *HyperbandStrategyConfig) *HyperParameterTuningJobStrategyConfig {
+	s.HyperbandStrategyConfig = v
+	return s
+}
+
 // Provides summary information about a hyperparameter tuning job.
 type HyperParameterTuningJobSummary struct {
 	_ struct{} `type:"structure"`
@@ -62456,8 +62524,7 @@ type HyperParameterTuningJobSummary struct {
 	ResourceLimits *ResourceLimits `type:"structure"`
 
 	// Specifies the search strategy hyperparameter tuning uses to choose which
-	// hyperparameters to use for each iteration. Currently, the only valid value
-	// is Bayesian.
+	// hyperparameters to evaluate at each iteration.
 	//
 	// Strategy is a required field
 	Strategy *string `type:"string" required:"true" enum:"HyperParameterTuningJobStrategyType"`
@@ -62812,6 +62879,95 @@ func (s *HyperParameterTuningResourceConfig) SetVolumeKmsKeyId(v string) *HyperP
 // SetVolumeSizeInGB sets the VolumeSizeInGB field's value.
 func (s *HyperParameterTuningResourceConfig) SetVolumeSizeInGB(v int64) *HyperParameterTuningResourceConfig {
 	s.VolumeSizeInGB = &v
+	return s
+}
+
+// The configuration for Hyperband, a multi-fidelity based hyperparameter tuning
+// strategy. Hyperband uses the final and intermediate results of a training
+// job to dynamically allocate resources to utilized hyperparameter configurations
+// while automatically stopping under-performing configurations. This parameter
+// should be provided only if Hyperband is selected as the StrategyConfig under
+// the HyperParameterTuningJobConfig API.
+type HyperbandStrategyConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of resources (such as epochs) that can be used by a training
+	// job launched by a hyperparameter tuning job. Once a job reaches the MaxResource
+	// value, it is stopped. If a value for MaxResource is not provided, and Hyperband
+	// is selected as the hyperparameter tuning strategy, HyperbandTrainingJ attempts
+	// to infer MaxResource from the following keys (if present) in StaticsHyperParameters
+	// (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HyperParameterTrainingJobDefinition.html#sagemaker-Type-HyperParameterTrainingJobDefinition-StaticHyperParameters):
+	//
+	//    * epochs
+	//
+	//    * numepochs
+	//
+	//    * n-epochs
+	//
+	//    * n_epochs
+	//
+	//    * num_epochs
+	//
+	// If HyperbandStrategyConfig is unable to infer a value for MaxResource, it
+	// generates a validation error. The maximum value is 20,000 epochs. All metrics
+	// that correspond to an objective metric are used to derive early stopping
+	// decisions (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-early-stopping.html).
+	// For distributive (https://docs.aws.amazon.com/sagemaker/latest/dg/distributed-training.html)
+	// training jobs, ensure that duplicate metrics are not printed in the logs
+	// across the individual nodes in a training job. If multiple nodes are publishing
+	// duplicate or incorrect metrics, training jobs may make an incorrect stopping
+	// decision and stop the job prematurely.
+	MaxResource *int64 `min:"1" type:"integer"`
+
+	// The minimum number of resources (such as epochs) that can be used by a training
+	// job launched by a hyperparameter tuning job. If the value for MinResource
+	// has not been reached, the training job will not be stopped by Hyperband.
+	MinResource *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HyperbandStrategyConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HyperbandStrategyConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HyperbandStrategyConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HyperbandStrategyConfig"}
+	if s.MaxResource != nil && *s.MaxResource < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResource", 1))
+	}
+	if s.MinResource != nil && *s.MinResource < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MinResource", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResource sets the MaxResource field's value.
+func (s *HyperbandStrategyConfig) SetMaxResource(v int64) *HyperbandStrategyConfig {
+	s.MaxResource = &v
+	return s
+}
+
+// SetMinResource sets the MinResource field's value.
+func (s *HyperbandStrategyConfig) SetMinResource(v int64) *HyperbandStrategyConfig {
+	s.MinResource = &v
 	return s
 }
 
@@ -99889,6 +100045,9 @@ const (
 
 	// HyperParameterTuningJobStrategyTypeRandom is a HyperParameterTuningJobStrategyType enum value
 	HyperParameterTuningJobStrategyTypeRandom = "Random"
+
+	// HyperParameterTuningJobStrategyTypeHyperband is a HyperParameterTuningJobStrategyType enum value
+	HyperParameterTuningJobStrategyTypeHyperband = "Hyperband"
 )
 
 // HyperParameterTuningJobStrategyType_Values returns all elements of the HyperParameterTuningJobStrategyType enum
@@ -99896,6 +100055,7 @@ func HyperParameterTuningJobStrategyType_Values() []string {
 	return []string{
 		HyperParameterTuningJobStrategyTypeBayesian,
 		HyperParameterTuningJobStrategyTypeRandom,
+		HyperParameterTuningJobStrategyTypeHyperband,
 	}
 }
 
