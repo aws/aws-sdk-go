@@ -5233,6 +5233,34 @@
         "Description":{"shape":"String"}
       }
     },
+    "AddedPrincipal":{
+      "type":"structure",
+      "members":{
+        "PrincipalType":{
+          "shape":"PrincipalType",
+          "locationName":"principalType"
+        },
+        "Principal":{
+          "shape":"String",
+          "locationName":"principal"
+        },
+        "ServicePermissionId":{
+          "shape":"String",
+          "locationName":"servicePermissionId"
+        },
+        "ServiceId":{
+          "shape":"String",
+          "locationName":"serviceId"
+        }
+      }
+    },
+    "AddedPrincipalSet":{
+      "type":"list",
+      "member":{
+        "shape":"AddedPrincipal",
+        "locationName":"item"
+      }
+    },
     "AdditionalDetail":{
       "type":"structure",
       "members":{
@@ -5563,6 +5591,18 @@
         "Principal":{
           "shape":"String",
           "locationName":"principal"
+        },
+        "ServicePermissionId":{
+          "shape":"String",
+          "locationName":"servicePermissionId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        },
+        "ServiceId":{
+          "shape":"String",
+          "locationName":"serviceId"
         }
       }
     },
@@ -29176,6 +29216,10 @@
     "ModifyVpcEndpointServicePermissionsResult":{
       "type":"structure",
       "members":{
+        "AddedPrincipals":{
+          "shape":"AddedPrincipalSet",
+          "locationName":"addedPrincipalSet"
+        },
         "ReturnValue":{
           "shape":"Boolean",
           "locationName":"return"
@@ -33708,7 +33752,9 @@
         "volume",
         "vpc",
         "vpc-endpoint",
+        "vpc-endpoint-connection",
         "vpc-endpoint-service",
+        "vpc-endpoint-service-permission",
         "vpc-peering-connection",
         "vpn-connection",
         "vpn-gateway",
@@ -40406,6 +40452,14 @@
         "IpAddressType":{
           "shape":"IpAddressType",
           "locationName":"ipAddressType"
+        },
+        "VpcEndpointConnectionId":{
+          "shape":"String",
+          "locationName":"vpcEndpointConnectionId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },

@@ -1260,7 +1260,7 @@
     "CancellationReasonList":{
       "type":"list",
       "member":{"shape":"CancellationReason"},
-      "max":25,
+      "max":100,
       "min":1
     },
     "Capacity":{
@@ -2436,7 +2436,7 @@
     "ItemResponseList":{
       "type":"list",
       "member":{"shape":"ItemResponse"},
-      "max":25,
+      "max":100,
       "min":1
     },
     "KMSMasterKeyArn":{"type":"string"},
@@ -2750,7 +2750,7 @@
     "ParameterizedStatements":{
       "type":"list",
       "member":{"shape":"ParameterizedStatement"},
-      "max":25,
+      "max":100,
       "min":1
     },
     "PartiQLBatchRequest":{
@@ -3689,7 +3689,7 @@
     "TransactGetItemList":{
       "type":"list",
       "member":{"shape":"TransactGetItem"},
-      "max":25,
+      "max":100,
       "min":1
     },
     "TransactGetItemsInput":{
@@ -3719,7 +3719,7 @@
     "TransactWriteItemList":{
       "type":"list",
       "member":{"shape":"TransactWriteItem"},
-      "max":25,
+      "max":100,
       "min":1
     },
     "TransactWriteItemsInput":{

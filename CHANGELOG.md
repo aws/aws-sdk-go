@@ -1,3 +1,14 @@
+Release v1.44.99 (2022-09-15)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Increased DynamoDB transaction limit from 25 to 100.
+* `service/ec2`: Updates service API and documentation
+  * This feature allows customers to create tags for vpc-endpoint-connections and vpc-endpoint-service-permissions.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Automatic Model Tuning now supports specifying Hyperband strategy for tuning jobs, which uses a multi-fidelity based tuning strategy to stop underperforming hyperparameter configurations early.
+
 Release v1.44.98 (2022-09-14)
 ===
 

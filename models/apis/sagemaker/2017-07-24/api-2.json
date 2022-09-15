@@ -9691,6 +9691,7 @@
       ],
       "members":{
         "Strategy":{"shape":"HyperParameterTuningJobStrategyType"},
+        "StrategyConfig":{"shape":"HyperParameterTuningJobStrategyConfig"},
         "HyperParameterTuningJobObjective":{"shape":"HyperParameterTuningJobObjective"},
         "ResourceLimits":{"shape":"ResourceLimits"},
         "ParameterRanges":{"shape":"ParameterRanges"},
@@ -9765,11 +9766,18 @@
         "Stopping"
       ]
     },
+    "HyperParameterTuningJobStrategyConfig":{
+      "type":"structure",
+      "members":{
+        "HyperbandStrategyConfig":{"shape":"HyperbandStrategyConfig"}
+      }
+    },
     "HyperParameterTuningJobStrategyType":{
       "type":"string",
       "enum":[
         "Bayesian",
-        "Random"
+        "Random",
+        "Hyperband"
       ]
     },
     "HyperParameterTuningJobSummaries":{
@@ -9840,6 +9848,21 @@
       "value":{"shape":"HyperParameterValue"},
       "max":100,
       "min":0
+    },
+    "HyperbandStrategyConfig":{
+      "type":"structure",
+      "members":{
+        "MinResource":{"shape":"HyperbandStrategyMinResource"},
+        "MaxResource":{"shape":"HyperbandStrategyMaxResource"}
+      }
+    },
+    "HyperbandStrategyMaxResource":{
+      "type":"integer",
+      "min":1
+    },
+    "HyperbandStrategyMinResource":{
+      "type":"integer",
+      "min":1
     },
     "IdempotencyToken":{
       "type":"string",
@@ -12019,7 +12042,7 @@
     },
     "MaxConcurrentTaskCount":{
       "type":"integer",
-      "max":1000,
+      "max":5000,
       "min":1
     },
     "MaxConcurrentTransforms":{

@@ -788,6 +788,18 @@
         "AddPrefixListEntries$member": null
       }
     },
+    "AddedPrincipal": {
+      "base": "<p>Describes a principal.</p>",
+      "refs": {
+        "AddedPrincipalSet$member": null
+      }
+    },
+    "AddedPrincipalSet": {
+      "base": null,
+      "refs": {
+        "ModifyVpcEndpointServicePermissionsResult$AddedPrincipals": "<p>Information about the added principals.</p>"
+      }
+    },
     "AdditionalDetail": {
       "base": "<p>Describes an additional detail for a path analysis.</p>",
       "refs": {
@@ -14487,6 +14499,7 @@
     "PrincipalType": {
       "base": null,
       "refs": {
+        "AddedPrincipal$PrincipalType": "<p>The type of principal.</p>",
         "AllowedPrincipal$PrincipalType": "<p>The type of principal.</p>"
       }
     },
@@ -14499,7 +14512,7 @@
     "PrivateDnsDetailsSet": {
       "base": null,
       "refs": {
-        "ServiceDetail$PrivateDnsNames": "<p>The private DNS names assigned to the VPC endpoint service. </p>"
+        "ServiceDetail$PrivateDnsNames": "<p>The private DNS names assigned to the VPC endpoint service.</p>"
       }
     },
     "PrivateDnsNameConfiguration": {
@@ -16716,6 +16729,9 @@
         "AddIpamOperatingRegion$RegionName": "<p>The name of the operating Region.</p>",
         "AddPrefixListEntry$Cidr": "<p>The CIDR block.</p>",
         "AddPrefixListEntry$Description": "<p>A description for the entry.</p> <p>Constraints: Up to 255 characters in length.</p>",
+        "AddedPrincipal$Principal": "<p>The Amazon Resource Name (ARN) of the principal.</p>",
+        "AddedPrincipal$ServicePermissionId": "<p>The ID of the service permission.</p>",
+        "AddedPrincipal$ServiceId": "<p>The ID of the service.</p>",
         "AdditionalDetail$AdditionalDetailType": "<p>The information type.</p>",
         "Address$InstanceId": "<p>The ID of the instance that the address is associated with (if any).</p>",
         "Address$PublicIp": "<p>The Elastic IP address.</p>",
@@ -16749,6 +16765,8 @@
         "AllocateIpamPoolCidrRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "AllocateIpamPoolCidrRequest$Description": "<p>A description for the allocation.</p>",
         "AllowedPrincipal$Principal": "<p>The Amazon Resource Name (ARN) of the principal.</p>",
+        "AllowedPrincipal$ServicePermissionId": "<p>The ID of the service permission.</p>",
+        "AllowedPrincipal$ServiceId": "<p>The ID of the service.</p>",
         "AlternatePathHint$ComponentId": "<p>The ID of the component.</p>",
         "AlternatePathHint$ComponentArn": "<p>The Amazon Resource Name (ARN) of the component.</p>",
         "AnalysisAclRule$Cidr": "<p>The IPv4 address range, in CIDR notation.</p>",
@@ -18527,6 +18545,7 @@
         "VpcEndpointConnection$ServiceId": "<p>The ID of the service to which the endpoint is connected.</p>",
         "VpcEndpointConnection$VpcEndpointId": "<p>The ID of the VPC endpoint.</p>",
         "VpcEndpointConnection$VpcEndpointOwner": "<p>The ID of the Amazon Web Services account that owns the VPC endpoint.</p>",
+        "VpcEndpointConnection$VpcEndpointConnectionId": "<p>The ID of the VPC endpoint connection.</p>",
         "VpcIpv6CidrBlockAssociation$AssociationId": "<p>The association ID for the IPv6 CIDR block.</p>",
         "VpcIpv6CidrBlockAssociation$Ipv6CidrBlock": "<p>The IPv6 CIDR block.</p>",
         "VpcIpv6CidrBlockAssociation$NetworkBorderGroup": "<p>The name of the unique set of Availability Zones, Local Zones, or Wavelength Zones from which Amazon Web Services advertises IP addresses, for example, <code>us-east-1-wl1-bos-wlz-1</code>.</p>",
@@ -18776,6 +18795,7 @@
       "base": null,
       "refs": {
         "Address$Tags": "<p>Any tags assigned to the Elastic IP address.</p>",
+        "AllowedPrincipal$Tags": "<p>The tags.</p>",
         "CapacityReservation$Tags": "<p>Any tags assigned to the Capacity Reservation.</p>",
         "CapacityReservationFleet$Tags": "<p>The tags assigned to the Capacity Reservation Fleet.</p>",
         "CarrierGateway$Tags": "<p>The tags assigned to the carrier gateway.</p>",
@@ -18872,6 +18892,7 @@
         "Vpc$Tags": "<p>Any tags assigned to the VPC.</p>",
         "VpcClassicLink$Tags": "<p>Any tags assigned to the VPC.</p>",
         "VpcEndpoint$Tags": "<p>Any tags assigned to the endpoint.</p>",
+        "VpcEndpointConnection$Tags": "<p>The tags.</p>",
         "VpcPeeringConnection$Tags": "<p>Any tags assigned to the resource.</p>",
         "VpnConnection$Tags": "<p>Any tags assigned to the VPN connection.</p>",
         "VpnGateway$Tags": "<p>Any tags assigned to the virtual private gateway.</p>"

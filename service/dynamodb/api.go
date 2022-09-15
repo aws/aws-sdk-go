@@ -5806,7 +5806,7 @@ func (c *DynamoDB) TransactGetItemsRequest(input *TransactGetItemsInput) (req *r
 //
 // TransactGetItems is a synchronous operation that atomically retrieves multiple
 // items from one or more tables (but not from indexes) in a single account
-// and Region. A TransactGetItems call can contain up to 25 TransactGetItem
+// and Region. A TransactGetItems call can contain up to 100 TransactGetItem
 // objects, each of which contains a Get structure that specifies an item to
 // retrieve from a table in the account and Region. A call to TransactGetItems
 // cannot retrieve items from tables in more than one Amazon Web Services account
@@ -6032,7 +6032,7 @@ func (c *DynamoDB) TransactWriteItemsRequest(input *TransactWriteItemsInput) (re
 
 // TransactWriteItems API operation for Amazon DynamoDB.
 //
-// TransactWriteItems is a synchronous write operation that groups up to 25
+// TransactWriteItems is a synchronous write operation that groups up to 100
 // action requests. These actions can target items in different tables, but
 // not in different Amazon Web Services accounts or Regions, and no two actions
 // can target the same item. For example, you cannot both ConditionCheck and
@@ -23586,7 +23586,7 @@ type TransactGetItemsInput struct {
 	// is valid.
 	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
-	// An ordered array of up to 25 TransactGetItem objects, each of which contains
+	// An ordered array of up to 100 TransactGetItem objects, each of which contains
 	// a Get structure.
 	//
 	// TransactItems is a required field
@@ -23658,7 +23658,7 @@ type TransactGetItemsOutput struct {
 	// consumed by the TransactGetItems call in that table.
 	ConsumedCapacity []*ConsumedCapacity `type:"list"`
 
-	// An ordered array of up to 25 ItemResponse objects, each of which corresponds
+	// An ordered array of up to 100 ItemResponse objects, each of which corresponds
 	// to the TransactGetItem object in the same position in the TransactItems array.
 	// Each ItemResponse object contains a Map of the name-value pairs that are
 	// the projected attributes of the requested item.
@@ -23836,7 +23836,7 @@ type TransactWriteItemsInput struct {
 	// NONE (the default), no statistics are returned.
 	ReturnItemCollectionMetrics *string `type:"string" enum:"ReturnItemCollectionMetrics"`
 
-	// An ordered array of up to 25 TransactWriteItem objects, each of which contains
+	// An ordered array of up to 100 TransactWriteItem objects, each of which contains
 	// a ConditionCheck, Put, Update, or Delete object. These can operate on items
 	// in different tables, but the tables must reside in the same Amazon Web Services
 	// account and Region, and no two of them can operate on the same item.
