@@ -1,3 +1,11 @@
+Release v1.44.100 (2022-09-16)
+===
+
+### Service Client Updates
+* `service/codestar-notifications`: Updates service API and documentation
+* `service/ecs`: Updates service documentation
+  * This release supports new task definition sizes.
+
 Release v1.44.99 (2022-09-15)
 ===
 
