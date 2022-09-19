@@ -679,6 +679,10 @@ func (c *CloudTrail) DeleteEventDataStoreRequest(input *DeleteEventDataStoreInpu
 //     The event data store cannot be deleted because termination protection is
 //     enabled for it.
 //
+//   - EventDataStoreHasOngoingImportException
+//     This exception is thrown when you try to update or delete an event data store
+//     that currently has an import in progress.
+//
 //   - InvalidParameterException
 //     The request includes a parameter that is not valid.
 //
@@ -1284,8 +1288,12 @@ func (c *CloudTrail) GetEventSelectorsRequest(input *GetEventSelectorsInput) (re
 //   - If your event selector includes data events, the resources on which
 //     you are logging data events.
 //
-// For more information, see Logging Data and Management Events for Trails (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-and-data-events-with-cloudtrail.html)
-// in the CloudTrail User Guide.
+// For more information about logging management and data events, see the following
+// topics in the CloudTrail User Guide:
+//
+//   - Logging management events for trails (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html)
+//
+//   - Logging data events for trails (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1338,6 +1346,94 @@ func (c *CloudTrail) GetEventSelectors(input *GetEventSelectorsInput) (*GetEvent
 // for more information on using Contexts.
 func (c *CloudTrail) GetEventSelectorsWithContext(ctx aws.Context, input *GetEventSelectorsInput, opts ...request.Option) (*GetEventSelectorsOutput, error) {
 	req, out := c.GetEventSelectorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetImport = "GetImport"
+
+// GetImportRequest generates a "aws/request.Request" representing the
+// client's request for the GetImport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetImport for more information on using the GetImport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetImportRequest method.
+//	req, resp := client.GetImportRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/GetImport
+func (c *CloudTrail) GetImportRequest(input *GetImportInput) (req *request.Request, output *GetImportOutput) {
+	op := &request.Operation{
+		Name:       opGetImport,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetImportInput{}
+	}
+
+	output = &GetImportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetImport API operation for AWS CloudTrail.
+//
+// Returns information for the specified import.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudTrail's
+// API operation GetImport for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ImportNotFoundException
+//     The specified import was not found.
+//
+//   - InvalidParameterException
+//     The request includes a parameter that is not valid.
+//
+//   - OperationNotPermittedException
+//     This exception is thrown when the requested operation is not permitted.
+//
+//   - UnsupportedOperationException
+//     This exception is thrown when the requested operation is not supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/GetImport
+func (c *CloudTrail) GetImport(input *GetImportInput) (*GetImportOutput, error) {
+	req, out := c.GetImportRequest(input)
+	return out, req.Send()
+}
+
+// GetImportWithContext is the same as GetImport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetImport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudTrail) GetImportWithContext(ctx aws.Context, input *GetImportInput, opts ...request.Option) (*GetImportOutput, error) {
+	req, out := c.GetImportRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2107,6 +2203,300 @@ func (c *CloudTrail) ListEventDataStoresPagesWithContext(ctx aws.Context, input 
 
 	for p.Next() {
 		if !fn(p.Page().(*ListEventDataStoresOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListImportFailures = "ListImportFailures"
+
+// ListImportFailuresRequest generates a "aws/request.Request" representing the
+// client's request for the ListImportFailures operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListImportFailures for more information on using the ListImportFailures
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListImportFailuresRequest method.
+//	req, resp := client.ListImportFailuresRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/ListImportFailures
+func (c *CloudTrail) ListImportFailuresRequest(input *ListImportFailuresInput) (req *request.Request, output *ListImportFailuresOutput) {
+	op := &request.Operation{
+		Name:       opListImportFailures,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListImportFailuresInput{}
+	}
+
+	output = &ListImportFailuresOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListImportFailures API operation for AWS CloudTrail.
+//
+// Returns a list of failures for the specified import.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudTrail's
+// API operation ListImportFailures for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidNextTokenException
+//     A token that is not valid, or a token that was previously used in a request
+//     with different parameters. This exception is thrown if the token is not valid.
+//
+//   - OperationNotPermittedException
+//     This exception is thrown when the requested operation is not permitted.
+//
+//   - UnsupportedOperationException
+//     This exception is thrown when the requested operation is not supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/ListImportFailures
+func (c *CloudTrail) ListImportFailures(input *ListImportFailuresInput) (*ListImportFailuresOutput, error) {
+	req, out := c.ListImportFailuresRequest(input)
+	return out, req.Send()
+}
+
+// ListImportFailuresWithContext is the same as ListImportFailures with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListImportFailures for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudTrail) ListImportFailuresWithContext(ctx aws.Context, input *ListImportFailuresInput, opts ...request.Option) (*ListImportFailuresOutput, error) {
+	req, out := c.ListImportFailuresRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListImportFailuresPages iterates over the pages of a ListImportFailures operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListImportFailures method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListImportFailures operation.
+//	pageNum := 0
+//	err := client.ListImportFailuresPages(params,
+//	    func(page *cloudtrail.ListImportFailuresOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CloudTrail) ListImportFailuresPages(input *ListImportFailuresInput, fn func(*ListImportFailuresOutput, bool) bool) error {
+	return c.ListImportFailuresPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListImportFailuresPagesWithContext same as ListImportFailuresPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudTrail) ListImportFailuresPagesWithContext(ctx aws.Context, input *ListImportFailuresInput, fn func(*ListImportFailuresOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListImportFailuresInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListImportFailuresRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListImportFailuresOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListImports = "ListImports"
+
+// ListImportsRequest generates a "aws/request.Request" representing the
+// client's request for the ListImports operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListImports for more information on using the ListImports
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListImportsRequest method.
+//	req, resp := client.ListImportsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/ListImports
+func (c *CloudTrail) ListImportsRequest(input *ListImportsInput) (req *request.Request, output *ListImportsOutput) {
+	op := &request.Operation{
+		Name:       opListImports,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListImportsInput{}
+	}
+
+	output = &ListImportsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListImports API operation for AWS CloudTrail.
+//
+// Returns information on all imports, or a select set of imports by ImportStatus
+// or Destination.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudTrail's
+// API operation ListImports for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EventDataStoreARNInvalidException
+//     The specified event data store ARN is not valid or does not map to an event
+//     data store in your account.
+//
+//   - InvalidNextTokenException
+//     A token that is not valid, or a token that was previously used in a request
+//     with different parameters. This exception is thrown if the token is not valid.
+//
+//   - InvalidParameterException
+//     The request includes a parameter that is not valid.
+//
+//   - OperationNotPermittedException
+//     This exception is thrown when the requested operation is not permitted.
+//
+//   - UnsupportedOperationException
+//     This exception is thrown when the requested operation is not supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/ListImports
+func (c *CloudTrail) ListImports(input *ListImportsInput) (*ListImportsOutput, error) {
+	req, out := c.ListImportsRequest(input)
+	return out, req.Send()
+}
+
+// ListImportsWithContext is the same as ListImports with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListImports for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudTrail) ListImportsWithContext(ctx aws.Context, input *ListImportsInput, opts ...request.Option) (*ListImportsOutput, error) {
+	req, out := c.ListImportsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListImportsPages iterates over the pages of a ListImports operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListImports method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListImports operation.
+//	pageNum := 0
+//	err := client.ListImportsPages(params,
+//	    func(page *cloudtrail.ListImportsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CloudTrail) ListImportsPages(input *ListImportsInput, fn func(*ListImportsOutput, bool) bool) error {
+	return c.ListImportsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListImportsPagesWithContext same as ListImportsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudTrail) ListImportsPagesWithContext(ctx aws.Context, input *ListImportsInput, fn func(*ListImportsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListImportsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListImportsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListImportsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3022,7 +3412,8 @@ func (c *CloudTrail) PutEventSelectorsRequest(input *PutEventSelectorsInput) (re
 // thrown.
 //
 // You can configure up to five event selectors for each trail. For more information,
-// see Logging data and management events for trails (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-and-data-events-with-cloudtrail.html)
+// see Logging management events for trails (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html),
+// Logging data events for trails (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html),
 // and Quotas in CloudTrail (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/WhatIsCloudTrail-Limits.html)
 // in the CloudTrail User Guide.
 //
@@ -3525,6 +3916,134 @@ func (c *CloudTrail) RestoreEventDataStoreWithContext(ctx aws.Context, input *Re
 	return out, req.Send()
 }
 
+const opStartImport = "StartImport"
+
+// StartImportRequest generates a "aws/request.Request" representing the
+// client's request for the StartImport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartImport for more information on using the StartImport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartImportRequest method.
+//	req, resp := client.StartImportRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/StartImport
+func (c *CloudTrail) StartImportRequest(input *StartImportInput) (req *request.Request, output *StartImportOutput) {
+	op := &request.Operation{
+		Name:       opStartImport,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartImportInput{}
+	}
+
+	output = &StartImportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartImport API operation for AWS CloudTrail.
+//
+// Starts an import of logged trail events from a source S3 bucket to a destination
+// event data store.
+//
+// When you start a new import, the Destinations and ImportSource parameters
+// are required. Before starting a new import, disable any access control lists
+// (ACLs) attached to the source S3 bucket. For more information about disabling
+// ACLs, see Controlling ownership of objects and disabling ACLs for your bucket
+// (https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html).
+//
+// When you retry an import, the ImportID parameter is required.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudTrail's
+// API operation StartImport for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccountHasOngoingImportException
+//     This exception is thrown when you start a new import and a previous import
+//     is still in progress.
+//
+//   - EventDataStoreARNInvalidException
+//     The specified event data store ARN is not valid or does not map to an event
+//     data store in your account.
+//
+//   - EventDataStoreNotFoundException
+//     The specified event data store was not found.
+//
+//   - InvalidEventDataStoreStatusException
+//     The event data store is not in a status that supports the operation.
+//
+//   - InvalidEventDataStoreCategoryException
+//     This exception is thrown when the event data store category is not valid
+//     for the import.
+//
+//   - InactiveEventDataStoreException
+//     The event data store is inactive.
+//
+//   - InvalidImportSourceException
+//     This exception is thrown when the provided source S3 bucket is not valid
+//     for import.
+//
+//   - ImportNotFoundException
+//     The specified import was not found.
+//
+//   - InvalidParameterException
+//     The request includes a parameter that is not valid.
+//
+//   - OperationNotPermittedException
+//     This exception is thrown when the requested operation is not permitted.
+//
+//   - UnsupportedOperationException
+//     This exception is thrown when the requested operation is not supported.
+//
+//   - OperationNotPermittedException
+//     This exception is thrown when the requested operation is not permitted.
+//
+//   - UnsupportedOperationException
+//     This exception is thrown when the requested operation is not supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/StartImport
+func (c *CloudTrail) StartImport(input *StartImportInput) (*StartImportOutput, error) {
+	req, out := c.StartImportRequest(input)
+	return out, req.Send()
+}
+
+// StartImportWithContext is the same as StartImport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartImport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudTrail) StartImportWithContext(ctx aws.Context, input *StartImportInput, opts ...request.Option) (*StartImportOutput, error) {
+	req, out := c.StartImportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartLogging = "StartLogging"
 
 // StartLoggingRequest generates a "aws/request.Request" representing the
@@ -3753,6 +4272,94 @@ func (c *CloudTrail) StartQueryWithContext(ctx aws.Context, input *StartQueryInp
 	return out, req.Send()
 }
 
+const opStopImport = "StopImport"
+
+// StopImportRequest generates a "aws/request.Request" representing the
+// client's request for the StopImport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopImport for more information on using the StopImport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopImportRequest method.
+//	req, resp := client.StopImportRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/StopImport
+func (c *CloudTrail) StopImportRequest(input *StopImportInput) (req *request.Request, output *StopImportOutput) {
+	op := &request.Operation{
+		Name:       opStopImport,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopImportInput{}
+	}
+
+	output = &StopImportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopImport API operation for AWS CloudTrail.
+//
+// Stops a specified import.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudTrail's
+// API operation StopImport for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ImportNotFoundException
+//     The specified import was not found.
+//
+//   - InvalidParameterException
+//     The request includes a parameter that is not valid.
+//
+//   - OperationNotPermittedException
+//     This exception is thrown when the requested operation is not permitted.
+//
+//   - UnsupportedOperationException
+//     This exception is thrown when the requested operation is not supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/StopImport
+func (c *CloudTrail) StopImport(input *StopImportInput) (*StopImportOutput, error) {
+	req, out := c.StopImportRequest(input)
+	return out, req.Send()
+}
+
+// StopImportWithContext is the same as StopImport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopImport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudTrail) StopImportWithContext(ctx aws.Context, input *StopImportInput, opts ...request.Option) (*StopImportOutput, error) {
+	req, out := c.StopImportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStopLogging = "StopLogging"
 
 // StopLoggingRequest generates a "aws/request.Request" representing the
@@ -3944,6 +4551,10 @@ func (c *CloudTrail) UpdateEventDataStoreRequest(input *UpdateEventDataStoreInpu
 //
 //   - EventDataStoreNotFoundException
 //     The specified event data store was not found.
+//
+//   - EventDataStoreHasOngoingImportException
+//     This exception is thrown when you try to update or delete an event data store
+//     that currently has an import in progress.
 //
 //   - InactiveEventDataStoreException
 //     The event data store is inactive.
@@ -4363,6 +4974,71 @@ func (s *AccessNotEnabledException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *AccessNotEnabledException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// This exception is thrown when you start a new import and a previous import
+// is still in progress.
+type AccountHasOngoingImportException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountHasOngoingImportException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountHasOngoingImportException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccountHasOngoingImportException(v protocol.ResponseMetadata) error {
+	return &AccountHasOngoingImportException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AccountHasOngoingImportException) Code() string {
+	return "AccountHasOngoingImportException"
+}
+
+// Message returns the exception's message.
+func (s *AccountHasOngoingImportException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AccountHasOngoingImportException) OrigErr() error {
+	return nil
+}
+
+func (s *AccountHasOngoingImportException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AccountHasOngoingImportException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AccountHasOngoingImportException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -5941,7 +6617,7 @@ type DataResource struct {
 	// the specified objects.
 	//
 	//    * To log data events for all objects in all S3 buckets in your Amazon
-	//    Web Services account, specify the prefix as arn:aws:s3:::. This also enables
+	//    Web Services account, specify the prefix as arn:aws:s3. This also enables
 	//    logging of data event activity performed by any user or role in your Amazon
 	//    Web Services account, even if that activity is performed on a bucket that
 	//    belongs to another Amazon Web Services account.
@@ -6805,6 +7481,71 @@ func (s *EventDataStoreAlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// This exception is thrown when you try to update or delete an event data store
+// that currently has an import in progress.
+type EventDataStoreHasOngoingImportException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventDataStoreHasOngoingImportException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventDataStoreHasOngoingImportException) GoString() string {
+	return s.String()
+}
+
+func newErrorEventDataStoreHasOngoingImportException(v protocol.ResponseMetadata) error {
+	return &EventDataStoreHasOngoingImportException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EventDataStoreHasOngoingImportException) Code() string {
+	return "EventDataStoreHasOngoingImportException"
+}
+
+// Message returns the exception's message.
+func (s *EventDataStoreHasOngoingImportException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EventDataStoreHasOngoingImportException) OrigErr() error {
+	return nil
+}
+
+func (s *EventDataStoreHasOngoingImportException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EventDataStoreHasOngoingImportException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EventDataStoreHasOngoingImportException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Your account has used the maximum number of event data stores.
 type EventDataStoreMaxLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -7018,7 +7759,7 @@ type EventSelector struct {
 	// data resources cannot exceed 250 across all event selectors in a trail. This
 	// limit does not apply if you configure resource logging for all data events.
 	//
-	// For more information, see Data Events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-and-data-events-with-cloudtrail.html#logging-data-events)
+	// For more information, see Data Events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)
 	// and Limits in CloudTrail (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/WhatIsCloudTrail-Limits.html)
 	// in the CloudTrail User Guide.
 	DataResources []*DataResource `type:"list"`
@@ -7035,7 +7776,7 @@ type EventSelector struct {
 	// Specify if you want your event selector to include management events for
 	// your trail.
 	//
-	// For more information, see Management Events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-and-data-events-with-cloudtrail.html#logging-management-events)
+	// For more information, see Management Events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html)
 	// in the CloudTrail User Guide.
 	//
 	// By default, the value is true.
@@ -7493,6 +8234,160 @@ func (s *GetEventSelectorsOutput) SetEventSelectors(v []*EventSelector) *GetEven
 // SetTrailARN sets the TrailARN field's value.
 func (s *GetEventSelectorsOutput) SetTrailARN(v string) *GetEventSelectorsOutput {
 	s.TrailARN = &v
+	return s
+}
+
+type GetImportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the import.
+	//
+	// ImportId is a required field
+	ImportId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetImportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetImportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetImportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetImportInput"}
+	if s.ImportId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImportId"))
+	}
+	if s.ImportId != nil && len(*s.ImportId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ImportId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *GetImportInput) SetImportId(v string) *GetImportInput {
+	s.ImportId = &v
+	return s
+}
+
+type GetImportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of the import's creation.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The destination event data store.
+	Destinations []*string `min:"1" type:"list"`
+
+	// Used with StartEventTime to bound a StartImport request, and limit imported
+	// trail events to only those events logged within a specified time period.
+	EndEventTime *time.Time `type:"timestamp"`
+
+	// The ID of the import.
+	ImportId *string `min:"36" type:"string"`
+
+	// The source S3 bucket.
+	ImportSource *ImportSource `type:"structure"`
+
+	// Provides statistics for the import.
+	ImportStatistics *ImportStatistics `type:"structure"`
+
+	// The status of the import.
+	ImportStatus *string `type:"string" enum:"ImportStatus"`
+
+	// Used with EndEventTime to bound a StartImport request, and limit imported
+	// trail events to only those events logged within a specified time period.
+	StartEventTime *time.Time `type:"timestamp"`
+
+	// The timestamp of when the import was updated.
+	UpdatedTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetImportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetImportOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *GetImportOutput) SetCreatedTimestamp(v time.Time) *GetImportOutput {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *GetImportOutput) SetDestinations(v []*string) *GetImportOutput {
+	s.Destinations = v
+	return s
+}
+
+// SetEndEventTime sets the EndEventTime field's value.
+func (s *GetImportOutput) SetEndEventTime(v time.Time) *GetImportOutput {
+	s.EndEventTime = &v
+	return s
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *GetImportOutput) SetImportId(v string) *GetImportOutput {
+	s.ImportId = &v
+	return s
+}
+
+// SetImportSource sets the ImportSource field's value.
+func (s *GetImportOutput) SetImportSource(v *ImportSource) *GetImportOutput {
+	s.ImportSource = v
+	return s
+}
+
+// SetImportStatistics sets the ImportStatistics field's value.
+func (s *GetImportOutput) SetImportStatistics(v *ImportStatistics) *GetImportOutput {
+	s.ImportStatistics = v
+	return s
+}
+
+// SetImportStatus sets the ImportStatus field's value.
+func (s *GetImportOutput) SetImportStatus(v string) *GetImportOutput {
+	s.ImportStatus = &v
+	return s
+}
+
+// SetStartEventTime sets the StartEventTime field's value.
+func (s *GetImportOutput) SetStartEventTime(v time.Time) *GetImportOutput {
+	s.StartEventTime = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *GetImportOutput) SetUpdatedTimestamp(v time.Time) *GetImportOutput {
+	s.UpdatedTimestamp = &v
 	return s
 }
 
@@ -8091,6 +8986,326 @@ func (s *GetTrailStatusOutput) SetTimeLoggingStarted(v string) *GetTrailStatusOu
 // SetTimeLoggingStopped sets the TimeLoggingStopped field's value.
 func (s *GetTrailStatusOutput) SetTimeLoggingStopped(v string) *GetTrailStatusOutput {
 	s.TimeLoggingStopped = &v
+	return s
+}
+
+// Provides information about an import failure.
+type ImportFailureListItem struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the reason the import failed.
+	ErrorMessage *string `type:"string"`
+
+	// The type of import error.
+	ErrorType *string `type:"string"`
+
+	// When the import was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The location of the failure in the S3 bucket.
+	Location *string `type:"string"`
+
+	// The status of the import.
+	Status *string `type:"string" enum:"ImportFailureStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportFailureListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportFailureListItem) GoString() string {
+	return s.String()
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *ImportFailureListItem) SetErrorMessage(v string) *ImportFailureListItem {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetErrorType sets the ErrorType field's value.
+func (s *ImportFailureListItem) SetErrorType(v string) *ImportFailureListItem {
+	s.ErrorType = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *ImportFailureListItem) SetLastUpdatedTime(v time.Time) *ImportFailureListItem {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *ImportFailureListItem) SetLocation(v string) *ImportFailureListItem {
+	s.Location = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ImportFailureListItem) SetStatus(v string) *ImportFailureListItem {
+	s.Status = &v
+	return s
+}
+
+// The specified import was not found.
+type ImportNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorImportNotFoundException(v protocol.ResponseMetadata) error {
+	return &ImportNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ImportNotFoundException) Code() string {
+	return "ImportNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ImportNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ImportNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ImportNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ImportNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ImportNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The import source.
+type ImportSource struct {
+	_ struct{} `type:"structure"`
+
+	// The source S3 bucket.
+	//
+	// S3 is a required field
+	S3 *S3ImportSource `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportSource"}
+	if s.S3 == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3"))
+	}
+	if s.S3 != nil {
+		if err := s.S3.Validate(); err != nil {
+			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3 sets the S3 field's value.
+func (s *ImportSource) SetS3(v *S3ImportSource) *ImportSource {
+	s.S3 = v
+	return s
+}
+
+// Provides statistics for the specified ImportID.
+type ImportStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// The number of trail events imported.
+	EventsCompleted *int64 `type:"long"`
+
+	// The number of failed entries.
+	FailedEntries *int64 `type:"long"`
+
+	// The number of files that completed import.
+	FilesCompleted *int64 `type:"long"`
+
+	// The number of S3 prefixes that completed import.
+	PrefixesCompleted *int64 `type:"long"`
+
+	// The number of S3 prefixes found for the import.
+	PrefixesFound *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportStatistics) GoString() string {
+	return s.String()
+}
+
+// SetEventsCompleted sets the EventsCompleted field's value.
+func (s *ImportStatistics) SetEventsCompleted(v int64) *ImportStatistics {
+	s.EventsCompleted = &v
+	return s
+}
+
+// SetFailedEntries sets the FailedEntries field's value.
+func (s *ImportStatistics) SetFailedEntries(v int64) *ImportStatistics {
+	s.FailedEntries = &v
+	return s
+}
+
+// SetFilesCompleted sets the FilesCompleted field's value.
+func (s *ImportStatistics) SetFilesCompleted(v int64) *ImportStatistics {
+	s.FilesCompleted = &v
+	return s
+}
+
+// SetPrefixesCompleted sets the PrefixesCompleted field's value.
+func (s *ImportStatistics) SetPrefixesCompleted(v int64) *ImportStatistics {
+	s.PrefixesCompleted = &v
+	return s
+}
+
+// SetPrefixesFound sets the PrefixesFound field's value.
+func (s *ImportStatistics) SetPrefixesFound(v int64) *ImportStatistics {
+	s.PrefixesFound = &v
+	return s
+}
+
+// Contains information about an import that was returned by a lookup request.
+type ImportsListItem struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of the import's creation.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The destination event data store.
+	Destinations []*string `min:"1" type:"list"`
+
+	// The ID of the import.
+	ImportId *string `min:"36" type:"string"`
+
+	// The status of the import.
+	ImportStatus *string `type:"string" enum:"ImportStatus"`
+
+	// The timestamp of the import's last update.
+	UpdatedTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportsListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportsListItem) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *ImportsListItem) SetCreatedTimestamp(v time.Time) *ImportsListItem {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *ImportsListItem) SetDestinations(v []*string) *ImportsListItem {
+	s.Destinations = v
+	return s
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *ImportsListItem) SetImportId(v string) *ImportsListItem {
+	s.ImportId = &v
+	return s
+}
+
+// SetImportStatus sets the ImportStatus field's value.
+func (s *ImportsListItem) SetImportStatus(v string) *ImportsListItem {
+	s.ImportStatus = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *ImportsListItem) SetUpdatedTimestamp(v time.Time) *ImportsListItem {
+	s.UpdatedTimestamp = &v
 	return s
 }
 
@@ -8842,6 +10057,71 @@ func (s *InvalidEventCategoryException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// This exception is thrown when the event data store category is not valid
+// for the import.
+type InvalidEventDataStoreCategoryException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidEventDataStoreCategoryException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidEventDataStoreCategoryException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidEventDataStoreCategoryException(v protocol.ResponseMetadata) error {
+	return &InvalidEventDataStoreCategoryException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidEventDataStoreCategoryException) Code() string {
+	return "InvalidEventDataStoreCategoryException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidEventDataStoreCategoryException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidEventDataStoreCategoryException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidEventDataStoreCategoryException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidEventDataStoreCategoryException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidEventDataStoreCategoryException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The event data store is not in a status that supports the operation.
 type InvalidEventDataStoreStatusException struct {
 	_            struct{}                  `type:"structure"`
@@ -9055,6 +10335,71 @@ func (s *InvalidHomeRegionException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidHomeRegionException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// This exception is thrown when the provided source S3 bucket is not valid
+// for import.
+type InvalidImportSourceException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidImportSourceException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidImportSourceException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidImportSourceException(v protocol.ResponseMetadata) error {
+	return &InvalidImportSourceException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidImportSourceException) Code() string {
+	return "InvalidImportSourceException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidImportSourceException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidImportSourceException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidImportSourceException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidImportSourceException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidImportSourceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10490,6 +11835,236 @@ func (s *ListEventDataStoresOutput) SetEventDataStores(v []*EventDataStore) *Lis
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListEventDataStoresOutput) SetNextToken(v string) *ListEventDataStoresOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListImportFailuresInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the import.
+	//
+	// ImportId is a required field
+	ImportId *string `min:"36" type:"string" required:"true"`
+
+	// The maximum number of failures to display on a single page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token you can use to get the next page of import failures.
+	NextToken *string `min:"4" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportFailuresInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportFailuresInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListImportFailuresInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListImportFailuresInput"}
+	if s.ImportId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImportId"))
+	}
+	if s.ImportId != nil && len(*s.ImportId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ImportId", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 4))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *ListImportFailuresInput) SetImportId(v string) *ListImportFailuresInput {
+	s.ImportId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListImportFailuresInput) SetMaxResults(v int64) *ListImportFailuresInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImportFailuresInput) SetNextToken(v string) *ListImportFailuresInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListImportFailuresOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about the import failures.
+	Failures []*ImportFailureListItem `type:"list"`
+
+	// A token you can use to get the next page of results.
+	NextToken *string `min:"4" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportFailuresOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportFailuresOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *ListImportFailuresOutput) SetFailures(v []*ImportFailureListItem) *ListImportFailuresOutput {
+	s.Failures = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImportFailuresOutput) SetNextToken(v string) *ListImportFailuresOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListImportsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The destination event data store.
+	Destination *string `min:"3" type:"string"`
+
+	// The status of the import.
+	ImportStatus *string `type:"string" enum:"ImportStatus"`
+
+	// The maximum number of imports to display on a single page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token you can use to get the next page of import results.
+	NextToken *string `min:"4" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListImportsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListImportsInput"}
+	if s.Destination != nil && len(*s.Destination) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Destination", 3))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 4))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestination sets the Destination field's value.
+func (s *ListImportsInput) SetDestination(v string) *ListImportsInput {
+	s.Destination = &v
+	return s
+}
+
+// SetImportStatus sets the ImportStatus field's value.
+func (s *ListImportsInput) SetImportStatus(v string) *ListImportsInput {
+	s.ImportStatus = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListImportsInput) SetMaxResults(v int64) *ListImportsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImportsInput) SetNextToken(v string) *ListImportsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListImportsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of returned imports.
+	Imports []*ImportsListItem `type:"list"`
+
+	// A token you can use to get the next page of import results.
+	NextToken *string `min:"4" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportsOutput) GoString() string {
+	return s.String()
+}
+
+// SetImports sets the Imports field's value.
+func (s *ListImportsOutput) SetImports(v []*ImportsListItem) *ListImportsOutput {
+	s.Imports = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImportsOutput) SetNextToken(v string) *ListImportsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -12636,6 +14211,81 @@ func (s *S3BucketDoesNotExistException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The settings for the source S3 bucket.
+type S3ImportSource struct {
+	_ struct{} `type:"structure"`
+
+	// The IAM ARN role used to access the source S3 bucket.
+	//
+	// S3BucketAccessRoleArn is a required field
+	S3BucketAccessRoleArn *string `type:"string" required:"true"`
+
+	// The region associated with the source S3 bucket.
+	//
+	// S3BucketRegion is a required field
+	S3BucketRegion *string `type:"string" required:"true"`
+
+	// The URI for the source S3 bucket.
+	//
+	// S3LocationUri is a required field
+	S3LocationUri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ImportSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ImportSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3ImportSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3ImportSource"}
+	if s.S3BucketAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3BucketAccessRoleArn"))
+	}
+	if s.S3BucketRegion == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3BucketRegion"))
+	}
+	if s.S3LocationUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3LocationUri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3BucketAccessRoleArn sets the S3BucketAccessRoleArn field's value.
+func (s *S3ImportSource) SetS3BucketAccessRoleArn(v string) *S3ImportSource {
+	s.S3BucketAccessRoleArn = &v
+	return s
+}
+
+// SetS3BucketRegion sets the S3BucketRegion field's value.
+func (s *S3ImportSource) SetS3BucketRegion(v string) *S3ImportSource {
+	s.S3BucketRegion = &v
+	return s
+}
+
+// SetS3LocationUri sets the S3LocationUri field's value.
+func (s *S3ImportSource) SetS3LocationUri(v string) *S3ImportSource {
+	s.S3LocationUri = &v
+	return s
+}
+
 // Contains configuration information about the service-linked channel.
 type SourceConfig struct {
 	_ struct{} `type:"structure"`
@@ -12675,6 +14325,194 @@ func (s *SourceConfig) SetAdvancedEventSelectors(v []*AdvancedEventSelector) *So
 // SetApplyToAllRegions sets the ApplyToAllRegions field's value.
 func (s *SourceConfig) SetApplyToAllRegions(v bool) *SourceConfig {
 	s.ApplyToAllRegions = &v
+	return s
+}
+
+type StartImportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The destination event data store. Use this parameter for a new import.
+	Destinations []*string `min:"1" type:"list"`
+
+	// Use with StartEventTime to bound a StartImport request, and limit imported
+	// trail events to only those events logged within a specified time period.
+	EndEventTime *time.Time `type:"timestamp"`
+
+	// The ID of the import. Use this parameter when you are retrying an import.
+	ImportId *string `min:"36" type:"string"`
+
+	// The source S3 bucket for the import. Use this parameter for a new import.
+	ImportSource *ImportSource `type:"structure"`
+
+	// Use with EndEventTime to bound a StartImport request, and limit imported
+	// trail events to only those events logged within a specified time period.
+	StartEventTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartImportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartImportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartImportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartImportInput"}
+	if s.Destinations != nil && len(s.Destinations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Destinations", 1))
+	}
+	if s.ImportId != nil && len(*s.ImportId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ImportId", 36))
+	}
+	if s.ImportSource != nil {
+		if err := s.ImportSource.Validate(); err != nil {
+			invalidParams.AddNested("ImportSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *StartImportInput) SetDestinations(v []*string) *StartImportInput {
+	s.Destinations = v
+	return s
+}
+
+// SetEndEventTime sets the EndEventTime field's value.
+func (s *StartImportInput) SetEndEventTime(v time.Time) *StartImportInput {
+	s.EndEventTime = &v
+	return s
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *StartImportInput) SetImportId(v string) *StartImportInput {
+	s.ImportId = &v
+	return s
+}
+
+// SetImportSource sets the ImportSource field's value.
+func (s *StartImportInput) SetImportSource(v *ImportSource) *StartImportInput {
+	s.ImportSource = v
+	return s
+}
+
+// SetStartEventTime sets the StartEventTime field's value.
+func (s *StartImportInput) SetStartEventTime(v time.Time) *StartImportInput {
+	s.StartEventTime = &v
+	return s
+}
+
+type StartImportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp for the import's creation.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The destination event data store.
+	Destinations []*string `min:"1" type:"list"`
+
+	// Used with StartEventTime to bound a StartImport request, and limit imported
+	// trail events to only those events logged within a specified time period.
+	EndEventTime *time.Time `type:"timestamp"`
+
+	// The ID of the import.
+	ImportId *string `min:"36" type:"string"`
+
+	// The source S3 bucket.
+	ImportSource *ImportSource `type:"structure"`
+
+	// Shows the status of the import after a StartImport request. An import finishes
+	// with a status of COMPLETED if there were no failures, or FAILED if there
+	// were failures.
+	ImportStatus *string `type:"string" enum:"ImportStatus"`
+
+	// Used with EndEventTime to bound a StartImport request, and limit imported
+	// trail events to only those events logged within a specified time period.
+	StartEventTime *time.Time `type:"timestamp"`
+
+	// The timestamp of the import's last update, if applicable.
+	UpdatedTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartImportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartImportOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *StartImportOutput) SetCreatedTimestamp(v time.Time) *StartImportOutput {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *StartImportOutput) SetDestinations(v []*string) *StartImportOutput {
+	s.Destinations = v
+	return s
+}
+
+// SetEndEventTime sets the EndEventTime field's value.
+func (s *StartImportOutput) SetEndEventTime(v time.Time) *StartImportOutput {
+	s.EndEventTime = &v
+	return s
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *StartImportOutput) SetImportId(v string) *StartImportOutput {
+	s.ImportId = &v
+	return s
+}
+
+// SetImportSource sets the ImportSource field's value.
+func (s *StartImportOutput) SetImportSource(v *ImportSource) *StartImportOutput {
+	s.ImportSource = v
+	return s
+}
+
+// SetImportStatus sets the ImportStatus field's value.
+func (s *StartImportOutput) SetImportStatus(v string) *StartImportOutput {
+	s.ImportStatus = &v
+	return s
+}
+
+// SetStartEventTime sets the StartEventTime field's value.
+func (s *StartImportOutput) SetStartEventTime(v time.Time) *StartImportOutput {
+	s.StartEventTime = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *StartImportOutput) SetUpdatedTimestamp(v time.Time) *StartImportOutput {
+	s.UpdatedTimestamp = &v
 	return s
 }
 
@@ -12831,6 +14669,160 @@ func (s StartQueryOutput) GoString() string {
 // SetQueryId sets the QueryId field's value.
 func (s *StartQueryOutput) SetQueryId(v string) *StartQueryOutput {
 	s.QueryId = &v
+	return s
+}
+
+type StopImportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the import.
+	//
+	// ImportId is a required field
+	ImportId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopImportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopImportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopImportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopImportInput"}
+	if s.ImportId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImportId"))
+	}
+	if s.ImportId != nil && len(*s.ImportId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ImportId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *StopImportInput) SetImportId(v string) *StopImportInput {
+	s.ImportId = &v
+	return s
+}
+
+type StopImportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of the import's creation.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The destination event data store.
+	Destinations []*string `min:"1" type:"list"`
+
+	// Used with StartEventTime to bound a StartImport request, and limit imported
+	// trail events to only those events logged within a specified time period.
+	EndEventTime *time.Time `type:"timestamp"`
+
+	// The ID for the import.
+	ImportId *string `min:"36" type:"string"`
+
+	// The source S3 bucket.
+	ImportSource *ImportSource `type:"structure"`
+
+	// Returns information on the stopped import.
+	ImportStatistics *ImportStatistics `type:"structure"`
+
+	// The status of the import.
+	ImportStatus *string `type:"string" enum:"ImportStatus"`
+
+	// Used with EndEventTime to bound a StartImport request, and limit imported
+	// trail events to only those events logged within a specified time period.
+	StartEventTime *time.Time `type:"timestamp"`
+
+	// The timestamp of the import's last update.
+	UpdatedTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopImportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopImportOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *StopImportOutput) SetCreatedTimestamp(v time.Time) *StopImportOutput {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *StopImportOutput) SetDestinations(v []*string) *StopImportOutput {
+	s.Destinations = v
+	return s
+}
+
+// SetEndEventTime sets the EndEventTime field's value.
+func (s *StopImportOutput) SetEndEventTime(v time.Time) *StopImportOutput {
+	s.EndEventTime = &v
+	return s
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *StopImportOutput) SetImportId(v string) *StopImportOutput {
+	s.ImportId = &v
+	return s
+}
+
+// SetImportSource sets the ImportSource field's value.
+func (s *StopImportOutput) SetImportSource(v *ImportSource) *StopImportOutput {
+	s.ImportSource = v
+	return s
+}
+
+// SetImportStatistics sets the ImportStatistics field's value.
+func (s *StopImportOutput) SetImportStatistics(v *ImportStatistics) *StopImportOutput {
+	s.ImportStatistics = v
+	return s
+}
+
+// SetImportStatus sets the ImportStatus field's value.
+func (s *StopImportOutput) SetImportStatus(v string) *StopImportOutput {
+	s.ImportStatus = &v
+	return s
+}
+
+// SetStartEventTime sets the StartEventTime field's value.
+func (s *StopImportOutput) SetStartEventTime(v time.Time) *StopImportOutput {
+	s.StartEventTime = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *StopImportOutput) SetUpdatedTimestamp(v time.Time) *StopImportOutput {
+	s.UpdatedTimestamp = &v
 	return s
 }
 
@@ -13535,6 +15527,8 @@ type UpdateEventDataStoreInput struct {
 	_ struct{} `type:"structure"`
 
 	// The advanced event selectors used to select events for the event data store.
+	// You can configure up to five advanced event selectors for each event data
+	// store.
 	AdvancedEventSelectors []*AdvancedEventSelector `type:"list"`
 
 	// The ARN (or the ID suffix of the ARN) of the event data store that you want
@@ -14174,6 +16168,54 @@ func EventDataStoreStatus_Values() []string {
 		EventDataStoreStatusCreated,
 		EventDataStoreStatusEnabled,
 		EventDataStoreStatusPendingDeletion,
+	}
+}
+
+const (
+	// ImportFailureStatusFailed is a ImportFailureStatus enum value
+	ImportFailureStatusFailed = "FAILED"
+
+	// ImportFailureStatusRetry is a ImportFailureStatus enum value
+	ImportFailureStatusRetry = "RETRY"
+
+	// ImportFailureStatusSucceeded is a ImportFailureStatus enum value
+	ImportFailureStatusSucceeded = "SUCCEEDED"
+)
+
+// ImportFailureStatus_Values returns all elements of the ImportFailureStatus enum
+func ImportFailureStatus_Values() []string {
+	return []string{
+		ImportFailureStatusFailed,
+		ImportFailureStatusRetry,
+		ImportFailureStatusSucceeded,
+	}
+}
+
+const (
+	// ImportStatusInitializing is a ImportStatus enum value
+	ImportStatusInitializing = "INITIALIZING"
+
+	// ImportStatusInProgress is a ImportStatus enum value
+	ImportStatusInProgress = "IN_PROGRESS"
+
+	// ImportStatusFailed is a ImportStatus enum value
+	ImportStatusFailed = "FAILED"
+
+	// ImportStatusStopped is a ImportStatus enum value
+	ImportStatusStopped = "STOPPED"
+
+	// ImportStatusCompleted is a ImportStatus enum value
+	ImportStatusCompleted = "COMPLETED"
+)
+
+// ImportStatus_Values returns all elements of the ImportStatus enum
+func ImportStatus_Values() []string {
+	return []string{
+		ImportStatusInitializing,
+		ImportStatusInProgress,
+		ImportStatusFailed,
+		ImportStatusStopped,
+		ImportStatusCompleted,
 	}
 }
 

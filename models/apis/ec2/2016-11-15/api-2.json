@@ -5581,6 +5581,10 @@
         "capacityOptimizedPrioritized"
       ]
     },
+    "AllocationType":{
+      "type":"string",
+      "enum":["used"]
+    },
     "AllowedPrincipal":{
       "type":"structure",
       "members":{
@@ -7485,6 +7489,26 @@
         "locationName":"item"
       }
     },
+    "CapacityAllocation":{
+      "type":"structure",
+      "members":{
+        "AllocationType":{
+          "shape":"AllocationType",
+          "locationName":"allocationType"
+        },
+        "Count":{
+          "shape":"Integer",
+          "locationName":"count"
+        }
+      }
+    },
+    "CapacityAllocations":{
+      "type":"list",
+      "member":{
+        "shape":"CapacityAllocation",
+        "locationName":"item"
+      }
+    },
     "CapacityReservation":{
       "type":"structure",
       "members":{
@@ -7575,6 +7599,10 @@
         "PlacementGroupArn":{
           "shape":"PlacementGroupArn",
           "locationName":"placementGroupArn"
+        },
+        "CapacityAllocations":{
+          "shape":"CapacityAllocations",
+          "locationName":"capacityAllocationSet"
         }
       }
     },

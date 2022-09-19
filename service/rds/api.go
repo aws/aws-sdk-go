@@ -9332,7 +9332,15 @@ func (c *RDS) DescribeSourceRegionsRequest(input *DescribeSourceRegionsInput) (r
 //
 // Returns a list of the source Amazon Web Services Regions where the current
 // Amazon Web Services Region can create a read replica, copy a DB snapshot
-// from, or replicate automated backups from. This API action supports pagination.
+// from, or replicate automated backups from.
+//
+// Use this operation to determine whether cross-Region features are supported
+// between other Regions and your current Region. This operation supports pagination.
+//
+// To return information about the Regions that are enabled for your account,
+// or all Regions, use the EC2 operation DescribeRegions. For more information,
+// see DescribeRegions (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeRegions.html)
+// in the Amazon EC2 API Reference.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16665,9 +16673,9 @@ type ConnectionPoolConfiguration struct {
 	// The value is expressed as a percentage of the max_connections setting for
 	// the RDS DB instance or Aurora DB cluster used by the target group.
 	//
-	// Default: 100
+	// Default: 10 for RDS for Microsoft SQL Server, and 100 for all other engines
 	//
-	// Constraints: between 1 and 100
+	// Constraints: Must be between 1 and 100.
 	MaxConnectionsPercent *int64 `type:"integer"`
 
 	// Controls how actively the proxy closes idle database connections in the connection
@@ -16677,9 +16685,13 @@ type ConnectionPoolConfiguration struct {
 	// open. A low value causes the proxy to close more idle connections and return
 	// them to the database.
 	//
-	// Default: 50
+	// Default: The default value is half of the value of MaxConnectionsPercent.
+	// For example, if MaxConnectionsPercent is 80, then the default value of MaxIdleConnectionsPercent
+	// is 40. If the value of MaxConnectionsPercent isn't specified, then for SQL
+	// Server, MaxIdleConnectionsPercent is 5, and for all other engines, the default
+	// is 50.
 	//
-	// Constraints: between 0 and MaxConnectionsPercent
+	// Constraints: Must be between 0 and the value of MaxConnectionsPercent.
 	MaxIdleConnectionsPercent *int64 `type:"integer"`
 
 	// Each item in the list represents a class of SQL operations that normally
@@ -16773,8 +16785,9 @@ type ConnectionPoolConfigurationInfo struct {
 	// Each item in the list represents a class of SQL operations that normally
 	// cause all later statements in a session using a proxy to be pinned to the
 	// same underlying database connection. Including an item in the list exempts
-	// that class of SQL operations from the pinning behavior. Currently, the only
-	// allowed value is EXCLUDE_VARIABLE_SETS.
+	// that class of SQL operations from the pinning behavior. This setting is only
+	// supported for MySQL engine family databases. Currently, the only allowed
+	// value is EXCLUDE_VARIABLE_SETS.
 	SessionPinningFilters []*string `type:"list"`
 }
 
@@ -18557,8 +18570,8 @@ type CreateDBClusterInput struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The compute and memory capacity of each DB instance in the Multi-AZ DB cluster,
-	// for example db.m6g.xlarge. Not all DB instance classes are available in all
-	// Amazon Web Services Regions, or for all database engines.
+	// for example db.m6gd.xlarge. Not all DB instance classes are available in
+	// all Amazon Web Services Regions, or for all database engines.
 	//
 	// For the full list of DB instance classes and availability for your engine,
 	// see DB instance class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
@@ -20120,8 +20133,8 @@ type CreateDBInstanceInput struct {
 	//
 	//    * It must contain 1 to 63 alphanumeric characters.
 	//
-	//    * It must begin with a letter or an underscore. Subsequent characters
-	//    can be letters, underscores, or digits (0 to 9).
+	//    * It must begin with a letter. Subsequent characters can be letters, underscores,
+	//    or digits (0 to 9).
 	//
 	//    * It can't be a word reserved by the database engine.
 	DBName *string `type:"string"`
@@ -20134,11 +20147,11 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//    * Must be 1 to 255 letters, numbers, or hyphens.
+	//    * It must be 1 to 255 letters, numbers, or hyphens.
 	//
-	//    * First character must be a letter
+	//    * The first character must be a letter.
 	//
-	//    * Can't end with a hyphen or contain two consecutive hyphens
+	//    * It can't end with a hyphen or contain two consecutive hyphens.
 	DBParameterGroupName *string `type:"string"`
 
 	// A list of DB security groups to associate with this DB instance.
@@ -22104,7 +22117,8 @@ type CreateDBProxyEndpointInput struct {
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// A value that indicates whether the DB proxy endpoint can be used for read/write
-	// or read-only operations. The default is READ_WRITE.
+	// or read-only operations. The default is READ_WRITE. The only role that proxies
+	// for RDS for Microsoft SQL Server support is READ_WRITE.
 	TargetRole *string `type:"string" enum:"DBProxyEndpointTargetRole"`
 
 	// The VPC security group IDs for the DB proxy endpoint that you create. You
@@ -22261,7 +22275,8 @@ type CreateDBProxyInput struct {
 	// which database network protocol the proxy recognizes when it interprets network
 	// traffic to and from the database. For Aurora MySQL, RDS for MariaDB, and
 	// RDS for MySQL databases, specify MYSQL. For Aurora PostgreSQL and RDS for
-	// PostgreSQL databases, specify POSTGRESQL.
+	// PostgreSQL databases, specify POSTGRESQL. For RDS for Microsoft SQL Server,
+	// specify SQLSERVER.
 	//
 	// EngineFamily is a required field
 	EngineFamily *string `type:"string" required:"true" enum:"EngineFamily"`
@@ -26645,7 +26660,8 @@ type DBProxy struct {
 	// which database network protocol the proxy recognizes when it interprets network
 	// traffic to and from the database. MYSQL supports Aurora MySQL, RDS for MariaDB,
 	// and RDS for MySQL databases. POSTGRESQL supports Aurora PostgreSQL and RDS
-	// for PostgreSQL databases.
+	// for PostgreSQL databases. SQLSERVER supports RDS for Microsoft SQL Server
+	// databases.
 	EngineFamily *string `type:"string"`
 
 	// The number of seconds a connection to the proxy can have no activity before
@@ -38247,8 +38263,8 @@ type ModifyDBClusterInput struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The compute and memory capacity of each DB instance in the Multi-AZ DB cluster,
-	// for example db.m6g.xlarge. Not all DB instance classes are available in all
-	// Amazon Web Services Regions, or for all database engines.
+	// for example db.m6gd.xlarge. Not all DB instance classes are available in
+	// all Amazon Web Services Regions, or for all database engines.
 	//
 	// For the full list of DB instance classes and availability for your engine,
 	// see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
@@ -45347,7 +45363,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The compute and memory capacity of the each DB instance in the Multi-AZ DB
-	// cluster, for example db.m6g.xlarge. Not all DB instance classes are available
+	// cluster, for example db.m6gd.xlarge. Not all DB instance classes are available
 	// in all Amazon Web Services Regions, or for all database engines.
 	//
 	// For the full list of DB instance classes, and availability for your engine,
@@ -45964,7 +45980,7 @@ type RestoreDBClusterToPointInTimeInput struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The compute and memory capacity of the each DB instance in the Multi-AZ DB
-	// cluster, for example db.m6g.xlarge. Not all DB instance classes are available
+	// cluster, for example db.m6gd.xlarge. Not all DB instance classes are available
 	// in all Amazon Web Services Regions, or for all database engines.
 	//
 	// For the full list of DB instance classes, and availability for your engine,
@@ -50675,7 +50691,8 @@ type UserAuthConfig struct {
 	Description *string `type:"string"`
 
 	// Whether to require or disallow Amazon Web Services Identity and Access Management
-	// (IAM) authentication for connections to the proxy.
+	// (IAM) authentication for connections to the proxy. The ENABLED value is valid
+	// only for proxies with RDS for Microsoft SQL Server.
 	IAMAuth *string `type:"string" enum:"IAMAuthMode"`
 
 	// The Amazon Resource Name (ARN) representing the secret that the proxy uses
@@ -50749,7 +50766,8 @@ type UserAuthConfigInfo struct {
 	Description *string `type:"string"`
 
 	// Whether to require or disallow Amazon Web Services Identity and Access Management
-	// (IAM) authentication for connections to the proxy.
+	// (IAM) authentication for connections to the proxy. The ENABLED value is valid
+	// only for proxies with RDS for Microsoft SQL Server.
 	IAMAuth *string `type:"string" enum:"IAMAuthMode"`
 
 	// The Amazon Resource Name (ARN) representing the secret that the proxy uses
@@ -51211,6 +51229,9 @@ const (
 
 	// EngineFamilyPostgresql is a EngineFamily enum value
 	EngineFamilyPostgresql = "POSTGRESQL"
+
+	// EngineFamilySqlserver is a EngineFamily enum value
+	EngineFamilySqlserver = "SQLSERVER"
 )
 
 // EngineFamily_Values returns all elements of the EngineFamily enum
@@ -51218,6 +51239,7 @@ func EngineFamily_Values() []string {
 	return []string{
 		EngineFamilyMysql,
 		EngineFamilyPostgresql,
+		EngineFamilySqlserver,
 	}
 }
 
@@ -51247,6 +51269,9 @@ const (
 
 	// IAMAuthModeRequired is a IAMAuthMode enum value
 	IAMAuthModeRequired = "REQUIRED"
+
+	// IAMAuthModeEnabled is a IAMAuthMode enum value
+	IAMAuthModeEnabled = "ENABLED"
 )
 
 // IAMAuthMode_Values returns all elements of the IAMAuthMode enum
@@ -51254,6 +51279,7 @@ func IAMAuthMode_Values() []string {
 	return []string{
 		IAMAuthModeDisabled,
 		IAMAuthModeRequired,
+		IAMAuthModeEnabled,
 	}
 }
 
