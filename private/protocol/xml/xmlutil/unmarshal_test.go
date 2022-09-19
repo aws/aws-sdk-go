@@ -1,10 +1,15 @@
+//go:build go1.7
+// +build go1.7
+
 package xmlutil
 
 import (
 	"encoding/xml"
 	"fmt"
 	"io"
+	"math"
 	"reflect"
+	"strconv"
 	"strings"
 	"testing"
 
@@ -30,6 +35,7 @@ type mockOutput struct {
 	_       struct{}          `type:"structure"`
 	String  *string           `type:"string"`
 	Integer *int64            `type:"integer"`
+	Float   *float64          `type:"double"`
 	Nested  *mockNestedStruct `type:"structure"`
 	List    []*mockListElem   `locationName:"List" locationNameList:"Elem" type:"list"`
 	Closed  *mockClosedTags   `type:"structure"`
@@ -56,7 +62,14 @@ type mockNestedListElem struct {
 }
 
 func TestUnmarshal(t *testing.T) {
-	const xmlBodyStr = `<?xml version="1.0" encoding="UTF-8"?>
+
+	cases := []struct {
+		Body     string
+		Expect   mockOutput
+		ExpectFn func(t *testing.T, actual mockOutput)
+	}{
+		{
+			Body: `<?xml version="1.0" encoding="UTF-8"?>
 <MockResponse xmlns="http://xmlns.example.com">
 	<String>string value</String>
 	<Integer>123</Integer>
@@ -73,39 +86,77 @@ func TestUnmarshal(t *testing.T) {
 			<String>elem string value</String>
 		</Elem>
 	</List>
-</MockResponse>`
-
-	expect := mockOutput{
-		String:  aws.String("string value"),
-		Integer: aws.Int64(123),
-		Closed: &mockClosedTags{
-			Attr: aws.String("attr value"),
-		},
-		Nested: &mockNestedStruct{
-			NestedString: aws.String("nested string value"),
-			NestedInt:    aws.Int64(321),
-		},
-		List: []*mockListElem{
-			{
-				String: aws.String("elem string value"),
-				NestedElem: &mockNestedListElem{
-					String: aws.String("nested elem string value"),
-					Type:   aws.String("type"),
+</MockResponse>`,
+			Expect: mockOutput{
+				String:  aws.String("string value"),
+				Integer: aws.Int64(123),
+				Closed: &mockClosedTags{
+					Attr: aws.String("attr value"),
 				},
+				Nested: &mockNestedStruct{
+					NestedString: aws.String("nested string value"),
+					NestedInt:    aws.Int64(321),
+				},
+				List: []*mockListElem{
+					{
+						String: aws.String("elem string value"),
+						NestedElem: &mockNestedListElem{
+							String: aws.String("nested elem string value"),
+							Type:   aws.String("type"),
+						},
+					},
+				},
+			},
+		},
+		{
+			Body:   `<?xml version="1.0" encoding="UTF-8"?><MockResponse xmlns="http://xmlns.example.com"><Float>123456789.123</Float></MockResponse>`,
+			Expect: mockOutput{Float: aws.Float64(123456789.123)},
+		},
+		{
+			Body: `<?xml version="1.0" encoding="UTF-8"?><MockResponse xmlns="http://xmlns.example.com"><Float>Infinity</Float></MockResponse>`,
+			ExpectFn: func(t *testing.T, actual mockOutput) {
+				if a := aws.Float64Value(actual.Float); !math.IsInf(a, 1) {
+					t.Errorf("expect infinity, got %v", a)
+				}
+			},
+		},
+		{
+			Body: `<?xml version="1.0" encoding="UTF-8"?><MockResponse xmlns="http://xmlns.example.com"><Float>-Infinity</Float></MockResponse>`,
+			ExpectFn: func(t *testing.T, actual mockOutput) {
+				if a := aws.Float64Value(actual.Float); !math.IsInf(a, -1) {
+					t.Errorf("expect -infinity, got %v", a)
+				}
+			},
+		},
+		{
+			Body: `<?xml version="1.0" encoding="UTF-8"?><MockResponse xmlns="http://xmlns.example.com"><Float>NaN</Float></MockResponse>`,
+			ExpectFn: func(t *testing.T, actual mockOutput) {
+				if a := aws.Float64Value(actual.Float); !math.IsNaN(a) {
+					t.Errorf("expect NaN, got %v", a)
+				}
 			},
 		},
 	}
 
-	actual := mockOutput{}
-	decoder := xml.NewDecoder(strings.NewReader(xmlBodyStr))
-	err := UnmarshalXML(&actual, decoder, "")
-	if err != nil {
-		t.Fatalf("expect no error, got %v", err)
-	}
+	for i, tt := range cases {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
+			actual := mockOutput{}
+			decoder := xml.NewDecoder(strings.NewReader(tt.Body))
+			err := UnmarshalXML(&actual, decoder, "")
+			if err != nil {
+				t.Fatalf("expect no error, got %v", err)
+			}
 
-	if !reflect.DeepEqual(expect, actual) {
-		t.Errorf("expect unmarshal to match\nExpect: %s\nActual: %s",
-			awsutil.Prettify(expect), awsutil.Prettify(actual))
+			if tt.ExpectFn != nil {
+				tt.ExpectFn(t, actual)
+				return
+			}
+
+			if !reflect.DeepEqual(tt.Expect, actual) {
+				t.Errorf("expect unmarshal to match\nExpect: %s\nActual: %s",
+					awsutil.Prettify(tt.Expect), awsutil.Prettify(actual))
+			}
+		})
 	}
 }
 

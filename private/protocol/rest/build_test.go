@@ -1,6 +1,10 @@
+//go:build go1.7
+// +build go1.7
+
 package rest
 
 import (
+	"math"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -173,5 +177,105 @@ func TestListOfEnums(t *testing.T) {
 		if e, a := tt.Expected, req.HTTPRequest.Header; !reflect.DeepEqual(e, a) {
 			t.Errorf("(%d) expect %v, got %v", i, e, a)
 		}
+	}
+}
+
+func TestMarshalFloat64(t *testing.T) {
+	cases := map[string]struct {
+		Input          interface{}
+		URL            string
+		ExpectedHeader http.Header
+		ExpectedURL    string
+		WantErr        bool
+	}{
+		"header float values": {
+			Input: &struct {
+				Float       *float64 `location:"header" locationName:"x-amz-float"`
+				FloatInf    *float64 `location:"header" locationName:"x-amz-float-inf"`
+				FloatNegInf *float64 `location:"header" locationName:"x-amz-float-neg-inf"`
+				FloatNaN    *float64 `location:"header" locationName:"x-amz-float-nan"`
+			}{
+				Float:       aws.Float64(123456789.123),
+				FloatInf:    aws.Float64(math.Inf(1)),
+				FloatNegInf: aws.Float64(math.Inf(-1)),
+				FloatNaN:    aws.Float64(math.NaN()),
+			},
+			URL: "https://example.com/",
+			ExpectedHeader: map[string][]string{
+				"X-Amz-Float":         {"123456789.123"},
+				"X-Amz-Float-Inf":     {"Infinity"},
+				"X-Amz-Float-Neg-Inf": {"-Infinity"},
+				"X-Amz-Float-Nan":     {"NaN"},
+			},
+			ExpectedURL: "https://example.com/",
+		},
+		"path float values": {
+			Input: &struct {
+				Float       *float64 `location:"uri" locationName:"float"`
+				FloatInf    *float64 `location:"uri" locationName:"floatInf"`
+				FloatNegInf *float64 `location:"uri" locationName:"floatNegInf"`
+				FloatNaN    *float64 `location:"uri" locationName:"floatNaN"`
+			}{
+				Float:       aws.Float64(123456789.123),
+				FloatInf:    aws.Float64(math.Inf(1)),
+				FloatNegInf: aws.Float64(math.Inf(-1)),
+				FloatNaN:    aws.Float64(math.NaN()),
+			},
+			URL:            "https://example.com/{float}/{floatInf}/{floatNegInf}/{floatNaN}",
+			ExpectedHeader: map[string][]string{},
+			ExpectedURL:    "https://example.com/123456789.123/Infinity/-Infinity/NaN",
+		},
+		"query float values": {
+			Input: &struct {
+				Float       *float64 `location:"querystring" locationName:"x-amz-float"`
+				FloatInf    *float64 `location:"querystring" locationName:"x-amz-float-inf"`
+				FloatNegInf *float64 `location:"querystring" locationName:"x-amz-float-neg-inf"`
+				FloatNaN    *float64 `location:"querystring" locationName:"x-amz-float-nan"`
+			}{
+				Float:       aws.Float64(123456789.123),
+				FloatInf:    aws.Float64(math.Inf(1)),
+				FloatNegInf: aws.Float64(math.Inf(-1)),
+				FloatNaN:    aws.Float64(math.NaN()),
+			},
+			URL:            "https://example.com/",
+			ExpectedHeader: map[string][]string{},
+			ExpectedURL:    "https://example.com/?x-amz-float=123456789.123&x-amz-float-inf=Infinity&x-amz-float-nan=NaN&x-amz-float-neg-inf=-Infinity",
+		},
+	}
+
+	for name, tt := range cases {
+		t.Run(name, func(t *testing.T) {
+			req := &request.Request{
+				HTTPRequest: &http.Request{
+					URL: func() *url.URL {
+						u, err := url.Parse(tt.URL)
+						if err != nil {
+							panic(err)
+						}
+						return u
+					}(),
+					Header: map[string][]string{},
+				},
+				Params: tt.Input,
+			}
+
+			Build(req)
+
+			if (req.Error != nil) != (tt.WantErr) {
+				t.Fatalf("WantErr(%t) got %v", tt.WantErr, req.Error)
+			}
+
+			if tt.WantErr {
+				return
+			}
+
+			if e, a := tt.ExpectedHeader, req.HTTPRequest.Header; !reflect.DeepEqual(e, a) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+
+			if e, a := tt.ExpectedURL, req.HTTPRequest.URL.String(); e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
 	}
 }

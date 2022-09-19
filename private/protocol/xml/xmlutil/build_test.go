@@ -6,6 +6,7 @@ package xmlutil
 import (
 	"bytes"
 	"encoding/xml"
+	"math"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -14,9 +15,10 @@ import (
 type implicitPayload struct {
 	_ struct{} `type:"structure"`
 
-	StrVal *string     `type:"string"`
-	Second *nestedType `type:"structure"`
-	Third  *nestedType `type:"structure"`
+	StrVal   *string     `type:"string"`
+	FloatVal *float64    `type:"double"`
+	Second   *nestedType `type:"structure"`
+	Third    *nestedType `type:"structure"`
 }
 
 type namedImplicitPayload struct {
@@ -159,6 +161,30 @@ func TestBuildXML(t *testing.T) {
 				StrVal: aws.String("this\nstring\rhas\r\nescapable\n\rcharacters"),
 			},
 			Expect: "<StrVal>this&#xA;string&#xD;has&#xD;&#xA;escapable&#xA;&#xD;characters</StrVal>",
+		},
+		"float value": {
+			Input: &implicitPayload{
+				FloatVal: aws.Float64(123456789.123),
+			},
+			Expect: "<FloatVal>123456789.123</FloatVal>",
+		},
+		"infinity float value": {
+			Input: &implicitPayload{
+				FloatVal: aws.Float64(math.Inf(1)),
+			},
+			Expect: "<FloatVal>Infinity</FloatVal>",
+		},
+		"negative infinity float value": {
+			Input: &implicitPayload{
+				FloatVal: aws.Float64(math.Inf(-1)),
+			},
+			Expect: "<FloatVal>-Infinity</FloatVal>",
+		},
+		"NaN float value": {
+			Input: &implicitPayload{
+				FloatVal: aws.Float64(math.NaN()),
+			},
+			Expect: "<FloatVal>NaN</FloatVal>",
 		},
 	}
 
