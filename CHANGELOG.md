@@ -1,3 +1,15 @@
+Release v1.44.101 (2022-09-19)
+===
+
+### Service Client Updates
+* `service/cloudtrail`: Updates service API, documentation, and paginators
+  * This release includes support for importing existing trails into CloudTrail Lake.
+* `service/ec2`: Updates service API and documentation
+  * This release adds CapacityAllocations field to DescribeCapacityReservations
+* `service/mediaconnect`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for Amazon RDS Proxy with SQL Server compatibility.
+
 Release v1.44.100 (2022-09-16)
 ===
 

@@ -26,6 +26,13 @@ const (
 	// and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 	ErrCodeAccessNotEnabledException = "CloudTrailAccessNotEnabledException"
 
+	// ErrCodeAccountHasOngoingImportException for service response error code
+	// "AccountHasOngoingImportException".
+	//
+	// This exception is thrown when you start a new import and a previous import
+	// is still in progress.
+	ErrCodeAccountHasOngoingImportException = "AccountHasOngoingImportException"
+
 	// ErrCodeChannelARNInvalidException for service response error code
 	// "ChannelARNInvalidException".
 	//
@@ -76,6 +83,13 @@ const (
 	// An event data store with that name already exists.
 	ErrCodeEventDataStoreAlreadyExistsException = "EventDataStoreAlreadyExistsException"
 
+	// ErrCodeEventDataStoreHasOngoingImportException for service response error code
+	// "EventDataStoreHasOngoingImportException".
+	//
+	// This exception is thrown when you try to update or delete an event data store
+	// that currently has an import in progress.
+	ErrCodeEventDataStoreHasOngoingImportException = "EventDataStoreHasOngoingImportException"
+
 	// ErrCodeEventDataStoreMaxLimitExceededException for service response error code
 	// "EventDataStoreMaxLimitExceededException".
 	//
@@ -94,6 +108,12 @@ const (
 	// The event data store cannot be deleted because termination protection is
 	// enabled for it.
 	ErrCodeEventDataStoreTerminationProtectedException = "EventDataStoreTerminationProtectedException"
+
+	// ErrCodeImportNotFoundException for service response error code
+	// "ImportNotFoundException".
+	//
+	// The specified import was not found.
+	ErrCodeImportNotFoundException = "ImportNotFoundException"
 
 	// ErrCodeInactiveEventDataStoreException for service response error code
 	// "InactiveEventDataStoreException".
@@ -171,6 +191,13 @@ const (
 	// EventCategory.
 	ErrCodeInvalidEventCategoryException = "InvalidEventCategoryException"
 
+	// ErrCodeInvalidEventDataStoreCategoryException for service response error code
+	// "InvalidEventDataStoreCategoryException".
+	//
+	// This exception is thrown when the event data store category is not valid
+	// for the import.
+	ErrCodeInvalidEventDataStoreCategoryException = "InvalidEventDataStoreCategoryException"
+
 	// ErrCodeInvalidEventDataStoreStatusException for service response error code
 	// "InvalidEventDataStoreStatusException".
 	//
@@ -212,6 +239,13 @@ const (
 	// This exception is thrown when an operation is called on a trail from a region
 	// other than the region in which the trail was created.
 	ErrCodeInvalidHomeRegionException = "InvalidHomeRegionException"
+
+	// ErrCodeInvalidImportSourceException for service response error code
+	// "InvalidImportSourceException".
+	//
+	// This exception is thrown when the provided source S3 bucket is not valid
+	// for import.
+	ErrCodeInvalidImportSourceException = "InvalidImportSourceException"
 
 	// ErrCodeInvalidInsightSelectorsException for service response error code
 	// "InvalidInsightSelectorsException".
@@ -457,6 +491,7 @@ const (
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"CloudTrailARNInvalidException":                          newErrorARNInvalidException,
 	"CloudTrailAccessNotEnabledException":                    newErrorAccessNotEnabledException,
+	"AccountHasOngoingImportException":                       newErrorAccountHasOngoingImportException,
 	"ChannelARNInvalidException":                             newErrorChannelARNInvalidException,
 	"ChannelNotFoundException":                               newErrorChannelNotFoundException,
 	"CloudTrailInvalidClientTokenIdException":                newErrorCloudTrailInvalidClientTokenIdException,
@@ -464,9 +499,11 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ConflictException":                                      newErrorConflictException,
 	"EventDataStoreARNInvalidException":                      newErrorEventDataStoreARNInvalidException,
 	"EventDataStoreAlreadyExistsException":                   newErrorEventDataStoreAlreadyExistsException,
+	"EventDataStoreHasOngoingImportException":                newErrorEventDataStoreHasOngoingImportException,
 	"EventDataStoreMaxLimitExceededException":                newErrorEventDataStoreMaxLimitExceededException,
 	"EventDataStoreNotFoundException":                        newErrorEventDataStoreNotFoundException,
 	"EventDataStoreTerminationProtectedException":            newErrorEventDataStoreTerminationProtectedException,
+	"ImportNotFoundException":                                newErrorImportNotFoundException,
 	"InactiveEventDataStoreException":                        newErrorInactiveEventDataStoreException,
 	"InactiveQueryException":                                 newErrorInactiveQueryException,
 	"InsightNotEnabledException":                             newErrorInsightNotEnabledException,
@@ -478,9 +515,11 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidCloudWatchLogsRoleArnException":                  newErrorInvalidCloudWatchLogsRoleArnException,
 	"InvalidDateRangeException":                              newErrorInvalidDateRangeException,
 	"InvalidEventCategoryException":                          newErrorInvalidEventCategoryException,
+	"InvalidEventDataStoreCategoryException":                 newErrorInvalidEventDataStoreCategoryException,
 	"InvalidEventDataStoreStatusException":                   newErrorInvalidEventDataStoreStatusException,
 	"InvalidEventSelectorsException":                         newErrorInvalidEventSelectorsException,
 	"InvalidHomeRegionException":                             newErrorInvalidHomeRegionException,
+	"InvalidImportSourceException":                           newErrorInvalidImportSourceException,
 	"InvalidInsightSelectorsException":                       newErrorInvalidInsightSelectorsException,
 	"InvalidKmsKeyIdException":                               newErrorInvalidKmsKeyIdException,
 	"InvalidLookupAttributesException":                       newErrorInvalidLookupAttributesException,

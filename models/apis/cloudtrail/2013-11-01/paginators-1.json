@@ -17,6 +17,18 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "ListImportFailures": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Failures"
+    },
+    "ListImports": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Imports"
+    },
     "ListPublicKeys": {
       "input_token": "NextToken",
       "output_token": "NextToken",

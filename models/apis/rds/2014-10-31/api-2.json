@@ -5528,7 +5528,8 @@
       "type":"string",
       "enum":[
         "MYSQL",
-        "POSTGRESQL"
+        "POSTGRESQL",
+        "SQLSERVER"
       ]
     },
     "EngineModeList":{
@@ -5853,7 +5854,8 @@
       "type":"string",
       "enum":[
         "DISABLED",
-        "REQUIRED"
+        "REQUIRED",
+        "ENABLED"
       ]
     },
     "IPRange":{

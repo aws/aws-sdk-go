@@ -9051,6 +9051,12 @@ type SetSourceRequest struct {
 	// the sender.
 	SenderIpAddress *string `locationName:"senderIpAddress" type:"string"`
 
+	// Source IP or domain name for SRT-caller protocol.
+	SourceListenerAddress *string `locationName:"sourceListenerAddress" type:"string"`
+
+	// Source port for SRT-caller protocol.
+	SourceListenerPort *int64 `locationName:"sourceListenerPort" type:"integer"`
+
 	// The stream ID that you want to use for this transport. This parameter applies
 	// only to Zixi-based streams.
 	StreamId *string `locationName:"streamId" type:"string"`
@@ -9182,6 +9188,18 @@ func (s *SetSourceRequest) SetSenderControlPort(v int64) *SetSourceRequest {
 // SetSenderIpAddress sets the SenderIpAddress field's value.
 func (s *SetSourceRequest) SetSenderIpAddress(v string) *SetSourceRequest {
 	s.SenderIpAddress = &v
+	return s
+}
+
+// SetSourceListenerAddress sets the SourceListenerAddress field's value.
+func (s *SetSourceRequest) SetSourceListenerAddress(v string) *SetSourceRequest {
+	s.SourceListenerAddress = &v
+	return s
+}
+
+// SetSourceListenerPort sets the SourceListenerPort field's value.
+func (s *SetSourceRequest) SetSourceListenerPort(v int64) *SetSourceRequest {
+	s.SourceListenerPort = &v
 	return s
 }
 
@@ -9770,6 +9788,12 @@ type Transport struct {
 	// The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.
 	SmoothingLatency *int64 `locationName:"smoothingLatency" type:"integer"`
 
+	// Source IP or domain name for SRT-caller protocol.
+	SourceListenerAddress *string `locationName:"sourceListenerAddress" type:"string"`
+
+	// Source port for SRT-caller protocol.
+	SourceListenerPort *int64 `locationName:"sourceListenerPort" type:"integer"`
+
 	// The stream ID that you want to use for this transport. This parameter applies
 	// only to Zixi-based streams.
 	StreamId *string `locationName:"streamId" type:"string"`
@@ -9850,6 +9874,18 @@ func (s *Transport) SetSenderIpAddress(v string) *Transport {
 // SetSmoothingLatency sets the SmoothingLatency field's value.
 func (s *Transport) SetSmoothingLatency(v int64) *Transport {
 	s.SmoothingLatency = &v
+	return s
+}
+
+// SetSourceListenerAddress sets the SourceListenerAddress field's value.
+func (s *Transport) SetSourceListenerAddress(v string) *Transport {
+	s.SourceListenerAddress = &v
+	return s
+}
+
+// SetSourceListenerPort sets the SourceListenerPort field's value.
+func (s *Transport) SetSourceListenerPort(v int64) *Transport {
+	s.SourceListenerPort = &v
 	return s
 }
 
@@ -10541,7 +10577,8 @@ type UpdateFlowOutputInput struct {
 	// FlowArn is a required field
 	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
 
-	// The maximum latency in milliseconds for Zixi-based streams.
+	// The maximum latency in milliseconds. This parameter applies only to RIST-based,
+	// Zixi-based, and Fujitsu-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
 	// The media streams that are associated with the output, and the parameters
@@ -10827,6 +10864,8 @@ type UpdateFlowSourceInput struct {
 	// The protocol that is used by the source.
 	Protocol *string `locationName:"protocol" type:"string" enum:"Protocol"`
 
+	// The port that the flow uses to send outbound requests to initiate connection
+	// with the sender.
 	SenderControlPort *int64 `locationName:"senderControlPort" type:"integer"`
 
 	// The IP address that the flow communicates with to initiate connection with
@@ -10835,6 +10874,12 @@ type UpdateFlowSourceInput struct {
 
 	// SourceArn is a required field
 	SourceArn *string `location:"uri" locationName:"sourceArn" type:"string" required:"true"`
+
+	// Source IP or domain name for SRT-caller protocol.
+	SourceListenerAddress *string `locationName:"sourceListenerAddress" type:"string"`
+
+	// Source port for SRT-caller protocol.
+	SourceListenerPort *int64 `locationName:"sourceListenerPort" type:"integer"`
 
 	// The stream ID that you want to use for this transport. This parameter applies
 	// only to Zixi-based streams.
@@ -10980,6 +11025,18 @@ func (s *UpdateFlowSourceInput) SetSenderIpAddress(v string) *UpdateFlowSourceIn
 // SetSourceArn sets the SourceArn field's value.
 func (s *UpdateFlowSourceInput) SetSourceArn(v string) *UpdateFlowSourceInput {
 	s.SourceArn = &v
+	return s
+}
+
+// SetSourceListenerAddress sets the SourceListenerAddress field's value.
+func (s *UpdateFlowSourceInput) SetSourceListenerAddress(v string) *UpdateFlowSourceInput {
+	s.SourceListenerAddress = &v
+	return s
+}
+
+// SetSourceListenerPort sets the SourceListenerPort field's value.
+func (s *UpdateFlowSourceInput) SetSourceListenerPort(v int64) *UpdateFlowSourceInput {
+	s.SourceListenerPort = &v
 	return s
 }
 
@@ -11585,6 +11642,9 @@ const (
 	// ProtocolSrtListener is a Protocol enum value
 	ProtocolSrtListener = "srt-listener"
 
+	// ProtocolSrtCaller is a Protocol enum value
+	ProtocolSrtCaller = "srt-caller"
+
 	// ProtocolFujitsuQos is a Protocol enum value
 	ProtocolFujitsuQos = "fujitsu-qos"
 )
@@ -11600,6 +11660,7 @@ func Protocol_Values() []string {
 		ProtocolSt2110Jpegxs,
 		ProtocolCdi,
 		ProtocolSrtListener,
+		ProtocolSrtCaller,
 		ProtocolFujitsuQos,
 	}
 }

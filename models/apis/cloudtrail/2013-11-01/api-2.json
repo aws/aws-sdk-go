@@ -134,6 +134,7 @@
         {"shape":"EventDataStoreARNInvalidException"},
         {"shape":"EventDataStoreNotFoundException"},
         {"shape":"EventDataStoreTerminationProtectedException"},
+        {"shape":"EventDataStoreHasOngoingImportException"},
         {"shape":"InvalidParameterException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"UnsupportedOperationException"},
@@ -244,6 +245,21 @@
       ],
       "idempotent":true
     },
+    "GetImport":{
+      "name":"GetImport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetImportRequest"},
+      "output":{"shape":"GetImportResponse"},
+      "errors":[
+        {"shape":"ImportNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnsupportedOperationException"}
+      ]
+    },
     "GetInsightSelectors":{
       "name":"GetInsightSelectors",
       "http":{
@@ -339,6 +355,38 @@
       "errors":[
         {"shape":"InvalidMaxResultsException"},
         {"shape":"InvalidNextTokenException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnsupportedOperationException"}
+      ],
+      "idempotent":true
+    },
+    "ListImportFailures":{
+      "name":"ListImportFailures",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListImportFailuresRequest"},
+      "output":{"shape":"ListImportFailuresResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnsupportedOperationException"}
+      ],
+      "idempotent":true
+    },
+    "ListImports":{
+      "name":"ListImports",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListImportsRequest"},
+      "output":{"shape":"ListImportsResponse"},
+      "errors":[
+        {"shape":"EventDataStoreARNInvalidException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"UnsupportedOperationException"}
       ],
@@ -524,6 +572,30 @@
         {"shape":"OrganizationNotInAllFeaturesModeException"}
       ]
     },
+    "StartImport":{
+      "name":"StartImport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartImportRequest"},
+      "output":{"shape":"StartImportResponse"},
+      "errors":[
+        {"shape":"AccountHasOngoingImportException"},
+        {"shape":"EventDataStoreARNInvalidException"},
+        {"shape":"EventDataStoreNotFoundException"},
+        {"shape":"InvalidEventDataStoreStatusException"},
+        {"shape":"InvalidEventDataStoreCategoryException"},
+        {"shape":"InactiveEventDataStoreException"},
+        {"shape":"InvalidImportSourceException"},
+        {"shape":"ImportNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnsupportedOperationException"}
+      ]
+    },
     "StartLogging":{
       "name":"StartLogging",
       "http":{
@@ -563,6 +635,21 @@
       ],
       "idempotent":true
     },
+    "StopImport":{
+      "name":"StopImport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopImportRequest"},
+      "output":{"shape":"StopImportResponse"},
+      "errors":[
+        {"shape":"ImportNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnsupportedOperationException"}
+      ]
+    },
     "StopLogging":{
       "name":"StopLogging",
       "http":{
@@ -593,6 +680,7 @@
       "errors":[
         {"shape":"EventDataStoreARNInvalidException"},
         {"shape":"EventDataStoreNotFoundException"},
+        {"shape":"EventDataStoreHasOngoingImportException"},
         {"shape":"InactiveEventDataStoreException"},
         {"shape":"InvalidParameterException"},
         {"shape":"OperationNotPermittedException"},
@@ -647,6 +735,12 @@
     }
   },
   "shapes":{
+    "AccountHasOngoingImportException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "AddTagsRequest":{
       "type":"structure",
       "required":[
@@ -1040,6 +1134,12 @@
       "min":3,
       "pattern":"^[a-zA-Z0-9._/\\-:]+$"
     },
+    "EventDataStoreHasOngoingImportException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "EventDataStoreMaxLimitExceededException":{
       "type":"structure",
       "members":{
@@ -1151,6 +1251,27 @@
         "AdvancedEventSelectors":{"shape":"AdvancedEventSelectors"}
       }
     },
+    "GetImportRequest":{
+      "type":"structure",
+      "required":["ImportId"],
+      "members":{
+        "ImportId":{"shape":"UUID"}
+      }
+    },
+    "GetImportResponse":{
+      "type":"structure",
+      "members":{
+        "ImportId":{"shape":"UUID"},
+        "Destinations":{"shape":"ImportDestinations"},
+        "ImportSource":{"shape":"ImportSource"},
+        "StartEventTime":{"shape":"Date"},
+        "EndEventTime":{"shape":"Date"},
+        "ImportStatus":{"shape":"ImportStatus"},
+        "CreatedTimestamp":{"shape":"Date"},
+        "UpdatedTimestamp":{"shape":"Date"},
+        "ImportStatistics":{"shape":"ImportStatistics"}
+      }
+    },
     "GetInsightSelectorsRequest":{
       "type":"structure",
       "required":["TrailName"],
@@ -1228,6 +1349,81 @@
         "LatestDeliveryAttemptSucceeded":{"shape":"String"},
         "TimeLoggingStarted":{"shape":"String"},
         "TimeLoggingStopped":{"shape":"String"}
+      }
+    },
+    "ImportDestinations":{
+      "type":"list",
+      "member":{"shape":"EventDataStoreArn"},
+      "max":1,
+      "min":1
+    },
+    "ImportFailureList":{
+      "type":"list",
+      "member":{"shape":"ImportFailureListItem"}
+    },
+    "ImportFailureListItem":{
+      "type":"structure",
+      "members":{
+        "Location":{"shape":"String"},
+        "Status":{"shape":"ImportFailureStatus"},
+        "ErrorType":{"shape":"String"},
+        "ErrorMessage":{"shape":"String"},
+        "LastUpdatedTime":{"shape":"Date"}
+      }
+    },
+    "ImportFailureStatus":{
+      "type":"string",
+      "enum":[
+        "FAILED",
+        "RETRY",
+        "SUCCEEDED"
+      ]
+    },
+    "ImportNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "ImportSource":{
+      "type":"structure",
+      "required":["S3"],
+      "members":{
+        "S3":{"shape":"S3ImportSource"}
+      }
+    },
+    "ImportStatistics":{
+      "type":"structure",
+      "members":{
+        "PrefixesFound":{"shape":"Long"},
+        "PrefixesCompleted":{"shape":"Long"},
+        "FilesCompleted":{"shape":"Long"},
+        "EventsCompleted":{"shape":"Long"},
+        "FailedEntries":{"shape":"Long"}
+      }
+    },
+    "ImportStatus":{
+      "type":"string",
+      "enum":[
+        "INITIALIZING",
+        "IN_PROGRESS",
+        "FAILED",
+        "STOPPED",
+        "COMPLETED"
+      ]
+    },
+    "ImportsList":{
+      "type":"list",
+      "member":{"shape":"ImportsListItem"}
+    },
+    "ImportsListItem":{
+      "type":"structure",
+      "members":{
+        "ImportId":{"shape":"UUID"},
+        "ImportStatus":{"shape":"ImportStatus"},
+        "Destinations":{"shape":"ImportDestinations"},
+        "CreatedTimestamp":{"shape":"Date"},
+        "UpdatedTimestamp":{"shape":"Date"}
       }
     },
     "InactiveEventDataStoreException":{
@@ -1314,6 +1510,12 @@
       },
       "exception":true
     },
+    "InvalidEventDataStoreCategoryException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "InvalidEventDataStoreStatusException":{
       "type":"structure",
       "members":{
@@ -1327,6 +1529,12 @@
       "exception":true
     },
     "InvalidHomeRegionException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidImportSourceException":{
       "type":"structure",
       "members":{
       },
@@ -1482,6 +1690,48 @@
       "type":"structure",
       "members":{
         "EventDataStores":{"shape":"EventDataStores"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListImportFailuresMaxResultsCount":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "ListImportFailuresRequest":{
+      "type":"structure",
+      "required":["ImportId"],
+      "members":{
+        "ImportId":{"shape":"UUID"},
+        "MaxResults":{"shape":"ListImportFailuresMaxResultsCount"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListImportFailuresResponse":{
+      "type":"structure",
+      "members":{
+        "Failures":{"shape":"ImportFailureList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListImportsMaxResultsCount":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "ListImportsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"ListImportsMaxResultsCount"},
+        "Destination":{"shape":"EventDataStoreArn"},
+        "ImportStatus":{"shape":"ImportStatus"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListImportsResponse":{
+      "type":"structure",
+      "members":{
+        "Imports":{"shape":"ImportsList"},
         "NextToken":{"shape":"PaginationToken"}
       }
     },
@@ -1880,6 +2130,19 @@
       },
       "exception":true
     },
+    "S3ImportSource":{
+      "type":"structure",
+      "required":[
+        "S3LocationUri",
+        "S3BucketRegion",
+        "S3BucketAccessRoleArn"
+      ],
+      "members":{
+        "S3LocationUri":{"shape":"String"},
+        "S3BucketRegion":{"shape":"String"},
+        "S3BucketAccessRoleArn":{"shape":"String"}
+      }
+    },
     "SelectorField":{
       "type":"string",
       "max":1000,
@@ -1905,6 +2168,29 @@
         "AdvancedEventSelectors":{"shape":"AdvancedEventSelectors"}
       }
     },
+    "StartImportRequest":{
+      "type":"structure",
+      "members":{
+        "Destinations":{"shape":"ImportDestinations"},
+        "ImportSource":{"shape":"ImportSource"},
+        "StartEventTime":{"shape":"Date"},
+        "EndEventTime":{"shape":"Date"},
+        "ImportId":{"shape":"UUID"}
+      }
+    },
+    "StartImportResponse":{
+      "type":"structure",
+      "members":{
+        "ImportId":{"shape":"UUID"},
+        "Destinations":{"shape":"ImportDestinations"},
+        "ImportSource":{"shape":"ImportSource"},
+        "StartEventTime":{"shape":"Date"},
+        "EndEventTime":{"shape":"Date"},
+        "ImportStatus":{"shape":"ImportStatus"},
+        "CreatedTimestamp":{"shape":"Date"},
+        "UpdatedTimestamp":{"shape":"Date"}
+      }
+    },
     "StartLoggingRequest":{
       "type":"structure",
       "required":["Name"],
@@ -1928,6 +2214,27 @@
       "type":"structure",
       "members":{
         "QueryId":{"shape":"UUID"}
+      }
+    },
+    "StopImportRequest":{
+      "type":"structure",
+      "required":["ImportId"],
+      "members":{
+        "ImportId":{"shape":"UUID"}
+      }
+    },
+    "StopImportResponse":{
+      "type":"structure",
+      "members":{
+        "ImportId":{"shape":"UUID"},
+        "ImportSource":{"shape":"ImportSource"},
+        "Destinations":{"shape":"ImportDestinations"},
+        "ImportStatus":{"shape":"ImportStatus"},
+        "CreatedTimestamp":{"shape":"Date"},
+        "UpdatedTimestamp":{"shape":"Date"},
+        "StartEventTime":{"shape":"Date"},
+        "EndEventTime":{"shape":"Date"},
+        "ImportStatistics":{"shape":"ImportStatistics"}
       }
     },
     "StopLoggingRequest":{
