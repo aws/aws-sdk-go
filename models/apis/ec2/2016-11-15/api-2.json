@@ -5798,6 +5798,10 @@
         "VpcPeeringConnectionId":{
           "shape":"String",
           "locationName":"vpcPeeringConnectionId"
+        },
+        "State":{
+          "shape":"String",
+          "locationName":"state"
         }
       }
     },
@@ -8584,6 +8588,14 @@
         "shape":"CoipPool",
         "locationName":"item"
       }
+    },
+    "ComponentAccount":{
+      "type":"string",
+      "pattern":"\\d{12}"
+    },
+    "ComponentRegion":{
+      "type":"string",
+      "pattern":"[a-z]{2}-[a-z]+-[1-9]+"
     },
     "ConfirmProductInstanceRequest":{
       "type":"structure",
@@ -19254,6 +19266,14 @@
         "TransitGatewayAttachment":{
           "shape":"AnalysisComponent",
           "locationName":"transitGatewayAttachment"
+        },
+        "ComponentAccount":{
+          "shape":"ComponentAccount",
+          "locationName":"componentAccount"
+        },
+        "ComponentRegion":{
+          "shape":"ComponentRegion",
+          "locationName":"componentRegion"
         }
       }
     },
@@ -30773,6 +30793,14 @@
         "TransitGatewayRouteTableRoute":{
           "shape":"TransitGatewayRouteTableRoute",
           "locationName":"transitGatewayRouteTableRoute"
+        },
+        "Explanations":{
+          "shape":"ExplanationList",
+          "locationName":"explanationSet"
+        },
+        "ElasticLoadBalancerListener":{
+          "shape":"AnalysisComponent",
+          "locationName":"elasticLoadBalancerListener"
         }
       }
     },
