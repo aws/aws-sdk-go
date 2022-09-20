@@ -1,3 +1,10 @@
+Release v1.44.102 (2022-09-20)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for blocked paths to Amazon VPC Reachability Analyzer.
+
 Release v1.44.101 (2022-09-19)
 ===
 
