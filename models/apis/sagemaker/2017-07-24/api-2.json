@@ -4098,6 +4098,12 @@
       "type":"list",
       "member":{"shape":"AutoMLCandidateStep"}
     },
+    "CanvasAppSettings":{
+      "type":"structure",
+      "members":{
+        "TimeSeriesForecastingSettings":{"shape":"TimeSeriesForecastingSettings"}
+      }
+    },
     "CapacitySize":{
       "type":"structure",
       "required":[
@@ -9089,6 +9095,13 @@
       "member":{"shape":"FeatureParameter"},
       "max":25,
       "min":0
+    },
+    "FeatureStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "FeatureType":{
       "type":"string",
@@ -16141,6 +16154,13 @@
       "max":128,
       "pattern":"[a-zA-Z0-9:_-]+"
     },
+    "TimeSeriesForecastingSettings":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"FeatureStatus"},
+        "AmazonForecastRoleArn":{"shape":"RoleArn"}
+      }
+    },
     "Timestamp":{"type":"timestamp"},
     "TrafficDurationInSeconds":{
       "type":"integer",
@@ -17404,7 +17424,8 @@
         "KernelGatewayAppSettings":{"shape":"KernelGatewayAppSettings"},
         "TensorBoardAppSettings":{"shape":"TensorBoardAppSettings"},
         "RStudioServerProAppSettings":{"shape":"RStudioServerProAppSettings"},
-        "RSessionAppSettings":{"shape":"RSessionAppSettings"}
+        "RSessionAppSettings":{"shape":"RSessionAppSettings"},
+        "CanvasAppSettings":{"shape":"CanvasAppSettings"}
       }
     },
     "ValidationFraction":{

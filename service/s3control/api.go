@@ -74,11 +74,11 @@ func (c *S3Control) CreateAccessPointRequest(input *CreateAccessPointInput) (req
 // in the Amazon S3 User Guide.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html#API_control_CreateAccessPoint_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html#API_control_CreateAccessPoint_Examples)
 // section.
 //
 // The following actions are related to CreateAccessPoint:
@@ -582,11 +582,11 @@ func (c *S3Control) DeleteAccessPointRequest(input *DeleteAccessPointInput) (req
 // Deletes the specified access point.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html#API_control_DeleteAccessPoint_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html#API_control_DeleteAccessPoint_Examples)
 // section.
 //
 // The following actions are related to DeleteAccessPoint:
@@ -761,11 +761,11 @@ func (c *S3Control) DeleteAccessPointPolicyRequest(input *DeleteAccessPointPolic
 // Deletes the access point policy for the specified access point.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicy.html#API_control_DeleteAccessPointPolicy_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicy.html#API_control_DeleteAccessPointPolicy_Examples)
 // section.
 //
 // The following actions are related to DeleteAccessPointPolicy:
@@ -944,11 +944,11 @@ func (c *S3Control) DeleteBucketRequest(input *DeleteBucketInput) (req *request.
 // in Amazon S3 User Guide.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html#API_control_DeleteBucket_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html#API_control_DeleteBucket_Examples)
 // section.
 //
 // Related Resources
@@ -1054,11 +1054,11 @@ func (c *S3Control) DeleteBucketLifecycleConfigurationRequest(input *DeleteBucke
 // bucket owner can grant this permission to others.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketLifecycleConfiguration.html#API_control_DeleteBucketLifecycleConfiguration_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketLifecycleConfiguration.html#API_control_DeleteBucketLifecycleConfiguration_Examples)
 // section.
 //
 // For more information about object expiration, see Elements to Describe Lifecycle
@@ -1173,11 +1173,11 @@ func (c *S3Control) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (r
 // User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketPolicy.html#API_control_DeleteBucketPolicy_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketPolicy.html#API_control_DeleteBucketPolicy_Examples)
 // section.
 //
 // The following actions are related to DeleteBucketPolicy:
@@ -1276,11 +1276,11 @@ func (c *S3Control) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) 
 // permission to others.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketTagging.html#API_control_DeleteBucketTagging_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketTagging.html#API_control_DeleteBucketTagging_Examples)
 // section.
 //
 // The following actions are related to DeleteBucketTagging:
@@ -2007,11 +2007,11 @@ func (c *S3Control) GetAccessPointRequest(input *GetAccessPointInput) (req *requ
 // Returns configuration information about the specified access point.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples)
 // section.
 //
 // The following actions are related to GetAccessPoint:
@@ -2598,11 +2598,11 @@ func (c *S3Control) GetBucketRequest(input *GetBucketInput) (req *request.Reques
 // The following actions are related to GetBucket for Amazon S3 on Outposts:
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html#API_control_GetBucket_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html#API_control_GetBucket_Examples)
 // section.
 //
 //   - PutObject (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)
@@ -2705,11 +2705,11 @@ func (c *S3Control) GetBucketLifecycleConfigurationRequest(input *GetBucketLifec
 // and Managing Access Permissions to Your Amazon S3 Resources (https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html).
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html#API_control_GetBucketLifecycleConfiguration_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html#API_control_GetBucketLifecycleConfiguration_Examples)
 // section.
 //
 // GetBucketLifecycleConfiguration has the following special error:
@@ -2826,11 +2826,11 @@ func (c *S3Control) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *re
 // User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketPolicy.html#API_control_GetBucketPolicy_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketPolicy.html#API_control_GetBucketPolicy_Examples)
 // section.
 //
 // The following actions are related to GetBucketPolicy:
@@ -2935,11 +2935,11 @@ func (c *S3Control) GetBucketTaggingRequest(input *GetBucketTaggingInput) (req *
 //     with the bucket.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html#API_control_GetBucketTagging_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html#API_control_GetBucketTagging_Examples)
 // section.
 //
 // The following actions are related to GetBucketTagging:
@@ -2971,6 +2971,114 @@ func (c *S3Control) GetBucketTagging(input *GetBucketTaggingInput) (*GetBucketTa
 // for more information on using Contexts.
 func (c *S3Control) GetBucketTaggingWithContext(ctx aws.Context, input *GetBucketTaggingInput, opts ...request.Option) (*GetBucketTaggingOutput, error) {
 	req, out := c.GetBucketTaggingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetBucketVersioning = "GetBucketVersioning"
+
+// GetBucketVersioningRequest generates a "aws/request.Request" representing the
+// client's request for the GetBucketVersioning operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBucketVersioning for more information on using the GetBucketVersioning
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetBucketVersioningRequest method.
+//	req, resp := client.GetBucketVersioningRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetBucketVersioning
+func (c *S3Control) GetBucketVersioningRequest(input *GetBucketVersioningInput) (req *request.Request, output *GetBucketVersioningOutput) {
+	op := &request.Operation{
+		Name:       opGetBucketVersioning,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/bucket/{name}/versioning",
+	}
+
+	if input == nil {
+		input = &GetBucketVersioningInput{}
+	}
+
+	output = &GetBucketVersioningOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetBucketVersioning API operation for AWS S3 Control.
+//
+// This operation returns the versioning state only for S3 on Outposts buckets.
+// To return the versioning state for an S3 bucket, see GetBucketVersioning
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html)
+// in the Amazon S3 API Reference.
+//
+// Returns the versioning state for an S3 on Outposts bucket. With versioning,
+// you can save multiple distinct copies of your data and recover from unintended
+// user actions and application failures.
+//
+// If you've never set versioning on your bucket, it has no versioning state.
+// In that case, the GetBucketVersioning request does not return a versioning
+// state value.
+//
+// For more information about versioning, see Versioning (https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html)
+// in the Amazon S3 User Guide.
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketVersioning.html#API_control_GetBucketVersioning_Examples)
+// section.
+//
+// The following operations are related to GetBucketVersioning for S3 on Outposts.
+//
+//   - PutBucketVersioning (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketVersioning.html)
+//
+//   - PutBucketLifecycleConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html)
+//
+//   - GetBucketLifecycleConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetBucketVersioning for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetBucketVersioning
+func (c *S3Control) GetBucketVersioning(input *GetBucketVersioningInput) (*GetBucketVersioningOutput, error) {
+	req, out := c.GetBucketVersioningRequest(input)
+	return out, req.Send()
+}
+
+// GetBucketVersioningWithContext is the same as GetBucketVersioning with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBucketVersioning for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetBucketVersioningWithContext(ctx aws.Context, input *GetBucketVersioningInput, opts ...request.Option) (*GetBucketVersioningOutput, error) {
+	req, out := c.GetBucketVersioningRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3661,11 +3769,11 @@ func (c *S3Control) ListAccessPointsRequest(input *ListAccessPointsInput) (req *
 // can use to list the additional access points.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples)
 // section.
 //
 // The following actions are related to ListAccessPoints:
@@ -4620,11 +4728,11 @@ func (c *S3Control) PutAccessPointPolicyRequest(input *PutAccessPointPolicyInput
 // existing policy associated with the specified access point.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html#API_control_PutAccessPointPolicy_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html#API_control_PutAccessPointPolicy_Examples)
 // section.
 //
 // The following actions are related to PutAccessPointPolicy:
@@ -4809,11 +4917,11 @@ func (c *S3Control) PutBucketLifecycleConfigurationRequest(input *PutBucketLifec
 // and abort incomplete multipart uploads.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html#API_control_PutBucketLifecycleConfiguration_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html#API_control_PutBucketLifecycleConfiguration_Examples)
 // section.
 //
 // The following actions are related to PutBucketLifecycleConfiguration:
@@ -4929,11 +5037,11 @@ func (c *S3Control) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *re
 // User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketPolicy.html#API_control_PutBucketPolicy_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketPolicy.html#API_control_PutBucketPolicy_Examples)
 // section.
 //
 // The following actions are related to PutBucketPolicy:
@@ -5068,11 +5176,11 @@ func (c *S3Control) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *
 //     the provided tag to the bucket.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of x-amz-outpost-id to be passed with the request and an S3 on
-// Outposts endpoint hostname prefix instead of s3-control. For an example of
-// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
-// endpoint hostname prefix and the x-amz-outpost-id derived using the access
-// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html#API_control_PutBucketTagging_Examples)
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html#API_control_PutBucketTagging_Examples)
 // section.
 //
 // The following actions are related to PutBucketTagging:
@@ -5104,6 +5212,137 @@ func (c *S3Control) PutBucketTagging(input *PutBucketTaggingInput) (*PutBucketTa
 // for more information on using Contexts.
 func (c *S3Control) PutBucketTaggingWithContext(ctx aws.Context, input *PutBucketTaggingInput, opts ...request.Option) (*PutBucketTaggingOutput, error) {
 	req, out := c.PutBucketTaggingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutBucketVersioning = "PutBucketVersioning"
+
+// PutBucketVersioningRequest generates a "aws/request.Request" representing the
+// client's request for the PutBucketVersioning operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutBucketVersioning for more information on using the PutBucketVersioning
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutBucketVersioningRequest method.
+//	req, resp := client.PutBucketVersioningRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutBucketVersioning
+func (c *S3Control) PutBucketVersioningRequest(input *PutBucketVersioningInput) (req *request.Request, output *PutBucketVersioningOutput) {
+	op := &request.Operation{
+		Name:       opPutBucketVersioning,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/bucket/{name}/versioning",
+	}
+
+	if input == nil {
+		input = &PutBucketVersioningInput{}
+	}
+
+	output = &PutBucketVersioningOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// PutBucketVersioning API operation for AWS S3 Control.
+//
+// This operation sets the versioning state only for S3 on Outposts buckets.
+// To set the versioning state for an S3 bucket, see PutBucketVersioning (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html)
+// in the Amazon S3 API Reference.
+//
+// Sets the versioning state for an S3 on Outposts bucket. With versioning,
+// you can save multiple distinct copies of your data and recover from unintended
+// user actions and application failures.
+//
+// You can set the versioning state to one of the following:
+//
+//   - Enabled - Enables versioning for the objects in the bucket. All objects
+//     added to the bucket receive a unique version ID.
+//
+//   - Suspended - Suspends versioning for the objects in the bucket. All objects
+//     added to the bucket receive the version ID null.
+//
+// If you've never set versioning on your bucket, it has no versioning state.
+// In that case, a GetBucketVersioning (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketVersioning.html)
+// request does not return a versioning state value.
+//
+// When you enable S3 Versioning, for each object in your bucket, you have a
+// current version and zero or more noncurrent versions. You can configure your
+// bucket S3 Lifecycle rules to expire noncurrent versions after a specified
+// time period. For more information, see Creating and managing a lifecycle
+// configuration for your S3 on Outposts bucket (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsLifecycleManaging.html)
+// in the Amazon S3 User Guide.
+//
+// If you have an object expiration lifecycle policy in your non-versioned bucket
+// and you want to maintain the same permanent delete behavior when you enable
+// versioning, you must add a noncurrent expiration policy. The noncurrent expiration
+// lifecycle policy will manage the deletes of the noncurrent object versions
+// in the version-enabled bucket. For more information, see Versioning (https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html)
+// in the Amazon S3 User Guide.
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketVersioning.html#API_control_PutBucketVersioning_Examples)
+// section.
+//
+// The following operations are related to PutBucketVersioning for S3 on Outposts.
+//
+//   - GetBucketVersioning (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketVersioning.html)
+//
+//   - PutBucketLifecycleConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html)
+//
+//   - GetBucketLifecycleConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation PutBucketVersioning for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutBucketVersioning
+func (c *S3Control) PutBucketVersioning(input *PutBucketVersioningInput) (*PutBucketVersioningOutput, error) {
+	req, out := c.PutBucketVersioningRequest(input)
+	return out, req.Send()
+}
+
+// PutBucketVersioningWithContext is the same as PutBucketVersioning with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutBucketVersioning for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) PutBucketVersioningWithContext(ctx aws.Context, input *PutBucketVersioningInput, opts ...request.Option) (*PutBucketVersioningOutput, error) {
+	req, out := c.PutBucketVersioningRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5377,7 +5616,7 @@ func (c *S3Control) PutPublicAccessBlockRequest(input *PutPublicAccessBlockInput
 // PutPublicAccessBlock API operation for AWS S3 Control.
 //
 // Creates or modifies the PublicAccessBlock configuration for an Amazon Web
-// Services account. For this operation, users must have the s3:PutBucketPublicAccessBlock
+// Services account. For this operation, users must have the s3:PutAccountPublicAccessBlock
 // permission. For more information, see Using Amazon S3 block public access
 // (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 //
@@ -6005,7 +6244,7 @@ type AsyncErrorDetails struct {
 	// A string that uniquely identifies the error condition.
 	Code *string `type:"string"`
 
-	// A generic descritpion of the error condition in English.
+	// A generic description of the error condition in English.
 	Message *string `type:"string"`
 
 	// The ID of the request associated with the error.
@@ -6822,7 +7061,7 @@ type CreateBucketInput struct {
 
 	// The ID of the Outposts where the bucket is being created.
 	//
-	// This is required by Amazon S3 on Outposts buckets.
+	// This ID is required by Amazon S3 on Outposts buckets.
 	OutpostId *string `location:"header" locationName:"x-amz-outpost-id" min:"1" type:"string"`
 }
 
@@ -10955,6 +11194,162 @@ func (s *GetBucketTaggingOutput) SetTagSet(v []*S3Tag) *GetBucketTaggingOutput {
 	return s
 }
 
+type GetBucketVersioningInput struct {
+	_ struct{} `locationName:"GetBucketVersioningRequest" type:"structure"`
+
+	// The Amazon Web Services account ID of the S3 on Outposts bucket.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The S3 on Outposts bucket to return the versioning state for.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBucketVersioningInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBucketVersioningInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBucketVersioningInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBucketVersioningInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetBucketVersioningInput) SetAccountId(v string) *GetBucketVersioningInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *GetBucketVersioningInput) SetBucket(v string) *GetBucketVersioningInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *GetBucketVersioningInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *GetBucketVersioningInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketVersioningInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s GetBucketVersioningInput) updateArnableField(v string) (interface{}, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return &s, nil
+}
+
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s GetBucketVersioningInput) updateAccountID(accountId string) (interface{}, error) {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+		return &s, nil
+	} else if *s.AccountId != accountId {
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil, nil
+}
+
+type GetBucketVersioningOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether MFA delete is enabled in the bucket versioning configuration.
+	// This element is returned only if the bucket has been configured with MFA
+	// delete. If MFA delete has never been configured for the bucket, this element
+	// is not returned.
+	MFADelete *string `locationName:"MfaDelete" type:"string" enum:"MFADeleteStatus"`
+
+	// The versioning state of the S3 on Outposts bucket.
+	Status *string `type:"string" enum:"BucketVersioningStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBucketVersioningOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBucketVersioningOutput) GoString() string {
+	return s.String()
+}
+
+// SetMFADelete sets the MFADelete field's value.
+func (s *GetBucketVersioningOutput) SetMFADelete(v string) *GetBucketVersioningOutput {
+	s.MFADelete = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetBucketVersioningOutput) SetStatus(v string) *GetBucketVersioningOutput {
+	s.Status = &v
+	return s
+}
+
 type GetJobTaggingInput struct {
 	_ struct{} `locationName:"GetJobTaggingRequest" type:"structure"`
 
@@ -13737,9 +14132,9 @@ type ListRegionalBucketsInput struct {
 
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
-	// The ID of the Outposts.
+	// The ID of the Outposts resource.
 	//
-	// This is required by Amazon S3 on Outposts buckets.
+	// This ID is required by Amazon S3 on Outposts buckets.
 	OutpostId *string `location:"header" locationName:"x-amz-outpost-id" min:"1" type:"string"`
 }
 
@@ -14162,7 +14557,7 @@ type MultiRegionAccessPointReport struct {
 	// The current status of the Multi-Region Access Point.
 	//
 	// CREATING and DELETING are temporary states that exist while the request is
-	// propogating and being completed. If a Multi-Region Access Point has a status
+	// propagating and being completed. If a Multi-Region Access Point has a status
 	// of PARTIALLY_CREATED, you can retry creation or send a request to delete
 	// the Multi-Region Access Point. If a Multi-Region Access Point has a status
 	// of PARTIALLY_DELETED, you can retry a delete request to finish the deletion
@@ -15736,6 +16131,165 @@ func (s PutBucketTaggingOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s PutBucketTaggingOutput) GoString() string {
+	return s.String()
+}
+
+type PutBucketVersioningInput struct {
+	_ struct{} `locationName:"PutBucketVersioningRequest" type:"structure" payload:"VersioningConfiguration"`
+
+	// The Amazon Web Services account ID of the S3 on Outposts bucket.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The S3 on Outposts bucket to set the versioning state for.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+
+	// The concatenation of the authentication device's serial number, a space,
+	// and the value that is displayed on your authentication device.
+	MFA *string `location:"header" locationName:"x-amz-mfa" type:"string"`
+
+	// The root-level tag for the VersioningConfiguration parameters.
+	//
+	// VersioningConfiguration is a required field
+	VersioningConfiguration *VersioningConfiguration `locationName:"VersioningConfiguration" type:"structure" required:"true" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBucketVersioningInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBucketVersioningInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutBucketVersioningInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutBucketVersioningInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.VersioningConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("VersioningConfiguration"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutBucketVersioningInput) SetAccountId(v string) *PutBucketVersioningInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *PutBucketVersioningInput) SetBucket(v string) *PutBucketVersioningInput {
+	s.Bucket = &v
+	return s
+}
+
+// SetMFA sets the MFA field's value.
+func (s *PutBucketVersioningInput) SetMFA(v string) *PutBucketVersioningInput {
+	s.MFA = &v
+	return s
+}
+
+// SetVersioningConfiguration sets the VersioningConfiguration field's value.
+func (s *PutBucketVersioningInput) SetVersioningConfiguration(v *VersioningConfiguration) *PutBucketVersioningInput {
+	s.VersioningConfiguration = v
+	return s
+}
+
+func (s *PutBucketVersioningInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *PutBucketVersioningInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketVersioningInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s PutBucketVersioningInput) updateArnableField(v string) (interface{}, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return &s, nil
+}
+
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s PutBucketVersioningInput) updateAccountID(accountId string) (interface{}, error) {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+		return &s, nil
+	} else if *s.AccountId != accountId {
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil, nil
+}
+
+type PutBucketVersioningOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBucketVersioningOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBucketVersioningOutput) GoString() string {
 	return s.String()
 }
 
@@ -18119,8 +18673,8 @@ type SSEKMSEncryption struct {
 	_ struct{} `locationName:"SSE-KMS" type:"structure"`
 
 	// Specifies the ID of the Amazon Web Services Key Management Service (Amazon
-	// Web Services KMS) symmetric customer managed key to use for encrypting generated
-	// manifest objects.
+	// Web Services KMS) symmetric encryption customer managed key to use for encrypting
+	// generated manifest objects.
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -19047,6 +19601,49 @@ func (s *UpdateJobStatusOutput) SetStatusUpdateReason(v string) *UpdateJobStatus
 	return s
 }
 
+// Describes the versioning state of an Amazon S3 on Outposts bucket. For more
+// information, see PutBucketVersioning (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketVersioning.html).
+type VersioningConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether MFA delete is enabled or disabled in the bucket versioning
+	// configuration for the S3 on Outposts bucket.
+	MFADelete *string `locationName:"MfaDelete" type:"string" enum:"MFADelete"`
+
+	// Sets the versioning state of the S3 on Outposts bucket.
+	Status *string `type:"string" enum:"BucketVersioningStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VersioningConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VersioningConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetMFADelete sets the MFADelete field's value.
+func (s *VersioningConfiguration) SetMFADelete(v string) *VersioningConfiguration {
+	s.MFADelete = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *VersioningConfiguration) SetStatus(v string) *VersioningConfiguration {
+	s.Status = &v
+	return s
+}
+
 // The virtual private cloud (VPC) configuration for an access point.
 type VpcConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -19191,6 +19788,22 @@ func BucketLocationConstraint_Values() []string {
 		BucketLocationConstraintSaEast1,
 		BucketLocationConstraintCnNorth1,
 		BucketLocationConstraintEuCentral1,
+	}
+}
+
+const (
+	// BucketVersioningStatusEnabled is a BucketVersioningStatus enum value
+	BucketVersioningStatusEnabled = "Enabled"
+
+	// BucketVersioningStatusSuspended is a BucketVersioningStatus enum value
+	BucketVersioningStatusSuspended = "Suspended"
+)
+
+// BucketVersioningStatus_Values returns all elements of the BucketVersioningStatus enum
+func BucketVersioningStatus_Values() []string {
+	return []string{
+		BucketVersioningStatusEnabled,
+		BucketVersioningStatusSuspended,
 	}
 }
 
@@ -19363,6 +19976,38 @@ func JobStatus_Values() []string {
 		JobStatusPreparing,
 		JobStatusReady,
 		JobStatusSuspended,
+	}
+}
+
+const (
+	// MFADeleteEnabled is a MFADelete enum value
+	MFADeleteEnabled = "Enabled"
+
+	// MFADeleteDisabled is a MFADelete enum value
+	MFADeleteDisabled = "Disabled"
+)
+
+// MFADelete_Values returns all elements of the MFADelete enum
+func MFADelete_Values() []string {
+	return []string{
+		MFADeleteEnabled,
+		MFADeleteDisabled,
+	}
+}
+
+const (
+	// MFADeleteStatusEnabled is a MFADeleteStatus enum value
+	MFADeleteStatusEnabled = "Enabled"
+
+	// MFADeleteStatusDisabled is a MFADeleteStatus enum value
+	MFADeleteStatusDisabled = "Disabled"
+)
+
+// MFADeleteStatus_Values returns all elements of the MFADeleteStatus enum
+func MFADeleteStatus_Values() []string {
+	return []string{
+		MFADeleteStatusEnabled,
+		MFADeleteStatusDisabled,
 	}
 }
 
