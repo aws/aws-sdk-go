@@ -7284,6 +7284,9 @@ var awsPartition = partition{
 					Region: "ap-southeast-2",
 				}: endpoint{},
 				endpointKey{
+					Region: "ap-southeast-3",
+				}: endpoint{},
+				endpointKey{
 					Region: "ca-central-1",
 				}: endpoint{},
 				endpointKey{
@@ -9485,6 +9488,12 @@ var awsPartition = partition{
 					Region: "ap-northeast-1",
 				}: endpoint{},
 				endpointKey{
+					Region: "ap-southeast-1",
+				}: endpoint{},
+				endpointKey{
+					Region: "eu-central-1",
+				}: endpoint{},
+				endpointKey{
 					Region: "eu-west-1",
 				}: endpoint{},
 				endpointKey{
@@ -9493,6 +9502,15 @@ var awsPartition = partition{
 					Hostname: "emr-serverless-fips.us-east-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "us-east-1",
+					},
+					Deprecated: boxedTrue,
+				},
+				endpointKey{
+					Region: "fips-us-east-2",
+				}: endpoint{
+					Hostname: "emr-serverless-fips.us-east-2.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-east-2",
 					},
 					Deprecated: boxedTrue,
 				},
@@ -9513,6 +9531,15 @@ var awsPartition = partition{
 					Variant: fipsVariant,
 				}: endpoint{
 					Hostname: "emr-serverless-fips.us-east-1.amazonaws.com",
+				},
+				endpointKey{
+					Region: "us-east-2",
+				}: endpoint{},
+				endpointKey{
+					Region:  "us-east-2",
+					Variant: fipsVariant,
+				}: endpoint{
+					Hostname: "emr-serverless-fips.us-east-2.amazonaws.com",
 				},
 				endpointKey{
 					Region: "us-west-2",
@@ -17528,6 +17555,9 @@ var awsPartition = partition{
 				}: endpoint{},
 				endpointKey{
 					Region: "ap-southeast-2",
+				}: endpoint{},
+				endpointKey{
+					Region: "ap-southeast-3",
 				}: endpoint{},
 				endpointKey{
 					Region: "ca-central-1",

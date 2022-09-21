@@ -51,7 +51,7 @@
     "CreateTransformJob": "<p>Starts a transform job. A transform job uses a trained model to get inferences on a dataset and saves these results to an Amazon S3 location that you specify.</p> <p>To perform batch transformations, you create a transform job and use the data that you have readily available.</p> <p>In the request body, you provide the following:</p> <ul> <li> <p> <code>TransformJobName</code> - Identifies the transform job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account.</p> </li> <li> <p> <code>ModelName</code> - Identifies the model to use. <code>ModelName</code> must be the name of an existing Amazon SageMaker model in the same Amazon Web Services Region and Amazon Web Services account. For information on creating a model, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html\">CreateModel</a>.</p> </li> <li> <p> <code>TransformInput</code> - Describes the dataset to be transformed and the Amazon S3 location where it is stored.</p> </li> <li> <p> <code>TransformOutput</code> - Identifies the Amazon S3 location where you want Amazon SageMaker to save the results from the transform job.</p> </li> <li> <p> <code>TransformResources</code> - Identifies the ML compute instances for the transform job.</p> </li> </ul> <p>For more information about how batch transformation works, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html\">Batch Transform</a>.</p>",
     "CreateTrial": "<p>Creates an SageMaker <i>trial</i>. A trial is a set of steps called <i>trial components</i> that produce a machine learning model. A trial is part of a single SageMaker <i>experiment</i>.</p> <p>When you use SageMaker Studio or the SageMaker Python SDK, all experiments, trials, and trial components are automatically tracked, logged, and indexed. When you use the Amazon Web Services SDK for Python (Boto), you must use the logging APIs provided by the SDK.</p> <p>You can add tags to a trial and then use the <a>Search</a> API to search for the tags.</p> <p>To get a list of all your trials, call the <a>ListTrials</a> API. To view a trial's properties, call the <a>DescribeTrial</a> API. To create a trial component, call the <a>CreateTrialComponent</a> API.</p>",
     "CreateTrialComponent": "<p>Creates a <i>trial component</i>, which is a stage of a machine learning <i>trial</i>. A trial is composed of one or more trial components. A trial component can be used in multiple trials.</p> <p>Trial components include pre-processing jobs, training jobs, and batch transform jobs.</p> <p>When you use SageMaker Studio or the SageMaker Python SDK, all experiments, trials, and trial components are automatically tracked, logged, and indexed. When you use the Amazon Web Services SDK for Python (Boto), you must use the logging APIs provided by the SDK.</p> <p>You can add tags to a trial component and then use the <a>Search</a> API to search for the tags.</p>",
-    "CreateUserProfile": "<p>Creates a user profile. A user profile represents a single user within a domain, and is the main way to reference a \"person\" for the purposes of sharing, reporting, and other user-oriented features. This entity is created when a user onboards to Amazon SageMaker Studio. If an administrator invites a person by email or imports them from Amazon Web Services SSO, a user profile is automatically created. A user profile is the primary holder of settings for an individual user and has a reference to the user's private Amazon Elastic File System (EFS) home directory. </p>",
+    "CreateUserProfile": "<p>Creates a user profile. A user profile represents a single user within a domain, and is the main way to reference a \"person\" for the purposes of sharing, reporting, and other user-oriented features. This entity is created when a user onboards to Amazon SageMaker Studio. If an administrator invites a person by email or imports them from IAM Identity Center, a user profile is automatically created. A user profile is the primary holder of settings for an individual user and has a reference to the user's private Amazon Elastic File System (EFS) home directory. </p>",
     "CreateWorkforce": "<p>Use this operation to create a workforce. This operation will return an error if a workforce already exists in the Amazon Web Services Region that you specify. You can only create one workforce in each Amazon Web Services Region per Amazon Web Services account.</p> <p>If you want to create a new workforce in an Amazon Web Services Region where a workforce already exists, use the API operation to delete the existing workforce and then use <code>CreateWorkforce</code> to create a new workforce.</p> <p>To create a private workforce using Amazon Cognito, you must specify a Cognito user pool in <code>CognitoConfig</code>. You can also create an Amazon Cognito workforce using the Amazon SageMaker console. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html\"> Create a Private Workforce (Amazon Cognito)</a>.</p> <p>To create a private workforce using your own OIDC Identity Provider (IdP), specify your IdP configuration in <code>OidcConfig</code>. Your OIDC IdP must support <i>groups</i> because groups are used by Ground Truth and Amazon A2I to create work teams. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private-oidc.html\"> Create a Private Workforce (OIDC IdP)</a>.</p>",
     "CreateWorkteam": "<p>Creates a new work team for labeling your data. A work team is defined by one or more Amazon Cognito user pools. You must first create the user pools before you can create a work team.</p> <p>You cannot create more than 25 work teams in an account and region.</p>",
     "DeleteAction": "<p>Deletes an action.</p>",
@@ -64,7 +64,7 @@
     "DeleteContext": "<p>Deletes an context.</p>",
     "DeleteDataQualityJobDefinition": "<p>Deletes a data quality monitoring job definition.</p>",
     "DeleteDeviceFleet": "<p>Deletes a fleet.</p>",
-    "DeleteDomain": "<p>Used to delete a domain. If you onboarded with IAM mode, you will need to delete your domain to onboard again using Amazon Web Services SSO. Use with caution. All of the members of the domain will lose access to their EFS volume, including data, notebooks, and other artifacts. </p>",
+    "DeleteDomain": "<p>Used to delete a domain. If you onboarded with IAM mode, you will need to delete your domain to onboard again using IAM Identity Center. Use with caution. All of the members of the domain will lose access to their EFS volume, including data, notebooks, and other artifacts. </p>",
     "DeleteEdgeDeploymentPlan": "<p>Deletes an edge deployment plan if (and only if) all the stages in the plan are inactive or there are no stages in the plan.</p>",
     "DeleteEdgeDeploymentStage": "<p>Delete a stage in an edge deployment plan if (and only if) the stage is inactive.</p>",
     "DeleteEndpoint": "<p>Deletes an endpoint. SageMaker frees up all of the resources that were deployed when the endpoint was created. </p> <p>SageMaker retires any custom KMS key grants associated with the endpoint, meaning you don't need to use the <a href=\"http://docs.aws.amazon.com/kms/latest/APIReference/API_RevokeGrant.html\">RevokeGrant</a> API call.</p> <p>When you delete your endpoint, SageMaker asynchronously deletes associated endpoint resources such as KMS key grants. You might still see these resources in your account for a few minutes after deleting your endpoint. Do not delete or revoke the permissions for your <code> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html#sagemaker-CreateModel-request-ExecutionRoleArn\">ExecutionRoleArn</a> </code>, otherwise SageMaker cannot delete these resources.</p>",
@@ -1301,6 +1301,12 @@
       "base": null,
       "refs": {
         "AutoMLCandidate$CandidateSteps": "<p>Information about the candidate's steps.</p>"
+      }
+    },
+    "CanvasAppSettings": {
+      "base": "<p>The SageMaker Canvas app settings.</p>",
+      "refs": {
+        "UserSettings$CanvasAppSettings": "<p>The Canvas app settings.</p>"
       }
     },
     "CapacitySize": {
@@ -4682,6 +4688,12 @@
         "FeatureMetadata$Parameters": "<p>Optional key-value pairs that you specify to better describe the feature.</p>"
       }
     },
+    "FeatureStatus": {
+      "base": null,
+      "refs": {
+        "TimeSeriesForecastingSettings$Status": "<p>Describes whether time series forecasting is enabled or disabled in the Canvas app.</p>"
+      }
+    },
     "FeatureType": {
       "base": null,
       "refs": {
@@ -5192,7 +5204,7 @@
       }
     },
     "HyperParameterTuningJobSearchEntity": {
-      "base": "<p>An entity having characteristics over which a user can search for a hyperparameter tuning job.</p>",
+      "base": "<p>An entity returned by the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_SearchRecord.html\">SearchRecord</a> API containing the properties of a hyperparameter tuning job.</p>",
       "refs": {
         "SearchRecord$HyperParameterTuningJob": "<p>The properties of a hyperparameter tuning job.</p>"
       }
@@ -9853,6 +9865,7 @@
         "RStudioServerProDomainSettingsForUpdate$DomainExecutionRoleArn": "<p>The execution role for the <code>RStudioServerPro</code> Domain-level app.</p>",
         "RedshiftDatasetDefinition$ClusterRoleArn": "<p>The IAM role attached to your Redshift cluster that Amazon SageMaker uses to generate datasets.</p>",
         "RenderUiTemplateRequest$RoleArn": "<p>The Amazon Resource Name (ARN) that has access to the S3 objects that are used by the template.</p>",
+        "TimeSeriesForecastingSettings$AmazonForecastRoleArn": "<p>The IAM role that Canvas passes to Amazon Forecast for time series forecasting. By default, Canvas uses the execution role specified in the <code>UserProfile</code> that launches the Canvas app. If an execution role is not specified in the <code>UserProfile</code>, Canvas uses the execution role specified in the Domain that owns the <code>UserProfile</code>. To allow time series forecasting, this IAM role should have the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasForecastAccess\"> AmazonSageMakerCanvasForecastAccess</a> policy attached and <code>forecast.amazonaws.com</code> added in the trust relationship as a service principal.</p>",
         "TrainingJob$RoleArn": "<p>The Amazon Web Services Identity and Access Management (IAM) role configured for the training job.</p>",
         "UpdateDeviceFleetRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the device.</p>",
         "UpdateImageRequest$RoleArn": "<p>The new Amazon Resource Name (ARN) for the IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
@@ -9921,7 +9934,7 @@
       "base": null,
       "refs": {
         "AthenaDatasetDefinition$OutputS3Uri": "<p>The location in Amazon S3 where Athena query results are stored.</p>",
-        "AutoMLCandidateGenerationConfig$FeatureSpecificationS3Uri": "<p>A URL to the Amazon S3 data source containing selected features from the input data source to run an Autopilot job (optional). This file should be in json format as shown below: </p> <p> <code>{ \"FeatureAttributeNames\":[\"col1\", \"col2\", ...] }</code>.</p> <p>The key name <code>FeatureAttributeNames</code> is fixed. The values listed in <code>[\"col1\", \"col2\", ...]</code> is case sensitive and should be a list of strings containing unique values that are a subset of the column names in the input data. The list of columns provided must not include the target column.</p>",
+        "AutoMLCandidateGenerationConfig$FeatureSpecificationS3Uri": "<p>A URL to the Amazon S3 data source containing selected features from the input data source to run an Autopilot job. You can input <code>FeatureAttributeNames</code> (optional) in JSON format as shown below: </p> <p> <code>{ \"FeatureAttributeNames\":[\"col1\", \"col2\", ...] }</code>.</p> <p>You can also specify the data type of the feature (optional) in the format shown below:</p> <p> <code>{ \"FeatureDataTypes\":{\"col1\":\"numeric\", \"col2\":\"categorical\" ... } }</code> </p> <note> <p>These column keys may not include the target column.</p> </note> <p>In ensembling mode, Autopilot will only support the following data types: <code>numeric</code>, <code>categorical</code>, <code>text</code> and <code>datetime</code>. In HPO mode, Autopilot can support <code>numeric</code>, <code>categorical</code>, <code>text</code>, <code>datetime</code> and <code>sequence</code>.</p> <p>If only <code>FeatureDataTypes</code> is provided, the column keys (<code>col1</code>, <code>col2</code>,..) should be a subset of the column names in the input data. </p> <p>If both <code>FeatureDataTypes</code> and <code>FeatureAttributeNames</code> are provided, then the column keys should be a subset of the column names provided in <code>FeatureAttributeNames</code>. </p> <p>The key name <code>FeatureAttributeNames</code> is fixed. The values listed in <code>[\"col1\", \"col2\", ...]</code> is case sensitive and should be a list of strings containing unique values that are a subset of the column names in the input data. The list of columns provided must not include the target column.</p>",
         "AutoMLOutputDataConfig$S3OutputPath": "<p>The Amazon S3 output path. Must be 128 characters or less.</p>",
         "AutoMLS3DataSource$S3Uri": "<p>The URL to the Amazon S3 data source.</p>",
         "CheckpointConfig$S3Uri": "<p>Identifies the S3 path where you want SageMaker to store checkpoints. For example, <code>s3://bucket-name/key-name-prefix</code>.</p>",
@@ -10180,8 +10193,8 @@
     "SingleSignOnUserIdentifier": {
       "base": null,
       "refs": {
-        "CreateUserProfileRequest$SingleSignOnUserIdentifier": "<p>A specifier for the type of value specified in SingleSignOnUserValue. Currently, the only supported value is \"UserName\". If the Domain's AuthMode is Amazon Web Services SSO, this field is required. If the Domain's AuthMode is not Amazon Web Services SSO, this field cannot be specified. </p>",
-        "DescribeUserProfileResponse$SingleSignOnUserIdentifier": "<p>The Amazon Web Services SSO user identifier.</p>"
+        "CreateUserProfileRequest$SingleSignOnUserIdentifier": "<p>A specifier for the type of value specified in SingleSignOnUserValue. Currently, the only supported value is \"UserName\". If the Domain's AuthMode is IAM Identity Center, this field is required. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified. </p>",
+        "DescribeUserProfileResponse$SingleSignOnUserIdentifier": "<p>The IAM Identity Center user identifier.</p>"
       }
     },
     "SnsTopicArn": {
@@ -10637,12 +10650,12 @@
         "CreateActionRequest$ActionType": "<p>The action type.</p>",
         "CreateArtifactRequest$ArtifactType": "<p>The artifact type.</p>",
         "CreateContextRequest$ContextType": "<p>The context type.</p>",
-        "CreateUserProfileRequest$SingleSignOnUserValue": "<p>The username of the associated Amazon Web Services Single Sign-On User for this UserProfile. If the Domain's AuthMode is Amazon Web Services SSO, this field is required, and must match a valid username of a user in your directory. If the Domain's AuthMode is not Amazon Web Services SSO, this field cannot be specified. </p>",
+        "CreateUserProfileRequest$SingleSignOnUserValue": "<p>The username of the associated Amazon Web Services Single Sign-On User for this UserProfile. If the Domain's AuthMode is IAM Identity Center, this field is required, and must match a valid username of a user in your directory. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified. </p>",
         "DescribeActionResponse$ActionType": "<p>The type of the action.</p>",
         "DescribeArtifactResponse$ArtifactType": "<p>The type of the artifact.</p>",
         "DescribeContextResponse$ContextType": "<p>The type of the context.</p>",
-        "DescribeDomainResponse$SingleSignOnManagedApplicationInstanceId": "<p>The Amazon Web Services SSO managed application instance ID.</p>",
-        "DescribeUserProfileResponse$SingleSignOnUserValue": "<p>The Amazon Web Services SSO user value.</p>",
+        "DescribeDomainResponse$SingleSignOnManagedApplicationInstanceId": "<p>The IAM Identity Center managed application instance ID.</p>",
+        "DescribeUserProfileResponse$SingleSignOnUserValue": "<p>The IAM Identity Center user value.</p>",
         "EMRStepMetadata$ClusterId": "<p>The identifier of the EMR cluster.</p>",
         "EMRStepMetadata$StepId": "<p>The identifier of the EMR cluster step.</p>",
         "EMRStepMetadata$StepName": "<p>The name of the EMR cluster step.</p>",
@@ -11046,6 +11059,12 @@
         "DescribeDeviceResponse$IotThingName": "<p>The Amazon Web Services Internet of Things (IoT) object thing name associated with the device.</p>",
         "Device$IotThingName": "<p>Amazon Web Services Internet of Things (IoT) object name.</p>",
         "DeviceSummary$IotThingName": "<p>The Amazon Web Services Internet of Things (IoT) object thing name associated with the device..</p>"
+      }
+    },
+    "TimeSeriesForecastingSettings": {
+      "base": "<p>Time series forecast settings for the SageMaker Canvas app.</p>",
+      "refs": {
+        "CanvasAppSettings$TimeSeriesForecastingSettings": "<p>Time series forecast settings for the Canvas app.</p>"
       }
     },
     "Timestamp": {

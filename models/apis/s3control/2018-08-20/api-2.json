@@ -416,6 +416,18 @@
         "hostPrefix":"{AccountId}."
       }
     },
+    "GetBucketVersioning":{
+      "name":"GetBucketVersioning",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/bucket/{name}/versioning"
+      },
+      "input":{"shape":"GetBucketVersioningRequest"},
+      "output":{"shape":"GetBucketVersioningResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      }
+    },
     "GetJobTagging":{
       "name":"GetJobTagging",
       "http":{
@@ -669,6 +681,18 @@
         "requestUri":"/v20180820/bucket/{name}/tagging"
       },
       "input":{"shape":"PutBucketTaggingRequest"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true
+    },
+    "PutBucketVersioning":{
+      "name":"PutBucketVersioning",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v20180820/bucket/{name}/versioning"
+      },
+      "input":{"shape":"PutBucketVersioningRequest"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
@@ -974,6 +998,13 @@
       "type":"string",
       "max":255,
       "min":3
+    },
+    "BucketVersioningStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Suspended"
+      ]
     },
     "Buckets":{
       "type":"list",
@@ -1907,6 +1938,36 @@
         "TagSet":{"shape":"S3TagSet"}
       }
     },
+    "GetBucketVersioningRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Bucket"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "GetBucketVersioningResult":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"BucketVersioningStatus"},
+        "MFADelete":{
+          "shape":"MFADeleteStatus",
+          "locationName":"MfaDelete"
+        }
+      }
+    },
     "GetJobTaggingRequest":{
       "type":"structure",
       "required":[
@@ -2742,6 +2803,21 @@
       }
     },
     "Location":{"type":"string"},
+    "MFA":{"type":"string"},
+    "MFADelete":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
+    "MFADeleteStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
     "ManifestPrefixString":{
       "type":"string",
       "max":512,
@@ -3210,6 +3286,38 @@
         }
       },
       "payload":"Tagging"
+    },
+    "PutBucketVersioningRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Bucket",
+        "VersioningConfiguration"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "MFA":{
+          "shape":"MFA",
+          "location":"header",
+          "locationName":"x-amz-mfa"
+        },
+        "VersioningConfiguration":{
+          "shape":"VersioningConfiguration",
+          "locationName":"VersioningConfiguration",
+          "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+        }
+      },
+      "payload":"VersioningConfiguration"
     },
     "PutJobTaggingRequest":{
       "type":"structure",
@@ -4071,6 +4179,16 @@
         "JobId":{"shape":"JobId"},
         "Status":{"shape":"JobStatus"},
         "StatusUpdateReason":{"shape":"JobStatusUpdateReason"}
+      }
+    },
+    "VersioningConfiguration":{
+      "type":"structure",
+      "members":{
+        "MFADelete":{
+          "shape":"MFADelete",
+          "locationName":"MfaDelete"
+        },
+        "Status":{"shape":"BucketVersioningStatus"}
       }
     },
     "VpcConfiguration":{

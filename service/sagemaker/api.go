@@ -4558,7 +4558,7 @@ func (c *SageMaker) CreateUserProfileRequest(input *CreateUserProfileInput) (req
 // domain, and is the main way to reference a "person" for the purposes of sharing,
 // reporting, and other user-oriented features. This entity is created when
 // a user onboards to Amazon SageMaker Studio. If an administrator invites a
-// person by email or imports them from Amazon Web Services SSO, a user profile
+// person by email or imports them from IAM Identity Center, a user profile
 // is automatically created. A user profile is the primary holder of settings
 // for an individual user and has a reference to the user's private Amazon Elastic
 // File System (EFS) home directory.
@@ -5603,9 +5603,9 @@ func (c *SageMaker) DeleteDomainRequest(input *DeleteDomainInput) (req *request.
 // DeleteDomain API operation for Amazon SageMaker Service.
 //
 // Used to delete a domain. If you onboarded with IAM mode, you will need to
-// delete your domain to onboard again using Amazon Web Services SSO. Use with
-// caution. All of the members of the domain will lose access to their EFS volume,
-// including data, notebooks, and other artifacts.
+// delete your domain to onboard again using IAM Identity Center. Use with caution.
+// All of the members of the domain will lose access to their EFS volume, including
+// data, notebooks, and other artifacts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -27729,10 +27729,27 @@ type AutoMLCandidateGenerationConfig struct {
 	_ struct{} `type:"structure"`
 
 	// A URL to the Amazon S3 data source containing selected features from the
-	// input data source to run an Autopilot job (optional). This file should be
-	// in json format as shown below:
+	// input data source to run an Autopilot job. You can input FeatureAttributeNames
+	// (optional) in JSON format as shown below:
 	//
 	// { "FeatureAttributeNames":["col1", "col2", ...] }.
+	//
+	// You can also specify the data type of the feature (optional) in the format
+	// shown below:
+	//
+	// { "FeatureDataTypes":{"col1":"numeric", "col2":"categorical" ... } }
+	//
+	// These column keys may not include the target column.
+	//
+	// In ensembling mode, Autopilot will only support the following data types:
+	// numeric, categorical, text and datetime. In HPO mode, Autopilot can support
+	// numeric, categorical, text, datetime and sequence.
+	//
+	// If only FeatureDataTypes is provided, the column keys (col1, col2,..) should
+	// be a subset of the column names in the input data.
+	//
+	// If both FeatureDataTypes and FeatureAttributeNames are provided, then the
+	// column keys should be a subset of the column names provided in FeatureAttributeNames.
 	//
 	// The key name FeatureAttributeNames is fixed. The values listed in ["col1",
 	// "col2", ...] is case sensitive and should be a list of strings containing
@@ -29374,6 +29391,53 @@ func (s *CandidateProperties) SetCandidateArtifactLocations(v *CandidateArtifact
 // SetCandidateMetrics sets the CandidateMetrics field's value.
 func (s *CandidateProperties) SetCandidateMetrics(v []*MetricDatum) *CandidateProperties {
 	s.CandidateMetrics = v
+	return s
+}
+
+// The SageMaker Canvas app settings.
+type CanvasAppSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Time series forecast settings for the Canvas app.
+	TimeSeriesForecastingSettings *TimeSeriesForecastingSettings `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CanvasAppSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CanvasAppSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CanvasAppSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CanvasAppSettings"}
+	if s.TimeSeriesForecastingSettings != nil {
+		if err := s.TimeSeriesForecastingSettings.Validate(); err != nil {
+			invalidParams.AddNested("TimeSeriesForecastingSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTimeSeriesForecastingSettings sets the TimeSeriesForecastingSettings field's value.
+func (s *CanvasAppSettings) SetTimeSeriesForecastingSettings(v *TimeSeriesForecastingSettings) *CanvasAppSettings {
+	s.TimeSeriesForecastingSettings = v
 	return s
 }
 
@@ -39751,16 +39815,16 @@ type CreateUserProfileInput struct {
 	DomainId *string `type:"string" required:"true"`
 
 	// A specifier for the type of value specified in SingleSignOnUserValue. Currently,
-	// the only supported value is "UserName". If the Domain's AuthMode is Amazon
-	// Web Services SSO, this field is required. If the Domain's AuthMode is not
-	// Amazon Web Services SSO, this field cannot be specified.
+	// the only supported value is "UserName". If the Domain's AuthMode is IAM Identity
+	// Center, this field is required. If the Domain's AuthMode is not IAM Identity
+	// Center, this field cannot be specified.
 	SingleSignOnUserIdentifier *string `type:"string"`
 
 	// The username of the associated Amazon Web Services Single Sign-On User for
-	// this UserProfile. If the Domain's AuthMode is Amazon Web Services SSO, this
-	// field is required, and must match a valid username of a user in your directory.
-	// If the Domain's AuthMode is not Amazon Web Services SSO, this field cannot
-	// be specified.
+	// this UserProfile. If the Domain's AuthMode is IAM Identity Center, this field
+	// is required, and must match a valid username of a user in your directory.
+	// If the Domain's AuthMode is not IAM Identity Center, this field cannot be
+	// specified.
 	SingleSignOnUserValue *string `type:"string"`
 
 	// Each tag consists of a key and an optional value. Tag keys must be unique
@@ -47149,7 +47213,7 @@ type DescribeDomainOutput struct {
 	// apps and the RStudioServerPro app.
 	SecurityGroupIdForDomainBoundary *string `type:"string"`
 
-	// The Amazon Web Services SSO managed application instance ID.
+	// The IAM Identity Center managed application instance ID.
 	SingleSignOnManagedApplicationInstanceId *string `type:"string"`
 
 	// The status.
@@ -54445,10 +54509,10 @@ type DescribeUserProfileOutput struct {
 	// The last modified time.
 	LastModifiedTime *time.Time `type:"timestamp"`
 
-	// The Amazon Web Services SSO user identifier.
+	// The IAM Identity Center user identifier.
 	SingleSignOnUserIdentifier *string `type:"string"`
 
-	// The Amazon Web Services SSO user value.
+	// The IAM Identity Center user value.
 	SingleSignOnUserValue *string `type:"string"`
 
 	// The status.
@@ -62243,8 +62307,8 @@ func (s *HyperParameterTuningJobObjective) SetType(v string) *HyperParameterTuni
 	return s
 }
 
-// An entity having characteristics over which a user can search for a hyperparameter
-// tuning job.
+// An entity returned by the SearchRecord (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_SearchRecord.html)
+// API containing the properties of a hyperparameter tuning job.
 type HyperParameterTuningJobSearchEntity struct {
 	_ struct{} `type:"structure"`
 
@@ -90478,6 +90542,68 @@ func (s *TensorBoardOutputConfig) SetS3OutputPath(v string) *TensorBoardOutputCo
 	return s
 }
 
+// Time series forecast settings for the SageMaker Canvas app.
+type TimeSeriesForecastingSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The IAM role that Canvas passes to Amazon Forecast for time series forecasting.
+	// By default, Canvas uses the execution role specified in the UserProfile that
+	// launches the Canvas app. If an execution role is not specified in the UserProfile,
+	// Canvas uses the execution role specified in the Domain that owns the UserProfile.
+	// To allow time series forecasting, this IAM role should have the AmazonSageMakerCanvasForecastAccess
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasForecastAccess)
+	// policy attached and forecast.amazonaws.com added in the trust relationship
+	// as a service principal.
+	AmazonForecastRoleArn *string `min:"20" type:"string"`
+
+	// Describes whether time series forecasting is enabled or disabled in the Canvas
+	// app.
+	Status *string `type:"string" enum:"FeatureStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeSeriesForecastingSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeSeriesForecastingSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TimeSeriesForecastingSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TimeSeriesForecastingSettings"}
+	if s.AmazonForecastRoleArn != nil && len(*s.AmazonForecastRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AmazonForecastRoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAmazonForecastRoleArn sets the AmazonForecastRoleArn field's value.
+func (s *TimeSeriesForecastingSettings) SetAmazonForecastRoleArn(v string) *TimeSeriesForecastingSettings {
+	s.AmazonForecastRoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TimeSeriesForecastingSettings) SetStatus(v string) *TimeSeriesForecastingSettings {
+	s.Status = &v
+	return s
+}
+
 // Defines the traffic pattern of the load test.
 type TrafficPattern struct {
 	_ struct{} `type:"structure"`
@@ -97476,6 +97602,9 @@ func (s *UserProfileDetails) SetUserProfileName(v string) *UserProfileDetails {
 type UserSettings struct {
 	_ struct{} `type:"structure"`
 
+	// The Canvas app settings.
+	CanvasAppSettings *CanvasAppSettings `type:"structure"`
+
 	// The execution role for the user.
 	ExecutionRole *string `min:"20" type:"string"`
 
@@ -97535,6 +97664,11 @@ func (s *UserSettings) Validate() error {
 	if s.ExecutionRole != nil && len(*s.ExecutionRole) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ExecutionRole", 20))
 	}
+	if s.CanvasAppSettings != nil {
+		if err := s.CanvasAppSettings.Validate(); err != nil {
+			invalidParams.AddNested("CanvasAppSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.KernelGatewayAppSettings != nil {
 		if err := s.KernelGatewayAppSettings.Validate(); err != nil {
 			invalidParams.AddNested("KernelGatewayAppSettings", err.(request.ErrInvalidParams))
@@ -97550,6 +97684,12 @@ func (s *UserSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCanvasAppSettings sets the CanvasAppSettings field's value.
+func (s *UserSettings) SetCanvasAppSettings(v *CanvasAppSettings) *UserSettings {
+	s.CanvasAppSettings = v
+	return s
 }
 
 // SetExecutionRole sets the ExecutionRole field's value.
@@ -99798,6 +99938,22 @@ func FeatureGroupStatus_Values() []string {
 		FeatureGroupStatusCreateFailed,
 		FeatureGroupStatusDeleting,
 		FeatureGroupStatusDeleteFailed,
+	}
+}
+
+const (
+	// FeatureStatusEnabled is a FeatureStatus enum value
+	FeatureStatusEnabled = "ENABLED"
+
+	// FeatureStatusDisabled is a FeatureStatus enum value
+	FeatureStatusDisabled = "DISABLED"
+)
+
+// FeatureStatus_Values returns all elements of the FeatureStatus enum
+func FeatureStatus_Values() []string {
+	return []string{
+		FeatureStatusEnabled,
+		FeatureStatusDisabled,
 	}
 }
 

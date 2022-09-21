@@ -1,3 +1,13 @@
+Release v1.44.103 (2022-09-21)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/s3control`: Updates service API and documentation
+  * S3 on Outposts launches support for object versioning for Outposts buckets. With S3 Versioning, you can preserve, retrieve, and restore every version of every object stored in your buckets. You can recover from both unintended user actions and application failures.
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker now allows customization on Canvas Application settings, including enabling/disabling time-series forecasting and specifying an Amazon Forecast execution role at both the Domain and UserProfile levels.
+
 Release v1.44.102 (2022-09-20)
 ===
 

@@ -80,6 +80,10 @@ type ComprehendAPI interface {
 	BatchDetectSyntaxWithContext(aws.Context, *comprehend.BatchDetectSyntaxInput, ...request.Option) (*comprehend.BatchDetectSyntaxOutput, error)
 	BatchDetectSyntaxRequest(*comprehend.BatchDetectSyntaxInput) (*request.Request, *comprehend.BatchDetectSyntaxOutput)
 
+	BatchDetectTargetedSentiment(*comprehend.BatchDetectTargetedSentimentInput) (*comprehend.BatchDetectTargetedSentimentOutput, error)
+	BatchDetectTargetedSentimentWithContext(aws.Context, *comprehend.BatchDetectTargetedSentimentInput, ...request.Option) (*comprehend.BatchDetectTargetedSentimentOutput, error)
+	BatchDetectTargetedSentimentRequest(*comprehend.BatchDetectTargetedSentimentInput) (*request.Request, *comprehend.BatchDetectTargetedSentimentOutput)
+
 	ClassifyDocument(*comprehend.ClassifyDocumentInput) (*comprehend.ClassifyDocumentOutput, error)
 	ClassifyDocumentWithContext(aws.Context, *comprehend.ClassifyDocumentInput, ...request.Option) (*comprehend.ClassifyDocumentOutput, error)
 	ClassifyDocumentRequest(*comprehend.ClassifyDocumentInput) (*request.Request, *comprehend.ClassifyDocumentOutput)
@@ -191,6 +195,10 @@ type ComprehendAPI interface {
 	DetectSyntax(*comprehend.DetectSyntaxInput) (*comprehend.DetectSyntaxOutput, error)
 	DetectSyntaxWithContext(aws.Context, *comprehend.DetectSyntaxInput, ...request.Option) (*comprehend.DetectSyntaxOutput, error)
 	DetectSyntaxRequest(*comprehend.DetectSyntaxInput) (*request.Request, *comprehend.DetectSyntaxOutput)
+
+	DetectTargetedSentiment(*comprehend.DetectTargetedSentimentInput) (*comprehend.DetectTargetedSentimentOutput, error)
+	DetectTargetedSentimentWithContext(aws.Context, *comprehend.DetectTargetedSentimentInput, ...request.Option) (*comprehend.DetectTargetedSentimentOutput, error)
+	DetectTargetedSentimentRequest(*comprehend.DetectTargetedSentimentInput) (*request.Request, *comprehend.DetectTargetedSentimentOutput)
 
 	ImportModel(*comprehend.ImportModelInput) (*comprehend.ImportModelOutput, error)
 	ImportModelWithContext(aws.Context, *comprehend.ImportModelInput, ...request.Option) (*comprehend.ImportModelOutput, error)
