@@ -2564,6 +2564,8 @@
     "EventQueueArn": {
       "base": null,
       "refs": {
+        "CatalogTarget$EventQueueArn": "<p>A valid Amazon SQS ARN. For example, <code>arn:aws:sqs:region:account:sqs</code>.</p>",
+        "CatalogTarget$DlqEventQueueArn": "<p>A valid Amazon dead-letter SQS ARN. For example, <code>arn:aws:sqs:region:account:deadLetterQueue</code>.</p>",
         "S3Target$EventQueueArn": "<p>A valid Amazon SQS ARN. For example, <code>arn:aws:sqs:region:account:sqs</code>.</p>",
         "S3Target$DlqEventQueueArn": "<p>A valid Amazon dead-letter SQS ARN. For example, <code>arn:aws:sqs:region:account:deadLetterQueue</code>.</p>"
       }

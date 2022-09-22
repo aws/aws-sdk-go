@@ -1,3 +1,16 @@
+Release v1.44.104 (2022-09-22)
+===
+
+### Service Client Updates
+* `service/backup-gateway`: Updates service API and documentation
+* `service/devicefarm`: Updates service API and documentation
+  * This release adds the support for VPC-ENI based connectivity for private devices on AWS Device Farm.
+* `service/ec2`: Updates service API and documentation
+  * Documentation updates for Amazon EC2.
+* `service/glue`: Updates service API and documentation
+  * Added support for S3 Event Notifications for Catalog Target Crawlers.
+* `service/identitystore`: Updates service documentation
+
 Release v1.44.103 (2022-09-21)
 ===
 

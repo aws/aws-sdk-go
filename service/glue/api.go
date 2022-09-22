@@ -22626,6 +22626,12 @@ type CatalogTarget struct {
 	// DatabaseName is a required field
 	DatabaseName *string `min:"1" type:"string" required:"true"`
 
+	// A valid Amazon dead-letter SQS ARN. For example, arn:aws:sqs:region:account:deadLetterQueue.
+	DlqEventQueueArn *string `type:"string"`
+
+	// A valid Amazon SQS ARN. For example, arn:aws:sqs:region:account:sqs.
+	EventQueueArn *string `type:"string"`
+
 	// A list of the tables to be synchronized.
 	//
 	// Tables is a required field
@@ -22681,6 +22687,18 @@ func (s *CatalogTarget) SetConnectionName(v string) *CatalogTarget {
 // SetDatabaseName sets the DatabaseName field's value.
 func (s *CatalogTarget) SetDatabaseName(v string) *CatalogTarget {
 	s.DatabaseName = &v
+	return s
+}
+
+// SetDlqEventQueueArn sets the DlqEventQueueArn field's value.
+func (s *CatalogTarget) SetDlqEventQueueArn(v string) *CatalogTarget {
+	s.DlqEventQueueArn = &v
+	return s
+}
+
+// SetEventQueueArn sets the EventQueueArn field's value.
+func (s *CatalogTarget) SetEventQueueArn(v string) *CatalogTarget {
+	s.EventQueueArn = &v
 	return s
 }
 

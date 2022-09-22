@@ -1645,10 +1645,9 @@ func (c *IdentityStore) ListGroupsRequest(input *ListGroupsInput) (req *request.
 
 // ListGroups API operation for AWS SSO Identity Store.
 //
-// Lists the attribute name and value of the group that you specified in the
-// search. We only support DisplayName as a valid filter attribute path currently,
-// and filter is required. This API returns minimum attributes, including GroupId
-// and group DisplayName in the response.
+// Lists all groups in the identity store. Returns a paginated list of complete
+// Group objects. Filtering for a Group by the DisplayName attribute is deprecated.
+// Instead, use the GetGroupId API action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1798,10 +1797,9 @@ func (c *IdentityStore) ListUsersRequest(input *ListUsersInput) (req *request.Re
 
 // ListUsers API operation for AWS SSO Identity Store.
 //
-// Lists the attribute name and value of the user that you specified in the
-// search. We only support UserName as a valid filter attribute path currently,
-// and filter is required. This API returns minimum attributes, including UserId
-// and UserName in the response.
+// Lists all users in the identity store. Returns a paginated list of complete
+// User objects. Filtering for a User by the UserName attribute is deprecated.
+// Instead, use the GetUserId API action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2346,10 +2344,10 @@ func (s *Address) SetType(v string) *Address {
 	return s
 }
 
-// A unique identifier for a user or group that is not the its primary identifier.
+// A unique identifier for a user or group that is not the primary identifier.
 // This value can be an identifier from an external identity provider (IdP)
-// that is associated with the group or a unique attribute. For example, a unique
-// GroupDisplayName.
+// that is associated with the user, the group, or a unique attribute. For example,
+// a unique GroupDisplayName.
 type AlternateIdentifier struct {
 	_ struct{} `type:"structure"`
 
@@ -3592,9 +3590,8 @@ type DescribeGroupOutput struct {
 	// The group’s display name value. The length limit is 1,024 characters. This
 	// value can consist of letters, accented characters, symbols, numbers, punctuation,
 	// tab, new line, carriage return, space, and nonbreaking space in this attribute.
-	// The characters <>;:% are excluded. This value is specified at the time that
-	// the group is created and stored as an attribute of the group object in the
-	// identity store.
+	// This value is specified at the time that the group is created and stored
+	// as an attribute of the group object in the identity store.
 	//
 	// DisplayName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeGroupOutput's
@@ -4176,10 +4173,10 @@ func (s *Filter) SetAttributeValue(v string) *Filter {
 type GetGroupIdInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier for an identity resource that is not the primary identifier.
+	// A unique identifier for a user or group that is not the primary identifier.
 	// This value can be an identifier from an external identity provider (IdP)
-	// that is associated with the group or a unique attribute. For example, a unique
-	// GroupDisplayName.
+	// that is associated with the user, the group, or a unique attribute. For example,
+	// a unique GroupDisplayName.
 	//
 	// AlternateIdentifier is a required field
 	AlternateIdentifier *AlternateIdentifier `type:"structure" required:"true"`
@@ -4422,7 +4419,10 @@ func (s *GetGroupMembershipIdOutput) SetMembershipId(v string) *GetGroupMembersh
 type GetUserIdInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier for an identity resource that is not the primary identifier.
+	// A unique identifier for a user or group that is not the primary identifier.
+	// This value can be an identifier from an external identity provider (IdP)
+	// that is associated with the user, the group, or a unique attribute. For example,
+	// a unique UserDisplayName.
 	//
 	// AlternateIdentifier is a required field
 	AlternateIdentifier *AlternateIdentifier `type:"structure" required:"true"`
@@ -4545,9 +4545,8 @@ type Group struct {
 	// The group’s display name value. The length limit is 1,024 characters. This
 	// value can consist of letters, accented characters, symbols, numbers, punctuation,
 	// tab, new line, carriage return, space, and nonbreaking space in this attribute.
-	// The characters <>;:% are excluded. This value is specified at the time the
-	// group is created and stored as an attribute of the group object in the identity
-	// store.
+	// This value is specified at the time the group is created and stored as an
+	// attribute of the group object in the identity store.
 	//
 	// DisplayName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Group's

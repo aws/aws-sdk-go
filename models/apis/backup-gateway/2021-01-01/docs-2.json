@@ -8,6 +8,7 @@
     "DeleteHypervisor": "<p>Deletes a hypervisor.</p>",
     "DisassociateGatewayFromServer": "<p>Disassociates a backup gateway from the specified server. After the disassociation process finishes, the gateway can no longer access the virtual machines on the server.</p>",
     "GetGateway": "<p>By providing the ARN (Amazon Resource Name), this API returns the gateway.</p>",
+    "GetVirtualMachine": "<p>By providing the ARN (Amazon Resource Name), this API returns the virtual machine.</p>",
     "ImportHypervisorConfiguration": "<p>Connect to a hypervisor by importing its configuration.</p>",
     "ListGateways": "<p>Lists backup gateways owned by an Amazon Web Services account in an Amazon Web Services Region. The returned list is ordered by gateway Amazon Resource Name (ARN).</p>",
     "ListHypervisors": "<p>Lists your hypervisors.</p>",
@@ -61,12 +62,14 @@
     "DayOfMonth": {
       "base": null,
       "refs": {
+        "MaintenanceStartTime$DayOfMonth": "<p>The day of the month component of the maintenance start time represented as an ordinal number from 1 to 28, where 1 represents the first day of the month and 28 represents the last day of the month.</p>",
         "PutMaintenanceStartTimeInput$DayOfMonth": "<p>The day of the month start maintenance on a gateway.</p> <p>Valid values range from <code>Sunday</code> to <code>Saturday</code>.</p>"
       }
     },
     "DayOfWeek": {
       "base": null,
       "refs": {
+        "MaintenanceStartTime$DayOfWeek": "<p>An ordinal number between 0 and 6 that represents the day of the week, where 0 represents Sunday and 6 represents Saturday. The day of week is in the time zone of the gateway.</p>",
         "PutMaintenanceStartTimeInput$DayOfWeek": "<p>The day of the week to start maintenance on a gateway.</p>"
       }
     },
@@ -158,6 +161,16 @@
       "refs": {
       }
     },
+    "GetVirtualMachineInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVirtualMachineOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Host": {
       "base": null,
       "refs": {
@@ -170,6 +183,7 @@
     "HourOfDay": {
       "base": null,
       "refs": {
+        "MaintenanceStartTime$HourOfDay": "<p>The hour component of the maintenance start time represented as <i>hh</i>, where <i>hh</i> is the hour (0 to 23). The hour of the day is in the time zone of the gateway.</p>",
         "PutMaintenanceStartTimeInput$HourOfDay": "<p>The hour of the day to start maintenance on a gateway.</p>"
       }
     },
@@ -260,6 +274,12 @@
       "refs": {
       }
     },
+    "MaintenanceStartTime": {
+      "base": "<p>This is your gateway's weekly maintenance start time including the day and time of the week. Note that values are in terms of the gateway's time zone. Can be weekly or monthly.</p>",
+      "refs": {
+        "GatewayDetails$MaintenanceStartTime": "<p>Returns your gateway's weekly maintenance start time including the day and time of the week. Note that values are in terms of the gateway's time zone. Can be weekly or monthly.</p>"
+      }
+    },
     "MaxResults": {
       "base": null,
       "refs": {
@@ -271,6 +291,7 @@
     "MinuteOfHour": {
       "base": null,
       "refs": {
+        "MaintenanceStartTime$MinuteOfHour": "<p>The minute component of the maintenance start time represented as <i>mm</i>, where <i>mm</i> is the minute (0 to 59). The minute of the hour is in the time zone of the gateway.</p>",
         "PutMaintenanceStartTimeInput$MinuteOfHour": "<p>The minute of the hour to start maintenance on a gateway.</p>"
       }
     },
@@ -285,7 +306,9 @@
         "UpdateGatewayInformationInput$GatewayDisplayName": "<p>The updated display name of the gateway.</p>",
         "UpdateHypervisorInput$Name": "<p>The updated name for the hypervisor</p>",
         "VirtualMachine$HostName": "<p>The host name of the virtual machine.</p>",
-        "VirtualMachine$Name": "<p>The name of the virtual machine.</p>"
+        "VirtualMachine$Name": "<p>The name of the virtual machine.</p>",
+        "VirtualMachineDetails$HostName": "<p>The host name of the virtual machine.</p>",
+        "VirtualMachineDetails$Name": "<p>The name of the virtual machine.</p>"
       }
     },
     "NextToken": {
@@ -310,7 +333,8 @@
     "Path": {
       "base": null,
       "refs": {
-        "VirtualMachine$Path": "<p>The path of the virtual machine.</p>"
+        "VirtualMachine$Path": "<p>The path of the virtual machine.</p>",
+        "VirtualMachineDetails$Path": "<p>The path of the virtual machine.</p>"
       }
     },
     "PutMaintenanceStartTimeInput": {
@@ -326,13 +350,15 @@
     "ResourceArn": {
       "base": null,
       "refs": {
+        "GetVirtualMachineInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the virtual machine.</p>",
         "ListTagsForResourceInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource's tags to list.</p>",
         "ListTagsForResourceOutput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource's tags that you listed.</p>",
         "TagResourceInput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource to tag.</p>",
         "TagResourceOutput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource you tagged.</p>",
         "UntagResourceInput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource from which to remove tags.</p>",
         "UntagResourceOutput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource from which you removed tags.</p>",
-        "VirtualMachine$ResourceArn": "<p>The Amazon Resource Name (ARN) of the virtual machine. For example, <code>arn:aws:backup-gateway:us-west-1:0000000000000:vm/vm-0000ABCDEFGIJKL</code>.</p>"
+        "VirtualMachine$ResourceArn": "<p>The Amazon Resource Name (ARN) of the virtual machine. For example, <code>arn:aws:backup-gateway:us-west-1:0000000000000:vm/vm-0000ABCDEFGIJKL</code>.</p>",
+        "VirtualMachineDetails$ResourceArn": "<p>The Amazon Resource Name (ARN) of the virtual machine. For example, <code>arn:aws:backup-gateway:us-west-1:0000000000000:vm/vm-0000ABCDEFGIJKL</code>.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -348,6 +374,7 @@
         "DeleteHypervisorOutput$HypervisorArn": "<p>The Amazon Resource Name (ARN) of the hypervisor you deleted.</p>",
         "Hypervisor$HypervisorArn": "<p>The Amazon Resource Name (ARN) of the hypervisor.</p>",
         "ImportHypervisorConfigurationOutput$HypervisorArn": "<p>The Amazon Resource Name (ARN) of the hypervisor you disassociated.</p>",
+        "ListVirtualMachinesInput$HypervisorArn": "<p>The Amazon Resource Name (ARN) of the hypervisor connected to your virtual machine.</p>",
         "UpdateHypervisorInput$HypervisorArn": "<p>The Amazon Resource Name (ARN) of the hypervisor to update.</p>",
         "UpdateHypervisorOutput$HypervisorArn": "<p>The Amazon Resource Name (ARN) of the hypervisor you updated.</p>"
       }
@@ -406,13 +433,19 @@
       "refs": {
       }
     },
+    "ThrottlingException": {
+      "base": "<p>TPS has been limited to protect against intentional or unintentional high request volumes.</p>",
+      "refs": {
+      }
+    },
     "Time": {
       "base": null,
       "refs": {
         "Gateway$LastSeenTime": "<p>The last time Backup gateway communicated with the gateway, in Unix format and UTC time.</p>",
         "GatewayDetails$LastSeenTime": "<p>Details showing the last time Backup gateway communicated with the cloud, in Unix format and UTC time.</p>",
         "GatewayDetails$NextUpdateAvailabilityTime": "<p>Details showing the next update availability time of the gateway.</p>",
-        "VirtualMachine$LastBackupDate": "<p>The most recent date a virtual machine was backed up, in Unix format and UTC time.</p>"
+        "VirtualMachine$LastBackupDate": "<p>The most recent date a virtual machine was backed up, in Unix format and UTC time.</p>",
+        "VirtualMachineDetails$LastBackupDate": "<p>The most recent date a virtual machine was backed up, in Unix format and UTC time.</p>"
       }
     },
     "UntagResourceInput": {
@@ -474,6 +507,12 @@
         "VirtualMachines$member": null
       }
     },
+    "VirtualMachineDetails": {
+      "base": "<p>Your <code>VirtualMachine</code> objects, ordered by their Amazon Resource Names (ARNs).</p>",
+      "refs": {
+        "GetVirtualMachineOutput$VirtualMachine": "<p>This object contains the basic attributes of <code>VirtualMachine</code> contained by the output of <code>GetVirtualMachine</code> </p>"
+      }
+    },
     "VirtualMachines": {
       "base": null,
       "refs": {
@@ -497,9 +536,12 @@
         "InternalServerException$Message": null,
         "ResourceNotFoundException$ErrorCode": "<p>A description of which resource wasn't found.</p>",
         "ResourceNotFoundException$Message": null,
+        "ThrottlingException$ErrorCode": "<p>Error: TPS has been limited to protect against intentional or unintentional high request volumes.</p>",
+        "ThrottlingException$Message": null,
         "ValidationException$ErrorCode": "<p>A description of what caused the validation error.</p>",
         "ValidationException$Message": null,
-        "VirtualMachine$HypervisorId": "<p>The ID of the virtual machine's hypervisor.</p>"
+        "VirtualMachine$HypervisorId": "<p>The ID of the virtual machine's hypervisor.</p>",
+        "VirtualMachineDetails$HypervisorId": "<p>The ID of the virtual machine's hypervisor.</p>"
       }
     }
   }
