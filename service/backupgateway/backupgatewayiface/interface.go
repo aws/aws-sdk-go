@@ -84,6 +84,10 @@ type BackupGatewayAPI interface {
 	GetGatewayWithContext(aws.Context, *backupgateway.GetGatewayInput, ...request.Option) (*backupgateway.GetGatewayOutput, error)
 	GetGatewayRequest(*backupgateway.GetGatewayInput) (*request.Request, *backupgateway.GetGatewayOutput)
 
+	GetVirtualMachine(*backupgateway.GetVirtualMachineInput) (*backupgateway.GetVirtualMachineOutput, error)
+	GetVirtualMachineWithContext(aws.Context, *backupgateway.GetVirtualMachineInput, ...request.Option) (*backupgateway.GetVirtualMachineOutput, error)
+	GetVirtualMachineRequest(*backupgateway.GetVirtualMachineInput) (*request.Request, *backupgateway.GetVirtualMachineOutput)
+
 	ImportHypervisorConfiguration(*backupgateway.ImportHypervisorConfigurationInput) (*backupgateway.ImportHypervisorConfigurationOutput, error)
 	ImportHypervisorConfigurationWithContext(aws.Context, *backupgateway.ImportHypervisorConfigurationInput, ...request.Option) (*backupgateway.ImportHypervisorConfigurationOutput, error)
 	ImportHypervisorConfigurationRequest(*backupgateway.ImportHypervisorConfigurationInput) (*request.Request, *backupgateway.ImportHypervisorConfigurationOutput)

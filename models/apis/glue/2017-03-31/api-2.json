@@ -3705,7 +3705,9 @@
       "members":{
         "DatabaseName":{"shape":"NameString"},
         "Tables":{"shape":"CatalogTablesList"},
-        "ConnectionName":{"shape":"ConnectionName"}
+        "ConnectionName":{"shape":"ConnectionName"},
+        "EventQueueArn":{"shape":"EventQueueArn"},
+        "DlqEventQueueArn":{"shape":"EventQueueArn"}
       }
     },
     "CatalogTargetList":{

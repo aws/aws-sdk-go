@@ -18261,7 +18261,10 @@
           "shape":"VolumeType",
           "locationName":"volumeType"
         },
-        "KmsKeyId":{"shape":"String"},
+        "KmsKeyId":{
+          "shape":"String",
+          "locationName":"kmsKeyId"
+        },
         "Throughput":{
           "shape":"Integer",
           "locationName":"throughput"

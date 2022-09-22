@@ -24,7 +24,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateGateway":{
@@ -37,7 +38,8 @@
       "output":{"shape":"CreateGatewayOutput"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DeleteGateway":{
@@ -51,7 +53,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ],
       "idempotent":true
     },
@@ -67,7 +70,8 @@
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ],
       "idempotent":true
     },
@@ -83,7 +87,8 @@
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "GetGateway":{
@@ -97,7 +102,23 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetVirtualMachine":{
+      "name":"GetVirtualMachine",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetVirtualMachineInput"},
+      "output":{"shape":"GetVirtualMachineOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ImportHypervisorConfiguration":{
@@ -111,7 +132,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListGateways":{
@@ -124,7 +146,8 @@
       "output":{"shape":"ListGatewaysOutput"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListHypervisors":{
@@ -137,7 +160,8 @@
       "output":{"shape":"ListHypervisorsOutput"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListTagsForResource":{
@@ -151,7 +175,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListVirtualMachines":{
@@ -164,7 +189,8 @@
       "output":{"shape":"ListVirtualMachinesOutput"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "PutMaintenanceStartTime":{
@@ -179,7 +205,8 @@
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "TagResource":{
@@ -193,7 +220,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "TestHypervisorConfiguration":{
@@ -208,7 +236,8 @@
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "UntagResource":{
@@ -222,7 +251,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "UpdateGatewayInformation":{
@@ -237,7 +267,8 @@
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "UpdateGatewaySoftwareNow":{
@@ -251,7 +282,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "UpdateHypervisor":{
@@ -266,7 +298,8 @@
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     }
   },
@@ -407,6 +440,7 @@
         "GatewayType":{"shape":"GatewayType"},
         "HypervisorId":{"shape":"HypervisorId"},
         "LastSeenTime":{"shape":"Time"},
+        "MaintenanceStartTime":{"shape":"MaintenanceStartTime"},
         "NextUpdateAvailabilityTime":{"shape":"Time"},
         "VpcEndpoint":{"shape":"VpcEndpoint"}
       }
@@ -430,6 +464,19 @@
       "type":"structure",
       "members":{
         "Gateway":{"shape":"GatewayDetails"}
+      }
+    },
+    "GetVirtualMachineInput":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"}
+      }
+    },
+    "GetVirtualMachineOutput":{
+      "type":"structure",
+      "members":{
+        "VirtualMachine":{"shape":"VirtualMachineDetails"}
       }
     },
     "Host":{
@@ -553,6 +600,7 @@
     "ListVirtualMachinesInput":{
       "type":"structure",
       "members":{
+        "HypervisorArn":{"shape":"ServerArn"},
         "MaxResults":{"shape":"MaxResults"},
         "NextToken":{"shape":"NextToken"}
       }
@@ -562,6 +610,19 @@
       "members":{
         "NextToken":{"shape":"NextToken"},
         "VirtualMachines":{"shape":"VirtualMachines"}
+      }
+    },
+    "MaintenanceStartTime":{
+      "type":"structure",
+      "required":[
+        "HourOfDay",
+        "MinuteOfHour"
+      ],
+      "members":{
+        "DayOfMonth":{"shape":"DayOfMonth"},
+        "DayOfWeek":{"shape":"DayOfWeek"},
+        "HourOfDay":{"shape":"HourOfDay"},
+        "MinuteOfHour":{"shape":"MinuteOfHour"}
       }
     },
     "MaxResults":{
@@ -707,6 +768,15 @@
       "members":{
       }
     },
+    "ThrottlingException":{
+      "type":"structure",
+      "required":["ErrorCode"],
+      "members":{
+        "ErrorCode":{"shape":"string"},
+        "Message":{"shape":"string"}
+      },
+      "exception":true
+    },
     "Time":{"type":"timestamp"},
     "UntagResourceInput":{
       "type":"structure",
@@ -785,6 +855,17 @@
       "exception":true
     },
     "VirtualMachine":{
+      "type":"structure",
+      "members":{
+        "HostName":{"shape":"Name"},
+        "HypervisorId":{"shape":"string"},
+        "LastBackupDate":{"shape":"Time"},
+        "Name":{"shape":"Name"},
+        "Path":{"shape":"Path"},
+        "ResourceArn":{"shape":"ResourceArn"}
+      }
+    },
+    "VirtualMachineDetails":{
       "type":"structure",
       "members":{
         "HostName":{"shape":"Name"},

@@ -259,7 +259,7 @@
         "CreateInstanceProfileRequest$rebootAfterUse": "<p>When set to <code>true</code>, Device Farm reboots the instance after a test run. The default value is <code>true</code>.</p>",
         "CreateRemoteAccessSessionRequest$remoteDebugEnabled": "<p>Set to <code>true</code> if you want to access devices remotely for debugging in your remote access session.</p> <p>Remote debugging is <a href=\"https://docs.aws.amazon.com/devicefarm/latest/developerguide/history.html\">no longer supported</a>.</p>",
         "CreateRemoteAccessSessionRequest$remoteRecordEnabled": "<p>Set to <code>true</code> to enable remote recording for the remote access session.</p>",
-        "CreateRemoteAccessSessionRequest$skipAppResign": "<p>When set to <code>true</code>, for private devices, Device Farm does not sign your app again. For public devices, Device Farm always signs your apps again.</p> <p>For more information on how Device Farm modifies your uploads during tests, see <a href=\"https://aws.amazon.com/device-farm/faq/\">Do you modify my app?</a> </p>",
+        "CreateRemoteAccessSessionRequest$skipAppResign": "<p>When set to <code>true</code>, for private devices, Device Farm does not sign your app again. For public devices, Device Farm always signs your apps again.</p> <p>For more information on how Device Farm modifies your uploads during tests, see <a href=\"http://aws.amazon.com/device-farm/faqs/\">Do you modify my app?</a> </p>",
         "Device$remoteAccessEnabled": "<p>Specifies whether remote access has been enabled for the specified device.</p>",
         "Device$remoteDebugEnabled": "<p>This flag is set to <code>true</code> if remote debugging is enabled for the device.</p> <p>Remote debugging is <a href=\"https://docs.aws.amazon.com/devicefarm/latest/developerguide/history.html\">no longer supported</a>.</p>",
         "DevicePoolCompatibilityResult$compatible": "<p>Whether the result was compatible with the device pool.</p>",
@@ -1498,7 +1498,8 @@
       "refs": {
         "SecurityGroupIds$member": null,
         "SubnetIds$member": null,
-        "TestGridVpcConfig$vpcId": "<p>The ID of the Amazon VPC.</p>"
+        "TestGridVpcConfig$vpcId": "<p>The ID of the Amazon VPC.</p>",
+        "VpcConfig$vpcId": "<p>The ID of the Amazon VPC.</p>"
       }
     },
     "NotEligibleException": {
@@ -1872,6 +1873,12 @@
         "ScheduleRunRequest$test": "<p>Information about the test for the run to be scheduled.</p>"
       }
     },
+    "SecurityGroupId": {
+      "base": null,
+      "refs": {
+        "VpcSecurityGroupIds$member": null
+      }
+    },
     "SecurityGroupIds": {
       "base": null,
       "refs": {
@@ -1907,10 +1914,10 @@
     "SkipAppResign": {
       "base": null,
       "refs": {
-        "AccountSettings$skipAppResign": "<p>When set to <code>true</code>, for private devices, Device Farm does not sign your app again. For public devices, Device Farm always signs your apps again.</p> <p>For more information about how Device Farm re-signs your apps, see <a href=\"https://aws.amazon.com/device-farm/faq/\">Do you modify my app?</a> in the <i>AWS Device Farm FAQs</i>.</p>",
-        "ExecutionConfiguration$skipAppResign": "<p>When set to <code>true</code>, for private devices, Device Farm does not sign your app again. For public devices, Device Farm always signs your apps again.</p> <p>For more information about how Device Farm re-signs your apps, see <a href=\"https://aws.amazon.com/device-farm/faq/\">Do you modify my app?</a> in the <i>AWS Device Farm FAQs</i>.</p>",
-        "RemoteAccessSession$skipAppResign": "<p>When set to <code>true</code>, for private devices, Device Farm does not sign your app again. For public devices, Device Farm always signs your apps again.</p> <p>For more information about how Device Farm re-signs your apps, see <a href=\"https://aws.amazon.com/device-farm/faq/\">Do you modify my app?</a> in the <i>AWS Device Farm FAQs</i>.</p>",
-        "Run$skipAppResign": "<p>When set to <code>true</code>, for private devices, Device Farm does not sign your app again. For public devices, Device Farm always signs your apps again.</p> <p>For more information about how Device Farm re-signs your apps, see <a href=\"https://aws.amazon.com/device-farm/faq/\">Do you modify my app?</a> in the <i>AWS Device Farm FAQs</i>.</p>"
+        "AccountSettings$skipAppResign": "<p>When set to <code>true</code>, for private devices, Device Farm does not sign your app again. For public devices, Device Farm always signs your apps again.</p> <p>For more information about how Device Farm re-signs your apps, see <a href=\"http://aws.amazon.com/device-farm/faqs/\">Do you modify my app?</a> in the <i>AWS Device Farm FAQs</i>.</p>",
+        "ExecutionConfiguration$skipAppResign": "<p>When set to <code>true</code>, for private devices, Device Farm does not sign your app again. For public devices, Device Farm always signs your apps again.</p> <p>For more information about how Device Farm re-signs your apps, see <a href=\"http://aws.amazon.com/device-farm/faqs/\">Do you modify my app?</a> in the <i>AWS Device Farm FAQs</i>.</p>",
+        "RemoteAccessSession$skipAppResign": "<p>When set to <code>true</code>, for private devices, Device Farm does not sign your app again. For public devices, Device Farm always signs your apps again.</p> <p>For more information about how Device Farm re-signs your apps, see <a href=\"http://aws.amazon.com/device-farm/faqs/\">Do you modify my app?</a> in the <i>AWS Device Farm FAQs</i>.</p>",
+        "Run$skipAppResign": "<p>When set to <code>true</code>, for private devices, Device Farm does not sign your app again. For public devices, Device Farm always signs your apps again.</p> <p>For more information about how Device Farm re-signs your apps, see <a href=\"http://aws.amazon.com/device-farm/faqs/\">Do you modify my app?</a> in the <i>AWS Device Farm FAQs</i>.</p>"
       }
     },
     "SshPublicKey": {
@@ -1989,6 +1996,12 @@
         "TestGridSessionArtifact$filename": "<p>The file name of the artifact.</p>",
         "TestParameters$key": null,
         "TestParameters$value": null
+      }
+    },
+    "SubnetId": {
+      "base": null,
+      "refs": {
+        "VpcSubnetIds$member": null
       }
     },
     "SubnetIds": {
@@ -2389,6 +2402,28 @@
       "refs": {
         "ExecutionConfiguration$videoCapture": "<p>Set to true to enable video capture. Otherwise, set to false. The default is true.</p>",
         "Job$videoCapture": "<p>This value is set to true if video capture is enabled. Otherwise, it is set to false.</p>"
+      }
+    },
+    "VpcConfig": {
+      "base": "<p>Contains the VPC configuration data necessary to interface with AWS Device Farm's services.</p>",
+      "refs": {
+        "CreateProjectRequest$vpcConfig": "<p>The VPC security groups and subnets that are attached to a project.</p>",
+        "Project$vpcConfig": "<p>The VPC security groups and subnets that are attached to a project.</p>",
+        "RemoteAccessSession$vpcConfig": "<p>The VPC security groups and subnets that are attached to a project.</p>",
+        "Run$vpcConfig": "<p>The VPC security groups and subnets that are attached to a project.</p>",
+        "UpdateProjectRequest$vpcConfig": "<p>The VPC security groups and subnets that are attached to a project.</p>"
+      }
+    },
+    "VpcSecurityGroupIds": {
+      "base": null,
+      "refs": {
+        "VpcConfig$securityGroupIds": "<p>An array of one or more security groups IDs in your Amazon VPC.</p>"
+      }
+    },
+    "VpcSubnetIds": {
+      "base": null,
+      "refs": {
+        "VpcConfig$subnetIds": "<p>An array of one or more subnet IDs in your Amazon VPC.</p>"
       }
     }
   }
