@@ -59059,6 +59059,12 @@ const (
 
 	// DocumentTypeProblemAnalysisTemplate is a DocumentType enum value
 	DocumentTypeProblemAnalysisTemplate = "ProblemAnalysisTemplate"
+
+	// DocumentTypeCloudFormation is a DocumentType enum value
+	DocumentTypeCloudFormation = "CloudFormation"
+
+	// DocumentTypeConformancePackTemplate is a DocumentType enum value
+	DocumentTypeConformancePackTemplate = "ConformancePackTemplate"
 )
 
 // DocumentType_Values returns all elements of the DocumentType enum
@@ -59076,6 +59082,8 @@ func DocumentType_Values() []string {
 		DocumentTypeAutomationChangeTemplate,
 		DocumentTypeProblemAnalysis,
 		DocumentTypeProblemAnalysisTemplate,
+		DocumentTypeCloudFormation,
+		DocumentTypeConformancePackTemplate,
 	}
 }
 

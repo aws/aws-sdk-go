@@ -2645,6 +2645,24 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "UpdateInstanceMetadataOptions":{
+      "name":"UpdateInstanceMetadataOptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateInstanceMetadataOptionsRequest"},
+      "output":{"shape":"UpdateInstanceMetadataOptionsResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "UpdateLoadBalancerAttribute":{
       "name":"UpdateLoadBalancerAttribute",
       "http":{
@@ -5743,6 +5761,27 @@
       "type":"list",
       "member":{"shape":"HostKeyAttributes"}
     },
+    "HttpEndpoint":{
+      "type":"string",
+      "enum":[
+        "disabled",
+        "enabled"
+      ]
+    },
+    "HttpProtocolIpv6":{
+      "type":"string",
+      "enum":[
+        "disabled",
+        "enabled"
+      ]
+    },
+    "HttpTokens":{
+      "type":"string",
+      "enum":[
+        "optional",
+        "required"
+      ]
+    },
     "IAMAccessKeyId":{
       "type":"string",
       "max":20,
@@ -5800,7 +5839,8 @@
         "networking":{"shape":"InstanceNetworking"},
         "state":{"shape":"InstanceState"},
         "username":{"shape":"NonEmptyString"},
-        "sshKeyName":{"shape":"ResourceName"}
+        "sshKeyName":{"shape":"ResourceName"},
+        "metadataOptions":{"shape":"InstanceMetadataOptions"}
       }
     },
     "InstanceAccessDetails":{
@@ -5896,6 +5936,23 @@
       "type":"list",
       "member":{"shape":"Instance"}
     },
+    "InstanceMetadataOptions":{
+      "type":"structure",
+      "members":{
+        "state":{"shape":"InstanceMetadataState"},
+        "httpTokens":{"shape":"HttpTokens"},
+        "httpEndpoint":{"shape":"HttpEndpoint"},
+        "httpPutResponseHopLimit":{"shape":"integer"},
+        "httpProtocolIpv6":{"shape":"HttpProtocolIpv6"}
+      }
+    },
+    "InstanceMetadataState":{
+      "type":"string",
+      "enum":[
+        "pending",
+        "applied"
+      ]
+    },
     "InstanceMetricName":{
       "type":"string",
       "enum":[
@@ -5906,7 +5963,8 @@
         "StatusCheckFailed_Instance",
         "StatusCheckFailed_System",
         "BurstCapacityTime",
-        "BurstCapacityPercentage"
+        "BurstCapacityPercentage",
+        "MetadataNoToken"
       ]
     },
     "InstanceNetworking":{
@@ -6606,7 +6664,8 @@
         "DeleteBucketAccessKey",
         "UpdateBucketBundle",
         "UpdateBucket",
-        "SetResourceAccessForBucket"
+        "SetResourceAccessForBucket",
+        "UpdateInstanceMetadataOptions"
       ]
     },
     "Origin":{
@@ -7510,6 +7569,23 @@
       "type":"structure",
       "members":{
         "operations":{"shape":"OperationList"}
+      }
+    },
+    "UpdateInstanceMetadataOptionsRequest":{
+      "type":"structure",
+      "required":["instanceName"],
+      "members":{
+        "instanceName":{"shape":"ResourceName"},
+        "httpTokens":{"shape":"HttpTokens"},
+        "httpEndpoint":{"shape":"HttpEndpoint"},
+        "httpPutResponseHopLimit":{"shape":"integer"},
+        "httpProtocolIpv6":{"shape":"HttpProtocolIpv6"}
+      }
+    },
+    "UpdateInstanceMetadataOptionsResult":{
+      "type":"structure",
+      "members":{
+        "operation":{"shape":"Operation"}
       }
     },
     "UpdateLoadBalancerAttributeRequest":{

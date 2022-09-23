@@ -129,7 +129,10 @@ const (
 	// ErrCodeWAFNonexistentItemException for service response error code
 	// "WAFNonexistentItemException".
 	//
-	// WAF couldn’t perform the operation because your resource doesn’t exist.
+	// WAF couldn’t perform the operation because your resource doesn't exist.
+	// If you've just created a resource that you're using in this operation, you
+	// might just need to wait a few minutes. It can take from a few seconds to
+	// a number of minutes for changes to propagate.
 	ErrCodeWAFNonexistentItemException = "WAFNonexistentItemException"
 
 	// ErrCodeWAFOptimisticLockException for service response error code
@@ -177,8 +180,10 @@ const (
 	// "WAFUnavailableEntityException".
 	//
 	// WAF couldn’t retrieve a resource that you specified for this operation.
-	// Verify the resources that you are specifying in your request parameters and
-	// then retry the operation.
+	// If you've just created a resource that you're using in this operation, you
+	// might just need to wait a few minutes. It can take from a few seconds to
+	// a number of minutes for changes to propagate. Verify the resources that you
+	// are specifying in your request parameters and then retry the operation.
 	ErrCodeWAFUnavailableEntityException = "WAFUnavailableEntityException"
 )
 

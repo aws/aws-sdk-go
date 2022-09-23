@@ -20014,6 +20014,10 @@
         "InstanceRequirements":{
           "shape":"InstanceRequirements",
           "locationName":"instanceRequirements"
+        },
+        "ImageId":{
+          "shape":"ImageId",
+          "locationName":"imageId"
         }
       }
     },
@@ -20041,7 +20045,8 @@
         "WeightedCapacity":{"shape":"Double"},
         "Priority":{"shape":"Double"},
         "Placement":{"shape":"Placement"},
-        "InstanceRequirements":{"shape":"InstanceRequirementsRequest"}
+        "InstanceRequirements":{"shape":"InstanceRequirementsRequest"},
+        "ImageId":{"shape":"ImageId"}
       }
     },
     "FleetLaunchTemplateSpecification":{
