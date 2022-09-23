@@ -125,6 +125,12 @@
         "ListAggregatedUtterancesResponse$aggregatedUtterancesSummaries": "<p>Summaries of the aggregated utterance data. Each response contains information about the number of times that the utterance was seen during the time period, whether it was detected or missed, and when it was seen during the time period.</p>"
       }
     },
+    "AllowedInputTypes": {
+      "base": "<p>Specifies the allowed input types.</p>",
+      "refs": {
+        "PromptAttemptSpecification$allowedInputTypes": "<p>Indicates the allowed input types of the prompt attempt.</p>"
+      }
+    },
     "AmazonResourceName": {
       "base": null,
       "refs": {
@@ -188,6 +194,12 @@
         "ImageResponseCard$imageUrl": "<p>The URL of an image to display on the response card. The image URL must be publicly available so that the platform displaying the response card has access to the image.</p>"
       }
     },
+    "AudioAndDTMFInputSpecification": {
+      "base": "<p>Specifies the audio and DTMF input specification.</p>",
+      "refs": {
+        "PromptAttemptSpecification$audioAndDTMFInputSpecification": "<p>Specifies the settings on audio and DTMF input.</p>"
+      }
+    },
     "AudioLogDestination": {
       "base": "<p>The location of audio log files collected when conversation logging is enabled for a bot.</p>",
       "refs": {
@@ -210,6 +222,12 @@
       "base": null,
       "refs": {
         "AdvancedRecognitionSetting$audioRecognitionStrategy": "<p>Enables using the slot values as a custom vocabulary for recognizing user utterances.</p>"
+      }
+    },
+    "AudioSpecification": {
+      "base": "<p>Specifies the audio input specifications.</p>",
+      "refs": {
+        "AudioAndDTMFInputSpecification$audioSpecification": "<p>Specifies the settings on audio input.</p>"
       }
     },
     "Boolean": {
@@ -566,6 +584,8 @@
       "base": null,
       "refs": {
         "AggregatedUtterancesSummary$containsDataFromDeletedResources": "<p>Aggregated utterance data may contain utterances from versions of your bot that have since been deleted. When the aggregated contains this kind of data, this field is set to true.</p>",
+        "AllowedInputTypes$allowAudioInput": "<p>Indicates whether audio input is allowed.</p>",
+        "AllowedInputTypes$allowDTMFInput": "<p>Indicates whether DTMF input is allowed.</p>",
         "ConditionalSpecification$active": "<p>Determines whether a conditional branch is active. When <code>active</code> is false, the conditions are not evaluated.</p>",
         "DialogAction$suppressNextMessage": "<p>When true the next message for the intent is not used.</p>",
         "DialogCodeHookInvocationSetting$enableCodeHookInvocation": "<p>Indicates whether a Lambda function should be invoked for the dialog.</p>",
@@ -577,6 +597,7 @@
         "FulfillmentUpdatesSpecification$active": "<p>Determines whether fulfillment updates are sent to the user. When this field is true, updates are sent.</p> <p>If the <code>active</code> field is set to true, the <code>startResponse</code>, <code>updateResponse</code>, and <code>timeoutInSeconds</code> fields are required.</p>",
         "IntentClosingSetting$active": "<p>Specifies whether an intent's closing response is used. When this field is false, the closing response isn't sent to the user. If the <code>active</code> field isn't specified, the default is true.</p>",
         "IntentConfirmationSetting$active": "<p>Specifies whether the intent's confirmation is sent to the user. When this field is false, confirmation and declination responses aren't sent. If the <code>active</code> field isn't specified, the default is true.</p>",
+        "PromptAttemptSpecification$allowInterrupt": "<p>Indicates whether the user can interrupt a speech prompt attempt from the bot.</p>",
         "PromptSpecification$allowInterrupt": "<p>Indicates whether the user can interrupt a speech prompt from the bot.</p>",
         "ResponseSpecification$allowInterrupt": "<p>Indicates whether the user can interrupt a speech response from Amazon Lex.</p>",
         "StillWaitingResponseSpecification$allowInterrupt": "<p>Indicates that the user can interrupt the response by speaking while the message is being played.</p>",
@@ -981,6 +1002,19 @@
       "refs": {
         "DeleteCustomVocabularyResponse$customVocabularyStatus": "<p>The status of removing the custom vocabulary.</p>",
         "DescribeCustomVocabularyMetadataResponse$customVocabularyStatus": "<p>The status of the custom vocabulary. If the status is <code>Ready</code> the custom vocabulary is ready to use.</p>"
+      }
+    },
+    "DTMFCharacter": {
+      "base": null,
+      "refs": {
+        "DTMFSpecification$deletionCharacter": "<p>The DTMF character that clears the accumulated DTMF digits and immediately ends the input.</p>",
+        "DTMFSpecification$endCharacter": "<p>The DTMF character that immediately ends input. If the user does not press this character, the input ends after the end timeout.</p>"
+      }
+    },
+    "DTMFSpecification": {
+      "base": "<p>Specifies the DTMF input specifications.</p>",
+      "refs": {
+        "AudioAndDTMFInputSpecification$dtmfSpecification": "<p>Specifies the settings on DTMF input.</p>"
       }
     },
     "DataPrivacy": {
@@ -2299,6 +2333,12 @@
         "SearchAssociatedTranscriptsResponse$totalResults": "<p>The total number of transcripts returned by the search.</p>"
       }
     },
+    "MaxUtteranceDigits": {
+      "base": null,
+      "refs": {
+        "DTMFSpecification$maxLength": "<p>The maximum number of DTMF digits allowed in an utterance.</p>"
+      }
+    },
     "MergeStrategy": {
       "base": null,
       "refs": {
@@ -2603,6 +2643,24 @@
       "base": null,
       "refs": {
         "SlotPriority$priority": "<p>The priority that a slot should be elicited.</p>"
+      }
+    },
+    "PromptAttempt": {
+      "base": "<p>The attempt name of attempts of a prompt.</p>",
+      "refs": {
+        "PromptAttemptsSpecificationMap$key": null
+      }
+    },
+    "PromptAttemptSpecification": {
+      "base": "<p>Specifies the settings on a prompt attempt.</p>",
+      "refs": {
+        "PromptAttemptsSpecificationMap$value": null
+      }
+    },
+    "PromptAttemptsSpecificationMap": {
+      "base": null,
+      "refs": {
+        "PromptSpecification$promptAttemptsSpecification": "<p>Specifies the advanced settings on each attempt of the prompt.</p>"
       }
     },
     "PromptMaxRetries": {
@@ -3291,6 +3349,12 @@
         "TagMap$value": null
       }
     },
+    "TextInputSpecification": {
+      "base": "<p>Specifies the text input specifications.</p>",
+      "refs": {
+        "PromptAttemptSpecification$textInputSpecification": "<p>Specifies the settings on text input.</p>"
+      }
+    },
     "TextLogDestination": {
       "base": "<p>Defines the Amazon CloudWatch Logs destination log group for conversation text logs.</p>",
       "refs": {
@@ -3318,6 +3382,16 @@
       "base": null,
       "refs": {
         "RelativeAggregationDuration$timeDimension": "<p>The type of time period that the <code>timeValue</code> field represents. </p>"
+      }
+    },
+    "TimeInMilliSeconds": {
+      "base": null,
+      "refs": {
+        "AudioAndDTMFInputSpecification$startTimeoutMs": "<p>Time for which a bot waits before assuming that the customer isn't going to speak or press a key. This timeout is shared between Audio and DTMF inputs.</p>",
+        "AudioSpecification$maxLengthMs": "<p>Time for how long Amazon Lex waits before speech input is truncated and the speech is returned to application.</p>",
+        "AudioSpecification$endTimeoutMs": "<p>Time for which a bot waits after the customer stops speaking to assume the utterance is finished.</p>",
+        "DTMFSpecification$endTimeoutMs": "<p>How long the bot should wait after the last DTMF character input before assuming that the input has concluded.</p>",
+        "TextInputSpecification$startTimeoutMs": "<p>Time for which a bot waits before re-prompting a customer for text input.</p>"
       }
     },
     "TimeValue": {

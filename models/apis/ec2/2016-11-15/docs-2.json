@@ -9543,6 +9543,8 @@
         "EnableImageDeprecationRequest$ImageId": "<p>The ID of the AMI.</p>",
         "ExportImageRequest$ImageId": "<p>The ID of the image.</p>",
         "FastLaunchImageIdList$member": null,
+        "FleetLaunchTemplateOverrides$ImageId": "<p>The ID of the AMI. An AMI is required to launch an instance. The AMI ID must be specified here or in the launch template.</p>",
+        "FleetLaunchTemplateOverridesRequest$ImageId": "<p>The ID of the AMI. An AMI is required to launch an instance. The AMI ID must be specified here or in the launch template.</p>",
         "ImageIdList$member": null,
         "ImageIdStringList$member": null,
         "ModifyImageAttributeRequest$ImageId": "<p>The ID of the AMI.</p>",

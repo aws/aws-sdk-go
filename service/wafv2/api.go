@@ -109,12 +109,17 @@ func (c *WAFV2) AssociateWebACLRequest(input *AssociateWebACLInput) (req *reques
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFUnavailableEntityException
 //     WAF couldn’t retrieve a resource that you specified for this operation.
-//     Verify the resources that you are specifying in your request parameters and
-//     then retry the operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -225,7 +230,10 @@ func (c *WAFV2) CheckCapacityRequest(input *CheckCapacityInput) (req *request.Re
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFLimitsExceededException
 //     WAF couldn’t perform the operation because you exceeded your resource limit.
@@ -239,8 +247,10 @@ func (c *WAFV2) CheckCapacityRequest(input *CheckCapacityInput) (req *request.Re
 //
 //   - WAFUnavailableEntityException
 //     WAF couldn’t retrieve a resource that you specified for this operation.
-//     Verify the resources that you are specifying in your request parameters and
-//     then retry the operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
 //   - WAFSubscriptionNotFoundException
 //     You tried to use a managed rule group that's available by subscription, but
@@ -616,8 +626,10 @@ func (c *WAFV2) CreateRuleGroupRequest(input *CreateRuleGroupInput) (req *reques
 //
 //   - WAFUnavailableEntityException
 //     WAF couldn’t retrieve a resource that you specified for this operation.
-//     Verify the resources that you are specifying in your request parameters and
-//     then retry the operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
 //   - WAFTagOperationException
 //     An error occurred during the tagging operation. Retry your request.
@@ -631,7 +643,10 @@ func (c *WAFV2) CreateRuleGroupRequest(input *CreateRuleGroupInput) (req *reques
 //     you aren't subscribed to it yet.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -762,11 +777,16 @@ func (c *WAFV2) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Requ
 //
 //   - WAFUnavailableEntityException
 //     WAF couldn’t retrieve a resource that you specified for this operation.
-//     Verify the resources that you are specifying in your request parameters and
-//     then retry the operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFTagOperationException
 //     An error occurred during the tagging operation. Retry your request.
@@ -896,7 +916,10 @@ func (c *WAFV2) DeleteFirewallManagerRuleGroupsRequest(input *DeleteFirewallMana
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -1003,7 +1026,10 @@ func (c *WAFV2) DeleteIPSetRequest(input *DeleteIPSetInput) (req *request.Reques
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -1106,7 +1132,10 @@ func (c *WAFV2) DeleteLoggingConfigurationRequest(input *DeleteLoggingConfigurat
 //     a system problem. Retry your request.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -1211,7 +1240,10 @@ func (c *WAFV2) DeletePermissionPolicyRequest(input *DeletePermissionPolicyInput
 // Returned Error Types:
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInternalErrorException
 //     Your request is valid, but WAF couldn’t perform the operation because of
@@ -1329,7 +1361,10 @@ func (c *WAFV2) DeleteRegexPatternSetRequest(input *DeleteRegexPatternSetInput) 
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -1447,7 +1482,10 @@ func (c *WAFV2) DeleteRuleGroupRequest(input *DeleteRuleGroupInput) (req *reques
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -1580,7 +1618,10 @@ func (c *WAFV2) DeleteWebACLRequest(input *DeleteWebACLInput) (req *request.Requ
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -1702,7 +1743,10 @@ func (c *WAFV2) DescribeManagedRuleGroupRequest(input *DescribeManagedRuleGroupI
 //     isn’t valid. Check the resource, and try again.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -1817,7 +1861,10 @@ func (c *WAFV2) DisassociateWebACLRequest(input *DisassociateWebACLInput) (req *
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -1910,7 +1957,10 @@ func (c *WAFV2) GenerateMobileSdkReleaseUrlRequest(input *GenerateMobileSdkRelea
 //     a system problem. Retry your request.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidParameterException
 //     The operation failed because WAF didn't recognize a parameter in the request.
@@ -2026,7 +2076,10 @@ func (c *WAFV2) GetIPSetRequest(input *GetIPSetInput) (req *request.Request, out
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -2112,7 +2165,10 @@ func (c *WAFV2) GetLoggingConfigurationRequest(input *GetLoggingConfigurationInp
 //     a system problem. Retry your request.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidParameterException
 //     The operation failed because WAF didn't recognize a parameter in the request.
@@ -2236,7 +2292,10 @@ func (c *WAFV2) GetManagedRuleSetRequest(input *GetManagedRuleSetInput) (req *re
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -2329,7 +2388,10 @@ func (c *WAFV2) GetMobileSdkReleaseRequest(input *GetMobileSdkReleaseInput) (req
 //     a system problem. Retry your request.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidParameterException
 //     The operation failed because WAF didn't recognize a parameter in the request.
@@ -2428,7 +2490,10 @@ func (c *WAFV2) GetPermissionPolicyRequest(input *GetPermissionPolicyInput) (req
 // Returned Error Types:
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInternalErrorException
 //     Your request is valid, but WAF couldn’t perform the operation because of
@@ -2560,7 +2625,10 @@ func (c *WAFV2) GetRateBasedStatementManagedKeysRequest(input *GetRateBasedState
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -2661,7 +2729,10 @@ func (c *WAFV2) GetRegexPatternSetRequest(input *GetRegexPatternSetInput) (req *
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -2762,7 +2833,10 @@ func (c *WAFV2) GetRuleGroupRequest(input *GetRuleGroupInput) (req *request.Requ
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -2854,7 +2928,10 @@ func (c *WAFV2) GetSampledRequestsRequest(input *GetSampledRequestsInput) (req *
 // Returned Error Types:
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInternalErrorException
 //     Your request is valid, but WAF couldn’t perform the operation because of
@@ -2971,7 +3048,10 @@ func (c *WAFV2) GetWebACLRequest(input *GetWebACLInput) (req *request.Request, o
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -3057,7 +3137,10 @@ func (c *WAFV2) GetWebACLForResourceRequest(input *GetWebACLForResourceInput) (r
 //     a system problem. Retry your request.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidParameterException
 //     The operation failed because WAF didn't recognize a parameter in the request.
@@ -3076,8 +3159,10 @@ func (c *WAFV2) GetWebACLForResourceRequest(input *GetWebACLForResourceInput) (r
 //
 //   - WAFUnavailableEntityException
 //     WAF couldn’t retrieve a resource that you specified for this operation.
-//     Verify the resources that you are specifying in your request parameters and
-//     then retry the operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -3178,7 +3263,10 @@ func (c *WAFV2) ListAvailableManagedRuleGroupVersionsRequest(input *ListAvailabl
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -3873,7 +3961,10 @@ func (c *WAFV2) ListResourcesForWebACLRequest(input *ListResourcesForWebACLInput
 //     a system problem. Retry your request.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidParameterException
 //     The operation failed because WAF didn't recognize a parameter in the request.
@@ -4096,7 +4187,10 @@ func (c *WAFV2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFTagOperationException
 //     An error occurred during the tagging operation. Retry your request.
@@ -4320,7 +4414,10 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 //     a system problem. Retry your request.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -4481,7 +4578,10 @@ func (c *WAFV2) PutManagedRuleSetVersionsRequest(input *PutManagedRuleSetVersion
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -4581,7 +4681,10 @@ func (c *WAFV2) PutPermissionPolicyRequest(input *PutPermissionPolicyInput) (req
 // Returned Error Types:
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInternalErrorException
 //     Your request is valid, but WAF couldn’t perform the operation because of
@@ -4733,7 +4836,10 @@ func (c *WAFV2) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 //     in the WAF Developer Guide.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFTagOperationException
 //     An error occurred during the tagging operation. Retry your request.
@@ -4846,7 +4952,10 @@ func (c *WAFV2) UntagResourceRequest(input *UntagResourceInput) (req *request.Re
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFTagOperationException
 //     An error occurred during the tagging operation. Retry your request.
@@ -4972,7 +5081,10 @@ func (c *WAFV2) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Reques
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFDuplicateItemException
 //     WAF couldn’t perform the operation because the resource that you tried
@@ -5099,7 +5211,10 @@ func (c *WAFV2) UpdateManagedRuleSetVersionExpiryDateRequest(input *UpdateManage
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -5224,7 +5339,10 @@ func (c *WAFV2) UpdateRegexPatternSetRequest(input *UpdateRegexPatternSetInput) 
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFDuplicateItemException
 //     WAF couldn’t perform the operation because the resource that you tried
@@ -5365,7 +5483,10 @@ func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *reques
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFDuplicateItemException
 //     WAF couldn’t perform the operation because the resource that you tried
@@ -5384,8 +5505,10 @@ func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *reques
 //
 //   - WAFUnavailableEntityException
 //     WAF couldn’t retrieve a resource that you specified for this operation.
-//     Verify the resources that you are specifying in your request parameters and
-//     then retry the operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
 //   - WAFSubscriptionNotFoundException
 //     You tried to use a managed rule group that's available by subscription, but
@@ -5533,7 +5656,10 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFDuplicateItemException
 //     WAF couldn’t perform the operation because the resource that you tried
@@ -5556,8 +5682,10 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 //
 //   - WAFUnavailableEntityException
 //     WAF couldn’t retrieve a resource that you specified for this operation.
-//     Verify the resources that you are specifying in your request parameters and
-//     then retry the operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
 //   - WAFSubscriptionNotFoundException
 //     You tried to use a managed rule group that's available by subscription, but
@@ -6793,8 +6921,9 @@ type CreateIPSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// Contains an array of strings that specifies zero or more IP addresses or
-	// blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation.
-	// WAF supports all IPv4 and IPv6 CIDR ranges except for /0.
+	// blocks of IP addresses. All addresses must be specified using Classless Inter-Domain
+	// Routing (CIDR) notation. WAF supports all IPv4 and IPv6 CIDR ranges except
+	// for /0.
 	//
 	// Example address strings:
 	//
@@ -7974,7 +8103,7 @@ func (s *CustomResponseBody) SetContentType(v string) *CustomResponseBody {
 
 // In a WebACL, this is the action that you want WAF to perform when a web request
 // doesn't match any of the rules in the WebACL. The default action must be
-// a terminating action, so you can't use count.
+// a terminating action.
 type DefaultAction struct {
 	_ struct{} `type:"structure"`
 
@@ -9597,6 +9726,11 @@ type FirewallManagerStatement struct {
 	// You cannot nest a ManagedRuleGroupStatement, for example for use inside a
 	// NotStatement or OrStatement. It can only be referenced as a top-level statement
 	// within a rule.
+	//
+	// You are charged additional fees when you use the WAF Bot Control managed
+	// rule group AWSManagedRulesBotControlRuleSet or the WAF Fraud Control account
+	// takeover prevention (ATP) managed rule group AWSManagedRulesATPRuleSet. For
+	// more information, see WAF Pricing (http://aws.amazon.com/waf/pricing/).
 	ManagedRuleGroupStatement *ManagedRuleGroupStatement `type:"structure"`
 
 	// A rule statement used to run the rules that are defined in a RuleGroup. To
@@ -11661,8 +11795,9 @@ type IPSet struct {
 	ARN *string `min:"20" type:"string" required:"true"`
 
 	// Contains an array of strings that specifies zero or more IP addresses or
-	// blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation.
-	// WAF supports all IPv4 and IPv6 CIDR ranges except for /0.
+	// blocks of IP addresses. All addresses must be specified using Classless Inter-Domain
+	// Routing (CIDR) notation. WAF supports all IPv4 and IPv6 CIDR ranges except
+	// for /0.
 	//
 	// Example address strings:
 	//
@@ -13481,6 +13616,10 @@ type ListResourcesForWebACLInput struct {
 	// Used for web ACLs that are scoped for regional applications. A regional application
 	// can be an Application Load Balancer (ALB), an Amazon API Gateway REST API,
 	// an AppSync GraphQL API, or an Amazon Cognito user pool.
+	//
+	// If you don't provide a resource type, the call uses the resource type APPLICATION_LOAD_BALANCER.
+	//
+	// Default: APPLICATION_LOAD_BALANCER
 	ResourceType *string `type:"string" enum:"ResourceType"`
 
 	// The Amazon Resource Name (ARN) of the web ACL.
@@ -14275,6 +14414,11 @@ func (s *ManagedRuleGroupConfig) SetUsernameField(v *UsernameField) *ManagedRule
 // You cannot nest a ManagedRuleGroupStatement, for example for use inside a
 // NotStatement or OrStatement. It can only be referenced as a top-level statement
 // within a rule.
+//
+// You are charged additional fees when you use the WAF Bot Control managed
+// rule group AWSManagedRulesBotControlRuleSet or the WAF Fraud Control account
+// takeover prevention (ATP) managed rule group AWSManagedRulesATPRuleSet. For
+// more information, see WAF Pricing (http://aws.amazon.com/waf/pricing/).
 type ManagedRuleGroupStatement struct {
 	_ struct{} `type:"structure"`
 
@@ -16566,7 +16710,8 @@ type RuleAction struct {
 	// Instructs WAF to run a CAPTCHA check against the web request.
 	Captcha *CaptchaAction `type:"structure"`
 
-	// Instructs WAF to count the web request and allow it.
+	// Instructs WAF to count the web request and then continue evaluating the request
+	// using the remaining rules in the web ACL.
 	Count *CountAction `type:"structure"`
 }
 
@@ -17545,6 +17690,11 @@ type Statement struct {
 	// You cannot nest a ManagedRuleGroupStatement, for example for use inside a
 	// NotStatement or OrStatement. It can only be referenced as a top-level statement
 	// within a rule.
+	//
+	// You are charged additional fees when you use the WAF Bot Control managed
+	// rule group AWSManagedRulesBotControlRuleSet or the WAF Fraud Control account
+	// takeover prevention (ATP) managed rule group AWSManagedRulesATPRuleSet. For
+	// more information, see WAF Pricing (http://aws.amazon.com/waf/pricing/).
 	ManagedRuleGroupStatement *ManagedRuleGroupStatement `type:"structure"`
 
 	// A logical rule statement used to negate the results of another rule statement.
@@ -18416,8 +18566,9 @@ type UpdateIPSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// Contains an array of strings that specifies zero or more IP addresses or
-	// blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation.
-	// WAF supports all IPv4 and IPv6 CIDR ranges except for /0.
+	// blocks of IP addresses. All addresses must be specified using Classless Inter-Domain
+	// Routing (CIDR) notation. WAF supports all IPv4 and IPv6 CIDR ranges except
+	// for /0.
 	//
 	// Example address strings:
 	//
@@ -20516,7 +20667,10 @@ func (s *WAFLogDestinationPermissionIssueException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// WAF couldn’t perform the operation because your resource doesn’t exist.
+// WAF couldn’t perform the operation because your resource doesn't exist.
+// If you've just created a resource that you're using in this operation, you
+// might just need to wait a few minutes. It can take from a few seconds to
+// a number of minutes for changes to propagate.
 type WAFNonexistentItemException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -20912,8 +21066,10 @@ func (s *WAFTagOperationInternalErrorException) RequestID() string {
 }
 
 // WAF couldn’t retrieve a resource that you specified for this operation.
-// Verify the resources that you are specifying in your request parameters and
-// then retry the operation.
+// If you've just created a resource that you're using in this operation, you
+// might just need to wait a few minutes. It can take from a few seconds to
+// a number of minutes for changes to propagate. Verify the resources that you
+// are specifying in your request parameters and then retry the operation.
 type WAFUnavailableEntityException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

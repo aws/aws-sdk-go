@@ -1961,7 +1961,9 @@
         "LAUNCH_PROFILE_WITH_STREAM_SESSIONS_NOT_DELETED",
         "ENCRYPTION_KEY_ACCESS_DENIED",
         "ENCRYPTION_KEY_NOT_FOUND",
-        "INVALID_SUBNETS_PROVIDED"
+        "INVALID_SUBNETS_PROVIDED",
+        "INVALID_INSTANCE_TYPES_PROVIDED",
+        "INVALID_SUBNETS_COMBINATION"
       ]
     },
     "LaunchProfileStudioComponentIdList":{
@@ -2729,7 +2731,14 @@
         "g4dn.4xlarge",
         "g4dn.8xlarge",
         "g4dn.12xlarge",
-        "g4dn.16xlarge"
+        "g4dn.16xlarge",
+        "g3.4xlarge",
+        "g3s.xlarge",
+        "g5.xlarge",
+        "g5.2xlarge",
+        "g5.4xlarge",
+        "g5.8xlarge",
+        "g5.16xlarge"
       ]
     },
     "StreamingInstanceTypeList":{

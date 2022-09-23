@@ -4474,17 +4474,17 @@ func (c *NimbleStudio) StartStudioSSOConfigurationRepairRequest(input *StartStud
 
 // StartStudioSSOConfigurationRepair API operation for AmazonNimbleStudio.
 //
-// Repairs the Amazon Web Services SSO configuration for a given studio.
+// Repairs the IAM Identity Center configuration for a given studio.
 //
-// If the studio has a valid Amazon Web Services SSO configuration currently
-// associated with it, this operation will fail with a validation error.
+// If the studio has a valid IAM Identity Center configuration currently associated
+// with it, this operation will fail with a validation error.
 //
-// If the studio does not have a valid Amazon Web Services SSO configuration
-// currently associated with it, then a new Amazon Web Services SSO application
-// is created for the studio and the studio is changed to the READY state.
+// If the studio does not have a valid IAM Identity Center configuration currently
+// associated with it, then a new IAM Identity Center application is created
+// for the studio and the studio is changed to the READY state.
 //
-// After the Amazon Web Services SSO application is repaired, you must use the
-// Amazon Nimble Studio console to add administrators and users to your studio.
+// After the IAM Identity Center application is repaired, you must use the Amazon
+// Nimble Studio console to add administrators and users to your studio.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5367,7 +5367,7 @@ type AcceptEulasInput struct {
 	// The EULA ID.
 	EulaIds []*string `locationName:"eulaIds" type:"list"`
 
-	// A collection of EULA IDs.
+	// The studio ID.
 	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
@@ -6909,7 +6909,7 @@ type DeleteLaunchProfileMemberInput struct {
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
 
-	// The principal ID. This currently supports a Amazon Web Services SSO UserId.
+	// The principal ID. This currently supports a IAM Identity Center UserId.
 	//
 	// PrincipalId is a required field
 	PrincipalId *string `location:"uri" locationName:"principalId" type:"string" required:"true"`
@@ -7450,7 +7450,7 @@ type DeleteStudioMemberInput struct {
 	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The principal ID. This currently supports a Amazon Web Services SSO UserId.
+	// The principal ID. This currently supports a IAM Identity Center UserId.
 	//
 	// PrincipalId is a required field
 	PrincipalId *string `location:"uri" locationName:"principalId" type:"string" required:"true"`
@@ -8121,7 +8121,7 @@ type GetLaunchProfileMemberInput struct {
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
 
-	// The principal ID. This currently supports a Amazon Web Services SSO UserId.
+	// The principal ID. This currently supports a IAM Identity Center UserId.
 	//
 	// PrincipalId is a required field
 	PrincipalId *string `location:"uri" locationName:"principalId" type:"string" required:"true"`
@@ -8715,7 +8715,7 @@ func (s *GetStudioInput) SetStudioId(v string) *GetStudioInput {
 type GetStudioMemberInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The principal ID. This currently supports a Amazon Web Services SSO UserId.
+	// The principal ID. This currently supports a IAM Identity Center UserId.
 	//
 	// PrincipalId is a required field
 	PrincipalId *string `location:"uri" locationName:"principalId" type:"string" required:"true"`
@@ -9835,7 +9835,7 @@ type ListLaunchProfilesInput struct {
 	// The token to request the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	// The principal ID. This currently supports a Amazon Web Services SSO UserId.
+	// The principal ID. This currently supports a IAM Identity Center UserId.
 	PrincipalId *string `location:"querystring" locationName:"principalId" type:"string"`
 
 	// Filter this request to launch profiles in any of the given states.
@@ -12466,7 +12466,7 @@ func (s *StreamingSessionStream) SetUrl(v string) *StreamingSessionStream {
 //
 // When creating a studio, you must provides two IAM roles for use with the
 // Nimble Studio portal. These roles are assumed by your users when they log
-// in to the Nimble Studio portal via Amazon Web Services SSO and your identity
+// in to the Nimble Studio portal via IAM Identity Center and your identity
 // source.
 //
 // The user role must have the AmazonNimbleStudio-StudioUser managed policy
@@ -12501,9 +12501,9 @@ type Studio struct {
 	// The Amazon Web Services Region where the studio resource is located.
 	HomeRegion *string `locationName:"homeRegion" type:"string"`
 
-	// The Amazon Web Services SSO application client ID used to integrate with
-	// Amazon Web Services SSO to enable Amazon Web Services SSO users to log in
-	// to Nimble Studio portal.
+	// The IAM Identity Center application client ID used to integrate with IAM
+	// Identity Center to enable IAM Identity Center users to log in to Nimble Studio
+	// portal.
 	SsoClientId *string `locationName:"ssoClientId" type:"string"`
 
 	// The current state of the studio resource.
@@ -13213,10 +13213,10 @@ func (s *StudioEncryptionConfiguration) SetKeyType(v string) *StudioEncryptionCo
 // to elevated permissions that they are granted in the studio.
 //
 // When you add a user to your studio using the Nimble Studio console, they
-// are given access to the studio's AWS SSO application and are given access
-// to log in to the Nimble Studio portal. These users have the permissions provided
-// by the studio's user IAM role and do not appear in the studio membership
-// collection. Only studio admins appear in studio membership.
+// are given access to the studio's IAM Identity Center application and are
+// given access to log in to the Nimble Studio portal. These users have the
+// permissions provided by the studio's user IAM role and do not appear in the
+// studio membership collection. Only studio admins appear in studio membership.
 //
 // When you add a user to studio membership with the persona ADMIN, upon logging
 // in to the Nimble Studio portal, they are granted permissions specified by
@@ -13681,7 +13681,7 @@ type UpdateLaunchProfileMemberInput struct {
 	// Persona is a required field
 	Persona *string `locationName:"persona" type:"string" required:"true" enum:"LaunchProfilePersona"`
 
-	// The principal ID. This currently supports a Amazon Web Services SSO UserId.
+	// The principal ID. This currently supports a IAM Identity Center UserId.
 	//
 	// PrincipalId is a required field
 	PrincipalId *string `location:"uri" locationName:"principalId" type:"string" required:"true"`
@@ -14598,6 +14598,12 @@ const (
 
 	// LaunchProfileStatusCodeInvalidSubnetsProvided is a LaunchProfileStatusCode enum value
 	LaunchProfileStatusCodeInvalidSubnetsProvided = "INVALID_SUBNETS_PROVIDED"
+
+	// LaunchProfileStatusCodeInvalidInstanceTypesProvided is a LaunchProfileStatusCode enum value
+	LaunchProfileStatusCodeInvalidInstanceTypesProvided = "INVALID_INSTANCE_TYPES_PROVIDED"
+
+	// LaunchProfileStatusCodeInvalidSubnetsCombination is a LaunchProfileStatusCode enum value
+	LaunchProfileStatusCodeInvalidSubnetsCombination = "INVALID_SUBNETS_COMBINATION"
 )
 
 // LaunchProfileStatusCode_Values returns all elements of the LaunchProfileStatusCode enum
@@ -14616,6 +14622,8 @@ func LaunchProfileStatusCode_Values() []string {
 		LaunchProfileStatusCodeEncryptionKeyAccessDenied,
 		LaunchProfileStatusCodeEncryptionKeyNotFound,
 		LaunchProfileStatusCodeInvalidSubnetsProvided,
+		LaunchProfileStatusCodeInvalidInstanceTypesProvided,
+		LaunchProfileStatusCodeInvalidSubnetsCombination,
 	}
 }
 
@@ -14838,6 +14846,27 @@ const (
 
 	// StreamingInstanceTypeG4dn16xlarge is a StreamingInstanceType enum value
 	StreamingInstanceTypeG4dn16xlarge = "g4dn.16xlarge"
+
+	// StreamingInstanceTypeG34xlarge is a StreamingInstanceType enum value
+	StreamingInstanceTypeG34xlarge = "g3.4xlarge"
+
+	// StreamingInstanceTypeG3sXlarge is a StreamingInstanceType enum value
+	StreamingInstanceTypeG3sXlarge = "g3s.xlarge"
+
+	// StreamingInstanceTypeG5Xlarge is a StreamingInstanceType enum value
+	StreamingInstanceTypeG5Xlarge = "g5.xlarge"
+
+	// StreamingInstanceTypeG52xlarge is a StreamingInstanceType enum value
+	StreamingInstanceTypeG52xlarge = "g5.2xlarge"
+
+	// StreamingInstanceTypeG54xlarge is a StreamingInstanceType enum value
+	StreamingInstanceTypeG54xlarge = "g5.4xlarge"
+
+	// StreamingInstanceTypeG58xlarge is a StreamingInstanceType enum value
+	StreamingInstanceTypeG58xlarge = "g5.8xlarge"
+
+	// StreamingInstanceTypeG516xlarge is a StreamingInstanceType enum value
+	StreamingInstanceTypeG516xlarge = "g5.16xlarge"
 )
 
 // StreamingInstanceType_Values returns all elements of the StreamingInstanceType enum
@@ -14849,6 +14878,13 @@ func StreamingInstanceType_Values() []string {
 		StreamingInstanceTypeG4dn8xlarge,
 		StreamingInstanceTypeG4dn12xlarge,
 		StreamingInstanceTypeG4dn16xlarge,
+		StreamingInstanceTypeG34xlarge,
+		StreamingInstanceTypeG3sXlarge,
+		StreamingInstanceTypeG5Xlarge,
+		StreamingInstanceTypeG52xlarge,
+		StreamingInstanceTypeG54xlarge,
+		StreamingInstanceTypeG58xlarge,
+		StreamingInstanceTypeG516xlarge,
 	}
 }
 

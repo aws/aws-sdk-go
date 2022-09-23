@@ -1231,6 +1231,17 @@
       "type":"list",
       "member":{"shape":"AggregatedUtterancesSummary"}
     },
+    "AllowedInputTypes":{
+      "type":"structure",
+      "required":[
+        "allowAudioInput",
+        "allowDTMFInput"
+      ],
+      "members":{
+        "allowAudioInput":{"shape":"BoxedBoolean"},
+        "allowDTMFInput":{"shape":"BoxedBoolean"}
+      }
+    },
     "AmazonResourceName":{
       "type":"string",
       "max":1011,
@@ -1280,6 +1291,15 @@
       "max":250,
       "min":1
     },
+    "AudioAndDTMFInputSpecification":{
+      "type":"structure",
+      "required":["startTimeoutMs"],
+      "members":{
+        "startTimeoutMs":{"shape":"TimeInMilliSeconds"},
+        "audioSpecification":{"shape":"AudioSpecification"},
+        "dtmfSpecification":{"shape":"DTMFSpecification"}
+      }
+    },
     "AudioLogDestination":{
       "type":"structure",
       "required":["s3Bucket"],
@@ -1307,6 +1327,17 @@
     "AudioRecognitionStrategy":{
       "type":"string",
       "enum":["UseSlotValuesAsCustomVocabulary"]
+    },
+    "AudioSpecification":{
+      "type":"structure",
+      "required":[
+        "maxLengthMs",
+        "endTimeoutMs"
+      ],
+      "members":{
+        "maxLengthMs":{"shape":"TimeInMilliSeconds"},
+        "endTimeoutMs":{"shape":"TimeInMilliSeconds"}
+      }
     },
     "Boolean":{"type":"boolean"},
     "BotAliasHistoryEvent":{
@@ -2388,6 +2419,25 @@
         "Importing",
         "Creating"
       ]
+    },
+    "DTMFCharacter":{
+      "type":"string",
+      "pattern":"^[A-D0-9#*]{1}$"
+    },
+    "DTMFSpecification":{
+      "type":"structure",
+      "required":[
+        "maxLength",
+        "endTimeoutMs",
+        "deletionCharacter",
+        "endCharacter"
+      ],
+      "members":{
+        "maxLength":{"shape":"MaxUtteranceDigits"},
+        "endTimeoutMs":{"shape":"TimeInMilliSeconds"},
+        "deletionCharacter":{"shape":"DTMFCharacter"},
+        "endCharacter":{"shape":"DTMFCharacter"}
+      }
     },
     "DataPrivacy":{
       "type":"structure",
@@ -4266,6 +4316,11 @@
       "max":1000,
       "min":1
     },
+    "MaxUtteranceDigits":{
+      "type":"integer",
+      "max":1024,
+      "min":1
+    },
     "MergeStrategy":{
       "type":"string",
       "enum":[
@@ -4479,6 +4534,32 @@
       "max":100,
       "min":0
     },
+    "PromptAttempt":{
+      "type":"string",
+      "enum":[
+        "Initial",
+        "Retry1",
+        "Retry2",
+        "Retry3",
+        "Retry4",
+        "Retry5"
+      ]
+    },
+    "PromptAttemptSpecification":{
+      "type":"structure",
+      "required":["allowedInputTypes"],
+      "members":{
+        "allowInterrupt":{"shape":"BoxedBoolean"},
+        "allowedInputTypes":{"shape":"AllowedInputTypes"},
+        "audioAndDTMFInputSpecification":{"shape":"AudioAndDTMFInputSpecification"},
+        "textInputSpecification":{"shape":"TextInputSpecification"}
+      }
+    },
+    "PromptAttemptsSpecificationMap":{
+      "type":"map",
+      "key":{"shape":"PromptAttempt"},
+      "value":{"shape":"PromptAttemptSpecification"}
+    },
     "PromptMaxRetries":{
       "type":"integer",
       "max":5,
@@ -4494,7 +4575,8 @@
         "messageGroups":{"shape":"MessageGroupsList"},
         "maxRetries":{"shape":"PromptMaxRetries"},
         "allowInterrupt":{"shape":"BoxedBoolean"},
-        "messageSelectionStrategy":{"shape":"MessageSelectionStrategy"}
+        "messageSelectionStrategy":{"shape":"MessageSelectionStrategy"},
+        "promptAttemptsSpecification":{"shape":"PromptAttemptsSpecificationMap"}
       }
     },
     "QueryFilterString":{
@@ -5171,7 +5253,7 @@
       "type":"string",
       "max":640,
       "min":0,
-      "pattern":"[0-9A-Za-z_\\s\\(\\)]+"
+      "pattern":"[0-9A-Za-z_\\-\\s\\(\\)]+"
     },
     "SubSlotSetting":{
       "type":"structure",
@@ -5263,6 +5345,13 @@
       "max":256,
       "min":0
     },
+    "TextInputSpecification":{
+      "type":"structure",
+      "required":["startTimeoutMs"],
+      "members":{
+        "startTimeoutMs":{"shape":"TimeInMilliSeconds"}
+      }
+    },
     "TextLogDestination":{
       "type":"structure",
       "required":["cloudWatch"],
@@ -5307,6 +5396,10 @@
         "Days",
         "Weeks"
       ]
+    },
+    "TimeInMilliSeconds":{
+      "type":"integer",
+      "min":1
     },
     "TimeValue":{
       "type":"integer",

@@ -1,3 +1,18 @@
+Release v1.44.105 (2022-09-23)
+===
+
+### Service Client Updates
+* `service/apprunner`: Updates service API
+* `service/ec2`: Updates service API and documentation
+  * Letting external AWS customers provide ImageId as a Launch Template override in FleetLaunchTemplateOverridesRequest
+* `service/lightsail`: Updates service API and documentation
+  * This release adds Instance Metadata Service (IMDS) support for Lightsail instances.
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/nimble`: Updates service API, documentation, and waiters
+* `service/ssm`: Updates service API
+  * This release adds new SSM document types ConformancePackTemplate and CloudFormation
+* `service/wafv2`: Updates service documentation
+
 Release v1.44.104 (2022-09-22)
 ===
 

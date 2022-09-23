@@ -664,6 +664,10 @@ type LightsailAPI interface {
 	UpdateDomainEntryWithContext(aws.Context, *lightsail.UpdateDomainEntryInput, ...request.Option) (*lightsail.UpdateDomainEntryOutput, error)
 	UpdateDomainEntryRequest(*lightsail.UpdateDomainEntryInput) (*request.Request, *lightsail.UpdateDomainEntryOutput)
 
+	UpdateInstanceMetadataOptions(*lightsail.UpdateInstanceMetadataOptionsInput) (*lightsail.UpdateInstanceMetadataOptionsOutput, error)
+	UpdateInstanceMetadataOptionsWithContext(aws.Context, *lightsail.UpdateInstanceMetadataOptionsInput, ...request.Option) (*lightsail.UpdateInstanceMetadataOptionsOutput, error)
+	UpdateInstanceMetadataOptionsRequest(*lightsail.UpdateInstanceMetadataOptionsInput) (*request.Request, *lightsail.UpdateInstanceMetadataOptionsOutput)
+
 	UpdateLoadBalancerAttribute(*lightsail.UpdateLoadBalancerAttributeInput) (*lightsail.UpdateLoadBalancerAttributeOutput, error)
 	UpdateLoadBalancerAttributeWithContext(aws.Context, *lightsail.UpdateLoadBalancerAttributeInput, ...request.Option) (*lightsail.UpdateLoadBalancerAttributeOutput, error)
 	UpdateLoadBalancerAttributeRequest(*lightsail.UpdateLoadBalancerAttributeInput) (*request.Request, *lightsail.UpdateLoadBalancerAttributeOutput)
