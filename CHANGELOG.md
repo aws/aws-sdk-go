@@ -1,3 +1,13 @@
+Release v1.44.106 (2022-09-26)
+===
+
+### Service Client Updates
+* `service/cur`: Updates service API
+  * This release adds two new support regions(me-central-1/eu-south-2) for OSG.
+* `service/iotfleetwise`: Adds new service
+* `service/ssm`: Updates service API and documentation
+  * This release includes support for applying a CloudWatch alarm to Systems Manager capabilities like Automation, Run Command, State Manager, and Maintenance Windows.
+
 Release v1.44.105 (2022-09-23)
 ===
 

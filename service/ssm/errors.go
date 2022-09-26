@@ -514,7 +514,7 @@ const (
 	// ErrCodeInvalidTag for service response error code
 	// "InvalidTag".
 	//
-	// The specified tag key or value is not valid.
+	// The tag key or value isn't valid.
 	ErrCodeInvalidTag = "InvalidTag"
 
 	// ErrCodeInvalidTarget for service response error code

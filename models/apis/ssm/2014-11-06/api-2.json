@@ -2084,6 +2084,50 @@
       "max":10
     },
     "AggregatorSchemaOnly":{"type":"boolean"},
+    "Alarm":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"AlarmName"}
+      }
+    },
+    "AlarmConfiguration":{
+      "type":"structure",
+      "required":["Alarms"],
+      "members":{
+        "IgnorePollAlarmFailure":{"shape":"Boolean"},
+        "Alarms":{"shape":"AlarmList"}
+      }
+    },
+    "AlarmList":{
+      "type":"list",
+      "member":{"shape":"Alarm"},
+      "max":1,
+      "min":1
+    },
+    "AlarmName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^(?!\\s*$).+"
+    },
+    "AlarmStateInformation":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "State"
+      ],
+      "members":{
+        "Name":{"shape":"AlarmName"},
+        "State":{"shape":"ExternalAlarmState"}
+      }
+    },
+    "AlarmStateInformationList":{
+      "type":"list",
+      "member":{"shape":"AlarmStateInformation"},
+      "max":1,
+      "min":1
+    },
     "AllowedPattern":{
       "type":"string",
       "max":1024,
@@ -2202,7 +2246,9 @@
         "TargetMaps":{
           "shape":"TargetMaps",
           "box":true
-        }
+        },
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"},
+        "TriggeredAlarms":{"shape":"AlarmStateInformationList"}
       }
     },
     "AssociationDescriptionList":{
@@ -2226,7 +2272,9 @@
         "DetailedStatus":{"shape":"StatusName"},
         "CreatedTime":{"shape":"DateTime"},
         "LastExecutionDate":{"shape":"DateTime"},
-        "ResourceCountByStatus":{"shape":"ResourceCountByStatus"}
+        "ResourceCountByStatus":{"shape":"ResourceCountByStatus"},
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"},
+        "TriggeredAlarms":{"shape":"AlarmStateInformationList"}
       }
     },
     "AssociationExecutionDoesNotExist":{
@@ -2623,6 +2671,8 @@
           "box":true
         },
         "ProgressCounters":{"shape":"ProgressCounters"},
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"},
+        "TriggeredAlarms":{"shape":"AlarmStateInformationList"},
         "AutomationSubtype":{"shape":"AutomationSubtype"},
         "ScheduledTime":{"shape":"DateTime"},
         "Runbooks":{"shape":"Runbooks"},
@@ -2713,6 +2763,8 @@
         "MaxErrors":{"shape":"MaxErrors"},
         "Target":{"shape":"String"},
         "AutomationType":{"shape":"AutomationType"},
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"},
+        "TriggeredAlarms":{"shape":"AlarmStateInformationList"},
         "AutomationSubtype":{"shape":"AutomationSubtype"},
         "ScheduledTime":{"shape":"DateTime"},
         "Runbooks":{"shape":"Runbooks"},
@@ -2942,7 +2994,9 @@
         "ServiceRole":{"shape":"ServiceRole"},
         "NotificationConfig":{"shape":"NotificationConfig"},
         "CloudWatchOutputConfig":{"shape":"CloudWatchOutputConfig"},
-        "TimeoutSeconds":{"shape":"TimeoutSeconds"}
+        "TimeoutSeconds":{"shape":"TimeoutSeconds"},
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"},
+        "TriggeredAlarms":{"shape":"AlarmStateInformationList"}
       }
     },
     "CommandFilter":{
@@ -3342,7 +3396,8 @@
         "TargetMaps":{
           "shape":"TargetMaps",
           "box":true
-        }
+        },
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"}
       }
     },
     "CreateAssociationBatchResult":{
@@ -3383,7 +3438,8 @@
         "Tags":{
           "shape":"TagList",
           "box":true
-        }
+        },
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"}
       }
     },
     "CreateAssociationResult":{
@@ -4881,6 +4937,13 @@
       "pattern":"[\\w+=,.@/-]+"
     },
     "ExpirationDate":{"type":"timestamp"},
+    "ExternalAlarmState":{
+      "type":"string",
+      "enum":[
+        "UNKNOWN",
+        "ALARM"
+      ]
+    },
     "FailedCreateAssociation":{
       "type":"structure",
       "members":{
@@ -5177,7 +5240,9 @@
         "Status":{"shape":"MaintenanceWindowExecutionStatus"},
         "StatusDetails":{"shape":"MaintenanceWindowExecutionStatusDetails"},
         "StartTime":{"shape":"DateTime"},
-        "EndTime":{"shape":"DateTime"}
+        "EndTime":{"shape":"DateTime"},
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"},
+        "TriggeredAlarms":{"shape":"AlarmStateInformationList"}
       }
     },
     "GetMaintenanceWindowRequest":{
@@ -5241,7 +5306,8 @@
         "CutoffBehavior":{
           "shape":"MaintenanceWindowTaskCutoffBehavior",
           "box":true
-        }
+        },
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"}
       }
     },
     "GetOpsItemRequest":{
@@ -6883,7 +6949,9 @@
         "StartTime":{"shape":"DateTime"},
         "EndTime":{"shape":"DateTime"},
         "TaskArn":{"shape":"MaintenanceWindowTaskArn"},
-        "TaskType":{"shape":"MaintenanceWindowTaskType"}
+        "TaskType":{"shape":"MaintenanceWindowTaskType"},
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"},
+        "TriggeredAlarms":{"shape":"AlarmStateInformationList"}
       }
     },
     "MaintenanceWindowExecutionTaskIdentityList":{
@@ -7118,7 +7186,8 @@
         "CutoffBehavior":{
           "shape":"MaintenanceWindowTaskCutoffBehavior",
           "box":true
-        }
+        },
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"}
       }
     },
     "MaintenanceWindowTaskArn":{
@@ -8932,7 +9001,8 @@
         "CutoffBehavior":{
           "shape":"MaintenanceWindowTaskCutoffBehavior",
           "box":true
-        }
+        },
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"}
       }
     },
     "RegisterTaskWithMaintenanceWindowResult":{
@@ -9454,7 +9524,8 @@
         "MaxErrors":{"shape":"MaxErrors"},
         "ServiceRoleArn":{"shape":"ServiceRole"},
         "NotificationConfig":{"shape":"NotificationConfig"},
-        "CloudWatchOutputConfig":{"shape":"CloudWatchOutputConfig"}
+        "CloudWatchOutputConfig":{"shape":"CloudWatchOutputConfig"},
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"}
       }
     },
     "SendCommandResult":{
@@ -9718,7 +9789,8 @@
           "shape":"TargetLocations",
           "box":true
         },
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"}
       }
     },
     "StartAutomationExecutionResult":{
@@ -10204,7 +10276,8 @@
         "TargetMaps":{
           "shape":"TargetMaps",
           "box":true
-        }
+        },
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"}
       }
     },
     "UpdateAssociationResult":{
@@ -10406,7 +10479,8 @@
         "CutoffBehavior":{
           "shape":"MaintenanceWindowTaskCutoffBehavior",
           "box":true
-        }
+        },
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"}
       }
     },
     "UpdateMaintenanceWindowTaskResult":{
@@ -10428,7 +10502,8 @@
         "CutoffBehavior":{
           "shape":"MaintenanceWindowTaskCutoffBehavior",
           "box":true
-        }
+        },
+        "AlarmConfiguration":{"shape":"AlarmConfiguration"}
       }
     },
     "UpdateManagedInstanceRoleRequest":{
