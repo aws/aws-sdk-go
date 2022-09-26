@@ -7261,6 +7261,12 @@
           }
         }
       },
+      "iotfleetwise" : {
+        "endpoints" : {
+          "eu-central-1" : { },
+          "us-east-1" : { }
+        }
+      },
       "iotsecuredtunneling" : {
         "defaults" : {
           "variants" : [ {

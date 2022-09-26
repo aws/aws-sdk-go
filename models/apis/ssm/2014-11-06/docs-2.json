@@ -234,6 +234,65 @@
         "GetInventorySchemaRequest$Aggregator": "<p>Returns inventory schemas that support aggregation. For example, this call returns the <code>AWS:InstanceInformation</code> type, because it supports aggregation based on the <code>PlatformName</code>, <code>PlatformType</code>, and <code>PlatformVersion</code> attributes.</p>"
       }
     },
+    "Alarm": {
+      "base": "<p>A CloudWatch alarm you apply to an automation or command.</p>",
+      "refs": {
+        "AlarmList$member": null
+      }
+    },
+    "AlarmConfiguration": {
+      "base": "<p>The details for the CloudWatch alarm you want to apply to an automation or command.</p>",
+      "refs": {
+        "AssociationDescription$AlarmConfiguration": null,
+        "AssociationExecution$AlarmConfiguration": null,
+        "AutomationExecution$AlarmConfiguration": "<p>The details for the CloudWatch alarm applied to your automation.</p>",
+        "AutomationExecutionMetadata$AlarmConfiguration": "<p>The details for the CloudWatch alarm applied to your automation.</p>",
+        "Command$AlarmConfiguration": "<p>The details for the CloudWatch alarm applied to your command.</p>",
+        "CreateAssociationBatchRequestEntry$AlarmConfiguration": null,
+        "CreateAssociationRequest$AlarmConfiguration": null,
+        "GetMaintenanceWindowExecutionTaskResult$AlarmConfiguration": "<p>The details for the CloudWatch alarm you applied to your maintenance window task.</p>",
+        "GetMaintenanceWindowTaskResult$AlarmConfiguration": "<p>The details for the CloudWatch alarm you applied to your maintenance window task.</p>",
+        "MaintenanceWindowExecutionTaskIdentity$AlarmConfiguration": "<p>The details for the CloudWatch alarm applied to your maintenance window task.</p>",
+        "MaintenanceWindowTask$AlarmConfiguration": "<p>The details for the CloudWatch alarm applied to your maintenance window task.</p>",
+        "RegisterTaskWithMaintenanceWindowRequest$AlarmConfiguration": "<p>The CloudWatch alarm you want to apply to your maintenance window task.</p>",
+        "SendCommandRequest$AlarmConfiguration": "<p>The CloudWatch alarm you want to apply to your command.</p>",
+        "StartAutomationExecutionRequest$AlarmConfiguration": "<p>The CloudWatch alarm you want to apply to your automation.</p>",
+        "UpdateAssociationRequest$AlarmConfiguration": null,
+        "UpdateMaintenanceWindowTaskRequest$AlarmConfiguration": "<p>The CloudWatch alarm you want to apply to your maintenance window task.</p>",
+        "UpdateMaintenanceWindowTaskResult$AlarmConfiguration": "<p>The details for the CloudWatch alarm you applied to your maintenance window task.</p>"
+      }
+    },
+    "AlarmList": {
+      "base": null,
+      "refs": {
+        "AlarmConfiguration$Alarms": "<p>The name of the CloudWatch alarm specified in the configuration.</p>"
+      }
+    },
+    "AlarmName": {
+      "base": null,
+      "refs": {
+        "Alarm$Name": "<p>The name of your CloudWatch alarm.</p>",
+        "AlarmStateInformation$Name": "<p>The name of your CloudWatch alarm.</p>"
+      }
+    },
+    "AlarmStateInformation": {
+      "base": "<p>The details about the state of your CloudWatch alarm.</p>",
+      "refs": {
+        "AlarmStateInformationList$member": null
+      }
+    },
+    "AlarmStateInformationList": {
+      "base": null,
+      "refs": {
+        "AssociationDescription$TriggeredAlarms": "<p>The CloudWatch alarm that was invoked during the association.</p>",
+        "AssociationExecution$TriggeredAlarms": "<p>The CloudWatch alarms that were invoked by the association.</p>",
+        "AutomationExecution$TriggeredAlarms": "<p>The CloudWatch alarm that was invoked by the automation.</p>",
+        "AutomationExecutionMetadata$TriggeredAlarms": "<p>The CloudWatch alarm that was invoked by the automation.</p>",
+        "Command$TriggeredAlarms": "<p>The CloudWatch alarm that was invoked by the command.</p>",
+        "GetMaintenanceWindowExecutionTaskResult$TriggeredAlarms": "<p>The CloudWatch alarms that were invoked by the maintenance window task.</p>",
+        "MaintenanceWindowExecutionTaskIdentity$TriggeredAlarms": "<p>The CloudWatch alarm that was invoked by the maintenance window task.</p>"
+      }
+    },
     "AllowedPattern": {
       "base": null,
       "refs": {
@@ -894,6 +953,7 @@
       "base": null,
       "refs": {
         "Activation$Expired": "<p>Whether or not the activation is expired.</p>",
+        "AlarmConfiguration$IgnorePollAlarmFailure": "<p>If you specify <code>true</code> for this value, your automation or command continue to run even if we can't gather information about the state of your CloudWatch alarm. The default value is <code>false</code>.</p>",
         "AutomationExecution$StepExecutionsTruncated": "<p>A boolean value that indicates if the response contains the full list of the Automation step executions. If true, use the DescribeAutomationStepExecutions API operation to get the full list of step executions.</p>",
         "BaselineOverride$ApprovedPatchesEnableNonSecurity": "<p>Indicates whether the list of approved patches includes non-security updates that should be applied to the managed nodes. The default value is <code>false</code>. Applies to Linux managed nodes only.</p>",
         "CreatePatchBaselineRequest$ApprovedPatchesEnableNonSecurity": "<p>Indicates whether the list of approved patches includes non-security updates that should be applied to the managed nodes. The default value is <code>false</code>. Applies to Linux managed nodes only.</p>",
@@ -2629,6 +2689,12 @@
         "CreateActivationRequest$ExpirationDate": "<p>The date by which this activation request should expire, in timestamp format, such as \"2021-07-07T00:00:00\". You can specify a date up to 30 days in advance. If you don't provide an expiration date, the activation code expires in 24 hours.</p>"
       }
     },
+    "ExternalAlarmState": {
+      "base": null,
+      "refs": {
+        "AlarmStateInformation$State": "<p>The state of your CloudWatch alarm.</p>"
+      }
+    },
     "FailedCreateAssociation": {
       "base": "<p>Describes a failed association.</p>",
       "refs": {
@@ -3453,7 +3519,7 @@
       }
     },
     "InvalidTag": {
-      "base": "<p>The specified tag key or value is not valid.</p>",
+      "base": "<p>The tag key or value isn't valid.</p>",
       "refs": {
       }
     },
@@ -7637,7 +7703,7 @@
         "Activation$Tags": "<p>Tags assigned to the activation.</p>",
         "AddTagsToResourceRequest$Tags": "<p>One or more tags. The value parameter is required.</p> <important> <p>Don't enter personally identifiable information in this field.</p> </important>",
         "CreateActivationRequest$Tags": "<p>Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag an activation to identify which servers or virtual machines (VMs) in your on-premises environment you intend to activate. In this case, you could specify the following key-value pairs:</p> <ul> <li> <p> <code>Key=OS,Value=Windows</code> </p> </li> <li> <p> <code>Key=Environment,Value=Production</code> </p> </li> </ul> <important> <p>When you install SSM Agent on your on-premises servers and VMs, you specify an activation ID and code. When you specify the activation ID and code, tags assigned to the activation are automatically applied to the on-premises servers or VMs.</p> </important> <p>You can't add tags to or delete tags from an existing activation. You can tag your on-premises servers, edge devices, and VMs after they connect to Systems Manager for the first time and are assigned a managed node ID. This means they are listed in the Amazon Web Services Systems Manager console with an ID that is prefixed with \"mi-\". For information about how to add tags to your managed nodes, see <a>AddTagsToResource</a>. For information about how to remove tags from your managed nodes, see <a>RemoveTagsFromResource</a>.</p>",
-        "CreateAssociationRequest$Tags": "<p>Adds or overwrites one or more tags for a State Manager association. <i>Tags</i> are metadata that you can assign to your Amazon Web Services resources. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment. Each tag consists of a key and an optional value, both of which you define. </p>",
+        "CreateAssociationRequest$Tags": "<p>Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag an association to identify the type of resource to which it applies, the environment, or the purpose of the association.</p>",
         "CreateDocumentRequest$Tags": "<p>Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag an SSM document to identify the types of targets or the environment where it will run. In this case, you could specify the following key-value pairs:</p> <ul> <li> <p> <code>Key=OS,Value=Windows</code> </p> </li> <li> <p> <code>Key=Environment,Value=Production</code> </p> </li> </ul> <note> <p>To add tags to an existing SSM document, use the <a>AddTagsToResource</a> operation.</p> </note>",
         "CreateMaintenanceWindowRequest$Tags": "<p>Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag a maintenance window to identify the type of tasks it will run, the types of targets, and the environment it will run in. In this case, you could specify the following key-value pairs:</p> <ul> <li> <p> <code>Key=TaskType,Value=AgentUpdate</code> </p> </li> <li> <p> <code>Key=OS,Value=Windows</code> </p> </li> <li> <p> <code>Key=Environment,Value=Production</code> </p> </li> </ul> <note> <p>To add tags to an existing maintenance window, use the <a>AddTagsToResource</a> operation.</p> </note>",
         "CreateOpsItemRequest$Tags": "<p>Optional metadata that you assign to a resource. You can restrict access to OpsItems by using an inline IAM policy that specifies tags. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-getting-started.html#OpsCenter-getting-started-user-permissions\">Getting started with OpsCenter</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p> <p>Tags use a key-value pair. For example:</p> <p> <code>Key=Department,Value=Finance</code> </p> <important> <p>To add tags to a new OpsItem, a user must have IAM permissions for both the <code>ssm:CreateOpsItems</code> operation and the <code>ssm:AddTagsToResource</code> operation. To add tags to an existing OpsItem, use the <a>AddTagsToResource</a> operation.</p> </important>",
