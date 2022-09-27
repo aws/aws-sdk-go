@@ -974,6 +974,7 @@
       ],
       "members":{
         "Name":{"shape":"CostCategoryName"},
+        "EffectiveStart":{"shape":"ZonedDateTime"},
         "RuleVersion":{"shape":"CostCategoryRuleVersion"},
         "Rules":{"shape":"CostCategoryRulesList"},
         "DefaultValue":{"shape":"CostCategoryValue"},
@@ -2754,6 +2755,7 @@
       ],
       "members":{
         "CostCategoryArn":{"shape":"Arn"},
+        "EffectiveStart":{"shape":"ZonedDateTime"},
         "RuleVersion":{"shape":"CostCategoryRuleVersion"},
         "Rules":{"shape":"CostCategoryRulesList"},
         "DefaultValue":{"shape":"CostCategoryValue"},

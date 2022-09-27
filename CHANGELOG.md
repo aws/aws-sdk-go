@@ -1,3 +1,12 @@
+Release v1.44.107 (2022-09-27)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/kendra`: Updates service documentation
+  * My AWS Service (placeholder) - Amazon Kendra now provides a data source connector for DropBox. For more information, see https://docs.aws.amazon.com/kendra/latest/dg/data-source-dropbox.html
+* `service/location`: Updates service API and documentation
+
 Release v1.44.106 (2022-09-26)
 ===
 

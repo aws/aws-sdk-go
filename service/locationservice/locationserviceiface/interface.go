@@ -191,6 +191,10 @@ type LocationServiceAPI interface {
 	GetMapTileWithContext(aws.Context, *locationservice.GetMapTileInput, ...request.Option) (*locationservice.GetMapTileOutput, error)
 	GetMapTileRequest(*locationservice.GetMapTileInput) (*request.Request, *locationservice.GetMapTileOutput)
 
+	GetPlace(*locationservice.GetPlaceInput) (*locationservice.GetPlaceOutput, error)
+	GetPlaceWithContext(aws.Context, *locationservice.GetPlaceInput, ...request.Option) (*locationservice.GetPlaceOutput, error)
+	GetPlaceRequest(*locationservice.GetPlaceInput) (*request.Request, *locationservice.GetPlaceOutput)
+
 	ListDevicePositions(*locationservice.ListDevicePositionsInput) (*locationservice.ListDevicePositionsOutput, error)
 	ListDevicePositionsWithContext(aws.Context, *locationservice.ListDevicePositionsInput, ...request.Option) (*locationservice.ListDevicePositionsOutput, error)
 	ListDevicePositionsRequest(*locationservice.ListDevicePositionsInput) (*request.Request, *locationservice.ListDevicePositionsOutput)
