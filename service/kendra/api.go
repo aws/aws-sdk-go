@@ -56,7 +56,7 @@ func (c *Kendra) AssociateEntitiesToExperienceRequest(input *AssociateEntitiesTo
 
 // AssociateEntitiesToExperience API operation for AWSKendraFrontendService.
 //
-// Grants users or groups in your Amazon Web Services SSO identity source access
+// Grants users or groups in your IAM Identity Center identity source access
 // to your Amazon Kendra experience. You can create an Amazon Kendra experience
 // such as a search application. For more information on creating a search application
 // experience, see Building a search experience with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
@@ -147,11 +147,11 @@ func (c *Kendra) AssociatePersonasToEntitiesRequest(input *AssociatePersonasToEn
 
 // AssociatePersonasToEntities API operation for AWSKendraFrontendService.
 //
-// Defines the specific permissions of users or groups in your Amazon Web Services
-// SSO identity source with access to your Amazon Kendra experience. You can
-// create an Amazon Kendra experience such as a search application. For more
-// information on creating a search application experience, see Building a search
-// experience with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+// Defines the specific permissions of users or groups in your IAM Identity
+// Center identity source with access to your Amazon Kendra experience. You
+// can create an Amazon Kendra experience such as a search application. For
+// more information on creating a search application experience, see Building
+// a search experience with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2881,8 +2881,8 @@ func (c *Kendra) DisassociateEntitiesFromExperienceRequest(input *DisassociateEn
 
 // DisassociateEntitiesFromExperience API operation for AWSKendraFrontendService.
 //
-// Prevents users or groups in your Amazon Web Services SSO identity source
-// from accessing your Amazon Kendra experience. You can create an Amazon Kendra
+// Prevents users or groups in your IAM Identity Center identity source from
+// accessing your Amazon Kendra experience. You can create an Amazon Kendra
 // experience such as a search application. For more information on creating
 // a search application experience, see Building a search experience with no
 // code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
@@ -2971,11 +2971,11 @@ func (c *Kendra) DisassociatePersonasFromEntitiesRequest(input *DisassociatePers
 
 // DisassociatePersonasFromEntities API operation for AWSKendraFrontendService.
 //
-// Removes the specific permissions of users or groups in your Amazon Web Services
-// SSO identity source with access to your Amazon Kendra experience. You can
-// create an Amazon Kendra experience such as a search application. For more
-// information on creating a search application experience, see Building a search
-// experience with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+// Removes the specific permissions of users or groups in your IAM Identity
+// Center identity source with access to your Amazon Kendra experience. You
+// can create an Amazon Kendra experience such as a search application. For
+// more information on creating a search application experience, see Building
+// a search experience with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3881,8 +3881,8 @@ func (c *Kendra) ListExperienceEntitiesRequest(input *ListExperienceEntitiesInpu
 
 // ListExperienceEntities API operation for AWSKendraFrontendService.
 //
-// Lists users or groups in your Amazon Web Services SSO identity source that
-// are granted access to your Amazon Kendra experience. You can create an Amazon
+// Lists users or groups in your IAM Identity Center identity source that are
+// granted access to your Amazon Kendra experience. You can create an Amazon
 // Kendra experience such as a search application. For more information on creating
 // a search application experience, see Building a search experience with no
 // code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
@@ -6839,7 +6839,7 @@ func (s *AlfrescoConfiguration) SetWikiFieldMappings(v []*DataSourceToIndexField
 type AssociateEntitiesToExperienceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Lists users or groups in your Amazon Web Services SSO identity source.
+	// Lists users or groups in your IAM Identity Center identity source.
 	//
 	// EntityList is a required field
 	EntityList []*EntityConfiguration `min:"1" type:"list" required:"true"`
@@ -6932,8 +6932,8 @@ func (s *AssociateEntitiesToExperienceInput) SetIndexId(v string) *AssociateEnti
 type AssociateEntitiesToExperienceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Lists the users or groups in your Amazon Web Services SSO identity source
-	// that failed to properly configure with your Amazon Kendra experience.
+	// Lists the users or groups in your IAM Identity Center identity source that
+	// failed to properly configure with your Amazon Kendra experience.
 	FailedEntityList []*FailedEntity `min:"1" type:"list"`
 }
 
@@ -6975,8 +6975,8 @@ type AssociatePersonasToEntitiesInput struct {
 	IndexId *string `min:"36" type:"string" required:"true"`
 
 	// The personas that define the specific permissions of users or groups in your
-	// Amazon Web Services SSO identity source. The available personas or access
-	// roles are Owner and Viewer. For more information on these personas, see Providing
+	// IAM Identity Center identity source. The available personas or access roles
+	// are Owner and Viewer. For more information on these personas, see Providing
 	// access to your search page (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html#access-search-experience).
 	//
 	// Personas is a required field
@@ -7060,8 +7060,8 @@ func (s *AssociatePersonasToEntitiesInput) SetPersonas(v []*EntityPersonaConfigu
 type AssociatePersonasToEntitiesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Lists the users or groups in your Amazon Web Services SSO identity source
-	// that failed to properly configure with your Amazon Kendra experience.
+	// Lists the users or groups in your IAM Identity Center identity source that
+	// failed to properly configure with your Amazon Kendra experience.
 	FailedEntityList []*FailedEntity `min:"1" type:"list"`
 }
 
@@ -10195,9 +10195,9 @@ type CreateExperienceInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of a role with permission to access Query
-	// API, QuerySuggestions API, SubmitFeedback API, and Amazon Web Services SSO
-	// that stores your user and group information. For more information, see IAM
-	// roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
+	// API, QuerySuggestions API, SubmitFeedback API, and IAM Identity Center that
+	// stores your user and group information. For more information, see IAM roles
+	// for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
 	RoleArn *string `type:"string"`
 }
 
@@ -10584,8 +10584,8 @@ type CreateIndexInput struct {
 	// to the user will be searchable and displayable.
 	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
 
-	// Enables fetching access levels of groups and users from an Amazon Web Services
-	// Single Sign On identity source. To configure this, see UserGroupResolutionConfiguration
+	// Enables fetching access levels of groups and users from an IAM Identity Center
+	// (successor to Single Sign-On) identity source. To configure this, see UserGroupResolutionConfiguration
 	// (https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html).
 	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
 
@@ -13406,8 +13406,8 @@ type DescribeExperienceOutput struct {
 	Name *string `min:"1" type:"string"`
 
 	// Shows the Amazon Resource Name (ARN) of a role with permission to access
-	// Query API, QuerySuggestions API, SubmitFeedback API, and Amazon Web Services
-	// SSO that stores your user and group information.
+	// Query API, QuerySuggestions API, SubmitFeedback API, and IAM Identity Center
+	// that stores your user and group information.
 	RoleArn *string `type:"string"`
 
 	// The current processing status of your Amazon Kendra experience. When the
@@ -13812,7 +13812,8 @@ type DescribeIndexOutput struct {
 	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
 
 	// Whether you have enabled the configuration for fetching access levels of
-	// groups and users from an Amazon Web Services Single Sign On identity source.
+	// groups and users from an IAM Identity Center (successor to Single Sign-On)
+	// identity source.
 	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
 
 	// The user token configuration for the Amazon Kendra index.
@@ -14685,7 +14686,7 @@ func (s *DescribeThesaurusOutput) SetUpdatedAt(v time.Time) *DescribeThesaurusOu
 type DisassociateEntitiesFromExperienceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Lists users or groups in your Amazon Web Services SSO identity source.
+	// Lists users or groups in your IAM Identity Center identity source.
 	//
 	// EntityList is a required field
 	EntityList []*EntityConfiguration `min:"1" type:"list" required:"true"`
@@ -14778,8 +14779,8 @@ func (s *DisassociateEntitiesFromExperienceInput) SetIndexId(v string) *Disassoc
 type DisassociateEntitiesFromExperienceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Lists the users or groups in your Amazon Web Services SSO identity source
-	// that failed to properly remove access to your Amazon Kendra experience.
+	// Lists the users or groups in your IAM Identity Center identity source that
+	// failed to properly remove access to your Amazon Kendra experience.
 	FailedEntityList []*FailedEntity `min:"1" type:"list"`
 }
 
@@ -14810,8 +14811,8 @@ func (s *DisassociateEntitiesFromExperienceOutput) SetFailedEntityList(v []*Fail
 type DisassociatePersonasFromEntitiesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifiers of users or groups in your Amazon Web Services SSO identity
-	// source. For example, user IDs could be user emails.
+	// The identifiers of users or groups in your IAM Identity Center identity source.
+	// For example, user IDs could be user emails.
 	//
 	// EntityIds is a required field
 	EntityIds []*string `min:"1" type:"list" required:"true"`
@@ -14894,8 +14895,8 @@ func (s *DisassociatePersonasFromEntitiesInput) SetIndexId(v string) *Disassocia
 type DisassociatePersonasFromEntitiesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Lists the users or groups in your Amazon Web Services SSO identity source
-	// that failed to properly remove access to your Amazon Kendra experience.
+	// Lists the users or groups in your IAM Identity Center identity source that
+	// failed to properly remove access to your Amazon Kendra experience.
 	FailedEntityList []*FailedEntity `min:"1" type:"list"`
 }
 
@@ -15808,13 +15809,13 @@ func (s *DocumentsMetadataConfiguration) SetS3Prefix(v string) *DocumentsMetadat
 	return s
 }
 
-// Provides the configuration information for users or groups in your Amazon
-// Web Services SSO identity source to grant access your Amazon Kendra experience.
+// Provides the configuration information for users or groups in your IAM Identity
+// Center identity source to grant access your Amazon Kendra experience.
 type EntityConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of a user or group in your Amazon Web Services SSO identity
-	// source. For example, a user ID could be an email.
+	// The identifier of a user or group in your IAM Identity Center identity source.
+	// For example, a user ID could be an email.
 	//
 	// EntityId is a required field
 	EntityId *string `min:"1" type:"string" required:"true"`
@@ -15962,21 +15963,21 @@ func (s *EntityDisplayData) SetUserName(v string) *EntityDisplayData {
 	return s
 }
 
-// Provides the configuration information for users or groups in your Amazon
-// Web Services SSO identity source for access to your Amazon Kendra experience.
-// Specific permissions are defined for each user or group once they are granted
-// access to your Amazon Kendra experience.
+// Provides the configuration information for users or groups in your IAM Identity
+// Center identity source for access to your Amazon Kendra experience. Specific
+// permissions are defined for each user or group once they are granted access
+// to your Amazon Kendra experience.
 type EntityPersonaConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of a user or group in your Amazon Web Services SSO identity
-	// source. For example, a user ID could be an email.
+	// The identifier of a user or group in your IAM Identity Center identity source.
+	// For example, a user ID could be an email.
 	//
 	// EntityId is a required field
 	EntityId *string `min:"1" type:"string" required:"true"`
 
 	// The persona that defines the specific permissions of the user or group in
-	// your Amazon Web Services SSO identity source. The available personas or access
+	// your IAM Identity Center identity source. The available personas or access
 	// roles are Owner and Viewer. For more information on these personas, see Providing
 	// access to your search page (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html#access-search-experience).
 	//
@@ -16044,7 +16045,7 @@ type ExperienceConfiguration struct {
 	// you want to use for your Amazon Kendra experience.
 	ContentSourceConfiguration *ContentSourceConfiguration `type:"structure"`
 
-	// The Amazon Web Services SSO field name that contains the identifiers of your
+	// The IAM Identity Center field name that contains the identifiers of your
 	// users, such as their emails.
 	UserIdentityConfiguration *UserIdentityConfiguration `type:"structure"`
 }
@@ -16143,7 +16144,7 @@ func (s *ExperienceEndpoint) SetEndpointType(v string) *ExperienceEndpoint {
 	return s
 }
 
-// Summary information for users or groups in your Amazon Web Services SSO identity
+// Summary information for users or groups in your IAM Identity Center identity
 // source with granted access to your Amazon Kendra experience. You can create
 // an Amazon Kendra experience such as a search application. For more information
 // on creating a search application experience, see Building a search experience
@@ -16154,8 +16155,8 @@ type ExperienceEntitiesSummary struct {
 	// Information about the user entity.
 	DisplayData *EntityDisplayData `type:"structure"`
 
-	// The identifier of a user or group in your Amazon Web Services SSO identity
-	// source. For example, a user ID could be an email.
+	// The identifier of a user or group in your IAM Identity Center identity source.
+	// For example, a user ID could be an email.
 	EntityId *string `min:"1" type:"string"`
 
 	// Shows the type as User or Group.
@@ -16416,16 +16417,16 @@ func (s *FacetResult) SetDocumentAttributeValueType(v string) *FacetResult {
 	return s
 }
 
-// Information on the users or groups in your Amazon Web Services SSO identity
-// source that failed to properly configure with your Amazon Kendra experience.
+// Information on the users or groups in your IAM Identity Center identity source
+// that failed to properly configure with your Amazon Kendra experience.
 type FailedEntity struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the user or group in your Amazon Web Services SSO identity
+	// The identifier of the user or group in your IAM Identity Center identity
 	// source. For example, a user ID could be an email.
 	EntityId *string `min:"1" type:"string"`
 
-	// The reason the user or group in your Amazon Web Services SSO identity source
+	// The reason the user or group in your IAM Identity Center identity source
 	// failed to properly configure with your Amazon Kendra experience.
 	ErrorMessage *string `min:"1" type:"string"`
 }
@@ -20864,7 +20865,7 @@ func (s *OneDriveUsers) SetOneDriveUserS3Path(v *S3Path) *OneDriveUsers {
 	return s
 }
 
-// Summary information for users or groups in your Amazon Web Services SSO identity
+// Summary information for users or groups in your IAM Identity Center identity
 // source. This applies to users and groups with specific permissions that define
 // their level of access to your Amazon Kendra experience. You can create an
 // Amazon Kendra experience such as a search application. For more information
@@ -20876,12 +20877,12 @@ type PersonasSummary struct {
 	// The date-time the summary information was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
-	// The identifier of a user or group in your Amazon Web Services SSO identity
-	// source. For example, a user ID could be an email.
+	// The identifier of a user or group in your IAM Identity Center identity source.
+	// For example, a user ID could be an email.
 	EntityId *string `min:"1" type:"string"`
 
 	// The persona that defines the specific permissions of the user or group in
-	// your Amazon Web Services SSO identity source. The available personas or access
+	// your IAM Identity Center identity source. The available personas or access
 	// roles are Owner and Viewer. For more information on these personas, see Providing
 	// access to your search page (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html#access-search-experience).
 	Persona *string `type:"string" enum:"Persona"`
@@ -26461,9 +26462,9 @@ type UpdateExperienceInput struct {
 	Name *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of a role with permission to access Query
-	// API, QuerySuggestions API, SubmitFeedback API, and Amazon Web Services SSO
-	// that stores your user and group information. For more information, see IAM
-	// roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
+	// API, QuerySuggestions API, SubmitFeedback API, and IAM Identity Center that
+	// stores your user and group information. For more information, see IAM roles
+	// for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
 	RoleArn *string `type:"string"`
 }
 
@@ -26607,8 +26608,8 @@ type UpdateIndexInput struct {
 	// The user context policy.
 	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
 
-	// Enables fetching access levels of groups and users from an Amazon Web Services
-	// Single Sign On identity source. To configure this, see UserGroupResolutionConfiguration
+	// Enables fetching access levels of groups and users from an IAM Identity Center
+	// (successor to Single Sign-On) identity source. To configure this, see UserGroupResolutionConfiguration
 	// (https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html).
 	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
 
@@ -27385,31 +27386,31 @@ func (s *UserContext) SetUserId(v string) *UserContext {
 }
 
 // Provides the configuration information to fetch access levels of groups and
-// users from an Amazon Web Services Single Sign On identity source. This is
-// useful for user context filtering, where search results are filtered based
-// on the user or their group access to documents. You can also use the PutPrincipalMapping
-// (https://docs.aws.amazon.com/kendra/latest/dg/API_PutPrincipalMapping.html)
+// users from an IAM Identity Center (successor to Single Sign-On) identity
+// source. This is useful for user context filtering, where search results are
+// filtered based on the user or their group access to documents. You can also
+// use the PutPrincipalMapping (https://docs.aws.amazon.com/kendra/latest/dg/API_PutPrincipalMapping.html)
 // API to map users to their groups so that you only need to provide the user
 // ID when you issue the query.
 //
-// To set up an Amazon Web Services SSO identity source in the console to use
-// with Amazon Kendra, see Getting started with an Amazon Web Services SSO identity
-// source (https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html).
-// You must also grant the required permissions to use Amazon Web Services SSO
-// with Amazon Kendra. For more information, see IAM roles for Amazon Web Services
-// SSO (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-aws-sso).
+// To set up an IAM Identity Center identity source in the console to use with
+// Amazon Kendra, see Getting started with an IAM Identity Center identity source
+// (https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html).
+// You must also grant the required permissions to use IAM Identity Center with
+// Amazon Kendra. For more information, see IAM roles for IAM Identity Center
+// (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-aws-sso).
 //
 // Amazon Kendra currently does not support using UserGroupResolutionConfiguration
-// with an Amazon Web Services organization member account for your Amazon Web
-// Services SSO identify source. You must create your index in the management
-// account for the organization in order to use UserGroupResolutionConfiguration.
+// with an Amazon Web Services organization member account for your IAM Identity
+// Center identify source. You must create your index in the management account
+// for the organization in order to use UserGroupResolutionConfiguration.
 type UserGroupResolutionConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The identity store provider (mode) you want to use to fetch access levels
-	// of groups and users. Amazon Web Services Single Sign On is currently the
-	// only available mode. Your users and groups must exist in an Amazon Web Services
-	// SSO identity source in order to use this mode.
+	// of groups and users. IAM Identity Center (successor to Single Sign-On) is
+	// currently the only available mode. Your users and groups must exist in an
+	// IAM Identity Center identity source in order to use this mode.
 	//
 	// UserGroupResolutionMode is a required field
 	UserGroupResolutionMode *string `type:"string" required:"true" enum:"UserGroupResolutionMode"`
@@ -27456,13 +27457,13 @@ func (s *UserGroupResolutionConfiguration) SetUserGroupResolutionMode(v string) 
 type UserIdentityConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services SSO field name that contains the identifiers of your
+	// The IAM Identity Center field name that contains the identifiers of your
 	// users, such as their emails. This is used for user context filtering (https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html)
 	// and for granting access to your Amazon Kendra experience. You must set up
-	// Amazon Web Services SSO with Amazon Kendra. You must include your users and
-	// groups in your Access Control List when you ingest documents into your index.
-	// For more information, see Getting started with an Amazon Web Services SSO
-	// identity source (https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html).
+	// IAM Identity Center with Amazon Kendra. You must include your users and groups
+	// in your Access Control List when you ingest documents into your index. For
+	// more information, see Getting started with an IAM Identity Center identity
+	// source (https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html).
 	IdentityAttributeName *string `min:"1" type:"string"`
 }
 

@@ -4054,10 +4054,10 @@ type CostCategory struct {
 	// The default value for the cost category.
 	DefaultValue *string `min:"1" type:"string"`
 
-	// The effective end data of your Cost Category.
+	// The effective end date of your Cost Category.
 	EffectiveEnd *string `min:"20" type:"string"`
 
-	// The effective state data of your Cost Category.
+	// The effective start date of your Cost Category.
 	//
 	// EffectiveStart is a required field
 	EffectiveStart *string `min:"20" type:"string" required:"true"`
@@ -5223,6 +5223,12 @@ type CreateCostCategoryDefinitionInput struct {
 	// The default value for the cost category.
 	DefaultValue *string `min:"1" type:"string"`
 
+	// The Cost Category's effective start date. It can only be a billing start
+	// date (first day of the month). If the date isn't provided, it's the first
+	// day of the current month. Dates can't be before the previous twelve months,
+	// or in the future.
+	EffectiveStart *string `min:"20" type:"string"`
+
 	// The unique name of the Cost Category.
 	//
 	// Name is a required field
@@ -5294,6 +5300,9 @@ func (s *CreateCostCategoryDefinitionInput) Validate() error {
 	if s.DefaultValue != nil && len(*s.DefaultValue) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DefaultValue", 1))
 	}
+	if s.EffectiveStart != nil && len(*s.EffectiveStart) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("EffectiveStart", 20))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -5355,6 +5364,12 @@ func (s *CreateCostCategoryDefinitionInput) SetDefaultValue(v string) *CreateCos
 	return s
 }
 
+// SetEffectiveStart sets the EffectiveStart field's value.
+func (s *CreateCostCategoryDefinitionInput) SetEffectiveStart(v string) *CreateCostCategoryDefinitionInput {
+	s.EffectiveStart = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateCostCategoryDefinitionInput) SetName(v string) *CreateCostCategoryDefinitionInput {
 	s.Name = &v
@@ -5391,7 +5406,8 @@ type CreateCostCategoryDefinitionOutput struct {
 	// The unique identifier for your newly created Cost Category.
 	CostCategoryArn *string `min:"20" type:"string"`
 
-	// The Cost Category's effective start date.
+	// The Cost Category's effective start date. It can only be a billing start
+	// date (first day of the month).
 	EffectiveStart *string `min:"20" type:"string"`
 }
 
@@ -6006,7 +6022,8 @@ type DimensionValues struct {
 	_ struct{} `type:"structure"`
 
 	// The names of the metadata types that you can use to filter and group your
-	// results. For example, AZ returns a list of Availability Zones.
+	// results. For example, AZ returns a list of Availability Zones. LINK_ACCOUNT_NAME
+	// and SERVICE_CODE can only be used in CostCategoryRule (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/AAPI_CostCategoryRule.html).
 	Key *string `type:"string" enum:"Dimension"`
 
 	// The match options that you can use to filter your results. MatchOptions is
@@ -8273,7 +8290,8 @@ type GetDimensionValuesInput struct {
 	Context *string `type:"string" enum:"Context"`
 
 	// The name of the dimension. Each Dimension is available for a different Context.
-	// For more information, see Context.
+	// For more information, see Context. LINK_ACCOUNT_NAME and SERVICE_CODE can
+	// only be used in CostCategoryRule (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/AAPI_CostCategoryRule.html).
 	//
 	// Dimension is a required field
 	Dimension *string `type:"string" required:"true" enum:"Dimension"`
@@ -8516,6 +8534,8 @@ type GetDimensionValuesOutput struct {
 	//
 	//    * RESOURCE_ID - The unique identifier of the resource. ResourceId is an
 	//    opt-in feature only available for last 14 days for EC2-Compute Service.
+	//    You can opt-in by enabling Hourly and Resource Level Data in Cost Management
+	//    Console preferences.
 	//
 	// If you set the context to RESERVATIONS, you can use the following dimensions
 	// for searching:
@@ -14536,7 +14556,7 @@ func (s TagResourceOutput) GoString() string {
 // If Values and Key aren't specified, the ABSENT MatchOption is applied to
 // all tags. That is, it's filtered on resources with no tags.
 //
-// If Values is provided and Key isn't specified, the ABSENT MatchOption is
+// If Key is provided and Values isn't specified, the ABSENT MatchOption is
 // applied to the tag Key only. That is, it's filtered on resources without
 // the given tag key.
 type TagValues struct {
@@ -15518,6 +15538,12 @@ type UpdateCostCategoryDefinitionInput struct {
 	// The default value for the cost category.
 	DefaultValue *string `min:"1" type:"string"`
 
+	// The Cost Category's effective start date. It can only be a billing start
+	// date (first day of the month). If the date isn't provided, it's the first
+	// day of the current month. Dates can't be before the previous twelve months,
+	// or in the future.
+	EffectiveStart *string `min:"20" type:"string"`
+
 	// The rule schema version in this particular Cost Category.
 	//
 	// RuleVersion is a required field
@@ -15563,6 +15589,9 @@ func (s *UpdateCostCategoryDefinitionInput) Validate() error {
 	}
 	if s.DefaultValue != nil && len(*s.DefaultValue) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DefaultValue", 1))
+	}
+	if s.EffectiveStart != nil && len(*s.EffectiveStart) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("EffectiveStart", 20))
 	}
 	if s.RuleVersion == nil {
 		invalidParams.Add(request.NewErrParamRequired("RuleVersion"))
@@ -15615,6 +15644,12 @@ func (s *UpdateCostCategoryDefinitionInput) SetDefaultValue(v string) *UpdateCos
 	return s
 }
 
+// SetEffectiveStart sets the EffectiveStart field's value.
+func (s *UpdateCostCategoryDefinitionInput) SetEffectiveStart(v string) *UpdateCostCategoryDefinitionInput {
+	s.EffectiveStart = &v
+	return s
+}
+
 // SetRuleVersion sets the RuleVersion field's value.
 func (s *UpdateCostCategoryDefinitionInput) SetRuleVersion(v string) *UpdateCostCategoryDefinitionInput {
 	s.RuleVersion = &v
@@ -15639,7 +15674,8 @@ type UpdateCostCategoryDefinitionOutput struct {
 	// The unique identifier for your Cost Category.
 	CostCategoryArn *string `min:"20" type:"string"`
 
-	// The Cost Category's effective start date.
+	// The Cost Category's effective start date. It can only be a billing start
+	// date (first day of the month).
 	EffectiveStart *string `min:"20" type:"string"`
 }
 

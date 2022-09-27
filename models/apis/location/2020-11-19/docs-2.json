@@ -34,6 +34,7 @@
     "GetMapSprites": "<p>Retrieves the sprite sheet corresponding to a map resource. The sprite sheet is a PNG image paired with a JSON document describing the offsets of individual icons that will be displayed on a rendered map.</p>",
     "GetMapStyleDescriptor": "<p>Retrieves the map style descriptor from a map resource. </p> <p>The style descriptor contains speciﬁcations on how features render on a map. For example, what data to display, what order to display the data in, and the style for the data. Style descriptors follow the Mapbox Style Specification.</p>",
     "GetMapTile": "<p>Retrieves a vector data tile from the map resource. Map tiles are used by clients to render a map. they're addressed using a grid arrangement with an X coordinate, Y coordinate, and Z (zoom) level. </p> <p>The origin (0, 0) is the top left of the map. Increasing the zoom level by 1 doubles both the X and Y dimensions, so a tile containing data for the entire world at (0/0/0) will be split into 4 tiles at zoom 1 (1/0/0, 1/0/1, 1/1/0, 1/1/1).</p>",
+    "GetPlace": "<p>Finds a place by its unique ID. A <code>PlaceId</code> is returned by other search operations.</p> <note> <p>A PlaceId is valid only if all of the following are the same in the original search request and the call to <code>GetPlace</code>.</p> <ul> <li> <p>Customer AWS account</p> </li> <li> <p>AWS Region</p> </li> <li> <p>Data provider specified in the place index resource</p> </li> </ul> </note>",
     "ListDevicePositions": "<p>A batch request to retrieve all device positions.</p>",
     "ListGeofenceCollections": "<p>Lists geofence collections in your AWS account.</p>",
     "ListGeofences": "<p>Lists geofences stored in a given geofence collection.</p>",
@@ -67,12 +68,10 @@
         "ArnList$member": null,
         "AssociateTrackerConsumerRequest$ConsumerArn": "<p>The Amazon Resource Name (ARN) for the geofence collection to be associated to tracker resource. Used when you need to specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollectionConsumer</code> </p> </li> </ul>",
         "CreateGeofenceCollectionResponse$CollectionArn": "<p>The Amazon Resource Name (ARN) for the geofence collection resource. Used when you need to specify a resource across all AWS. </p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code> </p> </li> </ul>",
-        "CreateMapResponse$MapArn": "<p>The Amazon Resource Name (ARN) for the map resource. Used to specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:maps/ExampleMap</code> </p> </li> </ul>",
         "CreatePlaceIndexResponse$IndexArn": "<p>The Amazon Resource Name (ARN) for the place index resource. Used to specify a resource across AWS. </p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code> </p> </li> </ul>",
         "CreateRouteCalculatorResponse$CalculatorArn": "<p>The Amazon Resource Name (ARN) for the route calculator resource. Use the ARN when you specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:route-calculator/ExampleCalculator</code> </p> </li> </ul>",
         "CreateTrackerResponse$TrackerArn": "<p>The Amazon Resource Name (ARN) for the tracker resource. Used when you need to specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code> </p> </li> </ul>",
         "DescribeGeofenceCollectionResponse$CollectionArn": "<p>The Amazon Resource Name (ARN) for the geofence collection resource. Used when you need to specify a resource across all AWS. </p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code> </p> </li> </ul>",
-        "DescribeMapResponse$MapArn": "<p>The Amazon Resource Name (ARN) for the map resource. Used to specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:maps/ExampleMap</code> </p> </li> </ul>",
         "DescribePlaceIndexResponse$IndexArn": "<p>The Amazon Resource Name (ARN) for the place index resource. Used to specify a resource across AWS. </p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code> </p> </li> </ul>",
         "DescribeRouteCalculatorResponse$CalculatorArn": "<p>The Amazon Resource Name (ARN) for the Route calculator resource. Use the ARN when you specify a resource across AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:route-calculator/ExampleCalculator</code> </p> </li> </ul>",
         "DescribeTrackerResponse$TrackerArn": "<p>The Amazon Resource Name (ARN) for the tracker resource. Used when you need to specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code> </p> </li> </ul>",
@@ -81,7 +80,6 @@
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource whose tags you want to update.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:resourcetype/ExampleResource</code> </p> </li> </ul>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which you want to remove tags.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:resourcetype/ExampleResource</code> </p> </li> </ul>",
         "UpdateGeofenceCollectionResponse$CollectionArn": "<p>The Amazon Resource Name (ARN) of the updated geofence collection. Used to specify a resource across AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code> </p> </li> </ul>",
-        "UpdateMapResponse$MapArn": "<p>The Amazon Resource Name (ARN) of the updated map resource. Used to specify a resource across AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:maps/ExampleMap</code> </p> </li> </ul>",
         "UpdatePlaceIndexResponse$IndexArn": "<p>The Amazon Resource Name (ARN) of the upated place index resource. Used to specify a resource across AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:place- index/ExamplePlaceIndex</code> </p> </li> </ul>",
         "UpdateRouteCalculatorResponse$CalculatorArn": "<p>The Amazon Resource Name (ARN) of the updated route calculator resource. Used to specify a resource across AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:route- calculator/ExampleCalculator</code> </p> </li> </ul>",
         "UpdateTrackerResponse$TrackerArn": "<p>The Amazon Resource Name (ARN) of the updated tracker resource. Used to specify a resource across AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code> </p> </li> </ul>"
@@ -682,6 +680,14 @@
         "Position$member": null
       }
     },
+    "GeoArn": {
+      "base": null,
+      "refs": {
+        "CreateMapResponse$MapArn": "<p>The Amazon Resource Name (ARN) for the map resource. Used to specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:maps/ExampleMap</code> </p> </li> </ul>",
+        "DescribeMapResponse$MapArn": "<p>The Amazon Resource Name (ARN) for the map resource. Used to specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:maps/ExampleMap</code> </p> </li> </ul>",
+        "UpdateMapResponse$MapArn": "<p>The Amazon Resource Name (ARN) of the updated map resource. Used to specify a resource across AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:maps/ExampleMap</code> </p> </li> </ul>"
+      }
+    },
     "GeofenceGeometry": {
       "base": "<p>Contains the geofence geometry details.</p> <p>A geofence geometry is made up of either a polygon or a circle. Can be either a polygon or a circle. Including both will return a validation error.</p> <note> <p>Amazon Location doesn't currently support polygons with holes, multipolygons, polygons that are wound clockwise, or that cross the antimeridian. </p> </note>",
       "refs": {
@@ -751,7 +757,7 @@
     "GetMapSpritesRequestFileNameString": {
       "base": null,
       "refs": {
-        "GetMapSpritesRequest$FileName": "<p>The name of the sprite ﬁle. Use the following ﬁle names for the sprite sheet:</p> <ul> <li> <p> <code>sprites.png</code> </p> </li> <li> <p> <code>sprites@2x.png</code> for high pixel density displays</p> </li> </ul> <p>For the JSON document contain image offsets. Use the following ﬁle names:</p> <ul> <li> <p> <code>sprites.json</code> </p> </li> <li> <p> <code>sprites@2x.json</code> for high pixel density displays</p> </li> </ul>"
+        "GetMapSpritesRequest$FileName": "<p>The name of the sprite ﬁle. Use the following ﬁle names for the sprite sheet:</p> <ul> <li> <p> <code>sprites.png</code> </p> </li> <li> <p> <code>sprites@2x.png</code> for high pixel density displays</p> </li> </ul> <p>For the JSON document containing image offsets. Use the following ﬁle names:</p> <ul> <li> <p> <code>sprites.json</code> </p> </li> <li> <p> <code>sprites@2x.json</code> for high pixel density displays</p> </li> </ul>"
       }
     },
     "GetMapSpritesResponse": {
@@ -793,6 +799,16 @@
       }
     },
     "GetMapTileResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPlaceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPlaceResponse": {
       "base": null,
       "refs": {
       }
@@ -854,6 +870,7 @@
     "LanguageTag": {
       "base": null,
       "refs": {
+        "GetPlaceRequest$Language": "<p>The preferred language used to return results. The value must be a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p> <p>This setting affects the languages used in the results, but not the results themselves. If no language is specified, or not supported for a particular result, the partner automatically chooses a language for the result.</p> <p>For an example, we'll use the Greek language. You search for a location around Athens, Greece, with the <code>language</code> parameter set to <code>en</code>. The <code>city</code> in the results will most likely be returned as <code>Athens</code>.</p> <p>If you set the <code>language</code> parameter to <code>el</code>, for Greek, then the <code>city</code> in the results will more likely be returned as <code>Αθήνα</code>.</p> <p>If the data provider does not have a value for Greek, the result will be in a language that the provider does support.</p>",
         "SearchPlaceIndexForPositionRequest$Language": "<p>The preferred language used to return results. The value must be a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p> <p>This setting affects the languages used in the results, but not the results themselves. If no language is specified, or not supported for a particular result, the partner automatically chooses a language for the result.</p> <p>For an example, we'll use the Greek language. You search for a location around Athens, Greece, with the <code>language</code> parameter set to <code>en</code>. The <code>city</code> in the results will most likely be returned as <code>Athens</code>.</p> <p>If you set the <code>language</code> parameter to <code>el</code>, for Greek, then the <code>city</code> in the results will more likely be returned as <code>Αθήνα</code>.</p> <p>If the data provider does not have a value for Greek, the result will be in a language that the provider does support.</p>",
         "SearchPlaceIndexForPositionSummary$Language": "<p>The preferred language used to return results. Matches the language in the request. The value is a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p>",
         "SearchPlaceIndexForSuggestionsRequest$Language": "<p>The preferred language used to return results. The value must be a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p> <p>This setting affects the languages used in the results. If no language is specified, or not supported for a particular result, the partner automatically chooses a language for the result.</p> <p>For an example, we'll use the Greek language. You search for <code>Athens, Gr</code> to get suggestions with the <code>language</code> parameter set to <code>en</code>. The results found will most likely be returned as <code>Athens, Greece</code>.</p> <p>If you set the <code>language</code> parameter to <code>el</code>, for Greek, then the result found will more likely be returned as <code>Αθήνα, Ελλάδα</code>.</p> <p>If the data provider does not have a value for Greek, the result will be in a language that the provider does support.</p>",
@@ -1148,6 +1165,7 @@
     "Place": {
       "base": "<p>Contains details about addresses or points of interest that match the search criteria.</p> <p>Not all details are included with all responses. Some details may only be returned by specific data partners.</p>",
       "refs": {
+        "GetPlaceResponse$Place": "<p>Details about the result, such as its address and position.</p>",
         "SearchForPositionResult$Place": "<p>Details about the search result, such as its address and position.</p>",
         "SearchForTextResult$Place": "<p>Details about the search result, such as its address and position.</p>"
       }
@@ -1156,6 +1174,15 @@
       "base": "<p>Places uses a point geometry to specify a location or a Place.</p>",
       "refs": {
         "Place$Geometry": null
+      }
+    },
+    "PlaceId": {
+      "base": null,
+      "refs": {
+        "GetPlaceRequest$PlaceId": "<p>The identifier of the place to find.</p>",
+        "SearchForPositionResult$PlaceId": "<p>The unique identifier of the place. You can use this with the <code>GetPlace</code> operation to find the place again later.</p> <note> <p>For <code>SearchPlaceIndexForPosition</code> operations, the <code>PlaceId</code> is returned only by place indexes that use HERE as a data provider.</p> </note>",
+        "SearchForSuggestionsResult$PlaceId": "<p>The unique identifier of the place. You can use this with the <code>GetPlace</code> operation to find the place again later.</p> <note> <p>For <code>SearchPlaceIndexForSuggestions</code> operations, the <code>PlaceId</code> is returned by place indexes that use HERE or Esri as data providers.</p> </note>",
+        "SearchForTextResult$PlaceId": "<p>The unique identifier of the place. You can use this with the <code>GetPlace</code> operation to find the place again later.</p> <note> <p>For <code>SearchPlaceIndexForText</code> operations, the <code>PlaceId</code> is returned only by place indexes that use HERE as a data provider.</p> </note>"
       }
     },
     "PlaceIndexSearchResultLimit": {
@@ -1345,6 +1372,7 @@
         "GetMapSpritesRequest$MapName": "<p>The map resource associated with the sprite ﬁle.</p>",
         "GetMapStyleDescriptorRequest$MapName": "<p>The map resource to retrieve the style descriptor from.</p>",
         "GetMapTileRequest$MapName": "<p>The map resource to retrieve the map tiles from.</p>",
+        "GetPlaceRequest$IndexName": "<p>The name of the place index resource that you want to use for the search.</p>",
         "ListDevicePositionsRequest$TrackerName": "<p>The tracker resource containing the requested devices.</p>",
         "ListGeofenceCollectionsResponseEntry$CollectionName": "<p>The name of the geofence collection.</p>",
         "ListGeofencesRequest$CollectionName": "<p>The name of the geofence collection storing the list of geofences.</p>",
@@ -1617,6 +1645,8 @@
         "Place$Region": "<p>A name for an area or geographical division, such as a province or state name. For example, <code>British Columbia</code>.</p>",
         "Place$Street": "<p>The name for a street or a road to identify a location. For example, <code>Main Street</code>.</p>",
         "Place$SubRegion": "<p>A country, or an area that's part of a larger region. For example, <code>Metro Vancouver</code>.</p>",
+        "Place$UnitNumber": "<p>For addresses with multiple units, the unit identifier. Can include numbers and letters, for example <code>3B</code> or <code>Unit 123</code>.</p> <note> <p>Returned only for a place index that uses Esri as a data provider. Is not returned for <code>SearchPlaceIndexForPosition</code>.</p> </note>",
+        "Place$UnitType": "<p>For addresses with a <code>UnitNumber</code>, the type of unit. For example, <code>Apartment</code>.</p>",
         "ResourceNotFoundException$Message": null,
         "RouteMatrixEntryError$Message": "<p>A message about the error that occurred for the route calculation.</p>",
         "SearchForSuggestionsResult$Text": "<p>The text of the place suggestion, typically formatted as an address string.</p>",
