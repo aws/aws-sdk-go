@@ -24315,7 +24315,8 @@ func (c *SageMaker) UpdateTrainingJobRequest(input *UpdateTrainingJobInput) (req
 
 // UpdateTrainingJob API operation for Amazon SageMaker Service.
 //
-// Update a model training job to request a new Debugger profiling configuration.
+// Update a model training job to request a new Debugger profiling configuration
+// or to change warm pool retention length.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -53482,6 +53483,9 @@ type DescribeTrainingJobOutput struct {
 	// to. For more information, see Protect Training Jobs by Using an Amazon Virtual
 	// Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html).
 	VpcConfig *VpcConfig `type:"structure"`
+
+	// The status of the warm pool associated with the training job.
+	WarmPoolStatus *WarmPoolStatus `type:"structure"`
 }
 
 // String returns the string representation.
@@ -53739,6 +53743,12 @@ func (s *DescribeTrainingJobOutput) SetTuningJobArn(v string) *DescribeTrainingJ
 // SetVpcConfig sets the VpcConfig field's value.
 func (s *DescribeTrainingJobOutput) SetVpcConfig(v *VpcConfig) *DescribeTrainingJobOutput {
 	s.VpcConfig = v
+	return s
+}
+
+// SetWarmPoolStatus sets the WarmPoolStatus field's value.
+func (s *DescribeTrainingJobOutput) SetWarmPoolStatus(v *WarmPoolStatus) *DescribeTrainingJobOutput {
+	s.WarmPoolStatus = v
 	return s
 }
 
@@ -73615,6 +73625,9 @@ type ListTrainingJobsInput struct {
 
 	// A filter that retrieves only training jobs with a specific status.
 	StatusEquals *string `type:"string" enum:"TrainingJobStatus"`
+
+	// A filter that retrieves only training jobs with a specific warm pool status.
+	WarmPoolStatusEquals *string `type:"string" enum:"WarmPoolResourceStatus"`
 }
 
 // String returns the string representation.
@@ -73705,6 +73718,12 @@ func (s *ListTrainingJobsInput) SetSortOrder(v string) *ListTrainingJobsInput {
 // SetStatusEquals sets the StatusEquals field's value.
 func (s *ListTrainingJobsInput) SetStatusEquals(v string) *ListTrainingJobsInput {
 	s.StatusEquals = &v
+	return s
+}
+
+// SetWarmPoolStatusEquals sets the WarmPoolStatusEquals field's value.
+func (s *ListTrainingJobsInput) SetWarmPoolStatusEquals(v string) *ListTrainingJobsInput {
+	s.WarmPoolStatusEquals = &v
 	return s
 }
 
@@ -86416,6 +86435,10 @@ type ResourceConfig struct {
 	// The ML compute instance type.
 	InstanceType *string `type:"string" enum:"TrainingInstanceType"`
 
+	// The duration of time in seconds to retain configured resources in a warm
+	// pool for subsequent training jobs.
+	KeepAlivePeriodInSeconds *int64 `type:"integer"`
+
 	// The Amazon Web Services KMS key that SageMaker uses to encrypt data on the
 	// storage volume attached to the ML compute instance(s) that run the training
 	// job.
@@ -86531,6 +86554,12 @@ func (s *ResourceConfig) SetInstanceType(v string) *ResourceConfig {
 	return s
 }
 
+// SetKeepAlivePeriodInSeconds sets the KeepAlivePeriodInSeconds field's value.
+func (s *ResourceConfig) SetKeepAlivePeriodInSeconds(v int64) *ResourceConfig {
+	s.KeepAlivePeriodInSeconds = &v
+	return s
+}
+
 // SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
 func (s *ResourceConfig) SetVolumeKmsKeyId(v string) *ResourceConfig {
 	s.VolumeKmsKeyId = &v
@@ -86540,6 +86569,54 @@ func (s *ResourceConfig) SetVolumeKmsKeyId(v string) *ResourceConfig {
 // SetVolumeSizeInGB sets the VolumeSizeInGB field's value.
 func (s *ResourceConfig) SetVolumeSizeInGB(v int64) *ResourceConfig {
 	s.VolumeSizeInGB = &v
+	return s
+}
+
+// The ResourceConfig to update KeepAlivePeriodInSeconds. Other fields in the
+// ResourceConfig cannot be updated.
+type ResourceConfigForUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The KeepAlivePeriodInSeconds value specified in the ResourceConfig to update.
+	//
+	// KeepAlivePeriodInSeconds is a required field
+	KeepAlivePeriodInSeconds *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceConfigForUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceConfigForUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourceConfigForUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourceConfigForUpdate"}
+	if s.KeepAlivePeriodInSeconds == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeepAlivePeriodInSeconds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeepAlivePeriodInSeconds sets the KeepAlivePeriodInSeconds field's value.
+func (s *ResourceConfigForUpdate) SetKeepAlivePeriodInSeconds(v int64) *ResourceConfigForUpdate {
+	s.KeepAlivePeriodInSeconds = &v
 	return s
 }
 
@@ -91558,6 +91635,9 @@ type TrainingJobSummary struct {
 	//
 	// TrainingJobStatus is a required field
 	TrainingJobStatus *string `type:"string" required:"true" enum:"TrainingJobStatus"`
+
+	// The status of the warm pool associated with the training job.
+	WarmPoolStatus *WarmPoolStatus `type:"structure"`
 }
 
 // String returns the string representation.
@@ -91611,6 +91691,12 @@ func (s *TrainingJobSummary) SetTrainingJobName(v string) *TrainingJobSummary {
 // SetTrainingJobStatus sets the TrainingJobStatus field's value.
 func (s *TrainingJobSummary) SetTrainingJobStatus(v string) *TrainingJobSummary {
 	s.TrainingJobStatus = &v
+	return s
+}
+
+// SetWarmPoolStatus sets the WarmPoolStatus field's value.
+func (s *TrainingJobSummary) SetWarmPoolStatus(v *WarmPoolStatus) *TrainingJobSummary {
+	s.WarmPoolStatus = v
 	return s
 }
 
@@ -96702,6 +96788,9 @@ type UpdateTrainingJobInput struct {
 	// metrics.
 	ProfilerRuleConfigurations []*ProfilerRuleConfiguration `type:"list"`
 
+	// The training job ResourceConfig to update warm pool retention length.
+	ResourceConfig *ResourceConfigForUpdate `type:"structure"`
+
 	// The name of a training job to update the Debugger profiling configuration.
 	//
 	// TrainingJobName is a required field
@@ -96745,6 +96834,11 @@ func (s *UpdateTrainingJobInput) Validate() error {
 			}
 		}
 	}
+	if s.ResourceConfig != nil {
+		if err := s.ResourceConfig.Validate(); err != nil {
+			invalidParams.AddNested("ResourceConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -96761,6 +96855,12 @@ func (s *UpdateTrainingJobInput) SetProfilerConfig(v *ProfilerConfigForUpdate) *
 // SetProfilerRuleConfigurations sets the ProfilerRuleConfigurations field's value.
 func (s *UpdateTrainingJobInput) SetProfilerRuleConfigurations(v []*ProfilerRuleConfiguration) *UpdateTrainingJobInput {
 	s.ProfilerRuleConfigurations = v
+	return s
+}
+
+// SetResourceConfig sets the ResourceConfig field's value.
+func (s *UpdateTrainingJobInput) SetResourceConfig(v *ResourceConfigForUpdate) *UpdateTrainingJobInput {
+	s.ResourceConfig = v
 	return s
 }
 
@@ -97921,6 +98021,75 @@ func (s *VpcConfig) SetSecurityGroupIds(v []*string) *VpcConfig {
 // SetSubnets sets the Subnets field's value.
 func (s *VpcConfig) SetSubnets(v []*string) *VpcConfig {
 	s.Subnets = v
+	return s
+}
+
+// Status and billing information about the warm pool.
+type WarmPoolStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The billable time in seconds used by the warm pool. Billable time refers
+	// to the absolute wall-clock time.
+	//
+	// Multiply ResourceRetainedBillableTimeInSeconds by the number of instances
+	// (InstanceCount) in your training cluster to get the total compute time SageMaker
+	// bills you if you run warm pool training. The formula is as follows: ResourceRetainedBillableTimeInSeconds
+	// * InstanceCount.
+	ResourceRetainedBillableTimeInSeconds *int64 `type:"integer"`
+
+	// The name of the matching training job that reused the warm pool.
+	ReusedByJob *string `min:"1" type:"string"`
+
+	// The status of the warm pool.
+	//
+	//    * InUse: The warm pool is in use for the training job.
+	//
+	//    * Available: The warm pool is available to reuse for a matching training
+	//    job.
+	//
+	//    * Reused: The warm pool moved to a matching training job for reuse.
+	//
+	//    * Terminated: The warm pool is no longer available. Warm pools are unavailable
+	//    if they are terminated by a user, terminated for a patch update, or terminated
+	//    for exceeding the specified KeepAlivePeriodInSeconds.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"WarmPoolResourceStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WarmPoolStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WarmPoolStatus) GoString() string {
+	return s.String()
+}
+
+// SetResourceRetainedBillableTimeInSeconds sets the ResourceRetainedBillableTimeInSeconds field's value.
+func (s *WarmPoolStatus) SetResourceRetainedBillableTimeInSeconds(v int64) *WarmPoolStatus {
+	s.ResourceRetainedBillableTimeInSeconds = &v
+	return s
+}
+
+// SetReusedByJob sets the ReusedByJob field's value.
+func (s *WarmPoolStatus) SetReusedByJob(v string) *WarmPoolStatus {
+	s.ReusedByJob = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *WarmPoolStatus) SetStatus(v string) *WarmPoolStatus {
+	s.Status = &v
 	return s
 }
 
@@ -103974,6 +104143,30 @@ func VariantStatus_Values() []string {
 		VariantStatusDeleting,
 		VariantStatusActivatingTraffic,
 		VariantStatusBaking,
+	}
+}
+
+const (
+	// WarmPoolResourceStatusAvailable is a WarmPoolResourceStatus enum value
+	WarmPoolResourceStatusAvailable = "Available"
+
+	// WarmPoolResourceStatusTerminated is a WarmPoolResourceStatus enum value
+	WarmPoolResourceStatusTerminated = "Terminated"
+
+	// WarmPoolResourceStatusReused is a WarmPoolResourceStatus enum value
+	WarmPoolResourceStatusReused = "Reused"
+
+	// WarmPoolResourceStatusInUse is a WarmPoolResourceStatus enum value
+	WarmPoolResourceStatusInUse = "InUse"
+)
+
+// WarmPoolResourceStatus_Values returns all elements of the WarmPoolResourceStatus enum
+func WarmPoolResourceStatus_Values() []string {
+	return []string{
+		WarmPoolResourceStatusAvailable,
+		WarmPoolResourceStatusTerminated,
+		WarmPoolResourceStatusReused,
+		WarmPoolResourceStatusInUse,
 	}
 }
 

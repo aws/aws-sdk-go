@@ -188,7 +188,7 @@
         "ConnectionAlias$OwnerAccountId": "<p>The identifier of the Amazon Web Services account that owns the connection alias.</p>",
         "ConnectionAliasAssociation$AssociatedAccountId": "<p>The identifier of the Amazon Web Services account that associated the connection alias with a directory.</p>",
         "ConnectionAliasPermission$SharedAccountId": "<p>The identifier of the Amazon Web Services account that the connection alias is shared with.</p>",
-        "CreateWorkspaceImageResult$OwnerAccountId": "<p>The identifier of the AWS account that owns the image.</p>",
+        "CreateWorkspaceImageResult$OwnerAccountId": "<p>The identifier of the Amazon Web Services account that owns the image.</p>",
         "ImagePermission$SharedAccountId": "<p>The identifier of the Amazon Web Services account that an image has been shared with.</p>",
         "UpdateWorkspaceImagePermissionRequest$SharedAccountId": "<p>The identifier of the Amazon Web Services account to share or unshare the image with.</p> <important> <p>Before sharing the image, confirm that you are sharing to the correct Amazon Web Services account ID.</p> </important>",
         "WorkspaceImage$OwnerAccountId": "<p>The identifier of the Amazon Web Services account that owns the image.</p>"
@@ -1199,6 +1199,12 @@
     "ListAvailableManagementCidrRangesResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "LogUploadEnum": {
+      "base": null,
+      "refs": {
+        "ClientProperties$LogUploadEnabled": "<p>Specifies whether users can upload diagnostic log files of Amazon WorkSpaces client directly to WorkSpaces to troubleshoot issues when using the WorkSpaces client. When enabled, the log files will be sent to WorkSpaces automatically and will be applied to all users in the specified directory.</p>"
       }
     },
     "LoginMessage": {

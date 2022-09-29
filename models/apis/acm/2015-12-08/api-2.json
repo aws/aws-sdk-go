@@ -334,7 +334,32 @@
       "type":"structure",
       "members":{
         "CertificateArn":{"shape":"Arn"},
-        "DomainName":{"shape":"DomainNameString"}
+        "DomainName":{"shape":"DomainNameString"},
+        "SubjectAlternativeNameSummaries":{"shape":"DomainList"},
+        "HasAdditionalSubjectAlternativeNames":{
+          "shape":"NullableBoolean",
+          "box":true
+        },
+        "Status":{"shape":"CertificateStatus"},
+        "Type":{"shape":"CertificateType"},
+        "KeyAlgorithm":{"shape":"KeyAlgorithm"},
+        "KeyUsages":{"shape":"KeyUsageNames"},
+        "ExtendedKeyUsages":{"shape":"ExtendedKeyUsageNames"},
+        "InUse":{
+          "shape":"NullableBoolean",
+          "box":true
+        },
+        "Exported":{
+          "shape":"NullableBoolean",
+          "box":true
+        },
+        "RenewalEligibility":{"shape":"RenewalEligibility"},
+        "NotBefore":{"shape":"TStamp"},
+        "NotAfter":{"shape":"TStamp"},
+        "CreatedAt":{"shape":"TStamp"},
+        "IssuedAt":{"shape":"TStamp"},
+        "ImportedAt":{"shape":"TStamp"},
+        "RevokedAt":{"shape":"TStamp"}
       }
     },
     "CertificateSummaryList":{
@@ -494,6 +519,10 @@
         "NONE",
         "CUSTOM"
       ]
+    },
+    "ExtendedKeyUsageNames":{
+      "type":"list",
+      "member":{"shape":"ExtendedKeyUsageName"}
     },
     "FailureReason":{
       "type":"string",
@@ -663,6 +692,10 @@
         "CUSTOM"
       ]
     },
+    "KeyUsageNames":{
+      "type":"list",
+      "member":{"shape":"KeyUsageName"}
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -676,7 +709,9 @@
         "CertificateStatuses":{"shape":"CertificateStatuses"},
         "Includes":{"shape":"Filters"},
         "NextToken":{"shape":"NextToken"},
-        "MaxItems":{"shape":"MaxItems"}
+        "MaxItems":{"shape":"MaxItems"},
+        "SortBy":{"shape":"SortBy"},
+        "SortOrder":{"shape":"SortOrder"}
       }
     },
     "ListCertificatesResponse":{
@@ -710,6 +745,7 @@
       "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]*"
     },
+    "NullableBoolean":{"type":"boolean"},
     "PassphraseBlob":{
       "type":"blob",
       "max":128,
@@ -876,6 +912,17 @@
       ]
     },
     "ServiceErrorMessage":{"type":"string"},
+    "SortBy":{
+      "type":"string",
+      "enum":["CREATED_AT"]
+    },
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASCENDING",
+        "DESCENDING"
+      ]
+    },
     "String":{"type":"string"},
     "TStamp":{"type":"timestamp"},
     "Tag":{

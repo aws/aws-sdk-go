@@ -1104,7 +1104,8 @@
     "ClientProperties":{
       "type":"structure",
       "members":{
-        "ReconnectEnabled":{"shape":"ReconnectEnum"}
+        "ReconnectEnabled":{"shape":"ReconnectEnum"},
+        "LogUploadEnabled":{"shape":"LogUploadEnum"}
       }
     },
     "ClientPropertiesList":{
@@ -2104,6 +2105,13 @@
         "ManagementCidrRanges":{"shape":"DedicatedTenancyCidrRangeList"},
         "NextToken":{"shape":"PaginationToken"}
       }
+    },
+    "LogUploadEnum":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "LoginMessage":{
       "type":"map",

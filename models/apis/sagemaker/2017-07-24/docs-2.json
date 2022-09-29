@@ -259,7 +259,7 @@
     "UpdatePipeline": "<p>Updates a pipeline.</p>",
     "UpdatePipelineExecution": "<p>Updates a pipeline execution.</p>",
     "UpdateProject": "<p>Updates a machine learning (ML) project that is created from a template that sets up an ML pipeline from training to deploying an approved model.</p> <note> <p>You must not update a project that is in use. If you update the <code>ServiceCatalogProvisioningUpdateDetails</code> of a project that is active or being created, or updated, you may lose resources already created by the project.</p> </note>",
-    "UpdateTrainingJob": "<p>Update a model training job to request a new Debugger profiling configuration.</p>",
+    "UpdateTrainingJob": "<p>Update a model training job to request a new Debugger profiling configuration or to change warm pool retention length.</p>",
     "UpdateTrial": "<p>Updates the display name of a trial.</p>",
     "UpdateTrialComponent": "<p>Updates one or more properties of a trial component.</p>",
     "UpdateUserProfile": "<p>Updates a user profile.</p>",
@@ -5756,6 +5756,13 @@
         "UserSettings$JupyterServerAppSettings": "<p>The Jupyter server's app settings.</p>"
       }
     },
+    "KeepAlivePeriodInSeconds": {
+      "base": null,
+      "refs": {
+        "ResourceConfig$KeepAlivePeriodInSeconds": "<p>The duration of time in seconds to retain configured resources in a warm pool for subsequent training jobs.</p>",
+        "ResourceConfigForUpdate$KeepAlivePeriodInSeconds": "<p>The <code>KeepAlivePeriodInSeconds</code> value specified in the <code>ResourceConfig</code> to update.</p>"
+      }
+    },
     "KernelDisplayName": {
       "base": null,
       "refs": {
@@ -9706,6 +9713,12 @@
         "TrainingJobDefinition$ResourceConfig": "<p>The resources, including the ML compute instances and ML storage volumes, to use for model training.</p>"
       }
     },
+    "ResourceConfigForUpdate": {
+      "base": "<p>The <code>ResourceConfig</code> to update <code>KeepAlivePeriodInSeconds</code>. Other fields in the <code>ResourceConfig</code> cannot be updated.</p>",
+      "refs": {
+        "UpdateTrainingJobRequest$ResourceConfig": "<p>The training job <code>ResourceConfig</code> to update warm pool retention length.</p>"
+      }
+    },
     "ResourceId": {
       "base": null,
       "refs": {
@@ -9747,6 +9760,12 @@
         "NestedFilters$NestedPropertyName": "<p>The name of the property to use in the nested filters. The value must match a listed property name, such as <code>InputDataConfig</code>.</p>",
         "PropertyNameSuggestion$PropertyName": "<p>A suggested property name based on what you entered in the search textbox in the Amazon SageMaker console.</p>",
         "SearchRequest$SortBy": "<p>The name of the resource property used to sort the <code>SearchResults</code>. The default is <code>LastModifiedTime</code>.</p>"
+      }
+    },
+    "ResourceRetainedBillableTimeInSeconds": {
+      "base": null,
+      "refs": {
+        "WarmPoolStatus$ResourceRetainedBillableTimeInSeconds": "<p>The billable time in seconds used by the warm pool. Billable time refers to the absolute wall-clock time.</p> <p>Multiply <code>ResourceRetainedBillableTimeInSeconds</code> by the number of instances (<code>InstanceCount</code>) in your training cluster to get the total compute time SageMaker bills you if you run warm pool training. The formula is as follows: <code>ResourceRetainedBillableTimeInSeconds * InstanceCount</code>.</p>"
       }
     },
     "ResourceSpec": {
@@ -11527,7 +11546,8 @@
         "StopTrainingJobRequest$TrainingJobName": "<p>The name of the training job to stop.</p>",
         "TrainingJob$TrainingJobName": "<p>The name of the training job.</p>",
         "TrainingJobSummary$TrainingJobName": "<p>The name of the training job that you want a summary for.</p>",
-        "UpdateTrainingJobRequest$TrainingJobName": "<p>The name of a training job to update the Debugger profiling configuration.</p>"
+        "UpdateTrainingJobRequest$TrainingJobName": "<p>The name of a training job to update the Debugger profiling configuration.</p>",
+        "WarmPoolStatus$ReusedByJob": "<p>The name of the matching training job that reused the warm pool.</p>"
       }
     },
     "TrainingJobSortByOptions": {
@@ -12470,6 +12490,20 @@
       "base": null,
       "refs": {
         "TrafficRoutingConfig$WaitIntervalInSeconds": "<p>The waiting time (in seconds) between incremental steps to turn on traffic on the new endpoint fleet.</p>"
+      }
+    },
+    "WarmPoolResourceStatus": {
+      "base": null,
+      "refs": {
+        "ListTrainingJobsRequest$WarmPoolStatusEquals": "<p>A filter that retrieves only training jobs with a specific warm pool status.</p>",
+        "WarmPoolStatus$Status": "<p>The status of the warm pool.</p> <ul> <li> <p> <code>InUse</code>: The warm pool is in use for the training job.</p> </li> <li> <p> <code>Available</code>: The warm pool is available to reuse for a matching training job.</p> </li> <li> <p> <code>Reused</code>: The warm pool moved to a matching training job for reuse.</p> </li> <li> <p> <code>Terminated</code>: The warm pool is no longer available. Warm pools are unavailable if they are terminated by a user, terminated for a patch update, or terminated for exceeding the specified <code>KeepAlivePeriodInSeconds</code>.</p> </li> </ul>"
+      }
+    },
+    "WarmPoolStatus": {
+      "base": "<p>Status and billing information about the warm pool.</p>",
+      "refs": {
+        "DescribeTrainingJobResponse$WarmPoolStatus": "<p>The status of the warm pool associated with the training job.</p>",
+        "TrainingJobSummary$WarmPoolStatus": "<p>The status of the warm pool associated with the training job.</p>"
       }
     },
     "Workforce": {

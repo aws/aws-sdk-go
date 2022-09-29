@@ -26,7 +26,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"LimitExceededException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"ConflictException"},
+        {"shape":"ConcurrentModificationException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -115,6 +117,8 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"LimitExceededException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"ConcurrentModificationException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -144,6 +148,20 @@
       "errors":[
         {"shape":"InvalidParameterValueException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -207,6 +225,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "TranslateText":{
       "name":"TranslateText",
       "http":{
@@ -224,6 +258,21 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "UpdateParallelData":{
@@ -304,7 +353,8 @@
         "ClientToken":{
           "shape":"ClientTokenString",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateParallelDataResponse":{
@@ -461,7 +511,8 @@
         "MergeStrategy":{"shape":"MergeStrategy"},
         "Description":{"shape":"Description"},
         "TerminologyData":{"shape":"TerminologyData"},
-        "EncryptionKey":{"shape":"EncryptionKey"}
+        "EncryptionKey":{"shape":"EncryptionKey"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "ImportTerminologyResponse":{
@@ -605,6 +656,19 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "ListTerminologiesRequest":{
       "type":"structure",
       "members":{
@@ -737,6 +801,11 @@
       "type":"string",
       "enum":["MASK"]
     },
+    "ResourceArn":{
+      "type":"string",
+      "max":512,
+      "min":1
+    },
     "ResourceName":{
       "type":"string",
       "max":256,
@@ -819,10 +888,58 @@
       "max":10000,
       "pattern":"[\\P{M}\\p{M}]{0,10000}"
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Tags"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "TargetLanguageCodeStringList":{
       "type":"list",
       "member":{"shape":"LanguageCodeString"},
-      "max":1,
       "min":1
     },
     "Term":{
@@ -948,6 +1065,14 @@
       },
       "exception":true
     },
+    "TooManyTagsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"},
+        "ResourceArn":{"shape":"ResourceArn"}
+      },
+      "exception":true
+    },
     "TranslateTextRequest":{
       "type":"structure",
       "required":[
@@ -1002,6 +1127,22 @@
         "TargetLanguageCode":{"shape":"LanguageCodeString"}
       },
       "exception":true
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateParallelDataRequest":{
       "type":"structure",

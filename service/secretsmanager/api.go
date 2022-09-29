@@ -69,6 +69,11 @@ func (c *SecretsManager) CancelRotateSecretRequest(input *CancelRotateSecretInpu
 //
 // To turn on automatic rotation again, call RotateSecret.
 //
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
+//
 // Required permissions: secretsmanager:CancelRotateSecret. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
@@ -203,6 +208,11 @@ func (c *SecretsManager) CreateSecretRequest(input *CreateSecretInput) (req *req
 // calling the API, then you can't use aws/secretsmanager to encrypt the secret,
 // and you must create and use a customer managed KMS key.
 //
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters except SecretBinary
+// or SecretString because it might be logged. For more information, see Logging
+// Secrets Manager events with CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
+//
 // Required permissions: secretsmanager:CreateSecret. If you include tags in
 // the secret, you also need secretsmanager:TagResource. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -332,6 +342,11 @@ func (c *SecretsManager) DeleteResourcePolicyRequest(input *DeleteResourcePolicy
 //
 // Deletes the resource-based permission policy attached to the secret. To attach
 // a policy to a secret, use PutResourcePolicy.
+//
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
 // Required permissions: secretsmanager:DeleteResourcePolicy. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -467,6 +482,11 @@ func (c *SecretsManager) DeleteSecretRequest(input *DeleteSecretInput) (req *req
 // You must first cancel the deletion with RestoreSecret and then you can retrieve
 // the secret.
 //
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
+//
 // Required permissions: secretsmanager:DeleteSecret. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
@@ -572,6 +592,11 @@ func (c *SecretsManager) DescribeSecretRequest(input *DescribeSecretInput) (req 
 // Retrieves the details of a secret. It does not include the encrypted secret
 // value. Secrets Manager only returns fields that have a value in the response.
 //
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
+//
 // Required permissions: secretsmanager:DescribeSecret. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
@@ -662,6 +687,11 @@ func (c *SecretsManager) GetRandomPasswordRequest(input *GetRandomPasswordInput)
 // Generates a random password. We recommend that you specify the maximum length
 // and include every character type that the system you are generating a password
 // for can support.
+//
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
 // Required permissions: secretsmanager:GetRandomPassword. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -765,6 +795,11 @@ func (c *SecretsManager) GetResourcePolicyRequest(input *GetResourcePolicyInput)
 // Retrieves the JSON text of the resource-based policy document attached to
 // the secret. For more information about permissions policies attached to a
 // secret, see Permissions policies attached to a secret (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-policies.html).
+//
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
 // Required permissions: secretsmanager:GetResourcePolicy. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -878,6 +913,11 @@ func (c *SecretsManager) GetSecretValueRequest(input *GetSecretValueInput) (req 
 // To retrieve the previous version of a secret, use VersionStage and specify
 // AWSPREVIOUS. To revert to the previous version of a secret, call UpdateSecretVersionStage
 // (https://docs.aws.amazon.com/cli/latest/reference/secretsmanager/update-secret-version-stage.html).
+//
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
 // Required permissions: secretsmanager:GetSecretValue. If the secret is encrypted
 // using a customer-managed key instead of the Amazon Web Services managed key
@@ -998,6 +1038,11 @@ func (c *SecretsManager) ListSecretVersionIdsRequest(input *ListSecretVersionIds
 // concepts: Versions (https://docs.aws.amazon.com/secretsmanager/latest/userguide/getting-started.html#term_version).
 //
 // To list the secrets in the account, use ListSecrets.
+//
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
 // Required permissions: secretsmanager:ListSecretVersionIds. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -1161,6 +1206,11 @@ func (c *SecretsManager) ListSecretsRequest(input *ListSecretsInput) (req *reque
 // For information about finding secrets in the console, see Find secrets in
 // Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_search-secret.html).
 //
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
+//
 // Required permissions: secretsmanager:ListSecrets. For more information, see
 // IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
@@ -1306,6 +1356,11 @@ func (c *SecretsManager) PutResourcePolicyRequest(input *PutResourcePolicyInput)
 // For information about attaching a policy in the console, see Attach a permissions
 // policy to a secret (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html).
 //
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
+//
 // Required permissions: secretsmanager:PutResourcePolicy. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
@@ -1431,17 +1486,21 @@ func (c *SecretsManager) PutSecretValueRequest(input *PutSecretValueInput) (req 
 // If you don't include VersionStages, then Secrets Manager automatically moves
 // the staging label AWSCURRENT to this version. If this operation creates the
 // first version for the secret, then Secrets Manager automatically attaches
-// the staging label AWSCURRENT to it .
-//
-// If this operation moves the staging label AWSCURRENT from another version
-// to this version, then Secrets Manager also automatically moves the staging
-// label AWSPREVIOUS to the version that AWSCURRENT was removed from.
+// the staging label AWSCURRENT to it. If this operation moves the staging label
+// AWSCURRENT from another version to this version, then Secrets Manager also
+// automatically moves the staging label AWSPREVIOUS to the version that AWSCURRENT
+// was removed from.
 //
 // This operation is idempotent. If you call this operation with a ClientRequestToken
 // that matches an existing version's VersionId, and you specify the same secret
 // data, the operation succeeds but does nothing. However, if the secret data
 // is different, then the operation fails because you can't modify an existing
 // version; you can only create new ones.
+//
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters except SecretBinary
+// or SecretString because it might be logged. For more information, see Logging
+// Secrets Manager events with CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
 // Required permissions: secretsmanager:PutSecretValue. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -1563,6 +1622,11 @@ func (c *SecretsManager) RemoveRegionsFromReplicationRequest(input *RemoveRegion
 // For a secret that is replicated to other Regions, deletes the secret replicas
 // from the Regions you specify.
 //
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
+//
 // Required permissions: secretsmanager:RemoveRegionsFromReplication. For more
 // information, see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
@@ -1666,6 +1730,11 @@ func (c *SecretsManager) ReplicateSecretToRegionsRequest(input *ReplicateSecretT
 // ReplicateSecretToRegions API operation for AWS Secrets Manager.
 //
 // Replicates the secret to a new Regions. See Multi-Region secrets (https://docs.aws.amazon.com/secretsmanager/latest/userguide/create-manage-multi-region-secrets.html).
+//
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
 // Required permissions: secretsmanager:ReplicateSecretToRegions. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -1771,6 +1840,11 @@ func (c *SecretsManager) RestoreSecretRequest(input *RestoreSecretInput) (req *r
 //
 // Cancels the scheduled deletion of a secret by removing the DeletedDate time
 // stamp. You can access a secret again after it has been restored.
+//
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
 // Required permissions: secretsmanager:RestoreSecret. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -1908,6 +1982,11 @@ func (c *SecretsManager) RotateSecretRequest(input *RotateSecretInput) (req *req
 // assumes that a previous rotation request is still in progress and returns
 // an error.
 //
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
+//
 // Required permissions: secretsmanager:RotateSecret. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
@@ -2017,6 +2096,11 @@ func (c *SecretsManager) StopReplicationToReplicaRequest(input *StopReplicationT
 //
 // You must call this operation from the Region in which you want to promote
 // the replica to a primary secret.
+//
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
 // Required permissions: secretsmanager:StopReplicationToReplica. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -2150,6 +2234,11 @@ func (c *SecretsManager) TagResourceRequest(input *TagResourceInput) (req *reque
 // result in you losing your permissions for this secret, then the operation
 // is blocked and returns an Access Denied error.
 //
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
+//
 // Required permissions: secretsmanager:TagResource. For more information, see
 // IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
@@ -2262,6 +2351,11 @@ func (c *SecretsManager) UntagResourceRequest(input *UntagResourceInput) (req *r
 // change permissions. If successfully completing this operation would result
 // in you losing your permissions for this secret, then the operation is blocked
 // and returns an Access Denied error.
+//
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
 // Required permissions: secretsmanager:UntagResource. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -2379,13 +2473,19 @@ func (c *SecretsManager) UpdateSecretRequest(input *UpdateSecretInput) (req *req
 // and you will reach the quota for secret versions.
 //
 // If you include SecretString or SecretBinary to create a new secret version,
-// Secrets Manager automatically attaches the staging label AWSCURRENT to the
-// new version.
+// Secrets Manager automatically moves the staging label AWSCURRENT to the new
+// version. Then it attaches the label AWSPREVIOUS to the version that AWSCURRENT
+// was removed from.
 //
 // If you call this operation with a ClientRequestToken that matches an existing
 // version's VersionId, the operation results in an error. You can't modify
 // an existing version, you can only create a new version. To remove a version,
 // remove all staging labels from it. See UpdateSecretVersionStage.
+//
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters except SecretBinary
+// or SecretString because it might be logged. For more information, see Logging
+// Secrets Manager events with CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
 // Required permissions: secretsmanager:UpdateSecret. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -2534,6 +2634,11 @@ func (c *SecretsManager) UpdateSecretVersionStageRequest(input *UpdateSecretVers
 // the version is considered to be 'deprecated' and can be deleted by Secrets
 // Manager.
 //
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
+//
 // Required permissions: secretsmanager:UpdateSecretVersionStage. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
@@ -2652,6 +2757,11 @@ func (c *SecretsManager) ValidateResourcePolicyRequest(input *ValidateResourcePo
 //   - Checks for correct syntax in a policy.
 //
 //   - Verifies the policy does not lock out a caller.
+//
+// Secrets Manager generates a CloudTrail log entry when you call this action.
+// Do not include sensitive information in request parameters because it might
+// be logged. For more information, see Logging Secrets Manager events with
+// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
 // Required permissions: secretsmanager:ValidateResourcePolicy. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)

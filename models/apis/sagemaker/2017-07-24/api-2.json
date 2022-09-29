@@ -7833,7 +7833,8 @@
         "ProfilerRuleEvaluationStatuses":{"shape":"ProfilerRuleEvaluationStatuses"},
         "ProfilingStatus":{"shape":"ProfilingStatus"},
         "RetryStrategy":{"shape":"RetryStrategy"},
-        "Environment":{"shape":"TrainingEnvironmentMap"}
+        "Environment":{"shape":"TrainingEnvironmentMap"},
+        "WarmPoolStatus":{"shape":"WarmPoolStatus"}
       }
     },
     "DescribeTransformJobRequest":{
@@ -10389,6 +10390,11 @@
         "LifecycleConfigArns":{"shape":"LifecycleConfigArns"}
       }
     },
+    "KeepAlivePeriodInSeconds":{
+      "type":"integer",
+      "max":3600,
+      "min":0
+    },
     "KernelDisplayName":{
       "type":"string",
       "max":1024
@@ -11883,7 +11889,8 @@
         "NameContains":{"shape":"NameContains"},
         "StatusEquals":{"shape":"TrainingJobStatus"},
         "SortBy":{"shape":"SortBy"},
-        "SortOrder":{"shape":"SortOrder"}
+        "SortOrder":{"shape":"SortOrder"},
+        "WarmPoolStatusEquals":{"shape":"WarmPoolResourceStatus"}
       }
     },
     "ListTrainingJobsResponse":{
@@ -15012,7 +15019,15 @@
         "InstanceCount":{"shape":"TrainingInstanceCount"},
         "VolumeSizeInGB":{"shape":"VolumeSizeInGB"},
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
-        "InstanceGroups":{"shape":"InstanceGroups"}
+        "InstanceGroups":{"shape":"InstanceGroups"},
+        "KeepAlivePeriodInSeconds":{"shape":"KeepAlivePeriodInSeconds"}
+      }
+    },
+    "ResourceConfigForUpdate":{
+      "type":"structure",
+      "required":["KeepAlivePeriodInSeconds"],
+      "members":{
+        "KeepAlivePeriodInSeconds":{"shape":"KeepAlivePeriodInSeconds"}
       }
     },
     "ResourceId":{
@@ -15061,6 +15076,10 @@
       "max":255,
       "min":1,
       "pattern":".+"
+    },
+    "ResourceRetainedBillableTimeInSeconds":{
+      "type":"integer",
+      "min":0
     },
     "ResourceSpec":{
       "type":"structure",
@@ -16417,7 +16436,8 @@
         "CreationTime":{"shape":"Timestamp"},
         "TrainingEndTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
-        "TrainingJobStatus":{"shape":"TrainingJobStatus"}
+        "TrainingJobStatus":{"shape":"TrainingJobStatus"},
+        "WarmPoolStatus":{"shape":"WarmPoolStatus"}
       }
     },
     "TrainingSpecification":{
@@ -17259,7 +17279,8 @@
       "members":{
         "TrainingJobName":{"shape":"TrainingJobName"},
         "ProfilerConfig":{"shape":"ProfilerConfigForUpdate"},
-        "ProfilerRuleConfigurations":{"shape":"ProfilerRuleConfigurations"}
+        "ProfilerRuleConfigurations":{"shape":"ProfilerRuleConfigurations"},
+        "ResourceConfig":{"shape":"ResourceConfigForUpdate"}
       }
     },
     "UpdateTrainingJobResponse":{
@@ -17531,6 +17552,24 @@
       "type":"integer",
       "max":3600,
       "min":0
+    },
+    "WarmPoolResourceStatus":{
+      "type":"string",
+      "enum":[
+        "Available",
+        "Terminated",
+        "Reused",
+        "InUse"
+      ]
+    },
+    "WarmPoolStatus":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"WarmPoolResourceStatus"},
+        "ResourceRetainedBillableTimeInSeconds":{"shape":"ResourceRetainedBillableTimeInSeconds"},
+        "ReusedByJob":{"shape":"TrainingJobName"}
+      }
     },
     "Workforce":{
       "type":"structure",

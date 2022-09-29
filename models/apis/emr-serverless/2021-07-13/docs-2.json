@@ -6,6 +6,7 @@
     "CreateApplication": "<p>Creates an application.</p>",
     "DeleteApplication": "<p>Deletes an application. An application has to be in a stopped or created state in order to be deleted.</p>",
     "GetApplication": "<p>Displays detailed information about a specified application.</p>",
+    "GetDashboardForJobRun": "<p>Returns a URL to access the job run dashboard.</p>",
     "GetJobRun": "<p>Displays detailed information about a job run.</p>",
     "ListApplications": "<p>Lists applications based on a set of parameters.</p>",
     "ListJobRuns": "<p>Lists job runs based on a set of parameters.</p>",
@@ -43,6 +44,7 @@
         "CreateApplicationResponse$applicationId": "<p>The output contains the application ID.</p>",
         "DeleteApplicationRequest$applicationId": "<p>The ID of the application that will be deleted.</p>",
         "GetApplicationRequest$applicationId": "<p>The ID of the application that will be described.</p>",
+        "GetDashboardForJobRunRequest$applicationId": "<p>The ID of the application.</p>",
         "GetJobRunRequest$applicationId": "<p>The ID of the application on which the job run is submitted.</p>",
         "JobRun$applicationId": "<p>The ID of the application the job is running on.</p>",
         "JobRunSummary$applicationId": "<p>The ID of the application the job is running on.</p>",
@@ -268,6 +270,16 @@
       "refs": {
       }
     },
+    "GetDashboardForJobRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDashboardForJobRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetJobRunRequest": {
       "base": null,
       "refs": {
@@ -355,6 +367,7 @@
       "refs": {
         "CancelJobRunRequest$jobRunId": "<p>The ID of the job run to cancel.</p>",
         "CancelJobRunResponse$jobRunId": "<p>The output contains the ID of the cancelled job run.</p>",
+        "GetDashboardForJobRunRequest$jobRunId": "<p>The ID of the job run.</p>",
         "GetJobRunRequest$jobRunId": "<p>The ID of the job run.</p>",
         "JobRun$jobRunId": "<p>The ID of the job run.</p>",
         "JobRunSummary$id": "<p>The ID of the job run.</p>",
@@ -694,6 +707,12 @@
       "base": null,
       "refs": {
         "S3MonitoringConfiguration$logUri": "<p>The Amazon S3 destination URI for log publishing.</p>"
+      }
+    },
+    "Url": {
+      "base": null,
+      "refs": {
+        "GetDashboardForJobRunResponse$url": "<p>The URL to view job run's dashboard.</p>"
       }
     },
     "ValidationException": {

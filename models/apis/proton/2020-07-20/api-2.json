@@ -1320,6 +1320,10 @@
       "type":"string",
       "pattern":"^\\d{12}$"
     },
+    "Boolean":{
+      "type":"boolean",
+      "box":true
+    },
     "CancelComponentDeploymentInput":{
       "type":"structure",
       "required":["componentName"],
@@ -3602,6 +3606,7 @@
     "UpdateAccountSettingsInput":{
       "type":"structure",
       "members":{
+        "deletePipelineProvisioningRepository":{"shape":"Boolean"},
         "pipelineProvisioningRepository":{"shape":"RepositoryBranchInput"},
         "pipelineServiceRoleArn":{"shape":"PipelineRoleArn"}
       }
