@@ -94,6 +94,10 @@ const (
 	// short time and then try your request again.
 	ErrCodeTooManyRequestsException = "TooManyRequestsException"
 
+	// ErrCodeTooManyTagsException for service response error code
+	// "TooManyTagsException".
+	ErrCodeTooManyTagsException = "TooManyTagsException"
+
 	// ErrCodeUnsupportedDisplayLanguageCodeException for service response error code
 	// "UnsupportedDisplayLanguageCodeException".
 	//
@@ -121,6 +125,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ServiceUnavailableException":             newErrorServiceUnavailableException,
 	"TextSizeLimitExceededException":          newErrorTextSizeLimitExceededException,
 	"TooManyRequestsException":                newErrorTooManyRequestsException,
+	"TooManyTagsException":                    newErrorTooManyTagsException,
 	"UnsupportedDisplayLanguageCodeException": newErrorUnsupportedDisplayLanguageCodeException,
 	"UnsupportedLanguagePairException":        newErrorUnsupportedLanguagePairException,
 }

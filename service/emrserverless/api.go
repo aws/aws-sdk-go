@@ -356,6 +356,91 @@ func (c *EMRServerless) GetApplicationWithContext(ctx aws.Context, input *GetApp
 	return out, req.Send()
 }
 
+const opGetDashboardForJobRun = "GetDashboardForJobRun"
+
+// GetDashboardForJobRunRequest generates a "aws/request.Request" representing the
+// client's request for the GetDashboardForJobRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDashboardForJobRun for more information on using the GetDashboardForJobRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDashboardForJobRunRequest method.
+//	req, resp := client.GetDashboardForJobRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-serverless-2021-07-13/GetDashboardForJobRun
+func (c *EMRServerless) GetDashboardForJobRunRequest(input *GetDashboardForJobRunInput) (req *request.Request, output *GetDashboardForJobRunOutput) {
+	op := &request.Operation{
+		Name:       opGetDashboardForJobRun,
+		HTTPMethod: "GET",
+		HTTPPath:   "/applications/{applicationId}/jobruns/{jobRunId}/dashboard",
+	}
+
+	if input == nil {
+		input = &GetDashboardForJobRunInput{}
+	}
+
+	output = &GetDashboardForJobRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDashboardForJobRun API operation for EMR Serverless.
+//
+// Returns a URL to access the job run dashboard.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EMR Serverless's
+// API operation GetDashboardForJobRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-serverless-2021-07-13/GetDashboardForJobRun
+func (c *EMRServerless) GetDashboardForJobRun(input *GetDashboardForJobRunInput) (*GetDashboardForJobRunOutput, error) {
+	req, out := c.GetDashboardForJobRunRequest(input)
+	return out, req.Send()
+}
+
+// GetDashboardForJobRunWithContext is the same as GetDashboardForJobRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDashboardForJobRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMRServerless) GetDashboardForJobRunWithContext(ctx aws.Context, input *GetDashboardForJobRunInput, opts ...request.Option) (*GetDashboardForJobRunOutput, error) {
+	req, out := c.GetDashboardForJobRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetJobRun = "GetJobRun"
 
 // GetJobRunRequest generates a "aws/request.Request" representing the
@@ -2415,6 +2500,103 @@ func (s GetApplicationOutput) GoString() string {
 // SetApplication sets the Application field's value.
 func (s *GetApplicationOutput) SetApplication(v *Application) *GetApplicationOutput {
 	s.Application = v
+	return s
+}
+
+type GetDashboardForJobRunInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the application.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"applicationId" min:"1" type:"string" required:"true"`
+
+	// The ID of the job run.
+	//
+	// JobRunId is a required field
+	JobRunId *string `location:"uri" locationName:"jobRunId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDashboardForJobRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDashboardForJobRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDashboardForJobRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDashboardForJobRunInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.JobRunId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobRunId"))
+	}
+	if s.JobRunId != nil && len(*s.JobRunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobRunId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *GetDashboardForJobRunInput) SetApplicationId(v string) *GetDashboardForJobRunInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetJobRunId sets the JobRunId field's value.
+func (s *GetDashboardForJobRunInput) SetJobRunId(v string) *GetDashboardForJobRunInput {
+	s.JobRunId = &v
+	return s
+}
+
+type GetDashboardForJobRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The URL to view job run's dashboard.
+	Url *string `locationName:"url" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDashboardForJobRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDashboardForJobRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetUrl sets the Url field's value.
+func (s *GetDashboardForJobRunOutput) SetUrl(v string) *GetDashboardForJobRunOutput {
+	s.Url = &v
 	return s
 }
 

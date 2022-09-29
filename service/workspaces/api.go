@@ -6357,6 +6357,12 @@ func (s AuthorizeIpRulesOutput) GoString() string {
 type ClientProperties struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether users can upload diagnostic log files of Amazon WorkSpaces
+	// client directly to WorkSpaces to troubleshoot issues when using the WorkSpaces
+	// client. When enabled, the log files will be sent to WorkSpaces automatically
+	// and will be applied to all users in the specified directory.
+	LogUploadEnabled *string `type:"string" enum:"LogUploadEnum"`
+
 	// Specifies whether users can cache their credentials on the Amazon WorkSpaces
 	// client. When enabled, users can choose to reconnect to their WorkSpaces without
 	// re-entering their credentials.
@@ -6379,6 +6385,12 @@ func (s ClientProperties) String() string {
 // value will be replaced with "sensitive".
 func (s ClientProperties) GoString() string {
 	return s.String()
+}
+
+// SetLogUploadEnabled sets the LogUploadEnabled field's value.
+func (s *ClientProperties) SetLogUploadEnabled(v string) *ClientProperties {
+	s.LogUploadEnabled = &v
+	return s
 }
 
 // SetReconnectEnabled sets the ReconnectEnabled field's value.
@@ -7725,7 +7737,7 @@ type CreateWorkspaceImageOutput struct {
 	// The operating system that the image is running.
 	OperatingSystem *OperatingSystem `type:"structure"`
 
-	// The identifier of the AWS account that owns the image.
+	// The identifier of the Amazon Web Services account that owns the image.
 	OwnerAccountId *string `type:"string"`
 
 	// Specifies whether the image is running on dedicated hardware. When Bring
@@ -16484,6 +16496,22 @@ func ImageType_Values() []string {
 	return []string{
 		ImageTypeOwned,
 		ImageTypeShared,
+	}
+}
+
+const (
+	// LogUploadEnumEnabled is a LogUploadEnum enum value
+	LogUploadEnumEnabled = "ENABLED"
+
+	// LogUploadEnumDisabled is a LogUploadEnum enum value
+	LogUploadEnumDisabled = "DISABLED"
+)
+
+// LogUploadEnum_Values returns all elements of the LogUploadEnum enum
+func LogUploadEnum_Values() []string {
+	return []string{
+		LogUploadEnumEnabled,
+		LogUploadEnumDisabled,
 	}
 }
 

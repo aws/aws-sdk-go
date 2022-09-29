@@ -11,11 +11,14 @@
     "ImportTerminology": "<p>Creates or updates a custom terminology, depending on whether one already exists for the given terminology name. Importing a terminology with the same name as an existing one will merge the terminologies based on the chosen merge strategy. The only supported merge strategy is OVERWRITE, where the imported terminology overwrites the existing terminology of the same name.</p> <p>If you import a terminology that overwrites an existing one, the new terminology takes up to 10 minutes to fully propagate. After that, translations have access to the new terminology.</p>",
     "ListLanguages": "<p>Provides a list of languages (RFC-5646 codes and names) that Amazon Translate supports.</p>",
     "ListParallelData": "<p>Provides a list of your parallel data resources in Amazon Translate.</p>",
+    "ListTagsForResource": null,
     "ListTerminologies": "<p>Provides a list of custom terminologies associated with your account.</p>",
     "ListTextTranslationJobs": "<p>Gets a list of the batch translation jobs that you have submitted.</p>",
     "StartTextTranslationJob": "<p>Starts an asynchronous batch translation job. Batch translation jobs can be used to translate large volumes of text across multiple documents at once. For more information, see <a>async</a>.</p> <p>Batch translation jobs can be described with the <a>DescribeTextTranslationJob</a> operation, listed with the <a>ListTextTranslationJobs</a> operation, and stopped with the <a>StopTextTranslationJob</a> operation.</p> <note> <p>Amazon Translate does not support batch translation of multiple source languages at once.</p> </note>",
     "StopTextTranslationJob": "<p>Stops an asynchronous batch translation job that is in progress.</p> <p>If the job's state is <code>IN_PROGRESS</code>, the job will be marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state. Otherwise, the job is put into the <code>STOPPED</code> state.</p> <p>Asynchronous batch translation jobs are started with the <a>StartTextTranslationJob</a> operation. You can use the <a>DescribeTextTranslationJob</a> or <a>ListTextTranslationJobs</a> operations to get a batch translation job's <code>JobId</code>.</p>",
+    "TagResource": null,
     "TranslateText": "<p>Translates input text from the source language to the target language. For a list of available languages and language codes, see <a>what-is-languages</a>.</p>",
+    "UntagResource": null,
     "UpdateParallelData": "<p>Updates a previously created parallel data resource by importing a new input file from Amazon S3.</p>"
   },
   "shapes": {
@@ -325,6 +328,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTerminologiesRequest": {
       "base": null,
       "refs": {
@@ -453,6 +466,15 @@
         "TranslationSettings$Profanity": "<p>Enable the profanity setting if you want Amazon Translate to mask profane words and phrases in your translation output.</p> <p>To mask profane words and phrases, Amazon Translate replaces them with the grawlix string “?$#@$“. This 5-character sequence is used for each profane word or phrase, regardless of the length or number of words.</p> <p>Amazon Translate doesn't detect profanity in all of its supported languages. For languages that support profanity detection, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/what-is.html\">Supported Languages and Language Codes in the Amazon Translate Developer Guide</a>.</p>"
       }
     },
+    "ResourceArn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceArn": null,
+        "TagResourceRequest$ResourceArn": null,
+        "TooManyTagsException$ResourceArn": null,
+        "UntagResourceRequest$ResourceArn": null
+      }
+    },
     "ResourceName": {
       "base": null,
       "refs": {
@@ -541,9 +563,54 @@
         "TerminologyDataLocation$Location": "<p>The Amazon S3 location of the most recent custom terminology input file that was successfully imported into Amazon Translate. The location is returned as a presigned URL that has a 30-minute expiration .</p> <important> <p>Amazon Translate doesn't scan all input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download an input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
         "TextSizeLimitExceededException$Message": null,
         "TooManyRequestsException$Message": null,
+        "TooManyTagsException$message": null,
         "TranslateTextResponse$TranslatedText": "<p>The translated text.</p>",
         "UnsupportedDisplayLanguageCodeException$Message": null,
         "UnsupportedLanguagePairException$Message": null
+      }
+    },
+    "Tag": {
+      "base": null,
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": null,
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": null
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateParallelDataRequest$Tags": null,
+        "ImportTerminologyRequest$Tags": null,
+        "ListTagsForResourceResponse$Tags": null,
+        "TagResourceRequest$Tags": null
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": null
       }
     },
     "TargetLanguageCodeStringList": {
@@ -657,6 +724,11 @@
       "refs": {
       }
     },
+    "TooManyTagsException": {
+      "base": null,
+      "refs": {
+      }
+    },
     "TranslateTextRequest": {
       "base": null,
       "refs": {
@@ -691,6 +763,16 @@
     },
     "UnsupportedLanguagePairException": {
       "base": "<p>Amazon Translate does not support translation from the language of the source text into the requested target language. For more information, see <a>how-to-error-msg</a>. </p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
       "refs": {
       }
     },

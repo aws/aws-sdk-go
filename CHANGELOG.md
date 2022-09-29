@@ -1,3 +1,25 @@
+Release v1.44.108 (2022-09-29)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * This update returns additional certificate details such as certificate SANs and allows sorting in the ListCertificates API.
+* `service/ec2`: Updates service API
+  * u-3tb1 instances are powered by Intel Xeon Platinum 8176M (Skylake) processors and are purpose-built to run large in-memory databases.
+* `service/emr-serverless`: Updates service API and documentation
+* `service/fsx`: Updates service API, documentation, and paginators
+* `service/migrationhuborchestrator`: Adds new service
+* `service/polly`: Updates service API
+  * Added support for the new Cantonese voice - Hiujin. Hiujin is available as a Neural voice only.
+* `service/proton`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker Training Managed Warm Pools let you retain provisioned infrastructure to reduce latency for repetitive training workloads.
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager
+* `service/translate`: Updates service API and documentation
+* `service/workspaces`: Updates service API and documentation
+  * This release includes diagnostic log uploading feature. If it is enabled, the log files of WorkSpaces Windows client will be sent to Amazon WorkSpaces automatically for troubleshooting. You can use modifyClientProperty api to enable/disable this feature.
+
 Release v1.44.107 (2022-09-27)
 ===
 
