@@ -1694,7 +1694,8 @@
       "type":"structure",
       "required":["Sns"],
       "members":{
-        "Sns":{"shape":"SnsChannelConfig"}
+        "Sns":{"shape":"SnsChannelConfig"},
+        "Filters":{"shape":"NotificationFilterConfig"}
       }
     },
     "NotificationChannelId":{
@@ -1702,6 +1703,29 @@
       "max":36,
       "min":36,
       "pattern":"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+    "NotificationFilterConfig":{
+      "type":"structure",
+      "members":{
+        "Severities":{"shape":"InsightSeverities"},
+        "MessageTypes":{"shape":"NotificationMessageTypes"}
+      }
+    },
+    "NotificationMessageType":{
+      "type":"string",
+      "enum":[
+        "NEW_INSIGHT",
+        "CLOSED_INSIGHT",
+        "NEW_ASSOCIATION",
+        "SEVERITY_UPGRADED",
+        "NEW_RECOMMENDATION"
+      ]
+    },
+    "NotificationMessageTypes":{
+      "type":"list",
+      "member":{"shape":"NotificationMessageType"},
+      "max":5,
+      "min":0
     },
     "NumMetricsAnalyzed":{"type":"integer"},
     "NumOpenProactiveInsights":{"type":"integer"},
