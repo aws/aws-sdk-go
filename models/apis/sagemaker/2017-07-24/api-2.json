@@ -4294,6 +4294,230 @@
         "RegisterNewBaseline":{"shape":"Boolean"}
       }
     },
+    "ClarifyContentTemplate":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":".*"
+    },
+    "ClarifyEnableExplanations":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":".*"
+    },
+    "ClarifyExplainerConfig":{
+      "type":"structure",
+      "required":["ShapConfig"],
+      "members":{
+        "EnableExplanations":{"shape":"ClarifyEnableExplanations"},
+        "InferenceConfig":{"shape":"ClarifyInferenceConfig"},
+        "ShapConfig":{"shape":"ClarifyShapConfig"}
+      }
+    },
+    "ClarifyFeatureHeaders":{
+      "type":"list",
+      "member":{"shape":"ClarifyHeader"},
+      "max":256,
+      "min":1
+    },
+    "ClarifyFeatureType":{
+      "type":"string",
+      "enum":[
+        "numerical",
+        "categorical",
+        "text"
+      ]
+    },
+    "ClarifyFeatureTypes":{
+      "type":"list",
+      "member":{"shape":"ClarifyFeatureType"},
+      "max":256,
+      "min":1
+    },
+    "ClarifyFeaturesAttribute":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":".*"
+    },
+    "ClarifyHeader":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":".*"
+    },
+    "ClarifyInferenceConfig":{
+      "type":"structure",
+      "members":{
+        "FeaturesAttribute":{"shape":"ClarifyFeaturesAttribute"},
+        "ContentTemplate":{"shape":"ClarifyContentTemplate"},
+        "MaxRecordCount":{"shape":"ClarifyMaxRecordCount"},
+        "MaxPayloadInMB":{"shape":"ClarifyMaxPayloadInMB"},
+        "ProbabilityIndex":{"shape":"ClarifyProbabilityIndex"},
+        "LabelIndex":{"shape":"ClarifyLabelIndex"},
+        "ProbabilityAttribute":{"shape":"ClarifyProbabilityAttribute"},
+        "LabelAttribute":{"shape":"ClarifyLabelAttribute"},
+        "LabelHeaders":{"shape":"ClarifyLabelHeaders"},
+        "FeatureHeaders":{"shape":"ClarifyFeatureHeaders"},
+        "FeatureTypes":{"shape":"ClarifyFeatureTypes"}
+      }
+    },
+    "ClarifyLabelAttribute":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":".*"
+    },
+    "ClarifyLabelHeaders":{
+      "type":"list",
+      "member":{"shape":"ClarifyHeader"},
+      "max":16,
+      "min":1
+    },
+    "ClarifyLabelIndex":{
+      "type":"integer",
+      "min":0
+    },
+    "ClarifyMaxPayloadInMB":{
+      "type":"integer",
+      "max":25,
+      "min":1
+    },
+    "ClarifyMaxRecordCount":{
+      "type":"integer",
+      "min":1
+    },
+    "ClarifyMimeType":{
+      "type":"string",
+      "max":255,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*\\/[a-zA-Z0-9](-*[a-zA-Z0-9+.])*"
+    },
+    "ClarifyProbabilityAttribute":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":".*"
+    },
+    "ClarifyProbabilityIndex":{
+      "type":"integer",
+      "min":0
+    },
+    "ClarifyShapBaseline":{
+      "type":"string",
+      "max":4096,
+      "min":1,
+      "pattern":"[\\s\\S]+"
+    },
+    "ClarifyShapBaselineConfig":{
+      "type":"structure",
+      "members":{
+        "MimeType":{"shape":"ClarifyMimeType"},
+        "ShapBaseline":{"shape":"ClarifyShapBaseline"},
+        "ShapBaselineUri":{"shape":"Url"}
+      }
+    },
+    "ClarifyShapConfig":{
+      "type":"structure",
+      "required":["ShapBaselineConfig"],
+      "members":{
+        "ShapBaselineConfig":{"shape":"ClarifyShapBaselineConfig"},
+        "NumberOfSamples":{"shape":"ClarifyShapNumberOfSamples"},
+        "UseLogit":{"shape":"ClarifyShapUseLogit"},
+        "Seed":{"shape":"ClarifyShapSeed"},
+        "TextConfig":{"shape":"ClarifyTextConfig"}
+      }
+    },
+    "ClarifyShapNumberOfSamples":{
+      "type":"integer",
+      "min":1
+    },
+    "ClarifyShapSeed":{"type":"integer"},
+    "ClarifyShapUseLogit":{"type":"boolean"},
+    "ClarifyTextConfig":{
+      "type":"structure",
+      "required":[
+        "Language",
+        "Granularity"
+      ],
+      "members":{
+        "Language":{"shape":"ClarifyTextLanguage"},
+        "Granularity":{"shape":"ClarifyTextGranularity"}
+      }
+    },
+    "ClarifyTextGranularity":{
+      "type":"string",
+      "enum":[
+        "token",
+        "sentence",
+        "paragraph"
+      ]
+    },
+    "ClarifyTextLanguage":{
+      "type":"string",
+      "enum":[
+        "af",
+        "sq",
+        "ar",
+        "hy",
+        "eu",
+        "bn",
+        "bg",
+        "ca",
+        "zh",
+        "hr",
+        "cs",
+        "da",
+        "nl",
+        "en",
+        "et",
+        "fi",
+        "fr",
+        "de",
+        "el",
+        "gu",
+        "he",
+        "hi",
+        "hu",
+        "is",
+        "id",
+        "ga",
+        "it",
+        "kn",
+        "ky",
+        "lv",
+        "lt",
+        "lb",
+        "mk",
+        "ml",
+        "mr",
+        "ne",
+        "nb",
+        "fa",
+        "pl",
+        "pt",
+        "ro",
+        "ru",
+        "sa",
+        "sr",
+        "tn",
+        "si",
+        "sk",
+        "sl",
+        "es",
+        "sv",
+        "tl",
+        "ta",
+        "tt",
+        "te",
+        "tr",
+        "uk",
+        "ur",
+        "yo",
+        "lij",
+        "xx"
+      ]
+    },
     "ClientId":{
       "type":"string",
       "max":1024,
@@ -5012,7 +5236,8 @@
         "DataCaptureConfig":{"shape":"DataCaptureConfig"},
         "Tags":{"shape":"TagList"},
         "KmsKeyId":{"shape":"KmsKeyId"},
-        "AsyncInferenceConfig":{"shape":"AsyncInferenceConfig"}
+        "AsyncInferenceConfig":{"shape":"AsyncInferenceConfig"},
+        "ExplainerConfig":{"shape":"ExplainerConfig"}
       }
     },
     "CreateEndpointConfigOutput":{
@@ -6971,7 +7196,8 @@
         "DataCaptureConfig":{"shape":"DataCaptureConfig"},
         "KmsKeyId":{"shape":"KmsKeyId"},
         "CreationTime":{"shape":"Timestamp"},
-        "AsyncInferenceConfig":{"shape":"AsyncInferenceConfig"}
+        "AsyncInferenceConfig":{"shape":"AsyncInferenceConfig"},
+        "ExplainerConfig":{"shape":"ExplainerConfig"}
       }
     },
     "DescribeEndpointInput":{
@@ -7003,7 +7229,8 @@
         "LastModifiedTime":{"shape":"Timestamp"},
         "LastDeploymentConfig":{"shape":"DeploymentConfig"},
         "AsyncInferenceConfig":{"shape":"AsyncInferenceConfig"},
-        "PendingDeploymentSummary":{"shape":"PendingDeploymentSummary"}
+        "PendingDeploymentSummary":{"shape":"PendingDeploymentSummary"},
+        "ExplainerConfig":{"shape":"ExplainerConfig"}
       }
     },
     "DescribeExperimentRequest":{
@@ -8913,6 +9140,12 @@
     "ExplainabilityLocation":{
       "type":"string",
       "min":1
+    },
+    "ExplainerConfig":{
+      "type":"structure",
+      "members":{
+        "ClarifyExplainerConfig":{"shape":"ClarifyExplainerConfig"}
+      }
     },
     "FailStepMetadata":{
       "type":"structure",

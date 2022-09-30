@@ -1,3 +1,16 @@
+Release v1.44.109 (2022-09-30)
+===
+
+### Service Client Updates
+* `service/codedeploy`: Updates service API and documentation
+  * This release allows you to override the alarm configurations when creating a deployment.
+* `service/devops-guru`: Updates service API and documentation
+* `service/dlm`: Updates service API and documentation
+* `service/runtime.sagemaker`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * A new parameter called ExplainerConfig is added to CreateEndpointConfig API to enable SageMaker Clarify online explainability feature.
+* `service/sso-oidc`: Updates service documentation
+
 Release v1.44.108 (2022-09-29)
 ===
 

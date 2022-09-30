@@ -152,6 +152,20 @@
       "min":0,
       "pattern":"[0-9A-Za-z _-]+"
     },
+    "ArchiveRetainRule":{
+      "type":"structure",
+      "required":["RetentionArchiveTier"],
+      "members":{
+        "RetentionArchiveTier":{"shape":"RetentionArchiveTier"}
+      }
+    },
+    "ArchiveRule":{
+      "type":"structure",
+      "required":["RetainRule"],
+      "members":{
+        "RetainRule":{"shape":"ArchiveRetainRule"}
+      }
+    },
     "AvailabilityZone":{
       "type":"string",
       "max":16,
@@ -614,6 +628,14 @@
     "RetainRule":{
       "type":"structure",
       "members":{
+        "Count":{"shape":"StandardTierRetainRuleCount"},
+        "Interval":{"shape":"StandardTierRetainRuleInterval"},
+        "IntervalUnit":{"shape":"RetentionIntervalUnitValues"}
+      }
+    },
+    "RetentionArchiveTier":{
+      "type":"structure",
+      "members":{
         "Count":{"shape":"Count"},
         "Interval":{"shape":"Interval"},
         "IntervalUnit":{"shape":"RetentionIntervalUnitValues"}
@@ -640,7 +662,8 @@
         "FastRestoreRule":{"shape":"FastRestoreRule"},
         "CrossRegionCopyRules":{"shape":"CrossRegionCopyRules"},
         "ShareRules":{"shape":"ShareRules"},
-        "DeprecateRule":{"shape":"DeprecateRule"}
+        "DeprecateRule":{"shape":"DeprecateRule"},
+        "ArchiveRule":{"shape":"ArchiveRule"}
       }
     },
     "ScheduleList":{
@@ -686,6 +709,15 @@
       "type":"list",
       "member":{"shape":"AwsAccountId"},
       "max":50,
+      "min":0
+    },
+    "StandardTierRetainRuleCount":{
+      "type":"integer",
+      "max":1000,
+      "min":0
+    },
+    "StandardTierRetainRuleInterval":{
+      "type":"integer",
       "min":0
     },
     "StatusMessage":{

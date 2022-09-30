@@ -30225,6 +30225,564 @@ func (s *ClarifyCheckStepMetadata) SetViolationReport(v string) *ClarifyCheckSte
 	return s
 }
 
+// The configuration parameters for the SageMaker Clarify explainer.
+type ClarifyExplainerConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A JMESPath boolean expression used to filter which records to explain. Explanations
+	// are activated by default. See EnableExplanations (https://docs.aws.amazon.com/sagemaker-dg/src/AWSIronmanApiDoc/build/server-root/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-enable)for
+	// additional information.
+	EnableExplanations *string `min:"1" type:"string"`
+
+	// The inference configuration parameter for the model container.
+	InferenceConfig *ClarifyInferenceConfig `type:"structure"`
+
+	// The configuration for SHAP analysis.
+	//
+	// ShapConfig is a required field
+	ShapConfig *ClarifyShapConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyExplainerConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyExplainerConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClarifyExplainerConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClarifyExplainerConfig"}
+	if s.EnableExplanations != nil && len(*s.EnableExplanations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EnableExplanations", 1))
+	}
+	if s.ShapConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ShapConfig"))
+	}
+	if s.InferenceConfig != nil {
+		if err := s.InferenceConfig.Validate(); err != nil {
+			invalidParams.AddNested("InferenceConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ShapConfig != nil {
+		if err := s.ShapConfig.Validate(); err != nil {
+			invalidParams.AddNested("ShapConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnableExplanations sets the EnableExplanations field's value.
+func (s *ClarifyExplainerConfig) SetEnableExplanations(v string) *ClarifyExplainerConfig {
+	s.EnableExplanations = &v
+	return s
+}
+
+// SetInferenceConfig sets the InferenceConfig field's value.
+func (s *ClarifyExplainerConfig) SetInferenceConfig(v *ClarifyInferenceConfig) *ClarifyExplainerConfig {
+	s.InferenceConfig = v
+	return s
+}
+
+// SetShapConfig sets the ShapConfig field's value.
+func (s *ClarifyExplainerConfig) SetShapConfig(v *ClarifyShapConfig) *ClarifyExplainerConfig {
+	s.ShapConfig = v
+	return s
+}
+
+// The inference configuration parameter for the model container.
+type ClarifyInferenceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A template string used to format a JSON record into an acceptable model container
+	// input. For example, a ContentTemplate string '{"myfeatures":$features}' will
+	// format a list of features [1,2,3] into the record string '{"myfeatures":[1,2,3]}'.
+	// Required only when the model container input is in JSON Lines format.
+	ContentTemplate *string `min:"1" type:"string"`
+
+	// The names of the features. If provided, these are included in the endpoint
+	// response payload to help readability of the InvokeEndpoint output. See the
+	// Response (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-invoke-endpoint.html#clarify-online-explainability-response)
+	// section under Invoke the endpoint in the Developer Guide for more information.
+	FeatureHeaders []*string `min:"1" type:"list"`
+
+	// A list of data types of the features (optional). Applicable only to NLP explainability.
+	// If provided, FeatureTypes must have at least one 'text' string (for example,
+	// ['text']). If FeatureTypes is not provided, the explainer infers the feature
+	// types based on the baseline data. The feature types are included in the endpoint
+	// response payload. For additional information see the response (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-invoke-endpoint.html#clarify-online-explainability-response)
+	// section under Invoke the endpoint in the Developer Guide for more information.
+	FeatureTypes []*string `min:"1" type:"list" enum:"ClarifyFeatureType"`
+
+	// Provides the JMESPath expression to extract the features from a model container
+	// input in JSON Lines format. For example, if FeaturesAttribute is the JMESPath
+	// expression 'myfeatures', it extracts a list of features [1,2,3] from request
+	// data '{"myfeatures":[1,2,3}'.
+	FeaturesAttribute *string `min:"1" type:"string"`
+
+	// A JMESPath expression used to locate the list of label headers in the model
+	// container output.
+	//
+	// Example: If the model container output of a batch request is '{"labels":["cat","dog","fish"],"probability":[0.6,0.3,0.1]}',
+	// then set LabelAttribute to 'labels' to extract the list of label headers
+	// ["cat","dog","fish"]
+	LabelAttribute *string `min:"1" type:"string"`
+
+	// For multiclass classification problems, the label headers are the names of
+	// the classes. Otherwise, the label header is the name of the predicted label.
+	// These are used to help readability for the output of the InvokeEndpoint API.
+	// See the response (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-invoke-endpoint.html#clarify-online-explainability-response)
+	// section under Invoke the endpoint in the Developer Guide for more information.
+	// If there are no label headers in the model container output, provide them
+	// manually using this parameter.
+	LabelHeaders []*string `min:"1" type:"list"`
+
+	// A zero-based index used to extract a label header or list of label headers
+	// from model container output in CSV format.
+	//
+	// Example for a multiclass model: If the model container output consists of
+	// label headers followed by probabilities: '"[\'cat\',\'dog\',\'fish\']","[0.1,0.6,0.3]"',
+	// set LabelIndex to 0 to select the label headers ['cat','dog','fish'].
+	LabelIndex *int64 `type:"integer"`
+
+	// The maximum payload size (MB) allowed of a request from the explainer to
+	// the model container. Defaults to 6 MB.
+	MaxPayloadInMB *int64 `min:"1" type:"integer"`
+
+	// The maximum number of records in a request that the model container can process
+	// when querying the model container for the predictions of a synthetic dataset
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-synthetic).
+	// A record is a unit of input data that inference can be made on, for example,
+	// a single line in CSV data. If MaxRecordCount is 1, the model container expects
+	// one record per request. A value of 2 or greater means that the model expects
+	// batch requests, which can reduce overhead and speed up the inferencing process.
+	// If this parameter is not provided, the explainer will tune the record count
+	// per request according to the model container's capacity at runtime.
+	MaxRecordCount *int64 `min:"1" type:"integer"`
+
+	// A JMESPath expression used to extract the probability (or score) from the
+	// model container output if the model container is in JSON Lines format.
+	//
+	// Example: If the model container output of a single request is '{"predicted_label":1,"probability":0.6}',
+	// then set ProbabilityAttribute to 'probability'.
+	ProbabilityAttribute *string `min:"1" type:"string"`
+
+	// A zero-based index used to extract a probability value (score) or list from
+	// model container output in CSV format. If this value is not provided, the
+	// entire model container output will be treated as a probability value (score)
+	// or list.
+	//
+	// Example for a single class model: If the model container output consists
+	// of a string-formatted prediction label followed by its probability: '1,0.6',
+	// set ProbabilityIndex to 1 to select the probability value 0.6.
+	//
+	// Example for a multiclass model: If the model container output consists of
+	// a string-formatted prediction label followed by its probability: '"[\'cat\',\'dog\',\'fish\']","[0.1,0.6,0.3]"',
+	// set ProbabilityIndex to 1 to select the probability values [0.1,0.6,0.3].
+	ProbabilityIndex *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyInferenceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyInferenceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClarifyInferenceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClarifyInferenceConfig"}
+	if s.ContentTemplate != nil && len(*s.ContentTemplate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentTemplate", 1))
+	}
+	if s.FeatureHeaders != nil && len(s.FeatureHeaders) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeatureHeaders", 1))
+	}
+	if s.FeatureTypes != nil && len(s.FeatureTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeatureTypes", 1))
+	}
+	if s.FeaturesAttribute != nil && len(*s.FeaturesAttribute) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeaturesAttribute", 1))
+	}
+	if s.LabelAttribute != nil && len(*s.LabelAttribute) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelAttribute", 1))
+	}
+	if s.LabelHeaders != nil && len(s.LabelHeaders) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelHeaders", 1))
+	}
+	if s.MaxPayloadInMB != nil && *s.MaxPayloadInMB < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxPayloadInMB", 1))
+	}
+	if s.MaxRecordCount != nil && *s.MaxRecordCount < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxRecordCount", 1))
+	}
+	if s.ProbabilityAttribute != nil && len(*s.ProbabilityAttribute) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProbabilityAttribute", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContentTemplate sets the ContentTemplate field's value.
+func (s *ClarifyInferenceConfig) SetContentTemplate(v string) *ClarifyInferenceConfig {
+	s.ContentTemplate = &v
+	return s
+}
+
+// SetFeatureHeaders sets the FeatureHeaders field's value.
+func (s *ClarifyInferenceConfig) SetFeatureHeaders(v []*string) *ClarifyInferenceConfig {
+	s.FeatureHeaders = v
+	return s
+}
+
+// SetFeatureTypes sets the FeatureTypes field's value.
+func (s *ClarifyInferenceConfig) SetFeatureTypes(v []*string) *ClarifyInferenceConfig {
+	s.FeatureTypes = v
+	return s
+}
+
+// SetFeaturesAttribute sets the FeaturesAttribute field's value.
+func (s *ClarifyInferenceConfig) SetFeaturesAttribute(v string) *ClarifyInferenceConfig {
+	s.FeaturesAttribute = &v
+	return s
+}
+
+// SetLabelAttribute sets the LabelAttribute field's value.
+func (s *ClarifyInferenceConfig) SetLabelAttribute(v string) *ClarifyInferenceConfig {
+	s.LabelAttribute = &v
+	return s
+}
+
+// SetLabelHeaders sets the LabelHeaders field's value.
+func (s *ClarifyInferenceConfig) SetLabelHeaders(v []*string) *ClarifyInferenceConfig {
+	s.LabelHeaders = v
+	return s
+}
+
+// SetLabelIndex sets the LabelIndex field's value.
+func (s *ClarifyInferenceConfig) SetLabelIndex(v int64) *ClarifyInferenceConfig {
+	s.LabelIndex = &v
+	return s
+}
+
+// SetMaxPayloadInMB sets the MaxPayloadInMB field's value.
+func (s *ClarifyInferenceConfig) SetMaxPayloadInMB(v int64) *ClarifyInferenceConfig {
+	s.MaxPayloadInMB = &v
+	return s
+}
+
+// SetMaxRecordCount sets the MaxRecordCount field's value.
+func (s *ClarifyInferenceConfig) SetMaxRecordCount(v int64) *ClarifyInferenceConfig {
+	s.MaxRecordCount = &v
+	return s
+}
+
+// SetProbabilityAttribute sets the ProbabilityAttribute field's value.
+func (s *ClarifyInferenceConfig) SetProbabilityAttribute(v string) *ClarifyInferenceConfig {
+	s.ProbabilityAttribute = &v
+	return s
+}
+
+// SetProbabilityIndex sets the ProbabilityIndex field's value.
+func (s *ClarifyInferenceConfig) SetProbabilityIndex(v int64) *ClarifyInferenceConfig {
+	s.ProbabilityIndex = &v
+	return s
+}
+
+// The configuration for the SHAP baseline (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-feature-attribute-shap-baselines.html)
+// (also called the background or reference dataset) of the Kernal SHAP algorithm.
+//
+//   - The number of records in the baseline data determines the size of the
+//     synthetic dataset, which has an impact on latency of explainability requests.
+//     For more information, see the Synthetic data of Configure and create an
+//     endpoint (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html).
+//
+//   - ShapBaseline and ShapBaselineUri are mutually exclusive parameters.
+//     One or the either is required to configure a SHAP baseline.
+type ClarifyShapBaselineConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The MIME type of the baseline data. Choose from 'text/csv' or 'application/jsonlines'.
+	// Defaults to 'text/csv'.
+	MimeType *string `type:"string"`
+
+	// The inline SHAP baseline data in string format. ShapBaseline can have one
+	// or multiple records to be used as the baseline dataset. The format of the
+	// SHAP baseline file should be the same format as the training dataset. For
+	// example, if the training dataset is in CSV format and each record contains
+	// four features, and all features are numerical, then the format of the baseline
+	// data should also share these characteristics. For natural language processing
+	// (NLP) of text columns, the baseline value should be the value used to replace
+	// the unit of text specified by the Granularity of the TextConfig parameter.
+	// The size limit for ShapBasline is 4 KB. Use the ShapBaselineUri parameter
+	// if you want to provide more than 4 KB of baseline data.
+	ShapBaseline *string `min:"1" type:"string"`
+
+	// The uniform resource identifier (URI) of the S3 bucket where the SHAP baseline
+	// file is stored. The format of the SHAP baseline file should be the same format
+	// as the format of the training dataset. For example, if the training dataset
+	// is in CSV format, and each record in the training dataset has four features,
+	// and all features are numerical, then the baseline file should also have this
+	// same format. Each record should contain only the features. If you are using
+	// a virtual private cloud (VPC), the ShapBaselineUri should be accessible to
+	// the VPC. For more information about setting up endpoints with Amazon Virtual
+	// Private Cloud, see Give SageMaker access to Resources in your Amazon Virtual
+	// Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html).
+	ShapBaselineUri *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyShapBaselineConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyShapBaselineConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClarifyShapBaselineConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClarifyShapBaselineConfig"}
+	if s.ShapBaseline != nil && len(*s.ShapBaseline) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ShapBaseline", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMimeType sets the MimeType field's value.
+func (s *ClarifyShapBaselineConfig) SetMimeType(v string) *ClarifyShapBaselineConfig {
+	s.MimeType = &v
+	return s
+}
+
+// SetShapBaseline sets the ShapBaseline field's value.
+func (s *ClarifyShapBaselineConfig) SetShapBaseline(v string) *ClarifyShapBaselineConfig {
+	s.ShapBaseline = &v
+	return s
+}
+
+// SetShapBaselineUri sets the ShapBaselineUri field's value.
+func (s *ClarifyShapBaselineConfig) SetShapBaselineUri(v string) *ClarifyShapBaselineConfig {
+	s.ShapBaselineUri = &v
+	return s
+}
+
+// The configuration for SHAP analysis using SageMaker Clarify Explainer.
+type ClarifyShapConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The number of samples to be used for analysis by the Kernal SHAP algorithm.
+	//
+	// The number of samples determines the size of the synthetic dataset, which
+	// has an impact on latency of explainability requests. For more information,
+	// see the Synthetic data of Configure and create an endpoint (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html).
+	NumberOfSamples *int64 `min:"1" type:"integer"`
+
+	// The starting value used to initialize the random number generator in the
+	// explainer. Provide a value for this parameter to obtain a deterministic SHAP
+	// result.
+	Seed *int64 `type:"integer"`
+
+	// The configuration for the SHAP baseline of the Kernal SHAP algorithm.
+	//
+	// ShapBaselineConfig is a required field
+	ShapBaselineConfig *ClarifyShapBaselineConfig `type:"structure" required:"true"`
+
+	// A parameter that indicates if text features are treated as text and explanations
+	// are provided for individual units of text. Required for natural language
+	// processing (NLP) explainability only.
+	TextConfig *ClarifyTextConfig `type:"structure"`
+
+	// A Boolean toggle to indicate if you want to use the logit function (true)
+	// or log-odds units (false) for model predictions. Defaults to false.
+	UseLogit *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyShapConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyShapConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClarifyShapConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClarifyShapConfig"}
+	if s.NumberOfSamples != nil && *s.NumberOfSamples < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("NumberOfSamples", 1))
+	}
+	if s.ShapBaselineConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ShapBaselineConfig"))
+	}
+	if s.ShapBaselineConfig != nil {
+		if err := s.ShapBaselineConfig.Validate(); err != nil {
+			invalidParams.AddNested("ShapBaselineConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TextConfig != nil {
+		if err := s.TextConfig.Validate(); err != nil {
+			invalidParams.AddNested("TextConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNumberOfSamples sets the NumberOfSamples field's value.
+func (s *ClarifyShapConfig) SetNumberOfSamples(v int64) *ClarifyShapConfig {
+	s.NumberOfSamples = &v
+	return s
+}
+
+// SetSeed sets the Seed field's value.
+func (s *ClarifyShapConfig) SetSeed(v int64) *ClarifyShapConfig {
+	s.Seed = &v
+	return s
+}
+
+// SetShapBaselineConfig sets the ShapBaselineConfig field's value.
+func (s *ClarifyShapConfig) SetShapBaselineConfig(v *ClarifyShapBaselineConfig) *ClarifyShapConfig {
+	s.ShapBaselineConfig = v
+	return s
+}
+
+// SetTextConfig sets the TextConfig field's value.
+func (s *ClarifyShapConfig) SetTextConfig(v *ClarifyTextConfig) *ClarifyShapConfig {
+	s.TextConfig = v
+	return s
+}
+
+// SetUseLogit sets the UseLogit field's value.
+func (s *ClarifyShapConfig) SetUseLogit(v bool) *ClarifyShapConfig {
+	s.UseLogit = &v
+	return s
+}
+
+// A parameter used to configure the SageMaker Clarify explainer to treat text
+// features as text so that explanations are provided for individual units of
+// text. Required only for natural language processing (NLP) explainability.
+type ClarifyTextConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The unit of granularity for the analysis of text features. For example, if
+	// the unit is 'token', then each token (like a word in English) of the text
+	// is treated as a feature. SHAP values are computed for each unit/feature.
+	//
+	// Granularity is a required field
+	Granularity *string `type:"string" required:"true" enum:"ClarifyTextGranularity"`
+
+	// Specifies the language of the text features in ISO 639-1 (https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+	// or ISO 639-3 (https://en.wikipedia.org/wiki/ISO_639-3) code of a supported
+	// language.
+	//
+	// For a mix of multiple languages, use code 'xx'.
+	//
+	// Language is a required field
+	Language *string `type:"string" required:"true" enum:"ClarifyTextLanguage"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyTextConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyTextConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClarifyTextConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClarifyTextConfig"}
+	if s.Granularity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Granularity"))
+	}
+	if s.Language == nil {
+		invalidParams.Add(request.NewErrParamRequired("Language"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGranularity sets the Granularity field's value.
+func (s *ClarifyTextConfig) SetGranularity(v string) *ClarifyTextConfig {
+	s.Granularity = &v
+	return s
+}
+
+// SetLanguage sets the Language field's value.
+func (s *ClarifyTextConfig) SetLanguage(v string) *ClarifyTextConfig {
+	s.Language = &v
+	return s
+}
+
 // Specifies summary information about a Git repository.
 type CodeRepositorySummary struct {
 	_ struct{} `type:"structure"`
@@ -33844,6 +34402,9 @@ type CreateEndpointConfigInput struct {
 	// EndpointConfigName is a required field
 	EndpointConfigName *string `type:"string" required:"true"`
 
+	// A member of CreateEndpointConfig that enables explainers.
+	ExplainerConfig *ExplainerConfig `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service
 	// key that SageMaker uses to encrypt data on the storage volume attached to
 	// the ML compute instance that hosts the endpoint.
@@ -33932,6 +34493,11 @@ func (s *CreateEndpointConfigInput) Validate() error {
 			invalidParams.AddNested("DataCaptureConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ExplainerConfig != nil {
+		if err := s.ExplainerConfig.Validate(); err != nil {
+			invalidParams.AddNested("ExplainerConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ProductionVariants != nil {
 		for i, v := range s.ProductionVariants {
 			if v == nil {
@@ -33974,6 +34540,12 @@ func (s *CreateEndpointConfigInput) SetDataCaptureConfig(v *DataCaptureConfig) *
 // SetEndpointConfigName sets the EndpointConfigName field's value.
 func (s *CreateEndpointConfigInput) SetEndpointConfigName(v string) *CreateEndpointConfigInput {
 	s.EndpointConfigName = &v
+	return s
+}
+
+// SetExplainerConfig sets the ExplainerConfig field's value.
+func (s *CreateEndpointConfigInput) SetExplainerConfig(v *ExplainerConfig) *CreateEndpointConfigInput {
+	s.ExplainerConfig = v
 	return s
 }
 
@@ -47854,6 +48426,9 @@ type DescribeEndpointConfigOutput struct {
 	// EndpointConfigName is a required field
 	EndpointConfigName *string `type:"string" required:"true"`
 
+	// The configuration parameters for an explainer.
+	ExplainerConfig *ExplainerConfig `type:"structure"`
+
 	// Amazon Web Services KMS key ID Amazon SageMaker uses to encrypt data when
 	// storing it on the ML storage volume attached to the instance.
 	KmsKeyId *string `type:"string"`
@@ -47910,6 +48485,12 @@ func (s *DescribeEndpointConfigOutput) SetEndpointConfigArn(v string) *DescribeE
 // SetEndpointConfigName sets the EndpointConfigName field's value.
 func (s *DescribeEndpointConfigOutput) SetEndpointConfigName(v string) *DescribeEndpointConfigOutput {
 	s.EndpointConfigName = &v
+	return s
+}
+
+// SetExplainerConfig sets the ExplainerConfig field's value.
+func (s *DescribeEndpointConfigOutput) SetExplainerConfig(v *ExplainerConfig) *DescribeEndpointConfigOutput {
+	s.ExplainerConfig = v
 	return s
 }
 
@@ -48034,6 +48615,9 @@ type DescribeEndpointOutput struct {
 	// EndpointStatus is a required field
 	EndpointStatus *string `type:"string" required:"true" enum:"EndpointStatus"`
 
+	// The configuration parameters for an explainer.
+	ExplainerConfig *ExplainerConfig `type:"structure"`
+
 	// If the status of the endpoint is Failed, the reason why it failed.
 	FailureReason *string `type:"string"`
 
@@ -48111,6 +48695,12 @@ func (s *DescribeEndpointOutput) SetEndpointName(v string) *DescribeEndpointOutp
 // SetEndpointStatus sets the EndpointStatus field's value.
 func (s *DescribeEndpointOutput) SetEndpointStatus(v string) *DescribeEndpointOutput {
 	s.EndpointStatus = &v
+	return s
+}
+
+// SetExplainerConfig sets the ExplainerConfig field's value.
+func (s *DescribeEndpointOutput) SetExplainerConfig(v *ExplainerConfig) *DescribeEndpointOutput {
+	s.ExplainerConfig = v
 	return s
 }
 
@@ -58064,6 +58654,54 @@ func (s *Explainability) Validate() error {
 // SetReport sets the Report field's value.
 func (s *Explainability) SetReport(v *MetricsSource) *Explainability {
 	s.Report = v
+	return s
+}
+
+// A parameter to activate explainers.
+type ExplainerConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A member of ExplainerConfig that contains configuration parameters for the
+	// SageMaker Clarify explainer.
+	ClarifyExplainerConfig *ClarifyExplainerConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExplainerConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExplainerConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExplainerConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExplainerConfig"}
+	if s.ClarifyExplainerConfig != nil {
+		if err := s.ClarifyExplainerConfig.Validate(); err != nil {
+			invalidParams.AddNested("ClarifyExplainerConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClarifyExplainerConfig sets the ClarifyExplainerConfig field's value.
+func (s *ExplainerConfig) SetClarifyExplainerConfig(v *ClarifyExplainerConfig) *ExplainerConfig {
+	s.ClarifyExplainerConfig = v
 	return s
 }
 
@@ -99515,6 +100153,294 @@ func CaptureStatus_Values() []string {
 	return []string{
 		CaptureStatusStarted,
 		CaptureStatusStopped,
+	}
+}
+
+const (
+	// ClarifyFeatureTypeNumerical is a ClarifyFeatureType enum value
+	ClarifyFeatureTypeNumerical = "numerical"
+
+	// ClarifyFeatureTypeCategorical is a ClarifyFeatureType enum value
+	ClarifyFeatureTypeCategorical = "categorical"
+
+	// ClarifyFeatureTypeText is a ClarifyFeatureType enum value
+	ClarifyFeatureTypeText = "text"
+)
+
+// ClarifyFeatureType_Values returns all elements of the ClarifyFeatureType enum
+func ClarifyFeatureType_Values() []string {
+	return []string{
+		ClarifyFeatureTypeNumerical,
+		ClarifyFeatureTypeCategorical,
+		ClarifyFeatureTypeText,
+	}
+}
+
+const (
+	// ClarifyTextGranularityToken is a ClarifyTextGranularity enum value
+	ClarifyTextGranularityToken = "token"
+
+	// ClarifyTextGranularitySentence is a ClarifyTextGranularity enum value
+	ClarifyTextGranularitySentence = "sentence"
+
+	// ClarifyTextGranularityParagraph is a ClarifyTextGranularity enum value
+	ClarifyTextGranularityParagraph = "paragraph"
+)
+
+// ClarifyTextGranularity_Values returns all elements of the ClarifyTextGranularity enum
+func ClarifyTextGranularity_Values() []string {
+	return []string{
+		ClarifyTextGranularityToken,
+		ClarifyTextGranularitySentence,
+		ClarifyTextGranularityParagraph,
+	}
+}
+
+const (
+	// ClarifyTextLanguageAf is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageAf = "af"
+
+	// ClarifyTextLanguageSq is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageSq = "sq"
+
+	// ClarifyTextLanguageAr is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageAr = "ar"
+
+	// ClarifyTextLanguageHy is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageHy = "hy"
+
+	// ClarifyTextLanguageEu is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageEu = "eu"
+
+	// ClarifyTextLanguageBn is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageBn = "bn"
+
+	// ClarifyTextLanguageBg is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageBg = "bg"
+
+	// ClarifyTextLanguageCa is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageCa = "ca"
+
+	// ClarifyTextLanguageZh is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageZh = "zh"
+
+	// ClarifyTextLanguageHr is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageHr = "hr"
+
+	// ClarifyTextLanguageCs is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageCs = "cs"
+
+	// ClarifyTextLanguageDa is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageDa = "da"
+
+	// ClarifyTextLanguageNl is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageNl = "nl"
+
+	// ClarifyTextLanguageEn is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageEn = "en"
+
+	// ClarifyTextLanguageEt is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageEt = "et"
+
+	// ClarifyTextLanguageFi is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageFi = "fi"
+
+	// ClarifyTextLanguageFr is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageFr = "fr"
+
+	// ClarifyTextLanguageDe is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageDe = "de"
+
+	// ClarifyTextLanguageEl is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageEl = "el"
+
+	// ClarifyTextLanguageGu is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageGu = "gu"
+
+	// ClarifyTextLanguageHe is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageHe = "he"
+
+	// ClarifyTextLanguageHi is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageHi = "hi"
+
+	// ClarifyTextLanguageHu is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageHu = "hu"
+
+	// ClarifyTextLanguageIs is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageIs = "is"
+
+	// ClarifyTextLanguageId is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageId = "id"
+
+	// ClarifyTextLanguageGa is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageGa = "ga"
+
+	// ClarifyTextLanguageIt is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageIt = "it"
+
+	// ClarifyTextLanguageKn is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageKn = "kn"
+
+	// ClarifyTextLanguageKy is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageKy = "ky"
+
+	// ClarifyTextLanguageLv is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageLv = "lv"
+
+	// ClarifyTextLanguageLt is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageLt = "lt"
+
+	// ClarifyTextLanguageLb is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageLb = "lb"
+
+	// ClarifyTextLanguageMk is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageMk = "mk"
+
+	// ClarifyTextLanguageMl is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageMl = "ml"
+
+	// ClarifyTextLanguageMr is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageMr = "mr"
+
+	// ClarifyTextLanguageNe is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageNe = "ne"
+
+	// ClarifyTextLanguageNb is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageNb = "nb"
+
+	// ClarifyTextLanguageFa is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageFa = "fa"
+
+	// ClarifyTextLanguagePl is a ClarifyTextLanguage enum value
+	ClarifyTextLanguagePl = "pl"
+
+	// ClarifyTextLanguagePt is a ClarifyTextLanguage enum value
+	ClarifyTextLanguagePt = "pt"
+
+	// ClarifyTextLanguageRo is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageRo = "ro"
+
+	// ClarifyTextLanguageRu is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageRu = "ru"
+
+	// ClarifyTextLanguageSa is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageSa = "sa"
+
+	// ClarifyTextLanguageSr is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageSr = "sr"
+
+	// ClarifyTextLanguageTn is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageTn = "tn"
+
+	// ClarifyTextLanguageSi is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageSi = "si"
+
+	// ClarifyTextLanguageSk is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageSk = "sk"
+
+	// ClarifyTextLanguageSl is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageSl = "sl"
+
+	// ClarifyTextLanguageEs is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageEs = "es"
+
+	// ClarifyTextLanguageSv is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageSv = "sv"
+
+	// ClarifyTextLanguageTl is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageTl = "tl"
+
+	// ClarifyTextLanguageTa is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageTa = "ta"
+
+	// ClarifyTextLanguageTt is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageTt = "tt"
+
+	// ClarifyTextLanguageTe is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageTe = "te"
+
+	// ClarifyTextLanguageTr is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageTr = "tr"
+
+	// ClarifyTextLanguageUk is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageUk = "uk"
+
+	// ClarifyTextLanguageUr is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageUr = "ur"
+
+	// ClarifyTextLanguageYo is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageYo = "yo"
+
+	// ClarifyTextLanguageLij is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageLij = "lij"
+
+	// ClarifyTextLanguageXx is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageXx = "xx"
+)
+
+// ClarifyTextLanguage_Values returns all elements of the ClarifyTextLanguage enum
+func ClarifyTextLanguage_Values() []string {
+	return []string{
+		ClarifyTextLanguageAf,
+		ClarifyTextLanguageSq,
+		ClarifyTextLanguageAr,
+		ClarifyTextLanguageHy,
+		ClarifyTextLanguageEu,
+		ClarifyTextLanguageBn,
+		ClarifyTextLanguageBg,
+		ClarifyTextLanguageCa,
+		ClarifyTextLanguageZh,
+		ClarifyTextLanguageHr,
+		ClarifyTextLanguageCs,
+		ClarifyTextLanguageDa,
+		ClarifyTextLanguageNl,
+		ClarifyTextLanguageEn,
+		ClarifyTextLanguageEt,
+		ClarifyTextLanguageFi,
+		ClarifyTextLanguageFr,
+		ClarifyTextLanguageDe,
+		ClarifyTextLanguageEl,
+		ClarifyTextLanguageGu,
+		ClarifyTextLanguageHe,
+		ClarifyTextLanguageHi,
+		ClarifyTextLanguageHu,
+		ClarifyTextLanguageIs,
+		ClarifyTextLanguageId,
+		ClarifyTextLanguageGa,
+		ClarifyTextLanguageIt,
+		ClarifyTextLanguageKn,
+		ClarifyTextLanguageKy,
+		ClarifyTextLanguageLv,
+		ClarifyTextLanguageLt,
+		ClarifyTextLanguageLb,
+		ClarifyTextLanguageMk,
+		ClarifyTextLanguageMl,
+		ClarifyTextLanguageMr,
+		ClarifyTextLanguageNe,
+		ClarifyTextLanguageNb,
+		ClarifyTextLanguageFa,
+		ClarifyTextLanguagePl,
+		ClarifyTextLanguagePt,
+		ClarifyTextLanguageRo,
+		ClarifyTextLanguageRu,
+		ClarifyTextLanguageSa,
+		ClarifyTextLanguageSr,
+		ClarifyTextLanguageTn,
+		ClarifyTextLanguageSi,
+		ClarifyTextLanguageSk,
+		ClarifyTextLanguageSl,
+		ClarifyTextLanguageEs,
+		ClarifyTextLanguageSv,
+		ClarifyTextLanguageTl,
+		ClarifyTextLanguageTa,
+		ClarifyTextLanguageTt,
+		ClarifyTextLanguageTe,
+		ClarifyTextLanguageTr,
+		ClarifyTextLanguageUk,
+		ClarifyTextLanguageUr,
+		ClarifyTextLanguageYo,
+		ClarifyTextLanguageLij,
+		ClarifyTextLanguageXx,
 	}
 }
 

@@ -57,6 +57,12 @@
       "pattern":"\\p{ASCII}*",
       "sensitive":true
     },
+    "EnableExplanationsHeader":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":".*"
+    },
     "EndpointName":{
       "type":"string",
       "max":63,
@@ -201,6 +207,11 @@
           "shape":"InferenceId",
           "location":"header",
           "locationName":"X-Amzn-SageMaker-Inference-Id"
+        },
+        "EnableExplanations":{
+          "shape":"EnableExplanationsHeader",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Enable-Explanations"
         }
       },
       "payload":"Body"

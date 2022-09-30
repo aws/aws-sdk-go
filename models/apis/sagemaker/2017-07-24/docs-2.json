@@ -1468,6 +1468,163 @@
         "PipelineExecutionStepMetadata$ClarifyCheck": "<p>Container for the metadata for a Clarify check step. The configurations and outcomes of the check step execution. This includes: </p> <ul> <li> <p>The type of the check conducted,</p> </li> <li> <p>The Amazon S3 URIs of baseline constraints and statistics files to be used for the drift check.</p> </li> <li> <p>The Amazon S3 URIs of newly calculated baseline constraints and statistics.</p> </li> <li> <p>The model package group name provided.</p> </li> <li> <p>The Amazon S3 URI of the violation report if violations detected.</p> </li> <li> <p>The Amazon Resource Name (ARN) of check processing job initiated by the step execution.</p> </li> <li> <p>The boolean flags indicating if the drift check is skipped.</p> </li> <li> <p>If step property <code>BaselineUsedForDriftCheck</code> is set the same as <code>CalculatedBaseline</code>.</p> </li> </ul>"
       }
     },
+    "ClarifyContentTemplate": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$ContentTemplate": "<p>A template string used to format a JSON record into an acceptable model container input. For example, a <code>ContentTemplate</code> string <code>'{\"myfeatures\":$features}'</code> will format a list of features <code>[1,2,3]</code> into the record string <code>'{\"myfeatures\":[1,2,3]}'</code>. Required only when the model container input is in JSON Lines format.</p>"
+      }
+    },
+    "ClarifyEnableExplanations": {
+      "base": null,
+      "refs": {
+        "ClarifyExplainerConfig$EnableExplanations": "<p>A JMESPath boolean expression used to filter which records to explain. Explanations are activated by default. See <a href=\"https://docs.aws.amazon.com/sagemaker-dg/src/AWSIronmanApiDoc/build/server-root/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-enable\"> <code>EnableExplanations</code> </a>for additional information.</p>"
+      }
+    },
+    "ClarifyExplainerConfig": {
+      "base": "<p>The configuration parameters for the SageMaker Clarify explainer.</p>",
+      "refs": {
+        "ExplainerConfig$ClarifyExplainerConfig": "<p>A member of <code>ExplainerConfig</code> that contains configuration parameters for the SageMaker Clarify explainer.</p>"
+      }
+    },
+    "ClarifyFeatureHeaders": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$FeatureHeaders": "<p>The names of the features. If provided, these are included in the endpoint response payload to help readability of the <code>InvokeEndpoint</code> output. See the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-invoke-endpoint.html#clarify-online-explainability-response\">Response</a> section under <b>Invoke the endpoint</b> in the Developer Guide for more information.</p>"
+      }
+    },
+    "ClarifyFeatureType": {
+      "base": null,
+      "refs": {
+        "ClarifyFeatureTypes$member": null
+      }
+    },
+    "ClarifyFeatureTypes": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$FeatureTypes": "<p>A list of data types of the features (optional). Applicable only to NLP explainability. If provided, <code>FeatureTypes</code> must have at least one <code>'text'</code> string (for example, <code>['text']</code>). If <code>FeatureTypes</code> is not provided, the explainer infers the feature types based on the baseline data. The feature types are included in the endpoint response payload. For additional information see the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-invoke-endpoint.html#clarify-online-explainability-response\">response</a> section under <b>Invoke the endpoint</b> in the Developer Guide for more information.</p>"
+      }
+    },
+    "ClarifyFeaturesAttribute": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$FeaturesAttribute": "<p>Provides the JMESPath expression to extract the features from a model container input in JSON Lines format. For example, if <code>FeaturesAttribute</code> is the JMESPath expression <code>'myfeatures'</code>, it extracts a list of features <code>[1,2,3]</code> from request data <code>'{\"myfeatures\":[1,2,3}'</code>.</p>"
+      }
+    },
+    "ClarifyHeader": {
+      "base": null,
+      "refs": {
+        "ClarifyFeatureHeaders$member": null,
+        "ClarifyLabelHeaders$member": null
+      }
+    },
+    "ClarifyInferenceConfig": {
+      "base": "<p>The inference configuration parameter for the model container.</p>",
+      "refs": {
+        "ClarifyExplainerConfig$InferenceConfig": "<p>The inference configuration parameter for the model container.</p>"
+      }
+    },
+    "ClarifyLabelAttribute": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$LabelAttribute": "<p>A JMESPath expression used to locate the list of label headers in the model container output.</p> <p> <b>Example</b>: If the model container output of a batch request is <code>'{\"labels\":[\"cat\",\"dog\",\"fish\"],\"probability\":[0.6,0.3,0.1]}'</code>, then set <code>LabelAttribute</code> to <code>'labels'</code> to extract the list of label headers <code>[\"cat\",\"dog\",\"fish\"]</code> </p>"
+      }
+    },
+    "ClarifyLabelHeaders": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$LabelHeaders": "<p>For multiclass classification problems, the label headers are the names of the classes. Otherwise, the label header is the name of the predicted label. These are used to help readability for the output of the <code>InvokeEndpoint</code> API. See the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-invoke-endpoint.html#clarify-online-explainability-response\">response</a> section under <b>Invoke the endpoint</b> in the Developer Guide for more information. If there are no label headers in the model container output, provide them manually using this parameter.</p>"
+      }
+    },
+    "ClarifyLabelIndex": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$LabelIndex": "<p>A zero-based index used to extract a label header or list of label headers from model container output in CSV format.</p> <p> <b>Example for a multiclass model:</b> If the model container output consists of label headers followed by probabilities: <code>'\"[\\'cat\\',\\'dog\\',\\'fish\\']\",\"[0.1,0.6,0.3]\"'</code>, set <code>LabelIndex</code> to <code>0</code> to select the label headers <code>['cat','dog','fish']</code>.</p>"
+      }
+    },
+    "ClarifyMaxPayloadInMB": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$MaxPayloadInMB": "<p>The maximum payload size (MB) allowed of a request from the explainer to the model container. Defaults to <code>6</code> MB.</p>"
+      }
+    },
+    "ClarifyMaxRecordCount": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$MaxRecordCount": "<p>The maximum number of records in a request that the model container can process when querying the model container for the predictions of a <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-synthetic\">synthetic dataset</a>. A record is a unit of input data that inference can be made on, for example, a single line in CSV data. If <code>MaxRecordCount</code> is <code>1</code>, the model container expects one record per request. A value of 2 or greater means that the model expects batch requests, which can reduce overhead and speed up the inferencing process. If this parameter is not provided, the explainer will tune the record count per request according to the model container's capacity at runtime.</p>"
+      }
+    },
+    "ClarifyMimeType": {
+      "base": null,
+      "refs": {
+        "ClarifyShapBaselineConfig$MimeType": "<p>The MIME type of the baseline data. Choose from <code>'text/csv'</code> or <code>'application/jsonlines'</code>. Defaults to <code>'text/csv'</code>.</p>"
+      }
+    },
+    "ClarifyProbabilityAttribute": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$ProbabilityAttribute": "<p>A JMESPath expression used to extract the probability (or score) from the model container output if the model container is in JSON Lines format.</p> <p> <b>Example</b>: If the model container output of a single request is <code>'{\"predicted_label\":1,\"probability\":0.6}'</code>, then set <code>ProbabilityAttribute</code> to <code>'probability'</code>.</p>"
+      }
+    },
+    "ClarifyProbabilityIndex": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$ProbabilityIndex": "<p>A zero-based index used to extract a probability value (score) or list from model container output in CSV format. If this value is not provided, the entire model container output will be treated as a probability value (score) or list.</p> <p> <b>Example for a single class model:</b> If the model container output consists of a string-formatted prediction label followed by its probability: <code>'1,0.6'</code>, set <code>ProbabilityIndex</code> to <code>1</code> to select the probability value <code>0.6</code>.</p> <p> <b>Example for a multiclass model:</b> If the model container output consists of a string-formatted prediction label followed by its probability: <code>'\"[\\'cat\\',\\'dog\\',\\'fish\\']\",\"[0.1,0.6,0.3]\"'</code>, set <code>ProbabilityIndex</code> to <code>1</code> to select the probability values <code>[0.1,0.6,0.3]</code>.</p>"
+      }
+    },
+    "ClarifyShapBaseline": {
+      "base": null,
+      "refs": {
+        "ClarifyShapBaselineConfig$ShapBaseline": "<p>The inline SHAP baseline data in string format. <code>ShapBaseline</code> can have one or multiple records to be used as the baseline dataset. The format of the SHAP baseline file should be the same format as the training dataset. For example, if the training dataset is in CSV format and each record contains four features, and all features are numerical, then the format of the baseline data should also share these characteristics. For natural language processing (NLP) of text columns, the baseline value should be the value used to replace the unit of text specified by the <code>Granularity</code> of the <code>TextConfig</code> parameter. The size limit for <code>ShapBasline</code> is 4 KB. Use the <code>ShapBaselineUri</code> parameter if you want to provide more than 4 KB of baseline data.</p>"
+      }
+    },
+    "ClarifyShapBaselineConfig": {
+      "base": "<p>The configuration for the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-feature-attribute-shap-baselines.html\">SHAP baseline</a> (also called the background or reference dataset) of the Kernal SHAP algorithm.</p> <note> <ul> <li> <p>The number of records in the baseline data determines the size of the synthetic dataset, which has an impact on latency of explainability requests. For more information, see the <b>Synthetic data</b> of <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html\">Configure and create an endpoint</a>.</p> </li> <li> <p> <code>ShapBaseline</code> and <code>ShapBaselineUri</code> are mutually exclusive parameters. One or the either is required to configure a SHAP baseline. </p> </li> </ul> </note>",
+      "refs": {
+        "ClarifyShapConfig$ShapBaselineConfig": "<p>The configuration for the SHAP baseline of the Kernal SHAP algorithm.</p>"
+      }
+    },
+    "ClarifyShapConfig": {
+      "base": "<p>The configuration for SHAP analysis using SageMaker Clarify Explainer.</p>",
+      "refs": {
+        "ClarifyExplainerConfig$ShapConfig": "<p>The configuration for SHAP analysis.</p>"
+      }
+    },
+    "ClarifyShapNumberOfSamples": {
+      "base": null,
+      "refs": {
+        "ClarifyShapConfig$NumberOfSamples": "<p>The number of samples to be used for analysis by the Kernal SHAP algorithm. </p> <note> <p>The number of samples determines the size of the synthetic dataset, which has an impact on latency of explainability requests. For more information, see the <b>Synthetic data</b> of <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html\">Configure and create an endpoint</a>.</p> </note>"
+      }
+    },
+    "ClarifyShapSeed": {
+      "base": null,
+      "refs": {
+        "ClarifyShapConfig$Seed": "<p>The starting value used to initialize the random number generator in the explainer. Provide a value for this parameter to obtain a deterministic SHAP result.</p>"
+      }
+    },
+    "ClarifyShapUseLogit": {
+      "base": null,
+      "refs": {
+        "ClarifyShapConfig$UseLogit": "<p>A Boolean toggle to indicate if you want to use the logit function (true) or log-odds units (false) for model predictions. Defaults to false.</p>"
+      }
+    },
+    "ClarifyTextConfig": {
+      "base": "<p>A parameter used to configure the SageMaker Clarify explainer to treat text features as text so that explanations are provided for individual units of text. Required only for natural language processing (NLP) explainability. </p>",
+      "refs": {
+        "ClarifyShapConfig$TextConfig": "<p>A parameter that indicates if text features are treated as text and explanations are provided for individual units of text. Required for natural language processing (NLP) explainability only.</p>"
+      }
+    },
+    "ClarifyTextGranularity": {
+      "base": null,
+      "refs": {
+        "ClarifyTextConfig$Granularity": "<p>The unit of granularity for the analysis of text features. For example, if the unit is <code>'token'</code>, then each token (like a word in English) of the text is treated as a feature. SHAP values are computed for each unit/feature.</p>"
+      }
+    },
+    "ClarifyTextLanguage": {
+      "base": null,
+      "refs": {
+        "ClarifyTextConfig$Language": "<p>Specifies the language of the text features in <a href=\" https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\">ISO 639-1</a> or <a href=\"https://en.wikipedia.org/wiki/ISO_639-3\">ISO 639-3</a> code of a supported language. </p> <note> <p>For a mix of multiple languages, use code <code>'xx'</code>.</p> </note>"
+      }
+    },
     "ClientId": {
       "base": null,
       "refs": {
@@ -4460,6 +4617,14 @@
       "base": null,
       "refs": {
         "CandidateArtifactLocations$Explainability": "<p>The Amazon S3 prefix to the explainability artifacts generated for the AutoML candidate.</p>"
+      }
+    },
+    "ExplainerConfig": {
+      "base": "<p>A parameter to activate explainers.</p>",
+      "refs": {
+        "CreateEndpointConfigInput$ExplainerConfig": "<p>A member of <code>CreateEndpointConfig</code> that enables explainers.</p>",
+        "DescribeEndpointConfigOutput$ExplainerConfig": "<p>The configuration parameters for an explainer.</p>",
+        "DescribeEndpointOutput$ExplainerConfig": "<p>The configuration parameters for an explainer.</p>"
       }
     },
     "FailStepMetadata": {
@@ -12254,6 +12419,7 @@
       "base": null,
       "refs": {
         "AutoMLContainerDefinition$ModelDataUrl": "<p>The location of the model artifacts. For more information, see .</p>",
+        "ClarifyShapBaselineConfig$ShapBaselineUri": "<p>The uniform resource identifier (URI) of the S3 bucket where the SHAP baseline file is stored. The format of the SHAP baseline file should be the same format as the format of the training dataset. For example, if the training dataset is in CSV format, and each record in the training dataset has four features, and all features are numerical, then the baseline file should also have this same format. Each record should contain only the features. If you are using a virtual private cloud (VPC), the <code>ShapBaselineUri</code> should be accessible to the VPC. For more information about setting up endpoints with Amazon Virtual Private Cloud, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html\">Give SageMaker access to Resources in your Amazon Virtual Private Cloud</a>.</p>",
         "ContainerDefinition$ModelDataUrl": "<p>The S3 path where the model artifacts, which result from model training, are stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). The S3 path is required for SageMaker built-in algorithms, but not if you use your own algorithms. For more information on built-in algorithms, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html\">Common Parameters</a>. </p> <note> <p>The model artifacts must be in an S3 bucket that is in the same region as the model or endpoint you are creating.</p> </note> <p>If you provide a value for this parameter, SageMaker uses Amazon Web Services Security Token Service to download model artifacts from the S3 path you provide. Amazon Web Services STS is activated in your IAM user account by default. If you previously deactivated Amazon Web Services STS for a region, you need to reactivate Amazon Web Services STS for that region. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html\">Activating and Deactivating Amazon Web Services STS in an Amazon Web Services Region</a> in the <i>Amazon Web Services Identity and Access Management User Guide</i>.</p> <important> <p>If you use a built-in algorithm to create a model, SageMaker requires that you provide a S3 path to the model artifacts in <code>ModelDataUrl</code>.</p> </important>",
         "ModelPackageContainerDefinition$ModelDataUrl": "<p>The Amazon S3 path where the model artifacts, which result from model training, are stored. This path must point to a single <code>gzip</code> compressed tar archive (<code>.tar.gz</code> suffix).</p> <note> <p>The model artifacts must be in an S3 bucket that is in the same region as the model package.</p> </note>",
         "SourceAlgorithm$ModelDataUrl": "<p>The Amazon S3 path where the model artifacts, which result from model training, are stored. This path must point to a single <code>gzip</code> compressed tar archive (<code>.tar.gz</code> suffix).</p> <note> <p>The model artifacts must be in an S3 bucket that is in the same region as the algorithm.</p> </note>"

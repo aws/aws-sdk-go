@@ -4888,11 +4888,12 @@ type CostEstimationResourceCollectionFilter struct {
 	// Together these are known as key-value pairs.
 	//
 	// The string used for a key in a tag that you use to define your resource coverage
-	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
-	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
-	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
-	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
-	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
 	// or Devops-Guru-production-application/containers.
 	Tags []*TagCostEstimationResourceCollectionFilter `type:"list"`
 }
@@ -5970,11 +5971,12 @@ type DescribeOrganizationResourceCollectionHealthOutput struct {
 	// Together these are known as key-value pairs.
 	//
 	// The string used for a key in a tag that you use to define your resource coverage
-	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
-	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
-	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
-	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
-	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
 	// or Devops-Guru-production-application/containers.
 	Tags []*TagHealth `type:"list"`
 }
@@ -6132,11 +6134,12 @@ type DescribeResourceCollectionHealthOutput struct {
 	// Together these are known as key-value pairs.
 	//
 	// The string used for a key in a tag that you use to define your resource coverage
-	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
-	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
-	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
-	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
-	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
 	// or Devops-Guru-production-application/containers.
 	Tags []*TagHealth `type:"list"`
 }
@@ -8736,6 +8739,11 @@ func (s *NotificationChannel) SetId(v string) *NotificationChannel {
 type NotificationChannelConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The filter configurations for the Amazon SNS notification topic you use with
+	// DevOps Guru. If you do not provide filter configurations, the default configurations
+	// are to receive notifications for all message types of High or Medium severity.
+	Filters *NotificationFilterConfig `type:"structure"`
+
 	// Information about a notification channel configured in DevOps Guru to send
 	// notifications when insights are created.
 	//
@@ -8796,9 +8804,64 @@ func (s *NotificationChannelConfig) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *NotificationChannelConfig) SetFilters(v *NotificationFilterConfig) *NotificationChannelConfig {
+	s.Filters = v
+	return s
+}
+
 // SetSns sets the Sns field's value.
 func (s *NotificationChannelConfig) SetSns(v *SnsChannelConfig) *NotificationChannelConfig {
 	s.Sns = v
+	return s
+}
+
+// The filter configurations for the Amazon SNS notification topic you use with
+// DevOps Guru. You can choose to specify which events or message types to receive
+// notifications for. You can also choose to specify which severity levels to
+// receive notifications for.
+type NotificationFilterConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The events that you want to receive notifications for. For example, you can
+	// choose to receive notifications only when the severity level is upgraded
+	// or a new insight is created.
+	MessageTypes []*string `type:"list" enum:"NotificationMessageType"`
+
+	// The severity levels that you want to receive notifications for. For example,
+	// you can choose to receive notifications only for insights with HIGH and MEDIUM
+	// severity levels. For more information, see Understanding insight severities
+	// (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities).
+	Severities []*string `type:"list" enum:"InsightSeverity"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationFilterConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationFilterConfig) GoString() string {
+	return s.String()
+}
+
+// SetMessageTypes sets the MessageTypes field's value.
+func (s *NotificationFilterConfig) SetMessageTypes(v []*string) *NotificationFilterConfig {
+	s.MessageTypes = v
+	return s
+}
+
+// SetSeverities sets the Severities field's value.
+func (s *NotificationFilterConfig) SetSeverities(v []*string) *NotificationFilterConfig {
+	s.Severities = v
 	return s
 }
 
@@ -11280,11 +11343,12 @@ type ResourceCollection struct {
 	// Together these are known as key-value pairs.
 	//
 	// The string used for a key in a tag that you use to define your resource coverage
-	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
-	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
-	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
-	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
-	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
 	// or Devops-Guru-production-application/containers.
 	Tags []*TagCollection `type:"list"`
 }
@@ -11373,11 +11437,12 @@ type ResourceCollectionFilter struct {
 	// Together these are known as key-value pairs.
 	//
 	// The string used for a key in a tag that you use to define your resource coverage
-	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
-	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
-	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
-	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
-	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
 	// or Devops-Guru-production-application/containers.
 	Tags []*TagCollectionFilter `type:"list"`
 }
@@ -12464,7 +12529,7 @@ func (s *StartTimeRange) SetToTime(v time.Time) *StartTimeRange {
 	return s
 }
 
-// A collection of Amazon Web Services stags.
+// A collection of Amazon Web Services tags.
 //
 // Tags help you identify and organize your Amazon Web Services resources. Many
 // Amazon Web Services services support tagging, so you can assign the same
@@ -12486,11 +12551,12 @@ func (s *StartTimeRange) SetToTime(v time.Time) *StartTimeRange {
 // Together these are known as key-value pairs.
 //
 // The string used for a key in a tag that you use to define your resource coverage
-// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
-// or Devops-guru-rds-application. While keys are case-sensitive, the case of
-// key characters don't matter to DevOps Guru. For example, DevOps Guru works
-// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
-// key/value pairs in your application might be Devops-Guru-production-application/RDS
+// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+// or devops-guru-rds-application. When you create a key, the case of characters
+// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+// For example, DevOps Guru works with a key named devops-guru-rds and a key
+// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+// pairs in your application might be Devops-Guru-production-application/RDS
 // or Devops-Guru-production-application/containers.
 type TagCollection struct {
 	_ struct{} `type:"structure"`
@@ -12501,11 +12567,12 @@ type TagCollection struct {
 	// and analysis boundary.
 	//
 	// The string used for a key in a tag that you use to define your resource coverage
-	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
-	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
-	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
-	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
-	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
 	// or Devops-Guru-production-application/containers.
 	//
 	// AppBoundaryKey is a required field
@@ -12584,11 +12651,12 @@ type TagCollectionFilter struct {
 	// and analysis boundary.
 	//
 	// The string used for a key in a tag that you use to define your resource coverage
-	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
-	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
-	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
-	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
-	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
 	// or Devops-Guru-production-application/containers.
 	//
 	// AppBoundaryKey is a required field
@@ -12653,11 +12721,12 @@ type TagCostEstimationResourceCollectionFilter struct {
 	// and analysis boundary.
 	//
 	// The string used for a key in a tag that you use to define your resource coverage
-	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
-	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
-	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
-	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
-	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
 	// or Devops-Guru-production-application/containers.
 	//
 	// AppBoundaryKey is a required field
@@ -12738,11 +12807,12 @@ type TagHealth struct {
 	// and analysis boundary.
 	//
 	// The string used for a key in a tag that you use to define your resource coverage
-	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
-	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
-	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
-	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
-	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
 	// or Devops-Guru-production-application/containers.
 	AppBoundaryKey *string `min:"1" type:"string"`
 
@@ -13033,11 +13103,12 @@ type UpdateResourceCollectionFilter struct {
 	// Together these are known as key-value pairs.
 	//
 	// The string used for a key in a tag that you use to define your resource coverage
-	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
-	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
-	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
-	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
-	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
 	// or Devops-Guru-production-application/containers.
 	Tags []*UpdateTagCollectionFilter `type:"list"`
 }
@@ -13305,11 +13376,12 @@ type UpdateTagCollectionFilter struct {
 	// and analysis boundary.
 	//
 	// The string used for a key in a tag that you use to define your resource coverage
-	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
-	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
-	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
-	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
-	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// must begin with the prefix Devops-guru-. The tag key might be DevOps-Guru-deployment-application
+	// or devops-guru-rds-application. When you create a key, the case of characters
+	// in the key can be whatever you choose. After you create a key, it is case-sensitive.
+	// For example, DevOps Guru works with a key named devops-guru-rds and a key
+	// named DevOps-Guru-RDS, and these act as two different keys. Possible key/value
+	// pairs in your application might be Devops-Guru-production-application/RDS
 	// or Devops-Guru-production-application/containers.
 	//
 	// AppBoundaryKey is a required field
@@ -13867,6 +13939,34 @@ func LogAnomalyType_Values() []string {
 		LogAnomalyTypeNumericalPoint,
 		LogAnomalyTypeNumericalNan,
 		LogAnomalyTypeNewFieldName,
+	}
+}
+
+const (
+	// NotificationMessageTypeNewInsight is a NotificationMessageType enum value
+	NotificationMessageTypeNewInsight = "NEW_INSIGHT"
+
+	// NotificationMessageTypeClosedInsight is a NotificationMessageType enum value
+	NotificationMessageTypeClosedInsight = "CLOSED_INSIGHT"
+
+	// NotificationMessageTypeNewAssociation is a NotificationMessageType enum value
+	NotificationMessageTypeNewAssociation = "NEW_ASSOCIATION"
+
+	// NotificationMessageTypeSeverityUpgraded is a NotificationMessageType enum value
+	NotificationMessageTypeSeverityUpgraded = "SEVERITY_UPGRADED"
+
+	// NotificationMessageTypeNewRecommendation is a NotificationMessageType enum value
+	NotificationMessageTypeNewRecommendation = "NEW_RECOMMENDATION"
+)
+
+// NotificationMessageType_Values returns all elements of the NotificationMessageType enum
+func NotificationMessageType_Values() []string {
+	return []string{
+		NotificationMessageTypeNewInsight,
+		NotificationMessageTypeClosedInsight,
+		NotificationMessageTypeNewAssociation,
+		NotificationMessageTypeSeverityUpgraded,
+		NotificationMessageTypeNewRecommendation,
 	}
 }
 
