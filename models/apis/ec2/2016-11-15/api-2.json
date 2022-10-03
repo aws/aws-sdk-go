@@ -22168,6 +22168,10 @@
         "DeprecationTime":{
           "shape":"String",
           "locationName":"deprecationTime"
+        },
+        "ImdsSupport":{
+          "shape":"ImdsSupportValues",
+          "locationName":"imdsSupport"
         }
       }
     },
@@ -22221,6 +22225,10 @@
         "LastLaunchedTime":{
           "shape":"AttributeValue",
           "locationName":"lastLaunchedTime"
+        },
+        "ImdsSupport":{
+          "shape":"AttributeValue",
+          "locationName":"imdsSupport"
         }
       }
     },
@@ -22237,7 +22245,8 @@
         "bootMode",
         "tpmSupport",
         "uefiData",
-        "lastLaunchedTime"
+        "lastLaunchedTime",
+        "imdsSupport"
       ]
     },
     "ImageDiskContainer":{
@@ -22331,6 +22340,10 @@
         "kernel",
         "ramdisk"
       ]
+    },
+    "ImdsSupportValues":{
+      "type":"string",
+      "enum":["v2.0"]
     },
     "ImportClientVpnClientCertificateRevocationListRequest":{
       "type":"structure",
@@ -31274,7 +31287,7 @@
     "Port":{
       "type":"integer",
       "max":65535,
-      "min":1
+      "min":0
     },
     "PortRange":{
       "type":"structure",
@@ -32253,7 +32266,8 @@
         },
         "BootMode":{"shape":"BootModeValues"},
         "TpmSupport":{"shape":"TpmSupportValues"},
-        "UefiData":{"shape":"StringType"}
+        "UefiData":{"shape":"StringType"},
+        "ImdsSupport":{"shape":"ImdsSupportValues"}
       }
     },
     "RegisterImageResult":{

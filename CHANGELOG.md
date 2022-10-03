@@ -1,3 +1,13 @@
+Release v1.44.110 (2022-10-03)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Adding an imdsSupport attribute to EC2 AMIs
+* `service/snowball`: Updates service API, documentation, and paginators
+  * Adds support for V3_5C. This is a refreshed AWS Snowball Edge Compute Optimized device type with 28TB SSD, 104 vCPU and 416GB memory (customer usable).
+
 Release v1.44.109 (2022-09-30)
 ===
 
