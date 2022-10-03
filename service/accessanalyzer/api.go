@@ -8122,7 +8122,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 // for an existing bucket, the access preview uses the proposed access point
 // configuration in place of the existing access points. To propose an access
 // point without a policy, you can provide an empty string as the access point
-// policy. For more information, see Creating access points (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html).
+// policy. For more information, see Creating access points (https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html).
 // For more information about access point policy limits, see Access points
 // restrictions and limitations (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points-restrictions-limitations.html).
 type S3AccessPointConfiguration struct {
@@ -10469,6 +10469,9 @@ const (
 
 	// ValidatePolicyResourceTypeAwsS3objectLambdaAccessPoint is a ValidatePolicyResourceType enum value
 	ValidatePolicyResourceTypeAwsS3objectLambdaAccessPoint = "AWS::S3ObjectLambda::AccessPoint"
+
+	// ValidatePolicyResourceTypeAwsIamAssumeRolePolicyDocument is a ValidatePolicyResourceType enum value
+	ValidatePolicyResourceTypeAwsIamAssumeRolePolicyDocument = "AWS::IAM::AssumeRolePolicyDocument"
 )
 
 // ValidatePolicyResourceType_Values returns all elements of the ValidatePolicyResourceType enum
@@ -10478,6 +10481,7 @@ func ValidatePolicyResourceType_Values() []string {
 		ValidatePolicyResourceTypeAwsS3AccessPoint,
 		ValidatePolicyResourceTypeAwsS3MultiRegionAccessPoint,
 		ValidatePolicyResourceTypeAwsS3objectLambdaAccessPoint,
+		ValidatePolicyResourceTypeAwsIamAssumeRolePolicyDocument,
 	}
 }
 

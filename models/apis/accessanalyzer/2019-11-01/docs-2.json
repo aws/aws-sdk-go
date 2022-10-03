@@ -560,11 +560,11 @@
         "ListArchiveRulesRequest$maxResults": "<p>The maximum number of results to return in the request.</p>",
         "ListFindingsRequest$maxResults": "<p>The maximum number of results to return in the response.</p>",
         "PathElement$index": "<p>Refers to an index in a JSON array.</p>",
-        "Position$column": "<p>The column of the position, starting from 0.</p>",
         "Position$line": "<p>The line of the position, starting from 1.</p>",
+        "Position$column": "<p>The column of the position, starting from 0.</p>",
         "Position$offset": "<p>The offset within the policy that corresponds to the position, starting from 0.</p>",
-        "Substring$length": "<p>The length of the substring.</p>",
         "Substring$start": "<p>The start index of the substring, starting from 0.</p>",
+        "Substring$length": "<p>The length of the substring.</p>",
         "ThrottlingException$retryAfterSeconds": "<p>The seconds to wait to retry.</p>",
         "ValidatePolicyRequest$maxResults": "<p>The maximum number of results to return in the response.</p>"
       }
@@ -888,8 +888,8 @@
     "Position": {
       "base": "<p>A position in a policy.</p>",
       "refs": {
-        "Span$end": "<p>The end position of the span (exclusive).</p>",
-        "Span$start": "<p>The start position of the span (inclusive).</p>"
+        "Span$start": "<p>The start position of the span (inclusive).</p>",
+        "Span$end": "<p>The end position of the span (exclusive).</p>"
       }
     },
     "PrincipalArn": {
@@ -961,7 +961,7 @@
       }
     },
     "S3AccessPointConfiguration": {
-      "base": "<p>The configuration for an Amazon S3 access point or multi-region access point for the bucket. You can propose up to 10 access points or multi-region access points per bucket. If the proposed Amazon S3 access point configuration is for an existing bucket, the access preview uses the proposed access point configuration in place of the existing access points. To propose an access point without a policy, you can provide an empty string as the access point policy. For more information, see <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html\">Creating access points</a>. For more information about access point policy limits, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points-restrictions-limitations.html\">Access points restrictions and limitations</a>.</p>",
+      "base": "<p>The configuration for an Amazon S3 access point or multi-region access point for the bucket. You can propose up to 10 access points or multi-region access points per bucket. If the proposed Amazon S3 access point configuration is for an existing bucket, the access preview uses the proposed access point configuration in place of the existing access points. To propose an access point without a policy, you can provide an empty string as the access point policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html\">Creating access points</a>. For more information about access point policy limits, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points-restrictions-limitations.html\">Access points restrictions and limitations</a>.</p>",
       "refs": {
         "S3AccessPointConfigurationsMap$value": null
       }
@@ -1081,12 +1081,12 @@
       "base": null,
       "refs": {
         "AccessDeniedException$message": null,
-        "AccessPreviewFinding$error": "<p>An error.</p>",
         "AccessPreviewFinding$resource": "<p>The resource that an external principal has access to. This is the resource associated with the access preview.</p>",
         "AccessPreviewFinding$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource. For most Amazon Web Services resources, the owning account is the account in which the resource was created.</p>",
+        "AccessPreviewFinding$error": "<p>An error.</p>",
         "ActionList$member": null,
-        "AnalyzedResource$error": "<p>An error message.</p>",
         "AnalyzedResource$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource.</p>",
+        "AnalyzedResource$error": "<p>An error message.</p>",
         "AnalyzedResourceSummary$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource.</p>",
         "AnalyzerSummary$lastResourceAnalyzed": "<p>The resource that was most recently analyzed by the analyzer.</p>",
         "ApplyArchiveRuleRequest$clientToken": "<p>A client token.</p>",
@@ -1101,13 +1101,13 @@
         "DeleteAnalyzerRequest$clientToken": "<p>A client token.</p>",
         "DeleteArchiveRuleRequest$clientToken": "<p>A client token.</p>",
         "FilterCriteriaMap$key": null,
-        "Finding$error": "<p>An error.</p>",
         "Finding$resource": "<p>The resource that an external principal has access to.</p>",
         "Finding$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource.</p>",
+        "Finding$error": "<p>An error.</p>",
         "FindingSourceDetail$accessPointArn": "<p>The ARN of the access point that generated the finding. The ARN format depends on whether the ARN represents an access point or a multi-region access point.</p>",
-        "FindingSummary$error": "<p>The error that resulted in an Error finding.</p>",
         "FindingSummary$resource": "<p>The resource that the external principal has access to.</p>",
         "FindingSummary$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource.</p>",
+        "FindingSummary$error": "<p>The error that resulted in an Error finding.</p>",
         "GeneratedPolicy$policy": "<p>The text to use as the content for the new policy. The policy is created using the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreatePolicy.html\">CreatePolicy</a> action.</p>",
         "InternalServerException$message": null,
         "JobError$message": "<p>Specific information about the error. For example, which service quota was exceeded or which resource was not found.</p>",
@@ -1136,8 +1136,8 @@
         "UpdateFindingsRequest$clientToken": "<p>A client token.</p>",
         "ValidatePolicyFinding$findingDetails": "<p>A localized message that explains the finding and provides guidance on how to address it.</p>",
         "ValidationException$message": null,
-        "ValidationExceptionField$message": "<p>A message about the validation exception.</p>",
         "ValidationExceptionField$name": "<p>The name of the validation exception.</p>",
+        "ValidationExceptionField$message": "<p>A message about the validation exception.</p>",
         "ValueList$member": null
       }
     },
@@ -1183,27 +1183,27 @@
         "AccessPreview$createdAt": "<p>The time at which the access preview was created.</p>",
         "AccessPreviewFinding$createdAt": "<p>The time at which the access preview finding was created.</p>",
         "AccessPreviewSummary$createdAt": "<p>The time at which the access preview was created.</p>",
-        "AnalyzedResource$analyzedAt": "<p>The time at which the resource was analyzed.</p>",
         "AnalyzedResource$createdAt": "<p>The time at which the finding was created.</p>",
+        "AnalyzedResource$analyzedAt": "<p>The time at which the resource was analyzed.</p>",
         "AnalyzedResource$updatedAt": "<p>The time at which the finding was updated.</p>",
         "AnalyzerSummary$createdAt": "<p>A timestamp for the time at which the analyzer was created.</p>",
         "AnalyzerSummary$lastResourceAnalyzedAt": "<p>The time at which the most recently analyzed resource was analyzed.</p>",
         "ArchiveRuleSummary$createdAt": "<p>The time at which the archive rule was created.</p>",
         "ArchiveRuleSummary$updatedAt": "<p>The time at which the archive rule was last updated.</p>",
-        "CloudTrailDetails$endTime": "<p>The end of the time range for which IAM Access Analyzer reviews your CloudTrail events. Events with a timestamp after this time are not considered to generate a policy. If this is not included in the request, the default value is the current time.</p>",
         "CloudTrailDetails$startTime": "<p>The start of the time range for which IAM Access Analyzer reviews your CloudTrail events. Events with a timestamp before this time are not considered to generate a policy.</p>",
-        "CloudTrailProperties$endTime": "<p>The end of the time range for which IAM Access Analyzer reviews your CloudTrail events. Events with a timestamp after this time are not considered to generate a policy. If this is not included in the request, the default value is the current time.</p>",
+        "CloudTrailDetails$endTime": "<p>The end of the time range for which IAM Access Analyzer reviews your CloudTrail events. Events with a timestamp after this time are not considered to generate a policy. If this is not included in the request, the default value is the current time.</p>",
         "CloudTrailProperties$startTime": "<p>The start of the time range for which IAM Access Analyzer reviews your CloudTrail events. Events with a timestamp before this time are not considered to generate a policy.</p>",
-        "Finding$analyzedAt": "<p>The time at which the resource was analyzed.</p>",
+        "CloudTrailProperties$endTime": "<p>The end of the time range for which IAM Access Analyzer reviews your CloudTrail events. Events with a timestamp after this time are not considered to generate a policy. If this is not included in the request, the default value is the current time.</p>",
         "Finding$createdAt": "<p>The time at which the finding was generated.</p>",
+        "Finding$analyzedAt": "<p>The time at which the resource was analyzed.</p>",
         "Finding$updatedAt": "<p>The time at which the finding was updated.</p>",
-        "FindingSummary$analyzedAt": "<p>The time at which the resource-based policy that generated the finding was analyzed.</p>",
         "FindingSummary$createdAt": "<p>The time at which the finding was created.</p>",
+        "FindingSummary$analyzedAt": "<p>The time at which the resource-based policy that generated the finding was analyzed.</p>",
         "FindingSummary$updatedAt": "<p>The time at which the finding was most recently updated.</p>",
-        "JobDetails$completedOn": "<p>A timestamp of when the job was completed.</p>",
         "JobDetails$startedOn": "<p>A timestamp of when the job was started.</p>",
-        "PolicyGeneration$completedOn": "<p>A timestamp of when the policy generation was completed.</p>",
-        "PolicyGeneration$startedOn": "<p>A timestamp of when the policy generation started.</p>"
+        "JobDetails$completedOn": "<p>A timestamp of when the job was completed.</p>",
+        "PolicyGeneration$startedOn": "<p>A timestamp of when the policy generation started.</p>",
+        "PolicyGeneration$completedOn": "<p>A timestamp of when the policy generation was completed.</p>"
       }
     },
     "Token": {
@@ -1339,9 +1339,9 @@
     "ValueList": {
       "base": null,
       "refs": {
-        "Criterion$contains": "<p>A \"contains\" operator to match for the filter used to create the rule.</p>",
         "Criterion$eq": "<p>An \"equals\" operator to match for the filter used to create the rule.</p>",
-        "Criterion$neq": "<p>A \"not equals\" operator to match for the filter used to create the rule.</p>"
+        "Criterion$neq": "<p>A \"not equals\" operator to match for the filter used to create the rule.</p>",
+        "Criterion$contains": "<p>A \"contains\" operator to match for the filter used to create the rule.</p>"
       }
     },
     "VpcConfiguration": {
