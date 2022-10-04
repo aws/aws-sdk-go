@@ -45226,6 +45226,9 @@ const (
 
 	// IntegrationTypeWisdomKnowledgeBase is a IntegrationType enum value
 	IntegrationTypeWisdomKnowledgeBase = "WISDOM_KNOWLEDGE_BASE"
+
+	// IntegrationTypeCasesDomain is a IntegrationType enum value
+	IntegrationTypeCasesDomain = "CASES_DOMAIN"
 )
 
 // IntegrationType_Values returns all elements of the IntegrationType enum
@@ -45236,6 +45239,7 @@ func IntegrationType_Values() []string {
 		IntegrationTypePinpointApp,
 		IntegrationTypeWisdomAssistant,
 		IntegrationTypeWisdomKnowledgeBase,
+		IntegrationTypeCasesDomain,
 	}
 }
 

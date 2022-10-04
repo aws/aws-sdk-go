@@ -20065,6 +20065,12 @@ const (
 
 	// ObjectLambdaAllowedFeatureGetObjectPartNumber is a ObjectLambdaAllowedFeature enum value
 	ObjectLambdaAllowedFeatureGetObjectPartNumber = "GetObject-PartNumber"
+
+	// ObjectLambdaAllowedFeatureHeadObjectRange is a ObjectLambdaAllowedFeature enum value
+	ObjectLambdaAllowedFeatureHeadObjectRange = "HeadObject-Range"
+
+	// ObjectLambdaAllowedFeatureHeadObjectPartNumber is a ObjectLambdaAllowedFeature enum value
+	ObjectLambdaAllowedFeatureHeadObjectPartNumber = "HeadObject-PartNumber"
 )
 
 // ObjectLambdaAllowedFeature_Values returns all elements of the ObjectLambdaAllowedFeature enum
@@ -20072,18 +20078,32 @@ func ObjectLambdaAllowedFeature_Values() []string {
 	return []string{
 		ObjectLambdaAllowedFeatureGetObjectRange,
 		ObjectLambdaAllowedFeatureGetObjectPartNumber,
+		ObjectLambdaAllowedFeatureHeadObjectRange,
+		ObjectLambdaAllowedFeatureHeadObjectPartNumber,
 	}
 }
 
 const (
 	// ObjectLambdaTransformationConfigurationActionGetObject is a ObjectLambdaTransformationConfigurationAction enum value
 	ObjectLambdaTransformationConfigurationActionGetObject = "GetObject"
+
+	// ObjectLambdaTransformationConfigurationActionHeadObject is a ObjectLambdaTransformationConfigurationAction enum value
+	ObjectLambdaTransformationConfigurationActionHeadObject = "HeadObject"
+
+	// ObjectLambdaTransformationConfigurationActionListObjects is a ObjectLambdaTransformationConfigurationAction enum value
+	ObjectLambdaTransformationConfigurationActionListObjects = "ListObjects"
+
+	// ObjectLambdaTransformationConfigurationActionListObjectsV2 is a ObjectLambdaTransformationConfigurationAction enum value
+	ObjectLambdaTransformationConfigurationActionListObjectsV2 = "ListObjectsV2"
 )
 
 // ObjectLambdaTransformationConfigurationAction_Values returns all elements of the ObjectLambdaTransformationConfigurationAction enum
 func ObjectLambdaTransformationConfigurationAction_Values() []string {
 	return []string{
 		ObjectLambdaTransformationConfigurationActionGetObject,
+		ObjectLambdaTransformationConfigurationActionHeadObject,
+		ObjectLambdaTransformationConfigurationActionListObjects,
+		ObjectLambdaTransformationConfigurationActionListObjectsV2,
 	}
 }
 

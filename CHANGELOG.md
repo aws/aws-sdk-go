@@ -1,3 +1,18 @@
+Release v1.44.111 (2022-10-04)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API
+* `service/connectcases`: Adds new service
+* `service/ec2`: Updates service API and documentation
+  * Added EnableNetworkAddressUsageMetrics flag for ModifyVpcAttribute, DescribeVpcAttribute APIs.
+* `service/ecs`: Updates service documentation
+  * Documentation updates to address various Amazon ECS tickets.
+* `service/s3control`: Updates service API
+  * S3 Object Lambda adds support to allow customers to intercept HeadObject and ListObjects requests and introduce their own compute. These requests were previously proxied to S3.
+* `service/workmail`: Updates service API, documentation, and paginators
+  * This release adds support for impersonation roles in Amazon WorkMail.
+
 Release v1.44.110 (2022-10-03)
 ===
 

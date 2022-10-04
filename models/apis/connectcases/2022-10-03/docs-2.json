@@ -1,0 +1,1209 @@
+{
+  "version": "2.0",
+  "service": "<p>Welcome to the Amazon Connect Cases API Reference. This guide provides information about the Amazon Connect Cases API, which you can use to create, update, get, and list Cases domains, fields, field options, layouts, templates, cases, related items, and tags.</p> <pre><code> &lt;p&gt;For more information about Amazon Connect Cases, see &lt;a href=&quot;https://docs.aws.amazon.com/connect/latest/adminguide/cases.html&quot;&gt;Amazon Connect Cases&lt;/a&gt; in the &lt;i&gt;Amazon Connect Administrator Guide&lt;/i&gt;. &lt;/p&gt; </code></pre>",
+  "operations": {
+    "BatchGetField": "<p>Returns the description for the list of fields in the request parameters. </p>",
+    "BatchPutFieldOptions": "<p>Creates and updates a set of field options for a single select field in a Cases domain.</p>",
+    "CreateCase": "<p>Creates a case in the specified Cases domain. Case system and custom fields are taken as an array id/value pairs with a declared data types.</p> <note> <p> <code>customer_id</code> is a required field when creating a case.</p> </note>",
+    "CreateDomain": "<p>Creates a domain, which is a container for all case data, such as cases, fields, templates and layouts. Each Amazon Connect instance can be associated with only one Cases domain.</p> <important> <p>This will not associate your connect instance to Cases domain. Instead, use the Amazon Connect <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_CreateIntegrationAssociation.html\">CreateIntegrationAssociation</a> API.</p> </important>",
+    "CreateField": "<p>Creates a field in the Cases domain. This field is used to define the case object model (that is, defines what data can be captured on cases) in a Cases domain. </p>",
+    "CreateLayout": "<p>Creates a layout in the Cases domain. Layouts define the following configuration in the top section and More Info tab of the Cases user interface:</p> <ul> <li> <p>Fields to display to the users</p> </li> <li> <p>Field ordering</p> </li> </ul> <note> <p>Title and Status fields cannot be part of layouts since they are not configurable.</p> </note>",
+    "CreateRelatedItem": "<p>Creates a related item (comments, tasks, and contacts) and associates it with a case.</p> <note> <p>A Related Item is a resource that is associated with a case. It may or may not have an external identifier linking it to an external resource (for example, a <code>contactArn</code>). All Related Items have their own internal identifier, the <code>relatedItemArn</code>. Examples of related items include <code>comments</code> and <code>contacts</code>.</p> </note>",
+    "CreateTemplate": "<p>Creates a template in the Cases domain. This template is used to define the case object model (that is, define what data can be captured on cases) in a Cases domain. A template must have a unique name within a domain, and it must reference existing field IDs and layout IDs. Additionally, multiple fields with same IDs are not allowed within the same Template.</p>",
+    "GetCase": "<p>Returns information about a specific case if it exists. </p>",
+    "GetCaseEventConfiguration": "<p>Returns the case event publishing configuration.</p>",
+    "GetDomain": "<p>Returns information about a specific domain if it exists. </p>",
+    "GetLayout": "<p>Returns the details for the requested layout.</p>",
+    "GetTemplate": "<p>Returns the details for the requested template. </p>",
+    "ListCasesForContact": "<p>Lists cases for a given contact.</p>",
+    "ListDomains": "<p>Lists all cases domains in the Amazon Web Services account. Each list item is a condensed summary object of the domain.</p>",
+    "ListFieldOptions": "<p>Lists all of the field options for a field identifier in the domain. </p>",
+    "ListFields": "<p>Lists all fields in a Cases domain.</p>",
+    "ListLayouts": "<p>Lists all layouts in the given cases domain. Each list item is a condensed summary object of the layout.</p>",
+    "ListTagsForResource": "<p>Lists tags for a resource.</p>",
+    "ListTemplates": "<p>Lists all of the templates in a Cases domain. Each list item is a condensed summary object of the template. </p>",
+    "PutCaseEventConfiguration": "<p>API for adding case event publishing configuration</p>",
+    "SearchCases": "<p>Searches for cases within their associated Cases domain. Search results are returned as a paginated list of abridged case documents.</p>",
+    "SearchRelatedItems": "<p>Searches for related items that are associated with a case.</p> <note> <p>If no filters are provided, this returns all related items associated with a case.</p> </note>",
+    "TagResource": "<p>Adds tags to a resource.</p>",
+    "UntagResource": "<p>Untags a resource.</p>",
+    "UpdateCase": "<p>Updates the values of fields on a case. Fields to be updated are received as an array of id/value pairs identical to the <code>CreateCase</code> input .</p> <p>If the action is successful, the service sends back an HTTP 200 response with an empty HTTP body.</p>",
+    "UpdateField": "<p>Updates the properties of an existing field. </p>",
+    "UpdateLayout": "<p>Updates the attributes of an existing layout.</p> <p>If the action is successful, the service sends back an HTTP 200 response with an empty HTTP body.</p> <p>A <code>ValidationException</code> is returned when you add non-existent <code>fieldIds</code> to a layout.</p> <note> <p>Title and Status fields cannot be part of layouts because they are not configurable.</p> </note>",
+    "UpdateTemplate": "<p>Updates the attributes of an existing template. The template attributes that can be modified include <code>name</code>, <code>description</code>, <code>layouts</code>, and <code>requiredFields</code>. At least one of these attributes must not be null. If a null value is provided for a given attribute, that attribute is ignored and its current value is preserved.</p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>You do not have sufficient access to perform this action.</p>",
+      "refs": {
+      }
+    },
+    "Arn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$arn": "<p>The Amazon Resource Name (ARN)</p>",
+        "TagResourceRequest$arn": "<p>The Amazon Resource Name (ARN)</p>",
+        "UntagResourceRequest$arn": "<p>The Amazon Resource Name (ARN)</p>"
+      }
+    },
+    "AssociationTime": {
+      "base": null,
+      "refs": {
+        "SearchRelatedItemsResponseItem$associationTime": "<p>Time at which a related item was associated with a case.</p>"
+      }
+    },
+    "BasicLayout": {
+      "base": "<p>Content specific to <code>BasicLayout</code> type. It configures fields in the top panel and More Info tab of agent application. </p>",
+      "refs": {
+        "LayoutContent$basic": "<p>Content specific to <code>BasicLayout</code> type. It configures fields in the top panel and More Info tab of Cases user interface.</p>"
+      }
+    },
+    "BatchGetFieldIdentifierList": {
+      "base": null,
+      "refs": {
+        "BatchGetFieldRequest$fields": "<p>A list of unique field identifiers. </p>"
+      }
+    },
+    "BatchGetFieldRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetFieldResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetFieldResponseErrorsList": {
+      "base": null,
+      "refs": {
+        "BatchGetFieldResponse$errors": "<p>A list of field errors. </p>"
+      }
+    },
+    "BatchGetFieldResponseFieldsList": {
+      "base": null,
+      "refs": {
+        "BatchGetFieldResponse$fields": "<p>A list of detailed field information. </p>"
+      }
+    },
+    "BatchPutFieldOptionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchPutFieldOptionsRequestOptionsList": {
+      "base": null,
+      "refs": {
+        "BatchPutFieldOptionsRequest$options": "<p>A list of <code>FieldOption</code> objects.</p>"
+      }
+    },
+    "BatchPutFieldOptionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchPutFieldOptionsResponseErrorsList": {
+      "base": null,
+      "refs": {
+        "BatchPutFieldOptionsResponse$errors": "<p>A list of field errors. </p>"
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "EventBridgeConfiguration$enabled": "<p>Indicates whether the to broadcast case event data to the customer.</p>",
+        "FieldOption$active": "<p>Describes whether the <code>FieldOption</code> is active (displayed) or inactive.</p>",
+        "FieldValueUnion$booleanValue": "<p>Can be either null, or have a Boolean value type. Only one value can be provided.</p>",
+        "RelatedItemEventIncludedData$includeContent": "<p>Details of what related item data is published through the case event stream.</p>"
+      }
+    },
+    "CaseArn": {
+      "base": null,
+      "refs": {
+        "CreateCaseResponse$caseArn": "<p>The Amazon Resource Name (ARN) of the case.</p>"
+      }
+    },
+    "CaseEventIncludedData": {
+      "base": "<p>Details of what case data is published through the case event stream.</p>",
+      "refs": {
+        "EventIncludedData$caseData": "<p>Details of what case data is published through the case event stream.</p>"
+      }
+    },
+    "CaseEventIncludedDataFieldsList": {
+      "base": null,
+      "refs": {
+        "CaseEventIncludedData$fields": "<p>List of field identifiers.</p>"
+      }
+    },
+    "CaseFilter": {
+      "base": "<p>A filter for cases. Only one value can be provided.</p>",
+      "refs": {
+        "CaseFilter$not": null,
+        "CaseFilterAndAllList$member": null,
+        "SearchCasesRequest$filter": "<p>A list of filter objects.</p>"
+      }
+    },
+    "CaseFilterAndAllList": {
+      "base": null,
+      "refs": {
+        "CaseFilter$andAll": "<p>Provides \"and all\" filtering.</p>"
+      }
+    },
+    "CaseId": {
+      "base": null,
+      "refs": {
+        "CaseSummary$caseId": "<p>A unique identifier of the case.</p>",
+        "CreateCaseResponse$caseId": "<p>A unique identifier of the case.</p>",
+        "CreateRelatedItemRequest$caseId": "<p>A unique identifier of the case.</p>",
+        "GetCaseRequest$caseId": "<p>A unique identifier of the case.</p>",
+        "SearchCasesResponseItem$caseId": "<p>A unique identifier of the case.</p>",
+        "SearchRelatedItemsRequest$caseId": "<p>A unique identifier of the case.</p>",
+        "UpdateCaseRequest$caseId": "<p>A unique identifier of the case.</p>"
+      }
+    },
+    "CaseSummary": {
+      "base": "<p>Case summary information.</p>",
+      "refs": {
+        "ListCasesForContactResponseCasesList$member": null
+      }
+    },
+    "Channel": {
+      "base": null,
+      "refs": {
+        "ContactContent$channel": "<p>A list of channels to filter on for related items of type <code>Contact</code>.</p>",
+        "ContactFilterChannelList$member": null
+      }
+    },
+    "CommentBody": {
+      "base": null,
+      "refs": {
+        "CommentContent$body": "<p>Text in the body of a <code>Comment</code> on a case.</p>"
+      }
+    },
+    "CommentBodyTextType": {
+      "base": null,
+      "refs": {
+        "CommentContent$contentType": "<p>Type of the text in the box of a <code>Comment</code> on a case.</p>"
+      }
+    },
+    "CommentContent": {
+      "base": "<p>Represents the content of a <code>Comment</code> to be returned to agents.</p>",
+      "refs": {
+        "RelatedItemContent$comment": "<p>Represents the content of a comment to be returned to agents.</p>",
+        "RelatedItemInputContent$comment": "<p>Represents the content of a comment to be returned to agents.</p>"
+      }
+    },
+    "CommentFilter": {
+      "base": "<p>A filter for related items of type <code>Comment</code>.</p>",
+      "refs": {
+        "RelatedItemTypeFilter$comment": "<p>A filter for related items of type <code>Comment</code>.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>The requested operation would cause a conflict with the current state of a service resource associated with the request. Resolve the conflict before retrying this request. See the accompanying error message for details.</p>",
+      "refs": {
+      }
+    },
+    "ConnectedToSystemTime": {
+      "base": null,
+      "refs": {
+        "ContactContent$connectedToSystemTime": "<p>The difference between the <code>InitiationTimestamp</code> and the <code>DisconnectTimestamp</code> of the contact.</p>"
+      }
+    },
+    "Contact": {
+      "base": "<p>An object that represents an Amazon Connect contact object. </p>",
+      "refs": {
+        "RelatedItemInputContent$contact": "<p>Object representing a contact in Amazon Connect as an API request field.</p>"
+      }
+    },
+    "ContactArn": {
+      "base": null,
+      "refs": {
+        "Contact$contactArn": "<p>A unique identifier of a contact in Amazon Connect.</p>",
+        "ContactContent$contactArn": "<p>A unique identifier of a contact in Amazon Connect.</p>",
+        "ContactFilter$contactArn": "<p>A unique identifier of a contact in Amazon Connect.</p>",
+        "ListCasesForContactRequest$contactArn": "<p>A unique identifier of a contact in Amazon Connect.</p>"
+      }
+    },
+    "ContactContent": {
+      "base": "<p>An object that represents a content of an Amazon Connect contact object.</p>",
+      "refs": {
+        "RelatedItemContent$contact": "<p>Represents the content of a contact to be returned to agents.</p>"
+      }
+    },
+    "ContactFilter": {
+      "base": "<p>A filter for related items of type <code>Contact</code>.</p>",
+      "refs": {
+        "RelatedItemTypeFilter$contact": "<p>A filter for related items of type <code>Contact</code>.</p>"
+      }
+    },
+    "ContactFilterChannelList": {
+      "base": null,
+      "refs": {
+        "ContactFilter$channel": "<p>A list of channels to filter on for related items of type <code>Contact</code>.</p>"
+      }
+    },
+    "CreateCaseRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCaseRequestClientTokenString": {
+      "base": null,
+      "refs": {
+        "CreateCaseRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
+      }
+    },
+    "CreateCaseRequestFieldsList": {
+      "base": null,
+      "refs": {
+        "CreateCaseRequest$fields": "<p>An array of objects with field ID (matching ListFields/DescribeField) and value union data.</p>"
+      }
+    },
+    "CreateCaseResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDomainRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDomainResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFieldRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFieldResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLayoutRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLayoutResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRelatedItemRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRelatedItemResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatedTime": {
+      "base": null,
+      "refs": {
+        "GetDomainResponse$createdTime": "<p>The timestamp when the Cases domain was created.</p>"
+      }
+    },
+    "DomainArn": {
+      "base": null,
+      "refs": {
+        "CreateDomainResponse$domainArn": "<p>The Amazon Resource Name (ARN) for the Cases domain.</p>",
+        "DomainSummary$domainArn": "<p>The Amazon Resource Name (ARN) of the domain.</p>",
+        "GetDomainResponse$domainArn": "<p>The Amazon Resource Name (ARN) for the Cases domain.</p>"
+      }
+    },
+    "DomainId": {
+      "base": null,
+      "refs": {
+        "BatchGetFieldRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "BatchPutFieldOptionsRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "CreateCaseRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "CreateDomainResponse$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "CreateFieldRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "CreateLayoutRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "CreateRelatedItemRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "CreateTemplateRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "DomainSummary$domainId": "<p>The unique identifier of the domain.</p>",
+        "GetCaseEventConfigurationRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "GetCaseRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "GetDomainRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "GetDomainResponse$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "GetLayoutRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "GetTemplateRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "ListCasesForContactRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "ListFieldOptionsRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "ListFieldsRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "ListLayoutsRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "ListTemplatesRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "PutCaseEventConfigurationRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "SearchCasesRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "SearchRelatedItemsRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "UpdateCaseRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "UpdateFieldRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "UpdateLayoutRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "UpdateTemplateRequest$domainId": "<p>The unique identifier of the Cases domain. </p>"
+      }
+    },
+    "DomainName": {
+      "base": null,
+      "refs": {
+        "CreateDomainRequest$name": "<p>The name for your Cases domain. It must be unique for your Amazon Web Services account.</p>",
+        "DomainSummary$name": "<p>The name of the domain.</p>",
+        "GetDomainResponse$name": "<p>The name of the Cases domain.</p>"
+      }
+    },
+    "DomainStatus": {
+      "base": null,
+      "refs": {
+        "CreateDomainResponse$domainStatus": "<p>The status of the domain.</p>",
+        "GetDomainResponse$domainStatus": "<p>The status of the Cases domain.</p>"
+      }
+    },
+    "DomainSummary": {
+      "base": "<p>Object for the summarized details of the domain.</p>",
+      "refs": {
+        "DomainSummaryList$member": null
+      }
+    },
+    "DomainSummaryList": {
+      "base": null,
+      "refs": {
+        "ListDomainsResponse$domains": "<p>The Cases domain.</p>"
+      }
+    },
+    "Double": {
+      "base": null,
+      "refs": {
+        "FieldValueUnion$doubleValue": "<p>Can be either null, or have a Double number value type. Only one value can be provided.</p>"
+      }
+    },
+    "EventBridgeConfiguration": {
+      "base": "<p>Configuration to enable EventBridge case event delivery and determine what data is delivered.</p>",
+      "refs": {
+        "GetCaseEventConfigurationResponse$eventBridge": "<p>Configuration to enable EventBridge case event delivery and determine what data is delivered.</p>",
+        "PutCaseEventConfigurationRequest$eventBridge": "<p>Configuration to enable EventBridge case event delivery and determine what data is delivered.</p>"
+      }
+    },
+    "EventIncludedData": {
+      "base": "<p>Details of what case and related item data is published through the case event stream.</p>",
+      "refs": {
+        "EventBridgeConfiguration$includedData": "<p>Details of what case and related item data is published through the case event stream.</p>"
+      }
+    },
+    "FieldArn": {
+      "base": null,
+      "refs": {
+        "CreateFieldResponse$fieldArn": "<p>The Amazon Resource Name (ARN) of the field.</p>",
+        "FieldSummary$fieldArn": "<p>The Amazon Resource Name (ARN) of the field.</p>",
+        "GetFieldResponse$fieldArn": "<p>The Amazon Resource Name (ARN) of the field.</p>"
+      }
+    },
+    "FieldDescription": {
+      "base": null,
+      "refs": {
+        "CreateFieldRequest$description": "<p>The description of the field.</p>",
+        "GetFieldResponse$description": "<p>Description of the field.</p>",
+        "UpdateFieldRequest$description": "<p>The description of a field.</p>"
+      }
+    },
+    "FieldError": {
+      "base": "<p>Object for errors on fields.</p>",
+      "refs": {
+        "BatchGetFieldResponseErrorsList$member": null
+      }
+    },
+    "FieldFilter": {
+      "base": "<p>A filter for fields. Only one value can be provided.</p>",
+      "refs": {
+        "CaseFilter$field": "<p>A list of fields to filter on.</p>"
+      }
+    },
+    "FieldGroup": {
+      "base": "<p>Object for a group of fields and associated properties.</p>",
+      "refs": {
+        "Section$fieldGroup": "<p>Consists of a group of fields and associated properties.</p>"
+      }
+    },
+    "FieldGroupFieldsList": {
+      "base": null,
+      "refs": {
+        "FieldGroup$fields": "<p>Represents an ordered list containing field related information.</p>"
+      }
+    },
+    "FieldGroupNameString": {
+      "base": null,
+      "refs": {
+        "FieldGroup$name": "<p>Name of the field group.</p>"
+      }
+    },
+    "FieldId": {
+      "base": null,
+      "refs": {
+        "BatchPutFieldOptionsRequest$fieldId": "<p>The unique identifier of a field.</p>",
+        "CreateFieldResponse$fieldId": "<p>The unique identifier of a field.</p>",
+        "FieldError$id": "<p>The field identifier that caused the error.</p>",
+        "FieldIdentifier$id": "<p>Unique identifier of a field.</p>",
+        "FieldItem$id": "<p>Unique identifier of a field.</p>",
+        "FieldSummary$fieldId": "<p>The unique identifier of a field.</p>",
+        "FieldValue$id": "<p>Unique identifier of a field.</p>",
+        "GetFieldResponse$fieldId": "<p>Unique identifier of the field.</p>",
+        "ListFieldOptionsRequest$fieldId": "<p>The unique identifier of a field.</p>",
+        "RequiredField$fieldId": "<p>Unique identifier of a field.</p>",
+        "Sort$fieldId": "<p>Unique identifier of a field.</p>",
+        "UpdateFieldRequest$fieldId": "<p>The unique identifier of a field.</p>"
+      }
+    },
+    "FieldIdentifier": {
+      "base": "<p>Object for unique identifier of a field.</p>",
+      "refs": {
+        "BatchGetFieldIdentifierList$member": null,
+        "CaseEventIncludedDataFieldsList$member": null,
+        "GetCaseRequestFieldsList$member": null,
+        "SearchCasesRequestFieldsList$member": null
+      }
+    },
+    "FieldItem": {
+      "base": "<p>Object for field related information.</p>",
+      "refs": {
+        "FieldGroupFieldsList$member": null
+      }
+    },
+    "FieldName": {
+      "base": null,
+      "refs": {
+        "CreateFieldRequest$name": "<p>The name of the field.</p>",
+        "FieldSummary$name": "<p>Name of the field.</p>",
+        "GetFieldResponse$name": "<p>Name of the field.</p>",
+        "UpdateFieldRequest$name": "<p>The name of the field.</p>"
+      }
+    },
+    "FieldNamespace": {
+      "base": null,
+      "refs": {
+        "FieldSummary$namespace": "<p>The namespace of a field.</p>",
+        "GetFieldResponse$namespace": "<p>Namespace of the field.</p>"
+      }
+    },
+    "FieldOption": {
+      "base": "<p>Object for field Options information.</p>",
+      "refs": {
+        "BatchPutFieldOptionsRequestOptionsList$member": null,
+        "FieldOptionsList$member": null
+      }
+    },
+    "FieldOptionError": {
+      "base": "<p>Object for field Options errors.</p>",
+      "refs": {
+        "BatchPutFieldOptionsResponseErrorsList$member": null
+      }
+    },
+    "FieldOptionName": {
+      "base": null,
+      "refs": {
+        "FieldOption$name": "<p> <code>FieldOptionName</code> has max length 100 and disallows trailing spaces.</p>"
+      }
+    },
+    "FieldOptionValue": {
+      "base": null,
+      "refs": {
+        "FieldOption$value": "<p> <code>FieldOptionValue</code> has max length 100 and must be alphanumeric with hyphens and underscores.</p>",
+        "FieldOptionError$value": "<p>The field option value that caused the error.</p>"
+      }
+    },
+    "FieldOptionsList": {
+      "base": null,
+      "refs": {
+        "ListFieldOptionsResponse$options": "<p>A list of <code>FieldOption</code> objects.</p>"
+      }
+    },
+    "FieldSummary": {
+      "base": "<p>Object for the summarized details of the field.</p>",
+      "refs": {
+        "ListFieldsResponseFieldsList$member": null
+      }
+    },
+    "FieldType": {
+      "base": null,
+      "refs": {
+        "CreateFieldRequest$type": "<p>Defines the data type, some system constraints, and default display of the field.</p>",
+        "FieldSummary$type": "<p>The type of a field.</p>",
+        "GetFieldResponse$type": "<p>Type of the field.</p>"
+      }
+    },
+    "FieldValue": {
+      "base": "<p>Object for case field values.</p>",
+      "refs": {
+        "CreateCaseRequestFieldsList$member": null,
+        "FieldFilter$contains": "<p>Object containing field identifier and value information.</p>",
+        "FieldFilter$equalTo": "<p>Object containing field identifier and value information.</p>",
+        "FieldFilter$greaterThan": "<p>Object containing field identifier and value information.</p>",
+        "FieldFilter$greaterThanOrEqualTo": "<p>Object containing field identifier and value information.</p>",
+        "FieldFilter$lessThan": "<p>Object containing field identifier and value information.</p>",
+        "FieldFilter$lessThanOrEqualTo": "<p>Object containing field identifier and value information. </p>",
+        "GetCaseResponseFieldsList$member": null,
+        "SearchCasesResponseItemFieldsList$member": null,
+        "UpdateCaseRequestFieldsList$member": null
+      }
+    },
+    "FieldValueUnion": {
+      "base": "<p>Object to store union of Field values.</p>",
+      "refs": {
+        "FieldValue$value": "<p>Union of potential field value types.</p>"
+      }
+    },
+    "FieldValueUnionStringValueString": {
+      "base": null,
+      "refs": {
+        "FieldValueUnion$stringValue": "<p>String value type.</p>"
+      }
+    },
+    "GetCaseEventConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCaseEventConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCaseRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCaseRequestFieldsList": {
+      "base": null,
+      "refs": {
+        "GetCaseRequest$fields": "<p>A list of unique field identifiers. </p>"
+      }
+    },
+    "GetCaseResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCaseResponseFieldsList": {
+      "base": null,
+      "refs": {
+        "GetCaseResponse$fields": "<p>A list of detailed field information. </p>"
+      }
+    },
+    "GetDomainRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDomainResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFieldResponse": {
+      "base": "<p>Object to store detailed field information.</p>",
+      "refs": {
+        "BatchGetFieldResponseFieldsList$member": null
+      }
+    },
+    "GetLayoutRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetLayoutResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "InternalServerException$retryAfterSeconds": "<p>Advice to clients on when the call can be safely retried.</p>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>We couldn't process your request because of an issue with the server. Try again later.</p>",
+      "refs": {
+      }
+    },
+    "LayoutArn": {
+      "base": null,
+      "refs": {
+        "CreateLayoutResponse$layoutArn": "<p>The Amazon Resource Name (ARN) of the newly created layout.</p>",
+        "GetLayoutResponse$layoutArn": "<p>The Amazon Resource Name (ARN) of the newly created layout.</p>",
+        "LayoutSummary$layoutArn": "<p>The Amazon Resource Name (ARN) of the layout.</p>"
+      }
+    },
+    "LayoutConfiguration": {
+      "base": "<p>Object to store configuration of layouts associated to the template.</p>",
+      "refs": {
+        "CreateTemplateRequest$layoutConfiguration": "<p>Configuration of layouts associated to the template.</p>",
+        "GetTemplateResponse$layoutConfiguration": "<p>Configuration of layouts associated to the template.</p>",
+        "UpdateTemplateRequest$layoutConfiguration": "<p>Configuration of layouts associated to the template.</p>"
+      }
+    },
+    "LayoutContent": {
+      "base": "<p>Object to store union of different versions of layout content.</p>",
+      "refs": {
+        "CreateLayoutRequest$content": "<p>Information about which fields will be present in the layout, and information about the order of the fields.</p>",
+        "GetLayoutResponse$content": "<p>Information about which fields will be present in the layout, the order of the fields, and read-only attribute of the field. </p>",
+        "UpdateLayoutRequest$content": "<p>Information about which fields will be present in the layout, the order of the fields, and a read-only attribute of the field. </p>"
+      }
+    },
+    "LayoutId": {
+      "base": null,
+      "refs": {
+        "CreateLayoutResponse$layoutId": "<p>The unique identifier of the layout.</p>",
+        "GetLayoutRequest$layoutId": "<p>The unique identifier of the layout.</p>",
+        "GetLayoutResponse$layoutId": "<p>The unique identifier of the layout.</p>",
+        "LayoutConfiguration$defaultLayout": "<p> Unique identifier of a layout. </p>",
+        "LayoutSummary$layoutId": "<p>The unique identifier for of the layout.</p>",
+        "UpdateLayoutRequest$layoutId": "<p>The unique identifier of the layout.</p>"
+      }
+    },
+    "LayoutName": {
+      "base": null,
+      "refs": {
+        "CreateLayoutRequest$name": "<p>The name of the layout. It must be unique for the Cases domain.</p>",
+        "GetLayoutResponse$name": "<p>The name of the layout. It must be unique.</p>",
+        "LayoutSummary$name": "<p>The name of the layout.</p>",
+        "UpdateLayoutRequest$name": "<p>The name of the layout. It must be unique per domain.</p>"
+      }
+    },
+    "LayoutSections": {
+      "base": "<p>Ordered list containing different kinds of sections that can be added. A LayoutSections object can only contain one section.</p>",
+      "refs": {
+        "BasicLayout$moreInfo": "<p>This represents sections in a tab of the page layout.</p>",
+        "BasicLayout$topPanel": "<p>This represents sections in a panel of the page layout.</p>"
+      }
+    },
+    "LayoutSummary": {
+      "base": "<p>Object for the summarized details of the layout.</p>",
+      "refs": {
+        "LayoutSummaryList$member": null
+      }
+    },
+    "LayoutSummaryList": {
+      "base": null,
+      "refs": {
+        "ListLayoutsResponse$layouts": "<p>The layouts for the domain.</p>"
+      }
+    },
+    "ListCasesForContactRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCasesForContactRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListCasesForContactRequest$maxResults": "<p>The maximum number of results to return per page.</p>"
+      }
+    },
+    "ListCasesForContactResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCasesForContactResponseCasesList": {
+      "base": null,
+      "refs": {
+        "ListCasesForContactResponse$cases": "<p>A list of Case summary information.</p>"
+      }
+    },
+    "ListDomainsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDomainsRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListDomainsRequest$maxResults": "<p>The maximum number of results to return per page.</p>"
+      }
+    },
+    "ListDomainsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFieldOptionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFieldOptionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFieldsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFieldsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFieldsResponseFieldsList": {
+      "base": null,
+      "refs": {
+        "ListFieldsResponse$fields": "<p>List of detailed field information.</p>"
+      }
+    },
+    "ListLayoutsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLayoutsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTemplatesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTemplatesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTemplatesResponseTemplatesList": {
+      "base": null,
+      "refs": {
+        "ListTemplatesResponse$templates": "<p>List of template summary objects.</p>"
+      }
+    },
+    "MaxResults": {
+      "base": null,
+      "refs": {
+        "ListFieldOptionsRequest$maxResults": "<p>The maximum number of results to return per page.</p>",
+        "ListFieldsRequest$maxResults": "<p>The maximum number of results to return per page.</p>",
+        "ListLayoutsRequest$maxResults": "<p>The maximum number of results to return per page.</p>",
+        "ListTemplatesRequest$maxResults": "<p>The maximum number of results to return per page.</p>"
+      }
+    },
+    "NextToken": {
+      "base": null,
+      "refs": {
+        "GetCaseRequest$nextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "GetCaseResponse$nextToken": "<p>The token for the next set of results. This is null if there are no more results to return.</p>",
+        "ListCasesForContactRequest$nextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListCasesForContactResponse$nextToken": "<p>The token for the next set of results. This is null if there are no more results to return.</p>",
+        "ListDomainsRequest$nextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListDomainsResponse$nextToken": "<p>The token for the next set of results. This is null if there are no more results to return.</p>",
+        "ListFieldOptionsRequest$nextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListFieldOptionsResponse$nextToken": "<p>The token for the next set of results. This is null if there are no more results to return.</p>",
+        "ListFieldsRequest$nextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListFieldsResponse$nextToken": "<p>The token for the next set of results. This is null if there are no more results to return.</p>",
+        "ListLayoutsRequest$nextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListLayoutsResponse$nextToken": "<p>The token for the next set of results. This is null if there are no more results to return.</p>",
+        "ListTemplatesRequest$nextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListTemplatesResponse$nextToken": "<p>The token for the next set of results. This is null if there are no more results to return.</p>",
+        "SearchCasesRequest$nextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "SearchCasesResponse$nextToken": "<p>The token for the next set of results. This is null if there are no more results to return.</p>",
+        "SearchRelatedItemsRequest$nextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "SearchRelatedItemsResponse$nextToken": "<p>The token for the next set of results. This is null if there are no more results to return.</p>"
+      }
+    },
+    "Order": {
+      "base": null,
+      "refs": {
+        "Sort$sortOrder": "<p>A structured set of sort terms</p>"
+      }
+    },
+    "PutCaseEventConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutCaseEventConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RelatedItemArn": {
+      "base": null,
+      "refs": {
+        "CreateRelatedItemResponse$relatedItemArn": "<p>The Amazon Resource Name (ARN) of the related item.</p>"
+      }
+    },
+    "RelatedItemContent": {
+      "base": "<p>Represents the content of a particular type of related item.</p>",
+      "refs": {
+        "SearchRelatedItemsResponseItem$content": "<p>Represents the content of a particular type of related item.</p>"
+      }
+    },
+    "RelatedItemEventIncludedData": {
+      "base": "<p>Details of what related item data is published through the case event stream.</p>",
+      "refs": {
+        "EventIncludedData$relatedItemData": "<p>Details of what related item data is published through the case event stream.</p>"
+      }
+    },
+    "RelatedItemId": {
+      "base": null,
+      "refs": {
+        "CreateRelatedItemResponse$relatedItemId": "<p>The unique identifier of the related item.</p>",
+        "SearchRelatedItemsResponseItem$relatedItemId": "<p>Unique identifier of a related item.</p>"
+      }
+    },
+    "RelatedItemInputContent": {
+      "base": "<p>Represents the content of a related item to be created.</p>",
+      "refs": {
+        "CreateRelatedItemRequest$content": "<p>The content of a related item to be created.</p>"
+      }
+    },
+    "RelatedItemType": {
+      "base": null,
+      "refs": {
+        "CreateRelatedItemRequest$type": "<p>The type of a related item.</p>",
+        "SearchRelatedItemsResponseItem$type": "<p>Type of a related item.</p>"
+      }
+    },
+    "RelatedItemTypeFilter": {
+      "base": "<p>The list of types of related items and their parameters to use for filtering.</p>",
+      "refs": {
+        "SearchRelatedItemsRequestFiltersList$member": null
+      }
+    },
+    "RequiredField": {
+      "base": "<p>List of fields that must have a value provided to create a case.</p>",
+      "refs": {
+        "RequiredFieldList$member": null
+      }
+    },
+    "RequiredFieldList": {
+      "base": null,
+      "refs": {
+        "CreateTemplateRequest$requiredFields": "<p>A list of fields that must contain a value for a case to be successfully created with this template.</p>",
+        "GetTemplateResponse$requiredFields": "<p>A list of fields that must contain a value for a case to be successfully created with this template.</p>",
+        "UpdateTemplateRequest$requiredFields": "<p>A list of fields that must contain a value for a case to be successfully created with this template.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>We couldn't find the requested resource. Check that your resources exists and were created in the same Amazon Web Services Region as your request, and try your request again.</p>",
+      "refs": {
+      }
+    },
+    "SearchCasesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchCasesRequestFieldsList": {
+      "base": null,
+      "refs": {
+        "SearchCasesRequest$fields": "<p>The list of field identifiers to be returned as part of the response.</p>"
+      }
+    },
+    "SearchCasesRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "SearchCasesRequest$maxResults": "<p>The maximum number of cases to return. The current maximum supported value is 25. This is also the default value when no other value is provided.</p>"
+      }
+    },
+    "SearchCasesRequestSearchTermString": {
+      "base": null,
+      "refs": {
+        "SearchCasesRequest$searchTerm": "<p>A word or phrase used to perform a quick search.</p>"
+      }
+    },
+    "SearchCasesRequestSortsList": {
+      "base": "<p>/@documentation(&quot;The templateId&quot;)</p>",
+      "refs": {
+        "SearchCasesRequest$sorts": "<p>A list of sorts where each sort specifies a field and their sort order to be applied to the results. </p>"
+      }
+    },
+    "SearchCasesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchCasesResponseCasesList": {
+      "base": null,
+      "refs": {
+        "SearchCasesResponse$cases": "<p>A list of case documents where each case contains the properties <code>CaseId</code> and <code>Fields</code> where each field is a complex union structure. </p>"
+      }
+    },
+    "SearchCasesResponseItem": {
+      "base": "<p>A list of items that represent cases.</p>",
+      "refs": {
+        "SearchCasesResponseCasesList$member": null
+      }
+    },
+    "SearchCasesResponseItemFieldsList": {
+      "base": null,
+      "refs": {
+        "SearchCasesResponseItem$fields": "<p>List of case field values.</p>"
+      }
+    },
+    "SearchRelatedItemsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchRelatedItemsRequestFiltersList": {
+      "base": null,
+      "refs": {
+        "SearchRelatedItemsRequest$filters": "<p>The list of types of related items and their parameters to use for filtering.</p>"
+      }
+    },
+    "SearchRelatedItemsRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "SearchRelatedItemsRequest$maxResults": "<p>The maximum number of results to return per page.</p>"
+      }
+    },
+    "SearchRelatedItemsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchRelatedItemsResponseItem": {
+      "base": "<p>A list of items that represent RelatedItems.</p>",
+      "refs": {
+        "SearchRelatedItemsResponseRelatedItemsList$member": null
+      }
+    },
+    "SearchRelatedItemsResponseRelatedItemsList": {
+      "base": null,
+      "refs": {
+        "SearchRelatedItemsResponse$relatedItems": "<p>A list of items related to a case. </p>"
+      }
+    },
+    "Section": {
+      "base": "<p>This represents a sections within a panel or tab of the page layout.</p>",
+      "refs": {
+        "SectionsList$member": null
+      }
+    },
+    "SectionsList": {
+      "base": "<p>Ordered list containing different kinds of sections that can be added.</p>",
+      "refs": {
+        "LayoutSections$sections": null
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>The service quota has been exceeded. For a list of service quotas, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
+      "refs": {
+      }
+    },
+    "Sort": {
+      "base": "<p>A structured set of sort terms.</p>",
+      "refs": {
+        "SearchCasesRequestSortsList$member": null
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$message": null,
+        "ConflictException$message": null,
+        "FieldError$errorCode": "<p>The error code from getting a field.</p>",
+        "FieldError$message": "<p>The error message from getting a field.</p>",
+        "FieldOptionError$errorCode": "<p>Error code from creating or updating field option.</p>",
+        "FieldOptionError$message": "<p>Error message from creating or updating field option.</p>",
+        "InternalServerException$message": null,
+        "ResourceNotFoundException$message": null,
+        "ResourceNotFoundException$resourceId": "<p>Unique identifier of the resource affected.</p>",
+        "ResourceNotFoundException$resourceType": "<p>Type of the resource affected.</p>",
+        "ServiceQuotaExceededException$message": null,
+        "Tags$key": null,
+        "Tags$value": null,
+        "ThrottlingException$message": null,
+        "ValidationException$message": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>List of tag keys.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Tags": {
+      "base": null,
+      "refs": {
+        "GetCaseResponse$tags": "<p>A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.</p>",
+        "GetDomainResponse$tags": "<p>A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.</p>",
+        "GetFieldResponse$tags": "<p>A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.</p>",
+        "GetLayoutResponse$tags": "<p>A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.</p>",
+        "GetTemplateResponse$tags": "<p>A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.</p>",
+        "ListTagsForResourceResponse$tags": "<p>A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.</p>",
+        "SearchCasesResponseItem$tags": "<p>A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.</p>",
+        "SearchRelatedItemsResponseItem$tags": "<p>A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.</p>",
+        "TagResourceRequest$tags": "<p>A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.</p>"
+      }
+    },
+    "TemplateArn": {
+      "base": null,
+      "refs": {
+        "CreateTemplateResponse$templateArn": "<p>The Amazon Resource Name (ARN) of the newly created template.</p>",
+        "GetTemplateResponse$templateArn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
+        "TemplateSummary$templateArn": "<p>The Amazon Resource Name (ARN) of the template.</p>"
+      }
+    },
+    "TemplateDescription": {
+      "base": null,
+      "refs": {
+        "CreateTemplateRequest$description": "<p>A brief description of the template.</p>",
+        "GetTemplateResponse$description": "<p>A brief description of the template.</p>",
+        "UpdateTemplateRequest$description": "<p>A brief description of the template.</p>"
+      }
+    },
+    "TemplateId": {
+      "base": null,
+      "refs": {
+        "CaseSummary$templateId": "<p>A unique identifier of a template.</p>",
+        "CreateCaseRequest$templateId": "<p>A unique identifier of a template.</p>",
+        "CreateTemplateResponse$templateId": "<p>A unique identifier of a template.</p>",
+        "GetCaseResponse$templateId": "<p>A unique identifier of a template.</p>",
+        "GetTemplateRequest$templateId": "<p>A unique identifier of a template.</p>",
+        "GetTemplateResponse$templateId": "<p>A unique identifier of a template.</p>",
+        "SearchCasesResponseItem$templateId": "<p>A unique identifier of a template.</p>",
+        "TemplateSummary$templateId": "<p>The unique identifier for the template.</p>",
+        "UpdateTemplateRequest$templateId": "<p>A unique identifier for the template.</p>"
+      }
+    },
+    "TemplateName": {
+      "base": null,
+      "refs": {
+        "CreateTemplateRequest$name": "<p>A name for the template. It must be unique per domain.</p>",
+        "GetTemplateResponse$name": "<p>The name of the template.</p>",
+        "TemplateSummary$name": "<p>The template name.</p>",
+        "UpdateTemplateRequest$name": "<p>The name of the template. It must be unique per domain.</p>"
+      }
+    },
+    "TemplateSummary": {
+      "base": "<p>Template summary information.</p>",
+      "refs": {
+        "ListTemplatesResponseTemplatesList$member": null
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>The rate has been exceeded for this API. Please try again after a few minutes.</p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCaseRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCaseRequestFieldsList": {
+      "base": null,
+      "refs": {
+        "UpdateCaseRequest$fields": "<p>An array of objects with <code>fieldId</code> (matching ListFields/DescribeField) and value union data, structured identical to <code>CreateCase</code>.</p>"
+      }
+    },
+    "UpdateCaseResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFieldRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFieldResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLayoutRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLayoutResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidationException": {
+      "base": "<p>The request isn't valid. Check the syntax and try again.</p>",
+      "refs": {
+      }
+    },
+    "Value": {
+      "base": null,
+      "refs": {
+        "ValuesList$member": null
+      }
+    },
+    "ValuesList": {
+      "base": null,
+      "refs": {
+        "ListFieldOptionsRequest$values": "<p>A list of <code>FieldOption</code> values to filter on for <code>ListFieldOptions</code>.</p>"
+      }
+    }
+  }
+}
