@@ -16706,9 +16706,6 @@ type PortMapping struct {
 	// range as these are reserved for automatic assignment. In general, ports below
 	// 32768 are outside of the ephemeral port range.
 	//
-	// The default ephemeral port range from 49153 through 65535 is always used
-	// for Docker versions before 1.6.0.
-	//
 	// The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376,
 	// and the Amazon ECS container agent ports 51678-51680. Any host port that
 	// was previously specified in a running task is also reserved while the task
@@ -16871,6 +16868,12 @@ type PutAccountSettingDefaultInput struct {
 	// the ENI limit for your Amazon ECS container instances is affected. If containerInsights
 	// is specified, the default setting for CloudWatch Container Insights for your
 	// clusters is affected.
+	//
+	// Fargate is transitioning from task count-based quotas to vCPU-based quotas.
+	// You can set the name to fargateVCPULimit to opt in or opt out of the vCPU-based
+	// quotas. For information about the opt in timeline, see Fargate vCPU-based
+	// quotas timeline (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#fargate-quota-timeline)
+	// in the Amazon ECS Developer Guide.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true" enum:"SettingName"`
@@ -17584,8 +17587,6 @@ type RegisterTaskDefinitionInput struct {
 	// platform versions:
 	//
 	//    * Linux platform version 1.4.0 or later.
-	//
-	//    * Windows platform version 1.0.0 or later.
 	EphemeralStorage *EphemeralStorage `locationName:"ephemeralStorage" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the task execution role that grants the

@@ -1404,6 +1404,7 @@
         "DescribeVolumeAttributeResult$AutoEnableIO": "<p>The state of <code>autoEnableIO</code> attribute.</p>",
         "DescribeVpcAttributeResult$EnableDnsHostnames": "<p>Indicates whether the instances launched in the VPC get DNS hostnames. If this attribute is <code>true</code>, instances in the VPC get DNS hostnames; otherwise, they do not.</p>",
         "DescribeVpcAttributeResult$EnableDnsSupport": "<p>Indicates whether DNS resolution is enabled for the VPC. If this attribute is <code>true</code>, the Amazon DNS server resolves DNS hostnames for your instances to their corresponding IP addresses; otherwise, it does not.</p>",
+        "DescribeVpcAttributeResult$EnableNetworkAddressUsageMetrics": "<p>Indicates whether Network Address Usage metrics are enabled for your VPC.</p>",
         "InstanceAttribute$DisableApiTermination": "<p>If the value is <code>true</code>, you can't terminate the instance through the Amazon EC2 console, CLI, or API; otherwise, you can.</p>",
         "InstanceAttribute$EnaSupport": "<p>Indicates whether enhanced networking with ENA is enabled.</p>",
         "InstanceAttribute$EbsOptimized": "<p>Indicates whether the instance is optimized for Amazon EBS I/O.</p>",
@@ -1424,7 +1425,8 @@
         "ModifySubnetAttributeRequest$DisableLniAtDeviceIndex": "<p> Specify <code>true</code> to indicate that local network interfaces at the current position should be disabled. </p>",
         "ModifyVolumeAttributeRequest$AutoEnableIO": "<p>Indicates whether the volume should be auto-enabled for I/O operations.</p>",
         "ModifyVpcAttributeRequest$EnableDnsHostnames": "<p>Indicates whether the instances launched in the VPC get DNS hostnames. If enabled, instances in the VPC get DNS hostnames; otherwise, they do not.</p> <p>You cannot modify the DNS resolution and DNS hostnames attributes in the same request. Use separate requests for each attribute. You can only enable DNS hostnames if you've enabled DNS support.</p>",
-        "ModifyVpcAttributeRequest$EnableDnsSupport": "<p>Indicates whether the DNS resolution is supported for the VPC. If enabled, queries to the Amazon provided DNS server at the 169.254.169.253 IP address, or the reserved IP address at the base of the VPC network range \"plus two\" succeed. If disabled, the Amazon provided DNS service in the VPC that resolves public DNS hostnames to IP addresses is not enabled.</p> <p>You cannot modify the DNS resolution and DNS hostnames attributes in the same request. Use separate requests for each attribute.</p>"
+        "ModifyVpcAttributeRequest$EnableDnsSupport": "<p>Indicates whether the DNS resolution is supported for the VPC. If enabled, queries to the Amazon provided DNS server at the 169.254.169.253 IP address, or the reserved IP address at the base of the VPC network range \"plus two\" succeed. If disabled, the Amazon provided DNS service in the VPC that resolves public DNS hostnames to IP addresses is not enabled.</p> <p>You cannot modify the DNS resolution and DNS hostnames attributes in the same request. Use separate requests for each attribute.</p>",
+        "ModifyVpcAttributeRequest$EnableNetworkAddressUsageMetrics": "<p>Indicates whether Network Address Usage metrics are enabled for your VPC.</p>"
       }
     },
     "AttributeValue": {

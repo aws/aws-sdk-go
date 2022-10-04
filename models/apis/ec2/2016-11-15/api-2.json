@@ -16905,6 +16905,10 @@
         "EnableDnsSupport":{
           "shape":"AttributeBooleanValue",
           "locationName":"enableDnsSupport"
+        },
+        "EnableNetworkAddressUsageMetrics":{
+          "shape":"AttributeBooleanValue",
+          "locationName":"enableNetworkAddressUsageMetrics"
         }
       }
     },
@@ -29140,7 +29144,8 @@
         "VpcId":{
           "shape":"VpcId",
           "locationName":"vpcId"
-        }
+        },
+        "EnableNetworkAddressUsageMetrics":{"shape":"AttributeBooleanValue"}
       }
     },
     "ModifyVpcEndpointConnectionNotificationRequest":{
@@ -40329,7 +40334,8 @@
       "type":"string",
       "enum":[
         "enableDnsSupport",
-        "enableDnsHostnames"
+        "enableDnsHostnames",
+        "enableNetworkAddressUsageMetrics"
       ]
     },
     "VpcCidrAssociationId":{"type":"string"},

@@ -2020,6 +2020,12 @@
         "isRegionalized" : false,
         "partitionEndpoint" : "aws-global"
       },
+      "cases" : {
+        "endpoints" : {
+          "us-east-1" : { },
+          "us-west-2" : { }
+        }
+      },
       "cassandra" : {
         "endpoints" : {
           "ap-east-1" : { },

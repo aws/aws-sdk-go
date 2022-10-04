@@ -49,6 +49,21 @@
       ],
       "idempotent":true
     },
+    "AssumeImpersonationRole":{
+      "name":"AssumeImpersonationRole",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssumeImpersonationRoleRequest"},
+      "output":{"shape":"AssumeImpersonationRoleResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "CancelMailboxExportJob":{
       "name":"CancelMailboxExportJob",
       "http":{
@@ -122,6 +137,23 @@
         {"shape":"UnsupportedOperationException"}
       ],
       "idempotent":true
+    },
+    "CreateImpersonationRole":{
+      "name":"CreateImpersonationRole",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateImpersonationRoleRequest"},
+      "output":{"shape":"CreateImpersonationRoleResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"EntityStateException"},
+        {"shape":"LimitExceededException"}
+      ]
     },
     "CreateMobileDeviceAccessRule":{
       "name":"CreateMobileDeviceAccessRule",
@@ -272,6 +304,20 @@
         {"shape":"UnsupportedOperationException"}
       ],
       "idempotent":true
+    },
+    "DeleteImpersonationRole":{
+      "name":"DeleteImpersonationRole",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteImpersonationRoleRequest"},
+      "output":{"shape":"DeleteImpersonationRoleResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ]
     },
     "DeleteMailboxPermissions":{
       "name":"DeleteMailboxPermissions",
@@ -573,6 +619,7 @@
       "output":{"shape":"GetAccessControlEffectResponse"},
       "errors":[
         {"shape":"EntityNotFoundException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"},
         {"shape":"OrganizationNotFoundException"},
         {"shape":"OrganizationStateException"}
@@ -593,6 +640,38 @@
         {"shape":"EntityNotFoundException"}
       ],
       "idempotent":true
+    },
+    "GetImpersonationRole":{
+      "name":"GetImpersonationRole",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetImpersonationRoleRequest"},
+      "output":{"shape":"GetImpersonationRoleResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetImpersonationRoleEffect":{
+      "name":"GetImpersonationRoleEffect",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetImpersonationRoleEffectRequest"},
+      "output":{"shape":"GetImpersonationRoleEffectResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"EntityStateException"}
+      ]
     },
     "GetMailDomain":{
       "name":"GetMailDomain",
@@ -730,6 +809,20 @@
         {"shape":"OrganizationStateException"}
       ],
       "idempotent":true
+    },
+    "ListImpersonationRoles":{
+      "name":"ListImpersonationRoles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListImpersonationRolesRequest"},
+      "output":{"shape":"ListImpersonationRolesResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ]
     },
     "ListMailDomains":{
       "name":"ListMailDomains",
@@ -890,6 +983,7 @@
         {"shape":"LimitExceededException"},
         {"shape":"InvalidParameterException"},
         {"shape":"EntityNotFoundException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"OrganizationNotFoundException"},
         {"shape":"OrganizationStateException"}
       ]
@@ -1125,6 +1219,24 @@
       ],
       "idempotent":true
     },
+    "UpdateImpersonationRole":{
+      "name":"UpdateImpersonationRole",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateImpersonationRoleRequest"},
+      "output":{"shape":"UpdateImpersonationRoleResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"EntityStateException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "UpdateMailboxQuota":{
       "name":"UpdateMailboxQuota",
       "http":{
@@ -1218,7 +1330,9 @@
         "UserIds":{"shape":"UserIdList"},
         "NotUserIds":{"shape":"UserIdList"},
         "DateCreated":{"shape":"Timestamp"},
-        "DateModified":{"shape":"Timestamp"}
+        "DateModified":{"shape":"Timestamp"},
+        "ImpersonationRoleIds":{"shape":"ImpersonationRoleIdList"},
+        "NotImpersonationRoleIds":{"shape":"ImpersonationRoleIdList"}
       }
     },
     "AccessControlRuleAction":{
@@ -1257,6 +1371,13 @@
       "member":{"shape":"AccessControlRule"},
       "max":10,
       "min":0
+    },
+    "AccessEffect":{
+      "type":"string",
+      "enum":[
+        "ALLOW",
+        "DENY"
+      ]
     },
     "ActionsList":{
       "type":"list",
@@ -1307,6 +1428,24 @@
     "AssociateMemberToGroupResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "AssumeImpersonationRoleRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "ImpersonationRoleId"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "ImpersonationRoleId":{"shape":"ImpersonationRoleId"}
+      }
+    },
+    "AssumeImpersonationRoleResponse":{
+      "type":"structure",
+      "members":{
+        "Token":{"shape":"ImpersonationToken"},
+        "ExpiresIn":{"shape":"ExpiresIn"}
       }
     },
     "AvailabilityConfiguration":{
@@ -1417,6 +1556,32 @@
       "type":"structure",
       "members":{
         "GroupId":{"shape":"WorkMailIdentifier"}
+      }
+    },
+    "CreateImpersonationRoleRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "Name",
+        "Type",
+        "Rules"
+      ],
+      "members":{
+        "ClientToken":{
+          "shape":"IdempotencyClientToken",
+          "idempotencyToken":true
+        },
+        "OrganizationId":{"shape":"OrganizationId"},
+        "Name":{"shape":"ImpersonationRoleName"},
+        "Type":{"shape":"ImpersonationRoleType"},
+        "Description":{"shape":"ImpersonationRoleDescription"},
+        "Rules":{"shape":"ImpersonationRuleList"}
+      }
+    },
+    "CreateImpersonationRoleResponse":{
+      "type":"structure",
+      "members":{
+        "ImpersonationRoleId":{"shape":"ImpersonationRoleId"}
       }
     },
     "CreateMobileDeviceAccessRuleRequest":{
@@ -1597,6 +1762,22 @@
       }
     },
     "DeleteGroupResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteImpersonationRoleRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "ImpersonationRoleId"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "ImpersonationRoleId":{"shape":"ImpersonationRoleId"}
+      }
+    },
+    "DeleteImpersonationRoleResponse":{
       "type":"structure",
       "members":{
       }
@@ -2124,6 +2305,10 @@
         "EwsPassword":{"shape":"Password"}
       }
     },
+    "ExpiresIn":{
+      "type":"long",
+      "box":true
+    },
     "ExternalUserName":{
       "type":"string",
       "max":256,
@@ -2160,14 +2345,14 @@
       "required":[
         "OrganizationId",
         "IpAddress",
-        "Action",
-        "UserId"
+        "Action"
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
         "IpAddress":{"shape":"IpAddress"},
         "Action":{"shape":"AccessControlRuleAction"},
-        "UserId":{"shape":"WorkMailIdentifier"}
+        "UserId":{"shape":"WorkMailIdentifier"},
+        "ImpersonationRoleId":{"shape":"ImpersonationRoleId"}
       }
     },
     "GetAccessControlEffectResponse":{
@@ -2191,6 +2376,50 @@
         "Name":{"shape":"ShortString"},
         "Description":{"shape":"String"},
         "FolderConfigurations":{"shape":"FolderConfigurations"}
+      }
+    },
+    "GetImpersonationRoleEffectRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "ImpersonationRoleId",
+        "TargetUser"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "ImpersonationRoleId":{"shape":"ImpersonationRoleId"},
+        "TargetUser":{"shape":"EntityIdentifier"}
+      }
+    },
+    "GetImpersonationRoleEffectResponse":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"ImpersonationRoleType"},
+        "Effect":{"shape":"AccessEffect"},
+        "MatchedRules":{"shape":"ImpersonationMatchedRuleList"}
+      }
+    },
+    "GetImpersonationRoleRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "ImpersonationRoleId"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "ImpersonationRoleId":{"shape":"ImpersonationRoleId"}
+      }
+    },
+    "GetImpersonationRoleResponse":{
+      "type":"structure",
+      "members":{
+        "ImpersonationRoleId":{"shape":"ImpersonationRoleId"},
+        "Name":{"shape":"ImpersonationRoleName"},
+        "Type":{"shape":"ImpersonationRoleType"},
+        "Description":{"shape":"ImpersonationRoleDescription"},
+        "Rules":{"shape":"ImpersonationRuleList"},
+        "DateCreated":{"shape":"Timestamp"},
+        "DateModified":{"shape":"Timestamp"}
       }
     },
     "GetMailDomainRequest":{
@@ -2304,6 +2533,111 @@
     "IdempotencyClientToken":{
       "type":"string",
       "max":128,
+      "min":1,
+      "pattern":"[\\x21-\\x7e]+"
+    },
+    "ImpersonationMatchedRule":{
+      "type":"structure",
+      "members":{
+        "ImpersonationRuleId":{"shape":"ImpersonationRuleId"},
+        "Name":{"shape":"ImpersonationRuleName"}
+      }
+    },
+    "ImpersonationMatchedRuleList":{
+      "type":"list",
+      "member":{"shape":"ImpersonationMatchedRule"},
+      "max":10,
+      "min":0
+    },
+    "ImpersonationRole":{
+      "type":"structure",
+      "members":{
+        "ImpersonationRoleId":{"shape":"ImpersonationRoleId"},
+        "Name":{"shape":"ImpersonationRoleName"},
+        "Type":{"shape":"ImpersonationRoleType"},
+        "DateCreated":{"shape":"Timestamp"},
+        "DateModified":{"shape":"Timestamp"}
+      }
+    },
+    "ImpersonationRoleDescription":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[^\\x00-\\x09\\x0B\\x0C\\x0E-\\x1F\\x7F\\x3C\\x3E\\x5C]+"
+    },
+    "ImpersonationRoleId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_-]+"
+    },
+    "ImpersonationRoleIdList":{
+      "type":"list",
+      "member":{"shape":"ImpersonationRoleId"},
+      "max":10,
+      "min":0
+    },
+    "ImpersonationRoleList":{
+      "type":"list",
+      "member":{"shape":"ImpersonationRole"},
+      "max":20,
+      "min":0
+    },
+    "ImpersonationRoleName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[^\\x00-\\x1F\\x7F\\x3C\\x3E\\x5C]+"
+    },
+    "ImpersonationRoleType":{
+      "type":"string",
+      "enum":[
+        "FULL_ACCESS",
+        "READ_ONLY"
+      ]
+    },
+    "ImpersonationRule":{
+      "type":"structure",
+      "required":[
+        "ImpersonationRuleId",
+        "Effect"
+      ],
+      "members":{
+        "ImpersonationRuleId":{"shape":"ImpersonationRuleId"},
+        "Name":{"shape":"ImpersonationRuleName"},
+        "Description":{"shape":"ImpersonationRuleDescription"},
+        "Effect":{"shape":"AccessEffect"},
+        "TargetUsers":{"shape":"TargetUsers"},
+        "NotTargetUsers":{"shape":"TargetUsers"}
+      }
+    },
+    "ImpersonationRuleDescription":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[^\\x00-\\x09\\x0B\\x0C\\x0E-\\x1F\\x7F\\x3C\\x3E\\x5C]+"
+    },
+    "ImpersonationRuleId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_-]+"
+    },
+    "ImpersonationRuleList":{
+      "type":"list",
+      "member":{"shape":"ImpersonationRule"},
+      "max":10,
+      "min":0
+    },
+    "ImpersonationRuleName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[^\\x00-\\x1F\\x7F\\x3C\\x3E\\x5C]+"
+    },
+    "ImpersonationToken":{
+      "type":"string",
+      "max":256,
       "min":1,
       "pattern":"[\\x21-\\x7e]+"
     },
@@ -2465,6 +2799,22 @@
       "type":"structure",
       "members":{
         "Groups":{"shape":"Groups"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListImpersonationRolesRequest":{
+      "type":"structure",
+      "required":["OrganizationId"],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListImpersonationRolesResponse":{
+      "type":"structure",
+      "members":{
+        "Roles":{"shape":"ImpersonationRoleList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -2935,7 +3285,9 @@
         "NotActions":{"shape":"ActionsList"},
         "UserIds":{"shape":"UserIdList"},
         "NotUserIds":{"shape":"UserIdList"},
-        "OrganizationId":{"shape":"OrganizationId"}
+        "OrganizationId":{"shape":"OrganizationId"},
+        "ImpersonationRoleIds":{"shape":"ImpersonationRoleIdList"},
+        "NotImpersonationRoleIds":{"shape":"ImpersonationRoleIdList"}
       }
     },
     "PutAccessControlRuleResponse":{
@@ -3275,6 +3627,12 @@
       "max":256,
       "min":0
     },
+    "TargetUsers":{
+      "type":"list",
+      "member":{"shape":"EntityIdentifier"},
+      "max":10,
+      "min":1
+    },
     "TestAvailabilityConfigurationRequest":{
       "type":"structure",
       "required":["OrganizationId"],
@@ -3353,6 +3711,29 @@
       }
     },
     "UpdateDefaultMailDomainResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateImpersonationRoleRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "ImpersonationRoleId",
+        "Name",
+        "Type",
+        "Rules"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "ImpersonationRoleId":{"shape":"ImpersonationRoleId"},
+        "Name":{"shape":"ImpersonationRoleName"},
+        "Type":{"shape":"ImpersonationRoleType"},
+        "Description":{"shape":"ImpersonationRoleDescription"},
+        "Rules":{"shape":"ImpersonationRuleList"}
+      }
+    },
+    "UpdateImpersonationRoleResponse":{
       "type":"structure",
       "members":{
       }
