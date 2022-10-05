@@ -1,3 +1,12 @@
+Release v1.44.112 (2022-10-05)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * This SDK release adds support to sync glue jobs with source control provider. Additionally, a new parameter called SourceControlDetails will be added to Job model.
+* `service/network-firewall`: Updates service API and documentation
+* `service/outposts`: Updates service API and documentation
+
 Release v1.44.111 (2022-10-04)
 ===
 

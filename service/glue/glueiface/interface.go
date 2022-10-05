@@ -866,6 +866,10 @@ type GlueAPI interface {
 	UpdateJobWithContext(aws.Context, *glue.UpdateJobInput, ...request.Option) (*glue.UpdateJobOutput, error)
 	UpdateJobRequest(*glue.UpdateJobInput) (*request.Request, *glue.UpdateJobOutput)
 
+	UpdateJobFromSourceControl(*glue.UpdateJobFromSourceControlInput) (*glue.UpdateJobFromSourceControlOutput, error)
+	UpdateJobFromSourceControlWithContext(aws.Context, *glue.UpdateJobFromSourceControlInput, ...request.Option) (*glue.UpdateJobFromSourceControlOutput, error)
+	UpdateJobFromSourceControlRequest(*glue.UpdateJobFromSourceControlInput) (*request.Request, *glue.UpdateJobFromSourceControlOutput)
+
 	UpdateMLTransform(*glue.UpdateMLTransformInput) (*glue.UpdateMLTransformOutput, error)
 	UpdateMLTransformWithContext(aws.Context, *glue.UpdateMLTransformInput, ...request.Option) (*glue.UpdateMLTransformOutput, error)
 	UpdateMLTransformRequest(*glue.UpdateMLTransformInput) (*request.Request, *glue.UpdateMLTransformOutput)
@@ -881,6 +885,10 @@ type GlueAPI interface {
 	UpdateSchema(*glue.UpdateSchemaInput) (*glue.UpdateSchemaOutput, error)
 	UpdateSchemaWithContext(aws.Context, *glue.UpdateSchemaInput, ...request.Option) (*glue.UpdateSchemaOutput, error)
 	UpdateSchemaRequest(*glue.UpdateSchemaInput) (*request.Request, *glue.UpdateSchemaOutput)
+
+	UpdateSourceControlFromJob(*glue.UpdateSourceControlFromJobInput) (*glue.UpdateSourceControlFromJobOutput, error)
+	UpdateSourceControlFromJobWithContext(aws.Context, *glue.UpdateSourceControlFromJobInput, ...request.Option) (*glue.UpdateSourceControlFromJobOutput, error)
+	UpdateSourceControlFromJobRequest(*glue.UpdateSourceControlFromJobInput) (*request.Request, *glue.UpdateSourceControlFromJobOutput)
 
 	UpdateTable(*glue.UpdateTableInput) (*glue.UpdateTableOutput, error)
 	UpdateTableWithContext(aws.Context, *glue.UpdateTableInput, ...request.Option) (*glue.UpdateTableOutput, error)

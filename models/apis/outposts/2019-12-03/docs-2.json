@@ -2,31 +2,31 @@
   "version": "2.0",
   "service": "<p>Amazon Web Services Outposts is a fully managed service that extends Amazon Web Services infrastructure, APIs, and tools to customer premises. By providing local access to Amazon Web Services managed infrastructure, Amazon Web Services Outposts enables customers to build and run applications on premises using the same programming interfaces as in Amazon Web Services Regions, while using local compute and storage resources for lower latency and local data processing needs.</p>",
   "operations": {
-    "CancelOrder": "<p> Cancels an order for an Outpost. </p>",
+    "CancelOrder": "<p>Cancels the specified order for an Outpost.</p>",
     "CreateOrder": "<p>Creates an order for an Outpost.</p>",
-    "CreateOutpost": "<p>Creates an Outpost.</p> <p>You can specify <code>AvailabilityZone</code> or <code>AvailabilityZoneId</code>.</p>",
+    "CreateOutpost": "<p>Creates an Outpost.</p> <p>You can specify either an Availability one or an AZ ID.</p>",
     "CreateSite": "<p> Creates a site for an Outpost. </p>",
-    "DeleteOutpost": "<p>Deletes the Outpost.</p>",
-    "DeleteSite": "<p>Deletes the site.</p>",
-    "GetCatalogItem": "<p>Gets information about a catalog item.</p>",
-    "GetConnection": "<note> <p> Amazon Web Services uses this action to install Outpost servers.</p> </note> <p> Gets information about a specified connection. </p> <p> Use CloudTrail to monitor this action or Amazon Web Services managed policy for Amazon Web Services Outposts to secure it. For more information, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/security-iam-awsmanpol.html\"> Amazon Web Services managed policies for Amazon Web Services Outposts</a> and <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/logging-using-cloudtrail.html\"> Logging Amazon Web Services Outposts API calls with Amazon Web Services CloudTrail</a> in the <i>Amazon Web Services Outposts User Guide</i>. </p>",
-    "GetOrder": "<p>Gets an order.</p>",
+    "DeleteOutpost": "<p>Deletes the specified Outpost.</p>",
+    "DeleteSite": "<p>Deletes the specified site.</p>",
+    "GetCatalogItem": "<p>Gets information about the specified catalog item.</p>",
+    "GetConnection": "<note> <p> Amazon Web Services uses this action to install Outpost servers.</p> </note> <p> Gets information about the specified connection. </p> <p> Use CloudTrail to monitor this action or Amazon Web Services managed policy for Amazon Web Services Outposts to secure it. For more information, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/security-iam-awsmanpol.html\"> Amazon Web Services managed policies for Amazon Web Services Outposts</a> and <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/logging-using-cloudtrail.html\"> Logging Amazon Web Services Outposts API calls with Amazon Web Services CloudTrail</a> in the <i>Amazon Web Services Outposts User Guide</i>. </p>",
+    "GetOrder": "<p>Gets information about the specified order.</p>",
     "GetOutpost": "<p>Gets information about the specified Outpost.</p>",
     "GetOutpostInstanceTypes": "<p>Gets the instance types for the specified Outpost.</p>",
-    "GetSite": "<p> Gets information about the specified Outpost site. </p>",
-    "GetSiteAddress": "<p> Gets the site address. </p>",
-    "ListAssets": "<p> Lists the hardware assets in an Outpost. If you are using Dedicated Hosts on Amazon Web Services Outposts, you can filter your request by host ID to return a list of hardware assets that allocate resources for Dedicated Hosts. </p>",
-    "ListCatalogItems": "<p>Lists the items in the catalog. Add filters to your request to return a more specific list of results. Use filters to match an item class, storage option, or EC2 family. </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
-    "ListOrders": "<p>Lists the Outpost orders for your Amazon Web Services account. You can filter your request by Outpost to return a more specific list of results. </p>",
-    "ListOutposts": "<p>Lists the Outposts for your Amazon Web Services account. Add filters to your request to return a more specific list of results. Use filters to match an Outpost lifecycle status, Availability Zone (<code>us-east-1a</code>), and AZ ID (<code>use1-az1</code>). </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
-    "ListSites": "<p>Lists the Outpost sites for your Amazon Web Services account. Add operating address filters to your request to return a more specific list of results. Use filters to match site city, country code, or state/region of the operating address. </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
+    "GetSite": "<p>Gets information about the specified Outpost site.</p>",
+    "GetSiteAddress": "<p> Gets the site address of the specified site. </p>",
+    "ListAssets": "<p>Lists the hardware assets for the specified Outpost.</p> <p>Use filters to return specific results. If you specify multiple filters, the results include only the resources that match all of the specified filters. For a filter where you can specify multiple values, the results include items that match any of the values that you specify for the filter.</p>",
+    "ListCatalogItems": "<p>Lists the items in the catalog.</p> <p>Use filters to return specific results. If you specify multiple filters, the results include only the resources that match all of the specified filters. For a filter where you can specify multiple values, the results include items that match any of the values that you specify for the filter.</p>",
+    "ListOrders": "<p>Lists the Outpost orders for your Amazon Web Services account.</p>",
+    "ListOutposts": "<p>Lists the Outposts for your Amazon Web Services account.</p> <p>Use filters to return specific results. If you specify multiple filters, the results include only the resources that match all of the specified filters. For a filter where you can specify multiple values, the results include items that match any of the values that you specify for the filter.</p>",
+    "ListSites": "<p>Lists the Outpost sites for your Amazon Web Services account. Use filters to return specific results.</p> <p>Use filters to return specific results. If you specify multiple filters, the results include only the resources that match all of the specified filters. For a filter where you can specify multiple values, the results include items that match any of the values that you specify for the filter.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
     "StartConnection": "<note> <p> Amazon Web Services uses this action to install Outpost servers.</p> </note> <p> Starts the connection required for Outpost server installation. </p> <p> Use CloudTrail to monitor this action or Amazon Web Services managed policy for Amazon Web Services Outposts to secure it. For more information, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/security-iam-awsmanpol.html\"> Amazon Web Services managed policies for Amazon Web Services Outposts</a> and <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/logging-using-cloudtrail.html\"> Logging Amazon Web Services Outposts API calls with Amazon Web Services CloudTrail</a> in the <i>Amazon Web Services Outposts User Guide</i>. </p>",
     "TagResource": "<p>Adds tags to the specified resource.</p>",
     "UntagResource": "<p>Removes tags from the specified resource.</p>",
     "UpdateOutpost": "<p> Updates an Outpost. </p>",
-    "UpdateSite": "<p> Updates the site. </p>",
-    "UpdateSiteAddress": "<p> Updates the site address. </p> <p> To update a site address with an order <code>IN_PROGRESS</code>, you must wait for the order to complete or cancel the order. </p> <p>You can update the operating address before you place an order at the site, or after all Outposts that belong to the site have been deactivated. </p>",
+    "UpdateSite": "<p>Updates the specified site.</p>",
+    "UpdateSiteAddress": "<p>Updates the address of the specified site.</p> <p>You can't update a site address if there is an order in progress. You must wait for the order to complete or cancel the order.</p> <p>You can update the operating address before you place an order at the site, or after all Outposts that belong to the site have been deactivated.</p>",
     "UpdateSiteRackPhysicalProperties": "<p>Update the physical and logistical details for a rack at a site. For more information about hardware requirements for racks, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/outposts-requirements.html#checklist\">Network readiness checklist</a> in the Amazon Web Services Outposts User Guide. </p> <p>To update a rack at a site with an order of <code>IN_PROGRESS</code>, you must wait for the order to complete or cancel the order.</p>"
   },
   "shapes": {
@@ -72,8 +72,8 @@
     "AddressType": {
       "base": null,
       "refs": {
-        "GetSiteAddressInput$AddressType": "<p> The type of the address you request. </p>",
-        "GetSiteAddressOutput$AddressType": "<p> The type of the address you receive. </p>",
+        "GetSiteAddressInput$AddressType": "<p>The type of the address you request. </p>",
+        "GetSiteAddressOutput$AddressType": "<p>The type of the address you receive. </p>",
         "UpdateSiteAddressInput$AddressType": "<p> The type of the address. </p>",
         "UpdateSiteAddressOutput$AddressType": "<p> The type of the address. </p>"
       }
@@ -103,13 +103,19 @@
     "AssetListDefinition": {
       "base": null,
       "refs": {
-        "ListAssetsOutput$Assets": "<p> Information about hardware assets. </p>"
+        "ListAssetsOutput$Assets": "<p>Information about the hardware assets.</p>"
       }
     },
     "AssetLocation": {
       "base": "<p> Information about the position of the asset in a rack. </p>",
       "refs": {
         "AssetInfo$AssetLocation": "<p> The position of an asset in a rack. </p>"
+      }
+    },
+    "AssetState": {
+      "base": null,
+      "refs": {
+        "StatusList$member": null
       }
     },
     "AssetType": {
@@ -137,13 +143,13 @@
     "AvailabilityZoneIdList": {
       "base": null,
       "refs": {
-        "ListOutpostsInput$AvailabilityZoneIdFilter": "<p> A filter for the AZ IDs (<code>use1-az1</code>) of the Outpost. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
+        "ListOutpostsInput$AvailabilityZoneIdFilter": "<p>Filters the results by AZ ID (for example, <code>use1-az1</code>).</p>"
       }
     },
     "AvailabilityZoneList": {
       "base": null,
       "refs": {
-        "ListOutpostsInput$AvailabilityZoneFilter": "<p> A filter for the Availability Zone (<code>us-east-1a</code>) of the Outpost. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
+        "ListOutpostsInput$AvailabilityZoneFilter": "<p>Filters the results by Availability Zone (for example, <code>us-east-1a</code>).</p>"
       }
     },
     "CIDR": {
@@ -186,7 +192,7 @@
     "CatalogItemClassList": {
       "base": null,
       "refs": {
-        "ListCatalogItemsInput$ItemClassFilter": "<p> A filter for the class of items in the catalog. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
+        "ListCatalogItemsInput$ItemClassFilter": "<p>Filters the results by item class.</p>"
       }
     },
     "CatalogItemListDefinition": {
@@ -224,7 +230,13 @@
     "CityList": {
       "base": null,
       "refs": {
-        "ListSitesInput$OperatingAddressCityFilter": "<p> A filter for the city of the Outpost site. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
+        "ListSitesInput$OperatingAddressCityFilter": "<p>Filters the results by city.</p>"
+      }
+    },
+    "ComputeAssetState": {
+      "base": null,
+      "refs": {
+        "ComputeAttributes$State": "<p>The state.</p> <ul> <li> <p>ACTIVE - The asset is available and can provide capacity for new compute resources.</p> </li> <li> <p>ISOLATED - The asset is undergoing maintenance and can't provide capacity for new compute resources. Existing compute resources on the asset are not affected.</p> </li> <li> <p>RETIRING - The underlying hardware for the asset is degraded. Capacity for new compute resources is reduced. Amazon Web Services sends notifications for resources that must be stopped before the asset can be replaced.</p> </li> </ul>"
       }
     },
     "ComputeAttributes": {
@@ -241,14 +253,14 @@
     "ConnectionDetails": {
       "base": "<p> Information about a connection. </p>",
       "refs": {
-        "GetConnectionResponse$ConnectionDetails": "<p> Information about a connection. </p>"
+        "GetConnectionResponse$ConnectionDetails": "<p> Information about the connection. </p>"
       }
     },
     "ConnectionId": {
       "base": null,
       "refs": {
-        "GetConnectionRequest$ConnectionId": "<p> The ID of the connection you request. </p>",
-        "GetConnectionResponse$ConnectionId": "<p> The ID of the connection you receive. </p>",
+        "GetConnectionRequest$ConnectionId": "<p> The ID of the connection. </p>",
+        "GetConnectionResponse$ConnectionId": "<p> The ID of the connection. </p>",
         "StartConnectionResponse$ConnectionId": "<p> The ID of the connection. </p>"
       }
     },
@@ -275,7 +287,7 @@
     "CountryCodeList": {
       "base": null,
       "refs": {
-        "ListSitesInput$OperatingAddressCountryCodeFilter": "<p> A filter for the country code of the Outpost site. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
+        "ListSitesInput$OperatingAddressCountryCodeFilter": "<p>Filters the results by country code.</p>"
       }
     },
     "CreateOrderInput": {
@@ -355,7 +367,7 @@
     "EC2FamilyList": {
       "base": null,
       "refs": {
-        "ListCatalogItemsInput$EC2FamilyFilter": "<p> A filter for EC2 family options for items in the catalog. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
+        "ListCatalogItemsInput$EC2FamilyFilter": "<p>Filters the results by EC2 family (for example, M5).</p>"
       }
     },
     "ErrorMessage": {
@@ -380,7 +392,7 @@
       "base": null,
       "refs": {
         "RackPhysicalProperties$FiberOpticCableType": "<p>The type of fiber used to attach the Outpost to the network. </p>",
-        "UpdateSiteRackPhysicalPropertiesInput$FiberOpticCableType": "<p> Specify the type of fiber that you will use to attach the Outpost to your network. </p>"
+        "UpdateSiteRackPhysicalPropertiesInput$FiberOpticCableType": "<p>The type of fiber that you will use to attach the Outpost to your network. </p>"
       }
     },
     "GetCatalogItemInput": {
@@ -456,14 +468,14 @@
     "HostId": {
       "base": null,
       "refs": {
-        "ComputeAttributes$HostId": "<p> The host ID of any Dedicated Hosts on the asset. </p>",
+        "ComputeAttributes$HostId": "<p> The host ID of the Dedicated Host on the asset. </p>",
         "HostIdList$member": null
       }
     },
     "HostIdList": {
       "base": null,
       "refs": {
-        "ListAssetsInput$HostIdFilter": "<p> A filter for the host ID of Dedicated Hosts on the Outpost. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
+        "ListAssetsInput$HostIdFilter": "<p>Filters the results by the host ID of a Dedicated Host.</p>"
       }
     },
     "ISO8601Timestamp": {
@@ -471,8 +483,8 @@
       "refs": {
         "Order$OrderSubmissionDate": "<p>The submission date for the order.</p>",
         "Order$OrderFulfilledDate": "<p>The fulfillment date of the order.</p>",
-        "OrderSummary$OrderSubmissionDate": "<p> Submission date for the order. </p>",
-        "OrderSummary$OrderFulfilledDate": "<p> Fulfilment date for the order. </p>"
+        "OrderSummary$OrderSubmissionDate": "<p> The submission date for the order. </p>",
+        "OrderSummary$OrderFulfilledDate": "<p> The fulfilment date for the order. </p>"
       }
     },
     "InstanceType": {
@@ -508,7 +520,7 @@
     "LifeCycleStatusList": {
       "base": null,
       "refs": {
-        "ListOutpostsInput$LifeCycleStatusFilter": "<p> A filter for the lifecycle status of the Outpost. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
+        "ListOutpostsInput$LifeCycleStatusFilter": "<p>Filters the results by the lifecycle status.</p>"
       }
     },
     "LineItem": {
@@ -643,7 +655,7 @@
     "MacAddressList": {
       "base": null,
       "refs": {
-        "LineItemAssetInformation$MacAddressList": "<p> MAC addresses of the asset. </p>"
+        "LineItemAssetInformation$MacAddressList": "<p> The MAC addresses of the asset. </p>"
       }
     },
     "MaxResults1000": {
@@ -667,7 +679,7 @@
       "base": null,
       "refs": {
         "RackPhysicalProperties$MaximumSupportedWeightLbs": "<p>The maximum rack weight that this site can support. <code>NO_LIMIT</code> is over 2000 lbs (907 kg). </p>",
-        "UpdateSiteRackPhysicalPropertiesInput$MaximumSupportedWeightLbs": "<p> Specify the maximum rack weight that this site can support. <code>NO_LIMIT</code> is over 2000lbs. </p>"
+        "UpdateSiteRackPhysicalPropertiesInput$MaximumSupportedWeightLbs": "<p>The maximum rack weight that this site can support. <code>NO_LIMIT</code> is over 2000lbs. </p>"
       }
     },
     "Municipality": {
@@ -691,7 +703,7 @@
       "base": null,
       "refs": {
         "RackPhysicalProperties$OpticalStandard": "<p>The type of optical standard used to attach the Outpost to the network. This field is dependent on uplink speed, fiber type, and distance to the upstream device. For more information about networking requirements for racks, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/outposts-requirements.html#facility-networking\">Network</a> in the Amazon Web Services Outposts User Guide. </p>",
-        "UpdateSiteRackPhysicalPropertiesInput$OpticalStandard": "<p>Specify the type of optical standard that you will use to attach the Outpost to your network. This field is dependent on uplink speed, fiber type, and distance to the upstream device. For more information about networking requirements for racks, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/outposts-requirements.html#facility-networking\">Network</a> in the Amazon Web Services Outposts User Guide. </p> <ul> <li> <p> <code>OPTIC_10GBASE_SR</code>: 10GBASE-SR</p> </li> <li> <p> <code>OPTIC_10GBASE_IR</code>: 10GBASE-IR</p> </li> <li> <p> <code>OPTIC_10GBASE_LR</code>: 10GBASE-LR</p> </li> <li> <p> <code>OPTIC_40GBASE_SR</code>: 40GBASE-SR</p> </li> <li> <p> <code>OPTIC_40GBASE_ESR</code>: 40GBASE-ESR</p> </li> <li> <p> <code>OPTIC_40GBASE_IR4_LR4L</code>: 40GBASE-IR (LR4L)</p> </li> <li> <p> <code>OPTIC_40GBASE_LR4</code>: 40GBASE-LR4</p> </li> <li> <p> <code>OPTIC_100GBASE_SR4</code>: 100GBASE-SR4</p> </li> <li> <p> <code>OPTIC_100GBASE_CWDM4</code>: 100GBASE-CWDM4</p> </li> <li> <p> <code>OPTIC_100GBASE_LR4</code>: 100GBASE-LR4</p> </li> <li> <p> <code>OPTIC_100G_PSM4_MSA</code>: 100G PSM4 MSA</p> </li> <li> <p> <code>OPTIC_1000BASE_LX</code>: 1000Base-LX</p> </li> <li> <p> <code>OPTIC_1000BASE_SX</code> : 1000Base-SX</p> </li> </ul>"
+        "UpdateSiteRackPhysicalPropertiesInput$OpticalStandard": "<p>The type of optical standard that you will use to attach the Outpost to your network. This field is dependent on uplink speed, fiber type, and distance to the upstream device. For more information about networking requirements for racks, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/outposts-requirements.html#facility-networking\">Network</a> in the Amazon Web Services Outposts User Guide. </p> <ul> <li> <p> <code>OPTIC_10GBASE_SR</code>: 10GBASE-SR</p> </li> <li> <p> <code>OPTIC_10GBASE_IR</code>: 10GBASE-IR</p> </li> <li> <p> <code>OPTIC_10GBASE_LR</code>: 10GBASE-LR</p> </li> <li> <p> <code>OPTIC_40GBASE_SR</code>: 40GBASE-SR</p> </li> <li> <p> <code>OPTIC_40GBASE_ESR</code>: 40GBASE-ESR</p> </li> <li> <p> <code>OPTIC_40GBASE_IR4_LR4L</code>: 40GBASE-IR (LR4L)</p> </li> <li> <p> <code>OPTIC_40GBASE_LR4</code>: 40GBASE-LR4</p> </li> <li> <p> <code>OPTIC_100GBASE_SR4</code>: 100GBASE-SR4</p> </li> <li> <p> <code>OPTIC_100GBASE_CWDM4</code>: 100GBASE-CWDM4</p> </li> <li> <p> <code>OPTIC_100GBASE_LR4</code>: 100GBASE-LR4</p> </li> <li> <p> <code>OPTIC_100G_PSM4_MSA</code>: 100G PSM4 MSA</p> </li> <li> <p> <code>OPTIC_1000BASE_LX</code>: 1000Base-LX</p> </li> <li> <p> <code>OPTIC_1000BASE_SX</code> : 1000Base-SX</p> </li> </ul>"
       }
     },
     "Order": {
@@ -704,7 +716,7 @@
     "OrderId": {
       "base": null,
       "refs": {
-        "CancelOrderInput$OrderId": "<p> The ID of the order to cancel. </p>",
+        "CancelOrderInput$OrderId": "<p> The ID of the order. </p>",
         "GetOrderInput$OrderId": "<p>The ID of the order.</p>",
         "Order$OrderId": "<p>The ID of the order.</p>",
         "OrderSummary$OrderId": "<p> The ID of the order. </p>"
@@ -713,7 +725,7 @@
     "OrderStatus": {
       "base": null,
       "refs": {
-        "Order$Status": "<p>The status of the order.</p> <ul> <li> <p> <code>PREPARING</code> - Order is received and being prepared.</p> </li> <li> <p> <code>IN_PROGRESS</code> - Order is either being built, shipped, or installed. To get more details, see the <code>LineItem</code> status.</p> </li> <li> <p> <code>COMPLETED</code> - Order is complete.</p> </li> <li> <p> <code>CANCELLED</code> - Order is cancelled.</p> </li> <li> <p> <code>ERROR</code> - Customer should contact support.</p> </li> </ul> <note> <p>The following status are deprecated: <code>RECEIVED</code>, <code>PENDING</code>, <code>PROCESSING</code>, <code>INSTALLING</code>, and <code>FULFILLED</code>. </p> </note>",
+        "Order$Status": "<p>The status of the order.</p> <ul> <li> <p> <code>PREPARING</code> - Order is received and being prepared.</p> </li> <li> <p> <code>IN_PROGRESS</code> - Order is either being built, shipped, or installed. To get more details, see the line item status.</p> </li> <li> <p> <code>COMPLETED</code> - Order is complete.</p> </li> <li> <p> <code>CANCELLED</code> - Order is cancelled.</p> </li> <li> <p> <code>ERROR</code> - Customer should contact support.</p> </li> </ul> <note> <p>The following status are deprecated: <code>RECEIVED</code>, <code>PENDING</code>, <code>PROCESSING</code>, <code>INSTALLING</code>, and <code>FULFILLED</code>. </p> </note>",
         "OrderSummary$Status": "<p>The status of the order.</p> <ul> <li> <p> <code>PREPARING</code> - Order is received and is being prepared.</p> </li> <li> <p> <code>IN_PROGRESS</code> - Order is either being built, shipped, or installed. For more information, see the <code>LineItem</code> status.</p> </li> <li> <p> <code>COMPLETED</code> - Order is complete.</p> </li> <li> <p> <code>CANCELLED</code> - Order is cancelled.</p> </li> <li> <p> <code>ERROR</code> - Customer should contact support.</p> </li> </ul> <note> <p>The following statuses are deprecated: <code>RECEIVED</code>, <code>PENDING</code>, <code>PROCESSING</code>, <code>INSTALLING</code>, and <code>FULFILLED</code>. </p> </note>"
       }
     },
@@ -762,12 +774,12 @@
     "OutpostId": {
       "base": null,
       "refs": {
-        "DeleteOutpostInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p> <note> <p>In requests, Amazon Web Services Outposts accepts the Amazon Resource Name (ARN) or an ID for Outposts and sites throughout the Outposts Query API. To address backwards compatibility, the parameter names <code>OutpostID</code> or <code>SiteID</code> remain in use. Despite the parameter name, you can make the request with an ARN.</p> </note>",
-        "GetOutpostInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p> <note> <p>In requests, Amazon Web Services Outposts accepts the Amazon Resource Name (ARN) or an ID for Outposts and sites throughout the Outposts Query API. To address backwards compatibility, the parameter names <code>OutpostID</code> or <code>SiteID</code> remain in use. Despite the parameter name, you can make the request with an ARN.</p> </note>",
-        "GetOutpostInstanceTypesInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p> <note> <p>In requests, Amazon Web Services Outposts accepts the Amazon Resource Name (ARN) or an ID for Outposts and sites throughout the Outposts Query API. To address backwards compatibility, the parameter names <code>OutpostID</code> or <code>SiteID</code> remain in use. Despite the parameter name, you can make the request with an ARN.</p> </note>",
-        "GetOutpostInstanceTypesOutput$OutpostId": "<p> The ID of the Outpost. </p> <note> <p>In requests, Amazon Web Services Outposts accepts the Amazon Resource Name (ARN) or an ID for Outposts and sites throughout the Outposts Query API. To address backwards compatibility, the parameter names <code>OutpostID</code> or <code>SiteID</code> remain in use. Despite the parameter name, you can make the request with an ARN.</p> </note>",
+        "DeleteOutpostInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>",
+        "GetOutpostInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>",
+        "GetOutpostInstanceTypesInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>",
+        "GetOutpostInstanceTypesOutput$OutpostId": "<p> The ID of the Outpost. </p>",
         "Outpost$OutpostId": "<p> The ID of the Outpost. </p>",
-        "UpdateOutpostInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p> <note> <p>In requests, Amazon Web Services Outposts accepts the Amazon Resource Name (ARN) or an ID for Outposts and sites throughout the Outposts Query API. To address backwards compatibility, the parameter names <code>OutpostID</code> or <code>SiteID</code> remain in use. Despite the parameter name, you can make the request with an ARN.</p> </note>"
+        "UpdateOutpostInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>"
       }
     },
     "OutpostIdOnly": {
@@ -802,14 +814,14 @@
     "PaymentOption": {
       "base": null,
       "refs": {
-        "CreateOrderInput$PaymentOption": "<p>The payment option for the order.</p>",
+        "CreateOrderInput$PaymentOption": "<p>The payment option.</p>",
         "Order$PaymentOption": "<p>The payment option for the order.</p>"
       }
     },
     "PaymentTerm": {
       "base": null,
       "refs": {
-        "CreateOrderInput$PaymentTerm": "<p>The payment terms for the order.</p>"
+        "CreateOrderInput$PaymentTerm": "<p>The payment terms.</p>"
       }
     },
     "PostalCode": {
@@ -822,28 +834,28 @@
       "base": null,
       "refs": {
         "RackPhysicalProperties$PowerConnector": "<p>The power connector for the hardware. </p>",
-        "UpdateSiteRackPhysicalPropertiesInput$PowerConnector": "<p> Specify the power connector that Amazon Web Services should plan to provide for connections to the hardware. Note the correlation between <code>PowerPhase</code> and <code>PowerConnector</code>. </p> <ul> <li> <p>Single-phase AC feed</p> <ul> <li> <p> <b>L6-30P</b> – (common in US); 30A; single phase</p> </li> <li> <p> <b>IEC309 (blue)</b> – P+N+E, 6hr; 32 A; single phase</p> </li> </ul> </li> <li> <p>Three-phase AC feed</p> <ul> <li> <p> <b>AH530P7W (red)</b> – 3P+N+E, 7hr; 30A; three phase</p> </li> <li> <p> <b>AH532P6W (red)</b> – 3P+N+E, 6hr; 32A; three phase</p> </li> </ul> </li> </ul>"
+        "UpdateSiteRackPhysicalPropertiesInput$PowerConnector": "<p>The power connector that Amazon Web Services should plan to provide for connections to the hardware. Note the correlation between <code>PowerPhase</code> and <code>PowerConnector</code>. </p> <ul> <li> <p>Single-phase AC feed</p> <ul> <li> <p> <b>L6-30P</b> – (common in US); 30A; single phase</p> </li> <li> <p> <b>IEC309 (blue)</b> – P+N+E, 6hr; 32 A; single phase</p> </li> </ul> </li> <li> <p>Three-phase AC feed</p> <ul> <li> <p> <b>AH530P7W (red)</b> – 3P+N+E, 7hr; 30A; three phase</p> </li> <li> <p> <b>AH532P6W (red)</b> – 3P+N+E, 6hr; 32A; three phase</p> </li> </ul> </li> </ul>"
       }
     },
     "PowerDrawKva": {
       "base": null,
       "refs": {
         "RackPhysicalProperties$PowerDrawKva": "<p>The power draw available at the hardware placement position for the rack. </p>",
-        "UpdateSiteRackPhysicalPropertiesInput$PowerDrawKva": "<p>Specify in kVA the power draw available at the hardware placement position for the rack.</p>"
+        "UpdateSiteRackPhysicalPropertiesInput$PowerDrawKva": "<p>The power draw, in kVA, available at the hardware placement position for the rack.</p>"
       }
     },
     "PowerFeedDrop": {
       "base": null,
       "refs": {
         "RackPhysicalProperties$PowerFeedDrop": "<p>The position of the power feed.</p>",
-        "UpdateSiteRackPhysicalPropertiesInput$PowerFeedDrop": "<p> Specify whether the power feed comes above or below the rack. </p>"
+        "UpdateSiteRackPhysicalPropertiesInput$PowerFeedDrop": "<p>Indicates whether the power feed comes above or below the rack. </p>"
       }
     },
     "PowerPhase": {
       "base": null,
       "refs": {
         "RackPhysicalProperties$PowerPhase": "<p>The power option that you can provide for hardware.</p>",
-        "UpdateSiteRackPhysicalPropertiesInput$PowerPhase": "<p> Specify the power option that you can provide for hardware. </p> <ul> <li> <p>Single-phase AC feed: 200 V to 277 V, 50 Hz or 60 Hz</p> </li> <li> <p>Three-phase AC feed: 346 V to 480 V, 50 Hz or 60 Hz</p> </li> </ul>"
+        "UpdateSiteRackPhysicalPropertiesInput$PowerPhase": "<p>The power option that you can provide for hardware. </p> <ul> <li> <p>Single-phase AC feed: 200 V to 277 V, 50 Hz or 60 Hz</p> </li> <li> <p>Three-phase AC feed: 346 V to 480 V, 50 Hz or 60 Hz</p> </li> </ul>"
       }
     },
     "Quantity": {
@@ -926,18 +938,18 @@
       }
     },
     "SiteId": {
-      "base": "<p> The ID of the site. </p>",
+      "base": "<p>The ID of the site.</p>",
       "refs": {
-        "CreateOutpostInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p> <note> <p>In requests, Amazon Web Services Outposts accepts the Amazon Resource Name (ARN) or an ID for Outposts and sites throughout the Outposts Query API. To address backwards compatibility, the parameter names <code>OutpostID</code> or <code>SiteID</code> remain in use. Despite the parameter name, you can make the request with an ARN.</p> </note>",
-        "DeleteSiteInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p> <note> <p>In requests, Amazon Web Services Outposts accepts the Amazon Resource Name (ARN) or an ID for Outposts and sites throughout the Outposts Query API. To address backwards compatibility, the parameter names <code>OutpostID</code> or <code>SiteID</code> remain in use. Despite the parameter name, you can make the request with an ARN.</p> </note>",
-        "GetSiteAddressInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p> <note> <p>In requests, Amazon Web Services Outposts accepts the Amazon Resource Name (ARN) or an ID for Outposts and sites throughout the Outposts Query API. To address backwards compatibility, the parameter names <code>OutpostID</code> or <code>SiteID</code> remain in use. Despite the parameter name, you can make the request with an ARN.</p> </note>",
+        "CreateOutpostInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p>",
+        "DeleteSiteInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p>",
+        "GetSiteAddressInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p>",
         "GetSiteAddressOutput$SiteId": null,
-        "GetSiteInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p> <note> <p>In requests, Amazon Web Services Outposts accepts the Amazon Resource Name (ARN) or an ID for Outposts and sites throughout the Outposts Query API. To address backwards compatibility, the parameter names <code>OutpostID</code> or <code>SiteID</code> remain in use. Despite the parameter name, you can make the request with an ARN.</p> </note>",
+        "GetSiteInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p>",
         "Outpost$SiteId": null,
         "Site$SiteId": null,
-        "UpdateSiteAddressInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p> <note> <p>In requests, Amazon Web Services Outposts accepts the Amazon Resource Name (ARN) or an ID for Outposts and sites throughout the Outposts Query API. To address backwards compatibility, the parameter names <code>OutpostID</code> or <code>SiteID</code> remain in use. Despite the parameter name, you can make the request with an ARN.</p> </note>",
-        "UpdateSiteInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p> <note> <p>In requests, Amazon Web Services Outposts accepts the Amazon Resource Name (ARN) or an ID for Outposts and sites throughout the Outposts Query API. To address backwards compatibility, the parameter names <code>OutpostID</code> or <code>SiteID</code> remain in use. Despite the parameter name, you can make the request with an ARN.</p> </note>",
-        "UpdateSiteRackPhysicalPropertiesInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p> <note> <p>In requests, Amazon Web Services Outposts accepts the Amazon Resource Name (ARN) or an ID for Outposts and sites throughout the Outposts Query API. To address backwards compatibility, the parameter names <code>OutpostID</code> or <code>SiteID</code> remain in use. Despite the parameter name, you can make the request with an ARN.</p> </note>"
+        "UpdateSiteAddressInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p>",
+        "UpdateSiteInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p>",
+        "UpdateSiteRackPhysicalPropertiesInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p>"
       }
     },
     "SiteName": {
@@ -953,7 +965,7 @@
       "refs": {
         "CreateSiteInput$Notes": "<p>Additional information that you provide about site access requirements, electrician scheduling, personal protective equipment, or regulation of equipment materials that could affect your installation process. </p>",
         "Site$Notes": "<p> Notes about a site. </p>",
-        "UpdateSiteInput$Notes": "<p> Notes about a site. </p>"
+        "UpdateSiteInput$Notes": "<p>Notes about a site.</p>"
       }
     },
     "SkuCode": {
@@ -986,7 +998,13 @@
     "StateOrRegionList": {
       "base": null,
       "refs": {
-        "ListSitesInput$OperatingAddressStateOrRegionFilter": "<p> A filter for the state/region of the Outpost site. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
+        "ListSitesInput$OperatingAddressStateOrRegionFilter": "<p>Filters the results by state or region.</p>"
+      }
+    },
+    "StatusList": {
+      "base": null,
+      "refs": {
+        "ListAssetsInput$StatusFilter": "<p>Filters the results by state.</p>"
       }
     },
     "String": {
@@ -1013,7 +1031,7 @@
       "base": null,
       "refs": {
         "CatalogItem$SupportedStorage": "<p> The supported storage options for the catalog item. </p>",
-        "ListCatalogItemsInput$SupportedStorageFilter": "<p> A filter for the storage options of items in the catalog. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
+        "ListCatalogItemsInput$SupportedStorageFilter": "<p>Filters the results by storage option.</p>"
       }
     },
     "SupportedUplinkGbps": {
@@ -1158,7 +1176,7 @@
       "base": null,
       "refs": {
         "RackPhysicalProperties$UplinkGbps": "<p>The uplink speed the rack supports for the connection to the Region. </p>",
-        "UpdateSiteRackPhysicalPropertiesInput$UplinkGbps": "<p> Specify the uplink speed the rack should support for the connection to the Region. </p>"
+        "UpdateSiteRackPhysicalPropertiesInput$UplinkGbps": "<p>The uplink speed the rack should support for the connection to the Region. </p>"
       }
     },
     "ValidationException": {
