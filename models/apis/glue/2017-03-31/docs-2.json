@@ -178,10 +178,12 @@
     "UpdateDatabase": "<p>Updates an existing database definition in a Data Catalog.</p>",
     "UpdateDevEndpoint": "<p>Updates a specified development endpoint.</p>",
     "UpdateJob": "<p>Updates an existing job definition. The previous job definition is completely overwritten by this information.</p>",
+    "UpdateJobFromSourceControl": "<p>Synchronizes a job from the source control repository. This operation takes the job artifacts that are located in the remote repository and updates the Glue internal stores with these artifacts.</p> <p>This API supports optional parameters which take in the repository information.</p>",
     "UpdateMLTransform": "<p>Updates an existing machine learning transform. Call this operation to tune the algorithm parameters to achieve better results.</p> <p>After calling this operation, you can call the <code>StartMLEvaluationTaskRun</code> operation to assess how well your new parameters achieved your goals (such as improving the quality of your machine learning transform, or making it more cost-effective).</p>",
     "UpdatePartition": "<p>Updates a partition.</p>",
     "UpdateRegistry": "<p>Updates an existing registry which is used to hold a collection of schemas. The updated properties relate to the registry, and do not modify any of the schemas within the registry. </p>",
     "UpdateSchema": "<p>Updates the description, compatibility setting, or version checkpoint for a schema set.</p> <p>For updating the compatibility setting, the call will not validate compatibility for the entire set of schema versions with the new compatibility setting. If the value for <code>Compatibility</code> is provided, the <code>VersionNumber</code> (a checkpoint) is also required. The API will validate the checkpoint version number for consistency.</p> <p>If the value for the <code>VersionNumber</code> (checkpoint) is provided, <code>Compatibility</code> is optional and this can be used to set/reset a checkpoint for the schema.</p> <p>This update will happen only if the schema is in the AVAILABLE state.</p>",
+    "UpdateSourceControlFromJob": "<p>Synchronizes a job to the source control repository. This operation takes the job artifacts from the Glue internal stores and makes a commit to the remote repository that is configured on the job.</p> <p>This API supports optional parameters which take in the repository information.</p>",
     "UpdateTable": "<p>Updates a metadata table in the Data Catalog.</p>",
     "UpdateTrigger": "<p>Updates a trigger definition.</p>",
     "UpdateUserDefinedFunction": "<p>Updates an existing function definition in the Data Catalog.</p>",
@@ -292,6 +294,13 @@
       "base": null,
       "refs": {
         "AuditContext$AdditionalAuditContext": "<p>The context for the audit..</p>"
+      }
+    },
+    "AuthTokenString": {
+      "base": null,
+      "refs": {
+        "UpdateJobFromSourceControlRequest$AuthToken": "<p>The value of the authorization token.</p>",
+        "UpdateSourceControlFromJobRequest$AuthToken": "<p>The value of the authorization token.</p>"
       }
     },
     "BackfillError": {
@@ -1189,6 +1198,13 @@
       "base": null,
       "refs": {
         "Column$Comment": "<p>A free-form text comment.</p>"
+      }
+    },
+    "CommitIdString": {
+      "base": null,
+      "refs": {
+        "UpdateJobFromSourceControlRequest$CommitId": "<p>A commit ID for a commit in the remote repository.</p>",
+        "UpdateSourceControlFromJobRequest$CommitId": "<p>A commit ID for a commit in the remote repository.</p>"
       }
     },
     "Comparator": {
@@ -2724,6 +2740,12 @@
         "Blueprint$Description": "<p>The description of the blueprint.</p>",
         "CreateBlueprintRequest$Description": "<p>A description of the blueprint.</p>",
         "LastActiveDefinition$Description": "<p>The description of the blueprint.</p>",
+        "SourceControlDetails$Repository": "<p>The name of the remote repository that contains the job artifacts.</p>",
+        "SourceControlDetails$Owner": "<p>The owner of the remote repository that contains the job artifacts.</p>",
+        "SourceControlDetails$Branch": "<p>An optional branch in the remote repository.</p>",
+        "SourceControlDetails$Folder": "<p>An optional folder in the remote repository.</p>",
+        "SourceControlDetails$LastCommitId": "<p>The last commit ID for a commit in the remote repository.</p>",
+        "SourceControlDetails$AuthToken": "<p>The value of an authorization token.</p>",
         "UpdateBlueprintRequest$Description": "<p>A description of the blueprint.</p>"
       }
     },
@@ -4829,12 +4851,24 @@
         "UpdateCsvClassifierRequest$Name": "<p>The name of the classifier.</p>",
         "UpdateDatabaseRequest$Name": "<p>The name of the database to update in the catalog. For Hive compatibility, this is folded to lowercase.</p>",
         "UpdateGrokClassifierRequest$Name": "<p>The name of the <code>GrokClassifier</code>.</p>",
+        "UpdateJobFromSourceControlRequest$JobName": "<p>The name of the Glue job to be synchronized to or from the remote repository.</p>",
+        "UpdateJobFromSourceControlRequest$RepositoryName": "<p>The name of the remote repository that contains the job artifacts.</p>",
+        "UpdateJobFromSourceControlRequest$RepositoryOwner": "<p>The owner of the remote repository that contains the job artifacts.</p>",
+        "UpdateJobFromSourceControlRequest$BranchName": "<p>An optional branch in the remote repository.</p>",
+        "UpdateJobFromSourceControlRequest$Folder": "<p>An optional folder in the remote repository.</p>",
+        "UpdateJobFromSourceControlResponse$JobName": "<p>The name of the Glue job.</p>",
         "UpdateJobRequest$JobName": "<p>The name of the job definition to update.</p>",
         "UpdateJobResponse$JobName": "<p>Returns the name of the updated job definition.</p>",
         "UpdateJsonClassifierRequest$Name": "<p>The name of the classifier.</p>",
         "UpdateMLTransformRequest$Name": "<p>The unique name that you gave the transform when you created it.</p>",
         "UpdatePartitionRequest$DatabaseName": "<p>The name of the catalog database in which the table in question resides.</p>",
         "UpdatePartitionRequest$TableName": "<p>The name of the table in which the partition to be updated is located.</p>",
+        "UpdateSourceControlFromJobRequest$JobName": "<p>The name of the Glue job to be synchronized to or from the remote repository.</p>",
+        "UpdateSourceControlFromJobRequest$RepositoryName": "<p>The name of the remote repository that contains the job artifacts.</p>",
+        "UpdateSourceControlFromJobRequest$RepositoryOwner": "<p>The owner of the remote repository that contains the job artifacts.</p>",
+        "UpdateSourceControlFromJobRequest$BranchName": "<p>An optional branch in the remote repository.</p>",
+        "UpdateSourceControlFromJobRequest$Folder": "<p>An optional folder in the remote repository.</p>",
+        "UpdateSourceControlFromJobResponse$JobName": "<p>The name of the Glue job.</p>",
         "UpdateTableRequest$DatabaseName": "<p>The name of the catalog database in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
         "UpdateTriggerRequest$Name": "<p>The name of the trigger to update.</p>",
         "UpdateUserDefinedFunctionRequest$DatabaseName": "<p>The name of the catalog database where the function to be updated is located.</p>",
@@ -6347,6 +6381,30 @@
         "TransformSortCriteria$SortDirection": "<p>The sort direction to be used in the sorting criteria that are associated with the machine learning transform.</p>"
       }
     },
+    "SourceControlAuthStrategy": {
+      "base": null,
+      "refs": {
+        "SourceControlDetails$AuthStrategy": "<p>The type of authentication, which can be an authentication token stored in Amazon Web Services Secrets Manager, or a personal access token.</p>",
+        "UpdateJobFromSourceControlRequest$AuthStrategy": "<p>The type of authentication, which can be an authentication token stored in Amazon Web Services Secrets Manager, or a personal access token.</p>",
+        "UpdateSourceControlFromJobRequest$AuthStrategy": "<p>The type of authentication, which can be an authentication token stored in Amazon Web Services Secrets Manager, or a personal access token.</p>"
+      }
+    },
+    "SourceControlDetails": {
+      "base": "<p>The details for a source control configuration for a job, allowing synchronization of job artifacts to or from a remote repository.</p>",
+      "refs": {
+        "CreateJobRequest$SourceControlDetails": "<p>The details for a source control configuration for a job, allowing synchronization of job artifacts to or from a remote repository.</p>",
+        "Job$SourceControlDetails": "<p>The details for a source control configuration for a job, allowing synchronization of job artifacts to or from a remote repository.</p>",
+        "JobUpdate$SourceControlDetails": "<p>The details for a source control configuration for a job, allowing synchronization of job artifacts to or from a remote repository.</p>"
+      }
+    },
+    "SourceControlProvider": {
+      "base": null,
+      "refs": {
+        "SourceControlDetails$Provider": "<p>The provider for the remote repository.</p>",
+        "UpdateJobFromSourceControlRequest$Provider": "<p>The provider for the remote repository.</p>",
+        "UpdateSourceControlFromJobRequest$Provider": "<p>The provider for the remote repository.</p>"
+      }
+    },
     "SparkConnectorSource": {
       "base": "<p>Specifies a connector to an Apache Spark data source.</p>",
       "refs": {
@@ -7285,6 +7343,16 @@
         "UpdateClassifierRequest$GrokClassifier": "<p>A <code>GrokClassifier</code> object with updated fields.</p>"
       }
     },
+    "UpdateJobFromSourceControlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateJobFromSourceControlResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateJobRequest": {
       "base": null,
       "refs": {
@@ -7337,6 +7405,16 @@
       }
     },
     "UpdateSchemaResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSourceControlFromJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSourceControlFromJobResponse": {
       "base": null,
       "refs": {
       }

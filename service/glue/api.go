@@ -18041,6 +18041,107 @@ func (c *Glue) UpdateJobWithContext(ctx aws.Context, input *UpdateJobInput, opts
 	return out, req.Send()
 }
 
+const opUpdateJobFromSourceControl = "UpdateJobFromSourceControl"
+
+// UpdateJobFromSourceControlRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateJobFromSourceControl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateJobFromSourceControl for more information on using the UpdateJobFromSourceControl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateJobFromSourceControlRequest method.
+//	req, resp := client.UpdateJobFromSourceControlRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/UpdateJobFromSourceControl
+func (c *Glue) UpdateJobFromSourceControlRequest(input *UpdateJobFromSourceControlInput) (req *request.Request, output *UpdateJobFromSourceControlOutput) {
+	op := &request.Operation{
+		Name:       opUpdateJobFromSourceControl,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateJobFromSourceControlInput{}
+	}
+
+	output = &UpdateJobFromSourceControlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateJobFromSourceControl API operation for AWS Glue.
+//
+// Synchronizes a job from the source control repository. This operation takes
+// the job artifacts that are located in the remote repository and updates the
+// Glue internal stores with these artifacts.
+//
+// This API supports optional parameters which take in the repository information.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation UpdateJobFromSourceControl for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+//   - AlreadyExistsException
+//     A resource to be created or added already exists.
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - ValidationException
+//     A value could not be validated.
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/UpdateJobFromSourceControl
+func (c *Glue) UpdateJobFromSourceControl(input *UpdateJobFromSourceControlInput) (*UpdateJobFromSourceControlOutput, error) {
+	req, out := c.UpdateJobFromSourceControlRequest(input)
+	return out, req.Send()
+}
+
+// UpdateJobFromSourceControlWithContext is the same as UpdateJobFromSourceControl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateJobFromSourceControl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) UpdateJobFromSourceControlWithContext(ctx aws.Context, input *UpdateJobFromSourceControlInput, opts ...request.Option) (*UpdateJobFromSourceControlOutput, error) {
+	req, out := c.UpdateJobFromSourceControlRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateMLTransform = "UpdateMLTransform"
 
 // UpdateMLTransformRequest generates a "aws/request.Request" representing the
@@ -18420,6 +18521,107 @@ func (c *Glue) UpdateSchema(input *UpdateSchemaInput) (*UpdateSchemaOutput, erro
 // for more information on using Contexts.
 func (c *Glue) UpdateSchemaWithContext(ctx aws.Context, input *UpdateSchemaInput, opts ...request.Option) (*UpdateSchemaOutput, error) {
 	req, out := c.UpdateSchemaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateSourceControlFromJob = "UpdateSourceControlFromJob"
+
+// UpdateSourceControlFromJobRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSourceControlFromJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSourceControlFromJob for more information on using the UpdateSourceControlFromJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateSourceControlFromJobRequest method.
+//	req, resp := client.UpdateSourceControlFromJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/UpdateSourceControlFromJob
+func (c *Glue) UpdateSourceControlFromJobRequest(input *UpdateSourceControlFromJobInput) (req *request.Request, output *UpdateSourceControlFromJobOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSourceControlFromJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateSourceControlFromJobInput{}
+	}
+
+	output = &UpdateSourceControlFromJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSourceControlFromJob API operation for AWS Glue.
+//
+// Synchronizes a job to the source control repository. This operation takes
+// the job artifacts from the Glue internal stores and makes a commit to the
+// remote repository that is configured on the job.
+//
+// This API supports optional parameters which take in the repository information.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation UpdateSourceControlFromJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+//   - AlreadyExistsException
+//     A resource to be created or added already exists.
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - ValidationException
+//     A value could not be validated.
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/UpdateSourceControlFromJob
+func (c *Glue) UpdateSourceControlFromJob(input *UpdateSourceControlFromJobInput) (*UpdateSourceControlFromJobOutput, error) {
+	req, out := c.UpdateSourceControlFromJobRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSourceControlFromJobWithContext is the same as UpdateSourceControlFromJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSourceControlFromJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) UpdateSourceControlFromJobWithContext(ctx aws.Context, input *UpdateSourceControlFromJobInput, opts ...request.Option) (*UpdateSourceControlFromJobOutput, error) {
+	req, out := c.UpdateSourceControlFromJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -27727,6 +27929,10 @@ type CreateJobInput struct {
 	// The name of the SecurityConfiguration structure to be used with this job.
 	SecurityConfiguration *string `min:"1" type:"string"`
 
+	// The details for a source control configuration for a job, allowing synchronization
+	// of job artifacts to or from a remote repository.
+	SourceControlDetails *SourceControlDetails `type:"structure"`
+
 	// The tags to use with this job. You may use tags to limit access to the job.
 	// For more information about tags in Glue, see Amazon Web Services Tags in
 	// Glue (https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html) in the
@@ -27814,6 +28020,11 @@ func (s *CreateJobInput) Validate() error {
 	if s.NotificationProperty != nil {
 		if err := s.NotificationProperty.Validate(); err != nil {
 			invalidParams.AddNested("NotificationProperty", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SourceControlDetails != nil {
+		if err := s.SourceControlDetails.Validate(); err != nil {
+			invalidParams.AddNested("SourceControlDetails", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -27928,6 +28139,12 @@ func (s *CreateJobInput) SetRole(v string) *CreateJobInput {
 // SetSecurityConfiguration sets the SecurityConfiguration field's value.
 func (s *CreateJobInput) SetSecurityConfiguration(v string) *CreateJobInput {
 	s.SecurityConfiguration = &v
+	return s
+}
+
+// SetSourceControlDetails sets the SourceControlDetails field's value.
+func (s *CreateJobInput) SetSourceControlDetails(v *SourceControlDetails) *CreateJobInput {
+	s.SourceControlDetails = v
 	return s
 }
 
@@ -44556,6 +44773,10 @@ type Job struct {
 	// The name of the SecurityConfiguration structure to be used with this job.
 	SecurityConfiguration *string `min:"1" type:"string"`
 
+	// The details for a source control configuration for a job, allowing synchronization
+	// of job artifacts to or from a remote repository.
+	SourceControlDetails *SourceControlDetails `type:"structure"`
+
 	// The job timeout in minutes. This is the maximum time that a job run can consume
 	// resources before it is terminated and enters TIMEOUT status. The default
 	// is 2,880 minutes (48 hours).
@@ -44717,6 +44938,12 @@ func (s *Job) SetRole(v string) *Job {
 // SetSecurityConfiguration sets the SecurityConfiguration field's value.
 func (s *Job) SetSecurityConfiguration(v string) *Job {
 	s.SecurityConfiguration = &v
+	return s
+}
+
+// SetSourceControlDetails sets the SourceControlDetails field's value.
+func (s *Job) SetSourceControlDetails(v *SourceControlDetails) *Job {
+	s.SourceControlDetails = v
 	return s
 }
 
@@ -45386,6 +45613,10 @@ type JobUpdate struct {
 	// The name of the SecurityConfiguration structure to be used with this job.
 	SecurityConfiguration *string `min:"1" type:"string"`
 
+	// The details for a source control configuration for a job, allowing synchronization
+	// of job artifacts to or from a remote repository.
+	SourceControlDetails *SourceControlDetails `type:"structure"`
+
 	// The job timeout in minutes. This is the maximum time that a job run can consume
 	// resources before it is terminated and enters TIMEOUT status. The default
 	// is 2,880 minutes (48 hours).
@@ -45455,6 +45686,11 @@ func (s *JobUpdate) Validate() error {
 	if s.NotificationProperty != nil {
 		if err := s.NotificationProperty.Validate(); err != nil {
 			invalidParams.AddNested("NotificationProperty", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SourceControlDetails != nil {
+		if err := s.SourceControlDetails.Validate(); err != nil {
+			invalidParams.AddNested("SourceControlDetails", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -45563,6 +45799,12 @@ func (s *JobUpdate) SetRole(v string) *JobUpdate {
 // SetSecurityConfiguration sets the SecurityConfiguration field's value.
 func (s *JobUpdate) SetSecurityConfiguration(v string) *JobUpdate {
 	s.SecurityConfiguration = &v
+	return s
+}
+
+// SetSourceControlDetails sets the SourceControlDetails field's value.
+func (s *JobUpdate) SetSourceControlDetails(v *SourceControlDetails) *JobUpdate {
+	s.SourceControlDetails = v
 	return s
 }
 
@@ -55921,6 +56163,131 @@ func (s *SortCriterion) SetSort(v string) *SortCriterion {
 	return s
 }
 
+// The details for a source control configuration for a job, allowing synchronization
+// of job artifacts to or from a remote repository.
+type SourceControlDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The type of authentication, which can be an authentication token stored in
+	// Amazon Web Services Secrets Manager, or a personal access token.
+	AuthStrategy *string `type:"string" enum:"SourceControlAuthStrategy"`
+
+	// The value of an authorization token.
+	AuthToken *string `min:"1" type:"string"`
+
+	// An optional branch in the remote repository.
+	Branch *string `min:"1" type:"string"`
+
+	// An optional folder in the remote repository.
+	Folder *string `min:"1" type:"string"`
+
+	// The last commit ID for a commit in the remote repository.
+	LastCommitId *string `min:"1" type:"string"`
+
+	// The owner of the remote repository that contains the job artifacts.
+	Owner *string `min:"1" type:"string"`
+
+	// The provider for the remote repository.
+	Provider *string `type:"string" enum:"SourceControlProvider"`
+
+	// The name of the remote repository that contains the job artifacts.
+	Repository *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceControlDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceControlDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SourceControlDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SourceControlDetails"}
+	if s.AuthToken != nil && len(*s.AuthToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AuthToken", 1))
+	}
+	if s.Branch != nil && len(*s.Branch) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Branch", 1))
+	}
+	if s.Folder != nil && len(*s.Folder) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Folder", 1))
+	}
+	if s.LastCommitId != nil && len(*s.LastCommitId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LastCommitId", 1))
+	}
+	if s.Owner != nil && len(*s.Owner) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Owner", 1))
+	}
+	if s.Repository != nil && len(*s.Repository) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Repository", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthStrategy sets the AuthStrategy field's value.
+func (s *SourceControlDetails) SetAuthStrategy(v string) *SourceControlDetails {
+	s.AuthStrategy = &v
+	return s
+}
+
+// SetAuthToken sets the AuthToken field's value.
+func (s *SourceControlDetails) SetAuthToken(v string) *SourceControlDetails {
+	s.AuthToken = &v
+	return s
+}
+
+// SetBranch sets the Branch field's value.
+func (s *SourceControlDetails) SetBranch(v string) *SourceControlDetails {
+	s.Branch = &v
+	return s
+}
+
+// SetFolder sets the Folder field's value.
+func (s *SourceControlDetails) SetFolder(v string) *SourceControlDetails {
+	s.Folder = &v
+	return s
+}
+
+// SetLastCommitId sets the LastCommitId field's value.
+func (s *SourceControlDetails) SetLastCommitId(v string) *SourceControlDetails {
+	s.LastCommitId = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *SourceControlDetails) SetOwner(v string) *SourceControlDetails {
+	s.Owner = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *SourceControlDetails) SetProvider(v string) *SourceControlDetails {
+	s.Provider = &v
+	return s
+}
+
+// SetRepository sets the Repository field's value.
+func (s *SourceControlDetails) SetRepository(v string) *SourceControlDetails {
+	s.Repository = &v
+	return s
+}
+
 // Specifies a connector to an Apache Spark data source.
 type SparkConnectorSource struct {
 	_ struct{} `type:"structure"`
@@ -61809,6 +62176,172 @@ func (s *UpdateGrokClassifierRequest) SetName(v string) *UpdateGrokClassifierReq
 	return s
 }
 
+type UpdateJobFromSourceControlInput struct {
+	_ struct{} `type:"structure"`
+
+	// The type of authentication, which can be an authentication token stored in
+	// Amazon Web Services Secrets Manager, or a personal access token.
+	AuthStrategy *string `type:"string" enum:"SourceControlAuthStrategy"`
+
+	// The value of the authorization token.
+	AuthToken *string `min:"1" type:"string"`
+
+	// An optional branch in the remote repository.
+	BranchName *string `min:"1" type:"string"`
+
+	// A commit ID for a commit in the remote repository.
+	CommitId *string `min:"1" type:"string"`
+
+	// An optional folder in the remote repository.
+	Folder *string `min:"1" type:"string"`
+
+	// The name of the Glue job to be synchronized to or from the remote repository.
+	JobName *string `min:"1" type:"string"`
+
+	// The provider for the remote repository.
+	Provider *string `type:"string" enum:"SourceControlProvider"`
+
+	// The name of the remote repository that contains the job artifacts.
+	RepositoryName *string `min:"1" type:"string"`
+
+	// The owner of the remote repository that contains the job artifacts.
+	RepositoryOwner *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateJobFromSourceControlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateJobFromSourceControlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateJobFromSourceControlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateJobFromSourceControlInput"}
+	if s.AuthToken != nil && len(*s.AuthToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AuthToken", 1))
+	}
+	if s.BranchName != nil && len(*s.BranchName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BranchName", 1))
+	}
+	if s.CommitId != nil && len(*s.CommitId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CommitId", 1))
+	}
+	if s.Folder != nil && len(*s.Folder) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Folder", 1))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.RepositoryName != nil && len(*s.RepositoryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryName", 1))
+	}
+	if s.RepositoryOwner != nil && len(*s.RepositoryOwner) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryOwner", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthStrategy sets the AuthStrategy field's value.
+func (s *UpdateJobFromSourceControlInput) SetAuthStrategy(v string) *UpdateJobFromSourceControlInput {
+	s.AuthStrategy = &v
+	return s
+}
+
+// SetAuthToken sets the AuthToken field's value.
+func (s *UpdateJobFromSourceControlInput) SetAuthToken(v string) *UpdateJobFromSourceControlInput {
+	s.AuthToken = &v
+	return s
+}
+
+// SetBranchName sets the BranchName field's value.
+func (s *UpdateJobFromSourceControlInput) SetBranchName(v string) *UpdateJobFromSourceControlInput {
+	s.BranchName = &v
+	return s
+}
+
+// SetCommitId sets the CommitId field's value.
+func (s *UpdateJobFromSourceControlInput) SetCommitId(v string) *UpdateJobFromSourceControlInput {
+	s.CommitId = &v
+	return s
+}
+
+// SetFolder sets the Folder field's value.
+func (s *UpdateJobFromSourceControlInput) SetFolder(v string) *UpdateJobFromSourceControlInput {
+	s.Folder = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *UpdateJobFromSourceControlInput) SetJobName(v string) *UpdateJobFromSourceControlInput {
+	s.JobName = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *UpdateJobFromSourceControlInput) SetProvider(v string) *UpdateJobFromSourceControlInput {
+	s.Provider = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *UpdateJobFromSourceControlInput) SetRepositoryName(v string) *UpdateJobFromSourceControlInput {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetRepositoryOwner sets the RepositoryOwner field's value.
+func (s *UpdateJobFromSourceControlInput) SetRepositoryOwner(v string) *UpdateJobFromSourceControlInput {
+	s.RepositoryOwner = &v
+	return s
+}
+
+type UpdateJobFromSourceControlOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Glue job.
+	JobName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateJobFromSourceControlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateJobFromSourceControlOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobName sets the JobName field's value.
+func (s *UpdateJobFromSourceControlOutput) SetJobName(v string) *UpdateJobFromSourceControlOutput {
+	s.JobName = &v
+	return s
+}
+
 type UpdateJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -62562,6 +63095,172 @@ func (s *UpdateSchemaOutput) SetSchemaArn(v string) *UpdateSchemaOutput {
 // SetSchemaName sets the SchemaName field's value.
 func (s *UpdateSchemaOutput) SetSchemaName(v string) *UpdateSchemaOutput {
 	s.SchemaName = &v
+	return s
+}
+
+type UpdateSourceControlFromJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The type of authentication, which can be an authentication token stored in
+	// Amazon Web Services Secrets Manager, or a personal access token.
+	AuthStrategy *string `type:"string" enum:"SourceControlAuthStrategy"`
+
+	// The value of the authorization token.
+	AuthToken *string `min:"1" type:"string"`
+
+	// An optional branch in the remote repository.
+	BranchName *string `min:"1" type:"string"`
+
+	// A commit ID for a commit in the remote repository.
+	CommitId *string `min:"1" type:"string"`
+
+	// An optional folder in the remote repository.
+	Folder *string `min:"1" type:"string"`
+
+	// The name of the Glue job to be synchronized to or from the remote repository.
+	JobName *string `min:"1" type:"string"`
+
+	// The provider for the remote repository.
+	Provider *string `type:"string" enum:"SourceControlProvider"`
+
+	// The name of the remote repository that contains the job artifacts.
+	RepositoryName *string `min:"1" type:"string"`
+
+	// The owner of the remote repository that contains the job artifacts.
+	RepositoryOwner *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceControlFromJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceControlFromJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSourceControlFromJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSourceControlFromJobInput"}
+	if s.AuthToken != nil && len(*s.AuthToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AuthToken", 1))
+	}
+	if s.BranchName != nil && len(*s.BranchName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BranchName", 1))
+	}
+	if s.CommitId != nil && len(*s.CommitId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CommitId", 1))
+	}
+	if s.Folder != nil && len(*s.Folder) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Folder", 1))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.RepositoryName != nil && len(*s.RepositoryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryName", 1))
+	}
+	if s.RepositoryOwner != nil && len(*s.RepositoryOwner) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryOwner", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthStrategy sets the AuthStrategy field's value.
+func (s *UpdateSourceControlFromJobInput) SetAuthStrategy(v string) *UpdateSourceControlFromJobInput {
+	s.AuthStrategy = &v
+	return s
+}
+
+// SetAuthToken sets the AuthToken field's value.
+func (s *UpdateSourceControlFromJobInput) SetAuthToken(v string) *UpdateSourceControlFromJobInput {
+	s.AuthToken = &v
+	return s
+}
+
+// SetBranchName sets the BranchName field's value.
+func (s *UpdateSourceControlFromJobInput) SetBranchName(v string) *UpdateSourceControlFromJobInput {
+	s.BranchName = &v
+	return s
+}
+
+// SetCommitId sets the CommitId field's value.
+func (s *UpdateSourceControlFromJobInput) SetCommitId(v string) *UpdateSourceControlFromJobInput {
+	s.CommitId = &v
+	return s
+}
+
+// SetFolder sets the Folder field's value.
+func (s *UpdateSourceControlFromJobInput) SetFolder(v string) *UpdateSourceControlFromJobInput {
+	s.Folder = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *UpdateSourceControlFromJobInput) SetJobName(v string) *UpdateSourceControlFromJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *UpdateSourceControlFromJobInput) SetProvider(v string) *UpdateSourceControlFromJobInput {
+	s.Provider = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *UpdateSourceControlFromJobInput) SetRepositoryName(v string) *UpdateSourceControlFromJobInput {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetRepositoryOwner sets the RepositoryOwner field's value.
+func (s *UpdateSourceControlFromJobInput) SetRepositoryOwner(v string) *UpdateSourceControlFromJobInput {
+	s.RepositoryOwner = &v
+	return s
+}
+
+type UpdateSourceControlFromJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Glue job.
+	JobName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceControlFromJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceControlFromJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobName sets the JobName field's value.
+func (s *UpdateSourceControlFromJobOutput) SetJobName(v string) *UpdateSourceControlFromJobOutput {
+	s.JobName = &v
 	return s
 }
 
@@ -65572,6 +66271,38 @@ func SortDirectionType_Values() []string {
 	return []string{
 		SortDirectionTypeDescending,
 		SortDirectionTypeAscending,
+	}
+}
+
+const (
+	// SourceControlAuthStrategyPersonalAccessToken is a SourceControlAuthStrategy enum value
+	SourceControlAuthStrategyPersonalAccessToken = "PERSONAL_ACCESS_TOKEN"
+
+	// SourceControlAuthStrategyAwsSecretsManager is a SourceControlAuthStrategy enum value
+	SourceControlAuthStrategyAwsSecretsManager = "AWS_SECRETS_MANAGER"
+)
+
+// SourceControlAuthStrategy_Values returns all elements of the SourceControlAuthStrategy enum
+func SourceControlAuthStrategy_Values() []string {
+	return []string{
+		SourceControlAuthStrategyPersonalAccessToken,
+		SourceControlAuthStrategyAwsSecretsManager,
+	}
+}
+
+const (
+	// SourceControlProviderGithub is a SourceControlProvider enum value
+	SourceControlProviderGithub = "GITHUB"
+
+	// SourceControlProviderAwsCodeCommit is a SourceControlProvider enum value
+	SourceControlProviderAwsCodeCommit = "AWS_CODE_COMMIT"
+)
+
+// SourceControlProvider_Values returns all elements of the SourceControlProvider enum
+func SourceControlProvider_Values() []string {
+	return []string{
+		SourceControlProviderGithub,
+		SourceControlProviderAwsCodeCommit,
 	}
 }
 

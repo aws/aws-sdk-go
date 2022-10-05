@@ -502,6 +502,13 @@
         "RackElevation":{"shape":"RackElevation"}
       }
     },
+    "AssetState":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "RETIRING"
+      ]
+    },
     "AssetType":{
       "type":"string",
       "enum":["COMPUTE"]
@@ -608,10 +615,19 @@
       "type":"list",
       "member":{"shape":"City"}
     },
+    "ComputeAssetState":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "ISOLATED",
+        "RETIRING"
+      ]
+    },
     "ComputeAttributes":{
       "type":"structure",
       "members":{
-        "HostId":{"shape":"HostId"}
+        "HostId":{"shape":"HostId"},
+        "State":{"shape":"ComputeAssetState"}
       }
     },
     "ConflictException":{
@@ -1077,6 +1093,11 @@
           "shape":"Token",
           "location":"querystring",
           "locationName":"NextToken"
+        },
+        "StatusFilter":{
+          "shape":"StatusList",
+          "location":"querystring",
+          "locationName":"StatusFilter"
         }
       }
     },
@@ -1431,7 +1452,10 @@
     },
     "PaymentTerm":{
       "type":"string",
-      "enum":["THREE_YEARS"]
+      "enum":[
+        "THREE_YEARS",
+        "ONE_YEAR"
+      ]
     },
     "PostalCode":{
       "type":"string",
@@ -1617,6 +1641,12 @@
     "StateOrRegionList":{
       "type":"list",
       "member":{"shape":"StateOrRegion"}
+    },
+    "StatusList":{
+      "type":"list",
+      "member":{"shape":"AssetState"},
+      "max":2,
+      "min":1
     },
     "String":{
       "type":"string",

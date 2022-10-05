@@ -2737,6 +2737,24 @@
         {"shape":"ConcurrentModificationException"}
       ]
     },
+    "UpdateJobFromSourceControl":{
+      "name":"UpdateJobFromSourceControl",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateJobFromSourceControlRequest"},
+      "output":{"shape":"UpdateJobFromSourceControlResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ValidationException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
     "UpdateMLTransform":{
       "name":"UpdateMLTransform",
       "http":{
@@ -2799,6 +2817,24 @@
         {"shape":"EntityNotFoundException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "UpdateSourceControlFromJob":{
+      "name":"UpdateSourceControlFromJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateSourceControlFromJobRequest"},
+      "output":{"shape":"UpdateSourceControlFromJobResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ValidationException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"}
       ]
     },
     "UpdateTable":{
@@ -3015,6 +3051,12 @@
       "type":"string",
       "max":2048,
       "min":0
+    },
+    "AuthTokenString":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
     "BackfillError":{
       "type":"structure",
@@ -4006,6 +4048,12 @@
       "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
+    "CommitIdString":{
+      "type":"string",
+      "max":40,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
     "Comparator":{
       "type":"string",
       "enum":[
@@ -4590,7 +4638,8 @@
         "NumberOfWorkers":{"shape":"NullableInteger"},
         "WorkerType":{"shape":"WorkerType"},
         "CodeGenConfigurationNodes":{"shape":"CodeGenConfigurationNodes"},
-        "ExecutionClass":{"shape":"ExecutionClass"}
+        "ExecutionClass":{"shape":"ExecutionClass"},
+        "SourceControlDetails":{"shape":"SourceControlDetails"}
       }
     },
     "CreateJobResponse":{
@@ -7424,7 +7473,8 @@
         "NotificationProperty":{"shape":"NotificationProperty"},
         "GlueVersion":{"shape":"GlueVersionString"},
         "CodeGenConfigurationNodes":{"shape":"CodeGenConfigurationNodes"},
-        "ExecutionClass":{"shape":"ExecutionClass"}
+        "ExecutionClass":{"shape":"ExecutionClass"},
+        "SourceControlDetails":{"shape":"SourceControlDetails"}
       }
     },
     "JobBookmarkEntry":{
@@ -7552,7 +7602,8 @@
         "NotificationProperty":{"shape":"NotificationProperty"},
         "GlueVersion":{"shape":"GlueVersionString"},
         "CodeGenConfigurationNodes":{"shape":"CodeGenConfigurationNodes"},
-        "ExecutionClass":{"shape":"ExecutionClass"}
+        "ExecutionClass":{"shape":"ExecutionClass"},
+        "SourceControlDetails":{"shape":"SourceControlDetails"}
       }
     },
     "Join":{
@@ -9705,6 +9756,33 @@
         "ASCENDING"
       ]
     },
+    "SourceControlAuthStrategy":{
+      "type":"string",
+      "enum":[
+        "PERSONAL_ACCESS_TOKEN",
+        "AWS_SECRETS_MANAGER"
+      ]
+    },
+    "SourceControlDetails":{
+      "type":"structure",
+      "members":{
+        "Provider":{"shape":"SourceControlProvider"},
+        "Repository":{"shape":"Generic512CharString"},
+        "Owner":{"shape":"Generic512CharString"},
+        "Branch":{"shape":"Generic512CharString"},
+        "Folder":{"shape":"Generic512CharString"},
+        "LastCommitId":{"shape":"Generic512CharString"},
+        "AuthStrategy":{"shape":"SourceControlAuthStrategy"},
+        "AuthToken":{"shape":"Generic512CharString"}
+      }
+    },
+    "SourceControlProvider":{
+      "type":"string",
+      "enum":[
+        "GITHUB",
+        "AWS_CODE_COMMIT"
+      ]
+    },
     "SparkConnectorSource":{
       "type":"structure",
       "required":[
@@ -10797,6 +10875,26 @@
         "CustomPatterns":{"shape":"CustomPatterns"}
       }
     },
+    "UpdateJobFromSourceControlRequest":{
+      "type":"structure",
+      "members":{
+        "JobName":{"shape":"NameString"},
+        "Provider":{"shape":"SourceControlProvider"},
+        "RepositoryName":{"shape":"NameString"},
+        "RepositoryOwner":{"shape":"NameString"},
+        "BranchName":{"shape":"NameString"},
+        "Folder":{"shape":"NameString"},
+        "CommitId":{"shape":"CommitIdString"},
+        "AuthStrategy":{"shape":"SourceControlAuthStrategy"},
+        "AuthToken":{"shape":"AuthTokenString"}
+      }
+    },
+    "UpdateJobFromSourceControlResponse":{
+      "type":"structure",
+      "members":{
+        "JobName":{"shape":"NameString"}
+      }
+    },
     "UpdateJobRequest":{
       "type":"structure",
       "required":[
@@ -10900,6 +10998,26 @@
         "SchemaArn":{"shape":"GlueResourceArn"},
         "SchemaName":{"shape":"SchemaRegistryNameString"},
         "RegistryName":{"shape":"SchemaRegistryNameString"}
+      }
+    },
+    "UpdateSourceControlFromJobRequest":{
+      "type":"structure",
+      "members":{
+        "JobName":{"shape":"NameString"},
+        "Provider":{"shape":"SourceControlProvider"},
+        "RepositoryName":{"shape":"NameString"},
+        "RepositoryOwner":{"shape":"NameString"},
+        "BranchName":{"shape":"NameString"},
+        "Folder":{"shape":"NameString"},
+        "CommitId":{"shape":"CommitIdString"},
+        "AuthStrategy":{"shape":"SourceControlAuthStrategy"},
+        "AuthToken":{"shape":"AuthTokenString"}
+      }
+    },
+    "UpdateSourceControlFromJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobName":{"shape":"NameString"}
       }
     },
     "UpdateTableRequest":{
