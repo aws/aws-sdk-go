@@ -3,7 +3,7 @@
   "service": "<p>AWS Resilience Hub helps you proactively prepare and protect your Amazon Web Services applications from disruptions. Resilience Hub offers continuous resiliency assessment and validation that integrates into your software development lifecycle. This enables you to uncover resiliency weaknesses, ensure recovery time objective (RTO) and recovery point objective (RPO) targets for your applications are met, and resolve issues before they are released into production. </p>",
   "operations": {
     "AddDraftAppVersionResourceMappings": "<p>Adds the resource mapping for the draft application version.</p>",
-    "CreateApp": "<p>Creates a Resilience Hub application. A Resilience Hub application is a collection of Amazon Web Services resources structured to prevent and recover Amazon Web Services application disruptions. To describe a Resilience Hub application, you provide an application name, resources from one or more–up to five–CloudFormation stacks, and an appropriate resiliency policy.</p> <pre><code> &lt;p&gt;After you create a Resilience Hub application, you publish it so that you can run a resiliency assessment on it. You can then use recommendations from the assessment to improve resiliency by running another assessment, comparing results, and then iterating the process until you achieve your goals for recovery time objective (RTO) and recovery point objective (RPO).&lt;/p&gt; </code></pre>",
+    "CreateApp": "<p>Creates a Resilience Hub application. A Resilience Hub application is a collection of Amazon Web Services resources structured to prevent and recover Amazon Web Services application disruptions. To describe a Resilience Hub application, you provide an application name, resources from one or more–up to five–CloudFormation stacks, and an appropriate resiliency policy.</p> <p>After you create a Resilience Hub application, you publish it so that you can run a resiliency assessment on it. You can then use recommendations from the assessment to improve resiliency by running another assessment, comparing results, and then iterating the process until you achieve your goals for recovery time objective (RTO) and recovery point objective (RPO).</p>",
     "CreateRecommendationTemplate": "<p>Creates a new recommendation template.</p>",
     "CreateResiliencyPolicy": "<p>Creates a resiliency policy for an application.</p>",
     "DeleteApp": "<p>Deletes an AWS Resilience Hub application. This is a destructive action that can't be undone.</p>",
@@ -547,7 +547,7 @@
       "refs": {
         "CreateResiliencyPolicyRequest$policy": "<p>The type of resiliency policy to be created, including the recovery time objective (RTO) and recovery point objective (RPO) in seconds.</p>",
         "ResiliencyPolicy$policy": "<p>The resiliency policy.</p>",
-        "UpdateResiliencyPolicyRequest$policy": "<p>The type of resiliency policy to be created, including the recovery time objective (RTO) and recovery point objective (RPO) in seconds.</p>"
+        "UpdateResiliencyPolicyRequest$policy": "<p>The type of resiliency policy to be created, including the recovery time objective (RTO) and recovery point objective (RPO) in seconds.</p> <note> <p>If you do not want to specify regional targets for a regional policy, you must set the values of <code>rpoInSecs</code> and <code>rtoInSecs</code> to <code>-1</code>.</p> </note>"
       }
     },
     "DisruptionResiliencyScore": {

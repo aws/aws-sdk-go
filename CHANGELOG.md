@@ -1,3 +1,9 @@
+Release v1.44.113 (2022-10-06)
+===
+
+### Service Client Updates
+* `service/resiliencehub`: Updates service documentation
+
 Release v1.44.112 (2022-10-05)
 ===
 
