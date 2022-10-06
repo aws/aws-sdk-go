@@ -162,11 +162,11 @@ func (c *ResilienceHub) CreateAppRequest(input *CreateAppInput) (req *request.Re
 // you provide an application name, resources from one or more–up to five–CloudFormation
 // stacks, and an appropriate resiliency policy.
 //
-//	<p>After you create a Resilience Hub application, you publish it so that
-//	you can run a resiliency assessment on it. You can then use recommendations
-//	from the assessment to improve resiliency by running another assessment,
-//	comparing results, and then iterating the process until you achieve your
-//	goals for recovery time objective (RTO) and recovery point objective (RPO).</p>
+// After you create a Resilience Hub application, you publish it so that you
+// can run a resiliency assessment on it. You can then use recommendations from
+// the assessment to improve resiliency by running another assessment, comparing
+// results, and then iterating the process until you achieve your goals for
+// recovery time objective (RTO) and recovery point objective (RPO).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12210,6 +12210,9 @@ type UpdateResiliencyPolicyInput struct {
 
 	// The type of resiliency policy to be created, including the recovery time
 	// objective (RTO) and recovery point objective (RPO) in seconds.
+	//
+	// If you do not want to specify regional targets for a regional policy, you
+	// must set the values of rpoInSecs and rtoInSecs to -1.
 	Policy map[string]*FailurePolicy `locationName:"policy" type:"map"`
 
 	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
