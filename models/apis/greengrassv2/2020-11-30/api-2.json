@@ -1110,8 +1110,27 @@
         "coreDeviceExecutionStatus":{"shape":"EffectiveDeploymentExecutionStatus"},
         "reason":{"shape":"Reason"},
         "creationTimestamp":{"shape":"Timestamp"},
-        "modifiedTimestamp":{"shape":"Timestamp"}
+        "modifiedTimestamp":{"shape":"Timestamp"},
+        "statusDetails":{"shape":"EffectiveDeploymentStatusDetails"}
       }
+    },
+    "EffectiveDeploymentErrorCode":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "EffectiveDeploymentErrorStack":{
+      "type":"list",
+      "member":{"shape":"EffectiveDeploymentErrorCode"}
+    },
+    "EffectiveDeploymentErrorType":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "EffectiveDeploymentErrorTypeList":{
+      "type":"list",
+      "member":{"shape":"EffectiveDeploymentErrorType"}
     },
     "EffectiveDeploymentExecutionStatus":{
       "type":"string",
@@ -1124,6 +1143,13 @@
         "CANCELED",
         "REJECTED"
       ]
+    },
+    "EffectiveDeploymentStatusDetails":{
+      "type":"structure",
+      "members":{
+        "errorStack":{"shape":"EffectiveDeploymentErrorStack"},
+        "errorTypes":{"shape":"EffectiveDeploymentErrorTypeList"}
+      }
     },
     "EffectiveDeploymentsList":{
       "type":"list",
@@ -1295,7 +1321,10 @@
         "lifecycleState":{"shape":"InstalledComponentLifecycleState"},
         "lifecycleStateDetails":{"shape":"LifecycleStateDetails"},
         "isRoot":{"shape":"IsRoot"},
-        "lastStatusChangeTimestamp":{"shape":"Timestamp"}
+        "lastStatusChangeTimestamp":{"shape":"Timestamp"},
+        "lastReportedTimestamp":{"shape":"Timestamp"},
+        "lastInstallationSource":{"shape":"NonEmptyString"},
+        "lifecycleStatusCodes":{"shape":"InstalledComponentLifecycleStatusCodeList"}
       }
     },
     "InstalledComponentLifecycleState":{
@@ -1310,6 +1339,15 @@
         "BROKEN",
         "FINISHED"
       ]
+    },
+    "InstalledComponentLifecycleStatusCode":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "InstalledComponentLifecycleStatusCodeList":{
+      "type":"list",
+      "member":{"shape":"InstalledComponentLifecycleStatusCode"}
     },
     "InstalledComponentList":{
       "type":"list",

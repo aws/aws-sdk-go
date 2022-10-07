@@ -1,3 +1,13 @@
+Release v1.44.114 (2022-10-07)
+===
+
+### Service Client Updates
+* `service/codeguru-reviewer`: Updates service documentation
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/greengrassv2`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * Amazon QuickSight now supports SecretsManager Secret ARN in place of CredentialPair for DataSource creation and update. This release also has some minor documentation updates and removes CountryCode as a required parameter in GeoSpatialColumnGroup
+
 Release v1.44.113 (2022-10-06)
 ===
 

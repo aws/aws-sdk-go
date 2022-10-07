@@ -3641,14 +3641,16 @@
         "AlternateDataSourceParameters":{"shape":"DataSourceParametersList"},
         "VpcConnectionProperties":{"shape":"VpcConnectionProperties"},
         "SslProperties":{"shape":"SslProperties"},
-        "ErrorInfo":{"shape":"DataSourceErrorInfo"}
+        "ErrorInfo":{"shape":"DataSourceErrorInfo"},
+        "SecretArn":{"shape":"SecretArn"}
       }
     },
     "DataSourceCredentials":{
       "type":"structure",
       "members":{
         "CredentialPair":{"shape":"CredentialPair"},
-        "CopySourceArn":{"shape":"CopySourceArn"}
+        "CopySourceArn":{"shape":"CopySourceArn"},
+        "SecretArn":{"shape":"SecretArn"}
       },
       "sensitive":true
     },
@@ -5546,7 +5548,6 @@
       "type":"structure",
       "required":[
         "Name",
-        "CountryCode",
         "Columns"
       ],
       "members":{
@@ -7793,6 +7794,12 @@
           "location":"statusCode"
         }
       }
+    },
+    "SecretArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^arn:[-a-z0-9]*:secretsmanager:[-a-z0-9]*:[0-9]{12}:secret:.+"
     },
     "ServiceNowParameters":{
       "type":"structure",
