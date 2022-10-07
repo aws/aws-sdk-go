@@ -6016,6 +6016,10 @@ type EffectiveDeployment struct {
 	// The reason code for the update, if the job was updated.
 	Reason *string `locationName:"reason" type:"string"`
 
+	// The status details that explain why a deployment has an error. This response
+	// will be null if the deployment is in a success state.
+	StatusDetails *EffectiveDeploymentStatusDetails `locationName:"statusDetails" type:"structure"`
+
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the target IoT thing or thing group.
 	//
@@ -6095,9 +6099,66 @@ func (s *EffectiveDeployment) SetReason(v string) *EffectiveDeployment {
 	return s
 }
 
+// SetStatusDetails sets the StatusDetails field's value.
+func (s *EffectiveDeployment) SetStatusDetails(v *EffectiveDeploymentStatusDetails) *EffectiveDeployment {
+	s.StatusDetails = v
+	return s
+}
+
 // SetTargetArn sets the TargetArn field's value.
 func (s *EffectiveDeployment) SetTargetArn(v string) *EffectiveDeployment {
 	s.TargetArn = &v
+	return s
+}
+
+// Contains all error-related information for the deployment record. The status
+// details will be null if the deployment is in a success state.
+//
+// Greengrass nucleus v2.8.0 or later is required to get an accurate errorStack
+// and errorTypes response. This field will not be returned for earlier Greengrass
+// nucleus versions.
+type EffectiveDeploymentStatusDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Contains an ordered list of short error codes that range from the most generic
+	// error to the most specific one. The error codes describe the reason for failure
+	// whenever the coreDeviceExecutionStatus is in a failed state. The response
+	// will be an empty list if there is no error.
+	ErrorStack []*string `locationName:"errorStack" type:"list"`
+
+	// Contains tags which describe the error. You can use the error types to classify
+	// errors to assist with remediating the failure. The response will be an empty
+	// list if there is no error.
+	ErrorTypes []*string `locationName:"errorTypes" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EffectiveDeploymentStatusDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EffectiveDeploymentStatusDetails) GoString() string {
+	return s.String()
+}
+
+// SetErrorStack sets the ErrorStack field's value.
+func (s *EffectiveDeploymentStatusDetails) SetErrorStack(v []*string) *EffectiveDeploymentStatusDetails {
+	s.ErrorStack = v
+	return s
+}
+
+// SetErrorTypes sets the ErrorTypes field's value.
+func (s *EffectiveDeploymentStatusDetails) SetErrorTypes(v []*string) *EffectiveDeploymentStatusDetails {
+	s.ErrorTypes = v
 	return s
 }
 
@@ -6833,6 +6894,18 @@ type InstalledComponent struct {
 	// Whether or not the component is a root component.
 	IsRoot *bool `locationName:"isRoot" type:"boolean"`
 
+	// The most recent deployment source that brought the component to the Greengrass
+	// core device. For a thing group deployment or thing deployment, the source
+	// will be the The ID of the deployment. and for local deployments it will be
+	// LOCAL.
+	LastInstallationSource *string `locationName:"lastInstallationSource" min:"1" type:"string"`
+
+	// The last time the Greengrass core device sent a message containing a certain
+	// component to the Amazon Web Services Cloud.
+	//
+	// A component does not need to see a state change for this field to update.
+	LastReportedTimestamp *time.Time `locationName:"lastReportedTimestamp" type:"timestamp"`
+
 	// The status of how current the data is.
 	//
 	// This response is based off of component state changes. The status reflects
@@ -6844,8 +6917,16 @@ type InstalledComponent struct {
 	// The lifecycle state of the component.
 	LifecycleState *string `locationName:"lifecycleState" type:"string" enum:"InstalledComponentLifecycleState"`
 
-	// The details about the lifecycle state of the component.
+	// A detailed response about the lifecycle state of the component that explains
+	// the reason why a component has an error or is broken.
 	LifecycleStateDetails *string `locationName:"lifecycleStateDetails" min:"1" type:"string"`
+
+	// The status codes that indicate the reason for failure whenever the lifecycleState
+	// has an error or is in a broken state.
+	//
+	// Greengrass nucleus v2.8.0 or later is required to get an accurate lifecycleStatusCodes
+	// response. This response can be inaccurate in earlier Greengrass nucleus versions.
+	LifecycleStatusCodes []*string `locationName:"lifecycleStatusCodes" type:"list"`
 }
 
 // String returns the string representation.
@@ -6884,6 +6965,18 @@ func (s *InstalledComponent) SetIsRoot(v bool) *InstalledComponent {
 	return s
 }
 
+// SetLastInstallationSource sets the LastInstallationSource field's value.
+func (s *InstalledComponent) SetLastInstallationSource(v string) *InstalledComponent {
+	s.LastInstallationSource = &v
+	return s
+}
+
+// SetLastReportedTimestamp sets the LastReportedTimestamp field's value.
+func (s *InstalledComponent) SetLastReportedTimestamp(v time.Time) *InstalledComponent {
+	s.LastReportedTimestamp = &v
+	return s
+}
+
 // SetLastStatusChangeTimestamp sets the LastStatusChangeTimestamp field's value.
 func (s *InstalledComponent) SetLastStatusChangeTimestamp(v time.Time) *InstalledComponent {
 	s.LastStatusChangeTimestamp = &v
@@ -6899,6 +6992,12 @@ func (s *InstalledComponent) SetLifecycleState(v string) *InstalledComponent {
 // SetLifecycleStateDetails sets the LifecycleStateDetails field's value.
 func (s *InstalledComponent) SetLifecycleStateDetails(v string) *InstalledComponent {
 	s.LifecycleStateDetails = &v
+	return s
+}
+
+// SetLifecycleStatusCodes sets the LifecycleStatusCodes field's value.
+func (s *InstalledComponent) SetLifecycleStatusCodes(v []*string) *InstalledComponent {
+	s.LifecycleStatusCodes = v
 	return s
 }
 
@@ -8845,9 +8944,12 @@ type ListInstalledComponentsOutput struct {
 
 	// A list that summarizes each component on the core device.
 	//
-	// Accuracy of the lastStatusChangeTimestamp response depends on Greengrass
-	// nucleus v2.7.0. It performs best on Greengrass nucleus v2.7.0 and can be
-	// inaccurate on earlier versions.
+	// Greengrass nucleus v2.7.0 or later is required to get an accurate lastStatusChangeTimestamp
+	// response. This response can be inaccurate in earlier Greengrass nucleus versions.
+	//
+	// Greengrass nucleus v2.8.0 or later is required to get an accurate lastInstallationSource
+	// and lastReportedTimestamp response. This response can be inaccurate or null
+	// in earlier Greengrass nucleus versions.
 	InstalledComponents []*InstalledComponent `locationName:"installedComponents" type:"list"`
 
 	// The token for the next set of results, or null if there are no additional

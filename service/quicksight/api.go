@@ -11570,7 +11570,7 @@ func (c *QuickSight) UpdateDataSetRequest(input *UpdateDataSetInput) (req *reque
 // UpdateDataSet API operation for Amazon QuickSight.
 //
 // Updates a dataset. This operation doesn't support datasets that include uploaded
-// files as a source.
+// files as a source. Partial updates are not supported by this operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20587,6 +20587,10 @@ type DataSource struct {
 	// A display name for the data source.
 	Name *string `min:"1" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the secret associated with the data source
+	// in Amazon Secrets Manager.
+	SecretArn *string `min:"1" type:"string"`
+
 	// Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects
 	// to your underlying source.
 	SslProperties *SslProperties `type:"structure"`
@@ -20670,6 +20674,12 @@ func (s *DataSource) SetName(v string) *DataSource {
 	return s
 }
 
+// SetSecretArn sets the SecretArn field's value.
+func (s *DataSource) SetSecretArn(v string) *DataSource {
+	s.SecretArn = &v
+	return s
+}
+
 // SetSslProperties sets the SslProperties field's value.
 func (s *DataSource) SetSslProperties(v *SslProperties) *DataSource {
 	s.SslProperties = v
@@ -20707,6 +20717,10 @@ type DataSourceCredentials struct {
 
 	// Credential pair. For more information, see CredentialPair (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CredentialPair.html) .
 	CredentialPair *CredentialPair `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the secret associated with the data source
+	// in Amazon Secrets Manager.
+	SecretArn *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -20730,6 +20744,9 @@ func (s DataSourceCredentials) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DataSourceCredentials) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DataSourceCredentials"}
+	if s.SecretArn != nil && len(*s.SecretArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 1))
+	}
 	if s.CredentialPair != nil {
 		if err := s.CredentialPair.Validate(); err != nil {
 			invalidParams.AddNested("CredentialPair", err.(request.ErrInvalidParams))
@@ -20751,6 +20768,12 @@ func (s *DataSourceCredentials) SetCopySourceArn(v string) *DataSourceCredential
 // SetCredentialPair sets the CredentialPair field's value.
 func (s *DataSourceCredentials) SetCredentialPair(v *CredentialPair) *DataSourceCredentials {
 	s.CredentialPair = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *DataSourceCredentials) SetSecretArn(v string) *DataSourceCredentials {
+	s.SecretArn = &v
 	return s
 }
 
@@ -28015,9 +28038,7 @@ type GeoSpatialColumnGroup struct {
 	Columns []*string `min:"1" type:"list" required:"true"`
 
 	// Country code.
-	//
-	// CountryCode is a required field
-	CountryCode *string `type:"string" required:"true" enum:"GeoSpatialCountryCode"`
+	CountryCode *string `type:"string" enum:"GeoSpatialCountryCode"`
 
 	// A display name for the hierarchy.
 	//
@@ -28051,9 +28072,6 @@ func (s *GeoSpatialColumnGroup) Validate() error {
 	}
 	if s.Columns != nil && len(s.Columns) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Columns", 1))
-	}
-	if s.CountryCode == nil {
-		invalidParams.Add(request.NewErrParamRequired("CountryCode"))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -43907,8 +43925,10 @@ type User struct {
 	//    * RESTRICTED_AUTHOR: This role isn't currently available for use.
 	Role *string `type:"string" enum:"UserRole"`
 
-	// The user's user name. In the output, the value for UserName is N/A when the
-	// value for IdentityType is IAM and the corresponding IAM user is deleted.
+	// The user's user name. This value is required if you are registering a user
+	// that will be managed in Amazon QuickSight. In the output, the value for UserName
+	// is N/A when the value for IdentityType is IAM and the corresponding IAM user
+	// is deleted.
 	UserName *string `min:"1" type:"string"`
 }
 
